@@ -232,6 +232,12 @@
         body.light-mode .weather-badge { border-width: 1.5px !important; }
         body.light-mode .weather-good { background: rgba(34,197,94,0.1) !important; color: #16a34a !important; border-color: rgba(34,197,94,0.25) !important; }
         body.light-mode .weather-warn { background: rgba(234,179,8,0.1) !important; color: #ca8a04 !important; border-color: rgba(234,179,8,0.25) !important; }
+
+        /* Light mode - App Store Badges */
+        body.light-mode .app-store-badge { background: linear-gradient(135deg, #1e293b, #0f172a) !important; border-color: #334155 !important; }
+        body.light-mode .app-store-badge span.text-white { color: #ffffff !important; }
+        body.light-mode .app-store-badge span.text-gray-400 { color: #9ca3af !important; }
+        body.light-mode .app-store-badge svg { fill: white !important; }
         body.light-mode .weather-bad { background: rgba(239,68,68,0.1) !important; color: #dc2626 !important; border-color: rgba(239,68,68,0.25) !important; }
         body.light-mode .floating-btn { box-shadow: 0 8px 25px rgba(249,115,22,0.35) !important; }
         body.light-mode .locate-btn { background: rgba(255,252,249,0.95) !important; border-color: #efe6db !important; color: #5c4d3d !important; }
@@ -1287,9 +1293,10 @@
                 <button onclick="toggleTheme()" class="hidden sm:flex w-9 h-9 rounded-full bg-slate-800/50 border border-slate-700 hover:border-orange-500/50 items-center justify-center transition" title="Cambiar tema">
                     <span id="theme-icon-landing" class="text-lg">☀️</span>
                 </button>
-                <!-- Selector idioma - solo bandera en móvil -->
-                <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-slate-800 text-white px-2 md:px-3 py-2 rounded-full border border-slate-700 text-xs md:text-sm outline-none cursor-pointer">
-                    <option value="es">🇪🇸 ES</option><option value="en">🇬🇧 EN</option><option value="pt">🇵🇹 PT</option>
+                <!-- Selector idioma ES/EN -->
+                <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-slate-800 text-white px-2 md:px-3 py-2 rounded-full border border-slate-700 text-xs md:text-sm outline-none cursor-pointer hover:border-orange-500/50 transition">
+                    <option value="es">🇪🇸 ES</option>
+                    <option value="en">🇬🇧 EN</option>
                 </select>
                 <button id="nav-login" onclick="openModal('modal-login')" class="text-gray-300 hover:text-white px-3 md:px-4 py-2 font-semibold text-sm transition hidden md:block">Entrar</button>
                 <button id="nav-register" onclick="openModal('modal-register')" class="bg-orange-500 hover:bg-orange-600 text-white px-4 md:px-5 py-2 rounded-full font-bold text-xs md:text-sm transition whitespace-nowrap"><span class="md:hidden">Entrar</span><span class="hidden md:inline">Registrarse</span></button>
@@ -1335,19 +1342,19 @@
 
                 <!-- App Store Badges Premium -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-                    <p class="text-gray-400 text-sm font-medium">Disponible en:</p>
+                    <p id="app-available-text" class="text-gray-400 text-sm font-medium">Disponible en:</p>
                     <div class="flex items-center gap-3">
-                        <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" rel="noopener" class="group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                        <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             <div class="flex flex-col">
-                                <span class="text-[10px] text-gray-400 leading-tight">Descargar en</span>
+                                <span id="app-download-ios" class="text-[10px] text-gray-400 leading-tight">Descargar en</span>
                                 <span class="text-sm font-semibold text-white leading-tight">App Store</span>
                             </div>
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
                             <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                             <div class="flex flex-col">
-                                <span class="text-[10px] text-gray-400 leading-tight">Disponible en</span>
+                                <span id="app-download-android" class="text-[10px] text-gray-400 leading-tight">Disponible en</span>
                                 <span class="text-sm font-semibold text-white leading-tight">Google Play</span>
                             </div>
                         </a>
@@ -1367,7 +1374,7 @@
                 </div>
                 <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 md:p-6 text-center hover:border-orange-500/30 transition">
                     <div class="text-3xl md:text-4xl font-black text-orange-500 mb-1" id="stat-total-ciudades">20+</div>
-                    <div class="text-gray-400 text-sm" id="stat-label-ciudades">Países hispanohablantes</div>
+                    <div class="text-gray-400 text-sm" id="stat-label-ciudades">Países activos</div>
                 </div>
                 <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 md:p-6 text-center hover:border-orange-500/30 transition">
                     <div class="text-3xl md:text-4xl font-black text-orange-500 mb-1" id="stat-proximas-quedadas">12</div>
@@ -1406,7 +1413,7 @@
                     <p class="text-gray-400 text-sm leading-relaxed mb-4" id="benefit-2-desc">Mapa interactivo con todas las quedadas de tu zona. Únete con un click o crea la tuya propia.</p>
                     <div class="flex justify-center items-center gap-2 text-xs text-gray-500">
                         <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-                        🌍 Disponible en todo el mundo hispanohablante
+                        <span id="available-worldwide">🌍 Disponible en todo el mundo</span>
                     </div>
                 </div>
 
@@ -1558,26 +1565,26 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-black cursor-pointer" onclick="showLanding()">CORRER<span class="text-orange-500">JUNTOS</span></div>
                 <div class="flex items-center gap-2 md:gap-3">
-                    <span class="text-gray-400 text-sm hidden md:inline">Hola, <span id="user-name" class="text-white font-bold"></span></span>
+                    <span class="text-gray-400 text-sm hidden md:inline"><span id="header-hello">Hola</span>, <span id="user-name" class="text-white font-bold"></span></span>
                     <!-- Toggle tema -->
                     <button onclick="toggleTheme()" class="w-9 h-9 rounded-full bg-slate-800/50 border border-slate-700 hover:border-orange-500/50 flex items-center justify-center transition" title="Cambiar tema">
                         <span id="theme-icon" class="text-lg">☀️</span>
                     </button>
                     <div class="flex items-center gap-1 md:gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-1">
-                        <button id="btnProfileTop" type="button" class="text-orange-300 hover:text-orange-100 text-xs md:text-sm font-semibold px-2 md:px-3 py-1.5 rounded-full hover:bg-orange-500/20 transition">Mi perfil</button>
+                        <button id="btnProfileTop" type="button" class="text-orange-300 hover:text-orange-100 text-xs md:text-sm font-semibold px-2 md:px-3 py-1.5 rounded-full hover:bg-orange-500/20 transition"><span id="header-profile">Mi perfil</span></button>
                         <div class="h-6 w-px bg-orange-500/30"></div>
-                        <button id="btnLogoutTop" type="button" class="text-orange-400/70 hover:text-orange-300 text-xs md:text-sm font-semibold px-2 md:px-3 py-1.5 rounded-full hover:bg-orange-500/20 transition">Salir</button>
+                        <button id="btnLogoutTop" type="button" class="text-orange-400/70 hover:text-orange-300 text-xs md:text-sm font-semibold px-2 md:px-3 py-1.5 rounded-full hover:bg-orange-500/20 transition"><span id="header-logout">Salir</span></button>
                     </div>
                     <!-- Botón desktop -->
                     <button onclick="openModalCrear()" aria-label="Crear nueva quedada" class="hidden md:flex bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-2.5 rounded-full font-bold text-sm hover:shadow-lg transition items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>Crear Quedada
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg><span id="header-create-desktop">Crear Quedada</span>
                     </button>
                 </div>
             </div>
             <!-- Botón móvil centrado -->
             <div class="flex justify-center mt-4 md:hidden">
                 <button onclick="openModalCrear()" aria-label="Crear nueva quedada" class="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3 rounded-full font-bold text-sm hover:shadow-lg transition flex items-center gap-2 shadow-lg shadow-orange-500/30">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>Crear Quedada
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg><span id="header-create-mobile">Crear Quedada</span>
                 </button>
             </div>
         </header>
@@ -1586,17 +1593,17 @@
                 <div><h2 class="text-3xl md:text-4xl font-black mb-2"><span id="app-title">Quedadas </span><span id="app-title-highlight" class="text-orange-500">cerca de ti</span></h2><p id="app-subtitle" class="text-gray-500">Encuentra tu próxima ruta y conoce gente nueva</p></div>
                 <!-- App Store Badges Premium -->
                 <div class="flex items-center gap-3 mt-3 md:mt-0">
-                    <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" rel="noopener" class="group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                    <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                         <div class="flex flex-col">
-                            <span class="text-[10px] text-gray-400 leading-tight">Descargar en</span>
+                            <span id="app-download-ios-2" class="text-[10px] text-gray-400 leading-tight">Descargar en</span>
                             <span class="text-sm font-semibold text-white leading-tight">App Store</span>
                         </div>
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                    <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
                         <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                         <div class="flex flex-col">
-                            <span class="text-[10px] text-gray-400 leading-tight">Disponible en</span>
+                            <span id="app-download-android-2" class="text-[10px] text-gray-400 leading-tight">Disponible en</span>
                             <span class="text-sm font-semibold text-white leading-tight">Google Play</span>
                         </div>
                     </a>
@@ -1623,11 +1630,11 @@
                             <div class="flex items-center gap-4">
                                 <div class="social-stat-inline" onclick="openFollowersModal('siguiendo')">
                                     <span id="stat-siguiendo" class="font-bold text-white">0</span>
-                                    <span class="text-gray-500 text-sm ml-1">siguiendo</span>
+                                    <span class="text-gray-500 text-sm ml-1" id="label-following">siguiendo</span>
                                 </div>
                                 <div class="social-stat-inline" onclick="openFollowersModal('seguidores')">
                                     <span id="stat-seguidores" class="font-bold text-white">0</span>
-                                    <span class="text-gray-500 text-sm ml-1">seguidores</span>
+                                    <span class="text-gray-500 text-sm ml-1" id="label-followers">seguidores</span>
                                 </div>
                             </div>
                         </div>
@@ -1635,10 +1642,10 @@
                         <!-- Botones de acción -->
                         <div class="flex flex-col gap-2">
                             <button onclick="openRankingModal()" class="px-3 py-1.5 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold hover:bg-purple-500/30 transition flex items-center gap-1">
-                                📊 Ranking
+                                📊 <span id="btn-ranking">Ranking</span>
                             </button>
                             <button onclick="renderBadges(); openModal('modal-badges')" class="px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-bold hover:bg-orange-500/30 transition flex items-center gap-1">
-                                🏅 Logros
+                                🏅 <span id="btn-achievements">Logros</span>
                             </button>
                         </div>
                     </div>
@@ -1648,19 +1655,19 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div id="stat-quedadas" class="stat-value">0</div>
-                        <div class="stat-label">Quedadas totales</div>
+                        <div class="stat-label" id="label-total-runs">Quedadas totales</div>
                     </div>
                     <div class="stat-card">
                         <div id="stat-km" class="stat-value">0</div>
-                        <div class="stat-label">Km corridos</div>
+                        <div class="stat-label" id="label-km-run">Km corridos</div>
                     </div>
                     <div class="stat-card">
                         <div id="stat-runners" class="stat-value">0</div>
-                        <div class="stat-label">Runners conocidos</div>
+                        <div class="stat-label" id="label-runners-known">Runners conocidos</div>
                     </div>
                     <div class="stat-card">
                         <div id="stat-proximas" class="stat-value">0</div>
-                        <div class="stat-label">Próximas quedadas</div>
+                        <div class="stat-label" id="label-upcoming">Próximas quedadas</div>
                     </div>
                 </div>
 
@@ -1709,10 +1716,10 @@
                     <div class="premium-stats-locked-container">
                         <div class="text-center py-4">
                             <span class="text-2xl mb-2 block">📊</span>
-                            <p class="text-sm font-semibold text-gray-300 mb-1">Estadísticas detalladas</p>
-                            <p class="text-xs text-gray-500 mb-3">Gráficos, rachas, promedios y más</p>
-                            <button onclick="openModal('modal-perfil')" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
-                                ⭐ Desbloquear con Premium
+                            <p id="premium-stats-title" class="text-sm font-semibold text-gray-300 mb-1">Estadísticas detalladas</p>
+                            <p id="premium-stats-desc" class="text-xs text-gray-500 mb-3">Gráficos, rachas, promedios y más</p>
+                            <button onclick="openPremiumCheckout()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
+                                ⭐ <span id="premium-unlock-btn">Desbloquear con Premium</span>
                             </button>
                         </div>
                     </div>
@@ -1725,7 +1732,7 @@
                 <div class="filters-header">
                     <div class="filters-title">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-                        Filtrar quedadas
+                        <span id="filter-title">Filtrar quedadas</span>
                         <span id="active-filters-count" class="hidden px-2 py-0.5 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold shadow-lg shadow-orange-500/30">0</span>
                     </div>
                     <button id="btn-clear-filters" onclick="clearAdvancedFilters()" class="btn-clear-filters hidden">✕ Limpiar</button>
@@ -1735,22 +1742,22 @@
                 <div class="space-y-4">
                     <!-- Horario -->
                     <div class="filter-section filter-section-expanded">
-                        <div class="filter-label-big">🌤️ Horario</div>
+                        <div class="filter-label-big">🌤️ <span id="filter-schedule-label">Horario</span></div>
                         <div class="filter-pills filter-pills-expanded">
-                            <button class="filter-pill filter-pill-big" data-filter="horario" data-value="manana">🌅 Mañana</button>
-                            <button class="filter-pill filter-pill-big" data-filter="horario" data-value="tarde">🌆 Tarde</button>
-                            <button class="filter-pill filter-pill-big" data-filter="horario" data-value="noche">🌙 Noche</button>
+                            <button class="filter-pill filter-pill-big" data-filter="horario" data-value="manana">🌅 <span id="filter-morning">Mañana</span></button>
+                            <button class="filter-pill filter-pill-big" data-filter="horario" data-value="tarde">🌆 <span id="filter-afternoon">Tarde</span></button>
+                            <button class="filter-pill filter-pill-big" data-filter="horario" data-value="noche">🌙 <span id="filter-night">Noche</span></button>
                         </div>
                     </div>
 
                     <!-- Nivel -->
                     <div class="filter-section filter-section-expanded">
-                        <div class="filter-label-big">📊 Nivel</div>
+                        <div class="filter-label-big">📊 <span id="filter-level-label">Nivel</span></div>
                         <div class="filter-pills filter-pills-expanded">
-                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Principiante">🟢 Principiante</button>
-                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Intermedio">🟡 Intermedio</button>
-                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Avanzado">🔴 Avanzado</button>
-                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Elite">🟣 Elite</button>
+                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Principiante">🟢 <span id="filter-beginner">Principiante</span></button>
+                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Intermedio">🟡 <span id="filter-intermediate">Intermedio</span></button>
+                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Avanzado">🔴 <span id="filter-advanced">Avanzado</span></button>
+                            <button class="filter-pill filter-pill-big" data-filter="nivel" data-value="Elite">🟣 <span id="filter-elite">Elite</span></button>
                         </div>
                     </div>
 
@@ -1781,14 +1788,14 @@
                     <!-- Mensaje para desbloquear filtros premium -->
                     <div id="premium-filters-locked" class="hidden pt-3 mt-3 border-t border-dashed border-gray-600">
                         <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500">🔒 Filtros premium: ritmo, organizador verificado</span>
-                            <button onclick="openModal('modal-perfil')" class="text-xs text-yellow-400 font-semibold hover:text-yellow-300">Desbloquear ⭐</button>
+                            <span class="text-xs text-gray-500">🔒 <span id="filter-premium-text">Filtros premium: ritmo, organizador verificado</span></span>
+                            <button onclick="openModal('modal-profile')" class="text-xs text-yellow-400 font-semibold hover:text-yellow-300"><span id="filter-unlock-btn">Desbloquear</span> ⭐</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Chips de radio de búsqueda - encima del mapa -->
+            <!-- Filtros de zona unificados - una sola fila -->
             <div id="city-chips" class="flex gap-3 overflow-x-auto pb-4 no-scrollbar mb-4"></div>
 
             <div class="relative mb-8">
@@ -2178,11 +2185,11 @@
                 <div class="space-y-4">
                     <div class="flex items-center gap-2 text-sm font-bold text-orange-400 uppercase tracking-wide">
                         <span class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center text-xs">1</span>
-                        Información básica
+                        <span id="create-basic-info">Información básica</span>
                     </div>
                     <div class="bg-slate-800/30 rounded-2xl p-4 border border-slate-700/50 space-y-4">
                         <div>
-                            <label class="label-required block text-sm font-semibold text-gray-300 mb-2">Título de la quedada</label>
+                            <label class="label-required block text-sm font-semibold text-gray-300 mb-2"><span id="create-title-label">Título de la quedada</span></label>
                             <input type="text" id="q-titulo" placeholder="Ej: Rodaje mañanero por el río" class="input-dark w-full p-3.5 rounded-xl text-white placeholder-gray-500">
                         </div>
                     </div>
@@ -2192,7 +2199,7 @@
                 <div class="space-y-4">
                     <div class="flex items-center gap-2 text-sm font-bold text-orange-400 uppercase tracking-wide">
                         <span class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center text-xs">2</span>
-                        Punto de encuentro
+                        <span id="create-meeting-point">Punto de encuentro</span>
                     </div>
                     <div class="bg-slate-800/30 rounded-2xl border border-slate-700/50 overflow-hidden">
                         <!-- Buscador de lugar -->
@@ -2204,7 +2211,7 @@
                             </div>
                             <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span class="hidden sm:inline">Arrastra el mapa para ajustar la ubicación exacta</span>
+                                <span id="create-drag-hint" class="hidden sm:inline">Arrastra el mapa para ajustar la ubicación exacta</span>
                                 <span class="sm:hidden">Toca y arrastra para ajustar</span>
                             </p>
                         </div>
@@ -2300,10 +2307,10 @@
                 <!-- BOTONES sticky en móvil -->
                 <div class="flex gap-3 pt-2 pb-2 sticky bottom-0 bg-slate-900/95 backdrop-blur-sm -mx-4 md:-mx-6 px-4 md:px-6 border-t border-slate-800/50">
                     <button onclick="closeModal('modal-crear')" class="flex-1 p-4 rounded-xl bg-slate-800 text-gray-300 font-bold hover:bg-slate-700 transition">
-                        Cancelar
+                        <span id="create-cancel-btn">Cancelar</span>
                     </button>
                     <button onclick="saveQuedada()" class="flex-[2] p-4 rounded-xl btn-gradient font-bold text-white hover:shadow-lg hover:shadow-orange-500/25 transition flex items-center justify-center gap-2">
-                        <span>🚀</span> Publicar quedada
+                        <span>🚀</span> <span id="create-publish-btn">Publicar quedada</span>
                     </button>
                 </div>
             </div>
@@ -2316,8 +2323,8 @@
         <div class="modal-content bg-slate-900 rounded-3xl max-w-2xl w-full border border-slate-800 my-8 max-h-[95vh] overflow-y-auto custom-scroll">
             <div class="sticky top-0 bg-slate-900 p-6 border-b border-slate-800 flex items-center justify-between z-10">
                 <div>
-                    <h2 class="text-2xl font-black">Mi perfil</h2>
-                    <p class="text-gray-500 text-sm">Edita tus datos para conectar con runners compatibles</p>
+                    <h2 class="text-2xl font-black" id="profile-title">Mi perfil</h2>
+                    <p class="text-gray-500 text-sm" id="profile-subtitle">Edita tus datos para conectar con runners compatibles</p>
                 </div>
                 <button onclick="closeModal('modal-profile')" class="text-gray-500 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2335,7 +2342,7 @@
                             <div class="absolute inset-0 bg-black/0 hover:bg-black/30 transition"></div>
                         </div>
                         <input id="profile-photo-input" type="file" accept="image/*" class="hidden" onchange="onProfilePhotoSelected(event)" />
-                        <button type="button" onclick="document.getElementById('profile-photo-input').click()" class="mt-2 text-xs text-orange-400 font-bold hover:underline">Cambiar foto</button>
+                        <button type="button" onclick="document.getElementById('profile-photo-input').click()" class="mt-2 text-xs text-orange-400 font-bold hover:underline" id="profile-change-photo">Cambiar foto</button>
                     </div>
                     <div>
                         <div id="profile-name" class="text-xl font-black text-white"></div>
@@ -2345,31 +2352,67 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="label-required block text-sm font-semibold text-gray-400 mb-2">Nombre</label>
+                        <label class="label-required block text-sm font-semibold text-gray-400 mb-2" id="profile-name-label">Nombre</label>
                         <input type="text" id="profile-first" class="input-dark w-full p-3 rounded-xl" placeholder="Tu nombre">
                     </div>
                     <div>
-                        <label class="label-required block text-sm font-semibold text-gray-400 mb-2">Apellidos</label>
+                        <label class="label-required block text-sm font-semibold text-gray-400 mb-2" id="profile-lastname-label">Apellidos</label>
                         <input type="text" id="profile-last" class="input-dark w-full p-3 rounded-xl" placeholder="Tus apellidos">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-400 mb-2">País</label>
+                        <label class="block text-sm font-semibold text-gray-400 mb-2" id="profile-country-label">País</label>
                         <select id="profile-country" class="input-dark w-full p-3 rounded-xl">
-                            <option value="España">España</option>
-                            <option value="Portugal">Portugal</option>
+                            <optgroup label="🌎 América">
+                                <option value="Argentina">🇦🇷 Argentina</option>
+                                <option value="Bolivia">🇧🇴 Bolivia</option>
+                                <option value="Brasil">🇧🇷 Brasil</option>
+                                <option value="Chile">🇨🇱 Chile</option>
+                                <option value="Colombia">🇨🇴 Colombia</option>
+                                <option value="Costa Rica">🇨🇷 Costa Rica</option>
+                                <option value="Cuba">🇨🇺 Cuba</option>
+                                <option value="Ecuador">🇪🇨 Ecuador</option>
+                                <option value="El Salvador">🇸🇻 El Salvador</option>
+                                <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+                                <option value="Guatemala">🇬🇹 Guatemala</option>
+                                <option value="Honduras">🇭🇳 Honduras</option>
+                                <option value="México">🇲🇽 México</option>
+                                <option value="Nicaragua">🇳🇮 Nicaragua</option>
+                                <option value="Panamá">🇵🇦 Panamá</option>
+                                <option value="Paraguay">🇵🇾 Paraguay</option>
+                                <option value="Perú">🇵🇪 Perú</option>
+                                <option value="Puerto Rico">🇵🇷 Puerto Rico</option>
+                                <option value="República Dominicana">🇩🇴 República Dominicana</option>
+                                <option value="Uruguay">🇺🇾 Uruguay</option>
+                                <option value="Venezuela">🇻🇪 Venezuela</option>
+                            </optgroup>
+                            <optgroup label="🌍 Europa">
+                                <option value="España" selected>🇪🇸 España</option>
+                                <option value="Portugal">🇵🇹 Portugal</option>
+                                <option value="Andorra">🇦🇩 Andorra</option>
+                                <option value="Francia">🇫🇷 Francia</option>
+                                <option value="Italia">🇮🇹 Italia</option>
+                                <option value="Alemania">🇩🇪 Alemania</option>
+                                <option value="Reino Unido">🇬🇧 Reino Unido</option>
+                                <option value="Suiza">🇨🇭 Suiza</option>
+                            </optgroup>
+                            <optgroup label="🌏 Otros">
+                                <option value="Filipinas">🇵🇭 Filipinas</option>
+                                <option value="Guinea Ecuatorial">🇬🇶 Guinea Ecuatorial</option>
+                                <option value="Otro">🌍 Otro país</option>
+                            </optgroup>
                         </select>
                     </div>
                     <div>
-                        <label class="label-required block text-sm font-semibold text-gray-400 mb-2">Ciudad</label>
+                        <label class="label-required block text-sm font-semibold text-gray-400 mb-2" id="profile-city-label">Ciudad</label>
                         <input type="text" id="profile-city" class="input-dark w-full p-3 rounded-xl" placeholder="Tu ciudad">
                     </div>
                 </div>
 
                 <div>
-                    <label class="label-required block text-sm font-semibold text-gray-400 mb-2">Nivel de running</label>
+                    <label class="label-required block text-sm font-semibold text-gray-400 mb-2" id="profile-level-label">Nivel de running</label>
                     <div class="flex gap-2">
                         <select id="profile-level" class="input-dark flex-1 p-3 rounded-xl">
                             <option value="Principiante">Principiante</option>
@@ -2378,7 +2421,7 @@
                             <option value="Elite">Elite</option>
                         </select>
                         <button type="button" onclick="openVerifyLevelModal()" id="btn-verify-level" class="px-4 py-3 rounded-xl font-bold text-sm bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30 transition flex items-center gap-2 whitespace-nowrap">
-                            <span>✓</span> Verificar
+                            <span>✓</span> <span id="profile-verify-btn">Verificar</span>
                         </button>
                     </div>
                     <div id="profile-verify-status" class="mt-2 hidden">
@@ -2390,25 +2433,25 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-400 mb-2">WhatsApp (opcional)</label>
+                        <label class="block text-sm font-semibold text-gray-400 mb-2" id="profile-whatsapp-label">WhatsApp (opcional)</label>
                         <input type="tel" id="profile-phone" class="input-dark w-full p-3 rounded-xl" placeholder="+34 612345678">
                     </div>
                     <div class="flex items-end">
                         <label class="flex items-center gap-3 cursor-pointer bg-slate-800/50 p-4 rounded-xl border border-slate-700 w-full">
                             <input type="checkbox" id="profile-wa" class="checkbox-custom w-5 h-5"/>
-                            <span class="text-sm text-green-400 font-semibold">Recibir alertas por WhatsApp</span>
+                            <span class="text-sm text-green-400 font-semibold" id="profile-whatsapp-alerts">Recibir alertas por WhatsApp</span>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-400 mb-2">Perfil social (opcional)</label>
+                    <label class="block text-sm font-semibold text-gray-400 mb-2" id="profile-social-label">Perfil social (opcional)</label>
                     <input type="url" id="profile-social" class="input-dark w-full p-3 rounded-xl" placeholder="https://instagram.com/... o https://strava.com/...">
-                    <p class="text-xs text-gray-500 mt-2">Instagram, Strava o cualquier red social.</p>
+                    <p class="text-xs text-gray-500 mt-2" id="profile-social-hint">Instagram, Strava o cualquier red social.</p>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-400 mb-2">Biografía (opcional)</label>
+                    <label class="block text-sm font-semibold text-gray-400 mb-2" id="profile-bio-label">Biografía (opcional)</label>
                     <textarea id="profile-bio" rows="3" class="input-dark w-full p-3 rounded-xl resize-none" placeholder="Cuéntanos sobre ti y tu experiencia...">
                     </textarea>
                 </div>
@@ -2418,7 +2461,7 @@
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="font-extrabold text-white flex items-center gap-2">
                             <span class="text-purple-400 text-xl">🏆</span>
-                            Mi Progreso
+                            <span id="progress-title">Mi Progreso</span>
                         </h3>
                         <span id="gamification-level" class="px-3 py-1 rounded-full text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">Novato</span>
                     </div>
@@ -2427,15 +2470,15 @@
                     <div class="grid grid-cols-3 gap-3 mb-4">
                         <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
                             <div id="gamification-points" class="text-2xl font-black text-orange-400">0</div>
-                            <div class="text-xs text-gray-400">Puntos</div>
+                            <div class="text-xs text-gray-400" id="label-points">Puntos</div>
                         </div>
                         <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
                             <div id="gamification-created" class="text-2xl font-black text-green-400">0</div>
-                            <div class="text-xs text-gray-400">Creadas</div>
+                            <div class="text-xs text-gray-400" id="label-created">Creadas</div>
                         </div>
                         <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
                             <div id="gamification-attended" class="text-2xl font-black text-blue-400">0</div>
-                            <div class="text-xs text-gray-400">Asistidas</div>
+                            <div class="text-xs text-gray-400" id="label-attended">Asistidas</div>
                         </div>
                     </div>
 
@@ -2453,18 +2496,47 @@
                     <!-- Badges desbloqueados -->
                     <div class="mb-3">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-semibold text-gray-300">Badges</span>
+                            <span class="text-sm font-semibold text-gray-300" id="label-badges">Badges</span>
                             <span id="gamification-badges-count" class="text-xs text-gray-500">0 desbloqueados</span>
                         </div>
                         <div id="gamification-badges" class="flex flex-wrap gap-2">
-                            <span class="text-gray-500 text-sm">Completa acciones para desbloquear badges</span>
+                            <span class="text-gray-500 text-sm" id="badges-empty-text">Completa acciones para desbloquear badges</span>
                         </div>
                     </div>
 
                     <!-- Botón ver ranking -->
                     <button onclick="openRankingModal()" class="w-full py-2 rounded-xl font-bold text-sm border border-purple-500/30 text-purple-300 hover:bg-purple-500/10 transition flex items-center justify-center gap-2">
-                        <span>📊</span> Ver Ranking Semanal
+                        <span>📊</span> <span id="btn-view-ranking">Ver Ranking Semanal</span>
                     </button>
+                </div>
+
+                <!-- SECCIÓN MIS QUEDADAS (HISTORIAL) -->
+                <div id="mis-quedadas-section" class="p-4 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-extrabold text-white flex items-center gap-2">
+                            <span class="text-blue-400 text-xl">🏃</span>
+                            <span id="my-runs-title">Mis Quedadas</span>
+                        </h3>
+                        <button onclick="loadMisQuedadas()" class="text-xs text-blue-400 hover:underline" id="btn-refresh">Actualizar</button>
+                    </div>
+
+                    <!-- Tabs: Próximas / Pasadas -->
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="switchMisQuedadasTab('proximas')" id="tab-proximas" class="flex-1 py-2 px-3 rounded-xl text-sm font-bold transition bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                            📅 <span id="tab-upcoming">Próximas</span>
+                        </button>
+                        <button onclick="switchMisQuedadasTab('pasadas')" id="tab-pasadas" class="flex-1 py-2 px-3 rounded-xl text-sm font-bold transition bg-slate-800/50 text-gray-400 border border-slate-700 hover:border-blue-500/30">
+                            ✓ <span id="tab-completed">Completadas</span>
+                        </button>
+                    </div>
+
+                    <!-- Lista de quedadas -->
+                    <div id="mis-quedadas-list" class="space-y-2 max-h-64 overflow-y-auto custom-scroll">
+                        <div class="text-center py-4 text-gray-500 text-sm">
+                            <div class="animate-spin w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-2"></div>
+                            Cargando...
+                        </div>
+                    </div>
                 </div>
 
                 <!-- SECCIÓN PREMIUM -->
@@ -2479,17 +2551,17 @@
 
                     <!-- Vista para usuarios NO premium -->
                     <div id="premium-upgrade" class="space-y-3">
-                        <p class="text-sm text-gray-300">Desbloquea todas las funciones:</p>
+                        <p id="premium-unlock-all" class="text-sm text-gray-300">Desbloquea todas las funciones:</p>
                         <ul class="text-sm text-gray-400 space-y-1">
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Estadísticas avanzadas</li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Quedadas ilimitadas</li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Badges exclusivos</li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Badge Premium en tu perfil</li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-1">Estadísticas avanzadas</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-2">Quedadas ilimitadas</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-3">Badges exclusivos</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-4">Badge Premium en tu perfil</span></li>
                         </ul>
                         <button onclick="openPremiumCheckout()" class="w-full py-3 rounded-xl font-black text-base bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/25 transition flex items-center justify-center gap-2">
-                            <span>⭐</span> Hazte Premium - 4,99€/mes
+                            <span>⭐</span> <span id="premium-get-btn">Hazte Premium - 4,99€/mes</span>
                         </button>
-                        <p class="text-xs text-gray-500 text-center">Cancela cuando quieras. Sin compromiso.</p>
+                        <p id="premium-cancel-text" class="text-xs text-gray-500 text-center">Cancela cuando quieras. Sin compromiso.</p>
                     </div>
 
                     <!-- Vista para usuarios Premium -->
@@ -2497,11 +2569,11 @@
                         <div class="flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/30">
                             <span class="text-green-400 text-2xl">✓</span>
                             <div>
-                                <p class="text-white font-bold">¡Eres Premium!</p>
-                                <p id="premium-until" class="text-xs text-gray-400">Activo hasta: --</p>
+                                <p id="premium-you-are" class="text-white font-bold">¡Eres Premium!</p>
+                                <p id="premium-until" class="text-xs text-gray-400"><span id="premium-active-until-label">Activo hasta:</span> --</p>
                             </div>
                         </div>
-                        <button onclick="managePremium()" class="w-full py-2 rounded-xl font-bold text-sm border border-slate-600 text-gray-300 hover:bg-slate-800 transition">
+                        <button onclick="managePremium()" id="premium-manage-btn" class="w-full py-2 rounded-xl font-bold text-sm border border-slate-600 text-gray-300 hover:bg-slate-800 transition">
                             Gestionar suscripción
                         </button>
                     </div>
@@ -2511,7 +2583,7 @@
                 <div class="p-4 rounded-2xl border border-slate-700 bg-slate-800/30">
                     <h3 class="font-extrabold text-white mb-4 flex items-center gap-2">
                         <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-                        Notificaciones Push
+                        <span id="notif-push-title">Notificaciones Push</span>
                     </h3>
 
                     <!-- Toggle principal push -->
@@ -2520,7 +2592,7 @@
                             <div class="flex items-center gap-3">
                                 <span class="text-purple-400 text-xl">🔔</span>
                                 <div>
-                                    <span class="text-sm text-white font-semibold">Notificaciones en este dispositivo</span>
+                                    <span id="notif-on-device" class="text-sm text-white font-semibold">Notificaciones en este dispositivo</span>
                                     <p id="notif-status-text" class="text-xs text-gray-500">Cargando...</p>
                                 </div>
                             </div>
@@ -2533,12 +2605,12 @@
 
                     <!-- Preferencias de tipos de notificación -->
                     <div id="notif-preferences" class="space-y-2">
-                        <p class="text-xs text-gray-400 mb-2">¿Qué notificaciones quieres recibir?</p>
+                        <p id="notif-which-receive" class="text-xs text-gray-400 mb-2">¿Qué notificaciones quieres recibir?</p>
 
                         <label class="flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-slate-800/50 transition">
                             <div class="flex items-center gap-2">
                                 <span class="text-sm">⏰</span>
-                                <span class="text-sm text-gray-300">Recordatorio 24h antes</span>
+                                <span id="notif-pref-24h" class="text-sm text-gray-300">Recordatorio 24h antes</span>
                             </div>
                             <input type="checkbox" id="pref-recordatorio-24h" checked class="checkbox-custom w-4 h-4" onchange="saveNotificationPreference('recordatorio_24h', this.checked)"/>
                         </label>
@@ -2546,7 +2618,7 @@
                         <label class="flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-slate-800/50 transition">
                             <div class="flex items-center gap-2">
                                 <span class="text-sm">🏃</span>
-                                <span class="text-sm text-gray-300">Recordatorio 1h antes</span>
+                                <span id="notif-pref-1h" class="text-sm text-gray-300">Recordatorio 1h antes</span>
                             </div>
                             <input type="checkbox" id="pref-recordatorio-1h" checked class="checkbox-custom w-4 h-4" onchange="saveNotificationPreference('recordatorio_1h', this.checked)"/>
                         </label>
@@ -2554,7 +2626,7 @@
                         <label class="flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-slate-800/50 transition">
                             <div class="flex items-center gap-2">
                                 <span class="text-sm">👋</span>
-                                <span class="text-sm text-gray-300">Alguien se une a mi quedada</span>
+                                <span id="notif-pref-joins" class="text-sm text-gray-300">Alguien se une a mi quedada</span>
                             </div>
                             <input type="checkbox" id="pref-participante-se-une" checked class="checkbox-custom w-4 h-4" onchange="saveNotificationPreference('participante_se_une', this.checked)"/>
                         </label>
@@ -2562,7 +2634,7 @@
                         <label class="flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-slate-800/50 transition">
                             <div class="flex items-center gap-2">
                                 <span class="text-sm">📍</span>
-                                <span class="text-sm text-gray-300">Nueva quedada en mi ciudad</span>
+                                <span id="notif-pref-new-city" class="text-sm text-gray-300">Nueva quedada en mi ciudad</span>
                             </div>
                             <input type="checkbox" id="pref-nueva-quedada-ciudad" checked class="checkbox-custom w-4 h-4" onchange="saveNotificationPreference('nueva_quedada_ciudad', this.checked)"/>
                         </label>
@@ -2570,7 +2642,7 @@
                         <label class="flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-slate-800/50 transition">
                             <div class="flex items-center gap-2">
                                 <span class="text-sm">❌</span>
-                                <span class="text-sm text-gray-300">Quedada cancelada</span>
+                                <span id="notif-pref-cancelled" class="text-sm text-gray-300">Quedada cancelada</span>
                             </div>
                             <input type="checkbox" id="pref-quedada-cancelada" checked class="checkbox-custom w-4 h-4" onchange="saveNotificationPreference('quedada_cancelada', this.checked)"/>
                         </label>
@@ -2579,19 +2651,19 @@
                 
 
                 <div class="mt-2 p-4 rounded-2xl border border-red-500/20 bg-red-500/5">
-                    <h3 class="font-extrabold text-red-300 mb-2">Zona de riesgo</h3>
-                    <p class="text-sm text-gray-300 mb-3">
+                    <h3 id="danger-zone-title" class="font-extrabold text-red-300 mb-2">Zona de riesgo</h3>
+                    <p id="danger-zone-desc" class="text-sm text-gray-300 mb-3">
                         Puedes solicitar la eliminación de tu cuenta. Esto borrará tu perfil público y tu participación en quedadas.
                         Por seguridad, la eliminación total del usuario de autenticación puede requerir validación adicional.
                     </p>
-                    <button type="button" onclick="openModal('modal-delete-account')" class="w-full px-4 py-3 rounded-xl font-extrabold text-sm text-white bg-red-600/90 hover:bg-red-600 transition">
+                    <button type="button" onclick="openModal('modal-delete-account')" id="delete-account-btn" class="w-full px-4 py-3 rounded-xl font-extrabold text-sm text-white bg-red-600/90 hover:bg-red-600 transition">
                         Eliminar cuenta
                     </button>
                 </div>
 
                 <div class="flex gap-4">
-                    <button onclick="closeModal('modal-profile')" class="flex-1 p-4 rounded-xl bg-slate-800 text-gray-300 font-bold hover:bg-slate-700 transition">Cerrar</button>
-                    <button onclick="saveProfile()" class="flex-1 p-4 rounded-xl btn-gradient font-bold text-white hover:shadow-lg transition">Guardar cambios</button>
+                    <button onclick="closeModal('modal-profile')" class="flex-1 p-4 rounded-xl bg-slate-800 text-gray-300 font-bold hover:bg-slate-700 transition" id="profile-close-btn">Cerrar</button>
+                    <button onclick="saveProfile()" class="flex-1 p-4 rounded-xl btn-gradient font-bold text-white hover:shadow-lg transition" id="profile-save-btn">Guardar cambios</button>
                 </div>
             </div>
         </div>
@@ -2745,41 +2817,61 @@
                 return;
             }
 
-            ubicacionSearchTimeout = setTimeout(() => {
+            ubicacionSearchTimeout = setTimeout(async () => {
                 const normalizedQuery = norm(query);
 
-                // Buscar en LOCATIONS_ES_PT
-                const results = locationsIndex
-                    .filter(loc => {
-                        return loc.n_place.includes(normalizedQuery) || loc.n_admin1.includes(normalizedQuery);
-                    })
-                    .slice(0, 10); // Limitar a 10 resultados
+                // Primero buscar en datos locales (España/Portugal)
+                const localResults = locationsIndex
+                    .filter(loc => loc.n_place.includes(normalizedQuery) || loc.n_admin1.includes(normalizedQuery))
+                    .slice(0, 5);
 
                 // También buscar en POBLACIONES
                 const poblacionResults = [];
                 for (const [provincia, poblaciones] of Object.entries(POBLACIONES)) {
                     for (const poblacion of poblaciones) {
-                        const normPoblacion = norm(poblacion);
-                        if (normPoblacion.includes(normalizedQuery)) {
-                            poblacionResults.push({
-                                place: poblacion,
-                                admin1: provincia,
-                                country: 'ES',
-                                type: 'town'
-                            });
+                        if (norm(poblacion).includes(normalizedQuery)) {
+                            poblacionResults.push({ place: poblacion, admin1: provincia, country: 'ES', type: 'town' });
                         }
                     }
                 }
 
-                // Combinar y eliminar duplicados
-                const allResults = [...results];
+                // Combinar resultados locales
+                let allResults = [...localResults];
                 for (const pob of poblacionResults) {
-                    if (!allResults.find(r => norm(r.place) === norm(pob.place) && norm(r.admin1) === norm(pob.admin1))) {
+                    if (!allResults.find(r => norm(r.place) === norm(pob.place))) {
                         allResults.push(pob);
                     }
                 }
 
-                // Ordenar: primero coincidencias exactas al inicio
+                // Si hay pocos resultados locales, buscar globalmente con Nominatim
+                if (allResults.length < 4 && query.length >= 3) {
+                    try {
+                        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&accept-language=es&featuretype=city`;
+                        const res = await fetch(url, { headers: { 'User-Agent': 'CorrerJuntos/1.0' }});
+                        const data = await res.json();
+
+                        for (const item of data) {
+                            const parts = item.display_name.split(',').map(s => s.trim());
+                            const place = parts[0] || query;
+                            const admin1 = parts[1] || parts[2] || '';
+                            const countryName = parts[parts.length - 1] || '';
+                            const countryFlag = getCountryFlag(countryName);
+
+                            if (!allResults.find(r => norm(r.place) === norm(place))) {
+                                allResults.push({
+                                    place: place,
+                                    admin1: admin1,
+                                    country: countryName,
+                                    countryFlag: countryFlag,
+                                    type: 'city',
+                                    global: true
+                                });
+                            }
+                        }
+                    } catch(e) { console.warn('Nominatim search error:', e); }
+                }
+
+                // Ordenar: primero coincidencias exactas
                 allResults.sort((a, b) => {
                     const aStartsWith = norm(a.place).startsWith(normalizedQuery) ? 0 : 1;
                     const bStartsWith = norm(b.place).startsWith(normalizedQuery) ? 0 : 1;
@@ -2787,7 +2879,22 @@
                 });
 
                 renderUbicacionDropdown(allResults.slice(0, 8));
-            }, 150);
+            }, 250);
+        }
+
+        function getCountryFlag(countryName) {
+            const flags = {
+                'argentina': '🇦🇷', 'bolivia': '🇧🇴', 'brasil': '🇧🇷', 'chile': '🇨🇱', 'colombia': '🇨🇴',
+                'costa rica': '🇨🇷', 'cuba': '🇨🇺', 'ecuador': '🇪🇨', 'el salvador': '🇸🇻',
+                'españa': '🇪🇸', 'spain': '🇪🇸', 'estados unidos': '🇺🇸', 'united states': '🇺🇸',
+                'guatemala': '🇬🇹', 'honduras': '🇭🇳', 'méxico': '🇲🇽', 'mexico': '🇲🇽',
+                'nicaragua': '🇳🇮', 'panamá': '🇵🇦', 'paraguay': '🇵🇾', 'perú': '🇵🇪', 'peru': '🇵🇪',
+                'portugal': '🇵🇹', 'puerto rico': '🇵🇷', 'república dominicana': '🇩🇴',
+                'uruguay': '🇺🇾', 'venezuela': '🇻🇪', 'francia': '🇫🇷', 'france': '🇫🇷',
+                'italia': '🇮🇹', 'italy': '🇮🇹', 'alemania': '🇩🇪', 'germany': '🇩🇪',
+                'reino unido': '🇬🇧', 'united kingdom': '🇬🇧', 'filipinas': '🇵🇭', 'philippines': '🇵🇭'
+            };
+            return flags[(countryName || '').toLowerCase()] || '🌍';
         }
 
         function renderUbicacionDropdown(results) {
@@ -2800,9 +2907,9 @@
             }
 
             dropdown.innerHTML = results.map(loc => {
-                const flag = loc.country === 'PT' ? '🇵🇹' : '🇪🇸';
+                const flag = loc.global ? (loc.countryFlag || '🌍') : (loc.country === 'PT' ? '🇵🇹' : '🇪🇸');
                 const typeLabel = loc.type === 'city' ? 'Ciudad' : loc.type === 'town' ? 'Pueblo' : loc.type === 'province' || loc.type === 'district' ? 'Provincia' : '';
-                const pais = loc.country === 'PT' ? 'Portugal' : 'España';
+                const pais = loc.global ? loc.country : (loc.country === 'PT' ? 'Portugal' : 'España');
 
                 return `
                     <div class="p-3 hover:bg-slate-700 cursor-pointer flex items-center gap-3 transition-colors border-b border-slate-700 last:border-0"
@@ -2968,13 +3075,25 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
           if(!inp.parentElement.contains(e.target)) hideSuggestionsCrear();
         });
 
-        let currentLang=(localStorage.getItem('cj_lang')||'es'), map, markers=[], mapCrear, markerCrear;
+        // Auto-detectar idioma del navegador (solo es/en soportados)
+        function detectBrowserLanguage() {
+            const stored = localStorage.getItem('cj_lang');
+            if (stored && (stored === 'es' || stored === 'en')) return stored;
+
+            const browserLang = navigator.language || navigator.userLanguage || 'es';
+            const lang = browserLang.split('-')[0].toLowerCase();
+
+            // Solo soportamos español e inglés
+            if (lang === 'en') return 'en';
+            return 'es'; // Default español
+        }
+        let currentLang = detectBrowserLanguage(), map, markers=[], mapCrear, markerCrear;
         let placeCenter=null; // city/province/district centroid for recentering
         let pinCoords=null;   // exact meetup pin (map click / street selection)
         // Auth + perfiles ahora van por Supabase (Auth + public.profiles). No usamos usersDB/localStorage.
         let currentUser = null; // { id, email, nombre, apellidos, ciudad, nivel, telefono, whatsapp, bio, social, photo }
         let isUserPremium = false; // Estado premium del usuario
-        let currentFilter = 'all', sidebarView='communities', selectedCommunity=null, selectedTopic=null;
+        let currentFilter = 'country', sidebarView='communities', selectedCommunity=null, selectedTopic=null;
 
         // Stripe config
         const STRIPE_PUBLISHABLE_KEY = 'pk_test_51StW9o2EEAYuDEQfbek6jATX57wFUQfZp6uczhIiPmccgSsKGlWZsg8E4MdmY1n9mTUUmi2QxzoxxFtxDtafblSf00u3inRfwR';
@@ -3029,8 +3148,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 // Social proof labels
                 statLabelRunners: 'Runners registrados',
                 statLabelQuedadas: 'Quedadas creadas',
-                statLabelCiudades: 'Países hispanohablantes',
+                statLabelCiudades: 'Países activos',
                 statLabelProximas: 'Quedadas esta semana',
+                availableWorldwide: '🌍 Disponible en todo el mundo',
                 // Benefits
                 benefit1Title: 'Encuentra tu grupo',
                 benefit1Desc: 'Filtra por nivel, distancia y ritmo. Corre con gente que va a tu mismo paso, sin presiones.',
@@ -3096,7 +3216,219 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 pwaTitle: 'Instala CorrerJuntos',
                 pwaDesc: 'Accede rapido desde tu pantalla de inicio.',
                 pwaBtn: 'Instalar ahora',
-                pwaIOS: 'En iPhone: Compartir → "Anadir a pantalla de inicio".'
+                pwaIOS: 'En iPhone: Compartir → "Anadir a pantalla de inicio".',
+                // Filtros
+                filterTitle: 'Filtrar quedadas',
+                filterSchedule: 'Horario',
+                filterMorning: 'Mañana',
+                filterAfternoon: 'Tarde',
+                filterNight: 'Noche',
+                filterLevel: 'Nivel',
+                filterBeginner: 'Principiante',
+                filterIntermediate: 'Intermedio',
+                filterAdvanced: 'Avanzado',
+                filterElite: 'Elite',
+                filterPremium: 'Filtros premium: ritmo, organizador verificado',
+                filterUnlock: 'Desbloquear',
+                // Geo filters
+                geoMyCity: 'Mi ciudad',
+                geoMyCountry: 'Mi país',
+                geoWorldwide: 'Mundial',
+                // Crear quedada
+                createTitle: 'Nueva Quedada',
+                createSubtitle: 'Crea un evento para la comunidad',
+                createBasicInfo: 'INFORMACIÓN BÁSICA',
+                createMeetingPoint: 'PUNTO DE ENCUENTRO',
+                createTitleLabel: 'Título de la quedada',
+                createTitlePh: 'Ej: Rodaje mañanero por el río',
+                createSearchPlace: 'Buscar parque, calle, zona...',
+                createDragMap: 'Arrastra el mapa para ajustar la ubicación exacta',
+                createCancel: 'Cancelar',
+                createPublish: 'Publicar quedada',
+                // Ranking
+                rankingTitle: 'Ranking Semanal',
+                rankingSubtitle: 'Top 10 runners de la semana',
+                rankingPosition: 'Tu posición',
+                rankingPoints: 'pts esta semana',
+                // Perfil
+                profileTitle: 'Mi perfil',
+                profileSubtitle: 'Edita tus datos para conectar con runners compatibles',
+                profileName: 'Nombre',
+                profileLastName: 'Apellidos',
+                profileCountry: 'País',
+                profileCity: 'Ciudad',
+                profileLevel: 'Nivel de running',
+                profileVerify: 'Verificar',
+                profileWhatsApp: 'WhatsApp (opcional)',
+                profileWhatsAppAlerts: 'Recibir alertas por WhatsApp',
+                profileSocial: 'Perfil social (opcional)',
+                profileSocialHint: 'Instagram, Strava o cualquier red social.',
+                profileBio: 'Biografía (opcional)',
+                profileBioHint: 'Cuéntanos sobre ti y tu experiencia',
+                profileChangePhoto: 'Cambiar foto',
+                profileSave: 'Guardar cambios',
+                // Logros
+                achievementsTitle: 'Tus Logros',
+                achievementsSubtitle: 'Desbloquea medallas completando retos',
+                achievementsTab: 'Logros',
+                // Nombres de logros
+                achFirstRun: 'Primera Carrera',
+                achFirstRunDesc: 'Únete a tu primera quedada',
+                achSocialRunner: 'Social Runner',
+                achSocialRunnerDesc: 'Conoce a 5 runners diferentes',
+                achVeteran: 'Veterano',
+                achVeteranDesc: 'Asiste a 10 quedadas',
+                ach50K: '50K Club',
+                ach50KDesc: 'Acumula 50 km en quedadas',
+                achLeader: 'Líder',
+                achLeaderDesc: 'Crea tu primera quedada',
+                achConsistency: 'Constancia',
+                achConsistencyDesc: 'Racha de 4 semanas corriendo',
+                ach100K: 'Centenario',
+                ach100KDesc: 'Acumula 100 km en quedadas',
+                achLegend: 'Leyenda',
+                achLegendDesc: 'Asiste a 25 quedadas',
+                // Fechas
+                dateToday: 'Hoy',
+                dateTomorrow: 'Mañana',
+                dateThisWeek: 'Esta semana',
+                dateLater: 'Próximamente',
+                // Niveles descripción
+                levelBeginnerDesc: 'Ritmo suave, ideal para empezar',
+                levelIntermediateDesc: 'Ritmo moderado, algo de experiencia',
+                levelAdvancedDesc: 'Ritmo exigente, runners experimentados',
+                levelEliteDesc: 'Ritmo competitivo, alto rendimiento',
+                levelAllDesc: 'Abierto a todos los niveles',
+                // Organizador
+                organizer: 'Organizador',
+                organizerActive: 'Organizador activo',
+                organizerNew: 'Nuevo organizador',
+                organizerVerified: 'Organizador verificado',
+                organizerPremium: 'Organizador Premium',
+                // Header usuario logueado
+                hello: 'Hola',
+                myProfile: 'Mi perfil',
+                logout: 'Salir',
+                createRun: 'Crear Quedada',
+                // Bienvenida y stats
+                welcome: '¡Bienvenido',
+                welcomeRunner: '¡Hola, Runner!',
+                joinFirst: 'Únete a tu primera quedada y empieza a correr',
+                following: 'siguiendo',
+                followers: 'seguidores',
+                totalRuns: 'Quedadas totales',
+                kmRun: 'Km corridos',
+                runnersKnown: 'Runners conocidos',
+                upcomingRuns: 'Próximas quedadas',
+                // Estadísticas detalladas
+                detailedStats: 'Estadísticas detalladas',
+                statsDesc: 'Gráficos, rachas, promedios y más',
+                unlockPremium: 'Desbloquear con Premium',
+                // Mi Progreso
+                myProgress: 'Mi Progreso',
+                points: 'Puntos',
+                created: 'Creadas',
+                attended: 'Asistidas',
+                novice: 'Novato',
+                badges: 'Badges',
+                completeBadges: 'Completa acciones para desbloquear badges',
+                unlocked: 'desbloqueados',
+                viewRanking: 'Ver Ranking Semanal',
+                // Mis Quedadas
+                myRuns: 'Mis Quedadas',
+                refresh: 'Actualizar',
+                upcoming: 'Próximas',
+                completed: 'Completadas',
+                noUpcoming: 'No tienes quedadas próximas',
+                exploreRuns: 'Explorar quedadas',
+                // Ranking
+                weeklyRanking: 'Ranking Semanal',
+                top10: 'Top 10 runners de la semana',
+                yourPosition: 'Tu posición',
+                ptsThisWeek: 'pts esta semana',
+                // Otros
+                viewMore: 'Ver más',
+                viewFullProfile: 'Ver perfil completo',
+                allLevels: 'Todos',
+                // Modal detalle quedada
+                detailMeetingPoint: 'Punto de encuentro',
+                detailLevelRequired: 'Nivel requerido',
+                detailDescription: 'Descripción',
+                detailOrganizer: 'Organizador',
+                detailParticipants: 'Participantes',
+                detailRating: 'Valoración',
+                detailNoReviews: 'Sin reseñas aún',
+                detailReview: 'reseña',
+                detailReviews: 'reseñas',
+                detailRunOrganized: 'quedada organizada',
+                detailRunsOrganized: 'quedadas organizadas',
+                detailVerified: 'Verificado',
+                detailBeFirst: 'Sé el primero en unirte',
+                detailJoinRun: '¡Unirme a esta quedada!',
+                detailRegisterToJoin: 'Regístrate para unirte',
+                detailYourRun: 'Tu quedada',
+                detailLeave: 'Abandonar',
+                detailDeleteRun: 'Eliminar quedada',
+                detailShare: 'Compartir',
+                detailClose: 'Cerrar',
+                detailRate: 'Valorar',
+                detailChange: 'cambiar',
+                detailConfirmed: 'Confirmados',
+                detailMaybe: 'Posiblemente',
+                detailInterested: 'Interesados',
+                detailYou: 'Tú',
+                detailFree: 'Libre',
+                // Meses abreviados
+                monthJan: 'ene', monthFeb: 'feb', monthMar: 'mar', monthApr: 'abr',
+                monthMay: 'may', monthJun: 'jun', monthJul: 'jul', monthAug: 'ago',
+                monthSep: 'sep', monthOct: 'oct', monthNov: 'nov', monthDec: 'dic',
+                // Clima
+                weatherForecast: 'pronóstico',
+                // App Store
+                appAvailableOn: 'Disponible en:',
+                appDownloadOn: 'Descargar en',
+                appGetItOn: 'Disponible en',
+                // Premium section
+                premiumUnlockAll: 'Desbloquea todas las funciones:',
+                premiumAdvancedStats: 'Estadísticas avanzadas',
+                premiumUnlimitedRuns: 'Quedadas ilimitadas',
+                premiumExclusiveBadges: 'Badges exclusivos',
+                premiumBadgeProfile: 'Badge Premium en tu perfil',
+                premiumGetBtn: 'Hazte Premium - 4,99€/mes',
+                premiumCancelAnytime: 'Cancela cuando quieras. Sin compromiso.',
+                premiumYouAre: '¡Eres Premium!',
+                premiumActiveUntil: 'Activo hasta:',
+                premiumManage: 'Gestionar suscripción',
+                // Notifications
+                notifPush: 'Notificaciones Push',
+                notifOnDevice: 'Notificaciones en este dispositivo',
+                notifLoading: 'Cargando...',
+                notifActivated: 'Activadas',
+                notifDeactivated: 'Desactivadas',
+                notifBlockedHint: 'Para activar, permite notificaciones en la configuración de tu navegador',
+                notifWhichReceive: '¿Qué notificaciones quieres recibir?',
+                notifReminder24h: 'Recordatorio 24h antes',
+                notifReminder1h: 'Recordatorio 1h antes',
+                notifSomeoneJoins: 'Alguien se une a mi quedada',
+                notifNewRunCity: 'Nueva quedada en mi ciudad',
+                notifRunCancelled: 'Quedada cancelada',
+                // Danger zone
+                dangerZone: 'Zona de riesgo',
+                dangerZoneDesc: 'Puedes solicitar la eliminación de tu cuenta. Esto borrará tu perfil público y tu participación en quedadas. Por seguridad, la eliminación total del usuario de autenticación puede requerir validación adicional.',
+                deleteAccount: 'Eliminar cuenta',
+                closeBtn: 'Cerrar',
+                // Premium promo popup
+                promoTitle: '¡Pasa a Premium!',
+                promoSubtitle: 'Desbloquea todo el potencial de CorrerJuntos',
+                promoFeat1: 'Estadísticas avanzadas y gráficos',
+                promoFeat2: 'Crea quedadas ilimitadas',
+                promoFeat3: 'Badge Premium exclusivo en tu perfil',
+                promoFeat4: 'Filtros avanzados de búsqueda',
+                promoFeat5: 'Sin publicidad',
+                promoPerMonth: '/mes',
+                promoCancel: 'Cancela cuando quieras · Sin compromiso',
+                promoCtaBtn: 'Hazte Premium ahora',
+                promoLaterBtn: 'Ahora no, gracias'
 },
             en: {
                 all: 'All',
@@ -3113,8 +3445,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 // Social proof labels
                 statLabelRunners: 'Registered runners',
                 statLabelQuedadas: 'Meetups created',
-                statLabelCiudades: 'Active cities',
+                statLabelCiudades: 'Active countries',
                 statLabelProximas: 'Meetups this week',
+                availableWorldwide: '🌍 Available worldwide',
                 // Benefits
                 benefit1Title: 'Find your group',
                 benefit1Desc: 'Filter by level, distance and pace. Run with people who match your speed, no pressure.',
@@ -3180,7 +3513,219 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 pwaTitle: 'Install CorrerJuntos',
                 pwaDesc: 'Quick access from your home screen.',
                 pwaBtn: 'Install now',
-                pwaIOS: 'On iPhone: Share → "Add to Home Screen".'
+                pwaIOS: 'On iPhone: Share → "Add to Home Screen".',
+                // Filters
+                filterTitle: 'Filter runs',
+                filterSchedule: 'Schedule',
+                filterMorning: 'Morning',
+                filterAfternoon: 'Afternoon',
+                filterNight: 'Night',
+                filterLevel: 'Level',
+                filterBeginner: 'Beginner',
+                filterIntermediate: 'Intermediate',
+                filterAdvanced: 'Advanced',
+                filterElite: 'Elite',
+                filterPremium: 'Premium filters: pace, verified organizer',
+                filterUnlock: 'Unlock',
+                // Geo filters
+                geoMyCity: 'My city',
+                geoMyCountry: 'My country',
+                geoWorldwide: 'Worldwide',
+                // Create run
+                createTitle: 'New Run',
+                createSubtitle: 'Create an event for the community',
+                createBasicInfo: 'BASIC INFO',
+                createMeetingPoint: 'MEETING POINT',
+                createTitleLabel: 'Run title',
+                createTitlePh: 'E.g.: Morning jog by the river',
+                createSearchPlace: 'Search park, street, area...',
+                createDragMap: 'Drag the map to adjust exact location',
+                createCancel: 'Cancel',
+                createPublish: 'Publish run',
+                // Ranking
+                rankingTitle: 'Weekly Ranking',
+                rankingSubtitle: 'Top 10 runners of the week',
+                rankingPosition: 'Your position',
+                rankingPoints: 'pts this week',
+                // Profile
+                profileTitle: 'My profile',
+                profileSubtitle: 'Edit your info to connect with compatible runners',
+                profileName: 'First name',
+                profileLastName: 'Last name',
+                profileCountry: 'Country',
+                profileCity: 'City',
+                profileLevel: 'Running level',
+                profileVerify: 'Verify',
+                profileWhatsApp: 'WhatsApp (optional)',
+                profileWhatsAppAlerts: 'Receive WhatsApp alerts',
+                profileSocial: 'Social profile (optional)',
+                profileSocialHint: 'Instagram, Strava or any social network.',
+                profileBio: 'Bio (optional)',
+                profileBioHint: 'Tell us about yourself and your experience',
+                profileChangePhoto: 'Change photo',
+                profileSave: 'Save changes',
+                // Achievements
+                achievementsTitle: 'Your Achievements',
+                achievementsSubtitle: 'Unlock badges by completing challenges',
+                achievementsTab: 'Achievements',
+                // Achievement names
+                achFirstRun: 'First Run',
+                achFirstRunDesc: 'Join your first run',
+                achSocialRunner: 'Social Runner',
+                achSocialRunnerDesc: 'Meet 5 different runners',
+                achVeteran: 'Veteran',
+                achVeteranDesc: 'Attend 10 runs',
+                ach50K: '50K Club',
+                ach50KDesc: 'Accumulate 50 km in runs',
+                achLeader: 'Leader',
+                achLeaderDesc: 'Create your first run',
+                achConsistency: 'Consistency',
+                achConsistencyDesc: '4 week running streak',
+                ach100K: 'Centurion',
+                ach100KDesc: 'Accumulate 100 km in runs',
+                achLegend: 'Legend',
+                achLegendDesc: 'Attend 25 runs',
+                // Dates
+                dateToday: 'Today',
+                dateTomorrow: 'Tomorrow',
+                dateThisWeek: 'This week',
+                dateLater: 'Coming soon',
+                // Level descriptions
+                levelBeginnerDesc: 'Easy pace, ideal for beginners',
+                levelIntermediateDesc: 'Moderate pace, some experience',
+                levelAdvancedDesc: 'Demanding pace, experienced runners',
+                levelEliteDesc: 'Competitive pace, high performance',
+                levelAllDesc: 'Open to all levels',
+                // Organizer
+                organizer: 'Organizer',
+                organizerActive: 'Active organizer',
+                organizerNew: 'New organizer',
+                organizerVerified: 'Verified organizer',
+                organizerPremium: 'Premium organizer',
+                // Logged in header
+                hello: 'Hello',
+                myProfile: 'My profile',
+                logout: 'Log out',
+                createRun: 'Create Run',
+                // Welcome and stats
+                welcome: 'Welcome',
+                welcomeRunner: 'Hello, Runner!',
+                joinFirst: 'Join your first run and start running',
+                following: 'following',
+                followers: 'followers',
+                totalRuns: 'Total runs',
+                kmRun: 'Km run',
+                runnersKnown: 'Runners met',
+                upcomingRuns: 'Upcoming runs',
+                // Detailed stats
+                detailedStats: 'Detailed statistics',
+                statsDesc: 'Charts, streaks, averages and more',
+                unlockPremium: 'Unlock with Premium',
+                // My Progress
+                myProgress: 'My Progress',
+                points: 'Points',
+                created: 'Created',
+                attended: 'Attended',
+                novice: 'Novice',
+                badges: 'Badges',
+                completeBadges: 'Complete actions to unlock badges',
+                unlocked: 'unlocked',
+                viewRanking: 'View Weekly Ranking',
+                // My Runs
+                myRuns: 'My Runs',
+                refresh: 'Refresh',
+                upcoming: 'Upcoming',
+                completed: 'Completed',
+                noUpcoming: 'No upcoming runs',
+                exploreRuns: 'Explore runs',
+                // Ranking
+                weeklyRanking: 'Weekly Ranking',
+                top10: 'Top 10 runners of the week',
+                yourPosition: 'Your position',
+                ptsThisWeek: 'pts this week',
+                // Others
+                viewMore: 'View more',
+                viewFullProfile: 'View full profile',
+                allLevels: 'All',
+                // Run detail modal
+                detailMeetingPoint: 'Meeting point',
+                detailLevelRequired: 'Required level',
+                detailDescription: 'Description',
+                detailOrganizer: 'Organizer',
+                detailParticipants: 'Participants',
+                detailRating: 'Rating',
+                detailNoReviews: 'No reviews yet',
+                detailReview: 'review',
+                detailReviews: 'reviews',
+                detailRunOrganized: 'run organized',
+                detailRunsOrganized: 'runs organized',
+                detailVerified: 'Verified',
+                detailBeFirst: 'Be the first to join',
+                detailJoinRun: 'Join this run!',
+                detailRegisterToJoin: 'Sign up to join',
+                detailYourRun: 'Your run',
+                detailLeave: 'Leave',
+                detailDeleteRun: 'Delete run',
+                detailShare: 'Share',
+                detailClose: 'Close',
+                detailRate: 'Rate',
+                detailChange: 'change',
+                detailConfirmed: 'Confirmed',
+                detailMaybe: 'Maybe',
+                detailInterested: 'Interested',
+                detailYou: 'You',
+                detailFree: 'Free',
+                // Month abbreviations
+                monthJan: 'Jan', monthFeb: 'Feb', monthMar: 'Mar', monthApr: 'Apr',
+                monthMay: 'May', monthJun: 'Jun', monthJul: 'Jul', monthAug: 'Aug',
+                monthSep: 'Sep', monthOct: 'Oct', monthNov: 'Nov', monthDec: 'Dec',
+                // Weather
+                weatherForecast: 'forecast',
+                // App Store
+                appAvailableOn: 'Available on:',
+                appDownloadOn: 'Download on',
+                appGetItOn: 'Get it on',
+                // Premium section
+                premiumUnlockAll: 'Unlock all features:',
+                premiumAdvancedStats: 'Advanced statistics',
+                premiumUnlimitedRuns: 'Unlimited runs',
+                premiumExclusiveBadges: 'Exclusive badges',
+                premiumBadgeProfile: 'Premium badge on your profile',
+                premiumGetBtn: 'Get Premium - €4.99/month',
+                premiumCancelAnytime: 'Cancel anytime. No commitment.',
+                premiumYouAre: 'You are Premium!',
+                premiumActiveUntil: 'Active until:',
+                premiumManage: 'Manage subscription',
+                // Notifications
+                notifPush: 'Push Notifications',
+                notifOnDevice: 'Notifications on this device',
+                notifLoading: 'Loading...',
+                notifActivated: 'Activated',
+                notifDeactivated: 'Deactivated',
+                notifBlockedHint: 'To enable, allow notifications in your browser settings',
+                notifWhichReceive: 'Which notifications do you want to receive?',
+                notifReminder24h: 'Reminder 24h before',
+                notifReminder1h: 'Reminder 1h before',
+                notifSomeoneJoins: 'Someone joins my run',
+                notifNewRunCity: 'New run in my city',
+                notifRunCancelled: 'Run cancelled',
+                // Danger zone
+                dangerZone: 'Danger zone',
+                dangerZoneDesc: 'You can request the deletion of your account. This will delete your public profile and your participation in runs. For security, full deletion of the authentication user may require additional validation.',
+                deleteAccount: 'Delete account',
+                closeBtn: 'Close',
+                // Premium promo popup
+                promoTitle: 'Go Premium!',
+                promoSubtitle: 'Unlock the full potential of CorrerJuntos',
+                promoFeat1: 'Advanced statistics and charts',
+                promoFeat2: 'Create unlimited runs',
+                promoFeat3: 'Exclusive Premium badge on your profile',
+                promoFeat4: 'Advanced search filters',
+                promoFeat5: 'No ads',
+                promoPerMonth: '/month',
+                promoCancel: 'Cancel anytime · No commitment',
+                promoCtaBtn: 'Get Premium now',
+                promoLaterBtn: 'Not now, thanks'
 },
             pt: {
                 all: 'Todas',
@@ -3319,6 +3864,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('benefit-2-desc', t.benefit2Desc);
             setText('benefit-3-title', t.benefit3Title);
             setText('benefit-3-desc', t.benefit3Desc);
+            setText('available-worldwide', t.availableWorldwide);
             // Update badge with dynamic number
             const badgeEl = document.getElementById('landing-badge');
             const activeRunnersEl = document.getElementById('landing-active-runners');
@@ -3396,17 +3942,175 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const crearSub = document.querySelector('#modal-crear p');
             if(crearSub) crearSub.textContent = t.createMeetSubtitle;
 
+            // ===== NUEVAS TRADUCCIONES =====
+
+            // Filtros principales
+            setText('filter-title', t.filterTitle);
+            setText('filter-schedule-label', t.filterSchedule);
+            setText('filter-morning', t.filterMorning);
+            setText('filter-afternoon', t.filterAfternoon);
+            setText('filter-night', t.filterNight);
+            setText('filter-level-label', t.filterLevel);
+            setText('filter-beginner', t.filterBeginner);
+            setText('filter-intermediate', t.filterIntermediate);
+            setText('filter-advanced', t.filterAdvanced);
+            setText('filter-elite', t.filterElite);
+            setText('filter-premium-text', t.filterPremium);
+            setText('filter-unlock-btn', t.filterUnlock);
+
+            // Modal crear quedada - campos
+            setText('create-basic-info', t.createBasicInfo);
+            setText('create-meeting-point', t.createMeetingPoint);
+            setText('create-title-label', t.createTitleLabel);
+            setText('create-drag-hint', t.createDragMap);
+            setText('create-cancel-btn', t.createCancel);
+            setText('create-publish-btn', t.createPublish);
+            const createTitleInput = document.getElementById('q-titulo');
+            if(createTitleInput) createTitleInput.placeholder = t.createTitlePh || createTitleInput.placeholder;
+            const createSearchInput = document.getElementById('q-buscar-lugar');
+            if(createSearchInput) createSearchInput.placeholder = t.createSearchPlace || createSearchInput.placeholder;
+
+            // Ranking
+            setText('ranking-title', t.rankingTitle);
+            setText('ranking-subtitle', t.rankingSubtitle);
+
+            // Perfil
+            setText('profile-title', t.profileTitle);
+            setText('profile-subtitle', t.profileSubtitle);
+            setText('profile-name-label', t.profileName);
+            setText('profile-lastname-label', t.profileLastName);
+            setText('profile-country-label', t.profileCountry);
+            setText('profile-city-label', t.profileCity);
+            setText('profile-level-label', t.profileLevel);
+            setText('profile-verify-btn', t.profileVerify);
+            setText('profile-whatsapp-label', t.profileWhatsApp);
+            setText('profile-whatsapp-alerts', t.profileWhatsAppAlerts);
+            setText('profile-social-label', t.profileSocial);
+            setText('profile-social-hint', t.profileSocialHint);
+            setText('profile-bio-label', t.profileBio);
+            setText('profile-bio-hint', t.profileBioHint);
+            setText('profile-change-photo', t.profileChangePhoto);
+            setText('profile-save-btn', t.profileSave);
+
+            // Logros
+            setText('achievements-title', t.achievementsTitle);
+            setText('achievements-subtitle', t.achievementsSubtitle);
+
+            // Header usuario logueado
+            setText('header-hello', t.hello);
+            setText('header-profile', t.myProfile);
+            setText('header-logout', t.logout);
+            setText('header-create-desktop', t.createRun);
+            setText('header-create-mobile', t.createRun);
+
+            // Stats y bienvenida
+            setText('label-following', t.following);
+            setText('label-followers', t.followers);
+            setText('label-total-runs', t.totalRuns);
+            setText('label-km-run', t.kmRun);
+            setText('label-runners-known', t.runnersKnown);
+            setText('label-upcoming', t.upcomingRuns);
+            setText('btn-ranking', 'Ranking');
+            setText('btn-achievements', t.achievementsTab || 'Achievements');
+
+            // Mi Progreso
+            setText('progress-title', t.myProgress);
+            setText('label-points', t.points);
+            setText('label-created', t.created);
+            setText('label-attended', t.attended);
+            setText('label-badges', t.badges);
+            setText('badges-empty-text', t.completeBadges);
+            setText('btn-view-ranking', t.viewRanking);
+
+            // Mis Quedadas
+            setText('my-runs-title', t.myRuns);
+            setText('btn-refresh', t.refresh);
+            setText('tab-upcoming', t.upcoming);
+            setText('tab-completed', t.completed);
+
+            // Ranking modal
+            setText('ranking-title', t.weeklyRanking || t.rankingTitle);
+            setText('ranking-subtitle', t.top10 || t.rankingSubtitle);
+            setText('ranking-position-label', t.yourPosition);
+
+            // Modal detalle quedada
+            setText('detail-label-meeting', t.detailMeetingPoint);
+            setText('detail-label-level', t.detailLevelRequired);
+            setText('detail-label-desc', t.detailDescription);
+            setText('detail-label-rating', t.detailRating);
+            setText('detail-label-organizer', t.detailOrganizer);
+            setText('detail-label-participants', t.detailParticipants);
+            setText('detail-btn-rate', t.detailRate);
+            setText('detail-btn-share', t.detailShare);
+            setText('detail-btn-close', t.detailClose);
+
+            // App Store badges
+            setText('app-available-text', t.appAvailableOn);
+            setText('app-download-ios', t.appDownloadOn);
+            setText('app-download-android', t.appGetItOn);
+            setText('app-download-ios-2', t.appDownloadOn);
+            setText('app-download-android-2', t.appGetItOn);
+
+            // Actualizar panel de stats (para traducir bienvenida)
+            if (typeof updateStatsUI === 'function') updateStatsUI();
+
+            // Premium stats locked section
+            setText('premium-stats-title', t.detailedStats);
+            setText('premium-stats-desc', t.statsDesc);
+            setText('premium-unlock-btn', t.unlockPremium);
+
+            // Premium upgrade section in profile
+            setText('premium-unlock-all', t.premiumUnlockAll);
+            setText('premium-feat-1', t.premiumAdvancedStats);
+            setText('premium-feat-2', t.premiumUnlimitedRuns);
+            setText('premium-feat-3', t.premiumExclusiveBadges);
+            setText('premium-feat-4', t.premiumBadgeProfile);
+            setText('premium-get-btn', t.premiumGetBtn);
+            setText('premium-cancel-text', t.premiumCancelAnytime);
+            setText('premium-you-are', t.premiumYouAre);
+            setText('premium-manage-btn', t.premiumManage);
+
+            // Notifications section
+            setText('notif-push-title', t.notifPush);
+            setText('notif-on-device', t.notifOnDevice);
+            setText('notif-which-receive', t.notifWhichReceive);
+            setText('notif-pref-24h', t.notifReminder24h);
+            setText('notif-pref-1h', t.notifReminder1h);
+            setText('notif-pref-joins', t.notifSomeoneJoins);
+            setText('notif-pref-new-city', t.notifNewRunCity);
+            setText('notif-pref-cancelled', t.notifRunCancelled);
+
+            // Danger zone
+            setText('danger-zone-title', t.dangerZone);
+            setText('danger-zone-desc', t.dangerZoneDesc);
+            setText('delete-account-btn', t.deleteAccount);
+            setText('profile-close-btn', t.closeBtn);
+
+            // Premium promo popup
+            setText('promo-title', t.promoTitle);
+            setText('promo-subtitle', t.promoSubtitle);
+            setText('promo-feat-1', t.promoFeat1);
+            setText('promo-feat-2', t.promoFeat2);
+            setText('promo-feat-3', t.promoFeat3);
+            setText('promo-feat-4', t.promoFeat4);
+            setText('promo-feat-5', t.promoFeat5);
+            setText('promo-per-month', t.promoPerMonth);
+            setText('promo-cancel', t.promoCancel);
+            setText('promo-cta-btn', t.promoCtaBtn);
+            setText('promo-later-btn', t.promoLaterBtn);
+
             // City chips
             renderCityChips();
         }
 
         function changeLanguage(lang){
-            currentLang = (lang && I18N[lang]) ? lang : 'es';
+            // Solo soportamos español e inglés
+            currentLang = (lang === 'en') ? 'en' : 'es';
             localStorage.setItem(STORAGE_LANG, currentLang);
             applyLanguageUI();
         }
 
-        function showToast(msg,type='success'){const t=document.getElementById('toast'),c=document.getElementById('toast-content');c.className=`px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2 ${type==='success'?'bg-green-500':'bg-red-500'} text-white`;c.innerHTML=`${type==='success'?'✓':'✗'} ${msg}`;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),3000);}
+        function showToast(msg,type='success'){const t=document.getElementById('toast'),c=document.getElementById('toast-content');const colors={success:'bg-green-500',error:'bg-red-500',info:'bg-blue-500',warning:'bg-yellow-500'};const icons={success:'✓',error:'✗',info:'ℹ',warning:'⚠'};const bg=colors[type]||'bg-green-500';const icon=icons[type]||'✓';c.className=`px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2 ${bg} text-white`;c.innerHTML=`${icon} ${msg}`;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),3000);}
 
         // ========== SKELETON LOADERS ==========
         function showSkeletons(containerId, count = 3) {
@@ -3613,15 +4317,27 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const summaryText = document.getElementById('stat-summary-text');
             const summarySub = document.getElementById('stat-summary-sub');
             if (summaryText && summarySub) {
+                const t = I18N[currentLang] || I18N.es;
                 if (proximasCount > 0) {
-                    summaryText.textContent = `Tienes ${proximasCount} quedada${proximasCount > 1 ? 's' : ''} próxima${proximasCount > 1 ? 's' : ''}`;
-                    summarySub.textContent = `${userStats.km} km corridos con ${userStats.runners} runners`;
+                    const runsWord = currentLang === 'en' ? (proximasCount > 1 ? 'runs' : 'run') : (proximasCount > 1 ? 'quedadas' : 'quedada');
+                    const upcomingWord = currentLang === 'en' ? 'upcoming' : (proximasCount > 1 ? 'próximas' : 'próxima');
+                    summaryText.textContent = currentLang === 'en'
+                        ? `You have ${proximasCount} upcoming ${runsWord}`
+                        : `Tienes ${proximasCount} ${runsWord} ${upcomingWord}`;
+                    summarySub.textContent = currentLang === 'en'
+                        ? `${userStats.km} km run with ${userStats.runners} runners`
+                        : `${userStats.km} km corridos con ${userStats.runners} runners`;
                 } else if (userStats.quedadas > 0) {
-                    summaryText.textContent = `Has participado en ${userStats.quedadas} quedada${userStats.quedadas > 1 ? 's' : ''}`;
-                    summarySub.textContent = `${userStats.km} km totales · ¡Únete a una nueva!`;
+                    const runsWord = currentLang === 'en' ? (userStats.quedadas > 1 ? 'runs' : 'run') : (userStats.quedadas > 1 ? 'quedadas' : 'quedada');
+                    summaryText.textContent = currentLang === 'en'
+                        ? `You've joined ${userStats.quedadas} ${runsWord}`
+                        : `Has participado en ${userStats.quedadas} ${runsWord}`;
+                    summarySub.textContent = currentLang === 'en'
+                        ? `${userStats.km} km total · Join a new one!`
+                        : `${userStats.km} km totales · ¡Únete a una nueva!`;
                 } else {
-                    summaryText.textContent = `¡Bienvenido, ${currentUser.nombre || 'runner'}!`;
-                    summarySub.textContent = `Únete a tu primera quedada y empieza a correr`;
+                    summaryText.textContent = `${t.welcome}, ${currentUser.nombre || 'runner'}!`;
+                    summarySub.textContent = t.joinFirst;
                 }
             }
 
@@ -3704,7 +4420,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 html += `<div class="text-center py-4 px-3 rounded-xl bg-gradient-to-br from-yellow-500/10 to-orange-500/5 border border-yellow-500/20">
                     <p class="text-yellow-400 text-sm font-semibold mb-2">🔒 Desbloquea badges exclusivos</p>
                     <p class="text-gray-400 text-xs mb-3">Hazte Premium para acceder a badges dorados únicos</p>
-                    <button onclick="closeModal('modal-badges'); openModal('modal-perfil')" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
+                    <button onclick="closeModal('modal-badges'); openModal('modal-profile')" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
                         ⭐ Ver Premium
                     </button>
                 </div>`;
@@ -4503,19 +5219,28 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 return null;
             }
         }
-        function formatDate(d){if(!d)return'';const m=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];const[y,mo,da]=d.split('-');return`${parseInt(da)} ${m[parseInt(mo)-1]} ${y}`;}
+        function formatDate(d){
+            if(!d)return'';
+            const t = I18N[currentLang] || I18N.es;
+            const m = [t.monthJan, t.monthFeb, t.monthMar, t.monthApr, t.monthMay, t.monthJun, t.monthJul, t.monthAug, t.monthSep, t.monthOct, t.monthNov, t.monthDec];
+            const[y,mo,da]=d.split('-');
+            return`${parseInt(da)} ${m[parseInt(mo)-1]} ${y}`;
+        }
 
         // Formatear fecha corta: "Hoy", "Mañana", "Lun 3"
         function formatDateShort(d){
             if(!d) return '';
+            const t = I18N[currentLang] || I18N.es;
             const today = new Date();
             const date = new Date(d + 'T00:00:00');
             const diffDays = Math.floor((date - new Date(today.toDateString())) / (1000*60*60*24));
 
-            if(diffDays === 0) return 'Hoy';
-            if(diffDays === 1) return 'Mañana';
+            if(diffDays === 0) return t.dateToday;
+            if(diffDays === 1) return t.dateTomorrow;
 
-            const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+            const dias = currentLang === 'en'
+                ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+                : ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
             return `${dias[date.getDay()]} ${date.getDate()}`;
         }
 
@@ -4689,7 +5414,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             document.body.insertAdjacentHTML('beforeend', modalHtml);
         }
-        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(initMap,100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadUserStats();loadSocialStats();initFilterPills();}
+        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(initMap,100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadUserStats();loadSocialStats();initFilterPills();updateGeoFilterUI();}
         function showLanding(){document.getElementById('view-app').classList.remove('active');document.getElementById('view-landing').classList.add('active');}
         function updateUserUI(){const n=document.getElementById('user-name');if(currentUser&&n)n.textContent=currentUser.nombre;}
         async function logout(){
@@ -5105,6 +5830,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             openModal('modal-profile');
             loadGamificationStats();
+            loadMisQuedadas();
         }
 
         // ====== ONBOARDING: Completar perfil después de registro simplificado ======
@@ -5222,9 +5948,11 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const nombre = (document.getElementById('onboard-nombre')?.value || '').trim();
             const ciudad = (document.getElementById('onboard-ciudad')?.value || '').trim();
             const poblacion = (document.getElementById('onboard-poblacion')?.value || '').trim();
+            const pais = (document.getElementById('onboard-pais')?.value || '').trim();
             const nivel = onboardSelectedLevel;
 
             if(!nombre){ showToast('¿Cómo te llamas?','error'); return; }
+            if(!poblacion && !ciudad){ showToast('Indica tu ubicación para ver quedadas cerca','error'); return; }
 
             const sb = window.supabaseClient;
             if(!sb || !currentUser){ showToast('Error de conexión','error'); return; }
@@ -5234,12 +5962,14 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     nombre,
                     ciudad: poblacion || ciudad || null,
                     provincia: ciudad || null,
+                    pais: pais || 'España',
                     nivel: nivel || null
                 }).eq('id', currentUser.id);
 
                 // Actualizar usuario local
                 currentUser.nombre = nombre;
                 currentUser.ciudad = poblacion || ciudad;
+                currentUser.pais = pais || 'España';
                 currentUser.nivel = nivel;
                 document.getElementById('user-name').textContent = nombre;
 
@@ -5475,6 +6205,31 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             // Verificar si hay quedadas pasadas pendientes de reseña
             checkPendingReviews();
+
+            // Mostrar popup de Premium si corresponde
+            maybeShowPremiumPromo();
+        }
+
+        // ====== PREMIUM PROMO POPUP ======
+        function maybeShowPremiumPromo() {
+            // No mostrar si ya es premium
+            if (isUserPremium) return;
+
+            // Verificar última vez que se mostró
+            const lastShown = localStorage.getItem('cj_premium_promo_last');
+            const now = Date.now();
+            const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7 días en ms
+
+            if (lastShown) {
+                const elapsed = now - parseInt(lastShown);
+                if (elapsed < sevenDays) return; // No han pasado 7 días
+            }
+
+            // Mostrar popup después de un pequeño delay
+            setTimeout(() => {
+                openModal('modal-premium-promo');
+                localStorage.setItem('cj_premium_promo_last', now.toString());
+            }, 2000); // 2 segundos después del login
         }
 
         // ====== FUNCIONES AUXILIARES PARA LOGIN/REGISTRO ======
@@ -6041,12 +6796,26 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         let currentTileLayer = null;
         function initMap(){
             if(map) return;
-            map=L.map('map',{zoomControl:false}).setView([40.4167,-3.70325],6);
+            // Centrar mapa en el país del usuario
+            const center = getCountryCenter(userCountry);
+            map=L.map('map',{zoomControl:false}).setView([center.lat, center.lng], center.zoom);
             L.control.zoom({position:'bottomright'}).addTo(map);
             updateMapTiles();
             renderCityChips();
             updateMarkers();
             renderQuedadas();
+        }
+
+        // Recentrar mapa cuando cambie el país o el modo de filtro
+        function recenterMap() {
+            if (!map) return;
+            if (geoFilterMode === 'all') {
+                // Vista mundial
+                map.setView([20, 0], 2);
+            } else {
+                const center = getCountryCenter(userCountry);
+                map.setView([center.lat, center.lng], center.zoom);
+            }
         }
         function updateMapTiles() {
             if (!map) return;
@@ -6068,7 +6837,119 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         // ====== NEAR ME (GPS) ======
         let userLoc = null;
         let userMarker = null;
-        let userCountry = 'ES'; // País del usuario (detectado por GPS)
+        let userCountry = 'ES'; // País del usuario (detectado por GPS o perfil)
+        let geoFilterMode = 'country'; // 'country' = solo mi país, 'all' = mundial
+
+        // Coordenadas centrales y zoom por país
+        const COUNTRY_CENTERS = {
+            'ES': { lat: 40.4168, lng: -3.7038, zoom: 6 },      // Madrid
+            'PT': { lat: 38.7223, lng: -9.1393, zoom: 7 },      // Lisboa
+            'AR': { lat: -34.6037, lng: -58.3816, zoom: 5 },    // Buenos Aires
+            'MX': { lat: 19.4326, lng: -99.1332, zoom: 5 },     // Ciudad de México
+            'CO': { lat: 4.7110, lng: -74.0721, zoom: 6 },      // Bogotá
+            'PE': { lat: -12.0464, lng: -77.0428, zoom: 6 },    // Lima
+            'CL': { lat: -33.4489, lng: -70.6693, zoom: 5 },    // Santiago
+            'EC': { lat: -0.1807, lng: -78.4678, zoom: 7 },     // Quito
+            'VE': { lat: 10.4806, lng: -66.9036, zoom: 6 },     // Caracas
+            'UY': { lat: -34.9011, lng: -56.1645, zoom: 7 },    // Montevideo
+            'PY': { lat: -25.2637, lng: -57.5759, zoom: 7 },    // Asunción
+            'BO': { lat: -16.5000, lng: -68.1500, zoom: 6 },    // La Paz
+            'CR': { lat: 9.9281, lng: -84.0907, zoom: 8 },      // San José
+            'PA': { lat: 8.9824, lng: -79.5199, zoom: 8 },      // Panamá
+            'GT': { lat: 14.6349, lng: -90.5069, zoom: 8 },     // Guatemala
+            'HN': { lat: 14.0723, lng: -87.1921, zoom: 8 },     // Tegucigalpa
+            'SV': { lat: 13.6929, lng: -89.2182, zoom: 9 },     // San Salvador
+            'NI': { lat: 12.1150, lng: -86.2362, zoom: 8 },     // Managua
+            'CU': { lat: 23.1136, lng: -82.3666, zoom: 7 },     // La Habana
+            'DO': { lat: 18.4861, lng: -69.9312, zoom: 8 },     // Santo Domingo
+            'PR': { lat: 18.4655, lng: -66.1057, zoom: 9 },     // San Juan
+            'US': { lat: 39.8283, lng: -98.5795, zoom: 4 },     // Centro EEUU
+            'FR': { lat: 46.6034, lng: 1.8883, zoom: 6 },       // Francia
+            'IT': { lat: 41.8719, lng: 12.5674, zoom: 6 },      // Roma
+            'DE': { lat: 51.1657, lng: 10.4515, zoom: 6 },      // Alemania
+            'GB': { lat: 51.5074, lng: -0.1278, zoom: 6 },      // Londres
+            'BR': { lat: -14.2350, lng: -51.9253, zoom: 4 },    // Brasil
+            'PH': { lat: 12.8797, lng: 121.7740, zoom: 6 },     // Filipinas
+            'GQ': { lat: 1.6508, lng: 10.2679, zoom: 8 },       // Guinea Ecuatorial
+            'DEFAULT': { lat: 20, lng: 0, zoom: 2 }             // Vista mundial
+        };
+
+        function getCountryCenter(countryCode) {
+            return COUNTRY_CENTERS[countryCode] || COUNTRY_CENTERS['DEFAULT'];
+        }
+
+        // Mapeo de códigos de país a nombres
+        const COUNTRY_CODE_MAP = {
+            'ES': ['España', 'Spain', 'ES'],
+            'PT': ['Portugal', 'PT'],
+            'AR': ['Argentina', 'AR'],
+            'MX': ['México', 'Mexico', 'MX'],
+            'CO': ['Colombia', 'CO'],
+            'PE': ['Perú', 'Peru', 'PE'],
+            'CL': ['Chile', 'CL'],
+            'EC': ['Ecuador', 'EC'],
+            'VE': ['Venezuela', 'VE'],
+            'UY': ['Uruguay', 'UY'],
+            'PY': ['Paraguay', 'PY'],
+            'BO': ['Bolivia', 'BO'],
+            'CR': ['Costa Rica', 'CR'],
+            'PA': ['Panamá', 'Panama', 'PA'],
+            'GT': ['Guatemala', 'GT'],
+            'HN': ['Honduras', 'HN'],
+            'SV': ['El Salvador', 'SV'],
+            'NI': ['Nicaragua', 'NI'],
+            'CU': ['Cuba', 'CU'],
+            'DO': ['República Dominicana', 'Dominican Republic', 'DO'],
+            'PR': ['Puerto Rico', 'PR'],
+            'US': ['Estados Unidos', 'United States', 'USA', 'US'],
+            'FR': ['Francia', 'France', 'FR'],
+            'IT': ['Italia', 'Italy', 'IT'],
+            'DE': ['Alemania', 'Germany', 'DE'],
+            'GB': ['Reino Unido', 'United Kingdom', 'UK', 'GB'],
+            'BR': ['Brasil', 'Brazil', 'BR'],
+            'PH': ['Filipinas', 'Philippines', 'PH'],
+            'GQ': ['Guinea Ecuatorial', 'Equatorial Guinea', 'GQ']
+        };
+
+        function matchesCountry(quedadaPais, userCountryCode) {
+            if (!quedadaPais || !userCountryCode) return true; // Si no hay país, mostrar
+            const validNames = COUNTRY_CODE_MAP[userCountryCode] || [userCountryCode];
+            return validNames.some(name =>
+                quedadaPais.toLowerCase() === name.toLowerCase() ||
+                quedadaPais.toUpperCase() === name.toUpperCase()
+            );
+        }
+
+        function setGeoFilterMode(mode) {
+            geoFilterMode = mode;
+            renderQuedadas();
+            updateMarkers();
+            recenterMap();
+            // Actualizar botones visuales
+            document.querySelectorAll('.geo-filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+        }
+
+        // Actualizar UI de filtro geográfico con bandera y nombre del país
+        function updateGeoFilterUI() {
+            const flagEl = document.getElementById('geo-country-flag');
+            const nameEl = document.getElementById('geo-country-name');
+            if (flagEl) {
+                const flags = {
+                    'ES': '🇪🇸', 'PT': '🇵🇹', 'AR': '🇦🇷', 'MX': '🇲🇽', 'CO': '🇨🇴', 'PE': '🇵🇪',
+                    'CL': '🇨🇱', 'EC': '🇪🇨', 'VE': '🇻🇪', 'UY': '🇺🇾', 'PY': '🇵🇾', 'BO': '🇧🇴',
+                    'CR': '🇨🇷', 'PA': '🇵🇦', 'GT': '🇬🇹', 'HN': '🇭🇳', 'SV': '🇸🇻', 'NI': '🇳🇮',
+                    'CU': '🇨🇺', 'DO': '🇩🇴', 'PR': '🇵🇷', 'US': '🇺🇸', 'FR': '🇫🇷', 'IT': '🇮🇹',
+                    'DE': '🇩🇪', 'GB': '🇬🇧', 'BR': '🇧🇷', 'PH': '🇵🇭', 'GQ': '🇬🇶'
+                };
+                flagEl.textContent = flags[userCountry] || '🌍';
+            }
+            if (nameEl) {
+                const names = COUNTRY_CODE_MAP[userCountry];
+                nameEl.textContent = names ? names[0] : '';
+            }
+        }
         const NEAR_RADIUS_KM = 8;
 
         // Detectar país del usuario usando reverse geocoding
@@ -6152,27 +7033,25 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             markers=[];
             let filtered;
 
-            // Primero filtrar por país del usuario (si tiene país detectado)
+            // Primero filtrar por país del usuario (si no está en modo mundial)
             let quedadasPais = quedadas;
-            if (userCountry && userCountry !== 'all') {
-                quedadasPais = quedadas.filter(q => !q.pais || q.pais === userCountry);
+            if (geoFilterMode === 'country' && userCountry) {
+                quedadasPais = quedadas.filter(q => matchesCountry(q.pais, userCountry));
             }
 
             if(currentFilter==='all'){
+                // Mundial: todas las quedadas del mundo
+                filtered = quedadas;
+            } else if(currentFilter==='country'){
+                // Mi país: solo quedadas del país del usuario
                 filtered = quedadasPais;
-            } else if(currentFilter==='near' || currentFilter==='near25'){
-                // Cerca (25km)
-                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 25) : [];
-            } else if(currentFilter==='near50'){
-                // Mi ciudad (50km)
-                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 50) : [];
-            } else if(currentFilter==='near100'){
-                // Mi región (100km)
-                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 100) : [];
+            } else if(currentFilter==='city'){
+                // Mi ciudad (50km de radio)
+                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 50) : quedadasPais;
             } else {
                 filtered = quedadasPais.filter(q=>q.ciudad===currentFilter);
             }
-            
+
             // 🧹 Filtrar quedadas que ya pasaron
             filtered = filtered.filter(q => !isQuedadaPasada(q));
 
@@ -6186,21 +7065,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 markers.push(m);
             });
 
-            // Recentrado premium
-            if(currentFilter==='near' && userLoc){
-                map.flyTo([userLoc.lat, userLoc.lng], 14, {animate:true});
-            } else if(currentFilter!=='all' && CITIES[currentFilter]){
-                map.setView([CITIES[currentFilter].lat, CITIES[currentFilter].lng], 12, {animate:true});
-            } else if(markers.length>0){
-                const group = L.featureGroup(markers);
-                map.fitBounds(group.getBounds().pad(0.25), {animate:true});
-            } else if(userLoc){
-                // App mundial: centrar en ubicación del usuario si no hay quedadas
-                map.setView([userLoc.lat, userLoc.lng], 10, {animate:true});
-            } else {
-                // Fallback: vista mundial centrada en el Atlántico (neutral)
-                map.setView([20, -40], 3);
-            }
+            // NO recentrar el mapa aquí - el recentrado se hace en filterBy()
+            // Solo dejamos el mapa donde filterBy() lo posicionó
         }
 
 
@@ -6210,8 +7076,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         let lastAddressResultsCrear = [];
 
         function getCrearCountryCode(){
-            const v = (document.getElementById('q-country')?.value || 'ES').toLowerCase();
-            return v === 'pt' ? 'pt' : 'es';
+            // Ahora soporta búsqueda mundial - retorna vacío para no restringir
+            return '';
         }
 
         function escapeHtml(s){
@@ -6259,7 +7125,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const b = mapCrear.getBounds();
                 viewbox = `&bounded=1&viewbox=${b.getWest()},${b.getNorth()},${b.getEast()},${b.getSouth()}`;
             }
-            const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=6&countrycodes=${cc}${viewbox}&q=${encodeURIComponent(qFinal)}`;
+            const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=6${viewbox}&q=${encodeURIComponent(qFinal)}`;
             const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
             if(!res.ok) throw new Error('nominatim');
             return await res.json();
@@ -6470,7 +7336,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           
           searchPlaceTimeout = setTimeout(async () => {
             try {
-              const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=es,pt&limit=5&accept-language=es`;
+              const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=6&accept-language=es`;
               const res = await fetch(url, { headers: { 'User-Agent': 'CorrerJuntos/1.0' }});
               const data = await res.json();
               
@@ -6678,28 +7544,26 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             const countEl = document.getElementById('quedadas-count');
             if(!list) return;
 
-            // Primero filtrar por país del usuario
+            // Primero filtrar por país del usuario (si no está en modo mundial)
             let quedadasPais = quedadas;
-            if (userCountry && userCountry !== 'all') {
-                quedadasPais = quedadas.filter(q => !q.pais || q.pais === userCountry);
+            if (geoFilterMode === 'country' && userCountry) {
+                quedadasPais = quedadas.filter(q => matchesCountry(q.pais, userCountry));
             }
 
             let filtered;
             if(currentFilter==='all'){
+                // Mundial: todas las quedadas del mundo
+                filtered = quedadas;
+            } else if(currentFilter==='country'){
+                // Mi país: solo quedadas del país del usuario
                 filtered = quedadasPais;
-            } else if(currentFilter==='near' || currentFilter==='near25'){
-                // Cerca (25km)
-                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 25) : [];
-            } else if(currentFilter==='near50'){
-                // Mi ciudad (50km)
-                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 50) : [];
-            } else if(currentFilter==='near100'){
-                // Mi región (100km)
-                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 100) : [];
+            } else if(currentFilter==='city'){
+                // Mi ciudad (50km de radio)
+                filtered = userLoc ? quedadasPais.filter(q=>haversineKm(userLoc.lat,userLoc.lng,q.lat,q.lng) <= 50) : quedadasPais;
             } else {
                 filtered = quedadasPais.filter(q=>q.ciudad===currentFilter);
             }
-            
+
             // 🧹 Filtrar quedadas que ya pasaron
             filtered = filtered.filter(q => !isQuedadaPasada(q));
 
@@ -6743,7 +7607,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     <div class="h-20 bg-slate-700/50 rounded-xl flex items-center justify-center text-gray-500">
                         <span>Espacio publicitario</span>
                     </div>
-                    <p class="text-xs text-orange-400 mt-2 cursor-pointer hover:underline" onclick="openModal('modal-perfil')">⭐ Hazte Premium para quitar anuncios</p>
+                    <p class="text-xs text-orange-400 mt-2 cursor-pointer hover:underline" onclick="openModal('modal-profile')">⭐ Hazte Premium para quitar anuncios</p>
                 </div>
             ` : '';
 
@@ -6996,15 +7860,15 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         </div>
                         ` : ''}
 
-                        <button class="organizer-tooltip-btn" onclick="event.stopPropagation(); viewOrganizerProfile('${q.creador_id}');">
-                          Ver perfil completo
+                        <button class="organizer-tooltip-btn" onclick="event.stopPropagation(); openUserProfile('${q.creador_id}');">
+                          ${I18N[currentLang]?.viewFullProfile || 'Ver perfil completo'}
                         </button>
                       </div>
                     </div>
                     <div class="flex items-center gap-2" onclick="event.stopPropagation();">
-                      <button onclick="openQuedadaDetail('${q.id}')" class="px-3 py-2 rounded-full text-xs font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition flex items-center gap-1" title="Ver detalles">
+                      <button onclick="openQuedadaDetail('${q.id}')" class="px-3 py-2 rounded-full text-xs font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition flex items-center gap-1" title="${I18N[currentLang]?.viewMore || 'Ver más'}">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                        <span class="hidden sm:inline">Ver más</span>
+                        <span class="hidden sm:inline">${I18N[currentLang]?.viewMore || 'Ver más'}</span>
                       </button>
                       ${actionBtn}
                     </div>
@@ -7029,10 +7893,11 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 `;
             };
 
-            html += renderGroup(groups.hoy, 'Hoy', '🔥', 'text-orange-400');
-            html += renderGroup(groups.manana, 'Mañana', '📅', 'text-blue-400');
-            html += renderGroup(groups.semana, 'Esta semana', '📆', 'text-green-400');
-            html += renderGroup(groups.proximas, 'Próximamente', '🗓️', 'text-gray-400');
+            const t = I18N[currentLang] || I18N.es;
+            html += renderGroup(groups.hoy, t.dateToday, '🔥', 'text-orange-400');
+            html += renderGroup(groups.manana, t.dateTomorrow, '📅', 'text-blue-400');
+            html += renderGroup(groups.semana, t.dateThisWeek, '📆', 'text-green-400');
+            html += renderGroup(groups.proximas, t.dateLater, '🗓️', 'text-gray-400');
 
             list.innerHTML = html;
 
@@ -7053,11 +7918,12 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     const badgeClass = weather.condition === 'bad' ? 'bg-red-500/20 text-red-400 border-red-500/30' :
                                       weather.condition === 'warn' ? 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' :
                                       'bg-green-500/20 text-green-400 border-green-500/30';
+                    const t = I18N[currentLang] || I18N.es;
                     weatherEl.innerHTML = `
                         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border ${badgeClass}">
                             <span>${weather.icon}</span>
                             <span>${weather.text}</span>
-                            <span class="text-gray-500 text-[10px]">pronóstico</span>
+                            <span class="text-gray-500 text-[10px]">${t.weatherForecast}</span>
                         </div>`;
                 }
             }
@@ -7070,20 +7936,23 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         function openQuedadaDetail(id) {
             const q = quedadas.find(x => x.id === id);
             if (!q) { showToast('Quedada no encontrada', 'error'); return; }
-            
+
+            // Obtener traducciones
+            const t = I18N[currentLang] || I18N.es;
+
             const asistentesInfo = Array.isArray(q.asistentes_info) ? q.asistentes_info : [];
             const asistentes = Array.isArray(q.asistentes) ? q.asistentes : asistentesInfo.map(a => a.user_id);
             const isJoined = !!(currentUser && asistentes.includes(currentUser.id));
             // NOTA: Las quedadas seed NUNCA son "Tu quedada"
             const isCreator = !!(currentUser && q.creador_id && currentUser.id === q.creador_id && !q.es_seed);
-            
-            // Nivel badge colors
+
+            // Nivel badge colors con traducciones
             const nivelColors = {
-                'Principiante': { bg: 'bg-green-500/20', text: 'text-green-400', desc: 'Ritmo suave, ideal para empezar' },
-                'Intermedio': { bg: 'bg-yellow-500/20', text: 'text-yellow-400', desc: 'Ritmo moderado, algo de experiencia' },
-                'Avanzado': { bg: 'bg-red-500/20', text: 'text-red-400', desc: 'Ritmo exigente, runners experimentados' },
-                'Elite': { bg: 'bg-purple-500/20', text: 'text-purple-400', desc: 'Ritmo competitivo, alto rendimiento' },
-                'Todos': { bg: 'bg-orange-500/20', text: 'text-orange-400', desc: 'Abierto a todos los niveles' }
+                'Principiante': { bg: 'bg-green-500/20', text: 'text-green-400', desc: t.levelBeginnerDesc },
+                'Intermedio': { bg: 'bg-yellow-500/20', text: 'text-yellow-400', desc: t.levelIntermediateDesc },
+                'Avanzado': { bg: 'bg-red-500/20', text: 'text-red-400', desc: t.levelAdvancedDesc },
+                'Elite': { bg: 'bg-purple-500/20', text: 'text-purple-400', desc: t.levelEliteDesc },
+                'Todos': { bg: 'bg-orange-500/20', text: 'text-orange-400', desc: t.levelAllDesc }
             };
             const nivelStyle = nivelColors[q.nivel] || nivelColors['Todos'];
             
@@ -7093,7 +7962,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             document.getElementById('detail-fecha').textContent = formatDate(q.fecha);
             document.getElementById('detail-hora').textContent = formatHora(q.hora);
             document.getElementById('detail-distancia').textContent = q.distancia || 'No especificada';
-            document.getElementById('detail-ritmo').textContent = q.ritmo || 'Libre';
+            document.getElementById('detail-ritmo').textContent = q.ritmo || t.detailFree;
             document.getElementById('detail-ubicacion').textContent = q.ubicacion;
             
             // Nivel badge en header
@@ -7124,9 +7993,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             document.getElementById('detail-count').innerHTML = `
                 <span class="flex items-center gap-2">
-                    ${detailConfirmed > 0 ? `<span class="text-green-400 text-xs" title="Confirmados">✅ ${detailConfirmed}</span>` : ''}
-                    ${detailMaybe > 0 ? `<span class="text-yellow-400 text-xs" title="Posiblemente">🤔 ${detailMaybe}</span>` : ''}
-                    ${detailInterested > 0 ? `<span class="text-blue-400 text-xs" title="Interesados">👀 ${detailInterested}</span>` : ''}
+                    ${detailConfirmed > 0 ? `<span class="text-green-400 text-xs" title="${t.detailConfirmed}">✅ ${detailConfirmed}</span>` : ''}
+                    ${detailMaybe > 0 ? `<span class="text-yellow-400 text-xs" title="${t.detailMaybe}">🤔 ${detailMaybe}</span>` : ''}
+                    ${detailInterested > 0 ? `<span class="text-blue-400 text-xs" title="${t.detailInterested}">👀 ${detailInterested}</span>` : ''}
                     ${asistentes.length === 0 ? '<span class="text-gray-500">(0)</span>' : ''}
                 </span>`;
 
@@ -7146,11 +8015,11 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         : `<div class="w-8 h-8 rounded-full ${isMe ? 'bg-orange-500' : 'bg-slate-600'} flex items-center justify-center font-bold text-white text-xs">${initials}</div>`
                     }
                     <div class="flex-1 min-w-0">
-                        <div class="font-bold text-white text-sm truncate">${nombre} ${apellido} ${isMe ? '<span class="text-orange-400 text-xs">(Tú)</span>' : ''}${isOrg ? ' <span class="text-orange-400">👑</span>' : ''}</div>
+                        <div class="font-bold text-white text-sm truncate">${nombre} ${apellido} ${isMe ? `<span class="text-orange-400 text-xs">(${t.detailYou})</span>` : ''}${isOrg ? ' <span class="text-orange-400">👑</span>' : ''}</div>
                     </div>
                     <span class="text-sm" title="${statusBadge.text}">${statusBadge.icon}</span>
                 </div>`;
-            }).join('') : `<div class="text-gray-500 text-center py-2 text-sm">Sé el primero en unirte</div>`;
+            }).join('') : `<div class="text-gray-500 text-center py-2 text-sm">${t.detailBeFirst}</div>`;
             
             // Creador - usar datos del join directo si estan disponibles
             // Para quedadas seed, usar organizador_nombre y organizador_foto
@@ -7179,11 +8048,11 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 <div class="flex-1">
                     <div class="flex items-center gap-2 flex-wrap">
                         <span class="font-bold text-white">${cNombre} ${cApellidos ? cApellidos.charAt(0) + '.' : ''}</span>
-                        ${cVerified ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">✓ Verificado</span>` : ''}
+                        ${cVerified ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">✓ ${t.detailVerified}</span>` : ''}
                     </div>
                     <div class="flex items-center gap-3 mt-1 flex-wrap">
-                        ${cRating ? `<span class="text-sm text-yellow-400 font-bold">⭐ ${cRating.toFixed(1)} <span class="text-gray-500 font-normal">(${cReviews} ${cReviews === 1 ? 'reseña' : 'reseñas'})</span></span>` : '<span class="text-xs text-gray-500">Sin reseñas aún</span>'}
-                        ${cOrganized > 0 ? `<span class="text-xs text-gray-400">• ${cOrganized} ${cOrganized === 1 ? 'quedada organizada' : 'quedadas organizadas'}</span>` : ''}
+                        ${cRating ? `<span class="text-sm text-yellow-400 font-bold">⭐ ${cRating.toFixed(1)} <span class="text-gray-500 font-normal">(${cReviews} ${cReviews === 1 ? t.detailReview : t.detailReviews})</span></span>` : `<span class="text-xs text-gray-500">${t.detailNoReviews}</span>`}
+                        ${cOrganized > 0 ? `<span class="text-xs text-gray-400">• ${cOrganized} ${cOrganized === 1 ? t.detailRunOrganized : t.detailRunsOrganized}</span>` : ''}
                     </div>
                 </div>`;
             
@@ -7202,27 +8071,27 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const newLeaveBtn = document.createElement('button');
                 newLeaveBtn.id = 'detail-leave-btn';
                 newLeaveBtn.className = 'hidden px-4 py-3 rounded-xl font-bold bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition flex items-center justify-center gap-2 text-sm';
-                newLeaveBtn.innerHTML = '<span>🚪</span> Abandonar';
+                newLeaveBtn.innerHTML = `<span>🚪</span> ${t.detailLeave}`;
                 actionBtn.parentNode.insertBefore(newLeaveBtn, actionBtn.nextSibling);
             }
 
             const leaveBtnEl = document.getElementById('detail-leave-btn');
 
             if (!currentUser) {
-                actionBtn.textContent = '🏃 Regístrate para unirte';
+                actionBtn.textContent = '🏃 ' + t.detailRegisterToJoin;
                 actionBtn.className = 'flex-1 min-w-[200px] py-3 rounded-xl font-black text-base bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:shadow-lg hover:shadow-orange-500/25 transition';
                 actionBtn.onclick = () => { closeModal('modal-quedada-detail'); openModal('modal-register'); };
                 if (leaveBtnEl) leaveBtnEl.classList.add('hidden');
             } else if (isCreator) {
                 // El creador ve "Tu quedada" con opción de editar/eliminar
-                actionBtn.innerHTML = '<span class="flex items-center justify-center gap-2">👑 Tu quedada</span>';
+                actionBtn.innerHTML = `<span class="flex items-center justify-center gap-2">👑 ${t.detailYourRun}</span>`;
                 actionBtn.className = 'flex-1 min-w-[180px] py-3 rounded-xl font-black text-base bg-orange-500/20 text-orange-400 border-2 border-orange-500/40 cursor-default';
                 actionBtn.onclick = null;
 
                 // Botón de eliminar para el creador
                 if (leaveBtnEl) {
                     leaveBtnEl.classList.remove('hidden');
-                    leaveBtnEl.innerHTML = '<span>🗑️</span> Eliminar quedada';
+                    leaveBtnEl.innerHTML = `<span>🗑️</span> ${t.detailDeleteRun}`;
                     leaveBtnEl.className = 'px-4 py-3 rounded-xl font-bold bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition flex items-center justify-center gap-2 text-sm';
                     leaveBtnEl.onclick = () => {
                         document.getElementById('leave-quedada-id').value = id;
@@ -7239,25 +8108,25 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const statusBadge = getStatusBadge(myStatus);
 
                 // Botón principal: mostrar estado actual y permitir cambiarlo
-                actionBtn.innerHTML = `<span class="flex items-center justify-center gap-2">${statusBadge.icon} ${statusBadge.text} <span class="text-xs opacity-70">(cambiar)</span></span>`;
+                actionBtn.innerHTML = `<span class="flex items-center justify-center gap-2">${statusBadge.icon} ${statusBadge.text} <span class="text-xs opacity-70">(${t.detailChange})</span></span>`;
                 actionBtn.className = `flex-1 min-w-[180px] py-3 rounded-xl font-black text-base border-2 ${statusBadge.class} hover:opacity-80 transition`;
                 actionBtn.onclick = () => { closeModal('modal-quedada-detail'); openAttPropertyModal(id); };
 
                 // Botón secundario: abandonar (visible y distintivo)
                 if (leaveBtnEl) {
                     leaveBtnEl.classList.remove('hidden');
-                    leaveBtnEl.innerHTML = '<span>🚪</span> Abandonar';
+                    leaveBtnEl.innerHTML = `<span>🚪</span> ${t.detailLeave}`;
                     leaveBtnEl.className = 'px-4 py-3 rounded-xl font-bold bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition flex items-center justify-center gap-2 text-sm';
                     leaveBtnEl.onclick = () => {
                         document.getElementById('leave-quedada-id').value = id;
                         const confirmText = document.getElementById('leave-confirm-text');
-                        confirmText.textContent = '¿Seguro que quieres abandonar esta quedada?';
+                        confirmText.textContent = currentLang === 'en' ? 'Are you sure you want to leave this run?' : '¿Seguro que quieres abandonar esta quedada?';
                         closeModal('modal-quedada-detail');
                         openModal('modal-leave-confirm');
                     };
                 }
             } else {
-                actionBtn.textContent = '🏃 ¡Unirme a esta quedada!';
+                actionBtn.textContent = '🏃 ' + t.detailJoinRun;
                 actionBtn.className = 'flex-1 min-w-[200px] py-3 rounded-xl font-black text-base bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:shadow-lg hover:shadow-orange-500/25 transition';
                 actionBtn.onclick = () => { closeModal('modal-quedada-detail'); openAttendanceModal(id); };
                 if (leaveBtnEl) leaveBtnEl.classList.add('hidden');
@@ -7312,13 +8181,27 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         function renderCityChips(){
             const wrap = document.getElementById('city-chips');
             if(!wrap) return;
-            // App Mundial: chips de radio de búsqueda en lugar de ciudades fijas
-            const radiusOptions = [
-                {label: 'Cerca (25km)', value: 'near25', radius: 25},
-                {label: 'Mi ciudad (50km)', value: 'near50', radius: 50},
-                {label: 'Mi región (100km)', value: 'near100', radius: 100},
-                {label: 'Todas', value: 'all', radius: 99999}
+
+            // Obtener bandera del país del usuario
+            const flags = {
+                'ES': '🇪🇸', 'PT': '🇵🇹', 'AR': '🇦🇷', 'MX': '🇲🇽', 'CO': '🇨🇴', 'PE': '🇵🇪',
+                'CL': '🇨🇱', 'EC': '🇪🇨', 'VE': '🇻🇪', 'UY': '🇺🇾', 'PY': '🇵🇾', 'BO': '🇧🇴',
+                'CR': '🇨🇷', 'PA': '🇵🇦', 'GT': '🇬🇹', 'HN': '🇭🇳', 'SV': '🇸🇻', 'NI': '🇳🇮',
+                'CU': '🇨🇺', 'DO': '🇩🇴', 'PR': '🇵🇷', 'US': '🇺🇸', 'FR': '🇫🇷', 'IT': '🇮🇹',
+                'DE': '🇩🇪', 'GB': '🇬🇧', 'BR': '🇧🇷', 'PH': '🇵🇭', 'GQ': '🇬🇶'
+            };
+            const countryFlag = flags[userCountry] || '🌍';
+
+            // Obtener traducciones
+            const t = I18N[currentLang] || I18N.es;
+
+            // Filtros simplificados: Mi ciudad → Mi país → Mundial
+            const filterOptions = [
+                {label: '📍 ' + (t.geoMyCity || 'Mi ciudad'), value: 'city'},
+                {label: countryFlag + ' ' + (t.geoMyCountry || 'Mi país'), value: 'country'},
+                {label: '🌍 ' + (t.geoWorldwide || 'Mundial'), value: 'all'}
             ];
+
             wrap.innerHTML = '';
             const mkChip = (label, value, active=false) => {
                 const div = document.createElement('div');
@@ -7327,7 +8210,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 div.onclick = () => filterBy(value, div);
                 return div;
             };
-            radiusOptions.forEach(opt => wrap.appendChild(mkChip(opt.label, opt.value, currentFilter===opt.value)));
+            filterOptions.forEach(opt => wrap.appendChild(mkChip(opt.label, opt.value, currentFilter===opt.value)));
         }
 
         // ========== CONFIGURACIÓN DE NOTIFICACIONES (BIENVENIDA) ==========
@@ -7403,18 +8286,17 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
         }
 
-        async function filterBy(city, el){
-            currentFilter = city;
-            // Activar botón de localización para filtros de proximidad
-            const isNearFilter = city.startsWith('near');
-            setLocateBtnActive(isNearFilter);
+        async function filterBy(filter, el){
+            currentFilter = filter;
+            // Activar botón de localización para filtro ciudad
+            setLocateBtnActive(filter === 'city');
 
             // UI
             document.querySelectorAll('#city-chips .chip').forEach(c=>c.classList.remove('active'));
             if(el) el.classList.add('active');
 
-            // Si no tenemos ubicación y necesitamos filtrar por proximidad, obtenerla
-            if (!userLoc && (isNearFilter || city === 'all')) {
+            // Si no tenemos ubicación, obtenerla
+            if (!userLoc) {
                 try {
                     const pos = await new Promise((resolve, reject) => {
                         navigator.geolocation.getCurrentPosition(resolve, reject, {
@@ -7427,34 +8309,43 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     // Detectar país del usuario
                     try {
                         await detectUserCountry(userLoc.lat, userLoc.lng);
+                        renderCityChips(); // Actualizar bandera
                     } catch(e) {}
                 } catch (e) {
                     console.warn('No se pudo obtener ubicación:', e);
-                    showToast('Activa la ubicación para filtrar por distancia', 'warning');
+                    if(filter === 'city') {
+                        showToast('Activa la ubicación para ver tu ciudad', 'warning');
+                    }
                 }
             }
 
-            // App mundial: manejar filtros de radio
-            if(isNearFilter && userLoc && map){
-                // Determinar zoom basado en el radio
-                let zoom = 12;
-                if(city === 'near25') zoom = 13;
-                else if(city === 'near50') zoom = 11;
-                else if(city === 'near100') zoom = 9;
-
-                try{ map.invalidateSize(true); }catch(e){}
-                try{ map.flyTo([userLoc.lat, userLoc.lng], zoom, {duration: 0.8}); }catch(e){ map.setView([userLoc.lat, userLoc.lng], zoom); }
+            // Manejar los 3 filtros: city, country, all
+            if(filter === 'city' && map){
+                // Mi ciudad: centrar en ubicación del usuario con zoom cercano
+                geoFilterMode = 'country';
+                if(userLoc) {
+                    try{ map.invalidateSize(true); }catch(e){}
+                    try{ map.flyTo([userLoc.lat, userLoc.lng], 12, {duration: 0.8}); }catch(e){ map.setView([userLoc.lat, userLoc.lng], 12); }
+                } else {
+                    // Sin ubicación, mostrar el país
+                    const center = getCountryCenter(userCountry);
+                    try{ map.flyTo([center.lat, center.lng], center.zoom, {duration: 0.8}); }catch(e){}
+                }
             }
-            else if(city==='all' && map){
-                // "Todas": centrar en ubicación del usuario con zoom a nivel país
-                try{
-                    if(userLoc){
-                        map.flyTo([userLoc.lat, userLoc.lng], 6, {duration: 0.8});
-                    } else {
-                        const pts = quedadas.map(q=>[q.lat,q.lng]).filter(x=>x[0]&&x[1]);
-                        if(pts.length){ map.fitBounds(pts, {padding:[40,40]}); }
-                    }
-                }catch(e){}
+            else if(filter === 'country' && map){
+                // Mi país: centrar en la capital del país con zoom 5 (~300km visible)
+                geoFilterMode = 'country';
+                const center = getCountryCenter(userCountry);
+                try{ map.invalidateSize(true); }catch(e){}
+                try{ map.flyTo([center.lat, center.lng], 5, {duration: 0.8}); }catch(e){ map.setView([center.lat, center.lng], 5); }
+            }
+            else if(filter === 'all'){
+                // Mundial: mostrar mapa del mundo completo
+                geoFilterMode = 'all';
+                if(map){
+                    try{ map.invalidateSize(true); }catch(e){}
+                    map.setView([20, 0], 2);
+                }
             }
 
             renderQuedadas();
@@ -8111,7 +9002,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 if (userQuedadasThisMonth >= 3) {
                     showToast('Has alcanzado el límite de 3 quedadas/mes. ¡Hazte Premium para crear ilimitadas!', 'error');
                     closeModal('modal-crear');
-                    openModal('modal-perfil');
+                    openModal('modal-profile');
                     return;
                 }
             }
@@ -8569,6 +9460,130 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
         }
 
+        // ==================== MIS QUEDADAS (HISTORIAL) ====================
+        let misQuedadasTab = 'proximas';
+        let misQuedadasData = { proximas: [], pasadas: [] };
+
+        function switchMisQuedadasTab(tab) {
+            misQuedadasTab = tab;
+
+            // Actualizar tabs visualmente
+            const tabProximas = document.getElementById('tab-proximas');
+            const tabPasadas = document.getElementById('tab-pasadas');
+
+            if (tab === 'proximas') {
+                tabProximas.className = 'flex-1 py-2 px-3 rounded-xl text-sm font-bold transition bg-blue-500/20 text-blue-300 border border-blue-500/30';
+                tabPasadas.className = 'flex-1 py-2 px-3 rounded-xl text-sm font-bold transition bg-slate-800/50 text-gray-400 border border-slate-700 hover:border-blue-500/30';
+            } else {
+                tabPasadas.className = 'flex-1 py-2 px-3 rounded-xl text-sm font-bold transition bg-blue-500/20 text-blue-300 border border-blue-500/30';
+                tabProximas.className = 'flex-1 py-2 px-3 rounded-xl text-sm font-bold transition bg-slate-800/50 text-gray-400 border border-slate-700 hover:border-blue-500/30';
+            }
+
+            renderMisQuedadas();
+        }
+
+        async function loadMisQuedadas() {
+            if (!currentUser) return;
+
+            const container = document.getElementById('mis-quedadas-list');
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="text-center py-4 text-gray-500 text-sm">
+                    <div class="animate-spin w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-2"></div>
+                    Cargando...
+                </div>
+            `;
+
+            try {
+                const sb = await getSupabaseClientOrToast(8000, false);
+                if (!sb) return;
+
+                const now = new Date().toISOString();
+
+                // Obtener quedadas donde el usuario participa
+                const { data: participaciones, error } = await sb
+                    .from('participantes')
+                    .select('quedada_id, status, quedadas(*)')
+                    .eq('user_id', currentUser.id);
+
+                if (error) throw error;
+
+                const todasMisQuedadas = (participaciones || [])
+                    .filter(p => p.quedadas)
+                    .map(p => ({ ...p.quedadas, mi_status: p.status }));
+
+                // Separar en próximas y pasadas
+                misQuedadasData.proximas = todasMisQuedadas
+                    .filter(q => new Date(q.fecha + 'T' + q.hora) >= new Date())
+                    .sort((a, b) => new Date(a.fecha + 'T' + a.hora) - new Date(b.fecha + 'T' + b.hora));
+
+                misQuedadasData.pasadas = todasMisQuedadas
+                    .filter(q => new Date(q.fecha + 'T' + q.hora) < new Date())
+                    .sort((a, b) => new Date(b.fecha + 'T' + b.hora) - new Date(a.fecha + 'T' + a.hora));
+
+                renderMisQuedadas();
+
+            } catch (e) {
+                console.warn('Error cargando mis quedadas:', e);
+                container.innerHTML = '<div class="text-center py-4 text-red-400 text-sm">Error al cargar quedadas</div>';
+            }
+        }
+
+        function renderMisQuedadas() {
+            const container = document.getElementById('mis-quedadas-list');
+            if (!container) return;
+
+            const lista = misQuedadasTab === 'proximas' ? misQuedadasData.proximas : misQuedadasData.pasadas;
+
+            const t = I18N[currentLang] || I18N.es;
+
+            if (lista.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-6 text-gray-500">
+                        <span class="text-3xl mb-2 block">${misQuedadasTab === 'proximas' ? '📅' : '✓'}</span>
+                        <p class="text-sm">${misQuedadasTab === 'proximas' ? t.noUpcoming : (currentLang === 'en' ? 'No completed runs yet' : 'Aún no has completado quedadas')}</p>
+                        ${misQuedadasTab === 'proximas' ? `<button onclick="closeModal('modal-profile'); scrollToQuedadas()" class="mt-2 text-xs text-blue-400 hover:underline">${t.exploreRuns}</button>` : ''}
+                    </div>
+                `;
+                return;
+            }
+            container.innerHTML = lista.map(q => {
+                const fecha = new Date(q.fecha);
+                const hoy = new Date();
+                const esHoy = fecha.toDateString() === hoy.toDateString();
+                const manana = new Date(hoy);
+                manana.setDate(manana.getDate() + 1);
+                const esManana = fecha.toDateString() === manana.toDateString();
+
+                const locale = currentLang === 'en' ? 'en-US' : 'es-ES';
+                const fechaStr = esHoy ? t.dateToday : esManana ? t.dateTomorrow : fecha.toLocaleDateString(locale, { day: 'numeric', month: 'short' });
+                const isPast = misQuedadasTab === 'pasadas';
+
+                return `
+                    <div onclick="closeModal('modal-profile'); openQuedadaDetail('${q.id}')"
+                         class="p-3 rounded-xl cursor-pointer transition ${isPast ? 'bg-slate-800/30 border border-slate-700/50 opacity-80' : 'bg-slate-800/50 border border-slate-700 hover:border-blue-500/30'}">
+                        <div class="flex items-center justify-between">
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-white text-sm truncate">${q.titulo || (currentLang === 'en' ? 'Run' : 'Quedada')}</p>
+                                <p class="text-xs text-gray-400 truncate">📍 ${q.punto_encuentro || q.ciudad || (currentLang === 'en' ? 'No location' : 'Sin ubicación')}</p>
+                            </div>
+                            <div class="text-right ml-3">
+                                <p class="text-xs font-bold ${esHoy ? 'text-orange-400' : 'text-blue-400'}">${fechaStr}</p>
+                                <p class="text-xs text-gray-500">${q.hora?.substring(0, 5) || '--:--'}</p>
+                            </div>
+                        </div>
+                        ${isPast ? `<div class="mt-2 flex items-center gap-1 text-xs text-green-400"><span>✓</span> ${currentLang === 'en' ? 'Completed' : 'Completada'}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function scrollToQuedadas() {
+            document.getElementById('quedadas-list')?.scrollIntoView({ behavior: 'smooth' });
+        }
+        // ==================== FIN MIS QUEDADAS ====================
+
         // ==================== SISTEMA SOCIAL ====================
         let userFollowingIds = new Set(); // IDs de usuarios que sigo
 
@@ -8979,8 +9994,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 navigator.geolocation.getCurrentPosition((pos)=>{
                     userLoc = {lat: pos.coords.latitude, lng: pos.coords.longitude};
                     detectUserCountry(userLoc.lat, userLoc.lng);
-                    // Activar filtro cercano por defecto
-                    currentFilter = 'near50';
+                    // Activar filtro "Mi país" por defecto
+                    currentFilter = 'country';
                     renderCityChips();
                     renderQuedadas();
                     updateMarkers();
@@ -9515,6 +10530,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           apellidos: prof && prof.apellidos ? String(prof.apellidos) : '',
           nombreCompleto: (((prof && prof.nombre) ? prof.nombre : '') + ' ' + ((prof && prof.apellidos) ? prof.apellidos : '')).trim(),
           ciudad: prof && prof.ciudad ? String(prof.ciudad) : '',
+          pais: prof && prof.pais ? String(prof.pais) : '',
           nivel: prof && prof.nivel ? String(prof.nivel) : null,
           telefono: prof && prof.telefono ? String(prof.telefono) : '',
           whatsapp: !!(prof && prof.whatsapp),
@@ -9525,11 +10541,25 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           es_seed: !!(prof && prof.es_seed)
         };
 
+        // Actualizar país del usuario para filtrado de quedadas
+        if (prof && prof.pais) {
+          // Convertir nombre de país a código
+          const paisNombre = String(prof.pais);
+          for (const [code, names] of Object.entries(COUNTRY_CODE_MAP || {})) {
+            if (names.some(n => n.toLowerCase() === paisNombre.toLowerCase())) {
+              userCountry = code;
+              break;
+            }
+          }
+        }
+
         // Sincronizar variable local usada por la app
         try{ currentUser = window.currentUser; }catch(_){}
         try{ updateUserUI(); }catch(_){}
         try{ checkPremiumStatus(); }catch(_){}
         try{ checkPremiumUrlParams(); }catch(_){}
+        // Mostrar popup premium al cargar sesión existente
+        try{ maybeShowPremiumPromo(); }catch(_){}
         return window.currentUser;
       }
 
@@ -9559,12 +10589,12 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
       // Consideramos "recovery" si:
       // - viene type=recovery (legacy)
       // - viene reset=1 (nuestro flag)
-      // - viene un code PKCE (muy habitual)
+      // - viene un code PKCE CON type=recovery (no solo code, porque Google OAuth también usa code)
       // - viene un access_token con type=recovery en el hash
       const __cjIsRecovery = (
         __cjHasRecoveryType ||
         __cjHasResetFlag ||
-        __cjHasCode ||
+        (__cjHasCode && __cjHasRecoveryType) ||
         (__cjHasResetFlag && __cjHasAccessToken) ||
         (__cjHasAccessToken && __cjHash.includes('type=recovery'))
       );
@@ -9685,6 +10715,49 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           await __cjTrySetSessionFromHash();
         }
 
+        // Si hay un ?code= pero NO es recovery, es OAuth (Google, Apple, etc.)
+        // Intercambiamos el código por sesión
+        let __cjOAuthSessionEstablished = false;
+        console.log('OAuth check:', { __cjHasCode, __cjIsRecovery, search: window.location.search });
+        if(__cjHasCode && !__cjIsRecovery){
+          const sp = new URLSearchParams(window.location.search || '');
+          const code = sp.get('code');
+          console.log('OAuth code found:', code ? code.substring(0,20)+'...' : null);
+          if(code){
+            try{
+              console.log('Calling exchangeCodeForSession...');
+              const { data: oauthData, error: oauthErr } = await sb.auth.exchangeCodeForSession(code);
+              console.log('exchangeCodeForSession result:', { hasData: !!oauthData, hasSession: !!(oauthData && oauthData.session), error: oauthErr });
+              if(oauthErr){
+                console.warn('OAuth exchangeCodeForSession:', oauthErr.message);
+                showToast('Error al iniciar sesión con Google: ' + oauthErr.message, 'error');
+              } else if(oauthData && oauthData.session){
+                __cjOAuthSessionEstablished = true;
+                console.log('OAuth session established!');
+                // Limpia el code de la URL
+                try{
+                  const u = new URL(window.location.href);
+                  u.searchParams.delete('code');
+                  window.history.replaceState({}, document.title, u.toString());
+                }catch(_){ }
+                // Hidratar usuario y mostrar la app
+                await hydrateUserFromSession();
+                console.log('After hydrate, currentUser:', window.currentUser);
+                if(window.currentUser){
+                  try{ showApp(); }catch(_){ }
+                  try{ await loadQuedadas(); }catch(_){ }
+                } else {
+                  // Usuario nuevo de OAuth, mostrar modal de completar perfil
+                  console.log('No currentUser after OAuth, may need profile completion');
+                }
+              }
+            }catch(oauthEx){
+              console.warn('OAuth exchange exception:', oauthEx);
+              showToast('Error en autenticación: ' + (oauthEx.message || oauthEx), 'error');
+            }
+          }
+        }
+
         // (aunque aún no exista sesión; en ese caso el modal avisará al guardar)
         if(__cjIsRecovery){
           try{ showLanding(); }catch(_){ }
@@ -9709,8 +10782,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               try{ await loadQuedadas(); }catch(_){ }
             }
           }
-        } else {
-          // No hay sesión, mostrar landing
+        } else if(!__cjOAuthSessionEstablished) {
+          // No hay sesión y no acabamos de establecer una vía OAuth, mostrar landing
           try{ document.getElementById('view-landing').classList.add('active'); }catch(_){ }
         }
       }catch(e){
@@ -9743,6 +10816,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
           if(session){
             await hydrateUserFromSession();
+            // Mostrar popup premium si es un login (no recarga de página)
+            if(event === 'SIGNED_IN') {
+              try{ maybeShowPremiumPromo(); }catch(_){}
+            }
           } else {
             window.currentUser = null;
             try{ currentUser = null; }catch(_){}
@@ -10204,7 +11281,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               <div class="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
                 <div class="flex items-center gap-2 mb-2">
                   <span class="text-orange-400 text-sm">📍</span>
-                  <span class="text-white font-bold text-sm">Punto de encuentro</span>
+                  <span id="detail-label-meeting" class="text-white font-bold text-sm">Punto de encuentro</span>
                 </div>
                 <p id="detail-ubicacion" class="text-gray-300 text-sm mb-2"></p>
                 <div id="detail-map" class="w-full h-32 rounded-lg overflow-hidden border border-slate-600"></div>
@@ -10223,7 +11300,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               <!-- Nivel requerido (inline) -->
               <div class="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-xl border border-slate-700">
                 <span class="text-orange-400 text-sm">🎯</span>
-                <span class="text-white font-bold text-sm">Nivel requerido</span>
+                <span id="detail-label-level" class="text-white font-bold text-sm">Nivel requerido</span>
                 <span id="detail-nivel" class="px-3 py-1 rounded-full font-bold text-xs ml-auto"></span>
                 <span id="detail-nivel-desc" class="text-gray-400 text-xs hidden md:inline"></span>
               </div>
@@ -10232,7 +11309,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               <div id="detail-descripcion-wrap" class="bg-slate-800/50 rounded-xl p-3 border border-slate-700 hidden">
                 <div class="flex items-center gap-2 mb-1">
                   <span class="text-orange-400 text-sm">📝</span>
-                  <span class="text-white font-bold text-sm">Descripción</span>
+                  <span id="detail-label-desc" class="text-white font-bold text-sm">Descripción</span>
                 </div>
                 <p id="detail-descripcion" class="text-gray-300 text-sm line-clamp-2"></p>
               </div>
@@ -10240,7 +11317,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               <!-- PREMIUM: Valoración media (compacta) -->
               <div id="detail-rating-section" class="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-xl border border-slate-700 hidden">
                 <span class="text-orange-400 text-sm">⭐</span>
-                <span class="text-white font-bold text-sm">Valoración</span>
+                <span id="detail-label-rating" class="text-white font-bold text-sm">Valoración</span>
                 <div id="detail-rating-stars" class="flex gap-0.5 text-lg ml-auto"></div>
                 <span id="detail-rating-avg" class="text-white font-bold"></span>
                 <span id="detail-rating-count" class="text-gray-400 text-xs"></span>
@@ -10253,7 +11330,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               <div class="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
                 <div class="flex items-center gap-2 mb-2">
                   <span class="text-orange-400 text-sm">👑</span>
-                  <span class="text-white font-bold text-sm">Organizador</span>
+                  <span id="detail-label-organizer" class="text-white font-bold text-sm">Organizador</span>
                 </div>
                 <div id="detail-creador" class="flex items-center gap-2"></div>
               </div>
@@ -10263,7 +11340,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 <div class="flex items-center justify-between mb-2">
                   <div class="flex items-center gap-2">
                     <span class="text-orange-400 text-sm">👥</span>
-                    <span class="text-white font-bold text-sm">Participantes</span>
+                    <span id="detail-label-participants" class="text-white font-bold text-sm">Participantes</span>
                   </div>
                   <span id="detail-count" class="text-orange-400 font-bold text-sm"></span>
                 </div>
@@ -10276,14 +11353,75 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           <div class="mt-4 pt-3 border-t border-slate-700 flex flex-wrap gap-2">
             <button id="detail-action-btn" class="flex-1 min-w-[200px] py-3 rounded-xl font-black text-base transition"></button>
             <button id="detail-rate-btn" class="hidden px-4 py-3 rounded-xl font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/30 transition flex items-center justify-center gap-2 text-sm">
-              <span>⭐</span> Valorar
+              <span>⭐</span> <span id="detail-btn-rate">Valorar</span>
             </button>
             <button id="detail-share-btn" onclick="openShareModal()" class="px-4 py-3 rounded-xl font-bold bg-slate-800 text-gray-300 hover:bg-slate-700 transition flex items-center justify-center gap-2 text-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-              Compartir
+              <span id="detail-btn-share">Compartir</span>
             </button>
-            <button onclick="closeModal('modal-quedada-detail')" class="px-5 py-3 rounded-xl font-bold bg-slate-800 text-gray-300 hover:bg-slate-700 transition text-sm">Cerrar</button>
+            <button onclick="closeModal('modal-quedada-detail')" id="detail-btn-close" class="px-5 py-3 rounded-xl font-bold bg-slate-800 text-gray-300 hover:bg-slate-700 transition text-sm">Cerrar</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL PREMIUM PROMO (popup al login) -->
+    <div id="modal-premium-promo" class="modal">
+      <div class="modal-content bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl max-w-md w-full border border-yellow-500/30 shadow-2xl shadow-yellow-500/10 overflow-hidden">
+        <!-- Header con gradiente dorado -->
+        <div class="bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 p-6 text-center relative">
+          <button onclick="closeModal('modal-premium-promo')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/20 flex items-center justify-center text-white/80 hover:bg-black/40 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <div class="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-3 backdrop-blur-sm">
+            <span class="text-5xl">👑</span>
+          </div>
+          <h2 id="promo-title" class="text-2xl font-black text-white drop-shadow-lg">¡Pasa a Premium!</h2>
+          <p id="promo-subtitle" class="text-white/90 text-sm mt-1">Desbloquea todo el potencial de CorrerJuntos</p>
+        </div>
+
+        <!-- Contenido -->
+        <div class="p-6">
+          <!-- Lista de beneficios -->
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">✓</span>
+              <span id="promo-feat-1" class="text-gray-200">Estadísticas avanzadas y gráficos</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">✓</span>
+              <span id="promo-feat-2" class="text-gray-200">Crea quedadas ilimitadas</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">✓</span>
+              <span id="promo-feat-3" class="text-gray-200">Badge Premium exclusivo en tu perfil</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">✓</span>
+              <span id="promo-feat-4" class="text-gray-200">Filtros avanzados de búsqueda</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">✓</span>
+              <span id="promo-feat-5" class="text-gray-200">Sin publicidad</span>
+            </li>
+          </ul>
+
+          <!-- Precio -->
+          <div class="text-center mb-4">
+            <div class="inline-flex items-baseline gap-1">
+              <span class="text-4xl font-black text-white">4,99€</span>
+              <span id="promo-per-month" class="text-gray-400">/mes</span>
+            </div>
+            <p id="promo-cancel" class="text-xs text-gray-500 mt-1">Cancela cuando quieras · Sin compromiso</p>
+          </div>
+
+          <!-- Botones -->
+          <button onclick="closeModal('modal-premium-promo'); openPremiumCheckout();" class="w-full py-4 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 mb-3">
+            <span>⭐</span> <span id="promo-cta-btn">Hazte Premium ahora</span>
+          </button>
+          <button onclick="closeModal('modal-premium-promo')" id="promo-later-btn" class="w-full py-3 rounded-xl font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition text-sm">
+            Ahora no, gracias
+          </button>
         </div>
       </div>
     </div>
@@ -10384,9 +11522,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           <button onclick="saveOnboardProfile()" class="w-full p-4 rounded-xl btn-gradient font-bold text-white hover:shadow-lg transition">
             Guardar y continuar
           </button>
-          <button onclick="closeModal('modal-complete-profile')" class="w-full p-3 rounded-xl text-gray-400 hover:text-white transition text-sm">
-            Completar más tarde
-          </button>
+          <p class="text-center text-xs text-gray-500">
+            📍 Necesitamos tu ubicación para mostrarte quedadas cercanas
+          </p>
         </div>
       </div>
     </div>
@@ -10857,9 +11995,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         <div class="p-6 border-b border-slate-800 flex items-center justify-between">
           <div>
             <h2 class="text-xl font-black text-white flex items-center gap-2">
-              <span>📊</span> Ranking Semanal
+              <span>📊</span> <span id="ranking-title">Ranking Semanal</span>
             </h2>
-            <p class="text-sm text-gray-500">Top 10 runners de la semana</p>
+            <p class="text-sm text-gray-500" id="ranking-subtitle">Top 10 runners de la semana</p>
           </div>
           <button onclick="closeModal('modal-ranking')" class="text-gray-500 hover:text-white">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -10875,7 +12013,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         </div>
         <div class="p-4 border-t border-slate-800 bg-slate-800/30">
           <div id="ranking-my-position" class="text-center text-sm text-gray-400">
-            Tu posición: <span class="font-bold text-purple-400">-</span>
+            <span id="ranking-position-label">Tu posición</span>: <span class="font-bold text-purple-400">-</span>
           </div>
         </div>
       </div>

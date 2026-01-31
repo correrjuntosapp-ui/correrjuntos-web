@@ -5265,8 +5265,24 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             if(currentUser && id===currentUser.id) return currentUser.nombre || 'Tú';
             return 'Runner';
         }
-        function openModal(id){document.getElementById(id).classList.add('active');}
-        function closeModal(id){document.getElementById(id).classList.remove('active');}
+        function openModal(id){
+          document.getElementById(id).classList.add('active');
+          // Si es el modal de completar perfil, detectar ubicación automáticamente
+          if(id === 'modal-complete-profile'){
+            window.__cjProfileCompletionRequired = true;
+            setTimeout(() => {
+              try{ detectarUbicacionGPS(); }catch(_){}
+            }, 500);
+          }
+        }
+        function closeModal(id){
+          // No permitir cerrar modal-complete-profile si el perfil está incompleto
+          if(id === 'modal-complete-profile' && window.__cjProfileCompletionRequired){
+            showToast('Completa tu perfil para continuar', 'error');
+            return;
+          }
+          document.getElementById(id).classList.remove('active');
+        }
 
         // Ver perfil de organizador - abre modal con info detallada
         async function viewOrganizerProfile(userId) {
@@ -5953,6 +5969,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             if(!nombre){ showToast('¿Cómo te llamas?','error'); return; }
             if(!poblacion && !ciudad){ showToast('Indica tu ubicación para ver quedadas cerca','error'); return; }
+            if(!nivel){ showToast('Selecciona tu nivel de running','error'); return; }
 
             const sb = window.supabaseClient;
             if(!sb || !currentUser){ showToast('Error de conexión','error'); return; }
@@ -5961,7 +5978,6 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 await sb.from('profiles').update({
                     nombre,
                     ciudad: poblacion || ciudad || null,
-                    provincia: ciudad || null,
                     pais: pais || 'España',
                     nivel: nivel || null
                 }).eq('id', currentUser.id);
@@ -5974,6 +5990,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 document.getElementById('user-name').textContent = nombre;
 
                 showToast('¡Perfil actualizado!','success');
+
+                // Quitar restricción y cerrar modal
+                window.__cjProfileCompletionRequired = false;
                 closeModal('modal-complete-profile');
 
                 // Mostrar modal de notificaciones después
@@ -6563,7 +6582,6 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                           nombre,
                           apellidos,
                           ciudad,
-                          provincia: provincia || null,
                           nivel,
                           telefono: telefono ? `${prefijo}${telefono}` : null,
                           email
@@ -10521,6 +10539,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           }
         } else if(eProf){
           console.warn('Perfil:', eProf.message);
+        } else if(prof && (!prof.nombre || !prof.ciudad)) {
+          // Perfil existe pero está incompleto (usuario OAuth que no completó su perfil)
+          // Marcar para mostrar modal después
+          window.__cjNeedsProfileCompletion = true;
         }
 
         window.currentUser = {
@@ -10746,6 +10768,13 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 if(window.currentUser){
                   try{ showApp(); }catch(_){ }
                   try{ await loadQuedadas(); }catch(_){ }
+                  // Si el perfil está incompleto (OAuth sin completar), mostrar modal
+                  if(window.__cjNeedsProfileCompletion){
+                    setTimeout(() => {
+                      try{ openModal('modal-complete-profile'); }catch(_){}
+                    }, 1000);
+                    window.__cjNeedsProfileCompletion = false;
+                  }
                 } else {
                   // Usuario nuevo de OAuth, mostrar modal de completar perfil
                   console.log('No currentUser after OAuth, may need profile completion');
@@ -10780,6 +10809,13 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             if(window.currentUser){
               try{ showApp(); }catch(_){ }
               try{ await loadQuedadas(); }catch(_){ }
+              // Si el perfil está incompleto, mostrar modal
+              if(window.__cjNeedsProfileCompletion){
+                setTimeout(() => {
+                  try{ openModal('modal-complete-profile'); }catch(_){}
+                }, 1000);
+                window.__cjNeedsProfileCompletion = false;
+              }
             }
           }
         } else if(!__cjOAuthSessionEstablished) {

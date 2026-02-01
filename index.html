@@ -701,6 +701,17 @@
         body.light-mode .bg-slate-950 .text-white { color: #5c4d3d !important; }
         body.light-mode .bg-slate-950 .text-gray-600 { color: #78685a !important; }
 
+        /* Light mode - Modal Open in App */
+        body.light-mode #modal-open-in-app .modal-content { background: #fffcf9 !important; border-color: #efe6db !important; }
+        body.light-mode #modal-open-in-app .text-white { color: #2d241c !important; }
+        body.light-mode #modal-open-in-app .text-gray-300 { color: #5c4d3d !important; }
+        body.light-mode #modal-open-in-app .text-gray-400 { color: #78685a !important; }
+        body.light-mode #modal-open-in-app .text-gray-500 { color: #8b7a6b !important; }
+        body.light-mode #modal-open-in-app .bg-green-500\/10 { background: #dcfce7 !important; border-color: #86efac !important; }
+        body.light-mode #modal-open-in-app .bg-blue-500\/10 { background: #dbeafe !important; border-color: #93c5fd !important; }
+        body.light-mode #modal-open-in-app .bg-purple-500\/10 { background: #f3e8ff !important; border-color: #d8b4fe !important; }
+        body.light-mode #modal-open-in-app .bg-slate-800 { background: #efe6db !important; color: #5c4d3d !important; }
+
         /* Light mode - Modal detalle premium */
         body.light-mode .modal-content .bg-slate-800\/50 { background: linear-gradient(145deg, #fffcf9, #fef9f3) !important; border: 1.5px solid #efe6db !important; }
         body.light-mode .modal-content .bg-slate-800\/30 { background: #fef9f3 !important; border-color: #efe6db !important; }
@@ -14509,6 +14520,170 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         </div>
       </div>
     </div>
+
+    <!-- MODAL: Abrir en App (Deep Linking) -->
+    <div id="modal-open-in-app" class="modal">
+      <div class="modal-content bg-slate-900 rounded-3xl max-w-sm w-full border border-slate-800 p-6">
+        <div class="text-center mb-6">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-4 shadow-lg shadow-orange-500/30">
+            <span class="text-4xl">📱</span>
+          </div>
+          <h2 class="text-xl font-black text-white mb-2">¿Prefieres la app?</h2>
+          <p class="text-gray-400 text-sm">Únete más rápido y recibe notificaciones en tiempo real</p>
+        </div>
+
+        <!-- Beneficios -->
+        <div class="space-y-2 mb-6">
+          <div class="flex items-center gap-3 p-3 bg-green-500/10 rounded-xl border border-green-500/20">
+            <span class="text-xl">⚡</span>
+            <span class="text-sm text-gray-300">Únete en 1 tap</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
+            <span class="text-xl">🔔</span>
+            <span class="text-sm text-gray-300">Notificaciones en vivo</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-purple-500/10 rounded-xl border border-purple-500/20">
+            <span class="text-xl">💬</span>
+            <span class="text-sm text-gray-300">Chat con el grupo</span>
+          </div>
+        </div>
+
+        <input type="hidden" id="deep-link-quedada-id" value="">
+
+        <!-- Botones -->
+        <button onclick="downloadAppFromModal()" class="w-full p-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition flex items-center justify-center gap-2 mb-3">
+          <span>📲</span> Descargar Gratis
+        </button>
+        <button onclick="continueInWeb()" class="w-full p-3 rounded-xl bg-slate-800 text-gray-300 font-semibold hover:bg-slate-700 transition text-sm">
+          Continuar en la web
+        </button>
+
+        <!-- No mostrar de nuevo -->
+        <label class="flex items-center justify-center gap-2 mt-4 cursor-pointer">
+          <input type="checkbox" id="dont-show-app-modal" class="w-4 h-4 rounded border-slate-600 bg-slate-800 text-orange-500 focus:ring-orange-500">
+          <span class="text-xs text-gray-500">No mostrar de nuevo</span>
+        </label>
+      </div>
+    </div>
+
+    <script>
+      // ========== DEEP LINKING - Aumentar descargas de app ==========
+      const APP_STORE_URL = 'https://apps.apple.com/app/correr-juntos/id6740261932';
+      const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';
+
+      function isMobileDevice() {
+        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      }
+
+      function isIOS() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
+
+      // Mostrar modal para sugerir app (solo en móvil, solo si no lo ha descartado)
+      function suggestAppForAction(quedadaId, actionType = 'join') {
+        // No mostrar en desktop
+        if (!isMobileDevice()) return false;
+
+        // No mostrar si el usuario lo descartó
+        if (localStorage.getItem('dismiss-app-modal') === 'true') return false;
+
+        // No mostrar si ya mostró recientemente (últimas 24h)
+        const lastShown = localStorage.getItem('app-modal-last-shown');
+        if (lastShown && Date.now() - parseInt(lastShown) < 24 * 60 * 60 * 1000) return false;
+
+        // Guardar ID para después
+        document.getElementById('deep-link-quedada-id').value = quedadaId;
+
+        // Mostrar modal
+        openModal('modal-open-in-app');
+        localStorage.setItem('app-modal-last-shown', Date.now().toString());
+
+        return true; // Indica que se mostró el modal
+      }
+
+      function downloadAppFromModal() {
+        // Guardar preferencia si marcó checkbox
+        if (document.getElementById('dont-show-app-modal').checked) {
+          localStorage.setItem('dismiss-app-modal', 'true');
+        }
+
+        // Ir a la tienda correspondiente
+        const storeUrl = isIOS() ? APP_STORE_URL : PLAY_STORE_URL;
+        window.open(storeUrl, '_blank');
+
+        closeModal('modal-open-in-app');
+      }
+
+      function continueInWeb() {
+        // Guardar preferencia si marcó checkbox
+        if (document.getElementById('dont-show-app-modal').checked) {
+          localStorage.setItem('dismiss-app-modal', 'true');
+        }
+
+        closeModal('modal-open-in-app');
+
+        // Continuar con la acción original (unirse)
+        const quedadaId = document.getElementById('deep-link-quedada-id').value;
+        if (quedadaId) {
+          // Llamar directamente al modal de attendance sin volver a sugerir app
+          openAttendanceModalDirect(quedadaId);
+        }
+      }
+
+      // Versión directa que no sugiere app (para usar después de descartar)
+      function openAttendanceModalDirect(quedadaId) {
+        if (!currentUser) {
+          showToast(I18N[currentLang]?.needRegister || 'Debes registrarte', 'error');
+          openModal('modal-register');
+          return;
+        }
+        // Continuar con el flujo normal de attendance
+        document.getElementById('attendance-quedada-id').value = quedadaId;
+        const q = quedadas.find(x => x.id === quedadaId);
+        const asistentesInfo = q ? (Array.isArray(q.asistentes_info) ? q.asistentes_info : []) : [];
+        const myParticipation = asistentesInfo.find(a => a.user_id === currentUser.id);
+        const isJoined = !!myParticipation;
+        document.getElementById('attendance-is-joined').value = isJoined ? 'true' : 'false';
+
+        // El resto del código de openAttendanceModal se ejecuta aquí...
+        openModal('modal-attendance');
+
+        // Simular el setup del modal
+        const currentStatus = myParticipation?.status || 'confirmed';
+        document.getElementById('check-confirmed').classList.add('hidden');
+        document.getElementById('check-maybe').classList.add('hidden');
+        document.getElementById('check-interested').classList.add('hidden');
+
+        if (isJoined) {
+          document.getElementById('attendance-title').textContent = 'Cambiar mi estado';
+          document.getElementById('attendance-subtitle').textContent = 'Actualiza tu nivel de compromiso';
+          document.getElementById('btn-leave-quedada').classList.remove('hidden');
+          document.getElementById(`check-${currentStatus}`).classList.remove('hidden');
+        } else {
+          document.getElementById('attendance-title').textContent = '¿Cómo de seguro estás?';
+          document.getElementById('attendance-subtitle').textContent = 'Ayuda al organizador a planificar';
+          document.getElementById('btn-leave-quedada').classList.add('hidden');
+        }
+      }
+
+      // Sobrescribir openAttendanceModal para sugerir app primero
+      const originalOpenAttendanceModal = typeof openAttendanceModal === 'function' ? openAttendanceModal : null;
+
+      // Se sobrescribe después de que se cargue el script principal
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof window.openAttendanceModal === 'function') {
+          const original = window.openAttendanceModal;
+          window.openAttendanceModal = function(quedadaId) {
+            // En móvil, sugerir app primero
+            if (suggestAppForAction(quedadaId, 'join')) {
+              return; // El modal de app se mostró, no continuar
+            }
+            // Si no se mostró modal de app, continuar normal
+            original(quedadaId);
+          };
+        }
+      });
+    </script>
 
     <!-- Script PWA -->
     <script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectando con Strava - CorrerJuntos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b1220;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .spinner {
+            border: 3px solid rgba(252, 82, 0, 0.2);
+            border-top: 3px solid #FC5200;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center p-8">
+        <div class="spinner mx-auto mb-6"></div>
+        <h1 class="text-white text-xl font-bold mb-2">Conectando con Strava...</h1>
+        <p class="text-gray-400">Espera un momento mientras completamos la conexión.</p>
+    </div>
+
+    <script>
+        // Redirigir a la página principal con los parámetros
+        const params = window.location.search;
+        window.location.href = '/' + params;
+    </script>
+</body>
+</html>

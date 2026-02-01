@@ -954,26 +954,23 @@
         .locate-btn.active{ background: linear-gradient(135deg, rgba(249,115,22,0.95), rgba(236,72,153,0.95)); border-color: rgba(255,255,255,0.18); }
         .locate-icon{ font-weight: 900; font-size: 18px; line-height: 1; }
 
-        /* ===== Card Quedada - Altura uniforme y distribución ===== */
+        /* ===== Card Quedada - Compacta y uniforme ===== */
         .card-quedada {
             position: relative;
             overflow: visible;
-            min-height: 420px;
-            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
-        /* Footer siempre al final */
-        .card-quedada > div:last-child {
-            margin-top: auto;
-        }
-
-        /* Grid de tarjetas - alineación al top */
+        /* Grid de tarjetas - stretch para altura uniforme */
         #lista-quedadas,
         #ciudad-lista-quedadas {
-            align-items: start;
+            align-items: stretch;
+        }
+
+        /* Footer siempre pegado abajo */
+        .card-quedada .card-footer {
+            margin-top: auto;
         }
 
         /* ===== Joined state (premium) ===== */
@@ -10001,21 +9998,19 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                   <!-- ═══ SECCIÓN 5: TERRENO + AMENITIES (Solo si existen) ═══ -->
                   ${featuresArray.length > 0 ? `
-                  <div class="bg-orange-500/10 border border-orange-500/20 rounded-xl px-3 py-2.5 mb-4">
-                    <div class="flex flex-wrap gap-2">
-                      ${featuresArray.slice(0, 5).map(f => `<span class="inline-flex items-center gap-1 text-xs text-orange-200/90"><span>${f.icon}</span>${f.text}</span>`).join('<span class="text-orange-500/30">•</span>')}
-                    </div>
+                  <div class="flex flex-wrap gap-1.5 mb-3">
+                    ${featuresArray.slice(0, 4).map(f => `<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs bg-slate-800/80 text-gray-300 border border-slate-700/50">${f.icon} ${f.text}</span>`).join('')}
                   </div>` : ''}
 
                   <!-- ═══ SECCIÓN 6: DESCRIPCIÓN (Solo primeras 2 líneas) ═══ -->
                   ${q.descripcion ? `
-                  <p class="text-sm text-gray-400 line-clamp-2 mb-4 leading-relaxed">${q.descripcion}</p>` : ''}
+                  <p class="text-sm text-gray-400 line-clamp-2 mb-3">${q.descripcion}</p>` : ''}
 
                   <!-- ═══ SECCIÓN 7: CLIMA ═══ -->
-                  <div id="weather-${q.id}" class="mb-3"></div>
+                  <div id="weather-${q.id}" class="mb-2"></div>
 
                   <!-- ═══ SECCIÓN 8: FOOTER - Organizador + CTA ═══ -->
-                  <div class="flex items-center justify-between gap-2 pt-4 mt-2 border-t border-slate-700/50">
+                  <div class="card-footer flex items-center justify-between gap-2 pt-4 mt-auto border-t border-slate-700/50">
                     <div class="organizer-wrapper flex items-center gap-2 min-w-0 flex-shrink" onclick="event.stopPropagation();">
                       ${isCreadorPremium ? '<div class="premium-avatar-border flex-shrink-0" style="padding:1.5px;">' : ''}
                       ${creadorPhoto
@@ -10046,11 +10041,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                       </div>
                     </div>
 
-                    <!-- CTA Buttons -->
-                    <div class="flex items-center gap-2 flex-shrink-0" onclick="event.stopPropagation();">
-                      <button onclick="openQuedadaDetail('${q.id}')" class="w-9 h-9 rounded-full border border-slate-600 bg-slate-800/50 hover:border-orange-500/50 hover:bg-slate-700/50 transition flex items-center justify-center" title="Ver detalles">
-                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                      </button>
+                    <!-- CTA Button -->
+                    <div class="flex-shrink-0" onclick="event.stopPropagation();">
                       ${actionBtn}
                     </div>
                   </div>

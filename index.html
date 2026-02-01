@@ -954,13 +954,15 @@
         .locate-btn.active{ background: linear-gradient(135deg, rgba(249,115,22,0.95), rgba(236,72,153,0.95)); border-color: rgba(255,255,255,0.18); }
         .locate-icon{ font-weight: 900; font-size: 18px; line-height: 1; }
 
-        /* ===== Card Quedada - Improved spacing ===== */
+        /* ===== Card Quedada - Altura uniforme y distribución ===== */
         .card-quedada {
             position: relative;
             overflow: visible;
-            min-height: 380px;
+            min-height: 420px;
+            height: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
         /* Footer siempre al final */
@@ -968,25 +970,10 @@
             margin-top: auto;
         }
 
-        /* Grid de tarjetas centrado */
+        /* Grid de tarjetas - alineación al top */
         #lista-quedadas,
         #ciudad-lista-quedadas {
-            justify-content: center;
-        }
-
-        /* Tarjetas con ancho consistente */
-        .card-quedada {
-            max-width: 380px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @media (min-width: 768px) {
-            .card-quedada {
-                margin-left: 0;
-                margin-right: 0;
-            }
+            align-items: start;
         }
 
         /* ===== Joined state (premium) ===== */
@@ -2601,11 +2588,11 @@
             </div>
 
             <!-- Lista de quedadas -->
-            <div class="mb-4">
+            <div class="mb-4 max-w-5xl mx-auto px-4">
                 <h3 class="text-xl font-bold text-white mb-1" id="list-title">Quedadas disponibles</h3>
                 <p class="text-gray-500 text-sm" id="list-subtitle">Únete a una y corre con tu gente</p>
             </div>
-            <div id="lista-quedadas" class="flex flex-wrap justify-center gap-6"></div>
+            <div id="lista-quedadas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-5xl w-full px-4"></div>
         </div>
     </section>
 
@@ -2670,7 +2657,7 @@
 
             <!-- Tab content: Quedadas -->
             <div id="ciudad-content-quedadas" class="ciudad-tab-content">
-                <div id="ciudad-lista-quedadas" class="flex flex-wrap justify-center gap-6">
+                <div id="ciudad-lista-quedadas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-5xl w-full px-4">
                     <!-- Quedadas se cargan dinámicamente -->
                 </div>
                 <div id="ciudad-no-quedadas" class="hidden text-center py-16">

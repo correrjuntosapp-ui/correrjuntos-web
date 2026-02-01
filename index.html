@@ -9946,10 +9946,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const callePrincipal = ubicacionParts[0]?.trim() || '';
 
                 return `
-                <div class="card-quedada ${isJoined ? 'joined' : ''} p-5 rounded-2xl cursor-pointer hover:border-orange-500/30 transition-all" onclick="openQuedadaDetail('${q.id}')">
+                <div class="card-quedada ${isJoined ? 'joined' : ''} p-6 rounded-2xl cursor-pointer hover:border-orange-500/30 transition-all" onclick="openQuedadaDetail('${q.id}')">
 
-                  <!-- ═══ SECCIÓN 1: HEADER con Fecha/Hora + Nivel + Rating ═══ -->
-                  <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-700/30">
+                  <!-- ═══ SECCIÓN 1: HEADER con Fecha/Hora + Nivel ═══ -->
+                  <div class="flex items-center justify-between mb-5 pb-4 border-b border-slate-700/30">
                     <div class="flex items-center gap-3">
                       <div class="bg-orange-500/10 rounded-xl px-3 py-2 text-center min-w-[70px]">
                         <div class="text-lg font-black text-orange-400">${formatHora(q.hora)}</div>
@@ -9967,50 +9967,41 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                   </div>
 
                   <!-- ═══ SECCIÓN 2: TÍTULO ═══ -->
-                  <h3 class="text-xl font-bold text-white mb-3 leading-tight">${q.titulo}</h3>
+                  <h3 class="text-xl font-bold text-white mb-2 leading-tight">${q.titulo}</h3>
 
                   <!-- ═══ SECCIÓN 3: UBICACIÓN ═══ -->
-                  <div class="flex items-center gap-2 mb-4">
-                    <span class="text-orange-400 text-lg">📍</span>
-                    <div>
-                      <span class="text-sm font-semibold text-white">${q.ciudad}</span>
-                      ${callePrincipal && callePrincipal !== q.ciudad ? `<span class="text-gray-500 mx-1">·</span><span class="text-sm text-gray-400">${callePrincipal}</span>` : ''}
+                  <div class="flex items-center gap-2 mb-5">
+                    <span class="text-orange-400">📍</span>
+                    <span class="text-sm text-gray-300">${q.ciudad}${callePrincipal && callePrincipal !== q.ciudad ? ` · ${callePrincipal}` : ''}</span>
+                  </div>
+
+                  <!-- ═══ SECCIÓN 4: DATOS CLAVE ═══ -->
+                  <div class="flex items-center justify-between py-4 px-4 mb-5 bg-slate-800/40 rounded-xl">
+                    <div class="text-center">
+                      <div class="text-lg font-bold text-white">${q.distancia}</div>
+                      <div class="text-[10px] text-gray-500 uppercase">Distancia</div>
+                    </div>
+                    <div class="w-px h-8 bg-slate-700"></div>
+                    <div class="text-center">
+                      <div class="text-lg font-bold text-white">${q.ritmo || '--'}</div>
+                      <div class="text-[10px] text-gray-500 uppercase">Ritmo</div>
+                    </div>
+                    <div class="w-px h-8 bg-slate-700"></div>
+                    <div class="text-center">
+                      <div class="text-lg font-bold ${confirmedCount >= 5 ? 'text-orange-400' : 'text-green-400'}">${confirmedCount}${maybeCount > 0 ? `<span class="text-sm text-yellow-400">+${maybeCount}</span>` : ''}</div>
+                      <div class="text-[10px] text-gray-500 uppercase">Runners</div>
                     </div>
                   </div>
 
-                  <!-- ═══ SECCIÓN 4: DATOS CLAVE (Flex centrado) ═══ -->
-                  <div class="flex items-center justify-center gap-6 mb-5 py-3 px-4 bg-slate-800/50 rounded-xl border border-slate-700/30">
-                    <div class="flex flex-col items-center">
-                      <span class="text-xl font-bold text-white">${q.distancia}</span>
-                      <span class="text-[10px] text-gray-500 uppercase tracking-wider">Distancia</span>
-                    </div>
-                    <div class="w-px h-10 bg-slate-600/50"></div>
-                    <div class="flex flex-col items-center">
-                      <span class="text-xl font-bold text-white">${q.ritmo || '--'}</span>
-                      <span class="text-[10px] text-gray-500 uppercase tracking-wider">Ritmo</span>
-                    </div>
-                    <div class="w-px h-10 bg-slate-600/50"></div>
-                    <div class="flex flex-col items-center">
-                      <span class="text-xl font-bold ${confirmedCount >= 5 ? 'text-orange-400' : 'text-green-400'}">${confirmedCount}${maybeCount > 0 ? `<span class="text-base text-yellow-400">+${maybeCount}</span>` : ''}</span>
-                      <span class="text-[10px] text-gray-500 uppercase tracking-wider">Runners</span>
-                    </div>
-                  </div>
-
-                  <!-- ═══ SECCIÓN 5: TERRENO + AMENITIES (Solo si existen) ═══ -->
-                  ${featuresArray.length > 0 ? `
-                  <div class="flex flex-wrap gap-1.5 mb-3">
-                    ${featuresArray.slice(0, 4).map(f => `<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs bg-slate-800/80 text-gray-300 border border-slate-700/50">${f.icon} ${f.text}</span>`).join('')}
-                  </div>` : ''}
-
-                  <!-- ═══ SECCIÓN 6: DESCRIPCIÓN (Solo primeras 2 líneas) ═══ -->
+                  <!-- ═══ SECCIÓN 5: DESCRIPCIÓN ═══ -->
                   ${q.descripcion ? `
-                  <p class="text-sm text-gray-400 line-clamp-2 mb-3">${q.descripcion}</p>` : ''}
+                  <p class="text-sm text-gray-400 line-clamp-2 mb-5">${q.descripcion}</p>` : ''}
 
-                  <!-- ═══ SECCIÓN 7: CLIMA ═══ -->
-                  <div id="weather-${q.id}" class="mb-2"></div>
+                  <!-- ═══ SECCIÓN 6: CLIMA ═══ -->
+                  <div id="weather-${q.id}" class="mb-4"></div>
 
-                  <!-- ═══ SECCIÓN 8: FOOTER - Organizador + CTA ═══ -->
-                  <div class="card-footer flex items-center justify-between gap-2 pt-4 mt-auto border-t border-slate-700/50">
+                  <!-- ═══ SECCIÓN 7: FOOTER - Organizador + CTA ═══ -->
+                  <div class="card-footer flex items-center justify-between gap-3 pt-5 mt-auto border-t border-slate-700/30">
                     <div class="organizer-wrapper flex items-center gap-2 min-w-0 flex-shrink" onclick="event.stopPropagation();">
                       ${isCreadorPremium ? '<div class="premium-avatar-border flex-shrink-0" style="padding:1.5px;">' : ''}
                       ${creadorPhoto

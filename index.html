@@ -712,6 +712,19 @@
         body.light-mode #modal-open-in-app .bg-purple-500\/10 { background: #f3e8ff !important; border-color: #d8b4fe !important; }
         body.light-mode #modal-open-in-app .bg-slate-800 { background: #efe6db !important; color: #5c4d3d !important; }
 
+        /* Smart App Banner */
+        .safe-area-bottom { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+        #smart-app-banner.show { transform: translateY(0); }
+
+        /* Light mode - Smart Banner */
+        body.light-mode #smart-app-banner > div {
+            background: linear-gradient(to right, #fffcf9, #fef9f3, #fffcf9) !important;
+            border-color: #f97316 !important;
+        }
+        body.light-mode #smart-app-banner .text-white { color: #2d241c !important; }
+        body.light-mode #smart-app-banner .text-gray-400 { color: #78685a !important; }
+        body.light-mode #smart-app-banner .text-gray-500 { color: #8b7a6b !important; }
+
         /* Light mode - Modal detalle premium */
         body.light-mode .modal-content .bg-slate-800\/50 { background: linear-gradient(145deg, #fffcf9, #fef9f3) !important; border: 1.5px solid #efe6db !important; }
         body.light-mode .modal-content .bg-slate-800\/30 { background: #fef9f3 !important; border-color: #efe6db !important; }
@@ -1775,6 +1788,41 @@
 
     <div id="toast" class="toast fixed top-6 left-1/2 transform -translate-x-1/2 z-[300] hidden">
         <div class="px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2" id="toast-content"></div>
+    </div>
+
+    <!-- Smart Banner: Descarga App (solo móvil) -->
+    <div id="smart-app-banner" class="fixed bottom-0 left-0 right-0 z-[200] transform translate-y-full transition-transform duration-500 ease-out">
+      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-t border-orange-500/30 shadow-2xl shadow-black/50 px-4 py-3 safe-area-bottom">
+        <div class="max-w-lg mx-auto flex items-center gap-3">
+          <!-- App Icon -->
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+            <span class="text-2xl">🏃</span>
+          </div>
+
+          <!-- Info -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-white text-sm">CorrerJuntos</span>
+              <span class="text-[10px] px-1.5 py-0.5 bg-orange-500/20 text-orange-400 rounded font-bold">GRATIS</span>
+            </div>
+            <p class="text-xs text-gray-400 truncate">Únete en 1 tap · Notificaciones · Chat</p>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="text-yellow-400 text-xs">★★★★★</span>
+              <span class="text-[10px] text-gray-500">4.8</span>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button onclick="openAppStore()" class="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-bold rounded-full hover:shadow-lg hover:shadow-orange-500/25 transition flex-shrink-0">
+            Abrir
+          </button>
+
+          <!-- Close -->
+          <button onclick="dismissSmartBanner()" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition flex-shrink-0" aria-label="Cerrar">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- LANDING -->
@@ -14682,7 +14730,106 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             original(quedadaId);
           };
         }
+
+        // Iniciar Smart Banner después de navegar
+        initSmartBanner();
       });
+
+      // ========== SMART BANNER - Aparece después de navegar ==========
+      let smartBannerTimeout = null;
+      let userScrolled = false;
+      let userInteracted = false;
+
+      function initSmartBanner() {
+        // Solo en móvil
+        if (!isMobileDevice()) return;
+
+        // No mostrar si ya descartó el banner
+        if (localStorage.getItem('smart-banner-dismissed') === 'true') return;
+
+        // No mostrar si está en modo standalone (ya tiene la app/PWA)
+        if (window.matchMedia('(display-mode: standalone)').matches) return;
+
+        // Detectar scroll
+        window.addEventListener('scroll', () => {
+          userScrolled = true;
+          checkShowSmartBanner();
+        }, { passive: true, once: true });
+
+        // Detectar interacción (click en cualquier lugar)
+        document.addEventListener('click', () => {
+          userInteracted = true;
+          checkShowSmartBanner();
+        }, { once: true });
+
+        // Timeout: mostrar después de 45 segundos si no hay interacción
+        smartBannerTimeout = setTimeout(() => {
+          showSmartBanner();
+        }, 45000);
+
+        // También mostrar después de 20 segundos si el usuario scrolleó
+        setTimeout(() => {
+          if (userScrolled) {
+            showSmartBanner();
+          }
+        }, 20000);
+      }
+
+      function checkShowSmartBanner() {
+        // Mostrar si: scrolleó Y pasaron 15 segundos, O interactuó Y pasaron 10 segundos
+        if (userScrolled && userInteracted) {
+          setTimeout(showSmartBanner, 5000); // 5 segundos después de interactuar
+        }
+      }
+
+      function showSmartBanner() {
+        // Limpiar timeout si existe
+        if (smartBannerTimeout) {
+          clearTimeout(smartBannerTimeout);
+          smartBannerTimeout = null;
+        }
+
+        // No mostrar si ya se mostró el modal de deep linking
+        const modalShown = localStorage.getItem('app-modal-last-shown');
+        if (modalShown && Date.now() - parseInt(modalShown) < 60000) return; // No mostrar si modal se mostró hace menos de 1 min
+
+        // No mostrar si ya descartó
+        if (localStorage.getItem('smart-banner-dismissed') === 'true') return;
+
+        const banner = document.getElementById('smart-app-banner');
+        if (banner && !banner.classList.contains('show')) {
+          banner.classList.add('show');
+        }
+      }
+
+      function dismissSmartBanner() {
+        const banner = document.getElementById('smart-app-banner');
+        if (banner) {
+          banner.classList.remove('show');
+          // Guardar que lo descartó (por 7 días)
+          localStorage.setItem('smart-banner-dismissed', 'true');
+          localStorage.setItem('smart-banner-dismissed-time', Date.now().toString());
+        }
+      }
+
+      function openAppStore() {
+        const storeUrl = isIOS() ? APP_STORE_URL : PLAY_STORE_URL;
+        window.open(storeUrl, '_blank');
+        // Ocultar banner después de hacer clic
+        dismissSmartBanner();
+      }
+
+      // Limpiar el dismiss después de 7 días
+      (function checkBannerDismissExpiry() {
+        const dismissedTime = localStorage.getItem('smart-banner-dismissed-time');
+        if (dismissedTime) {
+          const daysSince = (Date.now() - parseInt(dismissedTime)) / (1000 * 60 * 60 * 24);
+          if (daysSince > 7) {
+            localStorage.removeItem('smart-banner-dismissed');
+            localStorage.removeItem('smart-banner-dismissed-time');
+          }
+        }
+      })();
     </script>
 
     <!-- Script PWA -->

@@ -2,6 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z21L8G8FJC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Z21L8G8FJC');
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CorrerJuntos - Quedadas para Correr en Grupo | App Gratis Mundial</title>
     <meta name="description" content="🏃 ¿Buscas gente para correr? CorrerJuntos es la app GRATIS para encontrar quedadas de running cerca de ti. La comunidad runner en español más grande del mundo. ¡Únete hoy!">
@@ -11860,22 +11869,22 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const sb = await getSupabaseClientOrToast(8000, false);
                 if (!sb) return;
 
-                // Verificar en tabla subscriptions
+                // Verificar en tabla profiles (campo es_premium)
                 const { data, error } = await sb
-                    .from('subscriptions')
-                    .select('status, plan, current_period_end')
-                    .eq('user_id', currentUser.id)
+                    .from('profiles')
+                    .select('es_premium')
+                    .eq('id', currentUser.id)
                     .single();
 
-                if (data && data.status === 'active' && new Date(data.current_period_end) > new Date()) {
+                if (data && data.es_premium === true) {
                     isUserPremium = true;
                     window.isUserPremium = true;
-                    currentUser.premiumUntil = data.current_period_end;
                 } else {
                     isUserPremium = false;
                     window.isUserPremium = false;
                 }
             } catch (e) {
+                console.warn('Error checking premium status:', e);
                 isUserPremium = false;
                 window.isUserPremium = false;
             }

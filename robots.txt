@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Allow: /cities/
+Allow: /privacy.html
+Allow: /terms.html
+
+Disallow: /api/
 
 Sitemap: https://www.correrjuntos.com/sitemap.xml

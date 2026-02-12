@@ -1,2 +1,6 @@
-# SPA fallback
+# City pages - serve static HTML
+/cities/index.html  /cities/  301
+/cities             /cities/  301
+
+# SPA fallback - MUST be last
 /*    /index.html   200

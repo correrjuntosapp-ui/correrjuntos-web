@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z21L8G8FJC"></script>
+    <!-- Google Analytics 4 - loaded only after cookie consent -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-Z21L8G8FJC');
+      function loadGA4() {
+        if (document.getElementById('ga4-script')) return;
+        var s = document.createElement('script');
+        s.id = 'ga4-script';
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-Z21L8G8FJC';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-Z21L8G8FJC');
+      }
+      if (localStorage.getItem('cj_cookie_consent') === 'accepted') { loadGA4(); }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CorrerJuntos - Quedadas para Correr en Grupo | App Gratis Mundial</title>
@@ -18,6 +26,11 @@
     <meta name="author" content="CorrerJuntos">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.correrjuntos.com/">
+
+    <!-- Hreflang annotations -->
+    <link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/" />
 
     <!-- Schema.org para Google -->
     <script type="application/ld+json">
@@ -41,6 +54,48 @@
       },
       "logo": "https://www.correrjuntos.com/icons/icon-512.png",
       "image": "https://www.correrjuntos.com/icons/icon-512.png"
+    }
+    </script>
+
+    <!-- FAQ Schema for rich snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is CorrerJuntos free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, CorrerJuntos is 100% free. Create an account, join running groups, and create meetups at no cost. A premium plan with extra features is available optionally."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find running groups near me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the interactive map to discover running meetups in your area. Filter by distance, pace, level, and date to find the perfect group for you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is CorrerJuntos available in my country?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CorrerJuntos is available worldwide. Runners from over 50 countries use the platform to connect with local running communities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to be an experienced runner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not at all! CorrerJuntos welcomes all levels from complete beginners to marathon runners. You can filter meetups by pace and level to find groups that match your fitness."
+          }
+        }
+      ]
     }
     </script>
 
@@ -1881,6 +1936,328 @@
         body.light-mode #modal-quedada-detail .border-slate-700\/50 { border-color: #e8ddd0 !important; }
         body.light-mode #modal-quedada-detail .border-slate-600 { border-color: #d4c4b0 !important; }
 
+        /* ===== SCROLL REVEAL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Stagger delays for grid children */
+        .stagger-children > *:nth-child(1) { transition-delay: 0s; }
+        .stagger-children > *:nth-child(2) { transition-delay: 0.1s; }
+        .stagger-children > *:nth-child(3) { transition-delay: 0.2s; }
+        .stagger-children > *:nth-child(4) { transition-delay: 0.3s; }
+        .stagger-children > *:nth-child(5) { transition-delay: 0.4s; }
+        .stagger-children > *:nth-child(6) { transition-delay: 0.5s; }
+
+        /* ===== HERO PARTICLES ===== */
+        .hero-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249,115,22,0.3), transparent 70%);
+            pointer-events: none;
+            will-change: transform;
+        }
+        @keyframes particleFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            25% { transform: translate(30px, -20px) scale(1.1); opacity: 0.5; }
+            50% { transform: translate(-10px, -40px) scale(0.9); opacity: 0.2; }
+            75% { transform: translate(-30px, -10px) scale(1.05); opacity: 0.4; }
+        }
+        @keyframes particleFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+            33% { transform: translate(-20px, 30px) scale(1.15); opacity: 0.4; }
+            66% { transform: translate(25px, -15px) scale(0.85); opacity: 0.3; }
+        }
+        @keyframes particleFloat3 {
+            0%, 100% { transform: translate(0, 0); opacity: 0.25; }
+            50% { transform: translate(40px, 20px); opacity: 0.45; }
+        }
+
+        /* ===== RUNNER SVG ANIMATION ===== */
+        .runner-svg-container {
+            position: absolute;
+            right: 5%;
+            bottom: 15%;
+            width: 200px;
+            height: 200px;
+            opacity: 0.12;
+            z-index: 0;
+        }
+        @media (max-width: 1024px) {
+            .runner-svg-container { display: none; }
+        }
+        @keyframes runnerBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .runner-svg-container svg {
+            animation: runnerBounce 1.2s ease-in-out infinite;
+        }
+
+        /* ===== TYPEWRITER EFFECT ===== */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.85em;
+            background: #f97316;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: cursorBlink 1s step-end infinite;
+        }
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ===== SHIMMER BUTTON EFFECT ===== */
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { left: -100%; }
+            40%, 100% { left: 150%; }
+        }
+
+        /* ===== CARD GLOW EFFECT ===== */
+        .feature-card:hover {
+            border-color: rgba(249, 115, 22, 0.4) !important;
+            box-shadow: 0 25px 50px rgba(249, 115, 22, 0.15), 0 0 30px rgba(249, 115, 22, 0.05);
+        }
+        .pricing-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .pricing-card-premium:hover {
+            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
+        }
+
+        /* ===== QUEDADAS PREVIEW GRID ===== */
+        .quedada-preview-card {
+            background: linear-gradient(135deg, rgba(30,41,59,0.6), rgba(15,23,42,0.8));
+            border: 1px solid rgba(100,116,139,0.2);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .quedada-preview-card:hover {
+            border-color: rgba(249, 115, 22, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);
+        }
+        .quedada-date-badge {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-radius: 12px;
+            padding: 6px 10px;
+            text-align: center;
+            min-width: 52px;
+        }
+        .quedada-date-badge .day { font-size: 1.2rem; font-weight: 800; line-height: 1; color: white; }
+        .quedada-date-badge .month { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+        .quedada-level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+        .level-principiante { background: rgba(34,197,94,0.15); color: #4ade80; }
+        .level-intermedio { background: rgba(59,130,246,0.15); color: #60a5fa; }
+        .level-avanzado { background: rgba(249,115,22,0.15); color: #fb923c; }
+        .level-todos { background: rgba(168,85,247,0.15); color: #c084fc; }
+
+        /* Quedada Detail Modal */
+        #modal-quedada-preview {
+            z-index: 10000;
+        }
+        #modal-quedada-preview .modal-content {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid rgba(100,116,139,0.3);
+            border-radius: 24px;
+            max-width: 480px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .quedada-detail-map {
+            height: 180px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        @media (max-width: 640px) {
+            .quedada-preview-card { padding: 14px; }
+            .quedada-detail-map { height: 140px; }
+        }
+
+        /* ===== TESTIMONIAL CAROUSEL ===== */
+        .testimonial-carousel-wrapper {
+            container-type: inline-size;
+        }
+        .testimonial-carousel {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            gap: 24px;
+        }
+        .testimonial-slide {
+            flex: 0 0 calc((100% - 48px) / 3);
+        }
+        @media (max-width: 768px) {
+            .testimonial-slide { flex: 0 0 100%; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .testimonial-slide { flex: 0 0 calc((100% - 24px) / 2); }
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .carousel-dot.active {
+            background: #f97316;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ===== LIVE FEED MARQUEE ===== */
+        .feed-marquee {
+            display: flex;
+            gap: 16px;
+            animation: marqueeScroll 30s linear infinite;
+            width: max-content;
+        }
+        .feed-marquee:hover { animation-play-state: paused; }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .feed-card {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.8));
+            border: 1px solid rgba(100,116,139,0.3);
+            border-radius: 16px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+            min-width: 280px;
+            transition: border-color 0.3s ease;
+        }
+        .feed-card:hover { border-color: rgba(249,115,22,0.4); }
+        .feed-pulse {
+            width: 8px; height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: feedPulse 2s ease-in-out infinite;
+        }
+        @keyframes feedPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ===== LANDING MAP PREVIEW ===== */
+        #landing-map-preview {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(100,116,139,0.3);
+        }
+        #landing-map-preview .leaflet-control-zoom,
+        #landing-map-preview .leaflet-control-attribution { display: none !important; }
+
+        /* ===== FAQ SMOOTH TRANSITION ===== */
+        details .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+        }
+        details[open] .faq-content {
+            max-height: 200px;
+            padding: 0 20px 20px;
+        }
+
+        /* ===== APP MOCKUP FRAME ===== */
+        .phone-frame {
+            position: relative;
+            width: 260px;
+            height: 520px;
+            background: #1a1a2e;
+            border-radius: 36px;
+            border: 3px solid #374151;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255,255,255,0.05);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 24px;
+            background: #000;
+            border-radius: 12px;
+            z-index: 10;
+        }
+        .phone-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 36px 12px 12px;
+            overflow: hidden;
+        }
 
 </style>
 <!-- PWA -->
@@ -1961,6 +2338,36 @@
 
         <!-- HERO SECTION MEJORADO -->
         <main class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-20 pb-16">
+            <!-- Hero Particles -->
+            <div class="hero-particle" style="width:120px;height:120px;top:10%;left:8%;animation:particleFloat1 12s ease-in-out infinite;"></div>
+            <div class="hero-particle" style="width:80px;height:80px;top:60%;left:15%;animation:particleFloat2 15s ease-in-out infinite;"></div>
+            <div class="hero-particle" style="width:150px;height:150px;top:20%;right:10%;animation:particleFloat3 18s ease-in-out infinite;"></div>
+            <div class="hero-particle" style="width:60px;height:60px;top:70%;right:20%;animation:particleFloat1 14s ease-in-out infinite 2s;"></div>
+            <div class="hero-particle" style="width:100px;height:100px;top:40%;left:50%;animation:particleFloat2 16s ease-in-out infinite 1s;"></div>
+            <div class="hero-particle" style="width:90px;height:90px;bottom:10%;left:30%;animation:particleFloat3 13s ease-in-out infinite 3s;"></div>
+            <div class="hero-particle" style="width:70px;height:70px;top:15%;left:40%;animation:particleFloat1 17s ease-in-out infinite 4s;"></div>
+            <div class="hero-particle" style="width:110px;height:110px;bottom:20%;right:35%;animation:particleFloat2 11s ease-in-out infinite 2s;"></div>
+
+            <!-- Runner SVG (desktop only) -->
+            <div class="runner-svg-container">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Head -->
+                        <circle cx="105" cy="45" r="15" fill="none"/>
+                        <!-- Body -->
+                        <line x1="105" y1="60" x2="100" y2="105"/>
+                        <!-- Left arm (back) -->
+                        <polyline points="100,75 80,65 70,80"/>
+                        <!-- Right arm (front) -->
+                        <polyline points="100,75 120,90 130,78"/>
+                        <!-- Left leg (back) -->
+                        <polyline points="100,105 80,135 75,165"/>
+                        <!-- Right leg (front) -->
+                        <polyline points="100,105 120,130 140,155"/>
+                    </g>
+                </svg>
+            </div>
+
             <div class="text-center mb-16">
                 <!-- Badge con urgencia/FOMO -->
                 <div class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-bold mb-8 animate-pulse">
@@ -1971,7 +2378,7 @@
                 <!-- Headline principal con propuesta de valor clara -->
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight tracking-tight">
                     <span id="landing-headline-1">Deja de correr</span><br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600" id="landing-headline-2">solo</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600" id="landing-headline-2">solo</span><span class="typewriter-cursor" id="hero-cursor"></span>
                 </h1>
 
                 <!-- Subheadline específico -->
@@ -1981,7 +2388,7 @@
 
                 <!-- CTAs mejorados -->
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-                    <button onclick="openModal('modal-register')" class="group bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl shadow-orange-500/30 flex items-center justify-center gap-3">
+                    <button onclick="openModal('modal-register')" class="group bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl shadow-orange-500/30 flex items-center justify-center gap-3 btn-shimmer">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                         <span id="landing-cta-start">CORRE CON TU GENTE</span>
                     </button>
@@ -1998,28 +2405,113 @@
 
                 <!-- App Store Badges Premium -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-                    <p id="app-available-text" class="text-gray-400 text-sm font-medium">Disponible en:</p>
+                    <p id="app-available-text" class="text-gray-400 text-sm font-medium">Próximamente en:</p>
                     <div class="flex items-center gap-3">
-                        <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                        <div class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-2.5 rounded-xl border border-slate-600/50 shadow-lg opacity-75 cursor-default relative">
                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             <div class="flex flex-col">
-                                <span id="app-download-ios" class="text-[10px] text-gray-400 leading-tight">Descargar en</span>
+                                <span id="app-download-ios" class="text-[10px] text-orange-400 leading-tight font-semibold">Próximamente</span>
                                 <span class="text-sm font-semibold text-white leading-tight">App Store</span>
                             </div>
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                        </div>
+                        <div class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-2.5 rounded-xl border border-slate-600/50 shadow-lg opacity-75 cursor-default relative">
                             <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                             <div class="flex flex-col">
-                                <span id="app-download-android" class="text-[10px] text-gray-400 leading-tight">Disponible en</span>
+                                <span id="app-download-android" class="text-[10px] text-orange-400 leading-tight font-semibold">Próximamente</span>
                                 <span class="text-sm font-semibold text-white leading-tight">Google Play</span>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- LIVE ACTIVITY FEED -->
+            <div class="max-w-6xl mx-auto mb-16 reveal">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center gap-2 text-sm text-gray-400 mb-2">
+                        <span class="feed-pulse"></span>
+                        <span id="feed-title">Actividad en tiempo real</span>
+                    </div>
+                </div>
+                <div class="overflow-hidden relative" style="mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);">
+                    <div id="landing-feed" class="feed-marquee">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAP PREVIEW -->
+            <div class="max-w-5xl mx-auto mb-20 px-4 reveal">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl md:text-3xl font-black text-white mb-2" id="map-preview-title">Quedadas cerca de ti</h2>
+                    <p class="text-gray-400 text-sm" id="map-preview-subtitle">Runners creando quedadas por todo el mundo</p>
+                </div>
+                <div class="relative">
+                    <div id="landing-map-preview" style="height: 350px; width: 100%;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center z-[1000] pointer-events-none">
+                        <button onclick="openModal('modal-register')" class="pointer-events-auto bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-sm transition shadow-2xl shadow-orange-500/30 btn-shimmer" id="map-preview-cta">
+                            Descubre todas las quedadas
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPCOMING QUEDADAS PREVIEW (no login required) -->
+            <div class="max-w-6xl mx-auto mb-20 px-4 reveal">
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 px-4 py-2 rounded-full text-sm font-bold mb-4">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+                        <span id="preview-badge">QUEDADAS ABIERTAS</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-white mb-3" id="preview-title">Descubre las próximas quedadas</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto" id="preview-subtitle">Echa un vistazo a lo que la comunidad está organizando. Regístrate para unirte.</p>
+                </div>
+                <div id="quedadas-preview-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+                    <!-- Filled by JS -->
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="openModal('modal-register')" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-orange-500/20 btn-shimmer" id="preview-cta">
+                        Regístrate para unirte
+                    </button>
+                </div>
+            </div>
+
+            <!-- QUEDADA DETAIL MODAL -->
+            <div id="modal-quedada-preview" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden" onclick="if(event.target===this)this.classList.add('hidden')">
+                <div class="modal-content p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-white" id="qp-modal-title"></h3>
+                        <button onclick="document.getElementById('modal-quedada-preview').classList.add('hidden')" class="text-gray-400 hover:text-white transition">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <div id="qp-modal-map" class="quedada-detail-map mb-4 bg-slate-800 rounded-2xl"></div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center gap-3 text-sm">
+                            <svg class="w-5 h-5 text-orange-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <span class="text-gray-300" id="qp-modal-date"></span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <svg class="w-5 h-5 text-orange-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span class="text-gray-300" id="qp-modal-location"></span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <svg class="w-5 h-5 text-orange-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            <span class="text-gray-300" id="qp-modal-organizer"></span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <svg class="w-5 h-5 text-orange-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span class="text-gray-300" id="qp-modal-participants"></span>
+                        </div>
+                    </div>
+                    <button onclick="document.getElementById('modal-quedada-preview').classList.add('hidden');openModal('modal-register')" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-xl font-bold text-sm hover:scale-[1.02] transition-all shadow-lg shadow-orange-500/20 btn-shimmer" id="qp-modal-cta">
+                        Regístrate para unirte
+                    </button>
+                </div>
+            </div>
+
             <!-- SECURITY SECTION - Confianza y Seguridad -->
-            <div class="max-w-4xl mx-auto mb-16">
+            <div class="max-w-4xl mx-auto mb-16 reveal">
                 <div class="security-section bg-gradient-to-br from-slate-800/30 to-slate-900/30 border border-slate-700/30 rounded-3xl p-6 md:p-8">
                     <div class="text-center mb-8">
                         <div class="inline-flex items-center gap-2 bg-green-500/10 text-green-400 px-4 py-2 rounded-full text-sm font-bold mb-4">
@@ -2105,7 +2597,7 @@
             </div>
 
             <!-- SOCIAL PROOF: Números dinámicos -->
-            <div id="landing-social-proof" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-16">
+            <div id="landing-social-proof" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-16 reveal stagger-children">
                 <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 md:p-6 text-center hover:border-orange-500/30 transition">
                     <div class="text-3xl md:text-4xl font-black text-orange-500 mb-1" id="stat-total-runners">1.2K+</div>
                     <div class="text-gray-400 text-sm" id="stat-label-runners">Runners registrados</div>
@@ -2125,7 +2617,7 @@
             </div>
 
             <!-- 3 BENEFICIOS CLAROS - MEJORADOS CON ICONOGRAFÍA -->
-            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-20">
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-20 reveal stagger-children">
                 <!-- Beneficio 1: Encuentra gente -->
                 <div class="feature-card bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-3xl p-6 md:p-8 text-center group">
                     <div class="feature-icon w-20 h-20 bg-gradient-to-br from-orange-500/20 to-orange-600/10 rounded-2xl flex items-center justify-center mx-auto mb-5 border border-orange-500/20">
@@ -2178,7 +2670,7 @@
             </div>
 
             <!-- HOW IT WORKS - 3 PASOS -->
-            <div class="max-w-4xl mx-auto mb-20">
+            <div class="max-w-4xl mx-auto mb-20 reveal">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-black text-white mb-4" id="how-it-works-title">¿Cómo funciona?</h2>
                     <p class="text-gray-400" id="how-it-works-subtitle">Empieza a correr acompañado en 3 simples pasos</p>
@@ -2215,64 +2707,251 @@
                 </div>
             </div>
 
-            <!-- TESTIMONIALS SECTION -->
-            <div class="max-w-5xl mx-auto mb-20 px-4">
+            <!-- APP MOCKUPS SECTION -->
+            <div class="max-w-6xl mx-auto mb-20 px-4 reveal">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-black text-white mb-4" id="testimonials-title">Lo que dicen nuestros runners</h2>
-                    <p class="text-gray-400" id="testimonials-subtitle">Miles de corredores ya encontraron su grupo perfecto</p>
+                    <h2 class="text-3xl md:text-4xl font-black text-white mb-4" id="mockups-title">Así se ve la app</h2>
+                    <p class="text-gray-400" id="mockups-subtitle">Disponible en iOS, Android y Web</p>
                 </div>
-
-                <!-- Testimonials Grid -->
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Testimonio 1 -->
-                    <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-1-text">"Llevaba 2 años corriendo solo y siempre acababa dejándolo. Desde que uso CorrerJuntos tengo un grupo fijo de martes y jueves. Ya no me salto ni un entreno."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">MG</div>
-                            <div>
-                                <h4 class="text-white font-semibold text-sm" id="testimonial-1-name">María G.</h4>
-                                <p class="text-gray-500 text-xs" id="testimonial-1-location">Madrid, España</p>
+                <div class="flex gap-8 justify-center items-center overflow-x-auto pb-4" style="-webkit-overflow-scrolling: touch;">
+                    <!-- Mockup 1: Map -->
+                    <div class="phone-frame reveal-scale" style="transition-delay:0s">
+                        <div class="phone-screen bg-[#0b1220]">
+                            <div class="flex items-center justify-between mb-3 px-1">
+                                <span class="text-xs font-bold text-white">CorrerJuntos</span>
+                                <span class="text-[10px] text-orange-400">🔍</span>
+                            </div>
+                            <div class="rounded-xl overflow-hidden mb-3 h-[200px] bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative">
+                                <div class="absolute inset-0 opacity-30" style="background:repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(255,255,255,0.03) 20px,rgba(255,255,255,0.03) 21px),repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(255,255,255,0.03) 20px,rgba(255,255,255,0.03) 21px)"></div>
+                                <div class="absolute w-3 h-3 bg-orange-500 rounded-full top-[30%] left-[40%] shadow-lg shadow-orange-500/50"></div>
+                                <div class="absolute w-3 h-3 bg-orange-500 rounded-full top-[50%] left-[60%] shadow-lg shadow-orange-500/50"></div>
+                                <div class="absolute w-3 h-3 bg-orange-500 rounded-full top-[40%] left-[25%] shadow-lg shadow-orange-500/50"></div>
+                                <div class="absolute w-2.5 h-2.5 bg-orange-400 rounded-full top-[65%] left-[45%] shadow-lg shadow-orange-500/50"></div>
+                                <span class="text-[10px] text-gray-500 z-10">Mapa interactivo</span>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="bg-slate-800/80 rounded-lg p-2 border border-slate-700/50">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-[8px]">🏃</div>
+                                        <div><p class="text-[10px] text-white font-medium">Ruta Retiro 5K</p><p class="text-[8px] text-gray-500">Madrid · Hoy 19:00</p></div>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-800/80 rounded-lg p-2 border border-slate-700/50">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-[8px]">🏃</div>
+                                        <div><p class="text-[10px] text-white font-medium">Trail Montjuïc</p><p class="text-[8px] text-gray-500">Barcelona · Mañana 8:00</p></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Testimonio 2 -->
-                    <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-2-text">"Como principiante tenía miedo de quedar. El filtro por nivel me emparejó con gente paciente que iba a mi ritmo. Ahora corro 3 veces por semana."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">JL</div>
-                            <div>
-                                <h4 class="text-white font-semibold text-sm" id="testimonial-2-name">Juan L.</h4>
-                                <p class="text-gray-500 text-xs" id="testimonial-2-location">Barcelona, España</p>
+                    <!-- Mockup 2: Profile -->
+                    <div class="phone-frame reveal-scale" style="transition-delay:0.15s">
+                        <div class="phone-screen bg-[#0b1220]">
+                            <div class="text-center mb-3">
+                                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mx-auto mb-2 flex items-center justify-center text-2xl">🏃</div>
+                                <p class="text-sm font-bold text-white">María García</p>
+                                <p class="text-[10px] text-gray-400">Madrid, España</p>
+                                <div class="flex justify-center gap-1 mt-1">
+                                    <span class="text-yellow-400 text-[10px]">★★★★★</span>
+                                    <span class="text-[10px] text-gray-500">(4.9)</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2 mb-3">
+                                <div class="bg-slate-800/80 rounded-lg p-2 text-center border border-slate-700/50">
+                                    <p class="text-sm font-bold text-orange-500">47</p>
+                                    <p class="text-[8px] text-gray-500">Quedadas</p>
+                                </div>
+                                <div class="bg-slate-800/80 rounded-lg p-2 text-center border border-slate-700/50">
+                                    <p class="text-sm font-bold text-orange-500">312</p>
+                                    <p class="text-[8px] text-gray-500">km totales</p>
+                                </div>
+                                <div class="bg-slate-800/80 rounded-lg p-2 text-center border border-slate-700/50">
+                                    <p class="text-sm font-bold text-orange-500">23</p>
+                                    <p class="text-[8px] text-gray-500">Amigos</p>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="bg-gradient-to-r from-orange-500/20 to-orange-600/10 rounded-lg p-2 border border-orange-500/30">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-lg">🏅</span>
+                                        <div><p class="text-[10px] text-white font-medium">Racha: 12 semanas</p><p class="text-[8px] text-orange-400">Nivel Intermedio</p></div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-2 py-0.5 bg-green-500/10 text-green-400 text-[8px] rounded-full">5K-10K</span>
+                                    <span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 text-[8px] rounded-full">5:30/km</span>
+                                    <span class="px-2 py-0.5 bg-purple-500/10 text-purple-400 text-[8px] rounded-full">Mañanas</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Testimonio 3 -->
-                    <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-3-text">"Hice amigos de verdad. Lo que empezó como una quedada de 5K ahora es un grupo de 15 personas que entrenamos juntos cada fin de semana."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">AR</div>
-                            <div>
-                                <h4 class="text-white font-semibold text-sm" id="testimonial-3-name">Ana R.</h4>
-                                <p class="text-gray-500 text-xs" id="testimonial-3-location">Ciudad de México</p>
+                    <!-- Mockup 3: Event Detail -->
+                    <div class="phone-frame reveal-scale" style="transition-delay:0.3s">
+                        <div class="phone-screen bg-[#0b1220]">
+                            <div class="bg-gradient-to-r from-orange-500/20 to-orange-600/10 rounded-xl p-3 mb-3 border border-orange-500/20">
+                                <p class="text-sm font-bold text-white mb-1">Ruta Retiro 5K</p>
+                                <div class="flex items-center gap-2 text-[10px] text-gray-400">
+                                    <span>📍 Puerta de Alcalá</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-[10px] text-gray-400 mt-1">
+                                    <span>📅 Hoy, 19:00</span>
+                                    <span>·</span>
+                                    <span>🏃 5 km</span>
+                                </div>
                             </div>
+                            <div class="mb-3">
+                                <p class="text-[10px] text-gray-400 mb-2">Participantes (7/10)</p>
+                                <div class="flex -space-x-2">
+                                    <div class="w-7 h-7 bg-gradient-to-br from-orange-500 to-red-500 rounded-full border-2 border-[#0b1220] flex items-center justify-center text-[8px] text-white font-bold">MG</div>
+                                    <div class="w-7 h-7 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full border-2 border-[#0b1220] flex items-center justify-center text-[8px] text-white font-bold">JL</div>
+                                    <div class="w-7 h-7 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full border-2 border-[#0b1220] flex items-center justify-center text-[8px] text-white font-bold">AR</div>
+                                    <div class="w-7 h-7 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full border-2 border-[#0b1220] flex items-center justify-center text-[8px] text-white font-bold">CP</div>
+                                    <div class="w-7 h-7 bg-slate-700 rounded-full border-2 border-[#0b1220] flex items-center justify-center text-[8px] text-white font-bold">+3</div>
+                                </div>
+                            </div>
+                            <div class="bg-slate-800/80 rounded-lg p-2 mb-3 border border-slate-700/50">
+                                <p class="text-[10px] text-gray-400 mb-1">Organizador</p>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-[8px] font-bold text-white">MG</div>
+                                    <div><p class="text-[10px] text-white font-medium">María G.</p><p class="text-[8px] text-yellow-400">★ 4.9 · 47 quedadas</p></div>
+                                </div>
+                            </div>
+                            <button class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold py-3 rounded-xl">
+                                Unirme a la quedada
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- TESTIMONIALS SECTION -->
+            <div class="max-w-5xl mx-auto mb-20 px-4 reveal">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black text-white mb-4" id="testimonials-title">Lo que dicen nuestros runners</h2>
+                    <p class="text-gray-400" id="testimonials-subtitle">Miles de corredores ya encontraron su grupo perfecto</p>
+                </div>
+
+                <!-- Testimonials Carousel -->
+                <div class="overflow-hidden relative testimonial-carousel-wrapper">
+                    <div id="testimonial-carousel" class="testimonial-carousel">
+                        <!-- Testimonio 1 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition h-full">
+                                <div class="flex items-center gap-1 mb-4"><span class="text-yellow-400">★★★★★</span></div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-1-text">"Llevaba 2 años corriendo solo y siempre acababa dejándolo. Desde que uso CorrerJuntos tengo un grupo fijo de martes y jueves. Ya no me salto ni un entreno."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">MG</div>
+                                    <div>
+                                        <h4 class="text-white font-semibold text-sm" id="testimonial-1-name">María G.</h4>
+                                        <p class="text-gray-500 text-xs" id="testimonial-1-location">🇪🇸 Madrid, España</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonio 2 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition h-full">
+                                <div class="flex items-center gap-1 mb-4"><span class="text-yellow-400">★★★★★</span></div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-2-text">"Como principiante tenía miedo de quedar. El filtro por nivel me emparejó con gente paciente que iba a mi ritmo. Ahora corro 3 veces por semana."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">JL</div>
+                                    <div>
+                                        <h4 class="text-white font-semibold text-sm" id="testimonial-2-name">Juan L.</h4>
+                                        <p class="text-gray-500 text-xs" id="testimonial-2-location">🇪🇸 Barcelona, España</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonio 3 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition h-full">
+                                <div class="flex items-center gap-1 mb-4"><span class="text-yellow-400">★★★★★</span></div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-3-text">"Hice amigos de verdad. Lo que empezó como una quedada de 5K ahora es un grupo de 15 personas que entrenamos juntos cada fin de semana."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">AR</div>
+                                    <div>
+                                        <h4 class="text-white font-semibold text-sm" id="testimonial-3-name">Ana R.</h4>
+                                        <p class="text-gray-500 text-xs" id="testimonial-3-location">🇲🇽 Ciudad de México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonio 4 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition h-full">
+                                <div class="flex items-center gap-1 mb-4"><span class="text-yellow-400">★★★★★</span></div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-4-text">"Me mudé a Londres y no conocía a nadie. Gracias a CorrerJuntos encontré un grupo de españoles que corren por Hyde Park. Ahora tenemos un grupo de 8 personas."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">CP</div>
+                                    <div>
+                                        <h4 class="text-white font-semibold text-sm" id="testimonial-4-name">Carlos P.</h4>
+                                        <p class="text-gray-500 text-xs" id="testimonial-4-location">🇬🇧 London, UK</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonio 5 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition h-full">
+                                <div class="flex items-center gap-1 mb-4"><span class="text-yellow-400">★★★★★</span></div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-5-text">"Después de una lesión pensé que no volvería a correr. El grupo de nivel principiante me ayudó a recuperar la confianza poco a poco. Mejor comunidad imposible."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center text-white font-bold text-sm">LM</div>
+                                    <div>
+                                        <h4 class="text-white font-semibold text-sm" id="testimonial-5-name">Laura M.</h4>
+                                        <p class="text-gray-500 text-xs" id="testimonial-5-location">🇦🇷 Buenos Aires, Argentina</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonio 6 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 rounded-2xl p-6 hover:border-orange-500/30 transition h-full">
+                                <div class="flex items-center gap-1 mb-4"><span class="text-yellow-400">★★★★★</span></div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-5" id="testimonial-6-text">"La app me encanta. Simple, sin publicidad molesta, y la gente es súper amable. He corrido mi primera media maratón con compañeros que conocí aquí."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-sm">DH</div>
+                                    <div>
+                                        <h4 class="text-white font-semibold text-sm" id="testimonial-6-name">Diego H.</h4>
+                                        <p class="text-gray-500 text-xs" id="testimonial-6-location">🇨🇴 Bogotá, Colombia</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel dots -->
+                <div class="flex justify-center gap-2 mt-6" id="carousel-dots"></div>
+            </div>
+
+            <!-- POPULAR CITIES SECTION -->
+            <div class="max-w-6xl mx-auto mb-20 px-4 reveal">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black text-white mb-4" id="cities-section-title">Runners en todo el mundo</h2>
+                    <p class="text-gray-400" id="cities-section-subtitle">Encuentra grupos de running en las principales ciudades</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3">
+                    <a href="/cities/madrid.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇪🇸 Madrid</a>
+                    <a href="/cities/barcelona.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇪🇸 Barcelona</a>
+                    <a href="/cities/london.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇬🇧 London</a>
+                    <a href="/cities/new-york.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇺🇸 New York</a>
+                    <a href="/cities/paris.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇫🇷 Paris</a>
+                    <a href="/cities/berlin.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇩🇪 Berlin</a>
+                    <a href="/cities/amsterdam.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇳🇱 Amsterdam</a>
+                    <a href="/cities/sydney.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇦🇺 Sydney</a>
+                    <a href="/cities/toronto.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇨🇦 Toronto</a>
+                    <a href="/cities/dubai.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇦🇪 Dubai</a>
+                    <a href="/cities/mexico-city.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇲🇽 CDMX</a>
+                    <a href="/cities/buenos-aires.html" class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-xl px-4 py-3 hover:border-orange-500/40 transition text-sm text-white font-medium">🇦🇷 Buenos Aires</a>
+                </div>
+                <div class="text-center mt-6">
+                    <a href="/cities/" class="text-orange-500 hover:text-orange-400 font-semibold transition" id="cities-view-all">Ver todas las ciudades →</a>
+                </div>
+            </div>
+
             <!-- PLANES Y PRECIOS -->
-            <div class="max-w-5xl mx-auto mb-20 px-4">
+            <div class="max-w-5xl mx-auto mb-20 px-4 reveal">
                 <div class="text-center mb-10">
                     <h2 class="text-3xl md:text-4xl font-black text-white mb-4" id="pricing-title">Planes y precios</h2>
                     <p class="text-gray-400" id="pricing-subtitle">Empieza gratis. Mejora cuando quieras.</p>
@@ -2314,10 +2993,10 @@
                                 <span id="plan-free-f6">Filtros avanzados</span>
                             </li>
                         </ul>
-                        <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" class="block w-full text-center bg-slate-700 hover:bg-slate-600 border border-slate-600 px-6 py-4 rounded-xl font-bold text-sm transition">
-                            <span id="plan-free-cta">DESCARGAR GRATIS</span>
-                            <span class="block text-xs text-gray-400 font-normal mt-1" id="plan-free-subcta">100% sin costo · Para siempre</span>
-                        </a>
+                        <button onclick="openModal('modal-register')" class="block w-full text-center bg-slate-700 hover:bg-slate-600 border border-slate-600 px-6 py-4 rounded-xl font-bold text-sm transition">
+                            <span id="plan-free-cta">REGISTRARSE GRATIS</span>
+                            <span class="block text-xs text-gray-400 font-normal mt-1" id="plan-free-subcta">App móvil próximamente · Web ya disponible</span>
+                        </button>
                     </div>
 
                     <!-- Plan Premium -->
@@ -2358,17 +3037,17 @@
                                 <span id="plan-premium-f6">Soporte prioritario</span>
                             </li>
                         </ul>
-                        <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" class="block w-full text-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-4 rounded-xl font-bold text-sm transition shadow-lg shadow-orange-500/30">
+                        <button onclick="openModal('modal-register')" class="block w-full text-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-4 rounded-xl font-bold text-sm transition shadow-lg shadow-orange-500/30">
                             <span id="plan-premium-cta">PRUEBA 7 DÍAS GRATIS</span>
-                            <span class="block text-xs text-orange-200 font-normal mt-1" id="plan-premium-subcta">Sin tarjeta · Cancela cuando quieras</span>
-                        </a>
+                            <span class="block text-xs text-orange-200 font-normal mt-1" id="plan-premium-subcta">App móvil próximamente · Web ya disponible</span>
+                        </button>
                         <p class="text-center text-gray-500 text-xs mt-3" id="plan-premium-cancel">Sin compromiso</p>
                     </div>
                 </div>
             </div>
 
             <!-- FAQ SECTION -->
-            <div class="max-w-3xl mx-auto mb-20 px-4">
+            <div class="max-w-3xl mx-auto mb-20 px-4 reveal">
                 <div class="text-center mb-10">
                     <h2 class="text-3xl md:text-4xl font-black text-white mb-4" id="faq-title">Preguntas frecuentes</h2>
                     <p class="text-gray-400" id="faq-subtitle">Todo lo que necesitas saber antes de empezar</p>
@@ -2432,26 +3111,59 @@
                 </div>
             </div>
 
+            <!-- NEWSLETTER SECTION -->
+            <div class="max-w-3xl mx-auto mb-20 px-4 reveal-scale">
+                <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-3xl p-8 md:p-10 text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-600"></div>
+                    <div class="text-3xl mb-4">📬</div>
+                    <h2 class="text-2xl md:text-3xl font-black text-white mb-3" id="newsletter-title">No te pierdas nada</h2>
+                    <p class="text-gray-400 mb-6 max-w-lg mx-auto" id="newsletter-subtitle">Recibe las mejores quedadas, rutas y novedades de la comunidad runner directo en tu email. Sin spam, solo running.</p>
+                    <form id="newsletter-form" onsubmit="submitNewsletter(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input
+                            type="email"
+                            id="newsletter-email"
+                            required
+                            placeholder="tu@email.com"
+                            class="flex-1 px-5 py-3.5 bg-slate-700/50 border border-slate-600/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-sm"
+                        >
+                        <button
+                            type="submit"
+                            id="newsletter-btn"
+                            class="px-6 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-orange-500/20 text-sm whitespace-nowrap"
+                        >
+                            Suscribirme
+                        </button>
+                    </form>
+                    <p class="text-gray-600 text-xs mt-4" id="newsletter-privacy">🔒 Respetamos tu privacidad. Cancela cuando quieras.</p>
+                    <div id="newsletter-success" class="hidden mt-4 p-3 bg-green-500/10 border border-green-500/30 rounded-xl">
+                        <p class="text-green-400 font-semibold text-sm" id="newsletter-success-msg">🎉 ¡Bienvenido/a! Te avisaremos de las mejores quedadas.</p>
+                    </div>
+                    <div id="newsletter-error" class="hidden mt-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl">
+                        <p class="text-red-400 text-sm" id="newsletter-error-msg">Error al suscribirse. Inténtalo de nuevo.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- CTA FINAL -->
-            <div class="max-w-4xl mx-auto mb-16 px-4">
+            <div class="max-w-4xl mx-auto mb-16 px-4 reveal-scale">
                 <div class="bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 rounded-3xl p-8 md:p-12 text-center">
                     <h2 class="text-2xl md:text-3xl font-black text-white mb-4" id="cta-final-title">¿Listo para dejar de correr solo?</h2>
                     <p class="text-gray-400 mb-8 max-w-xl mx-auto" id="cta-final-subtitle">Únete a miles de runners que ya encontraron su grupo. Descarga la app gratis y crea tu primera quedada hoy.</p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" class="flex items-center gap-2.5 bg-white hover:bg-gray-100 text-black px-6 py-3 rounded-xl transition shadow-lg">
+                        <div class="flex items-center gap-2.5 bg-white/80 text-black px-6 py-3 rounded-xl shadow-lg opacity-75 cursor-default">
                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             <div class="flex flex-col text-left">
-                                <span class="text-[10px] text-gray-600 leading-tight">Descargar en</span>
+                                <span class="text-[10px] text-orange-600 leading-tight font-semibold">Próximamente</span>
                                 <span class="text-sm font-semibold leading-tight">App Store</span>
                             </div>
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" class="flex items-center gap-2.5 bg-white hover:bg-gray-100 text-black px-6 py-3 rounded-xl transition shadow-lg">
+                        </div>
+                        <div class="flex items-center gap-2.5 bg-white/80 text-black px-6 py-3 rounded-xl shadow-lg opacity-75 cursor-default">
                             <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                             <div class="flex flex-col text-left">
-                                <span class="text-[10px] text-gray-600 leading-tight">Disponible en</span>
+                                <span class="text-[10px] text-orange-600 leading-tight font-semibold">Próximamente</span>
                                 <span class="text-sm font-semibold leading-tight">Google Play</span>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2493,16 +3205,16 @@
                         <h4 id="footer-download-title" class="font-bold text-white mb-4">Descargar</h4>
                         <ul class="space-y-3">
                             <li>
-                                <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" class="flex items-center gap-2 text-gray-500 hover:text-orange-500 text-sm transition">
+                                <span class="flex items-center gap-2 text-gray-600 text-sm cursor-default">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                                    App Store
-                                </a>
+                                    App Store <span class="text-orange-500 text-xs">(Próximamente)</span>
+                                </span>
                             </li>
                             <li>
-                                <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" class="flex items-center gap-2 text-gray-500 hover:text-orange-500 text-sm transition">
+                                <span class="flex items-center gap-2 text-gray-600 text-sm cursor-default">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="currentColor" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/></svg>
-                                    Google Play
-                                </a>
+                                    Google Play <span class="text-orange-500 text-xs">(Próximamente)</span>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -2524,7 +3236,7 @@
                     </div>
                 </div>
                 <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p class="text-gray-600 text-sm"><span id="footer-copyright">© 2025 CorrerJuntos. Todos los derechos reservados.</span></p>
+                    <p class="text-gray-600 text-sm"><span id="footer-copyright">© 2026 CorrerJuntos. Todos los derechos reservados.</span></p>
                     <p class="text-gray-600 text-sm"><span id="footer-made">Hecho con ❤️ para runners</span></p>
                 </div>
             </div>
@@ -2565,20 +3277,20 @@
                 <div><h2 class="text-3xl md:text-4xl font-black mb-2"><span id="app-title">Quedadas </span><span id="app-title-highlight" class="text-orange-500">cerca de ti</span></h2><p id="app-subtitle" class="text-gray-500">Encuentra tu próxima ruta y conoce gente nueva</p></div>
                 <!-- App Store Badges Premium -->
                 <div class="flex items-center gap-3 mt-3 md:mt-0">
-                    <a href="https://apps.apple.com/app/correr-juntos/id6740261932" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                    <div class="app-store-badge flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-2.5 rounded-xl border border-slate-600/50 shadow-lg opacity-75 cursor-default">
                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                         <div class="flex flex-col">
-                            <span id="app-download-ios-2" class="text-[10px] text-gray-400 leading-tight">Descargar en</span>
+                            <span id="app-download-ios-2" class="text-[10px] text-orange-400 leading-tight font-semibold">Próximamente</span>
                             <span class="text-sm font-semibold text-white leading-tight">App Store</span>
                         </div>
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="app-store-badge group flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-600/50 hover:border-slate-500 shadow-lg hover:shadow-xl hover:scale-105">
+                    </div>
+                    <div class="app-store-badge flex items-center gap-2.5 bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-2.5 rounded-xl border border-slate-600/50 shadow-lg opacity-75 cursor-default">
                         <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                         <div class="flex flex-col">
-                            <span id="app-download-android-2" class="text-[10px] text-gray-400 leading-tight">Disponible en</span>
+                            <span id="app-download-android-2" class="text-[10px] text-orange-400 leading-tight font-semibold">Próximamente</span>
                             <span class="text-sm font-semibold text-white leading-tight">Google Play</span>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <div class="mt-4 md:mt-0 text-sm text-gray-400"><span id="showing-prefix">Mostrando</span> <span id="quedadas-count" class="text-orange-500 font-bold">0</span> <span id="showing-suffix">quedadas</span></div>
             </div>
@@ -4561,17 +5273,23 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
           if(!inp.parentElement.contains(e.target)) hideSuggestionsCrear();
         });
 
-        // Auto-detectar idioma del navegador (solo es/en soportados)
+        // Auto-detectar idioma: URL param > localStorage > navegador
         function detectBrowserLanguage() {
+            // 1. Check URL parameter (?lang=en)
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            if (urlLang && (urlLang === 'es' || urlLang === 'en')) {
+                localStorage.setItem('cj_lang', urlLang);
+                return urlLang;
+            }
+            // 2. Check localStorage
             const stored = localStorage.getItem('cj_lang');
             if (stored && (stored === 'es' || stored === 'en')) return stored;
-
+            // 3. Browser language
             const browserLang = navigator.language || navigator.userLanguage || 'es';
             const lang = browserLang.split('-')[0].toLowerCase();
-
-            // Solo soportamos español e inglés
             if (lang === 'en') return 'en';
-            return 'es'; // Default español
+            return 'es';
         }
         let currentLang = detectBrowserLanguage(), map, markers=[], mapCrear, markerCrear;
         let placeCenter=null; // city/province/district centroid for recentering
@@ -4638,6 +5356,18 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 statLabelCiudades: 'Países activos',
                 statLabelProximas: 'Quedadas esta semana',
                 availableWorldwide: '🌍 Disponible en todo el mundo',
+                // Cities section
+                citiesSectionTitle: 'Runners en todo el mundo',
+                citiesSectionSubtitle: 'Encuentra grupos de running en las principales ciudades',
+                citiesViewAll: 'Ver todas las ciudades →',
+                // Newsletter
+                newsletterTitle: 'No te pierdas nada',
+                newsletterSubtitle: 'Recibe las mejores quedadas, rutas y novedades de la comunidad runner directo en tu email. Sin spam, solo running.',
+                newsletterBtn: 'Suscribirme',
+                newsletterPrivacy: '🔒 Respetamos tu privacidad. Cancela cuando quieras.',
+                newsletterSuccess: '🎉 ¡Bienvenido/a! Te avisaremos de las mejores quedadas.',
+                newsletterError: 'Error al suscribirse. Inténtalo de nuevo.',
+                newsletterAlready: 'Ya estás suscrito/a. ¡Gracias!',
                 // Benefits
                 benefit1Title: 'Encuentra tu grupo',
                 benefit1Desc: 'Filtra por nivel, distancia y ritmo. Corre con gente que va a tu mismo paso, sin presiones.',
@@ -4725,6 +5455,10 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 footerTerms: 'Términos y Condiciones',
                 footerPrivacy: 'Política de Privacidad',
                 footerCookies: 'Política de Cookies',
+                cookieBannerText: 'Usamos cookies de analítica (Google Analytics) para mejorar tu experiencia. Las cookies esenciales siempre están activas.',
+                cookieBannerAccept: 'Aceptar todas',
+                cookieBannerReject: 'Solo esenciales',
+                cookieBannerMore: 'Más info',
                 footerContact: 'Contacto',
                 footerAdvertise: 'Anúnciate',
                 footerGlobal: 'Comunidad Global',
@@ -5009,7 +5743,20 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 promoPerMonth: '/mes',
                 promoCancel: 'Cancela cuando quieras · Sin compromiso',
                 promoCtaBtn: 'Hazte Premium ahora',
-                promoLaterBtn: 'Ahora no, gracias'
+                promoLaterBtn: 'Ahora no, gracias',
+                // Landing enhancements
+                feedTitle: 'Actividad en tiempo real',
+                mapPreviewTitle: 'Quedadas cerca de ti',
+                mapPreviewSubtitle: 'Runners creando quedadas por todo el mundo',
+                mapPreviewCta: 'Descubre todas las quedadas',
+                mockupsTitle: 'Así se ve la app',
+                mockupsSubtitle: 'Disponible en iOS, Android y Web',
+                // Quedadas preview
+                previewBadge: 'QUEDADAS ABIERTAS',
+                previewTitle: 'Descubre las próximas quedadas',
+                previewSubtitle: 'Echa un vistazo a lo que la comunidad está organizando. Regístrate para unirte.',
+                previewCta: 'Regístrate para unirte',
+                previewModalCta: 'Regístrate para unirte'
 },
             en: {
                 all: 'All',
@@ -5029,6 +5776,18 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 statLabelCiudades: 'Active countries',
                 statLabelProximas: 'Meetups this week',
                 availableWorldwide: '🌍 Available worldwide',
+                // Cities section
+                citiesSectionTitle: 'Runners worldwide',
+                citiesSectionSubtitle: 'Find running groups in major cities around the world',
+                citiesViewAll: 'View all cities →',
+                // Newsletter
+                newsletterTitle: "Don't miss out",
+                newsletterSubtitle: 'Get the best running meetups, routes and community updates straight to your inbox. No spam, just running.',
+                newsletterBtn: 'Subscribe',
+                newsletterPrivacy: '🔒 We respect your privacy. Unsubscribe anytime.',
+                newsletterSuccess: "🎉 Welcome! We'll keep you updated with the best meetups.",
+                newsletterError: 'Error subscribing. Please try again.',
+                newsletterAlready: "You're already subscribed. Thanks!",
                 // Benefits
                 benefit1Title: 'Find your group',
                 benefit1Desc: 'Filter by level, distance and pace. Run with people who match your speed, no pressure.',
@@ -5116,6 +5875,10 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 footerTerms: 'Terms and Conditions',
                 footerPrivacy: 'Privacy Policy',
                 footerCookies: 'Cookie Policy',
+                cookieBannerText: 'We use analytics cookies (Google Analytics) to improve your experience. Essential cookies are always active.',
+                cookieBannerAccept: 'Accept all',
+                cookieBannerReject: 'Essential only',
+                cookieBannerMore: 'More info',
                 footerContact: 'Contact',
                 footerAdvertise: 'Advertise',
                 footerGlobal: 'Global Community',
@@ -5390,7 +6153,20 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 promoPerMonth: '/month',
                 promoCancel: 'Cancel anytime · No commitment',
                 promoCtaBtn: 'Get Premium now',
-                promoLaterBtn: 'Not now, thanks'
+                promoLaterBtn: 'Not now, thanks',
+                // Landing enhancements
+                feedTitle: 'Live activity',
+                mapPreviewTitle: 'Meetups near you',
+                mapPreviewSubtitle: 'Runners creating meetups around the world',
+                mapPreviewCta: 'Discover all meetups',
+                mockupsTitle: 'See the app in action',
+                mockupsSubtitle: 'Available on iOS, Android & Web',
+                // Quedadas preview
+                previewBadge: 'OPEN MEETUPS',
+                previewTitle: 'Discover upcoming meetups',
+                previewSubtitle: 'Take a look at what the community is organizing. Sign up to join.',
+                previewCta: 'Sign up to join',
+                previewModalCta: 'Sign up to join'
 },
             pt: {
                 all: 'Todas',
@@ -5496,6 +6272,10 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 footerTerms: 'Termos e Condições',
                 footerPrivacy: 'Política de Privacidade',
                 footerCookies: 'Política de Cookies',
+                cookieBannerText: 'Usamos cookies de analítica (Google Analytics) para melhorar a tua experiência. As cookies essenciais estão sempre ativas.',
+                cookieBannerAccept: 'Aceitar todas',
+                cookieBannerReject: 'Apenas essenciais',
+                cookieBannerMore: 'Mais info',
                 footerContact: 'Contacto',
                 footerAdvertise: 'Anuncia',
                 footerGlobal: 'Comunidade Global',
@@ -5557,7 +6337,20 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 pwaTitle: 'Instalar CorrerJuntos',
                 pwaDesc: 'Acede rapido a partir do teu ecran inicial.',
                 pwaBtn: 'Instalar agora',
-                pwaIOS: 'No iPhone: Partilhar → "Adicionar ao ecra inicial".'
+                pwaIOS: 'No iPhone: Partilhar → "Adicionar ao ecra inicial".',
+                // Landing enhancements
+                feedTitle: 'Atividade em tempo real',
+                mapPreviewTitle: 'Encontros perto de ti',
+                mapPreviewSubtitle: 'Runners a criar encontros pelo mundo',
+                mapPreviewCta: 'Descobre todos os encontros',
+                mockupsTitle: 'Vê a app em ação',
+                mockupsSubtitle: 'Disponível em iOS, Android e Web',
+                // Quedadas preview
+                previewBadge: 'ENCONTROS ABERTOS',
+                previewTitle: 'Descobre os próximos encontros',
+                previewSubtitle: 'Vê o que a comunidade está a organizar. Regista-te para participar.',
+                previewCta: 'Regista-te para participar',
+                previewModalCta: 'Regista-te para participar'
 }
         };
 
@@ -5605,6 +6398,17 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('stat-label-quedadas', t.statLabelQuedadas);
             setText('stat-label-ciudades', t.statLabelCiudades);
             setText('stat-label-proximas', t.statLabelProximas);
+            // Newsletter
+            setText('newsletter-title', t.newsletterTitle);
+            setText('newsletter-subtitle', t.newsletterSubtitle);
+            setText('newsletter-btn', t.newsletterBtn);
+            setText('newsletter-privacy', t.newsletterPrivacy);
+            setText('newsletter-success-msg', t.newsletterSuccess);
+            setText('newsletter-error-msg', t.newsletterError);
+            // Cities section
+            setText('cities-section-title', t.citiesSectionTitle);
+            setText('cities-section-subtitle', t.citiesSectionSubtitle);
+            setText('cities-view-all', t.citiesViewAll);
             // Benefits
             setText('benefit-1-title', t.benefit1Title);
             setText('benefit-1-desc', t.benefit1Desc);
@@ -5693,6 +6497,14 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('footer-terms', t.footerTerms);
             setText('footer-privacy', t.footerPrivacy);
             setText('footer-cookies', t.footerCookies);
+            // Cookie banner
+            setText('cookie-banner-text', t.cookieBannerText);
+            const cbAccept = document.getElementById('cookie-banner-accept');
+            const cbReject = document.getElementById('cookie-banner-reject');
+            const cbMore = document.getElementById('cookie-banner-more');
+            if(cbAccept) cbAccept.textContent = t.cookieBannerAccept;
+            if(cbReject) cbReject.textContent = t.cookieBannerReject;
+            if(cbMore) cbMore.textContent = t.cookieBannerMore;
             setText('footer-contact-title', t.footerContact);
             setText('footer-advertise', t.footerAdvertise);
             setText('footer-global', t.footerGlobal);
@@ -5930,15 +6742,147 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('promo-cta-btn', t.promoCtaBtn);
             setText('promo-later-btn', t.promoLaterBtn);
 
+            // Landing enhancements i18n
+            setText('feed-title', t.feedTitle);
+            setText('map-preview-title', t.mapPreviewTitle);
+            setText('map-preview-subtitle', t.mapPreviewSubtitle);
+            setText('map-preview-cta', t.mapPreviewCta);
+            setText('mockups-title', t.mockupsTitle);
+            setText('mockups-subtitle', t.mockupsSubtitle);
+            // Quedadas preview i18n
+            setText('preview-badge', t.previewBadge);
+            setText('preview-title', t.previewTitle);
+            setText('preview-subtitle', t.previewSubtitle);
+            setText('preview-cta', t.previewCta);
+            setText('qp-modal-cta', t.previewModalCta);
+            // Reload preview cards with new language
+            if (typeof loadQuedadasPreview === 'function') loadQuedadasPreview();
+
             // City chips
             renderCityChips();
+        }
+
+        // ========== DYNAMIC META TAGS FOR SEO ==========
+        const META_I18N = {
+            es: {
+                title: "CorrerJuntos - Quedadas para Correr en Grupo | App Gratis Mundial",
+                description: "🏃 ¿Buscas gente para correr? CorrerJuntos es la app GRATIS para encontrar quedadas de running cerca de ti. Comunidad runner global. ¡Únete hoy!",
+                keywords: "correr, running, quedadas, runners, entrenar, grupo de running, correr en grupo, running social, app para correr, comunidad runner",
+                ogTitle: "CorrerJuntos - Encuentra runners cerca de ti",
+                ogDesc: "La app gratuita para encontrar runners cerca de ti. Crea y únete a quedadas para correr, conoce gente nueva.",
+                ogLocale: "es_ES"
+            },
+            en: {
+                title: "CorrerJuntos - Find Running Groups Near You | Free Worldwide App",
+                description: "🏃 Looking for running partners? CorrerJuntos is the FREE app to find running meetups near you. Join the global running community today!",
+                keywords: "running, run club, running groups, runners, training partners, group running, social running, running app, runner community, running meetups",
+                ogTitle: "CorrerJuntos - Find runners near you",
+                ogDesc: "The free app to find running partners near you. Create and join running meetups, meet new people worldwide.",
+                ogLocale: "en_US"
+            }
+        };
+        function updateMetaTags(lang) {
+            const m = META_I18N[lang] || META_I18N.es;
+            document.title = m.title;
+            document.documentElement.setAttribute('lang', lang);
+            const setMeta = (sel, val) => { const el = document.querySelector(sel); if(el) el.setAttribute('content', val); };
+            setMeta('meta[name="description"]', m.description);
+            setMeta('meta[name="keywords"]', m.keywords);
+            setMeta('meta[property="og:title"]', m.ogTitle);
+            setMeta('meta[property="og:description"]', m.ogDesc);
+            setMeta('meta[property="og:locale"]', m.ogLocale);
+            setMeta('meta[name="twitter:title"]', m.ogTitle);
+            setMeta('meta[name="twitter:description"]', m.ogDesc);
         }
 
         function changeLanguage(lang){
             // Solo soportamos español e inglés
             currentLang = (lang === 'en') ? 'en' : 'es';
             localStorage.setItem(STORAGE_LANG, currentLang);
+            updateMetaTags(currentLang);
             applyLanguageUI();
+        }
+
+        // ========== COOKIE CONSENT ==========
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!banner) return;
+            banner.style.display = '';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    banner.classList.remove('translate-y-full');
+                    banner.classList.add('translate-y-0');
+                });
+            });
+        }
+        function closeCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!banner) return;
+            banner.classList.remove('translate-y-0');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => { banner.style.display = 'none'; }, 500);
+        }
+        function handleCookieConsent(choice) {
+            localStorage.setItem('cj_cookie_consent', choice);
+            closeCookieBanner();
+            if (choice === 'accepted') { loadGA4(); }
+        }
+        // Show banner on load if no choice yet
+        (function() {
+            const consent = localStorage.getItem('cj_cookie_consent');
+            if (!consent) {
+                // Small delay so the page loads first
+                setTimeout(showCookieBanner, 1500);
+            }
+        })();
+
+        // ========== NEWSLETTER SUBSCRIPTION ==========
+        async function submitNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletter-email').value.trim();
+            const btn = document.getElementById('newsletter-btn');
+            const form = document.getElementById('newsletter-form');
+            const successDiv = document.getElementById('newsletter-success');
+            const errorDiv = document.getElementById('newsletter-error');
+            const t = I18N[currentLang] || I18N.es;
+
+            if (!email) return;
+            btn.disabled = true;
+            btn.textContent = '...';
+            successDiv.classList.add('hidden');
+            errorDiv.classList.add('hidden');
+
+            try {
+                const res = await fetch(SUPABASE_URL + '/rest/v1/newsletter_subscribers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ email, lang: currentLang, source: 'landing' })
+                });
+
+                if (res.ok || res.status === 201) {
+                    form.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                    if (typeof gtag === 'function') gtag('event', 'newsletter_signup', { method: 'landing' });
+                } else if (res.status === 409) {
+                    // Duplicate email
+                    document.getElementById('newsletter-success-msg').textContent = t.newsletterAlready;
+                    form.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                } else {
+                    throw new Error('HTTP ' + res.status);
+                }
+            } catch (err) {
+                errorDiv.classList.remove('hidden');
+                console.error('Newsletter error:', err);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = t.newsletterBtn;
+            }
         }
 
         // ========== TOAST MEJORADO (Material Design) ==========
@@ -8256,7 +9200,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 social: prof?.instagram || prof?.strava || '',
                 photo: prof?.photo_url || '',
                 created_at: prof?.created_at || null,
-                es_seed: !!prof?.es_seed
+                es_seed: !!prof?.es_seed,
+                es_premium: !!prof?.es_premium
             };
 
             // Restaurar botón antes de cerrar modal
@@ -8278,6 +9223,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             // Verificar si hay quedadas pasadas pendientes de reseña
             checkPendingReviews();
 
+            // Verificar estado premium antes de mostrar popup
+            await checkPremiumStatus();
             // Mostrar popup de Premium si corresponde
             maybeShowPremiumPromo();
         }
@@ -10054,17 +11001,508 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
         }
 
+        // ===================== LANDING ENHANCEMENTS =====================
+
+        // --- Scroll Reveal Observer ---
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+            if (!revealElements.length) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Also reveal stagger children
+                        if (entry.target.classList.contains('stagger-children')) {
+                            entry.target.querySelectorAll(':scope > *').forEach(child => {
+                                child.classList.add('visible');
+                            });
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            revealElements.forEach(el => observer.observe(el));
+            window.__revealObserver = observer;
+        }
+
+        // --- Animated Counters ---
+        let statsAnimated = false;
+        function animateCounter(el, target, duration = 2000) {
+            const isFloat = String(target).includes('.');
+            const suffix = el.dataset.suffix || '';
+            let start = 0;
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Cubic ease-out
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = start + (target - start) * eased;
+                if (isFloat) {
+                    el.textContent = current.toFixed(1) + suffix;
+                } else {
+                    el.textContent = Math.round(current) + suffix;
+                }
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        function initStatsObserver() {
+            const statsSection = document.getElementById('landing-social-proof');
+            if (!statsSection) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statsAnimated) {
+                        statsAnimated = true;
+                        observer.unobserve(entry.target);
+                        // Trigger counter animation after data loads
+                        triggerCounterAnimations();
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer.observe(statsSection);
+        }
+
+        function triggerCounterAnimations() {
+            const els = {
+                runners: document.getElementById('stat-total-runners'),
+                quedadas: document.getElementById('stat-total-quedadas'),
+                ciudades: document.getElementById('stat-total-ciudades'),
+                proximas: document.getElementById('stat-proximas-quedadas')
+            };
+            Object.values(els).forEach(el => {
+                if (!el) return;
+                const text = el.textContent.trim();
+                let num = 0;
+                let suffix = '';
+                if (text.includes('K+')) {
+                    num = parseFloat(text);
+                    suffix = 'K+';
+                    el.dataset.suffix = suffix;
+                    el.textContent = '0K+';
+                    animateCounter(el, num, 2000);
+                } else if (text.includes('+')) {
+                    num = parseInt(text);
+                    suffix = '+';
+                    el.dataset.suffix = suffix;
+                    el.textContent = '0+';
+                    animateCounter(el, num, 2000);
+                } else {
+                    num = parseInt(text) || 0;
+                    el.textContent = '0';
+                    animateCounter(el, num, 2000);
+                }
+            });
+        }
+
+        // --- Typewriter Effect ---
+        function initTypewriter() {
+            const el = document.getElementById('landing-headline-2');
+            const cursor = document.getElementById('hero-cursor');
+            if (!el || !cursor) return;
+            const text = el.textContent;
+            el.textContent = '';
+            cursor.style.display = 'inline-block';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 120);
+                } else {
+                    setTimeout(() => { cursor.style.display = 'none'; }, 2000);
+                }
+            }
+            setTimeout(type, 800);
+        }
+
+        // --- Live Activity Feed ---
+        async function loadLandingFeed() {
+            try {
+                const sb = await getSupabaseClientOrToast(8000, false);
+                if (!sb) { renderFallbackFeed(); return; }
+
+                const { data: quedadas } = await window.supabaseClient
+                    .from('quedadas')
+                    .select('titulo, ciudad, created_at, organizador_nombre, fecha')
+                    .order('created_at', { ascending: false })
+                    .limit(8);
+
+                const feedEl = document.getElementById('landing-feed');
+                if (!feedEl) return;
+
+                if (!quedadas || quedadas.length === 0) { renderFallbackFeed(); return; }
+
+                const t = I18N[currentLang] || I18N.es;
+                let cards = quedadas.map(q => {
+                    const ago = timeAgo(q.created_at);
+                    const name = q.organizador_nombre || (currentLang === 'en' ? 'A runner' : 'Un runner');
+                    const verb = currentLang === 'en' ? 'created' : 'creó';
+                    return `<div class="feed-card">
+                        <div class="feed-pulse"></div>
+                        <div>
+                            <p class="text-white text-sm font-medium">${escapeHtml(name)} ${verb} <span class="text-orange-400">${escapeHtml(q.titulo)}</span></p>
+                            <p class="text-gray-500 text-xs">${escapeHtml(q.ciudad || '')} · ${ago}</p>
+                        </div>
+                    </div>`;
+                }).join('');
+                // Duplicate for infinite scroll
+                feedEl.innerHTML = cards + cards;
+            } catch (e) {
+                console.warn('loadLandingFeed:', e);
+                renderFallbackFeed();
+            }
+        }
+
+        function renderFallbackFeed() {
+            const feedEl = document.getElementById('landing-feed');
+            if (!feedEl) return;
+            const items = currentLang === 'en' ? [
+                { name: 'Maria', action: 'created', title: 'Retiro 5K Run', city: 'Madrid', ago: '2h ago' },
+                { name: 'Juan', action: 'joined', title: 'Trail Montjuïc', city: 'Barcelona', ago: '3h ago' },
+                { name: 'Carlos', action: 'created', title: 'Hyde Park Morning', city: 'London', ago: '5h ago' },
+                { name: 'Ana', action: 'joined', title: 'Chapultepec Run', city: 'CDMX', ago: '6h ago' },
+                { name: 'Laura', action: 'created', title: 'Palermo 10K', city: 'Buenos Aires', ago: '8h ago' },
+                { name: 'Diego', action: 'joined', title: 'Central Park Run', city: 'New York', ago: '10h ago' },
+            ] : [
+                { name: 'María', action: 'creó', title: 'Ruta Retiro 5K', city: 'Madrid', ago: 'hace 2h' },
+                { name: 'Juan', action: 'se unió a', title: 'Trail Montjuïc', city: 'Barcelona', ago: 'hace 3h' },
+                { name: 'Carlos', action: 'creó', title: 'Hyde Park Morning', city: 'London', ago: 'hace 5h' },
+                { name: 'Ana', action: 'se unió a', title: 'Chapultepec Run', city: 'CDMX', ago: 'hace 6h' },
+                { name: 'Laura', action: 'creó', title: 'Palermo 10K', city: 'Buenos Aires', ago: 'hace 8h' },
+                { name: 'Diego', action: 'se unió a', title: 'Central Park Run', city: 'New York', ago: 'hace 10h' },
+            ];
+            let cards = items.map(i => `<div class="feed-card">
+                <div class="feed-pulse"></div>
+                <div>
+                    <p class="text-white text-sm font-medium">${i.name} ${i.action} <span class="text-orange-400">${i.title}</span></p>
+                    <p class="text-gray-500 text-xs">${i.city} · ${i.ago}</p>
+                </div>
+            </div>`).join('');
+            feedEl.innerHTML = cards + cards;
+        }
+
+        function timeAgo(dateStr) {
+            const now = new Date();
+            const date = new Date(dateStr);
+            const diff = Math.floor((now - date) / 1000);
+            if (diff < 60) return currentLang === 'en' ? 'just now' : 'ahora';
+            if (diff < 3600) { const m = Math.floor(diff / 60); return currentLang === 'en' ? `${m}m ago` : `hace ${m}m`; }
+            if (diff < 86400) { const h = Math.floor(diff / 3600); return currentLang === 'en' ? `${h}h ago` : `hace ${h}h`; }
+            const d = Math.floor(diff / 86400);
+            return currentLang === 'en' ? `${d}d ago` : `hace ${d}d`;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        // --- Landing Map Preview ---
+        let landingMap = null;
+        async function initLandingMap() {
+            const container = document.getElementById('landing-map-preview');
+            if (!container || landingMap) return;
+            try {
+                landingMap = L.map(container, {
+                    center: [40.4168, -3.7038],
+                    zoom: 3,
+                    zoomControl: false,
+                    attributionControl: false,
+                    dragging: false,
+                    scrollWheelZoom: false,
+                    doubleClickZoom: false,
+                    touchZoom: false
+                });
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                    maxZoom: 18
+                }).addTo(landingMap);
+
+                // Load recent quedadas markers
+                const sb = await getSupabaseClientOrToast(5000, false);
+                if (sb) {
+                    const { data } = await window.supabaseClient
+                        .from('quedadas')
+                        .select('lat, lng, titulo, ciudad')
+                        .not('lat', 'is', null)
+                        .not('lng', 'is', null)
+                        .order('created_at', { ascending: false })
+                        .limit(30);
+                    if (data && data.length) {
+                        const orangeIcon = L.divIcon({
+                            html: '<div style="width:10px;height:10px;background:#f97316;border-radius:50%;box-shadow:0 0 8px rgba(249,115,22,0.6);"></div>',
+                            className: '',
+                            iconSize: [10, 10],
+                            iconAnchor: [5, 5]
+                        });
+                        data.forEach(q => {
+                            if (q.lat && q.lng) {
+                                L.marker([q.lat, q.lng], { icon: orangeIcon }).addTo(landingMap);
+                            }
+                        });
+                        // Fit bounds
+                        const bounds = data.filter(q => q.lat && q.lng).map(q => [q.lat, q.lng]);
+                        if (bounds.length > 1) {
+                            landingMap.fitBounds(bounds, { padding: [30, 30], maxZoom: 5 });
+                        }
+                    }
+                }
+            } catch (e) {
+                console.warn('initLandingMap:', e);
+            }
+        }
+
+        // --- Testimonial Carousel ---
+        let carouselIndex = 0;
+        let carouselInterval = null;
+        function initTestimonialCarousel() {
+            const carousel = document.getElementById('testimonial-carousel');
+            const dotsContainer = document.getElementById('carousel-dots');
+            const wrapper = carousel ? carousel.parentElement : null;
+            if (!carousel || !dotsContainer || !wrapper) return;
+
+            const slides = carousel.querySelectorAll('.testimonial-slide');
+            const totalSlides = slides.length;
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+            const visibleSlides = isMobile ? 1 : (isTablet ? 2 : 3);
+            const gap = 24;
+            const wrapperWidth = wrapper.offsetWidth;
+            const slideW = (wrapperWidth - gap * (visibleSlides - 1)) / visibleSlides;
+
+            // Set slide widths explicitly
+            slides.forEach(s => { s.style.minWidth = slideW + 'px'; s.style.flex = '0 0 ' + slideW + 'px'; });
+
+            const maxIndex = Math.max(0, totalSlides - visibleSlides);
+
+            // Create dots
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i <= maxIndex; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            function goToSlide(index) {
+                carouselIndex = Math.min(index, maxIndex);
+                const step = slideW + gap;
+                carousel.style.transform = `translateX(-${carouselIndex * step}px)`;
+                dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === carouselIndex);
+                });
+            }
+
+            function nextSlide() {
+                goToSlide(carouselIndex >= maxIndex ? 0 : carouselIndex + 1);
+            }
+
+            // Auto-advance
+            carouselInterval = setInterval(nextSlide, 5000);
+
+            // Pause on hover
+            carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+            carousel.addEventListener('mouseleave', () => { carouselInterval = setInterval(nextSlide, 5000); });
+
+            // Touch swipe support
+            let touchStartX = 0;
+            carousel.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; clearInterval(carouselInterval); }, { passive: true });
+            carousel.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) nextSlide();
+                    else goToSlide(Math.max(0, carouselIndex - 1));
+                }
+                carouselInterval = setInterval(nextSlide, 5000);
+            }, { passive: true });
+        }
+
+        // --- Quedadas Preview (no login required) ---
+        let quedadaPreviewMap = null;
+        async function loadQuedadasPreview() {
+            const grid = document.getElementById('quedadas-preview-grid');
+            if (!grid) return;
+            try {
+                const sb = await getSupabaseClientOrToast(8000, false);
+                if (!sb) { renderFallbackQuedadas(); return; }
+
+                const now = new Date().toISOString();
+                const { data } = await window.supabaseClient
+                    .from('quedadas')
+                    .select('id, titulo, ciudad, fecha, hora, nivel, lat, lng, organizador_nombre, punto_encuentro')
+                    .gte('fecha', now.split('T')[0])
+                    .order('fecha', { ascending: true })
+                    .limit(6);
+
+                if (!data || data.length === 0) { renderFallbackQuedadas(); return; }
+                renderQuedadasCards(data, grid);
+            } catch (e) {
+                console.warn('loadQuedadasPreview:', e);
+                renderFallbackQuedadas();
+            }
+        }
+
+        function renderQuedadasCards(quedadas, grid) {
+            const lang = currentLang || 'es';
+            const months = lang === 'en'
+                ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                : lang === 'pt'
+                ? ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+                : ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+            const levelLabels = {
+                es: { principiante: 'Principiante', intermedio: 'Intermedio', avanzado: 'Avanzado', todos: 'Todos' },
+                en: { principiante: 'Beginner', intermedio: 'Intermediate', avanzado: 'Advanced', todos: 'All levels' },
+                pt: { principiante: 'Iniciante', intermedio: 'Intermediário', avanzado: 'Avançado', todos: 'Todos' }
+            };
+            const lvlMap = levelLabels[lang] || levelLabels.es;
+            window.__previewQuedadas = quedadas;
+
+            grid.innerHTML = quedadas.map((q, i) => {
+                const d = new Date(q.fecha + 'T00:00:00');
+                const day = d.getDate();
+                const month = months[d.getMonth()];
+                const lvlKey = (q.nivel || 'todos').toLowerCase();
+                const lvlClass = lvlKey === 'principiante' ? 'level-principiante' : lvlKey === 'intermedio' ? 'level-intermedio' : lvlKey === 'avanzado' ? 'level-avanzado' : 'level-todos';
+                const lvlText = lvlMap[lvlKey] || lvlMap.todos;
+                const hora = q.hora ? q.hora.substring(0, 5) : '';
+                return `<div class="quedada-preview-card reveal" style="transition-delay:${i * 0.1}s" data-qidx="${i}" onclick="openQuedadaPreview(window.__previewQuedadas[${i}])">
+                    <div class="flex items-start gap-4">
+                        <div class="quedada-date-badge">
+                            <div class="day">${day}</div>
+                            <div class="month">${month}</div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-white font-bold text-sm mb-1 truncate">${escapeHtml(q.titulo)}</h3>
+                            <div class="flex items-center gap-1 text-gray-400 text-xs mb-2">
+                                <svg class="w-3.5 h-3.5 text-orange-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                                <span class="truncate">${escapeHtml(q.ciudad || '')}</span>
+                                ${hora ? `<span class="text-gray-600 mx-1">·</span><span>${hora}</span>` : ''}
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="quedada-level-badge ${lvlClass}">${lvlText}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // Re-observe new reveal elements
+            if (window.__revealObserver) {
+                grid.querySelectorAll('.reveal').forEach(el => window.__revealObserver.observe(el));
+            }
+        }
+
+        function renderFallbackQuedadas() {
+            const grid = document.getElementById('quedadas-preview-grid');
+            if (!grid) return;
+            const lang = currentLang || 'es';
+            const fallback = lang === 'en' ? [
+                { titulo: 'Retiro Park 5K', ciudad: 'Madrid', fecha: '2026-02-15', hora: '09:00', nivel: 'todos', organizador_nombre: 'Carlos M.' },
+                { titulo: 'Beach Run Sunrise', ciudad: 'Barcelona', fecha: '2026-02-16', hora: '07:30', nivel: 'intermedio', organizador_nombre: 'Laura P.' },
+                { titulo: 'Hyde Park Loop', ciudad: 'London', fecha: '2026-02-17', hora: '08:00', nivel: 'principiante', organizador_nombre: 'James R.' },
+                { titulo: 'Central Park 10K', ciudad: 'New York', fecha: '2026-02-18', hora: '07:00', nivel: 'avanzado', organizador_nombre: 'Sarah K.' },
+                { titulo: 'Tiergarten Trail', ciudad: 'Berlin', fecha: '2026-02-19', hora: '18:00', nivel: 'intermedio', organizador_nombre: 'Hans M.' },
+                { titulo: 'Chapultepec Easy Run', ciudad: 'Mexico City', fecha: '2026-02-20', hora: '08:30', nivel: 'principiante', organizador_nombre: 'Ana G.' }
+            ] : lang === 'pt' ? [
+                { titulo: 'Corrida no Retiro 5K', ciudad: 'Madrid', fecha: '2026-02-15', hora: '09:00', nivel: 'todos', organizador_nombre: 'Carlos M.' },
+                { titulo: 'Corrida ao Nascer do Sol', ciudad: 'Barcelona', fecha: '2026-02-16', hora: '07:30', nivel: 'intermedio', organizador_nombre: 'Laura P.' },
+                { titulo: 'Volta ao Monsanto', ciudad: 'Lisboa', fecha: '2026-02-17', hora: '08:00', nivel: 'principiante', organizador_nombre: 'João R.' },
+                { titulo: 'Corrida Ribeirinha', ciudad: 'Porto', fecha: '2026-02-18', hora: '07:00', nivel: 'avanzado', organizador_nombre: 'Maria K.' },
+                { titulo: 'Tiergarten Trail', ciudad: 'Berlim', fecha: '2026-02-19', hora: '18:00', nivel: 'intermedio', organizador_nombre: 'Hans M.' },
+                { titulo: 'Corrida na Praia', ciudad: 'Rio de Janeiro', fecha: '2026-02-20', hora: '06:30', nivel: 'principiante', organizador_nombre: 'Ana G.' }
+            ] : [
+                { titulo: 'Ruta Retiro 5K', ciudad: 'Madrid', fecha: '2026-02-15', hora: '09:00', nivel: 'todos', organizador_nombre: 'Carlos M.' },
+                { titulo: 'Carrera Playa Amanecer', ciudad: 'Barcelona', fecha: '2026-02-16', hora: '07:30', nivel: 'intermedio', organizador_nombre: 'Laura P.' },
+                { titulo: 'Hyde Park Loop', ciudad: 'London', fecha: '2026-02-17', hora: '08:00', nivel: 'principiante', organizador_nombre: 'James R.' },
+                { titulo: 'Central Park 10K', ciudad: 'New York', fecha: '2026-02-18', hora: '07:00', nivel: 'avanzado', organizador_nombre: 'Sarah K.' },
+                { titulo: 'Tiergarten Trail', ciudad: 'Berlin', fecha: '2026-02-19', hora: '18:00', nivel: 'intermedio', organizador_nombre: 'Hans M.' },
+                { titulo: 'Carrera Chapultepec', ciudad: 'Ciudad de México', fecha: '2026-02-20', hora: '08:30', nivel: 'principiante', organizador_nombre: 'Ana G.' }
+            ];
+            renderQuedadasCards(fallback, grid);
+        }
+
+        function openQuedadaPreview(q) {
+            const modal = document.getElementById('modal-quedada-preview');
+            if (!modal) return;
+            const lang = currentLang || 'es';
+
+            document.getElementById('qp-modal-title').textContent = q.titulo || '';
+
+            // Date formatting
+            if (q.fecha) {
+                const d = new Date(q.fecha + 'T00:00:00');
+                const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const locale = lang === 'en' ? 'en-US' : lang === 'pt' ? 'pt-PT' : 'es-ES';
+                let dateStr = d.toLocaleDateString(locale, opts);
+                if (q.hora) dateStr += ` · ${q.hora.substring(0, 5)}`;
+                document.getElementById('qp-modal-date').textContent = dateStr;
+            }
+
+            document.getElementById('qp-modal-location').textContent = [q.punto_encuentro, q.ciudad].filter(Boolean).join(', ') || (lang === 'en' ? 'Location to be confirmed' : lang === 'pt' ? 'Local a confirmar' : 'Ubicación por confirmar');
+
+            const orgLabel = lang === 'en' ? 'Organized by' : lang === 'pt' ? 'Organizado por' : 'Organizado por';
+            document.getElementById('qp-modal-organizer').textContent = `${orgLabel} ${q.organizador_nombre || (lang === 'en' ? 'A runner' : 'Un runner')}`;
+
+            const partLabel = lang === 'en' ? 'Sign up to see participants' : lang === 'pt' ? 'Regista-te para ver participantes' : 'Regístrate para ver participantes';
+            document.getElementById('qp-modal-participants').textContent = partLabel;
+
+            // Map
+            const mapContainer = document.getElementById('qp-modal-map');
+            if (q.lat && q.lng && mapContainer) {
+                mapContainer.style.display = '';
+                setTimeout(() => {
+                    if (quedadaPreviewMap) { quedadaPreviewMap.remove(); quedadaPreviewMap = null; }
+                    quedadaPreviewMap = L.map(mapContainer, {
+                        center: [q.lat, q.lng],
+                        zoom: 14,
+                        zoomControl: false,
+                        attributionControl: false,
+                        dragging: false,
+                        scrollWheelZoom: false,
+                        touchZoom: false
+                    });
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 18 }).addTo(quedadaPreviewMap);
+                    const orangeIcon = L.divIcon({
+                        html: '<div style="width:14px;height:14px;background:#f97316;border-radius:50%;box-shadow:0 0 12px rgba(249,115,22,0.7);border:2px solid white;"></div>',
+                        className: '', iconSize: [14, 14], iconAnchor: [7, 7]
+                    });
+                    L.marker([q.lat, q.lng], { icon: orangeIcon }).addTo(quedadaPreviewMap);
+                    quedadaPreviewMap.invalidateSize();
+                }, 100);
+            } else if (mapContainer) {
+                mapContainer.style.display = 'none';
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        // --- Init all landing enhancements ---
+        function initLandingEnhancements() {
+            initScrollReveal();
+            initStatsObserver();
+            initTypewriter();
+            loadLandingFeed();
+            initLandingMap();
+            loadQuedadasPreview();
+            setTimeout(initTestimonialCarousel, 500);
+        }
+
         // ===================== SEEDING: Verificar si usuario es nuevo =====================
+        // TEMP: Mostrar seed a TODOS los usuarios hasta que haya masa critica de quedadas reales.
+        // Cuando haya 15+ quedadas reales, restaurar el filtro de 7 dias.
         function isNewUser() {
             // Usuario no logueado o sin fecha de creación = mostrar seed
             if (!currentUser || !currentUser.created_at) return true;
             // Usuarios seed nunca ven contenido seed
             if (currentUser.es_seed) return false;
-            // Usuario creado hace menos de 7 días = es nuevo
-            const createdAt = new Date(currentUser.created_at);
-            const now = new Date();
-            const diffDays = (now - createdAt) / (1000 * 60 * 60 * 24);
-            return diffDays < 7;
+            // TEMP: Todos los usuarios ven seed hasta masa critica
+            return true;
+            // --- Original filter (restaurar cuando haya 15+ quedadas reales) ---
+            // const createdAt = new Date(currentUser.created_at);
+            // const now = new Date();
+            // const diffDays = (now - createdAt) / (1000 * 60 * 60 * 24);
+            // return diffDays < 7;
         }
 
         // ===================== SUPABASE: CARGA DE QUEDADAS =====================
@@ -12841,7 +14279,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const ok = window.confirm(currentLang==='en'?'Log out?':(currentLang==='pt'?'Terminar sessão?':'¿Cerrar sesión?'));
                 if(ok) logout();
               });
-            }catch(_){ } applyLanguageUI(); renderCityChips(); loadQuedadas(); loadLandingStats();
+            }catch(_){ } updateMetaTags(currentLang); applyLanguageUI(); renderCityChips(); loadQuedadas(); loadLandingStats(); initLandingEnhancements();
             // App mundial: detectar ubicación del usuario automáticamente
             if('geolocation' in navigator){
                 navigator.geolocation.getCurrentPosition((pos)=>{
@@ -13757,9 +15195,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         // Sincronizar variable local usada por la app
         try{ currentUser = window.currentUser; }catch(_){}
         try{ updateUserUI(); }catch(_){}
-        try{ checkPremiumStatus(); }catch(_){}
+        try{ await checkPremiumStatus(); }catch(_){}
         try{ checkPremiumUrlParams(); }catch(_){}
-        // Mostrar popup premium al cargar sesión existente
+        // Mostrar popup premium al cargar sesión existente (después de verificar estado premium)
         try{ maybeShowPremiumPromo(); }catch(_){}
         return window.currentUser;
       }
@@ -14412,6 +15850,26 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
       </div>
     </div>
 
+    <!-- COOKIE CONSENT BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[9999] transition-transform duration-500 translate-y-full">
+      <div class="max-w-4xl mx-auto p-4 m-4 bg-slate-900/95 backdrop-blur-lg border border-slate-700 rounded-2xl shadow-2xl">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <svg class="w-5 h-5 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              <span class="text-white font-bold text-sm">Cookies</span>
+            </div>
+            <p id="cookie-banner-text" class="text-gray-400 text-xs leading-relaxed">Usamos cookies de analítica (Google Analytics) para mejorar tu experiencia. Las cookies esenciales siempre están activas.</p>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto">
+            <button id="cookie-banner-more" onclick="openModal('modal-cookies'); closeCookieBanner();" class="text-xs text-orange-500 hover:text-orange-400 underline whitespace-nowrap">Más info</button>
+            <button id="cookie-banner-reject" onclick="handleCookieConsent('rejected')" class="px-4 py-2 text-xs font-semibold text-gray-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl transition whitespace-nowrap">Solo esenciales</button>
+            <button id="cookie-banner-accept" onclick="handleCookieConsent('accepted')" class="px-4 py-2 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-xl transition whitespace-nowrap">Aceptar todas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- MODAL COOKIES -->
     <div id="modal-cookies" class="modal">
       <div class="modal-content bg-slate-900 p-8 rounded-3xl max-w-3xl w-full border border-slate-800">
@@ -14422,10 +15880,16 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           </button>
         </div>
         <div class="text-sm text-gray-300 space-y-4 max-h-[70vh] overflow-y-auto custom-scroll">
-          <p>CorrerJuntos utiliza almacenamiento local del navegador y cookies técnicas para mantener la sesión y preferencias (por ejemplo, idioma).</p>
-          <p>No usamos cookies publicitarias de terceros en este MVP. Si incorporamos analítica, lo indicaremos aquí.</p>
-          <p>Puedes borrar cookies/almacenamiento desde la configuración del navegador.</p>
-          <p class="text-xs text-gray-500">Última actualización: 19/01/2026</p>
+          <p><b>Cookies esenciales (siempre activas)</b></p>
+          <p>CorrerJuntos utiliza almacenamiento local del navegador (localStorage) y cookies técnicas para mantener la sesión, preferencias de idioma y el estado de tu cuenta. Estas son necesarias para el funcionamiento básico de la web.</p>
+          <p class="mt-3"><b>Cookies de analítica (opcionales)</b></p>
+          <p>Utilizamos Google Analytics 4 (GA4) para entender cómo se usa la web y mejorar la experiencia. Estas cookies solo se activan si aceptas en el banner de cookies. Puedes cambiar tu preferencia en cualquier momento.</p>
+          <p class="mt-3"><b>Cookies publicitarias</b></p>
+          <p>No utilizamos cookies publicitarias ni de seguimiento de terceros.</p>
+          <p class="mt-3"><b>Gestión de cookies</b></p>
+          <p>Puedes cambiar tu decisión sobre cookies de analítica en cualquier momento: <button onclick="localStorage.removeItem('cj_cookie_consent'); closeModal('modal-cookies'); showCookieBanner();" class="text-orange-500 hover:underline font-semibold">Cambiar preferencias de cookies</button></p>
+          <p>También puedes borrar cookies y almacenamiento desde la configuración de tu navegador.</p>
+          <p class="text-xs text-gray-500 mt-3">Última actualización: 11/02/2026</p>
         </div>
       </div>
     </div>

@@ -57,6 +57,29 @@
     }
     </script>
 
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com",
+      "logo": "https://www.correrjuntos.com/icons/icon-512.png",
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ],
+      "description": "La comunidad de runners en español más grande del mundo. Conectamos corredores de todos los niveles.",
+      "foundingDate": "2025",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": ["Spanish", "English", "Portuguese"]
+      }
+    }
+    </script>
+
     <!-- FAQ Schema for rich snippets -->
     <script type="application/ld+json">
     {
@@ -122,6 +145,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -1926,6 +1950,129 @@
             color: #b45309 !important;
         }
 
+        /* Light mode: Social CTAs section */
+        body.light-mode .bg-gradient-to-br.from-slate-800\/50 { background: linear-gradient(145deg, #fffcf9, #fef7ed) !important; }
+        body.light-mode .border-slate-700\/30 { border-color: #efe6db !important; }
+        body.light-mode .from-pink-500\/10, body.light-mode .from-cyan-500\/10, body.light-mode .from-blue-500\/10 { background: #fffcf9 !important; }
+
+        /* Light mode: Share banner */
+        body.light-mode .share-banner {
+            background: linear-gradient(135deg, #fffcf9, #fef7ed) !important;
+            border: 1px solid #efe6db !important;
+            box-shadow: 0 20px 40px rgba(61,50,41,0.15) !important;
+        }
+        body.light-mode .share-banner .text-gray-300 { color: #5c4d3d !important; }
+        body.light-mode .share-banner-close { background: #efe6db !important; color: #5c4d3d !important; }
+        body.light-mode .share-banner-close:hover { background: #e8ddd0 !important; }
+
+        /* Light mode: Referral section */
+        body.light-mode #referral-section { background: rgba(249,115,22,0.05) !important; border-color: rgba(249,115,22,0.2) !important; }
+        body.light-mode #referral-link-input { background: #fffcf9 !important; border-color: #e8ddd0 !important; color: #c2410c !important; }
+        body.light-mode #referral-section .bg-green-600\/20 { background: rgba(22,163,74,0.1) !important; border-color: rgba(22,163,74,0.25) !important; }
+        body.light-mode #referral-section .bg-blue-600\/20 { background: rgba(37,99,235,0.1) !important; border-color: rgba(37,99,235,0.25) !important; }
+        body.light-mode #referral-section .bg-slate-700 { background: #e8ddd0 !important; }
+        /* Light mode: Referral banner */
+        body.light-mode #referral-banner > div { background: linear-gradient(135deg, rgba(249,115,22,0.08), rgba(251,191,36,0.04)) !important; border-color: rgba(249,115,22,0.25) !important; }
+        body.light-mode #referral-banner h3 { color: #1f2937 !important; }
+        body.light-mode #referral-banner p { color: #6b7280 !important; }
+
+        /* Light mode: Stats card preview - override inline dark styles */
+        body.light-mode #stats-card-preview {
+            background: linear-gradient(135deg, #fffcf9 0%, #fef7ed 50%, #fffcf9 100%) !important;
+            border: 1px solid #efe6db !important;
+        }
+        body.light-mode #stats-card-preview [style*="color:#fff"] { color: #3d3229 !important; }
+        body.light-mode #stats-card-preview [style*="color:#94a3b8"] { color: #8b7355 !important; }
+        body.light-mode #stats-card-preview [style*="color:#64748b"] { color: #8b7a6b !important; }
+        body.light-mode #stats-card-preview [style*="color:#475569"] { color: #a89580 !important; }
+        body.light-mode #stats-card-preview [style*="background:rgba(255,255,255,0.05)"],
+        body.light-mode #stats-card-preview [style*="background:rgba(255,255,255,0.03)"] {
+            background: rgba(249,115,22,0.06) !important; border-color: rgba(249,115,22,0.15) !important;
+        }
+
+        /* Light mode: Apps coming soon banner in hero */
+        body.light-mode .from-slate-800\/80.via-slate-800\/60 {
+            background: linear-gradient(to right, rgba(255,252,249,0.9), rgba(254,249,243,0.7), rgba(255,252,249,0.9)) !important;
+            border-color: #efe6db !important;
+        }
+        body.light-mode #apps-coming-text { color: #8b7355 !important; }
+
+        /* Light mode: QR modal */
+        body.light-mode #modal-qr .text-gray-300 { color: #5c4d3d !important; }
+        body.light-mode #modal-qr .text-gray-500 { color: #8b7a6b !important; }
+
+        /* Light mode: Newsletter section */
+        body.light-mode .from-slate-800\/80.to-slate-900\/80 {
+            background: linear-gradient(145deg, rgba(255,252,249,0.9), rgba(254,249,243,0.85)) !important;
+            border-color: #efe6db !important;
+        }
+
+        /* Light mode: Footer */
+        body.light-mode footer { border-color: #efe6db !important; }
+        body.light-mode footer .text-gray-600 { color: #8b7a6b !important; }
+        body.light-mode footer .text-gray-500 { color: #8b7a6b !important; }
+
+        /* Light mode: Social card links in social section */
+        body.light-mode .bg-slate-800\/50.border-slate-700\/30 {
+            background: #fffcf9 !important;
+            border-color: #efe6db !important;
+        }
+
+        /* ===== Light mode: LANDING PAGE SECTIONS ===== */
+
+        /* Light mode: Activity feed ticker */
+        body.light-mode .feed-card {
+            background: linear-gradient(135deg, rgba(255,252,249,0.9), rgba(254,247,237,0.9)) !important;
+            border-color: #efe6db !important;
+            box-shadow: 0 2px 8px rgba(61,50,41,0.08) !important;
+        }
+        body.light-mode .feed-card:hover { border-color: rgba(249,115,22,0.4) !important; }
+        body.light-mode .feed-card .text-white { color: #3d3229 !important; }
+        body.light-mode .feed-card .text-gray-500 { color: #8b7a6b !important; }
+        body.light-mode .feed-card .text-orange-400 { color: #c2410c !important; }
+
+        /* Light mode: World map section */
+        body.light-mode #landing-map-preview {
+            border-color: #d4c4b0 !important;
+            box-shadow: 0 4px 20px rgba(61,50,41,0.1) !important;
+        }
+        body.light-mode #map-preview-title { color: #3d3229 !important; }
+        body.light-mode #map-preview-subtitle { color: #8b7a6b !important; }
+
+        /* Light mode: Quedadas preview cards */
+        body.light-mode .quedada-preview-card {
+            background: linear-gradient(135deg, rgba(255,252,249,0.95), rgba(254,247,237,0.95)) !important;
+            border-color: #efe6db !important;
+            box-shadow: 0 4px 16px rgba(61,50,41,0.08) !important;
+        }
+        body.light-mode .quedada-preview-card:hover {
+            border-color: rgba(249,115,22,0.4) !important;
+            box-shadow: 0 20px 40px rgba(249,115,22,0.12) !important;
+        }
+        body.light-mode .quedada-preview-card .text-white { color: #3d3229 !important; }
+        body.light-mode .quedada-preview-card .text-gray-400 { color: #8b7a6b !important; }
+        body.light-mode .quedada-preview-card .text-orange-400 { color: #c2410c !important; }
+        body.light-mode .quedada-preview-card .text-gray-500 { color: #8b7a6b !important; }
+        body.light-mode .level-principiante { background: rgba(34,197,94,0.12) !important; color: #16a34a !important; }
+        body.light-mode .level-intermedio { background: rgba(59,130,246,0.12) !important; color: #2563eb !important; }
+        body.light-mode .level-avanzado { background: rgba(249,115,22,0.12) !important; color: #c2410c !important; }
+        body.light-mode .level-todos { background: rgba(168,85,247,0.12) !important; color: #7c3aed !important; }
+
+        /* Light mode: Feed title text */
+        body.light-mode #feed-title { color: #8b7a6b !important; }
+
+        /* Light mode: Strava badge in landing */
+        body.light-mode #strava-badge-title { color: #3d3229 !important; }
+        body.light-mode #strava-badge-desc { color: #8b7a6b !important; }
+
+        /* Light mode: Strava promo banner in-app */
+        body.light-mode .ad-banner {
+            background: linear-gradient(135deg, rgba(252,82,0,0.06), rgba(249,115,22,0.08)) !important;
+            border-color: rgba(252,82,0,0.25) !important;
+        }
+        body.light-mode .ad-banner p.text-white { color: #3d3229 !important; }
+        body.light-mode .ad-banner p.text-gray-400 { color: #8b7a6b !important; }
+
         /* ===== PREMIUM: Modal detalle mejorado ===== */
         .detail-info-card { transition: all 0.2s ease; }
         .detail-info-card:hover { transform: translateY(-2px); }
@@ -2134,6 +2281,43 @@
             .quedada-preview-card { padding: 14px; }
             .quedada-detail-map { height: 140px; }
         }
+
+        /* ===== FLOATING SHARE BANNER ===== */
+        .share-banner {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9000;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid rgba(249,115,22,0.3);
+            border-radius: 20px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 90vw;
+        }
+        .share-banner.visible { bottom: 20px; }
+        .share-banner-close {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #334155;
+            border: none;
+            color: #94a3b8;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .share-banner-close:hover { background: #475569; color: #fff; }
 
         /* ===== TESTIMONIAL CAROUSEL ===== */
         .testimonial-carousel-wrapper {
@@ -2422,6 +2606,33 @@
                         </div>
                         <p class="text-center text-gray-400 text-xs mt-3" id="apps-coming-text">Las apps nativas llegan pronto. Mientras tanto, usa la web completa desde cualquier dispositivo.</p>
                     </div>
+
+                    <!-- Strava Compatible Badge + Club -->
+                    <div class="mt-4 flex flex-col items-center gap-3">
+                        <a href="https://www.strava.com/clubs/1969044" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-[#FC5200]/10 to-orange-500/10 border border-[#FC5200]/20 hover:border-[#FC5200]/40 hover:bg-[#FC5200]/15 transition-all cursor-pointer group">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="#FC5200">
+                                <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/>
+                            </svg>
+                            <div>
+                                <p class="text-white font-bold text-xs group-hover:text-[#FC5200] transition" id="strava-badge-title">Compatible con Strava</p>
+                                <p class="text-gray-400 text-[10px]" id="strava-badge-desc">Únete a nuestro Club en Strava →</p>
+                            </div>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">PRO</span>
+                        </a>
+
+                        <!-- Product Hunt Badge -->
+                        <a href="https://www.producthunt.com/posts/correrjuntos?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-correrjuntos" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-[#da552f]/10 to-[#ea532a]/10 border border-[#da552f]/20 hover:border-[#da552f]/40 hover:bg-[#da552f]/15 transition-all cursor-pointer group">
+                            <svg class="w-6 h-6" viewBox="0 0 40 40" fill="none">
+                                <path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="#da552f"/>
+                                <path d="M22.667 20H17.333V13.333H22.667C24.505 13.333 26 14.828 26 16.667C26 18.505 24.505 20 22.667 20ZM22.667 10H14V30H17.333V23.333H22.667C26.347 23.333 29.333 20.347 29.333 16.667C29.333 12.987 26.347 10 22.667 10Z" fill="white"/>
+                            </svg>
+                            <div>
+                                <p class="text-white font-bold text-xs group-hover:text-[#da552f] transition">Disponible en Product Hunt</p>
+                                <p class="text-gray-400 text-[10px]">¡Apóyanos con tu voto! →</p>
+                            </div>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#da552f]/20 text-[#da552f] border border-[#da552f]/30">NEW</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -2667,6 +2878,7 @@
                         <div class="w-8 h-8 bg-orange-500 rounded-full border-2 border-slate-900 flex items-center justify-center text-xs font-bold">+99</div>
                     </div>
                 </div>
+
             </div>
 
             <!-- HOW IT WORKS - 3 PASOS -->
@@ -2950,6 +3162,49 @@
                 </div>
             </div>
 
+            <!-- SOCIAL CTAs - SIGUENOS -->
+            <div class="max-w-4xl mx-auto mb-20 px-4 reveal">
+                <div class="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/30 rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl md:text-3xl font-black text-white mb-3" id="social-follow-title">Unete a la comunidad</h2>
+                        <p class="text-gray-400 max-w-xl mx-auto" id="social-follow-subtitle">Tips de running, rutas, retos y comunidad. Siguenos en redes y forma parte del movimiento runner.</p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 md:gap-6 max-w-md mx-auto mb-8">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/correrjuntosapp/" target="_blank" rel="noopener" class="group flex flex-col items-center gap-2 p-4 rounded-2xl bg-slate-800/50 border border-slate-700/30 hover:border-pink-500/40 hover:bg-pink-500/5 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </div>
+                            <span class="text-white font-semibold text-sm">Instagram</span>
+                            <span class="text-gray-500 text-xs">@correrjuntosapp</span>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" class="group flex flex-col items-center gap-2 p-4 rounded-2xl bg-slate-800/50 border border-slate-700/30 hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-pink-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+                            </div>
+                            <span class="text-white font-semibold text-sm">TikTok</span>
+                            <span class="text-gray-500 text-xs">@correrjuntosapp</span>
+                        </a>
+                        <!-- X / Twitter -->
+                        <a href="https://x.com/CorrerJuntos" target="_blank" rel="noopener" class="group flex flex-col items-center gap-2 p-4 rounded-2xl bg-slate-800/50 border border-slate-700/30 hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </div>
+                            <span class="text-white font-semibold text-sm">X</span>
+                            <span class="text-gray-500 text-xs">@CorrerJuntos</span>
+                        </a>
+                    </div>
+                    <!-- Share CTA -->
+                    <div class="text-center">
+                        <button onclick="shareCorrerJuntos()" class="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 hover:scale-105">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                            <span id="social-share-btn">Comparte con tus amigos runners</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- PLANES Y PRECIOS -->
             <div class="max-w-5xl mx-auto mb-20 px-4 reveal">
                 <div class="text-center mb-10">
@@ -3035,6 +3290,10 @@
                             <li class="flex items-center gap-3 text-gray-300 text-sm">
                                 <svg class="w-5 h-5 text-orange-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                                 <span id="plan-premium-f6">Soporte prioritario</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-300 text-sm">
+                                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#FC5200"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+                                <span id="plan-premium-f7">Integración con Strava</span>
                             </li>
                         </ul>
                         <button onclick="openModal('modal-register')" class="block w-full text-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-4 rounded-xl font-bold text-sm transition shadow-lg shadow-orange-500/30">
@@ -3185,6 +3444,16 @@
                 <div class="running-dot"></div>
             </div>
         </main>
+
+        <!-- Floating Share Banner (shows once per session on landing) -->
+        <div id="share-banner" class="share-banner">
+            <button class="share-banner-close" onclick="dismissShareBanner()">&times;</button>
+            <span class="text-sm text-gray-300" id="share-banner-text">Comparte CorrerJuntos con tus amigos runners</span>
+            <button onclick="shareCorrerJuntos(); dismissShareBanner();" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition">
+                <span id="share-banner-btn">Compartir</span>
+            </button>
+        </div>
+
         <!-- Footer -->
         <footer class="border-t border-slate-800 mt-20">
             <div class="max-w-7xl mx-auto px-6 md:px-8 py-12">
@@ -3406,6 +3675,30 @@
                                 ⭐ <span id="premium-unlock-btn">Desbloquear con Premium</span>
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎁 BANNER DE REFERIDOS - visible para usuarios logueados -->
+            <div id="referral-banner" class="hidden mb-6">
+                <div class="relative overflow-hidden rounded-2xl border border-orange-500/30 bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-orange-500/10 p-4 md:p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl flex-shrink-0">🎁</div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-extrabold text-white text-base md:text-lg" id="banner-referral-title">¡Invita amigos y gana recompensas!</h3>
+                            <p class="text-xs md:text-sm text-gray-400 mt-1" id="banner-referral-desc">Comparte tu enlace. 3 amigos = badge, 5 = Premium gratis, 10 = Ambassador</p>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-shrink-0">
+                            <button onclick="openProfileAndScrollToReferral()" class="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold transition whitespace-nowrap" id="banner-referral-btn">🔗 Mi enlace</button>
+                            <button onclick="dismissReferralBanner()" class="text-gray-500 hover:text-gray-300 text-[10px] text-center transition">✕</button>
+                        </div>
+                    </div>
+                    <!-- Progress bar mini -->
+                    <div class="mt-3 flex items-center gap-2">
+                        <div class="flex-1 h-1.5 bg-slate-700/50 rounded-full overflow-hidden">
+                            <div id="banner-referral-progress" class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <span id="banner-referral-count" class="text-xs font-bold text-orange-400">0/10</span>
                     </div>
                 </div>
             </div>
@@ -4505,7 +4798,13 @@
                             </div>
                         </div>
 
-                        <div class="flex gap-2 mt-4">
+                        <!-- Club Strava Banner -->
+                        <a href="https://www.strava.com/clubs/1969044" target="_blank" rel="noopener" class="block mt-4 p-3 rounded-xl bg-[#FC5200]/10 border border-[#FC5200]/20 hover:border-[#FC5200]/40 hover:bg-[#FC5200]/15 transition-all text-center group">
+                            <p class="text-sm font-bold text-[#FC5200]">🏃 Únete al Club CorrerJuntos en Strava</p>
+                            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition">Corre con la comunidad → strava.com/clubs/correrjuntos</p>
+                        </a>
+
+                        <div class="flex gap-2 mt-3">
                             <button onclick="refreshStravaStats()" class="flex-1 py-2 px-4 rounded-xl text-sm font-semibold bg-slate-700 text-white hover:bg-slate-600 transition flex items-center justify-center gap-2">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                                 Actualizar
@@ -4603,9 +4902,14 @@
                     </div>
 
                     <!-- Botón ver ranking -->
-                    <button onclick="openRankingModal()" class="w-full py-2 rounded-xl font-bold text-sm border border-purple-500/30 text-purple-300 hover:bg-purple-500/10 transition flex items-center justify-center gap-2">
-                        <span>📊</span> <span id="btn-view-ranking">Ver Ranking Semanal</span>
-                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="openRankingModal()" class="flex-1 py-2 rounded-xl font-bold text-sm border border-purple-500/30 text-purple-300 hover:bg-purple-500/10 transition flex items-center justify-center gap-2">
+                            <span>📊</span> <span id="btn-view-ranking">Ver Ranking Semanal</span>
+                        </button>
+                        <button onclick="openStatsCard()" class="py-2 px-4 rounded-xl font-bold text-sm border border-orange-500/30 text-orange-300 hover:bg-orange-500/10 transition flex items-center justify-center gap-2" id="btn-share-stats">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- SECCIÓN MIS QUEDADAS (HISTORIAL) -->
@@ -4655,6 +4959,7 @@
                             <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-2">Quedadas ilimitadas</span></li>
                             <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-3">Badges exclusivos</span></li>
                             <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-4">Badge Premium en tu perfil</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#FC5200"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg> <span id="premium-feat-5">Integración con Strava</span></li>
                         </ul>
                         <button onclick="openPremiumCheckout()" class="w-full py-3 rounded-xl font-black text-base bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/25 transition flex items-center justify-center gap-2">
                             <span>⭐</span> <span id="premium-get-btn">Hazte Premium - 4,99€/mes</span>
@@ -4847,6 +5152,60 @@
                     </div>
                 </div>
                 
+
+                <!-- Invite Friends / Referral Section -->
+                <div id="referral-section" class="mt-2 p-5 rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-amber-500/5 hidden">
+                    <h3 class="font-extrabold text-orange-400 text-lg mb-1 flex items-center gap-2">
+                        🎁
+                        <span id="referral-title">Invita amigos</span>
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4" id="referral-subtitle">Comparte tu enlace y gana recompensas</p>
+
+                    <label class="text-xs text-gray-500 mb-1 block font-bold uppercase tracking-wider" id="referral-link-label">Tu enlace personal</label>
+                    <div class="flex gap-2 mb-3">
+                        <input type="text" id="referral-link-input" readonly class="input-dark flex-1 p-2.5 rounded-xl text-sm text-orange-300 bg-slate-800/80 border border-slate-700 cursor-text select-all" value="">
+                        <button onclick="copyReferralLink()" class="px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold transition whitespace-nowrap shadow-lg shadow-orange-500/20" id="referral-copy-btn">Copiar enlace</button>
+                    </div>
+
+                    <div class="flex gap-2 mb-5">
+                        <button onclick="shareReferralWhatsApp()" class="flex-1 flex items-center justify-center gap-2 p-3 rounded-xl bg-green-600/20 border border-green-500/30 text-green-400 text-sm font-bold hover:bg-green-600/30 transition">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.634-1.215A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.316 0-4.458-.666-6.278-1.818l-.45-.267-2.748.721.734-2.684-.293-.466A9.708 9.708 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z"/></svg>
+                            <span id="referral-wa-btn">WhatsApp</span>
+                        </button>
+                        <button onclick="shareReferralNative()" class="flex-1 flex items-center justify-center gap-2 p-3 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 text-sm font-bold hover:bg-blue-600/30 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                            <span>Compartir</span>
+                        </button>
+                    </div>
+
+                    <!-- Progress bar visual -->
+                    <div class="mb-4 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-bold text-white" id="referral-count-label">Amigos invitados</span>
+                            <span class="text-lg font-black text-orange-400"><span id="referral-count">0</span>/10</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-700/50 rounded-full overflow-hidden mb-3">
+                            <div id="referral-progress-bar" class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="text-center p-2 rounded-lg border transition-all" id="reward-3-card" style="border-color: rgba(100,116,139,0.3); background: rgba(51,65,85,0.3)">
+                                <div class="text-xl mb-1" id="reward-3-emoji">🤝</div>
+                                <div class="w-6 h-6 mx-auto rounded-full flex items-center justify-center text-xs font-black mb-1" id="reward-3-icon">3</div>
+                                <span class="text-[10px] text-gray-400 leading-tight block" id="reward-3-text">Community Builder</span>
+                            </div>
+                            <div class="text-center p-2 rounded-lg border transition-all" id="reward-5-card" style="border-color: rgba(100,116,139,0.3); background: rgba(51,65,85,0.3)">
+                                <div class="text-xl mb-1" id="reward-5-emoji">⭐</div>
+                                <div class="w-6 h-6 mx-auto rounded-full flex items-center justify-center text-xs font-black mb-1" id="reward-5-icon">5</div>
+                                <span class="text-[10px] text-gray-400 leading-tight block" id="reward-5-text">1 mes Premium</span>
+                            </div>
+                            <div class="text-center p-2 rounded-lg border transition-all" id="reward-10-card" style="border-color: rgba(100,116,139,0.3); background: rgba(51,65,85,0.3)">
+                                <div class="text-xl mb-1" id="reward-10-emoji">🏆</div>
+                                <div class="w-6 h-6 mx-auto rounded-full flex items-center justify-center text-xs font-black mb-1" id="reward-10-icon">10</div>
+                                <span class="text-[10px] text-gray-400 leading-tight block" id="reward-10-text">Ambassador</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="mt-2 p-4 rounded-2xl border border-red-500/20 bg-red-500/5">
                     <h3 id="danger-zone-title" class="font-extrabold text-red-300 mb-2">Zona de riesgo</h3>
@@ -5421,6 +5780,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 planPremiumF4: 'Badges exclusivos',
                 planPremiumF5: 'Sin anuncios',
                 planPremiumF6: 'Soporte prioritario',
+                planPremiumF7: 'Integración con Strava',
+                stravaBadgeTitle: 'Compatible con Strava',
+                stravaBadgeDesc: 'Únete a nuestro Club en Strava →',
                 planPremiumCta: 'PRUEBA 7 DÍAS GRATIS',
                 planPremiumSubcta: 'Sin tarjeta · Cancela cuando quieras',
                 planPremiumCancel: 'Sin compromiso',
@@ -5703,12 +6065,14 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 appAvailableOn: 'Disponible en:',
                 appDownloadOn: 'Descargar en',
                 appGetItOn: 'Disponible en',
+                appComingSoon: 'Próximamente',
                 // Premium section
                 premiumUnlockAll: 'Desbloquea todas las funciones:',
                 premiumAdvancedStats: 'Estadísticas avanzadas',
                 premiumUnlimitedRuns: 'Quedadas ilimitadas',
                 premiumExclusiveBadges: 'Badges exclusivos',
                 premiumBadgeProfile: 'Badge Premium en tu perfil',
+                premiumStravaIntegration: 'Integración con Strava',
                 premiumGetBtn: 'Hazte Premium - 4,99€/mes',
                 premiumCancelAnytime: 'Cancela cuando quieras. Sin compromiso.',
                 premiumYouAre: '¡Eres Premium!',
@@ -5758,7 +6122,28 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 previewCta: 'Regístrate para unirte',
                 previewModalCta: 'Regístrate para unirte',
                 appsComingBadge: 'Muy pronto',
-                appsComingText: 'Las apps nativas llegan pronto. Mientras tanto, usa la web completa desde cualquier dispositivo.'
+                appsComingText: 'Las apps nativas llegan pronto. Mientras tanto, usa la web completa desde cualquier dispositivo.',
+                socialFollowTitle: 'Unete a la comunidad',
+                socialFollowSubtitle: 'Tips de running, rutas, retos y comunidad. Siguenos en redes y forma parte del movimiento runner.',
+                socialShareBtn: 'Comparte con tus amigos runners',
+                shareBannerText: 'Comparte CorrerJuntos con tus amigos runners',
+                shareBannerBtn: 'Compartir',
+                shareGenericText: 'Encuentra runners cerca de ti y nunca vuelvas a correr solo. Unete gratis a @correrjuntosapp',
+                shareCopiedMsg: 'Enlace copiado al portapapeles',
+                inviteFriendsTitle: 'Invita amigos',
+                inviteFriendsSubtitle: 'Comparte tu enlace y gana recompensas',
+                yourReferralLink: 'Tu enlace personal',
+                copyLink: 'Copiar enlace',
+                linkCopied: 'Enlace copiado',
+                friendsInvited: 'Amigos invitados',
+                referralReward3: 'Badge Community Builder',
+                referralReward5: '1 mes Premium gratis',
+                referralReward10: 'Badge Ambassador',
+                shareViaWhatsApp: 'Compartir por WhatsApp',
+                referralInviteText: 'Unete a CorrerJuntos y corramos juntos! Usa mi enlace:',
+                bannerReferralTitle: '¡Invita amigos y gana recompensas!',
+                bannerReferralDesc: 'Comparte tu enlace. 3 amigos = badge, 5 = Premium gratis, 10 = Ambassador',
+                bannerReferralBtn: '🔗 Mi enlace'
 },
             en: {
                 all: 'All',
@@ -5843,6 +6228,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 planPremiumF4: 'Exclusive badges',
                 planPremiumF5: 'No ads',
                 planPremiumF6: 'Priority support',
+                planPremiumF7: 'Strava integration',
+                stravaBadgeTitle: 'Strava Compatible',
+                stravaBadgeDesc: 'Join our Club on Strava →',
                 planPremiumCta: 'TRY 7 DAYS FREE',
                 planPremiumSubcta: 'No card required · Cancel anytime',
                 planPremiumCancel: 'No commitment',
@@ -6115,12 +6503,14 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 appAvailableOn: 'Available on:',
                 appDownloadOn: 'Download on',
                 appGetItOn: 'Get it on',
+                appComingSoon: 'Coming soon',
                 // Premium section
                 premiumUnlockAll: 'Unlock all features:',
                 premiumAdvancedStats: 'Advanced statistics',
                 premiumUnlimitedRuns: 'Unlimited runs',
                 premiumExclusiveBadges: 'Exclusive badges',
                 premiumBadgeProfile: 'Premium badge on your profile',
+                premiumStravaIntegration: 'Strava integration',
                 premiumGetBtn: 'Get Premium - €4.99/month',
                 premiumCancelAnytime: 'Cancel anytime. No commitment.',
                 premiumYouAre: 'You are Premium!',
@@ -6170,7 +6560,28 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 previewCta: 'Sign up to join',
                 previewModalCta: 'Sign up to join',
                 appsComingBadge: 'Coming soon',
-                appsComingText: 'Native apps are coming soon. Meanwhile, use the full web experience from any device.'
+                appsComingText: 'Native apps are coming soon. Meanwhile, use the full web experience from any device.',
+                socialFollowTitle: 'Join the community',
+                socialFollowSubtitle: 'Running tips, routes, challenges and community. Follow us on social media and be part of the movement.',
+                socialShareBtn: 'Share with your runner friends',
+                shareBannerText: 'Share CorrerJuntos with your runner friends',
+                shareBannerBtn: 'Share',
+                shareGenericText: 'Find runners near you and never run alone again. Join @correrjuntosapp for free',
+                shareCopiedMsg: 'Link copied to clipboard',
+                inviteFriendsTitle: 'Invite friends',
+                inviteFriendsSubtitle: 'Share your link and earn rewards',
+                yourReferralLink: 'Your personal link',
+                copyLink: 'Copy link',
+                linkCopied: 'Link copied',
+                friendsInvited: 'Friends invited',
+                referralReward3: 'Community Builder badge',
+                referralReward5: '1 month Premium free',
+                referralReward10: 'Ambassador badge',
+                shareViaWhatsApp: 'Share via WhatsApp',
+                referralInviteText: 'Join CorrerJuntos and let\'s run together! Use my link:',
+                bannerReferralTitle: 'Invite friends and earn rewards!',
+                bannerReferralDesc: 'Share your link. 3 friends = badge, 5 = free Premium, 10 = Ambassador',
+                bannerReferralBtn: '🔗 My link'
 },
             pt: {
                 all: 'Todas',
@@ -6242,6 +6653,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 planPremiumF4: 'Badges exclusivos',
                 planPremiumF5: 'Sem anúncios',
                 planPremiumF6: 'Suporte prioritário',
+                planPremiumF7: 'Integração com Strava',
+                stravaBadgeTitle: 'Compatível com Strava',
+                stravaBadgeDesc: 'Junta-te ao nosso Clube no Strava →',
                 planPremiumCta: 'EXPERIMENTA 7 DIAS GRÁTIS',
                 planPremiumSubcta: 'Sem cartão · Cancela quando quiseres',
                 planPremiumCancel: 'Sem compromisso',
@@ -6356,7 +6770,28 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 previewCta: 'Regista-te para participar',
                 previewModalCta: 'Regista-te para participar',
                 appsComingBadge: 'Em breve',
-                appsComingText: 'As apps nativas chegam em breve. Entretanto, usa a web completa a partir de qualquer dispositivo.'
+                appsComingText: 'As apps nativas chegam em breve. Entretanto, usa a web completa a partir de qualquer dispositivo.',
+                socialFollowTitle: 'Junta-te a comunidade',
+                socialFollowSubtitle: 'Dicas de running, rotas, desafios e comunidade. Segue-nos nas redes e faz parte do movimento.',
+                socialShareBtn: 'Partilha com os teus amigos runners',
+                shareBannerText: 'Partilha CorrerJuntos com os teus amigos runners',
+                shareBannerBtn: 'Partilhar',
+                shareGenericText: 'Encontra runners perto de ti e nunca mais corras sozinho. Junta-te gratis a @correrjuntosapp',
+                shareCopiedMsg: 'Link copiado',
+                inviteFriendsTitle: 'Convida amigos',
+                inviteFriendsSubtitle: 'Partilha o teu link e ganha recompensas',
+                yourReferralLink: 'O teu link pessoal',
+                copyLink: 'Copiar link',
+                linkCopied: 'Link copiado',
+                friendsInvited: 'Amigos convidados',
+                referralReward3: 'Badge Community Builder',
+                referralReward5: '1 mes Premium gratis',
+                referralReward10: 'Badge Ambassador',
+                shareViaWhatsApp: 'Partilhar por WhatsApp',
+                referralInviteText: 'Junta-te ao CorrerJuntos e vamos correr juntos! Usa o meu link:',
+                bannerReferralTitle: 'Convida amigos e ganha recompensas!',
+                bannerReferralDesc: 'Partilha o teu link. 3 amigos = badge, 5 = Premium grátis, 10 = Ambassador',
+                bannerReferralBtn: '🔗 Meu link'
 }
         };
 
@@ -6468,6 +6903,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('plan-premium-f4', t.planPremiumF4);
             setText('plan-premium-f5', t.planPremiumF5);
             setText('plan-premium-f6', t.planPremiumF6);
+            setText('plan-premium-f7', t.planPremiumF7);
+            setText('strava-badge-title', t.stravaBadgeTitle);
+            setText('strava-badge-desc', t.stravaBadgeDesc);
             setText('plan-premium-cta', t.planPremiumCta);
             setText('plan-premium-subcta', t.planPremiumSubcta);
             setText('plan-premium-cancel', t.planPremiumCancel);
@@ -6693,12 +7131,13 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('detail-btn-share', t.detailShare);
             setText('detail-btn-close', t.detailClose);
 
-            // App Store badges
+            // App Store badges (landing)
             setText('app-available-text', t.appAvailableOn);
             setText('app-download-ios', t.appDownloadOn);
             setText('app-download-android', t.appGetItOn);
-            setText('app-download-ios-2', t.appDownloadOn);
-            setText('app-download-android-2', t.appGetItOn);
+            // In-app badges: always show "Próximamente" / "Coming soon"
+            setText('app-download-ios-2', t.appComingSoon || 'Próximamente');
+            setText('app-download-android-2', t.appComingSoon || 'Próximamente');
 
             // Actualizar panel de stats (para traducir bienvenida)
             if (typeof updateStatsUI === 'function') updateStatsUI();
@@ -6714,6 +7153,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('premium-feat-2', t.premiumUnlimitedRuns);
             setText('premium-feat-3', t.premiumExclusiveBadges);
             setText('premium-feat-4', t.premiumBadgeProfile);
+            setText('premium-feat-5', t.premiumStravaIntegration);
             setText('premium-get-btn', t.premiumGetBtn);
             setText('premium-cancel-text', t.premiumCancelAnytime);
             setText('premium-you-are', t.premiumYouAre);
@@ -6763,6 +7203,15 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('qp-modal-cta', t.previewModalCta);
             setText('apps-coming-badge', t.appsComingBadge);
             setText('apps-coming-text', t.appsComingText);
+            setText('social-follow-title', t.socialFollowTitle);
+            setText('social-follow-subtitle', t.socialFollowSubtitle);
+            setText('social-share-btn', t.socialShareBtn);
+            setText('share-banner-text', t.shareBannerText);
+            setText('share-banner-btn', t.shareBannerBtn);
+            // Referral banner
+            setText('banner-referral-title', t.bannerReferralTitle);
+            setText('banner-referral-desc', t.bannerReferralDesc);
+            setText('banner-referral-btn', t.bannerReferralBtn);
             // Reload preview cards with new language
             if (typeof loadQuedadasPreview === 'function') loadQuedadasPreview();
 
@@ -7036,6 +7485,10 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             { id: 'premium_champion', name: 'Campeón Premium', desc: 'Premium + 200 km', icon: '🏅', condition: s => isUserPremium && s.km >= 200, premium: true, exclusive: true },
             { id: 'premium_influencer', name: 'Influencer', desc: 'Premium + 10 quedadas creadas', icon: '📣', condition: s => isUserPremium && s.created >= 10, premium: true, exclusive: true },
             { id: 'premium_legend', name: 'Leyenda Dorada', desc: 'Premium + 100 quedadas', icon: '👑', condition: s => isUserPremium && s.quedadas >= 100, premium: true, exclusive: true },
+            // 🎁 BADGES DE REFERIDOS
+            { id: 'referral_community_builder', name: 'Community Builder', desc: 'Invita a 3 amigos a CorrerJuntos', icon: '🤝', condition: () => (currentUser?.referral_count || 0) >= 3, premium: false },
+            { id: 'referral_premium_reward', name: 'Super Recruiter', desc: 'Invita a 5 amigos y gana 1 mes Premium', icon: '⭐', condition: () => (currentUser?.referral_count || 0) >= 5, premium: false },
+            { id: 'referral_ambassador', name: 'Ambassador', desc: 'Invita a 10 amigos y conviértete en embajador', icon: '🏆', condition: () => (currentUser?.referral_count || 0) >= 10, premium: false },
         ];
 
         let userStats = { quedadas: 0, km: 0, runners: 0, racha: 0, created: 0, first5k: false };
@@ -8030,7 +8483,6 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
         function openShareModal() {
             const detailModal = document.getElementById('modal-quedada-detail');
-            // Obtener ID de la quedada actual del detalle
             const titulo = document.getElementById('detail-titulo')?.textContent;
             const q = quedadas.find(x => x.titulo === titulo);
             if (q) {
@@ -8040,35 +8492,485 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             openModal('modal-share');
         }
 
-        function getShareText() {
-            const q = quedadas.find(x => x.id === currentShareQuedadaId);
-            if (!q) return { title: 'CorrerJuntos', text: '¡Únete a correr!', url: 'https://www.correrjuntos.com' };
+        function getShareText(quedada) {
+            const q = quedada || quedadas.find(x => x.id === currentShareQuedadaId);
+            if (!q) return { title: 'CorrerJuntos', text: 'Encuentra runners cerca de ti', url: 'https://www.correrjuntos.com?utm_source=share&utm_medium=social' };
+            const dateStr = typeof formatDate === 'function' ? formatDate(q.fecha) : q.fecha;
+            const timeStr = typeof formatHora === 'function' ? formatHora(q.hora) : q.hora;
             return {
                 title: q.titulo,
-                text: `🏃 ${q.titulo}\n📍 ${q.ciudad}\n📅 ${formatDate(q.fecha)} a las ${formatHora(q.hora)}\n📏 ${q.distancia}\n\n¡Únete a correr conmigo!`,
-                url: `https://www.correrjuntos.com`
+                text: `🏃 ${q.titulo}\n📍 ${q.ciudad}\n📅 ${dateStr} a las ${timeStr}\n📏 ${q.distancia || ''}\n\n¡Únete a correr conmigo en @correrjuntosapp!`,
+                url: `https://www.correrjuntos.com?utm_source=share&utm_medium=quedada&utm_campaign=${encodeURIComponent(q.ciudad || 'general')}`
             };
+        }
+
+        // Universal share function - tries Web Share API first, falls back to modal
+        async function smartShare(quedada) {
+            const shareData = getShareText(quedada);
+            // Track share event in GA4
+            if (typeof gtag === 'function') {
+                gtag('event', 'share', { method: 'smart_share', content_type: 'quedada', item_id: quedada?.id || 'general' });
+            }
+            // Try native Web Share API (mobile)
+            if (navigator.share) {
+                try {
+                    await navigator.share({ title: shareData.title, text: shareData.text, url: shareData.url });
+                    return;
+                } catch (e) {
+                    if (e.name === 'AbortError') return; // User cancelled
+                }
+            }
+            // Fallback: open share modal
+            if (quedada) {
+                currentShareQuedadaId = quedada.id;
+                const el = document.getElementById('share-quedada-id');
+                if (el) el.value = quedada.id;
+            }
+            openModal('modal-share');
+        }
+
+        // Share CorrerJuntos (generic, for landing page)
+        async function shareCorrerJuntos() {
+            const t = I18N[currentLang] || I18N.es;
+            const shareData = {
+                title: 'CorrerJuntos',
+                text: t.shareGenericText || 'Encuentra runners cerca de ti y nunca vuelvas a correr solo. Unete gratis a @correrjuntosapp',
+                url: 'https://www.correrjuntos.com?utm_source=share&utm_medium=organic&utm_campaign=landing'
+            };
+            if (typeof gtag === 'function') {
+                gtag('event', 'share', { method: 'generic_share', content_type: 'landing' });
+            }
+            if (navigator.share) {
+                try { await navigator.share(shareData); return; } catch (e) { if (e.name === 'AbortError') return; }
+            }
+            // Fallback: copy to clipboard
+            try {
+                await navigator.clipboard.writeText(`${shareData.text}\n\n${shareData.url}`);
+                showToast(t.shareCopiedMsg || 'Enlace copiado al portapapeles', 'success');
+            } catch(e) {
+                window.open(`https://wa.me/?text=${encodeURIComponent(shareData.text + '\n\n' + shareData.url)}`, '_blank');
+            }
         }
 
         function shareWhatsApp() {
             const { text, url } = getShareText();
             const fullText = `${text}\n\n${url}`;
             window.open(`https://wa.me/?text=${encodeURIComponent(fullText)}`, '_blank');
+            if (typeof gtag === 'function') gtag('event', 'share', { method: 'whatsapp' });
             closeModal('modal-share');
         }
 
         function shareTwitter() {
             const { text, url } = getShareText();
             window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+            if (typeof gtag === 'function') gtag('event', 'share', { method: 'twitter' });
             closeModal('modal-share');
         }
 
         function copyShareLink() {
             const { text, url } = getShareText();
             navigator.clipboard.writeText(`${text}\n\n${url}`).then(() => {
-                showToast('¡Enlace copiado!', 'success');
+                const t = I18N[currentLang] || I18N.es;
+                showToast(t.shareCopiedMsg || 'Enlace copiado', 'success');
+                if (typeof gtag === 'function') gtag('event', 'share', { method: 'copy_link' });
                 closeModal('modal-share');
             });
+        }
+
+        // ========== REFERRAL SYSTEM ==========
+        function generateReferralCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = 'CJ-';
+            for (let i = 0; i < 5; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+            return code;
+        }
+
+        // Detect ?ref= param on page load and store it
+        function detectReferralParam() {
+            const params = new URLSearchParams(window.location.search);
+            const ref = params.get('ref');
+            if (ref && ref.startsWith('CJ-')) {
+                localStorage.setItem('cj_referral_code', ref);
+                if (typeof gtag === 'function') {
+                    gtag('event', 'referral_click', { referral_code: ref });
+                }
+            }
+        }
+
+        // Apply stored referral after registration
+        async function applyReferralAfterRegistration(newUserId) {
+            const refCode = localStorage.getItem('cj_referral_code');
+            if (!refCode || !window.supabaseClient) return;
+            try {
+                // Find the referrer by their code
+                const { data: referrer } = await window.supabaseClient
+                    .from('profiles')
+                    .select('id, referral_count')
+                    .eq('referral_code', refCode)
+                    .single();
+                if (!referrer || referrer.id === newUserId) return;
+
+                // Update new user's referred_by
+                await window.supabaseClient
+                    .from('profiles')
+                    .update({ referred_by: referrer.id })
+                    .eq('id', newUserId);
+
+                // Increment referrer's count
+                const newCount = (referrer.referral_count || 0) + 1;
+                await window.supabaseClient
+                    .from('profiles')
+                    .update({ referral_count: newCount })
+                    .eq('id', referrer.id);
+
+                // Check and grant referral rewards
+                await checkReferralRewards(referrer.id, newCount);
+
+                localStorage.removeItem('cj_referral_code');
+                if (typeof gtag === 'function') {
+                    gtag('event', 'referral_complete', { referral_code: refCode, referrer_id: referrer.id });
+                }
+            } catch (e) { console.warn('Referral apply:', e); }
+        }
+
+        // Check and grant referral rewards at milestones (3, 5, 10)
+        async function checkReferralRewards(userId, count) {
+            if (!window.supabaseClient) return;
+            try {
+                // 3 referidos → Badge "Community Builder"
+                if (count >= 3) {
+                    await window.supabaseClient
+                        .from('badges')
+                        .upsert({ user_id: userId, badge_id: 'referral_community_builder', unlocked_at: new Date().toISOString() }, { onConflict: 'user_id,badge_id' })
+                        .then(() => {});
+                }
+                // 5 referidos → 1 mes Premium gratis
+                if (count >= 5) {
+                    await window.supabaseClient
+                        .from('badges')
+                        .upsert({ user_id: userId, badge_id: 'referral_premium_reward', unlocked_at: new Date().toISOString() }, { onConflict: 'user_id,badge_id' })
+                        .then(() => {});
+                    // Grant 1 month premium
+                    const now = new Date();
+                    const expires = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+                    await window.supabaseClient
+                        .from('premium_subscriptions')
+                        .upsert({
+                            user_id: userId,
+                            plan: 'referral_reward',
+                            status: 'active',
+                            started_at: now.toISOString(),
+                            expires_at: expires.toISOString()
+                        }, { onConflict: 'user_id' })
+                        .then(() => {});
+                }
+                // 10 referidos → Badge "Ambassador"
+                if (count >= 10) {
+                    await window.supabaseClient
+                        .from('badges')
+                        .upsert({ user_id: userId, badge_id: 'referral_ambassador', unlocked_at: new Date().toISOString() }, { onConflict: 'user_id,badge_id' })
+                        .then(() => {});
+                }
+            } catch (e) { console.warn('Referral rewards:', e); }
+        }
+
+        // Ensure current user has a referral code
+        async function ensureReferralCode() {
+            if (!currentUser || !window.supabaseClient) return;
+            if (currentUser.referral_code) return currentUser.referral_code;
+            const code = generateReferralCode();
+            try {
+                const { error } = await window.supabaseClient
+                    .from('profiles')
+                    .update({ referral_code: code })
+                    .eq('id', currentUser.id);
+                if (!error) {
+                    currentUser.referral_code = code;
+                    return code;
+                }
+                // If collision, try once more
+                const code2 = generateReferralCode();
+                const { error: e2 } = await window.supabaseClient
+                    .from('profiles')
+                    .update({ referral_code: code2 })
+                    .eq('id', currentUser.id);
+                if (!e2) { currentUser.referral_code = code2; return code2; }
+            } catch (e) { console.warn('Referral code gen:', e); }
+            return null;
+        }
+
+        // Show referral section in profile modal
+        async function loadReferralUI() {
+            const section = document.getElementById('referral-section');
+            if (!section || !currentUser) { if (section) section.classList.add('hidden'); return; }
+            section.classList.remove('hidden');
+
+            const code = await ensureReferralCode();
+            const link = code ? `https://www.correrjuntos.com?ref=${code}` : '';
+            const linkInput = document.getElementById('referral-link-input');
+            if (linkInput) linkInput.value = link;
+
+            const countEl = document.getElementById('referral-count');
+            const count = currentUser.referral_count || 0;
+            if (countEl) countEl.textContent = count;
+
+            // Update progress bar
+            const progressBar = document.getElementById('referral-progress-bar');
+            if (progressBar) progressBar.style.width = Math.min(count / 10 * 100, 100) + '%';
+
+            // Update reward cards based on progress
+            updateRewardCard(3, count >= 3);
+            updateRewardCard(5, count >= 5);
+            updateRewardCard(10, count >= 10);
+
+            // Also update the main banner
+            updateReferralBanner(count);
+
+            // i18n
+            const t = I18N[currentLang] || I18N.es;
+            setText('referral-title', t.inviteFriendsTitle);
+            setText('referral-subtitle', t.inviteFriendsSubtitle);
+            setText('referral-link-label', t.yourReferralLink);
+            setText('referral-copy-btn', t.copyLink);
+            setText('referral-count-label', t.friendsInvited);
+            setText('reward-3-text', t.referralReward3);
+            setText('reward-5-text', t.referralReward5);
+            setText('reward-10-text', t.referralReward10);
+            // Banner i18n
+            setText('banner-referral-title', t.bannerReferralTitle);
+            setText('banner-referral-desc', t.bannerReferralDesc);
+            setText('banner-referral-btn', t.bannerReferralBtn);
+        }
+
+        function updateRewardCard(milestone, achieved) {
+            const icon = document.getElementById(`reward-${milestone}-icon`);
+            const card = document.getElementById(`reward-${milestone}-card`);
+            if (icon) {
+                if (achieved) {
+                    icon.className = 'w-6 h-6 mx-auto rounded-full flex items-center justify-center text-xs font-black bg-orange-500 text-white';
+                } else {
+                    icon.className = 'w-6 h-6 mx-auto rounded-full flex items-center justify-center text-xs font-black bg-slate-700 text-gray-500';
+                }
+            }
+            if (card) {
+                if (achieved) {
+                    card.style.borderColor = 'rgba(249,115,22,0.5)';
+                    card.style.background = 'rgba(249,115,22,0.1)';
+                } else {
+                    card.style.borderColor = 'rgba(100,116,139,0.3)';
+                    card.style.background = 'rgba(51,65,85,0.3)';
+                }
+            }
+        }
+
+        // Referral banner in main view
+        function updateReferralBanner(count) {
+            const banner = document.getElementById('referral-banner');
+            if (!banner || !currentUser) return;
+            // Show banner if user hasn't dismissed it and has < 10 referrals
+            const dismissed = localStorage.getItem('cj_referral_banner_dismissed');
+            if (dismissed && count < 10) { banner.classList.add('hidden'); return; }
+            if (count >= 10) { banner.classList.add('hidden'); return; } // Already ambassador
+            banner.classList.remove('hidden');
+            const progress = document.getElementById('banner-referral-progress');
+            const countEl = document.getElementById('banner-referral-count');
+            if (progress) progress.style.width = Math.min(count / 10 * 100, 100) + '%';
+            if (countEl) countEl.textContent = count + '/10';
+        }
+
+        function dismissReferralBanner() {
+            localStorage.setItem('cj_referral_banner_dismissed', '1');
+            const banner = document.getElementById('referral-banner');
+            if (banner) banner.classList.add('hidden');
+        }
+
+        function openProfileAndScrollToReferral() {
+            // Open profile modal then scroll to referral section
+            const profileBtn = document.getElementById('btnProfileTop');
+            if (profileBtn) profileBtn.click();
+            setTimeout(() => {
+                const section = document.getElementById('referral-section');
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+
+        function copyReferralLink() {
+            const input = document.getElementById('referral-link-input');
+            if (!input || !input.value) return;
+            navigator.clipboard.writeText(input.value).then(() => {
+                const t = I18N[currentLang] || I18N.es;
+                showToast(t.linkCopied || 'Enlace copiado', 'success');
+                if (typeof gtag === 'function') gtag('event', 'referral_copy', { referral_code: currentUser?.referral_code });
+            }).catch(() => {
+                input.select();
+                document.execCommand('copy');
+                showToast('Enlace copiado', 'success');
+            });
+        }
+
+        function shareReferralWhatsApp() {
+            const t = I18N[currentLang] || I18N.es;
+            const link = document.getElementById('referral-link-input')?.value || '';
+            const text = `${t.referralInviteText || 'Unete a CorrerJuntos y corramos juntos! Usa mi enlace:'}\n\n${link}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            if (typeof gtag === 'function') gtag('event', 'referral_share', { method: 'whatsapp', referral_code: currentUser?.referral_code });
+        }
+
+        async function shareReferralNative() {
+            const t = I18N[currentLang] || I18N.es;
+            const link = document.getElementById('referral-link-input')?.value || '';
+            const text = t.referralInviteText || 'Unete a CorrerJuntos y corramos juntos! Usa mi enlace:';
+            if (navigator.share) {
+                try { await navigator.share({ title: 'CorrerJuntos', text, url: link }); return; } catch (e) { if (e.name === 'AbortError') return; }
+            }
+            // Fallback: copy
+            copyReferralLink();
+        }
+
+        // ========== SHAREABLE STATS CARD ==========
+        function openStatsCard() {
+            if (!currentUser) { showToast('Inicia sesion para ver tus stats', 'error'); return; }
+
+            // Fill stats card data
+            const nameEl = document.getElementById('sc-name');
+            const cityEl = document.getElementById('sc-city');
+            const pointsEl = document.getElementById('sc-points');
+            const levelEl = document.getElementById('sc-level');
+            const createdEl = document.getElementById('sc-created');
+            const attendedEl = document.getElementById('sc-attended');
+            const badgesEl = document.getElementById('sc-badges');
+
+            if (nameEl) nameEl.textContent = currentUser.nombreCompleto || currentUser.nombre || 'Runner';
+            if (cityEl) cityEl.textContent = currentUser.ciudad || '';
+
+            // Read current gamification data from the UI
+            const pts = document.getElementById('gamification-points')?.textContent || '0';
+            const created = document.getElementById('gamification-created')?.textContent || '0';
+            const attended = document.getElementById('gamification-attended')?.textContent || '0';
+            const level = document.getElementById('gamification-level')?.textContent || 'Novato';
+            const badgeCount = document.querySelectorAll('#gamification-badges .badge-earned, #gamification-badges [class*="bg-orange"]').length || 0;
+
+            if (pointsEl) pointsEl.textContent = pts;
+            if (levelEl) levelEl.textContent = level;
+            if (createdEl) createdEl.textContent = created;
+            if (attendedEl) attendedEl.textContent = attended;
+            if (badgesEl) badgesEl.textContent = badgeCount;
+
+            openModal('modal-stats-card');
+            if (typeof gtag === 'function') gtag('event', 'stats_card_open');
+        }
+
+        async function downloadStatsCard() {
+            if (typeof html2canvas === 'undefined') {
+                showToast('Cargando...', 'info');
+                return;
+            }
+            const card = document.getElementById('stats-card-preview');
+            if (!card) return;
+            try {
+                const canvas = await html2canvas(card, {
+                    backgroundColor: null,
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                });
+                const link = document.createElement('a');
+                link.download = `correrjuntos-stats-${currentUser?.nombre || 'runner'}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showToast('Imagen descargada', 'success');
+                if (typeof gtag === 'function') gtag('event', 'stats_card_download');
+            } catch (e) {
+                console.warn('Stats card download error:', e);
+                showToast('Error al generar imagen', 'error');
+            }
+        }
+
+        async function shareStatsCard() {
+            if (typeof html2canvas === 'undefined') { showToast('Cargando...', 'info'); return; }
+            const card = document.getElementById('stats-card-preview');
+            if (!card) return;
+            try {
+                const canvas = await html2canvas(card, { backgroundColor: null, scale: 2, useCORS: true, logging: false });
+                const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+                const file = new File([blob], 'correrjuntos-stats.png', { type: 'image/png' });
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: 'Mis stats en CorrerJuntos',
+                        text: 'Mira mis stats en @correrjuntosapp',
+                        files: [file]
+                    });
+                } else {
+                    // Fallback: download
+                    downloadStatsCard();
+                }
+                if (typeof gtag === 'function') gtag('event', 'stats_card_share');
+            } catch (e) {
+                if (e.name !== 'AbortError') downloadStatsCard();
+            }
+        }
+
+        // ========== QR CODE GENERATION ==========
+        // Minimal QR code generator using Canvas API + qr-creator-like algo
+        // We use a CDN-loaded library for reliable QR generation
+        let qrLibLoaded = false;
+        function loadQRLib() {
+            return new Promise((resolve) => {
+                if (qrLibLoaded || window.QRCode) { resolve(); return; }
+                const s = document.createElement('script');
+                s.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
+                s.onload = () => { qrLibLoaded = true; resolve(); };
+                s.onerror = () => resolve(); // fail silently
+                document.head.appendChild(s);
+            });
+        }
+
+        let currentQRQuedadaId = null;
+
+        async function showQuedadaQR() {
+            const detailTitle = document.getElementById('detail-titulo')?.textContent || '';
+            const detailCiudad = document.getElementById('detail-ciudad')?.textContent || '';
+
+            // Find the quedada from the detail modal
+            const q = quedadas.find(x => x.titulo === detailTitle && x.ciudad === detailCiudad);
+            if (!q) { showToast('No se encontro la quedada', 'error'); return; }
+
+            currentQRQuedadaId = q.id;
+            document.getElementById('qr-quedada-title').textContent = q.titulo;
+            document.getElementById('qr-quedada-info').textContent = `${q.ciudad} - ${formatDate(q.fecha)}`;
+
+            await loadQRLib();
+            const canvas = document.getElementById('qr-canvas');
+            const url = `https://www.correrjuntos.com?utm_source=qr&utm_medium=offline&utm_campaign=${encodeURIComponent(q.ciudad || 'general')}`;
+
+            if (window.QRCode) {
+                try {
+                    await QRCode.toCanvas(canvas, url, {
+                        width: 200,
+                        margin: 0,
+                        color: { dark: '#0b1220', light: '#ffffff' }
+                    });
+                } catch(e) {
+                    console.warn('QR error:', e);
+                    // Fallback: show link
+                    canvas.style.display = 'none';
+                }
+            }
+
+            openModal('modal-qr');
+            if (typeof gtag === 'function') gtag('event', 'qr_code_view', { quedada_id: q.id });
+        }
+
+        function downloadQR() {
+            const canvas = document.getElementById('qr-canvas');
+            if (!canvas) return;
+            const link = document.createElement('a');
+            const title = document.getElementById('qr-quedada-title')?.textContent || 'quedada';
+            link.download = `correrjuntos-qr-${title.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showToast('QR descargado', 'success');
+            if (typeof gtag === 'function') gtag('event', 'qr_code_download');
         }
 
         // ========== TOGGLE MAPA (Minimizar/Expandir) ==========
@@ -8430,7 +9332,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             document.body.insertAdjacentHTML('beforeend', modalHtml);
         }
-        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(initMap,100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadUserStats();loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();}
+        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(initMap,100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadUserStats();loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();updateReferralBanner(currentUser?.referral_count||0);}
         function showLanding(){document.getElementById('view-app').classList.remove('active');document.getElementById('view-landing').classList.add('active');}
         function updateUserUI(){const n=document.getElementById('user-name');if(currentUser&&n)n.textContent=currentUser.nombre;}
         async function logout(){
@@ -8852,6 +9754,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             openModal('modal-profile');
             loadGamificationStats();
             loadMisQuedadas();
+            loadReferralUI();
         }
 
         // ====== ONBOARDING: Completar perfil después de registro simplificado ======
@@ -9209,7 +10112,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 photo: prof?.photo_url || '',
                 created_at: prof?.created_at || null,
                 es_seed: !!prof?.es_seed,
-                es_premium: !!prof?.es_premium
+                es_premium: !!prof?.es_premium,
+                referral_code: prof?.referral_code || null,
+                referral_count: prof?.referral_count || 0
             };
 
             // Restaurar botón antes de cerrar modal
@@ -9477,12 +10382,15 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 return;
             }
 
-            // Actualizar perfil mínimo
+            // Actualizar perfil mínimo + generar referral code
             try{
                 const { data: u2 } = await sb.auth.getUser();
                 const uid = u2?.user?.id;
                 if(uid){
-                    await sb.from('profiles').update({ email }).eq('id', uid);
+                    const refCode = generateReferralCode();
+                    await sb.from('profiles').update({ email, referral_code: refCode }).eq('id', uid);
+                    // Apply referral if user came via a referral link
+                    applyReferralAfterRegistration(uid);
                 }
             }catch(e){ console.warn('Profile update:', e); }
 
@@ -9584,6 +10492,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const { data: u2 } = await sb.auth.getUser();
                 const uid = u2?.user?.id;
                 if(uid){
+                    const refCode = generateReferralCode();
                     await sb
                       .from('profiles')
                       .update({
@@ -9592,18 +10501,20 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                           ciudad,
                           nivel,
                           telefono: telefono ? `${prefijo}${telefono}` : null,
-                          email
+                          email,
+                          referral_code: refCode
                       })
                       .eq('id', uid);
+                    applyReferralAfterRegistration(uid);
                 }
             }catch(e){
                 console.warn('Perfil update:', e && e.message ? e.message : e);
             }
 
             showToast('¡Cuenta creada!','success');
-            triggerConfetti(); // Celebración por registro
+            triggerConfetti();
             closeModal('modal-register');
-            showApp(true); // true = mostrar animación de bienvenida
+            showApp(true);
             await loadQuedadas();
 
             // Mostrar modal de configuración de notificaciones para nuevos usuarios
@@ -11223,7 +12134,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     doubleClickZoom: false,
                     touchZoom: false
                 });
-                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                const isLight = document.body.classList.contains('light-mode');
+                L.tileLayer(isLight ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
                     maxZoom: 18
                 }).addTo(landingMap);
 
@@ -11470,7 +12382,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         scrollWheelZoom: false,
                         touchZoom: false
                     });
-                    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 18 }).addTo(quedadaPreviewMap);
+                    const isLt = document.body.classList.contains('light-mode');
+                    L.tileLayer(isLt ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 18 }).addTo(quedadaPreviewMap);
                     const orangeIcon = L.divIcon({
                         html: '<div style="width:14px;height:14px;background:#f97316;border-radius:50%;box-shadow:0 0 12px rgba(249,115,22,0.7);border:2px solid white;"></div>',
                         className: '', iconSize: [14, 14], iconAnchor: [7, 7]
@@ -11494,6 +12407,28 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             initLandingMap();
             loadQuedadasPreview();
             setTimeout(initTestimonialCarousel, 500);
+            initShareBanner();
+        }
+
+        // Floating share banner - shows once per session after scrolling
+        function initShareBanner() {
+            if (sessionStorage.getItem('cj_share_banner_dismissed')) return;
+            const banner = document.getElementById('share-banner');
+            if (!banner) return;
+            let shown = false;
+            window.addEventListener('scroll', function onScroll() {
+                if (shown) return;
+                if (window.scrollY > 1500) {
+                    shown = true;
+                    banner.classList.add('visible');
+                    window.removeEventListener('scroll', onScroll);
+                }
+            });
+        }
+        function dismissShareBanner() {
+            const banner = document.getElementById('share-banner');
+            if (banner) banner.classList.remove('visible');
+            sessionStorage.setItem('cj_share_banner_dismissed', '1');
         }
 
         // ===================== SEEDING: Verificar si usuario es nuevo =====================
@@ -11673,14 +12608,22 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 }
             });
 
-            // Insertar banner de publicidad cada 3 quedadas (solo usuarios no premium)
+            // Insertar banner de Strava promo cada 3 quedadas (solo usuarios no premium)
             const adBanner = !isUserPremium ? `
-                <div class="ad-banner p-4 rounded-2xl bg-gradient-to-r from-slate-800 to-slate-700 border border-slate-600 text-center my-4">
-                    <p class="text-xs text-gray-400 mb-2">Publicidad</p>
-                    <div class="h-20 bg-slate-700/50 rounded-xl flex items-center justify-center text-gray-500">
-                        <span>Espacio publicitario</span>
+                <div class="ad-banner p-4 rounded-2xl bg-gradient-to-br from-[#FC5200]/10 to-orange-900/20 border border-[#FC5200]/30 my-4 cursor-pointer hover:border-[#FC5200]/50 transition-all" onclick="openModal('modal-profile')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-[#FC5200]/20 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="#FC5200"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-white font-bold text-sm">Sincroniza con Strava</p>
+                            <p class="text-gray-400 text-xs">Conecta tu cuenta, ve tus stats reales y exporta carreras automáticamente</p>
+                        </div>
+                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 flex-shrink-0">PRO</span>
                     </div>
-                    <p class="text-xs text-orange-400 mt-2 cursor-pointer hover:underline" onclick="openModal('modal-profile')">⭐ Hazte Premium para quitar anuncios</p>
+                    <div class="mt-3 flex items-center justify-center gap-2 py-2 rounded-xl bg-gradient-to-r from-[#FC5200] to-orange-600 text-white font-bold text-xs">
+                        ⭐ Desbloquear con Premium
+                    </div>
                 </div>
             ` : '';
 
@@ -14287,7 +15230,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const ok = window.confirm(currentLang==='en'?'Log out?':(currentLang==='pt'?'Terminar sessão?':'¿Cerrar sesión?'));
                 if(ok) logout();
               });
-            }catch(_){ } updateMetaTags(currentLang); applyLanguageUI(); renderCityChips(); loadQuedadas(); loadLandingStats(); initLandingEnhancements();
+            }catch(_){ } updateMetaTags(currentLang); applyLanguageUI(); renderCityChips(); loadQuedadas(); loadLandingStats(); initLandingEnhancements(); detectReferralParam();
             // App mundial: detectar ubicación del usuario automáticamente
             if('geolocation' in navigator){
                 navigator.geolocation.getCurrentPosition((pos)=>{
@@ -14466,7 +15409,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 (function(){
     // ===== STRAVA CONFIG =====
     const STRAVA_CLIENT_ID = '199454';
-    const STRAVA_REDIRECT_URI = 'https://www.correrjuntos.com/strava/callback';
+    const STRAVA_REDIRECT_URI = 'https://correrjuntos.com/strava/callback';
     const STRAVA_SCOPE = 'read,activity:read_all,activity:write';
 
     // Variable para almacenar conexión de Strava
@@ -14499,13 +15442,18 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             try {
                 showToast('Conectando con Strava...', 'info');
 
-                // Intercambiar código por tokens usando API de Vercel
-                const response = await fetch('/api/strava-auth', {
+                // Intercambiar código por tokens directamente con Strava
+                const response = await fetch('https://www.strava.com/oauth/token', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ code })
+                    body: JSON.stringify({
+                        client_id: STRAVA_CLIENT_ID,
+                        client_secret: 'REDACTED_STRAVA_CLIENT_SECRET_OLD',
+                        code: code,
+                        grant_type: 'authorization_code'
+                    })
                 });
 
                 if (!response.ok) {
@@ -14589,12 +15537,17 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         if (!stravaConnection) return;
 
         try {
-            const response = await fetch('/api/strava-refresh', {
+            const response = await fetch('https://www.strava.com/oauth/token', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ refresh_token: stravaConnection.refresh_token })
+                body: JSON.stringify({
+                    client_id: STRAVA_CLIENT_ID,
+                    client_secret: 'REDACTED_STRAVA_CLIENT_SECRET_OLD',
+                    refresh_token: stravaConnection.refresh_token,
+                    grant_type: 'refresh_token'
+                })
             });
 
             if (response.ok) {
@@ -15185,7 +16138,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           social: (prof && (prof.instagram || prof.strava)) ? String(prof.instagram || prof.strava) : '',
           photo: prof && prof.photo_url ? String(prof.photo_url) : '',
           created_at: prof && prof.created_at ? String(prof.created_at) : null,
-          es_seed: !!(prof && prof.es_seed)
+          es_seed: !!(prof && prof.es_seed),
+          referral_code: prof && prof.referral_code ? String(prof.referral_code) : null,
+          referral_count: prof && prof.referral_count ? Number(prof.referral_count) : 0
         };
 
         // Actualizar país del usuario para filtrado de quedadas
@@ -16063,6 +17018,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
               <span id="detail-btn-share">Compartir</span>
             </button>
+            <button onclick="showQuedadaQR()" class="px-3 py-3 rounded-xl font-bold bg-slate-800 text-gray-300 hover:bg-slate-700 transition flex items-center justify-center text-sm" title="QR Code">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+            </button>
             <button onclick="closeModal('modal-quedada-detail')" id="detail-btn-close" class="px-5 py-3 rounded-xl font-bold bg-slate-800 text-gray-300 hover:bg-slate-700 transition text-sm">Cerrar</button>
           </div>
         </div>
@@ -16632,6 +17590,90 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         <div class="p-6">
           <div id="badges-list" class="space-y-3"></div>
         </div>
+      </div>
+    </div>
+
+    <!-- MODAL: Stats Card for Sharing -->
+    <div id="modal-stats-card" class="modal">
+      <div class="modal-content bg-slate-900 rounded-3xl max-w-md w-full border border-slate-800 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-black text-white" id="stats-card-modal-title">Comparte tus stats</h2>
+          <button onclick="closeModal('modal-stats-card')" class="text-gray-500 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Stats Card Preview -->
+        <div id="stats-card-preview" class="rounded-2xl overflow-hidden mb-4" style="background: linear-gradient(135deg, #0b1220 0%, #1e1b4b 50%, #0b1220 100%); padding: 28px; position: relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#f97316,transparent);"></div>
+          <div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(249,115,22,0.12) 0%,transparent 70%);top:-40px;right:-40px;border-radius:50%;"></div>
+          <div style="text-align:center;margin-bottom:20px;">
+            <div style="font-size:20px;font-weight:900;letter-spacing:-1px;color:#fff;">CORRER<span style="color:#f97316;">JUNTOS</span></div>
+          </div>
+          <div style="text-align:center;margin-bottom:16px;">
+            <div id="sc-name" style="font-size:18px;font-weight:800;color:#fff;"></div>
+            <div id="sc-city" style="font-size:12px;color:#94a3b8;margin-top:2px;"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+            <div style="text-align:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(249,115,22,0.2);">
+              <div id="sc-points" style="font-size:28px;font-weight:900;color:#f97316;">0</div>
+              <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;">Puntos</div>
+            </div>
+            <div style="text-align:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(249,115,22,0.2);">
+              <div id="sc-level" style="font-size:14px;font-weight:800;color:#a78bfa;margin-top:6px;"></div>
+              <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;">Nivel</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
+            <div style="text-align:center;padding:8px;background:rgba(255,255,255,0.03);border-radius:10px;">
+              <div id="sc-created" style="font-size:20px;font-weight:900;color:#4ade80;">0</div>
+              <div style="font-size:9px;color:#64748b;text-transform:uppercase;">Creadas</div>
+            </div>
+            <div style="text-align:center;padding:8px;background:rgba(255,255,255,0.03);border-radius:10px;">
+              <div id="sc-attended" style="font-size:20px;font-weight:900;color:#60a5fa;">0</div>
+              <div style="font-size:9px;color:#64748b;text-transform:uppercase;">Asistidas</div>
+            </div>
+            <div style="text-align:center;padding:8px;background:rgba(255,255,255,0.03);border-radius:10px;">
+              <div id="sc-badges" style="font-size:20px;font-weight:900;color:#facc15;">0</div>
+              <div style="font-size:9px;color:#64748b;text-transform:uppercase;">Badges</div>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:10px;color:#475569;letter-spacing:1px;">correrjuntos.com</div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex gap-3">
+          <button onclick="downloadStatsCard()" class="flex-1 p-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-sm hover:shadow-lg transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span id="sc-download-btn">Descargar</span>
+          </button>
+          <button onclick="shareStatsCard()" class="flex-1 p-3 rounded-xl border border-orange-500/30 text-orange-300 font-bold text-sm hover:bg-orange-500/10 transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+            <span id="sc-share-btn">Compartir</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: QR Code for Quedada -->
+    <div id="modal-qr" class="modal">
+      <div class="modal-content bg-slate-900 rounded-3xl max-w-sm w-full border border-slate-800 p-6 text-center">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-black text-white">QR de la quedada</h2>
+          <button onclick="closeModal('modal-qr')" class="text-gray-500 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div id="qr-canvas-container" class="mx-auto mb-3 bg-white rounded-2xl p-4 inline-block">
+          <canvas id="qr-canvas"></canvas>
+        </div>
+        <p id="qr-quedada-title" class="text-sm text-gray-300 font-bold mb-1"></p>
+        <p id="qr-quedada-info" class="text-xs text-gray-500 mb-4"></p>
+        <button onclick="downloadQR()" class="w-full p-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-sm hover:shadow-lg transition">
+          Descargar QR
+        </button>
       </div>
     </div>
 

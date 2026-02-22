@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "correrjuntos.com"
+        }
+      ],
+      "destination": "https://www.correrjuntos.com/:path",
+      "permanent": true
+    }
+  ]
+}

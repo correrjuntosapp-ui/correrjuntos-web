@@ -3,6 +3,36 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/patrocinadores",
+      "destination": "/inversores",
+      "permanent": true
+    },
+    {
+      "source": "/sponsors",
+      "destination": "/inversores",
+      "permanent": true
+    },
+    {
+      "source": "/contacto",
+      "destination": "/sobre-nosotros#contacto",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "destination": "/sobre-nosotros#contacto",
+      "permanent": false
+    },
+    {
+      "source": "/anunciate",
+      "destination": "/inversores",
+      "permanent": true
+    },
+    {
+      "source": "/media-kit",
+      "destination": "/inversores#media-kit",
+      "permanent": false
+    },
+    {
       "source": "/:path(.*)",
       "has": [
         {

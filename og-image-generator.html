@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1200px; height: 630px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.card {
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(135deg, #0b1220 0%, #0f1a2e 40%, #0b1220 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+/* Glow circles */
+.glow-1 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%); top: -100px; right: -50px; border-radius: 50%; }
+.glow-2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(249,115,22,0.1) 0%, transparent 70%); bottom: -100px; left: -50px; border-radius: 50%; }
+.glow-3 { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; }
+
+/* Content */
+.content { position: relative; z-index: 2; text-align: center; padding: 0 80px; }
+.logo { font-size: 52px; font-weight: 900; letter-spacing: -2px; color: #fff; margin-bottom: 16px; }
+.logo span { color: #f97316; }
+.tagline { font-size: 28px; font-weight: 600; color: #cbd5e1; margin-bottom: 32px; line-height: 1.3; }
+.stats { display: flex; gap: 48px; justify-content: center; margin-bottom: 36px; }
+.stat { text-align: center; }
+.stat-number { font-size: 36px; font-weight: 900; color: #f97316; }
+.stat-label { font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.cta { display: inline-block; background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; padding: 14px 40px; border-radius: 50px; font-weight: 700; font-size: 18px; }
+.url { position: absolute; bottom: 24px; left: 0; right: 0; text-align: center; font-size: 16px; color: #475569; letter-spacing: 1px; }
+
+/* Runner silhouettes */
+.runners { position: absolute; bottom: 40px; left: 80px; display: flex; gap: -8px; }
+.runner-dot { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #f97316; background: rgba(249,115,22,0.1); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-left: -12px; }
+.runner-dot:first-child { margin-left: 0; }
+.runner-count { width: 40px; height: 40px; border-radius: 50%; background: #f97316; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-left: -12px; }
+
+/* Decorative line */
+.line { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, #f97316, transparent); }
+</style>
+</head>
+<body>
+<div class="card">
+    <div class="line"></div>
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+
+    <div class="content">
+        <div class="logo">CORRER<span>JUNTOS</span></div>
+        <div class="tagline">Encuentra runners cerca de ti.<br>Nunca vuelvas a correr solo.</div>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">62</div>
+                <div class="stat-label">Ciudades</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Paises</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Gratis</div>
+            </div>
+        </div>
+        <div class="cta">Unete ahora</div>
+    </div>
+
+    <div class="runners">
+        <div class="runner-dot">&#x1F3C3;</div>
+        <div class="runner-dot">&#x1F3C3;</div>
+        <div class="runner-dot">&#x1F3C3;</div>
+        <div class="runner-dot">&#x1F3C3;</div>
+        <div class="runner-count">+50</div>
+    </div>
+
+    <div class="url">correrjuntos.com</div>
+</div>
+</body>
+</html>

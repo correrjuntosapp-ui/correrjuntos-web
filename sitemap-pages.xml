@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.correrjuntos.com/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.correrjuntos.com/?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.correrjuntos.com/?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/" />
+  </url>
+
+  <!-- Sobre Nosotros -->
+  <url>
+    <loc>https://www.correrjuntos.com/sobre-nosotros</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Inversores -->
+  <url>
+    <loc>https://www.correrjuntos.com/inversores</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Patrocinadores -->
+  <url>
+    <loc>https://www.correrjuntos.com/patrocinadores</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://www.correrjuntos.com/legal/privacidad</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/legal/terminos</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/legal/cookies</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Media Kit -->
+  <url>
+    <loc>https://www.correrjuntos.com/media-kit</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Stats -->
+  <url>
+    <loc>https://www.correrjuntos.com/stats/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- CJ Verify -->
+  <url>
+    <loc>https://www.correrjuntos.com/cj_verify</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- 404 -->
+  <url>
+    <loc>https://www.correrjuntos.com/404</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.1</priority>
+  </url>
+
+</urlset>

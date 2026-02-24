@@ -1,10 +1,7 @@
-// API Route de Vercel para refrescar token de Strava
-
 const STRAVA_CLIENT_ID = '199454';
 const STRAVA_CLIENT_SECRET = 'f176cbe4a5c51e9ba48b423406758f31e8451ca2';
 
 export default async function handler(req, res) {
-    // CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -24,7 +21,6 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Missing refresh token' });
         }
 
-        // Refrescar token
         const tokenResponse = await fetch('https://www.strava.com/oauth/token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

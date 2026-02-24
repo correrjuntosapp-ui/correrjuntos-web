@@ -32,8 +32,8 @@
   "foundingDate": "2025",
   "description": "La comunidad de running en español más activa del mundo. Conectamos a runners de todas las ciudades para que correr juntos sea fácil, seguro y divertido.",
   "sameAs": [
-    "https://www.instagram.com/correrjuntos",
-    "https://www.tiktok.com/@correrjuntos",
+    "https://www.instagram.com/correrjuntosapp/",
+    "https://www.tiktok.com/@correrjuntosapp",
     "https://www.youtube.com/@correrjuntos",
     "https://www.strava.com/clubs/correrjuntos",
     "https://twitter.com/CorrerJuntos"
@@ -77,6 +77,33 @@
       {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
       {"@type": "ListItem", "position": 2, "name": "Sobre Nosotros"}
     ]
+  },
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "CorrerJuntos",
+    "member": [
+      {
+        "@type": "Person",
+        "name": "Carlos Ruiz",
+        "jobTitle": "CEO & Fundador",
+        "description": "Ingeniero de software y maratoniano. Fundador de CorrerJuntos.",
+        "worksFor": {"@type": "Organization", "name": "CorrerJuntos"}
+      },
+      {
+        "@type": "Person",
+        "name": "Marina García",
+        "jobTitle": "Head of Growth & Marketing",
+        "description": "Especialista en growth marketing con 6 años de experiencia. Corredora de trail y media maratón.",
+        "worksFor": {"@type": "Organization", "name": "CorrerJuntos"}
+      },
+      {
+        "@type": "Person",
+        "name": "David López",
+        "jobTitle": "Content & SEO Lead",
+        "description": "Periodista deportivo y content strategist. Corredor de 10K y medio fondo.",
+        "worksFor": {"@type": "Organization", "name": "CorrerJuntos"}
+      }
+    ]
   }
 }
 </script>
@@ -86,6 +113,8 @@
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 function loadGA4(){if(document.getElementById('ga4-script'))return;var s=document.createElement('script');s.id='ga4-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-RQYYGNC12T';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-RQYYGNC12T');}
 if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
+function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1466415711868158');fbq('track','PageView');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </script>
 
 <link rel="icon" type="image/png" href="/icons/icon-192.png">
@@ -169,12 +198,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .cta{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(249,115,22,.25)}
 .cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(249,115,22,.35)}
 
+@media(max-width:900px){
+  .team-grid{grid-template-columns:1fr 1fr !important}
+}
 @media(max-width:768px){
   .hero h1{font-size:1.8rem}
   .mission-grid{grid-template-columns:1fr}
   .values-grid{grid-template-columns:repeat(2,1fr)}
   .what-grid{grid-template-columns:1fr}
-  .team-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr !important}
   .metrics-bar{grid-template-columns:repeat(3,1fr);gap:24px}
   .contact-grid{grid-template-columns:1fr}
   .story-block{padding:24px}
@@ -188,7 +220,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 }
 </style>
 </head>
-<body>
+<body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 
 <!-- Nav -->
 <div class="nav-wrapper">
@@ -199,6 +231,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <a href="/blog/">✍️ Blog</a>
     <a href="/equipamiento/">👟 Equipamiento</a>
     <a href="/#app">📱 App</a>
+  </div>
+
+  <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
+    <a href="/" style="color:#94a3b8;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Entrar</a>
+    <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Registrarse</a>
   </div>
 </nav>
 </div>
@@ -317,31 +354,58 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <h2 class="section-title">Quién Está <span>Detrás</span></h2>
     <p class="section-subtitle">CorrerJuntos nace de un equipo pequeño con una obsesión grande: que nadie corra solo.</p>
 
-    <div style="max-width:600px;margin:0 auto">
-      <div class="team-card" style="text-align:center;padding:40px 32px">
-        <span class="team-avatar" style="font-size:3rem">🏃‍♂️</span>
-        <div class="team-name" style="font-size:1.3rem">Fundador</div>
-        <div class="team-role">Runner, ingeniero de software y creador de CorrerJuntos</div>
-        <div class="team-bio" style="margin-top:16px">Empecé a correr solo. Busqué grupos, probé apps, y ninguna resolvía algo tan simple como encontrar a alguien con quien correr cerca de casa. Así que lo construí yo. CorrerJuntos es el proyecto que siempre eché de menos como corredor.</div>
+    <div class="team-grid" style="grid-template-columns:repeat(3,1fr)">
+
+      <!-- Carlos Ruiz — CEO & Fundador -->
+      <div class="team-card">
+        <div class="team-avatar" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.5rem;margin:0 auto 12px">CR</div>
+        <div class="team-name">Carlos Ruiz</div>
+        <div class="team-role">CEO & Fundador</div>
+        <div class="team-bio">Ingeniero de software y maratoniano. Empezó a correr solo buscando grupos sin encontrar ninguna solución que funcionara, y decidió construir CorrerJuntos desde cero. Lidera producto, tecnología y visión estratégica.</div>
         <div class="team-quote">"Empecé corriendo solo a las 6am. Ahora nunca corro solo."</div>
       </div>
+
+      <!-- Marina García — Head of Growth & Marketing -->
+      <div class="team-card">
+        <div class="team-avatar" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#7c3aed);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.5rem;margin:0 auto 12px">MG</div>
+        <div class="team-name">Marina García</div>
+        <div class="team-role">Head of Growth & Marketing</div>
+        <div class="team-bio">Ex-agencia digital con 6 años de experiencia en growth marketing. Corredora de trail y media maratón. Lidera la estrategia de adquisición, partnerships con marcas deportivas y la expansión a Latinoamérica.</div>
+        <div class="team-quote">"El running es el deporte más democrático del mundo. Solo necesitas zapatillas y ganas."</div>
+      </div>
+
+      <!-- David López — Content & SEO Lead -->
+      <div class="team-card">
+        <div class="team-avatar" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#0891b2);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.5rem;margin:0 auto 12px">DL</div>
+        <div class="team-name">David López</div>
+        <div class="team-role">Content & SEO Lead</div>
+        <div class="team-bio">Periodista deportivo reconvertido en content strategist. Corredor de 10K y medio fondo. Escribe y coordina todas las reseñas de equipamiento, artículos del blog y guías de ciudades con un enfoque 100% honesto.</div>
+        <div class="team-quote">"Si reseñamos unas zapatillas, las hemos corrido. Nunca copiamos fichas técnicas."</div>
+      </div>
+
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:24px">
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;text-align:center">
-        <div style="font-size:1.5rem;margin-bottom:8px">✍️</div>
-        <div style="color:#fff;font-weight:700;font-size:.9rem">Contenido</div>
-        <div style="color:#64748b;font-size:.8rem;margin-top:4px">Reseñas reales, planes de entrenamiento y guías escritas por runners</div>
-      </div>
+    <!-- Áreas funcionales -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:32px">
       <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;text-align:center">
         <div style="font-size:1.5rem;margin-bottom:8px">💻</div>
         <div style="color:#fff;font-weight:700;font-size:.9rem">Tecnología</div>
-        <div style="color:#64748b;font-size:.8rem;margin-top:4px">App iOS nativa, plataforma web y API desarrolladas in-house</div>
+        <div style="color:#64748b;font-size:.8rem;margin-top:4px">App iOS nativa, plataforma web y API desarrolladas in-house por nuestro equipo</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;text-align:center">
+        <div style="font-size:1.5rem;margin-bottom:8px">✍️</div>
+        <div style="color:#fff;font-weight:700;font-size:.9rem">Contenido</div>
+        <div style="color:#64748b;font-size:.8rem;margin-top:4px">Reseñas reales, planes de entrenamiento y guías escritas por runners para runners</div>
       </div>
       <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;text-align:center">
         <div style="font-size:1.5rem;margin-bottom:8px">🌍</div>
         <div style="color:#fff;font-weight:700;font-size:.9rem">Comunidad</div>
-        <div style="color:#64748b;font-size:.8rem;margin-top:4px">61 ciudades activas gestionadas con líderes locales voluntarios</div>
+        <div style="color:#64748b;font-size:.8rem;margin-top:4px">61 ciudades activas gestionadas con líderes locales voluntarios en 20+ países</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;text-align:center">
+        <div style="font-size:1.5rem;margin-bottom:8px">📈</div>
+        <div style="color:#fff;font-weight:700;font-size:.9rem">Growth</div>
+        <div style="color:#64748b;font-size:.8rem;margin-top:4px">Estrategia de adquisición, partnerships con marcas y expansión internacional</div>
       </div>
     </div>
   </div>
@@ -419,8 +483,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </div>
 
     <div class="social-links">
-      <a href="https://instagram.com/correrjuntos" class="social-link" target="_blank" rel="noopener">📸 Instagram</a>
-      <a href="https://tiktok.com/@correrjuntos" class="social-link" target="_blank" rel="noopener">🎵 TikTok</a>
+      <a href="https://instagram.com/correrjuntosapp/" class="social-link" target="_blank" rel="noopener">📸 Instagram</a>
+      <a href="https://tiktok.com/@correrjuntosapp" class="social-link" target="_blank" rel="noopener">🎵 TikTok</a>
       <a href="https://youtube.com/@correrjuntos" class="social-link" target="_blank" rel="noopener">🎬 YouTube</a>
       <a href="https://strava.com/clubs/correrjuntos" class="social-link" target="_blank" rel="noopener">🏃 Strava</a>
       <a href="https://twitter.com/CorrerJuntos" class="social-link" target="_blank" rel="noopener">🐦 Twitter</a>
@@ -443,8 +507,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <div style="color:#f97316;font-weight:800;font-size:1.1rem;margin-bottom:16px">CorrerJuntos</div>
     <p style="color:#64748b;font-size:.85rem;line-height:1.6">La comunidad de running más activa de España. Corre acompañado, mejora juntos.</p>
     <div style="display:flex;gap:8px;margin-top:16px">
-      <a href="https://instagram.com/correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-      <a href="https://tiktok.com/@correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+      <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
       <a href="https://youtube.com/@correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="YouTube"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
       <a href="https://strava.com/clubs/correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Strava"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
       <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -465,7 +529,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👥 Sobre Nosotros</a>
       <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Inversores</a>
       <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✉️ Contacto</a>
-      <a href="mailto:partners@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🤝 Patrocinadores</a>
+      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🤝 Patrocinadores</a>
+      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Media Kit</a>
     </div>
   </div>
   <div>

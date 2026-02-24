@@ -43,6 +43,8 @@
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 function loadGA4(){if(document.getElementById('ga4-script'))return;var s=document.createElement('script');s.id='ga4-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-RQYYGNC12T';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-RQYYGNC12T');}
 if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
+function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1466415711868158');fbq('track','PageView');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </script>
 <link rel="icon" type="image/png" href="/icons/icon-192.png">
 <style>
@@ -106,9 +108,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   .hero h1{font-size:1.7rem}
   .categories-grid{grid-template-columns:1fr}
 }
+@media(max-width:768px){.nav{flex-wrap:wrap;padding:12px 16px}.nav-links{order:3;width:100%;justify-content:center;margin-top:4px}.nav-links a{font-size:.78rem;padding:5px 12px;white-space:nowrap}.nav-auth{margin-left:auto}}
 </style>
 </head>
-<body>
+<body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 <div class="nav-wrapper">
 <nav class="nav">
   <a href="/">CORRER<b>JUNTOS</b></a>
@@ -117,6 +120,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <a href="/blog/">✍️ Blog</a>
     <a href="/equipamiento/" class="active">👟 Equipamiento</a>
     <a href="/#app">📱 App</a>
+  </div>
+
+  <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
+    <a href="/" style="color:#94a3b8;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Entrar</a>
+    <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Registrarse</a>
   </div>
 </nav>
 </div>
@@ -138,8 +146,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <a href="/equipamiento/relojes-gps-running.html" class="hero-chip">⌚ Relojes GPS</a>
     <a href="/equipamiento/auriculares-running.html" class="hero-chip">🎧 Auriculares</a>
     <a href="/equipamiento/ropa-running.html" class="hero-chip">👕 Ropa</a>
-    <a href="/equipamiento/geles-energéticos-running.html" class="hero-chip">⚡ Geles</a>
-    <a href="/equipamiento/bebidas-hidratación-running.html" class="hero-chip">💧 Hidratación</a>
+    <a href="/equipamiento/geles-energeticos-running.html" class="hero-chip">⚡ Geles</a>
+    <a href="/equipamiento/bebidas-hidratacion-running.html" class="hero-chip">💧 Hidratación</a>
     <a href="/equipamiento/recuperadores-running.html" class="hero-chip">💪 Recuperadores</a>
     <a href="/equipamiento/suplementos-running.html" class="hero-chip">💊 Suplementos</a>
     <a href="/equipamiento/zapatillas-trail-running.html" class="hero-chip">🏔️ Trail</a>
@@ -148,6 +156,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 </div>
 
 <div class="container">
+
+  <!-- Intro content for SEO -->
+  <div style="max-width:700px;margin:32px auto 0;text-align:center">
+    <p style="color:#cbd5e1;font-size:1rem;line-height:1.8;margin-bottom:16px">Desde zapatillas para asfalto y trail hasta relojes GPS con métricas avanzadas, pasando por nutrición deportiva y accesorios imprescindibles. En cada categoría analizamos los <strong style="color:#fff">10 mejores productos</strong> con pruebas reales de nuestra comunidad de corredores.</p>
+    <p style="color:#94a3b8;font-size:.9rem;line-height:1.7">Todas las reseñas incluyen puntuación, pros y contras, y enlaces directos a los mejores precios en Amazon España. Actualizamos los rankings cada mes para que siempre tengas información fiable.</p>
+  </div>
+
+  <!-- TOP PICKS: Productos más vendidos (direct affiliate links) -->
+  <div style="margin:48px 0 24px">
+    <h2 style="text-align:center;font-size:1.4rem;font-weight:900;margin-bottom:24px">⭐ Los Más Vendidos de Nuestra Comunidad</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px">
+      <a href="https://amzn.to/4aCfCmH" target="_blank" rel="noopener noreferrer nofollow" style="background:rgba(255,255,255,.04);border:1px solid rgba(249,115,22,.15);border-radius:16px;padding:20px;text-decoration:none;text-align:center;transition:transform .2s,border-color .2s;display:block" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(249,115,22,.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(249,115,22,.15)'">
+        <div style="font-size:.65rem;color:#f97316;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">👟 Zapatilla #1</div>
+        <div style="color:#fff;font-weight:800;font-size:1rem;margin-bottom:4px">Hoka Clifton 9</div>
+        <div style="color:#f97316;font-weight:700;font-size:.85rem;margin-bottom:8px">9.5/10</div>
+        <div style="color:#94a3b8;font-size:.8rem;line-height:1.4">La favorita de los runners. Máxima amortiguación con solo 248g.</div>
+        <div style="color:#f97316;font-size:.8rem;font-weight:700;margin-top:12px">Ver precio en Amazon →</div>
+      </a>
+      <a href="https://amzn.to/4aB7MK2" target="_blank" rel="noopener noreferrer nofollow" style="background:rgba(255,255,255,.04);border:1px solid rgba(249,115,22,.15);border-radius:16px;padding:20px;text-decoration:none;text-align:center;transition:transform .2s,border-color .2s;display:block" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(249,115,22,.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(249,115,22,.15)'">
+        <div style="font-size:.65rem;color:#f97316;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">⌚ Reloj #1</div>
+        <div style="color:#fff;font-weight:800;font-size:1rem;margin-bottom:4px">Garmin Forerunner 265</div>
+        <div style="color:#f97316;font-weight:700;font-size:.85rem;margin-bottom:8px">9.4/10</div>
+        <div style="color:#94a3b8;font-size:.8rem;line-height:1.4">AMOLED, GPS dual-band, métricas de entrenamiento completas.</div>
+        <div style="color:#f97316;font-size:.8rem;font-weight:700;margin-top:12px">Ver precio en Amazon →</div>
+      </a>
+      <a href="https://amzn.to/4bTlqKR" target="_blank" rel="noopener noreferrer nofollow" style="background:rgba(255,255,255,.04);border:1px solid rgba(249,115,22,.15);border-radius:16px;padding:20px;text-decoration:none;text-align:center;transition:transform .2s,border-color .2s;display:block" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(249,115,22,.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(249,115,22,.15)'">
+        <div style="font-size:.65rem;color:#f97316;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">👟 Zapatilla #2</div>
+        <div style="color:#fff;font-weight:800;font-size:1rem;margin-bottom:4px">Nike Pegasus 41</div>
+        <div style="color:#f97316;font-weight:700;font-size:.85rem;margin-bottom:8px">9.3/10</div>
+        <div style="color:#94a3b8;font-size:.8rem;line-height:1.4">El clásico renovado. ReactX Foam para máxima reactividad.</div>
+        <div style="color:#f97316;font-size:.8rem;font-weight:700;margin-top:12px">Ver precio en Amazon →</div>
+      </a>
+      <a href="https://amzn.to/3Oo1Qg3" target="_blank" rel="noopener noreferrer nofollow" style="background:rgba(255,255,255,.04);border:1px solid rgba(249,115,22,.15);border-radius:16px;padding:20px;text-decoration:none;text-align:center;transition:transform .2s,border-color .2s;display:block" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(249,115,22,.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(249,115,22,.15)'">
+        <div style="font-size:.65rem;color:#f97316;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">⌚ Reloj #2</div>
+        <div style="color:#fff;font-weight:800;font-size:1rem;margin-bottom:4px">COROS PACE 3</div>
+        <div style="color:#f97316;font-weight:700;font-size:.85rem;margin-bottom:8px">9.2/10</div>
+        <div style="color:#94a3b8;font-size:.8rem;line-height:1.4">Mejor relación calidad-precio. 38h batería GPS, solo 39g.</div>
+        <div style="color:#f97316;font-size:.8rem;font-weight:700;margin-top:12px">Ver precio en Amazon →</div>
+      </a>
+    </div>
+  </div>
+
+  <h2 style="text-align:center;font-size:1.4rem;font-weight:900;margin:48px 0 8px">Todas las Categorías</h2>
+  <p style="text-align:center;color:#94a3b8;font-size:.9rem;margin-bottom:8px">10 categorías · 100+ productos analizados · Precios actualizados febrero 2026</p>
+
   <div class="categories-grid">
 
     <!-- Zapatillas -->
@@ -175,7 +228,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Geles Energéticos -->
-    <a href="/equipamiento/geles-energéticos-running.html" class="category-card popular">
+    <a href="/equipamiento/geles-energeticos-running.html" class="category-card popular">
       <span class="popular-badge">🔥 Popular</span>
       <div class="category-icon"><img referrerpolicy="no-referrer" src="https://m.media-amazon.com/images/I/819gt01KuOL._AC_SX679_PIbundle-30,TopRight,0,0_SH20_.jpg" alt="Geles Energéticos" loading="lazy"></div>
       <div class="category-name">Geles Energéticos</div>
@@ -187,7 +240,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Bebidas Hidratación -->
-    <a href="/equipamiento/bebidas-hidratación-running.html" class="category-card">
+    <a href="/equipamiento/bebidas-hidratacion-running.html" class="category-card">
       <div class="category-icon"><img referrerpolicy="no-referrer" src="https://m.media-amazon.com/images/I/71q3ji7DQ4L._AC_SL1500_.jpg" alt="Bebidas de Hidratación" loading="lazy"></div>
       <div class="category-name">Bebidas de Hidratación</div>
       <div class="category-desc">Las 10 mejores bebidas de hidratación para running en 2026. Isostar, 226ERS, Maurten, SiS, Nuun. Isotónicos y electrolitos.</div>
@@ -287,8 +340,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <a href="/" style="color:#f97316;font-weight:800;font-size:1.1rem;text-decoration:none;display:block;margin-bottom:16px">CorrerJuntos</a>
     <p style="color:#64748b;font-size:.85rem;line-height:1.6">La comunidad de running más activa de España. Corre acompañado, mejora juntos.</p>
     <div style="display:flex;gap:8px;margin-top:16px">
-      <a href="https://instagram.com/correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-      <a href="https://tiktok.com/@correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+      <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
       <a href="https://youtube.com/@correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="YouTube"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
       <a href="https://strava.com/clubs/correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Strava"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
       <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -309,7 +362,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👥 Sobre Nosotros</a>
       <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Inversores</a>
       <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✉️ Contacto</a>
-      <a href="mailto:partners@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🤝 Patrocinadores</a>
+      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🤝 Patrocinadores</a>
+      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Media Kit</a>
     </div>
   </div>
   <div>

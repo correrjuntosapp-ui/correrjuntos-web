@@ -371,6 +371,7 @@
         body.light-mode .bg-slate-950, body.light-mode .bg-slate-900, body.light-mode .bg-\[\#0f172a\], body.light-mode .bg-\[\#0b1220\] { background: #fef7ed !important; }
         body.light-mode .bg-slate-800, body.light-mode .bg-slate-800\/50, body.light-mode .bg-slate-800\/30, body.light-mode .bg-slate-800\/80 { background: #fef7ed !important; }
         body.light-mode .text-white { color: #3d3229 !important; }
+        body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4 { color: #3d3229; }
         body.light-mode .text-gray-400, body.light-mode .text-gray-500 { color: #8b7355 !important; }
         body.light-mode .text-gray-300 { color: #5c4d3d !important; }
         body.light-mode .text-orange-500 { color: #d95c0a !important; }

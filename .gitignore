@@ -1,1 +1,7 @@
 .vercel
+node_modules/
+nul
+*.sql
+correr-juntos-app/
+C*UsersguettOneDrive*
+C*Usersguetttemp*

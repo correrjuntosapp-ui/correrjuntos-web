@@ -1,9 +1,32 @@
+# CorrerJuntos - robots.txt
+# https://www.correrjuntos.com
+
 User-agent: *
 Allow: /
-Allow: /cities/
-Allow: /privacy.html
-Allow: /terms.html
-
 Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs$
+Disallow: /*.sql$
+Disallow: /*.md$
 
+# Crawl-delay for polite bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 30
+
+# Sitemaps
 Sitemap: https://www.correrjuntos.com/sitemap.xml
+Sitemap: https://www.correrjuntos.com/sitemap-blog.xml
+Sitemap: https://www.correrjuntos.com/sitemap-cities.xml
+Sitemap: https://www.correrjuntos.com/sitemap-pages.xml
+Sitemap: https://www.correrjuntos.com/sitemap-equipamiento.xml

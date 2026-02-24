@@ -2155,6 +2155,23 @@
             .quedada-detail-map { height: 140px; }
         }
 
+        /* ===== COOKIE BANNER: top on mobile to avoid blocking bottom content ===== */
+        @media (max-width: 768px) {
+            #cookie-banner {
+                bottom: auto !important;
+                top: 0;
+            }
+            #cookie-banner.translate-y-full {
+                transform: translateY(-100%) !important;
+            }
+            #cookie-banner.translate-y-0 {
+                transform: translateY(0) !important;
+            }
+            /* Extra footer padding for mobile-bottom-nav + share-banner */
+            footer { padding-bottom: 100px !important; }
+            body.cj-cookie-dismissed footer { padding-bottom: 80px !important; }
+        }
+
         /* ===== FLOATING SHARE BANNER ===== */
         .share-banner {
             position: fixed;

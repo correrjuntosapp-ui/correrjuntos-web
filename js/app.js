@@ -849,6 +849,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             if (!banner) return;
             banner.classList.remove('translate-y-0');
             banner.classList.add('translate-y-full');
+            document.body.classList.add('cj-cookie-dismissed');
             setTimeout(() => { banner.style.display = 'none'; }, 500);
         }
         function toggleCookieDetails() {
@@ -904,6 +905,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             if (!prefs && !oldConsent) {
                 // Small delay so the page loads first
                 setTimeout(showCookieBanner, 1500);
+            } else {
+                // User already consented — reduce footer padding
+                document.body.classList.add('cj-cookie-dismissed');
             }
         })();
 

@@ -79,14 +79,15 @@ serve(async (req) => {
             console.log('Subscription upserted successfully')
           }
 
-          // Actualizar perfil con is_premium
+          // Actualizar perfil con es_premium (campo usado por el frontend)
           const { error: profileError } = await supabase
             .from('profiles')
             .update({
+              es_premium: true,
               is_premium: true,
               premium_until: new Date(subscription.current_period_end * 1000).toISOString()
             })
-            .eq('user_id', userId)
+            .eq('id', userId)
 
           if (profileError) {
             console.error('Error updating profile:', profileError)
@@ -121,10 +122,11 @@ serve(async (req) => {
           await supabase
             .from('profiles')
             .update({
+              es_premium: status === 'active',
               is_premium: status === 'active',
               premium_until: new Date(subscription.current_period_end * 1000).toISOString()
             })
-            .eq('user_id', userId)
+            .eq('id', userId)
         }
         break
       }
@@ -147,10 +149,11 @@ serve(async (req) => {
           await supabase
             .from('profiles')
             .update({
+              es_premium: false,
               is_premium: false,
               premium_until: null
             })
-            .eq('user_id', userId)
+            .eq('id', userId)
         }
         break
       }

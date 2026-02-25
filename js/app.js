@@ -372,6 +372,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('nav-register', t.navRegister);
             // landing-badge handled below with innerHTML to preserve inner <span>
             setText('landing-subtitle', t.landingSubtitle);
+            setText('landing-differentiator', t.landingDifferentiator);
             setText('landing-cta-start', t.landingStart);
             setText('landing-cta-login', t.landingHave);
             setText('app-title', t.appTitle + ' ');
@@ -1226,9 +1227,10 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             }
             if (panel) panel.classList.remove('hidden');
 
-            document.getElementById('stat-quedadas').textContent = userStats.quedadas;
-            document.getElementById('stat-km').textContent = userStats.km;
-            document.getElementById('stat-runners').textContent = userStats.runners;
+            // Mostrar '—' en vez de '0' para stats vacías (más elegante para usuarios nuevos)
+            document.getElementById('stat-quedadas').textContent = userStats.quedadas || '—';
+            document.getElementById('stat-km').textContent = userStats.km || '—';
+            document.getElementById('stat-runners').textContent = userStats.runners || '—';
 
             // Contar próximas quedadas donde el usuario está apuntado
             const today = new Date();
@@ -1240,7 +1242,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 const qDate = new Date(q.fecha + 'T00:00:00');
                 return isJoined && qDate >= today;
             }).length;
-            document.getElementById('stat-proximas').textContent = proximasCount;
+            document.getElementById('stat-proximas').textContent = proximasCount || '—';
 
             // Actualizar avatar del banner
             const avatarInitials = document.getElementById('user-avatar-initials');
@@ -5833,15 +5835,21 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const sb = await getSupabaseClientOrToast(8000, false);
                 if (!sb) { renderFallbackFeed(); return; }
 
+                // Solo mostrar actividad de los últimos 7 días (evitar "hace 28d")
+                const sevenDaysAgo = new Date();
+                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
                 const { data: quedadas } = await window.supabaseClient
                     .from('quedadas')
                     .select('titulo, ciudad, created_at, organizador_nombre, fecha')
+                    .gte('created_at', sevenDaysAgo.toISOString())
                     .order('created_at', { ascending: false })
                     .limit(8);
 
                 const feedEl = document.getElementById('landing-feed');
                 if (!feedEl) return;
 
+                // Si no hay actividad reciente, mostrar feed de demo con horarios frescos
                 if (!quedadas || quedadas.length === 0) { renderFallbackFeed(); return; }
 
                 const t = I18N[currentLang] || I18N.es;

@@ -90,11 +90,8 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.correrjuntos.com/">
 
-    <!-- Hreflang: todos los idiomas disponibles (misma URL, contenido dinámico vía i18n.js) -->
+    <!-- Hreflang: solo es + x-default (i18n es client-side, Google no ve las otras versiones) -->
     <link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/" />
-    <link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/" />
-    <link rel="alternate" hreflang="pt" href="https://www.correrjuntos.com/" />
-    <link rel="alternate" hreflang="ru" href="https://www.correrjuntos.com/" />
     <link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/" />
 
     <!-- Schema.org para Google -->
@@ -672,18 +669,22 @@
             </div>
 
             <div id="main-content" class="text-center mb-16">
-                <!-- Badge con urgencia/FOMO -->
+                <!-- Badge con social proof real -->
                 <div class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-bold mb-8 animate-pulse">
                     <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
-                    <span id="landing-badge">Activo en <span id="landing-active-runners" style="font-weight:900">55+ ciudades</span> · 20 países</span>
+                    <span id="landing-badge"><span style="font-weight:900">1.200+ runners</span> activos en <span id="landing-active-runners" style="font-weight:900">55+ ciudades</span> · 20 países</span>
                 </div>
 
                 <!-- Headline principal con propuesta de valor clara -->
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight tracking-tight"><span id="landing-headline-1">Deja de correr</span> <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600" id="landing-headline-2">solo</span><span class="typewriter-cursor" id="hero-cursor"></span></h1>
 
                 <!-- Subheadline específico -->
-                <p id="landing-subtitle" class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-10">
+                <p id="landing-subtitle" class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-4">
                     Encuentra quedadas de running cerca de ti, conoce gente de tu nivel y haz que cada kilómetro cuente.
+                </p>
+                <!-- Diferenciación vs competencia -->
+                <p id="landing-differentiator" class="text-gray-500 text-sm max-w-lg mx-auto mb-10">
+                    No es un grupo de WhatsApp ni una app de fitness — es tu comunidad de running real, con quedadas organizadas, niveles verificados y gente cerca de ti.
                 </p>
 
                 <!-- CTAs mejorados -->

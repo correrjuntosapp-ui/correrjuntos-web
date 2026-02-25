@@ -755,6 +755,21 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('promo-cta-btn', t.promoCtaBtn);
             setText('promo-later-btn', t.promoLaterBtn);
 
+            // Limit reached modal
+            setText('limit-title', t.limitTitle);
+            setText('limit-subtitle', t.limitSubtitle);
+            setText('limit-subtitle-2', t.limitSubtitle2);
+            setText('limit-desc', t.limitDesc);
+            setText('limit-desc-bold', t.limitDescBold);
+            setText('limit-desc-2', t.limitDesc2);
+            setText('limit-feat-1', t.limitFeat1);
+            setText('limit-feat-2', t.limitFeat2);
+            setText('limit-feat-3', t.limitFeat3);
+            setText('limit-feat-4', t.limitFeat4);
+            setText('limit-per-month', t.limitPerMonth);
+            setText('limit-cta-btn', t.limitCtaBtn);
+            setText('limit-later-btn', t.limitLaterBtn);
+
             // Landing enhancements i18n
             setText('feed-title', t.feedTitle);
             setText('map-preview-title', t.mapPreviewTitle);
@@ -4915,7 +4930,22 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             closeAddressSuggestionsCrear();
         });
 
-        function openModalCrear(){if(!currentUser){showToast('Debes registrarte','error');openModal('modal-register');return;}openModal('modal-crear');setTimeout(()=>ensureLeaflet().then(initMapCrear),200);restoreDraftQuedada();updatePremiumCrearUI();}
+        function openModalCrear(){
+            if(!currentUser){showToast('Debes registrarte','error');openModal('modal-register');return;}
+            // PREMIUM: Si usuario Free ya usó sus 3 quedadas, mostrar modal de upgrade directamente
+            if (!isUserPremium) {
+                const count = getUserQuedadasThisMonth();
+                if (count >= 3) {
+                    openModal('modal-limit-reached');
+                    return;
+                }
+            }
+            openModal('modal-crear');
+            setTimeout(()=>ensureLeaflet().then(initMapCrear),200);
+            restoreDraftQuedada();
+            updatePremiumCrearUI();
+            updateQuedadaCounter();
+        }
         function restoreDraftQuedada(){
             try{
                 var raw=localStorage.getItem('cj_draft_quedada');
@@ -8062,17 +8092,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             // PREMIUM: Verificar límite de quedadas para usuarios gratis
             if (!isUserPremium) {
-                const userQuedadasThisMonth = quedadas.filter(q => {
-                    if (q.creador_id !== currentUser.id) return false;
-                    const qDate = new Date(q.created_at || q.fecha);
-                    const now = new Date();
-                    return qDate.getMonth() === now.getMonth() && qDate.getFullYear() === now.getFullYear();
-                }).length;
-
+                const userQuedadasThisMonth = getUserQuedadasThisMonth();
                 if (userQuedadasThisMonth >= 3) {
-                    showToast('Has alcanzado el límite de 3 quedadas/mes. ¡Hazte Premium para crear ilimitadas!', 'error');
                     closeModal('modal-crear');
-                    openModal('modal-profile');
+                    openModal('modal-limit-reached');
                     return;
                 }
             }
@@ -8439,6 +8462,49 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     }).addTo(mapCrear);
                     routeMarkers.push(m);
                 });
+            }
+        }
+
+        // Count user's quedadas created this month (for Free limit enforcement)
+        function getUserQuedadasThisMonth() {
+            if (!currentUser) return 0;
+            return quedadas.filter(q => {
+                if (q.creador_id !== currentUser.id) return false;
+                if (q.es_seed) return false; // No contar quedadas seed/demo
+                const qDate = new Date(q.created_at || q.fecha);
+                const now = new Date();
+                return qDate.getMonth() === now.getMonth() && qDate.getFullYear() === now.getFullYear();
+            }).length;
+        }
+
+        // Update quedada counter badge in crear modal header
+        function updateQuedadaCounter() {
+            const counterEl = document.getElementById('crear-quedada-counter');
+            const counterText = document.getElementById('crear-counter-text');
+            const badge = document.getElementById('crear-counter-badge');
+            if (!counterEl || !counterText || !badge) return;
+
+            if (isUserPremium) {
+                counterEl.classList.add('hidden');
+                return;
+            }
+
+            const count = getUserQuedadasThisMonth();
+            counterEl.classList.remove('hidden');
+            const remaining = 3 - count;
+
+            // Reset classes
+            badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border';
+
+            if (remaining <= 0) {
+                counterText.textContent = '3/3 — límite alcanzado';
+                badge.classList.add('bg-red-500/15', 'text-red-400', 'border-red-500/30');
+            } else if (remaining === 1) {
+                counterText.textContent = count + '/3 este mes — ¡última quedada!';
+                badge.classList.add('bg-yellow-500/15', 'text-yellow-400', 'border-yellow-500/30');
+            } else {
+                counterText.textContent = count + '/3 este mes';
+                badge.classList.add('bg-orange-500/15', 'text-orange-400', 'border-orange-500/30');
             }
         }
 

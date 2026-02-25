@@ -387,6 +387,11 @@
     <link rel="prefetch" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" as="script">
     <!-- html2canvas: loaded on demand (only used for stats card sharing) -->
     <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" as="script">
+    <!-- Core scripts: preload para descarga paralela temprana -->
+    <link rel="preload" href="/js/app.js" as="script">
+    <link rel="preload" href="/data/geo-data.js" as="script">
+    <link rel="preload" href="/data/i18n-core.js" as="script">
+    <link rel="preload" href="/data/i18n-es.js" as="script">
     <!-- Módulos lazy: PWA, Deep Linking (se cargan tras idle) -->
     <link rel="prefetch" href="/js/pwa.js" as="script">
     <link rel="prefetch" href="/js/deeplink.js" as="script">

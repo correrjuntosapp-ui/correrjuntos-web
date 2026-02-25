@@ -72,6 +72,11 @@
       "permanent": true
     },
     {
+      "source": "/legal/terminos",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
       "source": "/:path(.*)",
       "has": [
         {

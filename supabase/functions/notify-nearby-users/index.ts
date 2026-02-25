@@ -187,12 +187,73 @@ Deno.serve(async (req) => {
       results.push({ user_id: user.id, success, distance: Math.round(distance * 10) / 10 })
     }
 
-    console.log(`Notificaciones enviadas: ${sent}/${nearbyUsers.length}`)
+    console.log(`Push enviados: ${sent}/${nearbyUsers.length}`)
+
+    // ---- CANAL EMAIL: enviar a usuarios cercanos con alert_new_quedadas ----
+    let emailsSent = 0
+    try {
+      // Query usuarios con email y ubicación que quieran alertas (independiente de push_token)
+      const { data: emailUsers } = await supabase
+        .from('profiles')
+        .select('id, email, lat, lng, nombre, alert_new_quedadas, alert_radius_km')
+        .eq('alert_new_quedadas', true)
+        .not('email', 'is', null)
+        .not('lat', 'is', null)
+        .not('lng', 'is', null)
+        .neq('id', creador_id)
+
+      if (emailUsers && emailUsers.length > 0) {
+        const supabaseFnUrl = Deno.env.get('SUPABASE_URL')! + '/functions/v1/send-email'
+
+        for (const eu of emailUsers) {
+          const dist = calculateDistance(quedada_lat, quedada_lng, eu.lat, eu.lng)
+          const userRadius = eu.alert_radius_km || 25
+          if (dist > userRadius) continue
+
+          const distText = dist < 1
+            ? `${Math.round(dist * 1000)}m`
+            : `${dist.toFixed(1)}km`
+
+          try {
+            await fetch(supabaseFnUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${supabaseKey}`,
+              },
+              body: JSON.stringify({
+                type: 'nearby_quedada',
+                to_email: eu.email,
+                to_name: eu.nombre || eu.email.split('@')[0],
+                lang: 'es',
+                data: {
+                  titulo: quedada_titulo,
+                  ciudad: quedada_ciudad,
+                  fecha: body.fecha || '',
+                  hora: body.hora || '',
+                  distancia: distText,
+                  quedada_id,
+                  user_id: eu.id,
+                }
+              })
+            })
+            emailsSent++
+          } catch (e) {
+            console.warn(`Email falló para ${eu.id}:`, e)
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Error enviando emails:', e)
+    }
+
+    console.log(`Total: ${sent} push + ${emailsSent} emails enviados`)
 
     return new Response(
       JSON.stringify({
         success: true,
         sent,
+        emails_sent: emailsSent,
         total: nearbyUsers.length,
         results
       }),

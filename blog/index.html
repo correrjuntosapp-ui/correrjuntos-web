@@ -86,40 +86,43 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .search-wrap .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;display:none;padding:4px}
 .search-wrap .search-clear:hover{color:#fff}
 
-/* Filter Bar — horizontal scroll with arrows */
-.filter-bar-wrap{position:relative;display:flex;align-items:center;gap:0}
-.filter-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:32px;height:32px;border-radius:50%;background:rgba(11,18,32,.95);border:1px solid rgba(255,255,255,.15);color:#f97316;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-.filter-arrow:hover{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4)}
-.filter-arrow.hidden{opacity:0;pointer-events:none}
-.filter-arrow-left{left:-4px}
-.filter-arrow-right{right:-4px}
-.filter-bar-wrap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:32px;background:linear-gradient(90deg,#0b1220,transparent);pointer-events:none;z-index:3;opacity:0;transition:opacity .3s}
-.filter-bar-wrap.scrolled-start::before{opacity:0}
-.filter-bar-wrap:not(.scrolled-start)::before{opacity:1}
-.filter-bar-wrap::after{content:'';position:absolute;right:0;top:0;bottom:0;width:32px;background:linear-gradient(90deg,transparent,#0b1220);pointer-events:none;z-index:3;transition:opacity .3s}
-.filter-bar-wrap.scrolled-end::after{opacity:0}
-.filter-bar{display:flex;gap:8px;padding:24px 0 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;white-space:nowrap;justify-content:flex-start;padding-left:36px;padding-right:36px}
-.filter-bar::-webkit-scrollbar{display:none}
-.filter-btn{padding:6px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#94a3b8;font-size:.7rem;font-weight:600;cursor:pointer;transition:all .25s;letter-spacing:.2px;text-transform:uppercase;flex-shrink:0}
-.filter-btn:hover{border-color:rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.06)}
-.filter-btn.active{color:#fff}
-.filter-btn[data-filter="todos"].active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#f97316}
-.filter-btn[data-filter="zapatillas"].active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#f97316}
-.filter-btn[data-filter="entrenamiento"].active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.4);color:#3b82f6}
-.filter-btn[data-filter="nutricion"].active{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4);color:#22c55e}
-.filter-btn[data-filter="rutas"].active{background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.4);color:#a855f7}
-.filter-btn[data-filter="equipamiento"].active{background:rgba(6,182,212,.15);border-color:rgba(6,182,212,.4);color:#06b6d4}
-.filter-btn[data-filter="relojes-gps"].active{background:rgba(234,179,8,.15);border-color:rgba(234,179,8,.4);color:#eab308}
-.filter-btn[data-filter="apps"].active{background:rgba(236,72,153,.15);border-color:rgba(236,72,153,.4);color:#ec4899}
-.filter-btn[data-filter="recuperación"].active{background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.4);color:#10b981}
-.filter-btn[data-filter="principiantes"].active{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.4);color:#6366f1}
-.filter-btn[data-filter="comunidad"].active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#f97316}
-.filter-btn[data-filter="carreras"].active{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4);color:#ef4444}
-.filter-btn[data-filter="ropa"].active{background:rgba(244,114,182,.15);border-color:rgba(244,114,182,.4);color:#f472b6}
-.filter-btn[data-filter="trail"].active{background:rgba(132,204,22,.15);border-color:rgba(132,204,22,.4);color:#84cc16}
-.filter-btn[data-filter="tecnologia"].active{background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.4);color:#38bdf8}
-.filter-btn[data-filter="lesiones"].active{background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.4);color:#e11d48}
-.filter-count{margin-left:6px;font-size:.7rem;opacity:.6}
+/* Filter Bar — dropdown grid */
+.filter-bar-wrap{display:flex;align-items:center;gap:10px;padding:20px 0 8px;position:relative;z-index:20}
+.filter-btn-todos{padding:8px 18px;border-radius:12px;border:1px solid rgba(249,115,22,.4);background:rgba(249,115,22,.12);color:#f97316;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s;letter-spacing:.3px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.filter-btn-todos:hover{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.6)}
+.filter-btn-todos .filter-count{font-size:.72rem;opacity:.7;font-weight:500}
+.filter-dropdown-trigger{padding:8px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#94a3b8;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:8px}
+.filter-dropdown-trigger:hover{border-color:rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.08)}
+.filter-dropdown-trigger.open{border-color:rgba(249,115,22,.4);color:#f97316;background:rgba(249,115,22,.08)}
+.filter-dropdown-trigger .arrow{transition:transform .3s;font-size:.65rem}
+.filter-dropdown-trigger.open .arrow{transform:rotate(180deg)}
+.filter-active-label{padding:6px 14px;border-radius:10px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.3px;border:1px solid;animation:filterPop .3s ease}
+@keyframes filterPop{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
+.filter-panel{position:absolute;top:100%;left:0;right:0;margin-top:8px;background:rgba(11,18,32,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;opacity:0;transform:translateY(-10px) scale(.98);pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.05) inset}
+.filter-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.filter-panel-btn{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:#94a3b8;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px;text-align:left}
+.filter-panel-btn:hover{border-color:rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.07);transform:translateY(-1px)}
+.filter-panel-btn.active{color:#fff;transform:translateY(-1px)}
+.filter-panel-btn .cat-icon{font-size:1rem;flex-shrink:0}
+.filter-panel-btn .cat-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fp-zapatillas.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);color:#f97316}
+.fp-entrenamiento.active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:#3b82f6}
+.fp-nutricion.active{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.35);color:#22c55e}
+.fp-rutas.active{background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.35);color:#a855f7}
+.fp-equipamiento.active{background:rgba(6,182,212,.15);border-color:rgba(6,182,212,.35);color:#06b6d4}
+.fp-relojes-gps.active{background:rgba(234,179,8,.15);border-color:rgba(234,179,8,.35);color:#eab308}
+.fp-apps.active{background:rgba(236,72,153,.15);border-color:rgba(236,72,153,.35);color:#ec4899}
+.fp-recuperacion.active{background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#10b981}
+.fp-principiantes.active{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.35);color:#6366f1}
+.fp-comunidad.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);color:#f97316}
+.fp-carreras.active{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.35);color:#ef4444}
+.fp-ropa.active{background:rgba(244,114,182,.15);border-color:rgba(244,114,182,.35);color:#f472b6}
+.fp-trail.active{background:rgba(132,204,22,.15);border-color:rgba(132,204,22,.35);color:#84cc16}
+.fp-tecnologia.active{background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.35);color:#38bdf8}
+.fp-lesiones.active{background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.35);color:#e11d48}
+/* keep old filter-btn for JS compat — hidden */
+.filter-bar{display:none}
+.filter-btn{display:none}
 
 /* Article Grid */
 .articles{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin:32px 0 48px}
@@ -370,12 +373,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
   </div>
 
-  <!-- Category Filter Bar -->
+  <!-- Category Filter — Dropdown Grid -->
   <div class="filter-bar-wrap" id="filterBarWrap">
-  <button class="filter-arrow filter-arrow-left hidden" id="filterArrowLeft" aria-label="Scroll izquierda">‹</button>
-  <button class="filter-arrow filter-arrow-right" id="filterArrowRight" aria-label="Scroll derecha">›</button>
+  <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">Todos <span class="filter-count" id="filterCount">78</span></button>
+  <button class="filter-dropdown-trigger" id="filterDropdownTrigger">📂 Categorías <span class="arrow">▼</span></button>
+  <span id="filterActiveLabel"></span>
+  <div class="filter-panel" id="filterPanel">
+    <button class="filter-panel-btn fp-zapatillas" data-filter="zapatillas"><span class="cat-icon">👟</span><span class="cat-name">Zapatillas</span></button>
+    <button class="filter-panel-btn fp-entrenamiento" data-filter="entrenamiento"><span class="cat-icon">🏋️</span><span class="cat-name">Entrenamiento</span></button>
+    <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-icon">🗺️</span><span class="cat-name">Rutas</span></button>
+    <button class="filter-panel-btn fp-equipamiento" data-filter="equipamiento"><span class="cat-icon">🎒</span><span class="cat-name">Equipamiento</span></button>
+    <button class="filter-panel-btn fp-nutricion" data-filter="nutricion"><span class="cat-icon">🥗</span><span class="cat-name">Nutrición</span></button>
+    <button class="filter-panel-btn fp-relojes-gps" data-filter="relojes-gps"><span class="cat-icon">⌚</span><span class="cat-name">Relojes GPS</span></button>
+    <button class="filter-panel-btn fp-apps" data-filter="apps"><span class="cat-icon">📱</span><span class="cat-name">Apps</span></button>
+    <button class="filter-panel-btn fp-recuperacion" data-filter="recuperación"><span class="cat-icon">🧊</span><span class="cat-name">Recuperación</span></button>
+    <button class="filter-panel-btn fp-principiantes" data-filter="principiantes"><span class="cat-icon">🌱</span><span class="cat-name">Principiantes</span></button>
+    <button class="filter-panel-btn fp-comunidad" data-filter="comunidad"><span class="cat-icon">🤝</span><span class="cat-name">Comunidad</span></button>
+    <button class="filter-panel-btn fp-carreras" data-filter="carreras"><span class="cat-icon">🏅</span><span class="cat-name">Carreras</span></button>
+    <button class="filter-panel-btn fp-ropa" data-filter="ropa"><span class="cat-icon">👕</span><span class="cat-name">Ropa</span></button>
+    <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-icon">⛰️</span><span class="cat-name">Trail</span></button>
+    <button class="filter-panel-btn fp-tecnologia" data-filter="tecnologia"><span class="cat-icon">💻</span><span class="cat-name">Tecnología</span></button>
+    <button class="filter-panel-btn fp-lesiones" data-filter="lesiones"><span class="cat-icon">🩹</span><span class="cat-name">Lesiones</span></button>
+  </div>
+  <!-- Hidden original bar for JS compat -->
   <div class="filter-bar" id="filterBar">
-    <button class="filter-btn active" data-filter="todos">Todos<span class="filter-count">78</span></button>
+    <button class="filter-btn active" data-filter="todos">Todos</button>
     <button class="filter-btn" data-filter="zapatillas">Zapatillas</button>
     <button class="filter-btn" data-filter="entrenamiento">Entrenamiento</button>
     <button class="filter-btn" data-filter="rutas">Rutas</button>
@@ -2009,27 +2031,87 @@ document.addEventListener('DOMContentLoaded', function() {
   // === allCards reference ===
   var allCards = Array.from(cards);
 
-  // === 4. FILTER ARROWS — scroll navigation with arrows ===
+  // === 4. FILTER DROPDOWN GRID ===
   var filterBarWrap = document.getElementById('filterBarWrap');
-  var arrowLeft = document.getElementById('filterArrowLeft');
-  var arrowRight = document.getElementById('filterArrowRight');
-  function checkFilterScroll() {
-    if (!filterBar || !filterBarWrap) return;
-    var atStart = filterBar.scrollLeft <= 8;
-    var atEnd = filterBar.scrollLeft + filterBar.clientWidth >= filterBar.scrollWidth - 8;
-    filterBarWrap.classList.toggle('scrolled-start', atStart);
-    filterBarWrap.classList.toggle('scrolled-end', atEnd);
-    if (arrowLeft) arrowLeft.classList.toggle('hidden', atStart);
-    if (arrowRight) arrowRight.classList.toggle('hidden', atEnd);
+  var filterTodos = document.getElementById('filterTodos');
+  var filterTrigger = document.getElementById('filterDropdownTrigger');
+  var filterPanel = document.getElementById('filterPanel');
+  var filterActiveLabel = document.getElementById('filterActiveLabel');
+  var panelBtns = filterPanel ? filterPanel.querySelectorAll('.filter-panel-btn') : [];
+
+  // Color map for active label
+  var catColors = {zapatillas:'#f97316',entrenamiento:'#3b82f6',nutricion:'#22c55e',rutas:'#a855f7',equipamiento:'#06b6d4','relojes-gps':'#eab308',apps:'#ec4899','recuperación':'#10b981',principiantes:'#6366f1',comunidad:'#f97316',carreras:'#ef4444',ropa:'#f472b6',trail:'#84cc16',tecnologia:'#38bdf8',lesiones:'#e11d48'};
+  var catLabels = {zapatillas:'Zapatillas',entrenamiento:'Entrenamiento',nutricion:'Nutrición',rutas:'Rutas',equipamiento:'Equipamiento','relojes-gps':'Relojes GPS',apps:'Apps','recuperación':'Recuperación',principiantes:'Principiantes',comunidad:'Comunidad',carreras:'Carreras',ropa:'Ropa',trail:'Trail',tecnologia:'Tecnología',lesiones:'Lesiones'};
+
+  // Toggle dropdown
+  if (filterTrigger) filterTrigger.addEventListener('click', function() {
+    var isOpen = filterPanel.classList.contains('open');
+    filterPanel.classList.toggle('open');
+    filterTrigger.classList.toggle('open');
+  });
+
+  // Close on click outside
+  document.addEventListener('click', function(e) {
+    if (filterPanel && filterPanel.classList.contains('open') && !filterBarWrap.contains(e.target)) {
+      filterPanel.classList.remove('open');
+      filterTrigger.classList.remove('open');
+    }
+  });
+
+  // Todos button
+  if (filterTodos) filterTodos.addEventListener('click', function() {
+    activeFilter = 'todos';
+    currentPage = 1;
+    buttons.forEach(function(b) { b.classList.remove('active'); });
+    var todosBtn = filterBar.querySelector('[data-filter="todos"]');
+    if (todosBtn) todosBtn.classList.add('active');
+    panelBtns.forEach(function(b) { b.classList.remove('active'); });
+    filterTodos.classList.add('active');
+    filterActiveLabel.className = '';
+    filterActiveLabel.innerHTML = '';
+    filterActiveLabel.style.cssText = 'display:none';
+    filterCards();
+  });
+
+  // Panel category buttons
+  panelBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var cat = this.getAttribute('data-filter');
+      activeFilter = cat;
+      currentPage = 1;
+      // Sync hidden filter-bar buttons
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+      var targetBtn = filterBar.querySelector('[data-filter="' + cat + '"]');
+      if (targetBtn) targetBtn.classList.add('active');
+      // Visual: highlight this button
+      panelBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      filterTodos.classList.remove('active');
+      // Show active label next to trigger
+      showActiveLabel(cat);
+      // Close panel
+      filterPanel.classList.remove('open');
+      filterTrigger.classList.remove('open');
+      filterCards();
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  function hexToRgb(hex) {
+    var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    return r+','+g+','+b;
   }
-  if (arrowLeft) arrowLeft.addEventListener('click', function() {
-    filterBar.scrollBy({ left: -200, behavior: 'smooth' });
-  });
-  if (arrowRight) arrowRight.addEventListener('click', function() {
-    filterBar.scrollBy({ left: 200, behavior: 'smooth' });
-  });
-  filterBar.addEventListener('scroll', checkFilterScroll);
-  checkFilterScroll();
+
+  function showActiveLabel(cat) {
+    if (!filterActiveLabel) return;
+    var color = catColors[cat] || '#f97316';
+    filterActiveLabel.className = 'filter-active-label';
+    filterActiveLabel.style.display = 'inline-flex';
+    filterActiveLabel.style.background = 'rgba(' + hexToRgb(color) + ',.12)';
+    filterActiveLabel.style.borderColor = color;
+    filterActiveLabel.style.color = color;
+    filterActiveLabel.textContent = catLabels[cat] || cat;
+  }
 
   // === 5. READ COUNTS — add fake view counts to cards ===
   var readCounts = [2400,1800,3100,1500,2200,1900,2700,1200,980,1600,2100,870,1400,760,1100,950,1300,680,890,1050,720,640,1150,580,930,810,1020,670,740,850,560,690,780,620,710,530,480,660,590,520,750,830,610,540,460,570,630,500,440,680,720,490,510,430,470,550,600,650,410,380,420,360,340,390,370,450,400,310,280,350,330,260,300,290,240,220,200,180];
@@ -2058,10 +2140,14 @@ document.addEventListener('DOMContentLoaded', function() {
       currentPage = 1;
       buttons.forEach(function(b) { b.classList.remove('active'); });
       var targetBtn = filterBar.querySelector('[data-filter="' + cat + '"]');
-      if (targetBtn) {
-        targetBtn.classList.add('active');
-        targetBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
+      if (targetBtn) targetBtn.classList.add('active');
+      // Sync dropdown panel
+      panelBtns.forEach(function(b) { b.classList.remove('active'); });
+      var panelTarget = filterPanel ? filterPanel.querySelector('[data-filter="' + cat + '"]') : null;
+      if (panelTarget) panelTarget.classList.add('active');
+      if (filterTodos) filterTodos.classList.remove('active');
+      // Show active label
+      showActiveLabel(cat);
       filterCards();
       // Scroll to top of grid
       grid.scrollIntoView({ behavior: 'smooth', block: 'start' });

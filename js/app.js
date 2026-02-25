@@ -645,6 +645,11 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('profile-change-photo', t.profileChangePhoto);
             setText('profile-save-btn', t.profileSave);
 
+            // Alert preferences
+            setText('alert-toggle-label', t.alertToggleLabel);
+            setText('alert-toggle-desc', t.alertToggleDesc);
+            setText('alert-radius-label', t.alertRadiusLabel);
+
             // Logros
             setText('achievements-title', t.achievementsTitle);
             setText('achievements-subtitle', t.achievementsSubtitle);
@@ -3679,6 +3684,11 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const notifEmail = document.getElementById('profile-notif-email')?.checked || false;
             const notifPush = document.getElementById('profile-notif-push')?.checked || false;
 
+            // Alertas de nuevas quedadas (Premium)
+            const alertNewQuedadas = document.getElementById('alert-toggle')?.checked || false;
+            const alertRadiusEl = document.getElementById('alert-radius-value');
+            const alertRadiusKm = alertRadiusEl ? parseInt(alertRadiusEl.value, 10) || 25 : 25;
+
             if(!nombre || !apellidos || !ciudad){
                 showToast('Completa nombre, apellidos y ciudad','error');
                 return;
@@ -3720,7 +3730,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                       photo_url: currentUser.photo || null,
                       notif_whatsapp: notifWhatsapp,
                       notif_email: notifEmail,
-                      notif_push: notifPush
+                      notif_push: notifPush,
+                      alert_new_quedadas: alertNewQuedadas,
+                      alert_radius_km: alertRadiusKm
                   });
                 if(error){
                     console.warn('Perfil:', error.message);
@@ -3865,7 +3877,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 es_seed: !!prof?.es_seed,
                 es_premium: !!prof?.es_premium,
                 referral_code: prof?.referral_code || null,
-                referral_count: prof?.referral_count || 0
+                referral_count: prof?.referral_count || 0,
+                alert_new_quedadas: !!prof?.alert_new_quedadas,
+                alert_radius_km: prof?.alert_radius_km || 25
             };
 
             // Restaurar botón antes de cerrar modal
@@ -8536,6 +8550,38 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
         }
 
+        // --- Alert Preferences (Premium) ---
+        function toggleAlertPreference() {
+            const isOn = document.getElementById('alert-toggle')?.checked;
+            const section = document.getElementById('alert-radius-section');
+            if (section) section.classList.toggle('hidden', !isOn);
+        }
+
+        function selectAlertRadius(km) {
+            const el = document.getElementById('alert-radius-value');
+            if (el) el.value = km;
+            [10, 25, 50].forEach(r => {
+                const btn = document.getElementById('alert-radius-' + r);
+                if (btn) {
+                    if (r === km) {
+                        btn.classList.add('border-orange-500', 'text-orange-400', 'bg-orange-500/20');
+                        btn.classList.remove('border-slate-600/50', 'text-gray-400');
+                    } else {
+                        btn.classList.remove('border-orange-500', 'text-orange-400', 'bg-orange-500/20');
+                        btn.classList.add('border-slate-600/50', 'text-gray-400');
+                    }
+                }
+            });
+        }
+
+        function loadAlertPreferences() {
+            if (!currentUser) return;
+            const toggle = document.getElementById('alert-toggle');
+            if (toggle) toggle.checked = !!currentUser.alert_new_quedadas;
+            toggleAlertPreference();
+            selectAlertRadius(currentUser.alert_radius_km || 25);
+        }
+
         // Verify private code to join quedada
         function verifyPrivateCode() {
             const quedadaId = document.getElementById('private-join-quedada-id')?.value;
@@ -8698,6 +8744,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 // Mostrar filtros premium
                 if (premiumFiltersSection) premiumFiltersSection.classList.remove('hidden');
                 if (premiumFiltersLocked) premiumFiltersLocked.classList.add('hidden');
+                // Cargar preferencias de alertas
+                loadAlertPreferences();
             } else {
                 upgradeSection.classList.remove('hidden');
                 activeSection.classList.add('hidden');
@@ -9876,7 +9924,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           created_at: prof && prof.created_at ? String(prof.created_at) : null,
           es_seed: !!(prof && prof.es_seed),
           referral_code: prof && prof.referral_code ? String(prof.referral_code) : null,
-          referral_count: prof && prof.referral_count ? Number(prof.referral_count) : 0
+          referral_count: prof && prof.referral_count ? Number(prof.referral_count) : 0,
+          alert_new_quedadas: !!(prof && prof.alert_new_quedadas),
+          alert_radius_km: prof && prof.alert_radius_km ? Number(prof.alert_radius_km) : 25
         };
 
         // Actualizar país del usuario para filtrado de quedadas

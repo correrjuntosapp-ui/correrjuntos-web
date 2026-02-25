@@ -101,10 +101,11 @@ Deno.serve(async (req) => {
     console.log(`Coordenadas: ${quedada_lat}, ${quedada_lng}, Radio: ${radio_km}km`)
 
     // Obtener todos los usuarios con push_token de Expo y ubicación guardada
+    // Incluir preferencias de alerta para radio personalizado
     // Excluir al creador de la quedada
     const { data: users, error: usersError } = await supabase
       .from('profiles')
-      .select('id, push_token, lat, lng, nombre')
+      .select('id, push_token, lat, lng, nombre, alert_new_quedadas, alert_radius_km')
       .not('push_token', 'is', null)
       .like('push_token', 'ExponentPushToken%') // Solo tokens de app móvil
       .not('lat', 'is', null)
@@ -128,14 +129,17 @@ Deno.serve(async (req) => {
     }
 
     // Filtrar usuarios dentro del radio
+    // Si el usuario tiene alert_new_quedadas activado, usar su radio personalizado
+    // Si no, usar el radio por defecto del request
     const nearbyUsers = users.filter(user => {
+      const userRadius = user.alert_new_quedadas ? (user.alert_radius_km || 25) : radio_km
       const distance = calculateDistance(
         quedada_lat,
         quedada_lng,
         user.lat,
         user.lng
       )
-      return distance <= radio_km
+      return distance <= userRadius
     })
 
     console.log(`Encontrados ${nearbyUsers.length} usuarios dentro de ${radio_km}km`)

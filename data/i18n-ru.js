@@ -386,6 +386,10 @@ I18N.ru = {
         limitPerMonth: '/мес',
         limitCtaBtn: 'Создавать безлимитные встречи',
         limitLaterBtn: 'Назад',
+        // Alert preferences
+        alertToggleLabel: 'Оповещения о встречах рядом',
+        alertToggleDesc: 'Получайте уведомления, когда встреча создана рядом с вами',
+        alertRadiusLabel: 'Радиус поиска:',
         feedTitle: 'Активность в реальном времени',
         mapPreviewTitle: 'Встречи рядом с тобой',
         mapPreviewSubtitle: 'Бегуны создают встречи по всему миру',

@@ -9,7 +9,7 @@ const corsHeaders = {
 // ============================================================
 // BREVO TRANSACTIONAL EMAIL — Edge Function
 // Envía emails transaccionales vía Brevo API v3
-// Tipos: welcome, nearby_quedada, premium_activated
+// Tipos: welcome, nearby_quedada, premium_activated, reactivation, post_quedada, weekly_digest
 // ============================================================
 
 const SENDER = {
@@ -232,6 +232,181 @@ function premiumEmail(name: string, lang: string): { subject: string; html: stri
   return { subject, html: baseTemplate(content, lang) }
 }
 
+// ---- Reactivation Email (7 days inactive) ----
+function reactivationEmail(name: string, lang: string, data: { ciudad?: string; quedadas_count?: number }): { subject: string; html: string } {
+  const isEN = lang === 'en'
+  const subject = isEN
+    ? `We miss you, ${name}! 🏃`
+    : `Te echamos de menos, ${name}! 🏃`
+
+  const quedadasText = data.quedadas_count && data.quedadas_count > 0
+    ? (isEN
+        ? `There are <strong style="color:#f97316;">${data.quedadas_count} meetups</strong> waiting${data.ciudad ? ` in ${data.ciudad}` : ''}.`
+        : `Hay <strong style="color:#f97316;">${data.quedadas_count} quedadas</strong> esperandote${data.ciudad ? ` en ${data.ciudad}` : ''}.`)
+    : (isEN
+        ? `New meetups are being created every day.`
+        : `Nuevas quedadas se crean cada dia.`)
+
+  const content = isEN
+    ? `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">Hey ${name}, it's been a while! 👋</h2>
+    <p style="margin:0 0 20px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      Your running shoes are getting dusty! ${quedadasText}
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;">
+      <tr><td style="padding:20px;text-align:center;">
+        <p style="margin:0 0 8px;font-size:40px;">🏃‍♂️💨</p>
+        <p style="margin:0;color:#d1d5db;font-size:14px;">
+          ${isEN ? 'Every run is a chance to meet amazing people' : 'Cada carrera es una oportunidad de conocer gente increible'}
+        </p>
+      </td></tr>
+    </table>
+    ${ctaButton('Find a meetup', BASE_URL)}`
+    : `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">Ey ${name}, hace tiempo que no te vemos! 👋</h2>
+    <p style="margin:0 0 20px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      Tus zapatillas se estan llenando de polvo! ${quedadasText}
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;">
+      <tr><td style="padding:20px;text-align:center;">
+        <p style="margin:0 0 8px;font-size:40px;">🏃‍♂️💨</p>
+        <p style="margin:0;color:#d1d5db;font-size:14px;">
+          Cada carrera es una oportunidad de conocer gente increible
+        </p>
+      </td></tr>
+    </table>
+    ${ctaButton('Buscar quedadas', BASE_URL)}`
+
+  return { subject, html: baseTemplate(content, lang) }
+}
+
+// ---- Post-Quedada Email (after attending) ----
+function postQuedadaEmail(
+  name: string,
+  lang: string,
+  data: { titulo: string; ciudad: string; participantes: number; quedada_id: string }
+): { subject: string; html: string } {
+  const isEN = lang === 'en'
+  const subject = isEN
+    ? `How was "${data.titulo}"? Share your experience! 🏅`
+    : `Que tal "${data.titulo}"? Comparte tu experiencia! 🏅`
+
+  const quedadaUrl = `${BASE_URL}/?quedada=${data.quedada_id}`
+
+  const content = isEN
+    ? `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">Great run, ${name}! 🏅</h2>
+    <p style="margin:0 0 24px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      You ran with <strong style="color:#f97316;">${data.participantes} runners</strong> at "${data.titulo}" in ${data.ciudad}. Awesome!
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;">
+      <tr><td style="padding:20px;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="text-align:center;padding:8px;">
+              <p style="margin:0;font-size:28px;">🤝</p>
+              <p style="margin:4px 0 0;color:#f97316;font-size:20px;font-weight:700;">${data.participantes}</p>
+              <p style="margin:2px 0 0;color:#9ca3af;font-size:11px;">runners</p>
+            </td>
+            <td style="text-align:center;padding:8px;">
+              <p style="margin:0;font-size:28px;">📍</p>
+              <p style="margin:4px 0 0;color:#f97316;font-size:14px;font-weight:700;">${data.ciudad}</p>
+              <p style="margin:2px 0 0;color:#9ca3af;font-size:11px;">city</p>
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+    </table>
+    <p style="margin:20px 0 0;color:#9ca3af;font-size:13px;text-align:center;">
+      Did you enjoy it? Share with your friends!
+    </p>
+    ${ctaButton('See your next meetup', BASE_URL)}`
+    : `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">Gran carrera, ${name}! 🏅</h2>
+    <p style="margin:0 0 24px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      Corriste con <strong style="color:#f97316;">${data.participantes} runners</strong> en "${data.titulo}" en ${data.ciudad}. Genial!
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;">
+      <tr><td style="padding:20px;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="text-align:center;padding:8px;">
+              <p style="margin:0;font-size:28px;">🤝</p>
+              <p style="margin:4px 0 0;color:#f97316;font-size:20px;font-weight:700;">${data.participantes}</p>
+              <p style="margin:2px 0 0;color:#9ca3af;font-size:11px;">runners</p>
+            </td>
+            <td style="text-align:center;padding:8px;">
+              <p style="margin:0;font-size:28px;">📍</p>
+              <p style="margin:4px 0 0;color:#f97316;font-size:14px;font-weight:700;">${data.ciudad}</p>
+              <p style="margin:2px 0 0;color:#9ca3af;font-size:11px;">ciudad</p>
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+    </table>
+    <p style="margin:20px 0 0;color:#9ca3af;font-size:13px;text-align:center;">
+      Te gusto? Comparte con tus amigos!
+    </p>
+    ${ctaButton('Ver tu proxima quedada', BASE_URL)}`
+
+  return { subject, html: baseTemplate(content, lang) }
+}
+
+// ---- Weekly Digest Email ----
+function weeklyDigestEmail(
+  name: string,
+  lang: string,
+  data: { ciudad: string; quedadas: Array<{ titulo: string; fecha: string; hora: string; participantes: number; id: string }> }
+): { subject: string; html: string } {
+  const isEN = lang === 'en'
+  const count = data.quedadas.length
+  const subject = isEN
+    ? `${count} meetups this week in ${data.ciudad} 📅`
+    : `${count} quedadas esta semana en ${data.ciudad} 📅`
+
+  const quedadasHtml = data.quedadas.slice(0, 5).map(q => `
+    <tr><td style="padding:12px 16px;border-bottom:1px solid #374151;">
+      <a href="${BASE_URL}/?quedada=${q.id}" style="text-decoration:none;">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td>
+            <p style="margin:0;color:#f97316;font-size:15px;font-weight:700;">${q.titulo}</p>
+            <p style="margin:4px 0 0;color:#9ca3af;font-size:12px;">📅 ${q.fecha} &nbsp; 🕐 ${q.hora} &nbsp; 🏃 ${q.participantes} runners</p>
+          </td>
+          <td style="width:30px;text-align:right;color:#6b7280;font-size:18px;">→</td>
+        </tr></table>
+      </a>
+    </td></tr>
+  `).join('')
+
+  const moreText = count > 5
+    ? (isEN ? `<p style="margin:12px 0 0;color:#9ca3af;font-size:12px;text-align:center;">...and ${count - 5} more</p>` : `<p style="margin:12px 0 0;color:#9ca3af;font-size:12px;text-align:center;">...y ${count - 5} mas</p>`)
+    : ''
+
+  const content = isEN
+    ? `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">📅 Your weekly rundown</h2>
+    <p style="margin:0 0 24px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      Hey ${name}! This week there are <strong style="color:#f97316;">${count} meetups</strong> in ${data.ciudad}:
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;overflow:hidden;">
+      ${quedadasHtml}
+    </table>
+    ${moreText}
+    ${ctaButton('See all meetups', BASE_URL)}`
+    : `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">📅 Tu resumen semanal</h2>
+    <p style="margin:0 0 24px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      Hola ${name}! Esta semana hay <strong style="color:#f97316;">${count} quedadas</strong> en ${data.ciudad}:
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;overflow:hidden;">
+      ${quedadasHtml}
+    </table>
+    ${moreText}
+    ${ctaButton('Ver todas las quedadas', BASE_URL)}`
+
+  return { subject, html: baseTemplate(content, lang) }
+}
+
 // ---- Send via Brevo API ----
 async function sendBrevoEmail(
   to: { email: string; name?: string },
@@ -309,6 +484,24 @@ Deno.serve(async (req) => {
       }
       case 'premium_activated': {
         const result = premiumEmail(to_name || to_email.split('@')[0], lang)
+        subject = result.subject
+        html = result.html
+        break
+      }
+      case 'reactivation': {
+        const result = reactivationEmail(to_name || to_email.split('@')[0], lang, data)
+        subject = result.subject
+        html = result.html
+        break
+      }
+      case 'post_quedada': {
+        const result = postQuedadaEmail(to_name || to_email.split('@')[0], lang, data)
+        subject = result.subject
+        html = result.html
+        break
+      }
+      case 'weekly_digest': {
+        const result = weeklyDigestEmail(to_name || to_email.split('@')[0], lang, data)
         subject = result.subject
         html = result.html
         break

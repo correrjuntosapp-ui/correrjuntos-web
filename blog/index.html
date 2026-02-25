@@ -86,11 +86,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .search-wrap .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;display:none;padding:4px}
 .search-wrap .search-clear:hover{color:#fff}
 
-/* Filter Bar — horizontal scroll with fade */
-.filter-bar-wrap{position:relative}
-.filter-bar-wrap::after{content:'';position:absolute;right:0;top:0;bottom:0;width:48px;background:linear-gradient(90deg,transparent,#0b1220);pointer-events:none;z-index:2;transition:opacity .3s}
+/* Filter Bar — horizontal scroll with arrows */
+.filter-bar-wrap{position:relative;display:flex;align-items:center;gap:0}
+.filter-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:32px;height:32px;border-radius:50%;background:rgba(11,18,32,.95);border:1px solid rgba(255,255,255,.15);color:#f97316;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.filter-arrow:hover{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4)}
+.filter-arrow.hidden{opacity:0;pointer-events:none}
+.filter-arrow-left{left:-4px}
+.filter-arrow-right{right:-4px}
+.filter-bar-wrap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:32px;background:linear-gradient(90deg,#0b1220,transparent);pointer-events:none;z-index:3;opacity:0;transition:opacity .3s}
+.filter-bar-wrap.scrolled-start::before{opacity:0}
+.filter-bar-wrap:not(.scrolled-start)::before{opacity:1}
+.filter-bar-wrap::after{content:'';position:absolute;right:0;top:0;bottom:0;width:32px;background:linear-gradient(90deg,transparent,#0b1220);pointer-events:none;z-index:3;transition:opacity .3s}
 .filter-bar-wrap.scrolled-end::after{opacity:0}
-.filter-bar{display:flex;gap:8px;padding:24px 0 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;white-space:nowrap;justify-content:flex-start;padding-left:4px;padding-right:4px}
+.filter-bar{display:flex;gap:8px;padding:24px 0 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;white-space:nowrap;justify-content:flex-start;padding-left:36px;padding-right:36px}
 .filter-bar::-webkit-scrollbar{display:none}
 .filter-btn{padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#94a3b8;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;letter-spacing:.3px;text-transform:uppercase;flex-shrink:0}
 .filter-btn:hover{border-color:rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.06)}
@@ -364,6 +372,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
   <!-- Category Filter Bar -->
   <div class="filter-bar-wrap" id="filterBarWrap">
+  <button class="filter-arrow filter-arrow-left hidden" id="filterArrowLeft" aria-label="Scroll izquierda">‹</button>
+  <button class="filter-arrow filter-arrow-right" id="filterArrowRight" aria-label="Scroll derecha">›</button>
   <div class="filter-bar" id="filterBar">
     <button class="filter-btn active" data-filter="todos">Todos<span class="filter-count">78</span></button>
     <button class="filter-btn" data-filter="zapatillas">Zapatillas</button>
@@ -436,7 +446,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>Los 10 Errores Más Comunes de los Corredores</h2>
         <p>El 90% de runners comete al menos 3 de estos errores. Sobreentrenamiento, zapatillas, nutrición y cómo corregirlos para mejorar tu rendimiento.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">20 feb 2026 · 9 min</span>
           <span class="card-arrow">Leer artículo →</span>
@@ -454,7 +464,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-principiantes">Principiantes</span>
         <h2>Beneficios de Correr: 15 Razones Respaldadas por la Ciencia</h2>
         <p>Salud cardiovascular, control de peso, salud mental, longevidad y m&aacute;s. Todo lo que correr puede hacer por ti.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">24 feb 2026 &middot; 12 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -472,7 +482,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>C&oacute;mo Respirar al Correr: Gu&iacute;a Completa</h2>
         <p>Respiraci&oacute;n diafragm&aacute;tica, patrones r&iacute;tmicos 3:2 y 2:1, nariz vs boca y ejercicios pr&aacute;cticos para cada ritmo.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">24 feb 2026 &middot; 10 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -490,7 +500,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>C&oacute;mo Correr M&aacute;s R&aacute;pido: 12 Claves para Mejorar tu Ritmo</h2>
         <p>Series, fartlek, fuerza, t&eacute;cnica y planes para bajar tu marca personal. Gu&iacute;a completa y pr&aacute;ctica.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">24 feb 2026 &middot; 14 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -508,7 +518,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-lesiones">Lesiones</span>
         <h2>Dolor de Rodilla al Correr: Causas, Tratamiento y Prevenci&oacute;n</h2>
         <p>Las 6 causas m&aacute;s comunes de dolor de rodilla en corredores, c&oacute;mo tratarlas y ejercicios de fortalecimiento.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">24 feb 2026 &middot; 13 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -526,7 +536,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrici&oacute;n</span>
         <h2>Qu&eacute; Comer Antes de Correr: Gu&iacute;a de Alimentaci&oacute;n Pre-Entreno</h2>
         <p>Alimentos, timing y cantidades seg&uacute;n tu tipo de entrenamiento. Sin molestias digestivas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">24 feb 2026 &middot; 11 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -544,7 +554,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>C&oacute;mo Calentar Antes de Correr: Rutina Completa Paso a Paso</h2>
         <p>Movilidad, trote, ejercicios din&aacute;micos y activaciones. Rutina de 5-15 min para cada tipo de sesi&oacute;n.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">24 feb 2026 &middot; 10 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -562,7 +572,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Las 10 Mejores Zapatillas Running para Mujer 2026</h2>
         <p>Ranking de zapatillas diseñadas para corredoras: biomecánica, horma y amortiguación específica.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -580,7 +590,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Qué Zapatillas de Running Comprar Según tu Nivel</h2>
         <p>Guía por nivel: principiante, intermedio, avanzado y competición. Recomendaciones concretas con precios.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 18 min</span>
           <span class="card-arrow">Leer →</span>
@@ -598,7 +608,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Zapatillas Running para Pronadores: Guía Completa 2026</h2>
         <p>Qué es la pronación, cómo saber tu pisada y las 7 mejores zapatillas de estabilidad.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -616,7 +626,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Mejores Zapatillas Running Baratas 2026 (Menos de 100€)</h2>
         <p>8 zapatillas de calidad por menos de 100 euros. Modelos de temporada anterior y trucos para ahorrar.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -634,7 +644,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Mejores Zapatillas Running para Corredores con Sobrepeso</h2>
         <p>Zapatillas con máxima amortiguación para corredores de +80 kg. Guía inclusiva y sin juicios.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -652,7 +662,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Mejor Reloj GPS Running Calidad-Precio 2026</h2>
         <p>Comparativa por rango de precio: Garmin, COROS, Polar y Apple Watch. Cuál merece la pena.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -670,7 +680,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Qué Gel Energético Usar en un Maratón</h2>
         <p>Tipos de geles, plan de nutrición por kilómetro, cómo entrenar el estómago y los 5 mejores.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -688,7 +698,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Conducción Ósea vs In-Ear para Correr: ¿Cuál Elegir?</h2>
         <p>Comparativa de auriculares: seguridad, sonido, comodidad. Shokz, JBL, Beats y Sony analizados.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -706,7 +716,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-principiantes">Principiantes</span>
         <h2>Pack Básico de Running: Todo para Empezar a Correr</h2>
         <p>Guía de equipamiento por niveles: imprescindible, recomendable y nice-to-have. Con presupuestos.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -724,7 +734,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Garmin Forerunner 55: Review Completa para Runners</h2>
         <p>El reloj GPS más vendido para empezar a correr. Funciones, batería, GPS y comparativa.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -742,7 +752,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>COROS PACE 3: Review Completa - Mejor Calidad-Precio</h2>
         <p>GPS dual-band, 38h batería, 39g y todas las métricas. El reloj GPS running con mejor relación calidad-precio.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 15 min</span>
           <span class="card-arrow">Leer →</span>
@@ -760,7 +770,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Apple Watch para Running: ¿Merece la Pena?</h2>
         <p>GPS, métricas de carrera, música y apps. Análisis honesto del Apple Watch como reloj de running.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -778,7 +788,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Polar Pacer Pro: El Reloj Running Más Infravalorado</h2>
         <p>Métricas avanzadas, potencia de carrera, GPS preciso y la mejor app de análisis de entrenamiento.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -796,7 +806,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Garmin Venu 3: El Smartwatch de Garmin para Runners</h2>
         <p>Pantalla AMOLED, música offline, Garmin Pay y GPS. ¿Es mejor que un Forerunner para correr?</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -814,7 +824,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Smartwatch vs Reloj GPS para Running: ¿Cuál Necesitas?</h2>
         <p>Diferencias reales, ventajas de cada tipo y guía para elegir según tu perfil de corredor.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -832,7 +842,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Hidratación para Running: Guía Completa 2026</h2>
         <p>Cuánto beber antes, durante y después de correr. Electrolitos, bebidas isotónicas y señales de deshidratación.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -850,7 +860,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Carga de Hidratos para Maratón: Protocolo Completo</h2>
         <p>Protocolo de supercompensación de glucógeno paso a paso. Plan de 3 días con menús y cantidades exactas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -868,7 +878,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Dieta para Runners: Qué Comer para Rendir Más</h2>
         <p>Los 15 alimentos imprescindibles, plan semanal de comidas y suplementos que realmente funcionan para corredores.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 15 min</span>
           <span class="card-arrow">Leer →</span>
@@ -886,7 +896,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Ayuno Intermitente y Running: ¿Compatible?</h2>
         <p>Evidencia científica, riesgos reales, protocolo de 4 semanas y quién no debería hacerlo nunca.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -904,7 +914,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Proteínas para Runners: Cuánta Necesitas y Mejores Fuentes</h2>
         <p>Dosis óptima según tu nivel (1,4-1,8 g/kg), timing post-entreno y comparativa proteína animal vs vegetal.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 15 min</span>
           <span class="card-arrow">Leer →</span>
@@ -922,7 +932,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Cafeína y Running: Cómo Mejorar tu Rendimiento</h2>
         <p>Dosis óptima (3-6 mg/kg), timing exacto, protocolo día de carrera y genética CYP1A2.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -940,7 +950,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>15 Alimentos Antiinflamatorios para Runners</h2>
         <p>Frutas, verduras, grasas saludables y especias que reducen la inflamación y aceleran tu recuperación.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 13 min</span>
           <span class="card-arrow">Leer →</span>
@@ -958,7 +968,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Shokz OpenRun Pro 2: Review Completa para Runners</h2>
         <p>Conducción ósea mejorada, 10h batería, IP55 y Bluetooth 5.3. ¿Merece la pena para correr?</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 15 min</span>
           <span class="card-arrow">Leer →</span>
@@ -976,7 +986,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>JBL Reflect Flow Pro: Review para Runners</h2>
         <p>ANC, Ambient Aware, IP68 y JBL Signature Sound. Auriculares TWS premium para running.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -994,7 +1004,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Los 8 Mejores Auriculares Baratos para Running 2026</h2>
         <p>Auriculares por menos de 60€ que merecen la pena para correr. 8 opciones probadas y comparadas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1012,7 +1022,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Mejores Auriculares para Running y Natación 2026</h2>
         <p>Auriculares sumergibles que funcionan bajo el agua y corriendo. Conducción ósea, MP3 y Bluetooth.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 15 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1030,7 +1040,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Los 7 Mejores Chalecos de Hidratación para Running 2026</h2>
         <p>Salomon, CamelBak, Nathan y Decathlon comparados. Guía de compra por distancia y tipo de carrera.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 15 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1048,7 +1058,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-recuperación">Recuperación</span>
         <h2>Los 7 Mejores Foam Rollers para Corredores 2026</h2>
         <p>TriggerPoint GRID, Blackroll, Hyperice y más. Guía completa de liberación miofascial post-carrera.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1066,7 +1076,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Los 8 Mejores Cinturones para Running 2026</h2>
         <p>FlipBelt, Naked Running Band, SPIbelt y Salomon. Comparativa de capacidad, rebote y compatibilidad.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 13 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1084,7 +1094,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Las 7 Mejores Lámparas Frontales para Running 2026</h2>
         <p>Petzl, Black Diamond, Silva y más. Comparativa de lúmenes, autonomía, peso y precio para correr de noche.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1102,7 +1112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-ropa">Ropa</span>
         <h2>Las 10 Mejores Mallas para Running 2026</h2>
         <p>Ranking hombre y mujer desde 20€ hasta 120€. Compresión, tejidos, bolsillos y guía por temperatura.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1120,7 +1130,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-ropa">Ropa</span>
         <h2>Los 8 Mejores Chubasqueros para Running 2026</h2>
         <p>Gore Wear, Salomon, Nike y The North Face. Impermeabilidad, transpirabilidad, peso y precio comparados.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1138,7 +1148,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-ropa">Ropa</span>
         <h2>Las 8 Mejores Gorras para Running 2026</h2>
         <p>Nike AeroBill, Salomon XA, Buff Pack Run y CIELE GOCap. Protección UV, transpirabilidad y comparativa.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1156,7 +1166,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-ropa">Ropa</span>
         <h2>Los 8 Mejores Calcetines para Running 2026</h2>
         <p>Balega, Stance, Darn Tough, Compressport e Injinji. Tejido, amortiguación y prevención de ampollas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">22 feb 2026 · 15 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1174,7 +1184,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-trail">Trail</span>
         <h2>Cómo Empezar en Trail Running: Guía Completa</h2>
         <p>Todo lo que necesitas saber para dar el salto del asfalto al monte. Equipo, técnica, seguridad y plan de 4 semanas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 18 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1192,7 +1202,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-trail">Trail</span>
         <h2>Trail Running vs Asfalto: Diferencias y Qué Elegir</h2>
         <p>Biomecánica, lesiones, equipamiento, ritmos y mentalidad. Comparativa completa entre ambas disciplinas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 17 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1210,7 +1220,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-trail">Trail</span>
         <h2>Material Imprescindible para Trail Running 2026</h2>
         <p>Zapatillas, mochilas, bastones, GPS y presupuesto por niveles. Guía completa de equipamiento trail.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1228,7 +1238,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-trail">Trail</span>
         <h2>10 Mejores Carreras Trail para Principiantes en España</h2>
         <p>Las carreras más accesibles para debutar en trail: distancias, desnivel, inscripción y plan de 12 semanas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 18 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1246,7 +1256,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-tecnologia">Tecnología</span>
         <h2>Strava vs Garmin Connect: Comparativa Completa 2026</h2>
         <p>Funciones, precio, comunidad, rutas y privacidad. Cuál usar según tu perfil de corredor.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1264,7 +1274,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-tecnologia">Tecnología</span>
         <h2>Potencia en Running: Entrenar con Vatios</h2>
         <p>Qué es, cómo medirla con Stryd/Garmin/COROS, zonas de potencia y protocolo para encontrar tu FTP.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 17 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1282,7 +1292,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-tecnologia">Tecnología</span>
         <h2>Variabilidad Cardíaca (HRV) para Runners</h2>
         <p>Qué es HRV, cómo medirla, dispositivos (WHOOP, Oura, Garmin) y cómo usarla para no sobreentrenar.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1300,7 +1310,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-tecnologia">Tecnología</span>
         <h2>Entrenamiento por Zonas: FC, Ritmo y Potencia</h2>
         <p>5 zonas de frecuencia cardíaca, ritmo y potencia explicadas. Regla 80/20, tests y plan semanal.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1318,7 +1328,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Las 10 Mejores Zapatillas Running para Asfalto 2026</h2>
         <p>Comparativa completa: Hoka, Nike, ASICS, Brooks, New Balance y Saucony. 10 modelos por nivel y presupuesto.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">20 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1336,7 +1346,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Mejores Auriculares para Correr: Guía 2026</h2>
         <p>Conducción ósea, in-ear y open-ear. 8 modelos analizados con Shokz, JBL, Beats y Sony.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">20 feb 2026 · 10 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1354,7 +1364,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Ropa Tecnica para Correr: Guía por Temperatura</h2>
         <p>Que ponerte para correr con 5, 15 o 35 grados. Sistema de capas, materiales y recomendaciones.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">20 feb 2026 · 10 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1372,7 +1382,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-rutas">Rutas</span>
         <h2>Las 10 Mejores Rutas para Correr en Malaga</h2>
         <p>Del Paseo Maritimo a los Montes de Malaga. 10 rutas con distancias, dificultad y consejos.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">20 feb 2026 · 9 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1389,7 +1399,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Como Elegir un Reloj GPS para Running: Guía 2026</h2>
         <p>Funciones esenciales, comparativa Garmin vs COROS vs Polar y 5 recomendaciones concretas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 12 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1406,7 +1416,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-apps">Apps</span>
         <h2>Las 10 Mejores Apps para Correr en 2026</h2>
         <p>Ranking de apps de running con funciones y precios. CorrerJuntos, Strava, Garmin y mas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 12 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1423,7 +1433,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Nutrición Día de Carrera: Qué Comer Antes, Durante y Después</h2>
         <p>Guía completa de alimentación para competir: carga de hidratos, desayuno pre-carrera y geles.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 10 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1440,7 +1450,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-recuperación">Recuperación</span>
         <h2>Estiramientos Post-Carrera: Recupera Más Rápido</h2>
         <p>10 estiramientos esenciales después de competir. Rutina completa y protocolo de recuperación.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 8 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1457,7 +1467,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-relojes-gps">Relojes GPS</span>
         <h2>Garmin Forerunner 265 vs COROS PACE 3: Comparativa 2026</h2>
         <p>Comparativa de los dos relojes GPS mas populares para running. Specs, pros, contras y veredicto.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 11 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1474,7 +1484,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-rutas">Rutas</span>
         <h2>Las 10 Mejores Rutas para Correr en Sevilla</h2>
         <p>De Maria Luisa al Guadalquivir: las mejores rutas para runners en Sevilla con distancias.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 9 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1491,7 +1501,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Mejores Suplementos para Runners: Lo que Necesitas</h2>
         <p>Geles, isotónicas, recuperadores y vitaminas. Que funciona de verdad y que no merece la pena.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 11 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1509,7 +1519,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Creatina para Corredores: 7 Beneficios con Ciencia</h2>
         <p>No es solo para culturistas. Descubre los 7 beneficios de la creatina para runners avalados por estudios cientificos.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">25 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1527,7 +1537,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Las 8 Mejores Creatinas para Runners 2026</h2>
         <p>Comparativa con estudios cientificos, dosis para corredores y enlaces a Amazon. Creapure, HSN, Weider y mas.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">25 feb 2026 · 12 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1544,7 +1554,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Hoka Clifton 9 vs Bondi 8: Cuál Elegir en 2026</h2>
         <p>Comparativa de las dos Hoka mas populares. Amortiguacion, peso y para quien es cada una.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 10 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1561,7 +1571,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>Plan Entrenamiento Media Maraton: 12 Semanas</h2>
         <p>Plan de 12 semanas para tu primera media maraton. Desde 20 km semanales hasta cruzar la meta.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 14 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1578,7 +1588,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-zapatillas">Zapatillas</span>
         <h2>Mejores Zapatillas para Empezar a Correr 2026</h2>
         <p>Cómo elegir tu primera zapatilla de running. 6 modelos recomendados con precios y comparativa.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 12 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1595,7 +1605,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-principiantes">Principiantes</span>
         <h2>Guía Completa para Empezar a Correr desde Cero</h2>
         <p>Plan de 8 semanas, errores comunes, equipamiento básico y como mantener la motivacion.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 10 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1612,7 +1622,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-rutas">Rutas</span>
         <h2>Las Mejores Rutas para Correr en Madrid</h2>
         <p>Del Retiro a Casa de Campo: 10 rutas para runners en Madrid con distancias y recomendaciones.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 8 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1629,7 +1639,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-comunidad">Comunidad</span>
         <h2>7 Beneficios de Correr en Grupo (Respaldados por la Ciencia)</h2>
         <p>Correr acompanado mejora rendimiento, consistencia y salud mental. Que dice la ciencia.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 7 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1646,7 +1656,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>Estiramientos Esenciales Antes y Después de Correr</h2>
         <p>Rutina completa de calentamiento dinámico y vuelta a la calma. Preven lesiones y mejora tu recuperación.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 6 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1663,7 +1673,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-carreras">Carreras</span>
         <h2>Cómo Preparar tu Primera Carrera de 5K</h2>
         <p>Plan de 6 semanas, consejos para el dia de la carrera, nutricion y como cruzar la meta.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 9 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1680,7 +1690,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-rutas">Rutas</span>
         <h2>Las Mejores Rutas para Correr en Barcelona</h2>
         <p>De la Carretera de les Aigues a Montjuic: 10 rutas para runners en Barcelona con distancias.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 9 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1697,7 +1707,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-rutas">Rutas</span>
         <h2>Las Mejores Rutas para Correr en Valencia</h2>
         <p>Del Jardin del Turia a la Albufera: 10 rutas para runners en Valencia con recomendaciones.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 9 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1714,7 +1724,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-nutricion">Nutrición</span>
         <h2>Qué Comer Antes y Después de Correr</h2>
         <p>Guía práctica de nutrición para runners: desayunos, snacks, hidratación y recuperación.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 8 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1731,7 +1741,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>Plan de Entrenamiento 10K: De 0 a 10 Kilometros</h2>
         <p>Plan de 8 semanas para tu primer 10K. Rodajes, series, tempo y consejos para la carrera.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 10 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1748,7 +1758,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
         <h2>Correr en Invierno: Guía para No Dejar de Entrenar</h2>
         <p>Ropa técnica, calentamiento, seguridad y motivacion para seguir sumando kms en invierno.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">14 feb 2026 · 9 min</span>
           <span class="card-arrow">Leer →</span>
@@ -1766,7 +1776,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-lesiones">Lesiones</span>
         <h2>C&oacute;mo Prevenir Lesiones al Correr: Gu&iacute;a Completa 2026</h2>
         <p>Las claves para correr sin lesionarte: calentamiento, fortalecimiento, zapatillas y descanso.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 &middot; 15 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -1783,7 +1793,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-lesiones">Lesiones</span>
         <h2>Fascitis Plantar en Corredores: Causas, Tratamiento y Prevenci&oacute;n</h2>
         <p>La lesi&oacute;n m&aacute;s com&uacute;n en runners. Identif&iacute;cala, tr&aacute;tala y prev&eacute;nla.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 &middot; 14 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -1800,7 +1810,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-lesiones">Lesiones</span>
         <h2>Rodilla del Corredor (S&iacute;ndrome IT): Gu&iacute;a Completa</h2>
         <p>Todo sobre el dolor lateral de rodilla en runners: cintilla iliotibial, ejercicios y vuelta.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 &middot; 13 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -1817,7 +1827,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-lesiones">Lesiones</span>
         <h2>Periostitis Tibial: Por Qu&eacute; Duelen las Espinillas al Correr</h2>
         <p>Shin splints: causas, tratamiento y c&oacute;mo evitar que el dolor de espinillas frene tu running.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 &middot; 12 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -1834,7 +1844,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="category cat-badge-lesiones">Lesiones</span>
         <h2>Tendinitis de Aquiles en Runners: C&oacute;mo Tratarla</h2>
         <p>Dolor en el tend&oacute;n de Aquiles? Gu&iacute;a completa de tratamiento, ejercicios y prevenci&oacute;n.</p>
-        <span class="author">Por Carlos Ruiz</span>
+        <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">23 feb 2026 &middot; 13 min</span>
           <span class="card-arrow">Leer &rarr;</span>
@@ -1888,16 +1898,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
   <!-- Author Bio -->
   <div class="author-bio">
-    <div class="author-bio-img" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;font-weight:800;flex-shrink:0;border:2px solid rgba(249,115,22,.3)">CR</div>
+    <img class="author-bio-img" src="/blog/autor/jose-marquez-avatar.jpg" alt="Jose Marquez" onerror="this.outerHTML='<div style=&quot;width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;font-weight:800;flex-shrink:0;border:2px solid rgba(249,115,22,.3)&quot;>JM</div>'">
     <div class="author-bio-info">
-      <h3>Carlos Ruiz</h3>
-      <div class="author-role">Editor de Running en CorrerJuntos</div>
-      <p>Corredor desde 2012 con +15 maratones completados. Entrenador certificado RFEA y apasionado de la biomecánica deportiva. Escribe sobre entrenamiento, nutrición y equipamiento para ayudar a runners de todos los niveles.</p>
+      <h3>Jose Marquez</h3>
+      <div class="author-role">Fundador de CorrerJuntos</div>
+      <p>Corredor desde 2014 y fundador de CorrerJuntos. Apasionado por conectar corredores y hacer del running una experiencia social. Escribe sobre entrenamiento, equipamiento y comunidad para runners de todos los niveles.</p>
       <div class="author-creds">
-        <span class="author-cred">Entrenador RFEA</span>
-        <span class="author-cred">+15 maratones</span>
-        <span class="author-cred">Sub 3:15 maratón</span>
-        <span class="author-cred">Trail runner</span>
+        <span class="author-cred">Fundador CorrerJuntos</span>
+        <span class="author-cred">Corredor desde 2014</span>
+        <span class="author-cred">+10 medias maratones</span>
+        <span class="author-cred">Community builder</span>
       </div>
     </div>
   </div>
@@ -1983,14 +1993,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (el.querySelector('.author-avatar')) return;
     var img = document.createElement('img');
     img.className = 'author-avatar';
-    img.src = '/blog/autor/carlos-ruiz-avatar.jpg';
-    img.alt = 'Carlos Ruiz';
+    img.src = '/blog/autor/jose-marquez-avatar.jpg';
+    img.alt = 'Jose Marquez';
     img.onerror = function() {
       // Fallback to initial
       this.style.display = 'none';
       var init = document.createElement('span');
       init.style.cssText = 'width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700;flex-shrink:0';
-      init.textContent = 'CR';
+      init.textContent = 'JM';
       el.insertBefore(init, el.firstChild);
     };
     el.insertBefore(img, el.firstChild);
@@ -1999,13 +2009,25 @@ document.addEventListener('DOMContentLoaded', function() {
   // === allCards reference ===
   var allCards = Array.from(cards);
 
-  // === 4. FILTER FADE — scroll indicator on filter bar ===
+  // === 4. FILTER ARROWS — scroll navigation with arrows ===
   var filterBarWrap = document.getElementById('filterBarWrap');
+  var arrowLeft = document.getElementById('filterArrowLeft');
+  var arrowRight = document.getElementById('filterArrowRight');
   function checkFilterScroll() {
     if (!filterBar || !filterBarWrap) return;
+    var atStart = filterBar.scrollLeft <= 8;
     var atEnd = filterBar.scrollLeft + filterBar.clientWidth >= filterBar.scrollWidth - 8;
+    filterBarWrap.classList.toggle('scrolled-start', atStart);
     filterBarWrap.classList.toggle('scrolled-end', atEnd);
+    if (arrowLeft) arrowLeft.classList.toggle('hidden', atStart);
+    if (arrowRight) arrowRight.classList.toggle('hidden', atEnd);
   }
+  if (arrowLeft) arrowLeft.addEventListener('click', function() {
+    filterBar.scrollBy({ left: -200, behavior: 'smooth' });
+  });
+  if (arrowRight) arrowRight.addEventListener('click', function() {
+    filterBar.scrollBy({ left: 200, behavior: 'smooth' });
+  });
   filterBar.addEventListener('scroll', checkFilterScroll);
   checkFilterScroll();
 

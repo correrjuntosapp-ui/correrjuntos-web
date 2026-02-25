@@ -2313,38 +2313,45 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             if (!window.supabaseClient) return;
             try {
                 // 3 referidos → Badge "Community Builder"
-                if (count >= 3) {
+                if (count === 3) {
                     await window.supabaseClient
                         .from('badges')
                         .upsert({ user_id: userId, badge_id: 'referral_community_builder', unlocked_at: new Date().toISOString() }, { onConflict: 'user_id,badge_id' })
                         .then(() => {});
+                    showToast('🤝 Badge desbloqueado: Community Builder! (3 referidos)', 'success');
                 }
                 // 5 referidos → 1 mes Premium gratis
-                if (count >= 5) {
+                if (count === 5) {
                     await window.supabaseClient
                         .from('badges')
                         .upsert({ user_id: userId, badge_id: 'referral_premium_reward', unlocked_at: new Date().toISOString() }, { onConflict: 'user_id,badge_id' })
                         .then(() => {});
-                    // Grant 1 month premium
-                    const now = new Date();
-                    const expires = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
-                    await window.supabaseClient
-                        .from('premium_subscriptions')
-                        .upsert({
-                            user_id: userId,
-                            plan: 'referral_reward',
-                            status: 'active',
-                            started_at: now.toISOString(),
-                            expires_at: expires.toISOString()
-                        }, { onConflict: 'user_id' })
-                        .then(() => {});
+                    // Grant 1 month premium — solo si no es ya premium de pago
+                    const { data: existingSub } = await window.supabaseClient
+                        .from('subscriptions')
+                        .select('status')
+                        .eq('user_id', userId)
+                        .eq('status', 'active')
+                        .single();
+                    if (!existingSub) {
+                        const now = new Date();
+                        const expires = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+                        await window.supabaseClient
+                            .from('profiles')
+                            .update({ es_premium: true, is_premium: true, premium_until: expires.toISOString() })
+                            .eq('id', userId);
+                        showToast('⭐ 1 mes Premium GRATIS desbloqueado! (5 referidos)', 'success');
+                    } else {
+                        showToast('⭐ Badge desbloqueado: Super Recruiter! (5 referidos)', 'success');
+                    }
                 }
                 // 10 referidos → Badge "Ambassador"
-                if (count >= 10) {
+                if (count === 10) {
                     await window.supabaseClient
                         .from('badges')
                         .upsert({ user_id: userId, badge_id: 'referral_ambassador', unlocked_at: new Date().toISOString() }, { onConflict: 'user_id,badge_id' })
                         .then(() => {});
+                    showToast('🏆 Badge desbloqueado: Ambassador! (10 referidos)', 'success');
                 }
             } catch (e) { console.warn('Referral rewards:', e); }
         }
@@ -9714,6 +9721,18 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 showToast('Pago cancelado. Puedes intentarlo cuando quieras.', 'info');
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
+            // Unsubscribe desde email → abrir perfil con preferencias
+            if (params.get('unsubscribe') === 'email') {
+                window.history.replaceState({}, document.title, window.location.pathname);
+                setTimeout(() => {
+                    if (currentUser) {
+                        try { openModal('modal-profile'); } catch(_) {}
+                        showToast('Gestiona tus preferencias de email en tu perfil', 'info');
+                    } else {
+                        showToast('Inicia sesion para gestionar tus preferencias de email', 'info');
+                    }
+                }, 1500);
+            }
         }
 
         function openSidebar(){if(!currentUser){showToast('Debes registrarte','error');openModal('modal-register');return;}document.getElementById('sidebar-comunidades').classList.add('active');document.getElementById('sidebar-overlay').classList.add('active');sidebarView='communities';renderSidebar();}
@@ -9942,7 +9961,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               id: user.id,
               nombre: nombre || '',
               apellidos: apellidos || '',
-              photo_url: meta.avatar_url || meta.picture || ''
+              photo_url: meta.avatar_url || meta.picture || '',
+              referral_code: generateReferralCode()
             })
             .select()
             .single();

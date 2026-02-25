@@ -43,6 +43,11 @@ function baseTemplate(content: string, lang: string): string {
       ${lang === 'en' ? 'You received this email because you have an account on' : 'Recibes este email porque tienes una cuenta en'}
       <a href="${BASE_URL}" style="color:#f97316;text-decoration:none;">correrjuntos.com</a>
     </p>
+    <p style="margin:0 0 8px;color:#4b5563;font-size:11px;">
+      <a href="${BASE_URL}/?unsubscribe=email" style="color:#6b7280;text-decoration:underline;">
+        ${lang === 'en' ? 'Manage email preferences / Unsubscribe' : 'Gestionar preferencias de email / Cancelar suscripcion'}
+      </a>
+    </p>
     <p style="margin:0;color:#4b5563;font-size:11px;">
       Correr Juntos &copy; ${new Date().getFullYear()}
     </p>
@@ -407,6 +412,56 @@ function weeklyDigestEmail(
   return { subject, html: baseTemplate(content, lang) }
 }
 
+// ---- Reminder Email (24h / 1h before) ----
+function reminderEmail(
+  name: string,
+  lang: string,
+  data: { titulo: string; ciudad: string; fecha: string; hora: string; quedada_id: string; tipo_recordatorio: string }
+): { subject: string; html: string } {
+  const isEN = lang === 'en'
+  const is24h = data.tipo_recordatorio === '24h'
+
+  const subject = isEN
+    ? (is24h ? `Tomorrow: "${data.titulo}" in ${data.ciudad} ⏰` : `Starting in 1 hour: "${data.titulo}" 🏃`)
+    : (is24h ? `Mañana: "${data.titulo}" en ${data.ciudad} ⏰` : `Empieza en 1 hora: "${data.titulo}" 🏃`)
+
+  const quedadaUrl = `${BASE_URL}/?quedada=${data.quedada_id}`
+
+  const content = isEN
+    ? `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">${is24h ? '⏰ Tomorrow you have a meetup!' : '🏃 Your meetup starts in 1 hour!'}</h2>
+    <p style="margin:0 0 24px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      ${is24h ? `Don't forget, ${name}!` : `Get ready, ${name}!`} Your meetup is ${is24h ? 'tomorrow' : 'about to start'}:
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;">
+      <tr><td style="padding:20px;">
+        <h3 style="margin:0 0 12px;color:#f97316;font-size:18px;">${data.titulo}</h3>
+        <table cellpadding="0" cellspacing="0" width="100%">
+          <tr><td style="padding:4px 0;color:#d1d5db;font-size:14px;">📍 <strong>${data.ciudad}</strong></td></tr>
+          <tr><td style="padding:4px 0;color:#d1d5db;font-size:14px;">📅 ${data.fecha} &nbsp; 🕐 ${data.hora}h</td></tr>
+        </table>
+      </td></tr>
+    </table>
+    ${ctaButton('View meetup details', quedadaUrl)}`
+    : `
+    <h2 style="margin:0 0 8px;color:#ffffff;font-size:22px;">${is24h ? '⏰ Mañana tienes quedada!' : '🏃 Tu quedada empieza en 1 hora!'}</h2>
+    <p style="margin:0 0 24px;color:#d1d5db;font-size:15px;line-height:1.6;">
+      ${is24h ? `No te olvides, ${name}!` : `Preparate, ${name}!`} Tu quedada ${is24h ? 'es mañana' : 'esta a punto de empezar'}:
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#1f2937;border-radius:12px;">
+      <tr><td style="padding:20px;">
+        <h3 style="margin:0 0 12px;color:#f97316;font-size:18px;">${data.titulo}</h3>
+        <table cellpadding="0" cellspacing="0" width="100%">
+          <tr><td style="padding:4px 0;color:#d1d5db;font-size:14px;">📍 <strong>${data.ciudad}</strong></td></tr>
+          <tr><td style="padding:4px 0;color:#d1d5db;font-size:14px;">📅 ${data.fecha} &nbsp; 🕐 ${data.hora}h</td></tr>
+        </table>
+      </td></tr>
+    </table>
+    ${ctaButton('Ver detalles de la quedada', quedadaUrl)}`
+
+  return { subject, html: baseTemplate(content, lang) }
+}
+
 // ---- Send via Brevo API ----
 async function sendBrevoEmail(
   to: { email: string; name?: string },
@@ -502,6 +557,12 @@ Deno.serve(async (req) => {
       }
       case 'weekly_digest': {
         const result = weeklyDigestEmail(to_name || to_email.split('@')[0], lang, data)
+        subject = result.subject
+        html = result.html
+        break
+      }
+      case 'reminder': {
+        const result = reminderEmail(to_name || to_email.split('@')[0], lang, data)
         subject = result.subject
         html = result.html
         break

@@ -4167,6 +4167,21 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             showApp(true);
             await loadQuedadas();
 
+            // Enviar email de bienvenida (fire & forget)
+            try {
+                fetch('https://waihiwdbtcbdazmaxdor.supabase.co/functions/v1/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'welcome',
+                        to_email: email,
+                        to_name: (document.getElementById('reg-nombre')?.value || '').trim() || email.split('@')[0],
+                        lang: currentLang || 'es',
+                        data: { user_id: data?.user?.id }
+                    })
+                }).catch(() => {});
+            } catch(e) {}
+
             // Mostrar modal de onboarding para completar perfil
             setTimeout(() => openModal('modal-complete-profile'), 1500);
         }
@@ -8338,8 +8353,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             if (!quedada || !quedada.lat || !quedada.lng) return;
             
             try {
-                // Llamar a Edge Function de Supabase
-                const response = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/functions/v1/send-push-notification', {
+                // Llamar a Edge Function notify-nearby-users (push + email)
+                const response = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/functions/v1/notify-nearby-users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -8347,10 +8362,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     },
                     body: JSON.stringify({
                         quedada_id: quedada.id,
-                        titulo: quedada.titulo,
-                        ciudad: quedada.ciudad,
-                        lat: quedada.lat,
-                        lng: quedada.lng,
+                        quedada_titulo: quedada.titulo,
+                        quedada_ciudad: quedada.ciudad,
+                        quedada_lat: quedada.lat,
+                        quedada_lng: quedada.lng,
                         fecha: quedada.fecha,
                         hora: quedada.hora,
                         creador_id: currentUser.id
@@ -9653,6 +9668,22 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 window.history.replaceState({}, document.title, window.location.pathname);
                 // Recargar estado premium
                 setTimeout(() => checkPremiumStatus(), 1000);
+                // Enviar email de confirmación Premium (fire & forget)
+                try {
+                    if (currentUser?.email) {
+                        fetch('https://waihiwdbtcbdazmaxdor.supabase.co/functions/v1/send-email', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                type: 'premium_activated',
+                                to_email: currentUser.email,
+                                to_name: currentUser.nombre || currentUser.email.split('@')[0],
+                                lang: currentLang || 'es',
+                                data: { user_id: currentUser.id }
+                            })
+                        }).catch(() => {});
+                    }
+                } catch(e) {}
             } else if (params.get('premium') === 'canceled') {
                 showToast('Pago cancelado. Puedes intentarlo cuando quieras.', 'info');
                 window.history.replaceState({}, document.title, window.location.pathname);

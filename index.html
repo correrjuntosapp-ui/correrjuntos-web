@@ -2393,6 +2393,12 @@
                             Nueva Quedada
                         </div>
                         <p class="text-gray-500 text-sm mt-0.5">Organiza un evento para la comunidad runner</p>
+                        <!-- Contador de quedadas para usuarios Free -->
+                        <div id="crear-quedada-counter" class="hidden mt-1.5">
+                            <span id="crear-counter-badge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-orange-500/15 text-orange-400 border border-orange-500/30">
+                                📊 <span id="crear-counter-text">0/3 este mes</span>
+                            </span>
+                        </div>
                     </div>
                     <button onclick="closeModal('modal-crear')" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-gray-400 hover:text-white transition" aria-label="Cerrar">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -4202,6 +4208,59 @@
           </button>
           <button onclick="closeModal('modal-premium-promo')" id="promo-later-btn" class="w-full py-3 rounded-xl font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition text-sm" aria-label="Cerrar">
             Ahora no, gracias
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL LÍMITE DE QUEDADAS ALCANZADO (Free → Premium upsell) -->
+    <div id="modal-limit-reached" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-content bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl max-w-md w-full border border-orange-500/30 shadow-2xl shadow-orange-500/10 overflow-hidden">
+        <!-- Header con gradiente naranja -->
+        <div class="bg-gradient-to-r from-orange-600 via-orange-500 to-yellow-500 p-6 text-center relative">
+          <button onclick="closeModal('modal-limit-reached')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/20 flex items-center justify-center text-white/80 hover:bg-black/40 transition" aria-label="Cerrar">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <div class="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-3 backdrop-blur-sm">
+            <span class="text-5xl">🔒</span>
+          </div>
+          <div id="limit-title" class="text-2xl font-black text-white drop-shadow-lg">Límite alcanzado</div>
+          <p class="text-white/90 text-sm mt-1"><span id="limit-subtitle">Has creado</span> <b>3/3</b> <span id="limit-subtitle-2">quedadas este mes</span></p>
+        </div>
+        <!-- Contenido -->
+        <div class="p-6">
+          <p class="text-gray-300 text-sm text-center mb-5"><span id="limit-desc">Con Premium crea</span> <b class="text-white" id="limit-desc-bold">quedadas ilimitadas</b> <span id="limit-desc-2">cada mes y desbloquea mucho más:</span></p>
+          <ul class="space-y-2.5 mb-6">
+            <li class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xs">✓</span>
+              <span id="limit-feat-1" class="text-gray-200 text-sm">Quedadas ilimitadas al mes</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xs">✓</span>
+              <span id="limit-feat-2" class="text-gray-200 text-sm">Participantes sin límite</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xs">✓</span>
+              <span id="limit-feat-3" class="text-gray-200 text-sm">Quedadas privadas con código</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xs">✓</span>
+              <span id="limit-feat-4" class="text-gray-200 text-sm">Ruta GPS en el mapa</span>
+            </li>
+          </ul>
+          <!-- Precio -->
+          <div class="text-center mb-4">
+            <div class="inline-flex items-baseline gap-1">
+              <span class="text-3xl font-black text-white">4,99€</span>
+              <span id="limit-per-month" class="text-gray-400">/mes</span>
+            </div>
+          </div>
+          <!-- CTA -->
+          <button onclick="closeModal('modal-limit-reached'); openPremiumCheckout();" class="w-full py-4 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 mb-3">
+            <span>🚀</span> <span id="limit-cta-btn">Crear quedadas ilimitadas</span>
+          </button>
+          <button onclick="closeModal('modal-limit-reached')" class="w-full py-3 rounded-xl font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition text-sm" id="limit-later-btn">
+            Volver
           </button>
         </div>
       </div>

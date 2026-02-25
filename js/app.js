@@ -9653,10 +9653,36 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
         }
 
-        function managePremium() {
-            // Abrir portal de cliente de Stripe para gestionar suscripción
-            window.open('https://billing.stripe.com/p/login/test_YOUR_PORTAL_ID', '_blank');
-            showToast('Abriendo portal de gestión...', 'info');
+        async function managePremium() {
+            // Crear sesión del portal de cliente de Stripe
+            try {
+                showToast('Abriendo portal de gestión...', 'info');
+                const session = await window.supabaseClient.auth.getSession();
+                const token = session?.data?.session?.access_token;
+
+                const response = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/functions/v1/create-portal-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        user_id: currentUser.id,
+                        email: currentUser.email,
+                        return_url: window.location.origin
+                    })
+                });
+
+                const data = await response.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(data.error || 'Error abriendo portal');
+                }
+            } catch (e) {
+                console.error('Error portal:', e);
+                showToast('Error al abrir el portal de gestión: ' + e.message, 'error');
+            }
         }
 
         // Verificar parámetros de URL para premium success/cancel
@@ -9957,7 +9983,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           referral_code: prof && prof.referral_code ? String(prof.referral_code) : null,
           referral_count: prof && prof.referral_count ? Number(prof.referral_count) : 0,
           alert_new_quedadas: !!(prof && prof.alert_new_quedadas),
-          alert_radius_km: prof && prof.alert_radius_km ? Number(prof.alert_radius_km) : 25
+          alert_radius_km: prof && prof.alert_radius_km ? Number(prof.alert_radius_km) : 25,
+          premiumUntil: prof && prof.premium_until ? String(prof.premium_until) : null,
+          stripe_customer_id: prof && prof.stripe_customer_id ? String(prof.stripe_customer_id) : null
         };
 
         // Actualizar país del usuario para filtrado de quedadas

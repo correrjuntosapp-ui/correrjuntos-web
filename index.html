@@ -363,7 +363,7 @@
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
     <!-- Preloads críticos para LCP -->
-    <link rel="preload" href="/css/deferred.css" as="style">
+    <link rel="preload" href="/css/deferred.min.css" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" as="style" crossorigin>
 
     <!-- Fonts: async + display=swap = zero CLS + non-blocking -->
@@ -388,10 +388,10 @@
     <!-- html2canvas: loaded on demand (only used for stats card sharing) -->
     <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" as="script">
     <!-- Core scripts: preload para descarga paralela temprana -->
-    <link rel="preload" href="/js/app.js" as="script">
-    <link rel="preload" href="/data/geo-data.js" as="script">
-    <link rel="preload" href="/data/i18n-core.js" as="script">
-    <link rel="preload" href="/data/i18n-es.js" as="script">
+    <link rel="preload" href="/js/app.min.js" as="script">
+    <link rel="preload" href="/data/geo-data.min.js" as="script">
+    <link rel="preload" href="/data/i18n-core.min.js" as="script">
+    <link rel="preload" href="/data/i18n-es.min.js" as="script">
     <!-- Módulos lazy: PWA, Deep Linking (se cargan tras idle) -->
     <link rel="prefetch" href="/js/pwa.js" as="script">
     <link rel="prefetch" href="/js/deeplink.js" as="script">
@@ -549,8 +549,8 @@
         body.light-mode .btn-secondary:hover { background: #f5f5f4 !important; background-color: #f5f5f4 !important; border-color: #292524 !important; color: #292524 !important; }
         body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4 { color: #3d3229; }
     </style>
-    <link rel="stylesheet" href="/css/deferred.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="/css/deferred.css"></noscript>
+    <link rel="stylesheet" href="/css/deferred.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/css/deferred.min.css"></noscript>
 <!-- PWA -->
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#f97316">
@@ -3407,11 +3407,11 @@
   // Nota: el cliente de Supabase se inicializa mas abajo (bootstrap unico) para evitar multiples instancias.
 </script>
 <!-- Datos geográficos externalizados (28 KB cacheable por separado) -->
-<script src="/data/geo-data.js"></script>
+<script src="/data/geo-data.min.js"></script>
 <!-- i18n: core (META_I18N) + español siempre + otros idiomas bajo demanda en changeLanguage() -->
-<script src="/data/i18n-core.js"></script>
-<script src="/data/i18n-es.js"></script>
-<script src="/js/app.js"></script>
+<script src="/data/i18n-core.min.js"></script>
+<script src="/data/i18n-es.min.js"></script>
+<script src="/js/app.min.js"></script>
 
 
   <!-- PWA Install Banner (Custom) -->

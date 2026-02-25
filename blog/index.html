@@ -66,8 +66,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .breadcrumb span{margin:0 8px}
 
 /* Hero */
-.hero{text-align:center;padding:80px 20px 48px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 30% 20%,rgba(249,115,22,.15),transparent 60%),radial-gradient(ellipse 60% 50% at 70% 30%,rgba(234,88,12,.1),transparent 50%),radial-gradient(ellipse 50% 40% at 50% 80%,rgba(249,115,22,.06),transparent 50%);animation:heroFloat 8s ease-in-out infinite alternate;z-index:0}
+.hero{text-align:center;padding:80px 20px 48px;position:relative;overflow:hidden;background:url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1920&h=600&q=60') center/cover no-repeat}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.88) 0%,rgba(11,18,32,.92) 40%,rgba(11,18,32,.96) 100%),radial-gradient(ellipse 80% 60% at 30% 20%,rgba(249,115,22,.15),transparent 60%),radial-gradient(ellipse 60% 50% at 70% 30%,rgba(234,88,12,.1),transparent 50%);z-index:0}
 .hero>*{position:relative;z-index:1}
 .hero h1{font-size:3rem;font-weight:900;margin-bottom:14px;line-height:1.05;letter-spacing:-.02em}
 .hero h1 span{background:linear-gradient(135deg,#f97316,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -86,9 +86,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .search-wrap .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;display:none;padding:4px}
 .search-wrap .search-clear:hover{color:#fff}
 
-/* Filter Bar */
-.filter-bar{display:flex;flex-wrap:wrap;gap:8px;padding:24px 0 8px;justify-content:center}
-.filter-btn{padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#94a3b8;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;letter-spacing:.3px;text-transform:uppercase}
+/* Filter Bar — horizontal scroll */
+.filter-bar{display:flex;gap:8px;padding:24px 0 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;white-space:nowrap;justify-content:flex-start;padding-left:4px;padding-right:4px}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#94a3b8;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;letter-spacing:.3px;text-transform:uppercase;flex-shrink:0}
 .filter-btn:hover{border-color:rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.06)}
 .filter-btn.active{color:#fff}
 .filter-btn[data-filter="todos"].active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#f97316}
@@ -126,7 +127,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .featured-content p{font-size:.95rem;color:#94a3b8;line-height:1.6}
 .featured-content .card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
 .featured-content .meta{font-size:.8rem;color:#64748b}
-.author{font-size:.75rem;color:#94a3b8;margin-top:2px;font-weight:500}
+.author{font-size:.75rem;color:#94a3b8;margin-top:2px;font-weight:500;display:flex;align-items:center;gap:6px}
+.author-avatar{width:20px;height:20px;border-radius:50%;object-fit:cover;border:1px solid rgba(249,115,22,.3)}
+
+/* Article counter */
+.article-counter{text-align:center;color:#64748b;font-size:.85rem;margin:-8px 0 16px;font-weight:500}
+.article-counter span{color:#f97316;font-weight:700}
+
+/* Load more button */
+.load-more-wrap{text-align:center;margin:24px 0 40px}
+.load-more-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#94a3b8;padding:12px 32px;border-radius:999px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .25s}
+.load-more-btn:hover{border-color:rgba(249,115,22,.4);color:#f97316;background:rgba(249,115,22,.06)}
+
+/* Category separator in grid */
+.category-separator{grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:24px 0 8px;margin-top:8px}
+.category-separator h3{font-size:1rem;font-weight:700;color:#fff;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.category-separator .sep-line{flex:1;height:1px;background:rgba(255,255,255,.08)}
+.category-separator .sep-count{font-size:.75rem;color:#64748b;font-weight:500}
+
+/* Explora cards */
+.explore-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:16px 0 24px;padding:24px 0;border-top:1px solid rgba(255,255,255,.06)}
+.explore-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;text-decoration:none;color:inherit;transition:all .25s}
+.explore-card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-2px);background:rgba(255,255,255,.05)}
+.explore-card-icon{font-size:1.5rem}
+.explore-card-label{font-size:.8rem;font-weight:600;color:#cbd5e1;text-align:center}
+
+/* Image fallback */
+.img-fallback{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(30,41,59,1));color:#64748b;font-size:2rem}
 .featured-content .card-arrow{font-size:1rem;color:#f97316;font-weight:700;transition:transform .2s;white-space:nowrap}
 .article-card.featured:hover .card-arrow{transform:translateX(6px)}
 
@@ -333,6 +360,46 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <button class="filter-btn" data-filter="tecnologia">Tecnología</button>
     <button class="filter-btn" data-filter="lesiones">Lesiones</button>
   </div>
+
+  <!-- Most Read — positioned prominently -->
+  <div class="most-read">
+    <h2>🔥 Lo mas leido</h2>
+    <div class="most-read-grid">
+      <a href="/blog/empezar-a-correr-guia-principiantes" class="most-read-card">
+        <div class="rank-badge">#1</div>
+        <div class="mr-thumb">
+          <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=112&h=112&q=80" alt="Empezar a correr" loading="lazy">
+        </div>
+        <div class="most-read-info">
+          <h3>Guia Completa para Empezar a Correr desde Cero</h3>
+          <span class="meta">Principiantes · 10 min</span>
+        </div>
+      </a>
+      <a href="/blog/mejores-zapatillas-running-asfalto" class="most-read-card">
+        <div class="rank-badge">#2</div>
+        <div class="mr-thumb">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=112&h=112&q=80" alt="Zapatillas running" loading="lazy">
+        </div>
+        <div class="most-read-info">
+          <h3>Las 10 Mejores Zapatillas Running para Asfalto 2026</h3>
+          <span class="meta">Zapatillas · 14 min</span>
+        </div>
+      </a>
+      <a href="/blog/errores-comunes-corredores" class="most-read-card">
+        <div class="rank-badge">#3</div>
+        <div class="mr-thumb">
+          <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=112&h=112&q=80" alt="Errores corredores" loading="lazy">
+        </div>
+        <div class="most-read-info">
+          <h3>Los 10 Errores Mas Comunes de los Corredores</h3>
+          <span class="meta">Entrenamiento · 9 min</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Article counter -->
+  <div class="article-counter" id="articleCounter">Mostrando <span id="visibleCount">78</span> de 78 articulos</div>
 
   <div class="articles" id="articlesGrid">
 
@@ -1767,52 +1834,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <span class="end-line"></span>
   </div>
 
-  <!-- Most Read -->
-  <div class="most-read">
-    <h2>🔥 Lo más leído</h2>
-    <div class="most-read-grid">
-      <a href="/blog/empezar-a-correr-guia-principiantes" class="most-read-card">
-        <div class="rank-badge">#1</div>
-        <div class="mr-thumb">
-          <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=112&h=112&q=80" alt="Empezar a correr" loading="lazy">
-        </div>
-        <div class="most-read-info">
-          <h3>Guía Completa para Empezar a Correr desde Cero</h3>
-          <span class="meta">Principiantes · 10 min</span>
-        </div>
-      </a>
-      <a href="/blog/mejores-zapatillas-running-asfalto" class="most-read-card">
-        <div class="rank-badge">#2</div>
-        <div class="mr-thumb">
-          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=112&h=112&q=80" alt="Zapatillas running" loading="lazy">
-        </div>
-        <div class="most-read-info">
-          <h3>Las 10 Mejores Zapatillas Running para Asfalto 2026</h3>
-          <span class="meta">Zapatillas · 14 min</span>
-        </div>
-      </a>
-      <a href="/blog/errores-comunes-corredores" class="most-read-card">
-        <div class="rank-badge">#3</div>
-        <div class="mr-thumb">
-          <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=112&h=112&q=80" alt="Errores corredores" loading="lazy">
-        </div>
-        <div class="most-read-info">
-          <h3>Los 10 Errores Más Comunes de los Corredores</h3>
-          <span class="meta">Entrenamiento · 9 min</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- Cross-links -->
-  <p style="text-align:center;color:#64748b;font-size:.85rem;margin:48px 0 -8px;font-weight:600">Explora también</p>
-  <div class="cross-links">
-    <a href="/equipamiento/" class="cross-link">Equipamiento Recomendado</a>
-    <a href="/equipamiento/zapatillas-running" class="cross-link">Zapatillas</a>
-    <a href="/equipamiento/relojes-gps-running" class="cross-link">Relojes GPS</a>
-    <a href="/equipamiento/geles-energeticos-running" class="cross-link">Geles</a>
-    <a href="/equipamiento/auriculares-running" class="cross-link">Auriculares</a>
-    <a href="/cities/" class="cross-link">🏙️ Ciudades</a>
+  <!-- Explore cards -->
+  <p style="text-align:center;color:#94a3b8;font-size:1rem;margin:48px 0 4px;font-weight:700">Explora tambien</p>
+  <div class="explore-cards">
+    <a href="/equipamiento/" class="explore-card">
+      <span class="explore-card-icon">👟</span>
+      <span class="explore-card-label">Equipamiento</span>
+    </a>
+    <a href="/equipamiento/zapatillas-running" class="explore-card">
+      <span class="explore-card-icon">🏃</span>
+      <span class="explore-card-label">Zapatillas</span>
+    </a>
+    <a href="/equipamiento/relojes-gps-running" class="explore-card">
+      <span class="explore-card-icon">⌚</span>
+      <span class="explore-card-label">Relojes GPS</span>
+    </a>
+    <a href="/equipamiento/geles-energeticos-running" class="explore-card">
+      <span class="explore-card-icon">⚡</span>
+      <span class="explore-card-label">Geles</span>
+    </a>
+    <a href="/equipamiento/auriculares-running" class="explore-card">
+      <span class="explore-card-icon">🎧</span>
+      <span class="explore-card-label">Auriculares</span>
+    </a>
+    <a href="/cities/" class="explore-card">
+      <span class="explore-card-icon">🏙️</span>
+      <span class="explore-card-label">Ciudades</span>
+    </a>
   </div>
 
   <!-- Newsletter -->
@@ -1842,52 +1890,170 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 </div>
 
 <script>
-// Search + Category filter
 document.addEventListener('DOMContentLoaded', function() {
-  const filterBar = document.getElementById('filterBar');
-  const grid = document.getElementById('articlesGrid');
-  const noResults = document.getElementById('noResults');
-  const endIndicator = document.getElementById('endIndicator');
-  const buttons = filterBar.querySelectorAll('.filter-btn');
-  const cards = grid.querySelectorAll('.article-card');
-  const searchInput = document.getElementById('searchInput');
-  const searchClear = document.getElementById('searchClear');
-  let activeFilter = 'todos';
+  var filterBar = document.getElementById('filterBar');
+  var grid = document.getElementById('articlesGrid');
+  var noResults = document.getElementById('noResults');
+  var endIndicator = document.getElementById('endIndicator');
+  var buttons = filterBar.querySelectorAll('.filter-btn');
+  var cards = grid.querySelectorAll('.article-card');
+  var searchInput = document.getElementById('searchInput');
+  var searchClear = document.getElementById('searchClear');
+  var visibleCountEl = document.getElementById('visibleCount');
+  var activeFilter = 'todos';
+  var ARTICLES_PER_PAGE = 24;
+  var currentPage = 1;
+
+  // === 1. FIX BROKEN IMAGES — fallback to gradient placeholder ===
+  document.querySelectorAll('.card-img img, .featured-img img, .mr-thumb img').forEach(function(img) {
+    img.onerror = function() {
+      this.style.display = 'none';
+      var fallback = document.createElement('div');
+      fallback.className = 'img-fallback';
+      fallback.style.width = '100%';
+      fallback.style.height = '100%';
+      fallback.textContent = '🏃';
+      this.parentElement.appendChild(fallback);
+    };
+  });
+
+  // === 2. FIX "NUEVO" BADGE — only show for articles < 14 days old ===
+  var now = new Date();
+  var MAX_NEW_DAYS = 14;
+  document.querySelectorAll('.article-card').forEach(function(card) {
+    var metaEl = card.querySelector('.meta');
+    if (!metaEl) return;
+    var metaText = metaEl.textContent;
+    // Parse date like "24 feb 2026" or "24 feb 2026 · 12 min"
+    var dateMatch = metaText.match(/(\d{1,2})\s+(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)\s+(\d{4})/);
+    if (!dateMatch) return;
+    var months = {ene:0,feb:1,mar:2,abr:3,may:4,jun:5,jul:6,ago:7,sep:8,oct:9,nov:10,dic:11};
+    var articleDate = new Date(parseInt(dateMatch[3]), months[dateMatch[2]], parseInt(dateMatch[1]));
+    var daysDiff = Math.floor((now - articleDate) / (1000 * 60 * 60 * 24));
+    // Store date for sorting
+    card.dataset.date = articleDate.toISOString();
+    // Remove badge if older than MAX_NEW_DAYS
+    if (daysDiff > MAX_NEW_DAYS) {
+      var badge = card.querySelector('.badge-new');
+      if (badge) badge.remove();
+    }
+  });
+
+  // === 3. ADD AUTHOR AVATAR to all author spans ===
+  document.querySelectorAll('.author').forEach(function(el) {
+    if (el.querySelector('.author-avatar')) return;
+    var img = document.createElement('img');
+    img.className = 'author-avatar';
+    img.src = '/blog/autor/carlos-ruiz-avatar.jpg';
+    img.alt = 'Carlos Ruiz';
+    img.onerror = function() {
+      // Fallback to initial
+      this.style.display = 'none';
+      var init = document.createElement('span');
+      init.style.cssText = 'width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700;flex-shrink:0';
+      init.textContent = 'CR';
+      el.insertBefore(init, el.firstChild);
+    };
+    el.insertBefore(img, el.firstChild);
+  });
+
+  // === 4. PAGINATION — show first N articles, "Cargar mas" button ===
+  var allCards = Array.from(cards);
+  var loadMoreWrap = document.createElement('div');
+  loadMoreWrap.className = 'load-more-wrap';
+  loadMoreWrap.id = 'loadMoreWrap';
+  loadMoreWrap.innerHTML = '<button class="load-more-btn" id="loadMoreBtn">Cargar mas articulos</button>';
+  grid.parentNode.insertBefore(loadMoreWrap, grid.nextSibling);
+  var loadMoreBtn = document.getElementById('loadMoreBtn');
 
   function filterCards() {
-    const query = searchInput.value.trim().toLowerCase();
+    var query = searchInput.value.trim().toLowerCase();
     searchClear.style.display = query ? 'block' : 'none';
-    let visible = 0;
-    cards.forEach(function(card) {
-      const cat = card.dataset.category;
-      const text = card.textContent.toLowerCase();
-      const matchCat = activeFilter === 'todos' || cat === activeFilter;
-      const matchSearch = !query || text.includes(query);
-      const show = matchCat && matchSearch;
-      card.style.display = show ? '' : 'none';
-      if (show) {
-        visible++;
-        card.style.animation = 'none';
-        card.offsetHeight;
-        card.style.animation = 'slideUp .4s ease forwards';
-        card.style.animationDelay = (visible * 0.05) + 's';
+
+    // Remove existing category separators
+    grid.querySelectorAll('.category-separator').forEach(function(s) { s.remove(); });
+
+    var visible = 0;
+    var shown = 0;
+    var maxShow = (activeFilter === 'todos' && !query) ? currentPage * ARTICLES_PER_PAGE : 9999;
+    var lastCat = '';
+    var catCounts = {};
+
+    // First pass: count per category
+    allCards.forEach(function(card) {
+      var cat = card.dataset.category;
+      var text = card.textContent.toLowerCase();
+      var matchCat = activeFilter === 'todos' || cat === activeFilter;
+      var matchSearch = !query || text.includes(query);
+      if (matchCat && matchSearch) {
+        catCounts[cat] = (catCounts[cat] || 0) + 1;
       }
     });
+
+    allCards.forEach(function(card) {
+      var cat = card.dataset.category;
+      var text = card.textContent.toLowerCase();
+      var matchCat = activeFilter === 'todos' || cat === activeFilter;
+      var matchSearch = !query || text.includes(query);
+      var show = matchCat && matchSearch;
+      if (show) {
+        visible++;
+        if (visible <= maxShow) {
+          card.style.display = '';
+          shown++;
+          card.style.animation = 'none';
+          card.offsetHeight;
+          card.style.animation = 'slideUp .4s ease forwards';
+          card.style.animationDelay = Math.min(shown * 0.04, 1.5) + 's';
+        } else {
+          card.style.display = 'none';
+        }
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Update counter
+    if (visibleCountEl) visibleCountEl.textContent = shown;
+
+    // Show/hide load more
+    if (loadMoreWrap) {
+      loadMoreWrap.style.display = (visible > shown) ? '' : 'none';
+      if (loadMoreBtn) loadMoreBtn.textContent = 'Cargar mas (' + (visible - shown) + ' restantes)';
+    }
+
     noResults.style.display = visible === 0 ? 'block' : 'none';
-    if (endIndicator) endIndicator.style.display = visible === 0 ? 'none' : '';
+    if (endIndicator) endIndicator.style.display = (visible === 0 || visible > shown) ? 'none' : '';
+  }
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function() {
+      currentPage++;
+      filterCards();
+      // Scroll to first newly visible card
+      window.scrollBy({ top: 200, behavior: 'smooth' });
+    });
   }
 
   filterBar.addEventListener('click', function(e) {
-    const btn = e.target.closest('.filter-btn');
+    var btn = e.target.closest('.filter-btn');
     if (!btn) return;
     activeFilter = btn.dataset.filter;
-    buttons.forEach(b => b.classList.remove('active'));
+    currentPage = 1; // Reset pagination on filter change
+    buttons.forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     filterCards();
   });
 
-  searchInput.addEventListener('input', filterCards);
+  searchInput.addEventListener('input', function() {
+    currentPage = 1;
+    filterCards();
+  });
+
+  // Initial render
+  filterCards();
 });
+
 function clearSearch() {
   var si = document.getElementById('searchInput');
   si.value = '';

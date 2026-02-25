@@ -719,6 +719,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('premium-feat-3', t.premiumExclusiveBadges);
             setText('premium-feat-4', t.premiumBadgeProfile);
             setText('premium-feat-5', t.premiumStravaIntegration);
+            setText('premium-feat-6', t.premiumPaceHistory);
+            setText('premium-feat-7', t.premiumBadgesStrava);
             setText('premium-get-btn', t.premiumGetBtn);
             setText('premium-cancel-text', t.premiumCancelAnytime);
             setText('premium-you-are', t.premiumYouAre);
@@ -4913,7 +4915,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             closeAddressSuggestionsCrear();
         });
 
-        function openModalCrear(){if(!currentUser){showToast('Debes registrarte','error');openModal('modal-register');return;}openModal('modal-crear');setTimeout(()=>ensureLeaflet().then(initMapCrear),200);restoreDraftQuedada();}
+        function openModalCrear(){if(!currentUser){showToast('Debes registrarte','error');openModal('modal-register');return;}openModal('modal-crear');setTimeout(()=>ensureLeaflet().then(initMapCrear),200);restoreDraftQuedada();updatePremiumCrearUI();}
         function restoreDraftQuedada(){
             try{
                 var raw=localStorage.getItem('cj_draft_quedada');
@@ -5532,9 +5534,16 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             reverseGeocode(center.lat, center.lng);
           });
 
-          // 🆕 CLIC EN EL MAPA - Centrar en el punto clicado
+          // 🆕 CLIC EN EL MAPA - Centrar en el punto clicado o dibujar ruta
           mapCrear.on('click', function(e){
             const { lat, lng } = e.latlng;
+
+            // PREMIUM: Route drawing mode - add point instead of centering
+            if (routeDrawingActive) {
+                addRoutePoint(e.latlng);
+                return; // Don't move the pin
+            }
+
             console.log('🗺️ CLIC EN MAPA:', lat, lng); // DEBUG
 
             // Animar el pin antes de mover
@@ -6309,14 +6318,14 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
 
             // Construir query base - incluir datos del creador/organizador
-            // NOTA: terreno,desnivel,amenities comentados hasta que se añadan a la BD
+            // Premium columns (is_private,access_code,recurrence,ruta_coords) require migration 16_premium_features.sql
+            const premiumCols = ',is_private,access_code,recurrence,ruta_coords';
+            const baseCols = 'id,titulo,ciudad,ubicacion,direccion,lat,lng,fecha,hora,nivel,distancia,ritmo,descripcion,creador_id,created_at,es_seed,organizador_nombre,organizador_foto,participantes_seed,max_participantes';
+            const joinCols = `creador:profiles!quedadas_creador_id_fkey(id,nombre,apellidos,photo_url,organizer_rating,total_reviews,total_organized,verification_badge,es_premium),participantes(user_id,status,es_seed,profiles!participantes_user_id_fkey_profiles(id,nombre,apellidos,photo_url,es_seed,es_premium))`;
+
             let query = window.supabaseClient
               .from('quedadas')
-              .select(`
-                id,titulo,ciudad,ubicacion,direccion,lat,lng,fecha,hora,nivel,distancia,ritmo,descripcion,creador_id,created_at,es_seed,organizador_nombre,organizador_foto,participantes_seed,max_participantes,
-                creador:profiles!quedadas_creador_id_fkey(id,nombre,apellidos,photo_url,organizer_rating,total_reviews,total_organized,verification_badge,es_premium),
-                participantes(user_id,status,es_seed,profiles!participantes_user_id_fkey_profiles(id,nombre,apellidos,photo_url,es_seed,es_premium))
-              `)
+              .select(`${baseCols}${premiumCols},${joinCols}`)
               .order('created_at', { ascending: false });
 
             // Filtrar contenido seed solo para usuarios existentes (no nuevos)
@@ -6324,7 +6333,20 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 query = query.eq('es_seed', false);
             }
 
-            const { data, error } = await query;
+            let { data, error } = await query;
+
+            // Fallback: If premium columns don't exist yet, retry without them
+            if (error && error.message && (error.message.includes('is_private') || error.message.includes('access_code') || error.message.includes('recurrence') || error.message.includes('ruta_coords'))) {
+                console.warn('Premium columns not found, retrying without them:', error.message);
+                let fallbackQuery = window.supabaseClient
+                    .from('quedadas')
+                    .select(`${baseCols},${joinCols}`)
+                    .order('created_at', { ascending: false });
+                if (!isNewUser()) fallbackQuery = fallbackQuery.eq('es_seed', false);
+                const fallback = await fallbackQuery;
+                data = fallback.data;
+                error = fallback.error;
+            }
 
             if(error){
                 console.warn('loadQuedadas:', error.message);
@@ -6479,6 +6501,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const asistentesInfo = Array.isArray(q.asistentes_info) ? q.asistentes_info : [];
                 const asistentes = Array.isArray(q.asistentes) ? q.asistentes : asistentesInfo.map(a=>a.user_id);
                 const isJoined = !!(currentUser && asistentes.includes(currentUser.id));
+                const isCreatorCard = !!(currentUser && q.creador_id && currentUser.id === q.creador_id && !q.es_seed);
+
+                // PREMIUM: Skip private quedadas unless user is creator or participant
+                if (q.is_private && !isJoined && !isCreatorCard) return '';
 
                 // Detectar amenities desde descripción/ubicación (hasta que existan en BD)
                 const detectAmenities = () => {
@@ -6676,6 +6702,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         <div class="text-[10px] text-orange-300/70 uppercase tracking-wide">${formatDateShort(q.fecha)}</div>
                       </div>
                       ${isLive ? `<span class="live-badge"><span class="live-dot"></span>¡Ahora!</span>` : ''}
+                      ${q.is_private ? `<span class="px-2 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">🔒</span>` : ''}
+                      ${q.recurrence ? `<span class="px-2 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">🔄</span>` : ''}
                     </div>
                     <div class="flex flex-col items-end gap-1">
                       <div class="flex items-center gap-2">
@@ -6717,7 +6745,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                   ${q.descripcion ? `
                   <p class="text-sm text-gray-400 line-clamp-2 mb-5">${q.descripcion}</p>` : ''}
 
-                  <!-- ═══ SECCIÓN 6: CLIMA ═══ -->
+                  <!-- ═══ SECCIÓN 6: FEATURES PREMIUM ═══ -->
+                  ${q.ruta_coords ? `<div class="flex items-center gap-2 mb-3 px-2 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20"><span class="text-xs">🗺️</span><span class="text-xs text-orange-400 font-semibold">Ruta GPS disponible</span></div>` : ''}
+
+                  <!-- ═══ SECCIÓN 7: CLIMA ═══ -->
                   <div id="weather-${q.id}" class="mb-4"></div>
 
                   <!-- ═══ SECCIÓN 7: FOOTER - Organizador + CTA ═══ -->
@@ -7075,8 +7106,72 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 });
                 detailMarker = L.marker([lat, lng], { icon }).addTo(detailMap);
 
+                // PREMIUM: Show GPS route polyline if available
+                if (q.ruta_coords && Array.isArray(q.ruta_coords) && q.ruta_coords.length >= 2) {
+                    try {
+                        const routeLatLngs = q.ruta_coords.map(c => [c.lat || c[0], c.lng || c[1]]);
+                        L.polyline(routeLatLngs, {
+                            color: '#f97316',
+                            weight: 4,
+                            opacity: 0.8,
+                            dashArray: '10, 6',
+                            lineCap: 'round'
+                        }).addTo(detailMap);
+                        // Fit map to show full route
+                        const bounds = L.latLngBounds(routeLatLngs);
+                        detailMap.fitBounds(bounds.pad(0.15));
+                    } catch(routeErr) {
+                        console.warn('Error rendering route:', routeErr);
+                    }
+                }
+
                 setTimeout(() => detailMap.invalidateSize(), 100);
             }, 200));
+
+            // PREMIUM: Show post-run button for past quedadas (premium users)
+            const postRunBtn = document.getElementById('detail-postrun-btn');
+            if (!postRunBtn) {
+                // Create post-run button if not exists
+                const rateBtn = document.getElementById('detail-rate-btn');
+                if (rateBtn) {
+                    const btn = document.createElement('button');
+                    btn.id = 'detail-postrun-btn';
+                    btn.className = 'hidden px-4 py-3 rounded-xl font-bold bg-orange-500/10 border border-orange-500/30 text-orange-400 hover:bg-orange-500/20 transition flex items-center justify-center gap-2 text-sm';
+                    btn.innerHTML = '🏁 Registrar mi rendimiento';
+                    rateBtn.parentNode.insertBefore(btn, rateBtn);
+                }
+            }
+            const postRunBtnEl = document.getElementById('detail-postrun-btn');
+            const today2 = new Date().toISOString().split('T')[0];
+            const isPast2 = q.fecha < today2;
+            const canPostRun = currentUser && isPast2 && isJoined && isUserPremium;
+            if (postRunBtnEl) {
+                if (canPostRun) {
+                    postRunBtnEl.classList.remove('hidden');
+                    postRunBtnEl.onclick = () => { closeModal('modal-quedada-detail'); openPostRunModal(id); };
+                } else {
+                    postRunBtnEl.classList.add('hidden');
+                }
+            }
+
+            // Show private badge in detail
+            const detailPrivateBadge = document.getElementById('detail-private-badge');
+            if (q.is_private) {
+                if (!detailPrivateBadge) {
+                    const badge = document.createElement('span');
+                    badge.id = 'detail-private-badge';
+                    badge.className = 'inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30';
+                    badge.innerHTML = '🔒 Privada';
+                    const nivelBadgeEl = document.getElementById('detail-nivel-badge');
+                    if (nivelBadgeEl && nivelBadgeEl.parentNode) {
+                        nivelBadgeEl.parentNode.insertBefore(badge, nivelBadgeEl.nextSibling);
+                    }
+                } else {
+                    detailPrivateBadge.classList.remove('hidden');
+                }
+            } else if (detailPrivateBadge) {
+                detailPrivateBadge.classList.add('hidden');
+            }
         }
 
         function renderCityChips(){
@@ -7534,6 +7629,22 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 openModal('modal-register');
                 return;
             }
+
+            // PREMIUM: Private quedada — require access code first
+            const qCheck = quedadas.find(x => x.id === quedadaId);
+            if (qCheck && qCheck.is_private && qCheck.access_code) {
+                const asistCheck = Array.isArray(qCheck.asistentes_info) ? qCheck.asistentes_info : [];
+                const alreadyIn = asistCheck.some(a => a.user_id === currentUser.id);
+                const isQCreator = qCheck.creador_id === currentUser.id;
+                if (!alreadyIn && !isQCreator) {
+                    // Show private code modal instead
+                    document.getElementById('private-join-quedada-id').value = quedadaId;
+                    document.getElementById('private-join-code').value = '';
+                    openModal('modal-private-code');
+                    return;
+                }
+            }
+
             document.getElementById('attendance-quedada-id').value = quedadaId;
 
             // Buscar la quedada y verificar si el usuario ya está apuntado
@@ -8049,9 +8160,44 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     pais: paisCode
                 };
 
-                // Max participantes (si tiene valor)
-                if (maxParticipantes && maxParticipantes >= 2) {
-                    quedadaData.max_participantes = maxParticipantes;
+                // Max participantes — Premium: sin límite, Gratis: máx 15
+                if (isUserPremium) {
+                    if (maxParticipantes && maxParticipantes >= 2) {
+                        quedadaData.max_participantes = maxParticipantes;
+                    }
+                    // Premium sin valor = sin límite (no se envía campo)
+                } else {
+                    // Free users: enforce max 15
+                    if (maxParticipantes && maxParticipantes >= 2 && maxParticipantes <= 15) {
+                        quedadaData.max_participantes = maxParticipantes;
+                    } else {
+                        quedadaData.max_participantes = 15;
+                    }
+                }
+
+                // PREMIUM: Quedada privada
+                if (isUserPremium) {
+                    const isPrivate = document.getElementById('q-is-private')?.checked || false;
+                    if (isPrivate) {
+                        quedadaData.is_private = true;
+                        const accessCode = document.getElementById('q-access-code')?.value?.trim();
+                        if (accessCode) quedadaData.access_code = accessCode;
+                    }
+
+                    // PREMIUM: Recurrencia
+                    const recurrence = document.getElementById('q-recurrence')?.value;
+                    if (recurrence) quedadaData.recurrence = recurrence;
+
+                    // PREMIUM: Ruta GPS
+                    try {
+                        const rutaCoordsRaw = document.getElementById('q-ruta-coords')?.value;
+                        if (rutaCoordsRaw) {
+                            const rutaCoords = JSON.parse(rutaCoordsRaw);
+                            if (Array.isArray(rutaCoords) && rutaCoords.length >= 2) {
+                                quedadaData.ruta_coords = rutaCoords;
+                            }
+                        }
+                    } catch(_) {}
                 }
 
                 // Intentar añadir campos extra (terreno, desnivel, amenities)
@@ -8061,15 +8207,27 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 // if (desnivel) quedadaData.desnivel = desnivel;
                 // if (amenities && amenities.length > 0) quedadaData.amenities = amenities;
 
-                const { data, error } = await window.supabaseClient
+                let { data, error } = await window.supabaseClient
                   .from('quedadas')
                   .insert([quedadaData])
                   .select()
                   .single();
 
-                if(error){ 
+                // Fallback: if premium columns cause error, retry without them
+                if (error && (error.message?.includes('is_private') || error.message?.includes('access_code') || error.message?.includes('recurrence') || error.message?.includes('ruta_coords'))) {
+                    console.warn('Premium columns not in DB yet, retrying without:', error.message);
+                    delete quedadaData.is_private;
+                    delete quedadaData.access_code;
+                    delete quedadaData.recurrence;
+                    delete quedadaData.ruta_coords;
+                    const fallback = await window.supabaseClient.from('quedadas').insert([quedadaData]).select().single();
+                    data = fallback.data;
+                    error = fallback.error;
+                }
+
+                if(error){
                     console.error('Error creando quedada:', error);
-                    showToast(error.message,'error'); 
+                    showToast(error.message,'error');
                     if(btn){ btn.disabled = false; btn.textContent = btnText; }
                     return; 
                 }
@@ -8104,6 +8262,19 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                 // Limpiar terreno, desnivel y amenities
                 resetTerrenoAmenities();
+
+                // Limpiar campos Premium
+                const privateToggle = document.getElementById('q-is-private');
+                if (privateToggle) { privateToggle.checked = false; togglePrivateFields(); }
+                const recurrenceToggle = document.getElementById('q-recurrence-toggle');
+                if (recurrenceToggle) { recurrenceToggle.checked = false; toggleRecurrenceFields(); }
+                const rutaToggle = document.getElementById('q-ruta-toggle');
+                if (rutaToggle) { rutaToggle.checked = false; toggleRouteDrawing(); }
+                const accessCode = document.getElementById('q-access-code');
+                if (accessCode) accessCode.value = '';
+                routeDrawingActive = false;
+                routePoints = [];
+                updateRouteDisplay();
 
                 await loadQuedadas();
                 
@@ -8147,6 +8318,252 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             } catch (e) {
                 console.warn('Error enviando notificaciones:', e);
                 // No mostrar error al usuario, es secundario
+            }
+        }
+
+        // ============== FUNCIONES PREMIUM: CREAR QUEDADA ==============
+
+        // Toggle campos de quedada privada
+        function togglePrivateFields() {
+            const isPrivate = document.getElementById('q-is-private')?.checked;
+            const section = document.getElementById('private-code-section');
+            if (section) section.classList.toggle('hidden', !isPrivate);
+            // Auto-generate code if empty
+            if (isPrivate && !document.getElementById('q-access-code')?.value) {
+                generateAccessCode();
+            }
+        }
+
+        // Toggle campos de recurrencia
+        function toggleRecurrenceFields() {
+            const isRecurrent = document.getElementById('q-recurrence-toggle')?.checked;
+            const section = document.getElementById('recurrence-section');
+            if (section) section.classList.toggle('hidden', !isRecurrent);
+            if (!isRecurrent) {
+                document.getElementById('q-recurrence').value = '';
+                document.querySelectorAll('.recurrence-btn').forEach(b => {
+                    b.classList.remove('border-orange-500', 'text-orange-400', 'bg-orange-500/20');
+                });
+            }
+        }
+
+        // Seleccionar frecuencia de recurrencia
+        function selectRecurrence(freq) {
+            document.getElementById('q-recurrence').value = freq;
+            document.querySelectorAll('.recurrence-btn').forEach(b => {
+                b.classList.remove('border-orange-500', 'text-orange-400', 'bg-orange-500/20');
+                b.classList.add('border-slate-600/50', 'text-gray-400');
+            });
+            const btn = document.getElementById('recurrence-' + freq);
+            if (btn) {
+                btn.classList.add('border-orange-500', 'text-orange-400', 'bg-orange-500/20');
+                btn.classList.remove('border-slate-600/50', 'text-gray-400');
+            }
+        }
+
+        // Generar código de acceso aleatorio
+        function generateAccessCode() {
+            const words = ['runner','sprint','maraton','trail','pista','ruta','grupo','equipo','carrera','meta'];
+            const word = words[Math.floor(Math.random() * words.length)];
+            const num = Math.floor(Math.random() * 9000) + 1000;
+            const code = word + num;
+            const input = document.getElementById('q-access-code');
+            if (input) input.value = code;
+        }
+
+        // Toggle route drawing mode
+        let routeDrawingActive = false;
+        let routePoints = [];
+        let routePolyline = null;
+        let routeMarkers = [];
+
+        function toggleRouteDrawing() {
+            const isActive = document.getElementById('q-ruta-toggle')?.checked;
+            const section = document.getElementById('route-drawing-section');
+            if (section) section.classList.toggle('hidden', !isActive);
+
+            routeDrawingActive = isActive;
+            if (!isActive) {
+                clearRouteDrawing();
+            }
+        }
+
+        function addRoutePoint(latlng) {
+            if (!routeDrawingActive) return;
+            routePoints.push({ lat: latlng.lat, lng: latlng.lng });
+            updateRouteDisplay();
+        }
+
+        function undoLastRoutePoint() {
+            if (routePoints.length > 0) {
+                routePoints.pop();
+                updateRouteDisplay();
+            }
+        }
+
+        function clearRouteDrawing() {
+            routePoints = [];
+            updateRouteDisplay();
+        }
+
+        function updateRouteDisplay() {
+            // Update hidden input
+            const input = document.getElementById('q-ruta-coords');
+            if (input) input.value = routePoints.length >= 2 ? JSON.stringify(routePoints) : '';
+
+            // Update points counter
+            const counter = document.getElementById('route-points-count');
+            if (counter) counter.textContent = routePoints.length + ' puntos';
+
+            // Update polyline on crear map
+            if (typeof mapCrear !== 'undefined' && mapCrear) {
+                // Remove existing route elements
+                if (routePolyline) { mapCrear.removeLayer(routePolyline); routePolyline = null; }
+                routeMarkers.forEach(m => mapCrear.removeLayer(m));
+                routeMarkers = [];
+
+                if (routePoints.length >= 2) {
+                    routePolyline = L.polyline(routePoints.map(p => [p.lat, p.lng]), {
+                        color: '#f97316', weight: 4, opacity: 0.8, dashArray: '10, 6'
+                    }).addTo(mapCrear);
+                }
+
+                // Add small circle markers for each point
+                routePoints.forEach((p, i) => {
+                    const m = L.circleMarker([p.lat, p.lng], {
+                        radius: i === 0 ? 6 : (i === routePoints.length - 1 ? 6 : 3),
+                        color: '#f97316',
+                        fillColor: i === 0 ? '#22c55e' : (i === routePoints.length - 1 ? '#ef4444' : '#f97316'),
+                        fillOpacity: 0.8,
+                        weight: 2
+                    }).addTo(mapCrear);
+                    routeMarkers.push(m);
+                });
+            }
+        }
+
+        // Update Premium UI in crear modal based on premium status
+        function updatePremiumCrearUI() {
+            const lock = document.getElementById('crear-premium-lock');
+            const maxPartHint = document.getElementById('max-part-hint');
+            const maxPartPremiumHint = document.getElementById('max-part-premium-hint');
+            const maxPartInput = document.getElementById('q-max-participantes');
+
+            if (isUserPremium) {
+                if (lock) lock.classList.add('hidden');
+                if (maxPartHint) maxPartHint.textContent = 'Sin limite (Premium)';
+                if (maxPartPremiumHint) maxPartPremiumHint.classList.add('hidden');
+                if (maxPartInput) { maxPartInput.placeholder = 'Sin limite'; maxPartInput.max = 500; }
+            } else {
+                if (lock) lock.classList.remove('hidden');
+                if (maxPartHint) maxPartHint.textContent = 'Plan Gratis: max. 15';
+                if (maxPartPremiumHint) maxPartPremiumHint.classList.remove('hidden');
+                if (maxPartInput) { maxPartInput.placeholder = '15'; maxPartInput.max = 15; }
+            }
+        }
+
+        // Verify private code to join quedada
+        function verifyPrivateCode() {
+            const quedadaId = document.getElementById('private-join-quedada-id')?.value;
+            const code = document.getElementById('private-join-code')?.value?.trim();
+
+            if (!quedadaId || !code) {
+                showToast('Introduce el codigo de acceso', 'error');
+                return;
+            }
+
+            const q = quedadas.find(x => x.id === quedadaId);
+            if (!q) {
+                showToast('Quedada no encontrada', 'error');
+                return;
+            }
+
+            if (code.toLowerCase() === (q.access_code || '').toLowerCase()) {
+                closeModal('modal-private-code');
+                // Code correct — open normal attendance modal
+                document.getElementById('attendance-quedada-id').value = quedadaId;
+                // Now call the regular attendance modal flow (bypass the private check)
+                const asistentesInfo = q ? (Array.isArray(q.asistentes_info) ? q.asistentes_info : []) : [];
+                const myParticipation = asistentesInfo.find(a => a.user_id === currentUser.id);
+                const isJoined = !!myParticipation;
+                document.getElementById('attendance-is-joined').value = isJoined ? 'true' : 'false';
+                // Directly confirm attendance
+                confirmAttendance('confirmed');
+                showToast('Codigo correcto. ¡Bienvenido!', 'success');
+            } else {
+                showToast('Codigo incorrecto', 'error');
+                document.getElementById('private-join-code').value = '';
+            }
+        }
+
+        // ============== POST-RUN TRACKING (Premium) ==============
+
+        function openPostRunModal(quedadaId) {
+            const q = quedadas.find(x => x.id === quedadaId);
+            if (!q) return;
+
+            document.getElementById('postrun-quedada-id').value = quedadaId;
+            document.getElementById('postrun-ritmo-min').value = '';
+            document.getElementById('postrun-ritmo-sec').value = '';
+            document.getElementById('postrun-distancia').value = '';
+            document.getElementById('postrun-esfuerzo').value = '5';
+            document.getElementById('postrun-esfuerzo-label').textContent = '5/10';
+            document.getElementById('postrun-notas').value = '';
+
+            // Pre-fill distance from quedada info
+            if (q.distancia) {
+                const dist = parseFloat(q.distancia);
+                if (dist > 0) document.getElementById('postrun-distancia').value = dist;
+            }
+
+            openModal('modal-post-run');
+        }
+
+        async function savePostRunData() {
+            const quedadaId = document.getElementById('postrun-quedada-id')?.value;
+            if (!quedadaId || !currentUser) return;
+
+            const ritmoMin = document.getElementById('postrun-ritmo-min')?.value;
+            const ritmoSec = document.getElementById('postrun-ritmo-sec')?.value;
+            const distancia = parseFloat(document.getElementById('postrun-distancia')?.value) || null;
+            const esfuerzo = parseInt(document.getElementById('postrun-esfuerzo')?.value) || null;
+            const notas = document.getElementById('postrun-notas')?.value?.trim() || null;
+
+            const ritmoReal = ritmoMin ? `${ritmoMin}:${(ritmoSec || '0').toString().padStart(2, '0')} min/km` : null;
+
+            if (!ritmoReal && !distancia) {
+                showToast('Introduce al menos el ritmo o la distancia', 'error');
+                return;
+            }
+
+            try {
+                const sb = await getSupabaseClientOrToast(8000, true);
+                if (!sb) return;
+
+                const updateData = { completed_at: new Date().toISOString() };
+                if (ritmoReal) updateData.ritmo_real = ritmoReal;
+                if (distancia) updateData.distancia_real = distancia;
+                if (esfuerzo) updateData.valoracion_esfuerzo = esfuerzo;
+                if (notas) updateData.notas_post = notas;
+
+                const { error } = await window.supabaseClient
+                    .from('participantes')
+                    .update(updateData)
+                    .eq('quedada_id', quedadaId)
+                    .eq('user_id', currentUser.id);
+
+                if (error) {
+                    console.warn('Error saving post-run:', error);
+                    showToast('Error guardando registro: ' + error.message, 'error');
+                    return;
+                }
+
+                closeModal('modal-post-run');
+                showToast('🏁 ¡Registro guardado! Sigue asi', 'success');
+                showConfetti();
+            } catch (e) {
+                console.error('Error en savePostRunData:', e);
+                showToast('Error: ' + e.message, 'error');
             }
         }
 

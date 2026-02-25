@@ -400,6 +400,10 @@ I18N.pt = {
         limitPerMonth: '/mês',
         limitCtaBtn: 'Criar encontros ilimitados',
         limitLaterBtn: 'Voltar',
+        // Alert preferences
+        alertToggleLabel: 'Alertas de encontros próximos',
+        alertToggleDesc: 'Recebe notificações quando um encontro é criado perto de ti',
+        alertRadiusLabel: 'Raio de pesquisa:',
         // Landing enhancements
         feedTitle: 'Atividade em tempo real',
         mapPreviewTitle: 'Encontros perto de ti',

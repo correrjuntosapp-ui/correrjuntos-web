@@ -390,6 +390,10 @@ I18N.es = {
         premiumStravaIntegration: 'Ruta GPS en el mapa',
         premiumPaceHistory: 'Historial de ritmos',
         premiumBadgesStrava: 'Badges exclusivos + Strava',
+        // Alert preferences
+        alertToggleLabel: 'Alertas de quedadas cercanas',
+        alertToggleDesc: 'Recibe notificaciones cuando se cree una quedada cerca de ti',
+        alertRadiusLabel: 'Radio de búsqueda:',
         premiumGetBtn: 'Hazte Premium - 4,99€/mes',
         premiumCancelAnytime: 'Cancela cuando quieras. Sin compromiso.',
         premiumYouAre: '¡Eres Premium!',

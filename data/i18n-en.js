@@ -427,6 +427,10 @@ I18N.en = {
         limitPerMonth: '/month',
         limitCtaBtn: 'Create unlimited meetups',
         limitLaterBtn: 'Go back',
+        // Alert preferences
+        alertToggleLabel: 'Nearby meetup alerts',
+        alertToggleDesc: 'Receive notifications when a meetup is created near you',
+        alertRadiusLabel: 'Search radius:',
         // Landing enhancements
         feedTitle: 'Live activity',
         mapPreviewTitle: 'Meetups near you',

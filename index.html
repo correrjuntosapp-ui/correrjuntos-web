@@ -3240,6 +3240,31 @@
                         <button onclick="managePremium()" id="premium-manage-btn" class="w-full py-2 rounded-xl font-bold text-sm border border-slate-600 text-gray-300 hover:bg-slate-800 transition">
                             Gestionar suscripción
                         </button>
+
+                        <!-- Alertas de nuevas quedadas (solo Premium activo) -->
+                        <div class="mt-4 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <div class="flex items-center justify-between">
+                                <label for="alert-toggle" class="flex items-center gap-2 cursor-pointer">
+                                    <span class="text-base">📍</span>
+                                    <span id="alert-toggle-label" class="text-sm text-gray-300 font-medium">Alertas de quedadas cercanas</span>
+                                </label>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="alert-toggle" class="sr-only peer" onchange="toggleAlertPreference()">
+                                    <div class="w-9 h-5 bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-500"></div>
+                                </label>
+                            </div>
+                            <p id="alert-toggle-desc" class="text-xs text-gray-500 mt-1">Recibe notificaciones cuando se cree una quedada cerca de ti</p>
+                            <!-- Selector de radio (solo visible si toggle ON) -->
+                            <div id="alert-radius-section" class="hidden mt-3">
+                                <input type="hidden" id="alert-radius-value" value="25">
+                            <p id="alert-radius-label" class="text-xs text-gray-400 mb-2">Radio de búsqueda:</p>
+                                <div class="flex gap-2">
+                                    <button onclick="selectAlertRadius(10)" id="alert-radius-10" class="flex-1 py-1.5 rounded-lg text-xs font-bold border border-slate-600/50 text-gray-400 hover:border-orange-500/50 transition">10 km</button>
+                                    <button onclick="selectAlertRadius(25)" id="alert-radius-25" class="flex-1 py-1.5 rounded-lg text-xs font-bold border border-orange-500 text-orange-400 bg-orange-500/20 transition">25 km</button>
+                                    <button onclick="selectAlertRadius(50)" id="alert-radius-50" class="flex-1 py-1.5 rounded-lg text-xs font-bold border border-slate-600/50 text-gray-400 hover:border-orange-500/50 transition">50 km</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

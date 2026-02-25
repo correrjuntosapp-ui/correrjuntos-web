@@ -28,13 +28,29 @@ Deno.serve(async (req) => {
     // Primero borramos los participantes de quedadas pasadas
     const { data: quedadasPasadas } = await supabase
       .from('quedadas')
-      .select('id, fecha, hora')
+      .select('id, fecha, hora, recurrence, recurrence_parent_id')
 
     const idsToDelete: string[] = []
 
     for (const q of quedadasPasadas || []) {
       const fechaHora = new Date(`${q.fecha}T${q.hora}`)
       if (fechaHora < now) {
+        // No borrar quedadas recurrentes que aún no tienen hija futura
+        // (la función SQL generate_next_recurring_quedadas se encarga de crear la siguiente)
+        if (q.recurrence) {
+          // Verificar si ya se generó la siguiente instancia
+          const { data: childExists } = await supabase
+            .from('quedadas')
+            .select('id')
+            .eq('recurrence_parent_id', q.id)
+            .gte('fecha', today)
+            .limit(1)
+
+          if (!childExists || childExists.length === 0) {
+            // No borrar: aún no se generó la siguiente
+            continue
+          }
+        }
         idsToDelete.push(q.id)
       }
     }

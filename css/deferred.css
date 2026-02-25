@@ -1164,6 +1164,14 @@
         .premium-stats-locked-container { background: linear-gradient(135deg, rgba(100,100,100,0.1) 0%, rgba(80,80,80,0.05) 100%); border: 1px dashed rgba(150,150,150,0.3); border-radius: 20px; padding: 16px; }
         body.light-mode .premium-stats-container { background: linear-gradient(135deg, rgba(234,179,8,0.1), rgba(251,191,36,0.05)) !important; border-color: rgba(234,179,8,0.25) !important; }
         body.light-mode .premium-stat-card { background: rgba(255,255,255,0.5) !important; }
+        body.light-mode .premium-activity-chart { background: rgba(234,179,8,0.08) !important; border: 1px solid rgba(234,179,8,0.15); }
+        body.light-mode .premium-stat-label { color: #8b7355 !important; }
+        body.light-mode .activity-bar { background: linear-gradient(to top, rgba(249,115,22,0.5), rgba(251,191,36,0.8)) !important; }
+        body.light-mode #btnProfileTop { color: #c2410c !important; }
+        body.light-mode #btnProfileTop:hover { color: #9a3412 !important; background: rgba(249,115,22,0.1) !important; }
+        body.light-mode #btnLogoutTop { color: #b45309 !important; }
+        body.light-mode #btnLogoutTop:hover { color: #92400e !important; background: rgba(249,115,22,0.1) !important; }
+        body.light-mode #theme-toggle-main { background: rgba(0,0,0,0.04) !important; border-color: #e8ddd0 !important; }
 
         /* ===== SOCIAL: Seguidores/Siguiendo ===== */
         .social-stat-inline { cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: all 0.2s; display: inline-flex; align-items: center; }

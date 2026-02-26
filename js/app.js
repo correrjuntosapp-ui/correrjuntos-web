@@ -1351,10 +1351,411 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     }
                     activityChart.innerHTML = chartHtml;
                 }
+                // 🗺️ Heatmap: mostrar para premium
+                const heatmapSection = document.getElementById('premium-heatmap-section');
+                const heatmapLocked = document.getElementById('premium-heatmap-locked');
+                if (heatmapSection) heatmapSection.classList.remove('hidden');
+                if (heatmapLocked) heatmapLocked.classList.add('hidden');
+                loadPersonalHeatmap();
+
+                // 📊 Stats avanzadas
+                loadEnhancedStats();
             } else {
                 // Mostrar mensaje de desbloqueo
                 if (premiumStatsSection) premiumStatsSection.classList.add('hidden');
                 if (premiumStatsLocked) premiumStatsLocked.classList.remove('hidden');
+
+                // Heatmap locked
+                const heatmapSection = document.getElementById('premium-heatmap-section');
+                const heatmapLocked = document.getElementById('premium-heatmap-locked');
+                if (heatmapSection) heatmapSection.classList.add('hidden');
+                if (heatmapLocked) heatmapLocked.classList.remove('hidden');
+            }
+        }
+
+        // ========== ENHANCED PREMIUM STATS ==========
+        async function loadEnhancedStats() {
+            if (!isUserPremium || !currentUser) return;
+            try {
+                const sb = await getSupabaseClientOrToast(5000, false);
+                if (!sb) return;
+
+                const { data: participaciones } = await sb
+                    .from('participantes')
+                    .select('ritmo_real, distancia_real, completed_at, quedada_id, quedadas(ciudad, fecha)')
+                    .eq('user_id', currentUser.id)
+                    .not('completed_at', 'is', null);
+
+                if (!participaciones || !participaciones.length) return;
+
+                // Mejor ritmo (parsear "X:XX min/km" → minutos decimales)
+                const paces = participaciones
+                    .filter(p => p.ritmo_real)
+                    .map(p => {
+                        const m = p.ritmo_real.match(/(\d+):(\d+)/);
+                        return m ? parseInt(m[1]) + parseInt(m[2])/60 : 0;
+                    })
+                    .filter(v => v > 0);
+                const bestPace = paces.length ? Math.min(...paces) : null;
+
+                // Mayor distancia
+                const distances = participaciones.filter(p => p.distancia_real).map(p => parseFloat(p.distancia_real));
+                const longest = distances.length ? Math.max(...distances) : null;
+
+                // Ciudad favorita
+                const cityCount = {};
+                participaciones.forEach(p => {
+                    const c = p.quedadas?.ciudad;
+                    if (c) cityCount[c] = (cityCount[c] || 0) + 1;
+                });
+                const citySorted = Object.entries(cityCount).sort((a, b) => b[1] - a[1]);
+                const favCity = citySorted.length ? citySorted[0][0] : null;
+
+                // Comparativa mensual
+                const now = new Date();
+                const thisMonthNum = now.getMonth();
+                const lastMonthNum = (thisMonthNum - 1 + 12) % 12;
+                const thisYear = now.getFullYear();
+
+                const thisMonth = participaciones.filter(p => {
+                    const d = new Date(p.completed_at);
+                    return d.getMonth() === thisMonthNum && d.getFullYear() === thisYear;
+                });
+                const lastMonth = participaciones.filter(p => {
+                    const d = new Date(p.completed_at);
+                    return d.getMonth() === lastMonthNum;
+                });
+
+                // Render stats
+                const statBestPace = document.getElementById('stat-best-pace');
+                const statLongest = document.getElementById('stat-longest');
+                const statFavCity = document.getElementById('stat-fav-city');
+
+                if (statBestPace && bestPace) {
+                    const mins = Math.floor(bestPace);
+                    const secs = Math.round((bestPace - mins) * 60);
+                    statBestPace.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                }
+                if (statLongest && longest) statLongest.textContent = longest.toFixed(1) + ' km';
+                if (statFavCity && favCity) statFavCity.textContent = favCity;
+
+                // Comparativa mensual
+                const comp = document.getElementById('stat-monthly-comparison');
+                if (comp) {
+                    const thisKm = thisMonth.reduce((s, p) => s + (parseFloat(p.distancia_real) || 0), 0);
+                    const lastKm = lastMonth.reduce((s, p) => s + (parseFloat(p.distancia_real) || 0), 0);
+                    const qArrow = thisMonth.length >= lastMonth.length ? '↑' : '↓';
+                    const qColor = thisMonth.length >= lastMonth.length ? 'text-green-400' : 'text-red-400';
+                    const kmArrow = thisKm >= lastKm ? '↑' : '↓';
+                    const kmColor = thisKm >= lastKm ? 'text-green-400' : 'text-red-400';
+
+                    comp.innerHTML = `
+                        <div>
+                            <div class="text-lg font-bold text-white">${thisMonth.length}</div>
+                            <div class="text-[10px] text-gray-500">Quedadas</div>
+                            <div class="text-xs ${qColor}">${qArrow} vs ${lastMonth.length}</div>
+                        </div>
+                        <div>
+                            <div class="text-lg font-bold text-white">${thisKm.toFixed(1)}</div>
+                            <div class="text-[10px] text-gray-500">Km</div>
+                            <div class="text-xs ${kmColor}">${kmArrow} vs ${lastKm.toFixed(1)}</div>
+                        </div>
+                        <div>
+                            <div class="text-lg font-bold text-white">${bestPace ? `${Math.floor(bestPace)}:${Math.round((bestPace - Math.floor(bestPace)) * 60).toString().padStart(2, '0')}` : '--'}</div>
+                            <div class="text-[10px] text-gray-500">Mejor ritmo</div>
+                        </div>`;
+                }
+            } catch (e) {
+                console.warn('Enhanced stats error:', e);
+            }
+        }
+
+        // ========== PERSONAL HEATMAP ==========
+        let personalHeatmapInstance = null;
+
+        async function loadPersonalHeatmap() {
+            const container = document.getElementById('personal-heatmap');
+            if (!container || !currentUser) return;
+
+            // Evitar recrear si ya existe
+            if (personalHeatmapInstance) {
+                try { personalHeatmapInstance.remove(); } catch(_) {}
+                personalHeatmapInstance = null;
+            }
+
+            try {
+                const sb = await getSupabaseClientOrToast(5000, false);
+                if (!sb) return;
+
+                const { data } = await sb
+                    .from('participantes')
+                    .select('quedadas(lat, lng, ciudad)')
+                    .eq('user_id', currentUser.id);
+
+                const points = (data || [])
+                    .filter(p => p.quedadas && p.quedadas.lat && p.quedadas.lng)
+                    .map(p => [p.quedadas.lat, p.quedadas.lng, 1]);
+
+                const t = I18N[currentLang] || I18N.es;
+
+                if (!points.length) {
+                    container.innerHTML = `<div class="flex items-center justify-center h-full text-gray-500 text-sm">${t.premiumHeatmapEmpty || 'Únete a quedadas para ver tu mapa'}</div>`;
+                    return;
+                }
+
+                // Contar zonas únicas (~1km grid)
+                const zones = new Set(points.map(p => `${p[0].toFixed(2)},${p[1].toFixed(2)}`));
+                const zonesEl = document.getElementById('heatmap-zones-count');
+                if (zonesEl) zonesEl.textContent = `${zones.size} ${t.premiumHeatmapZones || 'zonas'}`;
+
+                // Cargar Leaflet + heat plugin
+                await ensureLeaflet();
+                if (!L.heatLayer) {
+                    await new Promise((resolve, reject) => {
+                        const s = document.createElement('script');
+                        s.src = 'https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js';
+                        s.onload = resolve;
+                        s.onerror = reject;
+                        document.head.appendChild(s);
+                    });
+                }
+
+                personalHeatmapInstance = L.map(container, {
+                    zoomControl: false,
+                    attributionControl: false,
+                    scrollWheelZoom: false
+                });
+
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(personalHeatmapInstance);
+
+                L.heatLayer(points, {
+                    radius: 25,
+                    blur: 15,
+                    maxZoom: 17,
+                    gradient: { 0.4: '#3b82f6', 0.6: '#22c55e', 0.8: '#eab308', 1.0: '#f97316' }
+                }).addTo(personalHeatmapInstance);
+
+                const bounds = L.latLngBounds(points.map(p => [p[0], p[1]]));
+                personalHeatmapInstance.fitBounds(bounds.pad(0.2));
+            } catch (e) {
+                console.warn('Heatmap error:', e);
+                container.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500 text-sm">Error cargando mapa</div>';
+            }
+        }
+
+        // ========== QUEDADA COMMENTS ==========
+        async function loadQuedadaComments(quedadaId) {
+            const list = document.getElementById('detail-comments-list');
+            const countEl = document.getElementById('detail-comments-count');
+            const inputWrap = document.getElementById('detail-comment-input-wrap');
+            if (!list) return;
+
+            const t = I18N[currentLang] || I18N.es;
+
+            try {
+                const sb = await getSupabaseClientOrToast(5000, false);
+                if (!sb) { list.innerHTML = ''; return; }
+
+                const { data: comments, error } = await sb
+                    .from('quedada_comments')
+                    .select('id, texto, created_at, user_id, profiles(nombre, photo_url)')
+                    .eq('quedada_id', quedadaId)
+                    .order('created_at', { ascending: true })
+                    .limit(50);
+
+                if (error) {
+                    // Table might not exist yet — fail silently
+                    list.innerHTML = '';
+                    if (inputWrap) inputWrap.innerHTML = '';
+                    return;
+                }
+
+                if (countEl) countEl.textContent = comments && comments.length ? `(${comments.length})` : '';
+
+                if (!comments || !comments.length) {
+                    list.innerHTML = `<div class="text-gray-500 text-xs text-center py-2">${t.premiumNoComments || 'Sin comentarios aún'}</div>`;
+                } else {
+                    list.innerHTML = comments.map(c => {
+                        const initial = (c.profiles && c.profiles.nombre ? c.profiles.nombre.charAt(0) : 'R').toUpperCase();
+                        const nombre = c.profiles && c.profiles.nombre ? escapeHtml(c.profiles.nombre) : 'Runner';
+                        return `
+                        <div class="flex gap-2 p-2 rounded-lg bg-slate-700/30">
+                            <div class="w-6 h-6 rounded-full bg-orange-500/30 flex items-center justify-center text-xs font-bold text-orange-400 shrink-0">${initial}</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-xs"><span class="font-bold text-white">${nombre}</span> <span class="text-gray-500">${timeAgo(c.created_at)}</span></div>
+                                <div class="text-xs text-gray-300 mt-0.5">${escapeHtml(c.texto)}</div>
+                            </div>
+                        </div>`;
+                    }).join('');
+                }
+
+                // Input: Premium puede escribir, free ve CTA
+                if (inputWrap) {
+                    if (!currentUser) {
+                        inputWrap.innerHTML = '';
+                    } else if (isUserPremium) {
+                        inputWrap.innerHTML = `
+                            <div class="flex gap-2 mt-2">
+                                <input id="comment-input" type="text" maxlength="200" placeholder="${t.premiumCommentPlaceholder || 'Escribe un comentario...'}" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white placeholder-gray-500 focus:border-orange-500 outline-none">
+                                <button onclick="postComment('${quedadaId}')" class="px-3 py-2 rounded-lg bg-orange-500 text-white text-xs font-bold hover:bg-orange-600 transition">${t.premiumCommentSend || 'Enviar'}</button>
+                            </div>`;
+                    } else {
+                        inputWrap.innerHTML = `
+                            <div class="text-center py-2">
+                                <button onclick="openPremiumCheckout()" class="text-xs text-yellow-400 hover:text-yellow-300 transition">${t.premiumCommentCta || '⭐ Premium para comentar'}</button>
+                            </div>`;
+                    }
+                }
+            } catch (e) {
+                console.warn('Comments error:', e);
+                list.innerHTML = '';
+                if (inputWrap) inputWrap.innerHTML = '';
+            }
+        }
+
+        async function postComment(quedadaId) {
+            const input = document.getElementById('comment-input');
+            const texto = input && input.value ? input.value.trim() : '';
+            if (!texto || !currentUser) return;
+
+            try {
+                const sb = await getSupabaseClientOrToast(5000, false);
+                if (!sb) return;
+
+                const { error } = await sb.from('quedada_comments').insert({
+                    quedada_id: quedadaId,
+                    user_id: currentUser.id,
+                    texto: texto
+                });
+
+                if (error) {
+                    showToast('Error al enviar comentario', 'error');
+                    return;
+                }
+
+                input.value = '';
+                loadQuedadaComments(quedadaId);
+            } catch (e) {
+                console.warn('Post comment error:', e);
+            }
+        }
+
+        function timeAgo(dateStr) {
+            const diff = Date.now() - new Date(dateStr).getTime();
+            const mins = Math.floor(diff / 60000);
+            if (mins < 1) return 'ahora';
+            if (mins < 60) return mins + 'm';
+            const hrs = Math.floor(mins / 60);
+            if (hrs < 24) return hrs + 'h';
+            const days = Math.floor(hrs / 24);
+            return days + 'd';
+        }
+
+        // ========== SMART RECOMMENDATIONS ==========
+        async function loadSmartRecommendations() {
+            const section = document.getElementById('smart-recs-section');
+            const locked = document.getElementById('smart-recs-locked');
+
+            if (!currentUser) {
+                if (section) section.classList.add('hidden');
+                if (locked) locked.classList.add('hidden');
+                return;
+            }
+
+            if (!isUserPremium) {
+                if (section) section.classList.add('hidden');
+                if (locked) locked.classList.remove('hidden');
+                return;
+            }
+
+            if (locked) locked.classList.add('hidden');
+
+            try {
+                const userLat = currentUser.lat || 40.4168;
+                const userLng = currentUser.lng || -3.7038;
+                const userNivel = currentUser.nivel || 'Todos los niveles';
+
+                const todayStr = new Date().toISOString().split('T')[0];
+                const future = (quedadas || []).filter(q => q.fecha >= todayStr && !q.es_seed);
+
+                if (!future.length) {
+                    if (section) section.classList.add('hidden');
+                    return;
+                }
+
+                // Haversine distance in km
+                function haversineDist(lat1, lng1, lat2, lng2) {
+                    const R = 6371;
+                    const dLat = (lat2 - lat1) * Math.PI / 180;
+                    const dLng = (lng2 - lng1) * Math.PI / 180;
+                    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                              Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+                              Math.sin(dLng/2) * Math.sin(dLng/2);
+                    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                }
+
+                // Level adjacency
+                const levelOrder = ['Principiante', 'Intermedio', 'Avanzado', 'Elite'];
+                function isAdjacentLevel(a, b) {
+                    const ia = levelOrder.indexOf(a);
+                    const ib = levelOrder.indexOf(b);
+                    if (ia < 0 || ib < 0) return false;
+                    return Math.abs(ia - ib) <= 1;
+                }
+
+                const scored = future.map(q => {
+                    let score = 0;
+
+                    // Distance score (closer = better, max 40 pts)
+                    if (q.lat && q.lng) {
+                        const dist = haversineDist(userLat, userLng, q.lat, q.lng);
+                        score += Math.max(0, 40 - dist * 2);
+                    }
+
+                    // Level match (max 30 pts)
+                    if (q.nivel === userNivel || q.nivel === 'Todos los niveles') score += 30;
+                    else if (isAdjacentLevel(userNivel, q.nivel)) score += 15;
+
+                    // Social: friends going (max 20 pts)
+                    const asistentes = Array.isArray(q.asistentes) ? q.asistentes : [];
+                    const friendsGoing = asistentes.filter(id => userFollowingIds && userFollowingIds.has(id)).length;
+                    score += Math.min(friendsGoing * 10, 20);
+
+                    // Freshness (max 10 pts)
+                    const daysAway = (new Date(q.fecha) - new Date()) / (1000 * 60 * 60 * 24);
+                    score += Math.max(0, 10 - daysAway);
+
+                    return { q: q, score: score, friendsGoing: friendsGoing };
+                }).sort((a, b) => b.score - a.score).slice(0, 4);
+
+                if (!scored.length) {
+                    if (section) section.classList.add('hidden');
+                    return;
+                }
+
+                const t = I18N[currentLang] || I18N.es;
+                const cards = document.getElementById('smart-recs-cards');
+                if (cards) {
+                    cards.innerHTML = scored.map(item => {
+                        const q = item.q;
+                        return `
+                        <div class="flex-shrink-0 w-64 snap-start card-quedada p-4 rounded-xl cursor-pointer hover:border-orange-500/30 transition-all" onclick="openQuedadaDetail('${q.id}')">
+                            <div class="text-xs text-orange-400 font-bold mb-1">${formatDateShort(q.fecha)} · ${formatHora(q.hora)}</div>
+                            <div class="text-sm font-bold text-white mb-1 line-clamp-1">${escapeHtml(q.titulo)}</div>
+                            <div class="text-xs text-gray-400 mb-2">📍 ${escapeHtml(q.ciudad || '')}</div>
+                            <div class="flex gap-2 text-xs">
+                                <span class="px-2 py-0.5 rounded-full bg-slate-700 text-gray-300">${formatDistancia(q.distancia)}</span>
+                                <span class="px-2 py-0.5 rounded-full bg-slate-700 text-gray-300">${q.nivel}</span>
+                            </div>
+                            ${item.friendsGoing > 0 ? `<div class="text-xs text-green-400 mt-2">👥 ${item.friendsGoing} ${t.premiumFriendsGoing || 'amigos van'}</div>` : ''}
+                        </div>`;
+                    }).join('');
+                }
+
+                if (section) section.classList.remove('hidden');
+            } catch (e) {
+                console.warn('Smart recommendations error:', e);
+                if (section) section.classList.add('hidden');
             }
         }
 
@@ -2802,6 +3203,41 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 return null;
             }
         }
+
+        // ========== WEATHER IN DETAIL MODAL ==========
+        async function loadDetailWeather(lat, lng, fecha) {
+            const section = document.getElementById('detail-weather-section');
+            const content = document.getElementById('detail-weather-content');
+            if (!section || !content) return;
+
+            const weather = await getWeather(lat, lng, fecha);
+            if (!weather) { section.classList.add('hidden'); return; }
+
+            const t = I18N[currentLang] || I18N.es;
+            const tip = getRunningTip(weather);
+            const borderClass = weather.condition === 'bad' ? 'border-red-500/30 bg-red-500/10'
+                              : weather.condition === 'warn' ? 'border-yellow-500/30 bg-yellow-500/10'
+                              : 'border-green-500/30 bg-green-500/10';
+
+            content.className = `flex items-center gap-3 px-3 py-2.5 rounded-xl border ${borderClass}`;
+            content.innerHTML = `
+                <span class="text-2xl">${weather.icon}</span>
+                <div class="flex-1">
+                    <div class="text-sm font-bold text-white">${weather.desc} · ${weather.temp}°/${weather.tempMin}°</div>
+                    <div class="text-xs text-gray-400">${weather.rain > 20 ? `💧 ${weather.rain}% ${t.weatherRain || 'lluvia'} · ` : ''}${tip}</div>
+                </div>`;
+            section.classList.remove('hidden');
+        }
+
+        function getRunningTip(weather) {
+            const t = I18N[currentLang] || I18N.es;
+            if (weather.condition === 'bad') return t.weatherTipBad || 'Lleva chubasquero 🌧️';
+            if (weather.condition === 'warn') return t.weatherTipWarn || 'Podría llover, ve preparado';
+            if (weather.temp > 30) return t.weatherTipHot || 'Hidrátate bien, hace calor 🥵';
+            if (weather.temp < 8) return t.weatherTipCold || 'Abrígate, hace frío 🧥';
+            return t.weatherTipGood || 'Día perfecto para correr 🏃';
+        }
+
         function formatDate(d){
             if(!d)return'';
             const t = I18N[currentLang] || I18N.es;
@@ -6973,6 +7409,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             // Cargar clima para cada quedada (asíncrono)
             loadWeatherForQuedadas(filtered);
+
+            // 🎯 Cargar recomendaciones inteligentes (Premium)
+            loadSmartRecommendations();
         }
 
         // Cargar clima para las quedadas visibles
@@ -7055,7 +7494,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             } else {
                 descWrap.classList.add('hidden');
             }
-            
+
+            // 🌦️ Cargar meteo en detalle
+            loadDetailWeather(q.lat || 40.4168, q.lng || -3.7038, q.fecha);
+
             // Participantes - contar por estado
             const detailConfirmed = asistentesInfo.filter(a => a.status === 'confirmed' || !a.status).length;
             const detailMaybe = asistentesInfo.filter(a => a.status === 'maybe').length;
@@ -7091,7 +7533,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     <span class="text-sm" title="${statusBadge.text}">${statusBadge.icon}</span>
                 </div>`;
             }).join('') : `<div class="text-gray-500 text-center py-2 text-sm">${t.detailBeFirst}</div>`;
-            
+
+            // 💬 Cargar comentarios
+            loadQuedadaComments(id);
+
             // Creador - usar datos del join directo si estan disponibles
             // Para quedadas seed, usar organizador_nombre y organizador_foto
             const creador = q.creador || {};
@@ -8653,14 +9098,25 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
         }
 
-        // --- Alert Preferences (Premium) ---
-        function toggleAlertPreference() {
+        // --- Alert Preferences (Premium) — save to DB ---
+        async function toggleAlertPreference() {
             const isOn = document.getElementById('alert-toggle')?.checked;
             const section = document.getElementById('alert-radius-section');
             if (section) section.classList.toggle('hidden', !isOn);
+
+            // Save to DB
+            if (currentUser && isUserPremium) {
+                try {
+                    const sb = await getSupabaseClientOrToast(5000, false);
+                    if (sb) {
+                        await sb.from('profiles').update({ alert_new_quedadas: !!isOn }).eq('id', currentUser.id);
+                        currentUser.alert_new_quedadas = !!isOn;
+                    }
+                } catch(_) {}
+            }
         }
 
-        function selectAlertRadius(km) {
+        async function selectAlertRadius(km) {
             const el = document.getElementById('alert-radius-value');
             if (el) el.value = km;
             [10, 25, 50].forEach(r => {
@@ -8675,14 +9131,100 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     }
                 }
             });
+
+            // Save to DB
+            if (currentUser && isUserPremium) {
+                try {
+                    const sb = await getSupabaseClientOrToast(5000, false);
+                    if (sb) {
+                        await sb.from('profiles').update({ alert_radius_km: km }).eq('id', currentUser.id);
+                        currentUser.alert_radius_km = km;
+                        const t = I18N[currentLang] || I18N.es;
+                        showToast(t.premiumPrefSaved || 'Preferencia guardada', 'success');
+                    }
+                } catch(_) {}
+            }
         }
 
-        function loadAlertPreferences() {
+        async function loadAlertPreferences() {
             if (!currentUser) return;
+
+            // Load from DB if premium
+            if (isUserPremium) {
+                try {
+                    const sb = await getSupabaseClientOrToast(5000, false);
+                    if (sb) {
+                        const { data } = await sb.from('profiles')
+                            .select('alert_new_quedadas, alert_radius_km')
+                            .eq('id', currentUser.id)
+                            .single();
+                        if (data) {
+                            currentUser.alert_new_quedadas = data.alert_new_quedadas;
+                            currentUser.alert_radius_km = data.alert_radius_km;
+                        }
+                    }
+                } catch(_) {}
+            }
+
             const toggle = document.getElementById('alert-toggle');
             if (toggle) toggle.checked = !!currentUser.alert_new_quedadas;
             toggleAlertPreference();
             selectAlertRadius(currentUser.alert_radius_km || 25);
+        }
+
+        // --- Verification Flow (Premium) ---
+        function showVerificationBanner() {
+            const banner = document.getElementById('verification-banner');
+            if (!banner) return;
+            // Show if premium + not already verified
+            if (isUserPremium && currentUser && !currentUser.verification_badge) {
+                banner.classList.remove('hidden');
+            } else {
+                banner.classList.add('hidden');
+            }
+        }
+
+        async function openVerificationFlow() {
+            if (!currentUser || !isUserPremium) {
+                openPremiumCheckout();
+                return;
+            }
+
+            const t = I18N[currentLang] || I18N.es;
+
+            // Simple prompt-based flow (can be enhanced to a modal later)
+            const evidence = prompt(currentLang === 'en'
+                ? 'Paste a link to your Strava profile or a recent race result to verify your level:'
+                : 'Pega un enlace a tu perfil de Strava o un resultado de carrera reciente para verificar tu nivel:');
+
+            if (!evidence || !evidence.trim()) return;
+
+            try {
+                const sb = await getSupabaseClientOrToast(5000, false);
+                if (!sb) return;
+
+                const { error } = await sb.from('level_verifications').insert({
+                    user_id: currentUser.id,
+                    verification_type: evidence.includes('strava') ? 'strava_link' : 'race_photo',
+                    evidence_url: evidence.trim(),
+                    claimed_level: currentUser.nivel || 'Intermedio',
+                    status: 'pending'
+                });
+
+                if (error) {
+                    showToast('Error al enviar verificación', 'error');
+                    return;
+                }
+
+                showToast(currentLang === 'en'
+                    ? '✅ Verification submitted! We\'ll review it soon.'
+                    : '✅ Verificación enviada. La revisaremos pronto.', 'success');
+
+                const banner = document.getElementById('verification-banner');
+                if (banner) banner.classList.add('hidden');
+            } catch (e) {
+                console.warn('Verification error:', e);
+            }
         }
 
         // Verify private code to join quedada
@@ -8849,6 +9391,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 if (premiumFiltersLocked) premiumFiltersLocked.classList.add('hidden');
                 // Cargar preferencias de alertas
                 loadAlertPreferences();
+                // Mostrar banner de verificación si no verificado
+                showVerificationBanner();
             } else {
                 upgradeSection.classList.remove('hidden');
                 activeSection.classList.add('hidden');

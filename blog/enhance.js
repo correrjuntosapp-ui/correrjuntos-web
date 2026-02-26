@@ -1,6 +1,52 @@
-/* Blog enhancements — FAQ accordion + scroll-to-top + newsletter slide-in */
+/* Blog enhancements — lang toggle + FAQ accordion + scroll-to-top + newsletter slide-in */
 (function(){
   'use strict';
+
+  /* ══════════════════════════════════════════════
+     0. LANGUAGE DETECTION & TOGGLE
+     ══════════════════════════════════════════════ */
+  var lang = (document.documentElement.lang || 'es').substring(0,2).toLowerCase();
+  var isEN = (lang === 'en');
+
+  /* Find the alternate-language URL from hreflang tags */
+  var altLang = isEN ? 'es' : 'en';
+  var altLink = document.querySelector('link[hreflang="'+altLang+'"]');
+  var altURL  = altLink ? altLink.getAttribute('href') : null;
+
+  /* Build toggle only if we have an alternate URL */
+  if(altURL){
+    var cssLang = document.createElement('style');
+    cssLang.textContent = [
+      '.lang-toggle{display:flex;align-items:center;gap:0;border-radius:999px;border:1px solid rgba(255,255,255,.1);overflow:hidden;margin:0 8px;flex-shrink:0}',
+      '.lang-toggle a{display:flex;align-items:center;gap:4px;padding:5px 10px;font-size:.78rem;font-weight:700;text-decoration:none;color:#64748b;transition:all .2s;white-space:nowrap;line-height:1}',
+      '.lang-toggle a.active-lang{background:rgba(249,115,22,.15);color:#f97316}',
+      '.lang-toggle a:hover:not(.active-lang){color:#cbd5e1;background:rgba(255,255,255,.05)}',
+      '.lang-toggle .lt-sep{width:1px;height:16px;background:rgba(255,255,255,.1);flex-shrink:0}',
+      '@media(max-width:768px){.lang-toggle{margin:0 4px;order:2}.lang-toggle a{padding:4px 8px;font-size:.72rem}}'
+    ].join('\n');
+    document.head.appendChild(cssLang);
+
+    /* Convert full URL to relative path for local navigation */
+    var altPath = altURL;
+    try{ altPath = new URL(altURL).pathname; }catch(e){}
+
+    var toggle = document.createElement('div');
+    toggle.className = 'lang-toggle';
+    toggle.innerHTML =
+      '<a href="'+(isEN ? altPath : window.location.pathname)+'" class="'+(isEN ? '' : 'active-lang')+'">ES</a>' +
+      '<span class="lt-sep"></span>' +
+      '<a href="'+(isEN ? window.location.pathname : altPath)+'" class="'+(isEN ? 'active-lang' : '')+'">EN</a>';
+
+    /* Insert into nav — between nav-links and nav-auth */
+    var navAuth = document.querySelector('.nav-auth');
+    if(navAuth && navAuth.parentNode){
+      navAuth.parentNode.insertBefore(toggle, navAuth);
+    } else {
+      /* Fallback: append to .nav */
+      var navEl = document.querySelector('.nav');
+      if(navEl) navEl.appendChild(toggle);
+    }
+  }
 
   /* ══════════════════════════════════════════════
      1. FAQ ACCORDION
@@ -105,7 +151,7 @@
   var btnTop = document.createElement('button');
   btnTop.id = 'scroll-top';
   btnTop.innerHTML = '↑';
-  btnTop.setAttribute('aria-label','Volver arriba');
+  btnTop.setAttribute('aria-label', isEN ? 'Back to top' : 'Volver arriba');
   btnTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
   document.body.appendChild(btnTop);
 
@@ -145,12 +191,12 @@
 
     var slidein = document.createElement('div');
     slidein.id = 'nl-slidein';
-    slidein.innerHTML = '<button class="nl-close" aria-label="Cerrar">&times;</button>' +
-      '<h4>Entrena mejor cada semana</h4>' +
-      '<p>Consejos de running, nutrici\u00f3n y equipamiento gratis en tu email. Sin spam.</p>' +
+    slidein.innerHTML = '<button class="nl-close" aria-label="'+(isEN ? 'Close' : 'Cerrar')+'">&times;</button>' +
+      '<h4>'+(isEN ? 'Train smarter every week' : 'Entrena mejor cada semana')+'</h4>' +
+      '<p>'+(isEN ? 'Free running, nutrition & gear tips in your inbox. No spam.' : 'Consejos de running, nutrici\u00f3n y equipamiento gratis en tu email. Sin spam.')+'</p>' +
       '<div class="nl-form">' +
-        '<input type="email" placeholder="Tu email" aria-label="Email">' +
-        '<button class="nl-btn">Suscribir</button>' +
+        '<input type="email" placeholder="'+(isEN ? 'Your email' : 'Tu email')+'" aria-label="Email">' +
+        '<button class="nl-btn">'+(isEN ? 'Subscribe' : 'Suscribir')+'</button>' +
       '</div>';
     document.body.appendChild(slidein);
 
@@ -175,7 +221,7 @@
       var input = slidein.querySelector('input');
       var email = input.value.trim();
       if(!email || email.indexOf('@') < 1) { input.style.borderColor='#ef4444'; return; }
-      slidein.querySelector('.nl-form').innerHTML = '<div class="nl-ok">Suscrito — gracias!</div>';
+      slidein.querySelector('.nl-form').innerHTML = '<div class="nl-ok">'+(isEN ? 'Subscribed — thanks!' : 'Suscrito — gracias!')+'</div>';
       localStorage.setItem(STORAGE_KEY, '1');
       setTimeout(function(){ slidein.classList.remove('show'); dismissed = true; }, 2500);
     });

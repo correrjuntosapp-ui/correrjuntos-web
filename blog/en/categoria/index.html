@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Category | Blog CorrerJuntos</title>
+<meta name="robots" content="index, follow">
+<meta id="metaDesc" name="description" content="Running articles by category on CorrerJuntos.">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<link rel="canonical" href="https://www.correrjuntos.com/blog/en/categoria/">
+<link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/categoria/">
+<link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/categoria/">
+<link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/categoria/">
+<meta property="og:title" content="Category | Blog CorrerJuntos">
+<meta property="og:description" content="Running articles by category on CorrerJuntos.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/en/categoria/">
+<meta property="og:image" content="https://www.correrjuntos.com/icons/og-image.png?v=2">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@CorrerJuntos">
+<meta name="twitter:title" content="Category | Blog CorrerJuntos">
+<meta name="twitter:description" content="Running articles by category on CorrerJuntos.">
+<meta name="twitter:image" content="https://www.correrjuntos.com/icons/og-image.png?v=2">
+<script type="application/ld+json" id="schemaLD">{}</script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+function loadGA4(){if(document.getElementById('ga4-script'))return;var s=document.createElement('script');s.id='ga4-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-RQYYGNC12T';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-RQYYGNC12T');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
+function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1466415711868158');fbq('track','PageView');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#0b1220;color:#fff;line-height:1.7}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* Nav */
+.nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(11,18,32,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
+.nav>a{color:#f97316;text-decoration:none;font-weight:700;font-size:1.1rem}
+.nav-links{display:flex;gap:4px;font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)}
+.nav-links a{color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none}
+.nav-links a:hover{color:#f97316;background:rgba(249,115,22,.12)}
+.nav-links a.active{color:#fff;background:rgba(249,115,22,.9);font-weight:700}
+@media(max-width:768px){.nav{flex-wrap:wrap;padding:12px 16px}.nav-links{order:3;width:100%;justify-content:center;margin-top:4px}.nav-links a{font-size:.78rem;padding:5px 12px;white-space:nowrap}}
+
+/* Breadcrumb */
+.breadcrumb{padding:16px 0;font-size:.85rem;color:#64748b}
+.breadcrumb a{color:#f97316;text-decoration:none}
+
+/* Header */
+.cat-header{text-align:center;padding:48px 20px 32px}
+.cat-icon{font-size:2.5rem;margin-bottom:12px}
+.cat-header h1{font-size:2rem;font-weight:900;margin-bottom:8px}
+.cat-header h1 span{background:linear-gradient(135deg,#f97316,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cat-header p{color:#94a3b8;font-size:1rem;max-width:600px;margin:0 auto}
+.cat-count{margin-top:12px;color:#64748b;font-size:.85rem}
+.cat-count span{color:#f97316;font-weight:700}
+
+/* Grid */
+.articles{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin:16px 0 48px}
+.article-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .3s,border-color .3s,box-shadow .3s}
+.article-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,.3);border-color:rgba(249,115,22,.3)}
+.card-img{height:180px;overflow:hidden;position:relative;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(30,41,59,1));display:flex;align-items:center;justify-content:center}
+.card-img .card-emoji{font-size:3rem}
+.card-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.category{display:inline-block;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px;align-self:flex-start}
+.card-body h2{font-size:1.05rem;font-weight:800;line-height:1.3;color:#fff}
+.card-body p{font-size:.85rem;color:#94a3b8;line-height:1.5;flex:1}
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px}
+.card-meta .meta{font-size:.78rem;color:#64748b}
+.card-arrow{font-size:.85rem;color:#f97316;font-weight:700;transition:transform .2s}
+.article-card:hover .card-arrow{transform:translateX(4px)}
+
+/* Category badges */
+.cat-badge-entrenamiento{background:rgba(59,130,246,.15);color:#3b82f6;border:1px solid rgba(59,130,246,.2)}
+.cat-badge-nutricion{background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+.cat-badge-zapatillas{background:rgba(249,115,22,.15);color:#f97316;border:1px solid rgba(249,115,22,.2)}
+.cat-badge-equipamiento{background:rgba(6,182,212,.15);color:#06b6d4;border:1px solid rgba(6,182,212,.2)}
+.cat-badge-relojes-gps{background:rgba(234,179,8,.15);color:#eab308;border:1px solid rgba(234,179,8,.2)}
+.cat-badge-lesiones{background:rgba(225,29,72,.15);color:#e11d48;border:1px solid rgba(225,29,72,.2)}
+.cat-badge-rutas{background:rgba(168,85,247,.15);color:#a855f7;border:1px solid rgba(168,85,247,.2)}
+.cat-badge-trail{background:rgba(132,204,22,.15);color:#84cc16;border:1px solid rgba(132,204,22,.2)}
+.cat-badge-principiantes{background:rgba(99,102,241,.15);color:#6366f1;border:1px solid rgba(99,102,241,.2)}
+.cat-badge-tecnologia{background:rgba(56,189,248,.15);color:#38bdf8;border:1px solid rgba(56,189,248,.2)}
+.cat-badge-recuperacion{background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.2)}
+.cat-badge-comunidad{background:rgba(249,115,22,.15);color:#f97316;border:1px solid rgba(249,115,22,.2)}
+.cat-badge-ropa{background:rgba(244,114,182,.15);color:#f472b6;border:1px solid rgba(244,114,182,.2)}
+.cat-badge-apps{background:rgba(236,72,153,.15);color:#ec4899;border:1px solid rgba(236,72,153,.2)}
+.cat-badge-carreras{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.2)}
+
+/* Other categories bar */
+.other-cats{margin:0 0 48px;padding:32px 0 0;border-top:1px solid rgba(255,255,255,.06)}
+.other-cats h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:16px}
+.cat-pills{display:flex;flex-wrap:wrap;gap:8px}
+.cat-pill{padding:8px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#94a3b8;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s}
+.cat-pill:hover{border-color:rgba(249,115,22,.3);color:#f97316;background:rgba(249,115,22,.06)}
+.cat-pill.current{border-color:rgba(249,115,22,.4);color:#f97316;background:rgba(249,115,22,.1);font-weight:700}
+
+/* Footer CTA */
+.back-blog{text-align:center;margin:0 0 48px}
+.back-blog a{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:999px;border:1px solid rgba(249,115,22,.3);color:#f97316;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .2s}
+.back-blog a:hover{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.5)}
+
+/* Cookie */
+.cookie-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(11,18,32,.97);border-top:1px solid rgba(255,255,255,.08);padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:16px;z-index:999;font-size:.85rem;color:#94a3b8;backdrop-filter:blur(12px)}
+.cookie-bar a{color:#f97316}
+.cookie-bar button{padding:8px 20px;border-radius:10px;border:none;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s}
+.cookie-bar .c-reject{background:rgba(255,255,255,.06);color:#94a3b8}
+.cookie-bar .c-accept{background:#f97316;color:#fff}
+
+/* Footer */
+.site-footer{background:rgba(11,18,32,.98);border-top:1px solid rgba(255,255,255,.06);padding:48px 20px 32px;margin-top:48px}
+
+@media(max-width:640px){.cat-header h1{font-size:1.5rem}.articles{grid-template-columns:1fr}}
+</style>
+</head>
+<body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
+
+<!-- Nav -->
+<div class="nav-wrapper">
+<nav class="nav container">
+  <a href="/">CORRER<span style="color:#fff">JUNTOS</span></a>
+  <div class="nav-links">
+    <a href="/blog/en/" class="active">✍️ Blog</a>
+    <a href="/#app">📱 App</a>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/blog/en/">✍️ Blog</a> / <span id="breadCat">Category</span>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" id="catIcon">📂</div>
+    <h1 id="catTitle">Articles about <span id="catName">Running</span></h1>
+    <p id="catDesc">Explore all articles in this category.</p>
+    <div class="cat-count"><span id="catCount">0</span> articles</div>
+  </div>
+
+  <div class="articles" id="grid"></div>
+
+  <div class="other-cats">
+    <h3>Explore other categories</h3>
+    <div class="cat-pills" id="otherCats"></div>
+  </div>
+
+  <div class="back-blog">
+    <a href="/blog/en/">← View all articles</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+<div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-bottom:32px">
+  <div>
+    <a href="/" style="color:#f97316;font-weight:800;font-size:1.1rem;text-decoration:none;display:block;margin-bottom:16px">CorrerJuntos</a>
+    <p style="color:#64748b;font-size:.85rem;line-height:1.6">The most active running community in Spain. Run together, improve together.</p>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+      <a href="https://youtube.com/@correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="YouTube"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://strava.com/clubs/correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Strava"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
+      <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explore</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🏙️ Cities</a>
+      <a href="/blog/en/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✍️ Blog</a>
+      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👟 Gear</a>
+      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📱 App</a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Company</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👥 About Us</a>
+      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Investors</a>
+      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✉️ Contact</a>
+      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🤝 Sponsors</a>
+      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Media Kit</a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Legal</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Privacy Policy</a>
+      <a href="/terms.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Terms of Use</a>
+      <a href="/legal/cookies.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Cookie Policy</a>
+    </div>
+  </div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding-top:24px;text-align:center">
+  <p style="color:#64748b;font-size:.8rem">© 2026 CorrerJuntos. All rights reserved. Made with ❤️ para runners.</p>
+</div>
+</footer>
+
+<!-- Cookie -->
+<div class="cookie-bar" id="cookieBar" style="display:none">
+  We use our own and analytics cookies to improve your experience. <a href="/privacy.html">More info</a>
+  <button class="c-reject" onclick="localStorage.setItem('cj_cookie_consent','rejected');document.getElementById('cookieBar').style.display='none'">Reject</button>
+  <button class="c-accept" onclick="localStorage.setItem('cj_cookie_consent','accepted');document.getElementById('cookieBar').style.display='none';loadGA4();loadMetaPixel()">Accept</button>
+</div>
+<script>if(!localStorage.getItem('cj_cookie_consent'))document.getElementById('cookieBar').style.display='flex';</script>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── Slug mapping (Spanish → English) ── */
+  var SLUG = {
+    'errores-comunes-corredores':'common-running-mistakes',
+    'beneficios-de-correr':'benefits-of-running',
+    'como-respirar-al-correr':'how-to-breathe-while-running',
+    'como-correr-mas-rapido':'how-to-run-faster',
+    'empezar-a-correr-guia-principiantes':'how-to-start-running-beginners-guide',
+    'plan-entrenamiento-10k':'10k-training-plan',
+    'plan-entrenamiento-media-maraton':'half-marathon-training-plan',
+    'como-calentar-antes-de-correr':'how-to-warm-up-before-running',
+    'como-preparar-primera-carrera-5k':'how-to-prepare-first-5k-race',
+    'entrenamiento-por-zonas-running':'zone-training-running',
+    'correr-en-invierno':'running-in-winter',
+    'potencia-en-running':'running-power',
+    'strava-vs-garmin-connect':'strava-vs-garmin-connect',
+    'mejores-apps-running':'best-running-apps',
+    'variabilidad-cardiaca-running':'heart-rate-variability-running',
+    'estiramientos-antes-despues-correr':'stretching-before-after-running',
+    'estiramientos-post-carrera':'post-run-stretches',
+    'foam-rollers-runners':'foam-rollers-runners',
+    'dolor-rodilla-al-correr':'knee-pain-while-running',
+    'rodilla-del-corredor':'runners-knee',
+    'fascitis-plantar-corredores':'plantar-fasciitis-runners',
+    'periostitis-tibial-running':'shin-splints-running',
+    'tendinitis-aquiles-running':'achilles-tendinitis-running',
+    'prevenir-lesiones-running':'prevent-running-injuries',
+    'dieta-runner-que-comer':'runner-diet-what-to-eat',
+    'nutricion-para-runners':'nutrition-for-runners',
+    'que-comer-antes-de-correr':'what-to-eat-before-running',
+    'nutricion-dia-de-carrera':'race-day-nutrition',
+    'hidratacion-running-guia-completa':'running-hydration-complete-guide',
+    'cafeina-running-rendimiento':'caffeine-running-performance',
+    'ayuno-intermitente-running':'intermittent-fasting-running',
+    'carga-hidratos-maraton':'marathon-carb-loading',
+    'proteinas-para-runners':'protein-for-runners',
+    'alimentos-antiinflamatorios-runners':'anti-inflammatory-foods-runners',
+    'creatina-para-runners':'creatine-for-runners',
+    'mejores-creatinas-running':'best-creatine-running',
+    'mejores-suplementos-runners':'best-supplements-runners',
+    'que-gel-energetico-usar-maraton':'what-energy-gel-marathon',
+    'mejores-zapatillas-running-asfalto':'best-road-running-shoes',
+    'mejores-zapatillas-running-mujer':'best-womens-running-shoes',
+    'mejores-zapatillas-running-baratas':'best-budget-running-shoes',
+    'mejores-zapatillas-running-principiantes':'best-running-shoes-beginners',
+    'mejores-zapatillas-running-sobrepeso':'best-running-shoes-overweight',
+    'zapatillas-running-pronadores':'running-shoes-overpronators',
+    'que-zapatillas-running-comprar-segun-nivel':'which-running-shoes-by-level',
+    'asics-gel-nimbus-26-vs-nike-pegasus-41':'asics-gel-nimbus-26-vs-nike-pegasus-41',
+    'hoka-clifton-9-vs-bondi-8':'hoka-clifton-9-vs-bondi-8',
+    'nike-pegasus-41-vs-brooks-ghost-16':'nike-pegasus-41-vs-brooks-ghost-16',
+    'apple-watch-running-review':'apple-watch-running-review',
+    'como-elegir-reloj-gps-running':'how-to-choose-gps-running-watch',
+    'mejor-reloj-gps-running-calidad-precio':'best-value-gps-running-watch',
+    'garmin-forerunner-265-vs-coros-pace-3':'garmin-forerunner-265-vs-coros-pace-3',
+    'garmin-forerunner-55-review':'garmin-forerunner-55-review',
+    'garmin-venu-3-review':'garmin-venu-3-review',
+    'coros-pace-3-review':'coros-pace-3-review',
+    'polar-pacer-pro-review':'polar-pacer-pro-review',
+    'smartwatch-vs-reloj-gps-running':'smartwatch-vs-gps-watch-running',
+    'mejores-auriculares-running':'best-running-headphones',
+    'mejores-auriculares-baratos-running':'best-budget-running-headphones',
+    'auriculares-conduccion-osea-vs-in-ear-running':'bone-conduction-vs-in-ear-running',
+    'auriculares-running-natacion':'waterproof-headphones-running-swimming',
+    'shokz-openrun-pro-2-review':'shokz-openrun-pro-2-review',
+    'jbl-reflect-flow-pro-review':'jbl-reflect-flow-pro-review',
+    'calcetines-running':'running-socks',
+    'chalecos-hidratacion-running':'running-hydration-vests',
+    'cinturones-running':'running-belts',
+    'lamparas-frontales-running':'running-headlamps',
+    'pack-basico-running-principiantes':'basic-running-pack-beginners',
+    'material-trail-running':'trail-running-gear',
+    'ropa-tecnica-running':'running-technical-clothing',
+    'mallas-running':'running-tights',
+    'chubasqueros-running':'running-rain-jackets',
+    'gorras-running':'running-caps',
+    'mejores-rutas-correr-madrid':'best-running-routes-madrid',
+    'mejores-rutas-correr-barcelona':'best-running-routes-barcelona',
+    'mejores-rutas-correr-valencia':'best-running-routes-valencia',
+    'mejores-rutas-correr-sevilla':'best-running-routes-sevilla',
+    'mejores-rutas-correr-malaga':'best-running-routes-malaga',
+    'carreras-trail-principiantes':'trail-races-beginners',
+    'empezar-trail-running':'start-trail-running',
+    'diferencias-trail-vs-asfalto':'trail-vs-road-running',
+    'salomon-speedcross-6-vs-hoka-speedgoat-6':'salomon-speedcross-6-vs-hoka-speedgoat-6',
+    'beneficios-correr-en-grupo':'benefits-of-group-running'
+  };
+
+  /* ── Category config ── */
+  var CATS = {
+    'entrenamiento':    {name:'Training',        icon:'🏃', badge:'cat-badge-entrenamiento', desc:'Plans, techniques and tips to improve your running performance.'},
+    'nutricion':        {name:'Nutrition',        icon:'🥗', badge:'cat-badge-nutricion', desc:'Diet, supplements and nutritional strategies for runners.'},
+    'zapatillas':       {name:'Shoes',            icon:'👟', badge:'cat-badge-zapatillas', desc:'Comparisons, reviews and guides to choose the best running shoes.'},
+    'equipamiento':     {name:'Gear',             icon:'🎒', badge:'cat-badge-equipamiento', desc:'Headphones, vests, socks and all the gear you need.'},
+    'relojes-gps':      {name:'GPS Watches',      icon:'⌚', badge:'cat-badge-relojes-gps', desc:'Reviews and comparisons of the best GPS watches for running.'},
+    'lesiones':         {name:'Injuries',         icon:'🩹', badge:'cat-badge-lesiones', desc:'Prevention, diagnosis and treatment of common running injuries.'},
+    'rutas':            {name:'Routes',           icon:'🗺️', badge:'cat-badge-rutas', desc:'The best running routes in major cities across Spain.'},
+    'trail':            {name:'Trail Running',    icon:'⛰️', badge:'cat-badge-trail', desc:'Guides, gear and races to start and improve in trail running.'},
+    'principiantes':    {name:'Beginners',        icon:'🌱', badge:'cat-badge-principiantes', desc:'Everything you need to know to start running from scratch.'},
+    'tecnologia':       {name:'Technology',       icon:'📱', badge:'cat-badge-tecnologia', desc:'Apps, gadgets and tech to boost your training.'},
+    'recuperacion':     {name:'Recovery',         icon:'🧊', badge:'cat-badge-recuperacion', desc:'Stretching, foam rolling and techniques to recover faster.'},
+    'comunidad':        {name:'Community',        icon:'👥', badge:'cat-badge-comunidad', desc:'Group running, events and the runner community in Spain.'},
+    'ropa':             {name:'Clothing',         icon:'👕', badge:'cat-badge-ropa', desc:'Tights, rain jackets, caps and technical clothing for running.'},
+    'apps':             {name:'Apps',             icon:'📲', badge:'cat-badge-apps', desc:'The best free and paid apps for runners.'},
+    'carreras':         {name:'Races',            icon:'🏅', badge:'cat-badge-carreras', desc:'Preparation, tips and race selection for popular events.'}
+  };
+
+  /* ── Article database (English titles + English descriptions) ── */
+  var DB = [
+    {s:'errores-comunes-corredores',t:'The 10 Most Common Running Mistakes',c:'entrenamiento',d:'90% of runners make at least 3 of these mistakes.',m:'20 Feb 2026 · 9 min read'},
+    {s:'beneficios-de-correr',t:'Benefits of Running: 15 Science-Backed Reasons',c:'principiantes',d:'Heart health, weight management, mental health and longevity.',m:'24 Feb 2026 · 12 min read'},
+    {s:'como-respirar-al-correr',t:'How to Breathe While Running: Complete Guide',c:'entrenamiento',d:'Diaphragmatic breathing, rhythmic patterns and practical exercises.',m:'24 Feb 2026 · 10 min read'},
+    {s:'como-correr-mas-rapido',t:'How to Run Faster: 12 Key Tips',c:'entrenamiento',d:'Intervals, fartlek, hill training, cadence and technique to improve your pace.',m:'23 Feb 2026 · 11 min read'},
+    {s:'empezar-a-correr-guia-principiantes',t:'How to Start Running from Scratch',c:'principiantes',d:'8-week plan to go from couch to 5K runner.',m:'23 Feb 2026 · 14 min read'},
+    {s:'plan-entrenamiento-10k',t:'10K Training Plan: 8 Weeks',c:'entrenamiento',d:'Complete program to run 10K with weekly structure.',m:'22 Feb 2026 · 10 min read'},
+    {s:'plan-entrenamiento-media-maraton',t:'Half Marathon Training Plan: 12 Weeks',c:'entrenamiento',d:'Detailed program to complete your first half marathon.',m:'21 Feb 2026 · 13 min read'},
+    {s:'como-calentar-antes-de-correr',t:'How to Warm Up Before Running',c:'entrenamiento',d:'Dynamic warm-up routine to prevent injuries.',m:'22 Feb 2026 · 8 min read'},
+    {s:'como-preparar-primera-carrera-5k',t:'How to Prepare Your First 5K Race',c:'carreras',d:'Everything you need to know for your first race.',m:'21 Feb 2026 · 9 min read'},
+    {s:'entrenamiento-por-zonas-running',t:'Zone Training: Heart Rate, Pace & Power',c:'entrenamiento',d:'Learn to train by heart rate zones and pace.',m:'20 Feb 2026 · 11 min read'},
+    {s:'correr-en-invierno',t:'Running in Winter: Complete Guide',c:'entrenamiento',d:'Gear, safety and strategies for running in cold weather.',m:'19 Feb 2026 · 10 min read'},
+    {s:'potencia-en-running',t:'Running Power: What It Is and How to Train',c:'tecnologia',d:'Stryd, Running Power and how to use watts to improve.',m:'20 Feb 2026 · 10 min read'},
+    {s:'strava-vs-garmin-connect',t:'Strava vs Garmin Connect: Comparison',c:'tecnologia',d:'Features, pricing and which to choose based on your runner profile.',m:'19 Feb 2026 · 9 min read'},
+    {s:'mejores-apps-running',t:'10 Best Free Running Apps',c:'apps',d:'Nike Run Club, Strava, Adidas Running and more apps reviewed.',m:'22 Feb 2026 · 11 min read'},
+    {s:'variabilidad-cardiaca-running',t:'Heart Rate Variability (HRV) for Runners',c:'tecnologia',d:'What is HRV, how to measure it and what it says about your recovery.',m:'18 Feb 2026 · 9 min read'},
+    {s:'estiramientos-antes-despues-correr',t:'Stretching Before and After Running',c:'recuperacion',d:'Dynamic and static stretching routines for runners.',m:'23 Feb 2026 · 9 min read'},
+    {s:'estiramientos-post-carrera',t:'Post-Run Stretches: Recover Fast',c:'recuperacion',d:'15-minute routine to speed up muscle recovery.',m:'21 Feb 2026 · 8 min read'},
+    {s:'foam-rollers-runners',t:'7 Best Foam Rollers for Runners',c:'recuperacion',d:'Foam roller analysis: firmness, size and value for money.',m:'20 Feb 2026 · 9 min read'},
+    {s:'dolor-rodilla-al-correr',t:'Knee Pain While Running: Causes & Treatment',c:'lesiones',d:'IT band syndrome, chondromalacia and more.',m:'22 Feb 2026 · 11 min read'},
+    {s:'rodilla-del-corredor',t:"Runner's Knee: Complete Guide",c:'lesiones',d:'Symptoms, diagnosis, treatment and prevention of patellofemoral pain.',m:'21 Feb 2026 · 12 min read'},
+    {s:'fascitis-plantar-corredores',t:'Plantar Fasciitis in Runners',c:'lesiones',d:'The most feared injury: causes, treatment and return to running.',m:'20 Feb 2026 · 11 min read'},
+    {s:'periostitis-tibial-running',t:'Shin Splints: Causes & Treatment',c:'lesiones',d:'Shin pain while running: why it happens and how to fix it.',m:'19 Feb 2026 · 10 min read'},
+    {s:'tendinitis-aquiles-running',t:'Achilles Tendinitis in Runners',c:'lesiones',d:'Prevention, diagnosis and return-to-running protocol.',m:'18 Feb 2026 · 10 min read'},
+    {s:'prevenir-lesiones-running',t:'How to Prevent Running Injuries',c:'lesiones',d:'Strengthening, gradual progression and warning signs.',m:'22 Feb 2026 · 10 min read'},
+    {s:'dieta-runner-que-comer',t:'Runner Diet: What to Eat',c:'nutricion',d:'Macros, timing and key foods for runners.',m:'23 Feb 2026 · 12 min read'},
+    {s:'nutricion-para-runners',t:'What to Eat Before and After Running',c:'nutricion',d:'Nutritional timing, pre-workout snacks and recovery meals.',m:'22 Feb 2026 · 10 min read'},
+    {s:'que-comer-antes-de-correr',t:'What to Eat Before Running',c:'nutricion',d:'Snacks, timing and what to avoid before a race or workout.',m:'21 Feb 2026 · 8 min read'},
+    {s:'nutricion-dia-de-carrera',t:'Race Day Nutrition: Before, During & After',c:'nutricion',d:'Complete nutritional protocol for competition day.',m:'20 Feb 2026 · 11 min read'},
+    {s:'hidratacion-running-guia-completa',t:'Running Hydration: Complete Guide',c:'nutricion',d:'How much to drink, isotonic beverages and signs of dehydration.',m:'22 Feb 2026 · 10 min read'},
+    {s:'cafeina-running-rendimiento',t:'Caffeine and Running: Boost Your Performance',c:'nutricion',d:'Optimal dose, timing and scientific evidence on caffeine and running.',m:'21 Feb 2026 · 9 min read'},
+    {s:'ayuno-intermitente-running',t:'Intermittent Fasting and Running',c:'nutricion',d:'16:8 and 5:2 protocols, benefits, risks and who it works for.',m:'20 Feb 2026 · 10 min read'},
+    {s:'carga-hidratos-maraton',t:'Marathon Carb Loading',c:'nutricion',d:'Glycogen supercompensation protocol for peak performance.',m:'19 Feb 2026 · 9 min read'},
+    {s:'proteinas-para-runners',t:'Protein for Runners: How Much You Need',c:'nutricion',d:'Requirements, sources and protein timing for runners.',m:'18 Feb 2026 · 9 min read'},
+    {s:'alimentos-antiinflamatorios-runners',t:'15 Anti-Inflammatory Foods for Runners',c:'nutricion',d:'Turmeric, ginger, blueberries and more foods to help you recover.',m:'22 Feb 2026 · 10 min read'},
+    {s:'creatina-para-runners',t:'Creatine for Runners: 7 Benefits',c:'nutricion',d:'Does creatine work for running? Updated scientific evidence.',m:'21 Feb 2026 · 9 min read'},
+    {s:'mejores-creatinas-running',t:'8 Best Creatine Supplements for Runners',c:'nutricion',d:'Creatine supplement comparison: purity, price and format.',m:'20 Feb 2026 · 8 min read'},
+    {s:'mejores-suplementos-runners',t:'Best Supplements for Runners',c:'nutricion',d:'The 10 supplements with real evidence to improve your running.',m:'19 Feb 2026 · 11 min read'},
+    {s:'que-gel-energetico-usar-maraton',t:'What Energy Gel to Use in a Marathon',c:'nutricion',d:'Gel comparison: composition, flavour and intake strategy.',m:'18 Feb 2026 · 9 min read'},
+    {s:'mejores-zapatillas-running-asfalto',t:'10 Best Road Running Shoes',c:'zapatillas',d:'The best cushioned shoes for road running.',m:'23 Feb 2026 · 13 min read'},
+    {s:'mejores-zapatillas-running-mujer',t:"10 Best Women's Running Shoes",c:'zapatillas',d:'Models designed for female biomechanics and needs.',m:'22 Feb 2026 · 12 min read'},
+    {s:'mejores-zapatillas-running-baratas',t:'Best Budget Running Shoes',c:'zapatillas',d:'Quality and performance for under 80 euros.',m:'21 Feb 2026 · 10 min read'},
+    {s:'mejores-zapatillas-running-principiantes',t:'Best Running Shoes for Beginners',c:'zapatillas',d:'Cushioning, stability and comfort to start running.',m:'20 Feb 2026 · 11 min read'},
+    {s:'mejores-zapatillas-running-sobrepeso',t:'Running Shoes for Overweight Runners',c:'zapatillas',d:'Maximum cushioning and support for runners over 85 kg.',m:'19 Feb 2026 · 10 min read'},
+    {s:'zapatillas-running-pronadores',t:'Running Shoes for Overpronators: Complete Guide',c:'zapatillas',d:'Stability, medial support and the best models for overpronation.',m:'18 Feb 2026 · 11 min read'},
+    {s:'que-zapatillas-running-comprar-segun-nivel',t:'Which Running Shoes by Level',c:'zapatillas',d:'Beginner, intermediate or advanced: what you need at each stage.',m:'22 Feb 2026 · 10 min read'},
+    {s:'asics-gel-nimbus-26-vs-nike-pegasus-41',t:'ASICS Gel-Nimbus 26 vs Nike Pegasus 41',c:'zapatillas',d:'Two running icons head to head.',m:'21 Feb 2026 · 10 min read'},
+    {s:'hoka-clifton-9-vs-bondi-8',t:'Hoka Clifton 9 vs Bondi 8',c:'zapatillas',d:'Maximum cushioning: lightweight Clifton or premium Bondi?',m:'20 Feb 2026 · 9 min read'},
+    {s:'nike-pegasus-41-vs-brooks-ghost-16',t:'Nike Pegasus 41 vs Brooks Ghost 16',c:'zapatillas',d:'Two versatile shoes for daily training.',m:'19 Feb 2026 · 9 min read'},
+    {s:'apple-watch-running-review',t:'Apple Watch for Running: Is It Worth It?',c:'relojes-gps',d:'Sports features, battery life and comparison with Garmin and COROS.',m:'22 Feb 2026 · 14 min read'},
+    {s:'como-elegir-reloj-gps-running',t:'How to Choose a GPS Running Watch',c:'relojes-gps',d:'GPS, HR, battery: the 7 keys to making the right purchase.',m:'21 Feb 2026 · 11 min read'},
+    {s:'mejor-reloj-gps-running-calidad-precio',t:'Best Value GPS Running Watch',c:'relojes-gps',d:'The 5 watches with the best performance-to-price ratio on the market.',m:'22 Feb 2026 · 10 min read'},
+    {s:'garmin-forerunner-265-vs-coros-pace-3',t:'Garmin Forerunner 265 vs COROS PACE 3',c:'relojes-gps',d:'Two top mid-range watches: which one to choose?',m:'20 Feb 2026 · 11 min read'},
+    {s:'garmin-forerunner-55-review',t:'Garmin Forerunner 55: Complete Review',c:'relojes-gps',d:'The most recommended GPS watch to start running with data.',m:'19 Feb 2026 · 10 min read'},
+    {s:'garmin-venu-3-review',t:'Garmin Venu 3: Review for Runners',c:'relojes-gps',d:'Premium smartwatch with running features: is it worth it?',m:'18 Feb 2026 · 10 min read'},
+    {s:'coros-pace-3-review',t:'COROS PACE 3: Complete Review',c:'relojes-gps',d:'29 grams, dual-band GPS and 38h battery for under 230 euros.',m:'21 Feb 2026 · 10 min read'},
+    {s:'polar-pacer-pro-review',t:'Polar Pacer Pro: Complete Review',c:'relojes-gps',d:'Native running power, routes and recovery test.',m:'20 Feb 2026 · 9 min read'},
+    {s:'smartwatch-vs-reloj-gps-running',t:'Smartwatch vs GPS Watch: Which Do You Need?',c:'relojes-gps',d:'Apple Watch, Garmin, COROS: which type of watch is right for you.',m:'19 Feb 2026 · 9 min read'},
+    {s:'mejores-auriculares-running',t:'Best Running Headphones',c:'equipamiento',d:'Bone conduction, TWS and neckband: the top picks for runners.',m:'23 Feb 2026 · 12 min read'},
+    {s:'mejores-auriculares-baratos-running',t:'8 Best Budget Running Headphones',c:'equipamiento',d:'Decent sound for under 40 euros for worry-free running.',m:'21 Feb 2026 · 9 min read'},
+    {s:'auriculares-conduccion-osea-vs-in-ear-running',t:'Bone Conduction vs In-Ear for Running',c:'equipamiento',d:'Safety vs sound quality: which to choose for running.',m:'22 Feb 2026 · 10 min read'},
+    {s:'auriculares-running-natacion',t:'Best Waterproof Headphones for Running & Swimming',c:'equipamiento',d:'IP68, water resistance and the most versatile models.',m:'20 Feb 2026 · 9 min read'},
+    {s:'shokz-openrun-pro-2-review',t:'Shokz OpenRun Pro 2: Complete Review',c:'equipamiento',d:'The favourite bone conduction headphones among runners.',m:'19 Feb 2026 · 9 min read'},
+    {s:'jbl-reflect-flow-pro-review',t:'JBL Reflect Flow Pro: Review for Runners',c:'equipamiento',d:'TWS with adaptive ANC and secure fit for running.',m:'18 Feb 2026 · 8 min read'},
+    {s:'calcetines-running',t:'The 8 Best Running Socks',c:'equipamiento',d:'Anti-blister, compression and breathability for your feet.',m:'22 Feb 2026 · 8 min read'},
+    {s:'chalecos-hidratacion-running',t:'7 Best Running Hydration Vests',c:'equipamiento',d:'For trail and long distance: capacity, fit and comfort.',m:'21 Feb 2026 · 9 min read'},
+    {s:'cinturones-running',t:'8 Best Running Belts',c:'equipamiento',d:'Carry your phone, keys and gels without bouncing while you run.',m:'20 Feb 2026 · 8 min read'},
+    {s:'lamparas-frontales-running',t:'7 Best Running Headlamps',c:'equipamiento',d:'Run safely at night: lumens, weight and battery.',m:'19 Feb 2026 · 8 min read'},
+    {s:'pack-basico-running-principiantes',t:'Basic Running Pack for Beginners',c:'equipamiento',d:'Everything you need to buy to start running.',m:'18 Feb 2026 · 7 min read'},
+    {s:'material-trail-running',t:'Essential Trail Running Gear',c:'equipamiento',d:'Shoes, pack, poles and GPS for hitting the trails.',m:'22 Feb 2026 · 10 min read'},
+    {s:'ropa-tecnica-running',t:'Technical Running Clothing: Guide by Temperature',c:'ropa',d:'What to wear based on the temperature: from 0 to 35 degrees.',m:'23 Feb 2026 · 10 min read'},
+    {s:'mallas-running',t:'10 Best Running Tights',c:'ropa',d:'Compression, thermal and short: the best tights for running.',m:'22 Feb 2026 · 9 min read'},
+    {s:'chubasqueros-running',t:'8 Best Running Rain Jackets',c:'ropa',d:'Waterproofing, breathability and weight for running in the rain.',m:'21 Feb 2026 · 8 min read'},
+    {s:'gorras-running',t:'8 Best Running Caps',c:'ropa',d:'Sun protection, ventilation and fit for runners.',m:'20 Feb 2026 · 7 min read'},
+    {s:'mejores-rutas-correr-madrid',t:'10 Best Running Routes in Madrid',c:'rutas',d:'Retiro, Madrid Rio, Casa de Campo and more urban circuits.',m:'23 Feb 2026 · 12 min read'},
+    {s:'mejores-rutas-correr-barcelona',t:'Best Running Routes in Barcelona',c:'rutas',d:'Paseo Maritimo, Montjuic, Carretera de les Aigues and more.',m:'22 Feb 2026 · 11 min read'},
+    {s:'mejores-rutas-correr-valencia',t:'Best Running Routes in Valencia',c:'rutas',d:'Jardin del Turia, La Albufera and city circuits.',m:'21 Feb 2026 · 10 min read'},
+    {s:'mejores-rutas-correr-sevilla',t:'10 Best Running Routes in Seville',c:'rutas',d:'Parque de Maria Luisa, Guadalquivir and more routes.',m:'20 Feb 2026 · 10 min read'},
+    {s:'mejores-rutas-correr-malaga',t:'10 Best Running Routes in Malaga',c:'rutas',d:'Paseo Maritimo, Montes de Malaga and coastal circuits.',m:'19 Feb 2026 · 9 min read'},
+    {s:'carreras-trail-principiantes',t:'10 Best Trail Races for Beginners',c:'carreras',d:'Accessible races in Spain for getting started in trail.',m:'22 Feb 2026 · 9 min read'},
+    {s:'empezar-trail-running',t:'How to Start Trail Running',c:'trail',d:'Technique, gear and first steps for running in the mountains.',m:'23 Feb 2026 · 11 min read'},
+    {s:'diferencias-trail-vs-asfalto',t:'Trail vs Road Running: Differences & Benefits',c:'trail',d:'Biomechanics, gear and training based on the surface.',m:'22 Feb 2026 · 9 min read'},
+    {s:'salomon-speedcross-6-vs-hoka-speedgoat-6',t:'Salomon Speedcross 6 vs Hoka Speedgoat 6',c:'trail',d:'Two top trail shoes: extreme grip vs cushioning.',m:'21 Feb 2026 · 10 min read'},
+    {s:'beneficios-correr-en-grupo',t:'7 Benefits of Group Running',c:'comunidad',d:'Motivation, safety and performance: why running with others is better.',m:'18 Feb 2026 · 7 min read'}
+  ];
+
+  /* ── Read category from URL ── */
+  var params = new URLSearchParams(window.location.search);
+  var cat = params.get('cat') || '';
+  var catInfo = CATS[cat];
+
+  if(!catInfo){
+    /* Show all categories */
+    document.getElementById('catIcon').textContent = '📂';
+    document.getElementById('catName').textContent = 'Running';
+    document.getElementById('catDesc').textContent = 'Select a category to explore articles.';
+    document.getElementById('pageTitle').textContent = 'Categories | Blog CorrerJuntos';
+    document.getElementById('breadCat').textContent = 'Categories';
+
+    var grid = document.getElementById('grid');
+    grid.style.gridTemplateColumns = 'repeat(auto-fill,minmax(200px,1fr))';
+    Object.keys(CATS).forEach(function(k){
+      var c = CATS[k];
+      var count = DB.filter(function(a){ return a.c === k; }).length;
+      if(count === 0) return;
+      var card = document.createElement('a');
+      card.href = '/blog/en/categoria/?cat=' + k;
+      card.className = 'article-card';
+      card.style.cssText = 'text-align:center;padding:32px 20px';
+      card.innerHTML = '<div style="font-size:2.5rem;margin-bottom:12px">'+c.icon+'</div>' +
+        '<h2 style="font-size:1rem;margin-bottom:6px">'+c.name+'</h2>' +
+        '<p style="font-size:.8rem;color:#64748b">'+count+' articles</p>';
+      grid.appendChild(card);
+    });
+    document.getElementById('catCount').textContent = Object.keys(CATS).length;
+    document.querySelector('.cat-count').innerHTML = '<span>'+Object.keys(CATS).length+'</span> categories';
+    document.querySelector('.other-cats').style.display = 'none';
+    return;
+  }
+
+  /* ── Set page info ── */
+  document.getElementById('catIcon').textContent = catInfo.icon;
+  document.getElementById('catName').textContent = catInfo.name;
+  document.getElementById('catDesc').textContent = catInfo.desc;
+  document.getElementById('breadCat').textContent = catInfo.name;
+  document.getElementById('pageTitle').textContent = catInfo.name + ' | Blog CorrerJuntos';
+  document.getElementById('metaDesc').setAttribute('content', catInfo.desc);
+
+  /* Schema */
+  document.getElementById('schemaLD').textContent = JSON.stringify({
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name": catInfo.name + " — Blog CorrerJuntos",
+    "description": catInfo.desc,
+    "url": "https://www.correrjuntos.com/blog/en/categoria/?cat=" + cat,
+    "inLanguage": "en",
+    "breadcrumb":{
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.correrjuntos.com/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/en/"},
+        {"@type":"ListItem","position":3,"name":catInfo.name}
+      ]
+    }
+  });
+
+  /* ── Filter articles ── */
+  var articles = DB.filter(function(a){ return a.c === cat; });
+  document.getElementById('catCount').textContent = articles.length;
+
+  /* ── Build cards ── */
+  var grid = document.getElementById('grid');
+  articles.forEach(function(a){
+    var enSlug = SLUG[a.s] || a.s;
+    var card = document.createElement('a');
+    card.href = '/blog/en/' + enSlug;
+    card.className = 'article-card';
+    card.innerHTML = '<div class="card-img"><span class="card-emoji">'+catInfo.icon+'</span></div>' +
+      '<div class="card-body">' +
+        '<span class="category '+catInfo.badge+'">'+catInfo.name+'</span>' +
+        '<h2>'+a.t+'</h2>' +
+        '<p>'+a.d+'</p>' +
+        '<div class="card-meta"><span class="meta">'+a.m+'</span><span class="card-arrow">Read →</span></div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  /* ── Other categories ── */
+  var pills = document.getElementById('otherCats');
+  Object.keys(CATS).forEach(function(k){
+    var c = CATS[k];
+    var count = DB.filter(function(a){ return a.c === k; }).length;
+    if(count === 0) return;
+    var pill = document.createElement('a');
+    pill.href = '/blog/en/categoria/?cat=' + k;
+    pill.className = 'cat-pill' + (k === cat ? ' current' : '');
+    pill.textContent = c.icon + ' ' + c.name + ' (' + count + ')';
+    pills.appendChild(pill);
+  });
+
+})();
+</script>
+<script src="/blog/enhance.js" defer></script>
+</body>
+</html>

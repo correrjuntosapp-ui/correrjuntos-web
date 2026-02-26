@@ -83,6 +83,14 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Calculadora de Ritmos -->
+  <url>
+    <loc>https://www.correrjuntos.com/calculadora/</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- 404 -->
   <url>
     <loc>https://www.correrjuntos.com/404</loc>

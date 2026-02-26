@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Jose Marquez">
+<title>Running Power: What It Is, How to Measure It and How to Train with Watts | CorrerJuntos</title>
+<meta name="description" content="Complete guide to running power: what watts are, how to measure them (Stryd, Garmin, COROS), power zones, FTP, W/kg and how to train with power to improve.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="running power, watts running, stryd, train with power running, FTP running, power zones running, running power meter, garmin running power, coros running power">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="canonical" href="https://www.correrjuntos.com/blog/en/running-power">
+<link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/potencia-en-running">
+<link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/potencia-en-running">
+<link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-power">
+<meta property="og:title" content="Running Power: What It Is, How to Measure It and How to Train with Watts">
+<meta property="og:description" content="Complete guide to running power: watts, devices, power zones, FTP and how to use power to train and race better.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/en/running-power">
+<meta property="og:image" content="https://www.correrjuntos.com/icons/og-image.png?v=2">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@CorrerJuntos">
+<meta name="twitter:title" content="Running Power: Training with Watts">
+<meta name="twitter:description" content="Watts, FTP, power zones, Stryd, Garmin and COROS. Everything you need to know about training with power in running.">
+<meta name="twitter:image" content="https://www.correrjuntos.com/icons/og-image.png?v=2">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Running Power: What It Is, How to Measure It and How to Train with Watts",
+      "description": "Complete guide to running power: what watts are, how to measure them (Stryd, Garmin, COROS), power zones, FTP, W/kg and how to train with power to improve.",
+      "url": "https://www.correrjuntos.com/blog/en/running-power",
+      "datePublished": "2026-02-23",
+      "dateModified": "2026-02-23",
+      "author": {
+        "@type": "Person",
+        "name": "Jos&eacute; M&aacute;rquez",
+        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+        "jobTitle": "Founder and Running Editor",
+        "sameAs": [
+          "https://www.strava.com/athletes/correrjuntos",
+          "https://www.instagram.com/correrjuntosapp/",
+          "https://x.com/correrjuntosapp"
+        ]
+      },
+      "publisher": {"@type": "Organization", "name": "CorrerJuntos", "logo": {"@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png"}},
+      "inLanguage": "en",
+      "image":"https://www.correrjuntos.com/icons/og-image.png?v=2"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
+        {"@type": "ListItem", "position": 3, "name": "Running Power"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is running power and what is it used for?", "acceptedAnswer": {"@type": "Answer", "text": "Running power is the amount of energy you generate while running, measured in watts (W). It represents the mechanical work you perform with each stride. Unlike pace, which is affected by hills, wind or terrain, power reflects your actual effort regardless of external conditions. It is used to precisely manage effort, especially in races with elevation changes or variable weather conditions."}},
+        {"@type": "Question", "name": "Do I need a special device to measure running power?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you need a device that estimates or measures power. The main options are: a dedicated foot pod like Stryd (the market reference), a watch with native power like COROS or Polar, or a data field like Garmin Running Power using a compatible watch with an HRM-Pro Plus sensor. Each option has a different level of accuracy and price."}},
+        {"@type": "Question", "name": "What is the difference between Stryd and watch-estimated power?", "acceptedAnswer": {"@type": "Answer", "text": "Stryd uses a high-precision accelerometer on the foot to directly measure the forces of each stride, and also includes a wind sensor. Watches like Garmin or COROS estimate power through algorithms based on wrist accelerometer data, GPS and barometer. Stryd is more accurate and consistent, especially in windy conditions or uneven terrain, while watch power is a useful but less reliable estimate."}},
+        {"@type": "Question", "name": "How do I find my running FTP?", "acceptedAnswer": {"@type": "Answer", "text": "The most reliable method is to perform a 30-minute test at maximum sustainable effort on flat terrain. Your FTP will be 95% of the average power from those 30 minutes. You can also do a 3-minute + 9-minute test or use a 20-minute test (taking 95% of the average). Stryd and other platforms can also automatically estimate your FTP from your accumulated workouts."}},
+        {"@type": "Question", "name": "Can I train with power using a Garmin watch?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but you need a compatible sensor like the HRM-Pro Plus (chest strap with accelerometer) or the Running Dynamics Pod. With these accessories, you can enable the Garmin Running Power data field on watches in the Forerunner 255 or higher series and fenix/Enduro. The estimate is reasonable for training but less accurate than a dedicated Stryd."}},
+        {"@type": "Question", "name": "Does power replace pace and heart rate?", "acceptedAnswer": {"@type": "Answer", "text": "It does not replace them, it complements them. Power tells you how much energy you produce (external effort), heart rate indicates how your body responds to that effort (internal effort) and pace is the result. The ideal approach is to use all three metrics together: power to manage effort, HR to monitor accumulated fatigue and pace as a result reference. Each one provides different and complementary information."}},
+        {"@type": "Question", "name": "Is it worth buying a Stryd if I am a recreational runner?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your goals. If you simply want to go out and enjoy running, you do not need a power meter. But if you train with structure, want to improve your times and get frustrated when hills or wind ruin your target paces, Stryd will change the way you train. It is especially useful for runners preparing marathons or mountain races, where effort management is critical to the final result."}}
+      ]
+    }
+  ]
+}
+</script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+function loadGA4(){if(document.getElementById('ga4-script'))return;var s=document.createElement('script');s.id='ga4-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-RQYYGNC12T';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-RQYYGNC12T');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
+function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1466415711868158');fbq('track','PageView');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
+</script>
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#0b1220;color:#fff;line-height:1.7}.container{max-width:1000px;margin:0 auto;padding:0 20px}.nav{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto}.nav>a{color:#f97316;text-decoration:none;font-weight:700;font-size:1.1rem}.nav-links{display:flex;gap:4px;font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)}.nav-links a{color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none}.nav-links a:hover{color:#f97316;background:rgba(249,115,22,.12)}.nav-links a.active{color:#fff;background:rgba(249,115,22,.9);font-weight:700}.breadcrumb{padding:16px 0;font-size:.85rem;color:#64748b}.breadcrumb a{color:#f97316;text-decoration:none}.breadcrumb span{margin:0 8px}.hero{text-align:center;padding:60px 20px 40px;background:radial-gradient(ellipse at 30% 0%,rgba(249,115,22,.1),transparent 60%)}.hero h1{font-size:2.2rem;font-weight:900;color:#f97316;margin-bottom:12px;line-height:1.15}.hero p{font-size:1.1rem;color:#cbd5e1;max-width:640px;margin:0 auto}.meta{text-align:center;color:#64748b;font-size:.85rem;margin-top:12px}.meta .category{color:#f97316;font-weight:600}.content{padding:40px 0 60px}h2{font-size:1.5rem;font-weight:800;margin:40px 0 16px;color:#fff}h3{font-size:1.15rem;font-weight:700;margin:24px 0 8px;color:#f97316}p{margin-bottom:16px;color:#cbd5e1}ul,ol{margin:0 0 24px 20px}li{margin-bottom:8px;color:#cbd5e1}li strong{color:#fff}.tip{background:rgba(249,115,22,.08);border-left:3px solid #f97316;padding:16px 20px;border-radius:0 12px 12px 0;margin:24px 0}.tip strong{color:#f97316}.shoe-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 24px;margin:16px 0}.shoe-card h3{margin-top:0;font-size:1.05rem}.shoe-card .price-tag{display:inline-block;padding:3px 12px;border-radius:999px;font-size:.85rem;font-weight:700;color:#f97316;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);margin-bottom:10px}.shoe-card .best-for{font-size:.85rem;color:#4ade80;font-weight:600;margin-bottom:8px}table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.85rem}th{background:rgba(249,115,22,.12);color:#f97316;padding:12px;text-align:left;font-weight:700}td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:#cbd5e1}tr:hover td{background:rgba(255,255,255,.02)}.cta-box{text-align:center;margin:48px 0;padding:40px 20px;background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.15);border-radius:24px}.cta-box h2{margin-top:0}.cta-box p{color:#94a3b8;margin-bottom:20px}.cta{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(249,115,22,.25)}.cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(249,115,22,.35)}.related{margin:40px 0 0;padding:24px 0;border-top:1px solid rgba(255,255,255,.06)}.related h2{font-size:1.1rem;margin-bottom:16px}.related-links{display:flex;flex-wrap:wrap;gap:8px}.related-links a{color:#f97316;text-decoration:none;padding:6px 14px;border:1px solid rgba(249,115,22,.2);border-radius:999px;font-size:.85rem;white-space:nowrap;transition:background .2s}.related-links a:hover{background:rgba(249,115,22,.1)}.toc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 24px;margin:0 0 32px}.toc h2{font-size:1rem;margin:0 0 12px;color:#f97316}.toc ul{list-style:none;margin:0;padding:0}.toc li{margin:4px 0}.toc a{color:#94a3b8;text-decoration:none;font-size:.9rem;transition:color .2s}.toc a:hover{color:#f97316}.nl-box{background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.15);border-radius:20px;padding:32px 24px;margin:40px 0;text-align:center}.nl-box h3{color:#f97316;margin:0 0 8px;font-size:1.1rem}.nl-box p{color:#94a3b8;font-size:.9rem;margin-bottom:16px}.nl-form{display:flex;gap:8px;max-width:400px;margin:0 auto}.nl-form input{flex:1;padding:10px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#fff;font-size:.9rem;outline:none}.nl-form input:focus{border-color:rgba(249,115,22,.4)}.nl-form button{padding:10px 20px;border-radius:12px;border:none;background:#f97316;color:#fff;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s}.nl-form button:hover{background:#ea580c}.nl-msg{margin-top:12px;font-size:.85rem;display:none}.nl-ok{color:#4ade80}.nl-err{color:#f87171}.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(11,18,32,.98);border-top:1px solid rgba(255,255,255,.08);padding:16px 20px;z-index:9999;display:none;backdrop-filter:blur(12px)}.cookie-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.cookie-inner p{color:#94a3b8;font-size:.82rem;margin:0;flex:1;min-width:200px}.cookie-inner a{color:#f97316}.cookie-btns{display:flex;gap:8px}.cookie-btns button{padding:8px 18px;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;border:none}.btn-accept{background:#f97316;color:#fff}.btn-reject{background:rgba(255,255,255,.08);color:#94a3b8;border:1px solid rgba(255,255,255,.1) !important}.btn-reject:hover{background:rgba(255,255,255,.12)}@media(max-width:640px){.hero h1{font-size:1.6rem}h2{font-size:1.3rem}table{font-size:.78rem}.nav-links{display:none}.nl-form{flex-direction:column}.cookie-inner{flex-direction:column;text-align:center}}
+@media(max-width:768px){.nav{flex-wrap:wrap;padding:12px 16px}.nav-links{order:3;width:100%;justify-content:center;margin-top:4px}.nav-links a{font-size:.78rem;padding:5px 12px;white-space:nowrap}.nav-auth{margin-left:auto}}
+</style>
+</head>
+<body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
+<nav class="nav">
+  <a href="/">CORRER<b>JUNTOS</b></a>
+  <div class="nav-links">
+    <a href="/cities/">Cities</a>
+    <a href="/blog/" class="active">Blog</a>
+    <a href="/equipamiento/">Gear</a>
+    <a href="/#app">App</a>
+  </div>
+
+  <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
+    <a href="/" style="color:#94a3b8;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Login</a>
+    <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Sign Up</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span>Running Power
+  </div>
+</div>
+
+<div class="hero">
+  <h1>Running Power: What It Is, How to Measure It and How to Train with Watts</h1>
+  <p>Everything you need to know to understand running power: what watts are, how to measure them, which devices to use, training zones, FTP and race-day power strategies.</p>
+  <div class="meta"><span class="category">Training</span> &middot; Feb 23, 2026 &middot; 18 min read</div>
+</div>
+
+<div class="container">
+  <div class="content">
+
+    <nav class="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#que-es">1. What is running power</a></li>
+        <li><a href="#como-se-mide">2. How running power is measured</a></li>
+        <li><a href="#potencia-vs-ritmo-vs-fc">3. Power vs pace vs heart rate</a></li>
+        <li><a href="#metricas-clave">4. Key power metrics</a></li>
+        <li><a href="#dispositivos">5. Devices that measure power</a></li>
+        <li><a href="#stryd">6. Stryd: the reference power meter</a></li>
+        <li><a href="#encontrar-ftp">7. How to find your running FTP</a></li>
+        <li><a href="#zonas-potencia">8. The 5 running power zones</a></li>
+        <li><a href="#entrenar-potencia">9. How to train with power</a></li>
+        <li><a href="#competir-potencia">10. Using power to race</a></li>
+        <li><a href="#cuestas-viento">11. Power on hills and in wind</a></li>
+        <li><a href="#errores">12. Common mistakes when training with power</a></li>
+        <li><a href="#faq">Frequently asked questions</a></li>
+      </ul>
+    </nav>
+
+    <p>Power-based training has transformed professional cycling over the past two decades. Today, that same revolution is reaching the world of running. More and more recreational and elite runners are using watts instead of (or in addition to) pace and heart rate to guide their training and manage their races.</p>
+
+    <p>But running power does not work exactly the same way as in cycling. The devices are different, the metrics have their own nuances and applying it to training requires understanding some particularities. This guide explains everything from scratch: what it is, how to measure it, which device to choose, how to calculate your zones and, most importantly, how to use watts to train better and race smarter.</p>
+
+    <p>If you have ever been frustrated because your target pace fell apart when you hit a hill, or because the wind turned your interval session into incomprehensible suffering, power has the answer. It is not the definitive metric that replaces everything, but it is the missing piece for a complete picture of what happens when you run.</p>
+
+    <!-- SECTION 1 -->
+    <h2 id="que-es">1. What is running power</h2>
+
+    <p>Power, measured in watts (W), represents the amount of mechanical energy you produce per unit of time while running. In simple terms: it is a measure of how much work you are doing in every second of running.</p>
+
+    <p>To understand it better, think of running as an activity where your body produces force against the ground with each stride. That force, combined with the speed at which you apply it, generates power. The faster you run or the steeper the uphill, the more power you need to produce.</p>
+
+    <h3>The basic formula</h3>
+
+    <p>Power (W) = Force (N) x Velocity (m/s). In practice, running devices do not measure power directly like a bicycle power meter (which measures torque at the pedal axle), but rather estimate it using accelerometers, gyroscopes, GPS data, barometer and biomechanical algorithms. That is why we technically speak of estimated power, although the industry and runners simply refer to it as power.</p>
+
+    <h3>Power in cycling vs running</h3>
+
+    <p>In cycling, power is measured directly at the pedal axle or at the cranks: it is a precise mechanical measurement. In running, the measurement is indirect and more complex because there is no fixed point to measure force. The runner interacts with the ground through a much more complex kinetic chain: foot, ankle, knee, hip, torso. That is why running power includes components that do not exist in cycling, such as the energy used in vertical movements of the center of mass (vertical oscillation) or the energy stored and released in tendons (elastic energy).</p>
+
+    <p>This does not mean that running power is less useful. It means that it must be understood in its context and that you should not directly compare running watts with cycling watts. A runner generating 250 W is not equivalent to a cyclist pedaling at 250 W; they are measurements of biomechanically different activities.</p>
+
+    <h3>Why does power matter?</h3>
+
+    <p>Power matters because it is the metric that best reflects your real effort in real time, regardless of external conditions. If you run at 5:00 min/km on flat ground with a tailwind, your effort is one thing. If you run at 5:00 min/km on flat ground into a headwind, your effort is something very different. The pace is the same, but power reveals the difference. This has enormous implications for training and, especially, for racing.</p>
+
+    <!-- SECTION 2 -->
+    <h2 id="como-se-mide">2. How running power is measured</h2>
+
+    <p>There are three main methods for measuring (estimating) running power, each with a different level of accuracy and cost. Understanding how each one works will help you choose the right device for you.</p>
+
+    <h3>Foot pods (foot sensors)</h3>
+
+    <p>Foot pods are small sensors that attach to your shoe and directly measure the forces and accelerations of the foot during each stride. The best-known example is Stryd, which uses high-precision accelerometers and an integrated wind sensor. Being at the point of contact with the ground, they can capture very detailed biomechanical data: ground contact time, leg spring stiffness, form power and, of course, total power.</p>
+
+    <p>The main advantage of foot pods is precision and consistency. By measuring directly at the foot, they do not depend on the GPS signal (which can be erratic in cities or under trees) or on estimates based on wrist movement. The disadvantage is that they are an additional device you need to buy, charge and remember to put on.</p>
+
+    <h3>Watches with native power</h3>
+
+    <p>Some modern GPS watches offer power estimation without the need for external sensors. Brands like COROS, Polar and Apple Watch use the accelerometers and gyroscopes built into the watch, combined with GPS data and barometric altimeter, to estimate power. The accuracy is lower than that of a dedicated foot pod because the watch is on the wrist, not on the foot, and arm movement does not always accurately reflect what is happening in the stride.</p>
+
+    <p>That said, wrist-based power has improved significantly in recent years and is perfectly useful for general training. If you do not want to invest in an additional device and your watch already offers power, you can start familiarizing yourself with the metric at no extra cost.</p>
+
+    <h3>Chest straps with accelerometer</h3>
+
+    <p>The third option is heart rate chest straps that include an accelerometer, such as the Garmin HRM-Pro Plus. These devices measure running dynamics (vertical oscillation, ground contact time, balance) and combine them with watch data to estimate power. The advantage is that the torso is a relatively stable point for measuring movement, and many runners already use a chest strap for heart rate. The disadvantage is that it is still an indirect estimate and they do not measure wind.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Accuracy</th>
+          <th>Cost</th>
+          <th>Measures wind</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Foot pod</strong></td>
+          <td>High</td>
+          <td>220-250 EUR</td>
+          <td>Yes (Stryd)</td>
+          <td>Stryd</td>
+        </tr>
+        <tr>
+          <td><strong>Native watch</strong></td>
+          <td>Medium</td>
+          <td>Included</td>
+          <td>No</td>
+          <td>COROS, Polar</td>
+        </tr>
+        <tr>
+          <td><strong>Chest strap</strong></td>
+          <td>Medium-high</td>
+          <td>100-140 EUR</td>
+          <td>No</td>
+          <td>Garmin HRM-Pro Plus</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION 3 -->
+    <h2 id="potencia-vs-ritmo-vs-fc">3. Power vs pace vs heart rate</h2>
+
+    <p>Each of the three main metrics in running gives you different information about your performance. Understanding what each one measures and what its limitations are is essential for using power correctly.</p>
+
+    <h3>Pace: result, not effort</h3>
+
+    <p>Pace tells you how fast you are moving. It is the most intuitive metric and the one we use to communicate our level: everyone understands what it means to run at 5:00 min/km. But pace has an important limitation: it does not reflect the effort you are making to maintain that speed. Running at 5:00 min/km uphill requires much more effort than doing it on flat ground. The pace is the same, but the physiological demand is completely different.</p>
+
+    <p>Additionally, pace depends on the GPS signal, which can be inaccurate in urban environments, forests or athletics tracks with tight turns. And on technical mountain terrain, pace loses all meaning as an effort guide.</p>
+
+    <h3>Heart rate: internal effort with a delay</h3>
+
+    <p>Heart rate reflects how your cardiovascular system is responding to effort. It is a measure of internal effort, not external. Its great advantage is that it takes into account factors such as heat, accumulated fatigue, altitude or dehydration, things that neither pace nor power directly capture.</p>
+
+    <p>But it has two important problems: delay and variability. HR takes between 30 seconds and 2 minutes to respond to a change in effort. If you start a 1 km interval at full speed, your HR will not reflect the real effort until you are well into it. And HR is influenced by stress, sleep, caffeine, ambient temperature and other factors unrelated to training.</p>
+
+    <h3>Power: external effort in real time</h3>
+
+    <p>Power tells you how much energy you are producing at every instant. It is a measure of external effort that responds immediately to any change: if you speed up, if you slow down, if you go uphill, if the wind hits you. It has no delay, does not depend on ambient temperature and is not affected by whether you slept well or not.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Characteristic</th>
+          <th>Pace</th>
+          <th>Heart rate</th>
+          <th>Power</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>What it measures</strong></td>
+          <td>Speed</td>
+          <td>Internal effort</td>
+          <td>External effort</td>
+        </tr>
+        <tr>
+          <td><strong>Response</strong></td>
+          <td>Instant</td>
+          <td>30s - 2 min delay</td>
+          <td>Instant</td>
+        </tr>
+        <tr>
+          <td><strong>Affected by hills</strong></td>
+          <td>Yes</td>
+          <td>Yes (with delay)</td>
+          <td>Yes (immediate)</td>
+        </tr>
+        <tr>
+          <td><strong>Affected by wind</strong></td>
+          <td>Yes</td>
+          <td>Yes (with delay)</td>
+          <td>Yes (Stryd)</td>
+        </tr>
+        <tr>
+          <td><strong>Affected by heat/fatigue</strong></td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><strong>Useful in mountains</strong></td>
+          <td>Barely</td>
+          <td>Yes</td>
+          <td>Very useful</td>
+        </tr>
+        <tr>
+          <td><strong>Useful in short intervals</strong></td>
+          <td>Yes</td>
+          <td>Barely</td>
+          <td>Yes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <strong>Key tip:</strong> Do not try to replace one metric with another. The ideal combination is to use power as your main effort guide, heart rate as a check on your physiological state and pace as a result reference. All three together give you the complete picture.
+    </div>
+
+    <!-- SECTION 4 -->
+    <h2 id="metricas-clave">4. Key running power metrics</h2>
+
+    <p>Beyond total watts, power-based training introduces a series of metrics that help you understand not only how much energy you produce, but how you produce it. Here are the most important ones.</p>
+
+    <h3>FTP (Functional Threshold Power)</h3>
+
+    <p>FTP is the maximum power you can sustain for approximately one hour. It is your functional threshold and the cornerstone of all power-based training, because your training zones are calculated from it. If your FTP is 280 W, that means in a one-hour race at maximum sustainable effort, your average power would be around 280 W. It is the power equivalent of the lactate threshold or threshold pace.</p>
+
+    <h3>W/kg (watts per kilogram)</h3>
+
+    <p>Absolute power (total watts) does not tell you much if you do not normalize it by body weight. An 80 kg runner generating 300 W is not making the same relative effort as a 60 kg runner generating 300 W. W/kg allows you to compare your level with other runners regardless of weight. Reference FTP/kg values in running:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>FTP W/kg (men)</th>
+          <th>FTP W/kg (women)</th>
+          <th>Approx. 10K pace</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Beginner</strong></td>
+          <td>2.8 - 3.2</td>
+          <td>2.4 - 2.8</td>
+          <td>> 55 min</td>
+        </tr>
+        <tr>
+          <td><strong>Intermediate</strong></td>
+          <td>3.2 - 3.8</td>
+          <td>2.8 - 3.4</td>
+          <td>45 - 55 min</td>
+        </tr>
+        <tr>
+          <td><strong>Advanced</strong></td>
+          <td>3.8 - 4.4</td>
+          <td>3.4 - 3.9</td>
+          <td>38 - 45 min</td>
+        </tr>
+        <tr>
+          <td><strong>Competitive</strong></td>
+          <td>4.4 - 5.0</td>
+          <td>3.9 - 4.5</td>
+          <td>33 - 38 min</td>
+        </tr>
+        <tr>
+          <td><strong>Elite</strong></td>
+          <td>> 5.0</td>
+          <td>> 4.5</td>
+          <td>&lt; 33 min</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Form Power</h3>
+
+    <p>Form Power is the power that is "lost" in maintaining posture and performing the vertical movements of the body while running. It is the energy that does not convert into horizontal displacement. An efficient runner has a low Form Power relative to their total power. Typical values are between 60 and 80 W. If your Form Power is high (for example, 90-100 W), you probably have excessive vertical oscillation or room for improvement in your running technique.</p>
+
+    <h3>Leg Spring Stiffness</h3>
+
+    <p>This metric represents the ability of your legs to behave like an efficient spring: absorbing energy on impact and returning it during propulsion. It is measured in kN/m (kilonewtons per meter). Greater stiffness indicates that your tendons and muscles are more efficient at storing and releasing elastic energy. Typical values range from 8 to 14 kN/m, with elite runners usually having higher values.</p>
+
+    <h3>Normalized Power (NP)</h3>
+
+    <p>The average power of a session can be misleading if you have had many intensity changes. Normalized Power adjusts that figure to reflect the real metabolic cost of those changes. It is especially useful in interval workouts, fartlek or races with a rolling profile. If your average power is 250 W but your normalized power is 275 W, it means the intensity spikes had a greater physiological cost than the average suggests.</p>
+
+    <h3>IF (Intensity Factor)</h3>
+
+    <p>IF is the ratio between your normalized power and your FTP. An IF of 1.00 means you trained right at your threshold. Reference values: easy run 0.65-0.75, threshold 0.90-1.00, intervals 1.00-1.15, sprint > 1.15. It is a quick way to evaluate the intensity of any session without looking at absolute watts.</p>
+
+    <h3>TSS (Training Stress Score)</h3>
+
+    <p>TSS combines the intensity (IF) and duration of the session to give you a single number representing the training load. An easy one-hour run can generate a TSS of 50-60, while an all-out 10K race can be a TSS of 100-120. It is the metric that helps you manage your weekly load and avoid overtraining or undertraining.</p>
+
+    <!-- SECTION 5 -->
+    <h2 id="dispositivos">5. Devices that measure running power</h2>
+
+    <p>The running power device market has grown enormously in recent years. Here is a detailed analysis of the main options available, with their strengths and weaknesses.</p>
+
+    <h3>Stryd</h3>
+
+    <p>Stryd is the reference device for running power. It is a foot pod that clips onto the shoelace and uses high-precision accelerometers to measure power on each stride. Its standout feature is the integrated wind sensor, which adjusts power data based on aerodynamic resistance. In addition to power, it measures cadence, vertical oscillation, ground contact time, Form Power, Leg Spring Stiffness and many more running technique metrics.</p>
+
+    <p>Stryd connects via Bluetooth and ANT+ to most GPS watches on the market (Garmin, COROS, Polar, Apple Watch, Suunto). Its own app includes power-based training plans, race analysis and a race pace calculator based on your power profile. It is the most complete option but also the most expensive.</p>
+
+    <h3>Garmin Running Power</h3>
+
+    <p>Garmin offers running power through a data field that installs on compatible watches (Forerunner 255, 265, 955, 965, fenix 7/8, Enduro). It requires an accessory with an accelerometer such as the HRM-Pro Plus, HRM-Run or Running Dynamics Pod to work. The power estimate combines data from the accessory accelerometer with GPS and barometer from the watch. It is a reasonable option if you already have a Garmin watch and an HRM-Pro Plus. If you want to dig deeper into the <a href="/blog/garmin-forerunner-55-review" style="color:#f97316">Garmin ecosystem, check out our Forerunner 55 review</a>.</p>
+
+    <h3>COROS</h3>
+
+    <p>COROS watches (PACE 3, APEX 2, VERTIX 2S) offer native running power without the need for additional accessories. They use the watch's internal sensors (wrist accelerometer, barometer, GPS) to estimate power. It is the simplest and most affordable way to access power data if you already have a COROS watch. Accuracy is lower than Stryd but sufficient for general training and to familiarize yourself with the concept. You can see our full analysis in the <a href="/blog/coros-pace-3-review" style="color:#f97316">COROS PACE 3 review</a>.</p>
+
+    <h3>Polar</h3>
+
+    <p>Polar was one of the first brands to integrate native running power into their watches (Vantage V, Grit X, Pacer Pro). Their algorithm uses data from the wrist accelerometer, GPS and barometer. The distinctive feature of Polar is that their ecosystem includes Running Index and performance tests that integrate with power data to offer a more complete analysis of the runner's fitness.</p>
+
+    <h3>Apple Watch</h3>
+
+    <p>Since watchOS 9, the Apple Watch offers estimated running power from its motion sensors. Integration with third-party apps like WorkOutDoors allows you to use power as a data field during training. It is not the most accurate option, but for the millions of Apple Watch users who run, it is an accessible entry into the world of watts.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Device</th>
+          <th>Type</th>
+          <th>Approx. price</th>
+          <th>Accuracy</th>
+          <th>Wind</th>
+          <th>Extra metrics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Stryd</strong></td>
+          <td>Foot pod</td>
+          <td>~230 EUR</td>
+          <td>Very high</td>
+          <td>Yes</td>
+          <td>20+ metrics</td>
+        </tr>
+        <tr>
+          <td><strong>Garmin RP</strong></td>
+          <td>CIQ + HRM</td>
+          <td>~130 EUR*</td>
+          <td>Medium-high</td>
+          <td>No</td>
+          <td>Running dynamics</td>
+        </tr>
+        <tr>
+          <td><strong>COROS</strong></td>
+          <td>Native watch</td>
+          <td>Included</td>
+          <td>Medium</td>
+          <td>No</td>
+          <td>Basic dynamics</td>
+        </tr>
+        <tr>
+          <td><strong>Polar</strong></td>
+          <td>Native watch</td>
+          <td>Included</td>
+          <td>Medium</td>
+          <td>No</td>
+          <td>Running Index</td>
+        </tr>
+        <tr>
+          <td><strong>Apple Watch</strong></td>
+          <td>Native watch</td>
+          <td>Included</td>
+          <td>Low-medium</td>
+          <td>No</td>
+          <td>Limited</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:.8rem;color:#64748b">*Price of the HRM-Pro Plus; requires a compatible Garmin watch.</p>
+
+    <!-- SECTION 6 -->
+    <h2 id="stryd">6. Stryd: the reference power meter</h2>
+
+    <p>If you take power-based running training seriously, Stryd is the device you should consider. It is not the cheapest, but it is the one that offers the most accurate, consistent and complete data on the market.</p>
+
+    <div class="shoe-card">
+      <div class="best-for">Featured product - Running power meter</div>
+      <h3>Stryd Running Power Meter</h3>
+      <div class="price-tag">~230 EUR</div>
+      <p>Foot pod with precision accelerometer and integrated wind sensor. Compatible with Garmin, COROS, Polar, Suunto, Apple Watch and virtually any GPS watch via Bluetooth and ANT+.</p>
+      <p><strong>Technical specifications:</strong></p>
+      <ul>
+        <li><strong>Weight:</strong> 8 grams (virtually imperceptible)</li>
+        <li><strong>Battery:</strong> Rechargeable via USB-C, up to 20 hours of continuous use</li>
+        <li><strong>Connectivity:</strong> Bluetooth 5.0 + ANT+ (simultaneous dual connection)</li>
+        <li><strong>Water resistance:</strong> IP67 (rain, puddles, mud)</li>
+        <li><strong>Metrics:</strong> Power, cadence, ground contact time, vertical oscillation, Form Power, Leg Spring Stiffness, vertical ratio, GS impact, air (wind power)</li>
+        <li><strong>Wind sensor:</strong> Yes (exclusive on the market)</li>
+        <li><strong>App:</strong> Stryd app with training plans, race analysis and Race Power Calculator</li>
+        <li><strong>Compatibility:</strong> Garmin, COROS, Polar, Suunto, Apple Watch, Amazfit, Wahoo</li>
+        <li><strong>Placement:</strong> Clip on the shoelace (included)</li>
+      </ul>
+      <p><strong>Main advantages:</strong> Exclusive wind sensor, market-leading accuracy, 20+ biomechanical metrics, complete app with Race Power Calculator, integrated training plans, weighs only 8g, long battery life.</p>
+      <p><strong>Limitations:</strong> High price, needs a compatible GPS watch to view data in real time, Stryd Membership subscription unlocks advanced features.</p>
+      <p style="text-align:center;margin-top:16px">
+        <a href="https://amzn.to/4hGkP9z" rel="nofollow sponsored noopener" target="_blank" class="cta" style="font-size:.9rem;padding:12px 28px">See price on Amazon</a>
+      </p>
+    </div>
+
+    <div class="tip">
+      <strong>Why Stryd and not watch power?</strong> The key difference is consistency. Stryd always measures with the same method regardless of which watch you use. If you switch from a Garmin to a COROS, your Stryd power remains the same. Additionally, the wind sensor is exclusive: no watch on the market can adjust power based on wind, and on windy days the difference can be 20-30 W.
+    </div>
+
+    <!-- SECTION 7 -->
+    <h2 id="encontrar-ftp">7. How to find your running FTP</h2>
+
+    <p>Your FTP (Functional Threshold Power) is the most important piece of data for power-based training because all your training zones are derived from it. There are several methods to calculate it, from formal tests to automatic estimates.</p>
+
+    <h3>30-minute test (classic method)</h3>
+
+    <p>This is the most reliable and most widely used test. It consists of running 30 minutes at the maximum effort you can sustain consistently, on flat terrain without wind. Your FTP will be 95% of the average power from those 30 minutes.</p>
+
+    <ol>
+      <li><strong>Warm-up:</strong> 15-20 minutes of easy jogging with 3-4 progressive strides of 20 seconds</li>
+      <li><strong>Test:</strong> 30 minutes at maximum sustainable effort. Start conservatively (it is better to build up than to blow up at minute 10)</li>
+      <li><strong>Cool-down:</strong> 10 minutes of easy jogging</li>
+      <li><strong>Calculation:</strong> Average power from the 30 minutes x 0.95 = your FTP</li>
+    </ol>
+
+    <p><strong>Example:</strong> If your average power over the 30 minutes is 290 W, your FTP would be 290 x 0.95 = 275 W.</p>
+
+    <h3>3 + 9 minute test (Stryd)</h3>
+
+    <p>Stryd recommends a two-effort protocol: a 3-minute all-out effort followed by a 30-minute recovery, and then a 9-minute all-out effort. Stryd's algorithm combines both efforts to calculate your FTP more accurately than a single test, because it captures both your anaerobic capacity and your aerobic threshold.</p>
+
+    <h3>20-minute test</h3>
+
+    <p>Similar to the 30-minute test but shorter. You run 20 minutes at maximum sustainable effort and your FTP is 95% of the average power. It is more accessible for runners not accustomed to long efforts, but can slightly overestimate the real FTP because 20 minutes allows maintaining a slightly higher intensity than threshold.</p>
+
+    <h3>Automatic estimation</h3>
+
+    <p>Platforms like Stryd, TrainingPeaks and WKO5 can automatically estimate your FTP from your accumulated workouts. They analyze your best efforts at different durations and build a power-duration curve from which they extract the threshold. It is less precise than a formal test but has the advantage of not requiring a specific effort and continuously updating.</p>
+
+    <div class="tip">
+      <strong>How often to retest:</strong> Ideally, you should retest your FTP every 6-8 weeks, or after a significant training block. If you notice your zones feel too easy or too hard, it is a sign that your FTP has changed and you need to update the value.
+    </div>
+
+    <!-- SECTION 8 -->
+    <h2 id="zonas-potencia">8. The 5 running power zones</h2>
+
+    <p>Once you know your FTP, you can calculate your power zones. These zones allow you to structure your training according to the desired intensity, in the same way as <a href="/blog/entrenamiento-por-zonas-running" style="color:#f97316">heart rate zones</a>, but with the advantage of instant response and independence from external factors.</p>
+
+    <p>The most widely used system in running is the 5-zone model, similar to Andrew Coggan's model adapted from cycling. Each zone has a specific physiological purpose and is expressed as a percentage of FTP.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Zone</th>
+          <th>Name</th>
+          <th>% of FTP</th>
+          <th>Feel</th>
+          <th>Physiological goal</th>
+          <th>Typical duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Z1</strong></td>
+          <td>Active recovery</td>
+          <td>&lt; 80%</td>
+          <td>Very easy, conversational</td>
+          <td>Regeneration, blood flow</td>
+          <td>30-60 min</td>
+        </tr>
+        <tr>
+          <td><strong>Z2</strong></td>
+          <td>Endurance / Base</td>
+          <td>80-90%</td>
+          <td>Comfortable, controlled</td>
+          <td>Aerobic base, metabolic efficiency</td>
+          <td>45-150 min</td>
+        </tr>
+        <tr>
+          <td><strong>Z3</strong></td>
+          <td>Tempo / Threshold</td>
+          <td>90-100%</td>
+          <td>Demanding but sustainable</td>
+          <td>Lactate threshold, efficiency</td>
+          <td>20-60 min</td>
+        </tr>
+        <tr>
+          <td><strong>Z4</strong></td>
+          <td>Intervals / VO2max</td>
+          <td>100-115%</td>
+          <td>Hard, heavy breathing</td>
+          <td>VO2max, maximum aerobic capacity</td>
+          <td>3-8 min (reps)</td>
+        </tr>
+        <tr>
+          <td><strong>Z5</strong></td>
+          <td>Sprint / Anaerobic</td>
+          <td>&gt; 115%</td>
+          <td>Maximum, unsustainable</td>
+          <td>Neuromuscular power, speed</td>
+          <td>30s-2 min (reps)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Zone 1: Active recovery (&lt; 80% FTP)</h3>
+
+    <p>This is the zone for recovery runs. The goal is to move your legs without accumulating fatigue. You should be able to hold a full conversation without difficulty. Many runners discover when training with power that what they considered "easy jogging" was actually in Zone 2 or even Zone 3. If your FTP is 280 W, this zone ends at 224 W.</p>
+
+    <h3>Zone 2: Endurance / Aerobic base (80-90% FTP)</h3>
+
+    <p>The zone where you should spend most of your weekly volume: the famous base training. It is a comfortable effort you can sustain for hours and that develops metabolic efficiency, capillarization and fat oxidation capacity. It is the zone for the long run and for truly easy days. With an FTP of 280 W, this zone ranges from 224 to 252 W.</p>
+
+    <h3>Zone 3: Tempo / Threshold (90-100% FTP)</h3>
+
+    <p>This is where quality work begins. It is the half marathon pace for experienced runners, or slightly slower than lactate threshold. You can speak in short sentences but cannot maintain a conversation. Sustained tempo workouts (20-40 minutes in this zone) are powerful stimuli for improving your threshold. With an FTP of 280 W, the zone ranges from 252 to 280 W.</p>
+
+    <h3>Zone 4: Intervals / VO2max (100-115% FTP)</h3>
+
+    <p>The zone for classic interval workouts: 1000s, 1200s, 1600s at 5K-10K pace. It is a hard effort that you can only sustain between 3 and 8 minutes continuously. This is where you develop your maximum aerobic capacity (VO2max) and learn to tolerate muscular acidosis. With an FTP of 280 W, this zone ranges from 280 to 322 W.</p>
+
+    <h3>Zone 5: Sprint / Anaerobic (&gt; 115% FTP)</h3>
+
+    <p>Short, maximum efforts: hill sprints, 200-400 meter repeats, finishing kicks. You can only maintain this intensity between 30 seconds and 2 minutes. It develops neuromuscular power, top speed and anaerobic capacity. With an FTP of 280 W, this zone starts above 322 W.</p>
+
+    <div class="tip">
+      <strong>Practical example:</strong> If your FTP is 280 W, your zones would be: Z1 &lt; 224 W | Z2 224-252 W | Z3 252-280 W | Z4 280-322 W | Z5 > 322 W. Set up these ranges on your watch or in Stryd to see in real time which zone you are in during each workout.
+    </div>
+
+    <!-- SECTION 9 -->
+    <h2 id="entrenar-potencia">9. How to train with power in practice</h2>
+
+    <p>Having the device and knowing your FTP are the prerequisites. Now comes the important part: how to apply power to day-to-day training. Here is the practical guide for using watts in each type of session.</p>
+
+    <h3>Easy runs (Z1-Z2)</h3>
+
+    <p>Set an alert on your watch to notify you if you exceed the upper limit of Zone 2 (90% FTP). The biggest benefit of power on easy runs is that it prevents you from running too fast. It is very common for runners to turn all their easy runs into Zone 3 without realizing it, accumulating unnecessary fatigue. With a power cap, you can ensure that easy days are truly easy.</p>
+
+    <h3>Tempo and threshold (Z3)</h3>
+
+    <p>In tempo workouts, power allows you to maintain consistent intensity regardless of the course profile. If you do 30 minutes of tempo at 265 W, that target holds whether you are on flat ground or on a gentle hill. Your pace will vary (slower going up, faster going down) but your effort will be constant. This is something that neither pace nor HR can offer with the same precision.</p>
+
+    <h3>Intervals (Z4)</h3>
+
+    <p>Intervals are where power really shines. Instead of running each rep at a target pace that may be irrelevant if there are hills or wind, you set a target power range (for example, 290-310 W) and maintain it regardless of conditions. HR does not work well in short intervals because it does not have time to stabilize, but power responds instantly.</p>
+
+    <h3>Long run (Z2 with Z3)</h3>
+
+    <p>The long run is one of the workouts where power adds the most value. You can program the first part in Z2 and the last 20-30 minutes in Z3 to simulate race fatigue, all controlled by watts. Additionally, if your long run has hills, power helps you climb at the correct effort instead of blowing up trying to maintain pace.</p>
+
+    <h3>Weekly planning with TSS</h3>
+
+    <p>TSS (Training Stress Score) allows you to quantify the load of each session and the entire week. A recreational runner who trains 4-5 days per week typically accumulates between 250 and 400 weekly TSS. A competitive runner can reach 500-700 TSS. Power allows you to manage this load precisely, ensuring you load and unload correctly.</p>
+
+    <p>To manage your workouts and metrics in an integrated way, consider using one of the <a href="/blog/mejores-apps-running" style="color:#f97316">best running apps</a> that support power data.</p>
+
+    <!-- SECTION 10 -->
+    <h2 id="competir-potencia">10. Using power to race and set PRs</h2>
+
+    <p>If power is useful in training, in racing it is directly transformative. Managing effort with watts in a race avoids one of the most common mistakes in running: going out too fast and paying for it in the final kilometers.</p>
+
+    <h3>Pacing a 10K</h3>
+
+    <p>In a 10K, you can run at power slightly above your FTP (100-105% FTP) if you are well trained. The strategy is to maintain constant power throughout the race. Your pace may vary depending on the course profile, but your effort will be uniform. This prevents you from arriving at km 8 destroyed because you went out 10 seconds per kilometer faster than you should have.</p>
+
+    <h3>Pacing a half marathon</h3>
+
+    <p>The half marathon is run at around 92-98% of FTP, depending on your level and conditions. It is a sustained high Zone 3 effort. Power allows you to ignore pace in the first kilometers (when you are fresh and tempted to run fast) and maintain an effort you can sustain for the full 21 km.</p>
+
+    <h3>Pacing a marathon</h3>
+
+    <p>The marathon is where power has the greatest impact. The optimal strategy is to run between 85-92% of FTP, depending on your experience and goal. Stryd offers a Race Power Calculator that, based on your power profile and the course profile (including elevation), gives you the target power for each kilometer of the race. This is especially useful in marathons with significant hills.</p>
+
+    <h3>Pacing in trail and mountain races</h3>
+
+    <p>In trail races, power is practically essential for pacing. Pace makes no sense when you alternate 15% climbs with technical descents. Power allows you to climb at the correct intensity without burning out and arrive at the summit with enough reserves to descend well. A pacing mistake on a 5 km climb in an ultra will cost you dearly hours later.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Distance</th>
+          <th>Target % FTP</th>
+          <th>Zone</th>
+          <th>Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>5K</strong></td>
+          <td>105-115%</td>
+          <td>Z4</td>
+          <td>Constant effort, slightly above threshold</td>
+        </tr>
+        <tr>
+          <td><strong>10K</strong></td>
+          <td>100-105%</td>
+          <td>Z3-Z4</td>
+          <td>Constant power, ignore pace in the first km</td>
+        </tr>
+        <tr>
+          <td><strong>Half marathon</strong></td>
+          <td>92-98%</td>
+          <td>Z3</td>
+          <td>Hold back at the start, maintain even power</td>
+        </tr>
+        <tr>
+          <td><strong>Marathon</strong></td>
+          <td>85-92%</td>
+          <td>High Z2-Low Z3</td>
+          <td>Conserve the first third, stable power throughout</td>
+        </tr>
+        <tr>
+          <td><strong>Ultra/Trail</strong></td>
+          <td>70-85%</td>
+          <td>Z2</td>
+          <td>Manage climbs, never exceed Z3 on uphills</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION 11 -->
+    <h2 id="cuestas-viento">11. Power on hills and in wind</h2>
+
+    <p>Hills and wind are the two situations where power demonstrates its superiority over pace as a guiding metric. Understanding how they affect your watts will give you an enormous tactical advantage.</p>
+
+    <h3>Uphills</h3>
+
+    <p>When you run uphill, your power increases to maintain speed. If you try to maintain the same pace as on flat ground, your power will spike and you will accumulate disproportionate fatigue. The correct strategy with power is to maintain the same watts as on flat ground, accepting that your pace will be slower. If your race target is to hold 260 W, those 260 W are maintained both on flat ground and on the climb. Your pace will drop from 5:00 to perhaps 5:45 min/km on the hill, but your effort will be identical.</p>
+
+    <p>In practice, many coaches recommend slightly increasing power on short climbs (up to 5% extra) and slightly reducing it on long climbs (5% less), because the metabolic cost of climbing is slightly different from running on flat ground.</p>
+
+    <h3>Downhills</h3>
+
+    <p>On downhills the opposite occurs: you can maintain fast paces with very little power because gravity works in your favor. The temptation is to take advantage and go all out, but the eccentric muscular impact of running downhill at high speed generates cumulative muscle damage that you pay for kilometers later. Power helps you moderate the descent: if your power drops below 70% of FTP, you are probably using the downhills more to rest than to advance, and you could slightly increase your downhill pace.</p>
+
+    <h3>Headwind</h3>
+
+    <p>Running into the wind is like running uphill: you need more power to maintain the same pace. A 15-20 km/h headwind can increase your power demand by 15 to 30 W to maintain the same pace. If you only look at pace, you will try to maintain your target and end up making an excessive effort. With power (especially with Stryd and its wind sensor), you maintain your watt target and accept that the pace will be slower.</p>
+
+    <h3>Tailwind</h3>
+
+    <p>With a tailwind, you need less power to maintain the same pace. If you only look at pace, you will feel comfortable and maintain your target, but you will be underestimating your real capacity. With power, you can maintain your watt target and take advantage of the resulting faster pace. It is a subtle difference but one that in a 42 km race can mean minutes.</p>
+
+    <div class="tip">
+      <strong>Important note:</strong> Only Stryd includes a wind sensor. Other power devices do not detect aerodynamic resistance, so their power measurement in windy conditions will be less accurate. If you regularly run in windy areas, this is the strongest argument in favor of Stryd.
+    </div>
+
+    <!-- SECTION 12 -->
+    <h2 id="errores">12. Common mistakes when training with power</h2>
+
+    <p>Running power is a powerful tool, but like any tool, it can be misused. These are the most common mistakes runners make when they start training with watts.</p>
+
+    <h3>Mistake 1: Obsessing over absolute watts</h3>
+
+    <p>Comparing your watts with other runners is tempting but useless if you do not normalize by weight. An 85 kg runner generating 310 W is not more powerful (in relative terms) than a 65 kg runner generating 280 W. What matters is your W/kg, not absolute watts. Additionally, different devices can give different readings for the same effort, so comparing Stryd watts with COROS watts makes no sense.</p>
+
+    <h3>Mistake 2: Switching devices and keeping the same zones</h3>
+
+    <p>If you go from using the native power on your COROS to a Stryd (or vice versa), you need to recalculate your FTP and zones with the new device. Each device uses different algorithms and sensors, and the power reading can vary between 5% and 15%. Your zones should always be based on the device you are currently using.</p>
+
+    <h3>Mistake 3: Ignoring heart rate</h3>
+
+    <p>Power does not replace heart rate; it complements it. HR tells you how your body is responding to the effort. If you are generating your usual Z2 power but your HR is 10-15 bpm higher than normal, that is telling you something: perhaps you are fatigued, dehydrated, getting sick or overtrained. Ignoring that signal because the watts are where they should be is a mistake.</p>
+
+    <h3>Mistake 4: Not updating your FTP</h3>
+
+    <p>Your FTP changes with training. If you do not retest it regularly (every 6-8 weeks), your zones stop being accurate. If you have improved and your FTP has gone up, you will be training at a lower relative intensity than you think. If you have been injured or lost fitness, your zones will be too high and you will accumulate excessive fatigue.</p>
+
+    <h3>Mistake 5: Watching instantaneous power</h3>
+
+    <p>Instantaneous power fluctuates enormously from one second to the next: it can go from 200 to 350 W and back down in a matter of seconds. Trying to maintain a specific watt by watching the instant reading is stressful and impossible. Set your watch to display the average power from the last 3 or 10 seconds (3s rolling average or 10s rolling average). It is much more useful and manageable.</p>
+
+    <h3>Mistake 6: Using power without understanding the context</h3>
+
+    <p>Power is a metric of external effort, but it does not capture everything. It does not tell you if you are running with good technique, if you are well hydrated, if you slept enough or if the temperature is affecting your performance. Use it as one more piece of the puzzle, not as the absolute truth. Rate of perceived exertion (RPE) is still a valuable data point that you should record alongside your watts.</p>
+
+    <h3>Mistake 7: Trying to start with everything at once</h3>
+
+    <p>You do not need to master Form Power, Leg Spring Stiffness, TSS, IF and NP from day one. Start with the basics: calculate your FTP, set up your zones and try to run your easy runs below the Z2 upper limit. When you feel comfortable with that (give it at least a month), start using power in quality sessions. And only when you have been at it for several months, dive into advanced metrics and TSS-based planning.</p>
+
+    <div class="tip">
+      <strong>Golden rule for beginners:</strong> During the first month with power, simply record the data without trying to follow any watt target. Analyze your usual workouts and observe which zones you are actually running in. Many runners are surprised to discover that their easy days are not as easy as they thought.
+    </div>
+
+    <!-- CTA -->
+
+<!-- Share Buttons -->
+<div class="share-article" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:32px 0;padding:20px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.15);border-radius:16px">
+  <span style="color:#94a3b8;font-size:.85rem;font-weight:600">Share:</span>
+  <a href="#" onclick="event.preventDefault();window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(document.title+' '+location.href),'_blank','width=600,height=400')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#25D366;color:#fff;border-radius:999px;font-size:.8rem;font-weight:700;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.682-1.228A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.204 0-4.243-.7-5.912-1.892l-.413-.297-2.783.73.744-2.717-.326-.436A9.962 9.962 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+    WhatsApp
+  </a>
+  <a href="#" onclick="event.preventDefault();window.open('https://x.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href)+'&via=CorrerJuntos','_blank','width=600,height=400')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#1e293b;color:#fff;border-radius:999px;font-size:.8rem;font-weight:700;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <svg style="width:14px;height:14px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    X
+  </a>
+  <a href="#" onclick="event.preventDefault();navigator.clipboard.writeText(location.href).then(function(){var b=this;b.textContent='Copied!';setTimeout(function(){b.innerHTML='Copy link'},2000)}.bind(this))" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(255,255,255,.08);color:#cbd5e1;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:.8rem;font-weight:600;text-decoration:none;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Copy link</a>
+</div>
+<div class="cta-box">
+      <h2>Start training with power</h2>
+      <p>Stryd is the most accurate and complete running power meter on the market. Wind sensor, 20+ metrics, app with training plans and Race Power Calculator. Weighs only 8 grams.</p>
+      <a href="https://amzn.to/4hGkP9z" rel="nofollow sponsored noopener" target="_blank" class="cta">See Stryd on Amazon</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq">Frequently asked questions about running power</h2>
+
+    <div class="shoe-card">
+      <h3>What is running power and what is it used for?</h3>
+      <p>Running power is the amount of energy you generate while running, measured in watts (W). It represents the mechanical work you perform with each stride. Unlike pace, which is affected by hills, wind or terrain, power reflects your actual effort regardless of external conditions. It is used to precisely manage effort, especially in races with elevation changes or variable weather conditions.</p>
+    </div>
+
+    <div class="shoe-card">
+      <h3>Do I need a special device to measure running power?</h3>
+      <p>Yes, you need a device that estimates or measures power. The main options are: a dedicated foot pod like Stryd (the market reference), a watch with native power like COROS or Polar, or a data field like Garmin Running Power using a compatible watch with an HRM-Pro Plus sensor. Each option has a different level of accuracy and price.</p>
+    </div>
+
+    <div class="shoe-card">
+      <h3>What is the difference between Stryd and watch-estimated power?</h3>
+      <p>Stryd uses a high-precision accelerometer on the foot to directly measure the forces of each stride, and also includes a wind sensor. Watches like Garmin or COROS estimate power through algorithms based on wrist accelerometer data, GPS and barometer. Stryd is more accurate and consistent, especially in windy conditions or uneven terrain, while watch power is a useful but less reliable estimate.</p>
+    </div>
+
+    <div class="shoe-card">
+      <h3>How do I find my running FTP?</h3>
+      <p>The most reliable method is to perform a 30-minute test at maximum sustainable effort on flat terrain. Your FTP will be 95% of the average power from those 30 minutes. You can also do a 3-minute + 9-minute test or use a 20-minute test (taking 95% of the average). Stryd and other platforms can also automatically estimate your FTP from your accumulated workouts.</p>
+    </div>
+
+    <div class="shoe-card">
+      <h3>Can I train with power using a Garmin watch?</h3>
+      <p>Yes, but you need a compatible sensor like the HRM-Pro Plus (chest strap with accelerometer) or the Running Dynamics Pod. With these accessories, you can enable the Garmin Running Power data field on watches in the Forerunner 255 or higher series and fenix/Enduro. The estimate is reasonable for training but less accurate than a dedicated Stryd.</p>
+    </div>
+
+    <div class="shoe-card">
+      <h3>Does power replace pace and heart rate?</h3>
+      <p>It does not replace them, it complements them. Power tells you how much energy you produce (external effort), heart rate indicates how your body responds to that effort (internal effort) and pace is the result. The ideal approach is to use all three metrics together: power to manage effort, HR to monitor accumulated fatigue and pace as a result reference. Each one provides different and complementary information.</p>
+    </div>
+
+    <div class="shoe-card">
+      <h3>Is it worth buying a Stryd if I am a recreational runner?</h3>
+      <p>It depends on your goals. If you simply want to go out and enjoy running, you do not need a power meter. But if you train with structure, want to improve your times and get frustrated when hills or wind ruin your target paces, Stryd will change the way you train. It is especially useful for runners preparing marathons or mountain races, where effort management is critical to the final result.</p>
+    </div>
+    <!-- Author Box -->
+    <div class="author-box" style="display:flex;gap:16px;align-items:flex-start;padding:24px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;margin:40px 0">
+      <img src="/icons/autor-carlos-ruiz.svg" alt="Carlos Ruiz" width="64" height="64" loading="lazy" style="border-radius:50%;flex-shrink:0;border:2px solid rgba(249,115,22,.3)">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <a href="/blog/autor/carlos-ruiz" style="color:#fff;font-weight:700;font-size:1rem;text-decoration:none">Carlos Ruiz</a>
+          <span style="font-size:.75rem;padding:2px 8px;background:rgba(249,115,22,.15);color:#f97316;border-radius:6px">Founder</span>
+        </div>
+        <p style="color:#94a3b8;font-size:.85rem;line-height:1.5;margin:0">Runner since 2015. 3 marathons, 15+ half marathons. Founder of CorrerJuntos. I test every product we recommend and run every route we publish.</p>
+        <div style="display:flex;gap:12px;margin-top:8px">
+          <a href="https://www.strava.com/athletes/correrjuntos" target="_blank" rel="noopener" style="color:#64748b;font-size:.8rem;text-decoration:none" title="Strava">Strava</a>
+          <a href="https://www.instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#64748b;font-size:.8rem;text-decoration:none" title="Instagram">Instagram</a>
+          <a href="https://x.com/correrjuntosapp" target="_blank" rel="noopener" style="color:#64748b;font-size:.8rem;text-decoration:none" title="X/Twitter">X/Twitter</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Community CTA -->
+    <div class="cta-box">
+      <h2>Compare your data with other runners</h2>
+      <p>Join running groups and share workouts with runners at your level. Free.</p>
+      <a href="/" class="cta">Find running groups</a>
+      <p style="margin-top:12px;font-size:.85rem;color:#64748b">iOS available &middot; Android coming March 2026</p>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="nl-box">
+      <h3>Get training guides like this one</h3>
+      <p>Running tips, gear reviews and training strategies. No spam, once a week.</p>
+      <form class="nl-form" onsubmit="submitNL(event)">
+        <input type="email" id="nl-email" placeholder="Your email" required aria-label="Your email for newsletter">
+        <button type="submit" id="nl-btn">Subscribe</button>
+      </form>
+      <div id="nl-ok" class="nl-msg nl-ok"><p>You have subscribed successfully.</p></div>
+      <div id="nl-err" class="nl-msg nl-err"><p>Error subscribing. Please try again.</p></div>
+    </div>
+
+    <!-- Related -->
+    <div class="related">
+      <h2>Related articles</h2>
+      <div class="related-links">
+        <a href="/blog/mejores-apps-running">Best running apps</a>
+        <a href="/blog/garmin-forerunner-55-review">Garmin Forerunner 55 review</a>
+        <a href="/blog/coros-pace-3-review">COROS PACE 3 review</a>
+        <a href="/blog/entrenamiento-por-zonas-running">Zone training</a>
+      </div>
+      <h2 style="font-size:1rem;margin-top:16px">Related gear</h2>
+      <div class="related-links">
+        <a href="https://amzn.to/4hGkP9z" rel="nofollow sponsored noopener" target="_blank">Stryd on Amazon</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+async function submitNL(e){e.preventDefault();var email=document.getElementById('nl-email').value.trim(),btn=document.getElementById('nl-btn');if(!email)return;btn.disabled=true;btn.textContent='...';document.getElementById('nl-ok').style.display='none';document.getElementById('nl-err').style.display='none';try{var r=await fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,lang:'en',source:'blog-article'})});if(r.ok||r.status===201){document.getElementById('nl-ok').style.display='block';e.target.style.display='none';}else if(r.status===409){document.getElementById('nl-ok').querySelector('p').textContent='You are already subscribed!';document.getElementById('nl-ok').style.display='block';e.target.style.display='none';}else throw new Error();}catch(err){document.getElementById('nl-err').style.display='block';}finally{btn.disabled=false;btn.textContent='Subscribe';}}
+</script>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <p>We use cookies to improve your experience. See our <a href="/legal/cookies.html">Cookie Policy</a>.</p>
+    <div class="cookie-btns">
+      <button class="btn-accept" onclick="acceptCookies()">Accept</button>
+      <button class="btn-reject" onclick="rejectCookies()">Reject</button>
+    </div>
+  </div>
+</div>
+<script>
+function acceptCookies(){localStorage.setItem('cj_cookie_consent','accepted');document.getElementById('cookieBanner').style.display='none';loadGA4();}
+function rejectCookies(){localStorage.setItem('cj_cookie_consent','rejected');document.getElementById('cookieBanner').style.display='none';}
+if(!localStorage.getItem('cj_cookie_consent')){document.getElementById('cookieBanner').style.display='block';}
+</script>
+
+<footer style="background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);padding:48px 20px 24px;margin-top:60px">
+<div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-bottom:32px">
+  <div>
+    <a href="/" style="color:#f97316;font-weight:800;font-size:1.1rem;text-decoration:none;display:block;margin-bottom:16px">CorrerJuntos</a>
+    <p style="color:#64748b;font-size:.85rem;line-height:1.6">Spain's most active running community. Run together, improve together.</p>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+      <a href="https://youtube.com/@correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="YouTube"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://strava.com/clubs/correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Strava"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
+      <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explore</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Cities</a>
+      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
+      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Gear</a>
+      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Company</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">About Us</a>
+      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Investors</a>
+      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Contact</a>
+      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Sponsors</a>
+      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Media Kit</a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Legal</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Privacy Policy</a>
+      <a href="/terms.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Terms of Use</a>
+      <a href="/legal/cookies.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Cookie Policy</a>
+    </div>
+  </div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding-top:24px;text-align:center">
+  <p style="color:#64748b;font-size:.8rem">&copy; 2026 CorrerJuntos. All rights reserved. Made with love for runners.</p>
+</div>
+</footer>
+<script src="/blog/toc.js" defer></script>
+<script src="/blog/author.js" defer></script>
+<script src="/blog/related.js" defer></script>
+<script src="/blog/enhance.js" defer></script>
+</body>
+</html>

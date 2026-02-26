@@ -545,6 +545,10 @@
         body.light-mode .btn-secondary { background: transparent !important; background-color: transparent !important; border: 2px solid #44403c !important; border-color: #44403c !important; color: #44403c !important; }
         body.light-mode .btn-secondary:hover { background: #f5f5f4 !important; background-color: #f5f5f4 !important; border-color: #292524 !important; color: #292524 !important; }
         body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4 { color: #3d3229; }
+        /* Nav App CTA highlight */
+        .nav-app-cta { color:#fff !important; font-weight:700 !important; background:linear-gradient(135deg,#f97316,#ea580c) !important; border-color:rgba(249,115,22,.4) !important; box-shadow:0 0 14px rgba(249,115,22,.3) !important; }
+        .nav-app-cta:hover { box-shadow:0 0 20px rgba(249,115,22,.45) !important; transform:scale(1.04); }
+        body.light-mode .nav-app-cta { color:#fff !important; background:linear-gradient(135deg,#f97316,#ea580c) !important; border-color:rgba(249,115,22,.5) !important; box-shadow:0 2px 10px rgba(249,115,22,.3) !important; }
     </style>
     <link rel="stylesheet" href="/css/deferred.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/css/deferred.min.css"></noscript>
@@ -619,7 +623,7 @@
                 <a href="/blog/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">✍️ Blog</a>
                 <a href="/equipamiento/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">👟 Equipamiento</a>
                 <a href="/calculadora/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">⏱️ Calculadora</a>
-                <a href="#app" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">📱 App</a>
+                <a href="#app" class="nav-app-cta" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(249,115,22,.3);transition:all .2s;text-decoration:none">📱 App</a>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
                 <select id="lang-select" onchange="changeLanguage(this.value)" style="background:#1e293b;color:#fff;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1);font-size:.75rem;outline:none;cursor:pointer" aria-label="Idioma">

@@ -384,6 +384,8 @@
     <link rel="prefetch" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" as="script">
     <!-- html2canvas: loaded on demand (only used for stats card sharing) -->
     <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" as="script">
+    <!-- Leaflet.heat: loaded on demand for personal heatmap (Premium) -->
+    <link rel="prefetch" href="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js" as="script">
     <!-- Core scripts: preload para descarga paralela temprana -->
     <link rel="preload" href="/js/app.min.js" as="script">
     <link rel="preload" href="/data/geo-data.min.js" as="script">
@@ -1821,10 +1823,64 @@
                                 <!-- Se llena dinámicamente -->
                             </div>
                         </div>
+
+                        <!-- ⚡ Stats avanzadas extra -->
+                        <div class="grid grid-cols-3 gap-3 mt-4">
+                            <div class="premium-stat-card">
+                                <div class="premium-stat-icon">⚡</div>
+                                <div id="stat-best-pace" class="premium-stat-value">--</div>
+                                <div class="premium-stat-label" id="label-best-pace">Mejor ritmo</div>
+                            </div>
+                            <div class="premium-stat-card">
+                                <div class="premium-stat-icon">📏</div>
+                                <div id="stat-longest" class="premium-stat-value">--</div>
+                                <div class="premium-stat-label" id="label-longest">Mayor distancia</div>
+                            </div>
+                            <div class="premium-stat-card">
+                                <div class="premium-stat-icon">🏙️</div>
+                                <div id="stat-fav-city" class="premium-stat-value">--</div>
+                                <div class="premium-stat-label" id="label-fav-city">Ciudad favorita</div>
+                            </div>
+                        </div>
+
+                        <!-- 📈 Comparativa mensual -->
+                        <div class="mt-4 p-3 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                            <div class="text-xs text-gray-400 mb-2" id="label-month-comparison">📈 Este mes vs anterior</div>
+                            <div id="stat-monthly-comparison" class="grid grid-cols-3 gap-2 text-center">
+                                <!-- Se llena dinámicamente -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Mensaje para no premium -->
+                <!-- 🗺️ Heatmap Personal Premium -->
+                <div id="premium-heatmap-section" class="hidden mt-4">
+                    <div class="premium-stats-container">
+                        <div class="premium-stats-header">
+                            <span class="flex items-center gap-2 text-sm font-bold text-yellow-400">
+                                <span>🗺️</span> <span id="label-heatmap-title">Tu mapa de running</span>
+                            </span>
+                            <span id="heatmap-zones-count" class="text-xs text-gray-500"></span>
+                        </div>
+                        <div id="personal-heatmap" class="w-full h-48 rounded-xl overflow-hidden border border-slate-700"></div>
+                    </div>
+                </div>
+
+                <!-- Heatmap locked para free -->
+                <div id="premium-heatmap-locked" class="hidden mt-4">
+                    <div class="premium-stats-locked-container">
+                        <div class="text-center py-4">
+                            <span class="text-2xl mb-2 block">🗺️</span>
+                            <p class="text-sm font-semibold text-gray-300 mb-1" id="label-heatmap-locked-title">Tu mapa de running</p>
+                            <p class="text-xs text-gray-500 mb-3" id="label-heatmap-locked-desc">Ve todas las zonas donde has corrido</p>
+                            <button onclick="openPremiumCheckout()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
+                                ⭐ <span>Desbloquear con Premium</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensaje para no premium (stats) -->
                 <div id="premium-stats-locked" class="hidden mt-4">
                     <div class="premium-stats-locked-container">
                         <div class="text-center py-4">
@@ -2023,6 +2079,28 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- 🎯 Recomendaciones Premium -->
+            <div id="smart-recs-section" class="hidden mb-6 max-w-5xl mx-auto px-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">🎯 <span id="recs-title">Recomendadas para ti</span></h3>
+                    <span class="text-xs text-yellow-400 font-bold">⭐ Premium</span>
+                </div>
+                <div id="smart-recs-cards" class="flex gap-3 overflow-x-auto pb-2 snap-x" style="-webkit-overflow-scrolling:touch">
+                    <!-- Cards horizontales generadas dinámicamente -->
+                </div>
+            </div>
+
+            <!-- CTA para free users -->
+            <div id="smart-recs-locked" class="hidden mb-6 max-w-5xl mx-auto px-4">
+                <div class="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-yellow-500/5 to-orange-500/5 border border-yellow-500/20">
+                    <div>
+                        <h3 class="text-sm font-bold text-white">🎯 <span id="recs-locked-title">Quedadas recomendadas para ti</span></h3>
+                        <p class="text-xs text-gray-500 mt-1" id="recs-locked-desc">Algoritmo que encuentra quedadas perfectas para tu nivel y zona</p>
+                    </div>
+                    <button onclick="openPremiumCheckout()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold whitespace-nowrap" id="recs-locked-btn">Probar Premium</button>
                 </div>
             </div>
 
@@ -3218,12 +3296,12 @@
                         <p id="premium-unlock-all" class="text-sm text-gray-300">Desbloquea todas las funciones:</p>
                         <ul class="text-sm text-gray-400 space-y-1.5">
                             <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-1">Quedadas ilimitadas al mes</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-2">Participantes sin limite</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-3">Quedadas privadas con codigo</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-4">Quedadas recurrentes</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-5">Ruta GPS en el mapa</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-6">Historial de ritmos</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-7">Badges exclusivos + Strava</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-2">Estadísticas avanzadas + heatmap</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-3">Recomendaciones inteligentes</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-4">Comentar en quedadas</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-5">Verificación de nivel</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-6">Alertas personalizadas</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-7">Quedadas privadas + GPS + recurrentes</span></li>
                         </ul>
                         <button onclick="openPremiumCheckout()" class="w-full py-3 rounded-xl font-black text-base bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/25 transition flex items-center justify-center gap-2">
                             <span>⭐</span> <span id="premium-get-btn">Hazte Premium - 4,99€/mes</span>
@@ -3243,6 +3321,17 @@
                         <button onclick="managePremium()" id="premium-manage-btn" class="w-full py-2 rounded-xl font-bold text-sm border border-slate-600 text-gray-300 hover:bg-slate-800 transition">
                             Gestionar suscripción
                         </button>
+
+                        <!-- ✅ Verificación de nivel (Premium) -->
+                        <div id="verification-banner" class="hidden mt-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/30">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="text-sm font-bold text-blue-400" id="label-verify-title">✅ Verifica tu nivel</div>
+                                    <div class="text-xs text-gray-400" id="label-verify-desc">Los organizadores confían más en runners verificados</div>
+                                </div>
+                                <button onclick="openVerificationFlow()" class="px-3 py-1.5 rounded-lg bg-blue-500 text-white text-xs font-bold hover:bg-blue-600 transition" id="label-verify-btn">Verificar</button>
+                            </div>
+                        </div>
 
                         <!-- Alertas de nuevas quedadas (solo Premium activo) -->
                         <div class="mt-4 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
@@ -4090,6 +4179,13 @@
                 </span>
               </div>
 
+              <!-- 🌦️ METEO en detalle -->
+              <div id="detail-weather-section" class="hidden">
+                <div class="flex items-center gap-3 px-3 py-2.5 rounded-xl border" id="detail-weather-content">
+                  <!-- Se llena dinámicamente -->
+                </div>
+              </div>
+
               <!-- Punto de encuentro + Mapa -->
               <div class="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
                 <div class="flex items-center gap-2 mb-2">
@@ -4158,6 +4254,23 @@
                   <span id="detail-count" class="text-orange-400 font-bold text-sm"></span>
                 </div>
                 <div id="detail-participantes" class="space-y-2 max-h-40 overflow-y-auto custom-scroll"></div>
+              </div>
+
+              <!-- 💬 Comentarios -->
+              <div class="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="text-orange-400 text-sm">💬</span>
+                    <span id="detail-label-comments" class="text-white font-bold text-sm">Comentarios</span>
+                  </div>
+                  <span id="detail-comments-count" class="text-gray-500 text-xs"></span>
+                </div>
+                <div id="detail-comments-list" class="space-y-2 max-h-32 overflow-y-auto custom-scroll mb-2">
+                  <!-- Se llena dinámicamente -->
+                </div>
+                <div id="detail-comment-input-wrap">
+                  <!-- Premium: input + botón / Free: CTA -->
+                </div>
               </div>
             </div>
           </div>

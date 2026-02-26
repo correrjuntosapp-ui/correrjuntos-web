@@ -109,6 +109,38 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "@type": "Answer",
             "text": "CorrerJuntos Oslo has groups for all levels: beginner, intermediate, and advanced. Each meetup shows the pace and distance so you can find your ideal group."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the best running routes in Oslo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oslo's best running routes include Nordmarka Forest (infinite trails from the city edge), the Sognsvann Lake loop (3.3 km flat circuit), Akerselva river path (8 km from source to fjord), Bygdoy peninsula (seaside paths with beach views), and Frognerparken/Vigeland Park (sculpture-lined loops through the city's largest park)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When is the best time to run in Oslo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spring (April-June, 5-18 C) brings long daylight hours and mild temperatures. Summer (June-August, 15-25 C) offers near midnight sun with up to 19 hours of daylight. Autumn (September-October) has crisp air and stunning forest colours. Winter (-10 to 2 C) brings snow and shorter days, but Oslo's cross-country skiing culture transitions seamlessly into winter running with studded shoes and headlamps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the major running races in Oslo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Key races include the Oslo Marathon (September, full/half/10K through city and parks), Sentrumslopet (10K in April through the city centre), Holmenkollstafetten (relay race in May, one of Europe's largest), various Nordmarka trail races throughout summer, and parkrun at Frognerparken every Saturday morning."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the best neighborhoods for running in Oslo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Top running areas include Frogner/Vigeland (west side, parks and tree-lined streets), Grunerlokka along the Akerselva river path (8 km riverside trail), Nordmarka (forest access from multiple metro stops), St. Hanshaugen (central hills with panoramic city views), and Bygdoy peninsula (seaside loops with beaches and museums)."
+          }
         }
       ]
     }
@@ -121,10 +153,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <nav class="nav">
   <a href="/">CORRER<b>JUNTOS</b></a>
   <div class="nav-links">
-    <a href="/cities/" class="active">🏙️ Ciudades</a>
-    <a href="/blog/">✍️ Blog</a>
-    <a href="/equipamiento/">👟 Equipamiento</a>
-    <a href="/#app">📱 App</a>
+    <a href="/cities/" class="active">&#127961;&#65039; Ciudades</a>
+    <a href="/blog/">&#9997;&#65039; Blog</a>
+    <a href="/equipamiento/">&#128095; Equipamiento</a>
+    <a href="/#app">&#128241; App</a>
   </div>
 
   <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
@@ -138,7 +170,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div class="breadcrumb">
     <a href="/">Inicio</a>
     <span>/</span>
-    <a href="/cities/">🏙️ Ciudades</a>
+    <a href="/cities/">&#127961;&#65039; Ciudades</a>
     <span>/</span>
     Oslo
   </div>
@@ -174,21 +206,66 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     </div>
   </div>
 
-  <h2>Popular Running Areas in Oslo</h2>
+  <h2>Best Neighborhoods for Running in Oslo</h2>
+
+  <div class="features">
+    <div class="feature">
+      <h3>Frogner & Vigeland Park</h3>
+      <p>Oslo's west-side gem for runners. Frognerparken hosts the iconic Vigeland sculpture park with wide gravel paths winding through 212 bronze and granite sculptures. The 3 km inner loop is flat and popular for tempo runs, while surrounding tree-lined streets through Frogner offer quiet residential routes. Home to Oslo's parkrun every Saturday at 09:00.</p>
+    </div>
+    <div class="feature">
+      <h3>Grunerlokka & Akerselva</h3>
+      <p>Follow the Akerselva river path for 8 km from Maridalsvannet lake down to the Oslofjord. This car-free route passes through waterfalls, old industrial buildings turned cafes, and Grunerlokka's vibrant streets. The gentle downhill gradient toward the fjord makes it a favourite for easy runs, with the return uphill adding a natural progression.</p>
+    </div>
+    <div class="feature">
+      <h3>Nordmarka Forest</h3>
+      <p>Hundreds of kilometres of marked trails begin just minutes from the city centre. Take the T-bane to Frognerseteren or Sognsvann and step directly into wilderness. Trails range from flat gravel paths to rugged single-track, with staffed mountain lodges (hytte) offering waffles and coffee along the way. Norway's friluftsliv culture means these trails are active year-round.</p>
+    </div>
+    <div class="feature">
+      <h3>St. Hanshaugen</h3>
+      <p>This central hilltop park offers surprisingly hilly terrain right in the city. The park loop provides short but punchy elevation gains with panoramic views over Oslo's rooftops. Runners often combine St. Hanshaugen with routes through the nearby Palace Park (Slottsparken) and along Karl Johans gate for a varied urban session.</p>
+    </div>
+    <div class="feature">
+      <h3>Bygdoy Peninsula</h3>
+      <p>Oslo's seaside running paradise. A 7 km loop around the peninsula passes sandy beaches (Huk and Paradisbukta), the Viking Ship Museum area, and forested paths with fjord views. Connected to the city centre by a flat waterfront path along Frognerkilen, making it an ideal long-run extension. Ferry access in summer adds a scenic commute option.</p>
+    </div>
+  </div>
+
+  <h2>Major Running Events in Oslo</h2>
   <ul>
-    <li><strong>Nordmarka Forest</strong> - Vast trail network accessible from the city</li>
-    <li><strong>Sognsvann Lake</strong> - 3.3km popular lake loop surrounded by forest</li>
-    <li><strong>Frognerparken</strong> - Sculpture park with varied running paths</li>
-    <li><strong>Aker Brygge</strong> - Modern waterfront with Oslo Fjord views</li>
+    <li><strong>Oslo Marathon (September)</strong> - The city's flagship race offering full marathon, half marathon, and 10K distances. The course winds through central Oslo, Frognerparken, and riverside paths with strong crowd support and reliable autumn weather.</li>
+    <li><strong>Sentrumslopet (April)</strong> - A fast, flat 10K through Oslo's city centre. One of Norway's most popular road races, attracting thousands of runners through Karl Johans gate past the Royal Palace and Parliament. Perfect early-season goal race.</li>
+    <li><strong>Holmenkollstafetten (May)</strong> - One of Europe's largest relay races, with teams of 15 runners covering a course through Oslo's streets and hills. A major social event that embodies Norwegian team spirit and a highlight of the spring running calendar.</li>
+    <li><strong>Nordmarka Trail Races (Summer)</strong> - A series of trail races through the forest north of Oslo, ranging from 10 km to ultra distances. Technical terrain, stunning scenery, and the chance to test yourself on genuine Nordic trails.</li>
+    <li><strong>parkrun Frognerparken (Every Saturday)</strong> - Free weekly 5K timed run at 09:00 in Vigeland Park. Welcoming to all paces and a great way to meet Oslo's running community. Part of the global parkrun network with results tracked online.</li>
+    <li><strong>Grakallen Ultra (Summer)</strong> - An ultra-distance trail race from the city into Nordmarka's deeper wilderness, passing mountain lodges and lakes. A true test of endurance in one of Scandinavia's most accessible wild landscapes.</li>
   </ul>
 
-  <h2>Major Running Events</h2>
-  <p>The <strong>Oslo Marathon</strong> in September offers beautiful autumn routes through the city and parks. parkrun locations provide free weekly 5ks. Oslo's running culture emphasizes outdoor nature access, with most runners preferring trail running in Nordmarka over urban routes whenever possible.</p>
+  <h2>Seasonal Running Guide for Oslo</h2>
+
+  <div class="features">
+    <div class="feature">
+      <h3>Spring (April - June)</h3>
+      <p>Temperatures rise from 5 to 18 degrees as snow melts and trails dry out. Daylight extends rapidly, reaching 19 hours by June. Forest trails can be muddy in early spring but firm up by May. Sentrumslopet and Holmenkollstafetten provide excellent goal races. Layers are still essential for morning runs.</p>
+    </div>
+    <div class="feature">
+      <h3>Summer (June - August)</h3>
+      <p>Oslo's golden season for running. Temperatures range from 15 to 25 degrees with near midnight sun providing almost endless daylight. Nordmarka trails are fully accessible, beaches at Bygdoy invite post-run swims, and the running community peaks in activity. Stay hydrated and use sunscreen for long forest runs.</p>
+    </div>
+    <div class="feature">
+      <h3>Autumn (September - October)</h3>
+      <p>Crisp air and spectacular forest colours make this many runners' favourite season. The Oslo Marathon in September marks the competitive highlight. Temperatures drop from 15 to 5 degrees and daylight shortens noticeably. A headlamp becomes necessary for evening runs by late October. Trail conditions remain excellent through September.</p>
+    </div>
+    <div class="feature">
+      <h3>Winter (November - March)</h3>
+      <p>Temperatures range from minus 10 to 2 degrees with significant snowfall. Oslo's cross-country skiing culture transitions seamlessly into winter running with studded shoes (brodder) and reflective gear. Headlamps are mandatory with only 6 hours of daylight in December. Indoor track options exist at Bislett Stadium area for the coldest days.</p>
+    </div>
+  </div>
 
   <h2>Why Join CorrerJuntos in Oslo?</h2>
-  <p>Oslo's international community and excellent English make it welcoming for expat runners. CorrerJuntos helps you find groups across neighborhoods from Gr\u00FCnerl\u00F8kka to Majorstuen, Frogner to T\u00F8yen, matching your preference for trail versus urban running.</p>
+  <p>Oslo's international community and excellent English make it welcoming for expat runners. CorrerJuntos helps you find groups across neighborhoods from Grunerlokka to Majorstuen, Frogner to Toyen, matching your preference for trail versus urban running.</p>
 
-  <p>Connect with runners who live friluftsliv daily, know the best forest trails for every season, understand proper Nordic winter running gear, and appreciate post-run Norwegian coffee culture.</p>
+  <p>Connect with runners who live friluftsliv daily, know the best forest trails for every season, understand proper Nordic winter running gear, and appreciate post-run Norwegian coffee culture. Whether you prefer the solitude of Nordmarka's deep forest or the social energy of Frognerparken's parkrun, there is a group waiting for you.</p>
 
   <div class="cta-box">
     <h2>Ready to run in Oslo?</h2>
@@ -201,27 +278,27 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     <div class="other-cities-grid">
       <a href="/cities/madrid" class="other-city-card">
         <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=300&h=200&q=75" alt="Madrid" loading="lazy">
-        <span>🇪🇸 Madrid</span>
+        <span>&#127466;&#127480; Madrid</span>
       </a>
       <a href="/cities/barcelona" class="other-city-card">
         <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=300&h=200&q=75" alt="Barcelona" loading="lazy">
-        <span>🇪🇸 Barcelona</span>
+        <span>&#127466;&#127480; Barcelona</span>
       </a>
       <a href="/cities/london" class="other-city-card">
         <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=300&h=200&q=75" alt="London" loading="lazy">
-        <span>🇬🇧 London</span>
+        <span>&#127468;&#127463; London</span>
       </a>
       <a href="/cities/new-york" class="other-city-card">
         <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=300&h=200&q=75" alt="New York" loading="lazy">
-        <span>🇺🇸 New York</span>
+        <span>&#127482;&#127480; New York</span>
       </a>
       <a href="/cities/paris" class="other-city-card">
         <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=300&h=200&q=75" alt="Paris" loading="lazy">
-        <span>🇫🇷 Paris</span>
+        <span>&#127467;&#127479; Paris</span>
       </a>
       <a href="/cities/berlin" class="other-city-card">
         <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=300&h=200&q=75" alt="Berlin" loading="lazy">
-        <span>🇩🇪 Berlin</span>
+        <span>&#127465;&#127466; Berlin</span>
       </a>
     </div>
   </div>
@@ -231,7 +308,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-bottom:32px">
   <div>
     <a href="/" style="color:#f97316;font-weight:800;font-size:1.1rem;text-decoration:none;display:block;margin-bottom:16px">CorrerJuntos</a>
-    <p style="color:#64748b;font-size:.85rem;line-height:1.6">La comunidad de running más activa de España. Corre acompañado, mejora juntos.</p>
+    <p style="color:#64748b;font-size:.85rem;line-height:1.6">La comunidad de running m&#225;s activa de Espa&#241;a. Corre acompa&#241;ado, mejora juntos.</p>
     <div style="display:flex;gap:8px;margin-top:16px">
       <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
       <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
@@ -243,34 +320,35 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🏙️ Ciudades</a>
-      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✍️ Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👟 Equipamiento</a>
-      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📱 App</a>
+      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#127961;&#65039; Ciudades</a>
+      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#9997;&#65039; Blog</a>
+      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#128095; Equipamiento</a>
+      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#128241; App</a>
     </div>
   </div>
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Empresa</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👥 Sobre Nosotros</a>
-      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Inversores</a>
-      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✉️ Contacto</a>
-      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🤝 Patrocinadores</a>
-      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Media Kit</a>
+      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#128101; Sobre Nosotros</a>
+      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#128202; Inversores</a>
+      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#9993;&#65039; Contacto</a>
+      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#129309; Patrocinadores</a>
+      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#128202; Media Kit</a>
     </div>
   </div>
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Legal</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Privacidad</a>
-      <a href="/terms.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Términos de Uso</a>
-      <a href="/legal/cookies.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Cookies</a>
+      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Pol&#237;tica de Privacidad</a>
+      <a href="/terms.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">T&#233;rminos de Uso</a>
+      <a href="/legal/cookies.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Pol&#237;tica de Cookies</a>
     </div>
   </div>
 </div>
 <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:24px;text-align:center">
-  <p style="color:#64748b;font-size:.8rem">© 2026 CorrerJuntos. Todos los derechos reservados. Hecho con ❤️ para runners.</p>
+  <p style="color:#64748b;font-size:.8rem">&#169; 2026 CorrerJuntos. Todos los derechos reservados. Hecho con &#10084;&#65039; para runners.</p>
 </div>
 </footer>
+<script src="/cities/blog-links.js" defer></script>
 </body>
 </html>

@@ -6105,6 +6105,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                 if (!data || data.length === 0) { renderFallbackQuedadas(); return; }
                 renderQuedadasCards(data, grid);
+                try { injectEventSchema(data); } catch(_) {}
             } catch (e) {
                 console.warn('loadQuedadasPreview:', e);
                 renderFallbackQuedadas();
@@ -6478,6 +6479,86 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             renderQuedadas();
             updateMarkers();
             updateFilterUI(); // Actualizar contador de resultados en sidebar
+            try { injectEventSchema(); } catch(_) {} // SEO: inyectar SportsEvent JSON-LD con datos reales
+        }
+
+        /* ── SEO: Inyectar Event Schema dinámico (SportsEvent) ── */
+        function injectEventSchema(dataOverride) {
+            try {
+                var source = dataOverride || quedadas || [];
+                // Solo quedadas futuras, públicas, no seed, max 20
+                var futuras = source.filter(function(q) {
+                    if (q.es_seed) return false;
+                    if (q.is_private) return false;
+                    // Si viene de loadQuedadasPreview ya está filtrada por fecha
+                    if (typeof isQuedadaPasada === 'function' && isQuedadaPasada(q)) return false;
+                    return true;
+                }).slice(0, 20);
+
+                if (!futuras.length) return;
+
+                var events = futuras.map(function(q, i) {
+                    var hora = (q.hora || '08:00').substring(0, 5);
+                    var startDate = q.fecha + 'T' + hora + ':00';
+                    var participantes = (q.asistentes || []).length;
+                    var desc = q.descripcion || ('Quedada de running en ' + (q.ciudad || '') + '. Nivel: ' + (q.nivel || 'Todos') + '. Distancia: ' + (q.distancia || 'libre') + '.');
+
+                    var location = {
+                        '@type': 'Place',
+                        'name': q.ubicacion || q.ciudad || '',
+                        'address': {
+                            '@type': 'PostalAddress',
+                            'streetAddress': q.direccion || '',
+                            'addressLocality': q.ciudad || ''
+                        }
+                    };
+                    if (q.lat && q.lng) {
+                        location.geo = { '@type': 'GeoCoordinates', 'latitude': q.lat, 'longitude': q.lng };
+                    }
+
+                    var ev = {
+                        '@type': 'SportsEvent',
+                        'name': q.titulo,
+                        'description': desc.substring(0, 300),
+                        'startDate': startDate,
+                        'location': location,
+                        'organizer': { '@type': 'Organization', 'name': 'CorrerJuntos', 'url': 'https://www.correrjuntos.com' },
+                        'eventStatus': 'https://schema.org/EventScheduled',
+                        'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+                        'isAccessibleForFree': true,
+                        'sport': 'Running'
+                    };
+                    if (q.max_participantes) {
+                        ev.maximumAttendeeCapacity = q.max_participantes;
+                        ev.remainingAttendeeCapacity = Math.max(0, q.max_participantes - participantes);
+                    }
+
+                    return { '@type': 'ListItem', 'position': i + 1, 'item': ev };
+                });
+
+                var schema = {
+                    '@context': 'https://schema.org',
+                    '@type': 'ItemList',
+                    'name': 'Quedadas de running en CorrerJuntos',
+                    'description': 'Eventos de running gratuitos organizados por la comunidad.',
+                    'url': 'https://www.correrjuntos.com',
+                    'numberOfItems': events.length,
+                    'itemListElement': events
+                };
+
+                var existing = document.getElementById('schema-events');
+                if (existing) {
+                    existing.textContent = JSON.stringify(schema);
+                } else {
+                    var script = document.createElement('script');
+                    script.type = 'application/ld+json';
+                    script.id = 'schema-events';
+                    script.textContent = JSON.stringify(schema);
+                    document.head.appendChild(script);
+                }
+            } catch (e) {
+                console.warn('injectEventSchema:', e);
+            }
         }
 
         function renderQuedadas(){
@@ -9781,6 +9862,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             try{ applyLanguageUI(); }catch(e){ console.warn('applyLanguageUI:', e); }
             try{ renderCityChips(); }catch(e){ console.warn('renderCityChips:', e); }
             try{ loadQuedadas(); }catch(e){ console.warn('loadQuedadas:', e); }
+            // SEO: Inyectar Event Schema tras cargar quedadas (fallback con delay)
+            setTimeout(function(){ try{ injectEventSchema(); }catch(_){} }, 10000);
             try{ loadLandingStats(); }catch(e){ console.warn('loadLandingStats:', e); }
             try{ initLandingEnhancements(); }catch(e){ console.warn('initLandingEnhancements:', e); }
             try{ detectReferralParam(); }catch(e){ console.warn('detectReferralParam:', e); }

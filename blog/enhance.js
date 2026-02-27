@@ -202,18 +202,27 @@
 
     var shown = false;
     var dismissed = false;
+    // 60-second fallback timer
+    var nlTimer = setTimeout(function(){
+      if(!dismissed && !shown){
+        shown = true;
+        slidein.classList.add('show');
+      }
+    }, 60000);
     window.addEventListener('scroll', function(){
       if(dismissed) return;
       var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      if(pct > 0.55 && !shown){
+      if(pct > 0.85 && !shown){
         shown = true;
         slidein.classList.add('show');
+        clearTimeout(nlTimer);
       }
     });
 
     slidein.querySelector('.nl-close').addEventListener('click', function(){
       slidein.classList.remove('show');
       dismissed = true;
+      clearTimeout(nlTimer);
       localStorage.setItem(STORAGE_KEY, '1');
     });
 

@@ -6952,11 +6952,20 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         location.geo = { '@type': 'GeoCoordinates', 'latitude': q.lat, 'longitude': q.lng };
                     }
 
+                    // endDate: +2h from start (running events are ~1-2h)
+                    var endParts = hora.split(':');
+                    var endH = (parseInt(endParts[0], 10) + 2) % 24;
+                    var endDate = q.fecha + 'T' + String(endH).padStart(2, '0') + ':' + endParts[1] + ':00';
+
                     var ev = {
                         '@type': 'SportsEvent',
                         'name': q.titulo,
                         'description': desc.substring(0, 300),
                         'startDate': startDate,
+                        'endDate': endDate,
+                        'image': q.imagen || 'https://www.correrjuntos.com/img/og-image.jpg',
+                        'performer': { '@type': 'Organization', 'name': 'CorrerJuntos', 'url': 'https://www.correrjuntos.com' },
+                        'offers': { '@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR', 'url': 'https://www.correrjuntos.com', 'availability': 'https://schema.org/InStock' },
                         'location': location,
                         'organizer': { '@type': 'Organization', 'name': 'CorrerJuntos', 'url': 'https://www.correrjuntos.com' },
                         'eventStatus': 'https://schema.org/EventScheduled',

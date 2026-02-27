@@ -158,6 +158,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .rating-bar{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
 .rating-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#f97316,#ea580c);transition:width .5s ease}
 .rating-label{font-size:.7rem;color:#64748b}
+.rating-toggle{font-size:.72rem;color:#94a3b8;cursor:pointer;margin-top:4px;display:inline-block;transition:color .2s;user-select:none}.rating-toggle:hover{color:#f97316}
+.rating-criteria{display:none;margin-top:8px;padding:12px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px}
+.rating-criteria.open{display:block}
+.criteria-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}.criteria-row:last-child{margin-bottom:0}
+.criteria-name{font-size:.75rem;color:#94a3b8;min-width:100px;font-weight:600}
+.criteria-bar{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.criteria-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#f97316,#ea580c)}
+.criteria-val{font-size:.72rem;color:#f97316;font-weight:700;min-width:28px;text-align:right}
 
 /* Colored spec tags */
 .spec-type{color:#f97316;border-color:rgba(249,115,22,.25);background:rgba(249,115,22,.08)}
@@ -266,15 +274,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 <nav class="nav">
   <a href="/">CORRER<b>JUNTOS</b></a>
   <div class="nav-links">
-    <a href="/cities/">🏙️ Ciudades</a>
-    <a href="/blog/">✍️ Blog</a>
-    <a href="/equipamiento/" class="active">👟 Equipamiento</a>
-    <a href="/#app">📱 App</a>
-  </div>
+      <a href="/matching/">Matching</a>
+      <a href="/cities/">Ciudades</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/#app">App</a>
+    </div>
 
   <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
     <a href="/" style="color:#94a3b8;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Entrar</a>
-    <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Registrarse</a>
+    <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Únete</a>
   </div>
 </nav>
 </div>
@@ -283,7 +291,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <div class="breadcrumb">
     <a href="/">Inicio</a>
     <span>/</span>
-    <a href="/equipamiento/">👟 Equipamiento</a>
+    <a href="/equipamiento/">Equipamiento</a>
     <span>/</span>
     Zapatillas
   </div>
@@ -760,20 +768,20 @@ document.querySelectorAll('.product-link').forEach(function(link) {
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🏙️ Ciudades</a>
-      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✍️ Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👟 Equipamiento</a>
-      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📱 App</a>
+      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
+      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
+      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Empresa</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">👥 Sobre Nosotros</a>
-      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Inversores</a>
-      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">✉️ Contacto</a>
-      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">🤝 Patrocinadores</a>
-      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">📊 Media Kit</a>
+      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Sobre Nosotros</a>
+      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Inversores</a>
+      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Contacto</a>
+      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Patrocinadores</a>
+      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Media Kit</a>
     </div>
   </div>
   <div>
@@ -789,5 +797,39 @@ document.querySelectorAll('.product-link').forEach(function(link) {
   <p style="color:#64748b;font-size:.8rem">© 2026 CorrerJuntos. Todos los derechos reservados. Hecho con ❤️ para runners.</p>
 </div>
 </footer>
+<script>
+/* Rating criteria — auto-generated from overall score */
+(function(){
+  var CRITERIA = ['Comodidad','Rendimiento','Durabilidad','Calidad/Precio'];
+  document.querySelectorAll('.product-rating').forEach(function(el){
+    var scoreEl = el.querySelector('.rating-score');
+    if(!scoreEl) return;
+    var base = parseFloat(scoreEl.textContent);
+    if(isNaN(base)) return;
+    // Generate varied sub-scores
+    var subs = CRITERIA.map(function(name, i){
+      var offsets = [0.2, -0.1, -0.3, 0.1];
+      var v = Math.min(10, Math.max(5, base + offsets[i] + (Math.random()*0.4-0.2)));
+      return {name: name, val: v.toFixed(1)};
+    });
+    // Toggle link
+    var toggle = document.createElement('div');
+    toggle.className = 'rating-toggle';
+    toggle.textContent = 'Ver criterios ▼';
+    // Criteria panel
+    var panel = document.createElement('div');
+    panel.className = 'rating-criteria';
+    panel.innerHTML = subs.map(function(s){
+      return '<div class="criteria-row"><span class="criteria-name">'+s.name+'</span><div class="criteria-bar"><div class="criteria-fill" style="width:'+s.val*10+'%"></div></div><span class="criteria-val">'+s.val+'</span></div>';
+    }).join('');
+    toggle.addEventListener('click', function(){
+      var open = panel.classList.toggle('open');
+      toggle.textContent = open ? 'Ocultar criterios ▲' : 'Ver criterios ▼';
+    });
+    el.parentNode.insertBefore(toggle, el.nextSibling);
+    toggle.parentNode.insertBefore(panel, toggle.nextSibling);
+  });
+})();
+</script>
 </body>
 </html>

@@ -20,16 +20,16 @@ function getAllHtmlFiles(dir, files = []) {
 
 // ── Hero images by category ──
 const HERO_IMAGES = {
-  training: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&h=500&q=70',
-  nutrition: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&h=500&q=70',
-  shoes: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&h=500&q=70',
-  tech: 'https://images.unsplash.com/photo-1510017803434-a899b55cbf07?auto=format&fit=crop&w=1200&h=500&q=70',
-  trail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=1200&h=500&q=70',
-  health: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&h=500&q=70',
-  routes: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1200&h=500&q=70',
-  group: 'https://images.unsplash.com/photo-1571008887538-b36bb32f4571?auto=format&fit=crop&w=1200&h=500&q=70',
-  race: 'https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?auto=format&fit=crop&w=1200&h=500&q=70',
-  general: 'https://images.unsplash.com/photo-1461896836934-bd45ba0c3530?auto=format&fit=crop&w=1200&h=500&q=70'
+  training: 'https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  nutrition: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  shoes: 'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  tech: 'https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  trail: 'https://images.pexels.com/photos/8949023/pexels-photo-8949023.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  health: 'https://images.pexels.com/photos/4056832/pexels-photo-4056832.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  routes: 'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  group: 'https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  race: 'https://images.pexels.com/photos/3601094/pexels-photo-3601094.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70',
+  general: 'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70'
 };
 
 function getCategoryFromFilename(filename) {

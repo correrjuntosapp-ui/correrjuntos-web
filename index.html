@@ -410,8 +410,11 @@
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         .hero-bg { background: radial-gradient(circle at 20% 10%, rgba(249, 115, 22, 0.15), transparent 50%), radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.1), transparent 50%), #0b1220; position: relative; overflow: hidden; }
 
-        /* Hero decorative — moved to deferred.min.css for CWV */
+        /* Hero decorative: positioning inline (critical for layout), animations in deferred.min.css */
         .hero-bg > * { position: relative; z-index: 1; }
+        .hero-particle { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(249,115,22,.3), transparent 70%); pointer-events: none; }
+        .runner-svg-container { display: none; }
+        .running-dots { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; overflow: hidden; opacity: .5; }
         /* btn-secondary: dark mode default */
         .btn-secondary { background: rgba(30,41,59,0.8); border: 1px solid rgba(51,65,85,0.5); color: #fff; }
         .btn-secondary:hover { background: rgba(51,65,85,0.9); border-color: rgba(71,85,105,0.6); }

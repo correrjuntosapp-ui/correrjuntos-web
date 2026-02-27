@@ -526,6 +526,35 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 badgeEl.innerHTML = t.landingBadge;
             }
 
+            // Matching screen
+            setText('app-nav-matching-label', t.matchingNav || 'Matching');
+            setText('matching-title', t.matchingTitle || 'Runners compatibles');
+            setText('matching-tab-results', t.matchingTabResults || 'Compatibles');
+            setText('matching-tab-requests', t.matchingTabRequests || 'Solicitudes');
+            setText('matching-edit-profile-btn', t.matchingEditProfile || 'Editar perfil');
+            setText('matching-loading-text', t.matchingLoading || 'Buscando runners compatibles...');
+            setText('matching-empty-title', t.matchingEmptyTitle || 'No hay runners en tu ciudad todavía');
+            setText('matching-empty-desc', t.matchingEmptyDesc || 'Sé el primero en activar Matching.');
+            setText('matching-premium-title', t.matchingPremiumTitle || 'Desbloquea todos los matches');
+            setText('matching-premium-desc', t.matchingPremiumDesc || 'Los usuarios Premium ven todos los runners compatibles.');
+            setText('matching-premium-cta', t.matchingPremiumCta || 'Hazte Premium');
+            setText('matching-received-title', t.matchingReceivedTitle || 'Solicitudes recibidas');
+            setText('matching-sent-title', t.matchingSentTitle || 'Solicitudes enviadas');
+            setText('matching-accepted-title', t.matchingAcceptedTitle || 'Matches aceptados');
+            setText('matching-no-received', t.matchingNoReceived || 'No tienes solicitudes pendientes');
+            setText('matching-no-sent', t.matchingNoSent || 'No has enviado solicitudes');
+            setText('matching-no-accepted', t.matchingNoAccepted || 'Aún no tienes matches');
+            setText('mp-title', t.mpTitle || 'Tu perfil de Matching');
+            setText('mp-subtitle', t.mpSubtitle || 'Para encontrar runners compatibles contigo');
+            setText('mp-ritmo-label', t.mpRitmoLabel || 'Tu ritmo (min/km)');
+            setText('mp-dias-label', t.mpDiasLabel || 'Días preferidos');
+            setText('mp-horario-label', t.mpHorarioLabel || 'Horario preferido');
+            setText('mp-objetivo-label', t.mpObjetivoLabel || 'Tu objetivo');
+            setText('mp-bio-label', t.mpBioLabel || 'Bio de matching');
+            setText('mp-visible-label', t.mpVisibleLabel || 'Visible en Matching');
+            setText('mp-visible-desc', t.mpVisibleDesc || 'Otros runners pueden encontrarte');
+            setText('mp-save-btn', t.mpSaveBtn || 'Guardar perfil');
+
             // Login modal
             const loginTitle = document.querySelector('#modal-login h2');
             if(loginTitle) loginTitle.textContent = t.loginTitle;
@@ -10242,10 +10271,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             const ids = ['sales-hero-title','sales-hero-subtitle','sales-hero-trial','sales-features-title',
                 'sales-f1-title','sales-f1-desc','sales-f2-title','sales-f2-desc','sales-f3-title','sales-f3-desc',
                 'sales-f4-title','sales-f4-desc','sales-f5-title','sales-f5-desc','sales-f6-title','sales-f6-desc',
-                'sales-f7-title','sales-f7-desc','sales-extra-title','sales-compare-title',
+                'sales-f7-title','sales-f7-desc','sales-f8-title','sales-f8-desc','sales-extra-title','sales-compare-title',
                 'sales-col-free','sales-col-premium','sales-row-quedadas','sales-row-participantes',
                 'sales-row-stats','sales-row-comentarios','sales-row-heatmap','sales-row-privadas',
-                'sales-row-gps','sales-row-ads','sales-price-badge','sales-price-period','sales-price-desc',
+                'sales-row-gps','sales-row-ads','sales-row-matching','sales-row-matching-free','sales-row-matching-premium','sales-price-badge','sales-price-period','sales-price-desc',
                 'sales-cta-main','sales-price-cancel','sales-stat-runners','sales-stat-cities',
                 'sales-stat-countries','sales-stat-rating','sales-faq-title','sales-faq-q1','sales-faq-a1',
                 'sales-faq-q2','sales-faq-a2','sales-faq-q3','sales-faq-a3','sales-faq-q4','sales-faq-a4',
@@ -10260,6 +10289,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 'sales-f5-title':'salesF5Title','sales-f5-desc':'salesF5Desc',
                 'sales-f6-title':'salesF6Title','sales-f6-desc':'salesF6Desc',
                 'sales-f7-title':'salesF7Title','sales-f7-desc':'salesF7Desc',
+                'sales-f8-title':'salesF8Title','sales-f8-desc':'salesF8Desc',
                 'sales-extra-title':'salesExtraTitle',
                 'sales-compare-title':'salesCompareTitle',
                 'sales-col-free':'salesColFree','sales-col-premium':'salesColPremium',
@@ -10267,6 +10297,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 'sales-row-stats':'salesRowStats','sales-row-comentarios':'salesRowComentarios',
                 'sales-row-heatmap':'salesRowHeatmap','sales-row-privadas':'salesRowPrivadas',
                 'sales-row-gps':'salesRowGps','sales-row-ads':'salesRowAds',
+                'sales-row-matching':'salesRowMatching','sales-row-matching-free':'salesRowMatchingFree','sales-row-matching-premium':'salesRowMatchingPremium',
                 'sales-price-badge':'salesPriceBadge','sales-price-period':'salesPricePeriod',
                 'sales-price-desc':'salesPriceDesc','sales-cta-main':'salesCtaMain',
                 'sales-price-cancel':'salesPriceCancel',
@@ -10456,6 +10487,498 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         // selectCommunity/selectTopic: online-aware versions are defined above.
 
         // createTopic/sendMessage: online-aware versions are defined above.
+
+        /* ══════════════════════════════════════════════
+           RUNNER MATCHING
+           ══════════════════════════════════════════════ */
+        const MATCHING_DAYS_ES = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+        const MATCHING_DAYS_SHORT = ['L','M','X','J','V','S','D'];
+        const MATCHING_HORARIOS = ['manana','mediodia','tarde','noche'];
+        const MATCHING_HORARIOS_LABELS_ES = {'manana':'Mañana','mediodia':'Mediodía','tarde':'Tarde','noche':'Noche'};
+        const MATCHING_HORARIOS_LABELS_EN = {'manana':'Morning','mediodia':'Midday','tarde':'Afternoon','noche':'Night'};
+        const MATCHING_OBJETIVOS_ES = ['mantenimiento','5k','10k','media','maraton','trail','social'];
+        const MATCHING_OBJETIVOS_LABELS_ES = {'mantenimiento':'Mantenimiento','5k':'5K','10k':'10K','media':'Media maratón','maraton':'Maratón','trail':'Trail','social':'Social'};
+        const MATCHING_OBJETIVOS_LABELS_EN = {'mantenimiento':'Maintenance','5k':'5K','10k':'10K','media':'Half marathon','maraton':'Marathon','trail':'Trail','social':'Social'};
+
+        // Build pace options (3:30 to 8:00, step 0:15)
+        function buildPaceOptions(){
+          var opts = [];
+          for(var m=3; m<=8; m++){
+            for(var s=0; s<60; s+=15){
+              if(m===8 && s>0) break;
+              opts.push(m+':'+(s<10?'0':'')+s);
+            }
+          }
+          return opts;
+        }
+
+        // Initialize matching profile modal form
+        function initMatchingProfileForm(){
+          var minSel = document.getElementById('mp-ritmo-min');
+          var maxSel = document.getElementById('mp-ritmo-max');
+          if(!minSel || minSel.options.length > 1) return;
+          var paces = buildPaceOptions();
+          paces.forEach(function(p){
+            minSel.add(new Option(p, p));
+            maxSel.add(new Option(p, p));
+          });
+          // Default: 5:00 - 6:00
+          minSel.value = '5:00';
+          maxSel.value = '6:00';
+
+          // Days chips
+          var daysContainer = document.getElementById('mp-dias-chips');
+          if(daysContainer && daysContainer.children.length === 0){
+            MATCHING_DAYS_ES.forEach(function(d, i){
+              var chip = document.createElement('button');
+              chip.type = 'button';
+              chip.className = 'px-3 py-1.5 rounded-full text-xs font-bold border transition cursor-pointer';
+              chip.setAttribute('data-day', d);
+              chip.textContent = MATCHING_DAYS_SHORT[i];
+              chip.style.cssText = 'background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#94a3b8';
+              chip.addEventListener('click', function(){
+                var active = this.getAttribute('data-active') === '1';
+                if(active){
+                  this.setAttribute('data-active','0');
+                  this.style.cssText = 'background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#94a3b8';
+                } else {
+                  this.setAttribute('data-active','1');
+                  this.style.cssText = 'background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#f97316';
+                }
+              });
+              daysContainer.appendChild(chip);
+            });
+          }
+
+          // Horario options
+          var horarioContainer = document.getElementById('mp-horario-options');
+          if(horarioContainer && horarioContainer.children.length === 0){
+            var labels = currentLang === 'en' ? MATCHING_HORARIOS_LABELS_EN : MATCHING_HORARIOS_LABELS_ES;
+            MATCHING_HORARIOS.forEach(function(h){
+              var btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'px-3 py-2 rounded-xl text-xs font-bold border transition cursor-pointer text-center';
+              btn.setAttribute('data-horario', h);
+              btn.textContent = labels[h];
+              btn.style.cssText = 'background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#94a3b8';
+              btn.addEventListener('click', function(){
+                horarioContainer.querySelectorAll('button').forEach(function(b){
+                  b.style.cssText = 'background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#94a3b8';
+                  b.setAttribute('data-active','0');
+                });
+                this.style.cssText = 'background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#f97316';
+                this.setAttribute('data-active','1');
+              });
+              horarioContainer.appendChild(btn);
+            });
+          }
+
+          // Objetivo dropdown
+          var objSel = document.getElementById('mp-objetivo');
+          if(objSel && objSel.options.length <= 1){
+            objSel.innerHTML = '';
+            var objLabels = currentLang === 'en' ? MATCHING_OBJETIVOS_LABELS_EN : MATCHING_OBJETIVOS_LABELS_ES;
+            MATCHING_OBJETIVOS_ES.forEach(function(o){
+              objSel.add(new Option(objLabels[o], o));
+            });
+          }
+
+          // Bio character count
+          var bioEl = document.getElementById('mp-bio');
+          var countEl = document.getElementById('mp-bio-count');
+          if(bioEl && countEl){
+            bioEl.addEventListener('input', function(){ countEl.textContent = this.value.length; });
+          }
+        }
+
+        // Load user's existing matching profile into the form
+        async function loadMatchingProfileForm(){
+          if(!currentUser) return;
+          var sb = await getSupabaseClientOrToast(8000, false);
+          if(!sb) return;
+          var { data } = await sb.from('profiles').select('ritmo_min,ritmo_max,dias_preferidos,horario_preferido,objetivo,bio_matching,matching_visible').eq('id', currentUser.id).single();
+          if(!data) return;
+
+          if(data.ritmo_min) document.getElementById('mp-ritmo-min').value = data.ritmo_min;
+          if(data.ritmo_max) document.getElementById('mp-ritmo-max').value = data.ritmo_max;
+
+          if(data.dias_preferidos && data.dias_preferidos.length){
+            document.querySelectorAll('#mp-dias-chips button').forEach(function(btn){
+              if(data.dias_preferidos.indexOf(btn.getAttribute('data-day')) >= 0){
+                btn.setAttribute('data-active','1');
+                btn.style.cssText = 'background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#f97316';
+              }
+            });
+          }
+
+          if(data.horario_preferido){
+            var hBtn = document.querySelector('#mp-horario-options button[data-horario="'+data.horario_preferido+'"]');
+            if(hBtn){ hBtn.click(); }
+          }
+
+          if(data.objetivo) document.getElementById('mp-objetivo').value = data.objetivo;
+          if(data.bio_matching){
+            document.getElementById('mp-bio').value = data.bio_matching;
+            var c = document.getElementById('mp-bio-count');
+            if(c) c.textContent = data.bio_matching.length;
+          }
+          document.getElementById('mp-visible').checked = data.matching_visible !== false;
+        }
+
+        // Save matching profile
+        window.saveMatchingProfile = async function(){
+          if(!currentUser){ showToast('Inicia sesión primero','error'); return; }
+          var sb = await getSupabaseClientOrToast(8000);
+          if(!sb) return;
+
+          var ritmoMin = document.getElementById('mp-ritmo-min').value;
+          var ritmoMax = document.getElementById('mp-ritmo-max').value;
+          var dias = [];
+          document.querySelectorAll('#mp-dias-chips button[data-active="1"]').forEach(function(b){ dias.push(b.getAttribute('data-day')); });
+          var horario = '';
+          var activeH = document.querySelector('#mp-horario-options button[data-active="1"]');
+          if(activeH) horario = activeH.getAttribute('data-horario');
+          var objetivo = document.getElementById('mp-objetivo').value;
+          var bio = document.getElementById('mp-bio').value.trim().substring(0,120);
+          var visible = document.getElementById('mp-visible').checked;
+
+          var { error } = await sb.from('profiles').update({
+            ritmo_min: ritmoMin,
+            ritmo_max: ritmoMax,
+            dias_preferidos: dias,
+            horario_preferido: horario,
+            objetivo: objetivo,
+            bio_matching: bio,
+            matching_visible: visible
+          }).eq('id', currentUser.id);
+
+          if(error){
+            showToast('Error al guardar: ' + error.message, 'error');
+            return;
+          }
+
+          showToast(currentLang === 'en' ? 'Matching profile saved!' : 'Perfil de matching guardado!', 'success');
+          closeModal('modal-matching-profile');
+          // Reload matching results if the matching screen is open
+          if(document.getElementById('modal-matching') && document.getElementById('modal-matching').classList.contains('active')){
+            loadMatchingResults();
+          }
+        };
+
+        // Open matching screen
+        window.openMatchingScreen = async function(){
+          if(!currentUser){
+            openModal('modal-login');
+            return;
+          }
+
+          initMatchingProfileForm();
+          openModal('modal-matching');
+
+          // Update city label
+          var cityLabel = document.getElementById('matching-city-label');
+          if(cityLabel && currentUser.ciudad){
+            cityLabel.textContent = '📍 ' + currentUser.ciudad;
+          }
+
+          // Check if user has a matching profile set up
+          var sb = await getSupabaseClientOrToast(8000, false);
+          if(!sb) return;
+          var { data } = await sb.from('profiles').select('ritmo_min,dias_preferidos').eq('id', currentUser.id).single();
+
+          if(!data || !data.ritmo_min || !data.dias_preferidos || data.dias_preferidos.length === 0){
+            // No matching profile → show onboarding
+            closeModal('modal-matching');
+            loadMatchingProfileForm();
+            openModal('modal-matching-profile');
+            return;
+          }
+
+          loadMatchingResults();
+          loadMatchingRequests();
+        };
+
+        // Switch tabs in matching screen
+        window.switchMatchingTab = function(tab){
+          var tabResults = document.getElementById('matching-tab-results');
+          var tabRequests = document.getElementById('matching-tab-requests');
+          var contentResults = document.getElementById('matching-content-results');
+          var contentRequests = document.getElementById('matching-content-requests');
+
+          if(tab === 'results'){
+            tabResults.className = 'px-5 py-2 rounded-full text-sm font-bold transition bg-orange-500/20 text-orange-400 border border-orange-500/30';
+            tabRequests.className = 'px-5 py-2 rounded-full text-sm font-bold transition bg-slate-800/50 text-gray-400 border border-slate-700/50';
+            contentResults.classList.remove('hidden');
+            contentRequests.classList.add('hidden');
+          } else {
+            tabRequests.className = 'px-5 py-2 rounded-full text-sm font-bold transition bg-orange-500/20 text-orange-400 border border-orange-500/30';
+            tabResults.className = 'px-5 py-2 rounded-full text-sm font-bold transition bg-slate-800/50 text-gray-400 border border-slate-700/50';
+            contentRequests.classList.remove('hidden');
+            contentResults.classList.add('hidden');
+          }
+        };
+
+        // Load compatible runners
+        async function loadMatchingResults(){
+          var loading = document.getElementById('matching-loading');
+          var empty = document.getElementById('matching-empty');
+          var cards = document.getElementById('matching-cards');
+          var wall = document.getElementById('matching-premium-wall');
+          var blurred = document.getElementById('matching-blurred-cards');
+
+          loading.classList.remove('hidden');
+          empty.classList.add('hidden');
+          cards.classList.add('hidden');
+          wall.classList.add('hidden');
+
+          var sb = await getSupabaseClientOrToast(8000, false);
+          if(!sb){ loading.classList.add('hidden'); return; }
+
+          var { data, error } = await sb.rpc('find_compatible_runners', { p_limit: 20 });
+
+          loading.classList.add('hidden');
+
+          if(error){
+            console.warn('Matching error:', error.message);
+            empty.classList.remove('hidden');
+            return;
+          }
+
+          if(!data || data.length === 0){
+            empty.classList.remove('hidden');
+            return;
+          }
+
+          cards.innerHTML = '';
+          blurred.innerHTML = '';
+
+          var isEN = currentLang === 'en';
+          var horarioLabels = isEN ? MATCHING_HORARIOS_LABELS_EN : MATCHING_HORARIOS_LABELS_ES;
+          var objLabels = isEN ? MATCHING_OBJETIVOS_LABELS_EN : MATCHING_OBJETIVOS_LABELS_ES;
+
+          data.forEach(function(runner, idx){
+            var html = buildMatchCard(runner, idx, isEN, horarioLabels, objLabels);
+
+            if(idx === 0){
+              // First card — always visible
+              cards.innerHTML += html;
+            } else if(!isUserPremium){
+              // Non-premium: blurred
+              blurred.innerHTML += html;
+            } else {
+              // Premium: all visible
+              cards.innerHTML += html;
+            }
+          });
+
+          cards.classList.remove('hidden');
+
+          if(data.length > 1 && !isUserPremium){
+            wall.classList.remove('hidden');
+          }
+        }
+
+        function buildMatchCard(runner, idx, isEN, horarioLabels, objLabels){
+          var photo = runner.photo_url || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23334155" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%2394a3b8" font-size="40">' + (runner.nombre ? runner.nombre.charAt(0).toUpperCase() : '?') + '</text></svg>';
+          var name = runner.nombre || (isEN ? 'Runner' : 'Runner');
+          var verified = runner.verification_badge ? ' <span title="Verificado" style="color:#22c55e;font-size:.75rem">✓</span>' : '';
+          var score = runner.score || 0;
+          var scoreColor = score >= 80 ? '#22c55e' : score >= 60 ? '#f59e0b' : '#94a3b8';
+
+          var ritmo = '';
+          if(runner.ritmo_min && runner.ritmo_max){
+            ritmo = runner.ritmo_min + '-' + runner.ritmo_max + '/km';
+          }
+
+          var dias = '';
+          if(runner.dias_preferidos && runner.dias_preferidos.length){
+            dias = runner.dias_preferidos.map(function(d){
+              var i = MATCHING_DAYS_ES.indexOf(d);
+              return i >= 0 ? MATCHING_DAYS_SHORT[i] : d;
+            }).join('-');
+          }
+
+          var horario = runner.horario_preferido ? (horarioLabels[runner.horario_preferido] || runner.horario_preferido) : '';
+          var objetivo = runner.objetivo ? (objLabels[runner.objetivo] || runner.objetivo) : '';
+          var nivel = runner.nivel || '';
+
+          var sendLabel = isEN ? 'Send request' : 'Enviar solicitud';
+
+          return '<div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 hover:border-orange-500/25 transition">' +
+            '<div class="flex items-start gap-3">' +
+              '<img src="' + photo + '" alt="" class="w-12 h-12 rounded-full object-cover flex-shrink-0 border-2 border-slate-700">' +
+              '<div class="flex-1 min-w-0">' +
+                '<div class="flex items-center justify-between">' +
+                  '<h4 class="font-bold text-white text-sm truncate">' + name + verified + '</h4>' +
+                  '<span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:' + scoreColor + '20;color:' + scoreColor + '">' + score + '%</span>' +
+                '</div>' +
+                (ritmo ? '<div class="flex items-center gap-1 mt-1"><span class="text-gray-500 text-xs">⏱️</span><span class="text-gray-300 text-xs">' + ritmo + '</span>' + (nivel ? '<span class="text-gray-600 text-xs">·</span><span class="text-gray-400 text-xs">' + nivel + '</span>' : '') + '</div>' : '') +
+                (dias || horario ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs">📅</span><span class="text-gray-300 text-xs">' + dias + (horario ? ' ' + horario.toLowerCase() : '') + '</span></div>' : '') +
+                (objetivo ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs">🎯</span><span class="text-gray-400 text-xs">' + objetivo + '</span></div>' : '') +
+                (runner.bio_matching ? '<p class="text-gray-500 text-xs mt-1 italic">"' + runner.bio_matching.substring(0,100) + '"</p>' : '') +
+              '</div>' +
+            '</div>' +
+            '<div class="mt-3 flex justify-end">' +
+              '<button onclick="sendMatchRequest(\'' + runner.user_id + '\')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition ' +
+              (isUserPremium || idx === 0 ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30 hover:bg-orange-500/30' : 'bg-slate-700/50 text-gray-500 border border-slate-700 cursor-not-allowed') + '"' +
+              (!isUserPremium && idx > 0 ? ' disabled' : '') + '>' + sendLabel + '</button>' +
+            '</div>' +
+          '</div>';
+        }
+
+        // Send match request
+        window.sendMatchRequest = async function(toUserId){
+          if(!currentUser){ showToast('Inicia sesión','error'); return; }
+          if(!isUserPremium){
+            openModal('modal-premium-sales');
+            return;
+          }
+          var sb = await getSupabaseClientOrToast(8000);
+          if(!sb) return;
+
+          var { error } = await sb.from('match_requests').insert({
+            from_user_id: currentUser.id,
+            to_user_id: toUserId,
+            status: 'pending'
+          });
+
+          if(error){
+            if(error.code === '23505'){
+              showToast(currentLang === 'en' ? 'Request already sent' : 'Solicitud ya enviada', 'info');
+            } else {
+              showToast('Error: ' + error.message, 'error');
+            }
+            return;
+          }
+
+          showToast(currentLang === 'en' ? 'Request sent!' : 'Solicitud enviada!', 'success');
+          loadMatchingResults();
+          loadMatchingRequests();
+        };
+
+        // Load match requests (received, sent, accepted)
+        async function loadMatchingRequests(){
+          if(!currentUser) return;
+          var sb = await getSupabaseClientOrToast(8000, false);
+          if(!sb) return;
+
+          var isEN = currentLang === 'en';
+
+          // Get all requests involving this user
+          var { data: requests } = await sb.from('match_requests')
+            .select('id,from_user_id,to_user_id,status,message,created_at')
+            .or('from_user_id.eq.' + currentUser.id + ',to_user_id.eq.' + currentUser.id)
+            .order('created_at', { ascending: false });
+
+          if(!requests) requests = [];
+
+          var received = requests.filter(function(r){ return r.to_user_id === currentUser.id && r.status === 'pending'; });
+          var sent = requests.filter(function(r){ return r.from_user_id === currentUser.id && r.status === 'pending'; });
+          var accepted = requests.filter(function(r){ return r.status === 'accepted'; });
+
+          // Get user profiles for all involved users
+          var userIds = [];
+          requests.forEach(function(r){
+            if(r.from_user_id !== currentUser.id && userIds.indexOf(r.from_user_id) < 0) userIds.push(r.from_user_id);
+            if(r.to_user_id !== currentUser.id && userIds.indexOf(r.to_user_id) < 0) userIds.push(r.to_user_id);
+          });
+
+          var profiles = {};
+          if(userIds.length > 0){
+            var { data: profs } = await sb.from('profiles').select('id,nombre,photo_url,ciudad,nivel').in('id', userIds);
+            if(profs) profs.forEach(function(p){ profiles[p.id] = p; });
+          }
+
+          // Render received
+          var receivedEl = document.getElementById('matching-received-list');
+          var noReceived = document.getElementById('matching-no-received');
+          if(received.length === 0){
+            receivedEl.innerHTML = '';
+            receivedEl.appendChild(noReceived || document.createTextNode(''));
+            if(noReceived) noReceived.classList.remove('hidden');
+          } else {
+            receivedEl.innerHTML = received.map(function(r){
+              var p = profiles[r.from_user_id] || {};
+              var photo = p.photo_url || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23334155" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%2394a3b8" font-size="40">' + ((p.nombre||'?').charAt(0).toUpperCase()) + '</text></svg>';
+              return '<div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 flex items-center gap-3">' +
+                '<img src="' + photo + '" class="w-10 h-10 rounded-full object-cover border border-slate-700">' +
+                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + (p.nombre || 'Runner') + '</h4>' +
+                '<p class="text-gray-500 text-xs">' + (p.ciudad || '') + (p.nivel ? ' · ' + p.nivel : '') + '</p></div>' +
+                '<div class="flex gap-2">' +
+                  '<button onclick="respondMatchRequest(\'' + r.id + '\',\'accepted\')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30">' + (isEN ? 'Accept' : 'Aceptar') + '</button>' +
+                  '<button onclick="respondMatchRequest(\'' + r.id + '\',\'rejected\')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30">' + (isEN ? 'Decline' : 'Rechazar') + '</button>' +
+                '</div></div>';
+            }).join('');
+          }
+
+          // Render sent
+          var sentEl = document.getElementById('matching-sent-list');
+          var noSent = document.getElementById('matching-no-sent');
+          if(sent.length === 0){
+            sentEl.innerHTML = '';
+            if(noSent){ sentEl.appendChild(noSent); noSent.classList.remove('hidden'); }
+          } else {
+            sentEl.innerHTML = sent.map(function(r){
+              var p = profiles[r.to_user_id] || {};
+              var photo = p.photo_url || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23334155" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%2394a3b8" font-size="40">' + ((p.nombre||'?').charAt(0).toUpperCase()) + '</text></svg>';
+              return '<div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 flex items-center gap-3">' +
+                '<img src="' + photo + '" class="w-10 h-10 rounded-full object-cover border border-slate-700">' +
+                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + (p.nombre || 'Runner') + '</h4>' +
+                '<p class="text-gray-500 text-xs">' + (p.ciudad || '') + '</p></div>' +
+                '<span class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400">' + (isEN ? 'Pending' : 'Pendiente') + '</span>' +
+              '</div>';
+            }).join('');
+          }
+
+          // Render accepted
+          var acceptedEl = document.getElementById('matching-accepted-list');
+          var noAccepted = document.getElementById('matching-no-accepted');
+          if(accepted.length === 0){
+            acceptedEl.innerHTML = '';
+            if(noAccepted){ acceptedEl.appendChild(noAccepted); noAccepted.classList.remove('hidden'); }
+          } else {
+            acceptedEl.innerHTML = accepted.map(function(r){
+              var otherId = r.from_user_id === currentUser.id ? r.to_user_id : r.from_user_id;
+              var p = profiles[otherId] || {};
+              var photo = p.photo_url || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23334155" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%2394a3b8" font-size="40">' + ((p.nombre||'?').charAt(0).toUpperCase()) + '</text></svg>';
+              return '<div class="bg-green-500/5 border border-green-500/20 rounded-xl p-3 flex items-center gap-3">' +
+                '<img src="' + photo + '" class="w-10 h-10 rounded-full object-cover border-2 border-green-500/30">' +
+                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + (p.nombre || 'Runner') + '</h4>' +
+                '<p class="text-gray-500 text-xs">' + (p.ciudad || '') + (p.nivel ? ' · ' + p.nivel : '') + '</p></div>' +
+                '<span class="px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400">✓ Match</span>' +
+              '</div>';
+            }).join('');
+          }
+        }
+
+        // Respond to a match request (accept/reject)
+        window.respondMatchRequest = async function(requestId, status){
+          var sb = await getSupabaseClientOrToast(8000);
+          if(!sb) return;
+
+          var { error } = await sb.from('match_requests').update({
+            status: status,
+            updated_at: new Date().toISOString()
+          }).eq('id', requestId);
+
+          if(error){
+            showToast('Error: ' + error.message, 'error');
+            return;
+          }
+
+          var isEN = currentLang === 'en';
+          if(status === 'accepted'){
+            showToast(isEN ? 'Match accepted!' : 'Match aceptado!', 'success');
+          } else {
+            showToast(isEN ? 'Request declined' : 'Solicitud rechazada', 'info');
+          }
+          loadMatchingRequests();
+        };
+
+        /* ══════════════════════════════════════════════
+           END RUNNER MATCHING
+           ══════════════════════════════════════════════ */
+
         document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.active').forEach(m=>m.classList.remove('active'));closeSidebar();}});
         document.querySelectorAll('.modal').forEach(modal=>{modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('active');});});
         document.addEventListener('DOMContentLoaded',()=>{

@@ -193,14 +193,29 @@
     'Rutas':['Rutas','Entrenamiento'],
   };
 
+  /* Category thumbnail images (same Unsplash URLs as hero system) */
+  var CAT_IMGS = {
+    'Entrenamiento':'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=400&h=200&q=60',
+    'Trail':'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=400&h=200&q=60',
+    'Nutrici\u00f3n':'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&h=200&q=60',
+    'Zapatillas':'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&h=200&q=60',
+    'Equipamiento':'https://images.unsplash.com/photo-1461896836934-bd45ba0c3530?auto=format&fit=crop&w=400&h=200&q=60',
+    'Tecnolog\u00eda':'https://images.unsplash.com/photo-1510017803434-a899b55cbf07?auto=format&fit=crop&w=400&h=200&q=60',
+    'Salud':'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=200&q=60',
+    'Rutas':'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=400&h=200&q=60'
+  };
+  var DEFAULT_IMG = 'https://images.unsplash.com/photo-1461896836934-bd45ba0c3530?auto=format&fit=crop&w=400&h=200&q=60';
+
   /* ── CSS ── */
   var css = document.createElement('style');
   css.textContent = [
     '.related-section{margin:40px 0 32px;padding:32px 0 0;border-top:1px solid rgba(255,255,255,.06)}',
     '.related-title{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 20px}',
     '.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}',
-    '.related-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 16px;text-decoration:none;transition:all .25s;display:block}',
+    '.related-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:0;text-decoration:none;transition:all .25s;display:block;overflow:hidden}',
     '.related-card:hover{background:rgba(255,255,255,.06);border-color:rgba(249,115,22,.3);transform:translateY(-2px)}',
+    '.related-img{width:100%;height:120px;object-fit:cover;display:block}',
+    '.related-body{padding:14px 16px 16px}',
     '.related-cat{font-size:.7rem;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px}',
     '.related-card-title{font-size:.9rem;font-weight:700;color:#cbd5e1;line-height:1.4;margin:0;transition:color .2s}',
     '.related-card:hover .related-card-title{color:#fff}',
@@ -241,11 +256,14 @@
   var html = '<h2 class="related-title">'+title+'</h2><div class="related-grid">';
   for(var k=0;k<picks.length;k++){
     var p = picks[k];
+    var img = CAT_IMGS[p.c] || DEFAULT_IMG;
     html += '<a href="'+basePath+p.s+'" class="related-card">' +
+      '<img class="related-img" src="'+img+'" alt="'+p.t+'" loading="lazy" width="400" height="200">' +
+      '<div class="related-body">' +
       '<div class="related-cat">'+p.c+'</div>' +
       '<p class="related-card-title">'+p.t+'</p>' +
       '<div class="related-arrow">'+cta+'</div>' +
-    '</a>';
+      '</div></a>';
   }
   html += '</div>';
   section.innerHTML = html;

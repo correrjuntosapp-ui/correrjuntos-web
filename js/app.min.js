@@ -1602,7 +1602,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     } else {
                         inputWrap.innerHTML = `
                             <div class="text-center py-2">
-                                <button onclick="openPremiumCheckout()" class="text-xs text-yellow-400 hover:text-yellow-300 transition">${t.premiumCommentCta || '⭐ Premium para comentar'}</button>
+                                <button onclick="openPremiumSales()" class="text-xs text-yellow-400 hover:text-yellow-300 transition">${t.premiumCommentCta || '⭐ Premium para comentar'}</button>
                             </div>`;
                     }
                 }
@@ -1926,7 +1926,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                         <label class="text-sm font-semibold text-yellow-400 flex items-center gap-1">⭐ Filtros Premium</label>
                     </div>
                     <div class="text-xs text-gray-500 mb-3">Ritmo exacto, organizador verificado...</div>
-                    <button onclick="openPremiumCheckout()" class="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 text-yellow-400 text-xs font-bold hover:border-yellow-500/50 transition">
+                    <button onclick="openPremiumSales()" class="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 text-yellow-400 text-xs font-bold hover:border-yellow-500/50 transition">
                         Desbloquear ⭐
                     </button>
                 </div>
@@ -4369,7 +4369,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             // Mostrar popup después de un pequeño delay
             setTimeout(() => {
-                openModal('modal-premium-promo');
+                openPremiumSales();
                 localStorage.setItem('cj_premium_promo_last', now.toString());
             }, 2000); // 2 segundos después del login
         }
@@ -9186,7 +9186,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
         async function openVerificationFlow() {
             if (!currentUser || !isUserPremium) {
-                openPremiumCheckout();
+                openPremiumSales();
                 return;
             }
 
@@ -10218,6 +10218,72 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
         }
         // ==================== FIN SISTEMA SOCIAL ====================
+
+        // ==================== PREMIUM SALES PAGE ====================
+        function openPremiumSales() {
+            if (isUserPremium) {
+                openModal('modal-profile');
+                return;
+            }
+            openModal('modal-premium-sales');
+            const content = document.querySelector('#modal-premium-sales .modal-content');
+            if (content) content.scrollTop = 0;
+            // Apply i18n to sales page
+            const t = I18N[currentLang] || I18N.es;
+            const ids = ['sales-hero-title','sales-hero-subtitle','sales-hero-trial','sales-features-title',
+                'sales-f1-title','sales-f1-desc','sales-f2-title','sales-f2-desc','sales-f3-title','sales-f3-desc',
+                'sales-f4-title','sales-f4-desc','sales-f5-title','sales-f5-desc','sales-f6-title','sales-f6-desc',
+                'sales-f7-title','sales-f7-desc','sales-extra-title','sales-compare-title',
+                'sales-col-free','sales-col-premium','sales-row-quedadas','sales-row-participantes',
+                'sales-row-stats','sales-row-comentarios','sales-row-heatmap','sales-row-privadas',
+                'sales-row-gps','sales-row-ads','sales-price-badge','sales-price-period','sales-price-desc',
+                'sales-cta-main','sales-price-cancel','sales-stat-runners','sales-stat-cities',
+                'sales-stat-countries','sales-stat-rating','sales-faq-title','sales-faq-q1','sales-faq-a1',
+                'sales-faq-q2','sales-faq-a2','sales-faq-q3','sales-faq-a3','sales-faq-q4','sales-faq-a4',
+                'sales-final-title','sales-final-subtitle','sales-final-cta'];
+            const keyMap = {
+                'sales-hero-title':'salesHeroTitle','sales-hero-subtitle':'salesHeroSubtitle',
+                'sales-hero-trial':'salesHeroTrial','sales-features-title':'salesFeaturesTitle',
+                'sales-f1-title':'salesF1Title','sales-f1-desc':'salesF1Desc',
+                'sales-f2-title':'salesF2Title','sales-f2-desc':'salesF2Desc',
+                'sales-f3-title':'salesF3Title','sales-f3-desc':'salesF3Desc',
+                'sales-f4-title':'salesF4Title','sales-f4-desc':'salesF4Desc',
+                'sales-f5-title':'salesF5Title','sales-f5-desc':'salesF5Desc',
+                'sales-f6-title':'salesF6Title','sales-f6-desc':'salesF6Desc',
+                'sales-f7-title':'salesF7Title','sales-f7-desc':'salesF7Desc',
+                'sales-extra-title':'salesExtraTitle',
+                'sales-compare-title':'salesCompareTitle',
+                'sales-col-free':'salesColFree','sales-col-premium':'salesColPremium',
+                'sales-row-quedadas':'salesRowQuedadas','sales-row-participantes':'salesRowParticipantes',
+                'sales-row-stats':'salesRowStats','sales-row-comentarios':'salesRowComentarios',
+                'sales-row-heatmap':'salesRowHeatmap','sales-row-privadas':'salesRowPrivadas',
+                'sales-row-gps':'salesRowGps','sales-row-ads':'salesRowAds',
+                'sales-price-badge':'salesPriceBadge','sales-price-period':'salesPricePeriod',
+                'sales-price-desc':'salesPriceDesc','sales-cta-main':'salesCtaMain',
+                'sales-price-cancel':'salesPriceCancel',
+                'sales-stat-runners':'salesStatRunners','sales-stat-cities':'salesStatCities',
+                'sales-stat-countries':'salesStatCountries','sales-stat-rating':'salesStatRating',
+                'sales-faq-title':'salesFaqTitle',
+                'sales-faq-q1':'salesFaqQ1','sales-faq-a1':'salesFaqA1',
+                'sales-faq-q2':'salesFaqQ2','sales-faq-a2':'salesFaqA2',
+                'sales-faq-q3':'salesFaqQ3','sales-faq-a3':'salesFaqA3',
+                'sales-faq-q4':'salesFaqQ4','sales-faq-a4':'salesFaqA4',
+                'sales-final-title':'salesFinalTitle','sales-final-subtitle':'salesFinalSubtitle',
+                'sales-final-cta':'salesFinalCta'
+            };
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                const key = keyMap[id];
+                if (el && key && t[key]) el.textContent = t[key];
+            });
+            // Extras pills
+            for (let i = 1; i <= 6; i++) {
+                const el = document.getElementById('sales-extra-' + i);
+                const key = 'salesExtra' + i;
+                if (el && t[key]) el.textContent = el.textContent.split(' ')[0] + ' ' + t[key];
+            }
+            if (typeof gtag === 'function') gtag('event', 'view_premium_sales', { event_category: 'premium' });
+        }
 
         async function openPremiumCheckout() {
             if (!currentUser) {

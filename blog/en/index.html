@@ -109,21 +109,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .filter-panel-btn.active{color:#fff;transform:translateY(-1px)}
 .filter-panel-btn .cat-icon{font-size:1rem;flex-shrink:0}
 .filter-panel-btn .cat-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fp-zapatillas.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);color:#f97316}
 .fp-entrenamiento.active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:#3b82f6}
 .fp-nutricion.active{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.35);color:#22c55e}
-.fp-rutas.active{background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.35);color:#a855f7}
 .fp-equipamiento.active{background:rgba(6,182,212,.15);border-color:rgba(6,182,212,.35);color:#06b6d4}
-.fp-relojes-gps.active{background:rgba(234,179,8,.15);border-color:rgba(234,179,8,.35);color:#eab308}
-.fp-apps.active{background:rgba(236,72,153,.15);border-color:rgba(236,72,153,.35);color:#ec4899}
-.fp-recuperacion.active{background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#10b981}
-.fp-principiantes.active{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.35);color:#6366f1}
-.fp-comunidad.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);color:#f97316}
-.fp-carreras.active{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.35);color:#ef4444}
-.fp-ropa.active{background:rgba(244,114,182,.15);border-color:rgba(244,114,182,.35);color:#f472b6}
+.fp-tecnologia.active{background:rgba(234,179,8,.15);border-color:rgba(234,179,8,.35);color:#eab308}
+.fp-zapatillas.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);color:#f97316}
+.fp-salud.active{background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.35);color:#e11d48}
+.fp-rutas.active{background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.35);color:#a855f7}
 .fp-trail.active{background:rgba(132,204,22,.15);border-color:rgba(132,204,22,.35);color:#84cc16}
-.fp-tecnologia.active{background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.35);color:#38bdf8}
-.fp-lesiones.active{background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.35);color:#e11d48}
 /* keep old filter-btn for JS compat — hidden */
 .filter-bar{display:none}
 .filter-btn{display:none}
@@ -178,18 +171,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 /* Regular Cards */
 .article-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .3s,box-shadow .3s;position:relative}
 .article-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,.3)}
-.article-card[data-category="zapatillas"]:hover{border-color:rgba(249,115,22,.4);box-shadow:0 20px 48px rgba(249,115,22,.08)}
 .article-card[data-category="entrenamiento"]:hover{border-color:rgba(59,130,246,.4);box-shadow:0 20px 48px rgba(59,130,246,.08)}
 .article-card[data-category="nutricion"]:hover{border-color:rgba(34,197,94,.4);box-shadow:0 20px 48px rgba(34,197,94,.08)}
-.article-card[data-category="rutas"]:hover{border-color:rgba(168,85,247,.4);box-shadow:0 20px 48px rgba(168,85,247,.08)}
 .article-card[data-category="equipamiento"]:hover{border-color:rgba(6,182,212,.4);box-shadow:0 20px 48px rgba(6,182,212,.08)}
-.article-card[data-category="relojes-gps"]:hover{border-color:rgba(234,179,8,.4);box-shadow:0 20px 48px rgba(234,179,8,.08)}
-.article-card[data-category="apps"]:hover{border-color:rgba(236,72,153,.4);box-shadow:0 20px 48px rgba(236,72,153,.08)}
-.article-card[data-category="recuperación"]:hover{border-color:rgba(16,185,129,.4);box-shadow:0 20px 48px rgba(16,185,129,.08)}
-.article-card[data-category="principiantes"]:hover{border-color:rgba(99,102,241,.4);box-shadow:0 20px 48px rgba(99,102,241,.08)}
-.article-card[data-category="comunidad"]:hover{border-color:rgba(249,115,22,.4);box-shadow:0 20px 48px rgba(249,115,22,.08)}
-.article-card[data-category="carreras"]:hover{border-color:rgba(239,68,68,.4);box-shadow:0 20px 48px rgba(239,68,68,.08)}
-.article-card[data-category="lesiones"]:hover{border-color:rgba(225,29,72,.4);box-shadow:0 20px 48px rgba(225,29,72,.08)}
+.article-card[data-category="tecnologia"]:hover{border-color:rgba(234,179,8,.4);box-shadow:0 20px 48px rgba(234,179,8,.08)}
+.article-card[data-category="zapatillas"]:hover{border-color:rgba(249,115,22,.4);box-shadow:0 20px 48px rgba(249,115,22,.08)}
+.article-card[data-category="salud"]:hover{border-color:rgba(225,29,72,.4);box-shadow:0 20px 48px rgba(225,29,72,.08)}
+.article-card[data-category="rutas"]:hover{border-color:rgba(168,85,247,.4);box-shadow:0 20px 48px rgba(168,85,247,.08)}
+.article-card[data-category="trail"]:hover{border-color:rgba(132,204,22,.4);box-shadow:0 20px 48px rgba(132,204,22,.08)}
 
 /* Card image area */
 .card-img{height:180px;overflow:hidden;position:relative}
@@ -208,16 +197,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .cat-badge-nutricion{color:#22c55e;background:rgba(34,197,94,.12)}
 .cat-badge-rutas{color:#a855f7;background:rgba(168,85,247,.12)}
 .cat-badge-equipamiento{color:#06b6d4;background:rgba(6,182,212,.12)}
-.cat-badge-relojes-gps{color:#eab308;background:rgba(234,179,8,.12)}
-.cat-badge-apps{color:#ec4899;background:rgba(236,72,153,.12)}
-.cat-badge-recuperación{color:#10b981;background:rgba(16,185,129,.12)}
-.cat-badge-principiantes{color:#6366f1;background:rgba(99,102,241,.12)}
-.cat-badge-comunidad{color:#f97316;background:rgba(249,115,22,.12)}
-.cat-badge-carreras{color:#ef4444;background:rgba(239,68,68,.12)}
-.cat-badge-ropa{color:#f472b6;background:rgba(244,114,182,.12)}
+.cat-badge-tecnologia{color:#eab308;background:rgba(234,179,8,.12)}
+.cat-badge-salud{color:#e11d48;background:rgba(225,29,72,.12)}
 .cat-badge-trail{color:#84cc16;background:rgba(132,204,22,.12)}
-.cat-badge-tecnologia{color:#38bdf8;background:rgba(56,189,248,.12)}
-.cat-badge-lesiones{color:#e11d48;background:rgba(225,29,72,.12)}
 
 .card-body h2{font-size:1.15rem;font-weight:800;color:#fff;line-height:1.3;margin-top:2px}
 .card-body p{font-size:.88rem;color:#94a3b8;line-height:1.6;flex-grow:1}
@@ -361,7 +343,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <div class="hero-stats">
     <span>83 articles</span>
     <span><span class="dot"></span></span>
-    <span>15 categories</span>
+    <span>8 categories</span>
     <span><span class="dot"></span></span>
     <span>Updated Feb 2026</span>
     <span><span class="dot"></span></span>
@@ -384,40 +366,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <button class="filter-dropdown-trigger" id="filterDropdownTrigger">📂 Categories <span class="arrow">▼</span></button>
   <span id="filterActiveLabel"></span>
   <div class="filter-panel" id="filterPanel">
-    <button class="filter-panel-btn fp-zapatillas" data-filter="zapatillas"><span class="cat-icon">👟</span><span class="cat-name">Shoes</span></button>
-    <button class="filter-panel-btn fp-entrenamiento" data-filter="entrenamiento"><span class="cat-icon">🏋️</span><span class="cat-name">Training</span></button>
-    <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-icon">🗺️</span><span class="cat-name">Routes</span></button>
-    <button class="filter-panel-btn fp-equipamiento" data-filter="equipamiento"><span class="cat-icon">🎒</span><span class="cat-name">Gear</span></button>
+    <button class="filter-panel-btn fp-entrenamiento" data-filter="entrenamiento"><span class="cat-icon">🏃</span><span class="cat-name">Training</span></button>
     <button class="filter-panel-btn fp-nutricion" data-filter="nutricion"><span class="cat-icon">🥗</span><span class="cat-name">Nutrition</span></button>
-    <button class="filter-panel-btn fp-relojes-gps" data-filter="relojes-gps"><span class="cat-icon">⌚</span><span class="cat-name">GPS Watches</span></button>
-    <button class="filter-panel-btn fp-apps" data-filter="apps"><span class="cat-icon">📱</span><span class="cat-name">Apps</span></button>
-    <button class="filter-panel-btn fp-recuperacion" data-filter="recuperación"><span class="cat-icon">🧊</span><span class="cat-name">Recovery</span></button>
-    <button class="filter-panel-btn fp-principiantes" data-filter="principiantes"><span class="cat-icon">🌱</span><span class="cat-name">Beginners</span></button>
-    <button class="filter-panel-btn fp-comunidad" data-filter="comunidad"><span class="cat-icon">🤝</span><span class="cat-name">Community</span></button>
-    <button class="filter-panel-btn fp-carreras" data-filter="carreras"><span class="cat-icon">🏅</span><span class="cat-name">Races</span></button>
-    <button class="filter-panel-btn fp-ropa" data-filter="ropa"><span class="cat-icon">👕</span><span class="cat-name">Clothing</span></button>
+    <button class="filter-panel-btn fp-equipamiento" data-filter="equipamiento"><span class="cat-icon">🎒</span><span class="cat-name">Gear</span></button>
+    <button class="filter-panel-btn fp-tecnologia" data-filter="tecnologia"><span class="cat-icon">⌚</span><span class="cat-name">Technology</span></button>
+    <button class="filter-panel-btn fp-zapatillas" data-filter="zapatillas"><span class="cat-icon">👟</span><span class="cat-name">Shoes</span></button>
+    <button class="filter-panel-btn fp-salud" data-filter="salud"><span class="cat-icon">🩹</span><span class="cat-name">Health</span></button>
+    <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-icon">🗺️</span><span class="cat-name">Routes</span></button>
     <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-icon">⛰️</span><span class="cat-name">Trail</span></button>
-    <button class="filter-panel-btn fp-tecnologia" data-filter="tecnologia"><span class="cat-icon">💻</span><span class="cat-name">Technology</span></button>
-    <button class="filter-panel-btn fp-lesiones" data-filter="lesiones"><span class="cat-icon">🩹</span><span class="cat-name">Injuries</span></button>
   </div>
   <!-- Hidden original bar for JS compat -->
   <div class="filter-bar" id="filterBar">
     <button class="filter-btn active" data-filter="todos">All</button>
-    <button class="filter-btn" data-filter="zapatillas">Shoes</button>
     <button class="filter-btn" data-filter="entrenamiento">Training</button>
-    <button class="filter-btn" data-filter="rutas">Routes</button>
-    <button class="filter-btn" data-filter="equipamiento">Gear</button>
     <button class="filter-btn" data-filter="nutricion">Nutrition</button>
-    <button class="filter-btn" data-filter="relojes-gps">GPS Watches</button>
-    <button class="filter-btn" data-filter="apps">Apps</button>
-    <button class="filter-btn" data-filter="recuperación">Recovery</button>
-    <button class="filter-btn" data-filter="principiantes">Beginners</button>
-    <button class="filter-btn" data-filter="comunidad">Community</button>
-    <button class="filter-btn" data-filter="carreras">Races</button>
-    <button class="filter-btn" data-filter="ropa">Clothing</button>
-    <button class="filter-btn" data-filter="trail">Trail</button>
+    <button class="filter-btn" data-filter="equipamiento">Gear</button>
     <button class="filter-btn" data-filter="tecnologia">Technology</button>
-    <button class="filter-btn" data-filter="lesiones">Injuries</button>
+    <button class="filter-btn" data-filter="zapatillas">Shoes</button>
+    <button class="filter-btn" data-filter="salud">Health</button>
+    <button class="filter-btn" data-filter="rutas">Routes</button>
+    <button class="filter-btn" data-filter="trail">Trail</button>
   </div>
   </div>
 
@@ -482,13 +450,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Beneficios de Correr -->
-    <a href="/blog/en/benefits-of-running" class="article-card" data-category="principiantes" style="animation-delay:.06s">
+    <a href="/blog/en/benefits-of-running" class="article-card" data-category="entrenamiento" style="animation-delay:.06s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?auto=format&fit=crop&w=640&h=360&q=80" alt="Runner enjoying the benefits of running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-principiantes">Beginners</span>
+        <span class="category cat-badge-entrenamiento">Training</span>
         <h2>Benefits of Running: 15 Science-Backed Reasons to Start</h2>
         <p>Cardiovascular health, weight management, mental health, longevity and more. Everything running can do for you.</p>
         <span class="author">By Jose Marquez</span>
@@ -536,13 +504,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Dolor Rodilla al Correr -->
-    <a href="/blog/en/knee-pain-while-running" class="article-card" data-category="lesiones" style="animation-delay:.076s">
+    <a href="/blog/en/knee-pain-while-running" class="article-card" data-category="salud" style="animation-delay:.076s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=640&h=360&q=80" alt="Knee pain while running treatment" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-lesiones">Injuries</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>Knee Pain While Running: Causes, Treatment and Prevention</h2>
         <p>The 6 most common causes of knee pain in runners, how to treat them and strengthening exercises.</p>
         <span class="author">By Jose Marquez</span>
@@ -680,13 +648,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Mejor Reloj GPS Calidad-Precio -->
-    <a href="/blog/en/best-value-gps-running-watch" class="article-card" data-category="relojes-gps" style="animation-delay:.09s">
+    <a href="/blog/en/best-value-gps-running-watch" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=640&h=360&q=80" alt="Best value GPS running watch" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Best Value GPS Running Watch 2026</h2>
         <p>Comparison by price range: Garmin, COROS, Polar and Apple Watch. Which one is worth it.</p>
         <span class="author">By Jose Marquez</span>
@@ -734,13 +702,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Pack Básico Running -->
-    <a href="/blog/en/basic-running-pack-beginners" class="article-card" data-category="principiantes" style="animation-delay:.09s">
+    <a href="/blog/en/basic-running-pack-beginners" class="article-card" data-category="entrenamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=640&h=360&q=80" alt="Basic running starter pack for beginners" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-principiantes">Beginners</span>
+        <span class="category cat-badge-entrenamiento">Training</span>
         <h2>Basic Running Starter Pack: Everything You Need to Start</h2>
         <p>Gear guide by level: essential, recommended and nice-to-have. With budget options.</p>
         <span class="author">By Jose Marquez</span>
@@ -752,13 +720,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Garmin Forerunner 55 Review -->
-    <a href="/blog/en/garmin-forerunner-55-review" class="article-card" data-category="relojes-gps" style="animation-delay:.09s">
+    <a href="/blog/en/garmin-forerunner-55-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=640&h=360&q=80" alt="Garmin Forerunner 55 review" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Garmin Forerunner 55: Full Review for Runners</h2>
         <p>The best-selling GPS watch for beginner runners. Features, battery, GPS accuracy and comparison.</p>
         <span class="author">By Jose Marquez</span>
@@ -770,13 +738,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- COROS PACE 3 Review -->
-    <a href="/blog/en/coros-pace-3-review" class="article-card" data-category="relojes-gps" style="animation-delay:.09s">
+    <a href="/blog/en/coros-pace-3-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1557438159-51eec7a6c9e8?auto=format&fit=crop&w=640&h=360&q=80" alt="COROS PACE 3 review" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>COROS PACE 3: Full Review - Best Value GPS Watch</h2>
         <p>Dual-band GPS, 38h battery, 39g and all the metrics. The best value GPS running watch on the market.</p>
         <span class="author">By Jose Marquez</span>
@@ -788,13 +756,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Apple Watch Running Review -->
-    <a href="/blog/en/apple-watch-running-review" class="article-card" data-category="relojes-gps" style="animation-delay:.09s">
+    <a href="/blog/en/apple-watch-running-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1551816230-ef5deaed4a26?auto=format&fit=crop&w=640&h=360&q=80" alt="Apple Watch for running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Apple Watch for Running: Is It Worth It?</h2>
         <p>GPS, running metrics, music and apps. Honest review of the Apple Watch as a running watch.</p>
         <span class="author">By Jose Marquez</span>
@@ -806,13 +774,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Polar Pacer Pro Review -->
-    <a href="/blog/en/polar-pacer-pro-review" class="article-card" data-category="relojes-gps" style="animation-delay:.09s">
+    <a href="/blog/en/polar-pacer-pro-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=640&h=360&q=80" alt="Polar Pacer Pro review" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Polar Pacer Pro: The Most Underrated Running Watch</h2>
         <p>Advanced metrics, running power, accurate GPS and the best training analysis app.</p>
         <span class="author">By Jose Marquez</span>
@@ -824,13 +792,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Garmin Venu 3 Review -->
-    <a href="/blog/en/garmin-venu-3-review" class="article-card" data-category="relojes-gps" style="animation-delay:.09s">
+    <a href="/blog/en/garmin-venu-3-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=640&h=360&q=80" alt="Garmin Venu 3 review" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Garmin Venu 3: Garmin's Smartwatch for Runners</h2>
         <p>AMOLED screen, offline music, Garmin Pay and GPS. Is it better than a Forerunner for running?</p>
         <span class="author">By Jose Marquez</span>
@@ -842,13 +810,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Smartwatch vs Reloj GPS -->
-    <a href="/blog/en/smartwatch-vs-gps-watch-running" class="article-card" data-category="relojes-gps" style="animation-delay:.09s">
+    <a href="/blog/en/smartwatch-vs-gps-watch-running" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://res.garmin.com/en/products/010-02810-00/v/cf-lg.jpg" alt="Garmin Forerunner 265 smartwatch vs GPS running watch" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Smartwatch vs GPS Watch for Running: Which Do You Need?</h2>
         <p>Real differences, advantages of each type and a guide to choose based on your runner profile.</p>
         <span class="author">By Jose Marquez</span>
@@ -1076,13 +1044,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Foam Rollers Runners -->
-    <a href="/blog/en/foam-rollers-runners" class="article-card" data-category="recuperación" style="animation-delay:.09s">
+    <a href="/blog/en/foam-rollers-runners" class="article-card" data-category="salud" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1600881333168-2ef49b341f30?auto=format&fit=crop&w=640&h=360&q=80" alt="Foam rollers for runners" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-recuperación">Recovery</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>7 Best Foam Rollers for Runners 2026</h2>
         <p>TriggerPoint GRID, Blackroll, Hyperice and more. Complete myofascial release guide for post-run recovery.</p>
         <span class="author">By Jose Marquez</span>
@@ -1130,13 +1098,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Mallas Running -->
-    <a href="/blog/en/running-tights" class="article-card" data-category="ropa" style="animation-delay:.09s">
+    <a href="/blog/en/running-tights" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=640&h=360&q=80" alt="Running tights for men and women" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-ropa">Clothing</span>
+        <span class="category cat-badge-equipamiento">Gear</span>
         <h2>10 Best Running Tights 2026</h2>
         <p>Men's and women's ranking from $20 to $120. Compression, fabrics, pockets and temperature guide.</p>
         <span class="author">By Jose Marquez</span>
@@ -1148,13 +1116,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Chubasqueros Running -->
-    <a href="/blog/en/running-rain-jackets" class="article-card" data-category="ropa" style="animation-delay:.09s">
+    <a href="/blog/en/running-rain-jackets" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=640&h=360&q=80" alt="Rain jackets for running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-ropa">Clothing</span>
+        <span class="category cat-badge-equipamiento">Gear</span>
         <h2>8 Best Rain Jackets for Running 2026</h2>
         <p>Gore Wear, Salomon, Nike and The North Face. Waterproofing, breathability, weight and price compared.</p>
         <span class="author">By Jose Marquez</span>
@@ -1166,13 +1134,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Gorras Running -->
-    <a href="/blog/en/running-caps" class="article-card" data-category="ropa" style="animation-delay:.09s">
+    <a href="/blog/en/running-caps" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1770887752071-f03101c81bca?w=640&q=80" alt="Running caps sun protection" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-ropa">Clothing</span>
+        <span class="category cat-badge-equipamiento">Gear</span>
         <h2>8 Best Running Caps 2026</h2>
         <p>Nike AeroBill, Salomon XA, Buff Pack Run and CIELE GOCap. UV protection, breathability and comparison.</p>
         <span class="author">By Jose Marquez</span>
@@ -1184,13 +1152,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Calcetines Running -->
-    <a href="/blog/en/running-socks" class="article-card" data-category="ropa" style="animation-delay:.09s">
+    <a href="/blog/en/running-socks" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">New</span>
         <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&w=640&h=360&q=80" alt="Running socks blister prevention" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-ropa">Clothing</span>
+        <span class="category cat-badge-equipamiento">Gear</span>
         <h2>8 Best Running Socks 2026</h2>
         <p>Balega, Stance, Darn Tough, Compressport and Injinji. Fabric, cushioning and blister prevention.</p>
         <span class="author">By Jose Marquez</span>
@@ -1418,12 +1386,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Reloj GPS -->
-    <a href="/blog/en/how-to-choose-gps-running-watch" class="article-card" data-category="relojes-gps" style="animation-delay:.3s">
+    <a href="/blog/en/how-to-choose-gps-running-watch" class="article-card" data-category="tecnologia" style="animation-delay:.3s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=640&h=360&q=80" alt="GPS running watch" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>How to Choose a GPS Running Watch: 2026 Guide</h2>
         <p>Essential features, Garmin vs COROS vs Polar comparison and 5 specific recommendations.</p>
         <span class="author">By Jose Marquez</span>
@@ -1435,12 +1403,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Apps Running -->
-    <a href="/blog/en/best-running-apps" class="article-card" data-category="apps" style="animation-delay:.35s">
+    <a href="/blog/en/best-running-apps" class="article-card" data-category="tecnologia" style="animation-delay:.35s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=640&h=360&q=80" alt="Apps running smartphone" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-apps">Apps</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Top 10 Best Running Apps 2026</h2>
         <p>Ranking of running apps with features and prices. CorrerJuntos, Strava, Garmin and more.</p>
         <span class="author">By Jose Marquez</span>
@@ -1469,12 +1437,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Estiramientos Post-Carrera -->
-    <a href="/blog/en/post-run-stretches" class="article-card" data-category="recuperación" style="animation-delay:.45s">
+    <a href="/blog/en/post-run-stretches" class="article-card" data-category="salud" style="animation-delay:.45s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=640&h=360&q=80" alt="Post-run stretches" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-recuperación">Recovery</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>Post-Run Stretches: Recover Faster</h2>
         <p>10 essential stretches after racing. Complete routine and recovery protocol.</p>
         <span class="author">By Jose Marquez</span>
@@ -1486,12 +1454,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Garmin vs COROS -->
-    <a href="/blog/en/garmin-forerunner-265-vs-coros-pace-3" class="article-card" data-category="relojes-gps" style="animation-delay:.5s">
+    <a href="/blog/en/garmin-forerunner-265-vs-coros-pace-3" class="article-card" data-category="tecnologia" style="animation-delay:.5s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=640&h=360&q=80" alt="GPS watches comparison" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-relojes-gps">GPS Watches</span>
+        <span class="category cat-badge-tecnologia">Technology</span>
         <h2>Garmin Forerunner 265 vs COROS PACE 3: Comparison 2026</h2>
         <p>Comparison of the two most popular GPS running watches. Specs, pros, cons and verdict.</p>
         <span class="author">By Jose Marquez</span>
@@ -1624,12 +1592,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Empezar a Correr -->
-    <a href="/blog/en/how-to-start-running-beginners-guide" class="article-card" data-category="principiantes" style="animation-delay:.8s">
+    <a href="/blog/en/how-to-start-running-beginners-guide" class="article-card" data-category="entrenamiento" style="animation-delay:.8s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=640&h=360&q=80" alt="Beginner runner" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-principiantes">Beginners</span>
+        <span class="category cat-badge-entrenamiento">Training</span>
         <h2>Complete Guide to Start Running from Scratch</h2>
         <p>8-week plan, common mistakes, basic gear and how to stay motivated.</p>
         <span class="author">By Jose Marquez</span>
@@ -1658,12 +1626,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Beneficios Correr en Grupo -->
-    <a href="/blog/en/benefits-of-group-running" class="article-card" data-category="comunidad" style="animation-delay:.9s">
+    <a href="/blog/en/benefits-of-group-running" class="article-card" data-category="entrenamiento" style="animation-delay:.9s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=640&h=360&q=80" alt="Group running together" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-comunidad">Community</span>
+        <span class="category cat-badge-entrenamiento">Training</span>
         <h2>7 Benefits of Group Running (Science-Backed)</h2>
         <p>Running with others improves performance, consistency and mental health. What science says.</p>
         <span class="author">By Jose Marquez</span>
@@ -1692,12 +1660,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Primera 5K -->
-    <a href="/blog/en/how-to-prepare-first-5k-race" class="article-card" data-category="carreras" style="animation-delay:1s">
+    <a href="/blog/en/how-to-prepare-first-5k-race" class="article-card" data-category="entrenamiento" style="animation-delay:1s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=640&h=360&q=80" alt="5K race" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-carreras">Races</span>
+        <span class="category cat-badge-entrenamiento">Training</span>
         <h2>How to Prepare for Your First 5K Race</h2>
         <p>6-week plan, race day tips, nutrition and how to cross the finish line.</p>
         <span class="author">By Jose Marquez</span>
@@ -1795,12 +1763,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
     <!-- LESIONES -->
     <!-- Prevenir Lesiones Running (pillar article) -->
-    <a href="/blog/en/prevent-running-injuries" class="article-card" data-category="lesiones" style="animation-delay:1.3s">
+    <a href="/blog/en/prevent-running-injuries" class="article-card" data-category="salud" style="animation-delay:1.3s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=640&h=360&q=80" alt="Prevent running injuries" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-lesiones">Injuries</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>How to Prevent Running Injuries: Complete Guide 2026</h2>
         <p>Keys to injury-free running: warm-up, strengthening, shoes and rest.</p>
         <span class="author">By Jose Marquez</span>
@@ -1812,12 +1780,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Fascitis Plantar -->
-    <a href="/blog/en/plantar-fasciitis-runners" class="article-card" data-category="lesiones" style="animation-delay:1.33s">
+    <a href="/blog/en/plantar-fasciitis-runners" class="article-card" data-category="salud" style="animation-delay:1.33s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=640&h=360&q=80" alt="Plantar fasciitis runners" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-lesiones">Injuries</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>Plantar Fasciitis in Runners: Causes, Treatment and Prevention</h2>
         <p>The most common injury in runners. Identify it, treat it and prevent it.</p>
         <span class="author">By Jose Marquez</span>
@@ -1829,12 +1797,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Rodilla del Corredor -->
-    <a href="/blog/en/runners-knee" class="article-card" data-category="lesiones" style="animation-delay:1.36s">
+    <a href="/blog/en/runners-knee" class="article-card" data-category="salud" style="animation-delay:1.36s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1715531785980-ce9b3bf1c38d?w=640&q=80" alt="Runner knee anatomy" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-lesiones">Injuries</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>Runner's Knee (IT Band Syndrome): Complete Guide</h2>
         <p>Everything about lateral knee pain in runners: IT band, exercises and return to running.</p>
         <span class="author">By Jose Marquez</span>
@@ -1846,12 +1814,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Periostitis Tibial -->
-    <a href="/blog/en/shin-splints-running" class="article-card" data-category="lesiones" style="animation-delay:1.39s">
+    <a href="/blog/en/shin-splints-running" class="article-card" data-category="salud" style="animation-delay:1.39s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=640&h=360&q=80" alt="Shin splints running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-lesiones">Injuries</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>Shin Splints: Why Your Shins Hurt When Running</h2>
         <p>Shin splints: causes, treatment and how to prevent shin pain from slowing you down.</p>
         <span class="author">By Jose Marquez</span>
@@ -1863,12 +1831,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Tendinitis de Aquiles -->
-    <a href="/blog/en/achilles-tendinitis-running" class="article-card" data-category="lesiones" style="animation-delay:1.42s">
+    <a href="/blog/en/achilles-tendinitis-running" class="article-card" data-category="salud" style="animation-delay:1.42s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=640&h=360&q=80" alt="Achilles tendinitis running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-lesiones">Injuries</span>
+        <span class="category cat-badge-salud">Health</span>
         <h2>Achilles Tendinitis in Runners: How to Treat It</h2>
         <p>Achilles tendon pain? Complete guide to treatment, exercises and prevention.</p>
         <span class="author">By Jose Marquez</span>
@@ -1882,7 +1850,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <!-- No results -->
     <div class="no-results" id="noResults">
       <span>🔍</span>
-      No articles in this category yet.<br>Check back soon!
+      <strong id="noResultsMsg">No articles found.</strong><br>
+      <span style="color:#94a3b8">Try different keywords or explore the categories.</span>
+      <div id="noResultsSuggestions" style="margin-top:24px;display:flex;flex-direction:column;gap:12px;align-items:center">
+        <span style="font-size:.85rem;color:#64748b">Popular articles:</span>
+        <a href="/blog/en/empezar-a-correr-guia-principiantes" style="color:#f97316;text-decoration:none;font-weight:600">Complete Guide to Start Running from Zero</a>
+        <a href="/blog/en/mejores-zapatillas-running-asfalto" style="color:#f97316;text-decoration:none;font-weight:600">The 10 Best Road Running Shoes 2026</a>
+        <a href="/blog/en/que-comer-antes-de-correr" style="color:#f97316;text-decoration:none;font-weight:600">What to Eat Before Running</a>
+      </div>
     </div>
 
   </div>
@@ -2045,8 +2020,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var panelBtns = filterPanel ? filterPanel.querySelectorAll('.filter-panel-btn') : [];
 
   // Color map for active label
-  var catColors = {zapatillas:'#f97316',entrenamiento:'#3b82f6',nutricion:'#22c55e',rutas:'#a855f7',equipamiento:'#06b6d4','relojes-gps':'#eab308',apps:'#ec4899','recuperación':'#10b981',principiantes:'#6366f1',comunidad:'#f97316',carreras:'#ef4444',ropa:'#f472b6',trail:'#84cc16',tecnologia:'#38bdf8',lesiones:'#e11d48'};
-  var catLabels = {zapatillas:'Shoes',entrenamiento:'Training',nutricion:'Nutrition',rutas:'Routes',equipamiento:'Gear','relojes-gps':'GPS Watches',apps:'Apps','recuperación':'Recovery',principiantes:'Beginners',comunidad:'Community',carreras:'Races',ropa:'Clothing',trail:'Trail',tecnologia:'Technology',lesiones:'Injuries'};
+  var catColors = {entrenamiento:'#3b82f6',nutricion:'#22c55e',equipamiento:'#06b6d4',tecnologia:'#eab308',zapatillas:'#f97316',salud:'#e11d48',rutas:'#a855f7',trail:'#84cc16'};
+  var catLabels = {entrenamiento:'Training',nutricion:'Nutrition',equipamiento:'Gear',tecnologia:'Technology',zapatillas:'Shoes',salud:'Health',rutas:'Routes',trail:'Trail'};
 
   // Toggle dropdown
   if (filterTrigger) filterTrigger.addEventListener('click', function() {
@@ -2118,20 +2093,7 @@ document.addEventListener('DOMContentLoaded', function() {
     filterActiveLabel.textContent = catLabels[cat] || cat;
   }
 
-  // === 5. READ COUNTS — add fake view counts to cards ===
-  var readCounts = [2400,1800,3100,1500,2200,1900,2700,1200,980,1600,2100,870,1400,760,1100,950,1300,680,890,1050,720,640,1150,580,930,810,1020,670,740,850,560,690,780,620,710,530,480,660,590,520,750,830,610,540,460,570,630,500,440,680,720,490,510,430,470,550,600,650,410,380,420,360,340,390,370,450,400,310,280,350,330,260,300,290,240,220,200,180];
-  allCards.forEach(function(card, i) {
-    var metaEl = card.querySelector('.card-meta .meta, .featured-content .meta');
-    if (!metaEl) return;
-    var count = readCounts[i] || Math.floor(Math.random() * 500 + 200);
-    var label = count >= 1000 ? (count / 1000).toFixed(1).replace('.0','') + 'K' : count;
-    var rc = document.createElement('span');
-    rc.className = 'read-count';
-    rc.innerHTML = '&#128065; ' + label + ' reads';
-    metaEl.parentElement.insertBefore(rc, metaEl.nextSibling);
-  });
-
-  // === 6. CLICKABLE CATEGORY BADGES — click to filter ===
+  // === 5. CLICKABLE CATEGORY BADGES — click to filter ===
   document.querySelectorAll('.card-body .category, .featured-content .category').forEach(function(badge) {
     badge.addEventListener('click', function(e) {
       e.preventDefault();
@@ -2159,10 +2121,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // === 7. CATEGORY GROUPING — sort and add separators ===
-  var catOrder = ['entrenamiento','zapatillas','principiantes','nutricion','lesiones','rutas','equipamiento','relojes-gps','apps','recuperación','comunidad','carreras','ropa','trail','tecnologia'];
-  var catNames = {entrenamiento:'Training',zapatillas:'Shoes',principiantes:'Beginners',nutricion:'Nutrition',lesiones:'Injuries',rutas:'Routes',equipamiento:'Gear','relojes-gps':'GPS Watches',apps:'Apps','recuperación':'Recovery',comunidad:'Community',carreras:'Races',ropa:'Clothing',trail:'Trail',tecnologia:'Technology'};
-  var catIcons = {entrenamiento:'🏋️',zapatillas:'👟',principiantes:'🌱',nutricion:'🥗',lesiones:'🩹',rutas:'🗺️',equipamiento:'🎒','relojes-gps':'⌚',apps:'📱','recuperación':'💆',comunidad:'👥',carreras:'🏁',ropa:'👕',trail:'⛰️',tecnologia:'💡'};
+  // === 6. CATEGORY GROUPING — sort and add separators ===
+  var catOrder = ['entrenamiento','nutricion','equipamiento','tecnologia','zapatillas','salud','rutas','trail'];
+  var catNames = {entrenamiento:'Training',nutricion:'Nutrition',equipamiento:'Gear',tecnologia:'Technology',zapatillas:'Shoes',salud:'Health',rutas:'Routes',trail:'Trail'};
+  var catIcons = {entrenamiento:'🏃',nutricion:'🥗',equipamiento:'🎒',tecnologia:'⌚',zapatillas:'👟',salud:'🩹',rutas:'🗺️',trail:'⛰️'};
 
   // Sort non-featured cards by category order
   var featured = allCards.filter(function(c) { return c.classList.contains('featured'); });
@@ -2256,6 +2218,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     noResults.style.display = visible === 0 ? 'block' : 'none';
+    if (visible === 0 && query) {
+      var msg = document.getElementById('noResultsMsg');
+      if (msg) msg.textContent = 'No articles found for "' + searchInput.value.trim() + '"';
+    }
+    // Hide "Most read" during active search
+    var mostRead = document.querySelector('.most-read');
+    if (mostRead) mostRead.style.display = query ? 'none' : '';
     if (endIndicator) endIndicator.style.display = (visible === 0 || visible > shown) ? 'none' : '';
   }
 

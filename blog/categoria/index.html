@@ -62,19 +62,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 /* Category badges */
 .cat-badge-entrenamiento{background:rgba(59,130,246,.15);color:#3b82f6;border:1px solid rgba(59,130,246,.2)}
 .cat-badge-nutricion{background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
-.cat-badge-zapatillas{background:rgba(249,115,22,.15);color:#f97316;border:1px solid rgba(249,115,22,.2)}
 .cat-badge-equipamiento{background:rgba(6,182,212,.15);color:#06b6d4;border:1px solid rgba(6,182,212,.2)}
-.cat-badge-relojes-gps{background:rgba(234,179,8,.15);color:#eab308;border:1px solid rgba(234,179,8,.2)}
-.cat-badge-lesiones{background:rgba(225,29,72,.15);color:#e11d48;border:1px solid rgba(225,29,72,.2)}
+.cat-badge-tecnologia{background:rgba(234,179,8,.15);color:#eab308;border:1px solid rgba(234,179,8,.2)}
+.cat-badge-zapatillas{background:rgba(249,115,22,.15);color:#f97316;border:1px solid rgba(249,115,22,.2)}
+.cat-badge-salud{color:#e11d48;background:rgba(225,29,72,.12)}
 .cat-badge-rutas{background:rgba(168,85,247,.15);color:#a855f7;border:1px solid rgba(168,85,247,.2)}
 .cat-badge-trail{background:rgba(132,204,22,.15);color:#84cc16;border:1px solid rgba(132,204,22,.2)}
-.cat-badge-principiantes{background:rgba(99,102,241,.15);color:#6366f1;border:1px solid rgba(99,102,241,.2)}
-.cat-badge-tecnologia{background:rgba(56,189,248,.15);color:#38bdf8;border:1px solid rgba(56,189,248,.2)}
-.cat-badge-recuperacion{background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.2)}
-.cat-badge-comunidad{background:rgba(249,115,22,.15);color:#f97316;border:1px solid rgba(249,115,22,.2)}
-.cat-badge-ropa{background:rgba(244,114,182,.15);color:#f472b6;border:1px solid rgba(244,114,182,.2)}
-.cat-badge-apps{background:rgba(236,72,153,.15);color:#ec4899;border:1px solid rgba(236,72,153,.2)}
-.cat-badge-carreras{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.2)}
 
 /* Other categories bar */
 .other-cats{margin:0 0 48px;padding:32px 0 0;border-top:1px solid rgba(255,255,255,.06)}
@@ -150,49 +143,42 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
   /* ── Category config ── */
   var CATS = {
-    'entrenamiento':    {name:'Entrenamiento',     icon:'🏃', badge:'cat-badge-entrenamiento', desc:'Planes, técnicas y consejos para mejorar tu rendimiento corriendo.'},
+    'entrenamiento':    {name:'Entrenamiento',     icon:'🏃', badge:'cat-badge-entrenamiento', desc:'Planes, técnicas, consejos para principiantes, carreras y comunidad runner.'},
     'nutricion':        {name:'Nutrición',          icon:'🥗', badge:'cat-badge-nutricion', desc:'Alimentación, suplementos y estrategias nutricionales para runners.'},
-    'zapatillas':       {name:'Zapatillas',         icon:'👟', badge:'cat-badge-zapatillas', desc:'Comparativas, reviews y guías para elegir las mejores zapatillas de running.'},
-    'equipamiento':     {name:'Equipamiento',       icon:'🎒', badge:'cat-badge-equipamiento', desc:'Auriculares, chalecos, calcetines y todo el material que necesitas.'},
-    'relojes-gps':      {name:'Relojes GPS',        icon:'⌚', badge:'cat-badge-relojes-gps', desc:'Reviews y comparativas de los mejores relojes GPS para correr.'},
-    'lesiones':         {name:'Lesiones',            icon:'🩹', badge:'cat-badge-lesiones', desc:'Prevención, diagnóstico y tratamiento de lesiones comunes en runners.'},
-    'rutas':            {name:'Rutas',               icon:'🗺️', badge:'cat-badge-rutas', desc:'Las mejores rutas para correr en las principales ciudades de España.'},
-    'trail':            {name:'Trail Running',       icon:'⛰️', badge:'cat-badge-trail', desc:'Guías, material y carreras para empezar y mejorar en trail running.'},
-    'principiantes':    {name:'Principiantes',       icon:'🌱', badge:'cat-badge-principiantes', desc:'Todo lo que necesitas saber para empezar a correr desde cero.'},
-    'tecnologia':       {name:'Tecnología',          icon:'📱', badge:'cat-badge-tecnologia', desc:'Apps, gadgets y tecnología para potenciar tu entrenamiento.'},
-    'recuperacion':     {name:'Recuperación',        icon:'🧊', badge:'cat-badge-recuperacion', desc:'Estiramientos, foam rolling y técnicas para recuperarte más rápido.'},
-    'comunidad':        {name:'Comunidad',           icon:'👥', badge:'cat-badge-comunidad', desc:'Correr en grupo, eventos y la comunidad runner en España.'},
-    'ropa':             {name:'Ropa Running',        icon:'👕', badge:'cat-badge-ropa', desc:'Mallas, chubasqueros, gorras y ropa técnica para correr.'},
-    'apps':             {name:'Apps Running',        icon:'📲', badge:'cat-badge-apps', desc:'Las mejores aplicaciones gratuitas y de pago para corredores.'},
-    'carreras':         {name:'Carreras',            icon:'🏅', badge:'cat-badge-carreras', desc:'Preparación, consejos y selección de carreras populares.'}
+    'equipamiento':     {name:'Equipamiento',       icon:'🎒', badge:'cat-badge-equipamiento', desc:'Auriculares, chalecos, ropa técnica y todo el gear que necesitas.'},
+    'tecnologia':       {name:'Tecnología',         icon:'⌚', badge:'cat-badge-tecnologia', desc:'Relojes GPS, apps, gadgets y tecnología para mejorar tu entrenamiento.'},
+    'zapatillas':       {name:'Zapatillas',         icon:'👟', badge:'cat-badge-zapatillas', desc:'Comparativas, reviews y guías para elegir las mejores zapatillas.'},
+    'salud':            {name:'Salud',              icon:'🩹', badge:'cat-badge-salud', desc:'Prevención de lesiones, recuperación, estiramientos y cuidado del corredor.'},
+    'rutas':            {name:'Rutas',              icon:'🗺️', badge:'cat-badge-rutas', desc:'Las mejores rutas para correr en las principales ciudades.'},
+    'trail':            {name:'Trail Running',      icon:'⛰️', badge:'cat-badge-trail', desc:'Guías, material y carreras para empezar y mejorar en trail.'}
   };
 
   /* ── Article database (matches blog index) ── */
   var DB = [
     {s:'errores-comunes-corredores',t:'Los 10 Errores Más Comunes de los Corredores',c:'entrenamiento',d:'El 90% de runners comete al menos 3 de estos errores.',m:'20 feb 2026 · 9 min'},
-    {s:'beneficios-de-correr',t:'Beneficios de Correr: 15 Razones Respaldadas por la Ciencia',c:'principiantes',d:'Salud cardiovascular, control de peso, salud mental y longevidad.',m:'24 feb 2026 · 12 min'},
+    {s:'beneficios-de-correr',t:'Beneficios de Correr: 15 Razones Respaldadas por la Ciencia',c:'entrenamiento',d:'Salud cardiovascular, control de peso, salud mental y longevidad.',m:'24 feb 2026 · 12 min'},
     {s:'como-respirar-al-correr',t:'Cómo Respirar al Correr: Guía Completa',c:'entrenamiento',d:'Respiración diafragmática, patrones rítmicos y ejercicios prácticos.',m:'24 feb 2026 · 10 min'},
     {s:'como-correr-mas-rapido',t:'Cómo Correr Más Rápido: 12 Claves',c:'entrenamiento',d:'Series, fartlek, cuestas, cadencia y técnica para mejorar tu ritmo.',m:'23 feb 2026 · 11 min'},
-    {s:'empezar-a-correr-guia-principiantes',t:'Cómo Empezar a Correr desde Cero',c:'principiantes',d:'Plan de 8 semanas para pasar de sedentario a corredor de 5K.',m:'23 feb 2026 · 14 min'},
+    {s:'empezar-a-correr-guia-principiantes',t:'Cómo Empezar a Correr desde Cero',c:'entrenamiento',d:'Plan de 8 semanas para pasar de sedentario a corredor de 5K.',m:'23 feb 2026 · 14 min'},
     {s:'plan-entrenamiento-10k',t:'Plan de Entrenamiento 10K: 8 Semanas',c:'entrenamiento',d:'Programa completo para correr 10 km con estructura semanal.',m:'22 feb 2026 · 10 min'},
     {s:'plan-entrenamiento-media-maraton',t:'Plan Entrenamiento Media Maratón: 12 Semanas',c:'entrenamiento',d:'Programa detallado para completar tu primer medio maratón.',m:'21 feb 2026 · 13 min'},
     {s:'como-calentar-antes-de-correr',t:'Cómo Calentar Antes de Correr',c:'entrenamiento',d:'Rutina de calentamiento dinámico para prevenir lesiones.',m:'22 feb 2026 · 8 min'},
-    {s:'como-preparar-primera-carrera-5k',t:'Cómo Preparar tu Primera 5K',c:'carreras',d:'Todo lo que necesitas saber para tu primera carrera popular.',m:'21 feb 2026 · 9 min'},
+    {s:'como-preparar-primera-carrera-5k',t:'Cómo Preparar tu Primera 5K',c:'entrenamiento',d:'Todo lo que necesitas saber para tu primera carrera popular.',m:'21 feb 2026 · 9 min'},
     {s:'entrenamiento-por-zonas-running',t:'Entrenamiento por Zonas: FC, Ritmo y Potencia',c:'entrenamiento',d:'Aprende a entrenar por zonas de frecuencia cardíaca y ritmo.',m:'20 feb 2026 · 11 min'},
     {s:'correr-en-invierno',t:'Correr en Invierno: Guía Completa',c:'entrenamiento',d:'Equipamiento, seguridad y estrategias para correr con frío.',m:'19 feb 2026 · 10 min'},
     {s:'potencia-en-running',t:'Potencia en Running: Qué Es y Cómo Entrenar',c:'tecnologia',d:'Stryd, Running Power y cómo usar vatios para mejorar.',m:'20 feb 2026 · 10 min'},
     {s:'strava-vs-garmin-connect',t:'Strava vs Garmin Connect: Comparativa',c:'tecnologia',d:'Funciones, precio y cuál elegir según tu perfil de corredor.',m:'19 feb 2026 · 9 min'},
-    {s:'mejores-apps-running',t:'10 Mejores Apps para Correr Gratis',c:'apps',d:'Nike Run Club, Strava, Adidas Running y más apps analizadas.',m:'22 feb 2026 · 11 min'},
+    {s:'mejores-apps-running',t:'10 Mejores Apps para Correr Gratis',c:'tecnologia',d:'Nike Run Club, Strava, Adidas Running y más apps analizadas.',m:'22 feb 2026 · 11 min'},
     {s:'variabilidad-cardiaca-running',t:'Variabilidad Cardíaca (HRV) para Runners',c:'tecnologia',d:'Qué es la HRV, cómo medirla y qué dice sobre tu recuperación.',m:'18 feb 2026 · 9 min'},
-    {s:'estiramientos-antes-despues-correr',t:'Estiramientos Antes y Después de Correr',c:'recuperacion',d:'Rutinas de estiramientos dinámicos y estáticos para runners.',m:'23 feb 2026 · 9 min'},
-    {s:'estiramientos-post-carrera',t:'Estiramientos Post-Carrera: Recupera Rápido',c:'recuperacion',d:'Rutina de 15 minutos para acelerar tu recuperación muscular.',m:'21 feb 2026 · 8 min'},
-    {s:'foam-rollers-runners',t:'7 Mejores Foam Rollers para Corredores',c:'recuperacion',d:'Análisis de foam rollers: firmeza, tamaño y relación calidad-precio.',m:'20 feb 2026 · 9 min'},
-    {s:'dolor-rodilla-al-correr',t:'Dolor de Rodilla al Correr: Causas y Tratamiento',c:'lesiones',d:'Síndrome de cintilla iliotibial, condromalacia y más.',m:'22 feb 2026 · 11 min'},
-    {s:'rodilla-del-corredor',t:'Rodilla del Corredor: Guía Completa',c:'lesiones',d:'Síntomas, diagnóstico, tratamiento y prevención del dolor patelofemoral.',m:'21 feb 2026 · 12 min'},
-    {s:'fascitis-plantar-corredores',t:'Fascitis Plantar en Corredores',c:'lesiones',d:'La lesión más temida: causas, tratamiento y vuelta al running.',m:'20 feb 2026 · 11 min'},
-    {s:'periostitis-tibial-running',t:'Periostitis Tibial: Causas y Tratamiento',c:'lesiones',d:'Dolor en la espinilla al correr: por qué ocurre y cómo solucionarlo.',m:'19 feb 2026 · 10 min'},
-    {s:'tendinitis-aquiles-running',t:'Tendinitis de Aquiles en Runners',c:'lesiones',d:'Prevención, diagnóstico y protocolo de vuelta a correr.',m:'18 feb 2026 · 10 min'},
-    {s:'prevenir-lesiones-running',t:'Cómo Prevenir Lesiones al Correr',c:'lesiones',d:'Fortalecimiento, progresión gradual y señales de alarma.',m:'22 feb 2026 · 10 min'},
+    {s:'estiramientos-antes-despues-correr',t:'Estiramientos Antes y Después de Correr',c:'salud',d:'Rutinas de estiramientos dinámicos y estáticos para runners.',m:'23 feb 2026 · 9 min'},
+    {s:'estiramientos-post-carrera',t:'Estiramientos Post-Carrera: Recupera Rápido',c:'salud',d:'Rutina de 15 minutos para acelerar tu recuperación muscular.',m:'21 feb 2026 · 8 min'},
+    {s:'foam-rollers-runners',t:'7 Mejores Foam Rollers para Corredores',c:'salud',d:'Análisis de foam rollers: firmeza, tamaño y relación calidad-precio.',m:'20 feb 2026 · 9 min'},
+    {s:'dolor-rodilla-al-correr',t:'Dolor de Rodilla al Correr: Causas y Tratamiento',c:'salud',d:'Síndrome de cintilla iliotibial, condromalacia y más.',m:'22 feb 2026 · 11 min'},
+    {s:'rodilla-del-corredor',t:'Rodilla del Corredor: Guía Completa',c:'salud',d:'Síntomas, diagnóstico, tratamiento y prevención del dolor patelofemoral.',m:'21 feb 2026 · 12 min'},
+    {s:'fascitis-plantar-corredores',t:'Fascitis Plantar en Corredores',c:'salud',d:'La lesión más temida: causas, tratamiento y vuelta al running.',m:'20 feb 2026 · 11 min'},
+    {s:'periostitis-tibial-running',t:'Periostitis Tibial: Causas y Tratamiento',c:'salud',d:'Dolor en la espinilla al correr: por qué ocurre y cómo solucionarlo.',m:'19 feb 2026 · 10 min'},
+    {s:'tendinitis-aquiles-running',t:'Tendinitis de Aquiles en Runners',c:'salud',d:'Prevención, diagnóstico y protocolo de vuelta a correr.',m:'18 feb 2026 · 10 min'},
+    {s:'prevenir-lesiones-running',t:'Cómo Prevenir Lesiones al Correr',c:'salud',d:'Fortalecimiento, progresión gradual y señales de alarma.',m:'22 feb 2026 · 10 min'},
     {s:'dieta-runner-que-comer',t:'Dieta para Runners: Qué Comer',c:'nutricion',d:'Macros, timing y alimentos clave para corredores.',m:'23 feb 2026 · 12 min'},
     {s:'nutricion-para-runners',t:'Qué Comer Antes y Después de Correr',c:'nutricion',d:'Timing nutricional, snacks pre-entreno y comidas de recuperación.',m:'22 feb 2026 · 10 min'},
     {s:'que-comer-antes-de-correr',t:'Qué Comer Antes de Correr',c:'nutricion',d:'Snacks, timing y qué evitar antes de una carrera o entreno.',m:'21 feb 2026 · 8 min'},
@@ -217,15 +203,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     {s:'asics-gel-nimbus-26-vs-nike-pegasus-41',t:'ASICS Gel-Nimbus 26 vs Nike Pegasus 41',c:'zapatillas',d:'Dos iconos del running frente a frente.',m:'21 feb 2026 · 10 min'},
     {s:'hoka-clifton-9-vs-bondi-8',t:'Hoka Clifton 9 vs Bondi 8',c:'zapatillas',d:'Máxima amortiguación: ¿Clifton ligera o Bondi premium?',m:'20 feb 2026 · 9 min'},
     {s:'nike-pegasus-41-vs-brooks-ghost-16',t:'Nike Pegasus 41 vs Brooks Ghost 16',c:'zapatillas',d:'Dos zapatillas versátiles para entrenamientos diarios.',m:'19 feb 2026 · 9 min'},
-    {s:'apple-watch-running-review',t:'Apple Watch para Running: ¿Merece la Pena?',c:'relojes-gps',d:'Funciones deportivas, batería y comparativa con Garmin y COROS.',m:'22 feb 2026 · 14 min'},
-    {s:'como-elegir-reloj-gps-running',t:'Cómo Elegir un Reloj GPS para Running',c:'relojes-gps',d:'GPS, FC, batería: las 7 claves para acertar con tu compra.',m:'21 feb 2026 · 11 min'},
-    {s:'mejor-reloj-gps-running-calidad-precio',t:'Mejor Reloj GPS Calidad-Precio',c:'relojes-gps',d:'Los 5 relojes con mejor relación rendimiento-precio del mercado.',m:'22 feb 2026 · 10 min'},
-    {s:'garmin-forerunner-265-vs-coros-pace-3',t:'Garmin Forerunner 265 vs COROS PACE 3',c:'relojes-gps',d:'Dos relojes tope de gama media: ¿cuál elegir?',m:'20 feb 2026 · 11 min'},
-    {s:'garmin-forerunner-55-review',t:'Garmin Forerunner 55: Review Completa',c:'relojes-gps',d:'El reloj GPS más recomendado para empezar a correr con datos.',m:'19 feb 2026 · 10 min'},
-    {s:'garmin-venu-3-review',t:'Garmin Venu 3: Review para Runners',c:'relojes-gps',d:'Smartwatch premium con funciones running: ¿compensa?',m:'18 feb 2026 · 10 min'},
-    {s:'coros-pace-3-review',t:'COROS PACE 3: Review Completa',c:'relojes-gps',d:'29 gramos, GPS dual y 38h de batería por menos de 230€.',m:'21 feb 2026 · 10 min'},
-    {s:'polar-pacer-pro-review',t:'Polar Pacer Pro: Review Completa',c:'relojes-gps',d:'Potencia de running nativa, rutas y test de recuperación.',m:'20 feb 2026 · 9 min'},
-    {s:'smartwatch-vs-reloj-gps-running',t:'Smartwatch vs Reloj GPS: ¿Cuál Necesitas?',c:'relojes-gps',d:'Apple Watch, Garmin, COROS: qué tipo de reloj es para ti.',m:'19 feb 2026 · 9 min'},
+    {s:'apple-watch-running-review',t:'Apple Watch para Running: ¿Merece la Pena?',c:'tecnologia',d:'Funciones deportivas, batería y comparativa con Garmin y COROS.',m:'22 feb 2026 · 14 min'},
+    {s:'como-elegir-reloj-gps-running',t:'Cómo Elegir un Reloj GPS para Running',c:'tecnologia',d:'GPS, FC, batería: las 7 claves para acertar con tu compra.',m:'21 feb 2026 · 11 min'},
+    {s:'mejor-reloj-gps-running-calidad-precio',t:'Mejor Reloj GPS Calidad-Precio',c:'tecnologia',d:'Los 5 relojes con mejor relación rendimiento-precio del mercado.',m:'22 feb 2026 · 10 min'},
+    {s:'garmin-forerunner-265-vs-coros-pace-3',t:'Garmin Forerunner 265 vs COROS PACE 3',c:'tecnologia',d:'Dos relojes tope de gama media: ¿cuál elegir?',m:'20 feb 2026 · 11 min'},
+    {s:'garmin-forerunner-55-review',t:'Garmin Forerunner 55: Review Completa',c:'tecnologia',d:'El reloj GPS más recomendado para empezar a correr con datos.',m:'19 feb 2026 · 10 min'},
+    {s:'garmin-venu-3-review',t:'Garmin Venu 3: Review para Runners',c:'tecnologia',d:'Smartwatch premium con funciones running: ¿compensa?',m:'18 feb 2026 · 10 min'},
+    {s:'coros-pace-3-review',t:'COROS PACE 3: Review Completa',c:'tecnologia',d:'29 gramos, GPS dual y 38h de batería por menos de 230€.',m:'21 feb 2026 · 10 min'},
+    {s:'polar-pacer-pro-review',t:'Polar Pacer Pro: Review Completa',c:'tecnologia',d:'Potencia de running nativa, rutas y test de recuperación.',m:'20 feb 2026 · 9 min'},
+    {s:'smartwatch-vs-reloj-gps-running',t:'Smartwatch vs Reloj GPS: ¿Cuál Necesitas?',c:'tecnologia',d:'Apple Watch, Garmin, COROS: qué tipo de reloj es para ti.',m:'19 feb 2026 · 9 min'},
     {s:'mejores-auriculares-running',t:'Mejores Auriculares para Correr',c:'equipamiento',d:'Conducción ósea, TWS y neckband: los top para runners.',m:'23 feb 2026 · 12 min'},
     {s:'mejores-auriculares-baratos-running',t:'8 Mejores Auriculares Baratos para Running',c:'equipamiento',d:'Sonido decente por menos de 40€ para correr sin preocupaciones.',m:'21 feb 2026 · 9 min'},
     {s:'auriculares-conduccion-osea-vs-in-ear-running',t:'Conducción Ósea vs In-Ear para Correr',c:'equipamiento',d:'Seguridad vs calidad de sonido: cuál elegir para running.',m:'22 feb 2026 · 10 min'},
@@ -238,20 +224,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     {s:'lamparas-frontales-running',t:'7 Mejores Lámparas Frontales para Running',c:'equipamiento',d:'Corre seguro de noche: lúmenes, peso y batería.',m:'19 feb 2026 · 8 min'},
     {s:'pack-basico-running-principiantes',t:'Pack Básico de Running para Empezar',c:'equipamiento',d:'Todo lo que necesitas comprar para empezar a correr.',m:'18 feb 2026 · 7 min'},
     {s:'material-trail-running',t:'Material Imprescindible para Trail Running',c:'equipamiento',d:'Zapatillas, mochila, bastones y GPS para salir al monte.',m:'22 feb 2026 · 10 min'},
-    {s:'ropa-tecnica-running',t:'Ropa Técnica para Correr: Guía por Temperatura',c:'ropa',d:'Qué ponerte según los grados: de 0°C a 35°C.',m:'23 feb 2026 · 10 min'},
-    {s:'mallas-running',t:'10 Mejores Mallas para Running',c:'ropa',d:'Compresión, térmicas y cortas: las mejores mallas para correr.',m:'22 feb 2026 · 9 min'},
-    {s:'chubasqueros-running',t:'8 Mejores Chubasqueros para Running',c:'ropa',d:'Impermeabilidad, transpirabilidad y peso para correr bajo lluvia.',m:'21 feb 2026 · 8 min'},
-    {s:'gorras-running',t:'8 Mejores Gorras para Running',c:'ropa',d:'Protección solar, ventilación y ajuste para corredores.',m:'20 feb 2026 · 7 min'},
+    {s:'ropa-tecnica-running',t:'Ropa Técnica para Correr: Guía por Temperatura',c:'equipamiento',d:'Qué ponerte según los grados: de 0°C a 35°C.',m:'23 feb 2026 · 10 min'},
+    {s:'mallas-running',t:'10 Mejores Mallas para Running',c:'equipamiento',d:'Compresión, térmicas y cortas: las mejores mallas para correr.',m:'22 feb 2026 · 9 min'},
+    {s:'chubasqueros-running',t:'8 Mejores Chubasqueros para Running',c:'equipamiento',d:'Impermeabilidad, transpirabilidad y peso para correr bajo lluvia.',m:'21 feb 2026 · 8 min'},
+    {s:'gorras-running',t:'8 Mejores Gorras para Running',c:'equipamiento',d:'Protección solar, ventilación y ajuste para corredores.',m:'20 feb 2026 · 7 min'},
     {s:'mejores-rutas-correr-madrid',t:'10 Mejores Rutas para Correr en Madrid',c:'rutas',d:'Retiro, Madrid Río, Casa de Campo y más circuitos urbanos.',m:'23 feb 2026 · 12 min'},
     {s:'mejores-rutas-correr-barcelona',t:'Mejores Rutas para Correr en Barcelona',c:'rutas',d:'Paseo Marítimo, Montjuïc, Carretera de les Aigües y más.',m:'22 feb 2026 · 11 min'},
     {s:'mejores-rutas-correr-valencia',t:'Mejores Rutas para Correr en Valencia',c:'rutas',d:'Jardín del Turia, La Albufera y circuitos por la ciudad.',m:'21 feb 2026 · 10 min'},
     {s:'mejores-rutas-correr-sevilla',t:'10 Mejores Rutas para Correr en Sevilla',c:'rutas',d:'Parque de María Luisa, Guadalquivir y más recorridos.',m:'20 feb 2026 · 10 min'},
     {s:'mejores-rutas-correr-malaga',t:'10 Mejores Rutas para Correr en Málaga',c:'rutas',d:'Paseo Marítimo, Montes de Málaga y circuitos costeros.',m:'19 feb 2026 · 9 min'},
-    {s:'carreras-trail-principiantes',t:'10 Mejores Carreras de Trail para Principiantes',c:'carreras',d:'Carreras accesibles en España para iniciarse en trail.',m:'22 feb 2026 · 9 min'},
+    {s:'carreras-trail-principiantes',t:'10 Mejores Carreras de Trail para Principiantes',c:'entrenamiento',d:'Carreras accesibles en España para iniciarse en trail.',m:'22 feb 2026 · 9 min'},
     {s:'empezar-trail-running',t:'Cómo Empezar en Trail Running',c:'trail',d:'Técnica, material y primeros pasos para correr por montaña.',m:'23 feb 2026 · 11 min'},
     {s:'diferencias-trail-vs-asfalto',t:'Trail vs Asfalto: Diferencias y Ventajas',c:'trail',d:'Biomecánica, equipamiento y entrenamiento según la superficie.',m:'22 feb 2026 · 9 min'},
     {s:'salomon-speedcross-6-vs-hoka-speedgoat-6',t:'Salomon Speedcross 6 vs Hoka Speedgoat 6',c:'trail',d:'Dos zapatillas trail top: agarre extremo vs amortiguación.',m:'21 feb 2026 · 10 min'},
-    {s:'beneficios-correr-en-grupo',t:'7 Beneficios de Correr en Grupo',c:'comunidad',d:'Motivación, seguridad y rendimiento: por qué correr acompañado.',m:'18 feb 2026 · 7 min'}
+    {s:'beneficios-correr-en-grupo',t:'7 Beneficios de Correr en Grupo',c:'entrenamiento',d:'Motivación, seguridad y rendimiento: por qué correr acompañado.',m:'18 feb 2026 · 7 min'}
   ];
 
   /* ── Read category from URL ── */

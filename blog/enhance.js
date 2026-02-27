@@ -227,4 +227,39 @@
     });
   }
 
+  /* ══════════════════════════════════════════════
+     4. READING PROGRESS BAR
+     ══════════════════════════════════════════════ */
+  var contentEl = document.querySelector('.content');
+  if(contentEl){
+    var cssBar = document.createElement('style');
+    cssBar.textContent = '#reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#f97316,#ea580c);width:0;z-index:9999;transition:width .1s linear;pointer-events:none}';
+    document.head.appendChild(cssBar);
+
+    var bar = document.createElement('div');
+    bar.id = 'reading-progress';
+    document.body.appendChild(bar);
+
+    var barTicking = false;
+    window.addEventListener('scroll', function(){
+      if(!barTicking){
+        barTicking = true;
+        requestAnimationFrame(function(){
+          var rect = contentEl.getBoundingClientRect();
+          var total = contentEl.offsetHeight - window.innerHeight;
+          var scrolled = -rect.top;
+          var pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
+          bar.style.width = pct + '%';
+          barTicking = false;
+        });
+      }
+    });
+  }
+
+  /* ══════════════════════════════════════════════
+     5. HIDE STATIC "SIGUE LEYENDO" (replaced by dynamic related.js)
+     ══════════════════════════════════════════════ */
+  var staticRelated = document.querySelector('.related');
+  if(staticRelated) staticRelated.style.display = 'none';
+
 })();

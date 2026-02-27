@@ -4292,9 +4292,13 @@
               <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">✅</span></div>
               <div><h3 id="sales-f6-title" class="font-bold text-white mb-1">Runner verificado</h3><p id="sales-f6-desc" class="text-sm text-gray-400">Verifica tu nivel para que los organizadores confíen más en ti.</p></div>
             </div>
-            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4 md:col-span-2">
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4">
               <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">🔔</span></div>
               <div><h3 id="sales-f7-title" class="font-bold text-white mb-1">Alertas inteligentes</h3><p id="sales-f7-desc" class="text-sm text-gray-400">Recibe notificaciones cuando se cree una quedada que encaja contigo.</p></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-orange-500/10 to-pink-500/10 border border-orange-500/30 flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">🤝</span></div>
+              <div><h3 id="sales-f8-title" class="font-bold text-white mb-1">Runner Matching</h3><p id="sales-f8-desc" class="text-sm text-gray-400">Encuentra runners compatibles contigo por ritmo, horario y nivel. Tu compañero de running ideal.</p></div>
             </div>
           </div>
           <!-- Extras compactos -->
@@ -4360,6 +4364,11 @@
                 <span id="sales-row-ads" class="text-sm text-gray-300">Publicidad</span>
                 <span class="text-center text-gray-500">Sí</span>
                 <span class="text-center text-green-400 font-bold">✗ Sin ads</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center">
+                <span id="sales-row-matching" class="text-sm text-gray-300">Runner Matching</span>
+                <span id="sales-row-matching-free" class="text-center text-gray-500">1 match</span>
+                <span id="sales-row-matching-premium" class="text-center text-green-400 font-bold">✓ Todos</span>
               </div>
             </div>
           </div>
@@ -4450,6 +4459,159 @@
           <p class="text-xs text-gray-500 mt-3">4,99€/mes después del periodo de prueba</p>
         </div>
 
+      </div>
+    </div>
+
+    <!-- MODAL RUNNER MATCHING SCREEN (fullscreen) -->
+    <div id="modal-matching" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-content" style="position:fixed;inset:0;max-width:100%;width:100%;border-radius:0;overflow-y:auto;background:#0a0f1a;padding:0;">
+
+        <button onclick="closeModal('modal-matching')" class="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/70 transition" aria-label="Cerrar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Header -->
+        <div class="bg-gradient-to-b from-pink-500/15 via-orange-500/5 to-transparent pt-14 pb-8 px-6 text-center">
+          <div class="w-16 h-16 mx-auto bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-pink-500/30">
+            <span class="text-3xl">🤝</span>
+          </div>
+          <h1 id="matching-title" class="text-2xl md:text-3xl font-black text-white mb-2">Runners compatibles</h1>
+          <p id="matching-city-label" class="text-gray-400 text-sm"></p>
+        </div>
+
+        <!-- Tabs: Compatibles | Solicitudes -->
+        <div class="flex justify-center gap-2 px-6 mb-6">
+          <button onclick="switchMatchingTab('results')" id="matching-tab-results" class="px-5 py-2 rounded-full text-sm font-bold transition bg-orange-500/20 text-orange-400 border border-orange-500/30">Compatibles</button>
+          <button onclick="switchMatchingTab('requests')" id="matching-tab-requests" class="px-5 py-2 rounded-full text-sm font-bold transition bg-slate-800/50 text-gray-400 border border-slate-700/50">Solicitudes</button>
+        </div>
+
+        <!-- Tab Content: Results -->
+        <div id="matching-content-results" class="max-w-2xl mx-auto px-4 pb-8">
+          <!-- Edit profile link -->
+          <div class="flex justify-end mb-4">
+            <button onclick="openModal('modal-matching-profile')" class="text-xs text-orange-400 hover:text-orange-300 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              <span id="matching-edit-profile-btn">Editar perfil</span>
+            </button>
+          </div>
+          <!-- Loading state -->
+          <div id="matching-loading" class="text-center py-16">
+            <div class="w-10 h-10 border-3 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p id="matching-loading-text" class="text-gray-400 text-sm">Buscando runners compatibles...</p>
+          </div>
+          <!-- Empty state -->
+          <div id="matching-empty" class="text-center py-16 hidden">
+            <div class="text-5xl mb-4">🏃</div>
+            <h3 id="matching-empty-title" class="text-lg font-bold text-white mb-2">No hay runners en tu ciudad todavía</h3>
+            <p id="matching-empty-desc" class="text-gray-400 text-sm mb-6 max-w-sm mx-auto">Sé el primero en activar Matching en tu zona. Te avisaremos cuando haya runners compatibles.</p>
+          </div>
+          <!-- Cards list -->
+          <div id="matching-cards" class="space-y-3 hidden"></div>
+          <!-- Premium CTA after first card -->
+          <div id="matching-premium-wall" class="hidden mt-4 relative">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/80 to-slate-950 z-10 rounded-2xl"></div>
+            <div id="matching-blurred-cards" class="space-y-3 filter blur-sm opacity-60"></div>
+            <div class="relative z-20 text-center -mt-20 pb-8">
+              <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-orange-500/30 p-6 max-w-sm mx-auto shadow-xl">
+                <span class="text-3xl block mb-3">👑</span>
+                <h3 id="matching-premium-title" class="text-lg font-bold text-white mb-2">Desbloquea todos los matches</h3>
+                <p id="matching-premium-desc" class="text-gray-400 text-sm mb-4">Los usuarios Premium ven todos los runners compatibles y pueden enviar solicitudes.</p>
+                <button onclick="closeModal('modal-matching');openModal('modal-premium-sales')" class="w-full py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg transition">
+                  <span id="matching-premium-cta">Hazte Premium</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Requests -->
+        <div id="matching-content-requests" class="max-w-2xl mx-auto px-4 pb-8 hidden">
+          <!-- Received requests -->
+          <h3 id="matching-received-title" class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">Solicitudes recibidas</h3>
+          <div id="matching-received-list" class="space-y-3 mb-8">
+            <p id="matching-no-received" class="text-gray-500 text-sm text-center py-8">No tienes solicitudes pendientes</p>
+          </div>
+          <!-- Sent requests -->
+          <h3 id="matching-sent-title" class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">Solicitudes enviadas</h3>
+          <div id="matching-sent-list" class="space-y-3 mb-8">
+            <p id="matching-no-sent" class="text-gray-500 text-sm text-center py-8">No has enviado solicitudes</p>
+          </div>
+          <!-- Accepted matches -->
+          <h3 id="matching-accepted-title" class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">Matches aceptados</h3>
+          <div id="matching-accepted-list" class="space-y-3">
+            <p id="matching-no-accepted" class="text-gray-500 text-sm text-center py-8">Aún no tienes matches</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODAL MATCHING PROFILE (onboarding / edit) -->
+    <div id="modal-matching-profile" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-content bg-slate-900 p-6 rounded-3xl max-w-md w-full border border-slate-800" style="max-height:90vh;overflow-y:auto">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h2 id="mp-title" class="text-xl font-black text-white">Tu perfil de Matching</h2>
+            <p id="mp-subtitle" class="text-gray-400 text-xs mt-1">Para encontrar runners compatibles contigo</p>
+          </div>
+          <button onclick="closeModal('modal-matching-profile')" class="text-gray-500 hover:text-white" aria-label="Cerrar">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="space-y-5">
+          <!-- Ritmo range -->
+          <div>
+            <label id="mp-ritmo-label" class="block text-sm font-bold text-gray-300 mb-2">Tu ritmo (min/km)</label>
+            <div class="flex items-center gap-3">
+              <select id="mp-ritmo-min" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:border-orange-500 outline-none"></select>
+              <span class="text-gray-500">—</span>
+              <select id="mp-ritmo-max" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:border-orange-500 outline-none"></select>
+            </div>
+          </div>
+
+          <!-- Días preferidos -->
+          <div>
+            <label id="mp-dias-label" class="block text-sm font-bold text-gray-300 mb-2">Días preferidos</label>
+            <div class="flex flex-wrap gap-2" id="mp-dias-chips"></div>
+          </div>
+
+          <!-- Horario -->
+          <div>
+            <label id="mp-horario-label" class="block text-sm font-bold text-gray-300 mb-2">Horario preferido</label>
+            <div class="grid grid-cols-2 gap-2" id="mp-horario-options"></div>
+          </div>
+
+          <!-- Objetivo -->
+          <div>
+            <label id="mp-objetivo-label" class="block text-sm font-bold text-gray-300 mb-2">Tu objetivo</label>
+            <select id="mp-objetivo" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:border-orange-500 outline-none"></select>
+          </div>
+
+          <!-- Bio matching -->
+          <div>
+            <label id="mp-bio-label" class="block text-sm font-bold text-gray-300 mb-2">Bio de matching</label>
+            <textarea id="mp-bio" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:border-orange-500 outline-none resize-none" rows="2" maxlength="120" placeholder="Busco compañero/a para rodajes de 10km..."></textarea>
+            <div class="text-right text-xs text-gray-500 mt-1"><span id="mp-bio-count">0</span>/120</div>
+          </div>
+
+          <!-- Visible toggle -->
+          <div class="flex items-center justify-between bg-slate-800/50 rounded-xl p-3">
+            <div>
+              <span id="mp-visible-label" class="text-sm font-bold text-gray-300">Visible en Matching</span>
+              <p id="mp-visible-desc" class="text-xs text-gray-500 mt-0.5">Otros runners pueden encontrarte</p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="mp-visible" class="sr-only peer" checked>
+              <div class="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:bg-orange-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+            </label>
+          </div>
+
+          <!-- Save button -->
+          <button onclick="saveMatchingProfile()" id="mp-save-btn" class="w-full py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-orange-500 to-pink-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition">
+            Guardar perfil
+          </button>
+        </div>
       </div>
     </div>
 
@@ -5061,6 +5223,10 @@
         <button onclick="document.getElementById('lista-quedadas').scrollIntoView({behavior:'smooth'})" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 12px;border-radius:12px;background:transparent;border:none;color:#94a3b8;cursor:pointer;transition:all .2s" id="app-nav-explore">
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px" id="app-nav-explore-label">Explorar</span>
+        </button>
+        <button onclick="openMatchingScreen()" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 12px;border-radius:12px;background:transparent;border:none;color:#94a3b8;cursor:pointer;transition:all .2s" id="app-nav-matching">
+          <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px" id="app-nav-matching-label">Matching</span>
         </button>
         <button onclick="openModalCrear()" style="display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 16px;border-radius:16px;background:linear-gradient(135deg,#f97316,#ea580c);border:none;color:#fff;cursor:pointer;box-shadow:0 4px 15px rgba(249,115,22,.3);transition:all .2s" id="app-nav-create">
           <svg style="width:26px;height:26px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>

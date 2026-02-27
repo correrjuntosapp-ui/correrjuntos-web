@@ -195,16 +195,16 @@
 
   /* Category thumbnail images (same Unsplash URLs as hero system) */
   var CAT_IMGS = {
-    'Entrenamiento':'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=400&h=200&q=60',
-    'Trail':'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=400&h=200&q=60',
-    'Nutrici\u00f3n':'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&h=200&q=60',
-    'Zapatillas':'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&h=200&q=60',
-    'Equipamiento':'https://images.unsplash.com/photo-1461896836934-bd45ba0c3530?auto=format&fit=crop&w=400&h=200&q=60',
-    'Tecnolog\u00eda':'https://images.unsplash.com/photo-1510017803434-a899b55cbf07?auto=format&fit=crop&w=400&h=200&q=60',
-    'Salud':'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=200&q=60',
-    'Rutas':'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=400&h=200&q=60'
+    'Entrenamiento':'https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Trail':'https://images.pexels.com/photos/8949023/pexels-photo-8949023.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Nutrici\u00f3n':'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Zapatillas':'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Equipamiento':'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Tecnolog\u00eda':'https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Salud':'https://images.pexels.com/photos/4056832/pexels-photo-4056832.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Rutas':'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'
   };
-  var DEFAULT_IMG = 'https://images.unsplash.com/photo-1461896836934-bd45ba0c3530?auto=format&fit=crop&w=400&h=200&q=60';
+  var DEFAULT_IMG = 'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60';
 
   /* ── CSS ── */
   var css = document.createElement('style');

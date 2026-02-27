@@ -1745,7 +1745,7 @@
                             <span class="text-2xl mb-2 block">🗺️</span>
                             <p class="text-sm font-semibold text-gray-300 mb-1" id="label-heatmap-locked-title">Tu mapa de running</p>
                             <p class="text-xs text-gray-500 mb-3" id="label-heatmap-locked-desc">Ve todas las zonas donde has corrido</p>
-                            <button onclick="openPremiumCheckout()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
+                            <button onclick="openPremiumSales()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
                                 ⭐ <span>Desbloquear con Premium</span>
                             </button>
                         </div>
@@ -1759,7 +1759,7 @@
                             <span class="text-2xl mb-2 block">📊</span>
                             <p id="premium-stats-title" class="text-sm font-semibold text-gray-300 mb-1">Estadísticas detalladas</p>
                             <p id="premium-stats-desc" class="text-xs text-gray-500 mb-3">Gráficos, rachas, promedios y más</p>
-                            <button onclick="openPremiumCheckout()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
+                            <button onclick="openPremiumSales()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
                                 ⭐ <span id="premium-unlock-btn">Desbloquear con Premium</span>
                             </button>
                         </div>
@@ -1972,7 +1972,7 @@
                         <h3 class="text-sm font-bold text-white">🎯 <span id="recs-locked-title">Quedadas recomendadas para ti</span></h3>
                         <p class="text-xs text-gray-500 mt-1" id="recs-locked-desc">Algoritmo que encuentra quedadas perfectas para tu nivel y zona</p>
                     </div>
-                    <button onclick="openPremiumCheckout()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold whitespace-nowrap" id="recs-locked-btn">Probar Premium</button>
+                    <button onclick="openPremiumSales()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold whitespace-nowrap" id="recs-locked-btn">Probar Premium</button>
                 </div>
             </div>
 
@@ -2741,7 +2741,7 @@
                         </div>
 
                         <!-- Lock overlay for non-premium -->
-                        <div id="crear-premium-lock" class="hidden absolute inset-0 bg-slate-900/85 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center gap-3 z-10 cursor-pointer" onclick="closeModal('modal-crear');openPremiumCheckout()">
+                        <div id="crear-premium-lock" class="hidden absolute inset-0 bg-slate-900/85 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center gap-3 z-10 cursor-pointer" onclick="closeModal('modal-crear');openPremiumSales()">
                             <span class="text-4xl">⭐</span>
                             <p class="text-sm font-bold text-white text-center px-4">Desbloquea quedadas privadas, recurrentes y rutas GPS</p>
                             <span class="px-4 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold text-sm">Hazte Premium - 4,99€/mes</span>
@@ -3175,7 +3175,7 @@
                             <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-6">Alertas personalizadas</span></li>
                             <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-7">Quedadas privadas + GPS + recurrentes</span></li>
                         </ul>
-                        <button onclick="openPremiumCheckout()" class="w-full py-3 rounded-xl font-black text-base bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/25 transition flex items-center justify-center gap-2">
+                        <button onclick="openPremiumSales()" class="w-full py-3 rounded-xl font-black text-base bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/25 transition flex items-center justify-center gap-2">
                             <span>⭐</span> <span id="premium-get-btn">Hazte Premium - 4,99€/mes</span>
                         </button>
                         <p id="premium-cancel-text" class="text-xs text-gray-500 text-center">Cancela cuando quieras. Sin compromiso.</p>
@@ -4217,13 +4217,224 @@
           </div>
 
           <!-- Botones -->
-          <button onclick="closeModal('modal-premium-promo'); openPremiumCheckout();" class="w-full py-4 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 mb-3">
+          <button onclick="closeModal('modal-premium-promo'); openPremiumSales();" class="w-full py-4 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 mb-3">
             <span>⭐</span> <span id="promo-cta-btn">Hazte Premium ahora</span>
           </button>
           <button onclick="closeModal('modal-premium-promo')" id="promo-later-btn" class="w-full py-3 rounded-xl font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition text-sm" aria-label="Cerrar">
             Ahora no, gracias
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- ====== PREMIUM SALES PAGE (Full-Screen Modal) ====== -->
+    <div id="modal-premium-sales" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-content" style="position:fixed;inset:0;max-width:100%;width:100%;border-radius:0;overflow-y:auto;background:#0a0f1a;padding:0;">
+
+        <!-- Close button (sticky) -->
+        <button onclick="closeModal('modal-premium-sales')" class="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/70 transition" aria-label="Cerrar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- 1. HERO -->
+        <div class="relative overflow-hidden bg-gradient-to-b from-orange-500/20 via-orange-500/5 to-transparent pt-16 pb-12 px-6 text-center">
+          <div class="w-20 h-20 mx-auto bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+            <span class="text-4xl">👑</span>
+          </div>
+          <h1 id="sales-hero-title" class="text-3xl md:text-4xl font-black text-white mb-3 leading-tight">Lleva tu running al siguiente nivel</h1>
+          <p id="sales-hero-subtitle" class="text-gray-400 max-w-md mx-auto mb-6">Desbloquea estadísticas avanzadas, quedadas ilimitadas y herramientas exclusivas para runners serios.</p>
+          <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-2 text-green-400 text-sm font-semibold">
+            <span>✓</span>
+            <span id="sales-hero-trial">7 días gratis · Cancela cuando quieras</span>
+          </div>
+        </div>
+
+        <!-- 2. FEATURES -->
+        <div class="max-w-3xl mx-auto px-6 py-12">
+          <h2 id="sales-features-title" class="text-2xl font-black text-white text-center mb-8">Todo lo que incluye Premium</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">♾️</span></div>
+              <div><h3 id="sales-f1-title" class="font-bold text-white mb-1">Quedadas ilimitadas</h3><p id="sales-f1-desc" class="text-sm text-gray-400">Crea todas las quedadas que quieras cada mes, sin límite de participantes.</p></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">📊</span></div>
+              <div><h3 id="sales-f2-title" class="font-bold text-white mb-1">Estadísticas avanzadas</h3><p id="sales-f2-desc" class="text-sm text-gray-400">Mejor ritmo, distancia más larga, ciudad favorita y comparativas mensuales.</p></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">💬</span></div>
+              <div><h3 id="sales-f3-title" class="font-bold text-white mb-1">Comentarios en quedadas</h3><p id="sales-f3-desc" class="text-sm text-gray-400">Comenta y coordina con otros runners antes y después de correr.</p></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">🗺️</span></div>
+              <div><h3 id="sales-f4-title" class="font-bold text-white mb-1">Tu mapa de running</h3><p id="sales-f4-desc" class="text-sm text-gray-400">Mapa de calor personal con todas las zonas donde has corrido.</p></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">🎯</span></div>
+              <div><h3 id="sales-f5-title" class="font-bold text-white mb-1">Recomendaciones inteligentes</h3><p id="sales-f5-desc" class="text-sm text-gray-400">Algoritmo que encuentra quedadas perfectas para tu nivel y zona.</p></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">✅</span></div>
+              <div><h3 id="sales-f6-title" class="font-bold text-white mb-1">Runner verificado</h3><p id="sales-f6-desc" class="text-sm text-gray-400">Verifica tu nivel para que los organizadores confíen más en ti.</p></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex gap-4 md:col-span-2">
+              <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center flex-shrink-0"><span class="text-2xl">🔔</span></div>
+              <div><h3 id="sales-f7-title" class="font-bold text-white mb-1">Alertas inteligentes</h3><p id="sales-f7-desc" class="text-sm text-gray-400">Recibe notificaciones cuando se cree una quedada que encaja contigo.</p></div>
+            </div>
+          </div>
+          <!-- Extras compactos -->
+          <div class="mt-6 text-center">
+            <p id="sales-extra-title" class="text-gray-500 text-sm mb-3">Y mucho más:</p>
+            <div class="flex flex-wrap justify-center gap-2">
+              <span id="sales-extra-1" class="px-3 py-1 rounded-full bg-slate-800/60 text-gray-400 text-xs border border-slate-700/50">📍 Ruta GPS en el mapa</span>
+              <span id="sales-extra-2" class="px-3 py-1 rounded-full bg-slate-800/60 text-gray-400 text-xs border border-slate-700/50">🔒 Quedadas privadas</span>
+              <span id="sales-extra-3" class="px-3 py-1 rounded-full bg-slate-800/60 text-gray-400 text-xs border border-slate-700/50">🔁 Quedadas recurrentes</span>
+              <span id="sales-extra-4" class="px-3 py-1 rounded-full bg-slate-800/60 text-gray-400 text-xs border border-slate-700/50">🏅 Badges dorados</span>
+              <span id="sales-extra-5" class="px-3 py-1 rounded-full bg-slate-800/60 text-gray-400 text-xs border border-slate-700/50">🔎 Filtros avanzados</span>
+              <span id="sales-extra-6" class="px-3 py-1 rounded-full bg-slate-800/60 text-gray-400 text-xs border border-slate-700/50">🚫 Sin publicidad</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. FREE vs PREMIUM TABLE -->
+        <div class="max-w-2xl mx-auto px-6 py-12">
+          <h2 id="sales-compare-title" class="text-2xl font-black text-white text-center mb-8">Gratis vs Premium</h2>
+          <div class="rounded-2xl border border-slate-700 overflow-hidden">
+            <div class="grid grid-cols-3 bg-slate-800/50 p-4">
+              <div></div>
+              <div id="sales-col-free" class="text-center font-bold text-gray-400 text-sm">Gratis</div>
+              <div id="sales-col-premium" class="text-center font-bold text-orange-400 text-sm">Premium</div>
+            </div>
+            <div class="divide-y divide-slate-800">
+              <div class="grid grid-cols-3 p-4 items-center">
+                <span id="sales-row-quedadas" class="text-sm text-gray-300">Quedadas / mes</span>
+                <span class="text-center text-gray-500">3</span>
+                <span class="text-center text-green-400 font-bold">∞</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center bg-slate-800/20">
+                <span id="sales-row-participantes" class="text-sm text-gray-300">Participantes</span>
+                <span class="text-center text-gray-500">15</span>
+                <span class="text-center text-green-400 font-bold">∞</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center">
+                <span id="sales-row-stats" class="text-sm text-gray-300">Estadísticas</span>
+                <span class="text-center text-gray-500">Básicas</span>
+                <span class="text-center text-green-400 font-bold">✓ Pro</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center bg-slate-800/20">
+                <span id="sales-row-comentarios" class="text-sm text-gray-300">Comentarios</span>
+                <span class="text-center text-gray-500">Leer</span>
+                <span class="text-center text-green-400 font-bold">✓ Leer + Escribir</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center">
+                <span id="sales-row-heatmap" class="text-sm text-gray-300">Mapa de calor</span>
+                <span class="text-center text-gray-500">✗</span>
+                <span class="text-center text-green-400 font-bold">✓</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center bg-slate-800/20">
+                <span id="sales-row-privadas" class="text-sm text-gray-300">Quedadas privadas</span>
+                <span class="text-center text-gray-500">✗</span>
+                <span class="text-center text-green-400 font-bold">✓</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center">
+                <span id="sales-row-gps" class="text-sm text-gray-300">Ruta GPS</span>
+                <span class="text-center text-gray-500">✗</span>
+                <span class="text-center text-green-400 font-bold">✓</span>
+              </div>
+              <div class="grid grid-cols-3 p-4 items-center bg-slate-800/20">
+                <span id="sales-row-ads" class="text-sm text-gray-300">Publicidad</span>
+                <span class="text-center text-gray-500">Sí</span>
+                <span class="text-center text-green-400 font-bold">✗ Sin ads</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. PRICING -->
+        <div class="max-w-md mx-auto px-6 py-12 text-center">
+          <div class="p-8 rounded-3xl bg-gradient-to-br from-orange-500/10 to-yellow-500/5 border-2 border-orange-500/40 relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span id="sales-price-badge" class="bg-gradient-to-r from-orange-500 to-yellow-500 text-black text-xs font-bold px-4 py-1 rounded-full">7 DÍAS GRATIS</span>
+            </div>
+            <div class="mb-4 mt-2">
+              <span class="text-5xl font-black text-white">4,99€</span>
+              <span id="sales-price-period" class="text-gray-400">/mes</span>
+            </div>
+            <p id="sales-price-desc" class="text-gray-400 text-sm mb-6">Prueba gratis 7 días. Si no te convence, cancela sin coste.</p>
+            <button onclick="closeModal('modal-premium-sales'); openPremiumCheckout();" class="w-full py-4 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 mb-3">
+              <span>⭐</span> <span id="sales-cta-main">Empezar prueba gratis</span>
+            </button>
+            <p id="sales-price-cancel" class="text-xs text-gray-500">Cancela cuando quieras · Sin compromiso · Pago seguro con Stripe</p>
+          </div>
+        </div>
+
+        <!-- 5. SOCIAL PROOF -->
+        <div class="max-w-3xl mx-auto px-6 py-12">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="p-4 rounded-2xl bg-slate-800/30">
+              <div class="text-2xl font-black text-orange-500">1.200+</div>
+              <div id="sales-stat-runners" class="text-xs text-gray-400">Runners activos</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/30">
+              <div class="text-2xl font-black text-orange-500">55+</div>
+              <div id="sales-stat-cities" class="text-xs text-gray-400">Ciudades</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/30">
+              <div class="text-2xl font-black text-orange-500">20+</div>
+              <div id="sales-stat-countries" class="text-xs text-gray-400">Países</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-800/30">
+              <div class="text-2xl font-black text-orange-500">4.8★</div>
+              <div id="sales-stat-rating" class="text-xs text-gray-400">App Store</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. FAQ -->
+        <div class="max-w-2xl mx-auto px-6 py-12">
+          <h2 id="sales-faq-title" class="text-2xl font-black text-white text-center mb-8">Preguntas frecuentes</h2>
+          <div class="space-y-3">
+            <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+              <summary class="flex items-center justify-between p-4 cursor-pointer">
+                <span id="sales-faq-q1" class="text-white font-semibold text-sm">¿Puedo cancelar en cualquier momento?</span>
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-4 pb-4 text-gray-400 text-sm" id="sales-faq-a1">Sí, puedes cancelar tu suscripción desde tu perfil en cualquier momento. No se te cobrará nada más.</div>
+            </details>
+            <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+              <summary class="flex items-center justify-between p-4 cursor-pointer">
+                <span id="sales-faq-q2" class="text-white font-semibold text-sm">¿Qué pasa después de los 7 días gratis?</span>
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-4 pb-4 text-gray-400 text-sm" id="sales-faq-a2">Si no cancelas, se te cobrará 4,99€/mes automáticamente. Puedes cancelar antes y no pagarás nada.</div>
+            </details>
+            <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+              <summary class="flex items-center justify-between p-4 cursor-pointer">
+                <span id="sales-faq-q3" class="text-white font-semibold text-sm">¿Cómo funciona el pago?</span>
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-4 pb-4 text-gray-400 text-sm" id="sales-faq-a3">El pago es seguro a través de Stripe. Aceptamos tarjetas de crédito y débito.</div>
+            </details>
+            <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+              <summary class="flex items-center justify-between p-4 cursor-pointer">
+                <span id="sales-faq-q4" class="text-white font-semibold text-sm">¿Pierdo mis datos si cancelo?</span>
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-4 pb-4 text-gray-400 text-sm" id="sales-faq-a4">No. Tu perfil, estadísticas e historial se mantienen. Solo pierdes acceso a las funciones Premium.</div>
+            </details>
+          </div>
+        </div>
+
+        <!-- 7. FINAL CTA -->
+        <div class="px-6 py-16 text-center bg-gradient-to-t from-orange-500/10 to-transparent">
+          <h2 id="sales-final-title" class="text-2xl md:text-3xl font-black text-white mb-3">¿Listo para correr como nunca?</h2>
+          <p id="sales-final-subtitle" class="text-gray-400 mb-6 max-w-md mx-auto">Únete a los runners que ya usan Premium para entrenar mejor y no perderse ninguna quedada.</p>
+          <button onclick="closeModal('modal-premium-sales'); openPremiumCheckout();" class="py-4 px-8 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition inline-flex items-center gap-2">
+            <span>🚀</span> <span id="sales-final-cta">Empezar prueba gratis</span>
+          </button>
+          <p class="text-xs text-gray-500 mt-3">4,99€/mes después del periodo de prueba</p>
+        </div>
+
       </div>
     </div>
 
@@ -4270,7 +4481,7 @@
             </div>
           </div>
           <!-- CTA -->
-          <button onclick="closeModal('modal-limit-reached'); openPremiumCheckout();" class="w-full py-4 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 mb-3">
+          <button onclick="closeModal('modal-limit-reached'); openPremiumSales();" class="w-full py-4 rounded-xl font-black text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 mb-3">
             <span>🚀</span> <span id="limit-cta-btn">Crear quedadas ilimitadas</span>
           </button>
           <button onclick="closeModal('modal-limit-reached')" class="w-full py-3 rounded-xl font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition text-sm" id="limit-later-btn">

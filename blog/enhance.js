@@ -164,7 +164,7 @@
         ticking = false;
       });
     }
-  });
+  }, {passive:true});
 
   /* ══════════════════════════════════════════════
      3. NEWSLETTER SLIDE-IN CTA (at 60% scroll)
@@ -217,7 +217,7 @@
         slidein.classList.add('show');
         clearTimeout(nlTimer);
       }
-    });
+    }, {passive:true});
 
     slidein.querySelector('.nl-close').addEventListener('click', function(){
       slidein.classList.remove('show');
@@ -237,33 +237,8 @@
   }
 
   /* ══════════════════════════════════════════════
-     4. READING PROGRESS BAR
+     4. READING PROGRESS BAR (handled by toc.js)
      ══════════════════════════════════════════════ */
-  var contentEl = document.querySelector('.content');
-  if(contentEl){
-    var cssBar = document.createElement('style');
-    cssBar.textContent = '#reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#f97316,#ea580c);width:0;z-index:9999;transition:width .1s linear;pointer-events:none}';
-    document.head.appendChild(cssBar);
-
-    var bar = document.createElement('div');
-    bar.id = 'reading-progress';
-    document.body.appendChild(bar);
-
-    var barTicking = false;
-    window.addEventListener('scroll', function(){
-      if(!barTicking){
-        barTicking = true;
-        requestAnimationFrame(function(){
-          var rect = contentEl.getBoundingClientRect();
-          var total = contentEl.offsetHeight - window.innerHeight;
-          var scrolled = -rect.top;
-          var pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
-          bar.style.width = pct + '%';
-          barTicking = false;
-        });
-      }
-    });
-  }
 
   /* ══════════════════════════════════════════════
      5. HIDE STATIC "SIGUE LEYENDO" (replaced by dynamic related.js)
@@ -286,7 +261,7 @@
     var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
     if(!fired50 && pct >= 0.5){ fired50 = true; trackEvent('scroll_50', {article_slug: slug}); }
     if(!fired100 && pct >= 0.95){ fired100 = true; trackEvent('scroll_100', {article_slug: slug}); }
-  });
+  }, {passive:true});
 
   /* 6b. CTA click tracking (delegated) */
   document.addEventListener('click', function(e){
@@ -382,7 +357,7 @@
           } else { stickyScrollTimer = null; }
         }, 3000);
       }
-    });
+    }, {passive:true});
 
     /* Hide when newsletter slide-in is visible */
     var nlSlidein = document.getElementById('nl-slidein');

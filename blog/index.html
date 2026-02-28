@@ -92,9 +92,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Filter Bar — dropdown grid */
 .filter-bar-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:20px 0 8px;position:relative;z-index:20}
-.filter-btn-todos{padding:8px 18px;border-radius:12px;border:1px solid rgba(249,115,22,.4);background:rgba(249,115,22,.12);color:#f97316;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s;letter-spacing:.3px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-.filter-btn-todos:hover{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.6)}
-.filter-btn-todos .filter-count{font-size:.72rem;opacity:.7;font-weight:500}
+.filter-btn-todos{display:none}
 .filter-dropdown-trigger{display:none}
 .filter-active-label{display:none}
 .filter-panel{display:flex;flex-wrap:wrap;gap:8px;opacity:1;pointer-events:auto}
@@ -2093,10 +2091,22 @@ document.addEventListener('DOMContentLoaded', function() {
     filterCards();
   });
 
-  // Panel category buttons
+  // Panel category buttons (click active = reset to all)
   panelBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
       var cat = this.getAttribute('data-filter');
+      if (activeFilter === cat) {
+        // Already active — reset to show all
+        activeFilter = 'todos';
+        currentPage = 1;
+        buttons.forEach(function(b) { b.classList.remove('active'); });
+        var todosBtn2 = filterBar.querySelector('[data-filter="todos"]');
+        if (todosBtn2) todosBtn2.classList.add('active');
+        panelBtns.forEach(function(b) { b.classList.remove('active'); });
+        if (filterActiveLabel) { filterActiveLabel.className = ''; filterActiveLabel.innerHTML = ''; filterActiveLabel.style.cssText = 'display:none'; }
+        filterCards();
+        return;
+      }
       activeFilter = cat;
       currentPage = 1;
       // Sync hidden filter-bar buttons
@@ -2106,7 +2116,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Visual: highlight this button
       panelBtns.forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
-      filterTodos.classList.remove('active');
+      if (filterTodos) filterTodos.classList.remove('active');
       // Show active label next to trigger
       showActiveLabel(cat);
       // Close panel

@@ -61,6 +61,8 @@
 {s:'mejores-rutas-correr-malaga',t:'10 Mejores Rutas para Correr en M\u00e1laga',c:'Rutas'},
 {s:'mejores-rutas-correr-sevilla',t:'10 Mejores Rutas para Correr en Sevilla',c:'Rutas'},
 {s:'mejores-rutas-correr-valencia',t:'Mejores Rutas para Correr en Valencia',c:'Rutas'},
+{s:'mejores-bebidas-hidratacion-running',t:'10 Mejores Bebidas de Hidrataci\u00f3n Running',c:'Suplementaci\u00f3n'},
+{s:'mejores-geles-energeticos-running',t:'10 Mejores Geles Energ\u00e9ticos Running',c:'Suplementaci\u00f3n'},
 {s:'mejores-suplementos-runners',t:'Mejores Suplementos para Runners',c:'Nutrici\u00f3n'},
 {s:'mejores-zapatillas-placa-carbono',t:'10 Mejores Zapatillas Placa de Carbono',c:'Zapatillas'},
 {s:'mejores-zapatillas-running-asfalto',t:'10 Mejores Zapatillas para Asfalto',c:'Zapatillas'},
@@ -106,6 +108,8 @@
 {s:'best-budget-running-headphones',t:'8 Best Budget Running Headphones',c:'Equipamiento'},
 {s:'best-budget-running-shoes',t:'Best Budget Running Shoes 2026',c:'Zapatillas'},
 {s:'best-carbon-plate-running-shoes',t:'10 Best Carbon Plate Running Shoes 2026',c:'Zapatillas'},
+{s:'best-energy-gels-running',t:'10 Best Energy Gels for Running 2026',c:'Suplementaci\u00f3n'},
+{s:'best-hydration-drinks-running',t:'10 Best Hydration Drinks for Running 2026',c:'Suplementaci\u00f3n'},
 {s:'best-creatine-running',t:'8 Best Creatines for Runners',c:'Nutrici\u00f3n'},
 {s:'best-road-running-shoes',t:'10 Best Road Running Shoes 2026',c:'Zapatillas'},
 {s:'best-trail-running-shoes',t:'10 Best Trail Running Shoes 2026',c:'Zapatillas'},
@@ -195,6 +199,7 @@
     'Tecnolog\u00eda':['Tecnolog\u00eda','Equipamiento'],
     'Salud':['Salud','Entrenamiento'],
     'Rutas':['Rutas','Entrenamiento'],
+    'Suplementaci\u00f3n':['Suplementaci\u00f3n','Nutrici\u00f3n'],
   };
 
   /* Category thumbnail images (same Unsplash URLs as hero system) */

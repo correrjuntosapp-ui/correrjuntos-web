@@ -271,4 +271,140 @@
   var staticRelated = document.querySelector('.related');
   if(staticRelated) staticRelated.style.display = 'none';
 
+  /* ══════════════════════════════════════════════
+     6. GA4 EVENT TRACKING
+     ══════════════════════════════════════════════ */
+  var slug = location.pathname.replace(/\/$/,'').split('/').pop() || 'index';
+
+  function trackEvent(name, params){
+    if(typeof gtag === 'function') gtag('event', name, params || {});
+  }
+
+  /* 6a. Scroll depth tracking (50% + 100%) */
+  var fired50 = false, fired100 = false;
+  window.addEventListener('scroll', function(){
+    var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    if(!fired50 && pct >= 0.5){ fired50 = true; trackEvent('scroll_50', {article_slug: slug}); }
+    if(!fired100 && pct >= 0.95){ fired100 = true; trackEvent('scroll_100', {article_slug: slug}); }
+  });
+
+  /* 6b. CTA click tracking (delegated) */
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a');
+    if(!link) return;
+
+    /* Affiliate clicks */
+    if(link.href && link.href.indexOf('amazon') !== -1){
+      var card = link.closest('.shoe-card');
+      var prodName = card ? (card.querySelector('h3') || {}).textContent || '' : '';
+      trackEvent('affiliate_click', {product_name: prodName.substring(0,60), article_slug: slug});
+      return;
+    }
+
+    /* CTA clicks */
+    var loc = null;
+    if(link.closest('.cta-mid')) loc = 'mid';
+    else if(link.closest('.cta-box')) loc = 'final';
+    else if(link.closest('#sticky-cta')) loc = 'sticky';
+    if(loc) trackEvent('cta_click', {cta_location: loc, article_slug: slug});
+
+    /* Related article clicks */
+    if(link.closest('.related-section')) trackEvent('related_click', {target_slug: link.href.split('/').pop(), article_slug: slug});
+  });
+
+  /* 6c. Newsletter submit tracking */
+  document.addEventListener('submit', function(e){
+    var form = e.target;
+    if(form.id === 'newsletter-form' || form.id === 'nl-form'){
+      trackEvent('newsletter_submit', {form_location: 'inline', article_slug: slug});
+    }
+  });
+  /* Slide-in newsletter (button click, no form submit) */
+  var nlSlideBtn = document.querySelector('#nl-slidein .nl-btn');
+  if(nlSlideBtn){
+    nlSlideBtn.addEventListener('click', function(){
+      trackEvent('newsletter_submit', {form_location: 'slidein', article_slug: slug});
+    });
+  }
+
+  /* 6d. FAQ toggle tracking */
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.faq-q');
+    if(btn && !btn.classList.contains('open')){
+      var qText = (btn.querySelector('span') || btn).textContent.substring(0,50);
+      trackEvent('faq_toggle', {question: qText, article_slug: slug});
+    }
+  });
+
+  /* ══════════════════════════════════════════════
+     7. STICKY MOBILE CTA
+     ══════════════════════════════════════════════ */
+  var STICKY_KEY = 'cj_sticky_dismissed';
+  var stickyDismissed = localStorage.getItem(STICKY_KEY);
+  /* Check if dismiss has expired (7 days) */
+  if(stickyDismissed && Date.now() - parseInt(stickyDismissed,10) > 7*24*60*60*1000){
+    localStorage.removeItem(STICKY_KEY);
+    stickyDismissed = null;
+  }
+
+  if(!stickyDismissed && window.innerWidth < 768){
+    var cssSticky = document.createElement('style');
+    cssSticky.textContent = [
+      '#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:890;background:linear-gradient(135deg,rgba(11,18,32,.97),rgba(11,18,32,.95));border-top:1px solid rgba(249,115,22,.25);padding:10px 16px;display:flex;align-items:center;gap:10px;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.68,0,1);backdrop-filter:blur(12px)}',
+      '#sticky-cta.show{transform:translateY(0)}',
+      '#sticky-cta.hidden{transform:translateY(100%)}',
+      '#sticky-cta a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.88rem;font-weight:700;border-radius:12px;text-decoration:none;white-space:nowrap}',
+      '#sticky-cta a:active{transform:scale(.97)}',
+      '#sticky-cta .sticky-close{background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;padding:6px;flex-shrink:0}',
+      '#sticky-cta .sticky-close:hover{color:#f97316}'
+    ].join('\n');
+    document.head.appendChild(cssSticky);
+
+    var sticky = document.createElement('div');
+    sticky.id = 'sticky-cta';
+    sticky.innerHTML =
+      '<a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener">' +
+        '\uD83C\uDFC3 ' + (isEN ? 'Find runners nearby' : 'Encontrar corredores cerca') +
+      '</a>' +
+      '<button class="sticky-close" aria-label="'+(isEN ? 'Close' : 'Cerrar')+'">&times;</button>';
+    document.body.appendChild(sticky);
+
+    /* Show after 3s of any scroll */
+    var stickyShown = false;
+    var stickyScrollTimer = null;
+    window.addEventListener('scroll', function(){
+      if(stickyShown) return;
+      if(!stickyScrollTimer){
+        stickyScrollTimer = setTimeout(function(){
+          if(window.scrollY > 200){
+            stickyShown = true;
+            sticky.classList.add('show');
+          } else { stickyScrollTimer = null; }
+        }, 3000);
+      }
+    });
+
+    /* Hide when newsletter slide-in is visible */
+    var nlSlidein = document.getElementById('nl-slidein');
+    if(nlSlidein){
+      var observer = new MutationObserver(function(){
+        sticky.classList.toggle('hidden', nlSlidein.classList.contains('show'));
+      });
+      observer.observe(nlSlidein, {attributes:true, attributeFilter:['class']});
+    }
+
+    /* Dismiss */
+    sticky.querySelector('.sticky-close').addEventListener('click', function(){
+      sticky.classList.remove('show');
+      sticky.classList.add('hidden');
+      localStorage.setItem(STICKY_KEY, String(Date.now()));
+      trackEvent('sticky_cta_dismiss', {article_slug: slug});
+    });
+
+    /* Track sticky CTA click */
+    sticky.querySelector('a').addEventListener('click', function(){
+      trackEvent('cta_click', {cta_location: 'sticky', article_slug: slug});
+    });
+  }
+
 })();

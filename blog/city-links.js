@@ -91,7 +91,7 @@
   for(var k=0;k<picks.length;k++){
     var p=picks[k];
     html+='<a href="/cities/'+p.s+'" class="city-link-card">'+
-      '<img class="city-link-img" src="https://images.unsplash.com/'+p.img+'?auto=format&fit=crop&w=300&h=150&q=70" alt="Running en '+p.n+'" loading="lazy">'+
+      '<img class="city-link-img" src="https://images.unsplash.com/'+p.img+'?auto=format&fit=crop&w=300&h=150&q=70" alt="Running en '+p.n+'" loading="lazy" width="300" height="150">'+
       '<div class="city-link-body">'+
         '<p class="city-link-name">'+p.f+' '+p.n+'</p>'+
         '<p class="city-link-cta">'+ctaText+'</p>'+

@@ -109,6 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .fp-salud.active{background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.35);color:#e11d48}
 .fp-rutas.active{background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.35);color:#a855f7}
 .fp-trail.active{background:rgba(132,204,22,.15);border-color:rgba(132,204,22,.35);color:#84cc16}
+.fp-suplementacion.active{background:rgba(217,70,239,.15);border-color:rgba(217,70,239,.35);color:#d946ef}
 /* keep old filter-btn for JS compat — hidden */
 .filter-bar{display:none}
 .filter-btn{display:none}
@@ -171,6 +172,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .article-card[data-category="salud"]:hover{border-color:rgba(225,29,72,.4);box-shadow:0 20px 48px rgba(225,29,72,.08)}
 .article-card[data-category="rutas"]:hover{border-color:rgba(168,85,247,.4);box-shadow:0 20px 48px rgba(168,85,247,.08)}
 .article-card[data-category="trail"]:hover{border-color:rgba(132,204,22,.4);box-shadow:0 20px 48px rgba(132,204,22,.08)}
+.article-card[data-category="suplementacion"]:hover{border-color:rgba(217,70,239,.4);box-shadow:0 20px 48px rgba(217,70,239,.08)}
 
 /* Card image area */
 .card-img{height:180px;overflow:hidden;position:relative}
@@ -192,6 +194,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .cat-badge-tecnologia{color:#eab308;background:rgba(234,179,8,.12)}
 .cat-badge-salud{color:#e11d48;background:rgba(225,29,72,.12)}
 .cat-badge-trail{color:#84cc16;background:rgba(132,204,22,.12)}
+.cat-badge-suplementacion{color:#d946ef;background:rgba(217,70,239,.12)}
 
 .card-body h2{font-size:1.15rem;font-weight:800;color:#fff;line-height:1.3;margin-top:2px}
 .card-body p{font-size:.88rem;color:#94a3b8;line-height:1.6;flex-grow:1}
@@ -332,9 +335,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <h1><span>Running</span> Blog</h1>
   <p>Guides, tips and routes for runners of all levels. Learn, improve and run together.</p>
   <div class="hero-stats">
-    <span>85 articles</span>
+    <span>87 articles</span>
     <span><span class="dot"></span></span>
-    <span>8 categories</span>
+    <span>9 categories</span>
     <span><span class="dot"></span></span>
     <span>Updated Feb 2026</span>
     <span><span class="dot"></span></span>
@@ -365,6 +368,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <button class="filter-panel-btn fp-salud" data-filter="salud"><span class="cat-icon">🩹</span><span class="cat-name">Health</span></button>
     <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-icon">🗺️</span><span class="cat-name">Routes</span></button>
     <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-icon">⛰️</span><span class="cat-name">Trail</span></button>
+    <button class="filter-panel-btn fp-suplementacion" data-filter="suplementacion"><span class="cat-icon">💊</span><span class="cat-name">Supplements</span></button>
   </div>
   <!-- Hidden original bar for JS compat -->
   <div class="filter-bar" id="filterBar">
@@ -377,6 +381,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <button class="filter-btn" data-filter="salud">Health</button>
     <button class="filter-btn" data-filter="rutas">Routes</button>
     <button class="filter-btn" data-filter="trail">Trail</button>
+    <button class="filter-btn" data-filter="suplementacion">Supplements</button>
   </div>
   </div>
 
@@ -418,7 +423,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   </div>
 
   <!-- Article counter -->
-  <div class="article-counter" id="articleCounter">Showing <span id="visibleCount">85</span> of 85 articles</div>
+  <div class="article-counter" id="articleCounter">Showing <span id="visibleCount">87</span> of 87 articles</div>
 
   <div class="articles" id="articlesGrid">
 
@@ -436,6 +441,42 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <div class="card-meta">
           <span class="meta">Feb 20, 2026 · 9 min</span>
           <span class="card-arrow">Read article →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Energy Gels -->
+    <a href="/blog/en/best-energy-gels-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/3621168/pexels-photo-3621168.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Energy gels for running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Supplements</span>
+        <h2>The 10 Best Energy Gels for Running 2026</h2>
+        <p>Maurten, SiS, GU Energy, PowerBar and more. Compared by calories, carbs and price. With Amazon links.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Hydration Drinks -->
+    <a href="/blog/en/best-hydration-drinks-running" class="article-card" data-category="suplementacion" style="animation-delay:.052s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/1346155/pexels-photo-1346155.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Hydration drinks for running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Supplements</span>
+        <h2>The 10 Best Hydration Drinks for Running 2026</h2>
+        <p>Maurten, SiS, Nuun, Tailwind and more. Electrolytes, isotonic drinks and effervescent tablets. With Amazon links.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Read &rarr;</span>
         </div>
       </div>
     </a>
@@ -2047,8 +2088,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var panelBtns = filterPanel ? filterPanel.querySelectorAll('.filter-panel-btn') : [];
 
   // Color map for active label
-  var catColors = {entrenamiento:'#3b82f6',nutricion:'#22c55e',equipamiento:'#06b6d4',tecnologia:'#eab308',zapatillas:'#f97316',salud:'#e11d48',rutas:'#a855f7',trail:'#84cc16'};
-  var catLabels = {entrenamiento:'Training',nutricion:'Nutrition',equipamiento:'Gear',tecnologia:'Technology',zapatillas:'Shoes',salud:'Health',rutas:'Routes',trail:'Trail'};
+  var catColors = {entrenamiento:'#3b82f6',nutricion:'#22c55e',equipamiento:'#06b6d4',tecnologia:'#eab308',zapatillas:'#f97316',salud:'#e11d48',rutas:'#a855f7',trail:'#84cc16',suplementacion:'#d946ef'};
+  var catLabels = {entrenamiento:'Training',nutricion:'Nutrition',equipamiento:'Gear',tecnologia:'Technology',zapatillas:'Shoes',salud:'Health',rutas:'Routes',trail:'Trail',suplementacion:'Supplements'};
 
   // Toggle dropdown
   if (filterTrigger) filterTrigger.addEventListener('click', function() {

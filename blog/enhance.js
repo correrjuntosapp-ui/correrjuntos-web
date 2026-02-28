@@ -228,11 +228,35 @@
 
     slidein.querySelector('.nl-btn').addEventListener('click', function(){
       var input = slidein.querySelector('input');
+      var btn = slidein.querySelector('.nl-btn');
       var email = input.value.trim();
       if(!email || email.indexOf('@') < 1) { input.style.borderColor='#ef4444'; return; }
-      slidein.querySelector('.nl-form').innerHTML = '<div class="nl-ok">'+(isEN ? 'Subscribed — thanks!' : 'Suscrito — gracias!')+'</div>';
-      localStorage.setItem(STORAGE_KEY, '1');
-      setTimeout(function(){ slidein.classList.remove('show'); dismissed = true; }, 2500);
+      btn.disabled = true; btn.textContent = '...';
+      fetch('/api/brevo-subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, lang: isEN ? 'en' : 'es', source: 'blog-slidein-' + slug })
+      }).then(function(r){ return r.ok || r.status === 201 || r.status === 409; })
+        .catch(function(){ return true; })
+        .then(function(){
+          var welcomeLinks = isEN
+            ? '<a href="/blog/en/couch-to-5k-plan">Couch to 5K Plan</a><a href="/blog/en/running-motivation-tips">Motivation Tips</a><a href="/blog/en/find-people-to-run-with">Find Running Partners</a>'
+            : '<a href="/blog/de-cero-a-5k">De 0 a 5K</a><a href="/blog/motivacion-para-correr">Motivaci\u00f3n para Correr</a><a href="/blog/encontrar-gente-para-correr">Encontrar Gente</a>';
+          slidein.querySelector('.nl-form').innerHTML =
+            '<div class="nl-ok" style="text-align:center">' +
+              '<div style="font-size:1.3rem;margin-bottom:4px">🎉</div>' +
+              (isEN ? 'Welcome! Check your inbox.' : '\u00a1Bienvenido/a! Revisa tu email.') +
+              '<div style="margin-top:12px;font-size:.78rem;color:#94a3b8;font-weight:400">' +
+                (isEN ? 'While you wait, try these:' : 'Mientras tanto, lee estos:') +
+              '</div>' +
+              '<div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px">' + welcomeLinks + '</div>' +
+            '</div>';
+          slidein.querySelectorAll('.nl-ok a').forEach(function(a){
+            a.style.cssText = 'color:#f97316;font-size:.78rem;padding:4px 10px;border:1px solid rgba(249,115,22,.2);border-radius:999px;text-decoration:none;white-space:nowrap';
+          });
+          localStorage.setItem(STORAGE_KEY, '1');
+          setTimeout(function(){ slidein.classList.remove('show'); dismissed = true; }, 8000);
+        });
     });
   }
 
@@ -300,6 +324,32 @@
     nlSlideBtn.addEventListener('click', function(){
       trackEvent('newsletter_submit', {form_location: 'slidein', article_slug: slug});
     });
+  }
+
+  /* 6c-bis. Enhance inline newsletter success with recommendations */
+  var nlSuccessEl = document.getElementById('newsletter-success');
+  if(nlSuccessEl){
+    var observer = new MutationObserver(function(mutations){
+      mutations.forEach(function(m){
+        if(m.attributeName === 'style' && nlSuccessEl.style.display !== 'none'){
+          var recLinks = isEN
+            ? '<a href="/blog/en/couch-to-5k-plan">Couch to 5K</a><a href="/blog/en/running-motivation-tips">Motivation Tips</a><a href="/blog/en/find-people-to-run-with">Find Partners</a>'
+            : '<a href="/blog/de-cero-a-5k">De 0 a 5K</a><a href="/blog/motivacion-para-correr">Motivaci\u00f3n</a><a href="/blog/encontrar-gente-para-correr">Encontrar Gente</a>';
+          if(!nlSuccessEl.querySelector('.nl-recs')){
+            var recsDiv = document.createElement('div');
+            recsDiv.className = 'nl-recs';
+            recsDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px';
+            recsDiv.innerHTML = recLinks;
+            recsDiv.querySelectorAll('a').forEach(function(a){
+              a.style.cssText = 'color:#f97316;font-size:.78rem;padding:4px 10px;border:1px solid rgba(249,115,22,.2);border-radius:999px;text-decoration:none;white-space:nowrap';
+            });
+            nlSuccessEl.appendChild(recsDiv);
+          }
+          observer.disconnect();
+        }
+      });
+    });
+    observer.observe(nlSuccessEl, { attributes: true, attributeFilter: ['style'] });
   }
 
   /* 6d. FAQ toggle tracking */

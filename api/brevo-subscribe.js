@@ -1,5 +1,5 @@
 // API Route de Vercel para suscripción newsletter
-// Guarda en Supabase + crea contacto en Brevo
+// Guarda en Supabase + crea contacto en Brevo + trigger DOI / welcome automation
 
 import { createClient } from '@supabase/supabase-js';
 
@@ -7,6 +7,11 @@ const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const BREVO_LIST_ID = parseInt(process.env.BREVO_LIST_ID || '3', 10);
+// Optional: set these in Vercel env to enable DOI + welcome automation
+const BREVO_DOI_TEMPLATE_ID = parseInt(process.env.BREVO_DOI_TEMPLATE_ID || '0', 10);
+const BREVO_REDIRECT_URL = process.env.BREVO_REDIRECT_URL || 'https://www.correrjuntos.com/blog/';
+const BREVO_WELCOME_TEMPLATE_ES = parseInt(process.env.BREVO_WELCOME_TEMPLATE_ES || '0', 10);
+const BREVO_WELCOME_TEMPLATE_EN = parseInt(process.env.BREVO_WELCOME_TEMPLATE_EN || '0', 10);
 
 export default async function handler(req, res) {
     // CORS headers
@@ -28,9 +33,12 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid email' });
     }
 
+    const contactLang = lang || 'es';
+    const contactSource = source || 'landing';
     let supabaseOk = false;
     let brevoOk = false;
     let isDuplicate = false;
+    let isNewSubscriber = false;
 
     // 1. Save to Supabase
     try {
@@ -38,7 +46,7 @@ export default async function handler(req, res) {
             const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
             const { error } = await supabase
                 .from('newsletter_subscribers')
-                .insert({ email, lang: lang || 'es', source: source || 'landing' });
+                .insert({ email, lang: contactLang, source: contactSource });
 
             if (error) {
                 if (error.code === '23505') {
@@ -49,58 +57,123 @@ export default async function handler(req, res) {
                 }
             } else {
                 supabaseOk = true;
+                isNewSubscriber = true;
             }
         }
     } catch (err) {
         console.error('Supabase exception:', err);
     }
 
-    // 2. Create/update contact in Brevo
+    // 2. Create/update contact in Brevo (with DOI support)
     try {
         if (BREVO_API_KEY) {
-            const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
-                method: 'POST',
-                headers: {
-                    'accept': 'application/json',
-                    'content-type': 'application/json',
-                    'api-key': BREVO_API_KEY
-                },
-                body: JSON.stringify({
-                    email,
-                    listIds: [BREVO_LIST_ID],
-                    attributes: {
-                        LANG: lang || 'es',
-                        SOURCE: source || 'landing'
+            // If DOI template is configured, use Double Opt-In flow
+            if (BREVO_DOI_TEMPLATE_ID > 0 && !isDuplicate) {
+                const doiRes = await fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
+                    method: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'content-type': 'application/json',
+                        'api-key': BREVO_API_KEY
                     },
-                    updateEnabled: true
-                })
-            });
+                    body: JSON.stringify({
+                        email,
+                        includeListIds: [BREVO_LIST_ID],
+                        templateId: BREVO_DOI_TEMPLATE_ID,
+                        redirectionUrl: BREVO_REDIRECT_URL,
+                        attributes: {
+                            LANG: contactLang,
+                            SOURCE: contactSource
+                        }
+                    })
+                });
+                brevoOk = doiRes.ok || doiRes.status === 201 || doiRes.status === 204;
+                if (!brevoOk) {
+                    const doiErr = await doiRes.json().catch(() => ({}));
+                    if (doiErr.code === 'duplicate_parameter') {
+                        isDuplicate = true;
+                        brevoOk = true;
+                    } else {
+                        console.error('Brevo DOI error:', doiErr);
+                        // Fallback to direct contact creation
+                    }
+                }
+            }
 
-            if (brevoRes.ok || brevoRes.status === 201 || brevoRes.status === 204) {
-                brevoOk = true;
-            } else {
-                const brevoErr = await brevoRes.json().catch(() => ({}));
-                if (brevoErr.code === 'duplicate_parameter') {
-                    // Already exists in Brevo, update list membership
-                    const updateRes = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
-                        method: 'PUT',
-                        headers: {
-                            'accept': 'application/json',
-                            'content-type': 'application/json',
-                            'api-key': BREVO_API_KEY
+            // Direct contact creation (no DOI or as fallback)
+            if (!brevoOk) {
+                const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'content-type': 'application/json',
+                        'api-key': BREVO_API_KEY
+                    },
+                    body: JSON.stringify({
+                        email,
+                        listIds: [BREVO_LIST_ID],
+                        attributes: {
+                            LANG: contactLang,
+                            SOURCE: contactSource
                         },
-                        body: JSON.stringify({
-                            listIds: [BREVO_LIST_ID],
-                            attributes: {
-                                LANG: lang || 'es',
-                                SOURCE: source || 'landing'
-                            }
-                        })
-                    });
-                    brevoOk = updateRes.ok || updateRes.status === 204;
-                    isDuplicate = true;
+                        updateEnabled: true
+                    })
+                });
+
+                if (brevoRes.ok || brevoRes.status === 201 || brevoRes.status === 204) {
+                    brevoOk = true;
                 } else {
-                    console.error('Brevo error:', brevoErr);
+                    const brevoErr = await brevoRes.json().catch(() => ({}));
+                    if (brevoErr.code === 'duplicate_parameter') {
+                        // Already exists in Brevo, update list membership
+                        const updateRes = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+                            method: 'PUT',
+                            headers: {
+                                'accept': 'application/json',
+                                'content-type': 'application/json',
+                                'api-key': BREVO_API_KEY
+                            },
+                            body: JSON.stringify({
+                                listIds: [BREVO_LIST_ID],
+                                attributes: {
+                                    LANG: contactLang,
+                                    SOURCE: contactSource
+                                }
+                            })
+                        });
+                        brevoOk = updateRes.ok || updateRes.status === 204;
+                        isDuplicate = true;
+                    } else {
+                        console.error('Brevo error:', brevoErr);
+                    }
+                }
+            }
+
+            // 3. Send welcome email for NEW subscribers (if template configured)
+            if (brevoOk && isNewSubscriber && !isDuplicate && BREVO_DOI_TEMPLATE_ID === 0) {
+                const welcomeTemplateId = contactLang === 'en' ? BREVO_WELCOME_TEMPLATE_EN : BREVO_WELCOME_TEMPLATE_ES;
+                if (welcomeTemplateId > 0) {
+                    try {
+                        await fetch('https://api.brevo.com/v3/smtp/email', {
+                            method: 'POST',
+                            headers: {
+                                'accept': 'application/json',
+                                'content-type': 'application/json',
+                                'api-key': BREVO_API_KEY
+                            },
+                            body: JSON.stringify({
+                                templateId: welcomeTemplateId,
+                                to: [{ email }],
+                                params: {
+                                    LANG: contactLang,
+                                    SOURCE: contactSource
+                                }
+                            })
+                        });
+                    } catch (welcomeErr) {
+                        console.error('Welcome email error:', welcomeErr);
+                        // Non-blocking: welcome email failure shouldn't affect subscription
+                    }
                 }
             }
         }

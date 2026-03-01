@@ -1083,4 +1083,54 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- ====== NEW CLUSTER ARTICLES - March 2026 ====== -->
+  <!-- ES Nutricion Cluster -->
+  <url><loc>https://www.correrjuntos.com/blog/recetas-runners-rapidas</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/hierro-para-corredores</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/nutricion-recuperacion-post-entreno</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/dieta-vegetariana-runner</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/desayunos-antes-de-correr</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/snacks-energeticos-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/como-evitar-problemas-digestivos-correr</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <!-- ES Zapatillas Cluster -->
+  <url><loc>https://www.correrjuntos.com/blog/cuanto-duran-zapatillas-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/como-elegir-zapatillas-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/zapatillas-running-pisada-neutra</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/drop-zapatillas-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/zapatillas-running-media-maraton</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/new-balance-1080-vs-hoka-clifton</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/zapatillas-running-supinadores</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <!-- ES Trail Cluster -->
+  <url><loc>https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/nutricion-trail-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/seguridad-trail-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-en-montana-tecnica</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/bastones-trail-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/navegacion-gps-trail-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/ultra-trail-principiantes</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <!-- EN Nutricion Cluster -->
+  <url><loc>https://www.correrjuntos.com/blog/en/quick-recipes-for-runners</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/iron-for-runners</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/best-breakfasts-before-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <!-- EN Zapatillas Cluster -->
+  <url><loc>https://www.correrjuntos.com/blog/en/how-long-running-shoes-last</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/how-to-choose-running-shoes</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/best-running-shoes-neutral-gait</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-shoe-drop-explained</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/best-half-marathon-shoes</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/new-balance-1080-vs-hoka-clifton</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/best-running-shoes-supinators</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <!-- EN Trail Cluster -->
+  <url><loc>https://www.correrjuntos.com/blog/en/trail-running-training-plan</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/trail-running-nutrition</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/trail-running-safety</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/uphill-downhill-running-technique</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/best-trekking-poles-trail-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/gps-navigation-trail-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/first-ultra-trail-guide</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+
 </urlset>

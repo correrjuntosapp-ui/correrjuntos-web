@@ -6571,7 +6571,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const now = new Date().toISOString();
                 const { data } = await window.supabaseClient
                     .from('quedadas')
-                    .select('id, titulo, ciudad, fecha, hora, nivel, lat, lng, organizador_nombre, punto_encuentro')
+                    .select('id, titulo, ciudad, fecha, hora, nivel, lat, lng, organizador_nombre, ubicacion')
                     .gte('fecha', now.split('T')[0])
                     .order('fecha', { ascending: true })
                     .limit(6);
@@ -6714,7 +6714,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 document.getElementById('qp-modal-date').textContent = dateStr;
             }
 
-            document.getElementById('qp-modal-location').textContent = [q.punto_encuentro, q.ciudad].filter(Boolean).join(', ') || (lang === 'en' ? 'Location to be confirmed' : lang === 'pt' ? 'Local a confirmar' : 'Ubicación por confirmar');
+            document.getElementById('qp-modal-location').textContent = [q.ubicacion, q.ciudad].filter(Boolean).join(', ') || (lang === 'en' ? 'Location to be confirmed' : lang === 'pt' ? 'Local a confirmar' : 'Ubicación por confirmar');
 
             const orgLabel = lang === 'en' ? 'Organized by' : lang === 'pt' ? 'Organizado por' : 'Organizado por';
             document.getElementById('qp-modal-organizer').textContent = `${orgLabel} ${q.organizador_nombre || (lang === 'en' ? 'A runner' : 'Un runner')}`;
@@ -6779,7 +6779,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     // Si no está en preview, cargar de Supabase
                     var sb = window.supabaseClient;
                     if(!sb) return;
-                    var resp = await sb.from('quedadas').select('id, titulo, ciudad, fecha, hora, nivel, lat, lng, organizador_nombre, punto_encuentro, organizador_foto').eq('id', qId).single();
+                    var resp = await sb.from('quedadas').select('id, titulo, ciudad, fecha, hora, nivel, lat, lng, organizador_nombre, ubicacion, organizador_foto').eq('id', qId).single();
                     if(resp.data){
                         setTimeout(function(){ openQuedadaPreview(resp.data); }, 300);
                     }
@@ -9950,7 +9950,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         <div class="flex items-center justify-between">
                             <div class="flex-1 min-w-0">
                                 <p class="font-bold text-white text-sm truncate">${q.titulo || (currentLang === 'en' ? 'Run' : 'Quedada')}</p>
-                                <p class="text-xs text-gray-400 truncate">📍 ${q.punto_encuentro || q.ciudad || (currentLang === 'en' ? 'No location' : 'Sin ubicación')}</p>
+                                <p class="text-xs text-gray-400 truncate">📍 ${q.ubicacion || q.ciudad || (currentLang === 'en' ? 'No location' : 'Sin ubicación')}</p>
                             </div>
                             <div class="text-right ml-3">
                                 <p class="text-xs font-bold ${esHoy ? 'text-orange-400' : 'text-blue-400'}">${fechaStr}</p>

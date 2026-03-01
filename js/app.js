@@ -6994,7 +6994,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         'endDate': endDate,
                         'image': q.imagen || 'https://www.correrjuntos.com/img/og-image.jpg',
                         'performer': { '@type': 'Organization', 'name': 'CorrerJuntos', 'url': 'https://www.correrjuntos.com' },
-                        'offers': { '@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR', 'url': 'https://www.correrjuntos.com', 'availability': 'https://schema.org/InStock' },
+                        'offers': { '@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR', 'url': 'https://www.correrjuntos.com', 'availability': 'https://schema.org/InStock', 'validFrom': '2025-01-01' },
                         'location': location,
                         'organizer': { '@type': 'Organization', 'name': 'CorrerJuntos', 'url': 'https://www.correrjuntos.com' },
                         'eventStatus': 'https://schema.org/EventScheduled',

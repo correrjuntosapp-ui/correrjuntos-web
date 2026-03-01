@@ -1605,7 +1605,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
                 const { data: comments, error } = await sb
                     .from('quedada_comments')
-                    .select('id, texto, created_at, user_id, profiles(nombre, photo_url)')
+                    .select('id, texto, created_at, user_id')
                     .eq('quedada_id', quedadaId)
                     .order('created_at', { ascending: true })
                     .limit(50);
@@ -1621,9 +1621,19 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 if (!comments || !comments.length) {
                     list.innerHTML = `<div class="text-gray-500 text-xs text-center py-2">${t.premiumNoComments || 'Sin comentarios aún'}</div>`;
                 } else {
+                    // Fetch profiles for comment authors
+                    const authorIds = [...new Set(comments.map(c => c.user_id))];
+                    const { data: profiles } = await sb
+                        .from('profiles')
+                        .select('id, nombre, photo_url')
+                        .in('id', authorIds);
+                    const profileMap = {};
+                    if (profiles) profiles.forEach(p => { profileMap[p.id] = p; });
+
                     list.innerHTML = comments.map(c => {
-                        const initial = (c.profiles && c.profiles.nombre ? c.profiles.nombre.charAt(0) : 'R').toUpperCase();
-                        const nombre = c.profiles && c.profiles.nombre ? escapeHtml(c.profiles.nombre) : 'Runner';
+                        const prof = profileMap[c.user_id];
+                        const initial = (prof && prof.nombre ? prof.nombre.charAt(0) : 'R').toUpperCase();
+                        const nombre = prof && prof.nombre ? escapeHtml(prof.nombre) : 'Runner';
                         return `
                         <div class="flex gap-2 p-2 rounded-lg bg-slate-700/30">
                             <div class="w-6 h-6 rounded-full bg-orange-500/30 flex items-center justify-center text-xs font-bold text-orange-400 shrink-0">${initial}</div>

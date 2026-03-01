@@ -1764,7 +1764,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     missionCard.innerHTML = `
                         <div class="bg-slate-800/60 rounded-xl p-4 text-center">
                             <p class="text-gray-400 text-sm mb-3">${currentLang === 'en' ? 'No upcoming runs in your area yet. Create one and others will join!' : 'Aún no hay quedadas en tu zona. ¡Crea una y otros se unirán!'}</p>
-                            <button onclick="openModal('modal-create')" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
+                            <button onclick="openModalCrear()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
                                 ➕ ${currentLang === 'en' ? 'Create a run' : 'Crear quedada'}
                             </button>
                         </div>`;
@@ -7649,8 +7649,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             // Cargar clima para cada quedada (asíncrono)
             loadWeatherForQuedadas(filtered);
 
-            // 🎯 Cargar recomendaciones inteligentes (Premium)
+            // 🎯 Cargar recomendaciones inteligentes + misión activa
             loadSmartRecommendations();
+            loadActiveMission();
         }
 
         // Cargar clima para las quedadas visibles

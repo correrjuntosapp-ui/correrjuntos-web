@@ -1581,6 +1581,24 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             const t = I18N[currentLang] || I18N.es;
 
+            // Always render input regardless of query result
+            if (inputWrap) {
+                if (!currentUser) {
+                    inputWrap.innerHTML = '';
+                } else if (isUserPremium) {
+                    inputWrap.innerHTML = `
+                        <div class="flex gap-2 mt-2">
+                            <input id="comment-input" type="text" maxlength="200" placeholder="${t.premiumCommentPlaceholder || 'Escribe un comentario...'}" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white placeholder-gray-500 focus:border-orange-500 outline-none">
+                            <button onclick="postComment('${quedadaId}')" class="px-3 py-2 rounded-lg bg-orange-500 text-white text-xs font-bold hover:bg-orange-600 transition">${t.premiumCommentSend || 'Enviar'}</button>
+                        </div>`;
+                } else {
+                    inputWrap.innerHTML = `
+                        <div class="text-center py-2">
+                            <button onclick="openPremiumSales()" class="text-xs text-yellow-400 hover:text-yellow-300 transition">${t.premiumCommentCta || '⭐ Premium para comentar'}</button>
+                        </div>`;
+                }
+            }
+
             try {
                 const sb = await getSupabaseClientOrToast(5000, false);
                 if (!sb) { list.innerHTML = ''; return; }
@@ -1593,9 +1611,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     .limit(50);
 
                 if (error) {
-                    // Table might not exist yet — fail silently
-                    list.innerHTML = '';
-                    if (inputWrap) inputWrap.innerHTML = '';
+                    console.warn('Comments query error:', error.message);
+                    list.innerHTML = `<div class="text-gray-500 text-xs text-center py-2">${t.premiumNoComments || 'Sin comentarios aún'}</div>`;
                     return;
                 }
 
@@ -1617,28 +1634,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                         </div>`;
                     }).join('');
                 }
-
-                // Input: Premium puede escribir, free ve CTA
-                if (inputWrap) {
-                    if (!currentUser) {
-                        inputWrap.innerHTML = '';
-                    } else if (isUserPremium) {
-                        inputWrap.innerHTML = `
-                            <div class="flex gap-2 mt-2">
-                                <input id="comment-input" type="text" maxlength="200" placeholder="${t.premiumCommentPlaceholder || 'Escribe un comentario...'}" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white placeholder-gray-500 focus:border-orange-500 outline-none">
-                                <button onclick="postComment('${quedadaId}')" class="px-3 py-2 rounded-lg bg-orange-500 text-white text-xs font-bold hover:bg-orange-600 transition">${t.premiumCommentSend || 'Enviar'}</button>
-                            </div>`;
-                    } else {
-                        inputWrap.innerHTML = `
-                            <div class="text-center py-2">
-                                <button onclick="openPremiumSales()" class="text-xs text-yellow-400 hover:text-yellow-300 transition">${t.premiumCommentCta || '⭐ Premium para comentar'}</button>
-                            </div>`;
-                    }
-                }
             } catch (e) {
                 console.warn('Comments error:', e);
-                list.innerHTML = '';
-                if (inputWrap) inputWrap.innerHTML = '';
+                list.innerHTML = `<div class="text-gray-500 text-xs text-center py-2">${t.premiumNoComments || 'Sin comentarios aún'}</div>`;
             }
         }
 

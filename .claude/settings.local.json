@@ -102,7 +102,8 @@
       "Bash(keytool -genkeypair:*)",
       "Bash(git init:*)",
       "WebFetch(domain:amzn.to)",
-      "WebFetch(domain:images.unsplash.com)"
+      "WebFetch(domain:images.unsplash.com)",
+      "Bash(node fix-hero-v2.cjs)"
     ]
   }
 }

@@ -400,7 +400,7 @@
     <!-- Leaflet.heat: loaded on demand for personal heatmap (Premium) -->
     <link rel="prefetch" href="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js" as="script">
     <!-- Core scripts: preload para descarga paralela temprana -->
-    <link rel="preload" href="/js/app.min.js?v=20260301" as="script">
+    <link rel="preload" href="/js/app.min.js?v=20260301c" as="script">
     <link rel="preload" href="/data/geo-data.min.js" as="script">
     <link rel="preload" href="/data/i18n-core.min.js" as="script">
     <link rel="preload" href="/data/i18n-es.min.js" as="script">
@@ -1613,6 +1613,29 @@
                 </div>
                 <div class="mt-4 md:mt-0 text-sm text-gray-400"><span id="showing-prefix">Mostrando</span> <span id="quedadas-count" class="text-orange-500 font-bold">0</span> <span id="showing-suffix">quedadas</span></div>
             </div>
+            <!-- 🏃 Misión Activa — Motor de acción (arriba de todo para usuarios logueados) -->
+            <div id="active-mission" class="hidden mb-6">
+                <div class="bg-gradient-to-r from-orange-500/20 to-amber-500/10 border border-orange-500/30 rounded-2xl p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xl">🏃</span>
+                        <span id="mission-title" class="text-white font-bold text-lg">Tu siguiente paso</span>
+                    </div>
+                    <div id="mission-card">
+                        <!-- Dinámico: mejor quedada o próxima quedada del usuario -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎯 Recomendadas para ti (visible para todos los logueados) -->
+            <div id="smart-recs-section" class="hidden mb-6 max-w-5xl mx-auto px-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">🎯 <span id="recs-title">Recomendadas para ti</span></h3>
+                </div>
+                <div id="smart-recs-cards" class="flex gap-3 overflow-x-auto pb-2 snap-x" style="-webkit-overflow-scrolling:touch">
+                    <!-- Cards horizontales generadas dinámicamente -->
+                </div>
+            </div>
+
             <!-- Panel de Stats personalizado (solo usuarios logueados) -->
             <div id="user-stats-panel" class="hidden mb-6">
                 <!-- Header con perfil y stats sociales integrados -->
@@ -1967,28 +1990,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- 🎯 Recomendaciones Premium -->
-            <div id="smart-recs-section" class="hidden mb-6 max-w-5xl mx-auto px-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2">🎯 <span id="recs-title">Recomendadas para ti</span></h3>
-                    <span class="text-xs text-yellow-400 font-bold">⭐ Premium</span>
-                </div>
-                <div id="smart-recs-cards" class="flex gap-3 overflow-x-auto pb-2 snap-x" style="-webkit-overflow-scrolling:touch">
-                    <!-- Cards horizontales generadas dinámicamente -->
-                </div>
-            </div>
-
-            <!-- CTA para free users -->
-            <div id="smart-recs-locked" class="hidden mb-6 max-w-5xl mx-auto px-4">
-                <div class="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-yellow-500/5 to-orange-500/5 border border-yellow-500/20">
-                    <div>
-                        <h3 class="text-sm font-bold text-white">🎯 <span id="recs-locked-title">Quedadas recomendadas para ti</span></h3>
-                        <p class="text-xs text-gray-500 mt-1" id="recs-locked-desc">Algoritmo que encuentra quedadas perfectas para tu nivel y zona</p>
-                    </div>
-                    <button onclick="openPremiumSales()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold whitespace-nowrap" id="recs-locked-btn">Probar Premium</button>
                 </div>
             </div>
 
@@ -3514,7 +3515,7 @@
 <!-- i18n: core (META_I18N) + español siempre + otros idiomas bajo demanda en changeLanguage() -->
 <script src="/data/i18n-core.min.js" defer></script>
 <script src="/data/i18n-es.min.js" defer></script>
-<script src="/js/app.min.js?v=20260301" defer></script>
+<script src="/js/app.min.js?v=20260301c" defer></script>
 
 
   <!-- PWA Install Banner (Custom) -->

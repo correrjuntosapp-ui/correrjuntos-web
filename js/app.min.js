@@ -1688,6 +1688,202 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             return days + 'd';
         }
 
+        // ========== ACTIVE MISSION (Motor de Acción) ==========
+        async function loadActiveMission() {
+            const missionEl = document.getElementById('active-mission');
+            const missionTitle = document.getElementById('mission-title');
+            const missionCard = document.getElementById('mission-card');
+            if (!missionEl || !missionCard) return;
+
+            if (!currentUser) { missionEl.classList.add('hidden'); return; }
+
+            try {
+                const t = I18N[currentLang] || I18N.es;
+                const todayStr = new Date().toISOString().split('T')[0];
+                const nowMs = Date.now();
+                const userLat = currentUser.lat || 40.4168;
+                const userLng = currentUser.lng || -3.7038;
+                const userNivel = currentUser.nivel || 'Todos los niveles';
+
+                // 1. Check if user has an upcoming quedada they already joined
+                const today = new Date();
+                today.setHours(0,0,0,0);
+                const myUpcoming = (quedadas || []).filter(q => {
+                    const asistentes = Array.isArray(q.asistentes) ? q.asistentes : (Array.isArray(q.asistentes_info) ? q.asistentes_info.map(a => a.user_id) : []);
+                    const isJoined = asistentes.includes(currentUser.id);
+                    const qDate = new Date(q.fecha + 'T00:00:00');
+                    return isJoined && qDate >= today;
+                }).sort((a, b) => new Date(a.fecha + 'T' + (a.hora || '00:00')) - new Date(b.fecha + 'T' + (b.hora || '00:00')));
+
+                if (myUpcoming.length > 0) {
+                    // Show user's next quedada with countdown
+                    const next = myUpcoming[0];
+                    const nextDate = new Date(next.fecha + 'T' + (next.hora || '00:00'));
+                    const diffMs = nextDate - nowMs;
+                    const diffDays = Math.floor(diffMs / (1000*60*60*24));
+                    const diffHours = Math.floor((diffMs % (1000*60*60*24)) / (1000*60*60));
+
+                    let countdown = '';
+                    if (diffDays > 0) countdown = currentLang === 'en' ? `In ${diffDays}d ${diffHours}h` : `Faltan ${diffDays}d ${diffHours}h`;
+                    else if (diffHours > 0) countdown = currentLang === 'en' ? `In ${diffHours} hours` : `Faltan ${diffHours} horas`;
+                    else countdown = currentLang === 'en' ? 'Starting soon!' : '¡Empieza pronto!';
+
+                    const asistentes = Array.isArray(next.asistentes) ? next.asistentes : (Array.isArray(next.asistentes_info) ? next.asistentes_info.map(a => a.user_id) : []);
+                    const confirmedCount = asistentes.length;
+
+                    if (missionTitle) missionTitle.textContent = currentLang === 'en' ? 'Your next run' : 'Tu próxima quedada';
+                    missionCard.innerHTML = `
+                        <div class="bg-slate-800/60 rounded-xl p-4 cursor-pointer hover:bg-slate-700/60 transition-all" onclick="openQuedadaDetail('${next.id}')">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <div class="text-xs text-orange-400 font-bold mb-1">📍 ${escapeHtml(next.ciudad || '')} · ${escapeHtml(next.ubicacion || '')}</div>
+                                    <div class="text-sm font-bold text-white mb-1">${escapeHtml(next.titulo)}</div>
+                                </div>
+                                <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full font-bold whitespace-nowrap">${countdown}</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">🕒 ${formatDateShort(next.fecha)} · ${formatHora(next.hora)}</span>
+                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👟 ${next.nivel || 'Todos'}</span>
+                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👥 ${confirmedCount} runners</span>
+                            </div>
+                            <div class="mt-3">
+                                <button class="w-full py-2.5 rounded-xl bg-slate-700 text-white text-sm font-bold hover:bg-slate-600 transition" onclick="event.stopPropagation(); openQuedadaDetail('${next.id}')">
+                                    ${currentLang === 'en' ? '📋 View details' : '📋 Ver detalles'}
+                                </button>
+                            </div>
+                        </div>`;
+                    missionEl.classList.remove('hidden');
+                    return;
+                }
+
+                // 2. No upcoming — find best recommendation
+                const future = (quedadas || []).filter(q => q.fecha >= todayStr && !q.es_seed);
+                if (!future.length) {
+                    // 3. No quedadas at all — CTA to create
+                    if (missionTitle) missionTitle.textContent = currentLang === 'en' ? 'Be the first!' : '¡Sé el primero!';
+                    missionCard.innerHTML = `
+                        <div class="bg-slate-800/60 rounded-xl p-4 text-center">
+                            <p class="text-gray-400 text-sm mb-3">${currentLang === 'en' ? 'No upcoming runs in your area yet. Create one and others will join!' : 'Aún no hay quedadas en tu zona. ¡Crea una y otros se unirán!'}</p>
+                            <button onclick="openModal('modal-create')" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
+                                ➕ ${currentLang === 'en' ? 'Create a run' : 'Crear quedada'}
+                            </button>
+                        </div>`;
+                    missionEl.classList.remove('hidden');
+                    return;
+                }
+
+                // Score algorithm (same as smart recs)
+                function haversineDist(lat1, lng1, lat2, lng2) {
+                    const R = 6371;
+                    const dLat = (lat2 - lat1) * Math.PI / 180;
+                    const dLng = (lng2 - lng1) * Math.PI / 180;
+                    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                              Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+                              Math.sin(dLng/2) * Math.sin(dLng/2);
+                    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                }
+                const levelOrder = ['Principiante', 'Intermedio', 'Avanzado', 'Elite'];
+                function isAdjacentLevel(a, b) {
+                    const ia = levelOrder.indexOf(a);
+                    const ib = levelOrder.indexOf(b);
+                    if (ia < 0 || ib < 0) return false;
+                    return Math.abs(ia - ib) <= 1;
+                }
+
+                const scored = future.map(q => {
+                    let score = 0;
+                    if (q.lat && q.lng) {
+                        const dist = haversineDist(userLat, userLng, q.lat, q.lng);
+                        score += Math.max(0, 40 - dist * 2);
+                    }
+                    if (q.nivel === userNivel || q.nivel === 'Todos los niveles') score += 30;
+                    else if (isAdjacentLevel(userNivel, q.nivel)) score += 15;
+                    const asistentes = Array.isArray(q.asistentes) ? q.asistentes : [];
+                    const friendsGoing = asistentes.filter(id => userFollowingIds && userFollowingIds.has(id)).length;
+                    score += Math.min(friendsGoing * 10, 20);
+                    const daysAway = (new Date(q.fecha) - new Date()) / (1000 * 60 * 60 * 24);
+                    score += Math.max(0, 10 - daysAway);
+                    return { q, score, friendsGoing };
+                }).sort((a, b) => b.score - a.score);
+
+                const best = scored[0];
+                if (!best) { missionEl.classList.add('hidden'); return; }
+
+                const bq = best.q;
+                const asistentes = Array.isArray(bq.asistentes) ? bq.asistentes : (Array.isArray(bq.asistentes_info) ? bq.asistentes_info.map(a => a.user_id) : []);
+                const confirmedCount = asistentes.length;
+
+                if (missionTitle) missionTitle.textContent = currentLang === 'en' ? 'We found a run for you' : 'Hemos encontrado una quedada para ti';
+
+                // Social proof badges for new users (< 5 quedadas)
+                const showBadges = userStats.quedadas < 5;
+                const badgesHtml = showBadges ? `
+                    <div class="flex flex-wrap gap-2 mt-3 text-xs text-gray-400" id="mission-social-badges">
+                        <span class="bg-slate-700/50 px-2 py-1 rounded-full">✔ ${currentLang === 'en' ? 'Relaxed group' : 'Grupo relajado'}</span>
+                        <span class="bg-slate-700/50 px-2 py-1 rounded-full">✔ ${currentLang === 'en' ? 'Adapted pace' : 'Ritmo adaptado'}</span>
+                        <span class="bg-slate-700/50 px-2 py-1 rounded-full">✔ ${currentLang === 'en' ? 'First-timers welcome' : 'Primera vez bienvenida'}</span>
+                    </div>` : '';
+
+                missionCard.innerHTML = `
+                    <div class="bg-slate-800/60 rounded-xl p-4">
+                        <div class="text-xs text-orange-400 font-bold mb-1">📍 ${escapeHtml(bq.ciudad || '')} · ${escapeHtml(bq.ubicacion || '')}</div>
+                        <div class="text-sm font-bold text-white mb-1">${escapeHtml(bq.titulo)}</div>
+                        <div class="flex flex-wrap gap-2 text-xs mb-3">
+                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">🕒 ${formatDateShort(bq.fecha)} · ${formatHora(bq.hora)}</span>
+                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👟 ${bq.nivel || 'Todos'}</span>
+                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👥 ${confirmedCount} runners</span>
+                            ${bq.distancia ? `<span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">📏 ${formatDistancia(bq.distancia)}</span>` : ''}
+                        </div>
+                        ${best.friendsGoing > 0 ? `<div class="text-xs text-green-400 mb-2">👥 ${best.friendsGoing} ${currentLang === 'en' ? 'friends going' : 'amigos van'}</div>` : ''}
+                        <button onclick="openAttendanceModal('${bq.id}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition-all transform hover:scale-[1.02]">
+                            🏃 ${currentLang === 'en' ? 'JOIN NOW' : 'UNIRME AHORA'}
+                        </button>
+                        ${badgesHtml}
+                    </div>`;
+                missionEl.classList.remove('hidden');
+            } catch (e) {
+                console.warn('Active mission error:', e);
+                if (missionEl) missionEl.classList.add('hidden');
+            }
+        }
+
+        // ========== DASHBOARD MODE (Guided vs Full) ==========
+        function applyDashboardMode() {
+            if (!currentUser) return;
+            const isNewUser = userStats.quedadas < 2;
+
+            const statsGrid = document.querySelector('.stats-grid');
+            const premiumStats = document.getElementById('premium-stats-section');
+            const premiumHeatmap = document.getElementById('premium-heatmap-section');
+            const premiumStatsLocked = document.getElementById('premium-stats-locked');
+            const premiumHeatmapLocked = document.getElementById('premium-heatmap-locked');
+            const socialContainer = document.getElementById('social-stats-container');
+            const summaryText = document.getElementById('stat-summary-text');
+            const summarySubEl = document.getElementById('stat-summary-sub');
+
+            if (isNewUser) {
+                // GUIDED MODE: hide complexity
+                if (statsGrid) statsGrid.style.display = 'none';
+                if (premiumStats) premiumStats.classList.add('hidden');
+                if (premiumHeatmap) premiumHeatmap.classList.add('hidden');
+                if (premiumStatsLocked) premiumStatsLocked.classList.add('hidden');
+                if (premiumHeatmapLocked) premiumHeatmapLocked.classList.add('hidden');
+                // Hide social stats (0/0 doesn't motivate)
+                if (socialContainer) socialContainer.style.display = 'none';
+                // Welcoming message
+                if (summaryText) summaryText.textContent = currentLang === 'en'
+                    ? `Welcome, ${currentUser.nombre || 'Runner'}!`
+                    : `¡Bienvenido, ${currentUser.nombre || 'Runner'}!`;
+                if (summarySubEl) summarySubEl.textContent = currentLang === 'en'
+                    ? 'Your first group is waiting for you 👇'
+                    : 'Tu primer grupo te espera 👇';
+            } else {
+                // FULL MODE: show everything
+                if (statsGrid) statsGrid.style.display = '';
+                if (socialContainer) socialContainer.style.display = '';
+            }
+        }
+
         // ========== SMART RECOMMENDATIONS ==========
         async function loadSmartRecommendations() {
             const section = document.getElementById('smart-recs-section');
@@ -1699,12 +1895,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 return;
             }
 
-            if (!isUserPremium) {
-                if (section) section.classList.add('hidden');
-                if (locked) locked.classList.remove('hidden');
-                return;
-            }
-
+            // Recs visible for all logged-in users (no Premium gate)
             if (locked) locked.classList.add('hidden');
 
             try {
@@ -2887,6 +3078,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
         function updateReferralBanner(count) {
             const banner = document.getElementById('referral-banner');
             if (!banner || !currentUser) return;
+            // Only show referral banner if user has attended >= 1 quedada
+            if (userStats.quedadas < 1) { banner.classList.add('hidden'); return; }
             // Show banner if user hasn't dismissed it and has < 10 referrals
             const dismissed = localStorage.getItem('cj_referral_banner_dismissed');
             if (dismissed && count < 10) { banner.classList.add('hidden'); return; }
@@ -3548,7 +3741,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             document.body.insertAdjacentHTML('beforeend', modalHtml);
         }
-        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadUserStats();loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();updateReferralBanner(currentUser?.referral_count||0);if(typeof lazyLoadScript==='function'){lazyLoadScript('/js/strava.js');lazyLoadScript('/js/push.js');}var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';}
+        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadActiveMission();loadUserStats().then(()=>{applyDashboardMode();updateReferralBanner(currentUser?.referral_count||0);}).catch(()=>{});loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();if(typeof lazyLoadScript==='function'){lazyLoadScript('/js/strava.js');lazyLoadScript('/js/push.js');}var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';}
         // Procesar deep link guardado (si el usuario llegó con #quedada/xxx sin sesión y luego hizo login)
         function processDeepLinkAfterLogin(){
           try{
@@ -8533,11 +8726,53 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         throw error;
                     }
                     console.log('Insertado:', insertData);
-                    showToast(getStatusMessage(status, 'joined', quedadaId), 'success');
                     showConfetti(); // 🎉 Celebración al unirse
 
                     // Vibración háptica en móviles (feedback físico)
                     if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+
+                    // 🎯 Dopamine feedback: show enriched toast with other participants
+                    try {
+                        const sb2 = window.supabaseClient;
+                        if (sb2) {
+                            const { data: others } = await sb2
+                                .from('participantes')
+                                .select('user_id')
+                                .eq('quedada_id', quedadaId)
+                                .eq('status', 'confirmed')
+                                .neq('user_id', currentUser.id)
+                                .limit(3);
+
+                            let dopamineMsg = currentLang === 'en' ? '🎉 You\'re in!' : '🎉 ¡Ya estás dentro!';
+                            if (others && others.length > 0) {
+                                const otherIds = others.map(o => o.user_id);
+                                const { data: profiles } = await sb2
+                                    .from('profiles')
+                                    .select('id, nombre')
+                                    .in('id', otherIds);
+                                if (profiles && profiles.length > 0) {
+                                    const names = profiles.map(p => p.nombre).filter(Boolean);
+                                    if (names.length === 1) {
+                                        dopamineMsg += currentLang === 'en' ? ` ${names[0]} is also going.` : ` ${names[0]} también asistirá.`;
+                                    } else if (names.length > 1) {
+                                        dopamineMsg += currentLang === 'en'
+                                            ? ` ${names[0]} and ${names.length - 1} more are also going.`
+                                            : ` ${names[0]} y ${names.length - 1} más también asistirán.`;
+                                    }
+                                }
+                            }
+                            dopamineMsg += currentLang === 'en' ? ' We\'ll remind you before it starts.' : ' Te avisaremos antes de salir.';
+                            showToast(dopamineMsg, 'success');
+                        } else {
+                            showToast(getStatusMessage(status, 'joined', quedadaId), 'success');
+                        }
+                    } catch (dErr) {
+                        console.warn('Dopamine toast error:', dErr);
+                        showToast(getStatusMessage(status, 'joined', quedadaId), 'success');
+                    }
+
+                    // Update active mission card if user just joined the mission quedada
+                    try { loadActiveMission(); } catch(_) {}
 
                     // Incrementar contador de joins y verificar si mostrar prompt de notificaciones
                     if (typeof incrementJoinCount === 'function') {

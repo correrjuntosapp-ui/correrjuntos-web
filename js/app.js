@@ -319,7 +319,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
         // ========== PLAN FEATURES SYSTEM ==========
         const PLAN_FEATURES = {
-            free: { maxActiveMeetups: 1, canDM: false, advancedFilters: false, seeProfileViews: false, priorityListing: false },
+            free: { maxActiveMeetups: 3, canDM: false, advancedFilters: false, seeProfileViews: false, priorityListing: false },
             premium: { maxActiveMeetups: Infinity, canDM: true, advancedFilters: true, seeProfileViews: true, priorityListing: true }
         };
 
@@ -344,6 +344,129 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             return quedadas.filter(q => q.creador_id === currentUser.id && !q.es_seed && q.fecha >= today).length;
         }
 
+        // ====== GA4 TRACKING HELPERS ======
+        function trackPremiumCTA(source) {
+            if (typeof gtag === 'function') gtag('event', 'premium_cta_click', { source });
+        }
+
+        // ====== DASHBOARD V2 FUNCTIONS ======
+        function updateDashboardCrearCounter() {
+            const el = document.getElementById('dashboard-crear-counter');
+            const text = document.getElementById('crear-counter-text');
+            if (!el || !currentUser) return;
+            if (getEffectivePlan() === 'premium') { el.classList.add('hidden'); return; }
+            el.classList.remove('hidden');
+            const count = getActiveQuedadasCount();
+            const max = PLAN_FEATURES.free.maxActiveMeetups;
+            if (text) {
+                if (count >= max) {
+                    text.textContent = `${count}/${max} — límite alcanzado`;
+                    text.className = 'text-sm text-red-400 font-semibold';
+                } else if (count === max - 1) {
+                    text.textContent = `${count}/${max} este mes — ¡última quedada!`;
+                    text.className = 'text-sm text-yellow-400 font-semibold';
+                } else {
+                    text.textContent = `${count}/${max} este mes`;
+                    text.className = 'text-sm text-white font-semibold';
+                }
+            }
+        }
+
+        function updateDynamicPremiumBanner() {
+            const el = document.getElementById('premium-dashboard-cta');
+            if (!el || !currentUser) return;
+            if (getEffectivePlan() === 'premium') { el.classList.add('hidden'); return; }
+            el.classList.remove('hidden');
+            const titleEl = document.getElementById('premium-banner-title');
+            const descEl = document.getElementById('premium-banner-desc');
+            const btnEl = document.getElementById('premium-banner-btn');
+            const iconEl = document.getElementById('premium-banner-icon');
+            const created = userStats.created || 0;
+            const joined = userStats.quedadas || 0;
+            if (created >= 2) {
+                if (iconEl) iconEl.textContent = '👑';
+                if (titleEl) titleEl.textContent = 'Crea sin límites y organiza tu comunidad';
+                if (descEl) descEl.textContent = 'Ya has creado ' + created + ' quedadas. Desbloquea quedadas ilimitadas y lidera tu grupo.';
+                if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis';
+            } else if (joined >= 3) {
+                if (iconEl) iconEl.textContent = '🔍';
+                if (titleEl) titleEl.textContent = 'Encuentra runners compatibles con filtros avanzados';
+                if (descEl) descEl.textContent = 'Ya has corrido con ' + (userStats.runners || 0) + ' runners. Filtra por ritmo real y nivel.';
+                if (btnEl) btnEl.textContent = 'Desbloquear Premium';
+            } else {
+                if (iconEl) iconEl.textContent = '🔔';
+                if (titleEl) titleEl.textContent = 'Activa alertas personalizadas y no vuelvas a correr solo';
+                if (descEl) descEl.textContent = 'Recibe notificaciones cuando aparezca una quedada perfecta para ti.';
+                if (btnEl) btnEl.textContent = 'Activar Premium';
+            }
+        }
+
+        function renderMatchingPreview() {
+            const section = document.getElementById('matching-preview-section');
+            const list = document.getElementById('matching-preview-list');
+            if (!section || !list || !currentUser || !currentUser.ciudad) return;
+            // Get unique runners from quedadas in same city
+            const runnerMap = new Map();
+            const today = new Date().toISOString().split('T')[0];
+            quedadas.filter(q => q.ciudad && q.ciudad.toLowerCase() === currentUser.ciudad.toLowerCase() && q.fecha >= today).forEach(q => {
+                (q.asistentes_info || []).forEach(a => {
+                    if (a.user_id !== currentUser.id && !runnerMap.has(a.user_id)) {
+                        runnerMap.set(a.user_id, { id: a.user_id, nombre: a.nombre || 'Runner', photo: a.photo_url || '', nivel: q.nivel || '' });
+                    }
+                });
+            });
+            const runners = Array.from(runnerMap.values()).slice(0, 4);
+            if (runners.length === 0) return;
+            section.classList.remove('hidden');
+            list.innerHTML = runners.map(r => {
+                const initials = (r.nombre || 'R').charAt(0).toUpperCase();
+                const photo = r.photo ? `<img src="${r.photo}" class="w-10 h-10 rounded-full object-cover" alt="" loading="lazy"/>` : `<div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-bold text-white text-sm">${initials}</div>`;
+                return `<div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-center cursor-pointer hover:border-orange-500/30 transition" onclick="openUserProfile('${r.id}'); trackPremiumCTA('matching')">
+                    <div class="flex justify-center mb-2">${photo}</div>
+                    <p class="text-sm font-semibold text-white truncate">${r.nombre}</p>
+                    <p class="text-xs text-gray-500">${r.nivel || currentUser.ciudad}</p>
+                    <button class="mt-2 text-xs px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 font-semibold hover:bg-orange-500/30 transition">Conectar</button>
+                </div>`;
+            }).join('');
+        }
+
+        function renderSmartAlertsPreview() {
+            const section = document.getElementById('smart-alerts-section');
+            const list = document.getElementById('alerts-preview-list');
+            const countEl = document.getElementById('alerts-count');
+            if (!section || !list || !currentUser) return;
+            if (getEffectivePlan() === 'premium') { section.classList.add('hidden'); return; }
+            // Find matching quedadas by city and level
+            const today = new Date().toISOString().split('T')[0];
+            const matching = quedadas.filter(q =>
+                q.fecha >= today && q.ciudad &&
+                q.ciudad.toLowerCase() === (currentUser.ciudad || '').toLowerCase() &&
+                (!currentUser.nivel || !q.nivel || q.nivel === currentUser.nivel || q.nivel === 'Todos')
+            ).slice(0, 3);
+            if (matching.length === 0) return;
+            section.classList.remove('hidden');
+            if (countEl) countEl.textContent = matching.length;
+            list.innerHTML = matching.map((q, i) => {
+                if (i === 0) {
+                    return `<div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-800/40 border border-slate-700/50">
+                        <span class="text-orange-400">🏃</span>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-white font-semibold truncate">${q.titulo}</p>
+                            <p class="text-xs text-gray-500">${q.hora || ''} · ${q.nivel || ''}</p>
+                        </div>
+                        <span class="text-xs text-green-400 font-semibold">${(q.asistentes_info || []).filter(a => a.status === 'confirmed' || !a.status).length} runners</span>
+                    </div>`;
+                }
+                return `<div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-800/40 border border-slate-700/50 opacity-50">
+                    <span class="text-gray-500">🔒</span>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm text-gray-500 font-semibold blur-sm">${q.titulo}</p>
+                        <p class="text-xs text-gray-600 blur-sm">${q.hora || ''}</p>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
         // ========== PREMIUM PAYWALL COPY ==========
         const PREMIUM_COPY = {
             create_meetup_limit: {
@@ -360,6 +483,16 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 icon: '💬', title: 'Mensajes privados', titleEN: 'Private messages',
                 bullets: ['Habla 1 a 1 con corredores', 'Coordina entrenamientos más fácil', 'Crea tu grupo estable'],
                 bulletsEN: ['Talk 1-on-1 with runners', 'Coordinate training easier', 'Build your stable group']
+            },
+            matching_preview: {
+                icon: '🏃', title: 'Encuentra runners compatibles', titleEN: 'Find compatible runners',
+                bullets: ['Filtros por ritmo real y nivel', 'Runners en tu zona y horario', 'Conecta y corre acompañado'],
+                bulletsEN: ['Filter by real pace and level', 'Runners in your area and schedule', 'Connect and run together']
+            },
+            smart_alerts: {
+                icon: '🔔', title: 'Alertas inteligentes', titleEN: 'Smart alerts',
+                bullets: ['Notificaciones de quedadas compatibles', 'Filtrado por nivel y distancia', 'No te pierdas tu quedada ideal'],
+                bulletsEN: ['Notifications for compatible runs', 'Filtered by level and distance', 'Never miss your ideal run']
             }
         };
 
@@ -3820,7 +3953,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             document.body.insertAdjacentHTML('beforeend', modalHtml);
         }
-        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadActiveMission();loadUserStats().then(()=>{applyDashboardMode();updateReferralBanner(currentUser?.referral_count||0);}).catch(()=>{});loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();if(typeof lazyLoadScript==='function'){lazyLoadScript('/js/strava.js');lazyLoadScript('/js/push.js');}var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';}
+        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadActiveMission();loadUserStats().then(()=>{applyDashboardMode();updateReferralBanner(currentUser?.referral_count||0);updateDashboardCrearCounter();updateDynamicPremiumBanner();renderMatchingPreview();renderSmartAlertsPreview();}).catch(()=>{});loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();if(typeof lazyLoadScript==='function'){lazyLoadScript('/js/strava.js');lazyLoadScript('/js/push.js');}var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';if(typeof gtag==='function')gtag('event','dashboard_view');}
         // Procesar deep link guardado (si el usuario llegó con #quedada/xxx sin sesión y luego hizo login)
         function processDeepLinkAfterLogin(){
           try{
@@ -5732,7 +5865,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const maxAllowed = PLAN_FEATURES[userPlan]?.maxActiveMeetups ?? 1;
                 if (activeCount >= maxAllowed) {
                     openPremiumModal('create_meetup_limit');
-                    if (typeof gtag === 'function') gtag('event', 'premium_feature_blocked', { feature: 'create_meetup_limit' });
+                    if (typeof gtag === 'function') { gtag('event', 'premium_feature_blocked', { feature: 'create_meetup_limit' }); gtag('event', 'create_meetup_blocked'); }
                     return;
                 }
             }
@@ -7453,6 +7586,19 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const maybeCount = asistentesInfo.filter(a => a.status === 'maybe').length;
                 const interestedCount = asistentesInfo.filter(a => a.status === 'interested').length;
 
+                // Urgency badge
+                let urgencyBadge = '';
+                const spotsLeft = q.max_participantes ? q.max_participantes - confirmedCount : null;
+                const hoursUntil = (new Date(`${q.fecha}T${q.hora || '00:00'}`) - new Date()) / 3600000;
+                if (spotsLeft !== null && spotsLeft <= 3 && spotsLeft > 0) {
+                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 font-semibold">⚡ Quedan ${spotsLeft} plaza${spotsLeft === 1 ? '' : 's'}</div>`;
+                } else if (hoursUntil > 0 && hoursUntil <= 6) {
+                    const h = Math.ceil(hoursUntil);
+                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 font-semibold">⏰ Empieza en ${h} hora${h === 1 ? '' : 's'}</div>`;
+                } else if (confirmedCount >= 4) {
+                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 font-semibold">🔥 ${confirmedCount} runners ya se han unido</div>`;
+                }
+
                 const nombres = asistentesInfo.length ? asistentesInfo.slice(0,3).map(a => (a.user_id===currentUser?.id ? (currentUser.nombre||'Tú') : (a.nombre || getUserName(a.user_id)))) : asistentes.slice(0,3).map(uid=>getUserName(uid));
                 const mas = asistentes.length>3 ? (asistentes.length-3) : 0;
 
@@ -7666,6 +7812,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                   <!-- ═══ SECCIÓN 5: DESCRIPCIÓN ═══ -->
                   ${q.descripcion ? `
                   <p class="text-sm text-gray-400 line-clamp-2 mb-5">${q.descripcion}</p>` : ''}
+
+                  <!-- ═══ SECCIÓN 5b: URGENCIA ═══ -->
+                  ${urgencyBadge}
 
                   <!-- ═══ SECCIÓN 6: FEATURES PREMIUM ═══ -->
                   ${q.ruta_coords ? `<div class="flex items-center gap-2 mb-3 px-2 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20"><span class="text-xs">🗺️</span><span class="text-xs text-orange-400 font-semibold">Ruta GPS disponible</span></div>` : ''}

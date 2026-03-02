@@ -141,7 +141,7 @@ I18N.es = {
         appTitle: 'Quedadas',
         appTitleHi: 'cerca de ti',
         appSubtitle: 'Encuentra tu próxima ruta y conoce gente nueva',
-        mapLabel: 'Mapa de quedadas activas',
+        mapLabel: 'Explora quedadas activas en tu zona',
         showingPrefix: 'Mostrando',
         showingSuffix: 'quedadas',
         loginTitle: 'Iniciar Sesión',
@@ -478,6 +478,13 @@ I18N.es = {
         premiumAdvancedStats: 'Quedadas ilimitadas cada mes',
         premiumUnlimitedRuns: 'Encuentra runners compatibles por ritmo real',
         premiumExclusiveBadges: 'Estadísticas avanzadas + Strava',
+        // Dashboard v2
+        matchingPreviewTitle: 'Runners compatibles en tu zona',
+        matchingPreviewSeeAll: 'Ver todos →',
+        alertsPreviewDesc: 'Recibe alertas personalizadas cuando aparezca una quedada perfecta para ti.',
+        alertsPreviewCTA: 'Activar alertas Premium',
+        mapExploreLabel: 'Explora quedadas activas en tu zona',
+        crearCounterHint: 'Quedadas activas que has creado',
         // Alert preferences
         alertToggleLabel: 'Alertas de quedadas cercanas',
         alertToggleDesc: 'Recibe notificaciones cuando se cree una quedada cerca de ti',

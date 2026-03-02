@@ -1635,21 +1635,16 @@
                 </div>
             </div>
 
-            <!-- 🚀 Premium CTA card (solo free logueados) -->
+            <!-- 🚀 Premium CTA card DINÁMICO (solo free logueados) -->
             <div id="premium-dashboard-cta" class="hidden mb-6 max-w-5xl mx-auto px-4">
                 <div class="bg-gradient-to-r from-orange-500/15 to-yellow-500/10 border border-orange-500/30 rounded-2xl p-5">
                     <div class="flex items-center gap-3 mb-2">
-                        <span class="text-2xl">🚀</span>
-                        <h3 id="premium-cta-title" class="text-white font-bold text-lg">Sube de nivel en CorrerJuntos</h3>
+                        <span id="premium-banner-icon" class="text-2xl">🚀</span>
+                        <h3 id="premium-banner-title" class="text-white font-bold text-lg"></h3>
                     </div>
-                    <p id="premium-cta-desc" class="text-gray-400 text-sm mb-4">Desbloquea todas las funciones y corre con gente compatible contigo.</p>
-                    <div class="flex flex-wrap gap-2 mb-4 text-xs">
-                        <span class="bg-slate-800/60 px-3 py-1.5 rounded-full text-gray-300">📅 Quedadas ilimitadas</span>
-                        <span class="bg-slate-800/60 px-3 py-1.5 rounded-full text-gray-300">🔍 Filtros avanzados</span>
-                        <span class="bg-slate-800/60 px-3 py-1.5 rounded-full text-gray-300">💬 Mensajes privados</span>
-                    </div>
-                    <button onclick="openPremiumSales()" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
-                        Ver Premium — 4,99€/mes
+                    <p id="premium-banner-desc" class="text-gray-400 text-sm mb-4"></p>
+                    <button onclick="openPremiumSales(); trackPremiumCTA('banner')" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
+                        <span id="premium-banner-btn">Empieza tu prueba gratis</span>
                     </button>
                 </div>
             </div>
@@ -1713,6 +1708,18 @@
                         <div id="stat-proximas" class="stat-value">0</div>
                         <div class="stat-label" id="label-upcoming">Próximas quedadas</div>
                     </div>
+                </div>
+
+                <!-- 📅 CREAR COUNTER (visible para FREE logueados) -->
+                <div id="dashboard-crear-counter" class="hidden mt-4 p-3 rounded-xl bg-slate-800/40 border border-slate-700/50 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">📅</span>
+                        <div>
+                            <span id="crear-counter-text" class="text-sm text-white font-semibold">0/3 este mes</span>
+                            <p class="text-xs text-gray-500" id="crear-counter-hint">Quedadas activas que has creado</p>
+                        </div>
+                    </div>
+                    <button onclick="openModalCrear()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg transition">+ Crear</button>
                 </div>
 
                 <!-- ⭐ ESTADÍSTICAS PREMIUM DETALLADAS -->
@@ -1821,6 +1828,31 @@
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- 🏃 MATCHING PREVIEW (solo logueados) -->
+            <div id="matching-preview-section" class="hidden mb-6 max-w-5xl mx-auto px-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">🏃 <span id="matching-preview-title">Runners compatibles en tu zona</span></h3>
+                    <button onclick="openModal('modal-matching'); trackPremiumCTA('matching')" class="text-xs text-orange-400 font-semibold hover:text-orange-300 transition" id="matching-preview-see-all">Ver todos →</button>
+                </div>
+                <div id="matching-preview-list" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- 🔔 SMART ALERTS PREVIEW (solo FREE logueados) -->
+            <div id="smart-alerts-section" class="hidden mb-6 max-w-5xl mx-auto px-4">
+                <div class="p-4 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
+                    <p class="text-white font-bold mb-1 flex items-center gap-2">🔔 <span id="alerts-preview-title"><span id="alerts-count">3</span> quedadas encajan con tu ritmo</span></p>
+                    <div id="alerts-preview-list" class="space-y-2 my-3">
+                        <!-- 1 visible + 2 locked — filled by JS -->
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3" id="alerts-preview-desc">Recibe alertas personalizadas cuando aparezca una quedada perfecta para ti.</p>
+                    <button onclick="openPremiumModal('smart_alerts'); trackPremiumCTA('alerts')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-sm hover:shadow-lg transition" id="alerts-preview-cta">
+                        Activar alertas Premium
+                    </button>
                 </div>
             </div>
 
@@ -1956,7 +1988,7 @@
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center gap-2">
                                 <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                                <span class="text-sm font-semibold text-white" id="map-label">Mapa de quedadas activas</span>
+                                <span class="text-sm font-semibold text-white" id="map-label">Explora quedadas activas en tu zona</span>
                             </div>
                             <button id="btn-toggle-map" onclick="toggleMapSize()" class="text-xs text-gray-400 hover:text-white px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700 hover:border-orange-500/50 transition flex items-center gap-1.5 lg:hidden">
                                 <svg id="toggle-map-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>

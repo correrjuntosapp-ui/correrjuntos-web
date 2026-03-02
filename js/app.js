@@ -358,6 +358,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const badge = document.getElementById('plan-status-badge');
             const counter = document.getElementById('plan-counter-value');
             const upgradeBtn = document.getElementById('plan-status-upgrade');
+            const progressBar = document.getElementById('plan-progress-bar');
+            const limitWarning = document.getElementById('plan-limit-warning');
             const count = getActiveQuedadasCount();
             const max = PLAN_FEATURES.free.maxActiveMeetups;
             if (badge) badge.textContent = 'Plan: Básico';
@@ -367,7 +369,20 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 else if (count === max - 1) counter.className = 'text-yellow-400 font-bold';
                 else counter.className = 'text-white font-bold';
             }
-            if (upgradeBtn) upgradeBtn.classList.toggle('hidden', false);
+            // Progress bar
+            if (progressBar) {
+                const pct = Math.min((count / max) * 100, 100);
+                progressBar.style.width = pct + '%';
+                if (count >= max) progressBar.className = 'h-full bg-gradient-to-r from-red-500 to-red-400 rounded-full transition-all duration-500';
+                else if (count === max - 1) progressBar.className = 'h-full bg-gradient-to-r from-yellow-500 to-amber-400 rounded-full transition-all duration-500';
+                else progressBar.className = 'h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full transition-all duration-500';
+            }
+            // Limit warning
+            if (limitWarning) {
+                if (count >= max) limitWarning.classList.remove('hidden');
+                else limitWarning.classList.add('hidden');
+            }
+            if (upgradeBtn) upgradeBtn.classList.toggle('hidden', count >= max);
         }
 
         function updateDashboardCrearCounter() {
@@ -407,17 +422,17 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 if (iconEl) iconEl.textContent = '👑';
                 if (titleEl) titleEl.textContent = 'Crea sin límites y organiza tu comunidad';
                 if (descEl) descEl.textContent = 'Ya has creado ' + created + ' quedadas. Desbloquea quedadas ilimitadas y lidera tu grupo.';
-                if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis';
+                if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis — 7 días';
             } else if (joined >= 3) {
                 if (iconEl) iconEl.textContent = '🔍';
-                if (titleEl) titleEl.textContent = 'Encuentra runners compatibles con filtros avanzados';
+                if (titleEl) titleEl.textContent = 'Encuentra runners compatibles y filtra mejor';
                 if (descEl) descEl.textContent = 'Ya has corrido con ' + (userStats.runners || 0) + ' runners. Filtra por ritmo real y nivel.';
-                if (btnEl) btnEl.textContent = 'Desbloquear Premium';
+                if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis — 7 días';
             } else {
                 if (iconEl) iconEl.textContent = '🔔';
-                if (titleEl) titleEl.textContent = 'Activa alertas personalizadas y no vuelvas a correr solo';
+                if (titleEl) titleEl.textContent = 'Activa alertas personalizadas y no te pierdas ninguna quedada';
                 if (descEl) descEl.textContent = 'Recibe notificaciones cuando aparezca una quedada perfecta para ti.';
-                if (btnEl) btnEl.textContent = 'Activar Premium';
+                if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis — 7 días';
             }
         }
 
@@ -2182,12 +2197,26 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 }
 
                 const t = I18N[currentLang] || I18N.es;
+                const userNivelLocal = currentUser?.nivel || '';
+                const userCiudadLocal = (currentUser?.ciudad || '').toLowerCase();
                 const cards = document.getElementById('smart-recs-cards');
                 if (cards) {
-                    cards.innerHTML = scored.map(item => {
+                    cards.innerHTML = scored.map((item, idx) => {
                         const q = item.q;
+                        // "Perfecta para tu nivel" — exact city + level match on first card
+                        const isPerfect = idx === 0 && q.ciudad && q.ciudad.toLowerCase() === userCiudadLocal && (q.nivel === userNivelLocal || q.nivel === 'Todos los niveles');
+                        const perfectBadge = isPerfect ? '<div class="text-xs text-yellow-400 font-bold mb-1">⭐ Perfecta para tu nivel</div>' : '';
+                        // Urgency badge
+                        const confirmed = (q.asistentes_info || []).filter(a => a.status === 'confirmed' || !a.status).length;
+                        const spotsLeft = q.max_participantes ? q.max_participantes - confirmed : null;
+                        const hoursUntil = (new Date(q.fecha + 'T' + (q.hora || '00:00')) - new Date()) / 3600000;
+                        let urgency = '';
+                        if (spotsLeft !== null && spotsLeft <= 3 && spotsLeft > 0) urgency = `<div class="text-xs text-red-400 mt-2">⚡ Quedan ${spotsLeft} plaza${spotsLeft === 1 ? '' : 's'}</div>`;
+                        else if (hoursUntil > 0 && hoursUntil <= 6) urgency = `<div class="text-xs text-yellow-400 mt-2">⏰ Empieza en ${Math.ceil(hoursUntil)} hora${Math.ceil(hoursUntil) === 1 ? '' : 's'}</div>`;
+                        else if (confirmed >= 3) urgency = `<div class="text-xs text-orange-400 mt-2">🔥 ${confirmed} runners ya se han unido</div>`;
                         return `
-                        <div class="flex-shrink-0 w-64 snap-start card-quedada p-4 rounded-xl cursor-pointer hover:border-orange-500/30 transition-all" onclick="openQuedadaDetail('${q.id}')">
+                        <div class="flex-shrink-0 w-64 snap-start card-quedada p-4 rounded-xl cursor-pointer hover:border-orange-500/30 transition-all ${isPerfect ? 'border-yellow-500/30' : ''}" onclick="openQuedadaDetail('${q.id}')">
+                            ${perfectBadge}
                             <div class="text-xs text-orange-400 font-bold mb-1">${formatDateShort(q.fecha)} · ${formatHora(q.hora)}</div>
                             <div class="text-sm font-bold text-white mb-1 line-clamp-1">${escapeHtml(q.titulo)}</div>
                             <div class="text-xs text-gray-400 mb-2">📍 ${escapeHtml(q.ciudad || '')}</div>
@@ -2196,6 +2225,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                                 <span class="px-2 py-0.5 rounded-full bg-slate-700 text-gray-300">${q.nivel}</span>
                             </div>
                             ${item.friendsGoing > 0 ? `<div class="text-xs text-green-400 mt-2">👥 ${item.friendsGoing} ${t.premiumFriendsGoing || 'amigos van'}</div>` : ''}
+                            ${urgency}
                         </div>`;
                     }).join('');
                 }

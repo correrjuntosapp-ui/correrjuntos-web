@@ -208,8 +208,8 @@ I18N.en = {
         filterIntermediate: 'Intermediate',
         filterAdvanced: 'Advanced',
         filterElite: 'Elite',
-        filterPremium: 'Premium filters: pace, verified organizer',
-        filterUnlock: 'Unlock',
+        filterPremium: 'Filter by real pace and verified organizers',
+        filterUnlock: 'Activate filters',
         // Geo filters
         geoMyCity: 'My city',
         geoMyCountry: 'My country',
@@ -302,9 +302,9 @@ I18N.en = {
         runnersKnown: 'Runners met',
         upcomingRuns: 'Upcoming runs',
         // Detailed stats
-        detailedStats: 'Detailed statistics',
-        statsDesc: 'Charts, streaks, averages and more',
-        unlockPremium: 'Unlock with Premium',
+        detailedStats: 'Track your real progress',
+        statsDesc: 'Streaks, paces, monthly comparisons and weekly evolution',
+        unlockPremium: 'See my stats',
         // My Progress
         myProgress: 'My Progress',
         points: 'Points',

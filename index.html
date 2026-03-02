@@ -1578,6 +1578,10 @@
                         <div class="h-6 w-px bg-orange-500/30"></div>
                         <button id="btnLogoutTop" type="button" class="text-orange-400/70 hover:text-orange-300 text-xs md:text-sm font-semibold px-2 md:px-3 py-1.5 rounded-full hover:bg-orange-500/20 transition"><span id="header-logout">Salir</span></button>
                     </div>
+                    <!-- Botón Crear (solo desktop, en móvil está en bottom nav) -->
+                    <button onclick="openModalCrear()" aria-label="Crear nueva quedada" class="hidden md:flex bg-gradient-to-r from-orange-500 to-orange-600 px-4 py-2 rounded-full font-bold text-sm hover:shadow-lg transition items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg><span id="header-create-desktop">Crear</span>
+                    </button>
                 </div>
             </div>
         </header>

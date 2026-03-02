@@ -1562,9 +1562,14 @@
                 <div class="flex items-center gap-4">
                     <div class="text-xl font-black cursor-pointer" onclick="showLanding()">CORRER<span class="text-orange-500">JUNTOS</span></div>
                     <div class="hidden md:flex items-center gap-1 ml-2" style="font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)">
-                        <a href="/blog/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Blog</a>
-                        <a href="/equipamiento/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Equipamiento</a>
                         <a href="/cities/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Ciudades</a>
+                        <div style="position:relative" id="nav-more-dropdown">
+                            <button onclick="document.getElementById('nav-more-menu').classList.toggle('hidden')" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;cursor:pointer;border:none;font-size:.85rem">Más ▾</button>
+                            <div id="nav-more-menu" class="hidden" style="position:absolute;top:calc(100% + 4px);left:0;background:rgba(15,23,42,.98);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:4px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:50">
+                                <a href="/blog/" style="display:block;color:#94a3b8;font-weight:600;padding:8px 14px;border-radius:8px;text-decoration:none;transition:all .2s;font-size:.85rem" onmouseover="this.style.background='rgba(255,255,255,.06)'" onmouseout="this.style.background='transparent'">📝 Blog</a>
+                                <a href="/equipamiento/" style="display:block;color:#94a3b8;font-weight:600;padding:8px 14px;border-radius:8px;text-decoration:none;transition:all .2s;font-size:.85rem" onmouseover="this.style.background='rgba(255,255,255,.06)'" onmouseout="this.style.background='transparent'">👟 Equipamiento</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 md:gap-3">

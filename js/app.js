@@ -281,6 +281,12 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
           if(!box||!inp) return;
           if(!inp.parentElement.contains(e.target)) hideSuggestionsCrear();
         });
+        // Close "Más" dropdown when clicking outside
+        document.addEventListener('click', (e)=>{
+          const dd=document.getElementById('nav-more-dropdown');
+          const menu=document.getElementById('nav-more-menu');
+          if(dd&&menu&&!dd.contains(e.target)) menu.classList.add('hidden');
+        });
 
         // Auto-detectar idioma: URL param > localStorage > navegador
         function detectBrowserLanguage() {

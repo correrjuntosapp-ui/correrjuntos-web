@@ -141,7 +141,7 @@ I18N.en = {
         appTitle: 'Runs',
         appTitleHi: 'near you',
         appSubtitle: 'Find your next route and meet new people',
-        mapLabel: 'Explore active runs in your area',
+        mapLabel: 'Explore active runs near you in real time',
         showingPrefix: 'Showing',
         showingSuffix: 'runs',
         loginTitle: 'Log in',

@@ -823,10 +823,6 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('premium-feat-1', t.premiumAdvancedStats);
             setText('premium-feat-2', t.premiumUnlimitedRuns);
             setText('premium-feat-3', t.premiumExclusiveBadges);
-            setText('premium-feat-4', t.premiumBadgeProfile);
-            setText('premium-feat-5', t.premiumStravaIntegration);
-            setText('premium-feat-6', t.premiumPaceHistory);
-            setText('premium-feat-7', t.premiumBadgesStrava);
             setText('premium-get-btn', t.premiumGetBtn);
             setText('premium-cancel-text', t.premiumCancelAnytime);
             setText('premium-you-are', t.premiumYouAre);

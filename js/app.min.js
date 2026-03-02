@@ -350,6 +350,26 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
         }
 
         // ====== DASHBOARD V2 FUNCTIONS ======
+        function updatePlanStatusBar() {
+            const bar = document.getElementById('plan-status-bar');
+            if (!bar || !currentUser) return;
+            if (getEffectivePlan() === 'premium') { bar.classList.add('hidden'); return; }
+            bar.classList.remove('hidden');
+            const badge = document.getElementById('plan-status-badge');
+            const counter = document.getElementById('plan-counter-value');
+            const upgradeBtn = document.getElementById('plan-status-upgrade');
+            const count = getActiveQuedadasCount();
+            const max = PLAN_FEATURES.free.maxActiveMeetups;
+            if (badge) badge.textContent = 'Plan: Básico';
+            if (counter) {
+                counter.textContent = count + '/' + max;
+                if (count >= max) counter.className = 'text-red-400 font-bold';
+                else if (count === max - 1) counter.className = 'text-yellow-400 font-bold';
+                else counter.className = 'text-white font-bold';
+            }
+            if (upgradeBtn) upgradeBtn.classList.toggle('hidden', false);
+        }
+
         function updateDashboardCrearCounter() {
             const el = document.getElementById('dashboard-crear-counter');
             const text = document.getElementById('crear-counter-text');
@@ -3953,7 +3973,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             document.body.insertAdjacentHTML('beforeend', modalHtml);
         }
-        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadActiveMission();loadUserStats().then(()=>{applyDashboardMode();updateReferralBanner(currentUser?.referral_count||0);updateDashboardCrearCounter();updateDynamicPremiumBanner();renderMatchingPreview();renderSmartAlertsPreview();}).catch(()=>{});loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();if(typeof lazyLoadScript==='function'){lazyLoadScript('/js/strava.js');lazyLoadScript('/js/push.js');}var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';if(typeof gtag==='function')gtag('event','dashboard_view');}
+        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadActiveMission();loadUserStats().then(()=>{applyDashboardMode();updateReferralBanner(currentUser?.referral_count||0);updatePlanStatusBar();updateDashboardCrearCounter();updateDynamicPremiumBanner();renderMatchingPreview();renderSmartAlertsPreview();}).catch(()=>{});loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();if(typeof lazyLoadScript==='function'){lazyLoadScript('/js/strava.js');lazyLoadScript('/js/push.js');}var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';if(typeof gtag==='function')gtag('event','dashboard_view');}
         // Procesar deep link guardado (si el usuario llegó con #quedada/xxx sin sesión y luego hizo login)
         function processDeepLinkAfterLogin(){
           try{

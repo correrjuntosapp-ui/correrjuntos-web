@@ -1612,6 +1612,17 @@
                 </div>
                 <div class="mt-4 md:mt-0 text-sm text-gray-400"><span id="showing-prefix">Mostrando</span> <span id="quedadas-count" class="text-orange-500 font-bold">0</span> <span id="showing-suffix">quedadas</span></div>
             </div>
+            <!-- 📊 PLAN STATUS BAR (arriba de todo para logueados free) -->
+            <div id="plan-status-bar" class="hidden mb-4 max-w-5xl mx-auto px-4">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-800/60 border border-slate-700/50">
+                    <div class="flex items-center gap-3">
+                        <span id="plan-status-badge" class="text-xs px-3 py-1 rounded-full bg-slate-700 text-gray-400 font-semibold">Plan: Básico</span>
+                        <span id="plan-status-counter" class="text-sm text-gray-400">Quedadas creadas: <span id="plan-counter-value" class="text-white font-bold">0/3</span></span>
+                    </div>
+                    <button onclick="openPremiumSales(); trackPremiumCTA('status_bar')" class="text-xs text-orange-400 font-semibold hover:text-orange-300 transition" id="plan-status-upgrade">Mejorar plan →</button>
+                </div>
+            </div>
+
             <!-- 🏃 Misión Activa — Motor de acción (arriba de todo para usuarios logueados) -->
             <div id="active-mission" class="hidden mb-6">
                 <div class="bg-gradient-to-r from-orange-500/20 to-amber-500/10 border border-orange-500/30 rounded-2xl p-5">
@@ -1632,20 +1643,6 @@
                 </div>
                 <div id="smart-recs-cards" class="flex gap-3 overflow-x-auto pb-2 snap-x" style="-webkit-overflow-scrolling:touch">
                     <!-- Cards horizontales generadas dinámicamente -->
-                </div>
-            </div>
-
-            <!-- 🚀 Premium CTA card DINÁMICO (solo free logueados) -->
-            <div id="premium-dashboard-cta" class="hidden mb-6 max-w-5xl mx-auto px-4">
-                <div class="bg-gradient-to-r from-orange-500/15 to-yellow-500/10 border border-orange-500/30 rounded-2xl p-5">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span id="premium-banner-icon" class="text-2xl">🚀</span>
-                        <h3 id="premium-banner-title" class="text-white font-bold text-lg"></h3>
-                    </div>
-                    <p id="premium-banner-desc" class="text-gray-400 text-sm mb-4"></p>
-                    <button onclick="openPremiumSales(); trackPremiumCTA('banner')" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
-                        <span id="premium-banner-btn">Empieza tu prueba gratis</span>
-                    </button>
                 </div>
             </div>
 
@@ -1807,10 +1804,10 @@
                     <div class="premium-stats-locked-container">
                         <div class="text-center py-4">
                             <span class="text-2xl mb-2 block">🗺️</span>
-                            <p class="text-sm font-semibold text-gray-300 mb-1" id="label-heatmap-locked-title">Tu mapa de running</p>
-                            <p class="text-xs text-gray-500 mb-3" id="label-heatmap-locked-desc">Ve todas las zonas donde has corrido</p>
+                            <p class="text-sm font-semibold text-gray-300 mb-1" id="label-heatmap-locked-title">Descubre todas tus rutas</p>
+                            <p class="text-xs text-gray-500 mb-3" id="label-heatmap-locked-desc">Visualiza cada zona donde has corrido y encuentra nuevas rutas</p>
                             <button onclick="openPremiumSales()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
-                                ⭐ <span>Desbloquear con Premium</span>
+                                ⭐ <span>Ver mi mapa completo</span>
                             </button>
                         </div>
                     </div>
@@ -1821,10 +1818,10 @@
                     <div class="premium-stats-locked-container">
                         <div class="text-center py-4">
                             <span class="text-2xl mb-2 block">📊</span>
-                            <p id="premium-stats-title" class="text-sm font-semibold text-gray-300 mb-1">Estadísticas detalladas</p>
-                            <p id="premium-stats-desc" class="text-xs text-gray-500 mb-3">Gráficos, rachas, promedios y más</p>
+                            <p id="premium-stats-title" class="text-sm font-semibold text-gray-300 mb-1">Mide tu progreso real</p>
+                            <p id="premium-stats-desc" class="text-xs text-gray-500 mb-3">Rachas, ritmos, comparativas mensuales y evolución semana a semana</p>
                             <button onclick="openPremiumSales()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
-                                ⭐ <span id="premium-unlock-btn">Desbloquear con Premium</span>
+                                ⭐ <span id="premium-unlock-btn">Ver mis estadísticas</span>
                             </button>
                         </div>
                     </div>
@@ -1952,8 +1949,8 @@
                     <!-- Mensaje para desbloquear filtros premium -->
                     <div id="premium-filters-locked" class="hidden pt-3 mt-3 border-t border-dashed border-gray-600">
                         <div class="flex items-center justify-between cursor-pointer" onclick="openPremiumModal('advanced_filters')">
-                            <span class="text-xs text-gray-500">🔒 <span id="filter-premium-text">Filtros premium: ritmo, organizador verificado</span></span>
-                            <button class="text-xs text-yellow-400 font-semibold hover:text-yellow-300"><span id="filter-unlock-btn">Desbloquear</span> ⭐</button>
+                            <span class="text-xs text-gray-500">🔒 <span id="filter-premium-text">Filtra por ritmo real y organizadores verificados</span></span>
+                            <button class="text-xs text-yellow-400 font-semibold hover:text-yellow-300"><span id="filter-unlock-btn">Activar filtros</span> ⭐</button>
                         </div>
                     </div>
                 </div>
@@ -1988,7 +1985,7 @@
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center gap-2">
                                 <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                                <span class="text-sm font-semibold text-white" id="map-label">Explora quedadas activas en tu zona</span>
+                                <span class="text-sm font-semibold text-white" id="map-label">Explora quedadas activas en tu zona en tiempo real</span>
                             </div>
                             <button id="btn-toggle-map" onclick="toggleMapSize()" class="text-xs text-gray-400 hover:text-white px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700 hover:border-orange-500/50 transition flex items-center gap-1.5 lg:hidden">
                                 <svg id="toggle-map-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -2040,6 +2037,20 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- 🚀 Premium CTA card DINÁMICO — aparece DESPUÉS de que el usuario vea las secciones bloqueadas -->
+            <div id="premium-dashboard-cta" class="hidden mb-6 max-w-5xl mx-auto px-4">
+                <div class="bg-gradient-to-r from-orange-500/15 to-yellow-500/10 border border-orange-500/30 rounded-2xl p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span id="premium-banner-icon" class="text-2xl">🚀</span>
+                        <h3 id="premium-banner-title" class="text-white font-bold text-lg"></h3>
+                    </div>
+                    <p id="premium-banner-desc" class="text-gray-400 text-sm mb-4"></p>
+                    <button onclick="openPremiumSales(); trackPremiumCTA('banner')" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
+                        <span id="premium-banner-btn">Empieza tu prueba gratis</span>
+                    </button>
                 </div>
             </div>
 

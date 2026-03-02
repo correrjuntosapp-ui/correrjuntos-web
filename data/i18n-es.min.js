@@ -141,7 +141,7 @@ I18N.es = {
         appTitle: 'Quedadas',
         appTitleHi: 'cerca de ti',
         appSubtitle: 'Encuentra tu próxima ruta y conoce gente nueva',
-        mapLabel: 'Explora quedadas activas en tu zona',
+        mapLabel: 'Explora quedadas activas en tu zona en tiempo real',
         showingPrefix: 'Mostrando',
         showingSuffix: 'quedadas',
         loginTitle: 'Iniciar Sesión',

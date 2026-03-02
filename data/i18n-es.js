@@ -474,8 +474,8 @@ I18N.es = {
         appComingSoon: 'Próximamente',
         appAndroidComingSoon: 'Marzo 2026',
         // Premium section
-        premiumUnlockAll: 'Desbloquea tu potencial completo como runner:',
-        premiumAdvancedStats: 'Quedadas ilimitadas',
+        premiumUnlockAll: 'Sube al siguiente nivel como runner:',
+        premiumAdvancedStats: 'Quedadas ilimitadas cada mes',
         premiumUnlimitedRuns: 'Encuentra runners compatibles por ritmo real',
         premiumExclusiveBadges: 'Estadísticas avanzadas + Strava',
         // Alert preferences
@@ -483,7 +483,7 @@ I18N.es = {
         alertToggleDesc: 'Recibe notificaciones cuando se cree una quedada cerca de ti',
         alertRadiusLabel: 'Radio de búsqueda:',
         premiumGetBtn: 'Empieza tu prueba gratis — 7 días',
-        premiumCancelAnytime: 'Cancela cuando quieras. Sin permanencia.',
+        premiumCancelAnytime: 'Luego 4,99€/mes · Cancela cuando quieras',
         premiumYouAre: '¡Eres Premium!',
         premiumActiveUntil: 'Activo hasta:',
         premiumManage: 'Gestionar suscripción',

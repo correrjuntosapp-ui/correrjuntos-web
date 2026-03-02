@@ -9952,7 +9952,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const elStreak = document.getElementById('profile-streak');
                 if (elStreak) elStreak.textContent = userStats.racha || 0;
                 const elRank = document.getElementById('profile-local-rank');
-                if (elRank) elRank.textContent = '-';
+                if (elRank) elRank.textContent = 'Sin clasificar aún';
                 const elNextText = document.getElementById('gamification-next-level-text');
                 if (elNextText) {
                     if (nivelInfo.siguiente) {

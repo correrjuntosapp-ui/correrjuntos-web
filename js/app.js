@@ -4641,10 +4641,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             // Procesar deep link guardado (si el usuario llegó con un hash sin sesión)
             processDeepLinkAfterLogin();
 
-            // Verificar estado premium antes de mostrar popup
+            // Verificar estado premium
             await checkPremiumStatus();
-            // Mostrar popup de Premium si corresponde
-            maybeShowPremiumPromo();
         }
 
         // ====== PREMIUM PROMO POPUP ======
@@ -11882,10 +11880,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
           if(session){
             await hydrateUserFromSession();
-            // Mostrar popup premium si es un login (no recarga de página)
-            if(event === 'SIGNED_IN') {
-              try{ maybeShowPremiumPromo(); }catch(_){}
-            }
+            // Login completado — dashboard se muestra via hydrateUserFromSession
             // Procesar callback de Strava si hay código de Strava en la URL
             const stravaParams = new URLSearchParams(window.location.search || '');
             const stravaScope = stravaParams.get('scope');

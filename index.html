@@ -4684,9 +4684,8 @@
     </div>
 
     <!-- MODAL PREMIUM PAYWALL (contextual) -->
-    <div id="modal-premium-paywall" class="modal" role="dialog" aria-modal="true">
-      <div class="modal-overlay" onclick="closeModal('modal-premium-paywall')"></div>
-      <div class="modal-content max-w-md">
+    <div id="modal-premium-paywall" class="modal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeModal('modal-premium-paywall')">
+      <div class="modal-content bg-slate-900 rounded-3xl max-w-md w-full border border-slate-800">
         <button onclick="closeModal('modal-premium-paywall')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition" aria-label="Cerrar">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>

@@ -306,8 +306,73 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
         let pinCoords=null;   // exact meetup pin (map click / street selection)
         // Auth + perfiles ahora van por Supabase (Auth + public.profiles). No usamos usersDB/localStorage.
         let currentUser = null; // { id, email, nombre, apellidos, ciudad, nivel, telefono, whatsapp, bio, social, photo }
-        let isUserPremium = false; // Estado premium del usuario
+        let isUserPremium = false; // Estado premium del usuario (legacy — mantenido para 42 checks existentes)
         window.isUserPremium = false; // Exponer globalmente para otros scripts
+        let userPlan = 'free'; // Plan-based system: 'free' | 'premium'
+        window.userPlan = 'free';
+
+        // ========== PLAN FEATURES SYSTEM ==========
+        const PLAN_FEATURES = {
+            free: { maxActiveMeetups: 1, canDM: false, advancedFilters: false, seeProfileViews: false, priorityListing: false },
+            premium: { maxActiveMeetups: Infinity, canDM: true, advancedFilters: true, seeProfileViews: true, priorityListing: true }
+        };
+
+        function getEffectivePlan(profile) {
+            if (!profile) return 'free';
+            if (profile.plan === 'premium') {
+                if (profile.plan_until && new Date(profile.plan_until) < new Date()) return 'free';
+                return 'premium';
+            }
+            // Fallback: es_premium boolean (backward compat)
+            if (profile.es_premium === true) return 'premium';
+            return profile.plan || 'free';
+        }
+
+        function can(feature) {
+            return PLAN_FEATURES[userPlan]?.[feature] ?? false;
+        }
+
+        function getActiveQuedadasCount() {
+            if (!currentUser) return 0;
+            const today = new Date().toISOString().split('T')[0];
+            return quedadas.filter(q => q.creador_id === currentUser.id && !q.es_seed && q.fecha >= today).length;
+        }
+
+        // ========== PREMIUM PAYWALL COPY ==========
+        const PREMIUM_COPY = {
+            create_meetup_limit: {
+                icon: '📅', title: 'Crea quedadas ilimitadas', titleEN: 'Create unlimited runs',
+                bullets: ['Organiza tu propio grupo', 'Aparece primero en tu ciudad', 'Más visibilidad para tus quedadas'],
+                bulletsEN: ['Organize your own group', 'Appear first in your city', 'More visibility for your runs']
+            },
+            advanced_filters: {
+                icon: '🔍', title: 'Encuentra tu ritmo ideal', titleEN: 'Find your ideal pace',
+                bullets: ['Filtra por pace real', 'Evita grupos incompatibles', 'Ahorra tiempo y encuentra tu nivel'],
+                bulletsEN: ['Filter by real pace', 'Avoid incompatible groups', 'Save time and find your level']
+            },
+            direct_messages: {
+                icon: '💬', title: 'Mensajes privados', titleEN: 'Private messages',
+                bullets: ['Habla 1 a 1 con corredores', 'Coordina entrenamientos más fácil', 'Crea tu grupo estable'],
+                bulletsEN: ['Talk 1-on-1 with runners', 'Coordinate training easier', 'Build your stable group']
+            }
+        };
+
+        function openPremiumModal(featureKey) {
+            const copy = PREMIUM_COPY[featureKey];
+            if (!copy) { openPremiumSales(); return; }
+            const isEN = currentLang === 'en';
+            const iconEl = document.getElementById('paywall-icon');
+            const titleEl = document.getElementById('paywall-title');
+            const bulletsEl = document.getElementById('paywall-bullets');
+            if (iconEl) iconEl.textContent = copy.icon;
+            if (titleEl) titleEl.textContent = isEN ? copy.titleEN : copy.title;
+            const bullets = isEN ? copy.bulletsEN : copy.bullets;
+            if (bulletsEl) bulletsEl.innerHTML = bullets.map(b =>
+                `<li class="flex items-start gap-2 text-gray-300 text-sm"><span class="text-green-400 mt-0.5">✓</span>${b}</li>`
+            ).join('');
+            openModal('modal-premium-paywall');
+            if (typeof gtag === 'function') gtag('event', 'premium_paywall_view', { feature: featureKey });
+        }
         let currentFilter = 'country', sidebarView='communities', selectedCommunity=null, selectedTopic=null;
 
         // Stripe config
@@ -5636,11 +5701,13 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
         function openModalCrear(){
             if(!currentUser){showToast('Debes registrarte','error');openModal('modal-register');return;}
-            // PREMIUM: Si usuario Free ya usó sus 3 quedadas, mostrar modal de upgrade directamente
+            // PREMIUM v1: Free = 1 quedada activa max, Premium = ilimitadas
             if (!isUserPremium) {
-                const count = getUserQuedadasThisMonth();
-                if (count >= 3) {
-                    openModal('modal-limit-reached');
+                const activeCount = getActiveQuedadasCount();
+                const maxAllowed = PLAN_FEATURES[userPlan]?.maxActiveMeetups ?? 1;
+                if (activeCount >= maxAllowed) {
+                    openPremiumModal('create_meetup_limit');
+                    if (typeof gtag === 'function') gtag('event', 'premium_feature_blocked', { feature: 'create_meetup_limit' });
                     return;
                 }
             }
@@ -9626,24 +9693,23 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const sb = await getSupabaseClientOrToast(8000, false);
                 if (!sb) return;
 
-                // Verificar en tabla profiles (campo es_premium)
+                // Verificar plan premium en profiles
                 const { data, error } = await sb
                     .from('profiles')
-                    .select('es_premium')
+                    .select('es_premium, plan, plan_until')
                     .eq('id', currentUser.id)
                     .single();
 
-                if (data && data.es_premium === true) {
-                    isUserPremium = true;
-                    window.isUserPremium = true;
-                } else {
-                    isUserPremium = false;
-                    window.isUserPremium = false;
-                }
+                userPlan = getEffectivePlan(data);
+                isUserPremium = (userPlan === 'premium');
+                window.isUserPremium = isUserPremium;
+                window.userPlan = userPlan;
             } catch (e) {
                 console.warn('Error checking premium status:', e);
+                userPlan = 'free';
                 isUserPremium = false;
                 window.isUserPremium = false;
+                window.userPlan = 'free';
             }
 
             updatePremiumUI();
@@ -9682,6 +9748,16 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 // Ocultar filtros premium, mostrar mensaje
                 if (premiumFiltersSection) premiumFiltersSection.classList.add('hidden');
                 if (premiumFiltersLocked) premiumFiltersLocked.classList.remove('hidden');
+            }
+
+            // Dashboard premium CTA card
+            const premCta = document.getElementById('premium-dashboard-cta');
+            if (premCta) {
+                if (currentUser && !isUserPremium) {
+                    premCta.classList.remove('hidden');
+                } else {
+                    premCta.classList.add('hidden');
+                }
             }
 
             // También actualizar estadísticas premium si existe la función
@@ -10386,6 +10462,17 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             btn.disabled = false;
         }
 
+        function sendDM(userId) {
+            if (!currentUser) { openModal('modal-login'); return; }
+            if (!can('canDM')) {
+                openPremiumModal('direct_messages');
+                if (typeof gtag === 'function') gtag('event', 'premium_feature_blocked', { feature: 'direct_messages' });
+                return;
+            }
+            // Premium: DM coming soon
+            showToast(currentLang === 'en' ? 'Private messages — Coming soon!' : 'Mensajes privados — ¡Próximamente!', 'info');
+        }
+
         async function openUserProfile(userId) {
             if (!userId) return;
             closeModal('modal-followers');
@@ -10466,11 +10553,16 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                             </div>
                         </div>
 
-                        <!-- Botón seguir -->
+                        <!-- Botón seguir + DM -->
                         ${isMe ? '' : `
-                            <button id="btn-follow-profile" class="btn-follow ${isFollowing ? 'following' : 'not-following'} px-8 py-3" onclick="toggleFollow('${userId}', this)">
-                                ${isFollowing ? '✓ Siguiendo' : 'Seguir'}
-                            </button>
+                            <div class="flex items-center justify-center gap-3">
+                                <button id="btn-follow-profile" class="btn-follow ${isFollowing ? 'following' : 'not-following'} px-8 py-3" onclick="toggleFollow('${userId}', this)">
+                                    ${isFollowing ? '✓ Siguiendo' : 'Seguir'}
+                                </button>
+                                <button class="px-4 py-3 rounded-xl bg-slate-700/50 border border-slate-600 text-gray-300 text-sm font-semibold hover:bg-slate-600/50 transition" onclick="sendDM('${userId}')">
+                                    💬 ${currentLang === 'en' ? 'Message' : 'Mensaje'}
+                                </button>
+                            </div>
                         `}
                     </div>
 
@@ -10584,6 +10676,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             }
 
             showToast('Preparando pago seguro...', 'info');
+            if (typeof gtag === 'function') gtag('event', 'premium_checkout_started', { event_category: 'premium' });
 
             try {
                 const sb = await getSupabaseClientOrToast(12000, true);
@@ -10671,6 +10764,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         function checkPremiumUrlParams() {
             const params = new URLSearchParams(window.location.search);
             if (params.get('premium') === 'success') {
+                if (typeof gtag === 'function') gtag('event', 'premium_checkout_success', { event_category: 'premium' });
                 showToast('¡Bienvenido a Premium! Disfruta de todas las funciones.', 'success');
                 // Limpiar URL
                 window.history.replaceState({}, document.title, window.location.pathname);

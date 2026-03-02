@@ -400,7 +400,7 @@
     <!-- Leaflet.heat: loaded on demand for personal heatmap (Premium) -->
     <link rel="prefetch" href="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js" as="script">
     <!-- Core scripts: preload para descarga paralela temprana -->
-    <link rel="preload" href="/js/app.min.js?v=20260301d" as="script">
+    <link rel="preload" href="/js/app.min.js?v=20260302" as="script">
     <link rel="preload" href="/data/geo-data.min.js" as="script">
     <link rel="preload" href="/data/i18n-core.min.js" as="script">
     <link rel="preload" href="/data/i18n-es.min.js" as="script">
@@ -1630,6 +1630,25 @@
                 </div>
             </div>
 
+            <!-- 🚀 Premium CTA card (solo free logueados) -->
+            <div id="premium-dashboard-cta" class="hidden mb-6 max-w-5xl mx-auto px-4">
+                <div class="bg-gradient-to-r from-orange-500/15 to-yellow-500/10 border border-orange-500/30 rounded-2xl p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-2xl">🚀</span>
+                        <h3 id="premium-cta-title" class="text-white font-bold text-lg">Sube de nivel en CorrerJuntos</h3>
+                    </div>
+                    <p id="premium-cta-desc" class="text-gray-400 text-sm mb-4">Desbloquea todas las funciones y corre con gente compatible contigo.</p>
+                    <div class="flex flex-wrap gap-2 mb-4 text-xs">
+                        <span class="bg-slate-800/60 px-3 py-1.5 rounded-full text-gray-300">📅 Quedadas ilimitadas</span>
+                        <span class="bg-slate-800/60 px-3 py-1.5 rounded-full text-gray-300">🔍 Filtros avanzados</span>
+                        <span class="bg-slate-800/60 px-3 py-1.5 rounded-full text-gray-300">💬 Mensajes privados</span>
+                    </div>
+                    <button onclick="openPremiumSales()" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
+                        Ver Premium — 4,99€/mes
+                    </button>
+                </div>
+            </div>
+
             <!-- Panel de Stats personalizado (solo usuarios logueados) -->
             <div id="user-stats-panel" class="hidden mb-6">
                 <!-- Header con perfil y stats sociales integrados -->
@@ -1895,9 +1914,9 @@
 
                     <!-- Mensaje para desbloquear filtros premium -->
                     <div id="premium-filters-locked" class="hidden pt-3 mt-3 border-t border-dashed border-gray-600">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between cursor-pointer" onclick="openPremiumModal('advanced_filters')">
                             <span class="text-xs text-gray-500">🔒 <span id="filter-premium-text">Filtros premium: ritmo, organizador verificado</span></span>
-                            <button onclick="openModal('modal-profile')" class="text-xs text-yellow-400 font-semibold hover:text-yellow-300"><span id="filter-unlock-btn">Desbloquear</span> ⭐</button>
+                            <button class="text-xs text-yellow-400 font-semibold hover:text-yellow-300"><span id="filter-unlock-btn">Desbloquear</span> ⭐</button>
                         </div>
                     </div>
                 </div>
@@ -3509,7 +3528,7 @@
 <!-- i18n: core (META_I18N) + español siempre + otros idiomas bajo demanda en changeLanguage() -->
 <script src="/data/i18n-core.min.js" defer></script>
 <script src="/data/i18n-es.min.js" defer></script>
-<script src="/js/app.min.js?v=20260301d" defer></script>
+<script src="/js/app.min.js?v=20260302" defer></script>
 
 
   <!-- PWA Install Banner (Custom) -->
@@ -4660,6 +4679,30 @@
           <button onclick="closeModal('modal-limit-reached')" class="w-full py-3 rounded-xl font-semibold text-gray-400 hover:text-white hover:bg-slate-700/50 transition text-sm" id="limit-later-btn">
             Volver
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL PREMIUM PAYWALL (contextual) -->
+    <div id="modal-premium-paywall" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-overlay" onclick="closeModal('modal-premium-paywall')"></div>
+      <div class="modal-content max-w-md">
+        <button onclick="closeModal('modal-premium-paywall')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition" aria-label="Cerrar">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="text-center pt-6 pb-2">
+          <span class="text-4xl mb-3 block" id="paywall-icon">🚀</span>
+          <h2 id="paywall-title" class="text-xl font-black text-white mb-2"></h2>
+        </div>
+        <ul id="paywall-bullets" class="space-y-2 px-6 mb-6"></ul>
+        <div class="px-6 pb-6 space-y-3">
+          <button onclick="if(typeof gtag==='function')gtag('event','premium_paywall_cta_click',{feature:document.getElementById('paywall-title')?.textContent||''});openPremiumCheckout();closeModal('modal-premium-paywall')"
+            class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
+            Activar Premium — 4,99€/mes
+          </button>
+          <button onclick="closeModal('modal-premium-paywall')"
+            class="w-full py-2 text-gray-500 text-sm hover:text-gray-300 transition">Ahora no</button>
+          <p class="text-center text-xs text-gray-600">Sin permanencia. Cancela cuando quieras.</p>
         </div>
       </div>
     </div>

@@ -3105,6 +3105,18 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             updateRewardCard(5, count >= 5);
             updateRewardCard(10, count >= 10);
 
+            // Dynamic referral text
+            const dynText = document.getElementById('referral-dynamic-text');
+            if (dynText) {
+                const faltan = Math.max(5 - count, 0);
+                if (faltan > 0) {
+                    dynText.textContent = `Te faltan ${faltan} amigo${faltan === 1 ? '' : 's'} para ganar 1 mes Premium gratis`;
+                    dynText.classList.remove('hidden');
+                } else {
+                    dynText.classList.add('hidden');
+                }
+            }
+
             // Also update the main banner
             updateReferralBanner(count);
 
@@ -4248,10 +4260,23 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 loadStravaConnection();
             }
 
+            // Plan badge
+            const planBadge = document.getElementById('plan-badge-text');
+            const planUpgrade = document.getElementById('plan-badge-upgrade');
+            const isPrem = getEffectivePlan() === 'premium';
+            if (planBadge) planBadge.textContent = isPrem ? 'Plan: Premium' : 'Plan: Básico';
+            if (planBadge) {
+                if (isPrem) { planBadge.className = 'text-xs px-3 py-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold'; }
+                else { planBadge.className = 'text-xs px-3 py-1 rounded-full bg-slate-700 text-gray-400 font-semibold'; }
+            }
+            if (planUpgrade) planUpgrade.classList.toggle('hidden', isPrem);
+
             openModal('modal-profile');
             loadGamificationStats();
             loadMisQuedadas();
             loadReferralUI();
+            loadRecentActivity();
+            loadAdvancedStats();
         }
 
         // ====== ONBOARDING: Completar perfil después de registro simplificado ======
@@ -9927,12 +9952,86 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 // 🎯 ACTUALIZAR OBJETIVO ACTUAL
                 updateCurrentGoal();
 
+                // Racha + Ranking local + Next level text (nuevos campos perfil)
+                const elStreak = document.getElementById('profile-streak');
+                if (elStreak) elStreak.textContent = userStats.racha || 0;
+                const elRank = document.getElementById('profile-local-rank');
+                if (elRank) elRank.textContent = '-';
+                const elNextText = document.getElementById('gamification-next-level-text');
+                if (elNextText) {
+                    if (nivelInfo.siguiente) {
+                        const falta = nivelInfo.siguiente.min - puntos;
+                        elNextText.textContent = `Te faltan ${falta} puntos para ${nivelInfo.siguiente.nombre}`;
+                    } else {
+                        elNextText.textContent = '¡Has alcanzado el nivel máximo!';
+                    }
+                }
+
                 // Cargar badges
                 loadUserBadges(asistidas, creadas);
 
             } catch (e) {
                 console.warn('Error en loadGamificationStats:', e);
             }
+        }
+
+        // ====== ACTIVIDAD RECIENTE (perfil) ======
+        function loadRecentActivity() {
+            const list = document.getElementById('recent-activity-list');
+            const empty = document.getElementById('recent-activity-empty');
+            if (!list || !currentUser) return;
+            const userQuedadas = quedadas.filter(q =>
+                q.creador_id === currentUser.id ||
+                (q.participantes_data && q.participantes_data.some(p => p.user_id === currentUser.id))
+            ).sort((a, b) => new Date(b.fecha) - new Date(a.fecha)).slice(0, 3);
+            if (userQuedadas.length === 0) { if (empty) empty.classList.remove('hidden'); return; }
+            if (empty) empty.classList.add('hidden');
+            list.innerHTML = userQuedadas.map(q => {
+                const isCreator = q.creador_id === currentUser.id;
+                const action = isCreator ? 'Creaste' : 'Asististe a';
+                const icon = isCreator ? '👑' : '🏃';
+                const dateStr = q.fecha ? new Date(q.fecha).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }) : '';
+                return `<div class="flex items-center gap-2 p-2 rounded-lg bg-slate-800/30">
+                    <span class="text-xs">${icon}</span>
+                    <span class="flex-1 truncate">${action}: <b class="text-white">${q.titulo || 'Quedada'}</b></span>
+                    <span class="text-xs text-gray-500">${dateStr}</span>
+                </div>`;
+            }).join('');
+        }
+
+        // ====== ESTADÍSTICAS AVANZADAS (perfil) ======
+        function loadAdvancedStats() {
+            if (!currentUser) return;
+            const elStreak = document.getElementById('stat-streak');
+            const elAvgKm = document.getElementById('stat-avg-km');
+            const elCreated = document.getElementById('stat-created');
+            const elTotalKm = document.getElementById('stat-total-km');
+            const racha = userStats.racha || 0;
+            const totalKm = userStats.km || 0;
+            const quedadasCount = userStats.quedadas || 0;
+            const avgKm = quedadasCount > 0 ? (totalKm / quedadasCount).toFixed(1) : '0';
+            const created = userStats.created || 0;
+            if (elStreak) elStreak.textContent = racha;
+            if (elAvgKm) elAvgKm.textContent = avgKm;
+            if (elCreated) elCreated.textContent = created;
+            if (elTotalKm) elTotalKm.textContent = totalKm;
+            // Ocultar bloque premium-locked si es premium
+            const premLocked = document.getElementById('stats-premium-locked');
+            if (premLocked && getEffectivePlan() === 'premium') premLocked.classList.add('hidden');
+        }
+
+        // ====== COMPARTIR REFERRAL EN INSTAGRAM ======
+        function shareReferralInstagram() {
+            const link = document.getElementById('referral-link-input')?.value || '';
+            const text = `¡Corre conmigo en CorrerJuntos! 🏃‍♂️🏃‍♀️\n\nÚnete gratis: ${link}`;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('Texto copiado — pégalo en tu historia de Instagram', 'success');
+                });
+            } else {
+                showToast('Copia este enlace: ' + link, 'info');
+            }
+            if (typeof gtag === 'function') gtag('event', 'referral_share', { method: 'instagram', referral_code: currentUser?.referral_code });
         }
 
         // 🎯 Actualizar objetivo actual según progreso del usuario

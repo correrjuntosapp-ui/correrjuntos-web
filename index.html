@@ -2850,8 +2850,145 @@
                     <div>
                         <div id="profile-name" class="text-xl font-black text-white"></div>
                         <div id="profile-email" class="text-sm text-gray-400"></div>
+                        <div id="profile-plan-badge" class="mt-1">
+                            <span id="plan-badge-text" class="text-xs px-3 py-1 rounded-full bg-slate-700 text-gray-400 font-semibold">Plan: Básico</span>
+                            <button onclick="openPremiumSales()" id="plan-badge-upgrade" class="text-xs text-orange-400 font-semibold ml-2 hover:text-orange-300 transition">Mejorar plan</button>
+                        </div>
                     </div>
                 </div>
+
+                <!-- SECCIÓN GAMIFICACIÓN / MI PROGRESO (movida arriba) -->
+                <div id="gamification-section" class="p-4 rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-blue-500/10">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-extrabold text-white flex items-center gap-2">
+                            <span class="text-purple-400 text-xl">🏆</span>
+                            <span id="progress-title">Mi Progreso</span>
+                        </h3>
+                        <span id="gamification-level" class="px-3 py-1 rounded-full text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">Novato</span>
+                    </div>
+                    <div id="current-goal-section" class="mb-4 p-3 rounded-xl bg-gradient-to-r from-orange-500/15 to-amber-500/10 border border-orange-500/30">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-2xl">🎯</span>
+                            <div class="flex-1">
+                                <p class="text-white font-bold text-sm" id="current-goal-title">Tu objetivo: Primera quedada</p>
+                                <p class="text-gray-400 text-xs" id="current-goal-desc">Únete a una quedada y conoce runners</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div id="current-goal-progress" class="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                            <span id="current-goal-text" class="text-xs text-orange-400 font-bold">0/1</span>
+                        </div>
+                    </div>
+                    <div id="stats-grid-section" class="grid grid-cols-3 gap-3 mb-4 hidden">
+                        <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
+                            <div id="gamification-points" class="text-2xl font-black text-orange-400">0</div>
+                            <div class="text-xs text-gray-400" id="label-points">Puntos</div>
+                        </div>
+                        <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
+                            <div id="gamification-created" class="text-2xl font-black text-green-400">0</div>
+                            <div class="text-xs text-gray-400" id="label-created">Creadas</div>
+                        </div>
+                        <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
+                            <div id="gamification-attended" class="text-2xl font-black text-blue-400">0</div>
+                            <div class="text-xs text-gray-400" id="label-attended">Asistidas</div>
+                        </div>
+                    </div>
+                    <!-- Racha + Ranking local -->
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="text-center p-2 rounded-xl bg-slate-800/50 border border-slate-700">
+                            <div id="profile-streak" class="text-xl font-black text-orange-400">0</div>
+                            <div class="text-xs text-gray-400">🔥 Racha semanas</div>
+                        </div>
+                        <div class="text-center p-2 rounded-xl bg-slate-800/50 border border-slate-700">
+                            <div id="profile-local-rank" class="text-xl font-black text-blue-400">--</div>
+                            <div class="text-xs text-gray-400">🏆 Ranking local</div>
+                        </div>
+                    </div>
+                    <div id="level-progress-section" class="mb-4 hidden">
+                        <div class="flex justify-between text-xs text-gray-400 mb-1">
+                            <span id="gamification-current-level">Novato</span>
+                            <span id="gamification-next-level">Principiante (100 pts)</span>
+                        </div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div id="gamification-progress-bar" class="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <p id="gamification-next-level-text" class="text-xs text-purple-300 mt-1"></p>
+                    </div>
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-semibold text-gray-300" id="label-badges">Próximos badges</span>
+                            <button onclick="renderBadges(); openModal('modal-badges')" class="text-xs text-purple-400 hover:underline" id="btn-all-badges">Ver todos</button>
+                        </div>
+                        <div id="gamification-badges" class="flex flex-wrap gap-2 mb-2"></div>
+                        <div id="next-badges-list" class="space-y-2">
+                            <div class="flex items-center gap-3 p-2 rounded-xl bg-slate-800/30 border border-slate-700/50">
+                                <span class="text-xl opacity-50">🏃</span>
+                                <div class="flex-1"><p class="text-gray-300 text-xs font-semibold">Primera Carrera</p><p class="text-gray-500 text-xs">Asiste a tu primera quedada</p></div>
+                                <span class="text-xs text-gray-500">0/1</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-2 rounded-xl bg-slate-800/30 border border-slate-700/50">
+                                <span class="text-xl opacity-50">👑</span>
+                                <div class="flex-1"><p class="text-gray-300 text-xs font-semibold">Líder</p><p class="text-gray-500 text-xs">Crea tu primera quedada</p></div>
+                                <span class="text-xs text-gray-500">0/1</span>
+                            </div>
+                        </div>
+                        <span id="gamification-badges-count" class="hidden">0 desbloqueados</span>
+                        <span id="badges-empty-text" class="hidden">Completa acciones para desbloquear badges</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="openRankingModal()" class="flex-1 py-2 rounded-xl font-bold text-sm border border-purple-500/30 text-purple-300 hover:bg-purple-500/10 transition flex items-center justify-center gap-2">
+                            <span>📊</span> <span id="btn-view-ranking">Ver Ranking Semanal</span>
+                        </button>
+                        <button onclick="openStatsCard()" class="py-2 px-4 rounded-xl font-bold text-sm border border-orange-500/30 text-orange-300 hover:bg-orange-500/10 transition flex items-center justify-center gap-2" id="btn-share-stats" aria-label="Compartir estadísticas">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ACTIVIDAD RECIENTE -->
+                <div id="recent-activity-section" class="p-4 rounded-2xl border border-slate-700 bg-slate-800/30">
+                    <h3 class="text-white font-bold mb-3 flex items-center gap-2"><span>📋</span> <span id="recent-activity-title">Actividad reciente</span></h3>
+                    <div id="recent-activity-list" class="space-y-2 text-sm text-gray-400">
+                        <p class="text-gray-500 italic text-xs" id="recent-activity-empty">Sin actividad reciente</p>
+                    </div>
+                </div>
+
+                <!-- ESTADÍSTICAS AVANZADAS -->
+                <div id="advanced-stats-section" class="p-4 rounded-2xl border border-slate-700 bg-slate-800/30">
+                    <h3 class="text-white font-bold mb-3 flex items-center gap-2"><span>📊</span> <span id="advanced-stats-title">Estadísticas</span></h3>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div class="p-3 rounded-xl bg-slate-800/50"><span class="text-xs text-gray-500">Racha semanas</span><div id="stat-streak" class="text-lg font-bold text-orange-400">0</div></div>
+                        <div class="p-3 rounded-xl bg-slate-800/50"><span class="text-xs text-gray-500">Media km/quedada</span><div id="stat-avg-km" class="text-lg font-bold text-blue-400">0</div></div>
+                        <div class="p-3 rounded-xl bg-slate-800/50"><span class="text-xs text-gray-500">Quedadas creadas</span><div id="stat-created" class="text-lg font-bold text-green-400">0</div></div>
+                        <div class="p-3 rounded-xl bg-slate-800/50"><span class="text-xs text-gray-500">Total km</span><div id="stat-total-km" class="text-lg font-bold text-purple-400">0</div></div>
+                    </div>
+                    <div id="stats-premium-locked" class="relative mt-3">
+                        <div class="blur-sm opacity-50 pointer-events-none p-3 rounded-xl bg-slate-800/50">
+                            <span class="text-xs text-gray-500">Evolución mensual</span>
+                            <div class="flex items-end gap-1 mt-2 h-12">
+                                <div class="h-5 w-6 bg-orange-500/30 rounded"></div>
+                                <div class="h-9 w-6 bg-orange-500/40 rounded"></div>
+                                <div class="h-4 w-6 bg-orange-500/20 rounded"></div>
+                                <div class="h-7 w-6 bg-orange-500/35 rounded"></div>
+                                <div class="h-10 w-6 bg-orange-500/45 rounded"></div>
+                                <div class="h-6 w-6 bg-orange-500/25 rounded"></div>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openPremiumSales()" class="text-xs text-orange-400 font-semibold hover:text-orange-300 transition">🔒 Desbloquear estadísticas avanzadas</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DATOS PERSONALES (colapsable) -->
+                <details class="group">
+                    <summary class="cursor-pointer text-white font-bold p-3 rounded-xl bg-slate-800/30 border border-slate-700 hover:border-slate-600 transition flex items-center justify-between">
+                        <span>⚙️ <span id="personal-data-title">Datos personales</span></span>
+                        <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="mt-3 space-y-4">
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -2959,6 +3096,9 @@
                     </textarea>
                 </div>
 
+                    </div><!-- /.mt-3.space-y-4 -->
+                </details><!-- /datos personales -->
+
                 <!-- SECCIÓN STRAVA - PREMIUM -->
                 <div id="strava-section" class="strava-section">
                     <div class="flex items-center justify-between mb-3">
@@ -2978,16 +3118,20 @@
                         </span>
                     </div>
 
-                    <!-- Estado: Bloqueado (no Premium) -->
-                    <div id="strava-locked" class="text-center py-6">
-                        <div class="text-4xl mb-3">🔒</div>
-                        <p class="text-gray-400 text-sm mb-2">Función exclusiva para usuarios Premium</p>
-                        <p class="text-gray-500 text-xs mb-4">Conecta Strava, ve tus estadísticas reales y exporta tus carreras</p>
-                        <a href="https://buy.stripe.com/5kQeVdfot92p7Hc6j85kk00"
-                           target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:scale-105 transition-all">
-                            ⭐ Hazte Premium - €4,99/mes
-                        </a>
+                    <!-- Estado: Bloqueado (no Premium) — preview con blur -->
+                    <div id="strava-locked" class="relative py-4">
+                        <div class="blur-sm opacity-50 pointer-events-none">
+                            <div class="grid grid-cols-3 gap-3 mb-3">
+                                <div class="text-center p-2 rounded-xl bg-slate-800/50"><div class="text-lg font-bold text-white">--</div><div class="text-xs text-gray-500">Carreras</div></div>
+                                <div class="text-center p-2 rounded-xl bg-slate-800/50"><div class="text-lg font-bold text-white">--</div><div class="text-xs text-gray-500">Km totales</div></div>
+                                <div class="text-center p-2 rounded-xl bg-slate-800/50"><div class="text-lg font-bold text-white">--</div><div class="text-xs text-gray-500">Ritmo medio</div></div>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/60 rounded-xl">
+                            <span class="text-2xl mb-2">🔒</span>
+                            <p class="text-sm text-gray-300 text-center px-4 mb-3">Desbloquea tus estadísticas reales y sincronización con Strava</p>
+                            <button onclick="openPremiumSales()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg transition">Activar Premium — 4,99€/mes</button>
+                        </div>
                     </div>
 
                     <!-- Estado: No conectado (solo para Premium) -->
@@ -3063,101 +3207,6 @@
                     </div>
                 </div>
 
-                <!-- SECCIÓN GAMIFICACIÓN - MEJORADA -->
-                <div id="gamification-section" class="p-4 rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-blue-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-extrabold text-white flex items-center gap-2">
-                            <span class="text-purple-400 text-xl">🏆</span>
-                            <span id="progress-title">Mi Progreso</span>
-                        </h3>
-                        <span id="gamification-level" class="px-3 py-1 rounded-full text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">Novato</span>
-                    </div>
-
-                    <!-- 🎯 OBJETIVO ACTUAL (para usuarios nuevos) -->
-                    <div id="current-goal-section" class="mb-4 p-3 rounded-xl bg-gradient-to-r from-orange-500/15 to-amber-500/10 border border-orange-500/30">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="text-2xl">🎯</span>
-                            <div class="flex-1">
-                                <p class="text-white font-bold text-sm" id="current-goal-title">Tu objetivo: Primera quedada</p>
-                                <p class="text-gray-400 text-xs" id="current-goal-desc">Únete a una quedada y conoce runners</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div id="current-goal-progress" class="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-500" style="width: 0%"></div>
-                            </div>
-                            <span id="current-goal-text" class="text-xs text-orange-400 font-bold">0/1</span>
-                        </div>
-                    </div>
-
-                    <!-- Stats rápidos (ocultos si son 0, mostrar cuando hay progreso) -->
-                    <div id="stats-grid-section" class="grid grid-cols-3 gap-3 mb-4 hidden">
-                        <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
-                            <div id="gamification-points" class="text-2xl font-black text-orange-400">0</div>
-                            <div class="text-xs text-gray-400" id="label-points">Puntos</div>
-                        </div>
-                        <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
-                            <div id="gamification-created" class="text-2xl font-black text-green-400">0</div>
-                            <div class="text-xs text-gray-400" id="label-created">Creadas</div>
-                        </div>
-                        <div class="text-center p-3 rounded-xl bg-slate-800/50 border border-slate-700">
-                            <div id="gamification-attended" class="text-2xl font-black text-blue-400">0</div>
-                            <div class="text-xs text-gray-400" id="label-attended">Asistidas</div>
-                        </div>
-                    </div>
-
-                    <!-- Barra de progreso al siguiente nivel -->
-                    <div id="level-progress-section" class="mb-4 hidden">
-                        <div class="flex justify-between text-xs text-gray-400 mb-1">
-                            <span id="gamification-current-level">Novato</span>
-                            <span id="gamification-next-level">Principiante (100 pts)</span>
-                        </div>
-                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                            <div id="gamification-progress-bar" class="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                    </div>
-
-                    <!-- 🔓 PRÓXIMOS BADGES A DESBLOQUEAR -->
-                    <div class="mb-3">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-semibold text-gray-300" id="label-badges">Próximos badges</span>
-                            <button onclick="renderBadges(); openModal('modal-badges')" class="text-xs text-purple-400 hover:underline" id="btn-all-badges">Ver todos</button>
-                        </div>
-                        <!-- Badges desbloqueados (si hay) -->
-                        <div id="gamification-badges" class="flex flex-wrap gap-2 mb-2"></div>
-                        <!-- Próximos badges a desbloquear -->
-                        <div id="next-badges-list" class="space-y-2">
-                            <div class="flex items-center gap-3 p-2 rounded-xl bg-slate-800/30 border border-slate-700/50">
-                                <span class="text-xl opacity-50">🏃</span>
-                                <div class="flex-1">
-                                    <p class="text-gray-300 text-xs font-semibold">Primera Carrera</p>
-                                    <p class="text-gray-500 text-xs">Asiste a tu primera quedada</p>
-                                </div>
-                                <span class="text-xs text-gray-500">0/1</span>
-                            </div>
-                            <div class="flex items-center gap-3 p-2 rounded-xl bg-slate-800/30 border border-slate-700/50">
-                                <span class="text-xl opacity-50">👑</span>
-                                <div class="flex-1">
-                                    <p class="text-gray-300 text-xs font-semibold">Líder</p>
-                                    <p class="text-gray-500 text-xs">Crea tu primera quedada</p>
-                                </div>
-                                <span class="text-xs text-gray-500">0/1</span>
-                            </div>
-                        </div>
-                        <span id="gamification-badges-count" class="hidden">0 desbloqueados</span>
-                        <span id="badges-empty-text" class="hidden">Completa acciones para desbloquear badges</span>
-                    </div>
-
-                    <!-- Botón ver ranking -->
-                    <div class="flex gap-2">
-                        <button onclick="openRankingModal()" class="flex-1 py-2 rounded-xl font-bold text-sm border border-purple-500/30 text-purple-300 hover:bg-purple-500/10 transition flex items-center justify-center gap-2">
-                            <span>📊</span> <span id="btn-view-ranking">Ver Ranking Semanal</span>
-                        </button>
-                        <button onclick="openStatsCard()" class="py-2 px-4 rounded-xl font-bold text-sm border border-orange-500/30 text-orange-300 hover:bg-orange-500/10 transition flex items-center justify-center gap-2" id="btn-share-stats" aria-label="Compartir estadísticas">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                        </button>
-                    </div>
-                </div>
 
                 <!-- SECCIÓN MIS QUEDADAS (HISTORIAL) -->
                 <div id="mis-quedadas-section" class="p-4 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
@@ -3200,20 +3249,17 @@
 
                     <!-- Vista para usuarios NO premium -->
                     <div id="premium-upgrade" class="space-y-3">
-                        <p id="premium-unlock-all" class="text-sm text-gray-300">Desbloquea todas las funciones:</p>
-                        <ul class="text-sm text-gray-400 space-y-1.5">
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-1">Quedadas ilimitadas al mes</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-2">Estadísticas avanzadas + heatmap</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-3">Recomendaciones inteligentes</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-4">Comentar en quedadas</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-5">Verificación de nivel</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-6">Alertas personalizadas</span></li>
-                            <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <span id="premium-feat-7">Quedadas privadas + GPS + recurrentes</span></li>
+                        <p id="premium-unlock-all" class="text-sm text-gray-300">Desbloquea tu potencial completo como runner:</p>
+                        <ul class="text-sm text-gray-300 space-y-2">
+                            <li class="flex items-center gap-2"><span class="text-green-400">✔</span> <span id="premium-feat-1">Quedadas ilimitadas</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✔</span> <span id="premium-feat-2">Encuentra runners compatibles por ritmo real</span></li>
+                            <li class="flex items-center gap-2"><span class="text-green-400">✔</span> <span id="premium-feat-3">Estadísticas avanzadas + Strava</span></li>
                         </ul>
+                        <p id="premium-social-proof" class="text-xs text-gray-500">Más de 3 runners de tu ciudad ya son Premium</p>
                         <button onclick="openPremiumSales()" class="w-full py-3 rounded-xl font-black text-base bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/25 transition flex items-center justify-center gap-2">
-                            <span>⭐</span> <span id="premium-get-btn">Hazte Premium - 4,99€/mes</span>
+                            <span>⭐</span> <span id="premium-get-btn">Empieza tu prueba gratis — 7 días</span>
                         </button>
-                        <p id="premium-cancel-text" class="text-xs text-gray-500 text-center">Cancela cuando quieras. Sin compromiso.</p>
+                        <p id="premium-cancel-text" class="text-xs text-gray-500 text-center">Cancela cuando quieras. Sin permanencia.</p>
                     </div>
 
                     <!-- Vista para usuarios Premium -->
@@ -3444,7 +3490,8 @@
                         🎁
                         <span id="referral-title">Invita amigos</span>
                     </h3>
-                    <p class="text-sm text-gray-400 mb-4" id="referral-subtitle">Comparte tu enlace y gana recompensas</p>
+                    <p class="text-sm text-gray-400 mb-2" id="referral-subtitle">Comparte tu enlace y gana recompensas</p>
+                    <p id="referral-dynamic-text" class="text-sm text-orange-300 font-semibold mb-3 hidden"></p>
 
                     <label class="text-xs text-gray-500 mb-1 block font-bold uppercase tracking-wider" id="referral-link-label">Tu enlace personal</label>
                     <div class="flex gap-2 mb-3">
@@ -3453,11 +3500,15 @@
                     </div>
 
                     <div class="flex gap-2 mb-5">
-                        <button onclick="shareReferralWhatsApp()" class="flex-1 flex items-center justify-center gap-2 p-3 rounded-xl bg-green-600/20 border border-green-500/30 text-green-400 text-sm font-bold hover:bg-green-600/30 transition">
+                        <button onclick="shareReferralWhatsApp()" class="flex-1 flex items-center justify-center gap-2 p-2.5 rounded-xl bg-green-600/20 border border-green-500/30 text-green-400 text-xs font-bold hover:bg-green-600/30 transition">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.634-1.215A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.316 0-4.458-.666-6.278-1.818l-.45-.267-2.748.721.734-2.684-.293-.466A9.708 9.708 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z"/></svg>
                             <span id="referral-wa-btn">WhatsApp</span>
                         </button>
-                        <button onclick="shareReferralNative()" class="flex-1 flex items-center justify-center gap-2 p-3 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 text-sm font-bold hover:bg-blue-600/30 transition">
+                        <button onclick="shareReferralInstagram()" class="flex-1 flex items-center justify-center gap-2 p-2.5 rounded-xl bg-pink-600/20 border border-pink-500/30 text-pink-400 text-xs font-bold hover:bg-pink-600/30 transition">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            <span>Instagram</span>
+                        </button>
+                        <button onclick="shareReferralNative()" class="flex-1 flex items-center justify-center gap-2 p-2.5 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 text-xs font-bold hover:bg-blue-600/30 transition">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
                             <span>Compartir</span>
                         </button>
@@ -3492,16 +3543,17 @@
                     </div>
                 </div>
 
-                <div class="mt-2 p-4 rounded-2xl border border-red-500/20 bg-red-500/5">
-                    <h3 id="danger-zone-title" class="font-extrabold text-red-300 mb-2">Zona de riesgo</h3>
-                    <p id="danger-zone-desc" class="text-sm text-gray-300 mb-3">
-                        Puedes solicitar la eliminación de tu cuenta. Esto borrará tu perfil público y tu participación en quedadas.
-                        Por seguridad, la eliminación total del usuario de autenticación puede requerir validación adicional.
-                    </p>
-                    <button type="button" onclick="openModal('modal-delete-account')" id="delete-account-btn" class="w-full px-4 py-3 rounded-xl font-extrabold text-sm text-white bg-red-600/90 hover:bg-red-600 transition">
-                        Eliminar cuenta
-                    </button>
-                </div>
+                <details class="mt-2">
+                    <summary class="cursor-pointer text-sm text-gray-500 hover:text-gray-400 transition p-3 rounded-xl bg-slate-800/20 border border-slate-700/30" id="danger-zone-title">Zona de riesgo</summary>
+                    <div class="mt-2 p-4 rounded-2xl border border-red-500/20 bg-red-500/5">
+                        <p id="danger-zone-desc" class="text-sm text-gray-400 mb-3">
+                            Puedes solicitar la eliminación de tu cuenta. Esto borrará tu perfil público y tu participación en quedadas.
+                        </p>
+                        <button type="button" onclick="openModal('modal-delete-account')" id="delete-account-btn" class="w-full px-4 py-3 rounded-xl font-extrabold text-sm text-white bg-red-600/90 hover:bg-red-600 transition">
+                            Eliminar cuenta
+                        </button>
+                    </div>
+                </details>
 
                 <div class="flex gap-4">
                     <button onclick="closeModal('modal-profile')" class="flex-1 p-4 rounded-xl bg-slate-800 text-gray-300 font-bold hover:bg-slate-700 transition" id="profile-close-btn" aria-label="Cerrar">Cerrar</button>

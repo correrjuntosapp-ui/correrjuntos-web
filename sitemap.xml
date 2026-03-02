@@ -35,7 +35,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- ====== ES BLOG ARTICLES (93) ====== -->
+  <!-- ====== ES BLOG ARTICLES (113) ====== -->
   <url>
     <loc>https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners</loc>
     <lastmod>2026-02-28</lastmod>
@@ -522,7 +522,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- ====== EN BLOG ARTICLES (97) ====== -->
+  <!-- ====== EN BLOG ARTICLES (117) ====== -->
   <url>
     <loc>https://www.correrjuntos.com/blog/en/10k-training-plan</loc>
     <lastmod>2026-02-28</lastmod>
@@ -1163,5 +1163,48 @@
   <url><loc>https://www.correrjuntos.com/blog/en/loneliness-of-running</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
   <url><loc>https://www.correrjuntos.com/blog/en/why-group-running-is-addictive</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
   <url><loc>https://www.correrjuntos.com/blog/en/running-is-social-fitness-trend</loc><lastmod>2026-03-01</lastmod><priority>0.7</priority></url>
+
+  <!-- ES Long-Tail Beginner Articles (20) -->
+  <url><loc>https://www.correrjuntos.com/blog/flato-dolor-costado-al-correr</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/puedo-correr-todos-los-dias</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/empezar-a-correr-despues-de-los-40</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-en-verano-calor</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/ritmo-para-principiantes-running</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/diferencia-zapatillas-running-normales</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-en-cinta-vs-calle</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/agujetas-despues-de-correr</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-por-la-noche-consejos</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-y-gimnasio-mismo-dia</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-con-musica-beneficios</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/cuanto-tardo-en-correr-5km</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/empezar-a-correr-despues-de-los-50</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/como-aumentar-resistencia-corriendo</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-con-perro-canicross</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/correr-embarazada-seguro</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/mejores-superficies-para-correr</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/ropa-correr-segun-temperatura</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <!-- EN Long-Tail Beginner Articles (20) -->
+  <url><loc>https://www.correrjuntos.com/blog/en/side-stitch-while-running</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/is-it-ok-to-run-every-day</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/start-running-after-40</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-in-summer-heat</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-pace-for-beginners</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-shoes-vs-regular-shoes</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/treadmill-vs-outdoor-running</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/sore-muscles-after-running</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-at-night-safety-tips</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-and-gym-same-day</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-with-music-benefits</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/average-5k-time-by-age</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-before-or-after-eating</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/start-running-after-50</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/how-to-build-running-endurance</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/running-while-pregnant-guide</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/return-to-running-after-injury</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/best-surfaces-for-running</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.correrjuntos.com/blog/en/what-to-wear-running-by-temperature</loc><lastmod>2026-03-02</lastmod><priority>0.7</priority></url>
 
 </urlset>

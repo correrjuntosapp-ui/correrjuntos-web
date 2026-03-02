@@ -144,7 +144,27 @@
 {s:'zapatillas-running-pronadores',t:'Zapatillas para Pronadores: Gu\u00eda Completa',c:'Zapatillas'},
 {s:'zapatillas-running-media-maraton',t:'Mejores Zapatillas para Media Marat\u00f3n',c:'Zapatillas'},
 {s:'zapatillas-running-pisada-neutra',t:'Zapatillas Running para Pisada Neutra',c:'Zapatillas'},
-{s:'zapatillas-running-supinadores',t:'Zapatillas Running para Supinadores',c:'Zapatillas'}
+{s:'zapatillas-running-supinadores',t:'Zapatillas Running para Supinadores',c:'Zapatillas'},
+{s:'agujetas-despues-de-correr',t:'Agujetas Despu\u00e9s de Correr: Causas y Remedios',c:'Salud'},
+{s:'como-aumentar-resistencia-corriendo',t:'C\u00f3mo Aumentar tu Resistencia Corriendo',c:'Entrenamiento'},
+{s:'correr-antes-o-despues-de-comer',t:'Correr Antes o Despu\u00e9s de Comer',c:'Nutrici\u00f3n'},
+{s:'correr-con-musica-beneficios',t:'Correr con M\u00fasica: Beneficios y BPM Ideal',c:'Entrenamiento'},
+{s:'correr-con-perro-canicross',t:'Correr con Perro (Canicross): Gu\u00eda Completa',c:'Entrenamiento'},
+{s:'correr-embarazada-seguro',t:'Correr Embarazada: Gu\u00eda Segura por Trimestre',c:'Salud'},
+{s:'correr-en-cinta-vs-calle',t:'Correr en Cinta vs Calle: Comparativa',c:'Entrenamiento'},
+{s:'correr-en-verano-calor',t:'Correr en Verano con Calor: Gu\u00eda Segura',c:'Entrenamiento'},
+{s:'correr-por-la-noche-consejos',t:'Correr por la Noche: Consejos de Seguridad',c:'Entrenamiento'},
+{s:'correr-y-gimnasio-mismo-dia',t:'Correr y Gimnasio el Mismo D\u00eda',c:'Entrenamiento'},
+{s:'cuanto-tardo-en-correr-5km',t:'Cu\u00e1nto se Tarda en Correr 5K por Edad',c:'Entrenamiento'},
+{s:'diferencia-zapatillas-running-normales',t:'Diferencia Zapatillas Running vs Normales',c:'Equipamiento'},
+{s:'empezar-a-correr-despues-de-los-40',t:'Empezar a Correr Despu\u00e9s de los 40',c:'Salud'},
+{s:'empezar-a-correr-despues-de-los-50',t:'Empezar a Correr Despu\u00e9s de los 50',c:'Salud'},
+{s:'flato-dolor-costado-al-correr',t:'Flato al Correr: Causas y Soluciones',c:'Salud'},
+{s:'mejores-superficies-para-correr',t:'Mejores Superficies para Correr',c:'Entrenamiento'},
+{s:'puedo-correr-todos-los-dias',t:'\u00bfPuedo Correr Todos los D\u00edas?',c:'Entrenamiento'},
+{s:'ritmo-para-principiantes-running',t:'Ritmo para Principiantes: Gu\u00eda de Pace',c:'Entrenamiento'},
+{s:'ropa-correr-segun-temperatura',t:'Ropa para Correr Seg\u00fan la Temperatura',c:'Equipamiento'},
+{s:'volver-a-correr-despues-de-lesion',t:'Volver a Correr Despu\u00e9s de una Lesi\u00f3n',c:'Salud'}
   ];
 
   var DB_EN=[
@@ -285,7 +305,27 @@
 {s:'which-running-shoes-by-level',t:'Which Running Shoes by Level',c:'Zapatillas'},
 {s:'why-group-running-is-addictive',t:'Why Group Running Is Addictive',c:'Entrenamiento'},
 {s:'why-people-quit-running-3-months',t:'Why People Quit Running in 3 Months',c:'Entrenamiento'},
-{s:'zone-training-running',t:'Zone Training: HR, Pace and Power Zones',c:'Tecnolog\u00eda'}
+{s:'zone-training-running',t:'Zone Training: HR, Pace and Power Zones',c:'Tecnolog\u00eda'},
+{s:'average-5k-time-by-age',t:'Average 5K Time by Age and Gender',c:'Entrenamiento'},
+{s:'best-surfaces-for-running',t:'Best Surfaces for Running: Complete Guide',c:'Entrenamiento'},
+{s:'how-to-build-running-endurance',t:'How to Build Running Endurance',c:'Entrenamiento'},
+{s:'is-it-ok-to-run-every-day',t:'Is It OK to Run Every Day?',c:'Entrenamiento'},
+{s:'return-to-running-after-injury',t:'Return to Running After Injury',c:'Salud'},
+{s:'running-and-gym-same-day',t:'Running and Gym Same Day: How to Combine',c:'Entrenamiento'},
+{s:'running-at-night-safety-tips',t:'Running at Night: Safety Tips',c:'Entrenamiento'},
+{s:'running-before-or-after-eating',t:'Running Before or After Eating',c:'Nutrici\u00f3n'},
+{s:'running-in-summer-heat',t:'Running in Summer Heat: Safety Guide',c:'Entrenamiento'},
+{s:'running-pace-for-beginners',t:'Running Pace for Beginners',c:'Entrenamiento'},
+{s:'running-shoes-vs-regular-shoes',t:'Running Shoes vs Regular Shoes',c:'Equipamiento'},
+{s:'running-while-pregnant-guide',t:'Running While Pregnant: Safe Guide',c:'Salud'},
+{s:'running-with-music-benefits',t:'Running with Music: Benefits and BPM Guide',c:'Entrenamiento'},
+{s:'running-with-your-dog-canicross',t:'Running with Your Dog (Canicross)',c:'Entrenamiento'},
+{s:'side-stitch-while-running',t:'Side Stitch While Running: Causes and Fixes',c:'Salud'},
+{s:'sore-muscles-after-running',t:'Sore Muscles After Running: Recovery Guide',c:'Salud'},
+{s:'start-running-after-40',t:'Start Running After 40: Complete Guide',c:'Salud'},
+{s:'start-running-after-50',t:'Start Running After 50: Complete Guide',c:'Salud'},
+{s:'treadmill-vs-outdoor-running',t:'Treadmill vs Outdoor Running',c:'Entrenamiento'},
+{s:'what-to-wear-running-by-temperature',t:'What to Wear Running by Temperature',c:'Equipamiento'}
   ];
 
   var DB = isEN ? DB_EN : DB_ES;

@@ -976,9 +976,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('app-available-text', t.appAvailableOn);
             setText('app-download-ios', t.appDownloadOn);
             setText('app-download-android', t.appGetItOn);
-            // In-app badges: iOS available, Android coming soon
+            // In-app badges: iOS + Android available
             setText('app-download-ios-2', t.appDownloadOn || 'Descargar en');
-            setText('app-download-android-2', t.appAndroidComingSoon || 'Marzo 2026');
+            setText('app-download-android-2', t.appDownloadOn || 'Descargar en');
 
             // Actualizar panel de stats (para traducir bienvenida)
             if (typeof updateStatsUI === 'function') updateStatsUI();

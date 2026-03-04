@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAM_ID.com.correrjuntos.app",
+        "paths": [
+          "/quedada/*",
+          "/perfil/*",
+          "/matching/",
+          "/app/"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "TEAM_ID.com.correrjuntos.app"
+    ]
+  }
+}

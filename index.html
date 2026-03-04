@@ -438,6 +438,8 @@
         /* Nav App CTA highlight */
         .nav-app-cta { color:#fff !important; font-weight:700 !important; background:linear-gradient(135deg,#f97316,#ea580c) !important; border-color:rgba(249,115,22,.4) !important; box-shadow:0 0 14px rgba(249,115,22,.3) !important; }
         .nav-app-cta:hover { box-shadow:0 0 20px rgba(249,115,22,.45) !important; transform:scale(1.04); }
+        body.has-top-banner .nav-wrapper { top:52px; }
+        body.has-top-banner #view-landing { padding-top:52px; }
         body.light-mode .nav-app-cta { color:#fff !important; background:linear-gradient(135deg,#f97316,#ea580c) !important; border-color:rgba(249,115,22,.5) !important; box-shadow:0 2px 10px rgba(249,115,22,.3) !important; }
     </style>
     <link rel="stylesheet" href="/css/deferred.min.css" media="print" onload="this.media='all'">
@@ -465,36 +467,31 @@
         <div class="px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2" id="toast-content"></div>
     </div>
 
-    <!-- Smart Banner: Descarga App (solo móvil) -->
-    <div id="smart-app-banner" class="fixed bottom-0 left-0 right-0 z-[200] transform translate-y-full transition-transform duration-500 ease-out">
-      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-t border-orange-500/30 shadow-2xl shadow-black/50 px-4 py-3 safe-area-bottom">
-        <div class="max-w-lg mx-auto flex items-center gap-3">
+    <!-- Top App Banner: Descarga App (solo móvil, no PWA/standalone) -->
+    <div id="top-app-banner" class="hidden fixed top-0 left-0 right-0 z-[300]" style="padding-top:env(safe-area-inset-top)">
+      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-orange-500/30 shadow-lg px-3 py-2">
+        <div class="max-w-lg mx-auto flex items-center gap-2">
           <!-- App Icon -->
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-lg">
-            <span class="text-2xl">🏃</span>
-          </div>
-
-          <!-- Info -->
+          <img src="/icons/icon-96.png" alt="CorrerJuntos" class="w-9 h-9 rounded-xl flex-shrink-0" width="36" height="36" loading="eager">
+          <!-- Text -->
           <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-white text-sm">CorrerJuntos</span>
-              <span class="text-[10px] px-1.5 py-0.5 bg-orange-500/20 text-orange-400 rounded font-bold">GRATIS</span>
-            </div>
-            <p class="text-xs text-gray-400 truncate">Únete en 1 tap · Notificaciones · Chat</p>
-            <div class="flex items-center gap-1 mt-0.5">
-              <span class="text-yellow-400 text-xs">★★★★★</span>
-              <span class="text-[10px] text-gray-500">4.8</span>
-            </div>
+            <span class="font-bold text-white text-xs leading-tight block" id="top-banner-text">Usa la app de CorrerJuntos</span>
+            <span class="text-[10px] text-gray-500 leading-tight block">Gratis · Notificaciones · Unirte en 1 tap</span>
           </div>
-
-          <!-- CTA -->
-          <button onclick="openAppStore()" class="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-bold rounded-full hover:shadow-lg hover:shadow-orange-500/25 transition flex-shrink-0">
-            Abrir
-          </button>
-
-          <!-- Close -->
-          <button onclick="dismissSmartBanner()" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition flex-shrink-0" aria-label="Cerrar">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <!-- Store Badges compact -->
+          <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer"
+             class="flex-shrink-0 px-2 py-1.5 bg-white/10 rounded-lg border border-white/10 hover:border-orange-500/30 transition"
+             onclick="if(typeof gtag==='function')gtag('event','top_banner_appstore')">
+            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer"
+             class="flex-shrink-0 px-2 py-1.5 bg-white/10 rounded-lg border border-white/10 hover:border-orange-500/30 transition"
+             onclick="if(typeof gtag==='function')gtag('event','top_banner_playstore')">
+            <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
+          </a>
+          <!-- Dismiss -->
+          <button onclick="dismissTopBanner()" class="flex-shrink-0 text-gray-500 hover:text-white p-0.5" aria-label="Cerrar">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
       </div>
@@ -511,7 +508,7 @@
             <div class="hidden md:flex" style="gap:4px;font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)">
                 <a href="/cities/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Ciudades</a>
                 <a href="/blog/" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Blog</a>
-                <a href="#app" class="nav-app-cta" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(249,115,22,.3);transition:all .2s;text-decoration:none">App</a>
+                <a href="/app/" class="nav-app-cta" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(249,115,22,.3);transition:all .2s;text-decoration:none">App</a>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
                 <select id="lang-select" onchange="changeLanguage(this.value)" style="background:#1e293b;color:#fff;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1);font-size:.75rem;outline:none;cursor:pointer" aria-label="Idioma">
@@ -580,47 +577,47 @@
                     No es un grupo de WhatsApp ni una app de fitness — es tu comunidad de running real, con quedadas organizadas, niveles verificados y gente cerca de ti.
                 </p>
 
-                <!-- CTAs mejorados -->
-                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-                    <button onclick="openModal('modal-register')" class="group bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl shadow-orange-500/30 flex items-center justify-center gap-3 btn-shimmer">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        <span id="landing-cta-start">CORRE CON TU GENTE</span>
-                    </button>
-                    <button onclick="openModal('modal-login')" class="btn-secondary px-8 py-4 rounded-2xl font-bold text-lg transition-all">
-                        <span id="landing-cta-login">Ya tengo cuenta</span>
-                    </button>
+                <!-- CTA Principal: Descarga App -->
+                <div class="flex flex-col items-center gap-4 mb-8">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer"
+                           class="flex items-center gap-3 bg-black text-white px-6 py-3.5 rounded-2xl shadow-2xl hover:scale-105 transition-transform border border-white/10 hover:border-orange-500/30"
+                           onclick="if(typeof gtag==='function')gtag('event','hero_download_ios')">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            <div class="flex flex-col text-left">
+                                <span class="text-[10px] text-gray-400 leading-tight font-semibold" id="hero-ios-label">Descargar en</span>
+                                <span class="text-base font-bold leading-tight">App Store</span>
+                            </div>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer"
+                           class="flex items-center gap-3 bg-black text-white px-6 py-3.5 rounded-2xl shadow-2xl hover:scale-105 transition-transform border border-white/10 hover:border-orange-500/30"
+                           onclick="if(typeof gtag==='function')gtag('event','hero_download_android')">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
+                            <div class="flex flex-col text-left">
+                                <span class="text-[10px] text-green-400 leading-tight font-semibold" id="hero-android-label">Descargar en</span>
+                                <span class="text-base font-bold leading-tight">Google Play</span>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Secondary: Web access -->
+                    <div class="flex items-center gap-3 mt-2">
+                        <button onclick="openModal('modal-register')" class="text-gray-400 hover:text-orange-400 text-sm font-medium underline underline-offset-4 transition" id="landing-cta-web">
+                            Usar versión web
+                        </button>
+                        <span class="text-gray-600">|</span>
+                        <button onclick="openModal('modal-login')" class="text-gray-400 hover:text-orange-400 text-sm font-medium underline underline-offset-4 transition" id="landing-cta-login">
+                            Ya tengo cuenta
+                        </button>
+                    </div>
+                    <!-- Trust text -->
+                    <p class="text-gray-500 text-sm flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <span id="landing-trust-text">100% gratis · Sin tarjeta · +1.200 runners activos</span>
+                    </p>
                 </div>
 
-                <!-- Micro-copy de confianza -->
-                <p class="text-gray-500 text-sm flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                    <span id="landing-trust-text">100% gratis · Sin tarjeta · Regístrate en 30 segundos</span>
-                </p>
-
-                <!-- App Download Banner -->
-                <div class="mt-10 max-w-lg mx-auto">
-                    <div class="relative bg-gradient-to-r from-slate-800/80 via-slate-800/60 to-slate-800/80 border border-slate-700/50 rounded-2xl px-6 py-5 backdrop-blur-sm">
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-                            <span class="bg-gradient-to-r from-green-500 to-green-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider" id="apps-coming-badge">Ya disponible</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-4 mt-1">
-                            <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-white/10 hover:bg-white/15 border border-white/10 hover:border-orange-500/30 px-4 py-2.5 rounded-xl transition group">
-                                <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                                <div class="flex flex-col">
-                                    <span class="text-[10px] text-green-400 leading-tight font-semibold" id="hero-ios-label">Descargar en</span>
-                                    <span class="text-sm font-semibold text-white leading-tight group-hover:text-orange-400 transition">App Store</span>
-                                </div>
-                            </a>
-                            <div class="flex items-center gap-2.5 opacity-50 px-4 py-2.5 rounded-xl border border-white/5 cursor-default">
-                                <svg class="w-7 h-7" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
-                                <div class="flex flex-col">
-                                    <span class="text-[10px] text-orange-400 leading-tight font-semibold" id="hero-android-label">Marzo 2026</span>
-                                    <span class="text-sm font-semibold text-white leading-tight">Google Play</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-center text-gray-400 text-xs mt-3" id="apps-coming-text">App iOS disponible en App Store. Android llega en marzo 2026.</p>
-                    </div>
+                <!-- Badges: Strava + Product Hunt -->
+                <div class="max-w-lg mx-auto">
 
                     <!-- Strava Compatible Badge + Club -->
                     <div class="mt-4 flex flex-col items-center gap-3">
@@ -1392,27 +1389,28 @@
                 </div>
             </div>
 
-            <!-- CTA FINAL -->
+            <!-- CTA FINAL: Descarga App -->
             <div class="max-w-4xl mx-auto mb-16 px-4 reveal-scale">
                 <div class="bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 rounded-3xl p-8 md:p-12 text-center">
-                    <h2 class="text-2xl md:text-3xl font-black text-white mb-4" id="cta-final-title">¿Listo para dejar de correr solo?</h2>
-                    <p class="text-gray-400 mb-8 max-w-xl mx-auto" id="cta-final-subtitle">Únete a miles de runners que ya encontraron su grupo. Descarga la app gratis y crea tu primera quedada hoy.</p>
+                    <h2 class="text-2xl md:text-3xl font-black text-white mb-4" id="cta-final-title">Descarga CorrerJuntos</h2>
+                    <p class="text-gray-400 mb-8 max-w-xl mx-auto" id="cta-final-subtitle">Encuentra quedadas, conoce runners de tu nivel y haz que cada kilómetro cuente. Gratis en iOS y Android.</p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform">
+                        <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform border border-white/10" onclick="if(typeof gtag==='function')gtag('event','cta_final_ios')">
                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             <div class="flex flex-col text-left">
                                 <span class="text-[10px] text-gray-400 leading-tight font-semibold">Descargar en</span>
                                 <span class="text-sm font-semibold leading-tight">App Store</span>
                             </div>
                         </a>
-                        <div class="flex items-center gap-2.5 bg-white/80 text-black px-6 py-3 rounded-xl shadow-lg opacity-50 cursor-default">
+                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform border border-white/10" onclick="if(typeof gtag==='function')gtag('event','cta_final_android')">
                             <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                             <div class="flex flex-col text-left">
-                                <span class="text-[10px] text-orange-600 leading-tight font-semibold">Marzo 2026</span>
+                                <span class="text-[10px] text-green-400 leading-tight font-semibold">Descargar en</span>
                                 <span class="text-sm font-semibold leading-tight">Google Play</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
+                    <p class="text-gray-500 text-xs mt-4"><a href="/" onclick="event.preventDefault();openModal('modal-register')" class="hover:text-orange-400 transition underline" id="cta-final-web">O usar la versión web</a></p>
                 </div>
             </div>
 
@@ -1511,21 +1509,30 @@
                         </div>
                     </div>
                     <div>
-                        <h4 id="footer-download-title" class="font-bold text-white mb-4">Descargar</h4>
-                        <ul class="space-y-3">
-                            <li>
-                                <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-300 hover:text-orange-500 text-sm transition">
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                                    App Store <span class="text-green-500 text-xs">(Disponible)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <span class="flex items-center gap-2 text-gray-600 text-sm cursor-default">
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="currentColor" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/></svg>
-                                    Google Play <span class="text-orange-500 text-xs">(Marzo 2026)</span>
-                                </span>
-                            </li>
-                        </ul>
+                        <h4 id="footer-download-title" class="font-bold text-white mb-4">Descargar la App</h4>
+                        <div class="space-y-2.5">
+                            <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-2.5 bg-black text-white px-3.5 py-2 rounded-xl border border-white/10 hover:border-orange-500/30 transition w-fit"
+                               onclick="if(typeof gtag==='function')gtag('event','footer_download_ios')">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                                <div class="flex flex-col">
+                                    <span class="text-[9px] text-gray-400 leading-tight">Descargar en</span>
+                                    <span class="text-xs font-semibold leading-tight">App Store</span>
+                                </div>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-2.5 bg-black text-white px-3.5 py-2 rounded-xl border border-white/10 hover:border-orange-500/30 transition w-fit"
+                               onclick="if(typeof gtag==='function')gtag('event','footer_download_android')">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
+                                <div class="flex flex-col">
+                                    <span class="text-[9px] text-gray-400 leading-tight">Descargar en</span>
+                                    <span class="text-xs font-semibold leading-tight">Google Play</span>
+                                </div>
+                            </a>
+                            <p class="text-gray-600 text-xs mt-1">
+                                <a href="/" class="hover:text-orange-400 transition" id="footer-web-link">Usar versión web →</a>
+                            </p>
+                        </div>
                     </div>
                     <div>
                         <h4 id="footer-legal-title" class="font-bold text-white mb-4">Legal</h4>
@@ -5747,6 +5754,28 @@
           <input type="checkbox" id="dont-show-app-modal" class="w-4 h-4 rounded border-slate-600 bg-slate-800 text-orange-500 focus:ring-orange-500" aria-label="No mostrar de nuevo">
           <span class="text-xs text-gray-500">No mostrar de nuevo</span>
         </label>
+      </div>
+    </div>
+
+    <!-- DEEP LINK INTERSTITIAL: Abrir en app (solo móvil) -->
+    <div id="deeplink-interstitial" class="hidden fixed inset-0 z-[500] bg-slate-950/95 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-slate-900 rounded-3xl max-w-sm w-full border border-slate-800 p-6 text-center">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-4 shadow-lg shadow-orange-500/30">
+          <img src="/icons/icon-96.png" alt="CorrerJuntos" class="w-12 h-12 rounded-xl" width="48" height="48">
+        </div>
+        <h3 class="text-lg font-black text-white mb-2" id="deeplink-title">Esta quedada se ve mejor en la app</h3>
+        <p class="text-gray-400 text-sm mb-6" id="deeplink-subtitle">Notificaciones, chat en vivo y unirte en 1 tap</p>
+
+        <button onclick="deeplinkOpenApp()" class="w-full p-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition flex items-center justify-center gap-2 mb-3">
+          Abrir en la app
+        </button>
+        <button onclick="deeplinkDownload()" class="w-full p-3 rounded-xl bg-slate-800 text-gray-300 font-semibold hover:bg-slate-700 transition text-sm mb-3 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Descargar CorrerJuntos
+        </button>
+        <button onclick="deeplinkContinueWeb()" class="text-gray-500 hover:text-gray-300 text-xs underline transition" id="deeplink-continue-text">
+          Continuar en el navegador
+        </button>
       </div>
     </div>
 

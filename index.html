@@ -441,6 +441,13 @@
         body.has-top-banner .nav-wrapper { top:52px; }
         body.has-top-banner #view-landing { padding-top:52px; }
         body.light-mode .nav-app-cta { color:#fff !important; background:linear-gradient(135deg,#f97316,#ea580c) !important; border-color:rgba(249,115,22,.5) !important; box-shadow:0 2px 10px rgba(249,115,22,.3) !important; }
+        /* Store badges light mode */
+        body.light-mode .store-badge-hero { background:linear-gradient(135deg,#f97316,#ea580c) !important; border-color:rgba(249,115,22,.3) !important; color:#fff !important; box-shadow:0 4px 16px rgba(249,115,22,.25) !important; }
+        body.light-mode .store-badge-hero:hover { box-shadow:0 8px 24px rgba(249,115,22,.35) !important; }
+        body.light-mode .store-badge-hero span { color:#fff !important; }
+        body.light-mode .store-badge-hero .store-label { color:rgba(255,255,255,.8) !important; }
+        body.light-mode .store-badge-footer { background:#1e293b !important; border-color:rgba(30,41,59,.3) !important; }
+        body.light-mode #top-app-banner > div { background:linear-gradient(135deg,#f97316,#ea580c) !important; border-color:transparent !important; }
     </style>
     <link rel="stylesheet" href="/css/deferred.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/css/deferred.min.css"></noscript>
@@ -581,20 +588,20 @@
                 <div class="flex flex-col items-center gap-4 mb-8">
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
                         <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer"
-                           class="flex items-center gap-3 bg-black text-white px-6 py-3.5 rounded-2xl shadow-2xl hover:scale-105 transition-transform border border-white/10 hover:border-orange-500/30"
+                           class="store-badge-hero flex items-center gap-3 bg-black text-white px-6 py-3.5 rounded-2xl shadow-2xl hover:scale-105 transition-transform border border-white/10 hover:border-orange-500/30"
                            onclick="if(typeof gtag==='function')gtag('event','hero_download_ios')">
                             <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             <div class="flex flex-col text-left">
-                                <span class="text-[10px] text-gray-400 leading-tight font-semibold" id="hero-ios-label">Descargar en</span>
+                                <span class="store-label text-[10px] text-gray-400 leading-tight font-semibold" id="hero-ios-label">Descargar en</span>
                                 <span class="text-base font-bold leading-tight">App Store</span>
                             </div>
                         </a>
                         <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer"
-                           class="flex items-center gap-3 bg-black text-white px-6 py-3.5 rounded-2xl shadow-2xl hover:scale-105 transition-transform border border-white/10 hover:border-orange-500/30"
+                           class="store-badge-hero flex items-center gap-3 bg-black text-white px-6 py-3.5 rounded-2xl shadow-2xl hover:scale-105 transition-transform border border-white/10 hover:border-orange-500/30"
                            onclick="if(typeof gtag==='function')gtag('event','hero_download_android')">
                             <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                             <div class="flex flex-col text-left">
-                                <span class="text-[10px] text-green-400 leading-tight font-semibold" id="hero-android-label">Descargar en</span>
+                                <span class="store-label text-[10px] text-green-400 leading-tight font-semibold" id="hero-android-label">Descargar en</span>
                                 <span class="text-base font-bold leading-tight">Google Play</span>
                             </div>
                         </a>
@@ -1395,17 +1402,17 @@
                     <h2 class="text-2xl md:text-3xl font-black text-white mb-4" id="cta-final-title">Descarga CorrerJuntos</h2>
                     <p class="text-gray-400 mb-8 max-w-xl mx-auto" id="cta-final-subtitle">Encuentra quedadas, conoce runners de tu nivel y haz que cada kilómetro cuente. Gratis en iOS y Android.</p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform border border-white/10" onclick="if(typeof gtag==='function')gtag('event','cta_final_ios')">
+                        <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="store-badge-hero flex items-center gap-2.5 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform border border-white/10" onclick="if(typeof gtag==='function')gtag('event','cta_final_ios')">
                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             <div class="flex flex-col text-left">
-                                <span class="text-[10px] text-gray-400 leading-tight font-semibold">Descargar en</span>
+                                <span class="store-label text-[10px] text-gray-400 leading-tight font-semibold">Descargar en</span>
                                 <span class="text-sm font-semibold leading-tight">App Store</span>
                             </div>
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform border border-white/10" onclick="if(typeof gtag==='function')gtag('event','cta_final_android')">
+                        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="store-badge-hero flex items-center gap-2.5 bg-black text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform border border-white/10" onclick="if(typeof gtag==='function')gtag('event','cta_final_android')">
                             <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
                             <div class="flex flex-col text-left">
-                                <span class="text-[10px] text-green-400 leading-tight font-semibold">Descargar en</span>
+                                <span class="store-label text-[10px] text-green-400 leading-tight font-semibold">Descargar en</span>
                                 <span class="text-sm font-semibold leading-tight">Google Play</span>
                             </div>
                         </a>

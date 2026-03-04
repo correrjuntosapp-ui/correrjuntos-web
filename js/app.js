@@ -9988,6 +9988,11 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             if (typeof updateStatsUI === 'function') {
                 try { updateStatsUI(); } catch(e) {}
             }
+
+            // Refrescar Strava UI ahora que el estado premium es conocido
+            if (typeof loadStravaConnection === 'function') {
+                try { loadStravaConnection(); } catch(e) {}
+            }
         }
 
         // ============== SISTEMA GAMIFICACIÓN ==============

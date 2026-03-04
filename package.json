@@ -8,7 +8,8 @@
   },
   "scripts": {
     "images:scan": "node tools/image-audit/scan-images.cjs",
-    "images:verify": "node tools/image-audit/verify-image-usage.cjs"
+    "images:verify": "node tools/image-audit/verify-image-usage.cjs",
+    "images:ci": "node tools/image-audit/ci-check.cjs"
   },
   "devDependencies": {
     "serve": "^14.2.5",

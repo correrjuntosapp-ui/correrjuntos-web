@@ -1,6 +1,30 @@
 # Image Audit Tools
 
-Scripts para auditar y deduplicar las imágenes Pexels del blog.
+Scripts para auditar, deduplicar y verificar las imágenes Pexels del blog.
+
+## Image Policy (formal)
+
+> **Regla: máximo 3 topics por imagen Pexels, máximo 6 archivos.**
+>
+> 1 topic = 1 tema de artículo (par ES/EN cuenta como 1 topic, es decir 2 archivos).
+> Ejemplo: `mejores-zapatillas-running-asfalto.html` + `best-road-running-shoes.html` = 1 topic.
+
+| Métrica | Límite | Motivo |
+|---------|--------|--------|
+| Archivos por imagen | ≤ 6 | Diversidad visual en OG cards, SEO (Google Discover), compartidos en RRSS |
+| Topics por imagen | ≤ 3 | Evitar que un lector vea la misma foto en artículos distintos |
+| Slots por artículo | 3 | `og:image` + `twitter:image` + hero `<img>` — siempre la misma foto |
+
+### Fuente de imágenes
+- Todas las imágenes son de **Pexels** (licencia gratuita, sin atribución obligatoria).
+- URL pattern: `https://images.pexels.com/photos/{ID}/pexels-photo-{ID}.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70`
+- Registro completo en `pexels-registry.json`.
+
+### Cuándo añadir imágenes nuevas
+- Al crear artículos nuevos: buscar en Pexels una imagen que **no esté ya en 3 topics**.
+- Si todas las imágenes del tema están al límite → buscar una nueva en Pexels y añadirla al registro.
+
+---
 
 ## Scripts
 
@@ -12,19 +36,6 @@ npm run images:scan            # inventario completo
 npm run images:scan -- --top 15  # solo top 15
 ```
 
-**Salida ejemplo:**
-```
-BLOG IMAGE SCAN
-============================================================
-Total ES: 162 | Total EN: 160 | Unique IDs: 67
-Over limit (>6 files / >3 topics): 10
-
-PHOTO 4397831 | TOTAL: 51 (ES:23 EN:28) *** OVER LIMIT
-  [ES] auriculares-conduccion-osea-vs-in-ear-running.html | Auriculares de Conducción Ósea...
-  [EN] best-running-headphones.html | Best Running Headphones 2026
-  ...
-```
-
 ### `verify-image-usage.cjs`
 Verificación rápida post-batch: muestra conteo de uso por imagen con barras visuales y flags.
 
@@ -33,38 +44,43 @@ npm run images:verify            # top 20
 npm run images:verify -- --top 30  # top 30
 ```
 
-**Salida ejemplo:**
-```
-IMAGE USAGE VERIFICATION
-============================================================
-Total articles: 322 (ES: 162 | EN: 160)
-Unique images: 67
-Over limit (>6 files): 10
-At limit (4-6 files): 8
-Healthy (1-3 files): 49
+### `ci-check.cjs`
+**Guardrail CI** — verifica que ninguna imagen supere los límites. Sale con código 1 si hay violaciones.
 
-TOP 20:
-  4397831:  51 ################################################## OVER
-  1027130:  22 ###################### OVER
-  3601094:   6 ###### ~OK
-  1099680:   5 ##### ~OK
-  ...
+```bash
+npm run images:ci     # exit 0 = OK, exit 1 = violations
+node tools/image-audit/ci-check.cjs
+```
+
+Ideal para añadir como step en Vercel / GitHub Actions antes de deploy.
+
+### `sync-index-cards.cjs`
+Sincroniza las imágenes de las tarjetas del índice del blog con las imágenes hero de sus artículos correspondientes.
+
+```bash
+node tools/image-audit/sync-index-cards.cjs
 ```
 
 ### `replace-batch-XX.cjs`
-Scripts de reemplazo por batch. Cada archivo contiene un array `replacements` con las sustituciones de ese batch. Se ejecutan directamente:
+Scripts de reemplazo por batch (01–08). Cada archivo contiene un array `replacements` con las sustituciones de ese batch. Solo se ejecutan una vez:
 
 ```bash
 node tools/image-audit/replace-batch-01.cjs
 ```
 
-**Para crear batch 2:** duplicar `replace-batch-01.cjs` como `replace-batch-02.cjs`, cambiar el array `replacements` con los nuevos swaps, y ejecutar.
+**Historial de batches:**
+| Batch | Cambios | Imágenes principales |
+|-------|---------|---------------------|
+| 01 | 4397831: 51→31 (headphones cluster) | 8380433, 3757954, 8454900, 29300647, 4793250 |
+| 02 | 4397831: 31→31 (equipment) | Same as above |
+| 03 | 4397831: 31→11 (training+health+nutrition) | 7869580, 373984, 437037 |
+| 04 | 4397831: 11→6 (final cleanup) | 437037, 33921585, 3912944 |
+| 05 | 1027130: 22→6, 4679246: 21→6 | 4065509, 3763869, 1040427, 5037319, 3999644 |
+| 06 | 3756042: 14→6, 4056832: 13→6, 2526878: 12→6 | 7880090, 4426456, 7298421 |
+| 07 | 3621168: 10→6, 3621185: 8→6, 8949023: 8→6, small fixes | 34712191, 2330502 |
+| 08 | 4397831: 6→4 (auriculares optimization) | 3757954 |
 
-## Límites
-
-- **Max 3 topics por imagen** (1 topic = par ES/EN = 2 archivos, max 6 archivos)
-- Cada artículo tiene 3 slots con la misma imagen: `og:image`, `twitter:image`, hero `<img>`
-- Los scripts reemplazan el patrón `photos/{ID}/pexels-photo-{ID}` en los 3 slots automáticamente
+---
 
 ## Workflow
 
@@ -72,11 +88,21 @@ node tools/image-audit/replace-batch-01.cjs
 # 1. Auditar estado actual
 npm run images:scan -- --top 15
 
-# 2. Crear replace-batch-XX.cjs con los swaps planificados
+# 2. Verificar límites (CI)
+npm run images:ci
 
-# 3. Ejecutar batch
+# 3. Si hay violaciones: crear replace-batch-XX.cjs con los swaps planificados
 node tools/image-audit/replace-batch-XX.cjs
 
-# 4. Verificar resultado
+# 4. Sincronizar tarjetas del índice
+node tools/image-audit/sync-index-cards.cjs
+
+# 5. Verificar resultado
 npm run images:verify
 ```
+
+## Estado actual (2026-03-04)
+
+- **84 imágenes únicas** across 322 artículos (162 ES + 160 EN)
+- **0 imágenes sobre el límite**
+- Todas las tarjetas del índice sincronizadas con sus artículos

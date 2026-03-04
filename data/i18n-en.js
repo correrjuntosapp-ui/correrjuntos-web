@@ -9,8 +9,10 @@ I18N.en = {
         landingSubtitle: 'Find running meetups near you, meet people at your level and make every kilometer count.',
         landingDifferentiator: 'Not a WhatsApp group or a fitness app — it\'s your real running community, with organized meetups, verified levels, and runners near you.',
         landingStart: 'RUN WITH YOUR CREW',
+        landingUseWeb: 'Use web version',
         landingHave: 'I have an account',
-        landingTrust: '100% free · No card required · Sign up in 30 seconds',
+        landingTrust: '100% free · No card · +1,200 active runners',
+        topBannerText: 'Use the CorrerJuntos app',
         landingCtaSecondary: 'Create your first meetup for free',
         // Social proof labels
         statLabelRunners: 'Registered runners',
@@ -112,8 +114,8 @@ I18N.en = {
         faqQ5: 'What if I\'m a beginner?',
         faqA5: 'Welcome! CorrerJuntos is perfect for beginners. Many meetups are specifically designed for people just starting out. You can filter by level (beginner, intermediate, advanced) to find groups at your pace. The community is super welcoming - no one will judge you. We all started from zero and understand how important support is when beginning.',
         // CTA Final
-        ctaFinalTitle: 'Ready to stop running alone?',
-        ctaFinalSubtitle: 'Join thousands of runners who already found their group. Download the free app and create your first meetup today.',
+        ctaFinalTitle: 'Download CorrerJuntos',
+        ctaFinalSubtitle: 'Find meetups, meet runners at your level and make every kilometer count. Free on iOS and Android.',
         // Footer
         footerDownload: 'Download',
         footerLegal: 'Legal',

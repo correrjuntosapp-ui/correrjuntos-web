@@ -9,8 +9,10 @@ I18N.es = {
         landingSubtitle: 'Encuentra quedadas de running cerca de ti, conoce gente de tu nivel y haz que cada kilómetro cuente.',
         landingDifferentiator: 'No es un grupo de WhatsApp ni una app de fitness — es tu comunidad de running real, con quedadas organizadas, niveles verificados y gente cerca de ti.',
         landingStart: 'CORRE CON TU GENTE',
+        landingUseWeb: 'Usar versión web',
         landingHave: 'Ya tengo cuenta',
-        landingTrust: '100% gratis · Sin tarjeta · Regístrate en 30 segundos',
+        landingTrust: '100% gratis · Sin tarjeta · +1.200 runners activos',
+        topBannerText: 'Usa la app de CorrerJuntos',
         landingCtaSecondary: 'Crea tu primera quedada gratis',
         // Social proof labels
         statLabelRunners: 'Runners registrados',

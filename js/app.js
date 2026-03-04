@@ -613,7 +613,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('landing-subtitle', t.landingSubtitle);
             setText('landing-differentiator', t.landingDifferentiator);
             setText('landing-cta-start', t.landingStart);
+            setText('landing-cta-web', t.landingUseWeb || 'Usar versión web');
             setText('landing-cta-login', t.landingHave);
+            setText('top-banner-text', t.topBannerText || 'Usa la app de CorrerJuntos');
             setText('app-title', t.appTitle + ' ');
             setText('app-title-highlight', t.appTitleHi);
             setText('app-subtitle', t.appSubtitle);
@@ -1056,7 +1058,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('apps-coming-badge', t.appsComingBadge);
             setText('apps-coming-text', t.appsComingText);
             setText('hero-ios-label', t.appDownloadOn || 'Descargar en');
-            setText('hero-android-label', t.appAndroidComingSoon || 'Marzo 2026');
+            setText('hero-android-label', t.appDownloadOn || 'Descargar en');
             setText('social-follow-title', t.socialFollowTitle);
             setText('social-follow-subtitle', t.socialFollowSubtitle);
             setText('social-share-btn', t.socialShareBtn);

@@ -115,105 +115,139 @@
           };
         }
 
-        // Iniciar Smart Banner después de navegar
-        initSmartBanner();
+        // Iniciar Top App Banner
+        initTopAppBanner();
+
+        // Comprobar deep link interstitial
+        checkDeepLinkInterstitial();
       });
 
-      // ========== SMART BANNER - Aparece después de navegar ==========
-      let smartBannerTimeout = null;
-      let userScrolled = false;
-      let userInteracted = false;
-
-      function initSmartBanner() {
+      // ========== TOP APP BANNER - Aparece inmediatamente en móvil ==========
+      function initTopAppBanner() {
         // Solo en móvil
         if (!isMobileDevice()) return;
 
-        // No mostrar si ya descartó el banner
-        if (localStorage.getItem('smart-banner-dismissed') === 'true') return;
-
         // No mostrar si está en modo standalone (ya tiene la app/PWA)
         if (window.matchMedia('(display-mode: standalone)').matches) return;
+        if (window.navigator.standalone) return;
 
-        // Detectar scroll
-        window.addEventListener('scroll', () => {
-          userScrolled = true;
-          checkShowSmartBanner();
-        }, { passive: true, once: true });
-
-        // Detectar interacción (click en cualquier lugar)
-        document.addEventListener('click', () => {
-          userInteracted = true;
-          checkShowSmartBanner();
-        }, { once: true });
-
-        // Timeout: mostrar después de 45 segundos si no hay interacción
-        smartBannerTimeout = setTimeout(() => {
-          showSmartBanner();
-        }, 45000);
-
-        // También mostrar después de 20 segundos si el usuario scrolleó
-        setTimeout(() => {
-          if (userScrolled) {
-            showSmartBanner();
-          }
-        }, 20000);
-      }
-
-      function checkShowSmartBanner() {
-        // Mostrar si: scrolleó Y pasaron 15 segundos, O interactuó Y pasaron 10 segundos
-        if (userScrolled && userInteracted) {
-          setTimeout(showSmartBanner, 5000); // 5 segundos después de interactuar
-        }
-      }
-
-      function showSmartBanner() {
-        // Limpiar timeout si existe
-        if (smartBannerTimeout) {
-          clearTimeout(smartBannerTimeout);
-          smartBannerTimeout = null;
+        // Check dismiss (7-day expiry)
+        const dismissedTime = localStorage.getItem('top-banner-dismissed-time');
+        if (dismissedTime) {
+          const daysSince = (Date.now() - parseInt(dismissedTime)) / (1000 * 60 * 60 * 24);
+          if (daysSince < 7) return;
+          localStorage.removeItem('top-banner-dismissed-time');
         }
 
-        // No mostrar si ya se mostró el modal de deep linking
-        const modalShown = localStorage.getItem('app-modal-last-shown');
-        if (modalShown && Date.now() - parseInt(modalShown) < 60000) return; // No mostrar si modal se mostró hace menos de 1 min
-
-        // No mostrar si ya descartó
-        if (localStorage.getItem('smart-banner-dismissed') === 'true') return;
-
-        const banner = document.getElementById('smart-app-banner');
-        if (banner && !banner.classList.contains('show')) {
-          banner.classList.add('show');
-        }
+        // Mostrar inmediatamente
+        showTopBanner();
       }
 
-      function dismissSmartBanner() {
-        const banner = document.getElementById('smart-app-banner');
+      function showTopBanner() {
+        const banner = document.getElementById('top-app-banner');
         if (banner) {
-          banner.classList.remove('show');
-          // Guardar que lo descartó (por 7 días)
-          localStorage.setItem('smart-banner-dismissed', 'true');
-          localStorage.setItem('smart-banner-dismissed-time', Date.now().toString());
+          banner.classList.remove('hidden');
+          document.body.classList.add('has-top-banner');
+          // Ajustar nav sticky
+          const navWrapper = document.querySelector('.nav-wrapper');
+          if (navWrapper) {
+            navWrapper.style.top = banner.offsetHeight + 'px';
+          }
         }
+      }
+
+      function dismissTopBanner() {
+        const banner = document.getElementById('top-app-banner');
+        if (banner) {
+          banner.classList.add('hidden');
+          document.body.classList.remove('has-top-banner');
+          localStorage.setItem('top-banner-dismissed-time', Date.now().toString());
+          // Restaurar nav sticky
+          const navWrapper = document.querySelector('.nav-wrapper');
+          if (navWrapper) {
+            navWrapper.style.top = '0';
+          }
+        }
+        if (typeof gtag === 'function') gtag('event', 'top_banner_dismissed');
       }
 
       function openAppStore() {
         const storeUrl = isIOS() ? APP_STORE_URL : PLAY_STORE_URL;
         window.open(storeUrl, '_blank');
-        // Ocultar banner después de hacer clic
-        dismissSmartBanner();
       }
 
-      // Limpiar el dismiss después de 7 días
-      (function checkBannerDismissExpiry() {
-        const dismissedTime = localStorage.getItem('smart-banner-dismissed-time');
-        if (dismissedTime) {
-          const daysSince = (Date.now() - parseInt(dismissedTime)) / (1000 * 60 * 60 * 24);
-          if (daysSince > 7) {
-            localStorage.removeItem('smart-banner-dismissed');
-            localStorage.removeItem('smart-banner-dismissed-time');
-          }
+      // ========== DEEP LINK INTERSTITIAL ==========
+      function checkDeepLinkInterstitial() {
+        // Solo en móvil
+        if (!isMobileDevice()) return;
+
+        // No en standalone
+        if (window.matchMedia('(display-mode: standalone)').matches) return;
+        if (window.navigator.standalone) return;
+
+        // Detectar hash con quedada/ID
+        const hash = window.location.hash;
+        const quedadaMatch = hash.match(/^#quedada\/(.+)$/);
+        if (!quedadaMatch) return;
+
+        const quedadaId = quedadaMatch[1];
+
+        // No mostrar si ya descartó recientemente (1 hora)
+        const lastDismissed = localStorage.getItem('deeplink-interstitial-dismissed');
+        if (lastDismissed && Date.now() - parseInt(lastDismissed) < 60 * 60 * 1000) return;
+
+        showDeepLinkInterstitial(quedadaId);
+      }
+
+      function showDeepLinkInterstitial(quedadaId) {
+        const overlay = document.getElementById('deeplink-interstitial');
+        if (overlay) {
+          overlay.dataset.quedadaId = quedadaId;
+          overlay.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
         }
-      })();
+      }
+
+      function deeplinkOpenApp() {
+        const overlay = document.getElementById('deeplink-interstitial');
+        const quedadaId = overlay?.dataset.quedadaId || '';
+        if (typeof gtag === 'function') gtag('event', 'deeplink_open_app', { quedada_id: quedadaId });
+
+        // Intentar abrir con custom scheme
+        const deepLink = 'correrjuntos://quedada/' + quedadaId;
+        window.location.href = deepLink;
+
+        // Si no se abre en 2s, ir a la tienda
+        setTimeout(() => {
+          openAppStore();
+        }, 2000);
+
+        closeDeepLinkInterstitial();
+      }
+
+      function deeplinkDownload() {
+        const overlay = document.getElementById('deeplink-interstitial');
+        const quedadaId = overlay?.dataset.quedadaId || '';
+        if (typeof gtag === 'function') gtag('event', 'deeplink_download', { quedada_id: quedadaId });
+        openAppStore();
+        closeDeepLinkInterstitial();
+      }
+
+      function deeplinkContinueWeb() {
+        const overlay = document.getElementById('deeplink-interstitial');
+        const quedadaId = overlay?.dataset.quedadaId || '';
+        if (typeof gtag === 'function') gtag('event', 'deeplink_continue_web', { quedada_id: quedadaId });
+        localStorage.setItem('deeplink-interstitial-dismissed', Date.now().toString());
+        closeDeepLinkInterstitial();
+      }
+
+      function closeDeepLinkInterstitial() {
+        const overlay = document.getElementById('deeplink-interstitial');
+        if (overlay) {
+          overlay.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      }
 
       // ========== PUSH NOTIFICATIONS ==========
       const VAPID_PUBLIC_KEY = 'BJ_bOVOJcGPEdqUOX9EjYg-5gomGPShP_Kku4ewQHnAgeH1Pw8msO9OtYRxyRqUwt9es8F7WDcc7mqI7gIwVu_0';
@@ -250,7 +284,7 @@
             // Registrar para push
             await subscribeToPush();
             closeModal('modal-enable-notifications');
-            showToast('🔔 ¡Notificaciones activadas!', 'success');
+            showToast('¡Notificaciones activadas!', 'success');
           } else if (permission === 'denied') {
             closeModal('modal-enable-notifications');
             showToast('Notificaciones bloqueadas. Puedes activarlas en la configuración del navegador.', 'info');
@@ -371,4 +405,3 @@
           }
         }
       })();
-

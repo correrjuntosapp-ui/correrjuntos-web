@@ -461,9 +461,18 @@
 
     var sticky = document.createElement('div');
     sticky.id = 'sticky-cta';
+    // Detect platform for correct store link
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    var isAndroid = /Android/.test(navigator.userAgent);
+    var storeUrl = isAndroid
+      ? 'https://play.google.com/store/apps/details?id=com.correrjuntos.app'
+      : 'https://apps.apple.com/us/app/correr-juntos/id6758505910';
+    var storeLabel = isAndroid
+      ? (isEN ? 'Download the app' : 'Descargar la app')
+      : (isEN ? 'Download the app' : 'Descargar la app');
     sticky.innerHTML =
-      '<a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener">' +
-        '\uD83C\uDFC3 ' + (isEN ? 'Find runners nearby' : 'Encontrar corredores cerca') +
+      '<a href="' + storeUrl + '" target="_blank" rel="noopener">' +
+        '\uD83D\uDCF2 ' + storeLabel +
       '</a>' +
       '<button class="sticky-close" aria-label="'+(isEN ? 'Close' : 'Cerrar')+'">&times;</button>';
     document.body.appendChild(sticky);

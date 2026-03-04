@@ -6,6 +6,10 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0"
   },
+  "scripts": {
+    "images:scan": "node tools/image-audit/scan-images.cjs",
+    "images:verify": "node tools/image-audit/verify-image-usage.cjs"
+  },
   "devDependencies": {
     "serve": "^14.2.5",
     "sharp": "^0.34.5",

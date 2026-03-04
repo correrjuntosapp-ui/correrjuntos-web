@@ -4729,6 +4729,13 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 closeModal('modal-login');
                 closeModal('modal-register');
 
+                // Pre-set remember flags so the "Recordarme" check doesn't kill the OAuth session on return
+                try {
+                    localStorage.setItem('cj_remember_session', '1');
+                    localStorage.setItem('cj_had_login', '1');
+                    sessionStorage.setItem('cj_session_temp', '1');
+                } catch(_) {}
+
                 const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
                     provider: 'google',
                     options: {
@@ -11787,21 +11794,25 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         }
 
         // Verificar "Recordarme": si no marcó recordar y es una nueva sesión del navegador, cerrar sesión
+        // SKIP for OAuth users (Google, Apple, etc.) — they always keep session
+        const isOAuthProvider = user.app_metadata?.provider && user.app_metadata.provider !== 'email';
         try {
-          const rememberSession = localStorage.getItem('cj_remember_session');
-          const tempSession = sessionStorage.getItem('cj_session_temp');
-          // Si NO hay "recordar" guardado Y NO hay sesión temporal (nueva pestaña/navegador), cerrar sesión
-          if (!rememberSession && !tempSession) {
-            // Es una nueva sesión del navegador y el usuario no quiso recordar
-            // Pero si nunca inició sesión con el checkbox, asumimos que sí quiere recordar (comportamiento por defecto)
-            // Solo cerramos si explícitamente NO marcó recordar (localStorage vacío pero había sesión previa)
-            const hadPreviousLogin = localStorage.getItem('cj_had_login');
-            if (hadPreviousLogin === '0') {
-              // Usuario explícitamente no quiso recordar, cerrar sesión
-              await sb.auth.signOut();
-              window.currentUser = null;
-              try{ currentUser = null; }catch(_){}
-              return null;
+          if (!isOAuthProvider) {
+            const rememberSession = localStorage.getItem('cj_remember_session');
+            const tempSession = sessionStorage.getItem('cj_session_temp');
+            // Si NO hay "recordar" guardado Y NO hay sesión temporal (nueva pestaña/navegador), cerrar sesión
+            if (!rememberSession && !tempSession) {
+              // Es una nueva sesión del navegador y el usuario no quiso recordar
+              // Pero si nunca inició sesión con el checkbox, asumimos que sí quiere recordar (comportamiento por defecto)
+              // Solo cerramos si explícitamente NO marcó recordar (localStorage vacío pero había sesión previa)
+              const hadPreviousLogin = localStorage.getItem('cj_had_login');
+              if (hadPreviousLogin === '0') {
+                // Usuario explícitamente no quiso recordar, cerrar sesión
+                await sb.auth.signOut();
+                window.currentUser = null;
+                try{ currentUser = null; }catch(_){}
+                return null;
+              }
             }
           }
           // Marcar que ha habido login
@@ -12187,7 +12198,11 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
           if(session){
             await hydrateUserFromSession();
-            // Login completado — dashboard se muestra via hydrateUserFromSession
+            // Login completado — mostrar app si hay usuario (incluye OAuth returns)
+            if(window.currentUser){
+              try{ showApp(); }catch(_){ }
+              try{ loadQuedadas(); }catch(_){ }
+            }
             // Procesar callback de Strava si hay código de Strava en la URL
             const stravaParams = new URLSearchParams(window.location.search || '');
             const stravaScope = stravaParams.get('scope');

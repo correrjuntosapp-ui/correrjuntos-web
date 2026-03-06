@@ -52,11 +52,17 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/matching/",
+      "@id": "https://www.correrjuntos.com/matching/#webpage",
       "url": "https://www.correrjuntos.com/matching/",
       "name": "Runner Matching — Encuentra tu Compañero de Running Ideal | CorrerJuntos",
       "description": "Matching inteligente que encuentra runners compatibles contigo por ritmo, horario, nivel y objetivos. Gratis en 55+ ciudades.",
-      "inLanguage": "es-ES"
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
     },
     {
       "@type": "BreadcrumbList",
@@ -66,12 +72,15 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
       ]
     },
     {
-      "@type": "WebApplication",
-      "name": "CorrerJuntos Runner Matching",
-      "applicationCategory": "SportsApplication",
-      "operatingSystem": "Web, iOS, Android",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "@type": "Service",
+      "@id": "https://www.correrjuntos.com/matching/#service",
+      "name": "Runner Matching de CorrerJuntos",
+      "provider": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
       "description": "Algoritmo inteligente que encuentra runners compatibles por ritmo, horario, nivel y objetivos.",
+      "serviceType": "Conexión entre runners y quedadas de running",
+      "areaServed": "Worldwide",
       "url": "https://www.correrjuntos.com/matching/"
     },
     {

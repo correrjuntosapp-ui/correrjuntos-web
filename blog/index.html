@@ -26,21 +26,41 @@
 <link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/">
 <link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/">
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Blog de Running | CorrerJuntos",
-  "description": "Blog de running con guías, tips y rutas para corredores de todos los niveles.",
-  "url": "https://www.correrjuntos.com/blog/",
-  "publisher": {"@type": "Organization", "name": "CorrerJuntos", "logo": {"@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png"}},
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com"},
-      {"@type": "ListItem", "position": 2, "name": "Blog"}
-    ]
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://www.correrjuntos.com/blog/#webpage",
+    "url": "https://www.correrjuntos.com/blog/",
+    "name": "Blog de Running | CorrerJuntos",
+    "description": "Blog de running con guías, tips y rutas para corredores de todos los niveles.",
+    "isPartOf": {
+      "@id": "https://www.correrjuntos.com/#website"
+    },
+    "about": {
+      "@id": "https://www.correrjuntos.com/#organization"
+    },
+    "inLanguage": "es",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Blog"}
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://www.correrjuntos.com/blog/#blog",
+    "name": "Blog de CorrerJuntos",
+    "url": "https://www.correrjuntos.com/blog/",
+    "publisher": {
+      "@id": "https://www.correrjuntos.com/#organization"
+    },
+    "inLanguage": "es"
   }
-}
+]
 </script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}

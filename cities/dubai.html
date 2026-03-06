@@ -44,12 +44,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/dubai",
+      "@id": "https://www.correrjuntos.com/cities/dubai#webpage",
       "url": "https://www.correrjuntos.com/cities/dubai",
       "name": "Running Groups in Dubai | CorrerJuntos - Dubai Running Community",
       "description": "Join running groups in Dubai. Connect with runners across Dubai Marina, Al Qudra, Kite Beach, Dubai Creek, and Safa Park. Find your Dubai running crew.",
-      "inLanguage": "en-AE"
+      "inLanguage": "en-AE",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Dubai",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dubai",
+        "addressCountry": "AE"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -72,17 +113,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Dubai",
           "item": "https://www.correrjuntos.com/cities/dubai"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Dubai",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Dubai",
-        "addressCountry": "AE"
-      },
-      "description": "Connect with running groups in Dubai."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/dubai#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -143,7 +175,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "The best areas for runners in Dubai are JBR and Dubai Marina (beachfront promenade running), Downtown and Dubai Canal (iconic Burj Khalifa backdrop), Al Quoz and Safa Park (green oasis in the city), Palm Jumeirah (scenic waterfront loop), and Al Qudra (desert running and cycling tracks away from the city)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/dubai#faq"
     }
   ]
 }
@@ -326,9 +359,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

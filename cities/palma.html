@@ -45,12 +45,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/palma",
+      "@id": "https://www.correrjuntos.com/cities/palma#webpage",
       "url": "https://www.correrjuntos.com/cities/palma",
       "name": "Grupos de Running en Palma de Mallorca | CorrerJuntos - Comunidad Running Palma",
       "description": "Únete a grupos de running en Palma de Mallorca. Corre por el Paseo Marítimo, el Parc de la Mar, los trails de la Serra de Tramuntana y el Castell de Bellver. En",
-      "inLanguage": "es-ES"
+      "inLanguage": "es-ES",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Palma de Mallorca",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Palma de Mallorca",
+        "addressCountry": "ES"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +114,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Palma de Mallorca",
           "item": "https://www.correrjuntos.com/cities/palma"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Palma de Mallorca",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Palma de Mallorca",
-        "addressCountry": "ES"
-      },
-      "description": "Conecta con grupos de running en Palma de Mallorca."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/palma#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +176,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Palma son el Paseo Marítimo y Porto Pi (kilómetros junto a la bahía), Santa Catalina (acceso al mar y al Parc de Bellver), Son Espanyolet y El Terreno (acceso al Castillo de Bellver), Playa de Palma (paseo costero llano) y Son Moix (instalaciones deportivas municipales y pistas de atletismo)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/palma#faq"
     }
   ]
 }
@@ -339,9 +372,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

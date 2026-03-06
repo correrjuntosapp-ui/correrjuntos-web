@@ -45,12 +45,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/cadiz",
+      "@id": "https://www.correrjuntos.com/cities/cadiz#webpage",
       "url": "https://www.correrjuntos.com/cities/cadiz",
       "name": "Grupos de Running en Cádiz | CorrerJuntos - Comunidad Running Cádiz",
       "description": "ÚneÚnete a grupos de running en Cádiz. Conecta con corredores en el Paseo Marítimo, Playa Victoria, Parque Genovés, Casco Antiguo y La Caleta. Encuentra tu grup",
-      "inLanguage": "es-ES"
+      "inLanguage": "es-ES",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Cádiz",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cádiz",
+        "addressCountry": "ES"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +114,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Cádiz",
           "item": "https://www.correrjuntos.com/cities/cadiz"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Cádiz",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Cádiz",
-        "addressCountry": "ES"
-      },
-      "description": "Conecta con grupos de running en Cádiz."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/cadiz#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +176,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Cádiz son el Casco Antiguo y La Viña con acceso al Malecón y La Caleta, Santa María y Bahía Sur junto al Parque Genovés y el Campo del Sur, Puerta de Tierra con acceso a la playa de Santa María del Mar, y la zona de la Playa de la Cortadura con 4 km de paseo marítimo."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/cadiz#faq"
     }
   ]
 }
@@ -334,9 +367,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

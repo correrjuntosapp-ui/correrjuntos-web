@@ -46,12 +46,69 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/sao-paulo",
+      "@id": "https://www.correrjuntos.com/cities/sao-paulo#webpage",
       "url": "https://www.correrjuntos.com/cities/sao-paulo",
       "name": "Grupos de Running en São Paulo | CorrerJuntos - Comunidad Running São Paulo, Brasil",
       "description": "Únete a grupos de running en São Paulo, Brasil. Corre en el Parque Ibirapuera, Pico do Jaraguá, Marginal Pinheiros y Vila Madalena. Running en la megalópolis br",
-      "inLanguage": "es"
+      "inLanguage": "es",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "São Paulo",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Paulo",
+        "addressCountry": "BR"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en São Paulo",
+      "url": "https://www.correrjuntos.com/cities/sao-paulo",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ibirapuera",
+            "url": "https://www.correrjuntos.com/places/ibirapuera"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -74,17 +131,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "São Paulo",
           "item": "https://www.correrjuntos.com/cities/sao-paulo"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en São Paulo",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "São Paulo",
-        "addressCountry": "BR"
-      },
-      "description": "Conecta con grupos de running en São Paulo."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/sao-paulo#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -145,7 +193,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en São Paulo son Ibirapuera-Vila Mariana (junto al Parque Ibirapuera), Pinheiros-Vila Madalena (Parque Villa-Lobos y ciclovia del río), Itaim Bibi (parques premium y Parque do Povo), Moema (acceso al Ibirapuera desde el sur) y Brooklin (Marginal Pinheiros y parques modernos como el Burle Marx)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/sao-paulo#faq"
     }
   ]
 }
@@ -342,9 +391,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

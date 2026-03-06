@@ -1,0 +1,464 @@
+/**
+ * generate-events.cjs
+ * Generates /events/ HTML pages from events-data.json
+ * Usage: node tools/events-generator/generate-events.cjs [citySlug]
+ *   - No arg: generates all event pages + index
+ *   - With slug: generates only that city's event page
+ */
+const fs = require('fs');
+const path = require('path');
+
+const BASE_DIR = path.resolve(__dirname, '..', '..');
+const EVENTS_DIR = path.join(BASE_DIR, 'events');
+const DATA_FILE = path.join(__dirname, 'events-data.json');
+
+if (!fs.existsSync(EVENTS_DIR)) fs.mkdirSync(EVENTS_DIR, { recursive: true });
+
+const events = JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
+const slugArg = process.argv[2];
+
+// ── Shared CSS (same as city/place pages) ──
+const CSS = `*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#0b1220;color:#fff;line-height:1.7}.nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(11,18,32,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}.container{max-width:1100px;margin:0 auto;padding:0 20px}.nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}.nav>a{color:#f97316;text-decoration:none;font-weight:700;font-size:1.1rem}.nav-links{display:flex;gap:4px;font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)}.nav-links a{color:#94a3b8;text-decoration:none;font-weight:600;padding:7px 16px;border-radius:999px;background:transparent;border:none;transition:all .2s}.nav-links a:hover{color:#f97316;background:rgba(249,115,22,.12)}.nav-links a.active{color:#fff;background:rgba(249,115,22,.9);font-weight:700}.breadcrumb{padding:16px 0;font-size:.85rem;color:#64748b}.breadcrumb a{color:#f97316;text-decoration:none}.breadcrumb span{margin:0 8px}.hero{text-align:center;padding:0;position:relative;overflow:hidden;min-height:320px;display:flex;align-items:center;justify-content:center;flex-direction:column}.hero-bg{position:absolute;inset:0;z-index:0}.hero-bg img{width:100%;height:100%;object-fit:cover}.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,18,32,.5) 0%,rgba(11,18,32,.8) 60%,#0b1220 100%)}.hero-content{position:relative;z-index:1;padding:60px 20px 40px;max-width:800px}.hero h1{font-size:2.5rem;font-weight:900;color:#f97316;margin-bottom:12px;line-height:1.1}.hero p{font-size:1.15rem;color:#cbd5e1;max-width:640px;margin:0 auto}.cta{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:16px 36px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1.05rem;margin-top:24px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(249,115,22,.25)}.cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(249,115,22,.35)}.content{padding:40px 0 60px}h2{font-size:1.7rem;font-weight:800;margin:40px 0 16px;color:#fff}h3{font-size:1.2rem;font-weight:700;margin:0 0 8px;color:#f97316}p{margin-bottom:16px;color:#cbd5e1}ul{margin:0 0 24px 20px}li{margin-bottom:8px;color:#cbd5e1}li strong{color:#fff}.cta-box{text-align:center;margin:48px 0;padding:40px 20px;background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.15);border-radius:24px}.cta-box p{color:#94a3b8;margin-bottom:20px}.races-table{width:100%;border-collapse:collapse;margin:16px 0 32px}.races-table th{text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}.races-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);color:#cbd5e1;font-size:.9rem}.races-table tr:hover td{background:rgba(255,255,255,.02)}.races-table td:first-child{font-weight:700;color:#fff}.parkrun-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 20px;margin-bottom:12px}.parkrun-card .name{font-weight:700;color:#fff;margin-bottom:4px}.parkrun-card .details{font-size:.85rem;color:#94a3b8}.event-city-card{position:relative;height:160px;border-radius:16px;overflow:hidden;text-decoration:none;color:#fff;display:flex;align-items:flex-end;border:1px solid rgba(255,255,255,.06);transition:transform .2s,border-color .2s}.event-city-card:hover{transform:translateY(-3px);border-color:rgba(249,115,22,.4)}.event-city-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}.event-city-card:hover img{transform:scale(1.08)}.event-city-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 60%);z-index:1}.event-city-card .card-info{position:relative;z-index:2;padding:16px;width:100%}.event-city-card .card-title{font-size:1.05rem;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.5);margin:0 0 4px}.event-city-card .card-sub{font-size:.8rem;color:#f97316;font-weight:600}@media(max-width:640px){.hero{min-height:260px}.hero h1{font-size:1.8rem}.hero p{font-size:1rem}.hero-content{padding:40px 20px 30px}.races-table{font-size:.8rem}.races-table th,.races-table td{padding:8px 10px}}@media(max-width:768px){.nav{flex-wrap:wrap;padding:12px 16px}.nav-links{order:3;width:100%;justify-content:center;margin-top:4px}.nav-links a{font-size:.78rem;padding:5px 12px;white-space:nowrap}}`;
+
+// ── Shared components ──
+const NAV = `<div class="nav-wrapper">
+<nav class="nav">
+  <a href="/">CORRER<b>JUNTOS</b></a>
+  <div class="nav-links">
+    <a href="/matching/">Matching</a>
+    <a href="/cities/">Ciudades</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#app">App</a>
+  </div>
+  <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
+    <a href="/" style="color:#94a3b8;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Entrar</a>
+    <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Únete</a>
+  </div>
+</nav>
+</div>`;
+
+const APP_BADGES = `<div class="cta-badges">
+      <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#fff" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83"/><path fill="#fff" d="M15.3 2c.06 1.18-.43 2.35-1.14 3.2-.72.86-1.89 1.52-3.04 1.43-.07-1.15.46-2.34 1.15-3.13C13 2.63 14.22 2.04 15.3 2"/></svg>
+        <div><div class="badge-label" style="font-size:.6rem;opacity:.7;line-height:1">Descargar en</div><div class="badge-store" style="font-size:.85rem;font-weight:700;line-height:1.1">App Store</div></div>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
+        <div><div class="badge-label" style="font-size:.6rem;opacity:.7;line-height:1">Descargar en</div><div class="badge-store" style="font-size:.85rem;font-weight:700;line-height:1.1">Google Play</div></div>
+      </a>
+    </div>`;
+
+const FOOTER = `<footer style="background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);padding:48px 20px 24px;margin-top:60px">
+<div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-bottom:32px">
+  <div>
+    <a href="/" style="color:#f97316;font-weight:800;font-size:1.1rem;text-decoration:none;display:block;margin-bottom:16px">CorrerJuntos</a>
+    <p style="color:#64748b;font-size:.85rem;line-height:1.6">La comunidad de running más activa del mundo. Corre acompañado, mejora juntos.</p>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+      <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
+      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
+      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Empresa</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Sobre Nosotros</a>
+      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Inversores</a>
+      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Contacto</a>
+    </div>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Legal</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Privacidad</a>
+      <a href="/terms.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Términos de Uso</a>
+      <a href="/legal/cookies.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Cookies</a>
+    </div>
+  </div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding-top:24px;text-align:center">
+  <p style="color:#64748b;font-size:.8rem">&copy; 2026 CorrerJuntos. Todos los derechos reservados.</p>
+</div>
+</footer>`;
+
+// ── Build schema for an event page ──
+function buildSchema(e) {
+  const canonicalUrl = `https://www.correrjuntos.com/events/${e.citySlug}`;
+  const graph = [
+    {
+      '@type': 'SportsOrganization',
+      '@id': 'https://www.correrjuntos.com/#organization',
+      name: 'CorrerJuntos',
+      url: 'https://www.correrjuntos.com/',
+      sport: 'Running',
+      logo: { '@type': 'ImageObject', url: 'https://www.correrjuntos.com/icons/icon-512.png' },
+      sameAs: [
+        'https://www.instagram.com/correrjuntosapp/',
+        'https://x.com/CorrerJuntos',
+        'https://www.tiktok.com/@correrjuntosapp'
+      ]
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.correrjuntos.com/#website',
+      url: 'https://www.correrjuntos.com/',
+      name: 'CorrerJuntos',
+      publisher: { '@id': 'https://www.correrjuntos.com/#organization' },
+      inLanguage: 'es'
+    },
+    {
+      '@type': 'WebPage',
+      '@id': canonicalUrl + '#webpage',
+      url: canonicalUrl,
+      name: `${e.title} | CorrerJuntos`,
+      description: e.metaDescription,
+      isPartOf: { '@id': 'https://www.correrjuntos.com/#website' },
+      about: { '@id': 'https://www.correrjuntos.com/#organization' },
+      inLanguage: 'es-ES'
+    },
+    {
+      '@type': 'SportsEvent',
+      '@id': canonicalUrl + '#event',
+      name: `Eventos de Running en ${e.cityName}`,
+      description: e.shortDescription,
+      sport: 'Running',
+      location: {
+        '@type': 'City',
+        name: e.cityName,
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: e.country
+        }
+      },
+      organizer: { '@id': 'https://www.correrjuntos.com/#organization' }
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': canonicalUrl + '#breadcrumbs',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.correrjuntos.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Ciudades', item: 'https://www.correrjuntos.com/cities/' },
+        { '@type': 'ListItem', position: 3, name: e.cityName, item: `https://www.correrjuntos.com/cities/${e.citySlug}` },
+        { '@type': 'ListItem', position: 4, name: 'Eventos' }
+      ]
+    }
+  ];
+
+  // FAQPage only if FAQ exists
+  if (e.faq && e.faq.length > 0) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': canonicalUrl + '#faq',
+      mainEntity: e.faq.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a }
+      }))
+    });
+  }
+
+  return { '@context': 'https://schema.org', '@graph': graph };
+}
+
+// ── Build races table HTML ──
+function buildRacesTable(races) {
+  if (!races || races.length === 0) return '';
+  const rows = races.map(r =>
+    `    <tr>
+      <td>${r.name}</td>
+      <td>${r.month}</td>
+      <td>${r.distance}</td>
+      <td>${r.participants}</td>
+    </tr>`
+  ).join('\n');
+  return `
+  <h2>Principales Carreras</h2>
+  <div style="overflow-x:auto;margin:16px 0 32px">
+    <table class="races-table">
+      <thead><tr><th>Carrera</th><th>Fecha</th><th>Distancia</th><th>Participantes</th></tr></thead>
+      <tbody>
+${rows}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+// ── Build parkrun HTML ──
+function buildParkrunHtml(parkruns) {
+  if (!parkruns || parkruns.length === 0) return '';
+  const cards = parkruns.map(p =>
+    `    <div class="parkrun-card">
+      <div class="name">🏃 ${p.name}</div>
+      <div class="details">📍 ${p.location} · ${p.day}</div>
+    </div>`
+  ).join('\n');
+  return `
+  <h2>parkrun (5K gratuito semanal)</h2>
+  <p>parkrun es un movimiento global de carreras gratuitas de 5K cada sábado. Solo necesitas registrarte una vez en <a href="https://www.parkrun.com" target="_blank" rel="noopener" style="color:#f97316">parkrun.com</a> e imprimir tu código de barras.</p>
+${cards}`;
+}
+
+// ── Build FAQ HTML ──
+function buildFaqHtml(faq) {
+  if (!faq || faq.length === 0) return '';
+  const items = faq.map(f => `
+  <div style="border-bottom:1px solid rgba(255,255,255,.06);padding:16px 0">
+    <h3 style="color:#fff;font-size:1.05rem;margin-bottom:8px">${f.q}</h3>
+    <p>${f.a}</p>
+  </div>`).join('');
+  return `
+  <h2>Preguntas Frecuentes</h2>
+  <div style="margin:16px 0 32px">${items}
+  </div>`;
+}
+
+// ── Generate a single event page ──
+function generateEvent(e) {
+  const canonicalUrl = `https://www.correrjuntos.com/events/${e.citySlug}`;
+  const schema = buildSchema(e);
+
+  const html = `<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${e.title} | CorrerJuntos</title>
+<meta name="description" content="${e.metaDescription}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="${canonicalUrl}">
+<meta property="og:title" content="${e.title} | CorrerJuntos">
+<meta property="og:description" content="${e.metaDescription}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${canonicalUrl}">
+<meta property="og:image" content="${e.heroImage}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@CorrerJuntos">
+<meta name="twitter:title" content="${e.title}">
+<meta name="twitter:description" content="${e.metaDescription}">
+<link rel="alternate" hreflang="es-ES" href="${canonicalUrl}">
+<link rel="alternate" hreflang="es" href="${canonicalUrl}">
+<link rel="alternate" hreflang="x-default" href="${canonicalUrl}">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+function loadGA4(){if(document.getElementById('ga4-script'))return;var s=document.createElement('script');s.id='ga4-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-RQYYGNC12T';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-RQYYGNC12T');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
+</script>
+<style>${CSS}</style>
+<script type="application/ld+json">
+${JSON.stringify(schema, null, 2)}
+</script>
+</head>
+<body>
+${NAV}
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Inicio</a>
+    <span>/</span>
+    <a href="/cities/">Ciudades</a>
+    <span>/</span>
+    <a href="/cities/${e.citySlug}">${e.cityName}</a>
+    <span>/</span>
+    Eventos
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-bg"><img src="${e.heroImage}" alt="${e.title}" loading="eager" width="1200" height="600"></div>
+  <div class="hero-content">
+    <h1>${e.title}</h1>
+    <p>${e.shortDescription}</p>
+    <a href="/#app" class="cta">Encuentra Runners Aquí</a>
+  </div>
+</div>
+
+<div class="container content">
+  ${e.description}
+
+  ${buildRacesTable(e.majorRaces)}
+
+  ${buildParkrunHtml(e.parkruns)}
+
+  <h2>Cultura Running y Quedadas</h2>
+  ${e.meetupCulture}
+
+  <h2>Calendario por Temporadas</h2>
+  ${e.seasonalHighlights}
+
+  ${buildFaqHtml(e.faq)}
+
+  <div class="cta-box">
+    <h2>¿Quieres correr en ${e.cityName}?</h2>
+    <p>Encuentra compañeros de running en ${e.cityName} con CorrerJuntos. Gratis.</p>
+    <a href="/#app" class="cta">Unirme Gratis</a>
+    ${APP_BADGES}
+  </div>
+</div>
+
+${FOOTER}
+<script src="/events/event-links.js" defer></script>
+</body>
+</html>`;
+
+  const outPath = path.join(EVENTS_DIR, `${e.citySlug}.html`);
+  fs.writeFileSync(outPath, html, 'utf-8');
+  return outPath;
+}
+
+// ── Generate index page ──
+function generateIndex() {
+  const allEvents = Object.values(events);
+
+  const spain = allEvents.filter(e => e.country === 'ES');
+  const europe = allEvents.filter(e => ['GB', 'FR', 'DE', 'NL', 'IT', 'IE', 'PT'].includes(e.country));
+  const americas = allEvents.filter(e => ['US', 'MX', 'AR'].includes(e.country));
+
+  function renderRegion(title, emoji, items) {
+    if (items.length === 0) return '';
+    const cards = items.map(e => `
+        <a href="/events/${e.citySlug}" class="event-city-card">
+          <img src="${e.heroImage.replace('w=1200&h=600', 'w=480&h=320').replace('q=80', 'q=75')}" alt="${e.title}" loading="lazy">
+          <div class="card-info">
+            <div class="card-title">${e.cityName}</div>
+            <div class="card-sub">${e.majorRaces ? e.majorRaces.length + ' carreras principales' : 'Eventos de running'}</div>
+          </div>
+        </a>`).join('');
+    return `
+      <div style="margin:32px 0">
+        <h2>${emoji} ${title} (${items.length})</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">${cards}
+        </div>
+      </div>`;
+  }
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'SportsOrganization',
+        '@id': 'https://www.correrjuntos.com/#organization',
+        name: 'CorrerJuntos', url: 'https://www.correrjuntos.com/', sport: 'Running',
+        logo: { '@type': 'ImageObject', url: 'https://www.correrjuntos.com/icons/icon-512.png' }
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://www.correrjuntos.com/#website',
+        url: 'https://www.correrjuntos.com/', name: 'CorrerJuntos',
+        publisher: { '@id': 'https://www.correrjuntos.com/#organization' }, inLanguage: 'es'
+      },
+      {
+        '@type': 'CollectionPage',
+        '@id': 'https://www.correrjuntos.com/events/#webpage',
+        url: 'https://www.correrjuntos.com/events/',
+        name: 'Eventos de Running en el Mundo | CorrerJuntos',
+        isPartOf: { '@id': 'https://www.correrjuntos.com/#website' },
+        about: { '@id': 'https://www.correrjuntos.com/#organization' },
+        inLanguage: 'es',
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: allEvents.map((e, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: `Eventos en ${e.cityName}`,
+            url: `https://www.correrjuntos.com/events/${e.citySlug}`
+          }))
+        }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.correrjuntos.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Eventos de Running' }
+        ]
+      }
+    ]
+  };
+
+  const html = `<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventos de Running en el Mundo | CorrerJuntos</title>
+<meta name="description" content="Descubre las mejores carreras, maratones, parkruns y eventos de running en el mundo. Calendario completo por ciudades.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/events/">
+<meta property="og:title" content="Eventos de Running en el Mundo | CorrerJuntos">
+<meta property="og:description" content="Descubre las mejores carreras, maratones y eventos de running en el mundo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.correrjuntos.com/events/">
+<meta property="og:image" content="https://www.correrjuntos.com/icons/og-image.png?v=2">
+<link rel="alternate" hreflang="es-ES" href="https://www.correrjuntos.com/events/">
+<link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/events/">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+function loadGA4(){if(document.getElementById('ga4-script'))return;var s=document.createElement('script');s.id='ga4-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-RQYYGNC12T';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-RQYYGNC12T');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
+</script>
+<style>${CSS}</style>
+<script type="application/ld+json">
+${JSON.stringify(schema, null, 2)}
+</script>
+</head>
+<body>
+${NAV}
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Inicio</a>
+    <span>/</span>
+    Eventos de Running
+  </div>
+</div>
+
+<div class="hero" style="min-height:240px">
+  <div class="hero-content">
+    <h1>Eventos de Running</h1>
+    <p>Descubre las mejores carreras, maratones, parkruns y eventos de running en ciudades de todo el mundo. Calendario completo y guías para cada ciudad.</p>
+  </div>
+</div>
+
+<div class="container content">
+  ${renderRegion('España', '🇪🇸', spain)}
+  ${renderRegion('Europa', '🌍', europe)}
+  ${renderRegion('América', '🌎', americas)}
+</div>
+
+${FOOTER}
+</body>
+</html>`;
+
+  fs.writeFileSync(path.join(EVENTS_DIR, 'index.html'), html, 'utf-8');
+}
+
+// ── Main ──
+let generated = 0;
+const allEvents = Object.values(events);
+
+if (slugArg) {
+  const e = events[slugArg];
+  if (!e) { console.error(`Event city "${slugArg}" not found in data.`); process.exit(1); }
+  generateEvent(e);
+  console.log(`Generated: events/${slugArg}.html`);
+} else {
+  allEvents.forEach(e => {
+    generateEvent(e);
+    generated++;
+  });
+  generateIndex();
+  console.log(`\n=== Events Generation Results ===`);
+  console.log(`Generated: ${generated} event pages + 1 index`);
+}

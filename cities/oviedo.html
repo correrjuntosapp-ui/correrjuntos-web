@@ -45,12 +45,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/oviedo",
+      "@id": "https://www.correrjuntos.com/cities/oviedo#webpage",
       "url": "https://www.correrjuntos.com/cities/oviedo",
       "name": "Grupos de Running en Oviedo | CorrerJuntos - Comunidad Running Oviedo",
       "description": "ÚneÚnete a grupos de running en Oviedo. Conecta con corredores en el Parque de San Francisco, Senda del Oso, Monte Naranco y Campo de San Francisco. Encuentra t",
-      "inLanguage": "es-ES"
+      "inLanguage": "es-ES",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Oviedo",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Oviedo",
+        "addressCountry": "ES"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +114,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Oviedo",
           "item": "https://www.correrjuntos.com/cities/oviedo"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Oviedo",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Oviedo",
-        "addressCountry": "ES"
-      },
-      "description": "Conecta con grupos de running en Oviedo."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/oviedo#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +176,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Oviedo son el Centro (Campo de San Francisco), La Corredoria (sendas verdes), Ciudad Naranco (trail en el Monte Naranco), Buenavista (Parque de Invierno) y Colloto/Siero (rutas rurales asturianas)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/oviedo#faq"
     }
   ]
 }
@@ -334,9 +367,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

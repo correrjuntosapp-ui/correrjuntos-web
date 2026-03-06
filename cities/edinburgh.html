@@ -46,12 +46,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/edinburgh",
+      "@id": "https://www.correrjuntos.com/cities/edinburgh#webpage",
       "url": "https://www.correrjuntos.com/cities/edinburgh",
       "name": "Running Groups in Edinburgh | CorrerJuntos - Edinburgh Running Community",
       "description": "Join running groups in Edinburgh. Connect with runners across Arthur's Seat, Holyrood Park, Water of Leith, and Portobello Beach. Find your Edinburgh running cr",
-      "inLanguage": "en-GB"
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Edinburgh",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Edinburgh",
+        "addressCountry": "GB"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -74,17 +115,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Edinburgh",
           "item": "https://www.correrjuntos.com/cities/edinburgh"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Edinburgh",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Edinburgh",
-        "addressCountry": "GB"
-      },
-      "description": "Connect with running groups in Edinburgh."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/edinburgh#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -145,7 +177,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Top running areas in Edinburgh include Old Town and Arthur's Seat (iconic volcanic climbs and Holyrood Park), Stockbridge and the Water of Leith (12.5-mile riverside walkway through wooded gorge), Portobello (flat seaside beach running along the promenade), Morningside and the Pentland Hills (gateway to serious trail running with Blackford Hill for shorter climbs), and Leith and Newhaven (waterfront running along the Shore with connections to Cramond Island at low tide)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/edinburgh#faq"
     }
   ]
 }
@@ -328,9 +361,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

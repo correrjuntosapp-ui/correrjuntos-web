@@ -44,12 +44,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/milan",
+      "@id": "https://www.correrjuntos.com/cities/milan#webpage",
       "url": "https://www.correrjuntos.com/cities/milan",
       "name": "Running Groups in Milan | CorrerJuntos - Milan Running Community",
       "description": "Join running groups in Milan. Connect with runners across Parco Sempione, Navigli canals, Parco Nord, and Idroscalo. Find your Milan running crew.",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Milan",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Milan",
+        "addressCountry": "IT"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -72,17 +113,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Milan",
           "item": "https://www.correrjuntos.com/cities/milan"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Milan",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Milan",
-        "addressCountry": "IT"
-      },
-      "description": "Connect with running groups in Milan."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/milan#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -143,7 +175,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "The best areas for runners in Milan are Sempione and Arco della Pace (central park running with castle views), Navigli (canal-side routes through trendy neighborhoods), CityLife and Portello (modern district with wide pedestrian paths), Parco Nord and Niguarda (vast suburban parkland ideal for long runs), and Idroscalo near Linate (flat lake loops with beach atmosphere)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/milan#faq"
     }
   ]
 }
@@ -324,9 +357,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

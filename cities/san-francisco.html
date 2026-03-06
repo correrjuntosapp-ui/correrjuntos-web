@@ -45,12 +45,69 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/san-francisco",
+      "@id": "https://www.correrjuntos.com/cities/san-francisco#webpage",
       "url": "https://www.correrjuntos.com/cities/san-francisco",
       "name": "Running Groups in San Francisco | CorrerJuntos - SF Running Community",
       "description": "Join running groups in San Francisco. Connect with runners across Golden Gate Park, Crissy Field, Embarcadero, Lands End, and Twin Peaks. Find your SF running c",
-      "inLanguage": "en-US"
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "San Francisco",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Francisco",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en San Francisco",
+      "url": "https://www.correrjuntos.com/cities/san-francisco",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Golden Gate Park",
+            "url": "https://www.correrjuntos.com/places/golden-gate-park"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +130,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "San Francisco",
           "item": "https://www.correrjuntos.com/cities/san-francisco"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in San Francisco",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "San Francisco",
-        "addressCountry": "US"
-      },
-      "description": "Connect with running groups in San Francisco."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/san-francisco#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +192,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Top running areas in San Francisco include the Marina and Presidio for Golden Gate Bridge access and flat waterfront paths, Golden Gate Park and the Sunset for miles of car-free trails to the ocean, the Embarcadero and SOMA for scenic bayfront running, North Beach and Telegraph Hill for challenging hill routes, and the Marin Headlands across the bridge for epic coastal trail running."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/san-francisco#faq"
     }
   ]
 }
@@ -331,9 +380,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

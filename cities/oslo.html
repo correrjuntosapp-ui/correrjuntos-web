@@ -44,12 +44,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/oslo",
+      "@id": "https://www.correrjuntos.com/cities/oslo#webpage",
       "url": "https://www.correrjuntos.com/cities/oslo",
       "name": "Running Groups in Oslo | CorrerJuntos - Oslo Running Community",
       "description": "Join running groups in Oslo. Connect with runners across Nordmarka Forest, Sognsvann Lake, Frognerparken, and Aker Brygge waterfront. Find your Oslo running cre",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Oslo",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Oslo",
+        "addressCountry": "NO"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -72,17 +113,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Oslo",
           "item": "https://www.correrjuntos.com/cities/oslo"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Oslo",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Oslo",
-        "addressCountry": "NO"
-      },
-      "description": "Connect with running groups in Oslo."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/oslo#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -143,7 +175,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Top running areas include Frogner/Vigeland (west side, parks and tree-lined streets), Grunerlokka along the Akerselva river path (8 km riverside trail), Nordmarka (forest access from multiple metro stops), St. Hanshaugen (central hills with panoramic city views), and Bygdoy peninsula (seaside loops with beaches and museums)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/oslo#faq"
     }
   ]
 }
@@ -331,10 +364,11 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#127961;&#65039; Ciudades</a>
-      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#9997;&#65039; Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#128095; Equipamiento</a>
-      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">&#128241; App</a>
+      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
+      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
+      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>
   <div>

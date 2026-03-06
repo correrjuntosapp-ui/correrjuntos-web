@@ -45,12 +45,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/chicago",
+      "@id": "https://www.correrjuntos.com/cities/chicago#webpage",
       "url": "https://www.correrjuntos.com/cities/chicago",
       "name": "Running Groups in Chicago | CorrerJuntos - Chicago Running Community",
       "description": "Join running groups in Chicago. Connect with runners across the 18-mile Lakefront Trail, Lincoln Park, Grant Park, and the 606 Trail. Find your Chicago running ",
-      "inLanguage": "en-US"
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Chicago",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chicago",
+        "addressCountry": "US"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +114,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Chicago",
           "item": "https://www.correrjuntos.com/cities/chicago"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Chicago",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chicago",
-        "addressCountry": "US"
-      },
-      "description": "Connect with running groups in Chicago."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/chicago#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +176,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Top running areas in Chicago include Lincoln Park and Lakeview with direct lakefront trail access and park paths, the Loop and Grant Park for downtown skyline runs, Hyde Park and Jackson Park near the University of Chicago with south-side lakefront routes, Wicker Park and the 606 Trail for elevated urban running, and Evanston on the north shore with quieter lakefront paths and Northwestern University campus trails."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/chicago#faq"
     }
   ]
 }
@@ -341,9 +374,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

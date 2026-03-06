@@ -44,12 +44,75 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/paris",
+      "@id": "https://www.correrjuntos.com/cities/paris#webpage",
       "url": "https://www.correrjuntos.com/cities/paris",
       "name": "Running Groups in Paris | CorrerJuntos - Paris Running Community",
       "description": "Join running groups in Paris. Connect with runners across Jardin du Luxembourg, Bois de Boulogne, Seine riverbanks, and Tuileries. Find your Parisian running cr",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Paris",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Paris",
+        "addressCountry": "FR"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en Paris",
+      "url": "https://www.correrjuntos.com/cities/paris",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Bois De Boulogne",
+            "url": "https://www.correrjuntos.com/places/bois-de-boulogne"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Eventos de running en Paris",
+            "url": "https://www.correrjuntos.com/events/paris"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -72,17 +135,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Paris",
           "item": "https://www.correrjuntos.com/cities/paris"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Paris",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Paris",
-        "addressCountry": "FR"
-      },
-      "description": "Connect with running groups in Paris."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/paris#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -143,7 +197,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "The best arrondissements for running in Paris are the 16th (near Bois de Boulogne with 846 hectares of woodland), the 12th (near Bois de Vincennes with lake circuits), the 5th and 6th (near Jardin du Luxembourg and the Latin Quarter), along the Seine on both banks, and the 19th (Buttes-Chaumont park offers hilly trail-like terrain). Each area offers a distinct running experience."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/paris#faq"
     }
   ]
 }
@@ -325,9 +380,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

@@ -44,12 +44,75 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/berlin",
+      "@id": "https://www.correrjuntos.com/cities/berlin#webpage",
       "url": "https://www.correrjuntos.com/cities/berlin",
       "name": "Running Groups in Berlin | CorrerJuntos - Berlin Running Community",
       "description": "Join running groups in Berlin. Connect with runners across Tiergarten, Tempelhofer Feld, Mauerweg, and Grunewald. Find your Berlin running crew today.",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Berlin",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Berlin",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en Berlin",
+      "url": "https://www.correrjuntos.com/cities/berlin",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Tiergarten",
+            "url": "https://www.correrjuntos.com/places/tiergarten"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Eventos de running en Berlin",
+            "url": "https://www.correrjuntos.com/events/berlin"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -72,17 +135,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Berlin",
           "item": "https://www.correrjuntos.com/cities/berlin"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Berlin",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Berlin",
-        "addressCountry": "DE"
-      },
-      "description": "Connect with running groups in Berlin."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/berlin#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -143,7 +197,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "The best running areas in Berlin are Mitte and Tiergarten (central park, iconic landmarks), Kreuzberg (Landwehrkanal paths, hip culture), Prenzlauer Berg (Volkspark Friedrichshain), Charlottenburg (close to Grunewald forest for trail running), and Neukölln with access to Tempelhofer Feld's open 355-hectare space."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/berlin#faq"
     }
   ]
 }
@@ -325,9 +380,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

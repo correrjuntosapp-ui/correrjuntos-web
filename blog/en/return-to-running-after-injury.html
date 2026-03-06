@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/return-to-running-after-injury#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/return-to-running-after-injury",
+      "name": "Return to Running After Injury: Safe Comeback Guide | CorrerJuntos",
+      "description": "How to safely return to running after an injury. Progressive comeback plan, warning signs, strengthening exercises and mistakes that delay your recovery.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/return-to-running-after-injury#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/return-to-running-after-injury#webpage"
+      },
       "headline": "Return to Running After Injury: Safe Comeback Guide",
       "description": "How to safely return to running after an injury. Progressive comeback plan, warning signs, strengthening exercises and mistakes that delay your recovery.",
       "url": "https://www.correrjuntos.com/blog/en/return-to-running-after-injury",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Return to Running After Injury"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Return to Running After Injury"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/return-to-running-after-injury#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Can I run with mild pain?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the type of pain. Mild muscle soreness (DOMS) that fades during the first few minutes of running is generally acceptable. However, any joint pain, pain that worsens while running, sharp or stabbing pain, or pain localised to bone is a warning sign that should stop you immediately. The general rule is: if the pain changes your running form (limping, involuntarily shortening your stride, shifting weight to one side), you must stop. Consult a sports physiotherapist before continuing."}},
-        {"@type": "Question", "name": "How long does it take to regain my previous fitness level?", "acceptedAnswer": {"@type": "Answer", "text": "As a general reference, it takes roughly twice the duration of your time off to regain your previous level. If you spent 4 weeks without running, you will need about 8 weeks to return to your previous form. For breaks of 3 months or longer, recovery can take 4 to 6 months. The good news is that your body has muscular and cardiovascular memory: you will regain fitness faster than the first time you reached that level. The key is patience and consistency, not intensity."}},
-        {"@type": "Question", "name": "Should I use a knee brace or ankle support when returning to running?", "acceptedAnswer": {"@type": "Answer", "text": "Knee braces and ankle supports can provide a feeling of security, but they should not replace active rehabilitation. If you need an external support to run without pain, you are probably not ready to come back yet. Elastic compression supports can help reduce residual swelling during the first weeks of your return, but the goal should be to strengthen the area until you no longer need any support. Consult your physiotherapist about whether using a support is appropriate for your specific situation."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Can I run with mild pain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the type of pain. Mild muscle soreness (DOMS) that fades during the first few minutes of running is generally acceptable. However, any joint pain, pain that worsens while running, sharp or stabbing pain, or pain localised to bone is a warning sign that should stop you immediately. The general rule is: if the pain changes your running form (limping, involuntarily shortening your stride, shifting weight to one side), you must stop. Consult a sports physiotherapist before continuing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to regain my previous fitness level?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As a general reference, it takes roughly twice the duration of your time off to regain your previous level. If you spent 4 weeks without running, you will need about 8 weeks to return to your previous form. For breaks of 3 months or longer, recovery can take 4 to 6 months. The good news is that your body has muscular and cardiovascular memory: you will regain fitness faster than the first time you reached that level. The key is patience and consistency, not intensity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use a knee brace or ankle support when returning to running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Knee braces and ankle supports can provide a feeling of security, but they should not replace active rehabilitation. If you need an external support to run without pain, you are probably not ready to come back yet. Elastic compression supports can help reduce residual swelling during the first weeks of your return, but the goal should be to strengthen the area until you no longer need any support. Consult your physiotherapist about whether using a support is appropriate for your specific situation."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/return-to-running-after-injury#faq"
     }
   ]
 }

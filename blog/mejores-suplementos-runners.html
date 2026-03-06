@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/mejores-suplementos-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/mejores-suplementos-runners",
+      "name": "Mejores Suplementos para Runners 2026 — Guía Completa",
+      "description": "Geles, bebidas isotónicas, recuperadores y vitaminas para corredores. Descubre qué suplementos realmente necesitas y cuáles puedes ahorrarte. Con precios.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/mejores-suplementos-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/mejores-suplementos-runners#webpage"
+      },
       "headline": "Mejores Suplementos para Runners: Lo que Realmente Necesitas",
       "description": "Guía completa de suplementos para corredores. Geles, isotonicas, recuperadores, vitaminas y cafeina.",
       "url": "https://www.correrjuntos.com/blog/mejores-suplementos-runners",
       "datePublished": "2026-02-19",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Suplementos Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Suplementos Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-suplementos-runners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Necesito tomar suplementos si solo corro 3 veces a la semana?", "acceptedAnswer": {"@type": "Answer", "text": "Para la mayoría de corredores recreativos que entrenan 3-4 veces por semana, una dieta equilibrada es suficiente. Los geles solo son necesarios si corres mas de 60-75 minutos seguidos. Los suplementos basicos que podrian ayudarte son vitamina D (si no tomas sol) y hierro (si eres mujer). El resto es opcional."}},
-        {"@type": "Question", "name": "Cuando debo tomar un gel durante la carrera?", "acceptedAnswer": {"@type": "Answer", "text": "El primer gel deberia tomarse entre el minuto 30-45 de carrera, antes de notar fatiga. Despues, un gel cada 30-45 minutos. En una media maraton necesitaras 2-3 geles. En un maraton, 5-7. Siempre acompanado de agua y siempre probado antes en entrenamientos."}},
-        {"@type": "Question", "name": "La cafeina mejora el rendimiento en running?", "acceptedAnswer": {"@type": "Answer", "text": "Si. La cafeina es el suplemento legal con mayor evidencia cientifica de mejora del rendimiento. Una dosis de 3-6 mg por kg de peso, tomada 30-60 minutos antes del ejercicio, puede mejorar tu rendimiento entre un 2-4%. Muchos geles energeticos incluyen cafeina. Si no estas acostumbrado, empieza con dosis bajas."}},
-        {"@type": "Question", "name": "Es seguro tomar suplementos deportivos?", "acceptedAnswer": {"@type": "Answer", "text": "Los suplementos deportivos de marcas reconocidas y con certificaciones de calidad son seguros para la mayoría de personas. Sin embargo, es importante no exceder las dosis recomendadas, consultar con un medico si tomas medicacion, y elegir productos con sellos de calidad como Informed Sport o NSF Certified for Sport. Evita comprar suplementos de origen dudoso o sin etiquetado claro."}},
-        {"@type": "Question", "name": "Que suplemento tomar antes de un maraton?", "acceptedAnswer": {"@type": "Answer", "text": "Antes de un maraton, los suplementos mas utiles son: cafeina (3-6 mg/kg, 30-60 min antes de la salida), un gel energetico en los minutos previos o al inicio, y asegurarte de estar bien hidratado con electrolitos. Durante la carrera necesitaras 5-7 geles espaciados cada 30-45 minutos y bebida isotonica en cada avituallamiento. Practica siempre tu estrategia nutricional en entrenamientos largos."}},
-        {"@type": "Question", "name": "El colageno sirve para prevenir lesiones?", "acceptedAnswer": {"@type": "Answer", "text": "La evidencia cientifica sobre el colageno para prevenir lesiones articulares en corredores es muy limitada. Algunos estudios sugieren un posible beneficio en la salud del cartilago cuando se combina con vitamina C, pero los resultados no son concluyentes. Tu cuerpo produce colageno de forma natural si consumes suficiente proteína y vitamina C. Antes de gastar dinero en colageno, asegurate de tener una dieta completa y un plan de entrenamiento progresivo."}},
-        {"@type": "Question", "name": "Cuanta proteína necesita un corredor al dia?", "acceptedAnswer": {"@type": "Answer", "text": "Un corredor necesita entre 1.2 y 1.6 gramos de proteína por kilogramo de peso corporal al dia, dependiendo del volumen e intensidad del entrenamiento. Para un corredor de 70 kg, esto supone entre 84 y 112 gramos diarios. En períodos de alta carga o preparacion de maraton, puedes acercarte al rango superior. Distribuye la ingesta en 4-5 tomas a lo largo del dia para maximizar la sintesis muscular."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Necesito tomar suplementos si solo corro 3 veces a la semana?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para la mayoría de corredores recreativos que entrenan 3-4 veces por semana, una dieta equilibrada es suficiente. Los geles solo son necesarios si corres mas de 60-75 minutos seguidos. Los suplementos basicos que podrian ayudarte son vitamina D (si no tomas sol) y hierro (si eres mujer). El resto es opcional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cuando debo tomar un gel durante la carrera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El primer gel deberia tomarse entre el minuto 30-45 de carrera, antes de notar fatiga. Despues, un gel cada 30-45 minutos. En una media maraton necesitaras 2-3 geles. En un maraton, 5-7. Siempre acompanado de agua y siempre probado antes en entrenamientos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "La cafeina mejora el rendimiento en running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si. La cafeina es el suplemento legal con mayor evidencia cientifica de mejora del rendimiento. Una dosis de 3-6 mg por kg de peso, tomada 30-60 minutos antes del ejercicio, puede mejorar tu rendimiento entre un 2-4%. Muchos geles energeticos incluyen cafeina. Si no estas acostumbrado, empieza con dosis bajas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Es seguro tomar suplementos deportivos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los suplementos deportivos de marcas reconocidas y con certificaciones de calidad son seguros para la mayoría de personas. Sin embargo, es importante no exceder las dosis recomendadas, consultar con un medico si tomas medicacion, y elegir productos con sellos de calidad como Informed Sport o NSF Certified for Sport. Evita comprar suplementos de origen dudoso o sin etiquetado claro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que suplemento tomar antes de un maraton?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Antes de un maraton, los suplementos mas utiles son: cafeina (3-6 mg/kg, 30-60 min antes de la salida), un gel energetico en los minutos previos o al inicio, y asegurarte de estar bien hidratado con electrolitos. Durante la carrera necesitaras 5-7 geles espaciados cada 30-45 minutos y bebida isotonica en cada avituallamiento. Practica siempre tu estrategia nutricional en entrenamientos largos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "El colageno sirve para prevenir lesiones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La evidencia cientifica sobre el colageno para prevenir lesiones articulares en corredores es muy limitada. Algunos estudios sugieren un posible beneficio en la salud del cartilago cuando se combina con vitamina C, pero los resultados no son concluyentes. Tu cuerpo produce colageno de forma natural si consumes suficiente proteína y vitamina C. Antes de gastar dinero en colageno, asegurate de tener una dieta completa y un plan de entrenamiento progresivo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cuanta proteína necesita un corredor al dia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un corredor necesita entre 1.2 y 1.6 gramos de proteína por kilogramo de peso corporal al dia, dependiendo del volumen e intensidad del entrenamiento. Para un corredor de 70 kg, esto supone entre 84 y 112 gramos diarios. En períodos de alta carga o preparacion de maraton, puedes acercarte al rango superior. Distribuye la ingesta en 4-5 tomas a lo largo del dia para maximizar la sintesis muscular."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-suplementos-runners#faq"
     }
   ]
 }

@@ -28,35 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/hierro-para-corredores#webpage",
+      "url": "https://www.correrjuntos.com/blog/hierro-para-corredores",
+      "name": "Hierro para Corredores: Cómo Evitar la Anemia del Runner | CorrerJuntos",
+      "description": "Guía completa sobre hierro para corredores. Síntomas de anemia del runner, alimentos ricos en hierro, cuánto necesitas y cuándo suplementar. Actualizado 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/hierro-para-corredores#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/hierro-para-corredores#webpage"
+      },
       "headline": "Hierro para Corredores: Cómo Evitar la Anemia del Runner",
       "description": "Guía completa sobre hierro para corredores: síntomas de anemia, alimentos ricos en hierro y cuándo suplementar.",
       "url": "https://www.correrjuntos.com/blog/hierro-para-corredores",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
-      "author": {"@type": "Person", "name": "Carlos Ruiz", "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz", "jobTitle": "Fundador de CorrerJuntos", "sameAs": ["https://www.strava.com/athletes/correrjuntos", "https://www.instagram.com/correrjuntosapp/", "https://x.com/correrjuntosapp"]},
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Hierro para Corredores"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Hierro para Corredores"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/hierro-para-corredores#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Por qué los corredores tienen más riesgo de anemia?", "acceptedAnswer": {"@type": "Answer", "text": "Los corredores pierden hierro por el sudor, la hemólisis por impacto (rotura de glóbulos rojos al pisar), el sangrado gastrointestinal microscópico y la menstruación en mujeres. Además, el entrenamiento aumenta las necesidades de hierro."}},
-        {"@type": "Question", "name": "¿Cuáles son los síntomas de la anemia del runner?", "acceptedAnswer": {"@type": "Answer", "text": "Fatiga inusual, ritmos más lentos sin explicación, frecuencia cardíaca elevada en esfuerzos suaves, mareos, uñas frágiles, piel pálida y dificultad para recuperarse entre entrenamientos."}},
-        {"@type": "Question", "name": "¿Cuánto hierro necesita un corredor al día?", "acceptedAnswer": {"@type": "Answer", "text": "Los corredores necesitan entre 8-18 mg de hierro al día, dependiendo del sexo y nivel de entrenamiento. Las mujeres corredoras necesitan más (18 mg). Algunos estudios sugieren que los runners necesitan un 70% más que los sedentarios."}},
-        {"@type": "Question", "name": "¿Qué nivel de ferritina es preocupante para un corredor?", "acceptedAnswer": {"@type": "Answer", "text": "Para un corredor, niveles de ferritina por debajo de 30 ng/mL ya pueden afectar al rendimiento, aunque el rango normal de laboratorio sea 12-150. Lo ideal es mantener la ferritina por encima de 40-50 ng/mL."}},
-        {"@type": "Question", "name": "¿Puedo tomar suplementos de hierro sin receta?", "acceptedAnswer": {"@type": "Answer", "text": "No se recomienda tomar hierro sin una analítica previa. El exceso de hierro es tóxico y puede causar daño hepático. Siempre consulta con tu médico y hazte una analítica con ferritina antes de suplementar."}},
-        {"@type": "Question", "name": "¿El café afecta a la absorción de hierro?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El café y el té contienen taninos que inhiben la absorción de hierro. Evita tomarlos 1-2 horas antes y después de comidas ricas en hierro. En cambio, la vitamina C mejora significativamente la absorción."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Por qué los corredores tienen más riesgo de anemia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los corredores pierden hierro por el sudor, la hemólisis por impacto (rotura de glóbulos rojos al pisar), el sangrado gastrointestinal microscópico y la menstruación en mujeres. Además, el entrenamiento aumenta las necesidades de hierro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuáles son los síntomas de la anemia del runner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fatiga inusual, ritmos más lentos sin explicación, frecuencia cardíaca elevada en esfuerzos suaves, mareos, uñas frágiles, piel pálida y dificultad para recuperarse entre entrenamientos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto hierro necesita un corredor al día?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los corredores necesitan entre 8-18 mg de hierro al día, dependiendo del sexo y nivel de entrenamiento. Las mujeres corredoras necesitan más (18 mg). Algunos estudios sugieren que los runners necesitan un 70% más que los sedentarios."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué nivel de ferritina es preocupante para un corredor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para un corredor, niveles de ferritina por debajo de 30 ng/mL ya pueden afectar al rendimiento, aunque el rango normal de laboratorio sea 12-150. Lo ideal es mantener la ferritina por encima de 40-50 ng/mL."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo tomar suplementos de hierro sin receta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No se recomienda tomar hierro sin una analítica previa. El exceso de hierro es tóxico y puede causar daño hepático. Siempre consulta con tu médico y hazte una analítica con ferritina antes de suplementar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El café afecta a la absorción de hierro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El café y el té contienen taninos que inhiben la absorción de hierro. Evita tomarlos 1-2 horas antes y después de comidas ricas en hierro. En cambio, la vitamina C mejora significativamente la absorción."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/hierro-para-corredores#faq"
     }
   ]
 }

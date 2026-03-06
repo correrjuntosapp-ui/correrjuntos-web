@@ -27,17 +27,141 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "The Loneliness of Running: Something Almost Nobody Talks About", "description": "Runner loneliness is real. Early morning solo runs, training alone, the isolation paradox. How community transforms the running experience.", "url": "https://www.correrjuntos.com/blog/en/loneliness-of-running", "datePublished": "2026-03-01", "dateModified": "2026-03-01", "author": {"@type": "Person", "name": "Carlos Ruiz", "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz", "jobTitle": "Running Coach & Editor", "sameAs": ["https://www.strava.com/athletes/correrjuntos", "https://www.instagram.com/correrjuntosapp/", "https://x.com/correrjuntosapp"]}, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en", "image": "https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "The Loneliness of Running"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Is it normal to feel lonely while running?", "acceptedAnswer": {"@type": "Answer", "text": "Completely normal. 73% of recreational runners train alone regularly, and more than half admit they would prefer to have company. Runner loneliness is a documented phenomenon that affects motivation, habit adherence and emotional wellbeing."}},
-      {"@type": "Question", "name": "Does runner loneliness affect performance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in several ways. Without social stimulus, it is harder to maintain intensity during quality workouts. Additionally, lack of motivation leads to skipping sessions. Studies show that group runners improve their personal bests 5 to 10% faster than those who train alone."}},
-      {"@type": "Question", "name": "How can I overcome loneliness while running?", "acceptedAnswer": {"@type": "Answer", "text": "The most effective way is to join a running community. You can use apps like CorrerJuntos to find runners near you, join a local club, attend parkrun or search for groups on social media. Even meeting with just one person once a week makes an enormous difference."}},
-      {"@type": "Question", "name": "Why don't my friends understand my passion for running?", "acceptedAnswer": {"@type": "Answer", "text": "Because running is an experience you have to live to understand. Your non-runner friends cannot comprehend post-race euphoria, the satisfaction of a personal best or why you wake up early on Sunday to run 20 km. It is not lack of interest, it is lack of frame of reference. That is why you need friends who run."}},
-      {"@type": "Question", "name": "Does running alone have any benefits?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Running alone allows introspection, schedule freedom, mental work and adjusting pace without pressure. The problem is not running alone sometimes, but running alone always. The ideal balance is combining solitary workouts with social sessions."}},
-      {"@type": "Question", "name": "How can I find runners near me?", "acceptedAnswer": {"@type": "Answer", "text": "Use the CorrerJuntos app to search for runners by location, pace and schedule. You can also look for local Facebook groups, running clubs, parkrun in your city or meetups on Meetup.com. The key is taking the first step and showing up."}},
-      {"@type": "Question", "name": "Can running alone cause depression?", "acceptedAnswer": {"@type": "Answer", "text": "Running alone does not directly cause depression, but prolonged social isolation is a risk factor for mental health. If running was your main social activity and you do it in solitude, it could contribute to feelings of isolation. If you feel loneliness is seriously affecting you, consult a professional."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/loneliness-of-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/loneliness-of-running",
+      "name": "The Loneliness of Running: Something Almost Nobody Talks About | CorrerJuntos",
+      "description": "Runner loneliness is real. Early morning solo runs, training alone, the isolation paradox. How community transforms the running experience.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Running Coach & Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/loneliness-of-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/loneliness-of-running#webpage"
+      },
+      "headline": "The Loneliness of Running: Something Almost Nobody Talks About",
+      "description": "Runner loneliness is real. Early morning solo runs, training alone, the isolation paradox. How community transforms the running experience.",
+      "url": "https://www.correrjuntos.com/blog/en/loneliness-of-running",
+      "datePublished": "2026-03-01",
+      "dateModified": "2026-03-01",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The Loneliness of Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/loneliness-of-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is it normal to feel lonely while running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Completely normal. 73% of recreational runners train alone regularly, and more than half admit they would prefer to have company. Runner loneliness is a documented phenomenon that affects motivation, habit adherence and emotional wellbeing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does runner loneliness affect performance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, in several ways. Without social stimulus, it is harder to maintain intensity during quality workouts. Additionally, lack of motivation leads to skipping sessions. Studies show that group runners improve their personal bests 5 to 10% faster than those who train alone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I overcome loneliness while running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most effective way is to join a running community. You can use apps like CorrerJuntos to find runners near you, join a local club, attend parkrun or search for groups on social media. Even meeting with just one person once a week makes an enormous difference."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why don't my friends understand my passion for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because running is an experience you have to live to understand. Your non-runner friends cannot comprehend post-race euphoria, the satisfaction of a personal best or why you wake up early on Sunday to run 20 km. It is not lack of interest, it is lack of frame of reference. That is why you need friends who run."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does running alone have any benefits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Running alone allows introspection, schedule freedom, mental work and adjusting pace without pressure. The problem is not running alone sometimes, but running alone always. The ideal balance is combining solitary workouts with social sessions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I find runners near me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the CorrerJuntos app to search for runners by location, pace and schedule. You can also look for local Facebook groups, running clubs, parkrun in your city or meetups on Meetup.com. The key is taking the first step and showing up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can running alone cause depression?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running alone does not directly cause depression, but prolonged social isolation is a risk factor for mental health. If running was your main social activity and you do it in solitude, it could contribute to feelings of isolation. If you feel loneliness is seriously affecting you, consult a professional."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/loneliness-of-running#faq"
+    }
   ]
 }
 </script>

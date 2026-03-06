@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross",
+      "name": "Running with Your Dog (Canicross): Complete Beginner's Guide | CorrerJuntos",
+      "description": "Complete canicross guide for beginners. Best dog breeds for running, essential gear, training technique, common mistakes and how to start safely with your dog.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1390361/pexels-photo-1390361.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross#webpage"
+      },
       "headline": "Running with Your Dog (Canicross): Complete Beginner's Guide",
       "description": "Complete canicross guide for beginners. Best dog breeds for running, essential gear, training technique, common mistakes and how to start safely with your dog.",
       "url": "https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/1390361/pexels-photo-1390361.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1390361/pexels-photo-1390361.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Running with Your Dog"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running with Your Dog"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "At what age can my dog start canicross?", "acceptedAnswer": {"@type": "Answer", "text": "Most veterinarians recommend waiting until the dog is between 12 and 18 months old, depending on the breed. Puppies have open growth plates in their bones and running on hard surfaces can cause permanent joint damage. Large and giant breeds (German Shepherd, Golden Retriever, Husky) should wait closer to 18 months, while medium breeds may start at 12 months. Before you begin, get a full veterinary check-up including hip and elbow X-rays to rule out dysplasia."}},
-        {"@type": "Question", "name": "Can I do canicross in the city?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but with precautions. Pavement is harsher on your dog's paw pads than dirt trails, especially in summer when ground temperature can exceed 60 degrees Celsius. Choose large parks, bike lanes separated from traffic or wide pedestrian areas. Avoid peak heat hours and always check the ground temperature with the back of your hand: if you cannot hold it there for 5 seconds, it is too hot for your dog's paws. Many urban runners opt for early mornings or evenings to avoid heat and traffic."}},
-        {"@type": "Question", "name": "Do I need a licence to do canicross?", "acceptedAnswer": {"@type": "Answer", "text": "For recreational canicross you do not need a specific licence in most countries, but you must comply with local dog ownership regulations: microchip identification, up-to-date vaccinations, liability insurance and any breed-specific legislation that applies in your area. If you want to compete in official canicross races, you will typically need to register with a national mushing or canicross federation. An up-to-date veterinary health record is mandatory at all competitions."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "At what age can my dog start canicross?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most veterinarians recommend waiting until the dog is between 12 and 18 months old, depending on the breed. Puppies have open growth plates in their bones and running on hard surfaces can cause permanent joint damage. Large and giant breeds (German Shepherd, Golden Retriever, Husky) should wait closer to 18 months, while medium breeds may start at 12 months. Before you begin, get a full veterinary check-up including hip and elbow X-rays to rule out dysplasia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I do canicross in the city?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but with precautions. Pavement is harsher on your dog's paw pads than dirt trails, especially in summer when ground temperature can exceed 60 degrees Celsius. Choose large parks, bike lanes separated from traffic or wide pedestrian areas. Avoid peak heat hours and always check the ground temperature with the back of your hand: if you cannot hold it there for 5 seconds, it is too hot for your dog's paws. Many urban runners opt for early mornings or evenings to avoid heat and traffic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a licence to do canicross?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For recreational canicross you do not need a specific licence in most countries, but you must comply with local dog ownership regulations: microchip identification, up-to-date vaccinations, liability insurance and any breed-specific legislation that applies in your area. If you want to compete in official canicross races, you will typically need to register with a national mushing or canicross federation. An up-to-date veterinary health record is mandatory at all competitions."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross#faq"
     }
   ]
 }

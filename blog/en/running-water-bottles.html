@@ -28,33 +28,54 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-water-bottles#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-water-bottles",
+      "name": "The 8 Best Running Water Bottles & Handhelds 2026 | CorrerJuntos",
+      "description": "Comparison of the best running water bottles: Salomon, Nike, FITLY, Super Sparrow and hydration belts. Guide with capacities, prices and Amazon links.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/10226372/pexels-photo-10226372.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-water-bottles#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-water-bottles#webpage"
+      },
       "headline": "The 8 Best Running Water Bottles & Handhelds 2026",
       "description": "Comparison of the best running water bottles: Salomon, Nike, FITLY, Super Sparrow and hydration belts. Guide with capacities, prices and Amazon links.",
       "url": "https://www.correrjuntos.com/blog/en/running-water-bottles",
       "datePublished": "2026-03-06",
       "dateModified": "2026-03-06",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
       "publisher": {
-        "@type": "Organization",
-        "name": "CorrerJuntos",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.correrjuntos.com/icons/icon-512.png"
-        }
+        "@id": "https://www.correrjuntos.com/#organization"
       },
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/10226372/pexels-photo-10226372.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "image": "https://images.pexels.com/photos/10226372/pexels-photo-10226372.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
@@ -76,11 +97,8 @@
           "position": 3,
           "name": "Running water bottles"
         }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": []
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-water-bottles#breadcrumbs"
     },
     {
       "@type": "ItemList",

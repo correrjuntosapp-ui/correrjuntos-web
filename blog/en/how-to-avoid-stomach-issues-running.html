@@ -28,35 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running",
+      "name": "How to Avoid Stomach Issues While Running: Complete Guide | CorrerJuntos",
+      "description": "How to prevent stomach problems while running. Causes of runner's gut, food timing, what to eat and avoid, and practical solutions. Complete guide.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3621168/pexels-photo-3621168.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running#webpage"
+      },
       "headline": "How to Avoid Stomach Issues While Running: Complete Guide",
       "description": "Complete guide to preventing stomach problems while running. Causes of runner's gut, food timing, and practical solutions.",
       "url": "https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
-      "author": {"@type": "Person", "name": "Carlos Ruiz", "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz", "jobTitle": "Founder of CorrerJuntos", "sameAs": ["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]},
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/3621168/pexels-photo-3621168.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3621168/pexels-photo-3621168.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "How to Avoid Stomach Issues While Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Avoid Stomach Issues While Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Why does running cause stomach problems?", "acceptedAnswer": {"@type": "Answer", "text": "During running, blood is diverted from the digestive system to working muscles, reducing gut function by up to 80%. The repetitive bouncing motion also physically jostles stomach contents. These two factors combine to cause nausea, cramps, and urgency."}},
-        {"@type": "Question", "name": "How long before running should I stop eating?", "acceptedAnswer": {"@type": "Answer", "text": "For a full meal, wait 2-3 hours. For a light snack, 30-60 minutes is usually sufficient. The more fat and fiber in the food, the longer you need. Simple carbs like bananas can be eaten just 20-30 minutes before."}},
-        {"@type": "Question", "name": "What foods cause stomach issues when running?", "acceptedAnswer": {"@type": "Answer", "text": "High-fiber foods, high-fat foods, dairy products (for some runners), spicy foods, caffeine in excess, artificial sweeteners, and highly concentrated sports drinks are the most common culprits."}},
-        {"@type": "Question", "name": "Why do I need the bathroom during long runs?", "acceptedAnswer": {"@type": "Answer", "text": "Reduced blood flow to the gut, mechanical jostling, and the stimulating effect of running on bowel motility all contribute. Dehydration and concentrated nutrition can make it worse. Train your gut by practicing your race nutrition during training."}},
-        {"@type": "Question", "name": "Can I train my gut to tolerate food while running?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, gut training is a real and effective strategy. By regularly practicing eating during training runs, you can increase your gut's tolerance to food and fluids while exercising. Start with small amounts and gradually increase over weeks."}},
-        {"@type": "Question", "name": "Should I take antacids before running?", "acceptedAnswer": {"@type": "Answer", "text": "Antacids may help with acid reflux symptoms during running, but they do not address the root cause. Focus on food timing and choices first. If problems persist despite dietary changes, consult a doctor to rule out underlying conditions."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Why does running cause stomach problems?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "During running, blood is diverted from the digestive system to working muscles, reducing gut function by up to 80%. The repetitive bouncing motion also physically jostles stomach contents. These two factors combine to cause nausea, cramps, and urgency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long before running should I stop eating?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a full meal, wait 2-3 hours. For a light snack, 30-60 minutes is usually sufficient. The more fat and fiber in the food, the longer you need. Simple carbs like bananas can be eaten just 20-30 minutes before."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What foods cause stomach issues when running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "High-fiber foods, high-fat foods, dairy products (for some runners), spicy foods, caffeine in excess, artificial sweeteners, and highly concentrated sports drinks are the most common culprits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do I need the bathroom during long runs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reduced blood flow to the gut, mechanical jostling, and the stimulating effect of running on bowel motility all contribute. Dehydration and concentrated nutrition can make it worse. Train your gut by practicing your race nutrition during training."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I train my gut to tolerate food while running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, gut training is a real and effective strategy. By regularly practicing eating during training runs, you can increase your gut's tolerance to food and fluids while exercising. Start with small amounts and gradually increase over weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I take antacids before running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Antacids may help with acid reflux symptoms during running, but they do not address the root cause. Focus on food timing and choices first. If problems persist despite dietary changes, consult a doctor to rule out underlying conditions."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/how-to-avoid-stomach-issues-running#faq"
     }
   ]
 }

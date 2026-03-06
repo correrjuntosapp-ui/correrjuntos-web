@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners",
+      "name": "Basic Running Pack: Everything You Need to Start Running | CorrerJuntos",
+      "description": "Complete guide to essential running gear for beginners. From shoes to accessories: what to buy first, how much to spend and what to skip. Budgets starting at 200 euros.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners#webpage"
+      },
       "headline": "Basic Running Pack: Everything You Need to Start Running",
       "description": "Complete guide to essential running gear for beginners. Shoes, clothing, accessories and budgets starting at 200 euros.",
       "url": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Basic Running Pack"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Basic Running Pack"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "How much money do I need to start running?", "acceptedAnswer": {"@type": "Answer", "text": "With around 200 euros you can cover the essentials: a good pair of running shoes (120-140 euros), a technical shirt (15-20 euros), shorts or tights (20-30 euros) and technical socks (8-12 euros). You don't need anything else for your first few weeks. The rest of the gear can wait until you've confirmed that running is for you."}},
-        {"@type": "Question", "name": "Do I need a GPS watch to start running?", "acceptedAnswer": {"@type": "Answer", "text": "Not at first. You can start using a free app on your phone like Strava or Nike Run Club, which track distance, pace and route via GPS. A GPS watch is a worthwhile investment once you've been running for a few weeks and want more accurate data without carrying your phone. Models like the COROS PACE 3 or Garmin Forerunner 55 offer excellent value for money."}},
-        {"@type": "Question", "name": "What clothing do I need for running?", "acceptedAnswer": {"@type": "Answer", "text": "The minimum is a technical shirt made from synthetic fabric that wicks sweat and a pair of shorts or tights with a built-in liner. Avoid cotton because it retains moisture and causes chafing. For winter, add a second layer (thermal base layer) and full-length tights. Brands like Decathlon (Kalenji) offer functional options starting at 10 euros."}},
-        {"@type": "Question", "name": "Are energy gels necessary for beginners?", "acceptedAnswer": {"@type": "Answer", "text": "No. Energy gels are designed for efforts lasting more than 60-75 minutes. If you're just starting out, your runs will be 20 to 40 minutes long and your body has plenty of glycogen reserves to fuel that effort. Focus on hydrating well before and after your run, and save gels for when you start training for races longer than 10K."}},
-        {"@type": "Question", "name": "What are the best affordable running shoes for beginners?", "acceptedAnswer": {"@type": "Answer", "text": "The three best value options for beginners are: Nike Pegasus (~130 euros), the most versatile all-rounder; Brooks Ghost (~135 euros), with very soft cushioning; and Hoka Clifton (~140 euros), the most cushioned and lightweight. Any of the three is an excellent choice for getting started. Look for deals on Amazon or outlet stores, where previous season models often come with 20-30% discounts."}},
-        {"@type": "Question", "name": "Do I need special socks for running?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, technical socks are more important than most people think. Cotton socks retain sweat, causing blisters and chafing. Running socks are made from synthetic fibres or merino wool, feature reinforcements at the heel and toe, have flat seams and a snug fit that prevents them from shifting. A pair of technical socks costs between 8 and 15 euros and makes a huge difference to your comfort."}},
-        {"@type": "Question", "name": "What gear is essential and what is optional for running?", "acceptedAnswer": {"@type": "Answer", "text": "Essential: running shoes (the most important item), technical shirt, shorts or tights, and technical socks. Highly recommended: GPS watch or running app, sports headphones and a hydration bottle. Optional or for later: energy gels, foam roller, reflective gear and recovery accessories. The essentials cost around 200 euros, adding the recommended items brings it to 400, and the complete pack runs about 700 euros."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "How much money do I need to start running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With around 200 euros you can cover the essentials: a good pair of running shoes (120-140 euros), a technical shirt (15-20 euros), shorts or tights (20-30 euros) and technical socks (8-12 euros). You don't need anything else for your first few weeks. The rest of the gear can wait until you've confirmed that running is for you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a GPS watch to start running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not at first. You can start using a free app on your phone like Strava or Nike Run Club, which track distance, pace and route via GPS. A GPS watch is a worthwhile investment once you've been running for a few weeks and want more accurate data without carrying your phone. Models like the COROS PACE 3 or Garmin Forerunner 55 offer excellent value for money."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What clothing do I need for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The minimum is a technical shirt made from synthetic fabric that wicks sweat and a pair of shorts or tights with a built-in liner. Avoid cotton because it retains moisture and causes chafing. For winter, add a second layer (thermal base layer) and full-length tights. Brands like Decathlon (Kalenji) offer functional options starting at 10 euros."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are energy gels necessary for beginners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Energy gels are designed for efforts lasting more than 60-75 minutes. If you're just starting out, your runs will be 20 to 40 minutes long and your body has plenty of glycogen reserves to fuel that effort. Focus on hydrating well before and after your run, and save gels for when you start training for races longer than 10K."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the best affordable running shoes for beginners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The three best value options for beginners are: Nike Pegasus (~130 euros), the most versatile all-rounder; Brooks Ghost (~135 euros), with very soft cushioning; and Hoka Clifton (~140 euros), the most cushioned and lightweight. Any of the three is an excellent choice for getting started. Look for deals on Amazon or outlet stores, where previous season models often come with 20-30% discounts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need special socks for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, technical socks are more important than most people think. Cotton socks retain sweat, causing blisters and chafing. Running socks are made from synthetic fibres or merino wool, feature reinforcements at the heel and toe, have flat seams and a snug fit that prevents them from shifting. A pair of technical socks costs between 8 and 15 euros and makes a huge difference to your comfort."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What gear is essential and what is optional for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Essential: running shoes (the most important item), technical shirt, shorts or tights, and technical socks. Highly recommended: GPS watch or running app, sports headphones and a hydration bottle. Optional or for later: energy gels, foam roller, reflective gear and recovery accessories. The essentials cost around 200 euros, adding the recommended items brings it to 400, and the complete pack runs about 700 euros."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners#faq"
     }
   ]
 }

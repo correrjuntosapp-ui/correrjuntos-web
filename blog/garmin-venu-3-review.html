@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/garmin-venu-3-review#webpage",
+      "url": "https://www.correrjuntos.com/blog/garmin-venu-3-review",
+      "name": "Garmin Venu 3 Review: El Smartwatch de Garmin para Runners - CorrerJuntos",
+      "description": "Review del Garmin Venu 3: pantalla AMOLED, funciones de salud avanzadas, GPS preciso y música offline. ¿Es mejor qué un Forerunner para correr?",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/5037319/pexels-photo-5037319.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/garmin-venu-3-review#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/garmin-venu-3-review#webpage"
+      },
       "headline": "Garmin Venu 3: Review - El Smartwatch de Garmin para Runners",
       "description": "Review del Garmin Venu 3: pantalla AMOLED, funciones de salud avanzadas, GPS preciso y música offline. ¿Es mejor que un Forerunner para correr?",
       "url": "https://www.correrjuntos.com/blog/garmin-venu-3-review",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/5037319/pexels-photo-5037319.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/5037319/pexels-photo-5037319.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Garmin Venu 3 Review"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Garmin Venu 3 Review"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/garmin-venu-3-review#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿El Garmin Venu 3 sirve para correr en serio?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, el Garmin Venu 3 es un reloj perfectamente capaz para correr. Tiene GPS multibanda, sensor de frecuencia cardíaca Elevate v4, todas las métricas de running de Garmin (VO2max, Training Status, Race Predictor, PacePro, entrenamientos sugeridos) y running dynamics desde la muñeca. La diferencia con un Forerunner es que el Venu 3 prioriza las funciones de smartwatch y salud, mientras que los Forerunner están diseñados con el running como función principal. Para corredores recreativos y de nivel intermedio, el Venu 3 es más que suficiente."}},
-        {"@type": "Question", "name": "¿Cuánto dura la batería del Garmin Venu 3 corriendo con GPS?", "acceptedAnswer": {"@type": "Answer", "text": "El Garmin Venu 3 ofrece hasta 26 horas de batería en modo GPS sin música, y hasta 8 horas en modo GPS con música y auriculares Bluetooth conectados. En modo smartwatch sin GPS, la batería dura hasta 14 días. Para la mayoría de corredores que hacen entrenamientos de 1-2 horas, las 26 horas de GPS son más que suficientes y permiten varias sesiones sin cargar. Si usas música durante la carrera, las 8 horas cubren incluso un maratón largo."}},
-        {"@type": "Question", "name": "¿Garmin Venu 3 o Forerunner 265 para running?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de tus prioridades. Si el running es tu actividad principal y quieres un reloj centrado en el deporte con botones físicos, el Forerunner 265 es mejor opción: tiene 5 botones dedicados, más perfiles deportivos optimizados y está diseñado para el entrenamiento. Si quieres un reloj que sea tanto smartwatch como reloj de running, con funciones como llamadas Bluetooth, asistente de voz, animaciones de ejercicio y un diseño más elegante para el día a día, el Venu 3 es la elección. Ambos comparten el mismo GPS, sensor cardíaco y métricas de Garmin Connect."}},
-        {"@type": "Question", "name": "¿El Garmin Venu 3 mide la frecuencia cardíaca con precisión?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El Garmin Venu 3 utiliza el sensor óptico Elevate v4, el mismo que equipan los Forerunner 265 y 965. Es uno de los sensores ópticos de muñeca más precisos del mercado, fiable tanto en carrera continua como en intervalos de alta intensidad. Para el 95% de los corredores es más que suficiente sin necesidad de banda de pecho. La precisión puede variar ligeramente según el ajuste de la correa, la temperatura y el tono de piel, pero en condiciones normales los resultados son excelentes."}},
-        {"@type": "Question", "name": "¿Se puede nadar con el Garmin Venu 3?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El Garmin Venu 3 tiene una resistencia al agua de 5 ATM, lo que significa que es apto para natación en piscina y aguas abiertas. Incluye perfiles deportivos específicos para natación en piscina con detección automática de estilo, conteo de largos y métricas como SWOLF. No es apto para buceo ni actividades subacuáticas a gran profundidad, pero para nadar como complemento al running es perfecto."}},
-        {"@type": "Question", "name": "¿Merece la pena el Garmin Venu 3 por 450 euros?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de lo que busques. Si quieres el smartwatch más completo de Garmin con funciones avanzadas de salud (Body Battery, HRV Status, Sleep Coach, detección de siestas, asesor de jet lag), llamadas Bluetooth, asistente de voz y una pantalla AMOLED espectacular, además de GPS preciso para correr, los 450 euros están justificados. Es comparable en precio al Apple Watch Series 10, pero con mucha más batería y mejores métricas deportivas. Si solo te interesa el running puro, un Forerunner 265 por 350 euros te dará una experiencia deportiva equivalente por menos dinero."}},
-        {"@type": "Question", "name": "¿El Garmin Venu 3 es compatible con iPhone y Android?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, el Garmin Venu 3 es compatible tanto con iPhone (iOS 16 o superior) como con Android (Android 8 o superior). Se conecta mediante Bluetooth a tu smartphone a través de la app Garmin Connect, disponible gratuitamente en App Store y Google Play. La función de llamadas Bluetooth y el asistente de voz funcionan con ambos sistemas operativos. A diferencia del Apple Watch, que solo funciona con iPhone, el Venu 3 es una opción versátil para cualquier usuario."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿El Garmin Venu 3 sirve para correr en serio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, el Garmin Venu 3 es un reloj perfectamente capaz para correr. Tiene GPS multibanda, sensor de frecuencia cardíaca Elevate v4, todas las métricas de running de Garmin (VO2max, Training Status, Race Predictor, PacePro, entrenamientos sugeridos) y running dynamics desde la muñeca. La diferencia con un Forerunner es que el Venu 3 prioriza las funciones de smartwatch y salud, mientras que los Forerunner están diseñados con el running como función principal. Para corredores recreativos y de nivel intermedio, el Venu 3 es más que suficiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto dura la batería del Garmin Venu 3 corriendo con GPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El Garmin Venu 3 ofrece hasta 26 horas de batería en modo GPS sin música, y hasta 8 horas en modo GPS con música y auriculares Bluetooth conectados. En modo smartwatch sin GPS, la batería dura hasta 14 días. Para la mayoría de corredores que hacen entrenamientos de 1-2 horas, las 26 horas de GPS son más que suficientes y permiten varias sesiones sin cargar. Si usas música durante la carrera, las 8 horas cubren incluso un maratón largo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Garmin Venu 3 o Forerunner 265 para running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de tus prioridades. Si el running es tu actividad principal y quieres un reloj centrado en el deporte con botones físicos, el Forerunner 265 es mejor opción: tiene 5 botones dedicados, más perfiles deportivos optimizados y está diseñado para el entrenamiento. Si quieres un reloj que sea tanto smartwatch como reloj de running, con funciones como llamadas Bluetooth, asistente de voz, animaciones de ejercicio y un diseño más elegante para el día a día, el Venu 3 es la elección. Ambos comparten el mismo GPS, sensor cardíaco y métricas de Garmin Connect."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El Garmin Venu 3 mide la frecuencia cardíaca con precisión?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El Garmin Venu 3 utiliza el sensor óptico Elevate v4, el mismo que equipan los Forerunner 265 y 965. Es uno de los sensores ópticos de muñeca más precisos del mercado, fiable tanto en carrera continua como en intervalos de alta intensidad. Para el 95% de los corredores es más que suficiente sin necesidad de banda de pecho. La precisión puede variar ligeramente según el ajuste de la correa, la temperatura y el tono de piel, pero en condiciones normales los resultados son excelentes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede nadar con el Garmin Venu 3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El Garmin Venu 3 tiene una resistencia al agua de 5 ATM, lo que significa que es apto para natación en piscina y aguas abiertas. Incluye perfiles deportivos específicos para natación en piscina con detección automática de estilo, conteo de largos y métricas como SWOLF. No es apto para buceo ni actividades subacuáticas a gran profundidad, pero para nadar como complemento al running es perfecto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Merece la pena el Garmin Venu 3 por 450 euros?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de lo que busques. Si quieres el smartwatch más completo de Garmin con funciones avanzadas de salud (Body Battery, HRV Status, Sleep Coach, detección de siestas, asesor de jet lag), llamadas Bluetooth, asistente de voz y una pantalla AMOLED espectacular, además de GPS preciso para correr, los 450 euros están justificados. Es comparable en precio al Apple Watch Series 10, pero con mucha más batería y mejores métricas deportivas. Si solo te interesa el running puro, un Forerunner 265 por 350 euros te dará una experiencia deportiva equivalente por menos dinero."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El Garmin Venu 3 es compatible con iPhone y Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, el Garmin Venu 3 es compatible tanto con iPhone (iOS 16 o superior) como con Android (Android 8 o superior). Se conecta mediante Bluetooth a tu smartphone a través de la app Garmin Connect, disponible gratuitamente en App Store y Google Play. La función de llamadas Bluetooth y el asistente de voz funcionan con ambos sistemas operativos. A diferencia del Apple Watch, que solo funciona con iPhone, el Venu 3 es una opción versátil para cualquier usuario."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/garmin-venu-3-review#faq"
     }
   ]
 }

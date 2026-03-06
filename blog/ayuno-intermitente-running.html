@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/ayuno-intermitente-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/ayuno-intermitente-running",
+      "name": "Ayuno Intermitente y Running: ¿Compatible o Peligroso? - CorrerJuntos",
+      "description": "Ayuno intermitente para corredores: beneficios, riesgos, protocolos 16:8 y 5:2, cuándo entrenar en ayunas y cuándo evitarlo. Guía basada en evidencia.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/ayuno-intermitente-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/ayuno-intermitente-running#webpage"
+      },
       "headline": "Ayuno Intermitente y Running: ¿Compatible o Peligroso?",
       "description": "Guia completa sobre ayuno intermitente para corredores: beneficios, riesgos, protocolos 16:8 y 5:2, cuando entrenar en ayunas y cuando evitarlo.",
       "url": "https://www.correrjuntos.com/blog/ayuno-intermitente-running",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Ayuno Intermitente y Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ayuno Intermitente y Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ayuno-intermitente-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Puedo correr en ayunas sin perder musculo?", "acceptedAnswer": {"@type": "Answer", "text": "Si, siempre que la sesion sea de baja intensidad y menos de 60-75 minutos. Para rodajes suaves en ayunas, el cuerpo utiliza principalmente acidos grasos como combustible. La perdida muscular significativa solo ocurre con ayunos muy prolongados (mas de 24 horas) combinados con entrenamientos intensos y una ingesta proteica insuficiente a lo largo del dia."}},
-        {"@type": "Question", "name": "¿Cual es el mejor protocolo de ayuno para corredores?", "acceptedAnswer": {"@type": "Answer", "text": "El protocolo 16:8 es el mas practico y estudiado para corredores. Consiste en ayunar 16 horas y concentrar las comidas en una ventana de 8 horas. Por ejemplo, comer entre las 11:00 y las 19:00. Permite entrenar por la manana en ayunas (sesiones suaves) o colocar el entrenamiento dentro de la ventana de alimentacion para sesiones intensas."}},
-        {"@type": "Question", "name": "¿El ayuno intermitente mejora el rendimiento en carrera?", "acceptedAnswer": {"@type": "Answer", "text": "No directamente. El ayuno intermitente puede mejorar la flexibilidad metabolica y la oxidacion de grasas a intensidades bajas, lo cual es util en ultradistancia. Sin embargo, para carreras de 5K a maraton, donde dependes del glucogeno, el ayuno no mejora el rendimiento y puede perjudicarlo si no planificas bien la nutricion alrededor del entrenamiento."}},
-        {"@type": "Question", "name": "¿Las mujeres corredoras pueden hacer ayuno intermitente?", "acceptedAnswer": {"@type": "Answer", "text": "Con precaucion. Las mujeres son mas sensibles a la restriccion calorica y al estres energetico. El ayuno intermitente puede alterar las hormonas reproductivas, causar irregularidades menstruales y aumentar el riesgo de RED-S. Si lo practicas, opta por protocolos suaves (14:10 en lugar de 16:8) y monitoriza tu ciclo menstrual. Ante cualquier irregularidad, deja el ayuno."}},
-        {"@type": "Question", "name": "¿Puedo hacer ayuno intermitente la semana de una carrera?", "acceptedAnswer": {"@type": "Answer", "text": "No. La semana previa a una competicion debes priorizar la carga de glucogeno y la recuperacion optima. El ayuno limita tu capacidad de almacenar glucogeno muscular y hepatico. Abandona el ayuno al menos 5-7 dias antes de la carrera y come normalmente con enfasis en hidratos de carbono."}},
-        {"@type": "Question", "name": "¿Necesito suplementos si hago ayuno intermitente y corro?", "acceptedAnswer": {"@type": "Answer", "text": "No necesariamente, pero debes asegurarte de cubrir todas tus necesidades nutricionales en la ventana de alimentacion. Presta especial atencion al hierro, vitamina D, magnesio y proteina. Si te cuesta ingerir suficientes calorias y nutrientes en menos horas, un batido de recuperacion post-entreno y un multivitaminico pueden ayudar."}},
-        {"@type": "Question", "name": "¿Cuanto tiempo tarda el cuerpo en adaptarse al ayuno intermitente?", "acceptedAnswer": {"@type": "Answer", "text": "La mayoria de corredores necesitan entre 2 y 4 semanas para adaptarse al ayuno intermitente. Durante las primeras 1-2 semanas es normal sentir mas hambre, algo de fatiga y una ligera caida en el rendimiento. Estas sensaciones suelen desaparecer conforme el cuerpo mejora su capacidad de oxidar grasas. Si pasadas 4 semanas sigues sintiendote peor, el ayuno probablemente no es para ti."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Puedo correr en ayunas sin perder musculo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, siempre que la sesion sea de baja intensidad y menos de 60-75 minutos. Para rodajes suaves en ayunas, el cuerpo utiliza principalmente acidos grasos como combustible. La perdida muscular significativa solo ocurre con ayunos muy prolongados (mas de 24 horas) combinados con entrenamientos intensos y una ingesta proteica insuficiente a lo largo del dia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cual es el mejor protocolo de ayuno para corredores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El protocolo 16:8 es el mas practico y estudiado para corredores. Consiste en ayunar 16 horas y concentrar las comidas en una ventana de 8 horas. Por ejemplo, comer entre las 11:00 y las 19:00. Permite entrenar por la manana en ayunas (sesiones suaves) o colocar el entrenamiento dentro de la ventana de alimentacion para sesiones intensas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El ayuno intermitente mejora el rendimiento en carrera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No directamente. El ayuno intermitente puede mejorar la flexibilidad metabolica y la oxidacion de grasas a intensidades bajas, lo cual es util en ultradistancia. Sin embargo, para carreras de 5K a maraton, donde dependes del glucogeno, el ayuno no mejora el rendimiento y puede perjudicarlo si no planificas bien la nutricion alrededor del entrenamiento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Las mujeres corredoras pueden hacer ayuno intermitente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con precaucion. Las mujeres son mas sensibles a la restriccion calorica y al estres energetico. El ayuno intermitente puede alterar las hormonas reproductivas, causar irregularidades menstruales y aumentar el riesgo de RED-S. Si lo practicas, opta por protocolos suaves (14:10 en lugar de 16:8) y monitoriza tu ciclo menstrual. Ante cualquier irregularidad, deja el ayuno."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo hacer ayuno intermitente la semana de una carrera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La semana previa a una competicion debes priorizar la carga de glucogeno y la recuperacion optima. El ayuno limita tu capacidad de almacenar glucogeno muscular y hepatico. Abandona el ayuno al menos 5-7 dias antes de la carrera y come normalmente con enfasis en hidratos de carbono."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito suplementos si hago ayuno intermitente y corro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No necesariamente, pero debes asegurarte de cubrir todas tus necesidades nutricionales en la ventana de alimentacion. Presta especial atencion al hierro, vitamina D, magnesio y proteina. Si te cuesta ingerir suficientes calorias y nutrientes en menos horas, un batido de recuperacion post-entreno y un multivitaminico pueden ayudar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuanto tiempo tarda el cuerpo en adaptarse al ayuno intermitente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La mayoria de corredores necesitan entre 2 y 4 semanas para adaptarse al ayuno intermitente. Durante las primeras 1-2 semanas es normal sentir mas hambre, algo de fatiga y una ligera caida en el rendimiento. Estas sensaciones suelen desaparecer conforme el cuerpo mejora su capacidad de oxidar grasas. Si pasadas 4 semanas sigues sintiendote peor, el ayuno probablemente no es para ti."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ayuno-intermitente-running#faq"
     }
   ]
 }

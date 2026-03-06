@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running",
+      "name": "Heart Rate Variability (HRV) for Runners: Complete Guide 2026 | CorrerJuntos",
+      "description": "Complete guide to HRV for runners: what heart rate variability is, how to measure it, interpret your data, detect overtraining and the best devices (WHOOP, Oura Ring, Garmin).",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running#webpage"
+      },
       "headline": "Heart Rate Variability (HRV) for Runners: Complete Guide",
       "description": "Complete guide to HRV for runners: what heart rate variability is, how to measure it, interpret your data, detect overtraining and the best devices.",
       "url": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running",
       "datePublished": "2026-02-23",
       "dateModified": "2026-02-23",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Heart Rate Variability Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Heart Rate Variability Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What is a good HRV for a runner?", "acceptedAnswer": {"@type": "Answer", "text": "There is no universal good HRV number for all runners because it depends on age, sex, genetics and fitness level. As a general reference, a resting morning RMSSD of 40-100 ms is typical for active adults. Well-trained runners tend to have higher values, between 60 and 120 ms or even higher. What truly matters is not your absolute value but your personal trend: how your HRV varies relative to your own baseline over weeks and months."}},
-        {"@type": "Question", "name": "How long do I need to measure my HRV before the data becomes useful?", "acceptedAnswer": {"@type": "Answer", "text": "You need a minimum of 2 to 3 weeks of consistent daily measurements to establish a reliable baseline. From there, each new measurement is compared to your personal reference and starts to have real meaning. Apps like WHOOP or HRV4Training need at least 14 days of data to offer accurate recommendations. Ideally, you should keep measuring for months to capture long-term trends."}},
-        {"@type": "Question", "name": "Is it better to measure HRV with a chest strap or a wrist watch?", "acceptedAnswer": {"@type": "Answer", "text": "A chest strap with an ECG sensor (such as the Polar H10) remains the most accurate method for measuring HRV because it detects the heart's electrical signal directly. Watches and rings with optical PPG sensors have improved enormously and offer sufficient accuracy for daily tracking, especially when measuring during sleep with a still wrist. For a runner who wants to follow trends, a wrist device or a ring like the Oura Ring is perfectly valid."}},
-        {"@type": "Question", "name": "Can HRV predict injuries in runners?", "acceptedAnswer": {"@type": "Answer", "text": "HRV does not predict injuries directly, but it can alert you to a state of accumulated fatigue and physiological stress that increases your risk of getting injured. When your HRV shows a sustained downward trend over several days, your nervous system is overloaded and your tissues have less capacity to repair themselves. Ignoring those signals and continuing with high volumes or intensities significantly increases the likelihood of suffering a muscular, tendon or stress-related injury."}},
-        {"@type": "Question", "name": "Does alcohol affect a runner's HRV?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, alcohol has a measurable and significant effect on HRV. Even moderate amounts (2-3 beers or glasses of wine) can reduce your HRV by 15% to 30% during the following hours and throughout the night. Alcohol activates the sympathetic nervous system, reduces deep sleep quality and disrupts muscular recovery. It is one of the external factors most clearly reflected in HRV data, which is why many runners use it as motivation to reduce their intake."}},
-        {"@type": "Question", "name": "Can I improve my HRV with training?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, consistent aerobic training is one of the most effective ways to improve your HRV long-term. Runners who follow a well-periodized plan typically see progressive increases in their baseline HRV over months. Beyond training, sleeping well, managing stress, maintaining good nutrition and practicing breathing techniques such as diaphragmatic breathing or cardiac coherence also contribute to improving your heart rate variability."}},
-        {"@type": "Question", "name": "Is the Apple Watch HRV reliable for running?", "acceptedAnswer": {"@type": "Answer", "text": "The Apple Watch measures HRV during sleep and on demand with reasonable accuracy for trend tracking. Its optical PPG sensor is good quality and the data integrates with Apple's Health app. For a recreational or intermediate runner who wants to incorporate HRV into their routine without buying an additional device, the Apple Watch is a valid option. However, for more detailed analysis and HRV-based training recommendations, dedicated devices like WHOOP, Oura Ring or Garmin with HRV Status offer more complete tools."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What is a good HRV for a runner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is no universal good HRV number for all runners because it depends on age, sex, genetics and fitness level. As a general reference, a resting morning RMSSD of 40-100 ms is typical for active adults. Well-trained runners tend to have higher values, between 60 and 120 ms or even higher. What truly matters is not your absolute value but your personal trend: how your HRV varies relative to your own baseline over weeks and months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long do I need to measure my HRV before the data becomes useful?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You need a minimum of 2 to 3 weeks of consistent daily measurements to establish a reliable baseline. From there, each new measurement is compared to your personal reference and starts to have real meaning. Apps like WHOOP or HRV4Training need at least 14 days of data to offer accurate recommendations. Ideally, you should keep measuring for months to capture long-term trends."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it better to measure HRV with a chest strap or a wrist watch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A chest strap with an ECG sensor (such as the Polar H10) remains the most accurate method for measuring HRV because it detects the heart's electrical signal directly. Watches and rings with optical PPG sensors have improved enormously and offer sufficient accuracy for daily tracking, especially when measuring during sleep with a still wrist. For a runner who wants to follow trends, a wrist device or a ring like the Oura Ring is perfectly valid."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can HRV predict injuries in runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "HRV does not predict injuries directly, but it can alert you to a state of accumulated fatigue and physiological stress that increases your risk of getting injured. When your HRV shows a sustained downward trend over several days, your nervous system is overloaded and your tissues have less capacity to repair themselves. Ignoring those signals and continuing with high volumes or intensities significantly increases the likelihood of suffering a muscular, tendon or stress-related injury."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does alcohol affect a runner's HRV?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, alcohol has a measurable and significant effect on HRV. Even moderate amounts (2-3 beers or glasses of wine) can reduce your HRV by 15% to 30% during the following hours and throughout the night. Alcohol activates the sympathetic nervous system, reduces deep sleep quality and disrupts muscular recovery. It is one of the external factors most clearly reflected in HRV data, which is why many runners use it as motivation to reduce their intake."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I improve my HRV with training?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, consistent aerobic training is one of the most effective ways to improve your HRV long-term. Runners who follow a well-periodized plan typically see progressive increases in their baseline HRV over months. Beyond training, sleeping well, managing stress, maintaining good nutrition and practicing breathing techniques such as diaphragmatic breathing or cardiac coherence also contribute to improving your heart rate variability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Apple Watch HRV reliable for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Apple Watch measures HRV during sleep and on demand with reasonable accuracy for trend tracking. Its optical PPG sensor is good quality and the data integrates with Apple's Health app. For a recreational or intermediate runner who wants to incorporate HRV into their routine without buying an additional device, the Apple Watch is a valid option. However, for more detailed analysis and HRV-based training recommendations, dedicated devices like WHOOP, Oura Ring or Garmin with HRV Status offer more complete tools."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running#faq"
     }
   ]
 }

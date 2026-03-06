@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect",
+      "name": "Strava vs Garmin Connect: Complete Comparison for Runners 2026 | CorrerJuntos",
+      "description": "Strava vs Garmin Connect: complete 2026 comparison for runners. GPS, training plans, social features, pricing, segments, routes and which to choose based on your profile.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect#webpage"
+      },
       "headline": "Strava vs Garmin Connect: Complete Comparison for Runners 2026",
       "description": "In-depth comparison between Strava and Garmin Connect for runners: GPS, training plans, social features, pricing, segments, routes and which to choose based on your profile.",
       "url": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect",
       "datePublished": "2026-02-23",
       "dateModified": "2026-02-23",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Strava vs Garmin Connect"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Strava vs Garmin Connect"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Can I use Strava and Garmin Connect at the same time?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you can and in fact it is the most recommended approach. Garmin Connect automatically syncs your activities to Strava. You just need to link both accounts once from Garmin Connect settings and every workout you record with your Garmin watch will also appear on Strava without doing anything else. This way you get the best of both worlds: Garmin's advanced metrics and Strava's social component."}},
-        {"@type": "Question", "name": "Is Strava Summit (premium subscription) worth paying for?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your profile. If you are motivated by leaderboards, segments with advanced filters, personal heatmaps, Beacon for safety and AI-suggested routes, the Strava subscription is worth it. If you only need to log activities, view your history and share workouts with friends, the free version is more than enough. Most recreational runners do not need the paid version."}},
-        {"@type": "Question", "name": "Does Garmin Connect work without a Garmin watch?", "acceptedAnswer": {"@type": "Answer", "text": "Technically you can install the app, but you need a Garmin device to take advantage of the vast majority of features. Without a Garmin watch, you will not have heart rate metrics, VO2max, Body Battery, stress or adaptive training plans. Garmin Connect is designed as a closed ecosystem around its devices. If you do not have a Garmin, Strava or apps like Nike Run Club will be much more useful to you."}},
-        {"@type": "Question", "name": "Which has better GPS tracking, Strava or Garmin Connect?", "acceptedAnswer": {"@type": "Answer", "text": "GPS accuracy depends on the hardware (watch or phone), not the app. If you use a Garmin watch with multi-band GPS, accuracy will be excellent in both Garmin Connect and Strava (when synced). If you use Strava with your phone's GPS, accuracy will be lower, especially in urban areas with tall buildings. The key is the device you use, not the platform."}},
-        {"@type": "Question", "name": "Does Strava work with non-Garmin watches?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Strava is compatible with most GPS sports watches on the market: COROS, Polar, Suunto, Apple Watch, Samsung Galaxy Watch, Amazfit and many more. You can also record activities directly with your phone's GPS without needing a watch. This versatility is one of Strava's great advantages over Garmin Connect, which is limited to the Garmin ecosystem."}},
-        {"@type": "Question", "name": "Can I create routes on Strava and Garmin Connect for free?", "acceptedAnswer": {"@type": "Answer", "text": "On Garmin Connect you can create routes for free without any limitations from the mobile app or the web. On Strava, basic route creation is free, but AI-suggested routes, terrain surfaces and advanced route planning features require a premium subscription. If creating routes is important to you and you do not want to pay, Garmin Connect offers a more complete experience for free."}},
-        {"@type": "Question", "name": "Which one better protects my data and privacy?", "acceptedAnswer": {"@type": "Answer", "text": "Both platforms offer privacy controls, but with different approaches. Strava lets you hide the start and end points of your activities (privacy zones), set your profile to private and control who sees your activities. Garmin Connect is more private by default since it is less social: your data stays in your account unless you actively share it. Garmin complies with GDPR and allows you to export and delete your data. Strava has received criticism for sharing aggregated location data with third parties, although it has improved its controls in recent years."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Can I use Strava and Garmin Connect at the same time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can and in fact it is the most recommended approach. Garmin Connect automatically syncs your activities to Strava. You just need to link both accounts once from Garmin Connect settings and every workout you record with your Garmin watch will also appear on Strava without doing anything else. This way you get the best of both worlds: Garmin's advanced metrics and Strava's social component."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Strava Summit (premium subscription) worth paying for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on your profile. If you are motivated by leaderboards, segments with advanced filters, personal heatmaps, Beacon for safety and AI-suggested routes, the Strava subscription is worth it. If you only need to log activities, view your history and share workouts with friends, the free version is more than enough. Most recreational runners do not need the paid version."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Garmin Connect work without a Garmin watch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Technically you can install the app, but you need a Garmin device to take advantage of the vast majority of features. Without a Garmin watch, you will not have heart rate metrics, VO2max, Body Battery, stress or adaptive training plans. Garmin Connect is designed as a closed ecosystem around its devices. If you do not have a Garmin, Strava or apps like Nike Run Club will be much more useful to you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which has better GPS tracking, Strava or Garmin Connect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GPS accuracy depends on the hardware (watch or phone), not the app. If you use a Garmin watch with multi-band GPS, accuracy will be excellent in both Garmin Connect and Strava (when synced). If you use Strava with your phone's GPS, accuracy will be lower, especially in urban areas with tall buildings. The key is the device you use, not the platform."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Strava work with non-Garmin watches?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Strava is compatible with most GPS sports watches on the market: COROS, Polar, Suunto, Apple Watch, Samsung Galaxy Watch, Amazfit and many more. You can also record activities directly with your phone's GPS without needing a watch. This versatility is one of Strava's great advantages over Garmin Connect, which is limited to the Garmin ecosystem."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I create routes on Strava and Garmin Connect for free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On Garmin Connect you can create routes for free without any limitations from the mobile app or the web. On Strava, basic route creation is free, but AI-suggested routes, terrain surfaces and advanced route planning features require a premium subscription. If creating routes is important to you and you do not want to pay, Garmin Connect offers a more complete experience for free."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which one better protects my data and privacy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both platforms offer privacy controls, but with different approaches. Strava lets you hide the start and end points of your activities (privacy zones), set your profile to private and control who sees your activities. Garmin Connect is more private by default since it is less social: your data stays in your account unless you actively share it. Garmin complies with GDPR and allows you to export and delete your data. Strava has received criticism for sharing aggregated location data with third parties, although it has improved its controls in recent years."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect#faq"
     }
   ]
 }

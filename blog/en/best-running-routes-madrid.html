@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid",
+      "name": "10 Best Running Routes in Madrid (with Maps and km)",
+      "description": "Discover the 10 best running routes in Madrid. Retiro, Casa de Campo, Madrid Rio and more. With distances, elevation and tips for your level.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid#webpage"
+      },
       "headline": "The Best Running Routes in Madrid: Top 10",
       "description": "Complete guide to the 10 best running routes in Madrid, with distances, difficulty and recommendations.",
       "url": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid",
       "datePublished": "2026-02-14",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Running Routes in Madrid"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running Routes in Madrid"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What is the best running route in Madrid?", "acceptedAnswer": {"@type": "Answer", "text": "Parque del Retiro is the most popular route with 4-6 km circuits on flat terrain. For longer distances, Madrid Rio offers 10 km along the Manzanares River."}},
-        {"@type": "Question", "name": "Where can I do trail running in Madrid?", "acceptedAnswer": {"@type": "Answer", "text": "Casa de Campo is the best place for trail running within Madrid, with over 1,700 hectares of trails with elevation. Dehesa de la Villa also offers forest trails."}},
-        {"@type": "Question", "name": "Are there running groups in Madrid?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Madrid has a very active running community. On CorrerJuntos you can find free group runs for all levels in different neighborhoods and routes across the capital."}},
-        {"@type": "Question", "name": "When is the best time to run in Madrid?", "acceptedAnswer": {"@type": "Answer", "text": "Spring (March-May) and autumn (September-November) are ideal, with temperatures between 12 and 22 degrees C. In summer, run before 9:00 AM or after 9:00 PM to avoid extreme heat."}},
-        {"@type": "Question", "name": "How many km is the Retiro circuit?", "acceptedAnswer": {"@type": "Answer", "text": "The main Parque del Retiro circuit is approximately 4.5 km around the park interior. You can also do shorter 2-3 km circuits or combine paths to reach up to 6 km."}},
-        {"@type": "Question", "name": "What shoes should I wear for running in Madrid?", "acceptedAnswer": {"@type": "Answer", "text": "For most urban routes (Retiro, Madrid Rio, Canal de Isabel II) road running shoes with good cushioning are ideal. For Casa de Campo and Dehesa de la Villa, trail shoes with grippy soles are recommended."}},
-        {"@type": "Question", "name": "Are there popular races in Madrid?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Madrid hosts events year-round: the Rock 'n' Roll Madrid Marathon in spring, the EDP Half Marathon, the San Silvestre Vallecana on New Year's Eve, and dozens of 5K and 10K races every month."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What is the best running route in Madrid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Parque del Retiro is the most popular route with 4-6 km circuits on flat terrain. For longer distances, Madrid Rio offers 10 km along the Manzanares River."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I do trail running in Madrid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Casa de Campo is the best place for trail running within Madrid, with over 1,700 hectares of trails with elevation. Dehesa de la Villa also offers forest trails."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there running groups in Madrid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Madrid has a very active running community. On CorrerJuntos you can find free group runs for all levels in different neighborhoods and routes across the capital."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When is the best time to run in Madrid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spring (March-May) and autumn (September-November) are ideal, with temperatures between 12 and 22 degrees C. In summer, run before 9:00 AM or after 9:00 PM to avoid extreme heat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many km is the Retiro circuit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The main Parque del Retiro circuit is approximately 4.5 km around the park interior. You can also do shorter 2-3 km circuits or combine paths to reach up to 6 km."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What shoes should I wear for running in Madrid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most urban routes (Retiro, Madrid Rio, Canal de Isabel II) road running shoes with good cushioning are ideal. For Casa de Campo and Dehesa de la Villa, trail shoes with grippy soles are recommended."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there popular races in Madrid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Madrid hosts events year-round: the Rock 'n' Roll Madrid Marathon in spring, the EDP Half Marathon, the San Silvestre Vallecana on New Year's Eve, and dozens of 5K and 10K races every month."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid#faq"
     }
   ]
 }

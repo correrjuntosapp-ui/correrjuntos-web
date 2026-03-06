@@ -27,15 +27,125 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Your First Running Meetup: Complete Beginner's Guide", "description": "Everything you need to know for your first running meetup: what to expect, what to bring, etiquette, choosing the right group, and breaking the ice.", "url": "https://www.correrjuntos.com/blog/en/first-running-meetup", "datePublished": "2026-02-28", "dateModified": "2026-02-28", "author": {"@type": "Person", "name": "Jos\u00e9 M\u00e1rquez", "url": "https://www.correrjuntos.com/blog/autor/jose-marquez", "jobTitle": "Founder & Running Editor", "sameAs": ["https://www.strava.com/athletes/correrjuntos", "https://www.instagram.com/correrjuntosapp/", "https://x.com/correrjuntosapp"]}, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en", "image": "https://images.pexels.com/photos/2421467/pexels-photo-2421467.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Your First Running Meetup"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "What should I wear to my first running meetup?", "acceptedAnswer": {"@type": "Answer", "text": "Wear whatever you normally run in. There is no dress code at running meetups. Comfortable running shoes, moisture-wicking clothing appropriate for the weather, and a charged phone are all you need. You do not need a GPS watch, matching kit, or expensive gear. The important thing is to feel comfortable and able to run freely."}},
-      {"@type": "Question", "name": "What pace should I run at during a group meetup?", "acceptedAnswer": {"@type": "Answer", "text": "Run at a conversational pace. If you can hold a conversation without gasping for air, you are at the right effort level. Most group runs are social in nature and deliberately slower than a workout pace. Do not try to impress anyone by running faster than comfortable. If the group is too fast, let the organizer know and they will usually pair you with someone at a similar level."}},
-      {"@type": "Question", "name": "What if I am slower than everyone else at the meetup?", "acceptedAnswer": {"@type": "Answer", "text": "This is a very common worry, and in practice it rarely happens. Most groups have runners at all levels, and many organize sub-groups by pace. Good running groups never leave anyone behind. If you are concerned, contact the organizer beforehand and ask about typical paces. Apps like CorrerJuntos let you filter meetups by level, so you can find groups that match your speed."}},
-      {"@type": "Question", "name": "How do I find the right running group for me?", "acceptedAnswer": {"@type": "Answer", "text": "Look for groups that match your pace, schedule, and vibe. Try multiple groups before committing. Use apps like CorrerJuntos to filter by level and location. Ask about typical distances and paces before showing up. Check social media posts or reviews for an idea of the group's atmosphere. A good group will make you feel welcome on day one regardless of your level."}},
-      {"@type": "Question", "name": "Should I go alone to my first running meetup?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, going alone is completely fine and very common. Most people at any running meetup arrived solo at some point. Running groups exist precisely to bring individual runners together. If going alone feels daunting, you can message the organizer beforehand to introduce yourself. They will usually make a point of welcoming you and introducing you to others when you arrive."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/first-running-meetup#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/first-running-meetup",
+      "name": "Your First Running Meetup: Complete Beginner's Guide | CorrerJuntos",
+      "description": "Everything you need to know for your first running meetup: what to expect, what to bring, etiquette, how to choose the right group and break the ice. Complete beginner's guide.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2421467/pexels-photo-2421467.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/first-running-meetup#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/first-running-meetup#webpage"
+      },
+      "headline": "Your First Running Meetup: Complete Beginner's Guide",
+      "description": "Everything you need to know for your first running meetup: what to expect, what to bring, etiquette, choosing the right group, and breaking the ice.",
+      "url": "https://www.correrjuntos.com/blog/en/first-running-meetup",
+      "datePublished": "2026-02-28",
+      "dateModified": "2026-02-28",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2421467/pexels-photo-2421467.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Your First Running Meetup"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/first-running-meetup#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What should I wear to my first running meetup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wear whatever you normally run in. There is no dress code at running meetups. Comfortable running shoes, moisture-wicking clothing appropriate for the weather, and a charged phone are all you need. You do not need a GPS watch, matching kit, or expensive gear. The important thing is to feel comfortable and able to run freely."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What pace should I run at during a group meetup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run at a conversational pace. If you can hold a conversation without gasping for air, you are at the right effort level. Most group runs are social in nature and deliberately slower than a workout pace. Do not try to impress anyone by running faster than comfortable. If the group is too fast, let the organizer know and they will usually pair you with someone at a similar level."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I am slower than everyone else at the meetup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is a very common worry, and in practice it rarely happens. Most groups have runners at all levels, and many organize sub-groups by pace. Good running groups never leave anyone behind. If you are concerned, contact the organizer beforehand and ask about typical paces. Apps like CorrerJuntos let you filter meetups by level, so you can find groups that match your speed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find the right running group for me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Look for groups that match your pace, schedule, and vibe. Try multiple groups before committing. Use apps like CorrerJuntos to filter by level and location. Ask about typical distances and paces before showing up. Check social media posts or reviews for an idea of the group's atmosphere. A good group will make you feel welcome on day one regardless of your level."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I go alone to my first running meetup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, going alone is completely fine and very common. Most people at any running meetup arrived solo at some point. Running groups exist precisely to bring individual runners together. If going alone feels daunting, you can message the organizer beforehand to introduce yourself. They will usually make a point of welcoming you and introducing you to others when you arrive."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/first-running-meetup#faq"
+    }
   ]
 }
 </script>

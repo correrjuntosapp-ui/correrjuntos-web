@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/carga-hidratos-maraton#webpage",
+      "url": "https://www.correrjuntos.com/blog/carga-hidratos-maraton",
+      "name": "Carga de Hidratos antes de un Maratón: Protocolo Completo 2026 | CorrerJuntos",
+      "description": "Cómo hacer una carga de carbohidratos antes de un maratón: protocolo de 3 días, qué comer, cantidades, errores comunes y menú ejemplo día a día.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/carga-hidratos-maraton#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/carga-hidratos-maraton#webpage"
+      },
       "headline": "Carga de Hidratos antes de un Maratón: Protocolo Completo",
       "description": "Cómo hacer una carga de carbohidratos antes de un maratón: protocolo de 3 días, qué comer, cantidades, errores comunes y menú ejemplo día a día.",
       "url": "https://www.correrjuntos.com/blog/carga-hidratos-maraton",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Carga de Hidratos para Maratón"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Carga de Hidratos para Maratón"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/carga-hidratos-maraton#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuántos días antes del maratón debo empezar la carga de hidratos?", "acceptedAnswer": {"@type": "Answer", "text": "El protocolo moderno recomienda empezar la carga de hidratos 3 días antes del maratón (es decir, de miércoles a viernes si corres el domingo). Antiguamente se hacía un protocolo de 6 días con fase de depleción, pero la ciencia ha demostrado que 3 días de carga con 8-12 g de carbohidratos por kg de peso corporal al día son suficientes para maximizar las reservas de glucógeno muscular sin el desgaste ni las molestias del protocolo largo."}},
-        {"@type": "Question", "name": "¿Voy a engordar con la carga de carbohidratos?", "acceptedAnswer": {"@type": "Answer", "text": "Es normal ganar entre 1 y 3 kg durante la carga de hidratos, pero no es grasa. Cada gramo de glucógeno almacenado retiene aproximadamente 3 gramos de agua, así que la mayor parte de ese peso extra es agua. Esos kilos son tu combustible para el maratón y los perderás durante la carrera. No te alarmes si la báscula sube: es una señal de que la carga está funcionando correctamente."}},
-        {"@type": "Question", "name": "¿Puedo hacer carga de hidratos siendo celíaco o intolerante al gluten?", "acceptedAnswer": {"@type": "Answer", "text": "Por supuesto. Hay muchos alimentos ricos en carbohidratos que no contienen gluten: arroz, patata, boniato, quinoa, avena certificada sin gluten, frutas, miel y maíz. El arroz blanco es probablemente la mejor base para una carga de hidratos sin gluten porque es fácil de digerir, bajo en fibra y muy rico en carbohidratos. También puedes usar pasta de arroz o de maíz como alternativa a la pasta de trigo."}},
-        {"@type": "Question", "name": "¿Debo reducir la grasa y la proteína durante la carga?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, es recomendable reducir la proporción de grasa y proteína durante los 3 días de carga, pero no eliminarlas. La grasa ralentiza la digestión y ocupa volumen estomacal sin aportar glucógeno. La proteína es necesaria pero en cantidad moderada. Apunta a que los carbohidratos representen el 70-80% de tu ingesta calórica total durante la carga, dejando un 10-15% para proteína y un 10-15% para grasa."}},
-        {"@type": "Question", "name": "¿Qué pasa si no hago carga de hidratos antes del maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Sin carga de hidratos, tus reservas de glucógeno muscular estarán en niveles normales (unos 300-400 g), lo cual te dará energía para aproximadamente 90 minutos de carrera a intensidad de maratón. A partir de ahí, es muy probable que experimentes el famoso muro: una caída brusca de rendimiento entre el km 28 y el 35. Con una carga adecuada, puedes elevar esas reservas a 500-600 g o más, retrasando o evitando el muro."}},
-        {"@type": "Question", "name": "¿Puedo beber alcohol durante la carga de hidratos?", "acceptedAnswer": {"@type": "Answer", "text": "No es recomendable. El alcohol interfiere con el almacenamiento de glucógeno muscular, deshidrata, altera la calidad del sueño y puede provocar inflamación intestinal. Incluso una cerveza o una copa de vino pueden reducir la eficacia de tu carga de hidratos. Los 3 días previos al maratón deberías eliminar completamente el alcohol. No merece la pena arriesgar semanas de preparación por una bebida."}},
-        {"@type": "Question", "name": "¿La carga de hidratos funciona igual para media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Para media maratón no es necesario un protocolo de carga tan agresivo como para maratón. Una media maratón dura entre 1:20 y 2:30 horas para la mayoría de corredores, y las reservas normales de glucógeno suelen ser suficientes si complementas con geles durante la carrera. Dicho esto, aumentar ligeramente los carbohidratos las 24-48 horas previas (6-8 g/kg/día en lugar de 8-12) puede ayudarte a correr con las reservas más llenas y sentirte con más energía."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuántos días antes del maratón debo empezar la carga de hidratos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El protocolo moderno recomienda empezar la carga de hidratos 3 días antes del maratón (es decir, de miércoles a viernes si corres el domingo). Antiguamente se hacía un protocolo de 6 días con fase de depleción, pero la ciencia ha demostrado que 3 días de carga con 8-12 g de carbohidratos por kg de peso corporal al día son suficientes para maximizar las reservas de glucógeno muscular sin el desgaste ni las molestias del protocolo largo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Voy a engordar con la carga de carbohidratos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es normal ganar entre 1 y 3 kg durante la carga de hidratos, pero no es grasa. Cada gramo de glucógeno almacenado retiene aproximadamente 3 gramos de agua, así que la mayor parte de ese peso extra es agua. Esos kilos son tu combustible para el maratón y los perderás durante la carrera. No te alarmes si la báscula sube: es una señal de que la carga está funcionando correctamente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo hacer carga de hidratos siendo celíaco o intolerante al gluten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Por supuesto. Hay muchos alimentos ricos en carbohidratos que no contienen gluten: arroz, patata, boniato, quinoa, avena certificada sin gluten, frutas, miel y maíz. El arroz blanco es probablemente la mejor base para una carga de hidratos sin gluten porque es fácil de digerir, bajo en fibra y muy rico en carbohidratos. También puedes usar pasta de arroz o de maíz como alternativa a la pasta de trigo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Debo reducir la grasa y la proteína durante la carga?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, es recomendable reducir la proporción de grasa y proteína durante los 3 días de carga, pero no eliminarlas. La grasa ralentiza la digestión y ocupa volumen estomacal sin aportar glucógeno. La proteína es necesaria pero en cantidad moderada. Apunta a que los carbohidratos representen el 70-80% de tu ingesta calórica total durante la carga, dejando un 10-15% para proteína y un 10-15% para grasa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si no hago carga de hidratos antes del maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sin carga de hidratos, tus reservas de glucógeno muscular estarán en niveles normales (unos 300-400 g), lo cual te dará energía para aproximadamente 90 minutos de carrera a intensidad de maratón. A partir de ahí, es muy probable que experimentes el famoso muro: una caída brusca de rendimiento entre el km 28 y el 35. Con una carga adecuada, puedes elevar esas reservas a 500-600 g o más, retrasando o evitando el muro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo beber alcohol durante la carga de hidratos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es recomendable. El alcohol interfiere con el almacenamiento de glucógeno muscular, deshidrata, altera la calidad del sueño y puede provocar inflamación intestinal. Incluso una cerveza o una copa de vino pueden reducir la eficacia de tu carga de hidratos. Los 3 días previos al maratón deberías eliminar completamente el alcohol. No merece la pena arriesgar semanas de preparación por una bebida."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La carga de hidratos funciona igual para media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para media maratón no es necesario un protocolo de carga tan agresivo como para maratón. Una media maratón dura entre 1:20 y 2:30 horas para la mayoría de corredores, y las reservas normales de glucógeno suelen ser suficientes si complementas con geles durante la carrera. Dicho esto, aumentar ligeramente los carbohidratos las 24-48 horas previas (6-8 g/kg/día en lugar de 8-12) puede ayudarte a correr con las reservas más llenas y sentirte con más energía."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/carga-hidratos-maraton#faq"
     }
   ]
 }

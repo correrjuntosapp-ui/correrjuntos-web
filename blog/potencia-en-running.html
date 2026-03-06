@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/potencia-en-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/potencia-en-running",
+      "name": "Potencia en Running: Qué Es, Cómo Medirla y Cómo Entrenar con Vatios | CorrerJuntos",
+      "description": "Guía completa de potencia en running: qué son los vatios, cómo medirlos (Stryd, Garmin, COROS), zonas de potencia, FTP, W/kg y cómo entrenar con potencia para mejorar.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/potencia-en-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/potencia-en-running#webpage"
+      },
       "headline": "Potencia en Running: Qué Es, Cómo Medirla y Cómo Entrenar con Vatios",
       "description": "Guía completa de potencia en running: qué son los vatios, cómo medirlos (Stryd, Garmin, COROS), zonas de potencia, FTP, W/kg y cómo entrenar con potencia para mejorar.",
       "url": "https://www.correrjuntos.com/blog/potencia-en-running",
       "datePublished": "2026-02-23",
       "dateModified": "2026-02-23",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Potencia en Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Potencia en Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/potencia-en-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Qué es la potencia en running y para qué sirve?", "acceptedAnswer": {"@type": "Answer", "text": "La potencia en running es la cantidad de energía que generas al correr, medida en vatios (W). Representa el trabajo mecánico que realizas en cada zancada. A diferencia del ritmo, que se ve afectado por cuestas, viento o terreno, la potencia refleja tu esfuerzo real independientemente de las condiciones externas. Sirve para dosificar el esfuerzo con precisión, especialmente en carreras con desnivel o condiciones meteorológicas variables."}},
-        {"@type": "Question", "name": "¿Necesito un dispositivo especial para medir potencia al correr?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, necesitas un dispositivo que estime o mida la potencia. Las opciones principales son: un foot pod dedicado como Stryd (la referencia del mercado), un reloj con potencia nativa como los COROS o Polar, o un campo de datos como Garmin Running Power usando un reloj compatible con sensor HRM-Pro Plus. Cada opción tiene diferente nivel de precisión y precio."}},
-        {"@type": "Question", "name": "¿Cuál es la diferencia entre Stryd y la potencia estimada por el reloj?", "acceptedAnswer": {"@type": "Answer", "text": "Stryd usa un acelerómetro de alta precisión en el pie para medir directamente las fuerzas de cada zancada, y además incluye un sensor de viento. Los relojes como Garmin o COROS estiman la potencia mediante algoritmos basados en datos del acelerómetro de muñeca, GPS y barométro. Stryd es más preciso y consistente, especialmente en condiciones de viento o terreno irregular, mientras que la potencia del reloj es una estimación útil pero menos fiable."}},
-        {"@type": "Question", "name": "¿Cómo encuentro mi FTP de running?", "acceptedAnswer": {"@type": "Answer", "text": "El método más fiable es realizar un test de 30 minutos a máximo esfuerzo sostenible en terreno llano. Tu FTP será el 95% de la potencia media de esos 30 minutos. También puedes hacer un test de 3 minutos + 9 minutos o usar un test de 20 minutos (tomando el 95% de la media). Stryd y otras plataformas también pueden estimar tu FTP automáticamente a partir de tus entrenamientos acumulados."}},
-        {"@type": "Question", "name": "¿Puedo entrenar con potencia usando un reloj Garmin?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, pero necesitas un sensor compatible como el HRM-Pro Plus (cinta pectoral con acelerómetro) o el Running Dynamics Pod. Con estos accesorios, puedes activar el campo de datos Garmin Running Power en relojes de la serie Forerunner 255 o superior y fénix/Enduro. La estimación es razonable para entrenamientos pero menos precisa que un Stryd dedicado."}},
-        {"@type": "Question", "name": "¿La potencia sustituye al ritmo y la frecuencia cardíaca?", "acceptedAnswer": {"@type": "Answer", "text": "No sustituye, complementa. La potencia te dice cuánta energía produces (esfuerzo externo), la frecuencia cardíaca indica cómo responde tu cuerpo a ese esfuerzo (esfuerzo interno) y el ritmo es el resultado. Lo ideal es usar las tres métricas juntas: la potencia para dosificar el esfuerzo, la FC para monitorizar la fatiga acumulada y el ritmo como referencia de resultado. Cada una aporta información diferente y complementaria."}},
-        {"@type": "Question", "name": "¿Merece la pena comprar un Stryd si soy corredor popular?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de tus objetivos. Si simplemente quieres salir a correr y disfrutar, no necesitas un potenciómetro. Pero si entrenas con estructura, quieres mejorar marcas y te frustras cuando las cuestas o el viento arruinan tus ritmos objetivo, Stryd te cambiará la forma de entrenar. Es especialmente útil para corredores que preparan maratones o carreras de montaña, donde la dosificación del esfuerzo es crítica para el resultado final."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Qué es la potencia en running y para qué sirve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La potencia en running es la cantidad de energía que generas al correr, medida en vatios (W). Representa el trabajo mecánico que realizas en cada zancada. A diferencia del ritmo, que se ve afectado por cuestas, viento o terreno, la potencia refleja tu esfuerzo real independientemente de las condiciones externas. Sirve para dosificar el esfuerzo con precisión, especialmente en carreras con desnivel o condiciones meteorológicas variables."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito un dispositivo especial para medir potencia al correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, necesitas un dispositivo que estime o mida la potencia. Las opciones principales son: un foot pod dedicado como Stryd (la referencia del mercado), un reloj con potencia nativa como los COROS o Polar, o un campo de datos como Garmin Running Power usando un reloj compatible con sensor HRM-Pro Plus. Cada opción tiene diferente nivel de precisión y precio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la diferencia entre Stryd y la potencia estimada por el reloj?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stryd usa un acelerómetro de alta precisión en el pie para medir directamente las fuerzas de cada zancada, y además incluye un sensor de viento. Los relojes como Garmin o COROS estiman la potencia mediante algoritmos basados en datos del acelerómetro de muñeca, GPS y barométro. Stryd es más preciso y consistente, especialmente en condiciones de viento o terreno irregular, mientras que la potencia del reloj es una estimación útil pero menos fiable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo encuentro mi FTP de running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El método más fiable es realizar un test de 30 minutos a máximo esfuerzo sostenible en terreno llano. Tu FTP será el 95% de la potencia media de esos 30 minutos. También puedes hacer un test de 3 minutos + 9 minutos o usar un test de 20 minutos (tomando el 95% de la media). Stryd y otras plataformas también pueden estimar tu FTP automáticamente a partir de tus entrenamientos acumulados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo entrenar con potencia usando un reloj Garmin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, pero necesitas un sensor compatible como el HRM-Pro Plus (cinta pectoral con acelerómetro) o el Running Dynamics Pod. Con estos accesorios, puedes activar el campo de datos Garmin Running Power en relojes de la serie Forerunner 255 o superior y fénix/Enduro. La estimación es razonable para entrenamientos pero menos precisa que un Stryd dedicado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La potencia sustituye al ritmo y la frecuencia cardíaca?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No sustituye, complementa. La potencia te dice cuánta energía produces (esfuerzo externo), la frecuencia cardíaca indica cómo responde tu cuerpo a ese esfuerzo (esfuerzo interno) y el ritmo es el resultado. Lo ideal es usar las tres métricas juntas: la potencia para dosificar el esfuerzo, la FC para monitorizar la fatiga acumulada y el ritmo como referencia de resultado. Cada una aporta información diferente y complementaria."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Merece la pena comprar un Stryd si soy corredor popular?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de tus objetivos. Si simplemente quieres salir a correr y disfrutar, no necesitas un potenciómetro. Pero si entrenas con estructura, quieres mejorar marcas y te frustras cuando las cuestas o el viento arruinan tus ritmos objetivo, Stryd te cambiará la forma de entrenar. Es especialmente útil para corredores que preparan maratones o carreras de montaña, donde la dosificación del esfuerzo es crítica para el resultado final."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/potencia-en-running#faq"
     }
   ]
 }

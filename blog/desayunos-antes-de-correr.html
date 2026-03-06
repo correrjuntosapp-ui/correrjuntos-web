@@ -28,45 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/desayunos-antes-de-correr#webpage",
+      "url": "https://www.correrjuntos.com/blog/desayunos-antes-de-correr",
+      "name": "Los 8 Mejores Desayunos Antes de Correr [Guía 2026] | CorrerJuntos",
+      "description": "Descubre los 8 mejores desayunos antes de correr: timing, macros ideales y opciones rápidas para maximizar tu rendimiento. Guía actualizada 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/desayunos-antes-de-correr#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/desayunos-antes-de-correr#webpage"
+      },
       "headline": "Los 8 Mejores Desayunos Antes de Correr [Guía 2026]",
       "description": "Descubre los 8 mejores desayunos antes de correr con el timing y los macros ideales para maximizar tu rendimiento.",
       "url": "https://www.correrjuntos.com/blog/desayunos-antes-de-correr",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Desayunos Antes de Correr"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Desayunos Antes de Correr"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/desayunos-antes-de-correr#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuánto tiempo antes de correr debo desayunar?", "acceptedAnswer": {"@type": "Answer", "text": "Lo ideal es desayunar entre 60 y 90 minutos antes de correr si es una comida completa. Si solo tomas un snack ligero como un plátano o una tostada con miel, 30-45 minutos son suficientes. Nunca corras con el estómago completamente lleno."}},
-        {"@type": "Question", "name": "¿Puedo correr en ayunas?", "acceptedAnswer": {"@type": "Answer", "text": "Correr en ayunas es posible para rodajes suaves de menos de 45 minutos, pero no es recomendable para entrenamientos intensos o largos. Sin desayuno, tus reservas de glucógeno están bajas y el rendimiento se resiente. Si lo haces, lleva un gel por si acaso."}},
-        {"@type": "Question", "name": "¿Qué no debo comer antes de correr?", "acceptedAnswer": {"@type": "Answer", "text": "Evita alimentos altos en fibra, grasas saturadas y proteínas pesadas antes de correr. Nada de fritos, lácteos enteros, legumbres o verduras crudas en gran cantidad. También evita alimentos nuevos el día de la carrera."}},
-        {"@type": "Question", "name": "¿Es mejor desayunar carbohidratos o proteínas antes de correr?", "acceptedAnswer": {"@type": "Answer", "text": "Los carbohidratos deben ser la base de tu desayuno pre-carrera (60-70%). Añade una pequeña cantidad de proteína (15-20%) para la saciedad y grasas saludables mínimas (10-15%). Los carbohidratos simples y complejos te proporcionan energía rápida y sostenida."}},
-        {"@type": "Question", "name": "¿Qué desayunar antes de una media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Antes de una media maratón desayuna 2-3 horas antes algo rico en carbohidratos y bajo en fibra: tostadas con mermelada, avena con plátano y miel, o arroz con canela. Evita experimentar con alimentos nuevos el día de la carrera."}},
-        {"@type": "Question", "name": "¿El café es bueno antes de correr?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, la cafeína mejora el rendimiento. Tomar un café 30-60 minutos antes de correr puede aumentar tu resistencia y reducir la percepción de esfuerzo. La dosis efectiva es de 3-6 mg por kilo de peso corporal. Eso sí, si te causa molestias gástricas, reduce la cantidad."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo antes de correr debo desayunar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lo ideal es desayunar entre 60 y 90 minutos antes de correr si es una comida completa. Si solo tomas un snack ligero como un plátano o una tostada con miel, 30-45 minutos son suficientes. Nunca corras con el estómago completamente lleno."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo correr en ayunas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Correr en ayunas es posible para rodajes suaves de menos de 45 minutos, pero no es recomendable para entrenamientos intensos o largos. Sin desayuno, tus reservas de glucógeno están bajas y el rendimiento se resiente. Si lo haces, lleva un gel por si acaso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué no debo comer antes de correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evita alimentos altos en fibra, grasas saturadas y proteínas pesadas antes de correr. Nada de fritos, lácteos enteros, legumbres o verduras crudas en gran cantidad. También evita alimentos nuevos el día de la carrera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es mejor desayunar carbohidratos o proteínas antes de correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los carbohidratos deben ser la base de tu desayuno pre-carrera (60-70%). Añade una pequeña cantidad de proteína (15-20%) para la saciedad y grasas saludables mínimas (10-15%). Los carbohidratos simples y complejos te proporcionan energía rápida y sostenida."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué desayunar antes de una media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Antes de una media maratón desayuna 2-3 horas antes algo rico en carbohidratos y bajo en fibra: tostadas con mermelada, avena con plátano y miel, o arroz con canela. Evita experimentar con alimentos nuevos el día de la carrera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El café es bueno antes de correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, la cafeína mejora el rendimiento. Tomar un café 30-60 minutos antes de correr puede aumentar tu resistencia y reducir la percepción de esfuerzo. La dosis efectiva es de 3-6 mg por kilo de peso corporal. Eso sí, si te causa molestias gástricas, reduce la cantidad."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/desayunos-antes-de-correr#faq"
     }
   ]
 }

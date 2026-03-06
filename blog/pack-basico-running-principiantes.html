@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes#webpage",
+      "url": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes",
+      "name": "Pack Básico de Running: Todo lo que Necesitas para Empezar a Correr | CorrerJuntos",
+      "description": "Guía completa del equipamiento básico para empezar a correr. Desde zapatillas hasta accesorios: qué comprar primero, cuánto gastar y qué evitar. Presupuestos desde 200 euros.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes#webpage"
+      },
       "headline": "Pack Básico de Running: Todo lo que Necesitas para Empezar a Correr",
       "description": "Guía completa del equipamiento básico para empezar a correr. Zapatillas, ropa, accesorios y presupuestos desde 200 euros.",
       "url": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Pack Básico Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pack Básico Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuánto dinero necesito para empezar a correr?", "acceptedAnswer": {"@type": "Answer", "text": "Con unos 200 euros puedes tener lo esencial: unas buenas zapatillas de running (120-140 euros), una camiseta técnica (15-20 euros), un pantalón corto o malla (20-30 euros) y unos calcetines técnicos (8-12 euros). No necesitas más para tus primeras semanas. El resto del equipamiento puede esperar hasta que confirmes que el running es lo tuyo."}},
-        {"@type": "Question", "name": "¿Necesito un reloj GPS para empezar a correr?", "acceptedAnswer": {"@type": "Answer", "text": "No es imprescindible al principio. Puedes empezar usando una app gratuita en tu móvil como Strava o Nike Run Club, que registran distancia, ritmo y ruta por GPS. Un reloj GPS es una inversión recomendable cuando lleves unas semanas corriendo y quieras datos más precisos sin cargar con el teléfono. Modelos como el COROS PACE 3 o Garmin Forerunner 55 ofrecen buena relación calidad-precio."}},
-        {"@type": "Question", "name": "¿Qué ropa necesito para correr?", "acceptedAnswer": {"@type": "Answer", "text": "Lo mínimo es una camiseta técnica de tejido sintético que evacúe el sudor y un pantalón corto o malla con slip interior. Evita el algodón porque retiene la humedad y provoca rozaduras. Para invierno añade una segunda capa (camiseta térmica) y unas mallas largas. Marcas como Decathlon (Kalenji) ofrecen opciones funcionales desde 10 euros."}},
-        {"@type": "Question", "name": "¿Son necesarios los geles energéticos para principiantes?", "acceptedAnswer": {"@type": "Answer", "text": "No. Los geles energéticos están pensados para esfuerzos de más de 60-75 minutos. Si estás empezando, tus carreras serán de 20 a 40 minutos y tu cuerpo tiene reservas de glucógeno suficientes. Preocúpate por hidratarte bien antes y después de correr, y deja los geles para cuando empieces a entrenar carreras de más de 10 km."}},
-        {"@type": "Question", "name": "¿Cuáles son las mejores zapatillas de running baratas y buenas para principiantes?", "acceptedAnswer": {"@type": "Answer", "text": "Las tres mejores opciones en relación calidad-precio para principiantes son: Nike Pegasus (~130 euros), que es la más versátil; Brooks Ghost (~135 euros), con una amortiguación muy suave; y Hoka Clifton (~140 euros), la más amortiguada y ligera. Cualquiera de las tres es una elección excelente para empezar. Busca ofertas en Amazon o tiendas outlet, donde a veces encuentras modelos de temporada anterior con un 20-30% de descuento."}},
-        {"@type": "Question", "name": "¿Necesito calcetines especiales para correr?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, los calcetines técnicos son más importantes de lo que parece. Los calcetines de algodón retienen sudor, provocan ampollas y rozaduras. Los calcetines de running están hechos de fibras sintéticas o lana merino, tienen refuerzos en talón y puntera, costuras planas y ajuste que evita que se muevan. Un par de calcetines técnicos cuesta entre 8 y 15 euros y marcan una gran diferencia en tu comodidad."}},
-        {"@type": "Question", "name": "¿Qué equipamiento es esencial y cuál es opcional para correr?", "acceptedAnswer": {"@type": "Answer", "text": "Esencial: zapatillas de running (lo más importante), camiseta técnica, pantalón corto o malla, y calcetines técnicos. Muy recomendable: reloj GPS o app de running, auriculares deportivos y botella de hidratación. Opcional o para más adelante: geles energéticos, foam roller, ropa reflectante y accesorios de recuperación. Lo esencial cuesta unos 200 euros, lo recomendable sube a 400 y el pack completo ronda los 700 euros."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuánto dinero necesito para empezar a correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con unos 200 euros puedes tener lo esencial: unas buenas zapatillas de running (120-140 euros), una camiseta técnica (15-20 euros), un pantalón corto o malla (20-30 euros) y unos calcetines técnicos (8-12 euros). No necesitas más para tus primeras semanas. El resto del equipamiento puede esperar hasta que confirmes que el running es lo tuyo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito un reloj GPS para empezar a correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es imprescindible al principio. Puedes empezar usando una app gratuita en tu móvil como Strava o Nike Run Club, que registran distancia, ritmo y ruta por GPS. Un reloj GPS es una inversión recomendable cuando lleves unas semanas corriendo y quieras datos más precisos sin cargar con el teléfono. Modelos como el COROS PACE 3 o Garmin Forerunner 55 ofrecen buena relación calidad-precio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué ropa necesito para correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lo mínimo es una camiseta técnica de tejido sintético que evacúe el sudor y un pantalón corto o malla con slip interior. Evita el algodón porque retiene la humedad y provoca rozaduras. Para invierno añade una segunda capa (camiseta térmica) y unas mallas largas. Marcas como Decathlon (Kalenji) ofrecen opciones funcionales desde 10 euros."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Son necesarios los geles energéticos para principiantes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Los geles energéticos están pensados para esfuerzos de más de 60-75 minutos. Si estás empezando, tus carreras serán de 20 a 40 minutos y tu cuerpo tiene reservas de glucógeno suficientes. Preocúpate por hidratarte bien antes y después de correr, y deja los geles para cuando empieces a entrenar carreras de más de 10 km."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuáles son las mejores zapatillas de running baratas y buenas para principiantes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las tres mejores opciones en relación calidad-precio para principiantes son: Nike Pegasus (~130 euros), que es la más versátil; Brooks Ghost (~135 euros), con una amortiguación muy suave; y Hoka Clifton (~140 euros), la más amortiguada y ligera. Cualquiera de las tres es una elección excelente para empezar. Busca ofertas en Amazon o tiendas outlet, donde a veces encuentras modelos de temporada anterior con un 20-30% de descuento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito calcetines especiales para correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, los calcetines técnicos son más importantes de lo que parece. Los calcetines de algodón retienen sudor, provocan ampollas y rozaduras. Los calcetines de running están hechos de fibras sintéticas o lana merino, tienen refuerzos en talón y puntera, costuras planas y ajuste que evita que se muevan. Un par de calcetines técnicos cuesta entre 8 y 15 euros y marcan una gran diferencia en tu comodidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué equipamiento es esencial y cuál es opcional para correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Esencial: zapatillas de running (lo más importante), camiseta técnica, pantalón corto o malla, y calcetines técnicos. Muy recomendable: reloj GPS o app de running, auriculares deportivos y botella de hidratación. Opcional o para más adelante: geles energéticos, foam roller, ropa reflectante y accesorios de recuperación. Lo esencial cuesta unos 200 euros, lo recomendable sube a 400 y el pack completo ronda los 700 euros."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes#faq"
     }
   ]
 }

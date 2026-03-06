@@ -27,15 +27,125 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Running to Lose Weight: Science-Based Guide with 12-Week Plan", "description": "Complete science-based guide to losing weight through running: caloric deficit, EPOC, zone 2 fat burning, 12-week progressive plan, nutrition basics and common mistakes.", "url": "https://www.correrjuntos.com/blog/en/running-to-lose-weight", "datePublished": "2026-02-28", "dateModified": "2026-02-28", "author": {"@type": "Person", "name": "Jos\u00e9 M\u00e1rquez", "url": "https://www.correrjuntos.com/blog/autor/jose-marquez", "jobTitle": "Founder & Running Editor", "sameAs": ["https://www.strava.com/athletes/correrjuntos", "https://www.instagram.com/correrjuntosapp/", "https://x.com/correrjuntosapp"]}, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en", "image": "https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Running to Lose Weight"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "How much should I run to lose weight?", "acceptedAnswer": {"@type": "Answer", "text": "For weight loss, aim for 3-4 running sessions per week totaling 90-150 minutes. Beginners should start with 20-minute walk/run intervals and build up gradually. Consistency matters more than distance: running 30 minutes four times a week burns more fat long-term than one exhausting 2-hour session."}},
-      {"@type": "Question", "name": "Can I lose belly fat by running?", "acceptedAnswer": {"@type": "Answer", "text": "Running helps reduce overall body fat, including belly fat, but you cannot spot-reduce. Studies show that moderate-intensity running combined with a slight caloric deficit is one of the most effective ways to reduce visceral fat. Zone 2 running (conversational pace) is particularly effective for fat oxidation."}},
-      {"@type": "Question", "name": "Should I run on an empty stomach to lose more weight?", "acceptedAnswer": {"@type": "Answer", "text": "Fasted running can increase fat oxidation during the session, but research shows it does not lead to greater total fat loss over time compared to fed running. What matters most is your overall caloric balance throughout the day. If fasted running makes you feel weak or leads to overeating later, it is counterproductive."}},
-      {"@type": "Question", "name": "Why am I not losing weight even though I run regularly?", "acceptedAnswer": {"@type": "Answer", "text": "The most common reasons are: compensatory eating (consuming more calories after runs), not maintaining a caloric deficit, running at the same pace every session (your body adapts), not getting enough sleep, or gaining muscle while losing fat (the scale stays the same but body composition improves). Track your food intake for a week to identify the issue."}},
-      {"@type": "Question", "name": "How long does it take to see weight loss results from running?", "acceptedAnswer": {"@type": "Answer", "text": "With consistent running (3-4 times per week) and a moderate caloric deficit, most people notice changes within 4-6 weeks. Expect to lose 0.5-1 kg per week as a healthy, sustainable rate. Initial weight loss may be faster due to water loss, but true fat loss takes time and patience."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-to-lose-weight#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-to-lose-weight",
+      "name": "Running to Lose Weight: Science-Based Guide with 12-Week Plan | CorrerJuntos",
+      "description": "Complete science-based guide to losing weight through running: how much to run, at what pace, 12-week plan, common mistakes and nutrition for weight loss.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-to-lose-weight#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-to-lose-weight#webpage"
+      },
+      "headline": "Running to Lose Weight: Science-Based Guide with 12-Week Plan",
+      "description": "Complete science-based guide to losing weight through running: caloric deficit, EPOC, zone 2 fat burning, 12-week progressive plan, nutrition basics and common mistakes.",
+      "url": "https://www.correrjuntos.com/blog/en/running-to-lose-weight",
+      "datePublished": "2026-02-28",
+      "dateModified": "2026-02-28",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running to Lose Weight"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-to-lose-weight#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much should I run to lose weight?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For weight loss, aim for 3-4 running sessions per week totaling 90-150 minutes. Beginners should start with 20-minute walk/run intervals and build up gradually. Consistency matters more than distance: running 30 minutes four times a week burns more fat long-term than one exhausting 2-hour session."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I lose belly fat by running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running helps reduce overall body fat, including belly fat, but you cannot spot-reduce. Studies show that moderate-intensity running combined with a slight caloric deficit is one of the most effective ways to reduce visceral fat. Zone 2 running (conversational pace) is particularly effective for fat oxidation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I run on an empty stomach to lose more weight?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fasted running can increase fat oxidation during the session, but research shows it does not lead to greater total fat loss over time compared to fed running. What matters most is your overall caloric balance throughout the day. If fasted running makes you feel weak or leads to overeating later, it is counterproductive."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why am I not losing weight even though I run regularly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most common reasons are: compensatory eating (consuming more calories after runs), not maintaining a caloric deficit, running at the same pace every session (your body adapts), not getting enough sleep, or gaining muscle while losing fat (the scale stays the same but body composition improves). Track your food intake for a week to identify the issue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to see weight loss results from running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With consistent running (3-4 times per week) and a moderate caloric deficit, most people notice changes within 4-6 weeks. Expect to lose 0.5-1 kg per week as a healthy, sustainable rate. Initial weight loss may be faster due to water loss, but true fat loss takes time and patience."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-to-lose-weight#faq"
+    }
   ]
 }
 </script>

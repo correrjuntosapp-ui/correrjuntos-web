@@ -27,24 +27,109 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Los 10 Errores Mas Comunes de los Corredores (y Como Evitarlos)", "description": "Guía para detectar y corregir los errores mas frecuentes en running.", "url": "https://www.correrjuntos.com/blog/errores-comunes-corredores", "datePublished": "2026-02-20", "dateModified": "2026-02-20", "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
-      }, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Errores Comunes Corredores"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Cual es el error mas peligroso que cometen los corredores?", "acceptedAnswer": {"@type": "Answer", "text": "El sobreentrenamiento. Aumentar volumen o intensidad demasiado rápido es la primera causa de lesiones en running. La regla del 10% (no aumentar mas del 10% semanal) y respetar los dias de descanso previenen la mayoría de lesiones por sobreuso."}},
-      {"@type": "Question", "name": "Como se si mis zapatillas de running son las correctas?", "acceptedAnswer": {"@type": "Answer", "text": "Las zapatillas correctas no causan dolor, ampollas ni molestias desde el primer uso. Si notas dolor en las rodillas, caderas o pies que no tenias antes, puede ser por unas zapatillas inadecuadas. Lo ideal es que te analicen la pisada en una tienda especializada y pruebes varios modelos antes de comprar."}},
-      {"@type": "Question", "name": "Es malo correr todos los dias?", "acceptedAnswer": {"@type": "Answer", "text": "Para la mayoría de corredores recreativos, si. Tu cuerpo necesita dias de descanso para reparar microfisuras musculares y adaptarse al entrenamiento. Correr 5-6 dias a la semana solo es recomendable para corredores experimentados con base aerobica solida. 3-4 dias por semana con descanso activo es lo optimo para la mayoría."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/errores-comunes-corredores#webpage",
+      "url": "https://www.correrjuntos.com/blog/errores-comunes-corredores",
+      "name": "Los 10 Errores Mas Comunes de los Corredores (y Como Evitarlos) | CorrerJuntos",
+      "description": "Errores qué cometen el 90% de corredores: sobreentrenamiento, zapatillas inadecuadas, no calentar, mala nutrición y más. Como detectarlos y corregirlos.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/errores-comunes-corredores#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/errores-comunes-corredores#webpage"
+      },
+      "headline": "Los 10 Errores Mas Comunes de los Corredores (y Como Evitarlos)",
+      "description": "Guía para detectar y corregir los errores mas frecuentes en running.",
+      "url": "https://www.correrjuntos.com/blog/errores-comunes-corredores",
+      "datePublished": "2026-02-20",
+      "dateModified": "2026-02-20",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Errores Comunes Corredores"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/errores-comunes-corredores#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Cual es el error mas peligroso que cometen los corredores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El sobreentrenamiento. Aumentar volumen o intensidad demasiado rápido es la primera causa de lesiones en running. La regla del 10% (no aumentar mas del 10% semanal) y respetar los dias de descanso previenen la mayoría de lesiones por sobreuso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como se si mis zapatillas de running son las correctas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las zapatillas correctas no causan dolor, ampollas ni molestias desde el primer uso. Si notas dolor en las rodillas, caderas o pies que no tenias antes, puede ser por unas zapatillas inadecuadas. Lo ideal es que te analicen la pisada en una tienda especializada y pruebes varios modelos antes de comprar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Es malo correr todos los dias?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para la mayoría de corredores recreativos, si. Tu cuerpo necesita dias de descanso para reparar microfisuras musculares y adaptarse al entrenamiento. Correr 5-6 dias a la semana solo es recomendable para corredores experimentados con base aerobica solida. 3-4 dias por semana con descanso activo es lo optimo para la mayoría."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/errores-comunes-corredores#faq"
+    }
   ]
 }
 </script>

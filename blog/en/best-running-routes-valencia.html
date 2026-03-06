@@ -27,46 +27,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia#webpage",
+      "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia",
+      "name": "Las Mejores Rutas para Correr en Valencia | Top 10 - CorrerJuntos",
+      "description": "Las 10 mejores rutas para correr en Valencia: Jardín del Turia, paseo marítimo, Albufera y más. Distancias, dificultad y consejos para runners.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia#webpage"
+      },
       "headline": "Las Mejores Rutas para Correr en Valencia: Top 10",
       "description": "Guía con las 10 mejores rutas para correr en Valencia, con distancias, dificultad y recomendaciones.",
       "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia",
       "datePublished": "2026-02-14",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Rutas para Correr en Valencia"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Rutas para Correr en Valencia"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuál es la mejor ruta para correr en Valencia?", "acceptedAnswer": {"@type": "Answer", "text": "El Jardín del Turia es la ruta más popular, con 9 km de parque lineal completamente llano que cruza toda la ciudad. Es la ruta favorita de los runners valencianos."}},
-        {"@type": "Question", "name": "¿Se puede correr junto al mar en Valencia?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, el paseo marítimo de la Malvarrosa ofrece 4 km junto al Mediterráneo. Además, puedes extender la ruta hacia El Saler y la Albufera para sumar hasta 20 km."}},
-        {"@type": "Question", "name": "¿Hay grupos de running en Valencia?", "acceptedAnswer": {"@type": "Answer", "text": "Valencia tiene una comunidad runner muy activa, especialmente tras el éxito del Maratón de Valencia. En CorrerJuntos puedes encontrar quedadas gratuitas para todos los niveles."}},
-        {"@type": "Question", "name": "¿Cuándo es la mejor época para correr en Valencia?", "acceptedAnswer": {"@type": "Answer", "text": "De octubre a mayo es la mejor época para correr en Valencia. Los inviernos son suaves (8-15°C) y la primavera ofrece temperaturas ideales. En verano conviene evitar las horas centrales del día y correr al amanecer o al atardecer."}},
-        {"@type": "Question", "name": "¿Se puede correr por el Turia de noche?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, gran parte del Jardín del Turia está iluminado, especialmente los tramos entre Viveros y la Ciudad de las Artes. Es habitual ver runners entrenando hasta las 22-23h. Se recomienda llevar ropa reflectante y evitar los tramos menos iluminados cerca de Cabecera."}},
-        {"@type": "Question", "name": "¿Qué zapatillas usar para correr en Valencia?", "acceptedAnswer": {"@type": "Answer", "text": "Para el Turia y el paseo marítimo, unas zapatillas de asfalto con buena amortiguación son ideales. Si corres por la Albufera o caminos de tierra, opta por unas trail ligeras. Consulta nuestra guía de zapatillas de running para encontrar el modelo perfecto."}},
-        {"@type": "Question", "name": "¿Hay carreras populares en Valencia?", "acceptedAnswer": {"@type": "Answer", "text": "Valencia cuenta con un calendario muy completo: el Maratón Valencia Trinidad Alfonso en diciembre, la Media Maratón en octubre, la 15K Valencia, la Volta a Peu y numerosas carreras de barrio durante todo el año. También hay parkrun gratuito cada sábado."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la mejor ruta para correr en Valencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El Jardín del Turia es la ruta más popular, con 9 km de parque lineal completamente llano que cruza toda la ciudad. Es la ruta favorita de los runners valencianos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede correr junto al mar en Valencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, el paseo marítimo de la Malvarrosa ofrece 4 km junto al Mediterráneo. Además, puedes extender la ruta hacia El Saler y la Albufera para sumar hasta 20 km."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay grupos de running en Valencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Valencia tiene una comunidad runner muy activa, especialmente tras el éxito del Maratón de Valencia. En CorrerJuntos puedes encontrar quedadas gratuitas para todos los niveles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo es la mejor época para correr en Valencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "De octubre a mayo es la mejor época para correr en Valencia. Los inviernos son suaves (8-15°C) y la primavera ofrece temperaturas ideales. En verano conviene evitar las horas centrales del día y correr al amanecer o al atardecer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede correr por el Turia de noche?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, gran parte del Jardín del Turia está iluminado, especialmente los tramos entre Viveros y la Ciudad de las Artes. Es habitual ver runners entrenando hasta las 22-23h. Se recomienda llevar ropa reflectante y evitar los tramos menos iluminados cerca de Cabecera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué zapatillas usar para correr en Valencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para el Turia y el paseo marítimo, unas zapatillas de asfalto con buena amortiguación son ideales. Si corres por la Albufera o caminos de tierra, opta por unas trail ligeras. Consulta nuestra guía de zapatillas de running para encontrar el modelo perfecto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay carreras populares en Valencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Valencia cuenta con un calendario muy completo: el Maratón Valencia Trinidad Alfonso en diciembre, la Media Maratón en octubre, la 15K Valencia, la Volta a Peu y numerosas carreras de barrio durante todo el año. También hay parkrun gratuito cada sábado."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia#faq"
     }
   ]
 }

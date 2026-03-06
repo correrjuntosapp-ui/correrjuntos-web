@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-power#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-power",
+      "name": "Running Power: What It Is, How to Measure It and How to Train with Watts | CorrerJuntos",
+      "description": "Complete guide to running power: what watts are, how to measure them (Stryd, Garmin, COROS), power zones, FTP, W/kg and how to train with power to improve.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-power#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-power#webpage"
+      },
       "headline": "Running Power: What It Is, How to Measure It and How to Train with Watts",
       "description": "Complete guide to running power: what watts are, how to measure them (Stryd, Garmin, COROS), power zones, FTP, W/kg and how to train with power to improve.",
       "url": "https://www.correrjuntos.com/blog/en/running-power",
       "datePublished": "2026-02-23",
       "dateModified": "2026-02-23",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Running Power"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running Power"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-power#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What is running power and what is it used for?", "acceptedAnswer": {"@type": "Answer", "text": "Running power is the amount of energy you generate while running, measured in watts (W). It represents the mechanical work you perform with each stride. Unlike pace, which is affected by hills, wind or terrain, power reflects your actual effort regardless of external conditions. It is used to precisely manage effort, especially in races with elevation changes or variable weather conditions."}},
-        {"@type": "Question", "name": "Do I need a special device to measure running power?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you need a device that estimates or measures power. The main options are: a dedicated foot pod like Stryd (the market reference), a watch with native power like COROS or Polar, or a data field like Garmin Running Power using a compatible watch with an HRM-Pro Plus sensor. Each option has a different level of accuracy and price."}},
-        {"@type": "Question", "name": "What is the difference between Stryd and watch-estimated power?", "acceptedAnswer": {"@type": "Answer", "text": "Stryd uses a high-precision accelerometer on the foot to directly measure the forces of each stride, and also includes a wind sensor. Watches like Garmin or COROS estimate power through algorithms based on wrist accelerometer data, GPS and barometer. Stryd is more accurate and consistent, especially in windy conditions or uneven terrain, while watch power is a useful but less reliable estimate."}},
-        {"@type": "Question", "name": "How do I find my running FTP?", "acceptedAnswer": {"@type": "Answer", "text": "The most reliable method is to perform a 30-minute test at maximum sustainable effort on flat terrain. Your FTP will be 95% of the average power from those 30 minutes. You can also do a 3-minute + 9-minute test or use a 20-minute test (taking 95% of the average). Stryd and other platforms can also automatically estimate your FTP from your accumulated workouts."}},
-        {"@type": "Question", "name": "Can I train with power using a Garmin watch?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but you need a compatible sensor like the HRM-Pro Plus (chest strap with accelerometer) or the Running Dynamics Pod. With these accessories, you can enable the Garmin Running Power data field on watches in the Forerunner 255 or higher series and fenix/Enduro. The estimate is reasonable for training but less accurate than a dedicated Stryd."}},
-        {"@type": "Question", "name": "Does power replace pace and heart rate?", "acceptedAnswer": {"@type": "Answer", "text": "It does not replace them, it complements them. Power tells you how much energy you produce (external effort), heart rate indicates how your body responds to that effort (internal effort) and pace is the result. The ideal approach is to use all three metrics together: power to manage effort, HR to monitor accumulated fatigue and pace as a result reference. Each one provides different and complementary information."}},
-        {"@type": "Question", "name": "Is it worth buying a Stryd if I am a recreational runner?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your goals. If you simply want to go out and enjoy running, you do not need a power meter. But if you train with structure, want to improve your times and get frustrated when hills or wind ruin your target paces, Stryd will change the way you train. It is especially useful for runners preparing marathons or mountain races, where effort management is critical to the final result."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What is running power and what is it used for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running power is the amount of energy you generate while running, measured in watts (W). It represents the mechanical work you perform with each stride. Unlike pace, which is affected by hills, wind or terrain, power reflects your actual effort regardless of external conditions. It is used to precisely manage effort, especially in races with elevation changes or variable weather conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a special device to measure running power?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you need a device that estimates or measures power. The main options are: a dedicated foot pod like Stryd (the market reference), a watch with native power like COROS or Polar, or a data field like Garmin Running Power using a compatible watch with an HRM-Pro Plus sensor. Each option has a different level of accuracy and price."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between Stryd and watch-estimated power?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stryd uses a high-precision accelerometer on the foot to directly measure the forces of each stride, and also includes a wind sensor. Watches like Garmin or COROS estimate power through algorithms based on wrist accelerometer data, GPS and barometer. Stryd is more accurate and consistent, especially in windy conditions or uneven terrain, while watch power is a useful but less reliable estimate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find my running FTP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most reliable method is to perform a 30-minute test at maximum sustainable effort on flat terrain. Your FTP will be 95% of the average power from those 30 minutes. You can also do a 3-minute + 9-minute test or use a 20-minute test (taking 95% of the average). Stryd and other platforms can also automatically estimate your FTP from your accumulated workouts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I train with power using a Garmin watch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but you need a compatible sensor like the HRM-Pro Plus (chest strap with accelerometer) or the Running Dynamics Pod. With these accessories, you can enable the Garmin Running Power data field on watches in the Forerunner 255 or higher series and fenix/Enduro. The estimate is reasonable for training but less accurate than a dedicated Stryd."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does power replace pace and heart rate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It does not replace them, it complements them. Power tells you how much energy you produce (external effort), heart rate indicates how your body responds to that effort (internal effort) and pace is the result. The ideal approach is to use all three metrics together: power to manage effort, HR to monitor accumulated fatigue and pace as a result reference. Each one provides different and complementary information."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it worth buying a Stryd if I am a recreational runner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on your goals. If you simply want to go out and enjoy running, you do not need a power meter. But if you train with structure, want to improve your times and get frustrated when hills or wind ruin your target paces, Stryd will change the way you train. It is especially useful for runners preparing marathons or mountain races, where effort management is critical to the final result."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-power#faq"
     }
   ]
 }

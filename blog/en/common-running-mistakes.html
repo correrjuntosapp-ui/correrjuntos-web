@@ -27,24 +27,109 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "The 10 Most Common Running Mistakes (and How to Fix Them)", "description": "A guide to spotting and correcting the most common running mistakes.", "url": "https://www.correrjuntos.com/blog/en/common-running-mistakes", "datePublished": "2026-02-20", "dateModified": "2026-02-20", "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder & Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
-      }, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"}, {"@type": "ListItem", "position": 3, "name": "Common Running Mistakes"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "What is the most dangerous mistake runners make?", "acceptedAnswer": {"@type": "Answer", "text": "Overtraining. Increasing volume or intensity too quickly is the number one cause of running injuries. The 10% rule (never increase more than 10% per week) and respecting rest days prevent most overuse injuries."}},
-      {"@type": "Question", "name": "How do I know if my running shoes are right for me?", "acceptedAnswer": {"@type": "Answer", "text": "The right shoes should not cause pain, blisters or discomfort from the first use. If you notice knee, hip or foot pain you did not have before, it could be due to unsuitable shoes. Ideally, have your gait analysed at a specialist store and try several models before buying."}},
-      {"@type": "Question", "name": "Is it bad to run every day?", "acceptedAnswer": {"@type": "Answer", "text": "For most recreational runners, yes. Your body needs rest days to repair microtears in muscle tissue and adapt to training. Running 5-6 days a week is only advisable for experienced runners with a solid aerobic base. 3-4 days per week with active recovery is optimal for most people."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/common-running-mistakes#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/common-running-mistakes",
+      "name": "The 10 Most Common Running Mistakes (and How to Fix Them) | CorrerJuntos",
+      "description": "Mistakes that 90% of runners make: overtraining, wrong shoes, skipping warm-ups, poor nutrition and more. How to spot them and fix them.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/common-running-mistakes#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/common-running-mistakes#webpage"
+      },
+      "headline": "The 10 Most Common Running Mistakes (and How to Fix Them)",
+      "description": "A guide to spotting and correcting the most common running mistakes.",
+      "url": "https://www.correrjuntos.com/blog/en/common-running-mistakes",
+      "datePublished": "2026-02-20",
+      "dateModified": "2026-02-20",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Common Running Mistakes"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/common-running-mistakes#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the most dangerous mistake runners make?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Overtraining. Increasing volume or intensity too quickly is the number one cause of running injuries. The 10% rule (never increase more than 10% per week) and respecting rest days prevent most overuse injuries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know if my running shoes are right for me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The right shoes should not cause pain, blisters or discomfort from the first use. If you notice knee, hip or foot pain you did not have before, it could be due to unsuitable shoes. Ideally, have your gait analysed at a specialist store and try several models before buying."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it bad to run every day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most recreational runners, yes. Your body needs rest days to repair microtears in muscle tissue and adapt to training. Running 5-6 days a week is only advisable for experienced runners with a solid aerobic base. 3-4 days per week with active recovery is optimal for most people."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/common-running-mistakes#faq"
+    }
   ]
 }
 </script>

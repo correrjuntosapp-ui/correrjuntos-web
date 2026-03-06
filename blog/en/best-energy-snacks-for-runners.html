@@ -28,35 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners",
+      "name": "Best Energy Snacks for Runners [Tested & Ranked] | CorrerJuntos",
+      "description": "The best energy snacks for runners, tested and ranked. Homemade and store-bought options for before, during, and after your run. Updated 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners#webpage"
+      },
       "headline": "Best Energy Snacks for Runners [Tested and Ranked]",
       "description": "The best energy snacks for runners. Homemade and store-bought options for before, during, and after your run.",
       "url": "https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
-      "author": {"@type": "Person", "name": "Carlos Ruiz", "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz", "jobTitle": "Founder of CorrerJuntos", "sameAs": ["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]},
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Best Energy Snacks for Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Best Energy Snacks for Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What is the best snack before a run?", "acceptedAnswer": {"@type": "Answer", "text": "A banana is the most reliable pre-run snack: easy to digest, rich in carbs and potassium, and portable. Dates, rice cakes with honey, and energy bars are also excellent. Eat 30-60 minutes before your run."}},
-        {"@type": "Question", "name": "Do I need energy gels for running?", "acceptedAnswer": {"@type": "Answer", "text": "Energy gels are only necessary for runs over 60-75 minutes. For shorter runs, your stored glycogen is sufficient. If you run long, gels provide concentrated carbohydrates that are rapidly absorbed, but natural alternatives like dates work too."}},
-        {"@type": "Question", "name": "What are good homemade energy snacks for runners?", "acceptedAnswer": {"@type": "Answer", "text": "Date and nut energy balls, homemade granola bars, rice cakes with honey, banana oat cookies, and trail mix are all excellent homemade options. They are cheaper than commercial products and you control the ingredients."}},
-        {"@type": "Question", "name": "How many calories should a running snack have?", "acceptedAnswer": {"@type": "Answer", "text": "A pre-run snack should be 100-250 calories, primarily from carbohydrates. During long runs, aim for 30-60g of carbs per hour (120-240 calories). Post-run snacks should be 200-300 calories with a 3:1 carb-to-protein ratio."}},
-        {"@type": "Question", "name": "Are energy bars worth the money for runners?", "acceptedAnswer": {"@type": "Answer", "text": "Commercial energy bars are convenient but not necessarily superior to whole foods. A banana or dates provide similar energy at a fraction of the cost. Bars are useful for their portability and shelf life, but not essential."}},
-        {"@type": "Question", "name": "What should I eat during a half marathon?", "acceptedAnswer": {"@type": "Answer", "text": "During a half marathon, take in 30-60g of carbs per hour after the first 45 minutes. Energy gels, chews, or natural options like dates and honey packets work well. Practice your fueling strategy during long training runs first."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What is the best snack before a run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A banana is the most reliable pre-run snack: easy to digest, rich in carbs and potassium, and portable. Dates, rice cakes with honey, and energy bars are also excellent. Eat 30-60 minutes before your run."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need energy gels for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Energy gels are only necessary for runs over 60-75 minutes. For shorter runs, your stored glycogen is sufficient. If you run long, gels provide concentrated carbohydrates that are rapidly absorbed, but natural alternatives like dates work too."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are good homemade energy snacks for runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Date and nut energy balls, homemade granola bars, rice cakes with honey, banana oat cookies, and trail mix are all excellent homemade options. They are cheaper than commercial products and you control the ingredients."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many calories should a running snack have?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A pre-run snack should be 100-250 calories, primarily from carbohydrates. During long runs, aim for 30-60g of carbs per hour (120-240 calories). Post-run snacks should be 200-300 calories with a 3:1 carb-to-protein ratio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are energy bars worth the money for runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Commercial energy bars are convenient but not necessarily superior to whole foods. A banana or dates provide similar energy at a fraction of the cost. Bars are useful for their portability and shelf life, but not essential."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I eat during a half marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "During a half marathon, take in 30-60g of carbs per hour after the first 45 minutes. Energy gels, chews, or natural options like dates and honey packets work well. Practice your fueling strategy during long training runs first."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners#faq"
     }
   ]
 }

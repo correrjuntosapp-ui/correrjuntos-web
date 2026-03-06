@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-pace-for-beginners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-pace-for-beginners",
+      "name": "Running Pace for Beginners: How Fast Should You Run? | CorrerJuntos",
+      "description": "What running pace should beginners aim for? Learn how to find your ideal pace using the talk test, heart rate zones and avoid common pacing mistakes.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Jose Marquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-pace-for-beginners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-pace-for-beginners#webpage"
+      },
       "headline": "Running Pace for Beginners: How Fast Should You Run?",
       "description": "What running pace should beginners aim for? Learn how to find your ideal pace using the talk test, heart rate zones and avoid common pacing mistakes.",
       "url": "https://www.correrjuntos.com/blog/en/running-pace-for-beginners",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Jose Marquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder & Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Running Pace for Beginners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running Pace for Beginners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-pace-for-beginners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What pace should a beginner run at?", "acceptedAnswer": {"@type": "Answer", "text": "There is no single correct pace for all beginners. Most beginners should run between 10:00 and 13:00 min/mile (6:15 to 8:00 min/km), but the most important thing is that you can hold a conversation while running. If you are gasping for air while talking, you are going too fast. The talk test is the most reliable tool for beginners because it requires no devices and automatically adjusts to your individual fitness level."}},
-        {"@type": "Question", "name": "Is it normal to run very slowly when starting out?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely yes. Running at 12:00 or even 14:00 min/mile is completely normal and healthy for a beginner. Your cardiovascular system needs time to adapt, and running slowly allows you to build a solid aerobic base without injury risk. Many experienced runners do 80% of their mileage at paces you might consider slow. Speed comes with consistency, not by forcing the pace."}},
-        {"@type": "Question", "name": "How long does it take for a beginner to improve their pace?", "acceptedAnswer": {"@type": "Answer", "text": "With consistent training of 3-4 days per week, most beginners notice a significant improvement in their pace within 6-8 weeks. The first 3 months is where the biggest adaptations occur. However, improvement depends on many factors: consistency, rest, nutrition and genetics. The important thing is not to compare yourself to others and focus on your own progression."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What pace should a beginner run at?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is no single correct pace for all beginners. Most beginners should run between 10:00 and 13:00 min/mile (6:15 to 8:00 min/km), but the most important thing is that you can hold a conversation while running. If you are gasping for air while talking, you are going too fast. The talk test is the most reliable tool for beginners because it requires no devices and automatically adjusts to your individual fitness level."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it normal to run very slowly when starting out?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely yes. Running at 12:00 or even 14:00 min/mile is completely normal and healthy for a beginner. Your cardiovascular system needs time to adapt, and running slowly allows you to build a solid aerobic base without injury risk. Many experienced runners do 80% of their mileage at paces you might consider slow. Speed comes with consistency, not by forcing the pace."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take for a beginner to improve their pace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With consistent training of 3-4 days per week, most beginners notice a significant improvement in their pace within 6-8 weeks. The first 3 months is where the biggest adaptations occur. However, improvement depends on many factors: consistency, rest, nutrition and genetics. The important thing is not to compare yourself to others and focus on your own progression."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-pace-for-beginners#faq"
     }
   ]
 }

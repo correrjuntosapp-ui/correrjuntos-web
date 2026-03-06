@@ -27,24 +27,109 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Post-Race Stretches: A Complete Routine to Recover Faster", "description": "10 essential stretches and a full recovery protocol after a race.", "url": "https://www.correrjuntos.com/blog/en/post-run-stretches", "datePublished": "2026-02-19", "dateModified": "2026-02-19", "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
-      }, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"}, {"@type": "ListItem", "position": 3, "name": "Post-Race Stretches"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Should I stretch immediately after crossing the finish line?", "acceptedAnswer": {"@type": "Answer", "text": "No. As soon as you finish, walk for 10-15 minutes to allow your heart rate and body temperature to come down gradually. Drink water or an electrolyte drink. After those minutes of active cool-down, you can begin gentle stretching."}},
-      {"@type": "Question", "name": "How long should I hold each stretch?", "acceptedAnswer": {"@type": "Answer", "text": "Between 20 and 30 seconds per side is enough after a race. Don't force it: your muscles are fatigued and pushing a deep stretch can cause micro-tears. Find a gentle tension and hold it without bouncing."}},
-      {"@type": "Question", "name": "Is it normal to have soreness after a half marathon?", "acceptedAnswer": {"@type": "Answer", "text": "Completely normal. Delayed onset muscle soreness (DOMS) usually appears 24-48 hours after the race and can last 3-5 days. Gentle stretching, hydration, sleep and walking help reduce its duration. Avoid intense training until the soreness subsides."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-stretches#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/post-run-stretches",
+      "name": "Post-Race Stretches: Recover Faster After Running | CorrerJuntos",
+      "description": "Complete post-race stretching routine. 10 exercises to recover your legs, prevent soreness and get back to training sooner.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-stretches#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/post-run-stretches#webpage"
+      },
+      "headline": "Post-Race Stretches: A Complete Routine to Recover Faster",
+      "description": "10 essential stretches and a full recovery protocol after a race.",
+      "url": "https://www.correrjuntos.com/blog/en/post-run-stretches",
+      "datePublished": "2026-02-19",
+      "dateModified": "2026-02-19",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Post-Race Stretches"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-stretches#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Should I stretch immediately after crossing the finish line?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. As soon as you finish, walk for 10-15 minutes to allow your heart rate and body temperature to come down gradually. Drink water or an electrolyte drink. After those minutes of active cool-down, you can begin gentle stretching."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should I hold each stretch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Between 20 and 30 seconds per side is enough after a race. Don't force it: your muscles are fatigued and pushing a deep stretch can cause micro-tears. Find a gentle tension and hold it without bouncing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it normal to have soreness after a half marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Completely normal. Delayed onset muscle soreness (DOMS) usually appears 24-48 hours after the race and can last 3-5 days. Gentle stretching, hydration, sleep and walking help reduce its duration. Avoid intense training until the soreness subsides."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-stretches#faq"
+    }
   ]
 }
 </script>

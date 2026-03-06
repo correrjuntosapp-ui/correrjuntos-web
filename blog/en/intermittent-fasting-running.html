@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running",
+      "name": "Intermittent Fasting and Running: Compatible or Dangerous? - CorrerJuntos",
+      "description": "Intermittent fasting for runners: benefits, risks, 16:8 and 5:2 protocols, when to train fasted and when to avoid it. Evidence-based guide.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running#webpage"
+      },
       "headline": "Intermittent Fasting and Running: Compatible or Dangerous?",
       "description": "Complete guide to intermittent fasting for runners: benefits, risks, 16:8 and 5:2 protocols, when to train fasted and when to avoid it.",
       "url": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Intermittent Fasting and Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Intermittent Fasting and Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Can I run fasted without losing muscle?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as long as the session is low intensity and under 60-75 minutes. For easy runs while fasted, the body primarily uses fatty acids as fuel. Significant muscle loss only occurs with very prolonged fasts (over 24 hours) combined with intense workouts and insufficient daily protein intake."}},
-        {"@type": "Question", "name": "What is the best fasting protocol for runners?", "acceptedAnswer": {"@type": "Answer", "text": "The 16:8 protocol is the most practical and well-studied for runners. It involves fasting for 16 hours and eating within an 8-hour window. For example, eating between 11:00 AM and 7:00 PM. It allows you to train in the morning while fasted (easy sessions) or schedule intense workouts within the eating window."}},
-        {"@type": "Question", "name": "Does intermittent fasting improve race performance?", "acceptedAnswer": {"@type": "Answer", "text": "Not directly. Intermittent fasting can improve metabolic flexibility and fat oxidation at low intensities, which is useful for ultra-distance events. However, for races from 5K to marathon, where you depend on glycogen, fasting does not improve performance and may hinder it if you don't plan your nutrition around training properly."}},
-        {"@type": "Question", "name": "Can female runners do intermittent fasting?", "acceptedAnswer": {"@type": "Answer", "text": "With caution. Women are more sensitive to caloric restriction and energy stress. Intermittent fasting can disrupt reproductive hormones, cause menstrual irregularities and increase the risk of RED-S. If you try it, opt for gentler protocols (14:10 instead of 16:8) and monitor your menstrual cycle. If you notice any irregularities, stop fasting."}},
-        {"@type": "Question", "name": "Can I do intermittent fasting during race week?", "acceptedAnswer": {"@type": "Answer", "text": "No. The week before a competition you should prioritize glycogen loading and optimal recovery. Fasting limits your ability to store muscle and liver glycogen. Drop fasting at least 5-7 days before the race and eat normally with emphasis on carbohydrates."}},
-        {"@type": "Question", "name": "Do I need supplements if I do intermittent fasting and run?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily, but you need to make sure you cover all your nutritional needs within your eating window. Pay special attention to iron, vitamin D, magnesium and protein. If you struggle to get enough calories and nutrients in fewer hours, a post-workout recovery shake and a multivitamin can help."}},
-        {"@type": "Question", "name": "How long does it take for the body to adapt to intermittent fasting?", "acceptedAnswer": {"@type": "Answer", "text": "Most runners need between 2 and 4 weeks to adapt to intermittent fasting. During the first 1-2 weeks it is normal to feel hungrier, some fatigue and a slight drop in training performance. These sensations usually fade as the body improves its fat oxidation capacity. If after 4 weeks you still feel worse, fasting is probably not for you."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Can I run fasted without losing muscle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, as long as the session is low intensity and under 60-75 minutes. For easy runs while fasted, the body primarily uses fatty acids as fuel. Significant muscle loss only occurs with very prolonged fasts (over 24 hours) combined with intense workouts and insufficient daily protein intake."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best fasting protocol for runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 16:8 protocol is the most practical and well-studied for runners. It involves fasting for 16 hours and eating within an 8-hour window. For example, eating between 11:00 AM and 7:00 PM. It allows you to train in the morning while fasted (easy sessions) or schedule intense workouts within the eating window."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does intermittent fasting improve race performance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not directly. Intermittent fasting can improve metabolic flexibility and fat oxidation at low intensities, which is useful for ultra-distance events. However, for races from 5K to marathon, where you depend on glycogen, fasting does not improve performance and may hinder it if you don't plan your nutrition around training properly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can female runners do intermittent fasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With caution. Women are more sensitive to caloric restriction and energy stress. Intermittent fasting can disrupt reproductive hormones, cause menstrual irregularities and increase the risk of RED-S. If you try it, opt for gentler protocols (14:10 instead of 16:8) and monitor your menstrual cycle. If you notice any irregularities, stop fasting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I do intermittent fasting during race week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The week before a competition you should prioritize glycogen loading and optimal recovery. Fasting limits your ability to store muscle and liver glycogen. Drop fasting at least 5-7 days before the race and eat normally with emphasis on carbohydrates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need supplements if I do intermittent fasting and run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily, but you need to make sure you cover all your nutritional needs within your eating window. Pay special attention to iron, vitamin D, magnesium and protein. If you struggle to get enough calories and nutrients in fewer hours, a post-workout recovery shake and a multivitamin can help."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take for the body to adapt to intermittent fasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most runners need between 2 and 4 weeks to adapt to intermittent fasting. During the first 1-2 weeks it is normal to feel hungrier, some fatigue and a slight drop in training performance. These sensations usually fade as the body improves its fat oxidation capacity. If after 4 weeks you still feel worse, fasting is probably not for you."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running#faq"
     }
   ]
 }

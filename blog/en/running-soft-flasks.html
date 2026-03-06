@@ -28,33 +28,54 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-soft-flasks#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-soft-flasks",
+      "name": "The 8 Best Soft Flasks for Running & Trail 2026 | CorrerJuntos",
+      "description": "Comparison of the best soft flasks for running: Salomon, DORNNA, MARLOAR and TRIWONDER. Guide on collapsible bottles with capacities, prices and Amazon links.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/10734244/pexels-photo-10734244.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-soft-flasks#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-soft-flasks#webpage"
+      },
       "headline": "The 8 Best Soft Flasks for Running & Trail 2026",
       "description": "Comparison of the best soft flasks for running: Salomon, DORNNA, MARLOAR and TRIWONDER. Guide on collapsible bottles with capacities, prices and Amazon links.",
       "url": "https://www.correrjuntos.com/blog/en/running-soft-flasks",
       "datePublished": "2026-03-06",
       "dateModified": "2026-03-06",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
       "publisher": {
-        "@type": "Organization",
-        "name": "CorrerJuntos",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.correrjuntos.com/icons/icon-512.png"
-        }
+        "@id": "https://www.correrjuntos.com/#organization"
       },
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/10734244/pexels-photo-10734244.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "image": "https://images.pexels.com/photos/10734244/pexels-photo-10734244.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
@@ -76,11 +97,8 @@
           "position": 3,
           "name": "Running soft flasks"
         }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": []
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-soft-flasks#breadcrumbs"
     },
     {
       "@type": "ItemList",

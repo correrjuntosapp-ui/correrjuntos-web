@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion#webpage",
+      "url": "https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion",
+      "name": "Volver a Correr Después de una Lesión: Guía de Recuperación | CorrerJuntos",
+      "description": "Cómo volver a correr tras una lesión de forma segura. Plan de retorno progresivo, señales de alarma, fortalecimiento y errores que retrasan la recuperación.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
-      "headline": "Volver a Correr Despu\u00e9s de una Lesi\u00f3n: Gu\u00eda de Recuperaci\u00f3n",
-      "description": "C\u00f3mo volver a correr tras una lesi\u00f3n de forma segura. Plan de retorno progresivo, se\u00f1ales de alarma, fortalecimiento y errores que retrasan la recuperaci\u00f3n.",
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion#webpage"
+      },
+      "headline": "Volver a Correr Después de una Lesión: Guía de Recuperación",
+      "description": "Cómo volver a correr tras una lesión de forma segura. Plan de retorno progresivo, señales de alarma, fortalecimiento y errores que retrasan la recuperación.",
       "url": "https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Volver a Correr Despu\u00e9s de una Lesi\u00f3n"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Volver a Correr Después de una Lesión"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "\u00bfPuedo correr con dolor leve?", "acceptedAnswer": {"@type": "Answer", "text": "Depende del tipo de dolor. Un dolor muscular leve (agujetas) que disminuye durante los primeros minutos de carrera suele ser aceptable. Sin embargo, cualquier dolor articular, dolor que aumenta al correr, dolor punzante o localizado en hueso es una se\u00f1al de alarma que debe detenerte inmediatamente. La regla general es: si el dolor te hace cambiar tu forma de correr (cojear, acortar la zancada de forma involuntaria, cargar m\u00e1s peso en un lado), debes parar. Consulta a un fisioterapeuta deportivo antes de continuar."}},
-        {"@type": "Question", "name": "\u00bfCu\u00e1nto tardo en recuperar mi nivel anterior?", "acceptedAnswer": {"@type": "Answer", "text": "Como referencia general, se necesita aproximadamente el doble del tiempo de inactividad para recuperar el nivel previo. Si estuviste 4 semanas sin correr, necesitar\u00e1s unas 8 semanas para volver a tu forma anterior. Para parones de 3 meses o m\u00e1s, la recuperaci\u00f3n puede llevar de 4 a 6 meses. La buena noticia es que tu cuerpo tiene memoria muscular y cardiovascular: recuperar\u00e1s el nivel m\u00e1s r\u00e1pido que la primera vez que lo alcanzaste. La clave es la paciencia y la consistencia, no la intensidad."}},
-        {"@type": "Question", "name": "\u00bfDebo usar rodillera o tobillera para volver a correr?", "acceptedAnswer": {"@type": "Answer", "text": "Las rodilleras y tobilleras pueden dar sensaci\u00f3n de seguridad, pero no deben sustituir la rehabilitaci\u00f3n activa. Si necesitas un soporte externo para poder correr sin dolor, probablemente a\u00fan no est\u00e1s listo para volver. Los soportes el\u00e1sticos de compresi\u00f3n pueden ayudar a reducir la hinchaz\u00f3n residual en las primeras semanas de retorno, pero el objetivo debe ser fortalecer la zona hasta que no necesites ning\u00fan soporte. Consulta con tu fisioterapeuta si el uso de soporte es apropiado en tu caso concreto."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Puedo correr con dolor leve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende del tipo de dolor. Un dolor muscular leve (agujetas) que disminuye durante los primeros minutos de carrera suele ser aceptable. Sin embargo, cualquier dolor articular, dolor que aumenta al correr, dolor punzante o localizado en hueso es una señal de alarma que debe detenerte inmediatamente. La regla general es: si el dolor te hace cambiar tu forma de correr (cojear, acortar la zancada de forma involuntaria, cargar más peso en un lado), debes parar. Consulta a un fisioterapeuta deportivo antes de continuar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tardo en recuperar mi nivel anterior?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Como referencia general, se necesita aproximadamente el doble del tiempo de inactividad para recuperar el nivel previo. Si estuviste 4 semanas sin correr, necesitarás unas 8 semanas para volver a tu forma anterior. Para parones de 3 meses o más, la recuperación puede llevar de 4 a 6 meses. La buena noticia es que tu cuerpo tiene memoria muscular y cardiovascular: recuperarás el nivel más rápido que la primera vez que lo alcanzaste. La clave es la paciencia y la consistencia, no la intensidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Debo usar rodillera o tobillera para volver a correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las rodilleras y tobilleras pueden dar sensación de seguridad, pero no deben sustituir la rehabilitación activa. Si necesitas un soporte externo para poder correr sin dolor, probablemente aún no estás listo para volver. Los soportes elásticos de compresión pueden ayudar a reducir la hinchazón residual en las primeras semanas de retorno, pero el objetivo debe ser fortalecer la zona hasta que no necesites ningún soporte. Consulta con tu fisioterapeuta si el uso de soporte es apropiado en tu caso concreto."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-despues-de-lesion#faq"
     }
   ]
 }

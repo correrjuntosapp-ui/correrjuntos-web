@@ -28,35 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/ultra-trail-principiantes#webpage",
+      "url": "https://www.correrjuntos.com/blog/ultra-trail-principiantes",
+      "name": "Tu Primera Ultra Trail: Guía para Principiantes [2026] | CorrerJuntos",
+      "description": "Guía completa para tu primera ultra trail: qué es una ultra, entrenamiento básico, checklist de material, estrategia de nutrición y preparación mental. 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2116475/pexels-photo-2116475.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/ultra-trail-principiantes#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/ultra-trail-principiantes#webpage"
+      },
       "headline": "Tu Primera Ultra Trail: Guía para Principiantes [2026]",
       "description": "Guía completa para tu primera ultra trail: qué es una ultra, entrenamiento básico, checklist de material, nutrición y preparación mental.",
       "url": "https://www.correrjuntos.com/blog/ultra-trail-principiantes",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
-      "author": {"@type": "Person", "name": "Carlos Ruiz", "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz", "jobTitle": "Fundador de CorrerJuntos", "sameAs": ["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]},
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/2116475/pexels-photo-2116475.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2116475/pexels-photo-2116475.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Primera Ultra Trail"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Primera Ultra Trail"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ultra-trail-principiantes#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Qué distancia tiene una ultra trail?", "acceptedAnswer": {"@type": "Answer", "text": "Una ultra trail es cualquier carrera de montaña que supera los 42 km (distancia del maratón). Las categorías más comunes son 50K, 80K, 100K y 100 millas (161 km). Para principiantes, las ultras de 50 km son el punto de entrada ideal, con desniveles que varían entre 1.500 y 3.000 metros positivos."}},
-        {"@type": "Question", "name": "¿Cuánto tiempo necesito para preparar una ultra trail?", "acceptedAnswer": {"@type": "Answer", "text": "Un mínimo de 6 meses para una ultra de 50 km si ya tienes base de trail running. Si vienes del asfalto sin experiencia en montaña, necesitarás 9-12 meses. La preparación incluye aumentar el volumen semanal progresivamente, acumular desnivel, entrenar técnica de montaña y practicar la nutrición en carrera."}},
-        {"@type": "Question", "name": "¿Es peligroso correr una ultra trail?", "acceptedAnswer": {"@type": "Answer", "text": "Las ultra trails conllevan riesgos mayores que las carreras de asfalto: terreno técnico, clima cambiante, aislamiento y duración extrema. Pero con preparación adecuada, material correcto y sentido común, el riesgo se reduce significativamente. La mayoría de organizaciones exigen material obligatorio de seguridad y tienen puntos de control con asistencia médica."}},
-        {"@type": "Question", "name": "¿Qué material obligatorio necesito para una ultra trail?", "acceptedAnswer": {"@type": "Answer", "text": "El material obligatorio varía según la carrera, pero suele incluir: mochila de hidratación, impermeable con costuras selladas, manta de emergencia, silbato, linterna frontal con baterías de repuesto, vaso plegable, teléfono móvil con batería cargada y documento de identidad. Consulta siempre el reglamento específico de tu carrera."}},
-        {"@type": "Question", "name": "¿Puedo caminar en una ultra trail?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, y deberías. Caminar las subidas es la estrategia más inteligente en ultra trail. Incluso los profesionales caminan en las subidas empinadas porque es más eficiente energéticamente que intentar correrlas. En tu primera ultra, la regla es: corre todo lo que sea llano o bajada, camina todo lo que suba."}},
-        {"@type": "Question", "name": "¿Cuántas calorías se queman en una ultra trail?", "acceptedAnswer": {"@type": "Answer", "text": "En una ultra de 50 km puedes quemar entre 3.000 y 5.000 calorías, dependiendo del desnivel y tu peso. En ultras de 100 km, el gasto puede superar las 8.000 calorías. Es imposible reponer todo durante la carrera; el objetivo es ingerir entre 200 y 300 calorías por hora para mantener el rendimiento."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Qué distancia tiene una ultra trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una ultra trail es cualquier carrera de montaña que supera los 42 km (distancia del maratón). Las categorías más comunes son 50K, 80K, 100K y 100 millas (161 km). Para principiantes, las ultras de 50 km son el punto de entrada ideal, con desniveles que varían entre 1.500 y 3.000 metros positivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo necesito para preparar una ultra trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un mínimo de 6 meses para una ultra de 50 km si ya tienes base de trail running. Si vienes del asfalto sin experiencia en montaña, necesitarás 9-12 meses. La preparación incluye aumentar el volumen semanal progresivamente, acumular desnivel, entrenar técnica de montaña y practicar la nutrición en carrera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es peligroso correr una ultra trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las ultra trails conllevan riesgos mayores que las carreras de asfalto: terreno técnico, clima cambiante, aislamiento y duración extrema. Pero con preparación adecuada, material correcto y sentido común, el riesgo se reduce significativamente. La mayoría de organizaciones exigen material obligatorio de seguridad y tienen puntos de control con asistencia médica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué material obligatorio necesito para una ultra trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El material obligatorio varía según la carrera, pero suele incluir: mochila de hidratación, impermeable con costuras selladas, manta de emergencia, silbato, linterna frontal con baterías de repuesto, vaso plegable, teléfono móvil con batería cargada y documento de identidad. Consulta siempre el reglamento específico de tu carrera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo caminar en una ultra trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, y deberías. Caminar las subidas es la estrategia más inteligente en ultra trail. Incluso los profesionales caminan en las subidas empinadas porque es más eficiente energéticamente que intentar correrlas. En tu primera ultra, la regla es: corre todo lo que sea llano o bajada, camina todo lo que suba."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántas calorías se queman en una ultra trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En una ultra de 50 km puedes quemar entre 3.000 y 5.000 calorías, dependiendo del desnivel y tu peso. En ultras de 100 km, el gasto puede superar las 8.000 calorías. Es imposible reponer todo durante la carrera; el objetivo es ingerir entre 200 y 300 calorías por hora para mantener el rendimiento."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ultra-trail-principiantes#faq"
     }
   ]
 }

@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/polar-pacer-pro-review#webpage",
+      "url": "https://www.correrjuntos.com/blog/polar-pacer-pro-review",
+      "name": "Polar Pacer Pro Review: El Reloj de Running Más Infravalorado - CorrerJuntos",
+      "description": "Review del Polar Pacer Pro: métricas de running avanzadas, potencia de carrera, GPS preciso y la mejor app de entrenamiento. Análisis completo 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/polar-pacer-pro-review#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/polar-pacer-pro-review#webpage"
+      },
       "headline": "Polar Pacer Pro Review: El Reloj de Running Más Infravalorado",
       "description": "Review del Polar Pacer Pro: métricas de running avanzadas, potencia de carrera, GPS preciso y la mejor app de entrenamiento. Análisis completo 2026.",
       "url": "https://www.correrjuntos.com/blog/polar-pacer-pro-review",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Polar Pacer Pro Review"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Polar Pacer Pro Review"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/polar-pacer-pro-review#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿El Polar Pacer Pro mide la potencia de carrera sin sensor externo?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El Polar Pacer Pro calcula la potencia de carrera (Running Power) directamente desde la muñeca, utilizando los datos del barómetro, acelerómetro y GPS. No necesitas ningún sensor adicional en el pie ni en la zapatilla. La precisión es razonablemente buena y más que suficiente para guiar tus entrenamientos por zonas de potencia, aunque un pod dedicado como el Stryd sigue siendo algo más preciso en condiciones específicas como cinta de correr."}},
-        {"@type": "Question", "name": "¿Cómo es la precisión del GPS del Polar Pacer Pro?", "acceptedAnswer": {"@type": "Answer", "text": "El Polar Pacer Pro utiliza GPS, GLONASS y Galileo simultáneamente, aunque no tiene GPS multibanda (dual-band) como el Garmin 265 o el COROS PACE 3. En campo abierto la precisión es excelente y comparable a modelos más caros. En entornos urbanos con edificios altos puede haber errores algo mayores que los modelos con GPS multibanda, pero para la mayoría de runners la precisión es más que suficiente."}},
-        {"@type": "Question", "name": "¿Se puede usar el Polar Pacer Pro para nadar?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Tiene resistencia al agua de 50 metros (5 ATM), lo que significa que puedes nadar en piscina o en aguas abiertas sin problemas. Incluye métricas de natación como distancia, ritmo, brazadas por largo y tipo de estilo. Es perfectamente válido para triatletas que buscan un reloj polivalente sin pagar precio premium."}},
-        {"@type": "Question", "name": "¿Polar Flow es mejor que Garmin Connect?", "acceptedAnswer": {"@type": "Answer", "text": "Son diferentes y cada una tiene sus puntos fuertes. Polar Flow destaca en la profundidad de análisis de entrenamiento, la claridad de los datos de sueño y recuperación, y la seriedad científica de sus métricas. Garmin Connect tiene un ecosistema más amplio, más integraciones con terceros, comunidad más grande y funciones adicionales como música y mapas. Si te importan los datos puros de entrenamiento y recuperación, Polar Flow es superior. Si buscas un ecosistema completo con funciones smartwatch, Garmin Connect gana."}},
-        {"@type": "Question", "name": "¿Merece la pena el Polar Pacer Pro frente al COROS PACE 3?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de tus prioridades. El Polar Pacer Pro ofrece métricas de entrenamiento y recuperación más profundas (Training Load Pro, Recovery Pro, Nightly Recharge), la mejor app de análisis puro y potencia de carrera integrada. El COROS PACE 3 tiene mejor batería (38h vs 35h GPS), es más ligero (39g vs 41g), incluye GPS multibanda y es unos 30 euros más barato. Si eres un corredor obsesionado con datos y recuperación, Polar. Si priorizas batería y ligereza, COROS."}},
-        {"@type": "Question", "name": "¿El Polar Pacer Pro tiene música offline?", "acceptedAnswer": {"@type": "Answer", "text": "No. El Polar Pacer Pro no permite almacenar ni reproducir música. Si quieres salir a correr sin móvil y escuchar música, necesitarás un reloj con esa función como el Garmin Forerunner 265. Este es uno de los principales sacrificios del Polar Pacer Pro a cambio de mantener un precio más contenido y mayor autonomía."}},
-        {"@type": "Question", "name": "¿Dónde comprar el Polar Pacer Pro al mejor precio?", "acceptedAnswer": {"@type": "Answer", "text": "El PVP oficial del Polar Pacer Pro es de unos 299 euros, pero se encuentra frecuentemente en oferta por 200-220 euros en tiendas online como Amazon. A ese precio de oferta es una de las mejores compras posibles en relojes GPS de running. Te recomendamos comparar precios en Amazon y en la tienda oficial de Polar, ya que las ofertas varían según la temporada."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿El Polar Pacer Pro mide la potencia de carrera sin sensor externo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El Polar Pacer Pro calcula la potencia de carrera (Running Power) directamente desde la muñeca, utilizando los datos del barómetro, acelerómetro y GPS. No necesitas ningún sensor adicional en el pie ni en la zapatilla. La precisión es razonablemente buena y más que suficiente para guiar tus entrenamientos por zonas de potencia, aunque un pod dedicado como el Stryd sigue siendo algo más preciso en condiciones específicas como cinta de correr."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo es la precisión del GPS del Polar Pacer Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El Polar Pacer Pro utiliza GPS, GLONASS y Galileo simultáneamente, aunque no tiene GPS multibanda (dual-band) como el Garmin 265 o el COROS PACE 3. En campo abierto la precisión es excelente y comparable a modelos más caros. En entornos urbanos con edificios altos puede haber errores algo mayores que los modelos con GPS multibanda, pero para la mayoría de runners la precisión es más que suficiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede usar el Polar Pacer Pro para nadar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Tiene resistencia al agua de 50 metros (5 ATM), lo que significa que puedes nadar en piscina o en aguas abiertas sin problemas. Incluye métricas de natación como distancia, ritmo, brazadas por largo y tipo de estilo. Es perfectamente válido para triatletas que buscan un reloj polivalente sin pagar precio premium."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Polar Flow es mejor que Garmin Connect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Son diferentes y cada una tiene sus puntos fuertes. Polar Flow destaca en la profundidad de análisis de entrenamiento, la claridad de los datos de sueño y recuperación, y la seriedad científica de sus métricas. Garmin Connect tiene un ecosistema más amplio, más integraciones con terceros, comunidad más grande y funciones adicionales como música y mapas. Si te importan los datos puros de entrenamiento y recuperación, Polar Flow es superior. Si buscas un ecosistema completo con funciones smartwatch, Garmin Connect gana."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Merece la pena el Polar Pacer Pro frente al COROS PACE 3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de tus prioridades. El Polar Pacer Pro ofrece métricas de entrenamiento y recuperación más profundas (Training Load Pro, Recovery Pro, Nightly Recharge), la mejor app de análisis puro y potencia de carrera integrada. El COROS PACE 3 tiene mejor batería (38h vs 35h GPS), es más ligero (39g vs 41g), incluye GPS multibanda y es unos 30 euros más barato. Si eres un corredor obsesionado con datos y recuperación, Polar. Si priorizas batería y ligereza, COROS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El Polar Pacer Pro tiene música offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. El Polar Pacer Pro no permite almacenar ni reproducir música. Si quieres salir a correr sin móvil y escuchar música, necesitarás un reloj con esa función como el Garmin Forerunner 265. Este es uno de los principales sacrificios del Polar Pacer Pro a cambio de mantener un precio más contenido y mayor autonomía."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde comprar el Polar Pacer Pro al mejor precio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El PVP oficial del Polar Pacer Pro es de unos 299 euros, pero se encuentra frecuentemente en oferta por 200-220 euros en tiendas online como Amazon. A ese precio de oferta es una de las mejores compras posibles en relojes GPS de running. Te recomendamos comparar precios en Amazon y en la tienda oficial de Polar, ya que las ofertas varían según la temporada."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/polar-pacer-pro-review#faq"
     }
   ]
 }

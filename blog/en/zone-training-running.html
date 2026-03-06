@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/zone-training-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/zone-training-running",
+      "name": "Zone Training for Running: HR, Pace and Power Zones Explained | CorrerJuntos",
+      "description": "Complete guide to zone-based training for runners: heart rate zones, pace zones and power zones. Calculate your zones, apply the 80/20 rule and structure your training.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/7880090/pexels-photo-7880090.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/zone-training-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/zone-training-running#webpage"
+      },
       "headline": "Zone Training for Running: HR, Pace and Power Zones Explained",
       "description": "Complete guide to zone-based training for runners: heart rate zones, pace zones and power zones. Calculate your zones, apply the 80/20 rule and structure your training.",
       "url": "https://www.correrjuntos.com/blog/en/zone-training-running",
       "datePublished": "2026-02-23",
       "dateModified": "2026-02-23",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder & Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/7880090/pexels-photo-7880090.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/7880090/pexels-photo-7880090.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Zone Training for Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Zone Training for Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/zone-training-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What is the best way to calculate my training zones?", "acceptedAnswer": {"@type": "Answer", "text": "The most accurate method is a field test such as a 30-minute all-out sustained effort. Your average heart rate over the last 20 minutes is a good approximation of your threshold. From there, you can calculate all 5 zones. If you have access to a lab-based exercise test, the results will be even more precise. Formulas like 220 minus age are unreliable because they don't account for your individual fitness level."}},
-        {"@type": "Question", "name": "What percentage of my training should be in zone 1 and 2?", "acceptedAnswer": {"@type": "Answer", "text": "Following the 80/20 rule or polarized training, roughly 80% of your weekly volume should be in zone 1 and zone 2 (low intensity, conversational pace). The remaining 20% is split between zone 3 (threshold/tempo), zone 4 (intervals) and zone 5 (sprints). This approach is backed by science and is used by the majority of elite athletes."}},
-        {"@type": "Question", "name": "Is it better to train by heart rate, pace or power?", "acceptedAnswer": {"@type": "Answer", "text": "Each metric has its pros and cons. Heart rate reflects the actual physiological response but has a lag and is affected by heat, stress and fatigue. Pace is more intuitive but varies with terrain and conditions. Power from sensors like Stryd is the most instantaneous and objective metric, but requires additional investment. Ideally, combine at least two metrics for a complete picture of your effort."}},
-        {"@type": "Question", "name": "How often should I recalculate my zones?", "acceptedAnswer": {"@type": "Answer", "text": "It's recommended to recalculate your zones every 8-12 weeks, or whenever you notice a significant change in your fitness. If you're following a structured training plan, a good time for a field test is at the end of a base block or the beginning of a new training cycle. You should also recalculate if you've had an injury or a long period without training."}},
-        {"@type": "Question", "name": "Can I train by zones without a GPS watch or heart rate monitor?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you can use the talk test as a basic reference. Zone 1-2: you can speak in complete sentences without gasping. Zone 3: you can talk but only in short phrases. Zone 4: you can only say a few words. Zone 5: you can't talk. It's less precise than a heart rate monitor, but it's a valid and free method for controlling intensity, especially for beginner runners."}},
-        {"@type": "Question", "name": "What is heart rate reserve and why does it matter?", "acceptedAnswer": {"@type": "Answer", "text": "Heart rate reserve (HRR) is the difference between your maximum heart rate and your resting heart rate. It matters because the Karvonen method, which calculates zones using HRR, is more accurate than using only maximum heart rate percentage. Two runners with the same max HR but different resting HR will have different zones with Karvonen, which better reflects their fitness differences."}},
-        {"@type": "Question", "name": "Why does my heart rate rise even when I run slowly?", "acceptedAnswer": {"@type": "Answer", "text": "This is called cardiac drift and is completely normal. As you run, your body heats up, loses fluids through sweat and stroke volume decreases, forcing your heart to beat faster to maintain the same oxygen delivery to your muscles. Other factors that elevate HR include ambient heat, dehydration, stress, caffeine and lack of sleep. If your HR consistently rises a lot when running slowly, it may indicate you need more aerobic base or that you're accumulating training fatigue."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What is the best way to calculate my training zones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most accurate method is a field test such as a 30-minute all-out sustained effort. Your average heart rate over the last 20 minutes is a good approximation of your threshold. From there, you can calculate all 5 zones. If you have access to a lab-based exercise test, the results will be even more precise. Formulas like 220 minus age are unreliable because they don't account for your individual fitness level."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What percentage of my training should be in zone 1 and 2?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Following the 80/20 rule or polarized training, roughly 80% of your weekly volume should be in zone 1 and zone 2 (low intensity, conversational pace). The remaining 20% is split between zone 3 (threshold/tempo), zone 4 (intervals) and zone 5 (sprints). This approach is backed by science and is used by the majority of elite athletes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it better to train by heart rate, pace or power?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each metric has its pros and cons. Heart rate reflects the actual physiological response but has a lag and is affected by heat, stress and fatigue. Pace is more intuitive but varies with terrain and conditions. Power from sensors like Stryd is the most instantaneous and objective metric, but requires additional investment. Ideally, combine at least two metrics for a complete picture of your effort."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should I recalculate my zones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's recommended to recalculate your zones every 8-12 weeks, or whenever you notice a significant change in your fitness. If you're following a structured training plan, a good time for a field test is at the end of a base block or the beginning of a new training cycle. You should also recalculate if you've had an injury or a long period without training."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I train by zones without a GPS watch or heart rate monitor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can use the talk test as a basic reference. Zone 1-2: you can speak in complete sentences without gasping. Zone 3: you can talk but only in short phrases. Zone 4: you can only say a few words. Zone 5: you can't talk. It's less precise than a heart rate monitor, but it's a valid and free method for controlling intensity, especially for beginner runners."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is heart rate reserve and why does it matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Heart rate reserve (HRR) is the difference between your maximum heart rate and your resting heart rate. It matters because the Karvonen method, which calculates zones using HRR, is more accurate than using only maximum heart rate percentage. Two runners with the same max HR but different resting HR will have different zones with Karvonen, which better reflects their fitness differences."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my heart rate rise even when I run slowly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is called cardiac drift and is completely normal. As you run, your body heats up, loses fluids through sweat and stroke volume decreases, forcing your heart to beat faster to maintain the same oxygen delivery to your muscles. Other factors that elevate HR include ambient heat, dehydration, stress, caffeine and lack of sleep. If your HR consistently rises a lot when running slowly, it may indicate you need more aerobic base or that you're accumulating training fatigue."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/zone-training-running#faq"
     }
   ]
 }

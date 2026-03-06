@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-music-benefits#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-with-music-benefits",
+      "name": "Running with Music: Benefits, Risks and the Perfect BPM Guide | CorrerJuntos",
+      "description": "How music improves your running performance. Ideal BPM by pace, headphone types, safety tips and playlist strategies for every runner.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.endondecorrer.com/wp-content/uploads/2024/07/beneficios-de-correr-con-musica.jpg"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-music-benefits#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-with-music-benefits#webpage"
+      },
       "headline": "Running with Music: Benefits, Risks and the Perfect BPM Guide",
       "description": "How music improves your running performance. Ideal BPM by pace, headphone types, safety tips and playlist strategies for every runner.",
       "url": "https://www.correrjuntos.com/blog/en/running-with-music-benefits",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://www.endondecorrer.com/wp-content/uploads/2024/07/beneficios-de-correr-con-musica.jpg"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://www.endondecorrer.com/wp-content/uploads/2024/07/beneficios-de-correr-con-musica.jpg",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Running with Music"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running with Music"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-music-benefits#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Is it bad to always run with music?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily, as long as you alternate with music-free sessions. Relying exclusively on music can make you lose the ability to listen to your body: breathing patterns, natural cadence and fatigue signals. Ideally, use music for quality sessions (intervals, tempo runs) and run without it on easy days at least once or twice a week. Also, many races discourage or prohibit headphones for safety reasons, so it helps to be prepared to run without external stimulation."}},
-        {"@type": "Question", "name": "What BPM is best for easy running pace?", "acceptedAnswer": {"@type": "Answer", "text": "For easy runs and recovery sessions, songs between 120 and 130 BPM are ideal. This range matches a cadence of 120 to 130 steps per minute, which is typical of a conversational pace. Faster songs can unconsciously push you to speed up, which would defeat the purpose of easy training. Spotify and Apple Music allow you to filter playlists by BPM to find the exact range you need."}},
-        {"@type": "Question", "name": "Are bone conduction headphones safe for running in the city?", "acceptedAnswer": {"@type": "Answer", "text": "Bone conduction headphones are the safest option for running in urban environments because they do not block the ear canal. They transmit sound through the skull bones, leaving your ears completely open to hear traffic, cyclists and other runners. Models like the Shokz OpenRun Pro 2 offer good sound quality while maintaining full environmental awareness. They are the recommended choice by most running clubs."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Is it bad to always run with music?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily, as long as you alternate with music-free sessions. Relying exclusively on music can make you lose the ability to listen to your body: breathing patterns, natural cadence and fatigue signals. Ideally, use music for quality sessions (intervals, tempo runs) and run without it on easy days at least once or twice a week. Also, many races discourage or prohibit headphones for safety reasons, so it helps to be prepared to run without external stimulation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What BPM is best for easy running pace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For easy runs and recovery sessions, songs between 120 and 130 BPM are ideal. This range matches a cadence of 120 to 130 steps per minute, which is typical of a conversational pace. Faster songs can unconsciously push you to speed up, which would defeat the purpose of easy training. Spotify and Apple Music allow you to filter playlists by BPM to find the exact range you need."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are bone conduction headphones safe for running in the city?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bone conduction headphones are the safest option for running in urban environments because they do not block the ear canal. They transmit sound through the skull bones, leaving your ears completely open to hear traffic, cyclists and other runners. Models like the Shokz OpenRun Pro 2 offer good sound quality while maintaining full environmental awareness. They are the recommended choice by most running clubs."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-with-music-benefits#faq"
     }
   ]
 }

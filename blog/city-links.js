@@ -47,22 +47,42 @@
   /* ── Shuffle helper ── */
   function shuffle(a){for(var i=a.length-1;i>0;i--){var r=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[r];a[r]=t;}return a;}
 
+  /* ── Place database (cities with places pages) ── */
+  var CITY_PLACES={
+    'madrid':[{s:'retiro',n:'Parque del Retiro'},{s:'casa-de-campo',n:'Casa de Campo'},{s:'madrid-rio',n:'Madrid Río'}],
+    'barcelona':[{s:'montjuic',n:'Montjuïc'},{s:'parc-de-la-ciutadella',n:'Parc de la Ciutadella'}],
+    'valencia':[{s:'parque-del-turia',n:'Jardín del Turia'}],
+    'sevilla':[{s:'parque-del-alamillo',n:'Parque del Alamillo'}],
+    'london':[{s:'hyde-park',n:'Hyde Park'}],
+    'new-york':[{s:'central-park',n:'Central Park'}],
+    'paris':[{s:'bois-de-boulogne',n:'Bois de Boulogne'}],
+    'berlin':[{s:'tiergarten',n:'Tiergarten'}],
+    'amsterdam':[{s:'vondelpark',n:'Vondelpark'}],
+    'rome':[{s:'villa-borghese',n:'Villa Borghese'}]
+  };
+
   /* ── Pick cities ── */
   var mapped = BLOG_CITY[slug];
   var picks = [];
+  var placePicks = [];
   if(mapped){
     for(var m=0;m<mapped.length;m++){
       for(var c=0;c<CITIES.length;c++){ if(CITIES[c].s===mapped[m]) picks.push(CITIES[c]); }
+      /* Grab places for this city */
+      var cp=CITY_PLACES[mapped[m]];
+      if(cp) placePicks=placePicks.concat(cp.slice(0,2));
     }
     var others=CITIES.filter(function(c){return mapped.indexOf(c.s)<0;});
     shuffle(others);
-    picks=picks.concat(others.slice(0,4-picks.length));
+    /* If we have places, show 2 cities + 2 places; otherwise 4 cities */
+    var cityCount=placePicks.length>0?2:4;
+    picks=picks.concat(others.slice(0,cityCount-picks.length));
   } else {
     var copy=CITIES.slice();
     shuffle(copy);
     picks=copy.slice(0,4);
   }
-  if(picks.length<2) return;
+  if(picks.length<2 && placePicks.length<1) return;
 
   /* ── CSS ── */
   var css=document.createElement('style');
@@ -85,6 +105,13 @@
   var title=isEN?'\ud83c\udfd9\ufe0f Find Running Groups':'🏙️ Encuentra grupos de running';
   var ctaText=isEN?'Explore city \u2192':'Explorar ciudad \u2192';
 
+  /* ── Place card CSS ── */
+  if(placePicks.length>0){
+    var placeCss=document.createElement('style');
+    placeCss.textContent='.city-link-place-badge{font-size:.6rem;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:.05em;margin:0 0 2px}';
+    document.head.appendChild(placeCss);
+  }
+
   var section=document.createElement('div');
   section.className='city-links-section';
   var html='<h2 class="city-links-title">'+title+'</h2><div class="city-links-grid">';
@@ -95,6 +122,17 @@
       '<div class="city-link-body">'+
         '<p class="city-link-name">'+p.f+' '+p.n+'</p>'+
         '<p class="city-link-cta">'+ctaText+'</p>'+
+      '</div>'+
+    '</a>';
+  }
+  /* Place cards (no image, text-only) */
+  var placeCtaText=isEN?'Running guide →':'Guía para correr →';
+  for(var pl=0;pl<placePicks.length;pl++){
+    html+='<a href="/places/'+placePicks[pl].s+'" class="city-link-card" style="display:flex;align-items:center">'+
+      '<div class="city-link-body">'+
+        '<p class="city-link-place-badge">'+(isEN?'Running spot':'Lugar')+'</p>'+
+        '<p class="city-link-name">'+placePicks[pl].n+'</p>'+
+        '<p class="city-link-cta">'+placeCtaText+'</p>'+
       '</div>'+
     '</a>';
   }

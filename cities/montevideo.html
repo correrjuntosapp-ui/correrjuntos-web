@@ -46,12 +46,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/montevideo",
+      "@id": "https://www.correrjuntos.com/cities/montevideo#webpage",
       "url": "https://www.correrjuntos.com/cities/montevideo",
       "name": "Grupos de Running en Montevideo | CorrerJuntos - Comunidad Running Montevideo, Uruguay",
       "description": "Únete a grupos de running en Montevideo, Uruguay. Corre por la Rambla de Montevideo, Parque Rodó, Parque Batlle y junto al Río de la Plata. Encuentra tu grupo r",
-      "inLanguage": "es"
+      "inLanguage": "es",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Montevideo",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Montevideo",
+        "addressCountry": "UY"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -74,47 +115,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Montevideo",
           "item": "https://www.correrjuntos.com/cities/montevideo"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Montevideo",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Montevideo",
-        "addressCountry": "UY"
-      },
-      "description": "Conecta con grupos de running en Montevideo."
-    },
-    {
-      "@type": "SportsEvent",
-      "name": "Maratón de Montevideo",
-      "description": "Principal maratón de Uruguay con recorrido costero por la Rambla junto al Río de la Plata.",
-      "startDate": "2026-11-01T07:00:00-03:00",
-      "endDate": "2026-11-01T14:00:00-03:00",
-      "image": "https://www.correrjuntos.com/img/og-image.jpg",
-      "performer": {"@type": "Organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com"},
-      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "url": "https://www.correrjuntos.com", "availability": "https://schema.org/InStock", "validFrom": "2025-01-01"},
-      "location": { "@type": "Place", "name": "Rambla de Montevideo", "address": { "@type": "PostalAddress", "addressLocality": "Montevideo", "addressCountry": "UY" } },
-      "organizer": {"@type": "Organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com"},
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "sport": "Running"
-    },
-    {
-      "@type": "SportsEvent",
-      "name": "Media Maratón de Montevideo",
-      "description": "21K por la Rambla desde Pocitos hasta el Centro de Montevideo.",
-      "startDate": "2026-05-01T07:00:00-03:00",
-      "endDate": "2026-05-01T12:00:00-03:00",
-      "image": "https://www.correrjuntos.com/img/og-image.jpg",
-      "performer": {"@type": "Organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com"},
-      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "url": "https://www.correrjuntos.com", "availability": "https://schema.org/InStock", "validFrom": "2025-01-01"},
-      "location": { "@type": "Place", "name": "Rambla de Montevideo", "address": { "@type": "PostalAddress", "addressLocality": "Montevideo", "addressCountry": "UY" } },
-      "organizer": {"@type": "Organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com"},
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "sport": "Running"
+      ],
+      "@id": "https://www.correrjuntos.com/cities/montevideo#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -175,7 +177,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Montevideo son Pocitos (rambla costanera y playas), Punta Carretas (malecón con vistas al río), Parque Rodó (pulmón verde central), Carrasco (barrio residencial con playas), y Buceo (puerto deportivo y rambla)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/montevideo#faq"
     }
   ]
 }
@@ -357,9 +360,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

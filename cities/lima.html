@@ -46,12 +46,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/lima",
+      "@id": "https://www.correrjuntos.com/cities/lima#webpage",
       "url": "https://www.correrjuntos.com/cities/lima",
       "name": "Grupos de Running en Lima | CorrerJuntos - Comunidad Running Lima, Perú",
       "description": "Únete a grupos de running en Lima, Perú. Corre por el Malecón de Miraflores, Costa Verde, Pantanos de Villa y Parque Kennedy. Encuentra tu grupo de running en L",
-      "inLanguage": "es"
+      "inLanguage": "es",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Lima",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lima",
+        "addressCountry": "PE"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -74,17 +115,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Lima",
           "item": "https://www.correrjuntos.com/cities/lima"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Lima",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Lima",
-        "addressCountry": "PE"
-      },
-      "description": "Conecta con grupos de running en Lima."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/lima#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -145,7 +177,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores distritos para correr en Lima son Miraflores (malecón costero), San Isidro (El Olivar y golf), Barranco (bohemio y costero), San Borja (Pentagonito) y La Molina (parques y menos tráfico)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/lima#faq"
     }
   ]
 }
@@ -351,9 +384,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

@@ -45,12 +45,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/toronto",
+      "@id": "https://www.correrjuntos.com/cities/toronto#webpage",
       "url": "https://www.correrjuntos.com/cities/toronto",
       "name": "Running Groups in Toronto | CorrerJuntos - Toronto Running Community",
       "description": "Join running groups in Toronto. Connect with runners across High Park, Don Valley Trail, Martin Goodman Trail, and Toronto Islands. Find your Toronto running cr",
-      "inLanguage": "en-CA"
+      "inLanguage": "en-CA",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Toronto",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Toronto",
+        "addressCountry": "CA"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +114,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Toronto",
           "item": "https://www.correrjuntos.com/cities/toronto"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Toronto",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Toronto",
-        "addressCountry": "CA"
-      },
-      "description": "Connect with running groups in Toronto."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/toronto#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +176,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "The best neighbourhoods for runners in Toronto include The Beaches and Queen East with direct lakefront trail access, High Park and Roncesvalles with forested hills and vibrant running clubs, Don Valley and Riverdale offering extensive ravine trails, Harbourfront and Toronto Islands for flat waterfront running with skyline views, and North York near Edwards Gardens for peaceful ravine paths and the Betty Sutherland Trail."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/toronto#faq"
     }
   ]
 }
@@ -342,9 +375,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

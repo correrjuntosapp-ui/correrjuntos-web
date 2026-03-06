@@ -44,12 +44,75 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/rome",
+      "@id": "https://www.correrjuntos.com/cities/rome#webpage",
       "url": "https://www.correrjuntos.com/cities/rome",
       "name": "Running Groups in Rome | CorrerJuntos - Rome Running Community",
       "description": "Join running groups in Rome. Connect with runners across Villa Borghese, Circus Maximus, Appia Antica, and Villa Doria Pamphili. Find your Rome running crew.",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Rome",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Rome",
+        "addressCountry": "IT"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en Rome",
+      "url": "https://www.correrjuntos.com/cities/rome",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Villa Borghese",
+            "url": "https://www.correrjuntos.com/places/villa-borghese"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Eventos de running en Rome",
+            "url": "https://www.correrjuntos.com/events/rome"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -72,17 +135,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Rome",
           "item": "https://www.correrjuntos.com/cities/rome"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Rome",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Rome",
-        "addressCountry": "IT"
-      },
-      "description": "Connect with running groups in Rome."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/rome#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -143,7 +197,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "The best areas for runners in Rome are Centro Storico near Villa Borghese for central park access, Trastevere near the Gianicolo hill for charming streets and panoramic climbs, Appia Antica and Caffarella for trail running and nature, EUR for modern flat circuits with fewer tourists, and Ostia Lido for seaside running along the beach promenade."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/rome#faq"
     }
   ]
 }
@@ -338,9 +393,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

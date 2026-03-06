@@ -45,12 +45,81 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/sevilla",
+      "@id": "https://www.correrjuntos.com/cities/sevilla#webpage",
       "url": "https://www.correrjuntos.com/cities/sevilla",
       "name": "Grupos de Running en Sevilla | CorrerJuntos - Comunidad Running Sevilla",
       "description": "Únete a grupos de running en Sevilla. Corre por el Parque de María Luisa, la Alameda, las orillas del Guadalquivir y Triana. Encuentra tu grupo de running en Se",
-      "inLanguage": "es-ES"
+      "inLanguage": "es-ES",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Sevilla",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sevilla",
+        "addressCountry": "ES"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en Sevilla",
+      "url": "https://www.correrjuntos.com/cities/sevilla",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Parque Del Alamillo",
+            "url": "https://www.correrjuntos.com/places/parque-del-alamillo"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Parque De Maria Luisa",
+            "url": "https://www.correrjuntos.com/places/parque-de-maria-luisa"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Eventos de running en Sevilla",
+            "url": "https://www.correrjuntos.com/events/sevilla"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +142,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Sevilla",
           "item": "https://www.correrjuntos.com/cities/sevilla"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Sevilla",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sevilla",
-        "addressCountry": "ES"
-      },
-      "description": "Conecta con grupos de running en Sevilla."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/sevilla#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +204,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Sevilla son Triana (acceso al paseo fluvial del Guadalquivir), Nervión (amplias avenidas y conexión con el Parque de María Luisa), Los Remedios (orilla oeste del río y Parque de los Príncipes), Santa Cruz (acceso rápido a los Jardines de Murillo) y Macarena (acceso al Parque del Alamillo, el pulmón verde de Sevilla)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/sevilla#faq"
     }
   ]
 }
@@ -339,9 +400,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

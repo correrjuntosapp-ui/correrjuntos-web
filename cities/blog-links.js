@@ -1,6 +1,44 @@
-/* Blog Links — shows 4 related blog article cards on city pages */
+/* Blog Links — shows places, events + blog article cards on city pages */
 (function(){
   'use strict';
+
+  /* ── City → Places mapping ── */
+  var CITY_PLACES={
+    'madrid':[
+      {s:'retiro',n:'Parque del Retiro'},{s:'casa-de-campo',n:'Casa de Campo'},
+      {s:'madrid-rio',n:'Madrid Río'},{s:'parque-juan-carlos',n:'Parque Juan Carlos I'},
+      {s:'parque-del-oeste',n:'Parque del Oeste'}
+    ],
+    'barcelona':[
+      {s:'montjuic',n:'Montjuïc'},{s:'serra-de-collserola',n:'Serra de Collserola'},
+      {s:'parc-de-la-ciutadella',n:'Parc de la Ciutadella'}
+    ],
+    'valencia':[{s:'parque-del-turia',n:'Jardín del Turia'}],
+    'sevilla':[{s:'parque-del-alamillo',n:'Parque del Alamillo'},{s:'parque-de-maria-luisa',n:'Parque de María Luisa'}],
+    'london':[{s:'hyde-park',n:'Hyde Park'},{s:'regents-park',n:'Regent\'s Park'}],
+    'new-york':[{s:'central-park',n:'Central Park'}],
+    'paris':[{s:'bois-de-boulogne',n:'Bois de Boulogne'}],
+    'berlin':[{s:'tiergarten',n:'Tiergarten'}],
+    'amsterdam':[{s:'vondelpark',n:'Vondelpark'}],
+    'rome':[{s:'villa-borghese',n:'Villa Borghese'}],
+    'dublin':[{s:'phoenix-park',n:'Phoenix Park'}],
+    'san-francisco':[{s:'golden-gate-park',n:'Golden Gate Park'}],
+    'los-angeles':[{s:'griffith-park',n:'Griffith Park'}],
+    'vancouver':[{s:'stanley-park',n:'Stanley Park'}],
+    'mexico-city':[{s:'chapultepec',n:'Bosque de Chapultepec'}],
+    'buenos-aires':[{s:'parque-del-este',n:'Parque 3 de Febrero'}],
+    'sao-paulo':[{s:'ibirapuera',n:'Parque Ibirapuera'}],
+    'munich':[{s:'englischer-garten',n:'Englischer Garten'}],
+    'copenhagen':[{s:'botanisk-have',n:'Botanisk Have'}],
+    'singapore':[{s:'gardens-by-the-bay',n:'Gardens by the Bay'}],
+    'melbourne':[{s:'kings-park',n:'Kings Park'}],
+    'quito':[{s:'parque-carolina',n:'Parque La Carolina'}]
+  };
+
+  /* ── Cities with /events/ pages ── */
+  var EVENTS_CITIES=['madrid','barcelona','valencia','sevilla','malaga',
+    'london','new-york','paris','berlin','amsterdam','rome','dublin',
+    'mexico-city','buenos-aires','lisbon'];
 
   /* ── City-specific article mappings ── */
   var CITY_BLOG={
@@ -94,10 +132,57 @@
   html+='</div>';
   section.innerHTML=html;
 
-  /* ── Inject before "other cities" section ── */
-  var otherCities=document.querySelector('.other-cities-section');
-  if(otherCities && otherCities.parentNode){
-    otherCities.parentNode.insertBefore(section,otherCities);
+  /* ── Build Places & Events section ── */
+  var places=CITY_PLACES[citySlug]||[];
+  var hasEvents=EVENTS_CITIES.indexOf(citySlug)>=0;
+
+  if(places.length>0||hasEvents){
+    var peCss=document.createElement('style');
+    peCss.textContent=[
+      '.places-events-section{margin:48px 0 0;padding:32px 0 0;border-top:1px solid rgba(255,255,255,.06)}',
+      '.pe-title{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 20px}',
+      '.pe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:24px}',
+      '.pe-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 16px;text-decoration:none;transition:all .25s;display:block}',
+      '.pe-card:hover{background:rgba(255,255,255,.06);border-color:rgba(249,115,22,.3);transform:translateY(-2px)}',
+      '.pe-cat{font-size:.7rem;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px}',
+      '.pe-name{font-size:.9rem;font-weight:700;color:#cbd5e1;margin:0;transition:color .2s}',
+      '.pe-card:hover .pe-name{color:#fff}',
+      '.pe-arrow{font-size:.75rem;color:#64748b;margin-top:8px}',
+      '.pe-card:hover .pe-arrow{color:#f97316}'
+    ].join('\n');
+    document.head.appendChild(peCss);
+
+    var peSection=document.createElement('div');
+    peSection.className='places-events-section';
+    var peHtml='<h2 class="pe-title">📍 Lugares y eventos</h2><div class="pe-grid">';
+    for(var pi=0;pi<places.length&&pi<5;pi++){
+      peHtml+='<a href="/places/'+places[pi].s+'" class="pe-card">'+
+        '<div class="pe-cat">Lugar</div>'+
+        '<p class="pe-name">'+places[pi].n+'</p>'+
+        '<div class="pe-arrow">Ver guía →</div></a>';
+    }
+    if(hasEvents){
+      peHtml+='<a href="/events/'+citySlug+'" class="pe-card">'+
+        '<div class="pe-cat">Eventos</div>'+
+        '<p class="pe-name">Carreras y quedadas</p>'+
+        '<div class="pe-arrow">Ver eventos →</div></a>';
+    }
+    peHtml+='</div>';
+    peSection.innerHTML=peHtml;
+
+    var otherCities=document.querySelector('.other-cities-section');
+    if(otherCities&&otherCities.parentNode){
+      otherCities.parentNode.insertBefore(peSection,otherCities);
+    } else {
+      var ctaBox2=document.querySelector('.cta-box');
+      if(ctaBox2&&ctaBox2.parentNode) ctaBox2.parentNode.insertBefore(peSection,ctaBox2);
+    }
+  }
+
+  /* ── Inject blog section before places/events or "other cities" section ── */
+  var insertBefore=document.querySelector('.places-events-section')||document.querySelector('.other-cities-section');
+  if(insertBefore && insertBefore.parentNode){
+    insertBefore.parentNode.insertBefore(section,insertBefore);
   } else {
     var ctaBox=document.querySelector('.cta-box');
     if(ctaBox && ctaBox.parentNode){

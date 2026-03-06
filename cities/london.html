@@ -45,12 +45,81 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/london",
+      "@id": "https://www.correrjuntos.com/cities/london#webpage",
       "url": "https://www.correrjuntos.com/cities/london",
       "name": "Running Groups in London | CorrerJuntos - Connect with Local Runners",
       "description": "Join running groups in London. Connect with runners across Hyde Park, Regent's Park, Richmond Park, and Thames Path. Find your running community today.",
-      "inLanguage": "en-GB"
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "London",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en London",
+      "url": "https://www.correrjuntos.com/cities/london",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Hyde Park",
+            "url": "https://www.correrjuntos.com/places/hyde-park"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Regents Park",
+            "url": "https://www.correrjuntos.com/places/regents-park"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Eventos de running en London",
+            "url": "https://www.correrjuntos.com/events/london"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +142,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "London",
           "item": "https://www.correrjuntos.com/cities/london"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in London",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "London",
-        "addressCountry": "GB"
-      },
-      "description": "Connect with running groups in London."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/london#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +204,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Top running areas in London include Richmond (parks, deer, and Thames towpath), Hackney and Victoria Park (East London's running hub with popular parkruns), Battersea and Clapham (south London parks and active running clubs), Camden and Regent's Park (flat loops and Primrose Hill views), and Greenwich (historic park with hill training and riverside paths)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/london#faq"
     }
   ]
 }
@@ -327,9 +388,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

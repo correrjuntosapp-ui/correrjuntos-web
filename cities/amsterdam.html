@@ -44,12 +44,75 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/amsterdam",
+      "@id": "https://www.correrjuntos.com/cities/amsterdam#webpage",
       "url": "https://www.correrjuntos.com/cities/amsterdam",
       "name": "Running Groups in Amsterdam | CorrerJuntos - Amsterdam Running Community",
       "description": "Join running groups in Amsterdam. Connect with runners across Vondelpark, Amsterdamse Bos, canal routes, and the Amstel River. Find your Amsterdam running crew.",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Amsterdam",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Amsterdam",
+        "addressCountry": "NL"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en Amsterdam",
+      "url": "https://www.correrjuntos.com/cities/amsterdam",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Vondelpark",
+            "url": "https://www.correrjuntos.com/places/vondelpark"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Eventos de running en Amsterdam",
+            "url": "https://www.correrjuntos.com/events/amsterdam"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -72,17 +135,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Amsterdam",
           "item": "https://www.correrjuntos.com/cities/amsterdam"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Running Groups in Amsterdam",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Amsterdam",
-        "addressCountry": "NL"
-      },
-      "description": "Connect with running groups in Amsterdam."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/amsterdam#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -143,7 +197,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "The best neighborhoods for running in Amsterdam are Oud-Zuid near Vondelpark (central with museum quarter access), the Amstel area and Rivierenbuurt (flat riverside paths for long runs), Westerpark and Jordaan (hip canal-side paths in west Amsterdam), Amsterdamse Bos (a 900-hectare forest park south of the city ideal for trail running), and IJburg with its Eastern Docklands (modern waterfront routes with open water views)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/amsterdam#faq"
     }
   ]
 }
@@ -330,9 +385,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

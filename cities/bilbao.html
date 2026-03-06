@@ -45,12 +45,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/bilbao",
+      "@id": "https://www.correrjuntos.com/cities/bilbao#webpage",
       "url": "https://www.correrjuntos.com/cities/bilbao",
       "name": "Grupos de Running en Bilbao | CorrerJuntos - Comunidad Running Bilbao",
       "description": "Únete a grupos de running en Bilbao. Corre por la Ría del Nervión, el Parque de Doña Casilda, el Monte Artxanda y Abandoibarra. Encuentra tu grupo de running en",
-      "inLanguage": "es-ES"
+      "inLanguage": "es-ES",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Bilbao",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bilbao",
+        "addressCountry": "ES"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +114,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Bilbao",
           "item": "https://www.correrjuntos.com/cities/bilbao"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Bilbao",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Bilbao",
-        "addressCountry": "ES"
-      },
-      "description": "Conecta con grupos de running en Bilbao."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/bilbao#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +176,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Bilbao son Abando/Ensanche (acceso a la Ría y al Guggenheim), Deusto (senderos ribereños y Monte Artxanda), Getxo/Las Arenas (paseo marítimo y acantilados), Basurto-Zorroza (Parque de Etxebarria y trail urbano) y Begoña/Santutxu (calles empinadas para entrenamientos de fuerza)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/bilbao#faq"
     }
   ]
 }
@@ -336,9 +369,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

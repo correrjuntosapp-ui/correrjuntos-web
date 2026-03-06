@@ -45,12 +45,87 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/barcelona",
+      "@id": "https://www.correrjuntos.com/cities/barcelona#webpage",
       "url": "https://www.correrjuntos.com/cities/barcelona",
       "name": "Grupos de Running en Barcelona | CorrerJuntos - Comunidad Running Barcelona",
       "description": "Únete a grupos de running en Barcelona. Conecta con corredores en Montjuïc, Paseo Marítimo, Ciutadella, Carretera de les Aigües y Collserola. Encuentra tu grupo",
-      "inLanguage": "es-ES"
+      "inLanguage": "es-ES",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Barcelona",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Barcelona",
+        "addressCountry": "ES"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Running en Barcelona",
+      "url": "https://www.correrjuntos.com/cities/barcelona",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Montjuic",
+            "url": "https://www.correrjuntos.com/places/montjuic"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Serra De Collserola",
+            "url": "https://www.correrjuntos.com/places/serra-de-collserola"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Parc De La Ciutadella",
+            "url": "https://www.correrjuntos.com/places/parc-de-la-ciutadella"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Eventos de running en Barcelona",
+            "url": "https://www.correrjuntos.com/events/barcelona"
+          }
+        ]
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -73,17 +148,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Barcelona",
           "item": "https://www.correrjuntos.com/cities/barcelona"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Barcelona",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Barcelona",
-        "addressCountry": "ES"
-      },
-      "description": "Conecta con grupos de running en Barcelona."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/barcelona#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -144,7 +210,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Barcelona son Eixample (acceso central a todas las rutas), Gràcia (entrada a Collserola y Carretera de les Aigües), Poblenou (Paseo Marítimo), Sarrià-Sant Gervasi (trail en Collserola) y Barceloneta (running frente al mar)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/barcelona#faq"
     }
   ]
 }
@@ -335,9 +402,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

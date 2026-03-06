@@ -1,0 +1,376 @@
+{
+  "madrid": {
+    "citySlug": "madrid",
+    "cityName": "Madrid",
+    "country": "ES",
+    "heroImage": "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running y Quedadas en Madrid",
+    "metaDescription": "Guía de carreras populares, parkruns y eventos de running en Madrid. Maratón, San Silvestre, parkrun Retiro y más.",
+    "shortDescription": "Madrid es la capital del running en España, con carreras populares todo el año, parkruns semanales y una comunidad runner enorme.",
+    "description": "<p>Madrid ofrece uno de los calendarios de running más completos de Europa. Desde el emblemático Rock 'n' Roll Madrid Maratón en abril hasta la multitudinaria San Silvestre Vallecana el 31 de diciembre, la capital española tiene eventos para todos los niveles durante todo el año.</p>\n<p>Además de las grandes carreras, Madrid cuenta con parkruns semanales gratuitos en el Retiro y Casa de Campo, entrenamientos organizados por clubs como Adidas Runners y Nike Run Club, y decenas de carreras populares de 5K y 10K cada fin de semana.</p>\n<p>La comunidad runner madrileña es diversa y acogedora. CorrerJuntos te conecta con grupos de running en tu barrio para que encuentres compañeros de entrenamiento y eventos cerca de ti.</p>",
+    "majorRaces": [
+      {"name": "Rock 'n' Roll Madrid Maratón", "month": "Abril", "distance": "42K / 10K", "participants": "30.000+"},
+      {"name": "San Silvestre Vallecana", "month": "31 Diciembre", "distance": "10K", "participants": "40.000+"},
+      {"name": "EDP Medio Maratón de Madrid", "month": "Marzo", "distance": "21K", "participants": "15.000+"},
+      {"name": "Carrera de la Mujer", "month": "Mayo", "distance": "7K", "participants": "35.000+"},
+      {"name": "Cursa de Navidad Madrid", "month": "Diciembre", "distance": "10K", "participants": "10.000+"}
+    ],
+    "parkruns": [
+      {"name": "parkrun Retiro", "location": "Parque del Retiro", "day": "Sábados 9:00"},
+      {"name": "parkrun Casa de Campo", "location": "Casa de Campo (Lago)", "day": "Sábados 9:00"}
+    ],
+    "meetupCulture": "<p>Madrid tiene una vibrante cultura de quedadas running. Clubs como Adidas Runners Madrid organizan entrenamientos gratuitos semanales, Nike Run Club tiene sesiones en la Castellana, y decenas de grupos locales quedan en el Retiro, Madrid Río y Casa de Campo. CorrerJuntos conecta a corredores de todos los barrios para entrenar juntos.</p>",
+    "seasonalHighlights": "<p>Primavera: Maratón de Madrid y Medio Maratón. Verano: carreras nocturnas y entrenamientos al amanecer. Otoño: preparación de la San Silvestre y carreras de cross. Invierno: San Silvestre Vallecana y carreras navideñas.</p>",
+    "faq": [
+      {"q": "¿Cuáles son las principales carreras en Madrid?", "a": "Las grandes carreras son el Rock 'n' Roll Madrid Maratón (abril), la San Silvestre Vallecana (31 diciembre), el EDP Medio Maratón (marzo) y la Carrera de la Mujer (mayo)."},
+      {"q": "¿Hay parkrun en Madrid?", "a": "Sí, Madrid tiene dos parkruns: Retiro (junto al Ángel Caído) y Casa de Campo (junto al Lago). Ambos se celebran cada sábado a las 9:00 y son gratuitos."},
+      {"q": "¿Cómo encontrar grupos de running en Madrid?", "a": "Descarga CorrerJuntos gratis y encuentra quedadas de running cerca de ti en Madrid. Filtra por nivel, distancia y horario."},
+      {"q": "¿Hay carreras populares cada fin de semana?", "a": "Sí, prácticamente cada fin de semana hay alguna carrera popular de 5K o 10K en Madrid, organizadas por clubs, marcas deportivas y asociaciones vecinales."}
+    ]
+  },
+  "barcelona": {
+    "citySlug": "barcelona",
+    "cityName": "Barcelona",
+    "country": "ES",
+    "heroImage": "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running y Carreras en Barcelona",
+    "metaDescription": "Carreras populares y eventos de running en Barcelona. Maratón, Cursa de la Mercè, trail en Collserola y parkrun.",
+    "shortDescription": "Barcelona combina maratón urbano, trail en Collserola y carreras junto al Mediterráneo durante todo el año.",
+    "description": "<p>Barcelona ofrece una experiencia running única que combina ciudad, montaña y mar. El calendario incluye desde la Zurich Maratón de Barcelona en marzo hasta carreras de trail en la Serra de Collserola y pruebas junto a la playa de la Barceloneta.</p>\n<p>La Cursa de la Mercè, la carrera popular más antigua de España (desde 1978), se celebra cada septiembre con el patrocinio de las fiestas de la Mercè. Barcelona también acoge la Cursa dels Nassos el 31 de diciembre.</p>\n<p>La comunidad runner barcelonesa es enorme, con clubs en cada barrio y una cultura de trail running muy arraigada gracias a la proximidad de Collserola y Montjuïc.</p>",
+    "majorRaces": [
+      {"name": "Zurich Maratón de Barcelona", "month": "Marzo", "distance": "42K", "participants": "20.000+"},
+      {"name": "Cursa de la Mercè", "month": "Septiembre", "distance": "10K", "participants": "15.000+"},
+      {"name": "Mitja Marató de Barcelona", "month": "Febrero", "distance": "21K", "participants": "15.000+"},
+      {"name": "Cursa dels Nassos", "month": "31 Diciembre", "distance": "10K / 5K", "participants": "12.000+"},
+      {"name": "Salomon Ultra Pirineu", "month": "Octubre", "distance": "Ultra Trail", "participants": "3.000+"}
+    ],
+    "parkruns": [
+      {"name": "parkrun Ciutadella", "location": "Parc de la Ciutadella", "day": "Sábados 9:00"}
+    ],
+    "meetupCulture": "<p>Barcelona tiene una comunidad trail y road running muy activa. Clubs como Corredors.cat, Barcelona Trail Runners y grupos de cada barrio organizan entrenamientos semanales. Las quedadas de CorrerJuntos conectan a runners por toda la ciudad.</p>",
+    "seasonalHighlights": "<p>Invierno: Mitja Marató en febrero. Primavera: Maratón de Barcelona en marzo. Verano: carreras de playa y trail nocturno. Otoño: Cursa de la Mercè, Ultra Pirineu y temporada de trail.</p>",
+    "faq": [
+      {"q": "¿Cuándo es el Maratón de Barcelona?", "a": "La Zurich Maratón de Barcelona se celebra en marzo. Es una de las maratones más rápidas de España por su perfil llano junto al mar."},
+      {"q": "¿Hay trail running cerca de Barcelona?", "a": "Sí, la Serra de Collserola ofrece senderos de trail a 20 minutos del centro. Montjuïc es otra opción más accesible para trail urbano."},
+      {"q": "¿Hay parkrun en Barcelona?", "a": "Sí, parkrun Ciutadella se celebra cada sábado a las 9:00 en el Parc de la Ciutadella. Es gratuito y abierto a todos los niveles."}
+    ]
+  },
+  "valencia": {
+    "citySlug": "valencia",
+    "cityName": "Valencia",
+    "country": "ES",
+    "heroImage": "https://images.unsplash.com/photo-1599207876610-d1f1c9f2e45e?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Valencia: Ciudad del Running",
+    "metaDescription": "Valencia, la Ciudad del Running. Maratón Valencia Trinidad Alfonso, medio maratón, 10K y calendario completo de carreras.",
+    "shortDescription": "Valencia es oficialmente la Ciudad del Running, con el maratón más rápido de España y un clima perfecto para correr todo el año.",
+    "description": "<p>Valencia se ha consolidado como la Ciudad del Running en España. El Maratón Valencia Trinidad Alfonso es el más rápido de España y uno de los mejores del mundo, con récords nacionales batidos año tras año gracias a su recorrido ultrarrápido y llano.</p>\n<p>El calendario valenciano incluye el medio maratón en octubre, el 10K Valencia Ibercaja en enero, la Volta a Peu en septiembre y decenas de carreras populares. El Jardín del Turia es el escenario principal para entrenamientos durante todo el año.</p>\n<p>El clima mediterráneo de Valencia, con inviernos suaves y muchas horas de sol, la convierte en destino favorito de runners que buscan entrenar en condiciones ideales.</p>",
+    "majorRaces": [
+      {"name": "Maratón Valencia Trinidad Alfonso", "month": "Diciembre", "distance": "42K", "participants": "30.000+"},
+      {"name": "Medio Maratón Valencia", "month": "Octubre", "distance": "21K", "participants": "15.000+"},
+      {"name": "10K Valencia Ibercaja", "month": "Enero", "distance": "10K", "participants": "12.000+"},
+      {"name": "Volta a Peu Valencia", "month": "Septiembre", "distance": "8K", "participants": "10.000+"}
+    ],
+    "parkruns": [],
+    "meetupCulture": "<p>Valencia tiene una comunidad running en constante crecimiento, impulsada por el éxito del maratón. Los clubs locales organizan entrenamientos en el Jardín del Turia y la playa de la Malvarrosa. CorrerJuntos conecta a runners de todos los barrios.</p>",
+    "seasonalHighlights": "<p>Invierno: 10K Valencia en enero. Primavera: preparación media maratón. Verano: entrenamientos al amanecer por el calor. Otoño: Medio Maratón en octubre. Diciembre: Maratón Valencia, el evento estrella.</p>",
+    "faq": [
+      {"q": "¿Por qué Valencia es la Ciudad del Running?", "a": "Valencia ha ganado reconocimiento mundial por su Maratón, uno de los más rápidos del mundo. Su recorrido llano, clima ideal y excelente organización la han convertido en referente del running en España."},
+      {"q": "¿Cuándo es el Maratón de Valencia?", "a": "El Maratón Valencia Trinidad Alfonso se celebra el primer domingo de diciembre. Las inscripciones se agotan meses antes."},
+      {"q": "¿Hay parkrun en Valencia?", "a": "Actualmente Valencia no tiene parkrun oficial, pero hay grupos de running que organizan entrenamientos gratuitos en el Jardín del Turia cada fin de semana."}
+    ]
+  },
+  "sevilla": {
+    "citySlug": "sevilla",
+    "cityName": "Sevilla",
+    "country": "ES",
+    "heroImage": "https://images.unsplash.com/photo-1636060823063-fe90cc147c06?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running y Carreras en Sevilla",
+    "metaDescription": "Carreras populares y eventos de running en Sevilla. Maratón, Nocturna del Guadalquivir, CxM y calendario completo.",
+    "shortDescription": "Sevilla combina maratón urbano, carreras nocturnas junto al Guadalquivir y la pasión andaluza por el running.",
+    "description": "<p>Sevilla es una de las ciudades con más tradición running del sur de España. El Zurich Maratón de Sevilla en febrero aprovecha el clima suave del invierno andaluz, convirtiéndose en una de las primeras grandes maratones del calendario europeo.</p>\n<p>Las carreras nocturnas junto al Guadalquivir son una tradición sevillana única, con la Nocturna del Guadalquivir como evento estrella. La CxM Sierra de Sevilla ofrece trail running en un entorno privilegiado.</p>\n<p>La comunidad runner sevillana es apasionada y acogedora, con clubs en todos los barrios y una cultura de running social muy arraigada.</p>",
+    "majorRaces": [
+      {"name": "Zurich Maratón de Sevilla", "month": "Febrero", "distance": "42K", "participants": "12.000+"},
+      {"name": "Nocturna del Guadalquivir", "month": "Junio", "distance": "10K", "participants": "8.000+"},
+      {"name": "Media Maratón de Sevilla", "month": "Enero", "distance": "21K", "participants": "8.000+"},
+      {"name": "CxM Sierra de Sevilla", "month": "Noviembre", "distance": "Trail", "participants": "2.000+"}
+    ],
+    "parkruns": [],
+    "meetupCulture": "<p>Los clubs de running sevillanos entrenan principalmente en el Parque del Alamillo y la ribera del Guadalquivir. Las quedadas de CorrerJuntos conectan a corredores de todos los barrios de Sevilla para entrenar juntos.</p>",
+    "seasonalHighlights": "<p>Invierno: Maratón (febrero) y Media Maratón (enero). Primavera: carreras populares antes del calor. Verano: Nocturna del Guadalquivir y entrenamientos nocturnos. Otoño: trail en Sierra de Sevilla.</p>",
+    "faq": [
+      {"q": "¿Cuándo es el Maratón de Sevilla?", "a": "El Zurich Maratón de Sevilla se celebra en febrero. Es una de las primeras maratones del año en Europa, con temperaturas ideales para correr."},
+      {"q": "¿Se puede correr en Sevilla en verano?", "a": "Sí, pero las temperaturas superan los 35-40°C. Se recomienda correr antes de las 8:00 o después de las 21:00. Las carreras nocturnas son muy populares."}
+    ]
+  },
+  "malaga": {
+    "citySlug": "malaga",
+    "cityName": "Málaga",
+    "country": "ES",
+    "heroImage": "https://images.unsplash.com/photo-1592906209472-a36b1f3782ef?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running y Carreras en Málaga",
+    "metaDescription": "Carreras populares y eventos de running en Málaga. Maratón, media maratón, trail y carreras junto al Mediterráneo.",
+    "shortDescription": "Málaga ofrece carreras junto al Mediterráneo, trail en los Montes y el clima más suave de Europa para correr todo el año.",
+    "description": "<p>Málaga se ha posicionado como destino running gracias a su clima excepcional y su creciente calendario de carreras. El Zurich Maratón Málaga en diciembre y la Media Maratón en primavera son los eventos estrella de la Costa del Sol.</p>\n<p>El paseo marítimo de Málaga ofrece kilómetros de ruta plana junto al Mediterráneo, mientras que los Montes de Málaga proporcionan terreno de trail a pocos kilómetros del centro. Esta combinación de mar y montaña es única en el running español.</p>\n<p>La comunidad runner malagueña crece cada año, con clubs activos y carreras populares frecuentes en toda la provincia.</p>",
+    "majorRaces": [
+      {"name": "Zurich Maratón Málaga", "month": "Diciembre", "distance": "42K / 21K", "participants": "10.000+"},
+      {"name": "Media Maratón de Málaga", "month": "Marzo", "distance": "21K", "participants": "6.000+"},
+      {"name": "Noche de San Juan Running", "month": "Junio", "distance": "10K", "participants": "3.000+"},
+      {"name": "CxM Montes de Málaga", "month": "Octubre", "distance": "Trail", "participants": "1.500+"}
+    ],
+    "parkruns": [],
+    "meetupCulture": "<p>Los clubs de running malagueños entrenan por el paseo marítimo y en los parques de la ciudad. Las quedadas nocturnas en verano son especialmente populares. CorrerJuntos conecta a runners de toda la Costa del Sol.</p>",
+    "seasonalHighlights": "<p>Todo el año: clima suave (10-30°C). Primavera: Media Maratón. Verano: carreras nocturnas. Otoño: trail en los Montes. Diciembre: Maratón Málaga.</p>",
+    "faq": [
+      {"q": "¿Por qué Málaga es buena para running?", "a": "Málaga tiene el clima más suave de la península, con temperaturas agradables todo el año. Puedes correr junto al mar o hacer trail en los Montes de Málaga."},
+      {"q": "¿Cuándo es el Maratón de Málaga?", "a": "El Zurich Maratón Málaga se celebra en diciembre, con opciones de maratón completa y media maratón."}
+    ]
+  },
+  "london": {
+    "citySlug": "london",
+    "cityName": "London",
+    "country": "GB",
+    "heroImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Londres",
+    "metaDescription": "Carreras y eventos de running en Londres. London Marathon, parkrun, Great North Run y la mayor comunidad runner del mundo.",
+    "shortDescription": "Londres es la capital mundial del running con el London Marathon, cientos de parkruns y la mayor comunidad runner del planeta.",
+    "description": "<p>Londres es indiscutiblemente la capital mundial del running. El TCS London Marathon en abril es una de las seis World Marathon Majors y la carrera más solicitada del mundo, con más de 400.000 solicitudes para 50.000 plazas cada año.</p>\n<p>El movimiento parkrun nació en Londres en 2004 (Bushy Park) y hoy la ciudad cuenta con más de 80 parkruns semanales. Cada sábado, miles de londinenses corren 5K gratuitos en parques de toda la ciudad.</p>\n<p>La comunidad running londinense es enorme y diversa, con clubs en cada barrio y eventos durante todo el año. Los Royal Parks (Hyde Park, Regent's Park, Richmond Park) son los escenarios principales para entrenamientos.</p>",
+    "majorRaces": [
+      {"name": "TCS London Marathon", "month": "Abril", "distance": "42K", "participants": "50.000+"},
+      {"name": "Hackney Half Marathon", "month": "Mayo", "distance": "21K", "participants": "15.000+"},
+      {"name": "Royal Parks Half Marathon", "month": "Octubre", "distance": "21K", "participants": "16.000+"},
+      {"name": "London 10K", "month": "Julio", "distance": "10K", "participants": "15.000+"}
+    ],
+    "parkruns": [
+      {"name": "Bushy parkrun", "location": "Bushy Park (el original)", "day": "Sábados 9:00"},
+      {"name": "Hyde Park parkrun", "location": "Hyde Park", "day": "Sábados 9:00"},
+      {"name": "Regent's Park parkrun", "location": "Regent's Park", "day": "Sábados 9:00"}
+    ],
+    "meetupCulture": "<p>Londres tiene la mayor concentración de running clubs del mundo. Desde clubs tradicionales hasta grupos sociales como Run Dem Crew, Midnight Runners y London City Runners, hay opciones para todos los gustos y niveles. CorrerJuntos conecta a la comunidad hispanohablante runner en Londres.</p>",
+    "seasonalHighlights": "<p>Primavera: London Marathon (abril). Verano: London 10K y carreras estivales. Otoño: Royal Parks Half y temporada de cross. Invierno: preparación de la próxima maratón y parkruns bajo la lluvia londinense.</p>",
+    "faq": [
+      {"q": "¿Cómo entrar en el London Marathon?", "a": "El London Marathon usa un sistema de lotería (ballot). Puedes solicitar tu plaza en octubre para la edición de abril del año siguiente. También hay plazas por caridad y clubs afiliados."},
+      {"q": "¿Qué es parkrun?", "a": "parkrun es un movimiento global de carreras gratuitas de 5K cada sábado. Nació en Londres en 2004 y ahora hay más de 80 ubicaciones en la ciudad. Solo necesitas registrarte online una vez e imprimir tu código de barras."},
+      {"q": "¿Dónde correr en Londres?", "a": "Los Royal Parks (Hyde Park, Regent's Park, Richmond Park) son los mejores lugares. También el canal de Regent's Canal, el Tamesis Path y Hampstead Heath para trail."}
+    ]
+  },
+  "new-york": {
+    "citySlug": "new-york",
+    "cityName": "New York",
+    "country": "US",
+    "heroImage": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Nueva York",
+    "metaDescription": "Carreras y eventos de running en Nueva York. NYC Marathon, NYRR races, Central Park runs y la escena runner más icónica del mundo.",
+    "shortDescription": "Nueva York es el epicentro del running mundial con el NYC Marathon, carreras NYRR semanales y Central Park como templo runner.",
+    "description": "<p>El TCS New York City Marathon en noviembre es la maratón más grande del mundo con más de 50.000 finishers. El recorrido atraviesa los cinco distritos de la ciudad, cruzando el Verrazzano Bridge hasta llegar a Central Park.</p>\n<p>El New York Road Runners (NYRR) organiza carreras prácticamente cada fin de semana en Central Park y otras ubicaciones, con eventos desde 4 millas hasta medias maratones. La comunidad running neoyorquina es una de las más activas y diversas del mundo.</p>\n<p>Central Park es el corazón del running en Nueva York, con su loop de 9,7 km recorrido por miles de corredores cada día. Los puentes de Brooklyn y Manhattan también ofrecen rutas icónicas.</p>",
+    "majorRaces": [
+      {"name": "TCS New York City Marathon", "month": "Noviembre", "distance": "42K", "participants": "50.000+"},
+      {"name": "United Airlines NYC Half", "month": "Marzo", "distance": "21K", "participants": "25.000+"},
+      {"name": "NYRR Brooklyn Half", "month": "Mayo", "distance": "21K", "participants": "28.000+"},
+      {"name": "NYRR Midnight Run", "month": "31 Diciembre", "distance": "4 millas", "participants": "5.000+"}
+    ],
+    "parkruns": [],
+    "meetupCulture": "<p>Nueva York tiene una de las comunidades running más vibrantes del mundo. NYRR, November Project, Nike Run Club, Adidas Runners NYC y decenas de clubs locales organizan entrenamientos abiertos. La cultura running se vive intensamente en todos los distritos.</p>",
+    "seasonalHighlights": "<p>Primavera: NYC Half (marzo). Verano: carreras de 5K y entrenamientos al amanecer. Otoño: NYC Marathon (noviembre), la joya del calendario. Invierno: Midnight Run en Nochevieja.</p>",
+    "faq": [
+      {"q": "¿Cómo entrar en el NYC Marathon?", "a": "Hay varias vías: lotería pública (drawing), garantía por tiempo (qualification), caridad, correr 9+ carreras NYRR al año (9+1 program), o inscripción internacional."},
+      {"q": "¿Qué es el NYRR?", "a": "New York Road Runners es la organización que gestiona el NYC Marathon y organiza más de 60 carreras anuales en la ciudad, la mayoría en Central Park."},
+      {"q": "¿Dónde correr en Nueva York?", "a": "Central Park (loop de 9,7 km), Prospect Park en Brooklyn (5,3 km loop), Brooklyn Bridge, Hudson River Greenway y Riverside Park son los lugares más populares."}
+    ]
+  },
+  "paris": {
+    "citySlug": "paris",
+    "cityName": "Paris",
+    "country": "FR",
+    "heroImage": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en París",
+    "metaDescription": "Carreras y eventos de running en París. Maratón de París, Schneider Electric Marathon, Semi de Paris y calendario completo.",
+    "shortDescription": "París ofrece un calendario running de primer nivel mundial con el Maratón más bonito del mundo y carreras por los Champs-Élysées.",
+    "description": "<p>El Schneider Electric Marathon de Paris en abril es considerado el maratón más bonito del mundo, con un recorrido que pasa por la Torre Eiffel, los Champs-Élysées, Notre-Dame y el Louvre. Atrae a más de 50.000 corredores de todo el mundo.</p>\n<p>El Semi de Paris (media maratón) en marzo es otra cita imprescindible, junto con el 20km de Paris y La Parisienne, una carrera exclusivamente femenina. El Bois de Boulogne y las orillas del Sena son los escenarios principales.</p>\n<p>La comunidad running parisina ha crecido enormemente, especialmente desde las obras de los Juegos Olímpicos de 2024 que han mejorado los espacios verdes y las berges de Seine para corredores.</p>",
+    "majorRaces": [
+      {"name": "Schneider Electric Marathon de Paris", "month": "Abril", "distance": "42K", "participants": "50.000+"},
+      {"name": "Semi de Paris", "month": "Marzo", "distance": "21K", "participants": "40.000+"},
+      {"name": "20km de Paris", "month": "Octubre", "distance": "20K", "participants": "20.000+"},
+      {"name": "La Parisienne", "month": "Septiembre", "distance": "7K (femenina)", "participants": "30.000+"}
+    ],
+    "parkruns": [
+      {"name": "parkrun Bois de Boulogne", "location": "Bois de Boulogne", "day": "Sábados 9:00"}
+    ],
+    "meetupCulture": "<p>París tiene una comunidad running en plena expansión. Clubs como Paris Running Club, Midnight Runners Paris y Adidas Runners organizan entrenamientos semanales. Las berges de Seine cerradas al tráfico son el circuito favorito.</p>",
+    "seasonalHighlights": "<p>Primavera: Maratón de París y Semi de Paris. Verano: entrenamientos al atardecer por el Sena. Otoño: 20km de Paris. Invierno: preparación maratón y rodajes por el Bois de Boulogne.</p>",
+    "faq": [
+      {"q": "¿Cuándo es el Maratón de París?", "a": "El Schneider Electric Marathon de Paris se celebra en abril. Las inscripciones se abren en octubre del año anterior y se agotan rápidamente."},
+      {"q": "¿Dónde correr en París?", "a": "El Bois de Boulogne, las berges de Seine, los Jardines de Luxembourg y el Bois de Vincennes son los lugares más populares."}
+    ]
+  },
+  "berlin": {
+    "citySlug": "berlin",
+    "cityName": "Berlin",
+    "country": "DE",
+    "heroImage": "https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Berlín",
+    "metaDescription": "Carreras y eventos de running en Berlín. BMW Berlin Marathon, la maratón más rápida del mundo, parkrun y la escena runner alemana.",
+    "shortDescription": "Berlín acoge la maratón más rápida del mundo, donde se baten récords mundiales, con meta en la Puerta de Brandeburgo.",
+    "description": "<p>El BMW Berlin Marathon en septiembre es oficialmente la maratón más rápida del mundo. La mayoría de récords mundiales de maratón se han batido en Berlín gracias a su recorrido ultrallano y condiciones climáticas ideales. La meta en la Puerta de Brandeburgo es una de las imágenes más icónicas del running mundial.</p>\n<p>Berlín también acoge el Generali Berliner Halbmarathon en primavera, numerosas carreras de 10K y una activa escena de parkrun. El Tiergarten es el epicentro del running berlinés.</p>\n<p>La comunidad running alemana valora la disciplina y el rendimiento, pero también el aspecto social del running. Clubs de todos los niveles organizan entrenamientos regulares por toda la ciudad.</p>",
+    "majorRaces": [
+      {"name": "BMW Berlin Marathon", "month": "Septiembre", "distance": "42K", "participants": "45.000+"},
+      {"name": "Generali Berliner Halbmarathon", "month": "Abril", "distance": "21K", "participants": "30.000+"},
+      {"name": "Berlin 10K", "month": "Junio", "distance": "10K", "participants": "10.000+"},
+      {"name": "Berliner Silvesterlauf", "month": "31 Diciembre", "distance": "15K", "participants": "8.000+"}
+    ],
+    "parkruns": [
+      {"name": "parkrun Tiergarten", "location": "Tiergarten", "day": "Sábados 9:00"},
+      {"name": "parkrun Hasenheide", "location": "Volkspark Hasenheide", "day": "Sábados 9:00"}
+    ],
+    "meetupCulture": "<p>Berlín tiene una comunidad running diversa e inclusiva. Midnight Runners Berlin, Berlin Braves y decenas de Laufgruppen (grupos de running) organizan entrenamientos semanales. El Tiergarten es el punto de encuentro más popular.</p>",
+    "seasonalHighlights": "<p>Primavera: Halbmarathon (abril). Verano: 10K y entrenamientos largos con días muy largos. Septiembre: Berlin Marathon, el evento del año. Invierno: Silvesterlauf y entrenamiento en frío.</p>",
+    "faq": [
+      {"q": "¿Por qué la maratón de Berlín es la más rápida?", "a": "El recorrido es casi completamente llano, el clima de septiembre es ideal (12-18°C), y la organización es perfecta. La mayoría de récords mundiales de maratón se han batido aquí."},
+      {"q": "¿Cómo inscribirse en el Berlin Marathon?", "a": "El Berlin Marathon usa un sistema de lotería. Las inscripciones se abren en octubre para la edición de septiembre. También hay plazas por tiempo, clubs y turoperadores oficiales."}
+    ]
+  },
+  "amsterdam": {
+    "citySlug": "amsterdam",
+    "cityName": "Amsterdam",
+    "country": "NL",
+    "heroImage": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Ámsterdam",
+    "metaDescription": "Carreras y eventos de running en Ámsterdam. TCS Amsterdam Marathon, Dam tot Damloop, parkrun y la escena runner holandesa.",
+    "shortDescription": "Ámsterdam ofrece una maratón rápida en octubre, la famosa Dam tot Damloop y la cultura runner más creciente de Europa.",
+    "description": "<p>El TCS Amsterdam Marathon en octubre es una de las maratones más rápidas y mejor organizadas de Europa, con un recorrido plano que pasa por el Rijksmuseum y el Vondelpark. La Dam tot Damloop (10 millas de Ámsterdam a Zaandam) es la carrera de 10 millas más grande del mundo.</p>\n<p>Los Países Bajos, con su terreno completamente llano, son un paraíso para runners que buscan tiempos rápidos. Los canales de Ámsterdam y los parques ofrecen rutas escénicas únicas.</p>\n<p>La cultura running holandesa ha crecido enormemente, con la infraestructura ciclista adaptándose cada vez más a los corredores.</p>",
+    "majorRaces": [
+      {"name": "TCS Amsterdam Marathon", "month": "Octubre", "distance": "42K / 21K / 8K", "participants": "45.000+"},
+      {"name": "Dam tot Damloop", "month": "Septiembre", "distance": "10 millas", "participants": "50.000+"},
+      {"name": "Amsterdam City Run", "month": "Marzo", "distance": "5K / 10K", "participants": "5.000+"}
+    ],
+    "parkruns": [
+      {"name": "parkrun Amstelpark", "location": "Amstelpark", "day": "Sábados 9:00"}
+    ],
+    "meetupCulture": "<p>La comunidad running de Ámsterdam crece cada año. Running clubs como Amsterdam Road Runners, Run2Day y Midnight Runners Amsterdam organizan entrenamientos semanales. Los canales y el Vondelpark son los puntos de encuentro principales.</p>",
+    "seasonalHighlights": "<p>Primavera: Amsterdam City Run. Verano: entrenamientos largos con luz hasta las 22:00. Septiembre: Dam tot Damloop. Octubre: Amsterdam Marathon.</p>",
+    "faq": [
+      {"q": "¿Es Ámsterdam buena para correr?", "a": "Sí, es excelente. Terreno completamente llano, buenos parques, canales escénicos y buena infraestructura. El clima es templado aunque llueve frecuentemente."},
+      {"q": "¿Qué es la Dam tot Damloop?", "a": "La Dam tot Damloop es una carrera de 10 millas (16 km) que va de Ámsterdam a Zaandam. Con más de 50.000 participantes, es la carrera de 10 millas más grande del mundo."}
+    ]
+  },
+  "rome": {
+    "citySlug": "rome",
+    "cityName": "Rome",
+    "country": "IT",
+    "heroImage": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Roma",
+    "metaDescription": "Carreras y eventos de running en Roma. Maratón de Roma, Corri per la Vita, running entre ruinas y la escena runner italiana.",
+    "shortDescription": "Roma ofrece una experiencia running única corriendo entre ruinas milenarias, con el Maratón pasando por el Coliseo y el Vaticano.",
+    "description": "<p>El Acea Run Rome The Marathon en marzo ofrece un recorrido único que pasa por el Coliseo, los Foros Imperiales, la Piazza di Spagna y el Vaticano. Correr una maratón entre 2.700 años de historia es una experiencia irrepetible.</p>\n<p>Roma también acoge la Corsa dei Santi (Día de Todos los Santos, 1 noviembre), la Roma-Ostia Half Marathon y numerosas carreras populares. Villa Borghese y las orillas del Tíber son los circuitos de entrenamiento principales.</p>\n<p>La comunidad running romana es apasionada y se beneficia de un clima mediterráneo que permite entrenar al aire libre prácticamente todo el año.</p>",
+    "majorRaces": [
+      {"name": "Acea Run Rome The Marathon", "month": "Marzo", "distance": "42K", "participants": "15.000+"},
+      {"name": "Roma-Ostia Half Marathon", "month": "Febrero", "distance": "21K", "participants": "10.000+"},
+      {"name": "Corsa dei Santi", "month": "1 Noviembre", "distance": "10K", "participants": "8.000+"},
+      {"name": "We Run Rome", "month": "31 Diciembre", "distance": "10K / 5K", "participants": "6.000+"}
+    ],
+    "parkruns": [],
+    "meetupCulture": "<p>Roma tiene una creciente comunidad de running clubs y grupos informales. Las orillas del Tíber y Villa Borghese son los puntos de encuentro favoritos. Muchos corredores entrenan en la Appia Antica, la antigua calzada romana.</p>",
+    "seasonalHighlights": "<p>Invierno: Roma-Ostia en febrero. Primavera: Maratón de Roma en marzo. Verano: entrenamientos nocturnos. Otoño: Corsa dei Santi. Diciembre: We Run Rome en Nochevieja.</p>",
+    "faq": [
+      {"q": "¿Cómo es correr sobre adoquines en Roma?", "a": "El centro histórico tiene muchos adoquines (sampietrini). Usa zapatillas con buena amortiguación. Las zonas de Villa Borghese y el Tíber tienen superficies más suaves."},
+      {"q": "¿Cuándo es el Maratón de Roma?", "a": "El Acea Run Rome The Marathon se celebra en marzo. El recorrido pasa por los monumentos más icónicos de Roma."}
+    ]
+  },
+  "dublin": {
+    "citySlug": "dublin",
+    "cityName": "Dublin",
+    "country": "IE",
+    "heroImage": "https://images.unsplash.com/photo-1564959130747-897a8b079f73?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Dublín",
+    "metaDescription": "Carreras y eventos de running en Dublín. Dublin Marathon, parkruns en Phoenix Park, Great Ireland Run y la pasión runner irlandesa.",
+    "shortDescription": "Dublín es la capital runner de Irlanda con una maratón en octubre, parkruns masivos en Phoenix Park y la hospitalidad irlandesa.",
+    "description": "<p>El Dublin Marathon en octubre es la maratón más grande de Irlanda, con un recorrido que atraviesa el centro histórico, Phoenix Park y los barrios georgianos. Su ambiente festivo y la hospitalidad irlandesa la hacen única.</p>\n<p>Irlanda tiene una de las mayores densidades de parkruns del mundo, y Dublín es su epicentro. Phoenix Park, St Anne's Park y docenas de ubicaciones ofrecen 5K gratuitos cada sábado.</p>\n<p>La comunidad running irlandesa es una de las más amigables del mundo. Los clubs Athletics Ireland y grupos locales organizan entrenamientos durante todo el año, llueva o haga sol (que en Dublín, la lluvia es frecuente).</p>",
+    "majorRaces": [
+      {"name": "Dublin Marathon", "month": "Octubre", "distance": "42K", "participants": "22.000+"},
+      {"name": "Great Ireland Run", "month": "Abril", "distance": "10K", "participants": "10.000+"},
+      {"name": "Dublin Half Marathon", "month": "Septiembre", "distance": "21K", "participants": "10.000+"},
+      {"name": "Run in the Dark", "month": "Noviembre", "distance": "5K / 10K", "participants": "8.000+"}
+    ],
+    "parkruns": [
+      {"name": "Phoenix Park parkrun", "location": "Phoenix Park", "day": "Sábados 9:30"},
+      {"name": "St Anne's parkrun", "location": "St Anne's Park", "day": "Sábados 9:30"},
+      {"name": "Marlay parkrun", "location": "Marlay Park", "day": "Sábados 9:30"}
+    ],
+    "meetupCulture": "<p>Dublín tiene una cultura running muy social. Los pubs post-run son una tradición irlandesa. Clubs como Dublin Running Blog, Sportsworld Running Club y decenas de grupos locales organizan entrenamientos semanales.</p>",
+    "seasonalHighlights": "<p>Primavera: Great Ireland Run (abril). Verano: carreras de 5K y entrenamientos largos. Otoño: Dublin Marathon (octubre). Invierno: Run in the Dark y parkruns bajo la lluvia irlandesa.</p>",
+    "faq": [
+      {"q": "¿Cuándo es el Dublin Marathon?", "a": "El Dublin Marathon se celebra el último domingo de octubre. Las inscripciones se agotan meses antes, ya que es uno de los maratones más populares de Europa."},
+      {"q": "¿Llueve mucho para correr en Dublín?", "a": "Sí, Dublín tiene lluvia frecuente durante todo el año. Los runners irlandeses abrazan la lluvia como parte de la experiencia. Equípate con ropa impermeable transpirable."}
+    ]
+  },
+  "mexico-city": {
+    "citySlug": "mexico-city",
+    "cityName": "Ciudad de México",
+    "country": "MX",
+    "heroImage": "https://images.unsplash.com/photo-1518659526054-190340b32735?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Ciudad de México",
+    "metaDescription": "Carreras y eventos de running en CDMX. Maratón de la Ciudad de México, Reforma dominical y running a 2.240 m de altitud.",
+    "shortDescription": "Ciudad de México combina maratón a 2.240 m de altitud, Reforma dominical con 15 km sin coches y la pasión mexicana por el running.",
+    "description": "<p>El Maratón de la Ciudad de México en agosto es una de las maratones más grandes de Latinoamérica, con un recorrido que atraviesa Paseo de la Reforma, el Centro Histórico y Chapultepec a 2.240 metros de altitud.</p>\n<p>Cada domingo, Paseo de la Reforma se cierra al tráfico de 6:00 a 14:00, creando un corredor exclusivo de 15 km para corredores y ciclistas. Miles de capitalinos aprovechan esta tradición dominical para entrenar.</p>\n<p>La comunidad running mexicana es una de las más apasionadas del mundo. Clubs como Reto 42, Nike Run Club CDMX y grupos de cada colonia organizan entrenamientos semanales. La altitud añade un componente de entrenamiento natural que mejora el rendimiento.</p>",
+    "majorRaces": [
+      {"name": "Maratón de la Ciudad de México", "month": "Agosto", "distance": "42K", "participants": "30.000+"},
+      {"name": "Medio Maratón de la CDMX", "month": "Marzo", "distance": "21K", "participants": "25.000+"},
+      {"name": "Carrera Bonafont", "month": "Mayo", "distance": "5K / 10K", "participants": "20.000+"},
+      {"name": "Carrera Nike 21K", "month": "Octubre", "distance": "21K", "participants": "15.000+"}
+    ],
+    "parkruns": [],
+    "meetupCulture": "<p>CDMX tiene una comunidad runner enorme y entusiasta. Los grupos de entrenamiento en Chapultepec y Reforma dominical son masivos. Nike Run Club, Adidas Runners y decenas de clubs locales organizan sesiones semanales gratuitas.</p>",
+    "seasonalHighlights": "<p>Todo el año: Reforma dominical. Primavera: Medio Maratón. Verano: Maratón de CDMX (agosto). Otoño: Nike 21K y preparación de carreras. Invierno: clima ideal para correr (seco y templado).</p>",
+    "faq": [
+      {"q": "¿Afecta la altitud para correr en CDMX?", "a": "Sí, a 2.240 m la altitud se nota. Los primeros días reduce tu ritmo y aumenta la hidratación. La aclimatación toma 5-7 días. La ventaja es que el entrenamiento en altura mejora el rendimiento a nivel del mar."},
+      {"q": "¿Qué es la Reforma dominical?", "a": "Cada domingo de 6:00 a 14:00, Paseo de la Reforma se cierra al tráfico. Miles de personas salen a correr, caminar y andar en bici. Es una tradición única de la Ciudad de México."}
+    ]
+  },
+  "buenos-aires": {
+    "citySlug": "buenos-aires",
+    "cityName": "Buenos Aires",
+    "country": "AR",
+    "heroImage": "https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Buenos Aires",
+    "metaDescription": "Carreras y eventos de running en Buenos Aires. Maratón de Buenos Aires, media maratón, running teams y la pasión runner porteña.",
+    "shortDescription": "Buenos Aires es la capital running de Sudamérica con maratón, running teams masivos en Palermo y carreras todos los domingos.",
+    "description": "<p>Buenos Aires es la capital del running en Sudamérica. El Maratón de Buenos Aires en octubre atrae a corredores de toda Latinoamérica, con un recorrido plano que pasa por la Avenida 9 de Julio, Puerto Madero y los Bosques de Palermo.</p>\n<p>La cultura de running teams es única en Argentina. Decenas de equipos organizan entrenamientos gratuitos en Palermo varias veces por semana, con cientos de participantes cada sesión. Nike Run Club, Adidas Runners y grupos locales como Buenos Aires Run Club son muy activos.</p>\n<p>Las carreras populares dominicales son una tradición porteña. Prácticamente cada domingo hay alguna carrera de 5K, 10K o 21K en Buenos Aires.</p>",
+    "majorRaces": [
+      {"name": "Maratón de Buenos Aires", "month": "Octubre", "distance": "42K", "participants": "12.000+"},
+      {"name": "Media Maratón de Buenos Aires", "month": "Septiembre", "distance": "21K", "participants": "15.000+"},
+      {"name": "Buenos Aires 10K", "month": "Abril", "distance": "10K", "participants": "10.000+"},
+      {"name": "Noche de las Zapatillas", "month": "Febrero", "distance": "10K (nocturna)", "participants": "8.000+"}
+    ],
+    "parkruns": [],
+    "meetupCulture": "<p>Buenos Aires tiene la mayor densidad de running teams de Sudamérica. Los entrenamientos en Palermo reúnen a cientos de corredores de todos los niveles. Nike Run Club, Adidas Runners, Buenos Aires Run Club y decenas de grupos locales organizan sesiones gratuitas semanales.</p>",
+    "seasonalHighlights": "<p>Otoño (marzo-mayo): temperaturas ideales. Invierno (junio-agosto): fresco pero agradable. Primavera: Media Maratón en septiembre. Octubre: Maratón de Buenos Aires, el evento del año. Verano: carreras nocturnas.</p>",
+    "faq": [
+      {"q": "¿Qué son los running teams en Buenos Aires?", "a": "Los running teams son grupos de entrenamiento organizados que ofrecen sesiones gratuitas varias veces por semana. Son una parte fundamental de la cultura runner porteña y una forma ideal de empezar a correr."},
+      {"q": "¿Cuándo es el Maratón de Buenos Aires?", "a": "El Maratón de Buenos Aires se celebra en octubre. Es la maratón más importante de Sudamérica y atrae a corredores de toda Latinoamérica."}
+    ]
+  },
+  "lisbon": {
+    "citySlug": "lisbon",
+    "cityName": "Lisbon",
+    "country": "PT",
+    "heroImage": "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=1200&h=600&q=80",
+    "title": "Eventos de Running en Lisboa",
+    "metaDescription": "Carreras y eventos de running en Lisboa. Maratón de Lisboa, Meia Maratona, trail junto al Tajo y la escena runner portuguesa.",
+    "shortDescription": "Lisboa ofrece maratón con vistas al Tajo, media maratón sobre el Puente 25 de Abril y un clima atlántico ideal para correr.",
+    "description": "<p>El EDP Maratona de Lisboa en octubre es una de las maratones más escénicas de Europa, con un recorrido que cruza el Puente 25 de Abril y recorre la ribera del Tajo. La Meia Maratona de Lisboa en marzo es también una cita imprescindible.</p>\n<p>Lisboa es una ciudad de colinas, lo que añade un desafío extra para los corredores. Sin embargo, la zona ribereña desde Belém hasta el Parque das Nações ofrece kilómetros de ruta plana junto al Tajo. El Parque Florestal de Monsanto proporciona trail running urbano.</p>\n<p>Portugal tiene una tradición atlética importante y la comunidad running lisboeta crece cada año, con clubs activos y una cultura de running social en plena expansión.</p>",
+    "majorRaces": [
+      {"name": "EDP Maratona de Lisboa", "month": "Octubre", "distance": "42K", "participants": "12.000+"},
+      {"name": "Meia Maratona de Lisboa", "month": "Marzo", "distance": "21K", "participants": "25.000+"},
+      {"name": "Corrida de São Silvestre de Lisboa", "month": "28 Diciembre", "distance": "10K", "participants": "10.000+"},
+      {"name": "Color Run Lisbon", "month": "Junio", "distance": "5K", "participants": "5.000+"}
+    ],
+    "parkruns": [
+      {"name": "parkrun Oeiras", "location": "Oeiras (Passeio Marítimo)", "day": "Sábados 9:00"}
+    ],
+    "meetupCulture": "<p>La comunidad running de Lisboa está en pleno crecimiento. Running clubs como Lisbon Runners, Urban Runners y grupos locales organizan entrenamientos junto al Tajo y en Monsanto. CorrerJuntos conecta a la comunidad hispanohablante runner en Lisboa.</p>",
+    "seasonalHighlights": "<p>Primavera: Meia Maratona (marzo). Verano: entrenamientos al amanecer junto al Tajo. Otoño: Maratona de Lisboa (octubre). Diciembre: São Silvestre de Lisboa.</p>",
+    "faq": [
+      {"q": "¿Es Lisboa buena para correr pese a las colinas?", "a": "Lisboa tiene muchas colinas en el centro, pero la zona ribereña (Belém a Parque das Nações) es completamente plana y ofrece más de 10 km de ruta junto al Tajo."},
+      {"q": "¿Cuándo es la Maratona de Lisboa?", "a": "La EDP Maratona de Lisboa se celebra en octubre. El recorrido cruza el Puente 25 de Abril y tiene vistas espectaculares del Tajo."}
+    ]
+  }
+}

@@ -46,12 +46,53 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "SportsOrganization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "sport": "Running",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://www.correrjuntos.com/cities/granada",
+      "@id": "https://www.correrjuntos.com/cities/granada#webpage",
       "url": "https://www.correrjuntos.com/cities/granada",
       "name": "Grupos de Running en Granada | CorrerJuntos - Comunidad Running Granada",
       "description": "Únete a grupos de running en Granada. Corre junto a la Alhambra, por el Paseo del Salón, el río Genil, las cuestas del Albaicín y los senderos de Sierra Nevada.",
-      "inLanguage": "es-ES"
+      "inLanguage": "es-ES",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Granada",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Granada",
+        "addressCountry": "ES"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -74,17 +115,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
           "name": "Granada",
           "item": "https://www.correrjuntos.com/cities/granada"
         }
-      ]
-    },
-    {
-      "@type": "SportsClub",
-      "name": "Grupos de Running en Granada",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Granada",
-        "addressCountry": "ES"
-      },
-      "description": "Conecta con grupos de running en Granada."
+      ],
+      "@id": "https://www.correrjuntos.com/cities/granada#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -145,7 +177,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
             "text": "Los mejores barrios para correr en Granada son Beiro y Camino de Ronda (acceso a la ribera del Genil), Zaidín (conexión con la Vega), Albaicín (cuestas y vistas a la Alhambra), Ronda y Chana (acceso al Parque García Lorca) y Monachil-Cenes de la Vega (puerta al trail running con Los Cahorros)."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/cities/granada#faq"
     }
   ]
 }
@@ -336,9 +369,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+            <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/equipamiento/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Equipamiento</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>

@@ -671,6 +671,38 @@
       "added": "2026-03-04",
       "usage_category": "recovery/rest",
       "max_articles": 6
+    },
+    {
+      "id": "10168184",
+      "url": "https://www.pexels.com/photo/10168184/",
+      "license": "Pexels License (free for commercial use, no attribution required)",
+      "added": "2026-03-06",
+      "usage_category": "sunglasses/running gear",
+      "max_articles": 6
+    },
+    {
+      "id": "1478672",
+      "url": "https://www.pexels.com/photo/1478672/",
+      "license": "Pexels License (free for commercial use, no attribution required)",
+      "added": "2026-03-06",
+      "usage_category": "water bottles/hydration",
+      "max_articles": 6
+    },
+    {
+      "id": "4379234",
+      "url": "https://www.pexels.com/photo/4379234/",
+      "license": "Pexels License (free for commercial use, no attribution required)",
+      "added": "2026-03-06",
+      "usage_category": "smartwatch close-up",
+      "max_articles": 6
+    },
+    {
+      "id": "31775355",
+      "url": "https://www.pexels.com/photo/31775355/",
+      "license": "Pexels License (free for commercial use, no attribution required)",
+      "added": "2026-03-06",
+      "usage_category": "runner checking watch",
+      "max_articles": 6
     }
   ]
 }

@@ -10,9 +10,9 @@ Disallow: /screenshots/
 Disallow: /social-content/
 Disallow: /stats/
 Disallow: /correr-juntos-app/
-Disallow: /*.cjs$
-Disallow: /*.sql$
-Disallow: /*.md$
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
 
 # Crawl-delay for polite bots
 User-agent: AhrefsBot

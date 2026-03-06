@@ -103,8 +103,8 @@ function generate(lang) {
     matchingHref: '/matching/en/',
   };
 
-  const esSlug = config.es.slug;
-  const enSlug = config.en.slug;
+  const esSlug = config.es ? config.es.slug : '';
+  const enSlug = config.en ? config.en.slug : '';
   const canonicalUrl = `https://www.correrjuntos.com${isES ? '/blog/' + esSlug : '/blog/en/' + enSlug}`;
   const esUrl = `https://www.correrjuntos.com/blog/${esSlug}`;
   const enUrl = `https://www.correrjuntos.com/blog/en/${enSlug}`;
@@ -126,9 +126,9 @@ function generate(lang) {
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="${c.keywords}">
 <link rel="canonical" href="${canonicalUrl}">
-<link rel="alternate" hreflang="es" href="${esUrl}">
-<link rel="alternate" hreflang="x-default" href="${esUrl}">
-<link rel="alternate" hreflang="en" href="${enUrl}">
+${esSlug ? `<link rel="alternate" hreflang="es" href="${esUrl}">
+<link rel="alternate" hreflang="x-default" href="${esUrl}">` : ''}
+${enSlug ? `<link rel="alternate" hreflang="en" href="${enUrl}">` : ''}
 <meta property="og:title" content="${c.ogTitle || c.title}">
 <meta property="og:description" content="${c.ogDescription || c.metaDescription}">
 <meta property="og:type" content="article">
@@ -294,12 +294,14 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div class="content">
 `;
 
-  // AFFILIATE DISCLOSURE
-  html += `    <p style="font-size:.8rem;color:#64748b;background:rgba(255,255,255,.03);padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.06)">
+  // AFFILIATE DISCLOSURE (only for articles with products)
+  if (c.products && c.products.length > 0) {
+    html += `    <p style="font-size:.8rem;color:#64748b;background:rgba(255,255,255,.03);padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.06)">
       ${L.disclosure}
     </p>
 
 `;
+  }
 
   // INTRO
   html += c.introHtml + '\n\n';

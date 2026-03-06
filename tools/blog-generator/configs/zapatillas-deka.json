@@ -1,0 +1,97 @@
+{
+  "es": {
+    "slug": "zapatillas-deka-strong-atlas",
+    "title": "Mejores Zapatillas para DEKA STRONG y ATLAS 2026",
+    "metaDescription": "Las mejores zapatillas para DEKA STRONG, FIT y competiciones funcionales: Nike Metcon, Reebok Nano y más. Comparativa con precios y Amazon.",
+    "keywords": "zapatillas DEKA, zapatillas DEKA STRONG, zapatillas funcionales, Nike Metcon DEKA, Reebok Nano DEKA, zapatillas training",
+    "heroImage": "https://images.pexels.com/photos/3490348/pexels-photo-3490348.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+    "heroAlt": "Zapatillas de entrenamiento funcional en gimnasio",
+    "breadcrumbLabel": "Zapatillas DEKA",
+    "category": "Atleta Híbrido",
+    "datePublished": "2026-03-06",
+    "readTime": "12",
+    "author": "Carlos Ruiz",
+    "introHtml": "    <p>DEKA STRONG no tiene carrera, pero exige <strong>10 zonas funcionales de alta intensidad</strong> consecutivas. Esto cambia completamente los requisitos de la zapatilla: necesitas m&aacute;xima estabilidad, base plana y agarre, pero no tanta amortiguaci&oacute;n como para HYROX.</p>\n    <p>Para DEKA FIT (que s&iacute; incluye 5 km de carrera), necesitas algo m&aacute;s de cushion. Hemos seleccionado las <strong>3 mejores opciones</strong> que cubren ambas modalidades, desde la opci&oacute;n m&aacute;s estable hasta la m&aacute;s vers&aacute;til.</p>\n    <div class=\"tip\"><strong>Resumen r&aacute;pido:</strong> Para DEKA STRONG &rarr; <a href=\"#reebok-nano-x4\" style=\"color:#f97316\">Reebok Nano X4</a> (m&aacute;xima estabilidad). Para DEKA FIT &rarr; <a href=\"#nike-metcon-9\" style=\"color:#f97316\">Nike Metcon 9</a> (mejor compromiso carrera/estaciones).</div>",
+    "tocItems": [
+      { "id": "requisitos", "label": "Qué necesitas en una zapatilla DEKA" },
+      { "id": "ranking", "label": "Top 3 zapatillas para DEKA" },
+      { "id": "comparativa", "label": "Tabla comparativa" },
+      { "id": "faq", "label": "Preguntas frecuentes" }
+    ],
+    "educationalHtml": "    <h2 id=\"requisitos\">Qu&eacute; necesitas en una zapatilla DEKA</h2>\n    <p>Los requisitos var&iacute;an seg&uacute;n la modalidad:</p>\n    <h3>DEKA STRONG (sin carrera)</h3>\n    <ul>\n      <li><strong>Base plana:</strong> Drop 0-4 mm para m&aacute;xima estabilidad en row, dead ball carry, farmer&apos;s carry.</li>\n      <li><strong>Suela r&iacute;gida:</strong> Que no se deforme bajo carga en tank push y lunges con peso.</li>\n      <li><strong>Agarre:</strong> Suela de goma que no resbale en suelo de gym.</li>\n      <li><strong>Amortiguaci&oacute;n:</strong> M&iacute;nima. No necesitas cushion para 10 estaciones sin carrera.</li>\n    </ul>\n    <h3>DEKA FIT (con 5 km carrera)</h3>\n    <ul>\n      <li><strong>Drop moderado:</strong> 4-6 mm para un compromiso entre carrera y estaciones.</li>\n      <li><strong>Algo de amortiguaci&oacute;n:</strong> Suficiente para 5 km sin matar las piernas.</li>\n      <li><strong>Misma estabilidad:</strong> Las zonas funcionales son las mismas que STRONG.</li>\n    </ul>",
+    "rankingTitle": "Top 3 zapatillas para DEKA 2026",
+    "rankingIntro": "Seleccionadas por rendimiento en las 10 zonas DEKA. Evaluadas en estabilidad, agarre, peso y versatilidad.",
+    "products": [
+      {
+        "id": "nike-metcon-9",
+        "name": "Nike Metcon 9",
+        "tagline": "Mejor para DEKA FIT",
+        "amazonUrl": "https://www.amazon.es/dp/B0D9PK6S9M?tag=diezmejores21-21",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/71Hv6V+-r9L._AC_SX425_.jpg",
+        "specs": [
+          { "label": "Peso", "value": "~340 g" },
+          { "label": "Drop", "value": "4 mm" },
+          { "label": "Suela", "value": "Goma Nike" },
+          { "label": "Amortiguación", "value": "React Foam" }
+        ],
+        "price": "~135€",
+        "bestFor": "DEKA FIT, versatilidad máxima, quien necesita correr y trabajar",
+        "descriptionHtml": "      <p>Las Metcon 9 son la <strong>zapatilla de training m&aacute;s vers&aacute;til del mercado</strong>. La plataforma plana y ancha da estabilidad en todas las zonas DEKA, y la espuma React a&ntilde;ade suficiente amortiguaci&oacute;n para los 5 km de carrera en DEKA FIT sin ser excesiva.</p>\n      <p>El heel clip aporta estabilidad lateral en movimientos con carga (tank push, dead ball carry). La suela es duradera y agarra en cualquier superficie de gym. Para DEKA FIT, son probablemente la mejor opci&oacute;n por su equilibrio entre carrera y zonas funcionales.</p>\n      <p>Para DEKA STRONG (sin carrera), funcionan bien pero las Nano X4 son ligeramente mejores por su base m&aacute;s r&iacute;gida.</p>"
+      },
+      {
+        "id": "reebok-nano-x4",
+        "name": "Reebok Nano X4",
+        "tagline": "Mejor para DEKA STRONG",
+        "amazonUrl": "https://www.amazon.es/dp/B0DHPWRSM5?tag=diezmejores21-21",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/71cP9e5MWQL._AC_SX425_.jpg",
+        "specs": [
+          { "label": "Peso", "value": "~325 g" },
+          { "label": "Drop", "value": "4 mm" },
+          { "label": "Suela", "value": "Goma Flex Weave" },
+          { "label": "Amortiguación", "value": "Floatride Energy" }
+        ],
+        "price": "~120€",
+        "bestFor": "DEKA STRONG, máxima estabilidad, CrossFit, levantamientos",
+        "descriptionHtml": "      <p>Las Nano X4 son las <strong>reinas de la estabilidad</strong> en training funcional. La base plana de 4 mm de drop y la suela de goma r&iacute;gida las convierten en la opci&oacute;n ideal para DEKA STRONG, donde no hay carrera y todas las zonas requieren estabilidad y agarre.</p>\n      <p>El upper Flex Weave es transpirable y resistente a la abrasi&oacute;n, importante para zonas como dead ball carry donde el bal&oacute;n roza constantemente el empeine. La espuma Floatride Energy es m&iacute;nima pero funcional: lo justo para no sentir el suelo en cada zancada.</p>\n      <p>Si vienes de CrossFit y ya tienes Nanos, no necesitas comprar nada m&aacute;s para DEKA STRONG. Para DEKA FIT, pueden quedarse un poco cortas de amortiguaci&oacute;n en los tramos de carrera.</p>"
+      },
+      {
+        "id": "nike-free-metcon-5",
+        "name": "Nike Free Metcon 5",
+        "tagline": "Más cómoda para entrenar",
+        "amazonUrl": "https://www.amazon.es/dp/B0CX4KN1LB?tag=diezmejores21-21",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/717Maw0p8VL._AC_SX425_.jpg",
+        "specs": [
+          { "label": "Peso", "value": "~315 g" },
+          { "label": "Drop", "value": "5 mm" },
+          { "label": "Suela", "value": "Nike Free + Goma" },
+          { "label": "Amortiguación", "value": "Nike Free Foam" }
+        ],
+        "price": "~110€",
+        "bestFor": "entrenamientos diarios, DEKA FIT, comodidad todo el día",
+        "descriptionHtml": "      <p>Las Free Metcon 5 combinan la <strong>flexibilidad Nike Free</strong> en la parte delantera con la estabilidad Metcon en el tal&oacute;n. El resultado es una zapatilla m&aacute;s c&oacute;moda para correr que las Metcon 9, con suficiente estabilidad para zonas funcionales.</p>\n      <p>Son ideales para entrenamientos diarios donde combinas carrera con trabajo funcional. Para DEKA STRONG competici&oacute;n, les falta algo de rigidez frente a las Nano. Pero para prepararte y entrenar las 10 zonas, son muy c&oacute;modas.</p>\n      <p>La opci&oacute;n m&aacute;s econ&oacute;mica de esta lista y la m&aacute;s c&oacute;moda para usar todo el d&iacute;a.</p>"
+      }
+    ],
+    "comparisonTableHtml": "    <h2 id=\"comparativa\">Tabla comparativa</h2>\n    <div style=\"overflow-x:auto\">\n    <table class=\"comparison-table\">\n      <thead><tr><th>Modelo</th><th>Peso</th><th>Drop</th><th>Precio</th><th>Mejor para</th></tr></thead>\n      <tbody>\n        <tr><td>Nike Metcon 9</td><td>340 g</td><td>4 mm</td><td>~135&euro;</td><td>DEKA FIT</td></tr>\n        <tr><td>Reebok Nano X4</td><td>325 g</td><td>4 mm</td><td>~120&euro;</td><td>DEKA STRONG</td></tr>\n        <tr><td>Nike Free Metcon 5</td><td>315 g</td><td>5 mm</td><td>~110&euro;</td><td>Entrenamiento</td></tr>\n      </tbody>\n    </table>\n    </div>",
+    "faqItems": [
+      {
+        "question": "¿Puedo usar las mismas zapatillas para DEKA y HYROX?",
+        "answer": "Sí. Las Nike Metcon y Reebok Nano funcionan en ambas competiciones. Para HYROX puede que prefieras algo con más amortiguación (PUMA Deviate HYROX) por los 8 km de carrera, pero las Metcon y Nano son perfectamente válidas."
+      },
+      {
+        "question": "¿Necesito zapatillas específicas para DEKA STRONG?",
+        "answer": "No es imprescindible, pero las zapatillas de training funcional (Nano, Metcon) rinden mucho mejor que las de running normales. La estabilidad y el agarre marcan la diferencia en las 10 zonas."
+      },
+      {
+        "question": "¿Qué drop es mejor para DEKA?",
+        "answer": "4 mm o menos para DEKA STRONG (máxima estabilidad). 4-6 mm para DEKA FIT (compromiso con la carrera). Evita drops superiores a 8 mm que son típicos de zapatillas running."
+      }
+    ],
+    "conclusionHtml": "    <h2>Conclusi&oacute;n</h2>\n    <p>Para DEKA STRONG, las <strong><a href=\"#reebok-nano-x4\" style=\"color:#f97316\">Reebok Nano X4</a></strong> son la elecci&oacute;n &oacute;ptima: base plana, suela r&iacute;gida y m&aacute;xima estabilidad. Para DEKA FIT, las <strong><a href=\"#nike-metcon-9\" style=\"color:#f97316\">Nike Metcon 9</a></strong> ofrecen el mejor equilibrio entre zonas funcionales y los 5 km de carrera.</p>\n    <p>Si solo puedes comprar una zapatilla para todo (entrenar, DEKA y quiz&aacute;s HYROX), las Metcon 9 son la opci&oacute;n m&aacute;s inteligente. Hacen todo bien.</p>",
+    "relatedLinks": [
+      { "href": "/blog/deka-fit-vs-deka-strong", "label": "DEKA FIT vs DEKA STRONG" },
+      { "href": "/blog/mejores-zapatillas-hyrox", "label": "Zapatillas para HYROX" },
+      { "href": "/blog/kettlebells-farmer-carry-hyrox", "label": "Kettlebells para Farmer's Carry" },
+      { "href": "/blog/mejores-zapatillas-running", "label": "Mejores zapatillas de running" }
+    ]
+  }
+}

@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review",
+      "name": "Garmin Forerunner 55 Review: The Best Entry-Level GPS Watch for Runners | CorrerJuntos",
+      "description": "In-depth Garmin Forerunner 55 review: the best-selling GPS watch for beginner runners. Features, battery life, GPS accuracy, price and comparison with other models.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review#webpage"
+      },
       "headline": "Garmin Forerunner 55 Review: The Best Entry-Level GPS Watch for Runners",
       "description": "In-depth Garmin Forerunner 55 review: the best-selling GPS watch for beginner runners. Features, battery life, GPS accuracy, price and comparison with other models.",
       "url": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder & Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Garmin Forerunner 55 Review"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Garmin Forerunner 55 Review"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Is the Garmin Forerunner 55 waterproof?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the Forerunner 55 is rated at 5 ATM, meaning it can withstand pressure equivalent to 50 meters of depth. You can shower with it, run in heavy rain and even swim in a pool without any issues. It is not designed for scuba diving, but for any running or surface swimming activity it is more than adequate."}},
-        {"@type": "Question", "name": "Can I listen to music with the Garmin Forerunner 55?", "acceptedAnswer": {"@type": "Answer", "text": "No, the Forerunner 55 does not have music storage or the ability to play songs directly from the watch. You can control your phone's music playback from the wrist (pause, skip, volume), but you will need to carry your phone. If offline music on the watch is a must-have for you, you will need to step up to the Forerunner 265 or similar."}},
-        {"@type": "Question", "name": "How long does the Forerunner 55 battery actually last?", "acceptedAnswer": {"@type": "Answer", "text": "Garmin claims 14 days in smartwatch mode and 20 hours with active GPS. In real-world use, with notifications enabled, 24/7 heart rate monitoring and 3-4 weekly one-hour workouts, the battery typically lasts between 10 and 12 days. With GPS active in running mode, we have recorded between 18 and 20 hours, very close to the official figure."}},
-        {"@type": "Question", "name": "Does the Forerunner 55 have accurate GPS?", "acceptedAnswer": {"@type": "Answer", "text": "The Forerunner 55 uses single-band GPS (not multi-band) with support for GPS, GLONASS and Galileo. In open areas and parks, accuracy is very good, with errors below 2%. In urban areas with tall buildings, deviations of up to 3-5% may occur. For most beginner and intermediate runners training in parks or open streets, the accuracy is more than sufficient."}},
-        {"@type": "Question", "name": "Is the Forerunner 55 still worth buying in 2026 or is it outdated?", "acceptedAnswer": {"@type": "Answer", "text": "The Forerunner 55 remains a highly capable watch in 2026 for beginner and intermediate runners. While newer models like the Forerunner 165 offer an AMOLED display and multi-band GPS, the Forerunner 55 stands out for its reduced price (frequently found below 160 euros), superior battery life and ease of use. If you do not need maps, music or a color display, it remains a smart purchase."}},
-        {"@type": "Question", "name": "Can I use the Forerunner 55 for trail running?", "acceptedAnswer": {"@type": "Answer", "text": "You can, but it has significant limitations for trail. It lacks a barometric altimeter (it estimates altitude via GPS, which is less accurate), it offers no maps or route navigation, and the accumulated elevation data is unreliable. For easy trails or familiar paths it works fine, but if you do technical trail with significant elevation and need navigation, consider a watch with an altimeter and maps like the COROS PACE 3 or the Garmin Forerunner 265."}},
-        {"@type": "Question", "name": "What is the difference between the Forerunner 55 and the Forerunner 265?", "acceptedAnswer": {"@type": "Answer", "text": "The main differences are: the 265 has a color AMOLED display (vs the 55's monochrome MIP), more accurate multi-band GPS, offline music storage, a touchscreen plus buttons, advanced metrics like Training Readiness and HRV Status, and a barometric altimeter. The 55 wins on battery (14 vs 13 days smartwatch) and price (around 160 euros vs 400+ euros). The 265 is a complete generational leap, but the 55 covers the needs of 80% of runners at less than half the price."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Is the Garmin Forerunner 55 waterproof?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the Forerunner 55 is rated at 5 ATM, meaning it can withstand pressure equivalent to 50 meters of depth. You can shower with it, run in heavy rain and even swim in a pool without any issues. It is not designed for scuba diving, but for any running or surface swimming activity it is more than adequate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I listen to music with the Garmin Forerunner 55?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, the Forerunner 55 does not have music storage or the ability to play songs directly from the watch. You can control your phone's music playback from the wrist (pause, skip, volume), but you will need to carry your phone. If offline music on the watch is a must-have for you, you will need to step up to the Forerunner 265 or similar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does the Forerunner 55 battery actually last?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Garmin claims 14 days in smartwatch mode and 20 hours with active GPS. In real-world use, with notifications enabled, 24/7 heart rate monitoring and 3-4 weekly one-hour workouts, the battery typically lasts between 10 and 12 days. With GPS active in running mode, we have recorded between 18 and 20 hours, very close to the official figure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the Forerunner 55 have accurate GPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Forerunner 55 uses single-band GPS (not multi-band) with support for GPS, GLONASS and Galileo. In open areas and parks, accuracy is very good, with errors below 2%. In urban areas with tall buildings, deviations of up to 3-5% may occur. For most beginner and intermediate runners training in parks or open streets, the accuracy is more than sufficient."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Forerunner 55 still worth buying in 2026 or is it outdated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Forerunner 55 remains a highly capable watch in 2026 for beginner and intermediate runners. While newer models like the Forerunner 165 offer an AMOLED display and multi-band GPS, the Forerunner 55 stands out for its reduced price (frequently found below 160 euros), superior battery life and ease of use. If you do not need maps, music or a color display, it remains a smart purchase."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use the Forerunner 55 for trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can, but it has significant limitations for trail. It lacks a barometric altimeter (it estimates altitude via GPS, which is less accurate), it offers no maps or route navigation, and the accumulated elevation data is unreliable. For easy trails or familiar paths it works fine, but if you do technical trail with significant elevation and need navigation, consider a watch with an altimeter and maps like the COROS PACE 3 or the Garmin Forerunner 265."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between the Forerunner 55 and the Forerunner 265?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The main differences are: the 265 has a color AMOLED display (vs the 55's monochrome MIP), more accurate multi-band GPS, offline music storage, a touchscreen plus buttons, advanced metrics like Training Readiness and HRV Status, and a barometric altimeter. The 55 wins on battery (14 vs 13 days smartwatch) and price (around 160 euros vs 400+ euros). The 265 is a complete generational leap, but the 55 covers the needs of 80% of runners at less than half the price."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review#faq"
     }
   ]
 }

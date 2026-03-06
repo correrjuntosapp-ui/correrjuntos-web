@@ -29,46 +29,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/empezar-trail-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/empezar-trail-running",
+      "name": "Cómo Empezar en Trail Running: Guía Completa para Principiantes 2026 | CorrerJuntos",
+      "description": "Guía completa para empezar en trail running en 2026. Preparación física, equipamiento esencial, tipos de terreno, navegación, seguridad y plan de entrenamiento de 4 semanas para pasar del asfalto al trail.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/8949023/pexels-photo-8949023.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
-      "headline": "C\u00f3mo Empezar en Trail Running: Gu\u00eda Completa para Principiantes 2026",
-      "description": "Gu\u00eda completa para empezar en trail running. Preparaci\u00f3n f\u00edsica, equipamiento esencial, tipos de terreno, navegaci\u00f3n, seguridad y plan de entrenamiento de 4 semanas.",
+      "@id": "https://www.correrjuntos.com/blog/empezar-trail-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/empezar-trail-running#webpage"
+      },
+      "headline": "Cómo Empezar en Trail Running: Guía Completa para Principiantes 2026",
+      "description": "Guía completa para empezar en trail running. Preparación física, equipamiento esencial, tipos de terreno, navegación, seguridad y plan de entrenamiento de 4 semanas.",
       "url": "https://www.correrjuntos.com/blog/empezar-trail-running",
       "datePublished": "2026-02-23",
       "dateModified": "2026-02-23",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/8949023/pexels-photo-8949023.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/8949023/pexels-photo-8949023.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Empezar Trail Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Empezar Trail Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/empezar-trail-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "\u00bfNecesito zapatillas espec\u00edficas de trail para empezar?", "acceptedAnswer": {"@type": "Answer", "text": "S\u00ed, es la inversi\u00f3n m\u00e1s importante. Las zapatillas de trail tienen suela con tacos para agarre en terreno irregular, protecci\u00f3n en la puntera contra piedras y mayor estabilidad lateral. Correr por monta\u00f1a con zapatillas de asfalto aumenta mucho el riesgo de resbalones y lesiones. No necesitas las m\u00e1s caras, pero s\u00ed unas dise\u00f1adas espec\u00edficamente para trail."}},
-        {"@type": "Question", "name": "\u00bfPuedo hacer trail running si solo he corrido en asfalto?", "acceptedAnswer": {"@type": "Answer", "text": "Por supuesto. La mayor\u00eda de trail runners empezaron en asfalto. La clave es hacer una transici\u00f3n gradual: empieza con senderos f\u00e1ciles y cortos, camina las subidas, y no te obsesiones con el ritmo. Tu cuerpo necesita entre 4 y 8 semanas para adaptarse a las exigencias del terreno irregular. Con paciencia y constancia, la transici\u00f3n es muy natural."}},
-        {"@type": "Question", "name": "\u00bfQu\u00e9 distancia es recomendable para una primera carrera de trail?", "acceptedAnswer": {"@type": "Answer", "text": "Para una primera carrera de trail, lo ideal es una distancia entre 10 km y 21 km con desnivel moderado (menos de 600 metros de desnivel positivo). Muchas organizaciones ofrecen distancias cortas de 10-15 km ideales para debutantes. Evita lanzarte a un ultra trail o a carreras con m\u00e1s de 1.000 m de desnivel sin experiencia previa."}},
-        {"@type": "Question", "name": "\u00bfEs obligatorio usar bastones de trail running?", "acceptedAnswer": {"@type": "Answer", "text": "No es obligatorio para distancias cortas ni para terrenos poco t\u00e9cnicos. Los bastones son muy \u00fatiles en subidas largas y pronunciadas, ya que distribuyen el esfuerzo entre piernas y brazos, reduciendo la fatiga muscular. Para carreras de m\u00e1s de 30 km con mucho desnivel, son muy recomendables. Para empezar, no los necesitas, pero si pruebas rutas con mucha pendiente, notar\u00e1s la diferencia."}},
-        {"@type": "Question", "name": "\u00bfC\u00f3mo gestiono las subidas y bajadas en trail?", "acceptedAnswer": {"@type": "Answer", "text": "En las subidas, camina con pasos cortos y usa las manos en los muslos si la pendiente es fuerte. No hay verg\u00fcenza en caminar: los trail runners de \u00e9lite tambi\u00e9n caminan las subidas empinadas. En las bajadas, inclina ligeramente el cuerpo hacia adelante, acorta la zancada, mant\u00e9n las rodillas flexionadas y busca apoyos estables. La t\u00e9cnica de bajada se entrena con la pr\u00e1ctica."}},
-        {"@type": "Question", "name": "\u00bfQu\u00e9 llevo en el chaleco de hidrataci\u00f3n para una salida de trail?", "acceptedAnswer": {"@type": "Answer", "text": "Para salidas de 1 a 3 horas lleva: al menos 500 ml de agua (1 litro en verano), un gel o barrita energ\u00e9tica por cada hora, tel\u00e9fono m\u00f3vil cargado, cortavientos ligero, silbato de emergencia y algo de dinero. Para salidas m\u00e1s largas a\u00f1ade: manta t\u00e9rmica, algo m\u00e1s de comida, sales minerales y un peque\u00f1o botiqu\u00edn."}},
-        {"@type": "Question", "name": "\u00bfCu\u00e1nto m\u00e1s lento se corre en trail que en asfalto?", "acceptedAnswer": {"@type": "Answer", "text": "Depende del terreno y el desnivel, pero como referencia general, tu ritmo en trail ser\u00e1 entre un 20% y un 50% m\u00e1s lento que en asfalto. En senderos t\u00e9cnicos con mucho desnivel la diferencia puede ser a\u00fan mayor. Olvida el ritmo por kil\u00f3metro y mide tu esfuerzo por sensaci\u00f3n, frecuencia card\u00edaca o tiempo en movimiento. El trail no va de ritmos, va de disfrutar el recorrido."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Necesito zapatillas específicas de trail para empezar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, es la inversión más importante. Las zapatillas de trail tienen suela con tacos para agarre en terreno irregular, protección en la puntera contra piedras y mayor estabilidad lateral. Correr por montaña con zapatillas de asfalto aumenta mucho el riesgo de resbalones y lesiones. No necesitas las más caras, pero sí unas diseñadas específicamente para trail."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo hacer trail running si solo he corrido en asfalto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Por supuesto. La mayoría de trail runners empezaron en asfalto. La clave es hacer una transición gradual: empieza con senderos fáciles y cortos, camina las subidas, y no te obsesiones con el ritmo. Tu cuerpo necesita entre 4 y 8 semanas para adaptarse a las exigencias del terreno irregular. Con paciencia y constancia, la transición es muy natural."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué distancia es recomendable para una primera carrera de trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para una primera carrera de trail, lo ideal es una distancia entre 10 km y 21 km con desnivel moderado (menos de 600 metros de desnivel positivo). Muchas organizaciones ofrecen distancias cortas de 10-15 km ideales para debutantes. Evita lanzarte a un ultra trail o a carreras con más de 1.000 m de desnivel sin experiencia previa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es obligatorio usar bastones de trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es obligatorio para distancias cortas ni para terrenos poco técnicos. Los bastones son muy útiles en subidas largas y pronunciadas, ya que distribuyen el esfuerzo entre piernas y brazos, reduciendo la fatiga muscular. Para carreras de más de 30 km con mucho desnivel, son muy recomendables. Para empezar, no los necesitas, pero si pruebas rutas con mucha pendiente, notarás la diferencia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo gestiono las subidas y bajadas en trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En las subidas, camina con pasos cortos y usa las manos en los muslos si la pendiente es fuerte. No hay vergüenza en caminar: los trail runners de élite también caminan las subidas empinadas. En las bajadas, inclina ligeramente el cuerpo hacia adelante, acorta la zancada, mantén las rodillas flexionadas y busca apoyos estables. La técnica de bajada se entrena con la práctica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué llevo en el chaleco de hidratación para una salida de trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para salidas de 1 a 3 horas lleva: al menos 500 ml de agua (1 litro en verano), un gel o barrita energética por cada hora, teléfono móvil cargado, cortavientos ligero, silbato de emergencia y algo de dinero. Para salidas más largas añade: manta térmica, algo más de comida, sales minerales y un pequeño botiquín."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto más lento se corre en trail que en asfalto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende del terreno y el desnivel, pero como referencia general, tu ritmo en trail será entre un 20% y un 50% más lento que en asfalto. En senderos técnicos con mucho desnivel la diferencia puede ser aún mayor. Olvida el ritmo por kilómetro y mide tu esfuerzo por sensación, frecuencia cardíaca o tiempo en movimiento. El trail no va de ritmos, va de disfrutar el recorrido."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/empezar-trail-running#faq"
     }
   ]
 }

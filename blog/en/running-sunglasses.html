@@ -28,33 +28,54 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-sunglasses#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-sunglasses",
+      "name": "The 8 Best Running Sunglasses 2026 | CorrerJuntos",
+      "description": "Comparison of the best running sunglasses: Oakley, Julbo, Nike, POC and budget options. Guide with prices, specs and Amazon links.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/10168184/pexels-photo-10168184.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-sunglasses#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-sunglasses#webpage"
+      },
       "headline": "The 8 Best Running Sunglasses 2026",
       "description": "Comparison of the best running sunglasses: Oakley, Julbo, Nike, POC and budget options. Guide with prices, specs and Amazon links.",
       "url": "https://www.correrjuntos.com/blog/en/running-sunglasses",
       "datePublished": "2026-03-05",
       "dateModified": "2026-03-05",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
       "publisher": {
-        "@type": "Organization",
-        "name": "CorrerJuntos",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.correrjuntos.com/icons/icon-512.png"
-        }
+        "@id": "https://www.correrjuntos.com/#organization"
       },
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/10168184/pexels-photo-10168184.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "image": "https://images.pexels.com/photos/10168184/pexels-photo-10168184.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
@@ -76,7 +97,8 @@
           "position": 3,
           "name": "Running sunglasses"
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-sunglasses#breadcrumbs"
     },
     {
       "@type": "FAQPage",
@@ -121,7 +143,8 @@
             "text": "Yes, if you run in variable light conditions (dawn, trail through forests, overcast days that clear up). Photochromic lenses adapt automatically, so you don't need two pairs. The best are Julbo Reactiv and Rudy Project ImpactX."
           }
         }
-      ]
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-sunglasses#faq"
     },
     {
       "@type": "ItemList",

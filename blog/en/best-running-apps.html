@@ -27,24 +27,109 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "10 Best Free Running Apps to Track Distance & Train (2026)", "description": "2026 ranking of the best free running apps: Strava, Nike Run Club, Garmin & CorrerJuntos. GPS tracking, distance, training plans.", "url": "https://www.correrjuntos.com/blog/en/best-running-apps", "datePublished": "2026-02-19", "dateModified": "2026-03-01", "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder & Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
-      }, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/3912944/pexels-photo-3912944.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"}, {"@type": "ListItem", "position": 3, "name": "Best Running Apps 2026"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "What is the best free running app?", "acceptedAnswer": {"@type": "Answer", "text": "CorrerJuntos is completely free and offers GPS, community and running groups. Nike Run Club is also 100% free with training plans. Strava has a free version with basic features. The best option depends on whether you prioritize local community (CorrerJuntos), global social network (Strava) or guided plans (Nike Run Club)."}},
-      {"@type": "Question", "name": "Do I need a GPS watch if I already have a running app?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. Phone apps use your smartphone's GPS and are good enough for most runners. However, a GPS watch offers more accurate data, is more comfortable to carry and doesn't drain your phone battery. If you run more than 3-4 times a week or want advanced metrics, it's worth it."}},
-      {"@type": "Question", "name": "Can I use multiple running apps at the same time?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and it's quite common. Many runners use one app for GPS and tracking (Garmin, COROS) and another for the social aspect (Strava, CorrerJuntos). Most apps allow you to sync activities between them automatically."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-apps#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/best-running-apps",
+      "name": "10 Best Free Running Apps to Track Distance & Train (2026)",
+      "description": "2026 ranking of the best free running apps: Strava, Nike Run Club, Garmin & CorrerJuntos. GPS tracking, distance, training plans. Which one is right for you?",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3912944/pexels-photo-3912944.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-apps#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/best-running-apps#webpage"
+      },
+      "headline": "10 Best Free Running Apps to Track Distance & Train (2026)",
+      "description": "2026 ranking of the best free running apps: Strava, Nike Run Club, Garmin & CorrerJuntos. GPS tracking, distance, training plans.",
+      "url": "https://www.correrjuntos.com/blog/en/best-running-apps",
+      "datePublished": "2026-02-19",
+      "dateModified": "2026-03-01",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3912944/pexels-photo-3912944.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Best Running Apps 2026"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-apps#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best free running app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CorrerJuntos is completely free and offers GPS, community and running groups. Nike Run Club is also 100% free with training plans. Strava has a free version with basic features. The best option depends on whether you prioritize local community (CorrerJuntos), global social network (Strava) or guided plans (Nike Run Club)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a GPS watch if I already have a running app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily. Phone apps use your smartphone's GPS and are good enough for most runners. However, a GPS watch offers more accurate data, is more comfortable to carry and doesn't drain your phone battery. If you run more than 3-4 times a week or want advanced metrics, it's worth it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use multiple running apps at the same time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and it's quite common. Many runners use one app for GPS and tracking (Garmin, COROS) and another for the social aspect (Strava, CorrerJuntos). Most apps allow you to sync activities between them automatically."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-running-apps#faq"
+    }
   ]
 }
 </script>

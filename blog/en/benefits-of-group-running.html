@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/benefits-of-group-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/benefits-of-group-running",
+      "name": "7 Benefits of Group Running (Backed by Science) - CorrerJuntos",
+      "description": "Discover the 7 science-backed benefits of group running: greater consistency, better performance, improved mental health and more. Running with others transforms your training.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/benefits-of-group-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/benefits-of-group-running#webpage"
+      },
       "headline": "7 Science-Backed Benefits of Group Running",
       "description": "Discover the scientifically proven benefits of group running: motivation, performance, mental health and more.",
       "url": "https://www.correrjuntos.com/blog/en/benefits-of-group-running",
       "datePublished": "2026-02-14",
       "dateModified": "2026-02-14",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder & Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Benefits of Group Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Benefits of Group Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/benefits-of-group-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Is it better to run alone or in a group?", "acceptedAnswer": {"@type": "Answer", "text": "Both options have advantages, but science shows that group running improves consistency, performance and mental health. Studies indicate that group exercisers have 95% greater adherence to their training routine."}},
-        {"@type": "Question", "name": "Does running in a group make me faster?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Kohler effect demonstrates that people perform better when exercising in a group. You subconsciously adapt to the group's pace, which pushes you to improve without feeling extra effort."}},
-        {"@type": "Question", "name": "How do I find a running group?", "acceptedAnswer": {"@type": "Answer", "text": "Platforms like CorrerJuntos connect you with free running groups in over 58 cities. You can filter by level, distance and schedule to find the perfect group."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Is it better to run alone or in a group?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both options have advantages, but science shows that group running improves consistency, performance and mental health. Studies indicate that group exercisers have 95% greater adherence to their training routine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does running in a group make me faster?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The Kohler effect demonstrates that people perform better when exercising in a group. You subconsciously adapt to the group's pace, which pushes you to improve without feeling extra effort."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find a running group?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Platforms like CorrerJuntos connect you with free running groups in over 58 cities. You can filter by level, distance and schedule to find the perfect group."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/benefits-of-group-running#faq"
     }
   ]
 }

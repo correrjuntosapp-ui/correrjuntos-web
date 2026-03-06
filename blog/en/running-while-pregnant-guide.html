@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-while-pregnant-guide#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-while-pregnant-guide",
+      "name": "Running While Pregnant: Safe Trimester-by-Trimester Guide | CorrerJuntos",
+      "description": "Can you run during pregnancy? Trimester-by-trimester guide with adaptations, warning signs, alternative exercises and when to stop running safely.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3621168/pexels-photo-3621168.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-while-pregnant-guide#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-while-pregnant-guide#webpage"
+      },
       "headline": "Running While Pregnant: Safe Trimester-by-Trimester Guide",
       "description": "Can you run during pregnancy? Trimester-by-trimester guide with adaptations, warning signs, alternative exercises and when to stop running safely.",
       "url": "https://www.correrjuntos.com/blog/en/running-while-pregnant-guide",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/3621168/pexels-photo-3621168.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3621168/pexels-photo-3621168.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Running While Pregnant"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running While Pregnant"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-while-pregnant-guide#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "How far into pregnancy can I keep running?", "acceptedAnswer": {"@type": "Answer", "text": "There is no universal cutoff month. Many experienced runners maintain their running routine into the seventh or eighth month with proper adaptations, while others need to stop earlier. The key factors are your OB-GYN's approval, the absence of contraindications and listening to your body. If you can hold a conversation while running, the intensity is likely appropriate. When running stops feeling comfortable, switch to walking, swimming or a stationary bike without any guilt."}},
-        {"@type": "Question", "name": "Can the impact of running harm the baby?", "acceptedAnswer": {"@type": "Answer", "text": "No, in normal pregnancies the impact from running does not harm the baby. The amniotic fluid acts as a natural shock absorber that protects the fetus from vibrations and movement. Multiple scientific studies have confirmed that moderate exercise, including running, does not increase the risk of miscarriage, preterm birth or low birth weight in uncomplicated pregnancies. The important thing is to maintain a moderate intensity and have your healthcare provider's approval."}},
-        {"@type": "Question", "name": "When can I start running again after giving birth?", "acceptedAnswer": {"@type": "Answer", "text": "Current guidelines recommend waiting at least 12 weeks after delivery before returning to running, and only after your OB-GYN or midwife has cleared you. The pelvic floor and abdominal tissues need time to recover. Before running, you should be able to walk for 30 minutes without pain or urinary leakage. Ideally, start with a pelvic floor rehabilitation programme and progress gradually from walking to jogging and then to running."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "How far into pregnancy can I keep running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is no universal cutoff month. Many experienced runners maintain their running routine into the seventh or eighth month with proper adaptations, while others need to stop earlier. The key factors are your OB-GYN's approval, the absence of contraindications and listening to your body. If you can hold a conversation while running, the intensity is likely appropriate. When running stops feeling comfortable, switch to walking, swimming or a stationary bike without any guilt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the impact of running harm the baby?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, in normal pregnancies the impact from running does not harm the baby. The amniotic fluid acts as a natural shock absorber that protects the fetus from vibrations and movement. Multiple scientific studies have confirmed that moderate exercise, including running, does not increase the risk of miscarriage, preterm birth or low birth weight in uncomplicated pregnancies. The important thing is to maintain a moderate intensity and have your healthcare provider's approval."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When can I start running again after giving birth?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Current guidelines recommend waiting at least 12 weeks after delivery before returning to running, and only after your OB-GYN or midwife has cleared you. The pelvic floor and abdominal tissues need time to recover. Before running, you should be able to walk for 30 minutes without pain or urinary leakage. Ideally, start with a pelvic floor rehabilitation programme and progress gradually from walking to jogging and then to running."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-while-pregnant-guide#faq"
     }
   ]
 }

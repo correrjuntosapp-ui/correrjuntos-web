@@ -28,45 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan#webpage",
+      "url": "https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan",
+      "name": "Plan de Entrenamiento Trail Running: De Asfalto a Montaña 2026 | CorrerJuntos",
+      "description": "Plan de entrenamiento trail running de 12 semanas para pasar del asfalto a la montaña. Sesiones específicas, desnivel progresivo y consejos de transición. Actualizado 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2356045/pexels-photo-2356045.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan#webpage"
+      },
       "headline": "Plan de Entrenamiento Trail Running: De Asfalto a Montaña",
       "description": "Plan de entrenamiento trail running de 12 semanas para pasar del asfalto a la montaña con sesiones específicas y desnivel progresivo.",
       "url": "https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/2356045/pexels-photo-2356045.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2356045/pexels-photo-2356045.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Plan Entrenamiento Trail Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Plan Entrenamiento Trail Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuánto tiempo necesito para prepararme para mi primer trail?", "acceptedAnswer": {"@type": "Answer", "text": "Si ya corres en asfalto, un plan de 12 semanas es suficiente para preparar tu primer trail de hasta 25 km. La clave es introducir desnivel y terreno técnico de forma progresiva."}},
-        {"@type": "Question", "name": "¿Puedo entrenar trail running en ciudad?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Puedes usar escaleras, cuestas urbanas y parques con desnivel para simular las condiciones de montaña. Complementa con salidas al monte los fines de semana."}},
-        {"@type": "Question", "name": "¿Cuántos días a la semana debo entrenar trail?", "acceptedAnswer": {"@type": "Answer", "text": "Para principiantes, 3-4 días por semana es ideal. Incluye 1-2 sesiones de desnivel, 1 sesión de fuerza y 1 tirada larga los fines de semana."}},
-        {"@type": "Question", "name": "¿Es necesario hacer entrenamiento de fuerza para trail running?", "acceptedAnswer": {"@type": "Answer", "text": "Es fundamental. El trail exige mucho más a nivel muscular que el asfalto. Ejercicios como sentadillas, zancadas y trabajo de core previenen lesiones y mejoran el rendimiento en subidas y bajadas."}},
-        {"@type": "Question", "name": "¿Cómo gestiono el desnivel en mi plan de entrenamiento?", "acceptedAnswer": {"@type": "Answer", "text": "Empieza con rutas de 200-300 m de desnivel positivo y aumenta un 10-15% semanal. En la semana pico deberías acumular el 70-80% del desnivel total de tu carrera objetivo."}},
-        {"@type": "Question", "name": "¿Qué ritmo debo llevar en los entrenamientos de trail?", "acceptedAnswer": {"@type": "Answer", "text": "Olvídate del ritmo por km. En trail se mide por esfuerzo percibido o frecuencia cardíaca. Las subidas se hacen a ritmo conversacional y las bajadas a ritmo controlado priorizando la técnica."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo necesito para prepararme para mi primer trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si ya corres en asfalto, un plan de 12 semanas es suficiente para preparar tu primer trail de hasta 25 km. La clave es introducir desnivel y terreno técnico de forma progresiva."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo entrenar trail running en ciudad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Puedes usar escaleras, cuestas urbanas y parques con desnivel para simular las condiciones de montaña. Complementa con salidas al monte los fines de semana."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos días a la semana debo entrenar trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para principiantes, 3-4 días por semana es ideal. Incluye 1-2 sesiones de desnivel, 1 sesión de fuerza y 1 tirada larga los fines de semana."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es necesario hacer entrenamiento de fuerza para trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es fundamental. El trail exige mucho más a nivel muscular que el asfalto. Ejercicios como sentadillas, zancadas y trabajo de core previenen lesiones y mejoran el rendimiento en subidas y bajadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo gestiono el desnivel en mi plan de entrenamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Empieza con rutas de 200-300 m de desnivel positivo y aumenta un 10-15% semanal. En la semana pico deberías acumular el 70-80% del desnivel total de tu carrera objetivo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué ritmo debo llevar en los entrenamientos de trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Olvídate del ritmo por km. En trail se mide por esfuerzo percibido o frecuencia cardíaca. Las subidas se hacen a ritmo conversacional y las bajadas a ritmo controlado priorizando la técnica."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/entrenamiento-trail-running-plan#faq"
     }
   ]
 }

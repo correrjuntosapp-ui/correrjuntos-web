@@ -28,45 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes#webpage",
+      "url": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes",
+      "name": "Cómo Empezar a Correr desde Cero: Guía + Plan 8 Semanas",
+      "description": "Guía paso a paso para empezar a correr desde cero. Plan de 8 semanas, técnica de carrera, nutrición básica y cómo evitar lesiones. Actualizado 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes#webpage"
+      },
       "headline": "Cómo Empezar a Correr desde Cero: Guía Completa para Principiantes",
       "description": "Guía completa para empezar a correr desde cero con plan de 8 semanas, errores comunes y consejos de motivación.",
       "url": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes",
       "datePublished": "2026-02-14",
       "dateModified": "2026-02-14",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Empezar a Correr"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Empezar a Correr"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuánto tiempo se tarda en empezar a correr bien?", "acceptedAnswer": {"@type": "Answer", "text": "Con un plan progresivo de 8 semanas, la mayoría de principiantes pueden correr 30 minutos sin parar. La clave es ser constante y no forzar el ritmo."}},
-        {"@type": "Question", "name": "¿Qué necesito para empezar a correr?", "acceptedAnswer": {"@type": "Answer", "text": "Solo necesitas unas zapatillas de running adecuadas y ropa cómoda. No hace falta invertir mucho dinero al principio. Lo más importante es elegir bien las zapatillas."}},
-        {"@type": "Question", "name": "¿Es mejor correr solo o en grupo para empezar?", "acceptedAnswer": {"@type": "Answer", "text": "Correr en grupo es ideal para principiantes. Te ayuda a mantener la motivación, aprendes de otros corredores y es más seguro. Plataformas como CorrerJuntos te conectan con grupos de tu nivel."}},
-        {"@type": "Question", "name": "¿Cómo debo respirar al correr?", "acceptedAnswer": {"@type": "Answer", "text": "Respira por la nariz y la boca a la vez. Un patrón útil es inhalar durante 3 pasos y exhalar durante 2. Si no puedes mantener una conversación mientras corres, estás yendo demasiado rápido."}},
-        {"@type": "Question", "name": "¿Cuántas veces a la semana debo correr si soy principiante?", "acceptedAnswer": {"@type": "Answer", "text": "3 días por semana es ideal para principiantes, con al menos un día de descanso entre sesiones. Esto permite que tu cuerpo se recupere y se adapte al impacto de la carrera sin riesgo de lesión."}},
-        {"@type": "Question", "name": "¿Qué debo comer antes y después de correr?", "acceptedAnswer": {"@type": "Answer", "text": "Antes de correr, toma una comida ligera rica en hidratos 1-2 horas antes: un plátano, tostadas con mermelada. Después, come algo con proteínas e hidratos en los 30-60 minutos siguientes para ayudar a la recuperación."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo se tarda en empezar a correr bien?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con un plan progresivo de 8 semanas, la mayoría de principiantes pueden correr 30 minutos sin parar. La clave es ser constante y no forzar el ritmo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué necesito para empezar a correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solo necesitas unas zapatillas de running adecuadas y ropa cómoda. No hace falta invertir mucho dinero al principio. Lo más importante es elegir bien las zapatillas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es mejor correr solo o en grupo para empezar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Correr en grupo es ideal para principiantes. Te ayuda a mantener la motivación, aprendes de otros corredores y es más seguro. Plataformas como CorrerJuntos te conectan con grupos de tu nivel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo debo respirar al correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Respira por la nariz y la boca a la vez. Un patrón útil es inhalar durante 3 pasos y exhalar durante 2. Si no puedes mantener una conversación mientras corres, estás yendo demasiado rápido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántas veces a la semana debo correr si soy principiante?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "3 días por semana es ideal para principiantes, con al menos un día de descanso entre sesiones. Esto permite que tu cuerpo se recupere y se adapte al impacto de la carrera sin riesgo de lesión."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué debo comer antes y después de correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Antes de correr, toma una comida ligera rica en hidratos 1-2 horas antes: un plátano, tostadas con mermelada. Después, come algo con proteínas e hidratos en los 30-60 minutos siguientes para ayudar a la recuperación."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes#faq"
     }
   ]
 }

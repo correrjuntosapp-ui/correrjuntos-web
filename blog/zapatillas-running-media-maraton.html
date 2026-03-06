@@ -28,41 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/zapatillas-running-media-maraton#webpage",
+      "url": "https://www.correrjuntos.com/blog/zapatillas-running-media-maraton",
+      "name": "Las Mejores Zapatillas para Media Maratón 2026 [Top 7] | CorrerJuntos",
+      "description": "Las 7 mejores zapatillas para media maratón en 2026: comparativa de amortiguación, velocidad, peso y precio. Guía para elegir la zapatilla perfecta para tu 21K.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/zapatillas-running-media-maraton#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/zapatillas-running-media-maraton#webpage"
+      },
       "headline": "Las Mejores Zapatillas para Media Maratón 2026 [Top 7]",
       "description": "Las 7 mejores zapatillas para media maratón en 2026: comparativa de amortiguación, velocidad, peso y precio para tu 21K.",
       "url": "https://www.correrjuntos.com/blog/zapatillas-running-media-maraton",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": ["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Zapatillas Media Maratón"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Zapatillas Media Maratón"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/zapatillas-running-media-maraton#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Necesito zapatillas especiales para media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "No necesitas zapatillas exclusivas para media maratón, pero elegir el modelo correcto marca diferencia. Las zapatillas de competición con placa de carbono pueden ahorrarte entre 1 y 3 minutos en 21K. Para runners recreativos, unas zapatillas con buena amortiguación y retorno de energía son suficientes."}},
-        {"@type": "Question", "name": "¿Zapatillas con placa de carbono para media maratón merece la pena?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, si corres por debajo de 1h50 la mejora es notable: entre un 2% y un 4% de eficiencia. Para runners más lentos, la diferencia se reduce pero sigue siendo positiva. El factor clave es que las hayas probado antes en entrenamientos, ya que cambian la biomecánica de la carrera."}},
-        {"@type": "Question", "name": "¿Cuántos kilómetros duran las zapatillas de media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Las zapatillas de entrenamiento diario duran entre 600 y 900 km. Las zapatillas de competición con placa de carbono duran menos: entre 300 y 500 km. Si las reservas solo para competiciones y entrenamientos clave, pueden durar varias temporadas."}},
-        {"@type": "Question", "name": "¿Amortiguación o ligereza para una media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de tu nivel. Si vas a correr en menos de 1h30, prioriza la ligereza y la reactividad. Si tu objetivo está entre 1h30 y 2h, busca un equilibrio entre amortiguación y peso. Por encima de 2 horas, la amortiguación es más importante para proteger tus articulaciones."}},
-        {"@type": "Question", "name": "¿Debo estrenar zapatillas en la media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Nunca. Estrena las zapatillas al menos 3-4 semanas antes con rodajes cortos y una tirada larga para asegurar que no causan rozaduras ni molestias. Incluso las zapatillas de competición necesitan un periodo de adaptación para ajustar tu biomecánica."}},
-        {"@type": "Question", "name": "¿Qué drop deben tener las zapatillas para media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "No hay un drop universal ideal. La mayoría de zapatillas de media maratón tienen entre 6 y 10 mm de drop. Los runners de antepié suelen preferir drops bajos (4-6 mm) y los talonadores drops medios-altos (8-12 mm). Usa el drop al que estés acostumbrado, no cambies para la carrera."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Necesito zapatillas especiales para media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No necesitas zapatillas exclusivas para media maratón, pero elegir el modelo correcto marca diferencia. Las zapatillas de competición con placa de carbono pueden ahorrarte entre 1 y 3 minutos en 21K. Para runners recreativos, unas zapatillas con buena amortiguación y retorno de energía son suficientes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Zapatillas con placa de carbono para media maratón merece la pena?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, si corres por debajo de 1h50 la mejora es notable: entre un 2% y un 4% de eficiencia. Para runners más lentos, la diferencia se reduce pero sigue siendo positiva. El factor clave es que las hayas probado antes en entrenamientos, ya que cambian la biomecánica de la carrera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos kilómetros duran las zapatillas de media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las zapatillas de entrenamiento diario duran entre 600 y 900 km. Las zapatillas de competición con placa de carbono duran menos: entre 300 y 500 km. Si las reservas solo para competiciones y entrenamientos clave, pueden durar varias temporadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Amortiguación o ligereza para una media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de tu nivel. Si vas a correr en menos de 1h30, prioriza la ligereza y la reactividad. Si tu objetivo está entre 1h30 y 2h, busca un equilibrio entre amortiguación y peso. Por encima de 2 horas, la amortiguación es más importante para proteger tus articulaciones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Debo estrenar zapatillas en la media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nunca. Estrena las zapatillas al menos 3-4 semanas antes con rodajes cortos y una tirada larga para asegurar que no causan rozaduras ni molestias. Incluso las zapatillas de competición necesitan un periodo de adaptación para ajustar tu biomecánica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué drop deben tener las zapatillas para media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No hay un drop universal ideal. La mayoría de zapatillas de media maratón tienen entre 6 y 10 mm de drop. Los runners de antepié suelen preferir drops bajos (4-6 mm) y los talonadores drops medios-altos (8-12 mm). Usa el drop al que estés acostumbrado, no cambies para la carrera."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/zapatillas-running-media-maraton#faq"
     }
   ]
 }

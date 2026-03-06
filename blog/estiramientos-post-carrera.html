@@ -27,24 +27,109 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Estiramientos Post-Carrera: Rutina Completa para Recuperar Mas Rápido", "description": "10 estiramientos esenciales y protocolo de recuperación después de una carrera.", "url": "https://www.correrjuntos.com/blog/estiramientos-post-carrera", "datePublished": "2026-02-19", "dateModified": "2026-02-19", "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
-      }, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Estiramientos Post-Carrera"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Debo estirar inmediatamente después de cruzar la meta?", "acceptedAnswer": {"@type": "Answer", "text": "No. Nada mas terminar, camina 10-15 minutos para que tu cuerpo baje de pulsaciones y temperatura gradualmente. Bebe agua o bebida isotonica. Despues de esos minutos de vuelta a la calma activa, puedes empezar los estiramientos suaves."}},
-      {"@type": "Question", "name": "Cuanto tiempo debo mantener cada estiramiento?", "acceptedAnswer": {"@type": "Answer", "text": "Entre 20 y 30 segundos por lado es suficiente después de una carrera. No fuerces: la musculatura esta fatigada y forzar un estiramiento profundo puede causar microdesgarros. Busca una tension suave y mantenla sin rebotes."}},
-      {"@type": "Question", "name": "Es normal tener agujetas después de una media maraton?", "acceptedAnswer": {"@type": "Answer", "text": "Totalmente normal. Las agujetas (DOMS) suelen aparecer 24-48 horas después de la carrera y pueden durar 3-5 dias. Los estiramientos suaves, la hidratación, el sueno y caminar ayudan a reducir su duración. Evita entrenar intenso hasta que desaparezcan."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-post-carrera#webpage",
+      "url": "https://www.correrjuntos.com/blog/estiramientos-post-carrera",
+      "name": "Estiramientos Post-Carrera: Recupera Mas Rápido | CorrerJuntos",
+      "description": "Rutina completa de estiramientos después de una carrera o competicion. 10 ejercicios para recuperar piernas, evitar agujetas y volver a entrenar antes.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-post-carrera#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/estiramientos-post-carrera#webpage"
+      },
+      "headline": "Estiramientos Post-Carrera: Rutina Completa para Recuperar Mas Rápido",
+      "description": "10 estiramientos esenciales y protocolo de recuperación después de una carrera.",
+      "url": "https://www.correrjuntos.com/blog/estiramientos-post-carrera",
+      "datePublished": "2026-02-19",
+      "dateModified": "2026-02-19",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Estiramientos Post-Carrera"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-post-carrera#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Debo estirar inmediatamente después de cruzar la meta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Nada mas terminar, camina 10-15 minutos para que tu cuerpo baje de pulsaciones y temperatura gradualmente. Bebe agua o bebida isotonica. Despues de esos minutos de vuelta a la calma activa, puedes empezar los estiramientos suaves."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cuanto tiempo debo mantener cada estiramiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entre 20 y 30 segundos por lado es suficiente después de una carrera. No fuerces: la musculatura esta fatigada y forzar un estiramiento profundo puede causar microdesgarros. Busca una tension suave y mantenla sin rebotes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Es normal tener agujetas después de una media maraton?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Totalmente normal. Las agujetas (DOMS) suelen aparecer 24-48 horas después de la carrera y pueden durar 3-5 dias. Los estiramientos suaves, la hidratación, el sueno y caminar ayudan a reducir su duración. Evita entrenar intenso hasta que desaparezcan."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-post-carrera#faq"
+    }
   ]
 }
 </script>

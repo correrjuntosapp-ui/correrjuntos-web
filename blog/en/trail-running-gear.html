@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/trail-running-gear#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/trail-running-gear",
+      "name": "Essential Trail Running Gear: Complete Equipment Guide 2026 | CorrerJuntos",
+      "description": "Complete trail running gear guide for 2026. Shoes, vests, poles, technical clothing, GPS watches, nutrition and budget breakdowns by level. Everything you need for the trails.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2330502/pexels-photo-2330502.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/trail-running-gear#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/trail-running-gear#webpage"
+      },
       "headline": "Essential Trail Running Gear: Complete Equipment Guide 2026",
       "description": "Complete trail running gear and equipment guide for 2026. Shoes, vests, poles, technical clothing, GPS, nutrition and budget breakdowns by level.",
       "url": "https://www.correrjuntos.com/blog/en/trail-running-gear",
       "datePublished": "2026-02-23",
       "dateModified": "2026-02-23",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/2330502/pexels-photo-2330502.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2330502/pexels-photo-2330502.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Trail Running Gear"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Trail Running Gear"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/trail-running-gear#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "How much money do I need to start trail running?", "acceptedAnswer": {"@type": "Answer", "text": "You can get started with a minimum budget of around 200 euros. The most important investment is a good pair of trail shoes (100-140 euros) and a small vest or pack (40-60 euros). The rest of the essentials like a technical shirt, tights and a windbreaker can be picked up for around 60-80 euros at stores like Decathlon. You don't need poles, a GPS watch or membrane clothing for your first outings. Add gear as you increase the distance and technical difficulty of your routes."}},
-        {"@type": "Question", "name": "What trail running shoes should I buy as a beginner?", "acceptedAnswer": {"@type": "Answer", "text": "As a beginner, look for shoes with good cushioning, a multi-terrain outsole and a moderate drop of 6-8 mm. The Salomon Speedcross 6 is a classic choice for its grip on mud and loose dirt. The HOKA Speedgoat 6 is ideal if you prioritize cushioning and comfort over long distances. Avoid minimalist or race-day models for your first outings, as they require specific technique and muscle conditioning. The most important thing is to visit a specialist store, try them on and run a few meters to check the fit."}},
-        {"@type": "Question", "name": "Do I need trekking poles for trail running?", "acceptedAnswer": {"@type": "Answer", "text": "Poles aren't essential when starting out, but they become very useful in races with significant elevation gain (over 1,500 meters) or long ultra-distance events. They help distribute effort between your arms and legs on climbs, reducing quadriceps fatigue by up to 25%. If you're sticking to trails under 30 km with moderate elevation, you don't need them. Carbon poles are lighter but more fragile; aluminum ones are heavier but tougher and more affordable."}},
-        {"@type": "Question", "name": "What vest or pack do I need based on trail distance?", "acceptedAnswer": {"@type": "Answer", "text": "For short trails of 10-25 km, a 5-8 liter vest carrying water, a gel and your phone is enough. For mountain marathons of 30-50 km, you'll need 8-12 liters for mandatory gear, extra clothing, food and 1-1.5 liters of water. For ultras over 50 km, you'll need 12-20 liters with room for a headlamp, warm layers, a first aid kit and solid food. The Salomon ADV Skin 12 is the benchmark in the 12-liter category for its fit, weight and pocket layout."}},
-        {"@type": "Question", "name": "What is the mandatory gear for trail races?", "acceptedAnswer": {"@type": "Answer", "text": "Mandatory gear varies by race and ITRA/federation rules, but the typical list includes: a personal cup (200 ml minimum), mobile phone with battery, emergency whistle, survival blanket, minimum water reserve (usually 500 ml to 1 liter), food reserve, waterproof jacket with sealed seams (minimum 10,000 mm water column), headlamp with spare battery (for night stages), and in winter or at high altitude gloves, beanie and a long-sleeve thermal shirt. Always check the specific race rules well in advance."}},
-        {"@type": "Question", "name": "GPS watch or phone app for trail running?", "acceptedAnswer": {"@type": "Answer", "text": "For your first trail outings, you can use your phone with an app like Strava, Komoot or Wikiloc. But if you trail run regularly, a dedicated GPS watch is far superior: 20-40 hours of battery in GPS mode, always-on display, turn-by-turn navigation with preloaded tracks, barometric altimeter, and it handles impacts, water and mud without issue. The Garmin Forerunner 265 is excellent value with maps and navigation. The Suunto 9 Peak Pro is ideal for ultras with up to 40 hours of GPS battery life."}},
-        {"@type": "Question", "name": "How do I choose technical clothing for trail running?", "acceptedAnswer": {"@type": "Answer", "text": "The key is the layering system. Base layer (next to skin): a synthetic or merino wool technical shirt that wicks sweat away. Never cotton. Mid layer (insulation): a thin fleece or Primaloft-style insulated vest for cold days or summit stops. Outer layer (protection): a waterproof-breathable jacket with a membrane like Gore-Tex or equivalent (minimum 10,000 mm water column and 10,000 g/m2 breathability). For the lower body, long or short tights depending on the season, and always seamless trail-specific socks. The Gore Wear R7 is a benchmark trail jacket for its lightness and breathability."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "How much money do I need to start trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can get started with a minimum budget of around 200 euros. The most important investment is a good pair of trail shoes (100-140 euros) and a small vest or pack (40-60 euros). The rest of the essentials like a technical shirt, tights and a windbreaker can be picked up for around 60-80 euros at stores like Decathlon. You don't need poles, a GPS watch or membrane clothing for your first outings. Add gear as you increase the distance and technical difficulty of your routes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What trail running shoes should I buy as a beginner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As a beginner, look for shoes with good cushioning, a multi-terrain outsole and a moderate drop of 6-8 mm. The Salomon Speedcross 6 is a classic choice for its grip on mud and loose dirt. The HOKA Speedgoat 6 is ideal if you prioritize cushioning and comfort over long distances. Avoid minimalist or race-day models for your first outings, as they require specific technique and muscle conditioning. The most important thing is to visit a specialist store, try them on and run a few meters to check the fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need trekking poles for trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Poles aren't essential when starting out, but they become very useful in races with significant elevation gain (over 1,500 meters) or long ultra-distance events. They help distribute effort between your arms and legs on climbs, reducing quadriceps fatigue by up to 25%. If you're sticking to trails under 30 km with moderate elevation, you don't need them. Carbon poles are lighter but more fragile; aluminum ones are heavier but tougher and more affordable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What vest or pack do I need based on trail distance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For short trails of 10-25 km, a 5-8 liter vest carrying water, a gel and your phone is enough. For mountain marathons of 30-50 km, you'll need 8-12 liters for mandatory gear, extra clothing, food and 1-1.5 liters of water. For ultras over 50 km, you'll need 12-20 liters with room for a headlamp, warm layers, a first aid kit and solid food. The Salomon ADV Skin 12 is the benchmark in the 12-liter category for its fit, weight and pocket layout."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the mandatory gear for trail races?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mandatory gear varies by race and ITRA/federation rules, but the typical list includes: a personal cup (200 ml minimum), mobile phone with battery, emergency whistle, survival blanket, minimum water reserve (usually 500 ml to 1 liter), food reserve, waterproof jacket with sealed seams (minimum 10,000 mm water column), headlamp with spare battery (for night stages), and in winter or at high altitude gloves, beanie and a long-sleeve thermal shirt. Always check the specific race rules well in advance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "GPS watch or phone app for trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For your first trail outings, you can use your phone with an app like Strava, Komoot or Wikiloc. But if you trail run regularly, a dedicated GPS watch is far superior: 20-40 hours of battery in GPS mode, always-on display, turn-by-turn navigation with preloaded tracks, barometric altimeter, and it handles impacts, water and mud without issue. The Garmin Forerunner 265 is excellent value with maps and navigation. The Suunto 9 Peak Pro is ideal for ultras with up to 40 hours of GPS battery life."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I choose technical clothing for trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The key is the layering system. Base layer (next to skin): a synthetic or merino wool technical shirt that wicks sweat away. Never cotton. Mid layer (insulation): a thin fleece or Primaloft-style insulated vest for cold days or summit stops. Outer layer (protection): a waterproof-breathable jacket with a membrane like Gore-Tex or equivalent (minimum 10,000 mm water column and 10,000 g/m2 breathability). For the lower body, long or short tights depending on the season, and always seamless trail-specific socks. The Gore Wear R7 is a benchmark trail jacket for its lightness and breathability."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/trail-running-gear#faq"
     }
   ]
 }

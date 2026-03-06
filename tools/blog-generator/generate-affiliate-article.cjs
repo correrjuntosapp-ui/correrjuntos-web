@@ -146,22 +146,45 @@ function generate(lang) {
   const authorName = c.author || 'Carlos Ruiz';
   const authorSlug = authorName === 'Carlos Ruiz' ? 'carlos-ruiz' : 'jose-marquez';
   const authorTitle = authorName === 'Carlos Ruiz' ? 'Periodista Deportivo y Editor' : 'Running Coach y Periodista';
+  const authorUrl = `https://www.correrjuntos.com/blog/autor/${authorSlug}`;
 
   const schemaGraph = [
     {
-      '@type': 'Article',
+      '@type': 'WebPage',
+      '@id': canonicalUrl + '#webpage',
+      url: canonicalUrl,
+      name: c.title + ' | CorrerJuntos',
+      description: c.metaDescription,
+      isPartOf: { '@id': 'https://www.correrjuntos.com/#website' },
+      about: { '@id': 'https://www.correrjuntos.com/#organization' },
+      primaryImageOfPage: { '@type': 'ImageObject', url: heroUrl },
+      inLanguage: L.lang
+    },
+    {
+      '@type': 'Person',
+      '@id': authorUrl + '#author',
+      name: authorName,
+      url: authorUrl,
+      jobTitle: authorTitle,
+      sameAs: ['https://www.strava.com/athletes/correrjuntos','https://www.instagram.com/correrjuntosapp/','https://x.com/correrjuntosapp']
+    },
+    {
+      '@type': 'BlogPosting',
+      '@id': canonicalUrl + '#article',
+      mainEntityOfPage: { '@id': canonicalUrl + '#webpage' },
       headline: c.title,
       description: c.metaDescription,
       url: canonicalUrl,
       datePublished: c.datePublished || '2026-03-05',
       dateModified: c.dateModified || c.datePublished || '2026-03-05',
-      author: { '@type': 'Person', name: authorName, url: `https://www.correrjuntos.com/blog/autor/${authorSlug}`, jobTitle: authorTitle, sameAs: ['https://www.strava.com/athletes/correrjuntos','https://www.instagram.com/correrjuntosapp/','https://x.com/correrjuntosapp'] },
-      publisher: { '@type': 'Organization', name: 'CorrerJuntos', logo: { '@type': 'ImageObject', url: 'https://www.correrjuntos.com/icons/icon-512.png' } },
-      inLanguage: L.lang,
-      image: heroUrl
+      author: { '@id': authorUrl + '#author' },
+      publisher: { '@id': 'https://www.correrjuntos.com/#organization' },
+      image: heroUrl,
+      inLanguage: L.lang
     },
     {
       '@type': 'BreadcrumbList',
+      '@id': canonicalUrl + '#breadcrumbs',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: L.home, item: 'https://www.correrjuntos.com/' },
         { '@type': 'ListItem', position: 2, name: L.blog, item: isES ? 'https://www.correrjuntos.com/blog/' : 'https://www.correrjuntos.com/blog/en/' },
@@ -170,6 +193,7 @@ function generate(lang) {
     },
     {
       '@type': 'FAQPage',
+      '@id': canonicalUrl + '#faq',
       mainEntity: (c.faqItems || []).map(f => ({
         '@type': 'Question', name: f.question,
         acceptedAnswer: { '@type': 'Answer', text: f.answer }

@@ -28,41 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition",
+      "name": "Post-Run Recovery Nutrition: What to Eat After Running | CorrerJuntos",
+      "description": "What to eat after running for optimal recovery. Timing, macros, meal ideas and the science behind the recovery window. Complete guide for runners.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition#webpage"
+      },
       "headline": "Post-Run Recovery Nutrition: What to Eat After Running",
       "description": "Complete guide to post-run recovery nutrition. Timing, macronutrient ratios, meal ideas and the science behind the recovery window.",
       "url": "https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder of CorrerJuntos",
-        "sameAs": ["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Post-Run Recovery Nutrition"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Post-Run Recovery Nutrition"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "How soon after running should I eat?", "acceptedAnswer": {"@type": "Answer", "text": "Aim to eat within 30-60 minutes after running. This recovery window is when your muscles are most receptive to absorbing nutrients for repair and glycogen replenishment. A snack within 30 minutes followed by a full meal within 2 hours is ideal."}},
-        {"@type": "Question", "name": "What is the best ratio of carbs to protein after running?", "acceptedAnswer": {"@type": "Answer", "text": "The optimal ratio is 3:1 or 4:1 carbohydrates to protein. For example, after a 60-minute run, aim for 40-60g of carbs and 15-20g of protein. This combination maximizes glycogen replenishment and muscle repair."}},
-        {"@type": "Question", "name": "Is chocolate milk really good for recovery?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, chocolate milk is an effective recovery drink. It naturally provides roughly a 3:1 carb-to-protein ratio, contains electrolytes, and offers fluid for rehydration. It is a convenient and affordable option backed by research."}},
-        {"@type": "Question", "name": "Should I eat after an easy run?", "acceptedAnswer": {"@type": "Answer", "text": "For easy runs under 45 minutes, the urgency is lower. You can eat your next regular meal without worry. The recovery window matters most after hard efforts, long runs, or interval sessions that significantly deplete glycogen."}},
-        {"@type": "Question", "name": "What if I have no appetite after running?", "acceptedAnswer": {"@type": "Answer", "text": "This is common, especially after intense runs. Start with a liquid option like a smoothie, chocolate milk, or recovery shake. Liquids are easier to consume when appetite is suppressed. Follow with a solid meal once hunger returns."}},
-        {"@type": "Question", "name": "Do I need a protein shake after running?", "acceptedAnswer": {"@type": "Answer", "text": "Protein shakes are convenient but not necessary. Whole foods like Greek yogurt with fruit, a turkey sandwich, or eggs with toast provide the same recovery benefits. Shakes are useful when you cannot prepare food quickly."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "How soon after running should I eat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aim to eat within 30-60 minutes after running. This recovery window is when your muscles are most receptive to absorbing nutrients for repair and glycogen replenishment. A snack within 30 minutes followed by a full meal within 2 hours is ideal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best ratio of carbs to protein after running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The optimal ratio is 3:1 or 4:1 carbohydrates to protein. For example, after a 60-minute run, aim for 40-60g of carbs and 15-20g of protein. This combination maximizes glycogen replenishment and muscle repair."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is chocolate milk really good for recovery?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, chocolate milk is an effective recovery drink. It naturally provides roughly a 3:1 carb-to-protein ratio, contains electrolytes, and offers fluid for rehydration. It is a convenient and affordable option backed by research."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I eat after an easy run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For easy runs under 45 minutes, the urgency is lower. You can eat your next regular meal without worry. The recovery window matters most after hard efforts, long runs, or interval sessions that significantly deplete glycogen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I have no appetite after running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is common, especially after intense runs. Start with a liquid option like a smoothie, chocolate milk, or recovery shake. Liquids are easier to consume when appetite is suppressed. Follow with a solid meal once hunger returns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a protein shake after running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Protein shakes are convenient but not necessary. Whole foods like Greek yogurt with fruit, a turkey sandwich, or eggs with toast provide the same recovery benefits. Shakes are useful when you cannot prepare food quickly."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/post-run-recovery-nutrition#faq"
     }
   ]
 }

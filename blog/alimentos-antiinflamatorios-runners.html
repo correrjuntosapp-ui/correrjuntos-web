@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners",
+      "name": "15 Alimentos Antiinflamatorios para Runners: Recupera Más Rápido - CorrerJuntos",
+      "description": "Los mejores alimentos antiinflamatorios para corredores: reduce inflamación, acelera recuperación y previene lesiones con estos 15 alimentos clave.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners#webpage"
+      },
       "headline": "15 Alimentos Antiinflamatorios para Runners: Recupera Más Rápido",
       "description": "Los mejores alimentos antiinflamatorios para corredores: reduce inflamación, acelera recuperación y previene lesiones con estos 15 alimentos clave.",
       "url": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Alimentos Antiinflamatorios Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alimentos Antiinflamatorios Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Cuantos alimentos antiinflamatorios debo comer al dia?", "acceptedAnswer": {"@type": "Answer", "text": "No existe un numero magico, pero lo ideal es incluir al menos 3-5 alimentos antiinflamatorios en tu dieta diaria. Esto es mas facil de lo que parece: un punado de arandanos en el desayuno, espinacas en la comida, salmon o nueces en la cena y una infusion de curcuma o te verde entre horas. La clave es la consistencia diaria, no atiborrarse un solo dia."}},
-        {"@type": "Question", "name": "Puedo tomar antiinflamatorios (ibuprofeno) despues de correr en vez de cuidar la dieta?", "acceptedAnswer": {"@type": "Answer", "text": "No es recomendable. El uso habitual de antiinflamatorios no esteroideos (AINEs) como el ibuprofeno despues de entrenar puede interferir con la adaptacion muscular, danar la mucosa gastrica y afectar la funcion renal, especialmente en estado de deshidratacion tras el ejercicio. Los alimentos antiinflamatorios ofrecen beneficios similares sin estos efectos secundarios y ademas aportan nutrientes esenciales para la recuperacion."}},
-        {"@type": "Question", "name": "El zumo de cereza acida realmente funciona para la recuperacion?", "acceptedAnswer": {"@type": "Answer", "text": "Si, el zumo de cereza acida (tart cherry juice) tiene buena evidencia cientifica. Varios estudios han demostrado que reduce el dolor muscular post-ejercicio, disminuye marcadores de inflamacion como la proteina C reactiva y acelera la recuperacion de fuerza muscular. La dosis estudiada es de 30 ml de concentrado (o 240 ml de zumo) dos veces al dia, empezando 4-5 dias antes de un evento intenso."}},
-        {"@type": "Question", "name": "La curcuma es mejor en especia o en suplemento?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de tu objetivo. Como especia en la cocina diaria, la curcuma aporta beneficios moderados y es una forma natural de incluirla en tu dieta. Sin embargo, la curcumina (el principio activo) tiene muy baja biodisponibilidad por si sola. Los suplementos de curcumina con piperina (extracto de pimienta negra) aumentan su absorcion hasta un 2000%. Si buscas un efecto antiinflamatorio potente, el suplemento es mas efectivo. Si buscas mantenimiento diario, la especia combinada con pimienta negra y una grasa es suficiente."}},
-        {"@type": "Question", "name": "El alcohol es realmente tan malo para la inflamacion en runners?", "acceptedAnswer": {"@type": "Answer", "text": "Si. El alcohol aumenta la inflamacion sistemica, interfiere con la sintesis de proteinas musculares, deshidrata y empeora la calidad del sueno. Incluso cantidades moderadas (2-3 cervezas) despues de un entreno duro pueden retrasar la recuperacion significativamente. Si quieres celebrar una carrera, intenta esperar al menos 2-3 horas post-ejercicio, rehidratarte y comer bien antes de consumir alcohol, y limita la cantidad."}},
-        {"@type": "Question", "name": "Necesito seguir una dieta antiinflamatoria si ya tomo omega-3 en suplemento?", "acceptedAnswer": {"@type": "Answer", "text": "Si. Los suplementos de omega-3 son un complemento, no un sustituto de una dieta antiinflamatoria completa. Los alimentos antiinflamatorios aportan cientos de compuestos bioactivos (polifenoles, antocianinas, flavonoides, nitratos, fibra) que un solo suplemento no puede replicar. El omega-3 en suplemento es util si no comes suficiente pescado azul, pero la base debe ser siempre una alimentacion rica en frutas, verduras, grasas saludables y especias."}},
-        {"@type": "Question", "name": "Cuanto tiempo tarda una dieta antiinflamatoria en hacer efecto en mi rendimiento?", "acceptedAnswer": {"@type": "Answer", "text": "Los efectos agudos de algunos alimentos (como el zumo de cereza acida o el jengibre) pueden notarse en 24-48 horas en forma de menor dolor muscular. Sin embargo, los beneficios reales de una dieta antiinflamatoria consistente se notan a partir de 2-4 semanas: mejor recuperacion entre sesiones, menos molestias articulares, mejor calidad de sueno y mayor energia general. A los 2-3 meses es cuando los marcadores de inflamacion en sangre muestran cambios significativos."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Cuantos alimentos antiinflamatorios debo comer al dia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No existe un numero magico, pero lo ideal es incluir al menos 3-5 alimentos antiinflamatorios en tu dieta diaria. Esto es mas facil de lo que parece: un punado de arandanos en el desayuno, espinacas en la comida, salmon o nueces en la cena y una infusion de curcuma o te verde entre horas. La clave es la consistencia diaria, no atiborrarse un solo dia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puedo tomar antiinflamatorios (ibuprofeno) despues de correr en vez de cuidar la dieta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es recomendable. El uso habitual de antiinflamatorios no esteroideos (AINEs) como el ibuprofeno despues de entrenar puede interferir con la adaptacion muscular, danar la mucosa gastrica y afectar la funcion renal, especialmente en estado de deshidratacion tras el ejercicio. Los alimentos antiinflamatorios ofrecen beneficios similares sin estos efectos secundarios y ademas aportan nutrientes esenciales para la recuperacion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "El zumo de cereza acida realmente funciona para la recuperacion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, el zumo de cereza acida (tart cherry juice) tiene buena evidencia cientifica. Varios estudios han demostrado que reduce el dolor muscular post-ejercicio, disminuye marcadores de inflamacion como la proteina C reactiva y acelera la recuperacion de fuerza muscular. La dosis estudiada es de 30 ml de concentrado (o 240 ml de zumo) dos veces al dia, empezando 4-5 dias antes de un evento intenso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "La curcuma es mejor en especia o en suplemento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de tu objetivo. Como especia en la cocina diaria, la curcuma aporta beneficios moderados y es una forma natural de incluirla en tu dieta. Sin embargo, la curcumina (el principio activo) tiene muy baja biodisponibilidad por si sola. Los suplementos de curcumina con piperina (extracto de pimienta negra) aumentan su absorcion hasta un 2000%. Si buscas un efecto antiinflamatorio potente, el suplemento es mas efectivo. Si buscas mantenimiento diario, la especia combinada con pimienta negra y una grasa es suficiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "El alcohol es realmente tan malo para la inflamacion en runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si. El alcohol aumenta la inflamacion sistemica, interfiere con la sintesis de proteinas musculares, deshidrata y empeora la calidad del sueno. Incluso cantidades moderadas (2-3 cervezas) despues de un entreno duro pueden retrasar la recuperacion significativamente. Si quieres celebrar una carrera, intenta esperar al menos 2-3 horas post-ejercicio, rehidratarte y comer bien antes de consumir alcohol, y limita la cantidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Necesito seguir una dieta antiinflamatoria si ya tomo omega-3 en suplemento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si. Los suplementos de omega-3 son un complemento, no un sustituto de una dieta antiinflamatoria completa. Los alimentos antiinflamatorios aportan cientos de compuestos bioactivos (polifenoles, antocianinas, flavonoides, nitratos, fibra) que un solo suplemento no puede replicar. El omega-3 en suplemento es util si no comes suficiente pescado azul, pero la base debe ser siempre una alimentacion rica en frutas, verduras, grasas saludables y especias."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cuanto tiempo tarda una dieta antiinflamatoria en hacer efecto en mi rendimiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los efectos agudos de algunos alimentos (como el zumo de cereza acida o el jengibre) pueden notarse en 24-48 horas en forma de menor dolor muscular. Sin embargo, los beneficios reales de una dieta antiinflamatoria consistente se notan a partir de 2-4 semanas: mejor recuperacion entre sesiones, menos molestias articulares, mejor calidad de sueno y mayor energia general. A los 2-3 meses es cuando los marcadores de inflamacion en sangre muestran cambios significativos."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners#faq"
     }
   ]
 }

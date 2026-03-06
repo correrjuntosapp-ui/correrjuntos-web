@@ -27,15 +27,125 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "How Many Days a Week Should You Run? [By Level]", "description": "Science-based guide to optimal running frequency by level: beginner 3x, intermediate 4-5x, advanced 5-6x. Includes rest day importance, overtraining signs, cross-training options and sample weekly schedules.", "url": "https://www.correrjuntos.com/blog/en/how-many-days-week-run", "datePublished": "2026-02-28", "dateModified": "2026-02-28", "author": {"@type": "Person", "name": "Jos\u00e9 M\u00e1rquez", "url": "https://www.correrjuntos.com/blog/autor/jose-marquez", "jobTitle": "Founder & Running Editor", "sameAs": ["https://www.strava.com/athletes/correrjuntos", "https://www.instagram.com/correrjuntosapp/", "https://x.com/correrjuntosapp"]}, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en", "image": "https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "How Many Days a Week to Run"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Is running 3 days a week enough to see results?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, absolutely. Three days per week is enough to build cardiovascular fitness, lose weight, and improve your running. Research shows that beginners who run 3 times per week for 30 minutes see significant improvements in VO2 max within 8-12 weeks. Consistency matters far more than frequency."}},
-      {"@type": "Question", "name": "Can I run every day?", "acceptedAnswer": {"@type": "Answer", "text": "Running every day is possible for experienced runners who keep most runs very easy and short, but it is not recommended for beginners or intermediate runners. Your body needs rest days to repair muscle tissue and strengthen connective tissue. Running 7 days a week without proper recovery significantly increases injury risk, especially stress fractures and tendinitis."}},
-      {"@type": "Question", "name": "What should I do on rest days?", "acceptedAnswer": {"@type": "Answer", "text": "Rest days do not mean lying on the couch all day. Light activity like walking, swimming, cycling, yoga, or stretching helps blood flow and speeds recovery. The key is avoiding high-impact exercise. Active recovery at low intensity promotes healing without adding stress to running-specific muscles and joints."}},
-      {"@type": "Question", "name": "How do I know if I am overtraining?", "acceptedAnswer": {"@type": "Answer", "text": "Common signs of overtraining include: persistent fatigue that does not improve with sleep, declining performance despite consistent training, elevated resting heart rate (5-10 beats above normal), frequent illness or colds, mood changes like irritability or loss of motivation, persistent muscle soreness lasting more than 48 hours, and disrupted sleep patterns."}},
-      {"@type": "Question", "name": "Should I run on consecutive days?", "acceptedAnswer": {"@type": "Answer", "text": "Beginners should avoid running on consecutive days to allow recovery. Intermediate runners can handle 2 consecutive days if one is easy and short. Advanced runners regularly run 3-4 consecutive days but vary intensity carefully. The general rule is to never run hard on consecutive days regardless of your level."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-days-week-run#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/how-many-days-week-run",
+      "name": "How Many Days a Week Should You Run? [By Level] | CorrerJuntos",
+      "description": "Find your ideal running frequency: beginner 3x, intermediate 4-5x, advanced 5-6x. Science-based guide on rest days, overtraining signs and optimal scheduling.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-days-week-run#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/how-many-days-week-run#webpage"
+      },
+      "headline": "How Many Days a Week Should You Run? [By Level]",
+      "description": "Science-based guide to optimal running frequency by level: beginner 3x, intermediate 4-5x, advanced 5-6x. Includes rest day importance, overtraining signs, cross-training options and sample weekly schedules.",
+      "url": "https://www.correrjuntos.com/blog/en/how-many-days-week-run",
+      "datePublished": "2026-02-28",
+      "dateModified": "2026-02-28",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How Many Days a Week to Run"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-days-week-run#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is running 3 days a week enough to see results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, absolutely. Three days per week is enough to build cardiovascular fitness, lose weight, and improve your running. Research shows that beginners who run 3 times per week for 30 minutes see significant improvements in VO2 max within 8-12 weeks. Consistency matters far more than frequency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run every day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running every day is possible for experienced runners who keep most runs very easy and short, but it is not recommended for beginners or intermediate runners. Your body needs rest days to repair muscle tissue and strengthen connective tissue. Running 7 days a week without proper recovery significantly increases injury risk, especially stress fractures and tendinitis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I do on rest days?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rest days do not mean lying on the couch all day. Light activity like walking, swimming, cycling, yoga, or stretching helps blood flow and speeds recovery. The key is avoiding high-impact exercise. Active recovery at low intensity promotes healing without adding stress to running-specific muscles and joints."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know if I am overtraining?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common signs of overtraining include: persistent fatigue that does not improve with sleep, declining performance despite consistent training, elevated resting heart rate (5-10 beats above normal), frequent illness or colds, mood changes like irritability or loss of motivation, persistent muscle soreness lasting more than 48 hours, and disrupted sleep patterns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I run on consecutive days?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Beginners should avoid running on consecutive days to allow recovery. Intermediate runners can handle 2 consecutive days if one is easy and short. Advanced runners regularly run 3-4 consecutive days but vary intensity carefully. The general rule is to never run hard on consecutive days regardless of your level."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-days-week-run#faq"
+    }
   ]
 }
 </script>

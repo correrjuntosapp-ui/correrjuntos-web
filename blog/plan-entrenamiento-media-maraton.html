@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton#webpage",
+      "url": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton",
+      "name": "Plan Entrenamiento Media Maratón: 12 Semanas (Tabla PDF)",
+      "description": "Plan de 12 semanas para tu primera media maratón. Tabla semana a semana, sesiones de calidad, nutrición y consejos para cruzar la meta de los 21K.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3601094/pexels-photo-3601094.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton#webpage"
+      },
       "headline": "Plan de Entrenamiento Media Maratón: De 10K a 21K en 12 Semanas",
       "description": "Plan de entrenamiento de 12 semanas para media maratón con calendario completo y consejos.",
       "url": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton",
       "datePublished": "2026-02-19",
       "dateModified": "2026-02-19",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/3601094/pexels-photo-3601094.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3601094/pexels-photo-3601094.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Plan Media Maratón"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Plan Media Maratón"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuánto tiempo necesito para preparar una media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Si ya corres 10K con comodidad, 12 semanas es un plazo ideal para preparar tu primera media maratón. Si partes de menos base, considera 16-20 semanas. Lo importante es no saltarse fases y respetar los descansos."}},
-        {"@type": "Question", "name": "¿Cuántos días a la semana debo entrenar para una media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "Entre 4 y 5 días a la semana es lo óptimo. Necesitas al menos 2 días de descanso o actividad cruzada para que tu cuerpo asimile el entrenamiento. Más no siempre es mejor, especialmente en runners no profesionales."}},
-        {"@type": "Question", "name": "¿Necesito hacer la distancia completa de 21K en un entrenamiento?", "acceptedAnswer": {"@type": "Answer", "text": "No. La tirada larga máxima del plan alcanza los 18-19 km, no los 21. Tu cuerpo ya tiene la capacidad de completar los km restantes el día de la carrera gracias a la adrenalina, el tapering y la logística de carrera. Hacer 21K en entrenamiento solo añade fatiga innecesaria."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo necesito para preparar una media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si ya corres 10K con comodidad, 12 semanas es un plazo ideal para preparar tu primera media maratón. Si partes de menos base, considera 16-20 semanas. Lo importante es no saltarse fases y respetar los descansos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos días a la semana debo entrenar para una media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entre 4 y 5 días a la semana es lo óptimo. Necesitas al menos 2 días de descanso o actividad cruzada para que tu cuerpo asimile el entrenamiento. Más no siempre es mejor, especialmente en runners no profesionales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito hacer la distancia completa de 21K en un entrenamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La tirada larga máxima del plan alcanza los 18-19 km, no los 21. Tu cuerpo ya tiene la capacidad de completar los km restantes el día de la carrera gracias a la adrenalina, el tapering y la logística de carrera. Hacer 21K en entrenamiento solo añade fatiga innecesaria."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton#faq"
     }
   ]
 }

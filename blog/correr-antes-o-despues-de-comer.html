@@ -27,24 +27,109 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Correr Antes o Despues de Comer: Cuando es Mejor Entrenar", "description": "Guía completa sobre correr antes o despues de comer. Tiempos de espera, que comer antes y despues, correr en ayunas y alimentacion runner.", "url": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer", "datePublished": "2026-03-02", "dateModified": "2026-03-02", "author": {
-        "@type": "Person",
-        "name": "Jos&eacute; M&aacute;rquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
-      }, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Correr Antes o Despues de Comer"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Cuanto tiempo hay que esperar para correr despues de comer?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de la cantidad y tipo de comida. Tras un snack ligero como una fruta o barrita, basta con esperar 30-45 minutos. Despues de una comida ligera como un bol de avena con fruta, espera 1-2 horas. Si has hecho una comida completa con proteina, grasa e hidratos complejos, necesitaras entre 2 y 3 horas antes de correr con comodidad."}},
-      {"@type": "Question", "name": "Es bueno correr en ayunas para adelgazar?", "acceptedAnswer": {"@type": "Answer", "text": "Correr en ayunas aumenta el porcentaje de grasa utilizada como combustible durante el ejercicio, pero esto no significa que pierdas mas grasa corporal a lo largo del dia. Estudios recientes muestran que lo determinante para perder peso es el balance calorico total, no si corres en ayunas o no. Si te sientes bien corriendo sin comer, es una opcion valida, pero no es superior para la perdida de grasa a largo plazo."}},
-      {"@type": "Question", "name": "Puedo correr justo despues de desayunar?", "acceptedAnswer": {"@type": "Answer", "text": "No es recomendable correr inmediatamente despues de desayunar. Tu cuerpo necesita sangre para la digestion y para los musculos al mismo tiempo, lo que puede causar nauseas, calambres abdominales o flato. Lo ideal es esperar al menos 60-90 minutos tras un desayuno normal, o 30-45 minutos si solo has tomado algo muy ligero como un platano o un zumo."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer#webpage",
+      "url": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer",
+      "name": "Correr Antes o Despues de Comer: Cuando es Mejor Entrenar | CorrerJuntos",
+      "description": "Es mejor correr en ayunas o despues de comer? Tiempos de espera, que comer antes y despues, y cuando conviene cada opcion segun tu objetivo.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Jos&eacute; M&aacute;rquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer#webpage"
+      },
+      "headline": "Correr Antes o Despues de Comer: Cuando es Mejor Entrenar",
+      "description": "Guía completa sobre correr antes o despues de comer. Tiempos de espera, que comer antes y despues, correr en ayunas y alimentacion runner.",
+      "url": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer",
+      "datePublished": "2026-03-02",
+      "dateModified": "2026-03-02",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Correr Antes o Despues de Comer"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Cuanto tiempo hay que esperar para correr despues de comer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de la cantidad y tipo de comida. Tras un snack ligero como una fruta o barrita, basta con esperar 30-45 minutos. Despues de una comida ligera como un bol de avena con fruta, espera 1-2 horas. Si has hecho una comida completa con proteina, grasa e hidratos complejos, necesitaras entre 2 y 3 horas antes de correr con comodidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Es bueno correr en ayunas para adelgazar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Correr en ayunas aumenta el porcentaje de grasa utilizada como combustible durante el ejercicio, pero esto no significa que pierdas mas grasa corporal a lo largo del dia. Estudios recientes muestran que lo determinante para perder peso es el balance calorico total, no si corres en ayunas o no. Si te sientes bien corriendo sin comer, es una opcion valida, pero no es superior para la perdida de grasa a largo plazo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puedo correr justo despues de desayunar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es recomendable correr inmediatamente despues de desayunar. Tu cuerpo necesita sangre para la digestion y para los musculos al mismo tiempo, lo que puede causar nauseas, calambres abdominales o flato. Lo ideal es esperar al menos 60-90 minutos tras un desayuno normal, o 30-45 minutos si solo has tomado algo muy ligero como un platano o un zumo."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer#faq"
+    }
   ]
 }
 </script>

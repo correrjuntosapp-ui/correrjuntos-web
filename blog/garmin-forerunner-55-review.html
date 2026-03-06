@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review#webpage",
+      "url": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review",
+      "name": "Garmin Forerunner 55: Review Completa para Runners | CorrerJuntos",
+      "description": "Review del Garmin Forerunner 55: el reloj GPS más vendido para empezar a correr. Funciones, batería, GPS, precio y comparativa con otros modelos.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review#webpage"
+      },
       "headline": "Garmin Forerunner 55: Review Completa para Runners",
       "description": "Review del Garmin Forerunner 55: el reloj GPS más vendido para empezar a correr. Funciones, batería, GPS, precio y comparativa con otros modelos.",
       "url": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Garmin Forerunner 55 Review"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Garmin Forerunner 55 Review"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿El Garmin Forerunner 55 es resistente al agua?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, el Forerunner 55 tiene certificación 5 ATM, lo que significa que resiste la presión equivalente a 50 metros de profundidad. Puedes ducharte con él, correr bajo lluvia intensa e incluso nadar en piscina sin problemas. No está diseñado para buceo con botella, pero para cualquier actividad de running o natación en superficie es más que suficiente."}},
-        {"@type": "Question", "name": "¿Puedo escuchar música con el Garmin Forerunner 55?", "acceptedAnswer": {"@type": "Answer", "text": "No, el Forerunner 55 no tiene almacenamiento de música ni la posibilidad de reproducir canciones directamente desde el reloj. Sí puedes controlar la reproducción de música del móvil desde la muñeca (pausa, siguiente canción, volumen), pero necesitas llevar el teléfono encima. Si la música offline en el reloj es imprescindible para ti, necesitas subir al Forerunner 265 o similar."}},
-        {"@type": "Question", "name": "¿Cuánto dura la batería del Forerunner 55 en la práctica?", "acceptedAnswer": {"@type": "Answer", "text": "Garmin anuncia 14 días en modo smartwatch y 20 horas con GPS activo. En uso real, con notificaciones activadas, seguimiento 24/7 de frecuencia cardíaca y 3-4 entrenamientos semanales de una hora, la batería suele durar entre 10 y 12 días. Con GPS activo en modo running, hemos obtenido entre 18 y 20 horas, muy cerca de la cifra oficial."}},
-        {"@type": "Question", "name": "¿El Forerunner 55 tiene GPS preciso?", "acceptedAnswer": {"@type": "Answer", "text": "El Forerunner 55 usa GPS de banda única (no multibanda) con soporte para GPS, GLONASS y Galileo. En campo abierto y parques la precisión es muy buena, con errores inferiores al 2%. En zonas urbanas con edificios altos puede haber desviaciones de hasta un 3-5%. Para la mayoría de corredores principiantes e intermedios que entrenan en parques o calles abiertas, la precisión es más que suficiente."}},
-        {"@type": "Question", "name": "¿Merece la pena el Forerunner 55 en 2026 o está obsoleto?", "acceptedAnswer": {"@type": "Answer", "text": "El Forerunner 55 sigue siendo un reloj muy competente en 2026 para corredores principiantes e intermedios. Aunque modelos más nuevos como el Forerunner 165 ofrecen pantalla AMOLED y GPS multibanda, el Forerunner 55 destaca por su precio reducido (se encuentra frecuentemente por debajo de 160 euros), su batería superior y su sencillez de uso. Si no necesitas mapas, música ni pantalla a color, sigue siendo una compra inteligente."}},
-        {"@type": "Question", "name": "¿Puedo usar el Forerunner 55 para trail running?", "acceptedAnswer": {"@type": "Answer", "text": "Puedes usarlo, pero tiene limitaciones importantes para trail. No tiene altímetro barométrico (estima la altitud por GPS, menos preciso), no ofrece mapas ni navegación por rutas, y le falta el perfil de desnivel acumulado fiable. Para salidas por senderos suaves o caminos conocidos funciona bien, pero si haces trail técnico con desniveles importantes y necesitas navegación, te conviene un reloj con altímetro y mapas como el COROS PACE 3 o el Garmin Forerunner 265."}},
-        {"@type": "Question", "name": "¿Qué diferencia hay entre el Forerunner 55 y el Forerunner 265?", "acceptedAnswer": {"@type": "Answer", "text": "Las diferencias principales son: el 265 tiene pantalla AMOLED a color (vs MIP monocromo del 55), GPS multibanda más preciso, almacenamiento de música offline, pantalla táctil además de botones, métricas avanzadas como Training Readiness y HRV Status, y altímetro barométrico. El 55 gana en batería (14 vs 13 días smartwatch) y en precio (unos 160 euros vs 400+ euros). El 265 es un salto generacional completo, pero el 55 cubre las necesidades del 80% de corredores por menos de la mitad de precio."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿El Garmin Forerunner 55 es resistente al agua?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, el Forerunner 55 tiene certificación 5 ATM, lo que significa que resiste la presión equivalente a 50 metros de profundidad. Puedes ducharte con él, correr bajo lluvia intensa e incluso nadar en piscina sin problemas. No está diseñado para buceo con botella, pero para cualquier actividad de running o natación en superficie es más que suficiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo escuchar música con el Garmin Forerunner 55?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, el Forerunner 55 no tiene almacenamiento de música ni la posibilidad de reproducir canciones directamente desde el reloj. Sí puedes controlar la reproducción de música del móvil desde la muñeca (pausa, siguiente canción, volumen), pero necesitas llevar el teléfono encima. Si la música offline en el reloj es imprescindible para ti, necesitas subir al Forerunner 265 o similar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto dura la batería del Forerunner 55 en la práctica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Garmin anuncia 14 días en modo smartwatch y 20 horas con GPS activo. En uso real, con notificaciones activadas, seguimiento 24/7 de frecuencia cardíaca y 3-4 entrenamientos semanales de una hora, la batería suele durar entre 10 y 12 días. Con GPS activo en modo running, hemos obtenido entre 18 y 20 horas, muy cerca de la cifra oficial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El Forerunner 55 tiene GPS preciso?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El Forerunner 55 usa GPS de banda única (no multibanda) con soporte para GPS, GLONASS y Galileo. En campo abierto y parques la precisión es muy buena, con errores inferiores al 2%. En zonas urbanas con edificios altos puede haber desviaciones de hasta un 3-5%. Para la mayoría de corredores principiantes e intermedios que entrenan en parques o calles abiertas, la precisión es más que suficiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Merece la pena el Forerunner 55 en 2026 o está obsoleto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El Forerunner 55 sigue siendo un reloj muy competente en 2026 para corredores principiantes e intermedios. Aunque modelos más nuevos como el Forerunner 165 ofrecen pantalla AMOLED y GPS multibanda, el Forerunner 55 destaca por su precio reducido (se encuentra frecuentemente por debajo de 160 euros), su batería superior y su sencillez de uso. Si no necesitas mapas, música ni pantalla a color, sigue siendo una compra inteligente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo usar el Forerunner 55 para trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Puedes usarlo, pero tiene limitaciones importantes para trail. No tiene altímetro barométrico (estima la altitud por GPS, menos preciso), no ofrece mapas ni navegación por rutas, y le falta el perfil de desnivel acumulado fiable. Para salidas por senderos suaves o caminos conocidos funciona bien, pero si haces trail técnico con desniveles importantes y necesitas navegación, te conviene un reloj con altímetro y mapas como el COROS PACE 3 o el Garmin Forerunner 265."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué diferencia hay entre el Forerunner 55 y el Forerunner 265?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las diferencias principales son: el 265 tiene pantalla AMOLED a color (vs MIP monocromo del 55), GPS multibanda más preciso, almacenamiento de música offline, pantalla táctil además de botones, métricas avanzadas como Training Readiness y HRV Status, y altímetro barométrico. El 55 gana en batería (14 vs 13 días smartwatch) y en precio (unos 160 euros vs 400+ euros). El 265 es un salto generacional completo, pero el 55 cubre las necesidades del 80% de corredores por menos de la mitad de precio."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review#faq"
     }
   ]
 }

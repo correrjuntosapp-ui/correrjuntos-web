@@ -27,24 +27,109 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Nutricion Dia de Carrera: Guía Completa para Rendir al Maximo", "description": "Guía completa de nutricion para el dia de carrera con desayuno, geles, hidratacion y recuperacion.", "url": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera", "datePublished": "2026-02-19", "dateModified": "2026-02-19", "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
-      }, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/1346155/pexels-photo-1346155.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Nutricion Dia de Carrera"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Cuantas horas antes de la carrera debo desayunar?", "acceptedAnswer": {"@type": "Answer", "text": "Lo ideal es desayunar 2-3 horas antes del inicio de la carrera. Esto da tiempo suficiente para digerir y tener la energía disponible. Si la carrera es a las 9:00, desayuna a las 6:00-7:00. Si madrugar tanto te cuesta, prueba con un snack ligero 60-90 minutos antes."}},
-      {"@type": "Question", "name": "Necesito tomar geles en un 10K?", "acceptedAnswer": {"@type": "Answer", "text": "Para la mayoría de runners, un 10K se puede completar sin geles si has desayunado bien. Si tu 10K va a durar mas de 50-60 minutos, puedes tomar un gel a los 30 minutos como seguro. En carreras de 5K, nunca necesitas geles."}},
-      {"@type": "Question", "name": "Que pasa si como algo nuevo el dia de la carrera?", "acceptedAnswer": {"@type": "Answer", "text": "Regla número uno del dia de carrera: nunca estrenes nada, ni comida ni equipamiento. Tu sistema digestivo puede reaccionar mal a alimentos que no has probado en entrenamientos. Esto incluye geles, barritas, bebidas isotonicas e incluso el desayuno. Todo lo que comas el dia de carrera debe estar probado antes en entrenos largos."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera#webpage",
+      "url": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera",
+      "name": "Nutricion Dia de Carrera: Que Comer Antes, Durante y Despues - CorrerJuntos",
+      "description": "Guía completa de nutrición para el dia de carrera. Desayuno pre-carrera, geles durante, recuperacion despues. Para 5K, 10K y media maraton.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1346155/pexels-photo-1346155.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera#webpage"
+      },
+      "headline": "Nutricion Dia de Carrera: Guía Completa para Rendir al Maximo",
+      "description": "Guía completa de nutricion para el dia de carrera con desayuno, geles, hidratacion y recuperacion.",
+      "url": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera",
+      "datePublished": "2026-02-19",
+      "dateModified": "2026-02-19",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1346155/pexels-photo-1346155.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Nutricion Dia de Carrera"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Cuantas horas antes de la carrera debo desayunar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lo ideal es desayunar 2-3 horas antes del inicio de la carrera. Esto da tiempo suficiente para digerir y tener la energía disponible. Si la carrera es a las 9:00, desayuna a las 6:00-7:00. Si madrugar tanto te cuesta, prueba con un snack ligero 60-90 minutos antes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Necesito tomar geles en un 10K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para la mayoría de runners, un 10K se puede completar sin geles si has desayunado bien. Si tu 10K va a durar mas de 50-60 minutos, puedes tomar un gel a los 30 minutos como seguro. En carreras de 5K, nunca necesitas geles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que pasa si como algo nuevo el dia de la carrera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Regla número uno del dia de carrera: nunca estrenes nada, ni comida ni equipamiento. Tu sistema digestivo puede reaccionar mal a alimentos que no has probado en entrenamientos. Esto incluye geles, barritas, bebidas isotonicas e incluso el desayuno. Todo lo que comas el dia de carrera debe estar probado antes en entrenos largos."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera#faq"
+    }
   ]
 }
 </script>

@@ -27,46 +27,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona#webpage",
+      "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona",
+      "name": "Las Mejores Rutas para Correr en Barcelona | Top 10 - CorrerJuntos",
+      "description": "Las 10 mejores rutas para correr en Barcelona: Montjuïc, paseo marítimo, Carretera de les Aigües y más. Distancias, dificultad y consejos para runners.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona#webpage"
+      },
       "headline": "Las Mejores Rutas para Correr en Barcelona: Top 10",
       "description": "Guía con las 10 mejores rutas para correr en Barcelona, con distancias, dificultad y recomendaciones.",
       "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona",
       "datePublished": "2026-02-14",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Rutas para Correr en Barcelona"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Rutas para Correr en Barcelona"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuál es la mejor ruta para correr en Barcelona?", "acceptedAnswer": {"@type": "Answer", "text": "La Carretera de les Aigües es la ruta más emblemática para runners en Barcelona: 10 km llanos con vistas panorámicas a toda la ciudad. Para rutas urbanas, el paseo marítimo ofrece 5 km junto al mar."}},
-        {"@type": "Question", "name": "¿Se puede correr por Montjuïc?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, Montjuïc es una de las mejores zonas de Barcelona para correr. Ofrece circuitos de 3 a 15 km con cuestas, jardines y vistas espectaculares al puerto y la ciudad."}},
-        {"@type": "Question", "name": "¿Hay grupos de running en Barcelona?", "acceptedAnswer": {"@type": "Answer", "text": "Barcelona tiene una comunidad runner muy activa. En CorrerJuntos puedes encontrar quedadas gratuitas para todos los niveles en diferentes barrios y rutas de la ciudad."}},
-        {"@type": "Question", "name": "¿Cuándo es mejor correr en Barcelona?", "acceptedAnswer": {"@type": "Answer", "text": "Las mejores épocas son primavera (marzo-mayo) y otoño (septiembre-noviembre), con temperaturas entre 12 y 22 grados. En verano conviene correr antes de las 9:00 o después de las 20:00 para evitar el calor húmedo."}},
-        {"@type": "Question", "name": "¿Se puede hacer trail running en Barcelona?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, Barcelona es una ciudad excelente para trail running. El Parc de Collserola ofrece más de 8.000 hectáreas de senderos forestales a pocos minutos del centro, accesibles en FGC desde Vallvidrera o Peu del Funicular."}},
-        {"@type": "Question", "name": "¿Qué zapatillas usar para correr en Barcelona?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de la superficie. Para rutas urbanas como el paseo marítimo, zapatillas de asfalto con buena amortiguación. Para Collserola o Montjuïc, zapatillas de trail con suela Vibram o Continental para agarre en tierra y piedra."}},
-        {"@type": "Question", "name": "¿Hay carreras populares en Barcelona?", "acceptedAnswer": {"@type": "Answer", "text": "Barcelona tiene un calendario muy completo: el Maratón de Barcelona en marzo, la Cursa El Corte Inglés en primavera (la carrera popular más multitudinaria de Europa), la Jean Bouin en noviembre, y decenas de carreras de barrio durante todo el año."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la mejor ruta para correr en Barcelona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La Carretera de les Aigües es la ruta más emblemática para runners en Barcelona: 10 km llanos con vistas panorámicas a toda la ciudad. Para rutas urbanas, el paseo marítimo ofrece 5 km junto al mar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede correr por Montjuïc?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, Montjuïc es una de las mejores zonas de Barcelona para correr. Ofrece circuitos de 3 a 15 km con cuestas, jardines y vistas espectaculares al puerto y la ciudad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay grupos de running en Barcelona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Barcelona tiene una comunidad runner muy activa. En CorrerJuntos puedes encontrar quedadas gratuitas para todos los niveles en diferentes barrios y rutas de la ciudad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo es mejor correr en Barcelona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las mejores épocas son primavera (marzo-mayo) y otoño (septiembre-noviembre), con temperaturas entre 12 y 22 grados. En verano conviene correr antes de las 9:00 o después de las 20:00 para evitar el calor húmedo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede hacer trail running en Barcelona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, Barcelona es una ciudad excelente para trail running. El Parc de Collserola ofrece más de 8.000 hectáreas de senderos forestales a pocos minutos del centro, accesibles en FGC desde Vallvidrera o Peu del Funicular."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué zapatillas usar para correr en Barcelona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de la superficie. Para rutas urbanas como el paseo marítimo, zapatillas de asfalto con buena amortiguación. Para Collserola o Montjuïc, zapatillas de trail con suela Vibram o Continental para agarre en tierra y piedra."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay carreras populares en Barcelona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Barcelona tiene un calendario muy completo: el Maratón de Barcelona en marzo, la Cursa El Corte Inglés en primavera (la carrera popular más multitudinaria de Europa), la Jean Bouin en noviembre, y decenas de carreras de barrio durante todo el año."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona#faq"
     }
   ]
 }

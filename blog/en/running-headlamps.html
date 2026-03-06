@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-headlamps#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-headlamps",
+      "name": "The 7 Best Running Headlamps in 2026 | CorrerJuntos",
+      "description": "The 7 best headlamps for running at night in 2026. Petzl, Black Diamond, Silva and more compared: lumens, battery life, weight and price.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/29300647/pexels-photo-29300647.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-headlamps#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-headlamps#webpage"
+      },
       "headline": "The 7 Best Running Headlamps in 2026",
       "description": "Complete comparison of the 7 best headlamps for night running in 2026: lumens, battery life, weight, water resistance and price.",
       "url": "https://www.correrjuntos.com/blog/en/running-headlamps",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/29300647/pexels-photo-29300647.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/29300647/pexels-photo-29300647.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "The 7 Best Running Headlamps 2026"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The 7 Best Running Headlamps 2026"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-headlamps#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "How many lumens do I need for running at night?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the environment. For city or partially lit paths, 100-200 lumens are enough. For rural roads without streetlights or dark parks, you need at least 250-400 lumens for clear visibility at 30-50 meters. For trail running at night on technical terrain (rocks, roots, elevation changes), 500+ lumens is recommended for good distance visibility and reaction time to obstacles. Most urban runners are comfortable with a 200-350 lumen headlamp."}},
-        {"@type": "Question", "name": "Is a focused (spot) or wide (flood) beam better for running?", "acceptedAnswer": {"@type": "Answer", "text": "The ideal for running is a headlamp with a combined beam that mixes a central spot for distance vision with a peripheral flood for close and lateral vision. If you must choose one, flood is more practical for running because it lets you see all the terrain around you, especially on trails with curves and uneven ground. The pure spot is useful for straight roads where you need to detect obstacles far away, but leaves the sides dark. Models like the Black Diamond Sprinter 500 and the Petzl IKO Core offer an excellent combined beam for all types of running."}},
-        {"@type": "Question", "name": "How much should a running headlamp weigh?", "acceptedAnswer": {"@type": "Answer", "text": "For urban running and workouts up to 90 minutes, ideally under 100 grams so it causes no discomfort. Headlamps like the Nitecore NU25 UL (28 g), the BioLite HeadLamp 330 (69 g) and the Petzl IKO Core (79 g) fit this category. For trail running, where you need more power and battery life, headlamps between 100 and 200 grams are perfectly acceptable, especially with good weight distribution. Above 200 grams you'll start feeling neck fatigue and forehead discomfort on runs longer than 2-3 hours."}},
-        {"@type": "Question", "name": "Is a USB rechargeable headlamp worth it over one with batteries?", "acceptedAnswer": {"@type": "Answer", "text": "For most runners, yes. USB-C rechargeable headlamps are more economical long-term because you eliminate recurring battery costs, more eco-friendly and more practical: you charge them with the same cable as your phone. All models in our selection are rechargeable. The downside is that on very long races (ultra trails over 10 hours) you can't simply swap batteries when they run out. For those cases, the solution is to carry a small power bank and charge during walking sections, or choose a model with a removable battery like the Silva Trail Runner Free 2 and carry a spare."}},
-        {"@type": "Question", "name": "What is red light mode and what is it for in running?", "acceptedAnswer": {"@type": "Answer", "text": "Red light mode emits a dim red light that preserves your adapted night vision. When you've been in darkness, your pupils dilate to capture more light. If you turn on a bright white light, your pupils contract and you need 20-30 minutes to recover dark adaptation. Red light doesn't cause that contraction. It's very useful at aid stations during night races (to see what you eat without blinding yourself), for checking your watch or phone without losing night vision, and to avoid bothering other runners when running in a group."}},
-        {"@type": "Question", "name": "Can I wear the headlamp on my chest instead of my head?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and it's an increasingly popular option among trail runners. Mounting the headlamp on the chest (clipped to a hydration vest or with a specific harness) has several advantages: it reduces bounce on the head, eliminates neck fatigue and projects light from a low angle that creates shadows improving terrain relief perception. Rocks, roots and elevation changes are much more visible with grazing light. The downside is the light doesn't follow your gaze, so it's less practical at trail forks or when you need to look to the sides. Many ultra runners combine a powerful chest light with a lightweight headlamp."}},
-        {"@type": "Question", "name": "What IPX rating does a headlamp need for running in the rain?", "acceptedAnswer": {"@type": "Answer", "text": "For light to moderate rain, IPX4 (splash protection) is sufficient. All headlamps in our selection meet at least IPX4. If you regularly run in heavy rain or mountain conditions with adverse weather, look for IPX5 or higher (like the Black Diamond Sprinter 500 or the Silva Trail Runner Free 2). The Nitecore NU25 UL reaches IPX6, the highest rating in our selection, making it resistant even to high-pressure water jets. Remember that seals deteriorate with use: dry your headlamp well after every rainy run and periodically check the USB port cover."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "How many lumens do I need for running at night?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the environment. For city or partially lit paths, 100-200 lumens are enough. For rural roads without streetlights or dark parks, you need at least 250-400 lumens for clear visibility at 30-50 meters. For trail running at night on technical terrain (rocks, roots, elevation changes), 500+ lumens is recommended for good distance visibility and reaction time to obstacles. Most urban runners are comfortable with a 200-350 lumen headlamp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a focused (spot) or wide (flood) beam better for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The ideal for running is a headlamp with a combined beam that mixes a central spot for distance vision with a peripheral flood for close and lateral vision. If you must choose one, flood is more practical for running because it lets you see all the terrain around you, especially on trails with curves and uneven ground. The pure spot is useful for straight roads where you need to detect obstacles far away, but leaves the sides dark. Models like the Black Diamond Sprinter 500 and the Petzl IKO Core offer an excellent combined beam for all types of running."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much should a running headlamp weigh?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For urban running and workouts up to 90 minutes, ideally under 100 grams so it causes no discomfort. Headlamps like the Nitecore NU25 UL (28 g), the BioLite HeadLamp 330 (69 g) and the Petzl IKO Core (79 g) fit this category. For trail running, where you need more power and battery life, headlamps between 100 and 200 grams are perfectly acceptable, especially with good weight distribution. Above 200 grams you'll start feeling neck fatigue and forehead discomfort on runs longer than 2-3 hours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a USB rechargeable headlamp worth it over one with batteries?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most runners, yes. USB-C rechargeable headlamps are more economical long-term because you eliminate recurring battery costs, more eco-friendly and more practical: you charge them with the same cable as your phone. All models in our selection are rechargeable. The downside is that on very long races (ultra trails over 10 hours) you can't simply swap batteries when they run out. For those cases, the solution is to carry a small power bank and charge during walking sections, or choose a model with a removable battery like the Silva Trail Runner Free 2 and carry a spare."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is red light mode and what is it for in running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Red light mode emits a dim red light that preserves your adapted night vision. When you've been in darkness, your pupils dilate to capture more light. If you turn on a bright white light, your pupils contract and you need 20-30 minutes to recover dark adaptation. Red light doesn't cause that contraction. It's very useful at aid stations during night races (to see what you eat without blinding yourself), for checking your watch or phone without losing night vision, and to avoid bothering other runners when running in a group."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I wear the headlamp on my chest instead of my head?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and it's an increasingly popular option among trail runners. Mounting the headlamp on the chest (clipped to a hydration vest or with a specific harness) has several advantages: it reduces bounce on the head, eliminates neck fatigue and projects light from a low angle that creates shadows improving terrain relief perception. Rocks, roots and elevation changes are much more visible with grazing light. The downside is the light doesn't follow your gaze, so it's less practical at trail forks or when you need to look to the sides. Many ultra runners combine a powerful chest light with a lightweight headlamp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What IPX rating does a headlamp need for running in the rain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For light to moderate rain, IPX4 (splash protection) is sufficient. All headlamps in our selection meet at least IPX4. If you regularly run in heavy rain or mountain conditions with adverse weather, look for IPX5 or higher (like the Black Diamond Sprinter 500 or the Silva Trail Runner Free 2). The Nitecore NU25 UL reaches IPX6, the highest rating in our selection, making it resistant even to high-pressure water jets. Remember that seals deteriorate with use: dry your headlamp well after every rainy run and periodically check the USB port cover."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-headlamps#faq"
     }
   ]
 }

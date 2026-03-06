@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/ritmo-para-principiantes-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/ritmo-para-principiantes-running",
+      "name": "A Que Ritmo Correr si Eres Principiante: Guia de Pace | CorrerJuntos",
+      "description": "A que ritmo deberias correr si estas empezando. Como calcular tu pace ideal, test del habla, zonas de frecuencia cardiaca y errores de ritmo.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Jose Marquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/ritmo-para-principiantes-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/ritmo-para-principiantes-running#webpage"
+      },
       "headline": "A Que Ritmo Correr si Eres Principiante: Guia de Pace",
       "description": "A que ritmo deberias correr si estas empezando. Como calcular tu pace ideal, test del habla, zonas de frecuencia cardiaca y errores de ritmo.",
       "url": "https://www.correrjuntos.com/blog/ritmo-para-principiantes-running",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Jose Marquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Ritmo para Principiantes"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ritmo para Principiantes"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ritmo-para-principiantes-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "A que ritmo deberia correr un principiante?", "acceptedAnswer": {"@type": "Answer", "text": "No existe un ritmo universal correcto. La mayoria de principiantes deberian correr entre 7:00 y 8:30 min/km, pero lo mas importante es que puedas mantener una conversacion mientras corres. Si te ahogas al hablar, estas yendo demasiado rapido. El test del habla es la herramienta mas fiable para principiantes porque no requiere ningun dispositivo y se adapta automaticamente a tu nivel de forma fisica."}},
-        {"@type": "Question", "name": "Es normal que mi ritmo sea muy lento al empezar a correr?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutamente si. Correr a 8:00 o incluso 9:00 min/km es completamente normal y saludable para un principiante. Tu sistema cardiovascular necesita tiempo para adaptarse, y correr despacio te permite construir una base aerobica solida sin riesgo de lesiones. Muchos corredores experimentados hacen el 80% de sus kilometros a ritmos que considerarias lentos. La velocidad llega con la constancia, no forzando el ritmo."}},
-        {"@type": "Question", "name": "Cuanto tiempo tarda un principiante en mejorar su ritmo?", "acceptedAnswer": {"@type": "Answer", "text": "Con un entrenamiento constante de 3-4 dias por semana, la mayoria de principiantes notan una mejora significativa en su ritmo en 6-8 semanas. En los primeros 3 meses es donde se producen las adaptaciones mas grandes. Sin embargo, la mejora depende de muchos factores: consistencia, descanso, nutricion y genetica. Lo importante es no compararte con otros y centrarte en tu propia progresion."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "A que ritmo deberia correr un principiante?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No existe un ritmo universal correcto. La mayoria de principiantes deberian correr entre 7:00 y 8:30 min/km, pero lo mas importante es que puedas mantener una conversacion mientras corres. Si te ahogas al hablar, estas yendo demasiado rapido. El test del habla es la herramienta mas fiable para principiantes porque no requiere ningun dispositivo y se adapta automaticamente a tu nivel de forma fisica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Es normal que mi ritmo sea muy lento al empezar a correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutamente si. Correr a 8:00 o incluso 9:00 min/km es completamente normal y saludable para un principiante. Tu sistema cardiovascular necesita tiempo para adaptarse, y correr despacio te permite construir una base aerobica solida sin riesgo de lesiones. Muchos corredores experimentados hacen el 80% de sus kilometros a ritmos que considerarias lentos. La velocidad llega con la constancia, no forzando el ritmo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cuanto tiempo tarda un principiante en mejorar su ritmo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con un entrenamiento constante de 3-4 dias por semana, la mayoria de principiantes notan una mejora significativa en su ritmo en 6-8 semanas. En los primeros 3 meses es donde se producen las adaptaciones mas grandes. Sin embargo, la mejora depende de muchos factores: consistencia, descanso, nutricion y genetica. Lo importante es no compararte con otros y centrarte en tu propia progresion."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ritmo-para-principiantes-running#faq"
     }
   ]
 }

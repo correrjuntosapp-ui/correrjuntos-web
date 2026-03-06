@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/marathon-carb-loading#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/marathon-carb-loading",
+      "name": "Marathon Carb Loading: Complete Protocol 2026 | CorrerJuntos",
+      "description": "How to carb load before a marathon: 3-day protocol, what to eat, exact amounts, common mistakes and a day-by-day sample menu.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/marathon-carb-loading#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/marathon-carb-loading#webpage"
+      },
       "headline": "Marathon Carb Loading: Complete Protocol",
       "description": "How to carb load before a marathon: 3-day protocol, what to eat, exact amounts, common mistakes and a day-by-day sample menu.",
       "url": "https://www.correrjuntos.com/blog/en/marathon-carb-loading",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Marathon Carb Loading"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Marathon Carb Loading"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/marathon-carb-loading#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "How many days before the marathon should I start carb loading?", "acceptedAnswer": {"@type": "Answer", "text": "The modern protocol recommends starting the carb load 3 days before the marathon (i.e. Wednesday to Friday if you race on Sunday). The old 6-day protocol with a depletion phase has been replaced by science showing that 3 days of high-carb intake at 8-12 g per kg of body weight per day is enough to maximise muscle glycogen stores without the fatigue and discomfort of the longer protocol."}},
-        {"@type": "Question", "name": "Will I gain weight from carb loading?", "acceptedAnswer": {"@type": "Answer", "text": "It is normal to gain between 1 and 3 kg during the carb load, but it is not fat. Each gram of stored glycogen retains roughly 3 grams of water, so most of that extra weight is water. Those kilos are your fuel for the marathon and you will lose them during the race. Do not worry if the scale goes up: it is a sign that the loading is working correctly."}},
-        {"@type": "Question", "name": "Can I carb load if I am coeliac or gluten intolerant?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. There are many carbohydrate-rich foods that contain no gluten: rice, potato, sweet potato, quinoa, certified gluten-free oats, fruits, honey and corn. White rice is probably the best base for a gluten-free carb load because it is easy to digest, low in fibre and very high in carbohydrates. You can also use rice pasta or corn pasta as an alternative to wheat pasta."}},
-        {"@type": "Question", "name": "Should I reduce fat and protein during the load?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it is advisable to reduce the proportion of fat and protein during the 3 loading days, but do not eliminate them. Fat slows digestion and takes up stomach volume without contributing glycogen. Protein is necessary but in moderate amounts. Aim for carbohydrates to represent 70-80% of your total calorie intake during the load, leaving 10-15% for protein and 10-15% for fat."}},
-        {"@type": "Question", "name": "What happens if I do not carb load before the marathon?", "acceptedAnswer": {"@type": "Answer", "text": "Without carb loading, your muscle glycogen stores will be at normal levels (around 300-400 g), giving you energy for roughly 90 minutes of running at marathon intensity. Beyond that point, you are very likely to hit the wall: a sharp drop in performance between km 28 and 35. With a proper load, you can raise those stores to 500-600 g or more, delaying or avoiding the wall entirely."}},
-        {"@type": "Question", "name": "Can I drink alcohol during the carb load?", "acceptedAnswer": {"@type": "Answer", "text": "It is not recommended. Alcohol interferes with muscle glycogen storage, dehydrates you, disrupts sleep quality and can cause intestinal inflammation. Even a single beer or glass of wine can reduce the effectiveness of your carb load. You should completely eliminate alcohol during the 3 days before the marathon. It is not worth risking weeks of preparation for a drink."}},
-        {"@type": "Question", "name": "Does carb loading work the same for a half marathon?", "acceptedAnswer": {"@type": "Answer", "text": "For a half marathon, you do not need as aggressive a loading protocol as for a full marathon. A half marathon lasts between 1:20 and 2:30 hours for most runners, and normal glycogen reserves are usually enough if you supplement with gels during the race. That said, slightly increasing carbs in the 24-48 hours before the race (6-8 g/kg/day instead of 8-12) can help you start with fuller reserves and feel more energetic."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "How many days before the marathon should I start carb loading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The modern protocol recommends starting the carb load 3 days before the marathon (i.e. Wednesday to Friday if you race on Sunday). The old 6-day protocol with a depletion phase has been replaced by science showing that 3 days of high-carb intake at 8-12 g per kg of body weight per day is enough to maximise muscle glycogen stores without the fatigue and discomfort of the longer protocol."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will I gain weight from carb loading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is normal to gain between 1 and 3 kg during the carb load, but it is not fat. Each gram of stored glycogen retains roughly 3 grams of water, so most of that extra weight is water. Those kilos are your fuel for the marathon and you will lose them during the race. Do not worry if the scale goes up: it is a sign that the loading is working correctly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I carb load if I am coeliac or gluten intolerant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. There are many carbohydrate-rich foods that contain no gluten: rice, potato, sweet potato, quinoa, certified gluten-free oats, fruits, honey and corn. White rice is probably the best base for a gluten-free carb load because it is easy to digest, low in fibre and very high in carbohydrates. You can also use rice pasta or corn pasta as an alternative to wheat pasta."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I reduce fat and protein during the load?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, it is advisable to reduce the proportion of fat and protein during the 3 loading days, but do not eliminate them. Fat slows digestion and takes up stomach volume without contributing glycogen. Protein is necessary but in moderate amounts. Aim for carbohydrates to represent 70-80% of your total calorie intake during the load, leaving 10-15% for protein and 10-15% for fat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I do not carb load before the marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Without carb loading, your muscle glycogen stores will be at normal levels (around 300-400 g), giving you energy for roughly 90 minutes of running at marathon intensity. Beyond that point, you are very likely to hit the wall: a sharp drop in performance between km 28 and 35. With a proper load, you can raise those stores to 500-600 g or more, delaying or avoiding the wall entirely."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I drink alcohol during the carb load?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is not recommended. Alcohol interferes with muscle glycogen storage, dehydrates you, disrupts sleep quality and can cause intestinal inflammation. Even a single beer or glass of wine can reduce the effectiveness of your carb load. You should completely eliminate alcohol during the 3 days before the marathon. It is not worth risking weeks of preparation for a drink."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does carb loading work the same for a half marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a half marathon, you do not need as aggressive a loading protocol as for a full marathon. A half marathon lasts between 1:20 and 2:30 hours for most runners, and normal glycogen reserves are usually enough if you supplement with gels during the race. That said, slightly increasing carbs in the 24-48 hours before the race (6-8 g/kg/day instead of 8-12) can help you start with fuller reserves and feel more energetic."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/marathon-carb-loading#faq"
     }
   ]
 }

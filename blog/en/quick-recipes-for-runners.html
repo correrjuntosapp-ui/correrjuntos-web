@@ -28,45 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/quick-recipes-for-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/quick-recipes-for-runners",
+      "name": "10 Quick Recipes for Runners: 15-Minute Meals [2026] | CorrerJuntos",
+      "description": "10 quick, healthy recipes for runners you can make in 15 minutes. Pre-run and post-run meals with the macros you need. Updated 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/quick-recipes-for-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/quick-recipes-for-runners#webpage"
+      },
       "headline": "10 Quick Recipes for Runners: 15-Minute Meals",
       "description": "10 quick, healthy recipes for runners you can make in 15 minutes with the macronutrients you need.",
       "url": "https://www.correrjuntos.com/blog/en/quick-recipes-for-runners",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder of CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Quick Recipes for Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Quick Recipes for Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/quick-recipes-for-runners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What should a runner eat before training?", "acceptedAnswer": {"@type": "Answer", "text": "Before training, runners should eat easily digestible carbohydrates 1-2 hours before: a banana with peanut butter, toast with honey, or an oatmeal bowl with fruit. Avoid excess fat and fiber."}},
-        {"@type": "Question", "name": "How long before running should I eat?", "acceptedAnswer": {"@type": "Answer", "text": "Ideally eat a full meal 2-3 hours before or a light snack 30-60 minutes before running. If eating just before, choose something very light like a banana or rice cakes."}},
-        {"@type": "Question", "name": "What can I cook quickly after a run?", "acceptedAnswer": {"@type": "Answer", "text": "After running you need protein and carbs. Quick options: omelet with toast, Greek yogurt with granola and fruit, chicken wrap with veggies, or a protein smoothie with banana and oats."}},
-        {"@type": "Question", "name": "Do runners need to count macros?", "acceptedAnswer": {"@type": "Answer", "text": "Counting macros is not essential if you follow a varied, balanced diet. However, aim for carbs at 50-60% of intake, protein at 15-20%, and fats at 25-30%."}},
-        {"@type": "Question", "name": "Does meal prep work for runners?", "acceptedAnswer": {"@type": "Answer", "text": "Meal prep is excellent for runners. Preparing meals on Sunday ensures you always have healthy options ready. Cook rice, chicken, vegetables and divide into containers for the whole week."}},
-        {"@type": "Question", "name": "Can I eat pasta every night as a runner?", "acceptedAnswer": {"@type": "Answer", "text": "Pasta is a good carb source, but variety matters. Alternate with rice, quinoa, potatoes and whole grain bread to get different micronutrients and avoid monotony."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What should a runner eat before training?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Before training, runners should eat easily digestible carbohydrates 1-2 hours before: a banana with peanut butter, toast with honey, or an oatmeal bowl with fruit. Avoid excess fat and fiber."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long before running should I eat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ideally eat a full meal 2-3 hours before or a light snack 30-60 minutes before running. If eating just before, choose something very light like a banana or rice cakes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What can I cook quickly after a run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After running you need protein and carbs. Quick options: omelet with toast, Greek yogurt with granola and fruit, chicken wrap with veggies, or a protein smoothie with banana and oats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do runners need to count macros?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Counting macros is not essential if you follow a varied, balanced diet. However, aim for carbs at 50-60% of intake, protein at 15-20%, and fats at 25-30%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does meal prep work for runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Meal prep is excellent for runners. Preparing meals on Sunday ensures you always have healthy options ready. Cook rice, chicken, vegetables and divide into containers for the whole week."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I eat pasta every night as a runner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pasta is a good carb source, but variety matters. Alternate with rice, quinoa, potatoes and whole grain bread to get different micronutrients and avoid monotony."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/quick-recipes-for-runners#faq"
     }
   ]
 }

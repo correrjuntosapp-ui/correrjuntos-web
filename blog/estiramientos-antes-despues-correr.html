@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr#webpage",
+      "url": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr",
+      "name": "Estiramientos Antes y Después de Correr | Rutina Completa - CorrerJuntos",
+      "description": "Rutina completa de estiramientos antes y después de correr. Calentamiento dinámico y vuelta a la calma paso a paso para prevenir lesiones y mejorar tu.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr#webpage"
+      },
       "headline": "Estiramientos Esenciales Antes y Después de Correr",
       "description": "Rutina completa de calentamiento dinámico y vuelta a la calma para runners de todos los niveles.",
       "url": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr",
       "datePublished": "2026-02-14",
       "dateModified": "2026-02-14",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4426456/pexels-photo-4426456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Estiramientos para Correr"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Estiramientos para Correr"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Debo estirar antes o después de correr?", "acceptedAnswer": {"@type": "Answer", "text": "Antes de correr, haz calentamiento dinámico (movimiento activo). Después de correr, haz estiramientos estáticos (manteniendo posición 20-30 segundos). Nunca hagas estiramientos estáticos antes de correr con los músculos fríos."}},
-        {"@type": "Question", "name": "¿Cuánto tiempo debo dedicar a los estiramientos?", "acceptedAnswer": {"@type": "Answer", "text": "5 minutos de calentamiento dinámico antes de correr y 5-10 minutos de estiramientos estáticos después. Es una inversión mínima que previene lesiones y mejora la recuperación."}},
-        {"@type": "Question", "name": "¿Qué pasa si no estiro después de correr?", "acceptedAnswer": {"@type": "Answer", "text": "Sin estirar, tus músculos se acortan y pierden flexibilidad con el tiempo, lo que aumenta el riesgo de lesiones como fascitis plantar, síndrome de la cintilla iliotibial y contracturas."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Debo estirar antes o después de correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Antes de correr, haz calentamiento dinámico (movimiento activo). Después de correr, haz estiramientos estáticos (manteniendo posición 20-30 segundos). Nunca hagas estiramientos estáticos antes de correr con los músculos fríos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo debo dedicar a los estiramientos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "5 minutos de calentamiento dinámico antes de correr y 5-10 minutos de estiramientos estáticos después. Es una inversión mínima que previene lesiones y mejora la recuperación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si no estiro después de correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sin estirar, tus músculos se acortan y pierden flexibilidad con el tiempo, lo que aumenta el riesgo de lesiones como fascitis plantar, síndrome de la cintilla iliotibial y contracturas."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr#faq"
     }
   ]
 }

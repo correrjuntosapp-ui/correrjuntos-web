@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/dieta-runner-que-comer#webpage",
+      "url": "https://www.correrjuntos.com/blog/dieta-runner-que-comer",
+      "name": "Dieta para Runners: Qué Comer para Correr Mejor | CorrerJuntos",
+      "description": "Dieta completa para corredores: macronutrientes, timing de comidas, alimentos clave, suplementos y plan semanal para mejorar rendimiento y recuperación.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Periodista Deportivo y Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/dieta-runner-que-comer#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/dieta-runner-que-comer#webpage"
+      },
       "headline": "Dieta para Runners: Qué Comer para Correr Mejor",
       "description": "Dieta completa para corredores: macronutrientes, timing de comidas, alimentos clave, suplementos y plan semanal para mejorar rendimiento y recuperación.",
       "url": "https://www.correrjuntos.com/blog/dieta-runner-que-comer",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Periodista Deportivo y Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2377164/pexels-photo-2377164.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Dieta para Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Dieta para Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/dieta-runner-que-comer#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuántos carbohidratos necesita un corredor al día?", "acceptedAnswer": {"@type": "Answer", "text": "Un corredor necesita entre 5 y 7 gramos de carbohidratos por kilogramo de peso corporal al día durante periodos de entrenamiento moderado. Para un corredor de 70 kg, eso supone entre 350 y 490 gramos diarios. En semanas de alta carga o antes de una competición, puede subir a 8-10 g/kg. Los carbohidratos son el combustible principal del corredor y no deben restringirse."}},
-        {"@type": "Question", "name": "¿Es malo correr en ayunas?", "acceptedAnswer": {"@type": "Answer", "text": "Correr en ayunas no es malo si se hace de forma controlada. Para carreras suaves de menos de 45-60 minutos a ritmo bajo, puede ser una herramienta para mejorar la oxidación de grasas. Sin embargo, no es recomendable para entrenamientos intensos, series o tiradas largas, ya que el rendimiento se verá comprometido. Siempre hidrátate antes de salir y escucha a tu cuerpo."}},
-        {"@type": "Question", "name": "¿Qué comer la noche antes de una carrera?", "acceptedAnswer": {"@type": "Answer", "text": "La noche antes de una carrera, opta por una cena rica en carbohidratos complejos y baja en fibra y grasa: pasta con salsa de tomate suave, arroz blanco con pollo a la plancha, o patata cocida con pescado. Evita alimentos que no hayas probado antes, legumbres, ensaladas muy grandes, picantes y alcohol. Come con tiempo suficiente para hacer la digestión antes de acostarte."}},
-        {"@type": "Question", "name": "¿Necesito tomar suplementos si corro?", "acceptedAnswer": {"@type": "Answer", "text": "La mayoría de corredores recreativos pueden cubrir sus necesidades con una dieta equilibrada. Sin embargo, hay suplementos con evidencia científica sólida: hierro (especialmente mujeres), vitamina D (si no tomas sol suficiente), magnesio (si sufres calambres frecuentes) y cafeína (para competiciones). Antes de tomar cualquier suplemento, lo ideal es hacerte una analítica y consultar con un nutricionista deportivo."}},
-        {"@type": "Question", "name": "¿Cuánta proteína necesita un corredor?", "acceptedAnswer": {"@type": "Answer", "text": "Un corredor necesita entre 1.4 y 1.8 gramos de proteína por kilogramo de peso corporal al día, dependiendo del volumen e intensidad del entrenamiento. Para un corredor de 70 kg, eso supone entre 98 y 126 gramos diarios. Es importante distribuir la ingesta en 4-5 comidas a lo largo del día y asegurar una toma de 20-30 g de proteína después de entrenar para optimizar la recuperación muscular."}},
-        {"@type": "Question", "name": "¿Puedo seguir una dieta vegana y correr bien?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, es perfectamente posible correr a alto nivel con una dieta vegana bien planificada. Las claves son: combinar legumbres con cereales para obtener proteínas completas, asegurar suficiente hierro de fuentes vegetales (lentejas, espinacas, tofu) acompañado de vitamina C, suplementar B12, y prestar atención a omega-3 (semillas de lino, nueces, suplemento de algas). Muchos corredores de élite siguen dietas plant-based con excelentes resultados."}},
-        {"@type": "Question", "name": "¿Cuánta agua debo beber al día si corro?", "acceptedAnswer": {"@type": "Answer", "text": "Un corredor debe beber entre 2 y 3 litros de agua al día como base, más 500 ml adicionales por cada hora de entrenamiento. El indicador más fiable es el color de tu orina: debe ser amarillo claro. Si corres más de 60 minutos o hace mucho calor, añade electrolitos (sodio, potasio, magnesio) a tu hidratación. Evita beber grandes cantidades de golpe; es mejor ir bebiendo pequeños sorbos a lo largo del día."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuántos carbohidratos necesita un corredor al día?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un corredor necesita entre 5 y 7 gramos de carbohidratos por kilogramo de peso corporal al día durante periodos de entrenamiento moderado. Para un corredor de 70 kg, eso supone entre 350 y 490 gramos diarios. En semanas de alta carga o antes de una competición, puede subir a 8-10 g/kg. Los carbohidratos son el combustible principal del corredor y no deben restringirse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es malo correr en ayunas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Correr en ayunas no es malo si se hace de forma controlada. Para carreras suaves de menos de 45-60 minutos a ritmo bajo, puede ser una herramienta para mejorar la oxidación de grasas. Sin embargo, no es recomendable para entrenamientos intensos, series o tiradas largas, ya que el rendimiento se verá comprometido. Siempre hidrátate antes de salir y escucha a tu cuerpo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué comer la noche antes de una carrera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La noche antes de una carrera, opta por una cena rica en carbohidratos complejos y baja en fibra y grasa: pasta con salsa de tomate suave, arroz blanco con pollo a la plancha, o patata cocida con pescado. Evita alimentos que no hayas probado antes, legumbres, ensaladas muy grandes, picantes y alcohol. Come con tiempo suficiente para hacer la digestión antes de acostarte."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito tomar suplementos si corro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La mayoría de corredores recreativos pueden cubrir sus necesidades con una dieta equilibrada. Sin embargo, hay suplementos con evidencia científica sólida: hierro (especialmente mujeres), vitamina D (si no tomas sol suficiente), magnesio (si sufres calambres frecuentes) y cafeína (para competiciones). Antes de tomar cualquier suplemento, lo ideal es hacerte una analítica y consultar con un nutricionista deportivo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánta proteína necesita un corredor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un corredor necesita entre 1.4 y 1.8 gramos de proteína por kilogramo de peso corporal al día, dependiendo del volumen e intensidad del entrenamiento. Para un corredor de 70 kg, eso supone entre 98 y 126 gramos diarios. Es importante distribuir la ingesta en 4-5 comidas a lo largo del día y asegurar una toma de 20-30 g de proteína después de entrenar para optimizar la recuperación muscular."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo seguir una dieta vegana y correr bien?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, es perfectamente posible correr a alto nivel con una dieta vegana bien planificada. Las claves son: combinar legumbres con cereales para obtener proteínas completas, asegurar suficiente hierro de fuentes vegetales (lentejas, espinacas, tofu) acompañado de vitamina C, suplementar B12, y prestar atención a omega-3 (semillas de lino, nueces, suplemento de algas). Muchos corredores de élite siguen dietas plant-based con excelentes resultados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánta agua debo beber al día si corro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un corredor debe beber entre 2 y 3 litros de agua al día como base, más 500 ml adicionales por cada hora de entrenamiento. El indicador más fiable es el color de tu orina: debe ser amarillo claro. Si corres más de 60 minutos o hace mucho calor, añade electrolitos (sodio, potasio, magnesio) a tu hidratación. Evita beber grandes cantidades de golpe; es mejor ir bebiendo pequeños sorbos a lo largo del día."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/dieta-runner-que-comer#faq"
     }
   ]
 }

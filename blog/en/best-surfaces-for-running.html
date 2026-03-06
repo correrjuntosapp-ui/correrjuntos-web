@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/best-surfaces-for-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/best-surfaces-for-running",
+      "name": "Best Surfaces for Running: Complete Comparison Guide | CorrerJuntos",
+      "description": "Asphalt, dirt, grass, treadmill or sand: we compare the best surfaces for running by impact, speed, injury risk and ideal training type.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/best-surfaces-for-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/best-surfaces-for-running#webpage"
+      },
       "headline": "Best Surfaces for Running: Complete Comparison Guide",
       "description": "Asphalt, dirt, grass, treadmill or sand: we compare the best surfaces for running by impact, speed, injury risk and ideal training type.",
       "url": "https://www.correrjuntos.com/blog/en/best-surfaces-for-running",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Best Surfaces for Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Best Surfaces for Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-surfaces-for-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What is the best surface for beginner runners?", "acceptedAnswer": {"@type": "Answer", "text": "Packed dirt is the best surface for beginner runners. It offers low impact that protects joints that are not yet accustomed to the repetitive stress of running, and the small irregularities in the terrain gradually strengthen your ankles and improve proprioception. If you do not have access to dirt trails, a synthetic athletics track is an excellent alternative thanks to its cushioned and uniform surface. Avoid starting out running exclusively on concrete sidewalks, as concrete is the hardest common surface and generates the most joint stress."}},
-        {"@type": "Question", "name": "Does running on sand strengthen your ankles?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, running on sand significantly strengthens your ankles, the stabiliser muscles of your feet and the entire lower leg musculature. Soft sand forces your muscles to work much harder to stabilise each footstrike, which generates meaningful strength adaptations. However, this same extra demand increases the risk of Achilles tendinitis and plantar fasciitis if you do not introduce sand running progressively. Start with short sessions of 10 to 15 minutes on wet sand (which is firmer) and increase the duration gradually over several weeks."}},
-        {"@type": "Question", "name": "Should I change my running shoes depending on the surface?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the surface. For asphalt you need shoes with good cushioning and an outsole resistant to abrasion. For trail and dirt, shoes with aggressive lugs, toe protection and solid lateral support are essential. For the athletics track you can use lighter shoes with less drop. You do not need a different pair for every surface, but it is wise to own at least one pair of road shoes and one pair of trail shoes if you regularly alternate between the two terrains."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "What is the best surface for beginner runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Packed dirt is the best surface for beginner runners. It offers low impact that protects joints that are not yet accustomed to the repetitive stress of running, and the small irregularities in the terrain gradually strengthen your ankles and improve proprioception. If you do not have access to dirt trails, a synthetic athletics track is an excellent alternative thanks to its cushioned and uniform surface. Avoid starting out running exclusively on concrete sidewalks, as concrete is the hardest common surface and generates the most joint stress."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does running on sand strengthen your ankles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, running on sand significantly strengthens your ankles, the stabiliser muscles of your feet and the entire lower leg musculature. Soft sand forces your muscles to work much harder to stabilise each footstrike, which generates meaningful strength adaptations. However, this same extra demand increases the risk of Achilles tendinitis and plantar fasciitis if you do not introduce sand running progressively. Start with short sessions of 10 to 15 minutes on wet sand (which is firmer) and increase the duration gradually over several weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I change my running shoes depending on the surface?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the surface. For asphalt you need shoes with good cushioning and an outsole resistant to abrasion. For trail and dirt, shoes with aggressive lugs, toe protection and solid lateral support are essential. For the athletics track you can use lighter shoes with less drop. You do not need a different pair for every surface, but it is wise to own at least one pair of road shoes and one pair of trail shoes if you regularly alternate between the two terrains."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-surfaces-for-running#faq"
     }
   ]
 }

@@ -28,42 +28,107 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/correr-con-perro-canicross#webpage",
+      "url": "https://www.correrjuntos.com/blog/correr-con-perro-canicross",
+      "name": "Correr con Perro (Canicross): Guía Completa para Empezar | CorrerJuntos",
+      "description": "Guía de canicross para principiantes. Razas ideales, equipamiento necesario, técnica de carrera con perro, errores comunes y cómo empezar de forma segura.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1390361/pexels-photo-1390361.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
-      "headline": "Correr con Perro (Canicross): Gu\u00eda Completa para Empezar",
-      "description": "Gu\u00eda de canicross para principiantes. Razas ideales, equipamiento necesario, t\u00e9cnica de carrera con perro, errores comunes y c\u00f3mo empezar de forma segura.",
+      "@id": "https://www.correrjuntos.com/blog/correr-con-perro-canicross#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/correr-con-perro-canicross#webpage"
+      },
+      "headline": "Correr con Perro (Canicross): Guía Completa para Empezar",
+      "description": "Guía de canicross para principiantes. Razas ideales, equipamiento necesario, técnica de carrera con perro, errores comunes y cómo empezar de forma segura.",
       "url": "https://www.correrjuntos.com/blog/correr-con-perro-canicross",
       "datePublished": "2026-03-02",
       "dateModified": "2026-03-02",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/1390361/pexels-photo-1390361.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1390361/pexels-photo-1390361.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Correr con Perro (Canicross)"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Correr con Perro (Canicross)"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/correr-con-perro-canicross#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "\u00bfA qu\u00e9 edad puede empezar mi perro a hacer canicross?", "acceptedAnswer": {"@type": "Answer", "text": "La mayor\u00eda de veterinarios recomienda esperar hasta que el perro tenga entre 12 y 18 meses, dependiendo de la raza. Los cachorros tienen las placas de crecimiento \u00f3seo abiertas y correr sobre superficies duras puede provocar lesiones articulares permanentes. Las razas grandes y gigantes (pastor alem\u00e1n, golden retriever, husky) necesitan esperar m\u00e1s cerca de los 18 meses, mientras que razas medianas pueden empezar a los 12 meses. Antes de empezar, haz una revisi\u00f3n veterinaria completa que incluya radiograf\u00edas de caderas y codos para descartar displasia."}},
-        {"@type": "Question", "name": "\u00bfPuedo hacer canicross en ciudad?", "acceptedAnswer": {"@type": "Answer", "text": "S\u00ed, pero con precauciones. El asfalto es m\u00e1s agresivo para las almohadillas de tu perro que los caminos de tierra, especialmente en verano cuando la temperatura del suelo puede superar los 60 \u00b0C. Elige parques grandes, carriles bici separados del tr\u00e1fico o zonas peatonales amplias. Evita las horas de m\u00e1ximo calor y comprueba siempre la temperatura del suelo con el dorso de la mano: si no puedes mantenerla 5 segundos, est\u00e1 demasiado caliente para las patas de tu perro. Muchos corredores urbanos optan por madrugar o correr al atardecer para evitar el calor y el tr\u00e1fico."}},
-        {"@type": "Question", "name": "\u00bfNecesito licencia para hacer canicross?", "acceptedAnswer": {"@type": "Answer", "text": "Para practicar canicross de forma recreativa no necesitas ninguna licencia espec\u00edfica, pero s\u00ed debes cumplir la normativa local sobre tenencia de perros: identificaci\u00f3n con microchip, vacunas al d\u00eda, seguro de responsabilidad civil y, en algunas comunidades aut\u00f3nomas, licencia para razas PPP (potencialmente peligrosas). Si quieres competir en carreras oficiales de canicross, necesitar\u00e1s federarte a trav\u00e9s de la RFEC (Real Federaci\u00f3n Espa\u00f1ola de Caza) o la FMEC (Federaci\u00f3n de Mushing y Deportes con Perros), seg\u00fan la comunidad. La cartilla veterinaria actualizada es obligatoria en todas las competiciones."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿A qué edad puede empezar mi perro a hacer canicross?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La mayoría de veterinarios recomienda esperar hasta que el perro tenga entre 12 y 18 meses, dependiendo de la raza. Los cachorros tienen las placas de crecimiento óseo abiertas y correr sobre superficies duras puede provocar lesiones articulares permanentes. Las razas grandes y gigantes (pastor alemán, golden retriever, husky) necesitan esperar más cerca de los 18 meses, mientras que razas medianas pueden empezar a los 12 meses. Antes de empezar, haz una revisión veterinaria completa que incluya radiografías de caderas y codos para descartar displasia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo hacer canicross en ciudad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, pero con precauciones. El asfalto es más agresivo para las almohadillas de tu perro que los caminos de tierra, especialmente en verano cuando la temperatura del suelo puede superar los 60 °C. Elige parques grandes, carriles bici separados del tráfico o zonas peatonales amplias. Evita las horas de máximo calor y comprueba siempre la temperatura del suelo con el dorso de la mano: si no puedes mantenerla 5 segundos, está demasiado caliente para las patas de tu perro. Muchos corredores urbanos optan por madrugar o correr al atardecer para evitar el calor y el tráfico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito licencia para hacer canicross?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para practicar canicross de forma recreativa no necesitas ninguna licencia específica, pero sí debes cumplir la normativa local sobre tenencia de perros: identificación con microchip, vacunas al día, seguro de responsabilidad civil y, en algunas comunidades autónomas, licencia para razas PPP (potencialmente peligrosas). Si quieres competir en carreras oficiales de canicross, necesitarás federarte a través de la RFEC (Real Federación Española de Caza) o la FMEC (Federación de Mushing y Deportes con Perros), según la comunidad. La cartilla veterinaria actualizada es obligatoria en todas las competiciones."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/correr-con-perro-canicross#faq"
     }
   ]
 }

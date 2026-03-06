@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa#webpage",
+      "url": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa",
+      "name": "Hidratación para Running: Cuánto Beber Antes, Durante y Después de Correr (2026) | CorrerJuntos",
+      "description": "Plan de hidratación completo para runners: cuánto beber por km, electrolitos que necesitas, señales de deshidratación y errores que cometen el 90% de corredores.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2611917/pexels-photo-2611917.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa#webpage"
+      },
       "headline": "Hidratación para Running: Guía Completa para Corredores",
       "description": "Guía completa de hidratación para correr: cuánto beber antes, durante y después, señales de deshidratación, bebidas isotónicas y plan por distancia.",
       "url": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/2611917/pexels-photo-2611917.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2611917/pexels-photo-2611917.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Hidratación para Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Hidratación para Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuánta agua debo beber al día si soy corredor?", "acceptedAnswer": {"@type": "Answer", "text": "Un corredor activo necesita entre 2,5 y 3,5 litros de líquido al día, dependiendo de su peso, clima y volumen de entrenamiento. Una fórmula útil es multiplicar tu peso en kg por 35-40 ml. Así, un corredor de 70 kg necesitaría unos 2,5-2,8 litros diarios como base, más lo que pierda durante el entrenamiento. En días de tirada larga o calor intenso, esa cifra puede subir a 4 litros o más."}},
-        {"@type": "Question", "name": "¿Es mejor beber agua o isotónico durante una carrera?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de la duración. Para carreras de menos de 45-60 minutos, el agua sola es suficiente. A partir de 60 minutos, conviene añadir electrolitos (sodio, potasio) porque los pierdes con el sudor. Para carreras de más de 90 minutos, una bebida isotónica completa con carbohidratos y electrolitos es lo ideal porque repone energía y sales minerales simultáneamente."}},
-        {"@type": "Question", "name": "¿Cómo sé si estoy deshidratado mientras corro?", "acceptedAnswer": {"@type": "Answer", "text": "Las señales más claras de deshidratación durante la carrera son: sed intensa, boca seca, orina oscura antes de salir, dolor de cabeza, mareo, ritmo cardíaco elevado para el mismo esfuerzo, y calambres musculares. Una forma práctica de controlarlo es pesarte antes y después de correr: si pierdes más del 2% de tu peso corporal, estás bebiendo poco."}},
-        {"@type": "Question", "name": "¿Puedo beber demasiada agua corriendo?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, y es más peligroso de lo que muchos creen. Beber en exceso puede provocar hiponatremia, una dilución peligrosa del sodio en sangre que puede causar náuseas, confusión, convulsiones e incluso la muerte en casos extremos. Es más frecuente en corredores lentos que beben mucho en cada avituallamiento sin necesitarlo. Bebe según tu sed y no te fuerces a beber más de lo que tu cuerpo pide."}},
-        {"@type": "Question", "name": "¿Necesito pastillas de sales o electrolitos para correr?", "acceptedAnswer": {"@type": "Answer", "text": "Para carreras cortas de menos de una hora, no son necesarias. Pero si corres más de 60-90 minutos, sobre todo con calor, los electrolitos ayudan a mantener el equilibrio de sodio y potasio que pierdes con el sudor. Las pastillas efervescentes como Nuun o Precision Hydration son una opción práctica y ligera para añadir a tu agua sin carbohidratos extra."}},
-        {"@type": "Question", "name": "¿Cómo me hidrato en un maratón si no quiero parar en cada avituallamiento?", "acceptedAnswer": {"@type": "Answer", "text": "Tienes varias opciones. Puedes llevar un cinturón de hidratación con botellines pequeños, un soft flask en la mano o un chaleco de hidratación con bolsa tipo camelback. Otra opción es usar bebidas isotónicas concentradas en gel o pastilla y rellenar solo con agua en los avituallamientos sin necesidad de parar. Muchos corredores practican coger vasos al paso sin detenerse."}},
-        {"@type": "Question", "name": "¿Cuánto peso puedo perder por sudor en una carrera?", "acceptedAnswer": {"@type": "Answer", "text": "La tasa de sudoración varía mucho entre personas, pero un corredor medio pierde entre 0,5 y 1,5 litros por hora dependiendo de la temperatura, humedad, intensidad y genética. En condiciones de calor extremo, algunos corredores pueden perder hasta 2-2,5 litros por hora. Por eso es importante pesarte antes y después de entrenamientos para conocer tu tasa de sudoración personal."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuánta agua debo beber al día si soy corredor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un corredor activo necesita entre 2,5 y 3,5 litros de líquido al día, dependiendo de su peso, clima y volumen de entrenamiento. Una fórmula útil es multiplicar tu peso en kg por 35-40 ml. Así, un corredor de 70 kg necesitaría unos 2,5-2,8 litros diarios como base, más lo que pierda durante el entrenamiento. En días de tirada larga o calor intenso, esa cifra puede subir a 4 litros o más."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es mejor beber agua o isotónico durante una carrera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de la duración. Para carreras de menos de 45-60 minutos, el agua sola es suficiente. A partir de 60 minutos, conviene añadir electrolitos (sodio, potasio) porque los pierdes con el sudor. Para carreras de más de 90 minutos, una bebida isotónica completa con carbohidratos y electrolitos es lo ideal porque repone energía y sales minerales simultáneamente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo sé si estoy deshidratado mientras corro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las señales más claras de deshidratación durante la carrera son: sed intensa, boca seca, orina oscura antes de salir, dolor de cabeza, mareo, ritmo cardíaco elevado para el mismo esfuerzo, y calambres musculares. Una forma práctica de controlarlo es pesarte antes y después de correr: si pierdes más del 2% de tu peso corporal, estás bebiendo poco."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo beber demasiada agua corriendo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, y es más peligroso de lo que muchos creen. Beber en exceso puede provocar hiponatremia, una dilución peligrosa del sodio en sangre que puede causar náuseas, confusión, convulsiones e incluso la muerte en casos extremos. Es más frecuente en corredores lentos que beben mucho en cada avituallamiento sin necesitarlo. Bebe según tu sed y no te fuerces a beber más de lo que tu cuerpo pide."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito pastillas de sales o electrolitos para correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para carreras cortas de menos de una hora, no son necesarias. Pero si corres más de 60-90 minutos, sobre todo con calor, los electrolitos ayudan a mantener el equilibrio de sodio y potasio que pierdes con el sudor. Las pastillas efervescentes como Nuun o Precision Hydration son una opción práctica y ligera para añadir a tu agua sin carbohidratos extra."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo me hidrato en un maratón si no quiero parar en cada avituallamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tienes varias opciones. Puedes llevar un cinturón de hidratación con botellines pequeños, un soft flask en la mano o un chaleco de hidratación con bolsa tipo camelback. Otra opción es usar bebidas isotónicas concentradas en gel o pastilla y rellenar solo con agua en los avituallamientos sin necesidad de parar. Muchos corredores practican coger vasos al paso sin detenerse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto peso puedo perder por sudor en una carrera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La tasa de sudoración varía mucho entre personas, pero un corredor medio pierde entre 0,5 y 1,5 litros por hora dependiendo de la temperatura, humedad, intensidad y genética. En condiciones de calor extremo, algunos corredores pueden perder hasta 2-2,5 litros por hora. Por eso es importante pesarte antes y después de entrenamientos para conocer tu tasa de sudoración personal."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa#faq"
     }
   ]
 }

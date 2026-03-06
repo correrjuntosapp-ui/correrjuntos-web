@@ -27,15 +27,125 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "BlogPosting", "headline": "Walking vs Running: Which Is Better for Your Health?", "description": "Complete comparison of walking vs running: calories burned, joint impact, cardiovascular benefits, weight loss and when to choose each one.", "url": "https://www.correrjuntos.com/blog/en/walking-vs-running", "datePublished": "2026-02-28", "dateModified": "2026-02-28", "author": {"@type": "Person", "name": "Jos\u00e9 M\u00e1rquez", "url": "https://www.correrjuntos.com/blog/autor/jose-marquez", "jobTitle": "Founder & Running Editor", "sameAs": ["https://www.strava.com/athletes/correrjuntos", "https://www.instagram.com/correrjuntosapp/", "https://x.com/correrjuntosapp"]}, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en", "image": "https://images.pexels.com/photos/4498220/pexels-photo-4498220.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Walking vs Running"}]},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Does walking burn as many calories as running?", "acceptedAnswer": {"@type": "Answer", "text": "No, running burns significantly more calories per minute than walking. A 70 kg person burns roughly 100 calories per kilometer running versus 65 calories per kilometer walking. However, walking for a longer duration can match or exceed running's total calorie burn. For example, a 60-minute walk burns roughly the same total calories as a 30-minute run."}},
-      {"@type": "Question", "name": "Is walking or running better for weight loss?", "acceptedAnswer": {"@type": "Answer", "text": "Running is more time-efficient for weight loss because it burns more calories per minute and produces a greater afterburn effect (EPOC). However, walking is more sustainable for many people, especially beginners, and carries a much lower injury risk. The best choice is the one you will do consistently. A combination of both is often the most effective long-term strategy."}},
-      {"@type": "Question", "name": "Is running bad for your knees compared to walking?", "acceptedAnswer": {"@type": "Answer", "text": "Research does not support the idea that recreational running damages healthy knees. While each running stride produces more impact force than walking, runners take fewer strides per kilometer and the total load over a given distance is comparable. Studies show that regular runners actually have lower rates of knee osteoarthritis than sedentary people. Proper shoes and gradual progression are key."}},
-      {"@type": "Question", "name": "Can I get the same health benefits from walking as running?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, walking provides the same types of cardiovascular, metabolic, and mental health benefits as running. However, you need to walk for longer to achieve equivalent results. Research shows that walking for 45-60 minutes delivers similar cardiovascular improvements to running for 25-30 minutes. Both reduce the risk of heart disease, diabetes, and depression."}},
-      {"@type": "Question", "name": "Should I walk or run as a beginner?", "acceptedAnswer": {"@type": "Answer", "text": "If you are completely sedentary, start with walking and gradually introduce running through the walk-run method. This hybrid approach builds fitness while minimizing injury risk. Walk for 3-4 minutes, then run for 1 minute, and repeat. Over several weeks, gradually increase the running intervals and decrease the walking ones. This is the safest and most sustainable way to transition from walker to runner."}}
-    ]}
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/walking-vs-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/walking-vs-running",
+      "name": "Walking vs Running: Which Is Better for Your Health? [Comparison] | CorrerJuntos",
+      "description": "Complete comparison of walking vs running: calories, joint impact, cardiovascular benefits, weight loss and when to choose each one.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4498220/pexels-photo-4498220.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder & Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/walking-vs-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/walking-vs-running#webpage"
+      },
+      "headline": "Walking vs Running: Which Is Better for Your Health?",
+      "description": "Complete comparison of walking vs running: calories burned, joint impact, cardiovascular benefits, weight loss and when to choose each one.",
+      "url": "https://www.correrjuntos.com/blog/en/walking-vs-running",
+      "datePublished": "2026-02-28",
+      "dateModified": "2026-02-28",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4498220/pexels-photo-4498220.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=80",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Walking vs Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/walking-vs-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does walking burn as many calories as running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, running burns significantly more calories per minute than walking. A 70 kg person burns roughly 100 calories per kilometer running versus 65 calories per kilometer walking. However, walking for a longer duration can match or exceed running's total calorie burn. For example, a 60-minute walk burns roughly the same total calories as a 30-minute run."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is walking or running better for weight loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running is more time-efficient for weight loss because it burns more calories per minute and produces a greater afterburn effect (EPOC). However, walking is more sustainable for many people, especially beginners, and carries a much lower injury risk. The best choice is the one you will do consistently. A combination of both is often the most effective long-term strategy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is running bad for your knees compared to walking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Research does not support the idea that recreational running damages healthy knees. While each running stride produces more impact force than walking, runners take fewer strides per kilometer and the total load over a given distance is comparable. Studies show that regular runners actually have lower rates of knee osteoarthritis than sedentary people. Proper shoes and gradual progression are key."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get the same health benefits from walking as running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, walking provides the same types of cardiovascular, metabolic, and mental health benefits as running. However, you need to walk for longer to achieve equivalent results. Research shows that walking for 45-60 minutes delivers similar cardiovascular improvements to running for 25-30 minutes. Both reduce the risk of heart disease, diabetes, and depression."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I walk or run as a beginner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you are completely sedentary, start with walking and gradually introduce running through the walk-run method. This hybrid approach builds fitness while minimizing injury risk. Walk for 3-4 minutes, then run for 1 minute, and repeat. Over several weeks, gradually increase the running intervals and decrease the walking ones. This is the safest and most sustainable way to transition from walker to runner."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/walking-vs-running#faq"
+    }
   ]
 }
 </script>

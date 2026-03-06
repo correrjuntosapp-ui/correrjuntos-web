@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla#webpage",
+      "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla",
+      "name": "Las 10 Mejores Rutas para Correr en Sevilla 2026 - CorrerJuntos",
+      "description": "Las mejores rutas para correr en Sevilla. Parque de Maria Luisa, Guadalquivir, Alamillo y más. Distancias, dificultad y consejos para runners.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/6551174/pexels-photo-6551174.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla#webpage"
+      },
       "headline": "Las 10 Mejores Rutas para Correr en Sevilla",
       "description": "Guía completa de las mejores rutas de running en Sevilla con distancias y consejos.",
       "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla",
       "datePublished": "2026-02-19",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image":"https://images.pexels.com/photos/6551174/pexels-photo-6551174.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/6551174/pexels-photo-6551174.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Rutas Sevilla"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Rutas Sevilla"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Cual es la mejor hora para correr en Sevilla?", "acceptedAnswer": {"@type": "Answer", "text": "En verano (junio-septiembre), lo ideal es correr antes de las 9 de la manana o despues de las 21h. Las temperaturas pueden superar los 40 grados a mediodia, haciendo peligroso correr en las horas centrales. En invierno y primavera, Sevilla tiene un clima perfecto para correr practicamente a cualquier hora."}},
-        {"@type": "Question", "name": "Hay fuentes de agua en las rutas de Sevilla?", "acceptedAnswer": {"@type": "Answer", "text": "La mayoría de parques de Sevilla (Maria Luisa, Alamillo, Miraflores) tienen fuentes publicas. En la orilla del Guadalquivir hay menos fuentes, asi que conviene llevar agua propia. En verano, lleva siempre agua independientemente de la ruta."}},
-        {"@type": "Question", "name": "Es seguro correr de noche en Sevilla?", "acceptedAnswer": {"@type": "Answer", "text": "Las zonas mas seguras para correr de noche son el Parque de Maria Luisa (bien iluminado hasta las 22h), la orilla del Guadalquivir en el tramo de Triana y el Parque del Alamillo. Evita zonas aisladas sin iluminacion y usa ropa reflectante. Correr en grupo siempre es mas seguro: busca quedadas nocturnas en CorrerJuntos."}},
-        {"@type": "Question", "name": "Donde puedo hacer trail running en Sevilla?", "acceptedAnswer": {"@type": "Answer", "text": "La Dehesa de Tablada es la mejor opcion para trail running cerca de Sevilla, con caminos de tierra entre dehesas y lagunas. El Parque de Miraflores también ofrece terreno natural. Para rutas trail mas exigentes, la Sierra Norte de Sevilla (a 1 hora en coche) tiene senderos espectaculares en plena naturaleza."}},
-        {"@type": "Question", "name": "Cual es la ruta mas larga para correr en Sevilla?", "acceptedAnswer": {"@type": "Answer", "text": "La ruta mas larga dentro de la ciudad es la que va desde el centro de Sevilla hasta las ruinas romanas de Italica en Santiponce, con 16 a 20 km ida y vuelta. También puedes combinar la ruta del Guadalquivir con la Darsena para superar los 15 km. Para maratonianos, la combinacion de puentes del Guadalquivir permite alcanzar facilmente los 25-30 km."}},
-        {"@type": "Question", "name": "Que zapatillas son mejores para correr en Sevilla?", "acceptedAnswer": {"@type": "Answer", "text": "Para las rutas urbanas y de asfalto (Guadalquivir, Darsena, Centro Historico), unas zapatillas de running con buena amortiguacion son ideales. Para los parques con caminos de tierra (Maria Luisa, Alamillo), unas zapatillas mixtas asfalto-trail funcionan bien. Para la Dehesa de Tablada o rutas trail, conviene usar zapatillas con suela de agarre."}},
-        {"@type": "Question", "name": "Hay carreras populares en Sevilla?", "acceptedAnswer": {"@type": "Answer", "text": "Sevilla cuenta con un calendario de carreras muy completo. El Maraton de Sevilla (febrero) es uno de los mas rapidos de Europa y atrae a miles de corredores internacionales. La Nocturna del Guadalquivir (octubre) es una 10K muy popular. También destacan la Carrera de la Mujer, la San Silvestre Sevillana y numerosas carreras solidarias a lo largo del ano."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Cual es la mejor hora para correr en Sevilla?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En verano (junio-septiembre), lo ideal es correr antes de las 9 de la manana o despues de las 21h. Las temperaturas pueden superar los 40 grados a mediodia, haciendo peligroso correr en las horas centrales. En invierno y primavera, Sevilla tiene un clima perfecto para correr practicamente a cualquier hora."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hay fuentes de agua en las rutas de Sevilla?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La mayoría de parques de Sevilla (Maria Luisa, Alamillo, Miraflores) tienen fuentes publicas. En la orilla del Guadalquivir hay menos fuentes, asi que conviene llevar agua propia. En verano, lleva siempre agua independientemente de la ruta."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Es seguro correr de noche en Sevilla?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las zonas mas seguras para correr de noche son el Parque de Maria Luisa (bien iluminado hasta las 22h), la orilla del Guadalquivir en el tramo de Triana y el Parque del Alamillo. Evita zonas aisladas sin iluminacion y usa ropa reflectante. Correr en grupo siempre es mas seguro: busca quedadas nocturnas en CorrerJuntos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Donde puedo hacer trail running en Sevilla?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La Dehesa de Tablada es la mejor opcion para trail running cerca de Sevilla, con caminos de tierra entre dehesas y lagunas. El Parque de Miraflores también ofrece terreno natural. Para rutas trail mas exigentes, la Sierra Norte de Sevilla (a 1 hora en coche) tiene senderos espectaculares en plena naturaleza."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cual es la ruta mas larga para correr en Sevilla?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La ruta mas larga dentro de la ciudad es la que va desde el centro de Sevilla hasta las ruinas romanas de Italica en Santiponce, con 16 a 20 km ida y vuelta. También puedes combinar la ruta del Guadalquivir con la Darsena para superar los 15 km. Para maratonianos, la combinacion de puentes del Guadalquivir permite alcanzar facilmente los 25-30 km."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que zapatillas son mejores para correr en Sevilla?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para las rutas urbanas y de asfalto (Guadalquivir, Darsena, Centro Historico), unas zapatillas de running con buena amortiguacion son ideales. Para los parques con caminos de tierra (Maria Luisa, Alamillo), unas zapatillas mixtas asfalto-trail funcionan bien. Para la Dehesa de Tablada o rutas trail, conviene usar zapatillas con suela de agarre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hay carreras populares en Sevilla?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sevilla cuenta con un calendario de carreras muy completo. El Maraton de Sevilla (febrero) es uno de los mas rapidos de Europa y atrae a miles de corredores internacionales. La Nocturna del Guadalquivir (octubre) es una 10K muy popular. También destacan la Carrera de la Mujer, la San Silvestre Sevillana y numerosas carreras solidarias a lo largo del ano."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla#faq"
     }
   ]
 }

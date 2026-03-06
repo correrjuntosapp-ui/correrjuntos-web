@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide",
+      "name": "Running Hydration: The Complete Guide for Runners 2026 | CorrerJuntos",
+      "description": "Complete running hydration guide: how much to drink before, during, and after runs, signs of dehydration, sports drinks, and a hydration plan by distance.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1346155/pexels-photo-1346155.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author",
+      "name": "José Márquez",
+      "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide#webpage"
+      },
       "headline": "Running Hydration: The Complete Guide for Runners",
       "description": "Complete running hydration guide: how much to drink before, during, and after runs, signs of dehydration, sports drinks, and a plan by distance.",
       "url": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide",
       "datePublished": "2026-02-22",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "José Márquez",
-        "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/jose-marquez#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/1346155/pexels-photo-1346155.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1346155/pexels-photo-1346155.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Running Hydration Guide"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running Hydration Guide"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "How much water should I drink per day as a runner?", "acceptedAnswer": {"@type": "Answer", "text": "An active runner needs between 2.5 and 3.5 liters of fluid per day, depending on body weight, climate, and training volume. A useful formula is to multiply your weight in kg by 35-40 ml. So a 70 kg runner would need about 2.5-2.8 liters daily as a baseline, plus whatever they lose during training. On long run days or in intense heat, that number can rise to 4 liters or more."}},
-        {"@type": "Question", "name": "Is it better to drink water or a sports drink during a race?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the duration. For runs under 45-60 minutes, plain water is enough. Beyond 60 minutes, adding electrolytes (sodium, potassium) is beneficial because you lose them through sweat. For runs over 90 minutes, a complete sports drink with carbohydrates and electrolytes is ideal because it replenishes both energy and mineral salts simultaneously."}},
-        {"@type": "Question", "name": "How do I know if I'm dehydrated while running?", "acceptedAnswer": {"@type": "Answer", "text": "The clearest signs of dehydration during a run are: intense thirst, dry mouth, dark urine before heading out, headache, dizziness, elevated heart rate for the same effort level, and muscle cramps. A practical way to monitor it is to weigh yourself before and after running: if you lose more than 2% of your body weight, you're not drinking enough."}},
-        {"@type": "Question", "name": "Can I drink too much water while running?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and it's more dangerous than many people think. Overdrinking can cause hyponatremia, a dangerous dilution of blood sodium levels that can lead to nausea, confusion, seizures, and even death in extreme cases. It's more common in slower runners who drink heavily at every aid station without needing to. Drink according to your thirst and don't force yourself to drink more than your body is asking for."}},
-        {"@type": "Question", "name": "Do I need salt tablets or electrolytes for running?", "acceptedAnswer": {"@type": "Answer", "text": "For short runs under an hour, they're not necessary. But if you run more than 60-90 minutes, especially in heat, electrolytes help maintain the sodium and potassium balance you lose through sweat. Effervescent tablets like Nuun or Precision Hydration are a practical and lightweight option to add to your water without extra carbohydrates."}},
-        {"@type": "Question", "name": "How do I stay hydrated in a marathon without stopping at every aid station?", "acceptedAnswer": {"@type": "Answer", "text": "You have several options. You can carry a hydration belt with small bottles, a handheld soft flask, or a hydration vest with a reservoir. Another option is to use concentrated sports drinks in gel or tablet form and only refill with water at aid stations without needing to stop. Many runners practice grabbing cups on the move without slowing down."}},
-        {"@type": "Question", "name": "How much weight can I lose from sweat during a race?", "acceptedAnswer": {"@type": "Answer", "text": "Sweat rates vary widely between individuals, but an average runner loses between 0.5 and 1.5 liters per hour depending on temperature, humidity, intensity, and genetics. In extreme heat conditions, some runners can lose up to 2-2.5 liters per hour. That's why it's important to weigh yourself before and after training sessions to determine your personal sweat rate."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "How much water should I drink per day as a runner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An active runner needs between 2.5 and 3.5 liters of fluid per day, depending on body weight, climate, and training volume. A useful formula is to multiply your weight in kg by 35-40 ml. So a 70 kg runner would need about 2.5-2.8 liters daily as a baseline, plus whatever they lose during training. On long run days or in intense heat, that number can rise to 4 liters or more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it better to drink water or a sports drink during a race?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the duration. For runs under 45-60 minutes, plain water is enough. Beyond 60 minutes, adding electrolytes (sodium, potassium) is beneficial because you lose them through sweat. For runs over 90 minutes, a complete sports drink with carbohydrates and electrolytes is ideal because it replenishes both energy and mineral salts simultaneously."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know if I'm dehydrated while running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The clearest signs of dehydration during a run are: intense thirst, dry mouth, dark urine before heading out, headache, dizziness, elevated heart rate for the same effort level, and muscle cramps. A practical way to monitor it is to weigh yourself before and after running: if you lose more than 2% of your body weight, you're not drinking enough."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I drink too much water while running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and it's more dangerous than many people think. Overdrinking can cause hyponatremia, a dangerous dilution of blood sodium levels that can lead to nausea, confusion, seizures, and even death in extreme cases. It's more common in slower runners who drink heavily at every aid station without needing to. Drink according to your thirst and don't force yourself to drink more than your body is asking for."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need salt tablets or electrolytes for running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For short runs under an hour, they're not necessary. But if you run more than 60-90 minutes, especially in heat, electrolytes help maintain the sodium and potassium balance you lose through sweat. Effervescent tablets like Nuun or Precision Hydration are a practical and lightweight option to add to your water without extra carbohydrates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I stay hydrated in a marathon without stopping at every aid station?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You have several options. You can carry a hydration belt with small bottles, a handheld soft flask, or a hydration vest with a reservoir. Another option is to use concentrated sports drinks in gel or tablet form and only refill with water at aid stations without needing to stop. Many runners practice grabbing cups on the move without slowing down."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much weight can I lose from sweat during a race?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sweat rates vary widely between individuals, but an average runner loses between 0.5 and 1.5 liters per hour depending on temperature, humidity, intensity, and genetics. In extreme heat conditions, some runners can lose up to 2-2.5 liters per hour. That's why it's important to weigh yourself before and after training sessions to determine your personal sweat rate."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide#faq"
     }
   ]
 }

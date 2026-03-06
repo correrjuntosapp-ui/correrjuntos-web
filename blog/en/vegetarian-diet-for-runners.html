@@ -28,35 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners",
+      "name": "Vegetarian Diet for Runners: Complete Guide [2026] | CorrerJuntos",
+      "description": "Complete guide to vegetarian running nutrition. How to get enough protein, iron, B12, and energy on a plant-based diet. Meal plans and recipes included.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1093038/pexels-photo-1093038.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners#webpage"
+      },
       "headline": "Vegetarian Diet for Runners: Complete Guide",
       "description": "Complete guide to vegetarian running nutrition. Protein, iron, B12, energy needs, and meal plans for plant-based runners.",
       "url": "https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
-      "author": {"@type": "Person", "name": "Carlos Ruiz", "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz", "jobTitle": "Founder of CorrerJuntos", "sameAs": ["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]},
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/1093038/pexels-photo-1093038.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1093038/pexels-photo-1093038.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Vegetarian Diet for Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Vegetarian Diet for Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Can you run a marathon on a vegetarian diet?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. Many elite runners follow vegetarian or vegan diets. The key is planning your meals to ensure adequate carbohydrates, complete proteins, iron, and B12. With proper nutrition, there is no performance disadvantage."}},
-        {"@type": "Question", "name": "How do vegetarian runners get enough protein?", "acceptedAnswer": {"@type": "Answer", "text": "Combine different plant protein sources throughout the day: legumes with grains, tofu or tempeh, Greek yogurt and eggs (if lacto-ovo), quinoa, hemp seeds, and nuts. Aim for 1.4-1.7g per kg of body weight daily."}},
-        {"@type": "Question", "name": "Do vegetarian runners need B12 supplements?", "acceptedAnswer": {"@type": "Answer", "text": "Lacto-ovo vegetarians can get B12 from eggs and dairy. Vegans must supplement B12 as it is only found naturally in animal products. A deficiency causes fatigue and neurological issues that severely impact running."}},
-        {"@type": "Question", "name": "Is it harder to get iron on a vegetarian running diet?", "acceptedAnswer": {"@type": "Answer", "text": "Plant-based iron (non-heme) is less efficiently absorbed than animal iron (heme). Vegetarian runners should eat iron-rich foods with vitamin C, avoid tea and coffee with meals, and get ferritin levels tested regularly."}},
-        {"@type": "Question", "name": "What should a vegetarian runner eat before a long run?", "acceptedAnswer": {"@type": "Answer", "text": "Carb-rich plant foods work perfectly: oatmeal with banana and honey, whole grain toast with peanut butter, a smoothie with berries and oats, or rice cakes with nut butter. The principles are the same as for any runner."}},
-        {"@type": "Question", "name": "Will going vegetarian make me a faster runner?", "acceptedAnswer": {"@type": "Answer", "text": "A vegetarian diet is not inherently faster or slower. Performance depends on total nutrition quality, training, and recovery. Some runners report feeling lighter and recovering faster, but individual responses vary."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Can you run a marathon on a vegetarian diet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Many elite runners follow vegetarian or vegan diets. The key is planning your meals to ensure adequate carbohydrates, complete proteins, iron, and B12. With proper nutrition, there is no performance disadvantage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do vegetarian runners get enough protein?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Combine different plant protein sources throughout the day: legumes with grains, tofu or tempeh, Greek yogurt and eggs (if lacto-ovo), quinoa, hemp seeds, and nuts. Aim for 1.4-1.7g per kg of body weight daily."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do vegetarian runners need B12 supplements?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lacto-ovo vegetarians can get B12 from eggs and dairy. Vegans must supplement B12 as it is only found naturally in animal products. A deficiency causes fatigue and neurological issues that severely impact running."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it harder to get iron on a vegetarian running diet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plant-based iron (non-heme) is less efficiently absorbed than animal iron (heme). Vegetarian runners should eat iron-rich foods with vitamin C, avoid tea and coffee with meals, and get ferritin levels tested regularly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should a vegetarian runner eat before a long run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Carb-rich plant foods work perfectly: oatmeal with banana and honey, whole grain toast with peanut butter, a smoothie with berries and oats, or rice cakes with nut butter. The principles are the same as for any runner."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will going vegetarian make me a faster runner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A vegetarian diet is not inherently faster or slower. Performance depends on total nutrition quality, training, and recovery. Some runners report feeling lighter and recovering faster, but individual responses vary."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/vegetarian-diet-for-runners#faq"
     }
   ]
 }

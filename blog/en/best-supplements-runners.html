@@ -28,46 +28,139 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/best-supplements-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/best-supplements-runners",
+      "name": "Best Supplements for Runners 2026 — Complete Guide",
+      "description": "Gels, electrolyte drinks, recovery shakes and vitamins for runners. Find out which supplements you actually need and which ones you can skip. With prices.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder and Running Editor",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/best-supplements-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/best-supplements-runners#webpage"
+      },
       "headline": "Best Supplements for Runners: What You Actually Need",
       "description": "Complete guide to supplements for runners. Gels, electrolyte drinks, recovery shakes, vitamins and caffeine.",
       "url": "https://www.correrjuntos.com/blog/en/best-supplements-runners",
       "datePublished": "2026-02-19",
       "dateModified": "2026-02-22",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder and Running Editor",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image":"https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Supplements for Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Supplements for Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-supplements-runners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Do I need supplements if I only run 3 times a week?", "acceptedAnswer": {"@type": "Answer", "text": "For most recreational runners who train 3-4 times a week, a balanced diet is enough. Gels are only necessary if you run for more than 60-75 minutes straight. The basic supplements that might help you are vitamin D (if you don't get much sun) and iron (if you're a woman). The rest is optional."}},
-        {"@type": "Question", "name": "When should I take a gel during a race?", "acceptedAnswer": {"@type": "Answer", "text": "Take your first gel between the 30-45 minute mark, before you notice fatigue. After that, one gel every 30-45 minutes. For a half marathon you'll need 2-3 gels. For a marathon, 5-7. Always with water and always tested beforehand in training."}},
-        {"@type": "Question", "name": "Does caffeine improve running performance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Caffeine is the legal supplement with the strongest scientific evidence for performance improvement. A dose of 3-6 mg per kg of body weight, taken 30-60 minutes before exercise, can improve your performance by 2-4%. Many energy gels include caffeine. If you're not used to it, start with low doses."}},
-        {"@type": "Question", "name": "Are sports supplements safe?", "acceptedAnswer": {"@type": "Answer", "text": "Sports supplements from reputable brands with quality certifications are safe for most people. However, it's important not to exceed recommended doses, consult a doctor if you take medication, and choose products with quality seals like Informed Sport or NSF Certified for Sport. Avoid buying supplements of dubious origin or without clear labeling."}},
-        {"@type": "Question", "name": "What supplement should I take before a marathon?", "acceptedAnswer": {"@type": "Answer", "text": "Before a marathon, the most useful supplements are: caffeine (3-6 mg/kg, 30-60 minutes before the start), an energy gel in the minutes leading up to or at the start, and making sure you're well hydrated with electrolytes. During the race you'll need 5-7 gels spaced every 30-45 minutes and isotonic drinks at every aid station. Always practice your nutrition strategy during long training runs."}},
-        {"@type": "Question", "name": "Does collagen help prevent injuries?", "acceptedAnswer": {"@type": "Answer", "text": "The scientific evidence on collagen for preventing joint injuries in runners is very limited. Some studies suggest a possible benefit for cartilage health when combined with vitamin C, but results are inconclusive. Your body naturally produces collagen if you consume enough protein and vitamin C. Before spending money on collagen, make sure you have a complete diet and a properly structured training plan."}},
-        {"@type": "Question", "name": "How much protein does a runner need per day?", "acceptedAnswer": {"@type": "Answer", "text": "A runner needs between 1.2 and 1.6 grams of protein per kilogram of body weight per day, depending on training volume and intensity. For a 70 kg runner, that means between 84 and 112 grams daily. During high-load periods or marathon preparation, aim for the upper range. Spread your intake across 4-5 meals throughout the day to maximize muscle protein synthesis."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Do I need supplements if I only run 3 times a week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most recreational runners who train 3-4 times a week, a balanced diet is enough. Gels are only necessary if you run for more than 60-75 minutes straight. The basic supplements that might help you are vitamin D (if you don't get much sun) and iron (if you're a woman). The rest is optional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I take a gel during a race?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Take your first gel between the 30-45 minute mark, before you notice fatigue. After that, one gel every 30-45 minutes. For a half marathon you'll need 2-3 gels. For a marathon, 5-7. Always with water and always tested beforehand in training."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does caffeine improve running performance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Caffeine is the legal supplement with the strongest scientific evidence for performance improvement. A dose of 3-6 mg per kg of body weight, taken 30-60 minutes before exercise, can improve your performance by 2-4%. Many energy gels include caffeine. If you're not used to it, start with low doses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are sports supplements safe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sports supplements from reputable brands with quality certifications are safe for most people. However, it's important not to exceed recommended doses, consult a doctor if you take medication, and choose products with quality seals like Informed Sport or NSF Certified for Sport. Avoid buying supplements of dubious origin or without clear labeling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What supplement should I take before a marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Before a marathon, the most useful supplements are: caffeine (3-6 mg/kg, 30-60 minutes before the start), an energy gel in the minutes leading up to or at the start, and making sure you're well hydrated with electrolytes. During the race you'll need 5-7 gels spaced every 30-45 minutes and isotonic drinks at every aid station. Always practice your nutrition strategy during long training runs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does collagen help prevent injuries?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The scientific evidence on collagen for preventing joint injuries in runners is very limited. Some studies suggest a possible benefit for cartilage health when combined with vitamin C, but results are inconclusive. Your body naturally produces collagen if you consume enough protein and vitamin C. Before spending money on collagen, make sure you have a complete diet and a properly structured training plan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much protein does a runner need per day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A runner needs between 1.2 and 1.6 grams of protein per kilogram of body weight per day, depending on training volume and intensity. For a 70 kg runner, that means between 84 and 112 grams daily. During high-load periods or marathon preparation, aim for the upper range. Spread your intake across 4-5 meals throughout the day to maximize muscle protein synthesis."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/best-supplements-runners#faq"
     }
   ]
 }

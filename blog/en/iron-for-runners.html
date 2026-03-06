@@ -28,41 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/iron-for-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/iron-for-runners",
+      "name": "Iron for Runners: How to Prevent Anemia [Complete Guide] | CorrerJuntos",
+      "description": "Complete guide to iron for runners. Learn the symptoms of iron deficiency, best food sources, supplements, and how to prevent runner's anemia. Updated 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3872373/pexels-photo-3872373.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/iron-for-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/iron-for-runners#webpage"
+      },
       "headline": "Iron for Runners: How to Prevent Anemia",
       "description": "Complete guide to iron for runners. Symptoms of iron deficiency, best food sources, supplements, and prevention strategies.",
       "url": "https://www.correrjuntos.com/blog/en/iron-for-runners",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Founder of CorrerJuntos",
-        "sameAs": ["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "en",
-      "image": "https://images.pexels.com/photos/3872373/pexels-photo-3872373.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3872373/pexels-photo-3872373.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"},
-        {"@type": "ListItem", "position": 3, "name": "Iron for Runners"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Iron for Runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/iron-for-runners#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Why do runners need more iron than non-runners?", "acceptedAnswer": {"@type": "Answer", "text": "Runners lose iron through foot-strike hemolysis (red blood cell destruction from impact), sweating, and GI tract micro-bleeding during intense training. This can increase iron requirements by 30-70% compared to sedentary people."}},
-        {"@type": "Question", "name": "What are the symptoms of iron deficiency in runners?", "acceptedAnswer": {"@type": "Answer", "text": "Common symptoms include unexplained fatigue, declining performance despite consistent training, shortness of breath at normal paces, pale skin, dizziness, brittle nails, and unusually high heart rate during easy runs."}},
-        {"@type": "Question", "name": "What ferritin level should runners maintain?", "acceptedAnswer": {"@type": "Answer", "text": "While general population targets are above 12 ng/mL, sports medicine specialists recommend runners maintain ferritin levels above 30-50 ng/mL for optimal performance. Below 20 ng/mL, most runners will notice performance decline."}},
-        {"@type": "Question", "name": "Should runners take iron supplements?", "acceptedAnswer": {"@type": "Answer", "text": "Only if blood tests confirm low iron levels. Self-supplementing with iron can be dangerous as excess iron is toxic. Always get tested first and follow a doctor's recommendation for dosage and duration."}},
-        {"@type": "Question", "name": "Does vitamin C help with iron absorption?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, vitamin C significantly increases the absorption of non-heme iron (plant-based iron). Adding a squeeze of lemon, orange slices, or bell peppers to iron-rich meals can double or triple iron absorption."}},
-        {"@type": "Question", "name": "Can you get enough iron on a vegetarian running diet?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but it requires intentional planning. Vegetarian runners should focus on lentils, chickpeas, spinach, fortified cereals, and tofu. Pair these with vitamin C sources and avoid tea or coffee with meals, which inhibit iron absorption."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "Why do runners need more iron than non-runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Runners lose iron through foot-strike hemolysis (red blood cell destruction from impact), sweating, and GI tract micro-bleeding during intense training. This can increase iron requirements by 30-70% compared to sedentary people."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the symptoms of iron deficiency in runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common symptoms include unexplained fatigue, declining performance despite consistent training, shortness of breath at normal paces, pale skin, dizziness, brittle nails, and unusually high heart rate during easy runs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What ferritin level should runners maintain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "While general population targets are above 12 ng/mL, sports medicine specialists recommend runners maintain ferritin levels above 30-50 ng/mL for optimal performance. Below 20 ng/mL, most runners will notice performance decline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should runners take iron supplements?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if blood tests confirm low iron levels. Self-supplementing with iron can be dangerous as excess iron is toxic. Always get tested first and follow a doctor's recommendation for dosage and duration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does vitamin C help with iron absorption?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, vitamin C significantly increases the absorption of non-heme iron (plant-based iron). Adding a squeeze of lemon, orange slices, or bell peppers to iron-rich meals can double or triple iron absorption."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you get enough iron on a vegetarian running diet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but it requires intentional planning. Vegetarian runners should focus on lentils, chickpeas, spinach, fortified cereals, and tofu. Pair these with vitamin C sources and avoid tea or coffee with meals, which inhibit iron absorption."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/iron-for-runners#faq"
     }
   ]
 }

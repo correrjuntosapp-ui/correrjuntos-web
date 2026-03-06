@@ -28,45 +28,131 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/snacks-energeticos-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/snacks-energeticos-running",
+      "name": "Los Mejores Snacks Energéticos para Running [Probados] | CorrerJuntos",
+      "description": "Los mejores snacks energéticos para running: geles vs comida real, barritas DIY y el timing perfecto. Opciones probadas por runners reales en 2026.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
       "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/snacks-energeticos-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/snacks-energeticos-running#webpage"
+      },
       "headline": "Los Mejores Snacks Energéticos para Running [Probados]",
       "description": "Los mejores snacks energéticos para running: geles vs comida real, barritas DIY y el timing perfecto para runners.",
       "url": "https://www.correrjuntos.com/blog/snacks-energeticos-running",
       "datePublished": "2026-03-01",
       "dateModified": "2026-03-01",
       "author": {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
-        "jobTitle": "Fundador de CorrerJuntos",
-        "sameAs": [
-          "https://www.strava.com/athletes/correrjuntos",
-          "https://www.instagram.com/correrjuntosapp/",
-          "https://x.com/correrjuntosapp"
-        ]
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
       },
-      "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
-      "inLanguage": "es-ES",
-      "image": "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/"},
-        {"@type": "ListItem", "position": 3, "name": "Snacks Energéticos Running"}
-      ]
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Snacks Energéticos Running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/snacks-energeticos-running#breadcrumbs"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "¿Cuándo debo tomar un snack energético al correr?", "acceptedAnswer": {"@type": "Answer", "text": "Para carreras de más de 60 minutos, toma tu primer snack entre los minutos 45 y 60, y repite cada 30-45 minutos. En entrenamientos de menos de una hora, normalmente no necesitas aporte extra si has desayunado bien."}},
-        {"@type": "Question", "name": "¿Son mejores los geles que la comida real para correr?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de la intensidad. A ritmos altos (series, tempo, competición), los geles se absorben más rápido y causan menos molestias. En rodajes suaves y tiradas largas, la comida real (plátano, dátiles, frutos secos) funciona igual de bien y es más barata."}},
-        {"@type": "Question", "name": "¿Cuántos geles puedo tomar en una media maratón?", "acceptedAnswer": {"@type": "Answer", "text": "En una media maratón, 2-3 geles son suficientes. Toma el primero en el km 7-8, el segundo en el km 14-15 y opcionalmente un tercero en el km 18 si necesitas un empujón final. Siempre acompañados de agua."}},
-        {"@type": "Question", "name": "¿Puedo hacer mis propias barritas energéticas caseras?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, y es más fácil de lo que piensas. Con dátiles, avena, mantequilla de cacahuete y miel puedes hacer barritas energéticas caseras excelentes. Cuestan una fracción de las comerciales y puedes ajustar los ingredientes a tu gusto."}},
-        {"@type": "Question", "name": "¿Los frutos secos son un buen snack para runners?", "acceptedAnswer": {"@type": "Answer", "text": "Los frutos secos son excelentes como snack pre-entreno (1-2 horas antes) por su contenido en grasas saludables y proteínas. Sin embargo, durante la carrera no son ideales porque la grasa ralentiza la digestión. Para durante el ejercicio, elige opciones ricas en carbohidratos simples."}},
-        {"@type": "Question", "name": "¿Necesito snacks energéticos si solo corro 5 km?", "acceptedAnswer": {"@type": "Answer", "text": "Para carreras de 5 km no necesitas snacks durante el ejercicio. Tu cuerpo tiene suficiente glucógeno almacenado para cubrir esa distancia. Un buen desayuno o comida previa es todo lo que necesitas. Los snacks energéticos son más relevantes a partir de los 60-75 minutos de ejercicio."}}
-      ]
+        {
+          "@type": "Question",
+          "name": "¿Cuándo debo tomar un snack energético al correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para carreras de más de 60 minutos, toma tu primer snack entre los minutos 45 y 60, y repite cada 30-45 minutos. En entrenamientos de menos de una hora, normalmente no necesitas aporte extra si has desayunado bien."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Son mejores los geles que la comida real para correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de la intensidad. A ritmos altos (series, tempo, competición), los geles se absorben más rápido y causan menos molestias. En rodajes suaves y tiradas largas, la comida real (plátano, dátiles, frutos secos) funciona igual de bien y es más barata."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos geles puedo tomar en una media maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En una media maratón, 2-3 geles son suficientes. Toma el primero en el km 7-8, el segundo en el km 14-15 y opcionalmente un tercero en el km 18 si necesitas un empujón final. Siempre acompañados de agua."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo hacer mis propias barritas energéticas caseras?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, y es más fácil de lo que piensas. Con dátiles, avena, mantequilla de cacahuete y miel puedes hacer barritas energéticas caseras excelentes. Cuestan una fracción de las comerciales y puedes ajustar los ingredientes a tu gusto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los frutos secos son un buen snack para runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los frutos secos son excelentes como snack pre-entreno (1-2 horas antes) por su contenido en grasas saludables y proteínas. Sin embargo, durante la carrera no son ideales porque la grasa ralentiza la digestión. Para durante el ejercicio, elige opciones ricas en carbohidratos simples."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito snacks energéticos si solo corro 5 km?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para carreras de 5 km no necesitas snacks durante el ejercicio. Tu cuerpo tiene suficiente glucógeno almacenado para cubrir esa distancia. Un buen desayuno o comida previa es todo lo que necesitas. Los snacks energéticos son más relevantes a partir de los 60-75 minutos de ejercicio."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/snacks-energeticos-running#faq"
     }
   ]
 }

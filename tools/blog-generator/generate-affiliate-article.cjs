@@ -150,6 +150,22 @@ function generate(lang) {
 
   const schemaGraph = [
     {
+      '@type': 'Organization',
+      '@id': 'https://www.correrjuntos.com/#organization',
+      name: 'CorrerJuntos',
+      url: 'https://www.correrjuntos.com/',
+      logo: { '@type': 'ImageObject', url: 'https://www.correrjuntos.com/icons/icon-512.png' },
+      sameAs: ['https://www.instagram.com/correrjuntosapp/','https://x.com/CorrerJuntos','https://www.tiktok.com/@correrjuntosapp']
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.correrjuntos.com/#website',
+      url: 'https://www.correrjuntos.com/',
+      name: 'CorrerJuntos',
+      publisher: { '@id': 'https://www.correrjuntos.com/#organization' },
+      inLanguage: 'es'
+    },
+    {
       '@type': 'WebPage',
       '@id': canonicalUrl + '#webpage',
       url: canonicalUrl,
@@ -190,16 +206,20 @@ function generate(lang) {
         { '@type': 'ListItem', position: 2, name: L.blog, item: isES ? 'https://www.correrjuntos.com/blog/' : 'https://www.correrjuntos.com/blog/en/' },
         { '@type': 'ListItem', position: 3, name: c.breadcrumbLabel }
       ]
-    },
-    {
+    }
+  ];
+
+  // FAQPage only when FAQ items exist
+  if (c.faqItems && c.faqItems.length > 0) {
+    schemaGraph.push({
       '@type': 'FAQPage',
       '@id': canonicalUrl + '#faq',
-      mainEntity: (c.faqItems || []).map(f => ({
+      mainEntity: c.faqItems.map(f => ({
         '@type': 'Question', name: f.question,
         acceptedAnswer: { '@type': 'Answer', text: f.answer }
       }))
-    }
-  ];
+    });
+  }
 
   // ItemList for products
   if (c.products && c.products.length > 0) {

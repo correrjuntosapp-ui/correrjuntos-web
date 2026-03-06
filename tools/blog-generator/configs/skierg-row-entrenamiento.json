@@ -1,0 +1,54 @@
+{
+  "es": {
+    "slug": "entrenar-skierg-row-hyrox",
+    "title": "Cómo Entrenar SkiErg y Remo para HYROX 2026",
+    "metaDescription": "Guía de entrenamiento de SkiErg y remo para HYROX. Técnica, tiempos objetivo, errores comunes y planes de entrenamiento para las estaciones 1 y 5.",
+    "keywords": "SkiErg HYROX, remo HYROX, entrenar SkiErg, técnica remo HYROX, Concept2 SkiErg, ergómetro HYROX, tiempos SkiErg",
+    "heroImage": "https://images.pexels.com/photos/7991666/pexels-photo-7991666.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+    "heroAlt": "Atleta entrenando en máquina de remo ergómetro",
+    "breadcrumbLabel": "SkiErg y Remo HYROX",
+    "category": "Atleta Híbrido",
+    "datePublished": "2026-03-06",
+    "readTime": "14",
+    "author": "Carlos Ruiz",
+    "introHtml": "    <p>El <strong>SkiErg (estaci&oacute;n 1) y el remo (estaci&oacute;n 5)</strong> son los dos erg&oacute;metros de HYROX. Juntos representan 2.000 metros de trabajo en m&aacute;quina, y para muchos atletas son donde m&aacute;s tiempo se gana o se pierde &mdash; porque la t&eacute;cnica importa m&aacute;s que la fuerza bruta.</p>\n    <p>Si tienes acceso a un SkiErg y un remo (Concept2 es la marca usada en HYROX), esta gu&iacute;a te ense&ntilde;a la <strong>t&eacute;cnica correcta, los tiempos objetivo y c&oacute;mo entrenar</strong> ambas estaciones de forma espec&iacute;fica.</p>\n    <div class=\"tip\"><strong>Dato:</strong> Un atleta con buena t&eacute;cnica de remo puede completar los 1.000 m en 3:30-4:00. Sin t&eacute;cnica, el mismo atleta tarda 4:30-5:30. La t&eacute;cnica vale 1-2 minutos en una sola estaci&oacute;n.</div>",
+    "tocItems": [
+      { "id": "skierg", "label": "SkiErg: técnica y entrenamiento" },
+      { "id": "remo", "label": "Remo: técnica y entrenamiento" },
+      { "id": "tiempos", "label": "Tiempos objetivo por nivel" },
+      { "id": "plan", "label": "Plan de entrenamiento semanal" },
+      { "id": "errores", "label": "Errores comunes" },
+      { "id": "faq", "label": "Preguntas frecuentes" }
+    ],
+    "educationalHtml": "    <h2 id=\"skierg\">SkiErg: t&eacute;cnica y entrenamiento</h2>\n    <p>El SkiErg simula el movimiento del esqu&iacute; de fondo. Es la <strong>primera estaci&oacute;n de HYROX</strong> (despu&eacute;s del primer km de carrera), as&iacute; que llegas relativamente fresco. La distancia es 1.000 metros.</p>\n    <h3>T&eacute;cnica correcta</h3>\n    <ol>\n      <li><strong>Posici&oacute;n inicial:</strong> De pie, brazos extendidos arriba agarrando las manijas. Pies separados a la anchura de los hombros.</li>\n      <li><strong>Tirón:</strong> Tira de las manijas hacia abajo usando <strong>core y dorsal</strong>, no solo los brazos. Flexiona ligeramente las rodillas y la cadera al bajar.</li>\n      <li><strong>Extensión:</strong> El movimiento termina con las manos a la altura de las caderas, el cuerpo ligeramente inclinado hacia delante. Aprieta el core al final del tirón.</li>\n      <li><strong>Retorno:</strong> Extiende los brazos de vuelta arriba de forma controlada. Este es tu momento de &ldquo;descanso&rdquo; dentro de la palada.</li>\n    </ol>\n    <div class=\"tip\"><strong>Clave:</strong> El SkiErg es un ejercicio de <strong>core y dorsal, no de brazos</strong>. Si te arden los b&iacute;ceps antes que la espalda, tu t&eacute;cnica es incorrecta. Piensa en &ldquo;aplastar la m&aacute;quina con el core&rdquo;.</div>\n    <h3>Entrenamiento espec&iacute;fico SkiErg</h3>\n    <ul>\n      <li><strong>T&eacute;cnica (2x/semana):</strong> 4&times;250 m al 70% con 1 min descanso. Enf&oacute;cate en la mec&aacute;nica, no en la velocidad.</li>\n      <li><strong>Ritmo (1x/semana):</strong> 2&times;500 m al ritmo objetivo (el que quieres en competici&oacute;n) con 2 min descanso.</li>\n      <li><strong>Simulacro (1x/semana):</strong> 1 km carrera + 1.000 m SkiErg sin descanso. Replica la secuencia de competici&oacute;n.</li>\n    </ul>\n\n    <h2 id=\"remo\">Remo: t&eacute;cnica y entrenamiento</h2>\n    <p>El remo es la <strong>estaci&oacute;n 5 de HYROX</strong>: 1.000 metros en erg&oacute;metro. Llegas despu&eacute;s de 5 km de carrera + 4 estaciones, as&iacute; que la fatiga es significativa. La t&eacute;cnica eficiente es cr&iacute;tica para no desperdiciar energ&iacute;a.</p>\n    <h3>T&eacute;cnica correcta</h3>\n    <ol>\n      <li><strong>Catch (inicio):</strong> Piernas flexionadas, brazos extendidos, espalda recta con ligera inclinaci&oacute;n hacia delante. Las tibias pr&aacute;cticamente verticales.</li>\n      <li><strong>Drive (impulso):</strong> Empuja primero con las <strong>piernas</strong> (60% de la fuerza), luego inclina el torso hacia atr&aacute;s (20%) y finalmente tira con los brazos (20%). Es un movimiento secuencial: piernas &rarr; espalda &rarr; brazos.</li>\n      <li><strong>Finish:</strong> Piernas extendidas, cuerpo ligeramente inclinado hacia atr&aacute;s (11&deg;), manija al pecho bajo (estern&oacute;n). Codos detr&aacute;s del cuerpo.</li>\n      <li><strong>Recovery (retorno):</strong> Secuencia inversa: brazos &rarr; espalda &rarr; piernas. Controlado y lento (el recovery es tu descanso).</li>\n    </ol>\n    <div class=\"tip\"><strong>Error #1:</strong> Tirar con los brazos primero. El 60% de la fuerza en remo viene de las piernas. Si te duelen los brazos antes que los cu&aacute;driceps, tu secuencia es incorrecta.</div>\n    <h3>Entrenamiento espec&iacute;fico remo</h3>\n    <ul>\n      <li><strong>T&eacute;cnica (2x/semana):</strong> 4&times;250 m a 22-24 spm (paladas por minuto) con 1 min descanso. Enf&oacute;cate en la secuencia piernas-espalda-brazos.</li>\n      <li><strong>Ritmo (1x/semana):</strong> 2&times;500 m al pace objetivo con 2 min descanso. Mant&eacute;n el split constante.</li>\n      <li><strong>Simulacro (1x/semana):</strong> Sled pull + 1 km carrera + 1.000 m remo. Replica la fatiga previa de competici&oacute;n.</li>\n    </ul>\n\n    <h2 id=\"tiempos\">Tiempos objetivo por nivel</h2>\n    <div style=\"overflow-x:auto\">\n    <table class=\"comparison-table\">\n      <thead><tr><th>Nivel</th><th>SkiErg 1.000 m</th><th>Remo 1.000 m</th></tr></thead>\n      <tbody>\n        <tr><td>Principiante</td><td>4:30 - 5:30</td><td>4:00 - 5:00</td></tr>\n        <tr><td>Intermedio</td><td>3:30 - 4:30</td><td>3:30 - 4:00</td></tr>\n        <tr><td>Avanzado</td><td>3:00 - 3:30</td><td>3:00 - 3:30</td></tr>\n        <tr><td>Elite</td><td>&lt;3:00</td><td>&lt;3:00</td></tr>\n      </tbody>\n    </table>\n    </div>\n    <p>Estos tiempos son <strong>dentro de competici&oacute;n</strong> (con fatiga acumulada). En fresco, tus tiempos deber&iacute;an ser 15-30 segundos mejores.</p>\n\n    <h2 id=\"plan\">Plan de entrenamiento semanal</h2>\n    <p>Si tienes acceso a SkiErg y remo, integra este plan en tu rutina HYROX:</p>\n    <ul>\n      <li><strong>Lunes:</strong> SkiErg t&eacute;cnica (4&times;250 m) + Core 15 min</li>\n      <li><strong>Mi&eacute;rcoles:</strong> Remo t&eacute;cnica (4&times;250 m) + Sesi&oacute;n h&iacute;brida (2 estaciones HYROX simuladas)</li>\n      <li><strong>Viernes:</strong> SkiErg + Remo ritmo (2&times;500 m cada uno)</li>\n      <li><strong>S&aacute;bado:</strong> Simulacro parcial: 1 km carrera + SkiErg 1.000 m + 2 estaciones + 1 km carrera + Remo 1.000 m</li>\n    </ul>\n\n    <h2 id=\"errores\">Errores comunes</h2>\n    <ul>\n      <li><strong>SkiErg: usar solo los brazos.</strong> El core y el dorsal deben hacer el trabajo pesado. Los brazos solo gu&iacute;an.</li>\n      <li><strong>Remo: tirar brazos primero.</strong> La secuencia es piernas &rarr; espalda &rarr; brazos. Siempre.</li>\n      <li><strong>Ambos: arrancar demasiado fuerte.</strong> Los primeros 200 m se sienten f&aacute;ciles. Los &uacute;ltimos 200 m son los que importan. Empieza conservador.</li>\n      <li><strong>Remo: spm demasiado alto.</strong> M&aacute;s paladas no significa m&aacute;s velocidad. 24-28 spm con buena potencia es m&aacute;s eficiente que 32-34 spm con paladas cortas.</li>\n      <li><strong>Ignorar el monitor:</strong> El split (tiempo por 500 m) es tu gu&iacute;a. Mant&eacute;n un split constante, no vayas a sensaciones.</li>\n    </ul>",
+    "faqItems": [
+      {
+        "question": "¿Qué marca de SkiErg y remo se usa en HYROX?",
+        "answer": "HYROX usa Concept2 para ambas máquinas: el Concept2 SkiErg y el Concept2 Model D (remo). Si tu gym tiene Concept2, estás entrenando con el equipamiento exacto de competición."
+      },
+      {
+        "question": "¿Puedo mejorar en SkiErg sin tener uno en mi gym?",
+        "answer": "Sí, pero limitado. Los movimientos más similares son lat pulldown, pull-ups y kettlebell swings (trabajan dorsal y core). Pero la técnica específica del SkiErg solo se entrena en la máquina. Busca un gym con Concept2 SkiErg."
+      },
+      {
+        "question": "¿Es mejor ir rápido o eficiente en remo?",
+        "answer": "Eficiente. Un remo técnicamente correcto a 26 spm es más rápido que uno incorrecto a 34 spm. La potencia por palada importa más que la frecuencia. Mantén el split constante y deja que las piernas hagan el trabajo."
+      },
+      {
+        "question": "¿Cuánto tiempo necesito para mejorar mi técnica de remo?",
+        "answer": "Con 2-3 sesiones semanales de técnica, notarás mejoras significativas en 4-6 semanas. Los primeros 15-20 segundos de mejora llegan rápido. Después, cada segundo requiere más trabajo."
+      },
+      {
+        "question": "¿Merece la pena comprar un Concept2 para casa?",
+        "answer": "El remo Concept2 Model D cuesta ~1.000€ y el SkiErg ~800€. Si te tomas HYROX en serio y no tienes gym con estas máquinas, el remo es la mejor inversión porque tiene más transferencia a otros deportes. El SkiErg es más específico de HYROX."
+      }
+    ],
+    "conclusionHtml": "    <h2>Conclusi&oacute;n</h2>\n    <p>El SkiErg y el remo son las estaciones de HYROX donde la <strong>t&eacute;cnica marca m&aacute;s diferencia</strong>. Un atleta con buena t&eacute;cnica puede ganar 2-3 minutos sobre uno que simplemente &ldquo;tira fuerte&rdquo;. Invierte tiempo en aprender la mec&aacute;nica correcta antes de buscar velocidad.</p>\n    <p>Si solo puedes practicar en una m&aacute;quina, prioriza el <strong>remo</strong>: es la estaci&oacute;n 5 (llegas m&aacute;s cansado) y tiene una curva de aprendizaje t&eacute;cnica mayor que el SkiErg. Pero idealmente, entrena ambas 2-3 veces por semana con el plan que te hemos dado.</p>",
+    "relatedLinks": [
+      { "href": "/blog/hyrox-principiantes-guia", "label": "Guía HYROX para principiantes" },
+      { "href": "/blog/hyrox-vs-deka-fit", "label": "HYROX vs DEKA FIT" },
+      { "href": "/blog/mejores-zapatillas-hyrox", "label": "Zapatillas para HYROX" },
+      { "href": "/blog/rodillo-vs-pistola-masaje-recuperacion", "label": "Recuperación: rodillo vs pistola" }
+    ]
+  }
+}

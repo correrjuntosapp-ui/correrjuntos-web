@@ -174,7 +174,17 @@
 {s:'ritmo-para-principiantes-running',t:'Ritmo para Principiantes: Gu\u00eda de Pace',c:'Entrenamiento'},
 {s:'ropa-correr-segun-temperatura',t:'Ropa para Correr Seg\u00fan la Temperatura',c:'Equipamiento'},
 {s:'soft-flasks-running',t:'8 Mejores Soft Flasks para Running',c:'Equipamiento'},
-{s:'volver-a-correr-despues-de-lesion',t:'Volver a Correr Despu\u00e9s de una Lesi\u00f3n',c:'Salud'}
+{s:'volver-a-correr-despues-de-lesion',t:'Volver a Correr Despu\u00e9s de una Lesi\u00f3n',c:'Salud'},
+{s:'hyrox-principiantes-guia',t:'HYROX para Principiantes: Gu\u00eda Completa',c:'Atleta H\u00edbrido'},
+{s:'deka-fit-vs-deka-strong',t:'DEKA FIT vs DEKA STRONG: Diferencias',c:'Atleta H\u00edbrido'},
+{s:'hyrox-vs-deka-fit',t:'HYROX vs DEKA FIT: Comparativa',c:'Atleta H\u00edbrido'},
+{s:'mejores-zapatillas-hyrox',t:'Las 4 Mejores Zapatillas para HYROX',c:'Atleta H\u00edbrido'},
+{s:'zapatillas-deka-strong-atlas',t:'Mejores Zapatillas para DEKA',c:'Atleta H\u00edbrido'},
+{s:'wall-ball-hyrox-comprar',t:'Mejores Wall Balls para HYROX',c:'Atleta H\u00edbrido'},
+{s:'sandbag-lunges-hyrox',t:'Mejores Sandbags para HYROX',c:'Atleta H\u00edbrido'},
+{s:'kettlebells-farmer-carry-hyrox',t:'Mejores Kettlebells para Farmer\u2019s Carry',c:'Atleta H\u00edbrido'},
+{s:'entrenar-skierg-row-hyrox',t:'C\u00f3mo Entrenar SkiErg y Remo para HYROX',c:'Atleta H\u00edbrido'},
+{s:'rodillo-vs-pistola-masaje-recuperacion',t:'Rodillo vs Pistola de Masaje: Cu\u00e1l Elegir',c:'Atleta H\u00edbrido'}
   ];
 
   var DB_EN=[
@@ -360,6 +370,7 @@
     'Salud':['Salud','Entrenamiento'],
     'Rutas':['Rutas','Entrenamiento'],
     'Suplementaci\u00f3n':['Suplementaci\u00f3n','Nutrici\u00f3n'],
+    'Atleta H\u00edbrido':['Atleta H\u00edbrido','Equipamiento','Entrenamiento'],
   };
 
   /* Category thumbnail images (same Unsplash URLs as hero system) */
@@ -371,7 +382,8 @@
     'Equipamiento':'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
     'Tecnolog\u00eda':'https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
     'Salud':'https://images.pexels.com/photos/4056832/pexels-photo-4056832.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
-    'Rutas':'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'
+    'Rutas':'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Atleta H\u00edbrido':'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'
   };
   var DEFAULT_IMG = 'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60';
 

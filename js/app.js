@@ -7433,8 +7433,11 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         }
 
         /* ── SEO: Inyectar Event Schema dinámico (SportsEvent) ── */
+        /* Guard: solo inyectar si el listado de quedadas es visible en Home */
         function injectEventSchema(dataOverride) {
             try {
+                var listaEl = document.getElementById('lista-quedadas');
+                if (!listaEl || listaEl.offsetParent === null) return; // no visible → no inyectar
                 var source = dataOverride || quedadas || [];
                 // Solo quedadas futuras, públicas, no seed, max 20
                 var futuras = source.filter(function(q) {

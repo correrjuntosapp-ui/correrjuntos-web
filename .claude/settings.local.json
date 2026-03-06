@@ -103,7 +103,8 @@
       "Bash(git init:*)",
       "WebFetch(domain:amzn.to)",
       "WebFetch(domain:images.unsplash.com)",
-      "Bash(node fix-hero-v2.cjs)"
+      "Bash(node fix-hero-v2.cjs)",
+      "Bash(node upgrade-schema-batch.cjs)"
     ]
   }
 }

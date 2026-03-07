@@ -14,7 +14,57 @@ Disallow: /*.cjs
 Disallow: /*.sql
 Disallow: /*.md
 
-# Crawl-delay for polite bots
+# ═══ AI Search Bots — ALLOW for AI search visibility ═══
+
+# OpenAI (ChatGPT Search, GPT responses)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI (Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Apple (Siri, Apple Intelligence)
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Microsoft Copilot
+User-agent: Bytespider
+Disallow: /
+
+# ═══ SEO Crawlers — Rate limit ═══
+
 User-agent: AhrefsBot
 Crawl-delay: 10
 

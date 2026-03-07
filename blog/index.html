@@ -83,9 +83,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .nav-links a{color:#5c4d3d;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,.02);border:1px solid #efe6db;transition:all .2s;text-decoration:none}
 .nav-links a:hover{color:#f97316;background:rgba(249,115,22,.12)}
 .nav-links a.active{color:#fff;background:rgba(249,115,22,.9);font-weight:700}
-.breadcrumb{padding:16px 0;font-size:.85rem;color:#64748b}
-.breadcrumb a{color:#f97316;text-decoration:none}
-.breadcrumb span{margin:0 8px}
+.breadcrumb{padding:14px 0;font-size:.8rem;color:#8b7355;display:flex;align-items:center;gap:6px;font-weight:500}
+.breadcrumb a{color:#8b7355;text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:#f97316}
+.breadcrumb .sep{color:#c4b5a4;font-size:.65rem}
+.breadcrumb .current{color:#3d3229;font-weight:600}
 
 /* Hero */
 .hero{text-align:center;padding:80px 20px 48px;position:relative;overflow:hidden;background:url('https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1920&h=600&fit=crop&q=60') center/cover no-repeat}
@@ -430,8 +432,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 <div class="container">
   <div class="breadcrumb">
     <a href="/">Inicio</a>
-    <span>/</span>
-    Blog
+    <span class="sep">›</span>
+    <span class="current">Blog</span>
   </div>
 </div>
 

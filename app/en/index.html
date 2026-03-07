@@ -35,14 +35,74 @@ function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!funct
 if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#0b1220;color:#fff;line-height:1.7}.nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(11,18,32,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}.container{max-width:1100px;margin:0 auto;padding:0 20px}.nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}.nav-links{display:flex;gap:4px;font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)}.nav-links a{color:#94a3b8;text-decoration:none;font-weight:600;padding:7px 16px;border-radius:999px;transition:all .2s}.nav-links a:hover{color:#f97316;background:rgba(249,115,22,.12)}.nav-links a.active{color:#fff;background:rgba(249,115,22,.9);font-weight:700}.breadcrumb{padding:16px 0;font-size:.85rem;color:#64748b}.breadcrumb a{color:#f97316;text-decoration:none}.breadcrumb span{margin:0 8px}
-.hero{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden}.hero h1{font-size:2.5rem;font-weight:900;margin-bottom:12px;line-height:1.1}.hero h1 em{font-style:normal;color:#f97316}.hero p{font-size:1.15rem;color:#cbd5e1;max-width:640px;margin:0 auto 32px}.hero .badge{display:inline-block;background:rgba(34,197,94,.15);color:#22c55e;padding:6px 16px;border-radius:999px;font-size:.82rem;font-weight:700;margin-bottom:16px;border:1px solid rgba(34,197,94,.25)}
-.store-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin:32px 0}.store-badge{display:flex;align-items:center;gap:12px;background:#000;color:#fff;padding:14px 28px;border-radius:16px;text-decoration:none;border:1px solid rgba(255,255,255,.1);transition:all .2s;box-shadow:0 4px 24px rgba(0,0,0,.3)}.store-badge:hover{transform:translateY(-2px);border-color:rgba(249,115,22,.3);box-shadow:0 8px 32px rgba(249,115,22,.15)}.store-badge .label{font-size:.7rem;color:#9ca3af;display:block;line-height:1}.store-badge .name{font-size:1.1rem;font-weight:700;display:block;line-height:1.2}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:40px 0}.feature{background:rgba(255,255,255,.04);border:1px solid rgba(249,115,22,.15);border-radius:16px;padding:24px}.feature .icon{font-size:2rem;margin-bottom:12px}.feature h3{color:#fff;font-weight:700;margin-bottom:6px}.feature p{color:#94a3b8;font-size:.9rem;margin:0}
-.stats-row{display:flex;flex-wrap:wrap;justify-content:center;gap:32px;margin:40px 0}.stat{text-align:center}.stat .num{font-size:2.5rem;font-weight:900;color:#f97316}.stat .lbl{font-size:.85rem;color:#94a3b8}
-.compare{max-width:600px;margin:40px auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);overflow:hidden}.compare .row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:14px 18px;align-items:center;font-size:.9rem}.compare .row:nth-child(even){background:rgba(255,255,255,.03)}.compare .row.head{background:rgba(255,255,255,.06);font-weight:700}.compare .row .free{color:#64748b;text-align:center}.compare .row .premium{color:#22c55e;text-align:center;font-weight:700}
-.cta-box{text-align:center;margin:48px 0;padding:48px 20px;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(236,72,153,.05));border:1px solid rgba(249,115,22,.2);border-radius:24px}.cta-box h2{margin-top:0;margin-bottom:8px;font-size:1.7rem;font-weight:800}.cta-box p{color:#94a3b8;margin-bottom:20px}
-.footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.06);font-size:.85rem;color:#475569;margin-top:20px}.footer a{color:#f97316;text-decoration:none}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#fef7ed;color:#3d3229;line-height:1.7}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* Nav */
+.nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #efe6db}
+.nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
+.nav>a{color:#3d3229;text-decoration:none;font-weight:900;font-size:1.1rem}
+.nav>a b{color:#f97316}
+.nav-links{display:flex;gap:4px;font-size:.85rem;background:rgba(0,0,0,.03);padding:4px;border-radius:999px;border:1px solid #efe6db}
+.nav-links a{color:#5c4d3d;text-decoration:none;font-weight:600;padding:7px 16px;border-radius:999px;transition:all .2s}
+.nav-links a:hover{color:#f97316;background:rgba(249,115,22,.12)}
+.nav-links a.active{color:#fff;background:rgba(249,115,22,.9);font-weight:700}
+
+/* Breadcrumb */
+.breadcrumb{padding:16px 0;font-size:.85rem;color:#8b7355;display:flex;align-items:center;gap:8px;font-weight:500}
+.breadcrumb a{color:#8b7355;text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:#f97316}
+.breadcrumb .sep{color:#c4b5a4;font-size:.7rem}
+.breadcrumb .current{color:#3d3229;font-weight:600}
+
+/* Hero */
+.hero{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden}
+.hero h1{font-size:2.5rem;font-weight:900;margin-bottom:12px;line-height:1.1;color:#3d3229}
+.hero h1 em{font-style:normal;color:#f97316}
+.hero p{font-size:1.15rem;color:#5c4d3d;max-width:640px;margin:0 auto 32px}
+.hero .badge{display:inline-block;background:rgba(34,197,94,.1);color:#16a34a;padding:6px 16px;border-radius:999px;font-size:.82rem;font-weight:700;margin-bottom:16px;border:1px solid rgba(34,197,94,.2)}
+
+/* Store badges */
+.store-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin:32px 0}
+.store-badge{display:flex;align-items:center;gap:12px;background:#1a1a2e;color:#fff;padding:14px 28px;border-radius:16px;text-decoration:none;border:1px solid rgba(0,0,0,.1);transition:all .2s;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.store-badge:hover{transform:translateY(-2px);border-color:rgba(249,115,22,.3);box-shadow:0 8px 32px rgba(249,115,22,.12)}
+.store-badge .label{font-size:.7rem;color:#9ca3af;display:block;line-height:1}
+.store-badge .name{font-size:1.1rem;font-weight:700;display:block;line-height:1.2}
+
+/* Stats */
+.stats-row{display:flex;flex-wrap:wrap;justify-content:center;gap:32px;margin:40px 0;padding:32px 0;border-top:1px solid #efe6db;border-bottom:1px solid #efe6db}
+.stat{text-align:center}
+.stat .num{font-size:2.5rem;font-weight:900;color:#f97316}
+.stat .lbl{font-size:.85rem;color:#8b7355}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:40px 0}
+.feature{background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:24px;transition:all .25s}
+.feature:hover{border-color:rgba(249,115,22,.3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.08)}
+.feature .icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(249,115,22,.08);margin-bottom:14px}
+.feature .icon svg{width:22px;height:22px;fill:#f97316}
+.feature h3{color:#3d3229;font-weight:700;margin-bottom:6px}
+.feature p{color:#5c4d3d;font-size:.9rem;margin:0}
+
+/* Compare */
+.compare{max-width:600px;margin:40px auto;border-radius:16px;border:1px solid #efe6db;overflow:hidden;background:#fffcf9}
+.compare .row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:14px 18px;align-items:center;font-size:.9rem}
+.compare .row:nth-child(even){background:rgba(0,0,0,.02)}
+.compare .row.head{background:rgba(249,115,22,.06);font-weight:700;color:#3d3229}
+.compare .row span:first-child{color:#3d3229;font-weight:500}
+.compare .row .free{color:#8b7355;text-align:center}
+.compare .row .premium{color:#16a34a;text-align:center;font-weight:700}
+
+/* CTA box */
+.cta-box{text-align:center;margin:48px 0;padding:48px 20px;background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(236,72,153,.03));border:1px solid rgba(249,115,22,.15);border-radius:24px}
+.cta-box h2{margin-top:0;margin-bottom:8px;font-size:1.7rem;font-weight:800;color:#3d3229}
+.cta-box p{color:#5c4d3d;margin-bottom:20px}
+
+/* Footer */
+.footer{text-align:center;padding:32px 20px;border-top:1px solid #efe6db;font-size:.85rem;color:#8b7355;margin-top:20px}
+.footer a{color:#f97316;text-decoration:none}
+
 @media(max-width:640px){.hero h1{font-size:1.8rem}.hero p{font-size:1rem}.features{grid-template-columns:1fr}.store-badge{padding:12px 20px}.store-badge .name{font-size:1rem}.stats-row{gap:20px}.stat .num{font-size:2rem}.compare .row{font-size:.8rem;padding:12px 14px}}
 </style>
 <script type="application/ld+json">
@@ -86,7 +146,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <!-- Nav -->
 <div class="nav-wrapper">
   <nav class="nav">
-    <a href="/" style="color:#fff;text-decoration:none;font-weight:900;font-size:1.1rem">CORRER<b style="color:#f97316">JUNTOS</b></a>
+    <a href="/">CORRER<b>JUNTOS</b></a>
     <div class="nav-links">
       <a href="/">Home</a>
       <a href="/blog/en/">Blog</a>
@@ -98,7 +158,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <div class="container">
   <!-- Breadcrumb -->
   <div class="breadcrumb">
-    <a href="/">Home</a><span>›</span>Download App
+    <a href="/">Home</a><span class="sep">›</span><span class="current">Download App</span>
   </div>
 
   <!-- Hero -->
@@ -117,7 +177,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
         <div><span class="label">Get it on</span><span class="name">Google Play</span></div>
       </a>
     </div>
-    <p style="color:#64748b;font-size:.85rem;margin-top:8px"><a href="/" style="color:#94a3b8;text-decoration:underline">Or use the web version</a></p>
+    <p style="color:#8b7355;font-size:.85rem;margin-top:8px"><a href="/" style="color:#5c4d3d;text-decoration:underline">Or use the web version</a></p>
   </section>
 
   <!-- Social Proof -->
@@ -129,43 +189,43 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   </div>
 
   <!-- Features -->
-  <h2 style="text-align:center;margin-top:48px">Everything you need to run together</h2>
+  <h2 style="text-align:center;margin-top:48px;color:#3d3229">Everything you need to run together</h2>
   <div class="features">
     <div class="feature">
-      <div class="icon">📍</div>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div>
       <h3>Group runs near you</h3>
       <p>Discover running meetups in your area with an interactive map and filters by distance, pace, and level.</p>
     </div>
     <div class="feature">
-      <div class="icon">🔔</div>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
       <h3>Real-time notifications</h3>
       <p>Get alerts for new runs, changes, and group messages. Never miss a session.</p>
     </div>
     <div class="feature">
-      <div class="icon">💬</div>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
       <h3>Group chat</h3>
       <p>Coordinate with other runners before, during, and after the run. Share photos and motivation.</p>
     </div>
     <div class="feature">
-      <div class="icon">🤝</div>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
       <h3>Smart Runner Matching</h3>
       <p>Our algorithm finds compatible runners based on your pace, schedule, level, and goals.</p>
     </div>
     <div class="feature">
-      <div class="icon">📊</div>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div>
       <h3>Stats & progress</h3>
       <p>Track your runs, kilometers, and running partners. Earn badges and climb the rankings.</p>
     </div>
     <div class="feature">
-      <div class="icon">🔗</div>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></div>
       <h3>Strava compatible</h3>
       <p>Connect your Strava account and sync your activities automatically. The best of both worlds.</p>
     </div>
   </div>
 
   <!-- Free vs Premium -->
-  <h2 style="text-align:center;margin-top:48px">Free forever, Premium for more</h2>
-  <p style="text-align:center;color:#94a3b8;margin-bottom:24px">The app is 100% functional in its free version. Premium unlocks extras.</p>
+  <h2 style="text-align:center;margin-top:48px;color:#3d3229">Free forever, Premium for more</h2>
+  <p style="text-align:center;color:#8b7355;margin-bottom:24px">The app is 100% functional in its free version. Premium unlocks extras.</p>
   <div class="compare">
     <div class="row head"><span></span><span class="free">Free</span><span class="premium">Premium</span></div>
     <div class="row"><span>Browse runs</span><span class="free">Unlimited</span><span class="premium">Unlimited</span></div>
@@ -192,7 +252,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
         <div><span class="label">Get it on</span><span class="name">Google Play</span></div>
       </a>
     </div>
-    <p style="margin-top:16px;font-size:.85rem"><a href="/" style="color:#94a3b8;text-decoration:underline">Or use the web version</a></p>
+    <p style="margin-top:16px;font-size:.85rem"><a href="/" style="color:#5c4d3d;text-decoration:underline">Or use the web version</a></p>
   </div>
 </div>
 

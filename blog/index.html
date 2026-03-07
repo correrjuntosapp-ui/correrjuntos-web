@@ -123,7 +123,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .filter-panel-btn{padding:10px 14px;border-radius:12px;border:1px solid #efe6db;background:#fffcf9;color:#5c4d3d;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px;text-align:left}
 .filter-panel-btn:hover{border-color:#e8ddd0;color:#3d3229;background:rgba(0,0,0,.02);transform:translateY(-1px)}
 .filter-panel-btn.active{color:#fff;transform:translateY(-1px)}
-.filter-panel-btn .cat-icon{font-size:1rem;flex-shrink:0}
+.filter-panel-btn .cat-icon{flex-shrink:0;display:inline-flex;align-items:center}.filter-panel-btn .cat-icon svg{width:15px;height:15px;fill:currentColor}
 .filter-panel-btn .cat-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fp-zapatillas.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);color:#f97316}
 .fp-entrenamiento.active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:#3b82f6}
@@ -185,7 +185,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .explore-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:16px 0 24px;padding:24px 0;border-top:1px solid #efe6db}
 .explore-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;background:#fffcf9;border:1px solid #efe6db;border-radius:14px;text-decoration:none;color:inherit;transition:all .25s}
 .explore-card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-2px);background:rgba(249,115,22,.04)}
-.explore-card-icon{font-size:1.5rem}
+.explore-card-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:rgba(249,115,22,.08)}.explore-card-icon svg{width:20px;height:20px;fill:#f97316}
 .explore-card-label{font-size:.8rem;font-weight:600;color:#5c4d3d;text-align:center}
 
 /* Image fallback */
@@ -474,16 +474,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <button class="filter-dropdown-trigger" id="filterDropdownTrigger">📂 Categorías <span class="arrow">▼</span></button>
   <span id="filterActiveLabel"></span>
   <div class="filter-panel" id="filterPanel">
-    <button class="filter-panel-btn fp-entrenamiento" data-filter="entrenamiento"><span class="cat-icon">🏃</span><span class="cat-name">Entrenamiento</span></button>
-    <button class="filter-panel-btn fp-nutricion" data-filter="nutricion"><span class="cat-icon">🥗</span><span class="cat-name">Nutrición</span></button>
-    <button class="filter-panel-btn fp-equipamiento" data-filter="equipamiento"><span class="cat-icon">🎒</span><span class="cat-name">Equipamiento</span></button>
-    <button class="filter-panel-btn fp-tecnologia" data-filter="tecnologia"><span class="cat-icon">⌚</span><span class="cat-name">Tecnología</span></button>
-    <button class="filter-panel-btn fp-zapatillas" data-filter="zapatillas"><span class="cat-icon">👟</span><span class="cat-name">Zapatillas</span></button>
-    <button class="filter-panel-btn fp-salud" data-filter="salud"><span class="cat-icon">🩹</span><span class="cat-name">Salud</span></button>
-    <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-icon">🗺️</span><span class="cat-name">Rutas</span></button>
-    <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-icon">⛰️</span><span class="cat-name">Trail</span></button>
-    <button class="filter-panel-btn fp-suplementacion" data-filter="suplementacion"><span class="cat-icon">💊</span><span class="cat-name">Suplementación</span></button>
-    <button class="filter-panel-btn fp-atleta-hibrido" data-filter="atleta-hibrido"><span class="cat-icon">🏋️</span><span class="cat-name">Atleta Híbrido</span></button>
+    <button class="filter-panel-btn fp-entrenamiento" data-filter="entrenamiento"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6.49 8.98v5h2v-3.5l1.8-.7-1.6 8.1-4.9-1-.4 2 6 1.2z"/></svg></span><span class="cat-name">Entrenamiento</span></button>
+    <button class="filter-panel-btn fp-nutricion" data-filter="nutricion"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg></span><span class="cat-name">Nutrición</span></button>
+    <button class="filter-panel-btn fp-equipamiento" data-filter="equipamiento"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14zm-4.2-5.78v1.75l3.2 1.87V14.9l-3.2 1.87zm-1.6 1.75v-1.75L8 15.09v1.94l3.2-1.87z"/></svg></span><span class="cat-name">Equipamiento</span></button>
+    <button class="filter-panel-btn fp-tecnologia" data-filter="tecnologia"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.95 5.73C5.19 7.19 4 9.45 4 12s1.19 4.81 3.05 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg></span><span class="cat-name">Tecnología</span></button>
+    <button class="filter-panel-btn fp-zapatillas" data-filter="zapatillas"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M21.4 11.6l-9-8C12.1 3.2 11.5 3 11 3H4C2.9 3 2 3.9 2 5v4c0 .5.2 1.1.6 1.4l9 8c.8.7 1.9.7 2.6 0l7.1-7.1c.8-.7.8-1.9.1-2.7zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg></span><span class="cat-name">Zapatillas</span></button>
+    <button class="filter-panel-btn fp-salud" data-filter="salud"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M10.5 13H8v-3h2.5V7.5h3V10H16v3h-2.5v2.5h-3V13zM12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg></span><span class="cat-name">Salud</span></button>
+    <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></span><span class="cat-name">Rutas</span></button>
+    <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/></svg></span><span class="cat-name">Trail</span></button>
+    <button class="filter-panel-btn fp-suplementacion" data-filter="suplementacion"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4.22 11.29l4.53-4.53a4.001 4.001 0 015.66 0l4.53 4.53a4.001 4.001 0 010 5.66l-4.53 4.53a4.001 4.001 0 01-5.66 0l-4.53-4.53a4.001 4.001 0 010-5.66zm10.03-.8L12.01 8.2 9.75 10.5l2.25 2.25 2.25-2.26z"/></svg></span><span class="cat-name">Suplementación</span></button>
+    <button class="filter-panel-btn fp-atleta-hibrido" data-filter="atleta-hibrido"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></span><span class="cat-name">Atleta Híbrido</span></button>
   </div>
   <!-- Hidden original bar for JS compat -->
   <div class="filter-bar" id="filterBar">
@@ -3113,27 +3113,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <p style="text-align:center;color:#94a3b8;font-size:1rem;margin:48px 0 4px;font-weight:700">Explora tambien</p>
   <div class="explore-cards">
     <a href="/equipamiento/" class="explore-card">
-      <span class="explore-card-icon">👟</span>
+      <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14zm-4.2-5.78v1.75l3.2 1.87V14.9l-3.2 1.87zm-1.6 1.75v-1.75L8 15.09v1.94l3.2-1.87z"/></svg></span>
       <span class="explore-card-label">Equipamiento</span>
     </a>
     <a href="/equipamiento/zapatillas-running" class="explore-card">
-      <span class="explore-card-icon">🏃</span>
+      <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M21.4 11.6l-9-8C12.1 3.2 11.5 3 11 3H4C2.9 3 2 3.9 2 5v4c0 .5.2 1.1.6 1.4l9 8c.8.7 1.9.7 2.6 0l7.1-7.1c.8-.7.8-1.9.1-2.7zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg></span>
       <span class="explore-card-label">Zapatillas</span>
     </a>
     <a href="/equipamiento/relojes-gps-running" class="explore-card">
-      <span class="explore-card-icon">⌚</span>
+      <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.95 5.73C5.19 7.19 4 9.45 4 12s1.19 4.81 3.05 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg></span>
       <span class="explore-card-label">Relojes GPS</span>
     </a>
     <a href="/equipamiento/geles-energeticos-running" class="explore-card">
-      <span class="explore-card-icon">⚡</span>
+      <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></span>
       <span class="explore-card-label">Geles</span>
     </a>
     <a href="/equipamiento/auriculares-running" class="explore-card">
-      <span class="explore-card-icon">🎧</span>
+      <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg></span>
       <span class="explore-card-label">Auriculares</span>
     </a>
     <a href="/cities/" class="explore-card">
-      <span class="explore-card-icon">🏙️</span>
+      <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></span>
       <span class="explore-card-label">Ciudades</span>
     </a>
   </div>

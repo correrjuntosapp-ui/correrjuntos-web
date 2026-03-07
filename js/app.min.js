@@ -1359,8 +1359,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
         }
         function loadTheme() {
             const saved = localStorage.getItem('theme');
-            if (saved === 'light') document.body.classList.add('light-mode');
-            const isLight = saved === 'light';
+            if (saved !== 'dark') document.body.classList.add('light-mode');
+            const isLight = saved !== 'dark';
             const iconEmoji = isLight ? '🌙' : '☀️';
             const icon = document.getElementById('theme-icon');
             const iconLanding = document.getElementById('theme-icon-landing');

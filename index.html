@@ -430,7 +430,7 @@
 </head>
 <body>
     <!-- Tema: aplicar ANTES de cualquier render para evitar FOUC -->
-    <script>try{if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode');}catch(e){}</script>
+    <script>try{if(localStorage.getItem('theme')!=='dark')document.body.classList.add('light-mode');}catch(e){}</script>
     <!-- Skip navigation for accessibility -->
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:bg-orange-500 focus:text-white focus:rounded-lg focus:font-bold focus:text-sm" style="text-decoration:none">Saltar al contenido</a>
 
@@ -490,8 +490,8 @@
                     <option value="pt">🇧🇷 PT</option>
                     <option value="ru">🇷🇺 RU</option>
                 </select>
-                <button id="theme-toggle-landing" onclick="toggleTheme()" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s" aria-label="Activar modo claro" aria-pressed="true" title="Cambiar tema">
-                    <span id="theme-icon-landing" style="font-size:1rem">☀️</span>
+                <button id="theme-toggle-landing" onclick="toggleTheme()" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s" aria-label="Activar modo oscuro" aria-pressed="false" title="Cambiar tema">
+                    <span id="theme-icon-landing" style="font-size:1rem">🌙</span>
                 </button>
                 <button id="nav-login" onclick="openModal('modal-login')" class="hidden md:block" style="color:#94a3b8;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;background:none;border:none;cursor:pointer">Entrar</button>
                 <button id="nav-register" onclick="openModal('modal-register')" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;border:none;cursor:pointer">Registrarse</button>
@@ -1556,7 +1556,7 @@
                     <span class="text-gray-400 text-sm hidden md:inline"><span id="header-hello">Hola</span>, <span id="user-name" class="text-white font-bold"></span></span>
                     <!-- Toggle tema -->
                     <button id="theme-toggle-main" onclick="toggleTheme()" class="w-9 h-9 rounded-full bg-slate-800/50 border border-slate-700 hover:border-orange-500/50 flex items-center justify-center transition" title="Cambiar tema" aria-label="Activar modo claro" aria-pressed="true">
-                        <span id="theme-icon" class="text-lg">☀️</span>
+                        <span id="theme-icon" class="text-lg">🌙</span>
                     </button>
                     <div class="flex items-center gap-1 md:gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-1">
                         <button id="btnProfileTop" type="button" class="text-orange-300 hover:text-orange-100 text-xs md:text-sm font-semibold px-2 md:px-3 py-1.5 rounded-full hover:bg-orange-500/20 transition"><span id="header-profile">Mi perfil</span></button>
@@ -2087,7 +2087,7 @@
                 </div>
                 <div class="flex items-center gap-2 md:gap-3">
                     <button id="theme-toggle-ciudad" onclick="toggleTheme()" class="w-9 h-9 rounded-full bg-slate-800/50 border border-slate-700 hover:border-orange-500/50 flex items-center justify-center transition" title="Cambiar tema" aria-label="Activar modo claro" aria-pressed="true">
-                        <span id="theme-icon-ciudad" class="text-lg">☀️</span>
+                        <span id="theme-icon-ciudad" class="text-lg">🌙</span>
                     </button>
                 </div>
             </div>

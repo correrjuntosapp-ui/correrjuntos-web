@@ -110,7 +110,8 @@
      0b. BACK TO BLOG BUTTON
      ══════════════════════════════════════════════ */
   var navWrapper = document.querySelector('.nav-wrapper');
-  var isBlogIndex = /\/blog\/(en\/)?$/.test(location.pathname) || /\/blog\/(en\/)?index\.html$/.test(location.pathname);
+  var cleanPath = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+  var isBlogIndex = (cleanPath === '/blog' || cleanPath === '/blog/en');
   if(navWrapper && !isBlogIndex){
     var cssBack = document.createElement('style');
     cssBack.textContent = [

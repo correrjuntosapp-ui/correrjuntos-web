@@ -107,6 +107,28 @@
   }
 
   /* ══════════════════════════════════════════════
+     0b. BACK TO BLOG BUTTON
+     ══════════════════════════════════════════════ */
+  var navWrapper = document.querySelector('.nav-wrapper');
+  var isBlogIndex = /\/blog\/(en\/)?$/.test(location.pathname) || /\/blog\/(en\/)?index\.html$/.test(location.pathname);
+  if(navWrapper && !isBlogIndex){
+    var cssBack = document.createElement('style');
+    cssBack.textContent = [
+      '.blog-back{max-width:1000px;margin:0 auto;padding:10px 20px 0}',
+      '.blog-back a{color:#f97316;text-decoration:none;font-size:.85rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.15);transition:all .2s}',
+      '.blog-back a:hover{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.3);transform:translateX(-2px)}',
+      '.dark-mode .blog-back a{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.2)}',
+      '.dark-mode .blog-back a:hover{background:rgba(249,115,22,.18)}'
+    ].join('\n');
+    document.head.appendChild(cssBack);
+
+    var backDiv = document.createElement('div');
+    backDiv.className = 'blog-back';
+    backDiv.innerHTML = '<a href="'+(isEN ? '/blog/en/' : '/blog/')+'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>'+(isEN ? 'Back to Blog' : 'Volver al Blog')+'</a>';
+    navWrapper.parentNode.insertBefore(backDiv, navWrapper.nextSibling);
+  }
+
+  /* ══════════════════════════════════════════════
      1. FAQ ACCORDION
      ══════════════════════════════════════════════ */
   var faqH2 = document.getElementById('faq');

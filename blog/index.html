@@ -72,15 +72,15 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <link rel="icon" type="image/png" href="/icons/icon-192.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.7}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#fef7ed;color:#3d3229;line-height:1.7}
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
 /* Nav */
-.nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #efe6db}
 .nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
 .nav>a{color:#f97316;text-decoration:none;font-weight:700;font-size:1.1rem}
-.nav-links{display:flex;gap:4px;font-size:.85rem;background:rgba(0,0,0,.04);padding:4px;border-radius:999px;border:1px solid rgba(0,0,0,.08)}
-.nav-links a{color:#475569;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.06);transition:all .2s;text-decoration:none}
+.nav-links{display:flex;gap:4px;font-size:.85rem;background:rgba(0,0,0,.03);padding:4px;border-radius:999px;border:1px solid #efe6db}
+.nav-links a{color:#5c4d3d;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,.02);border:1px solid #efe6db;transition:all .2s;text-decoration:none}
 .nav-links a:hover{color:#f97316;background:rgba(249,115,22,.12)}
 .nav-links a.active{color:#fff;background:rgba(249,115,22,.9);font-weight:700}
 .breadcrumb{padding:16px 0;font-size:.85rem;color:#64748b}
@@ -89,7 +89,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Hero */
 .hero{text-align:center;padding:80px 20px 48px;position:relative;overflow:hidden;background:url('https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1920&h=600&fit=crop&q=60') center/cover no-repeat}
-.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.85) 0%,rgba(11,18,32,.82) 50%,rgba(248,249,250,1) 100%),radial-gradient(ellipse 80% 60% at 30% 20%,rgba(249,115,22,.15),transparent 60%),radial-gradient(ellipse 60% 50% at 70% 30%,rgba(234,88,12,.1),transparent 50%);z-index:0}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.85) 0%,rgba(11,18,32,.82) 50%,rgba(254,247,237,1) 100%),radial-gradient(ellipse 80% 60% at 30% 20%,rgba(249,115,22,.15),transparent 60%),radial-gradient(ellipse 60% 50% at 70% 30%,rgba(234,88,12,.1),transparent 50%);z-index:0}
 .hero>*{position:relative;z-index:1}
 .hero h1{font-size:3rem;font-weight:900;margin-bottom:14px;line-height:1.05;letter-spacing:-.02em}
 .hero h1 span{background:linear-gradient(135deg,#f97316,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -107,8 +107,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Search Bar */
 .search-wrap{max-width:480px;margin:0 auto 8px;position:relative}
-.search-wrap input{width:100%;padding:12px 18px 12px 44px;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:14px;color:#1a1a2e;font-size:.92rem;outline:none;transition:border-color .2s,background .2s}
-.search-wrap input:focus{border-color:rgba(249,115,22,.4);background:#fff}
+.search-wrap input{width:100%;padding:12px 18px 12px 44px;background:#fffcf9;border:1px solid #e8ddd0;border-radius:14px;color:#3d3229;font-size:.92rem;outline:none;transition:border-color .2s,background .2s}
+.search-wrap input:focus{border-color:rgba(249,115,22,.4);background:#fffcf9}
 .search-wrap input::placeholder{color:#94a3b8}
 .search-wrap .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1rem;color:#64748b;pointer-events:none}
 .search-wrap .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;display:none;padding:4px}
@@ -120,8 +120,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .filter-dropdown-trigger{display:none}
 .filter-active-label{display:none}
 .filter-panel{display:flex;flex-wrap:wrap;gap:8px;opacity:1;pointer-events:auto}
-.filter-panel-btn{padding:10px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.08);background:#fff;color:#475569;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px;text-align:left}
-.filter-panel-btn:hover{border-color:rgba(0,0,0,.15);color:#1a1a2e;background:rgba(0,0,0,.03);transform:translateY(-1px)}
+.filter-panel-btn{padding:10px 14px;border-radius:12px;border:1px solid #efe6db;background:#fffcf9;color:#5c4d3d;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px;text-align:left}
+.filter-panel-btn:hover{border-color:#e8ddd0;color:#3d3229;background:rgba(0,0,0,.02);transform:translateY(-1px)}
 .filter-panel-btn.active{color:#fff;transform:translateY(-1px)}
 .filter-panel-btn .cat-icon{font-size:1rem;flex-shrink:0}
 .filter-panel-btn .cat-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -150,7 +150,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .articles{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin:32px 0 48px}
 
 /* Featured Card */
-.article-card.featured{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(249,115,22,.15);background:#fff;border-radius:24px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,border-color .3s,box-shadow .3s}
+.article-card.featured{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(249,115,22,.15);background:#fffcf9;border-radius:24px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,border-color .3s,box-shadow .3s}
 .article-card.featured:hover{transform:translateY(-6px);border-color:rgba(249,115,22,.5);box-shadow:0 20px 60px rgba(249,115,22,.12)}
 .featured-img{position:relative;overflow:hidden;min-height:300px}
 .featured-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
@@ -159,8 +159,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .featured-badge{position:absolute;top:16px;left:16px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.7rem;font-weight:800;padding:5px 14px;border-radius:999px;letter-spacing:1px;text-transform:uppercase;box-shadow:0 4px 16px rgba(249,115,22,.3);z-index:2}
 .featured-content{padding:36px 32px;display:flex;flex-direction:column;gap:10px;justify-content:center}
 .featured-content .category{display:inline-block;font-size:.75rem;font-weight:700;padding:4px 14px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px;align-self:flex-start}
-.featured-content h2{font-size:1.6rem;font-weight:800;line-height:1.2;color:#1a1a2e}
-.featured-content p{font-size:.95rem;color:#475569;line-height:1.6}
+.featured-content h2{font-size:1.6rem;font-weight:800;line-height:1.2;color:#3d3229}
+.featured-content p{font-size:.95rem;color:#5c4d3d;line-height:1.6}
 .featured-content .card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
 .featured-content .meta{font-size:.8rem;color:#64748b}
 .author{font-size:.75rem;color:#94a3b8;margin-top:2px;font-weight:500;display:flex;align-items:center;gap:6px}
@@ -172,21 +172,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Load more button */
 .load-more-wrap{text-align:center;margin:24px 0 40px}
-.load-more-btn{background:#fff;border:1px solid rgba(0,0,0,.1);color:#475569;padding:12px 32px;border-radius:999px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .25s}
+.load-more-btn{background:#fffcf9;border:1px solid #efe6db;color:#5c4d3d;padding:12px 32px;border-radius:999px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .25s}
 .load-more-btn:hover{border-color:rgba(249,115,22,.4);color:#f97316;background:rgba(249,115,22,.06)}
 
 /* Category separator in grid */
 .category-separator{grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:24px 0 8px;margin-top:8px}
-.category-separator h3{font-size:1rem;font-weight:700;color:#1a1a2e;white-space:nowrap;display:flex;align-items:center;gap:8px}
-.category-separator .sep-line{flex:1;height:1px;background:rgba(0,0,0,.08)}
+.category-separator h3{font-size:1rem;font-weight:700;color:#3d3229;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.category-separator .sep-line{flex:1;height:1px;background:#efe6db}
 .category-separator .sep-count{font-size:.75rem;color:#64748b;font-weight:500}
 
 /* Explora cards */
-.explore-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:16px 0 24px;padding:24px 0;border-top:1px solid rgba(0,0,0,.06)}
-.explore-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;text-decoration:none;color:inherit;transition:all .25s}
+.explore-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:16px 0 24px;padding:24px 0;border-top:1px solid #efe6db}
+.explore-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;background:#fffcf9;border:1px solid #efe6db;border-radius:14px;text-decoration:none;color:inherit;transition:all .25s}
 .explore-card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-2px);background:rgba(249,115,22,.04)}
 .explore-card-icon{font-size:1.5rem}
-.explore-card-label{font-size:.8rem;font-weight:600;color:#475569;text-align:center}
+.explore-card-label{font-size:.8rem;font-weight:600;color:#5c4d3d;text-align:center}
 
 /* Image fallback */
 .img-fallback{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(30,41,59,1));color:#64748b;font-size:2rem}
@@ -194,7 +194,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .article-card.featured:hover .card-arrow{transform:translateX(6px)}
 
 /* Regular Cards */
-.article-card{background:#fff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .3s,box-shadow .3s;position:relative}
+.article-card{background:#fffcf9;border:1px solid #efe6db;border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .3s,box-shadow .3s;position:relative}
 .article-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,.08)}
 .article-card[data-category="zapatillas"]:hover{border-color:rgba(249,115,22,.4);box-shadow:0 20px 48px rgba(249,115,22,.08)}
 .article-card[data-category="entrenamiento"]:hover{border-color:rgba(59,130,246,.4);box-shadow:0 20px 48px rgba(59,130,246,.08)}
@@ -214,7 +214,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .card-img{height:180px;overflow:hidden;position:relative}
 .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .article-card:hover .card-img img{transform:scale(1.08)}
-.card-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(255,255,255,.6));pointer-events:none}
+.card-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(255,252,249,.6));pointer-events:none}
 
 /* Badge on image */
 .badge-new{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.65rem;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.5px;text-transform:uppercase;z-index:2;box-shadow:0 2px 8px rgba(249,115,22,.3)}
@@ -233,8 +233,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .cat-badge-suplementacion{color:#d946ef;background:rgba(217,70,239,.12)}
 .cat-badge-atleta-hibrido{color:#ef4444;background:rgba(239,68,68,.12)}
 
-.card-body h2{font-size:1.15rem;font-weight:800;color:#1a1a2e;line-height:1.3;margin-top:2px}
-.card-body p{font-size:.88rem;color:#475569;line-height:1.6;flex-grow:1}
+.card-body h2{font-size:1.15rem;font-weight:800;color:#3d3229;line-height:1.3;margin-top:2px}
+.card-body p{font-size:.88rem;color:#5c4d3d;line-height:1.6;flex-grow:1}
 .card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
 .meta{font-size:.8rem;color:#64748b}
 .card-arrow{font-size:.9rem;color:#f97316;font-weight:700;transition:transform .25s;white-space:nowrap}
@@ -248,7 +248,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .most-read{margin:48px 0 40px}
 .most-read h2{font-size:1.4rem;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .most-read-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.most-read-card{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:16px;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
+.most-read-card{display:flex;gap:16px;align-items:center;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:16px;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
 .most-read-card:hover{transform:translateY(-4px);border-color:rgba(249,115,22,.3);box-shadow:0 12px 32px rgba(0,0,0,.08)}
 .rank-badge{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;flex-shrink:0;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.2)}
 .most-read-card:nth-child(2) .rank-badge{background:linear-gradient(135deg,#64748b,#475569)}
@@ -256,33 +256,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .mr-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;flex-shrink:0}
 .mr-thumb img{width:100%;height:100%;object-fit:cover}
 .most-read-info{flex:1;min-width:0}
-.most-read-info h3{font-size:.85rem;font-weight:700;color:#1a1a2e;line-height:1.3;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.most-read-info h3{font-size:.85rem;font-weight:700;color:#3d3229;line-height:1.3;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .most-read-info .meta{font-size:.75rem;color:#64748b}
 
 /* Newsletter Glassmorphism */
-.newsletter-section{margin:48px 0;text-align:center;padding:48px 32px;background:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(0,0,0,.08);border-radius:28px;position:relative;overflow:hidden}
+.newsletter-section{margin:48px 0;text-align:center;padding:48px 32px;background:#fffcf9;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid #efe6db;border-radius:28px;position:relative;overflow:hidden}
 .newsletter-section::before{content:'';position:absolute;inset:-2px;border-radius:30px;padding:2px;background:linear-gradient(135deg,rgba(249,115,22,.3),rgba(234,88,12,.1),rgba(249,115,22,.3));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borderGlow 4s ease-in-out infinite alternate;pointer-events:none;z-index:0}
 .newsletter-section>*{position:relative;z-index:1}
 .newsletter-section h2{font-size:1.5rem;font-weight:800;margin-bottom:8px}
 .newsletter-section h2 span{color:#f97316}
-.newsletter-section>p{color:#475569;margin-bottom:24px;font-size:1rem}
+.newsletter-section>p{color:#5c4d3d;margin-bottom:24px;font-size:1rem}
 @keyframes borderGlow{0%{opacity:.4}100%{opacity:.9}}
 
 /* CTA */
 .cta-box{text-align:center;margin:0 0 24px;padding:40px 20px;background:rgba(249,115,22,.03);border:1px solid rgba(249,115,22,.15);border-radius:24px}
 .cta-box h2{margin-bottom:8px;font-weight:800}
-.cta-box p{color:#475569;margin-bottom:20px}
+.cta-box p{color:#5c4d3d;margin-bottom:20px}
 .cta{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(249,115,22,.25);border:none;cursor:pointer}
 .cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(249,115,22,.35)}
 
 /* Cross links */
-.cross-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:48px 0 24px;padding:24px 0;border-top:1px solid rgba(0,0,0,.06)}
-.cross-link{display:inline-flex;align-items:center;gap:6px;color:#475569;text-decoration:none;padding:8px 18px;border:1px solid rgba(0,0,0,.08);border-radius:999px;font-size:.85rem;transition:border-color .2s,color .2s}
+.cross-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:48px 0 24px;padding:24px 0;border-top:1px solid #efe6db}
+.cross-link{display:inline-flex;align-items:center;gap:6px;color:#5c4d3d;text-decoration:none;padding:8px 18px;border:1px solid #efe6db;border-radius:999px;font-size:.85rem;transition:border-color .2s,color .2s}
 .cross-link:hover{border-color:rgba(249,115,22,.3);color:#f97316}
 
 /* End indicator */
 .end-indicator{display:flex;align-items:center;gap:16px;padding:32px 0 8px;color:#475569;font-size:.8rem}
-.end-line{flex:1;height:1px;background:rgba(0,0,0,.06)}
+.end-line{flex:1;height:1px;background:#efe6db}
 .end-text{white-space:nowrap;font-weight:500}
 
 /* No results */
@@ -290,9 +290,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .no-results span{font-size:2.5rem;display:block;margin-bottom:12px}
 
 /* Author bio section */
-.author-bio{display:flex;gap:24px;align-items:flex-start;padding:32px;background:#fff;border:1px solid #e2e8f0;border-radius:20px;margin:48px 0 32px}
+.author-bio{display:flex;gap:24px;align-items:flex-start;padding:32px;background:#fffcf9;border:1px solid #efe6db;border-radius:20px;margin:48px 0 32px}
 .author-bio-img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(249,115,22,.3);flex-shrink:0}
-.author-bio-info h3{font-size:1.1rem;font-weight:800;color:#1a1a2e;margin-bottom:4px}
+.author-bio-info h3{font-size:1.1rem;font-weight:800;color:#3d3229;margin-bottom:4px}
 .author-bio-info .author-role{font-size:.8rem;color:#f97316;font-weight:600;margin-bottom:8px}
 .author-bio-info p{font-size:.88rem;color:#94a3b8;line-height:1.6}
 .author-bio-info .author-creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -305,7 +305,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .featured-content .category{cursor:pointer;transition:all .2s}
 .featured-content .category:hover{filter:brightness(1.3);transform:scale(1.05)}
 
-.footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(0,0,0,.06);font-size:.85rem;color:#475569;margin-top:20px}
+.footer{text-align:center;padding:32px 20px;border-top:1px solid #efe6db;font-size:.85rem;color:#5c4d3d;margin-top:20px}
 .footer a{color:#f97316;text-decoration:none}
 
 /* Responsive */
@@ -315,9 +315,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   .most-read-grid{grid-template-columns:1fr}
 }
 /* Mobile bottom nav */
-.mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(248,249,250,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(0,0,0,.08);padding:8px 0 max(8px,env(safe-area-inset-bottom))}
+.mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(254,247,237,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(0,0,0,.08);padding:8px 0 max(8px,env(safe-area-inset-bottom))}
 .mobile-bottom-nav .nav-items{display:flex;justify-content:space-around;align-items:center;max-width:500px;margin:0 auto}
-.mobile-bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#64748b}
+.mobile-bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#8b7355}
 .mobile-bottom-nav a.active{color:#f97316;background:rgba(249,115,22,.1)}
 .mobile-bottom-nav span{font-size:.65rem;font-weight:700;letter-spacing:.3px}
 
@@ -343,7 +343,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Social icons in nav */
 .nav-social{display:flex;gap:6px;align-items:center;margin:0 8px}
-.nav-social a{color:#64748b;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;transition:color .2s;text-decoration:none}
+.nav-social a{color:#8b7355;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;transition:color .2s;text-decoration:none}
 .nav-social a:hover{color:#f97316}
 .nav-social svg{width:16px;height:16px;fill:currentColor}
 @media(max-width:768px){.nav-social{display:none}}
@@ -416,13 +416,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
     <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
     <a href="https://x.com/CorrerJuntos" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-    <a href="https://youtube.com/@correrjuntos" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
     <a href="https://strava.com/clubs/correrjuntos" target="_blank" rel="noopener" aria-label="Strava"><svg viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
   </div>
 
   <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
     <button class="theme-toggle" onclick="toggleBlogTheme()" aria-label="Cambiar tema">☀️</button>
-    <a href="/" style="color:#64748b;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Entrar</a>
+    <a href="/" style="color:#5c4d3d;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Entrar</a>
     <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Únete</a>
   </div>
 </nav>
@@ -3571,50 +3570,49 @@ async function submitNewsletter(e) {
   </div>
 </nav>
 
-<footer style="background:#f1f5f9;border-top:1px solid rgba(0,0,0,.06);padding:48px 20px 24px;margin-top:60px">
+<footer style="background:#fef9f3;border-top:1px solid #efe6db;padding:48px 20px 24px;margin-top:60px">
 <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-bottom:32px">
   <div>
     <a href="/" style="color:#f97316;font-weight:800;font-size:1.1rem;text-decoration:none;display:block;margin-bottom:16px">CorrerJuntos</a>
-    <p style="color:#64748b;font-size:.85rem;line-height:1.6">La comunidad de running más activa de España. Corre acompañado, mejora juntos.</p>
+    <p style="color:#8b7355;font-size:.85rem;line-height:1.6">La comunidad de running más activa de España. Corre acompañado, mejora juntos.</p>
     <div style="display:flex;gap:8px;margin-top:16px">
-      <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-      <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
-      <a href="https://youtube.com/@correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="YouTube"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-      <a href="https://strava.com/clubs/correrjuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="Strava"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
-      <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#8b7355;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#8b7355;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+      <a href="https://strava.com/clubs/correrjuntos" target="_blank" rel="noopener" style="color:#8b7355;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="Strava"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
+      <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#8b7355;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(0,0,0,.06);border-radius:8px;transition:all .2s" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
     </div>
   </div>
   <div>
-    <div style="color:#1a1a2e;font-weight:700;font-size:.9rem;margin-bottom:16px" class="footer-heading">Explora</div>
+    <div style="color:#3d3229;font-weight:700;font-size:.9rem;margin-bottom:16px" class="footer-heading">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
-      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
-      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
-      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
-      <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
+      <a href="/cities/" style="color:#8b7355;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#8b7355;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#8b7355;text-decoration:none;font-size:.85rem">Eventos</a>
+      <a href="/blog/" style="color:#8b7355;text-decoration:none;font-size:.85rem">Blog</a>
+      <a href="/#app" style="color:#8b7355;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>
   <div>
-    <div style="color:#1a1a2e;font-weight:700;font-size:.9rem;margin-bottom:16px" class="footer-heading">Empresa</div>
+    <div style="color:#3d3229;font-weight:700;font-size:.9rem;margin-bottom:16px" class="footer-heading">Empresa</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Sobre Nosotros</a>
-      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Inversores</a>
-      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Contacto</a>
-      <a href="/patrocinadores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Patrocinadores</a>
-      <a href="/media-kit" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Media Kit</a>
+      <a href="/sobre-nosotros.html" style="color:#8b7355;text-decoration:none;font-size:.85rem">Sobre Nosotros</a>
+      <a href="/inversores.html" style="color:#8b7355;text-decoration:none;font-size:.85rem">Inversores</a>
+      <a href="mailto:hola@correrjuntos.com" style="color:#8b7355;text-decoration:none;font-size:.85rem">Contacto</a>
+      <a href="/patrocinadores" style="color:#8b7355;text-decoration:none;font-size:.85rem">Patrocinadores</a>
+      <a href="/media-kit" style="color:#8b7355;text-decoration:none;font-size:.85rem">Media Kit</a>
     </div>
   </div>
   <div>
-    <div style="color:#1a1a2e;font-weight:700;font-size:.9rem;margin-bottom:16px" class="footer-heading">Legal</div>
+    <div style="color:#3d3229;font-weight:700;font-size:.9rem;margin-bottom:16px" class="footer-heading">Legal</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Privacidad</a>
-      <a href="/terms.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Términos de Uso</a>
-      <a href="/legal/cookies.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Cookies</a>
+      <a href="/privacy.html" style="color:#8b7355;text-decoration:none;font-size:.85rem">Política de Privacidad</a>
+      <a href="/terms.html" style="color:#8b7355;text-decoration:none;font-size:.85rem">Términos de Uso</a>
+      <a href="/legal/cookies.html" style="color:#8b7355;text-decoration:none;font-size:.85rem">Política de Cookies</a>
     </div>
   </div>
 </div>
-<div style="border-top:1px solid rgba(0,0,0,.06);padding-top:24px;text-align:center">
-  <p style="color:#64748b;font-size:.8rem">© 2026 CorrerJuntos. Todos los derechos reservados. Hecho con ❤️ para runners.</p>
+<div style="border-top:1px solid #efe6db;padding-top:24px;text-align:center">
+  <p style="color:#8b7355;font-size:.8rem">© 2026 CorrerJuntos. Todos los derechos reservados. Hecho con ❤️ para runners.</p>
 </div>
 </footer>
 <script src="/blog/enhance.js" defer></script>

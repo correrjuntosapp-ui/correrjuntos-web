@@ -3,6 +3,64 @@
   'use strict';
 
   /* ══════════════════════════════════════════════
+     THEME: Light / Dark Mode
+     ══════════════════════════════════════════════ */
+  // Sync body class on load (FOUC script sets it on <html>)
+  if(document.documentElement.classList.contains('dark-mode')){
+    document.body.classList.add('dark-mode');
+  }
+  window.toggleBlogTheme = function(){
+    document.body.classList.toggle('dark-mode');
+    document.documentElement.classList.toggle('dark-mode');
+    var isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('blog_theme', isDark ? 'dark' : 'light');
+    document.querySelectorAll('.theme-toggle').forEach(function(b){ b.textContent = isDark ? '🌙' : '☀️'; });
+  };
+  document.querySelectorAll('.theme-toggle').forEach(function(b){
+    b.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+  });
+
+  /* Inject light/dark overrides for all enhance.js injected components */
+  var themeCSS = document.createElement('style');
+  themeCSS.textContent = [
+    '/* Light-mode overrides for enhance.js elements */',
+    '.lang-toggle{border-color:rgba(0,0,0,.1)}',
+    '.lang-toggle .lt-sep{background:rgba(0,0,0,.1)}',
+    '.lang-toggle a:hover:not(.active-lang){color:#475569;background:rgba(0,0,0,.05)}',
+    '.faq-q{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.08);color:#334155}',
+    '.faq-q:hover{background:rgba(0,0,0,.06)}',
+    '.faq-q.open{background:rgba(249,115,22,.06)}',
+    '.faq-a{background:rgba(0,0,0,.015);border-color:rgba(0,0,0,.08)}',
+    '.faq-a p{color:#475569}',
+    '.faq-chevron{color:#94a3b8}',
+    '#nl-slidein{background:rgba(255,255,255,.97);box-shadow:0 8px 32px rgba(0,0,0,.12)}',
+    '#nl-slidein h4{color:#1a1a2e}',
+    '#nl-slidein p{color:#475569}',
+    '#nl-slidein input{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.1);color:#1a1a2e}',
+    '#sticky-cta{background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(248,249,250,.95));border-top-color:rgba(249,115,22,.2)}',
+    '.theme-toggle{background:none;border:1px solid rgba(0,0,0,.1);width:36px;height:36px;border-radius:999px;font-size:1.1rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1}',
+    '.theme-toggle:hover{border-color:rgba(249,115,22,.4);background:rgba(249,115,22,.06)}',
+    '/* Dark-mode restore */',
+    '.dark-mode .lang-toggle{border-color:rgba(255,255,255,.1)}',
+    '.dark-mode .lang-toggle .lt-sep{background:rgba(255,255,255,.1)}',
+    '.dark-mode .lang-toggle a:hover:not(.active-lang){color:#cbd5e1;background:rgba(255,255,255,.05)}',
+    '.dark-mode .faq-q{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:#e2e8f0}',
+    '.dark-mode .faq-q:hover{background:rgba(255,255,255,.07)}',
+    '.dark-mode .faq-q.open{background:rgba(249,115,22,.08)}',
+    '.dark-mode .faq-a{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.08)}',
+    '.dark-mode .faq-a p{color:#94a3b8}',
+    '.dark-mode .faq-chevron{color:#64748b}',
+    '.dark-mode #nl-slidein{background:rgba(11,18,32,.97);box-shadow:0 8px 32px rgba(0,0,0,.5)}',
+    '.dark-mode #nl-slidein h4{color:#fff}',
+    '.dark-mode #nl-slidein p{color:#94a3b8}',
+    '.dark-mode #nl-slidein input{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#fff}',
+    '.dark-mode #sticky-cta{background:linear-gradient(135deg,rgba(11,18,32,.97),rgba(11,18,32,.95));border-top-color:rgba(249,115,22,.25)}',
+    '.dark-mode .theme-toggle{border-color:rgba(255,255,255,.1)}',
+    '.dark-mode .theme-toggle:hover{border-color:rgba(249,115,22,.4);background:rgba(249,115,22,.08)}',
+  ].join('\n');
+  document.head.appendChild(themeCSS);
+
+  /* ══════════════════════════════════════════════
      0. LANGUAGE DETECTION & TOGGLE
      ══════════════════════════════════════════════ */
   var lang = (document.documentElement.lang || 'es').substring(0,2).toLowerCase();
@@ -379,7 +437,7 @@
     var disclosure = document.createElement('div');
     disclosure.className = 'affiliate-disclaimer';
     disclosure.style.cssText = 'max-width:720px;margin:0 auto;padding:20px 32px';
-    disclosure.innerHTML = '<p style="font-size:.75rem;color:#475569;line-height:1.6;border-top:1px solid rgba(255,255,255,.06);padding-top:16px">' +
+    disclosure.innerHTML = '<p style="font-size:.75rem;color:#475569;line-height:1.6;border-top:1px solid rgba(0,0,0,.08);padding-top:16px">' +
       '<strong>' + (isEN ? 'Affiliate disclosure:' : 'Nota de afiliados:') + '</strong> ' +
       (isEN
         ? 'Some links in this article are affiliate links. If you buy through them, we receive a small commission at no extra cost to you. This helps us keep CorrerJuntos free. We only recommend products we use or have personally tested.'

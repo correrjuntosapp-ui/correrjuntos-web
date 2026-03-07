@@ -150,14 +150,14 @@
       var style = document.createElement('style');
       style.textContent = [
         '.faq-accordion{margin:20px 0}',
-        '.faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;padding:16px 18px;margin:0 0 2px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;color:#e2e8f0;font-size:.92rem;font-weight:700;text-align:left;cursor:pointer;transition:all .2s;line-height:1.4}',
-        '.faq-q:hover{background:rgba(255,255,255,.07);border-color:rgba(249,115,22,.25)}',
-        '.faq-q.open{background:rgba(249,115,22,.08);border-color:rgba(249,115,22,.3);border-radius:12px 12px 0 0;margin-bottom:0}',
-        '.faq-chevron{font-size:.75rem;color:#64748b;transition:transform .25s;flex-shrink:0;margin-left:12px}',
+        '.faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;padding:16px 18px;margin:0 0 2px;background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.08);border-radius:12px;color:#334155;font-size:.92rem;font-weight:700;text-align:left;cursor:pointer;transition:all .2s;line-height:1.4}',
+        '.faq-q:hover{background:rgba(0,0,0,.06);border-color:rgba(249,115,22,.25)}',
+        '.faq-q.open{background:rgba(249,115,22,.06);border-color:rgba(249,115,22,.3);border-radius:12px 12px 0 0;margin-bottom:0}',
+        '.faq-chevron{font-size:.75rem;color:#94a3b8;transition:transform .25s;flex-shrink:0;margin-left:12px}',
         '.faq-q.open .faq-chevron{transform:rotate(180deg);color:#f97316}',
-        '.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 18px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-top:none;border-radius:0 0 12px 12px;margin:0 0 8px}',
+        '.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 18px;background:rgba(0,0,0,.015);border:1px solid rgba(0,0,0,.08);border-top:none;border-radius:0 0 12px 12px;margin:0 0 8px}',
         '.faq-a.open{max-height:600px;padding:14px 18px}',
-        '.faq-a p{margin:0;color:#94a3b8;font-size:.88rem;line-height:1.65}',
+        '.faq-a p{margin:0;color:#475569;font-size:.88rem;line-height:1.65}',
       ].join('\n');
       document.head.appendChild(style);
 

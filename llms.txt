@@ -1,0 +1,71 @@
+# Correr Juntos
+
+> Correr Juntos es la plataforma social de running en España que conecta corredores para quedadas (group runs) en más de 50 ciudades. Disponible como PWA web y app nativa iOS/Android. Blog con 174 artículos en español y 159 en inglés sobre entrenamiento, nutrición, zapatillas, trail, salud y equipamiento para runners.
+
+Correr Juntos nació en 2024 con la misión de hacer del running una experiencia social. La plataforma permite a los corredores crear y unirse a quedadas (group runs), encontrar compañeros de running compatibles por ritmo y horario, y acceder a guías de running por ciudad. El blog cubre todos los aspectos del running: desde planes para principiantes hasta nutrición avanzada, comparativas de zapatillas y guías de trail.
+
+## Páginas Principales
+
+- [Inicio](https://www.correrjuntos.com/): App principal — registro, quedadas, descubrimiento de grupos de running
+- [Runner Matching](https://www.correrjuntos.com/matching/): Encuentra compañeros de running compatibles por ritmo, horario y objetivos
+- [Blog ES](https://www.correrjuntos.com/blog/): 174 artículos de running en español
+- [Blog EN](https://www.correrjuntos.com/blog/en/): 159 artículos de running en inglés
+- [Ciudades](https://www.correrjuntos.com/cities/): Guías de running por ciudad — rutas, grupos y eventos
+- [Eventos](https://www.correrjuntos.com/events/): Directorio de eventos de running en 16 ciudades españolas
+- [Lugares para Correr](https://www.correrjuntos.com/places/): 31 lugares curados para correr en España
+
+## Guías de Running por Ciudad
+
+- [Madrid](https://www.correrjuntos.com/cities/madrid/): Rutas, grupos y eventos de running en Madrid
+- [Barcelona](https://www.correrjuntos.com/cities/barcelona/): Running en Barcelona
+- [Valencia](https://www.correrjuntos.com/cities/valencia/): Running en Valencia
+- [Sevilla](https://www.correrjuntos.com/cities/sevilla/): Running en Sevilla
+- [Bilbao](https://www.correrjuntos.com/cities/bilbao/): Running en Bilbao
+- [Málaga](https://www.correrjuntos.com/cities/malaga/): Running en Málaga
+- [Zaragoza](https://www.correrjuntos.com/cities/zaragoza/): Running en Zaragoza
+
+## Categorías del Blog
+
+- [Entrenamiento](https://www.correrjuntos.com/blog/): Planes de entrenamiento, técnica, progresión, series
+- [Nutrición](https://www.correrjuntos.com/blog/): Alimentación para corredores, hidratación, suplementación
+- [Zapatillas](https://www.correrjuntos.com/blog/): Guías de compra, comparativas, análisis de zapatillas running
+- [Equipamiento](https://www.correrjuntos.com/blog/): Relojes GPS, auriculares, ropa técnica, accesorios
+- [Trail Running](https://www.correrjuntos.com/blog/): Guías de trail, equipamiento montaña, mochilas
+- [Salud](https://www.correrjuntos.com/blog/): Lesiones, prevención, recuperación, fascitis, periostitis
+- [Comunidad](https://www.correrjuntos.com/blog/): Running social, grupos, quedadas, motivación
+- [Atleta Híbrido](https://www.correrjuntos.com/blog/): HYROX, DEKA FIT, entrenamiento funcional + running
+
+## Artículos Más Populares (ES)
+
+- [Guía para Empezar a Correr desde Cero](https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes): Plan progresivo de 8 semanas para principiantes absolutos
+- [Las 10 Mejores Zapatillas Running para Asfalto 2026](https://www.correrjuntos.com/blog/mejores-zapatillas-running-asfalto): Comparativa actualizada con precios y análisis
+- [Errores Comunes de Corredores](https://www.correrjuntos.com/blog/errores-comunes-corredores): Los 10 errores más frecuentes y cómo evitarlos
+- [Correr con Perro (Canicross)](https://www.correrjuntos.com/blog/correr-con-perro-canicross): Guía completa de canicross con equipamiento
+- [Plan de 0 a 5K](https://www.correrjuntos.com/plan-cero-a-5k/): Plan gratuito descargable para correr tus primeros 5 km
+- [Correr Antes o Después de Comer](https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer): Ciencia del timing de comidas para runners
+- [Fascitis Plantar en Corredores](https://www.correrjuntos.com/blog/fascitis-plantar-corredores): Prevención, tratamiento y ejercicios
+- [HYROX para Principiantes](https://www.correrjuntos.com/blog/hyrox-principiantes-guia-completa): Guía completa del formato, estaciones y entrenamiento
+
+## Top Articles (EN)
+
+- [How to Start Running: Beginner's Guide](https://www.correrjuntos.com/blog/en/how-to-start-running-beginners-guide): 8-week progressive plan for absolute beginners
+- [Best Road Running Shoes 2026](https://www.correrjuntos.com/blog/en/best-road-running-shoes): Updated comparison with prices and analysis
+- [Common Running Mistakes](https://www.correrjuntos.com/blog/en/common-running-mistakes): Top 10 mistakes runners make and how to fix them
+- [Running with Your Dog (Canicross)](https://www.correrjuntos.com/blog/en/running-with-your-dog-canicross): Complete canicross guide with gear recommendations
+- [Running Before or After Eating](https://www.correrjuntos.com/blog/en/running-before-or-after-eating): Science of meal timing for runners
+
+## Datos Clave
+
+- Fundada: 2024
+- Sede: España
+- Idiomas: Español, Inglés
+- Plataformas: Web (PWA), iOS (App Store ID: 6758505910), Android
+- Ciudades activas: 50+ ciudades en España
+- Artículos publicados: 333 (174 ES + 159 EN)
+- Categorías: 10 (entrenamiento, nutrición, zapatillas, equipamiento, tecnología, salud, rutas, trail, comunidad, atleta híbrido)
+- Algoritmo de matching: ritmo 30%, horario 25%, nivel 25%, objetivos 10%, actividad 10%
+
+## Optional
+
+- [Política de Privacidad](https://www.correrjuntos.com/privacy.html)
+- [Términos de Uso](https://www.correrjuntos.com/terms.html)

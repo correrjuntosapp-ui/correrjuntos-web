@@ -179,7 +179,7 @@
 {s:'hyrox-principiantes-guia',t:'HYROX para Principiantes: Gu\u00eda Completa',c:'Atleta H\u00edbrido',i:'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'deka-fit-vs-deka-strong',t:'DEKA FIT vs DEKA STRONG: Diferencias',c:'Atleta H\u00edbrido',i:'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'hyrox-vs-deka-fit',t:'HYROX vs DEKA FIT: Comparativa',c:'Atleta H\u00edbrido',i:'https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'mejores-zapatillas-hyrox',t:'Las 4 Mejores Zapatillas para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/elegir-zapatillas-running.jpg'},
+{s:'mejores-zapatillas-hyrox',t:'Las 4 Mejores Zapatillas para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/puma-pwrframe-hyrox.jpg'},
 {s:'zapatillas-deka-strong-atlas',t:'Mejores Zapatillas para DEKA',c:'Atleta H\u00edbrido',i:'/blog/img/deka-hero.jpg'},
 {s:'wall-ball-hyrox-comprar',t:'Mejores Wall Balls para HYROX',c:'Atleta H\u00edbrido',i:'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'sandbag-lunges-hyrox',t:'Mejores Sandbags para HYROX',c:'Atleta H\u00edbrido',i:'https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

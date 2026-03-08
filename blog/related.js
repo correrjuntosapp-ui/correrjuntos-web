@@ -148,7 +148,7 @@
 {s:'smartwatch-vs-reloj-gps-running',t:'Smartwatch vs Reloj GPS: \u00bfCu\u00e1l Necesitas?',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'strava-vs-garmin-connect',t:'Strava vs Garmin Connect: Comparativa',c:'Entrenamiento',i:'https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'tendinitis-aquiles-running',t:'Tendinitis de Aquiles en Runners',c:'Salud',i:'https://images.pexels.com/photos/4056832/pexels-photo-4056832.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'ultra-trail-principiantes',t:'Tu Primera Ultra Trail: Gu\u00eda para Principiantes',c:'Trail',i:'https://images.pexels.com/photos/2116475/pexels-photo-2116475.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'ultra-trail-principiantes',t:'Tu Primera Ultra Trail: Gu\u00eda para Principiantes',c:'Trail',i:'/blog/img/ultra-trail-principiantes.jpg'},
 {s:'unirse-grupo-running',t:'C\u00f3mo Unirte a un Grupo de Running',c:'Entrenamiento',i:'https://images.pexels.com/photos/33860616/pexels-photo-33860616.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'variabilidad-cardiaca-running',t:'Variabilidad Card\u00edaca (HRV) para Runners',c:'Entrenamiento',i:'https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'zapatillas-running-pronadores',t:'Zapatillas para Pronadores: Gu\u00eda Completa',c:'Zapatillas',i:'https://images.pexels.com/photos/4065509/pexels-photo-4065509.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

@@ -11017,8 +11017,6 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         'apikey': SUPABASE_ANON
                     },
                     body: JSON.stringify({
-                        user_id: currentUser.id,
-                        email: currentUser.email,
                         success_url: window.location.origin + '/?premium=success',
                         cancel_url: window.location.origin + '/?premium=canceled'
                     })
@@ -11057,8 +11055,6 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
-                        user_id: currentUser.id,
-                        email: currentUser.email,
                         return_url: window.location.origin
                     })
                 });

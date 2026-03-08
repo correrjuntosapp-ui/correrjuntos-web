@@ -1,5 +1,5 @@
-const STRAVA_CLIENT_ID = '199454';
-const STRAVA_CLIENT_SECRET = 'f176cbe4a5c51e9ba48b423406758f31e8451ca2';
+const STRAVA_CLIENT_ID = process.env.STRAVA_CLIENT_ID;
+const STRAVA_CLIENT_SECRET = process.env.STRAVA_CLIENT_SECRET;
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,6 +15,10 @@ export default async function handler(req, res) {
     }
 
     try {
+        if (!STRAVA_CLIENT_ID || !STRAVA_CLIENT_SECRET) {
+            return res.status(500).json({ error: 'Strava is not configured' });
+        }
+
         const { refresh_token } = req.body;
 
         if (!refresh_token) {

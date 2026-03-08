@@ -185,7 +185,7 @@
 {s:'sandbag-lunges-hyrox',t:'Los 11 Mejores Sandbags para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/sandbag-hero.jpg'},
 {s:'kettlebells-farmer-carry-hyrox',t:'Las 11 Mejores Kettlebells para Farmer\u2019s Carry',c:'Atleta H\u00edbrido',i:'/blog/img/kettlebell-hero.jpg'},
 {s:'entrenar-skierg-row-hyrox',t:'C\u00f3mo Entrenar SkiErg y Remo para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/skierg-hero.jpg'},
-{s:'rodillo-vs-pistola-masaje-recuperacion',t:'Rodillo vs Pistola de Masaje: Cu\u00e1l Elegir',c:'Atleta H\u00edbrido',i:'https://images.pexels.com/photos/5473182/pexels-photo-5473182.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
+{s:'rodillo-vs-pistola-masaje-recuperacion',t:'Los 11 Mejores Rodillos y Pistolas de Masaje',c:'Atleta H\u00edbrido',i:'/blog/img/roller-hero.jpg'}
   ];
 
   var DB_EN=[

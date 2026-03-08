@@ -84,6 +84,7 @@
 {s:'lamparas-frontales-running',t:'7 Mejores L\u00e1mparas Frontales para Running',c:'Equipamiento',i:'https://images.pexels.com/photos/29300647/pexels-photo-29300647.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mallas-running',t:'10 Mejores Mallas para Running',c:'Equipamiento',i:'https://images.pexels.com/photos/8454900/pexels-photo-8454900.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'material-trail-running',t:'Material Imprescindible para Trail Running',c:'Equipamiento',i:'https://images.pexels.com/photos/2330502/pexels-photo-2330502.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'mejores-bastones-trail-running',t:'Los 10 Mejores Bastones para Trail Running 2026',c:'Trail',i:'/blog/img/bastones-anykuu.jpg'},
 {s:'mejor-hora-para-correr',t:'\u00bfCu\u00e1l Es la Mejor Hora para Correr?',c:'Entrenamiento',i:'https://images.pexels.com/photos/28735804/pexels-photo-28735804.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejor-reloj-gps-running-calidad-precio',t:'Mejor Reloj GPS Calidad-Precio',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/5037319/pexels-photo-5037319.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-apps-running',t:'10 Mejores Apps para Correr Gratis',c:'Entrenamiento',i:'https://images.pexels.com/photos/4426517/pexels-photo-4426517.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

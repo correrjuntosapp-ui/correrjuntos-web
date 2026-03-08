@@ -101,6 +101,8 @@
 {s:'mejores-rutas-correr-valencia',t:'Mejores Rutas para Correr en Valencia',c:'Rutas',i:'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-bebidas-hidratacion-running',t:'10 Mejores Bebidas de Hidrataci\u00f3n Running',c:'Suplementaci\u00f3n',i:'/blog/img/bebidas-hidratacion-running.jpg'},
 {s:'mejores-geles-energeticos-running',t:'10 Mejores Geles Energ\u00e9ticos Running',c:'Suplementaci\u00f3n',i:'/blog/img/geles-energeticos-running.jpg'},
+{s:'mejores-bcaas-runners',t:'8 Mejores BCAAs para Runners',c:'Suplementaci\u00f3n',i:'https://images.pexels.com/photos/3683098/pexels-photo-3683098.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'mejores-colagenos-runners',t:'8 Mejores Col\u00e1genos para Runners',c:'Suplementaci\u00f3n',i:'https://images.pexels.com/photos/4021779/pexels-photo-4021779.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-magnesios-runners',t:'8 Mejores Magnesios para Runners',c:'Suplementaci\u00f3n',i:'https://images.pexels.com/photos/3683098/pexels-photo-3683098.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-multivitaminicos-runners',t:'8 Mejores Multivitam\u00ednicos para Runners',c:'Suplementaci\u00f3n',i:'https://images.pexels.com/photos/3683098/pexels-photo-3683098.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-omega-3-runners',t:'10 Mejores Omega 3 para Runners',c:'Suplementaci\u00f3n',i:'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

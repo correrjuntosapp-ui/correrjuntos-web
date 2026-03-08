@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
 // src/config/strava.ts
 export const STRAVA_CONFIG = {
   CLIENT_ID: '199454',
-  CLIENT_SECRET: 'REDACTED_STRAVA_CLIENT_SECRET_OLD',
+  CLIENT_SECRET: process.env.STRAVA_CLIENT_SECRET,
   REDIRECT_URI: 'correrjuntos://strava-callback',
   AUTH_URL: 'https://www.strava.com/oauth/authorize',
   SCOPES: 'read,activity:read_all',
@@ -598,11 +598,11 @@ npx expo install expo-web-browser expo-linking @react-native-picker/picker
 
 ### Credenciales Strava
 - **Client ID:** `199454`
-- **Client Secret:** `REDACTED_STRAVA_CLIENT_SECRET_OLD`
+- **Client Secret:** configurado solo en variable de entorno `STRAVA_CLIENT_SECRET`
 - **Estado:** ⏳ Pendiente verificación (7-10 días)
 
 ### Credenciales Stripe
-- **Webhook Secret:** `REDACTED_STRIPE_WEBHOOK_DEAD`
+- **Webhook Secret:** configurado solo en variable de entorno `STRIPE_WEBHOOK_SECRET`
 - **Modo:** TEST (cambiar a producción cuando esté listo)
 
 ---

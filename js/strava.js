@@ -36,16 +36,13 @@
                 showToast('Conectando con Strava...', 'info');
 
                 // Intercambiar código por tokens directamente con Strava
-                const response = await fetch('https://www.strava.com/oauth/token', {
+                const response = await fetch('/api/strava-auth', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        client_id: STRAVA_CLIENT_ID,
-                        client_secret: 'REDACTED_STRAVA_CLIENT_SECRET_OLD',
-                        code: code,
-                        grant_type: 'authorization_code'
+                        code: code
                     })
                 });
 
@@ -130,16 +127,13 @@
         if (!stravaConnection) return;
 
         try {
-            const response = await fetch('https://www.strava.com/oauth/token', {
+            const response = await fetch('/api/strava-refresh', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    client_id: STRAVA_CLIENT_ID,
-                    client_secret: 'REDACTED_STRAVA_CLIENT_SECRET_OLD',
-                    refresh_token: stravaConnection.refresh_token,
-                    grant_type: 'refresh_token'
+                    refresh_token: stravaConnection.refresh_token
                 })
             });
 

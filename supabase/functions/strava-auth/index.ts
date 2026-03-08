@@ -3,8 +3,8 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
-const STRAVA_CLIENT_ID = '199454';
-const STRAVA_CLIENT_SECRET = 'REDACTED_STRAVA_CLIENT_SECRET_OLD';
+const STRAVA_CLIENT_ID = Deno.env.get('STRAVA_CLIENT_ID') || '';
+const STRAVA_CLIENT_SECRET = Deno.env.get('STRAVA_CLIENT_SECRET') || '';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -18,6 +18,13 @@ serve(async (req) => {
   }
 
   try {
+    if (!STRAVA_CLIENT_ID || !STRAVA_CLIENT_SECRET) {
+      return new Response(
+        JSON.stringify({ error: 'Strava is not configured' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
     const { code } = await req.json()
 
     if (!code) {

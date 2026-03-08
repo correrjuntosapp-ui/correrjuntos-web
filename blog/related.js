@@ -72,7 +72,7 @@
 {s:'garmin-venu-3-review',t:'Garmin Venu 3: Review para Runners',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/5037319/pexels-photo-5037319.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'gorras-running',t:'8 Mejores Gorras para Running',c:'Equipamiento',i:'https://images.pexels.com/photos/704857/pexels-photo-704857.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'grupos-correr-sevilla',t:'Grupos para Correr en Sevilla',c:'Rutas',i:'https://images.pexels.com/photos/3776816/pexels-photo-3776816.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'grupos-running-bilbao',t:'Grupos de Running en Bilbao',c:'Rutas',i:'https://images.pexels.com/photos/8612041/pexels-photo-8612041.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'grupos-running-bilbao',t:'Grupos de Running en Bilbao',c:'Rutas',i:'/blog/img/grupos-running-bilbao.webp'},
 {s:'grupos-running-madrid-principiantes',t:'Grupos de Running en Madrid para Principiantes',c:'Rutas',i:'https://images.pexels.com/photos/7880090/pexels-photo-7880090.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'grupos-running-malaga',t:'Grupos de Running en M\u00e1laga',c:'Rutas',i:'/blog/img/grupos-running-malaga.jpg'},
 {s:'grupos-running-valencia',t:'Grupos de Running en Valencia',c:'Rutas',i:'/blog/img/grupos-running-valencia.jpg'},

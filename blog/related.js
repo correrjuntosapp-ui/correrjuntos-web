@@ -88,7 +88,7 @@
 {s:'mejor-reloj-gps-running-calidad-precio',t:'Mejor Reloj GPS Calidad-Precio',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/5037319/pexels-photo-5037319.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-apps-running',t:'10 Mejores Apps para Correr Gratis',c:'Entrenamiento',i:'https://images.pexels.com/photos/4426517/pexels-photo-4426517.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-auriculares-baratos-running',t:'8 Mejores Auriculares Baratos para Running',c:'Equipamiento',i:'https://images.pexels.com/photos/3757954/pexels-photo-3757954.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'mejores-auriculares-running',t:'Mejores Auriculares para Correr',c:'Equipamiento',i:'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'mejores-auriculares-running',t:'Mejores Auriculares para Correr',c:'Equipamiento',i:'/blog/img/shokz-openrun-pro-2.png'},
 {s:'mejores-creatinas-running',t:'10 Mejores Creatinas para Running',c:'Suplementaci\u00f3n',i:'https://images.pexels.com/photos/33921585/pexels-photo-33921585.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-garmin-running',t:'8 Mejores Relojes Garmin para Running',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/31775355/pexels-photo-31775355.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-rutas-correr-barcelona',t:'Mejores Rutas para Correr en Barcelona',c:'Rutas',i:'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
@@ -143,7 +143,7 @@
 {s:'seguridad-trail-running',t:'Seguridad en Trail Running: Gu\u00eda Esencial',c:'Trail',i:'https://images.pexels.com/photos/3764014/pexels-photo-3764014.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'snacks-energeticos-running',t:'Los Mejores Snacks Energ\u00e9ticos para Running',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'soledad-del-runner',t:'La Soledad del Runner',c:'Entrenamiento',i:'https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'shokz-openrun-pro-2-review',t:'Shokz OpenRun Pro 2: Review Completa',c:'Equipamiento',i:'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'shokz-openrun-pro-2-review',t:'Shokz OpenRun Pro 2: Review Completa',c:'Equipamiento',i:'/blog/img/shokz-openrun-pro-2.png'},
 {s:'smartwatch-vs-reloj-gps-running',t:'Smartwatch vs Reloj GPS: \u00bfCu\u00e1l Necesitas?',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'strava-vs-garmin-connect',t:'Strava vs Garmin Connect: Comparativa',c:'Entrenamiento',i:'https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'tendinitis-aquiles-running',t:'Tendinitis de Aquiles en Runners',c:'Salud',i:'https://images.pexels.com/photos/4056832/pexels-photo-4056832.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
@@ -220,7 +220,7 @@
 {s:'best-trail-running-shoes',t:'10 Best Trail Running Shoes 2026',c:'Zapatillas',i:'https://images.pexels.com/photos/31721671/pexels-photo-31721671.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-time-to-run',t:'Best Time of Day to Run: Morning vs Evening',c:'Entrenamiento',i:'https://images.pexels.com/photos/28735804/pexels-photo-28735804.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-running-apps',t:'10 Best Free Running Apps 2026',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/4426517/pexels-photo-4426517.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'best-running-headphones',t:'Best Running Headphones 2026',c:'Equipamiento',i:'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'best-running-headphones',t:'Best Running Headphones 2026',c:'Equipamiento',i:'/blog/img/shokz-openrun-pro-2.png'},
 {s:'best-running-routes-barcelona',t:'Best Running Routes in Barcelona',c:'Rutas',i:'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-running-routes-madrid',t:'10 Best Running Routes in Madrid',c:'Rutas',i:'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-running-routes-malaga',t:'10 Best Running Routes in Malaga',c:'Rutas',i:'https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
@@ -311,7 +311,7 @@
 {s:'safety-running-with-strangers',t:'Is It Safe to Run With Strangers?',c:'Entrenamiento',i:'https://images.pexels.com/photos/1727717/pexels-photo-1727717.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'salomon-speedcross-6-vs-hoka-speedgoat-6',t:'Salomon Speedcross 6 vs Hoka Speedgoat 6',c:'Trail',i:'https://images.pexels.com/photos/1040427/pexels-photo-1040427.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'shin-splints-running',t:'Shin Splints: Causes & Treatment',c:'Salud',i:'https://images.pexels.com/photos/7298421/pexels-photo-7298421.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'shokz-openrun-pro-2-review',t:'Shokz OpenRun Pro 2: Full Review',c:'Equipamiento',i:'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'shokz-openrun-pro-2-review',t:'Shokz OpenRun Pro 2: Full Review',c:'Equipamiento',i:'/blog/img/shokz-openrun-pro-2.png'},
 {s:'smartwatch-vs-gps-watch-running',t:'Smartwatch vs GPS Watch for Running',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/3999644/pexels-photo-3999644.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'start-running-when-embarrassed',t:'Start Running When Embarrassed',c:'Entrenamiento',i:'https://images.pexels.com/photos/6551282/pexels-photo-6551282.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'start-trail-running',t:'How to Start Trail Running',c:'Trail',i:'https://images.pexels.com/photos/8949023/pexels-photo-8949023.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
@@ -379,13 +379,13 @@
     'Trail':'https://images.pexels.com/photos/8949023/pexels-photo-8949023.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
     'Nutrici\u00f3n':'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
     'Zapatillas':'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
-    'Equipamiento':'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
+    'Equipamiento':'/blog/img/shokz-openrun-pro-2.png',
     'Tecnolog\u00eda':'https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
     'Salud':'https://images.pexels.com/photos/4056832/pexels-photo-4056832.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
     'Rutas':'https://images.pexels.com/photos/4652250/pexels-photo-4652250.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60',
     'Atleta H\u00edbrido':'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'
   };
-  var DEFAULT_IMG = 'https://images.pexels.com/photos/4397831/pexels-photo-4397831.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60';
+  var DEFAULT_IMG = '/blog/img/shokz-openrun-pro-2.png';
 
   /* ── CSS ── */
   var css = document.createElement('style');

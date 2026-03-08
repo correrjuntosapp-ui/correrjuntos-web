@@ -105,6 +105,22 @@
             return flags[(countryName || '').toLowerCase()] || '🌍';
         }
 
+        function escapeLocationText(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function escapeInlineArg(value) {
+            return String(value || '')
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/\r?\n/g, ' ');
+        }
+
         function renderUbicacionDropdown(results) {
             const dropdown = document.getElementById('reg-ubicacion-dropdown');
 
@@ -121,11 +137,11 @@
 
                 return `
                     <div class="p-3 hover:bg-slate-700 cursor-pointer flex items-center gap-3 transition-colors border-b border-slate-700 last:border-0"
-                         onclick="selectUbicacionRegistro('${loc.place}', '${loc.admin1}', '${pais}')">
+                         onclick="selectUbicacionRegistro('${escapeInlineArg(loc.place)}', '${escapeInlineArg(loc.admin1)}', '${escapeInlineArg(pais)}')">
                         <span class="text-2xl">${flag}</span>
                         <div class="flex-1">
-                            <div class="font-semibold text-white">${loc.place}</div>
-                            <div class="text-xs text-gray-400">${loc.admin1} · ${typeLabel}</div>
+                            <div class="font-semibold text-white">${escapeLocationText(loc.place)}</div>
+                            <div class="text-xs text-gray-400">${escapeLocationText(loc.admin1)} - ${escapeLocationText(typeLabel)}</div>
                         </div>
                         <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -4493,9 +4509,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             dropdown.innerHTML = results.map(loc => `
                 <div class="p-3 hover:bg-slate-700 cursor-pointer border-b border-slate-700 last:border-0"
-                     onclick="selectOnboardUbicacion('${loc.place}', '${loc.admin1 || ''}', '${loc.country}')">
-                    <div class="font-medium text-white">${loc.place}</div>
-                    <div class="text-xs text-gray-400">${loc.admin1 || ''} · ${loc.country === 'ES' ? 'España' : 'Portugal'}</div>
+                     onclick="selectOnboardUbicacion('${escapeInlineArg(loc.place)}', '${escapeInlineArg(loc.admin1 || '')}', '${escapeInlineArg(loc.country)}')">
+                    <div class="font-medium text-white">${escapeLocationText(loc.place)}</div>
+                    <div class="text-xs text-gray-400">${escapeLocationText(loc.admin1 || '')} - ${loc.country === 'ES' ? 'Espana' : 'Portugal'}</div>
                 </div>
             `).join('');
             dropdown.classList.remove('hidden');

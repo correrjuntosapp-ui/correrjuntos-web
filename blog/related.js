@@ -76,7 +76,7 @@
 {s:'grupos-running-madrid-principiantes',t:'Grupos de Running en Madrid para Principiantes',c:'Rutas',i:'https://images.pexels.com/photos/7880090/pexels-photo-7880090.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'grupos-running-malaga',t:'Grupos de Running en M\u00e1laga',c:'Rutas',i:'/blog/img/grupos-running-malaga.jpg'},
 {s:'grupos-running-valencia',t:'Grupos de Running en Valencia',c:'Rutas',i:'/blog/img/grupos-running-valencia.jpg'},
-{s:'grupos-running-zaragoza',t:'Grupos de Running en Zaragoza',c:'Rutas',i:'https://images.pexels.com/photos/3776816/pexels-photo-3776816.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'grupos-running-zaragoza',t:'Grupos de Running en Zaragoza',c:'Rutas',i:'/blog/img/grupos-running-zaragoza.webp'},
 {s:'hidratacion-running-guia-completa',t:'Hidrataci\u00f3n para Running: Gu\u00eda Completa',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/2611917/pexels-photo-2611917.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'hoka-clifton-9-vs-bondi-8',t:'Hoka Clifton 9 vs Bondi 8',c:'Zapatillas',i:'https://images.pexels.com/photos/3763869/pexels-photo-3763869.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'hierro-para-corredores',t:'Hierro para Corredores: C\u00f3mo Evitar la Anemia',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

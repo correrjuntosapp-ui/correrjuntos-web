@@ -167,7 +167,7 @@
 {s:'cuanto-tardo-en-correr-5km',t:'Cu\u00e1nto se Tarda en Correr 5K por Edad',c:'Entrenamiento',i:'https://images.pexels.com/photos/2524739/pexels-photo-2524739.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'diferencia-zapatillas-running-normales',t:'Diferencia Zapatillas Running vs Normales',c:'Equipamiento',i:'/blog/img/elegir-zapatillas-running.jpg'},
 {s:'empezar-a-correr-despues-de-los-40',t:'Empezar a Correr Despu\u00e9s de los 40',c:'Salud',i:'https://images.pexels.com/photos/3764554/pexels-photo-3764554.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'empezar-a-correr-despues-de-los-50',t:'Empezar a Correr Despu\u00e9s de los 50',c:'Salud',i:'https://images.pexels.com/photos/3764554/pexels-photo-3764554.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'empezar-a-correr-despues-de-los-50',t:'Empezar a Correr Despu\u00e9s de los 50',c:'Salud',i:'/blog/img/empezar-correr-50.jpg'},
 {s:'flato-dolor-costado-al-correr',t:'Flato al Correr: Causas y Soluciones',c:'Salud',i:'https://images.pexels.com/photos/3621185/pexels-photo-3621185.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-superficies-para-correr',t:'Mejores Superficies para Correr',c:'Entrenamiento',i:'https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'puedo-correr-todos-los-dias',t:'\u00bfPuedo Correr Todos los D\u00edas?',c:'Entrenamiento',i:'https://images.pexels.com/photos/4426325/pexels-photo-4426325.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
@@ -351,7 +351,7 @@
 {s:'side-stitch-while-running',t:'Side Stitch While Running: Causes and Fixes',c:'Salud',i:'https://images.pexels.com/photos/3621185/pexels-photo-3621185.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'sore-muscles-after-running',t:'Sore Muscles After Running: Recovery Guide',c:'Salud',i:'https://images.pexels.com/photos/3771071/pexels-photo-3771071.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'start-running-after-40',t:'Start Running After 40: Complete Guide',c:'Salud',i:'https://images.pexels.com/photos/3764554/pexels-photo-3764554.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'start-running-after-50',t:'Start Running After 50: Complete Guide',c:'Salud',i:'https://images.pexels.com/photos/3764554/pexels-photo-3764554.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'start-running-after-50',t:'Start Running After 50: Complete Guide',c:'Salud',i:'/blog/img/empezar-correr-50.jpg'},
 {s:'treadmill-vs-outdoor-running',t:'Treadmill vs Outdoor Running',c:'Entrenamiento',i:'https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'what-to-wear-running-by-temperature',t:'What to Wear Running by Temperature',c:'Equipamiento',i:'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
   ];

@@ -1,9 +1,49 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+// ── CORS: restrict to known origins ──
+const ALLOWED_ORIGINS = [
+  'https://correrjuntos.com',
+  'https://www.correrjuntos.com',
+  'http://localhost:3000',
+  'http://localhost:5173',
+]
+
+function getCorsHeaders(req: Request) {
+  const origin = req.headers.get('Origin') || ''
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  }
+}
+
+// ── Auth: verify caller is authenticated (JWT or service role) ──
+async function verifyAuth(req: Request): Promise<{ authorized: boolean; userId?: string }> {
+  const authHeader = req.headers.get('Authorization')
+  if (!authHeader?.startsWith('Bearer ')) {
+    return { authorized: false }
+  }
+
+  const token = authHeader.replace('Bearer ', '')
+
+  // Check if it's the service role key (server-to-server calls)
+  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+  if (token === serviceRoleKey) {
+    return { authorized: true, userId: 'service' }
+  }
+
+  // Otherwise verify as user JWT
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')!
+  const supabaseAnon = Deno.env.get('SUPABASE_ANON_KEY') || Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+  const supabase = createClient(supabaseUrl, supabaseAnon)
+  const { data: { user }, error } = await supabase.auth.getUser(token)
+
+  if (error || !user) {
+    return { authorized: false }
+  }
+
+  return { authorized: true, userId: user.id }
 }
 
 /**
@@ -97,8 +137,19 @@ async function sendWebPush(subscription: WebSubscription, payload: PushPayload):
 }
 
 Deno.serve(async (req) => {
+  const corsHeaders = getCorsHeaders(req)
+
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
+  }
+
+  // ── Auth check ──
+  const auth = await verifyAuth(req)
+  if (!auth.authorized) {
+    return new Response(
+      JSON.stringify({ error: 'Unauthorized' }),
+      { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    )
   }
 
   try {

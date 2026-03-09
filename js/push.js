@@ -1,6 +1,6 @@
 // ========================= PUSH NOTIFICATIONS =========================
 (function(){
-    const VAPID_PUBLIC_KEY = "BJ_bOVOJcGPEdqUOX9EjYg-5gomGPShP_Kku4ewQHnAgeH1Pw8msO9OtYRxyRqUwt9es8F7WDcc7mqI7gIwVu_0";
+    const VAPID_PUBLIC_KEY = "BMJxPir7IPDJHeKEfA1BH6F3X-ltnFm6xoKBAj2u02DjYLAuzFb3xQ4O2WB9eNsuRnPg7xB4GzVGn5AfDfvGZJQ";
 
     // Convertir VAPID key a Uint8Array
     function urlBase64ToUint8Array(base64String) {

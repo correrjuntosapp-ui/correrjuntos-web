@@ -250,7 +250,7 @@
       }
 
       // ========== PUSH NOTIFICATIONS ==========
-      const VAPID_PUBLIC_KEY = 'BJ_bOVOJcGPEdqUOX9EjYg-5gomGPShP_Kku4ewQHnAgeH1Pw8msO9OtYRxyRqUwt9es8F7WDcc7mqI7gIwVu_0';
+      const VAPID_PUBLIC_KEY = 'BMJxPir7IPDJHeKEfA1BH6F3X-ltnFm6xoKBAj2u02DjYLAuzFb3xQ4O2WB9eNsuRnPg7xB4GzVGn5AfDfvGZJQ';
 
       // Comprobar si el navegador soporta notificaciones
       function isPushSupported() {

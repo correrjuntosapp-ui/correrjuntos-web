@@ -5796,7 +5796,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     className:'',iconSize:[36,36],iconAnchor:[18,18]
                 });
                 const m=L.marker([q.lat,q.lng],{icon}).addTo(map)
-                  .bindPopup(`<div><b>${q.titulo}</b><br>📍 ${q.ubicacion}<br>📅 ${formatDate(q.fecha)}</div>`);
+                  .bindPopup(`<div><b>${escapeHtml(q.titulo)}</b><br>📍 ${escapeHtml(q.ubicacion)}<br>📅 ${formatDate(q.fecha)}</div>`);
                 markers.push(m);
             });
 
@@ -7861,7 +7861,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                   </div>
 
                   <!-- ═══ SECCIÓN 2: TÍTULO ═══ -->
-                  <h3 class="text-xl font-bold text-white mb-2 leading-tight line-clamp-2" title="${escapeHtml(q.titulo)}">${q.titulo}</h3>
+                  <h3 class="text-xl font-bold text-white mb-2 leading-tight line-clamp-2" title="${escapeHtml(q.titulo)}">${escapeHtml(q.titulo)}</h3>
 
                   <!-- ═══ SECCIÓN 3: UBICACIÓN ═══ -->
                   <div class="flex items-center gap-2 mb-5">
@@ -7889,7 +7889,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                   <!-- ═══ SECCIÓN 5: DESCRIPCIÓN ═══ -->
                   ${q.descripcion ? `
-                  <p class="text-sm text-gray-400 line-clamp-2 mb-5">${q.descripcion}</p>` : ''}
+                  <p class="text-sm text-gray-400 line-clamp-2 mb-5">${escapeHtml(q.descripcion)}</p>` : ''}
 
                   <!-- ═══ SECCIÓN 5b: URGENCIA ═══ -->
                   ${urgencyBadge}
@@ -11474,13 +11474,13 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               '<img src="' + photo + '" alt="" class="w-12 h-12 rounded-full object-cover flex-shrink-0 border-2 border-slate-700">' +
               '<div class="flex-1 min-w-0">' +
                 '<div class="flex items-center justify-between">' +
-                  '<h4 class="font-bold text-white text-sm truncate">' + name + verified + '</h4>' +
+                  '<h4 class="font-bold text-white text-sm truncate">' + escapeHtml(name) + verified + '</h4>' +
                   '<span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:' + scoreColor + '20;color:' + scoreColor + '">' + score + '%</span>' +
                 '</div>' +
                 (ritmo ? '<div class="flex items-center gap-1 mt-1"><span class="text-gray-500 text-xs">⏱️</span><span class="text-gray-300 text-xs">' + ritmo + '</span>' + (nivel ? '<span class="text-gray-600 text-xs">·</span><span class="text-gray-400 text-xs">' + nivel + '</span>' : '') + '</div>' : '') +
                 (dias || horario ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs">📅</span><span class="text-gray-300 text-xs">' + dias + (horario ? ' ' + horario.toLowerCase() : '') + '</span></div>' : '') +
                 (objetivo ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs">🎯</span><span class="text-gray-400 text-xs">' + objetivo + '</span></div>' : '') +
-                (runner.bio_matching ? '<p class="text-gray-500 text-xs mt-1 italic">"' + runner.bio_matching.substring(0,100) + '"</p>' : '') +
+                (runner.bio_matching ? '<p class="text-gray-500 text-xs mt-1 italic">"' + escapeHtml(runner.bio_matching.substring(0,100)) + '"</p>' : '') +
               '</div>' +
             '</div>' +
             '<div class="mt-3 flex justify-end">' +
@@ -11567,8 +11567,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               var photo = p.photo_url || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23334155" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%2394a3b8" font-size="40">' + ((p.nombre||'?').charAt(0).toUpperCase()) + '</text></svg>';
               return '<div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 flex items-center gap-3">' +
                 '<img src="' + photo + '" class="w-10 h-10 rounded-full object-cover border border-slate-700">' +
-                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + (p.nombre || 'Runner') + '</h4>' +
-                '<p class="text-gray-500 text-xs">' + (p.ciudad || '') + (p.nivel ? ' · ' + p.nivel : '') + '</p></div>' +
+                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + escapeHtml(p.nombre || 'Runner') + '</h4>' +
+                '<p class="text-gray-500 text-xs">' + escapeHtml(p.ciudad || '') + (p.nivel ? ' · ' + escapeHtml(p.nivel) : '') + '</p></div>' +
                 '<div class="flex gap-2">' +
                   '<button onclick="respondMatchRequest(\'' + r.id + '\',\'accepted\')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30">' + (isEN ? 'Accept' : 'Aceptar') + '</button>' +
                   '<button onclick="respondMatchRequest(\'' + r.id + '\',\'rejected\')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30">' + (isEN ? 'Decline' : 'Rechazar') + '</button>' +
@@ -11588,8 +11588,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               var photo = p.photo_url || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23334155" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%2394a3b8" font-size="40">' + ((p.nombre||'?').charAt(0).toUpperCase()) + '</text></svg>';
               return '<div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 flex items-center gap-3">' +
                 '<img src="' + photo + '" class="w-10 h-10 rounded-full object-cover border border-slate-700">' +
-                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + (p.nombre || 'Runner') + '</h4>' +
-                '<p class="text-gray-500 text-xs">' + (p.ciudad || '') + '</p></div>' +
+                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + escapeHtml(p.nombre || 'Runner') + '</h4>' +
+                '<p class="text-gray-500 text-xs">' + escapeHtml(p.ciudad || '') + '</p></div>' +
                 '<span class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400">' + (isEN ? 'Pending' : 'Pendiente') + '</span>' +
               '</div>';
             }).join('');
@@ -11608,8 +11608,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
               var photo = p.photo_url || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23334155" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%2394a3b8" font-size="40">' + ((p.nombre||'?').charAt(0).toUpperCase()) + '</text></svg>';
               return '<div class="bg-green-500/5 border border-green-500/20 rounded-xl p-3 flex items-center gap-3">' +
                 '<img src="' + photo + '" class="w-10 h-10 rounded-full object-cover border-2 border-green-500/30">' +
-                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + (p.nombre || 'Runner') + '</h4>' +
-                '<p class="text-gray-500 text-xs">' + (p.ciudad || '') + (p.nivel ? ' · ' + p.nivel : '') + '</p></div>' +
+                '<div class="flex-1"><h4 class="font-bold text-white text-sm">' + escapeHtml(p.nombre || 'Runner') + '</h4>' +
+                '<p class="text-gray-500 text-xs">' + escapeHtml(p.ciudad || '') + (p.nivel ? ' · ' + escapeHtml(p.nivel) : '') + '</p></div>' +
                 '<span class="px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400">✓ Match</span>' +
               '</div>';
             }).join('');

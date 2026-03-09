@@ -2,7 +2,10 @@ const STRAVA_CLIENT_ID = process.env.STRAVA_CLIENT_ID;
 const STRAVA_CLIENT_SECRET = process.env.STRAVA_CLIENT_SECRET;
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    const allowedOrigins = ['https://correrjuntos.com', 'https://www.correrjuntos.com', 'http://localhost:3000', 'http://localhost:5173'];
+    const origin = req.headers.origin || '';
+    const corsOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+    res.setHeader('Access-Control-Allow-Origin', corsOrigin);
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

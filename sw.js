@@ -1,9 +1,10 @@
 // Service Worker - CorrerJuntos PWA
-const CACHE_NAME = 'correrjuntos-v29';
+const CACHE_NAME = 'correrjuntos-v30';
 const OFFLINE_URL = '/offline.html';
 
 // Archivos a cachear (NO incluir index.html para que siempre cargue la versión más reciente)
 const STATIC_ASSETS = [
+  '/offline.html',
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
@@ -78,7 +79,7 @@ self.addEventListener('fetch', (event) => {
           }
           // Si es una navegación, mostrar página offline
           if (event.request.mode === 'navigate') {
-            return caches.match('/');
+            return caches.match(OFFLINE_URL);
           }
           return new Response('Offline', { status: 503 });
         });

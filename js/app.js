@@ -7367,7 +7367,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             let query = window.supabaseClient
               .from('quedadas')
               .select(`${baseCols}${premiumCols},${joinCols}`)
-              .order('created_at', { ascending: false });
+              .order('created_at', { ascending: false })
+              .limit(100);
 
             // Filtrar contenido seed solo para usuarios existentes (no nuevos)
             if (!isNewUser()) {
@@ -7382,7 +7383,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 let fallbackQuery = window.supabaseClient
                     .from('quedadas')
                     .select(`${baseCols},${joinCols}`)
-                    .order('created_at', { ascending: false });
+                    .order('created_at', { ascending: false })
+                    .limit(100);
                 if (!isNewUser()) fallbackQuery = fallbackQuery.eq('es_seed', false);
                 const fallback = await fallbackQuery;
                 data = fallback.data;

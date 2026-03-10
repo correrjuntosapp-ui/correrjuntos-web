@@ -8,6 +8,48 @@
             document.head.appendChild(s);
         }
 
+        // C1: Load strava.js on-demand (returns promise)
+        function ensureStravaLoaded() {
+            return new Promise(function(resolve) {
+                if (typeof window.connectStrava === 'function' && window._stravaRealLoaded) { resolve(); return; }
+                lazyLoadScript('/js/strava.js');
+                var attempts = 0;
+                var check = setInterval(function() {
+                    attempts++;
+                    if (typeof window.handleStravaCallback === 'function' || attempts > 50) {
+                        clearInterval(check);
+                        window._stravaRealLoaded = true;
+                        resolve();
+                    }
+                }, 100);
+            });
+        }
+
+        // C2: Load push.js on-demand (returns promise)
+        function ensurePushLoaded() {
+            return new Promise(function(resolve) {
+                if (typeof window.requestPushPermission === 'function') { resolve(); return; }
+                lazyLoadScript('/js/push.js');
+                var attempts = 0;
+                var check = setInterval(function() {
+                    attempts++;
+                    if (typeof window.requestPushPermission === 'function' || attempts > 50) {
+                        clearInterval(check);
+                        resolve();
+                    }
+                }, 100);
+            });
+        }
+
+        // C5: Unified country-code → flag map (was duplicated 3x)
+        const COUNTRY_CODE_FLAGS = {
+            'ES': '🇪🇸', 'PT': '🇵🇹', 'AR': '🇦🇷', 'MX': '🇲🇽', 'CO': '🇨🇴', 'PE': '🇵🇪',
+            'CL': '🇨🇱', 'EC': '🇪🇨', 'VE': '🇻🇪', 'UY': '🇺🇾', 'PY': '🇵🇾', 'BO': '🇧🇴',
+            'CR': '🇨🇷', 'PA': '🇵🇦', 'GT': '🇬🇹', 'HN': '🇭🇳', 'SV': '🇸🇻', 'NI': '🇳🇮',
+            'CU': '🇨🇺', 'DO': '🇩🇴', 'PR': '🇵🇷', 'US': '🇺🇸', 'FR': '🇫🇷', 'IT': '🇮🇹',
+            'DE': '🇩🇪', 'GB': '🇬🇧', 'BR': '🇧🇷', 'PH': '🇵🇭', 'GQ': '🇬🇶'
+        };
+
 // ========================= MAIN APP =========================
         // CITIES, PROVINCIAS_ES, DISTRITOS_PT, POBLACIONES, LOCATIONS_ES_PT
         // → cargados desde /data/geo-data.js
@@ -452,117 +494,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             }
         }
 
-        function renderMatchingPreview() {
-            const section = document.getElementById('matching-preview-section');
-            const list = document.getElementById('matching-preview-list');
-            if (!section || !list || !currentUser || !currentUser.ciudad) return;
-            // Get unique runners from quedadas in same city
-            const runnerMap = new Map();
-            const today = new Date().toISOString().split('T')[0];
-            quedadas.filter(q => q.ciudad && q.ciudad.toLowerCase() === currentUser.ciudad.toLowerCase() && q.fecha >= today).forEach(q => {
-                (q.asistentes_info || []).forEach(a => {
-                    if (a.user_id !== currentUser.id && !runnerMap.has(a.user_id)) {
-                        runnerMap.set(a.user_id, { id: a.user_id, nombre: a.nombre || 'Runner', photo: a.photo_url || '', nivel: q.nivel || '' });
-                    }
-                });
-            });
-            const runners = Array.from(runnerMap.values()).slice(0, 4);
-            if (runners.length === 0) return;
-            section.classList.remove('hidden');
-            list.innerHTML = runners.map(r => {
-                const initials = (r.nombre || 'R').charAt(0).toUpperCase();
-                const photo = r.photo ? `<img src="${r.photo}" class="w-10 h-10 rounded-full object-cover" alt="" loading="lazy"/>` : `<div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-bold text-white text-sm">${initials}</div>`;
-                return `<div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-center cursor-pointer hover:border-orange-500/30 transition" onclick="openUserProfile('${r.id}'); trackPremiumCTA('matching')">
-                    <div class="flex justify-center mb-2">${photo}</div>
-                    <p class="text-sm font-semibold text-white truncate">${r.nombre}</p>
-                    <p class="text-xs text-gray-500">${r.nivel || currentUser.ciudad}</p>
-                    <button class="mt-2 text-xs px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 font-semibold hover:bg-orange-500/30 transition">Conectar</button>
-                </div>`;
-            }).join('');
-        }
+        // C4: renderMatchingPreview → moved to /js/premium-features.js
 
-        function renderSmartAlertsPreview() {
-            const section = document.getElementById('smart-alerts-section');
-            const list = document.getElementById('alerts-preview-list');
-            const countEl = document.getElementById('alerts-count');
-            if (!section || !list || !currentUser) return;
-            if (getEffectivePlan() === 'premium') { section.classList.add('hidden'); return; }
-            // Find matching quedadas by city and level
-            const today = new Date().toISOString().split('T')[0];
-            const matching = quedadas.filter(q =>
-                q.fecha >= today && q.ciudad &&
-                q.ciudad.toLowerCase() === (currentUser.ciudad || '').toLowerCase() &&
-                (!currentUser.nivel || !q.nivel || q.nivel === currentUser.nivel || q.nivel === 'Todos')
-            ).slice(0, 3);
-            if (matching.length === 0) return;
-            section.classList.remove('hidden');
-            if (countEl) countEl.textContent = matching.length;
-            list.innerHTML = matching.map((q, i) => {
-                if (i === 0) {
-                    return `<div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-800/40 border border-slate-700/50">
-                        <span class="text-orange-400">🏃</span>
-                        <div class="flex-1 min-w-0">
-                            <p class="text-sm text-white font-semibold truncate">${q.titulo}</p>
-                            <p class="text-xs text-gray-500">${q.hora || ''} · ${q.nivel || ''}</p>
-                        </div>
-                        <span class="text-xs text-green-400 font-semibold">${(q.asistentes_info || []).filter(a => a.status === 'confirmed' || !a.status).length} runners</span>
-                    </div>`;
-                }
-                return `<div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-800/40 border border-slate-700/50 opacity-50">
-                    <span class="text-gray-500">🔒</span>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm text-gray-500 font-semibold blur-sm">${q.titulo}</p>
-                        <p class="text-xs text-gray-600 blur-sm">${q.hora || ''}</p>
-                    </div>
-                </div>`;
-            }).join('');
-        }
-
-        // ========== PREMIUM PAYWALL COPY ==========
-        const PREMIUM_COPY = {
-            create_meetup_limit: {
-                icon: '📅', title: 'Crea quedadas ilimitadas', titleEN: 'Create unlimited runs',
-                bullets: ['Organiza tu propio grupo', 'Aparece primero en tu ciudad', 'Más visibilidad para tus quedadas'],
-                bulletsEN: ['Organize your own group', 'Appear first in your city', 'More visibility for your runs']
-            },
-            advanced_filters: {
-                icon: '🔍', title: 'Encuentra tu ritmo ideal', titleEN: 'Find your ideal pace',
-                bullets: ['Filtra por pace real', 'Evita grupos incompatibles', 'Ahorra tiempo y encuentra tu nivel'],
-                bulletsEN: ['Filter by real pace', 'Avoid incompatible groups', 'Save time and find your level']
-            },
-            direct_messages: {
-                icon: '💬', title: 'Mensajes privados', titleEN: 'Private messages',
-                bullets: ['Habla 1 a 1 con corredores', 'Coordina entrenamientos más fácil', 'Crea tu grupo estable'],
-                bulletsEN: ['Talk 1-on-1 with runners', 'Coordinate training easier', 'Build your stable group']
-            },
-            matching_preview: {
-                icon: '🏃', title: 'Encuentra runners compatibles', titleEN: 'Find compatible runners',
-                bullets: ['Filtros por ritmo real y nivel', 'Runners en tu zona y horario', 'Conecta y corre acompañado'],
-                bulletsEN: ['Filter by real pace and level', 'Runners in your area and schedule', 'Connect and run together']
-            },
-            smart_alerts: {
-                icon: '🔔', title: 'Alertas inteligentes', titleEN: 'Smart alerts',
-                bullets: ['Notificaciones de quedadas compatibles', 'Filtrado por nivel y distancia', 'No te pierdas tu quedada ideal'],
-                bulletsEN: ['Notifications for compatible runs', 'Filtered by level and distance', 'Never miss your ideal run']
-            }
-        };
-
-        function openPremiumModal(featureKey) {
-            const copy = PREMIUM_COPY[featureKey];
-            if (!copy) { openPremiumSales(); return; }
-            const isEN = currentLang === 'en';
-            const iconEl = document.getElementById('paywall-icon');
-            const titleEl = document.getElementById('paywall-title');
-            const bulletsEl = document.getElementById('paywall-bullets');
-            if (iconEl) iconEl.textContent = copy.icon;
-            if (titleEl) titleEl.textContent = isEN ? copy.titleEN : copy.title;
-            const bullets = isEN ? copy.bulletsEN : copy.bullets;
-            if (bulletsEl) bulletsEl.innerHTML = bullets.map(b =>
-                `<li class="flex items-start gap-2 text-gray-300 text-sm"><span class="text-green-400 mt-0.5">✓</span>${b}</li>`
-            ).join('');
-            openModal('modal-premium-paywall');
-            if (typeof gtag === 'function') gtag('event', 'premium_paywall_view', { feature: featureKey });
-        }
+        // C4: renderSmartAlertsPreview, PREMIUM_COPY, openPremiumModal → moved to /js/premium-features.js
         let currentFilter = 'country', sidebarView='communities', selectedCommunity=null, selectedTopic=null;
 
         // Stripe config
@@ -1260,167 +1194,15 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             }
         }
 
-        // ========== TOAST MEJORADO (Material Design) ==========
-        function showToast(msg, type = 'success', duration = 4000) {
-            // Crear contenedor si no existe
-            let container = document.querySelector('.toast-container');
-            if (!container) {
-                container = document.createElement('div');
-                container.className = 'toast-container';
-                document.body.appendChild(container);
-            }
+        // ========== TOAST → js/modules/toast.js ==========
 
-            // Iconos mejorados por tipo
-            const icons = {
-                success: '✅',
-                error: '❌',
-                info: 'ℹ️',
-                warning: '⚠️'
-            };
+        // ========== SKELETONS → js/modules/skeletons.js ==========
 
-            // Crear el toast
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.innerHTML = `
-                <span class="toast-icon">${icons[type] || '✅'}</span>
-                <span class="toast-message">${msg}</span>
-                <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
-            `;
+        // ========== CONFETTI → js/modules/confetti.js ==========
 
-            // Añadir al contenedor
-            container.appendChild(toast);
+        // ========== DARK MODE → js/modules/darkmode.js ==========
 
-            // Auto-dismiss
-            setTimeout(() => {
-                toast.classList.add('fade-out');
-                setTimeout(() => toast.remove(), 300);
-            }, duration);
-
-            // También actualizar el toast antiguo por compatibilidad
-            const oldToast = document.getElementById('toast');
-            const oldContent = document.getElementById('toast-content');
-            if (oldToast && oldContent) {
-                const colors = {success:'bg-green-500',error:'bg-red-500',info:'bg-blue-500',warning:'bg-yellow-500'};
-                const bg = colors[type] || 'bg-green-500';
-                oldContent.className = `px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2 ${bg} text-white`;
-                oldContent.innerHTML = `${icons[type] || '✅'} ${msg}`;
-                oldToast.classList.remove('hidden');
-                setTimeout(() => oldToast.classList.add('hidden'), duration);
-            }
-        }
-
-        // ========== SKELETON LOADERS ==========
-        function showSkeletons(containerId, count = 3) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            container.innerHTML = Array(count).fill(0).map(() => `
-                <div class="skeleton skeleton-card p-6 rounded-3xl">
-                    <div class="flex justify-between mb-4">
-                        <div class="skeleton skeleton-text" style="width:120px;"></div>
-                        <div class="skeleton skeleton-text" style="width:60px;"></div>
-                    </div>
-                    <div class="skeleton skeleton-text" style="width:80%;"></div>
-                    <div class="skeleton skeleton-text-sm" style="width:50%;"></div>
-                    <div class="flex gap-2 mt-4">
-                        <div class="skeleton skeleton-avatar"></div>
-                        <div class="skeleton skeleton-avatar"></div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // ========== CONFETTI CELEBRATION ==========
-        function showConfetti() {
-            const container = document.createElement('div');
-            container.className = 'confetti-container';
-            document.body.appendChild(container);
-
-            const colors = ['#f97316', '#ea580c', '#22c55e', '#3b82f6', '#a855f7', '#ec4899', '#facc15'];
-            const shapes = ['square', 'circle'];
-
-            for (let i = 0; i < 80; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
-                if (shapes[Math.floor(Math.random() * shapes.length)] === 'circle') {
-                    confetti.style.borderRadius = '50%';
-                }
-                container.appendChild(confetti);
-            }
-
-            setTimeout(() => container.remove(), 4000);
-        }
-
-        // ========== LIGHT/DARK MODE ==========
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            const iconEmoji = isLight ? '🌙' : '☀️';
-            const icon = document.getElementById('theme-icon');
-            const iconLanding = document.getElementById('theme-icon-landing');
-            if (icon) icon.textContent = iconEmoji;
-            if (iconLanding) iconLanding.textContent = iconEmoji;
-            // Actualizar aria-pressed: true = modo oscuro activo, false = modo claro
-            var darkActive = isLight ? 'false' : 'true';
-            document.querySelectorAll('[id^="theme-toggle-"]').forEach(function(btn){
-                btn.setAttribute('aria-pressed', darkActive);
-                btn.setAttribute('aria-label', isLight ? 'Activar modo oscuro' : 'Activar modo claro');
-            });
-            // Actualizar tiles del mapa al cambiar tema
-            if (typeof updateMapTiles === 'function') updateMapTiles();
-        }
-        function loadTheme() {
-            const saved = localStorage.getItem('theme');
-            if (saved !== 'dark') document.body.classList.add('light-mode');
-            const isLight = saved !== 'dark';
-            const iconEmoji = isLight ? '🌙' : '☀️';
-            const icon = document.getElementById('theme-icon');
-            const iconLanding = document.getElementById('theme-icon-landing');
-            if (icon) icon.textContent = iconEmoji;
-            if (iconLanding) iconLanding.textContent = iconEmoji;
-            // Inicializar aria-pressed: true = modo oscuro activo
-            var darkActive = isLight ? 'false' : 'true';
-            document.querySelectorAll('[id^="theme-toggle-"]').forEach(function(btn){
-                btn.setAttribute('aria-pressed', darkActive);
-                btn.setAttribute('aria-label', isLight ? 'Activar modo oscuro' : 'Activar modo claro');
-            });
-        }
-
-        // ========== PREMIUM: ESTADÍSTICAS Y BADGES ==========
-        // Badges normales (disponibles para todos)
-        const BADGES_CONFIG = [
-            // 🌟 BADGES BÁSICOS (fáciles de conseguir para nuevos usuarios)
-            { id: 'first_run', name: 'Primera Carrera', desc: 'Únete a tu primera quedada', icon: '🏃', condition: s => s.quedadas >= 1, premium: false },
-            { id: 'first_5k', name: 'First 5K', desc: 'Completa una quedada de 5+ km', icon: '🎯', condition: s => s.first5k === true, premium: false },
-            { id: 'streak_2', name: 'En Racha', desc: '2 semanas seguidas corriendo', icon: '⚡', condition: s => s.racha >= 2, premium: false },
-            { id: 'run_3', name: 'Triplete', desc: 'Asiste a 3 quedadas', icon: '🥉', condition: s => s.quedadas >= 3, premium: false },
-            { id: 'social_3', name: 'Conociendo Gente', desc: 'Corre con 3 runners diferentes', icon: '🤝', condition: s => s.runners >= 3, premium: false },
-            // 🏅 BADGES INTERMEDIOS
-            { id: 'run_5', name: 'Habitual', desc: 'Asiste a 5 quedadas', icon: '🥈', condition: s => s.quedadas >= 5, premium: false },
-            { id: 'social_5', name: 'Social Runner', desc: 'Conoce a 5 runners diferentes', icon: '👥', condition: s => s.runners >= 5, premium: false },
-            { id: 'creator', name: 'Líder', desc: 'Crea tu primera quedada', icon: '👑', condition: s => s.created >= 1, premium: false },
-            { id: 'km_25', name: 'Maratonista', desc: 'Acumula 25 km en quedadas', icon: '🏁', condition: s => s.km >= 25, premium: false },
-            { id: 'streak_4', name: 'Constancia', desc: 'Racha de 4 semanas corriendo', icon: '🔥', condition: s => s.racha >= 4, premium: false },
-            // 🏆 BADGES AVANZADOS
-            { id: 'run_10', name: 'Veterano', desc: 'Asiste a 10 quedadas', icon: '🎖️', condition: s => s.quedadas >= 10, premium: false },
-            { id: 'km_50', name: '50K Club', desc: 'Acumula 50 km en quedadas', icon: '📏', condition: s => s.km >= 50, premium: false },
-            { id: 'km_100', name: 'Centenario', desc: 'Acumula 100 km en quedadas', icon: '💯', condition: s => s.km >= 100, premium: false },
-            { id: 'run_25', name: 'Leyenda', desc: 'Asiste a 25 quedadas', icon: '🏆', condition: s => s.quedadas >= 25, premium: false },
-            // ⭐ BADGES EXCLUSIVOS PREMIUM
-            { id: 'premium_vip', name: 'VIP Runner', desc: 'Eres miembro Premium', icon: '⭐', condition: () => isUserPremium, premium: true, exclusive: true },
-            { id: 'premium_elite', name: 'Elite Dorado', desc: 'Premium + 50 quedadas', icon: '🥇', condition: s => isUserPremium && s.quedadas >= 50, premium: true, exclusive: true },
-            { id: 'premium_champion', name: 'Campeón Premium', desc: 'Premium + 200 km', icon: '🏅', condition: s => isUserPremium && s.km >= 200, premium: true, exclusive: true },
-            { id: 'premium_influencer', name: 'Influencer', desc: 'Premium + 10 quedadas creadas', icon: '📣', condition: s => isUserPremium && s.created >= 10, premium: true, exclusive: true },
-            { id: 'premium_legend', name: 'Leyenda Dorada', desc: 'Premium + 100 quedadas', icon: '👑', condition: s => isUserPremium && s.quedadas >= 100, premium: true, exclusive: true },
-            // 🎁 BADGES DE REFERIDOS
-            { id: 'referral_community_builder', name: 'Community Builder', desc: 'Invita a 3 amigos a CorrerJuntos', icon: '🤝', condition: () => (currentUser?.referral_count || 0) >= 3, premium: false },
-            { id: 'referral_premium_reward', name: 'Super Recruiter', desc: 'Invita a 5 amigos y gana 1 mes Premium', icon: '⭐', condition: () => (currentUser?.referral_count || 0) >= 5, premium: false },
-            { id: 'referral_ambassador', name: 'Ambassador', desc: 'Invita a 10 amigos y conviértete en embajador', icon: '🏆', condition: () => (currentUser?.referral_count || 0) >= 10, premium: false },
-        ];
+        // ========== BADGES CONFIG → js/modules/badges.js ==========
 
         let userStats = { quedadas: 0, km: 0, runners: 0, racha: 0, created: 0, first5k: false, weeklyActivity: [0,0,0,0,0,0,0,0] };
 
@@ -1432,7 +1214,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 const { data: participaciones } = await window.supabaseClient
                     .from('participantes')
                     .select('quedada_id, quedadas(distancia, fecha, creador_id)')
-                    .eq('user_id', currentUser.id);
+                    .eq('user_id', currentUser.id)
+                    .limit(200);
 
                 if (participaciones) {
                     userStats.quedadas = participaciones.length;
@@ -1655,102 +1438,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             }
         }
 
-        // ========== ENHANCED PREMIUM STATS ==========
-        async function loadEnhancedStats() {
-            if (!isUserPremium || !currentUser) return;
-            try {
-                const sb = await getSupabaseClientOrToast(5000, false);
-                if (!sb) return;
-
-                const { data: participaciones } = await sb
-                    .from('participantes')
-                    .select('ritmo_real, distancia_real, completed_at, quedada_id, quedadas(ciudad, fecha)')
-                    .eq('user_id', currentUser.id)
-                    .not('completed_at', 'is', null);
-
-                if (!participaciones || !participaciones.length) return;
-
-                // Mejor ritmo (parsear "X:XX min/km" → minutos decimales)
-                const paces = participaciones
-                    .filter(p => p.ritmo_real)
-                    .map(p => {
-                        const m = p.ritmo_real.match(/(\d+):(\d+)/);
-                        return m ? parseInt(m[1]) + parseInt(m[2])/60 : 0;
-                    })
-                    .filter(v => v > 0);
-                const bestPace = paces.length ? Math.min(...paces) : null;
-
-                // Mayor distancia
-                const distances = participaciones.filter(p => p.distancia_real).map(p => parseFloat(p.distancia_real));
-                const longest = distances.length ? Math.max(...distances) : null;
-
-                // Ciudad favorita
-                const cityCount = {};
-                participaciones.forEach(p => {
-                    const c = p.quedadas?.ciudad;
-                    if (c) cityCount[c] = (cityCount[c] || 0) + 1;
-                });
-                const citySorted = Object.entries(cityCount).sort((a, b) => b[1] - a[1]);
-                const favCity = citySorted.length ? citySorted[0][0] : null;
-
-                // Comparativa mensual
-                const now = new Date();
-                const thisMonthNum = now.getMonth();
-                const lastMonthNum = (thisMonthNum - 1 + 12) % 12;
-                const thisYear = now.getFullYear();
-
-                const thisMonth = participaciones.filter(p => {
-                    const d = new Date(p.completed_at);
-                    return d.getMonth() === thisMonthNum && d.getFullYear() === thisYear;
-                });
-                const lastMonth = participaciones.filter(p => {
-                    const d = new Date(p.completed_at);
-                    return d.getMonth() === lastMonthNum;
-                });
-
-                // Render stats
-                const statBestPace = document.getElementById('stat-best-pace');
-                const statLongest = document.getElementById('stat-longest');
-                const statFavCity = document.getElementById('stat-fav-city');
-
-                if (statBestPace && bestPace) {
-                    const mins = Math.floor(bestPace);
-                    const secs = Math.round((bestPace - mins) * 60);
-                    statBestPace.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
-                }
-                if (statLongest && longest) statLongest.textContent = longest.toFixed(1) + ' km';
-                if (statFavCity && favCity) statFavCity.textContent = favCity;
-
-                // Comparativa mensual
-                const comp = document.getElementById('stat-monthly-comparison');
-                if (comp) {
-                    const thisKm = thisMonth.reduce((s, p) => s + (parseFloat(p.distancia_real) || 0), 0);
-                    const lastKm = lastMonth.reduce((s, p) => s + (parseFloat(p.distancia_real) || 0), 0);
-                    const qArrow = thisMonth.length >= lastMonth.length ? '↑' : '↓';
-                    const qColor = thisMonth.length >= lastMonth.length ? 'text-green-400' : 'text-red-400';
-                    const kmArrow = thisKm >= lastKm ? '↑' : '↓';
-                    const kmColor = thisKm >= lastKm ? 'text-green-400' : 'text-red-400';
-
-                    comp.innerHTML = `
-                        <div>
-                            <div class="text-lg font-bold text-white">${thisMonth.length}</div>
-                            <div class="text-[10px] text-gray-500">Quedadas</div>
-                            <div class="text-xs ${qColor}">${qArrow} vs ${lastMonth.length}</div>
-                        </div>
-                        <div>
-                            <div class="text-lg font-bold text-white">${thisKm.toFixed(1)}</div>
-                            <div class="text-[10px] text-gray-500">Km</div>
-                            <div class="text-xs ${kmColor}">${kmArrow} vs ${lastKm.toFixed(1)}</div>
-                        </div>
-                        <div>
-                            <div class="text-lg font-bold text-white">${bestPace ? `${Math.floor(bestPace)}:${Math.round((bestPace - Math.floor(bestPace)) * 60).toString().padStart(2, '0')}` : '--'}</div>
-                            <div class="text-[10px] text-gray-500">Mejor ritmo</div>
-                        </div>`;
-                }
-            } catch (e) {
-                console.warn('Enhanced stats error:', e);
-            }
-        }
+        // C4: loadEnhancedStats → moved to /js/premium-features.js (window.loadEnhancedStats)
 
         // ========== PERSONAL HEATMAP ==========
         let personalHeatmapInstance = null;
@@ -1772,7 +1460,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 const { data } = await sb
                     .from('participantes')
                     .select('quedadas(lat, lng, ciudad)')
-                    .eq('user_id', currentUser.id);
+                    .eq('user_id', currentUser.id)
+                    .limit(500);
 
                 const points = (data || [])
                     .filter(p => p.quedadas && p.quedadas.lat && p.quedadas.lng)
@@ -2762,7 +2451,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 const { data: participaciones } = await window.supabaseClient
                     .from('participantes')
                     .select('quedada_id, quedadas(id, titulo, creador_id, fecha)')
-                    .eq('user_id', currentUser.id);
+                    .eq('user_id', currentUser.id)
+                    .limit(100);
 
                 if (!participaciones || participaciones.length === 0) return;
 
@@ -2777,7 +2467,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 const { data: reviewsHechas } = await window.supabaseClient
                     .from('organizer_reviews')
                     .select('quedada_id')
-                    .eq('reviewer_id', currentUser.id);
+                    .eq('reviewer_id', currentUser.id)
+                    .limit(100);
 
                 const reviewedIds = new Set((reviewsHechas || []).map(r => r.quedada_id));
 
@@ -3875,6 +3566,13 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
           __cjPrevFocus = null;
         }
 
+        // Cerrar todos los modales activos (para navegación bottom-nav)
+        function closeAllModals(){
+          document.querySelectorAll('.modal.active').forEach(function(m){
+            try{ closeModal(m.id); }catch(_){}
+          });
+        }
+
         // Ver perfil de organizador - abre modal con info detallada
         async function viewOrganizerProfile(userId) {
             if (!userId) return;
@@ -4021,7 +3719,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             document.body.insertAdjacentHTML('beforeend', modalHtml);
         }
-        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadActiveMission();loadUserStats().then(()=>{applyDashboardMode();updateReferralBanner(currentUser?.referral_count||0);updatePlanStatusBar();updateDashboardCrearCounter();updateDynamicPremiumBanner();renderMatchingPreview();renderSmartAlertsPreview();}).catch(()=>{});loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();if(typeof lazyLoadScript==='function'){lazyLoadScript('/js/strava.js');lazyLoadScript('/js/push.js');}var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';if(typeof gtag==='function')gtag('event','dashboard_view');}
+        function showApp(withWelcome = false){document.getElementById('view-landing').classList.remove('active');document.getElementById('view-app').classList.add('active');setTimeout(()=>ensureLeaflet().then(initMap),100);updateUserUI();if(withWelcome)showWelcomeAnimation();loadActiveMission();loadUserStats().then(()=>{applyDashboardMode();updateReferralBanner(currentUser?.referral_count||0);updatePlanStatusBar();updateDashboardCrearCounter();updateDynamicPremiumBanner();renderMatchingPreview();renderSmartAlertsPreview();}).catch(()=>{});loadSocialStats();initFilterPills();initDesktopFilters();updateGeoFilterUI();/* C1+C2: strava.js + push.js now load on-demand, not eagerly */lazyLoadScript('/js/premium-features.min.js');/* C4: load premium features (matching, paywall, enhanced stats) */var _ln=document.getElementById('mobile-bottom-nav');var _an=document.getElementById('app-bottom-nav');if(_ln)_ln.style.display='none';if(_an&&window.innerWidth<768)_an.style.display='block';if(typeof gtag==='function')gtag('event','dashboard_view');}
         // Procesar deep link guardado (si el usuario llegó con #quedada/xxx sin sesión y luego hizo login)
         function processDeepLinkAfterLogin(){
           try{
@@ -4880,27 +4578,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             await checkPremiumStatus();
         }
 
-        // ====== PREMIUM PROMO POPUP ======
-        function maybeShowPremiumPromo() {
-            // No mostrar si ya es premium (ventaja de ser premium: sin anuncios)
-            if (isUserPremium) return;
-
-            // Verificar última vez que se mostró
-            const lastShown = localStorage.getItem('cj_premium_promo_last');
-            const now = Date.now();
-            const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7 días en ms
-
-            if (lastShown) {
-                const elapsed = now - parseInt(lastShown);
-                if (elapsed < sevenDays) return; // No han pasado 7 días
-            }
-
-            // Mostrar popup después de un pequeño delay
-            setTimeout(() => {
-                openPremiumSales();
-                localStorage.setItem('cj_premium_promo_last', now.toString());
-            }, 2000); // 2 segundos después del login
-        }
+        // C4: maybeShowPremiumPromo → moved to /js/premium-features.js (window.maybeShowPremiumPromo)
 
         // ====== FUNCIONES AUXILIARES PARA LOGIN/REGISTRO ======
 
@@ -5483,6 +5161,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         // Alias legacy: el botón del modal llama a updatePassword()
         window.updatePassword = doResetPasswordUpdate;
         window.onPlaceInputRegister = onPlaceInputRegister;
+        window.openProfile = openProfile;
+        window.openModalCrear = openModalCrear;
+        window.openRankingModal = openRankingModal;
+        window.closeAllModals = closeAllModals;
         /* === Leaflet lazy loader === */
         let _leafletP = null;
         function ensureLeaflet() {
@@ -5671,14 +5353,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             const flagEl = document.getElementById('geo-country-flag');
             const nameEl = document.getElementById('geo-country-name');
             if (flagEl) {
-                const flags = {
-                    'ES': '🇪🇸', 'PT': '🇵🇹', 'AR': '🇦🇷', 'MX': '🇲🇽', 'CO': '🇨🇴', 'PE': '🇵🇪',
-                    'CL': '🇨🇱', 'EC': '🇪🇨', 'VE': '🇻🇪', 'UY': '🇺🇾', 'PY': '🇵🇾', 'BO': '🇧🇴',
-                    'CR': '🇨🇷', 'PA': '🇵🇦', 'GT': '🇬🇹', 'HN': '🇭🇳', 'SV': '🇸🇻', 'NI': '🇳🇮',
-                    'CU': '🇨🇺', 'DO': '🇩🇴', 'PR': '🇵🇷', 'US': '🇺🇸', 'FR': '🇫🇷', 'IT': '🇮🇹',
-                    'DE': '🇩🇪', 'GB': '🇬🇧', 'BR': '🇧🇷', 'PH': '🇵🇭', 'GQ': '🇬🇶'
-                };
-                flagEl.textContent = flags[userCountry] || '🌍';
+                flagEl.textContent = COUNTRY_CODE_FLAGS[userCountry] || '🌍';
             }
             if (nameEl) {
                 const names = COUNTRY_CODE_MAP[userCountry];
@@ -8339,15 +8014,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             const wrap = document.getElementById('city-chips');
             if(!wrap) return;
 
-            // Obtener bandera del país del usuario
-            const flags = {
-                'ES': '🇪🇸', 'PT': '🇵🇹', 'AR': '🇦🇷', 'MX': '🇲🇽', 'CO': '🇨🇴', 'PE': '🇵🇪',
-                'CL': '🇨🇱', 'EC': '🇪🇨', 'VE': '🇻🇪', 'UY': '🇺🇾', 'PY': '🇵🇾', 'BO': '🇧🇴',
-                'CR': '🇨🇷', 'PA': '🇵🇦', 'GT': '🇬🇹', 'HN': '🇭🇳', 'SV': '🇸🇻', 'NI': '🇳🇮',
-                'CU': '🇨🇺', 'DO': '🇩🇴', 'PR': '🇵🇷', 'US': '🇺🇸', 'FR': '🇫🇷', 'IT': '🇮🇹',
-                'DE': '🇩🇪', 'GB': '🇬🇧', 'BR': '🇧🇷', 'PH': '🇵🇭', 'GQ': '🇬🇶'
-            };
-            const countryFlag = flags[userCountry] || '🌍';
+            // Obtener bandera del país del usuario (using unified COUNTRY_CODE_FLAGS)
+            const countryFlag = COUNTRY_CODE_FLAGS[userCountry] || '🌍';
 
             // Obtener traducciones
             const t = I18N[currentLang] || I18N.es;
@@ -8425,14 +8093,13 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 closeModal('modal-welcome-notif');
 
                 // Si activó push, solicitar permiso y registrar suscripción
-                if (notifPush && typeof requestPushPermission === 'function') {
+                if (notifPush) {
                     try {
-                        await requestPushPermission();
+                        await ensurePushLoaded();
+                        if (typeof requestPushPermission === 'function') await requestPushPermission();
                     } catch(e) {
                         console.warn('Error activando push:', e);
                     }
-                } else {
-                    showToast('¡Preferencias guardadas!', 'success');
                 }
 
                 // Mostrar CTA para ver quedadas
@@ -9742,8 +9409,6 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     if (sb) {
                         await sb.from('profiles').update({ alert_radius_km: km }).eq('id', currentUser.id);
                         currentUser.alert_radius_km = km;
-                        const t = I18N[currentLang] || I18N.es;
-                        showToast(t.premiumPrefSaved || 'Preferencia guardada', 'success');
                     }
                 } catch(_) {}
             }
@@ -10053,6 +9718,8 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             // Mostrar advertencia si está bloqueado
             const blockedHint = document.getElementById('notif-blocked-hint');
+            // C2: load push.js on-demand when opening notification settings
+            await ensurePushLoaded();
             if (blockedHint && typeof getPushPermissionState === 'function') {
                 const state = getPushPermissionState();
                 blockedHint.classList.toggle('hidden', state !== 'denied');
@@ -11156,9 +10823,12 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
         // createTopic/sendMessage: online-aware versions are defined above.
 
         /* ══════════════════════════════════════════════
-           RUNNER MATCHING
+           C4: RUNNER MATCHING → moved to /js/premium-features.js
+           All matching functions (openMatchingScreen, saveMatchingProfile,
+           sendMatchRequest, respondMatchRequest, switchMatchingTab)
+           are now loaded on-demand via window.* in premium-features.js
            ══════════════════════════════════════════════ */
-        const MATCHING_DAYS_ES = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+        /* --- Original code removed (~490 lines) ---
         const MATCHING_DAYS_SHORT = ['L','M','X','J','V','S','D'];
         const MATCHING_HORARIOS = ['manana','mediodia','tarde','noche'];
         const MATCHING_HORARIOS_LABELS_ES = {'manana':'Mañana','mediodia':'Mediodía','tarde':'Tarde','noche':'Noche'};
@@ -11324,7 +10994,6 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             return;
           }
 
-          showToast(currentLang === 'en' ? 'Matching profile saved!' : 'Perfil de matching guardado!', 'success');
           closeModal('modal-matching-profile');
           // Reload matching results if the matching screen is open
           if(document.getElementById('modal-matching') && document.getElementById('modal-matching').classList.contains('active')){
@@ -11642,9 +11311,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           loadMatchingRequests();
         };
 
-        /* ══════════════════════════════════════════════
-           END RUNNER MATCHING
-           ══════════════════════════════════════════════ */
+        --- End of removed code --- */
 
         document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.active').forEach(m=>m.classList.remove('active'));closeSidebar();}});
         document.querySelectorAll('.modal').forEach(modal=>{modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('active');});});
@@ -12265,6 +11932,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             if(stravaCode && stravaScope && (stravaScope.includes('read') || stravaScope.includes('activity'))) {
               console.log('Procesando callback de Strava...');
               try {
+                await ensureStravaLoaded();
                 if(typeof handleStravaCallback === 'function') {
                   await handleStravaCallback();
                 }

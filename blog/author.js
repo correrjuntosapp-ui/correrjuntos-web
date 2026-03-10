@@ -43,6 +43,8 @@
   /* ── Find author ── */
   var meta = document.querySelector('meta[name="author"]');
   if (!meta) return;
+  /* Skip if static author-box already exists */
+  if (document.querySelector('.author-box')) return;
   var authorKey = meta.getAttribute('content');
   var author = AUTHORS[authorKey];
   if (!author) return;

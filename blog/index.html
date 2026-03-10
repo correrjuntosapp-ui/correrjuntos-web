@@ -3545,6 +3545,22 @@ document.addEventListener('DOMContentLoaded', function() {
     filterCards();
   });
 
+  // Support direct links like /blog/?cat=atleta-hibrido
+  var urlParams = new URLSearchParams(window.location.search);
+  var initialCat = (urlParams.get('cat') || '').toLowerCase();
+  if (initialCat && filterBar.querySelector('[data-filter="' + initialCat + '"]')) {
+    activeFilter = initialCat;
+    currentPage = 1;
+    buttons.forEach(function(b) { b.classList.remove('active'); });
+    var initialBtn = filterBar.querySelector('[data-filter="' + initialCat + '"]');
+    if (initialBtn) initialBtn.classList.add('active');
+    panelBtns.forEach(function(b) { b.classList.remove('active'); });
+    var initialPanelBtn = filterPanel ? filterPanel.querySelector('[data-filter="' + initialCat + '"]') : null;
+    if (initialPanelBtn) initialPanelBtn.classList.add('active');
+    if (filterTodos) filterTodos.classList.remove('active');
+    showActiveLabel(initialCat);
+  }
+
   // Initial render
   filterCards();
 });

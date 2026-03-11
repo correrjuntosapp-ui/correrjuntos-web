@@ -1717,4 +1717,32 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- plan maraton 16 semanas sub4h (ES+EN) -->
+  <url>
+    <loc>https://www.correrjuntos.com/blog/entrenamiento/plan-maraton-16-semanas-sub4h</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/entrenamiento/plan-maraton-16-semanas-sub4h" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/training/16-week-marathon-plan-sub4h" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/entrenamiento/plan-maraton-16-semanas-sub4h" />
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/blog/en/training/16-week-marathon-plan-sub4h</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/entrenamiento/plan-maraton-16-semanas-sub4h" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/training/16-week-marathon-plan-sub4h" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/entrenamiento/plan-maraton-16-semanas-sub4h" />
+  </url>
+
+  <!-- correr durante menstruacion (ES only) -->
+  <url>
+    <loc>https://www.correrjuntos.com/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

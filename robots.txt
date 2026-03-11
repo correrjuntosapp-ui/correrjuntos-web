@@ -59,9 +59,13 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-# Microsoft Copilot
+# ByteDance / TikTok (aggressive crawler, block)
 User-agent: Bytespider
 Disallow: /
+
+# Microsoft Copilot / Bing Chat
+User-agent: bingbot
+Crawl-delay: 5
 
 # ═══ SEO Crawlers — Rate limit ═══
 

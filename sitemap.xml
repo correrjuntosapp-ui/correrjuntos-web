@@ -1942,6 +1942,23 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- ====== NEW ARTICLES (2026-03-11) ====== -->
+  <url>
+    <loc>https://www.correrjuntos.com/blog/entrenamiento/plan-maraton-16-semanas-sub4h</loc>
+    <lastmod>2026-03-11</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/blog/en/training/16-week-marathon-plan-sub4h</loc>
+    <lastmod>2026-03-11</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners</loc>
+    <lastmod>2026-03-11</lastmod>
+    <priority>0.7</priority>
+  </url>
+
   <!-- ====== NEW ARTICLES (2026-03-10) ====== -->
   <url>
     <loc>https://www.correrjuntos.com/blog/mejores-calleras-crossfit</loc>

@@ -67,36 +67,12 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Stats -->
-  <url>
-    <loc>https://www.correrjuntos.com/stats/</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- CJ Verify -->
-  <url>
-    <loc>https://www.correrjuntos.com/cj_verify</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
   <!-- Calculadora de Ritmos -->
   <url>
     <loc>https://www.correrjuntos.com/calculadora/</loc>
     <lastmod>2026-02-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <!-- 404 -->
-  <url>
-    <loc>https://www.correrjuntos.com/404</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
   </url>
 
 </urlset>

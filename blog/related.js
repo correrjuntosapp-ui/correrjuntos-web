@@ -219,6 +219,7 @@
 {s:'best-omega-3-running',t:'10 Best Omega-3 Supplements for Running 2026',c:'Suplementaci\u00f3n',i:'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-protein-running',t:'10 Best Protein Supplements for Running 2026',c:'Suplementaci\u00f3n',i:'/blog/img/proteinas-running.jpg'},
 {s:'best-recovery-drinks-running',t:'10 Best Recovery Drinks for Running 2026',c:'Suplementaci\u00f3n',i:'/blog/img/recuperadores-running.jpg'},
+{s:'best-running-shoes',t:'Best Running Shoes 2026 \u2014 Ultimate Guide',c:'Zapatillas',i:'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-road-running-shoes',t:'10 Best Road Running Shoes 2026',c:'Zapatillas',i:'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-breakfasts-before-running',t:'8 Best Breakfasts Before Running',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'best-energy-snacks-for-runners',t:'Best Energy Snacks for Runners',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

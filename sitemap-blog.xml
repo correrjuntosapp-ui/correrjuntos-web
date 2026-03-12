@@ -1745,4 +1745,32 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- mejores bandas frecuencia cardiaca (ES+EN) -->
+  <url>
+    <loc>https://www.correrjuntos.com/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/equipment/best-heart-rate-chest-straps-armbands-running/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/" />
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/blog/en/equipment/best-heart-rate-chest-straps-armbands-running/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/equipment/best-heart-rate-chest-straps-armbands-running/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/" />
+  </url>
+
+  <!-- Entrenamiento section index -->
+  <url>
+    <loc>https://www.correrjuntos.com/blog/entrenamiento/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>

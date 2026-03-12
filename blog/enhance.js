@@ -551,9 +551,38 @@
     var storeLabel = isAndroid
       ? (isEN ? 'Download the app' : 'Descargar la app')
       : (isEN ? 'Download the app' : 'Descargar la app');
+    /* Contextual CTA based on article category */
+    var catMeta = document.querySelector('meta[name="category"]');
+    var catTag = document.querySelector('.article-category, [class*="category"]');
+    var catText = (catMeta && catMeta.content) || (catTag && catTag.textContent) || '';
+    catText = catText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    var stickyUrl = storeUrl;
+    var stickyLabel = storeLabel;
+    var stickyIcon = '\uD83D\uDCF2';
+    if(/zapatilla|shoe|calzado|equipamiento|gear|reloj|watch|gafa|malla|gorra|accesorio/.test(catText) ||
+       /zapatilla|shoe|reloj|watch|gafa|malla|gorra/.test(slug)){
+      stickyUrl = storeUrl;
+      stickyLabel = isEN ? 'Track your runs free' : 'Registra tus carreras gratis';
+      stickyIcon = '\uD83C\uDFC3';
+    } else if(/comunidad|group|social|quedada|matching/.test(catText) ||
+              /grupo|group|comunidad|encontrar|find-people|matching|acompan/.test(slug)){
+      stickyUrl = isEN ? '/matching/en/' : '/matching/';
+      stickyLabel = isEN ? 'Find runners near you' : 'Encuentra runners cerca de ti';
+      stickyIcon = '\uD83E\uDD1D';
+    } else if(/nutricion|nutrition|suplemento|supplement|creatina|gel|hidratacion/.test(catText) ||
+              /nutricion|nutrition|creatina|geles|hidratacion|dieta|suplemento/.test(slug)){
+      stickyUrl = storeUrl;
+      stickyLabel = isEN ? 'Log nutrition + runs' : 'Registra nutrici\u00f3n + carreras';
+      stickyIcon = '\uD83C\uDF4F';
+    } else if(/lesion|injury|dolor|pain|fascitis|periostitis|tendinitis|rodilla|agujeta/.test(catText) ||
+              /lesion|dolor|fascitis|periostitis|tendinitis|rodilla|agujeta|injury/.test(slug)){
+      stickyUrl = storeUrl;
+      stickyLabel = isEN ? 'Track recovery + training' : 'Controla recuperaci\u00f3n + entreno';
+      stickyIcon = '\uD83D\uDCAA';
+    }
     sticky.innerHTML =
-      '<a href="' + storeUrl + '" target="_blank" rel="noopener">' +
-        '\uD83D\uDCF2 ' + storeLabel +
+      '<a href="' + stickyUrl + '" target="_blank" rel="noopener">' +
+        stickyIcon + ' ' + stickyLabel +
       '</a>' +
       '<button class="sticky-close" aria-label="'+(isEN ? 'Close' : 'Cerrar')+'">&times;</button>';
     document.body.appendChild(sticky);

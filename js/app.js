@@ -8592,11 +8592,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                     if (!rpcErr) {
                         rpcSuccess = true;
-                        if (rpcData && rpcData.status === 'deleted_meetup') {
-                            showToast(currentLang==='en'?'Run deleted (no participants left).':(currentLang==='pt'?'Encontro apagado (sem participantes).':'Quedada eliminada (no quedaban participantes).'),'success');
-                        } else {
-                            showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
-                        }
+                        showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
                     }
                 } catch(rpcE) {
                     console.warn('RPC no disponible, usando delete directo:', rpcE);
@@ -8616,19 +8612,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         return;
                     }
 
-                    // Verificar si quedaron participantes
-                    const { data: remaining } = await window.supabaseClient
-                      .from('participantes')
-                      .select('id')
-                      .eq('quedada_id', quedadaId);
-
-                    if (!remaining || remaining.length === 0) {
-                        // Borrar quedada si no quedan participantes
-                        await window.supabaseClient.from('quedadas').delete().eq('id', quedadaId);
-                        showToast(currentLang==='en'?'Run deleted (no participants left).':(currentLang==='pt'?'Encontro apagado (sem participantes).':'Quedada eliminada (no quedaban participantes).'),'success');
-                    } else {
-                        showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
-                    }
+                    showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
                 }
 
                 await loadQuedadas();
@@ -8862,11 +8846,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                         if(!rpcErr){
                             rpcSuccess = true;
-                            if(rpcData && rpcData.status === 'deleted_meetup'){
-                                showToast(currentLang==='en'?'Run deleted (no participants left).':(currentLang==='pt'?'Encontro apagado (sem participantes).':'Quedada eliminada (no quedaban participantes).'),'success');
-                            } else {
-                                showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
-                            }
+                            showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
                         }
                     } catch(rpcE) {
                         console.warn('RPC no disponible, usando delete directo:', rpcE);
@@ -8886,19 +8866,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                             return; 
                         }
                         
-                        // Verificar si quedaron participantes
-                        const { data: remaining } = await window.supabaseClient
-                          .from('participantes')
-                          .select('id')
-                          .eq('quedada_id', id);
-                        
-                        if(!remaining || remaining.length === 0){
-                            // Borrar quedada si no quedan participantes
-                            await window.supabaseClient.from('quedadas').delete().eq('id', id);
-                            showToast(currentLang==='en'?'Run deleted (no participants left).':(currentLang==='pt'?'Encontro apagado (sem participantes).':'Quedada eliminada (no quedaban participantes).'),'success');
-                        } else {
-                            showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
-                        }
+                        showToast(I18N[currentLang]?.left || (currentLang==='en'?'You left the run':(currentLang==='pt'?'Saíste do encontro':'Has salido de la quedada')),'success');
                     }
 
                 } else {

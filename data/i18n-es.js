@@ -603,5 +603,29 @@ I18N.es = {
         mpBioLabel: 'Bio de matching',
         mpVisibleLabel: 'Visible en Matching',
         mpVisibleDesc: 'Otros runners pueden encontrarte',
-        mpSaveBtn: 'Guardar perfil'
+        mpSaveBtn: 'Guardar perfil',
+        // Nav
+        nav_home: 'Inicio',
+        nav_map: 'Mapa',
+        nav_create: 'Crear',
+        nav_social: 'Social',
+        nav_profile: 'Perfil',
+        // Floating card
+        fc_view_event: 'Ver quedada',
+        fc_join_event: 'Unirme',
+        fc_joined: 'Apuntado',
+        fc_organizer: 'Organizador',
+        fc_runners: 'runners',
+        fc_km: 'km',
+        // Social
+        social_find_partner: 'Encuentra tu compañero ideal de running',
+        social_community_active: 'Comunidad activa',
+        social_quick_links: 'Accesos rápidos',
+        social_active_runners: 'runners activos',
+        social_weekly_runs: 'quedadas esta semana',
+        social_cities: 'ciudades',
+        social_app_cta_title: 'Tracking GPS y mucho más',
+        social_app_cta_desc: 'Descarga la app para registrar tus actividades',
+        // Theme
+        theme_toggle: 'Modo oscuro'
 };

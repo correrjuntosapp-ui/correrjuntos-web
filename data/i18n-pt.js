@@ -437,5 +437,29 @@ I18N.pt = {
         referralInviteText: 'Junta-te ao CorrerJuntos e vamos correr juntos! Usa o meu link:',
         bannerReferralTitle: 'Convida amigos e ganha recompensas!',
         bannerReferralDesc: 'Partilha o teu link. 3 amigos = badge, 5 = Premium grátis, 10 = Ambassador',
-        bannerReferralBtn: '🔗 Meu link'
+        bannerReferralBtn: '🔗 Meu link',
+        // Nav
+        nav_home: 'Início',
+        nav_map: 'Mapa',
+        nav_create: 'Criar',
+        nav_social: 'Social',
+        nav_profile: 'Perfil',
+        // Floating card
+        fc_view_event: 'Ver encontro',
+        fc_join_event: 'Participar',
+        fc_joined: 'Inscrito',
+        fc_organizer: 'Organizador',
+        fc_runners: 'runners',
+        fc_km: 'km',
+        // Social
+        social_find_partner: 'Encontra o teu parceiro de corrida ideal',
+        social_community_active: 'Comunidade ativa',
+        social_quick_links: 'Acessos rápidos',
+        social_active_runners: 'runners ativos',
+        social_weekly_runs: 'encontros esta semana',
+        social_cities: 'cidades',
+        social_app_cta_title: 'Tracking GPS e muito mais',
+        social_app_cta_desc: 'Descarrega a app para registar as tuas atividades',
+        // Theme
+        theme_toggle: 'Modo escuro'
 };

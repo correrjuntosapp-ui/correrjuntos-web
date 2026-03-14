@@ -395,6 +395,38 @@
 
         loadMatchingResults();
         loadMatchingRequests();
+        updateSocialCommunityStats();
+    };
+
+    // ========== SOCIAL COMMUNITY STATS ==========
+    window.updateSocialCommunityStats = function() {
+        var allQuedadas = window.quedadas || [];
+        var now = new Date();
+        var weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        var weekStr = weekAgo.toISOString().slice(0, 10);
+
+        // Unique runners (from all quedadas)
+        var runnerSet = new Set();
+        allQuedadas.forEach(function(q) {
+            if (q.creador_id) runnerSet.add(q.creador_id);
+            var asist = Array.isArray(q.asistentes) ? q.asistentes : [];
+            asist.forEach(function(a) { runnerSet.add(a); });
+        });
+        var el1 = document.getElementById('social-stat-runners');
+        if (el1) el1.textContent = runnerSet.size;
+
+        // Quedadas this week
+        var weekCount = allQuedadas.filter(function(q) { return q.fecha >= weekStr; }).length;
+        var el2 = document.getElementById('social-stat-quedadas');
+        if (el2) el2.textContent = weekCount;
+
+        // Unique cities
+        var citySet = new Set();
+        allQuedadas.forEach(function(q) {
+            if (q.ciudad) citySet.add(q.ciudad);
+        });
+        var el3 = document.getElementById('social-stat-cities');
+        if (el3) el3.textContent = citySet.size;
     };
 
     window.switchMatchingTab = function(tab){

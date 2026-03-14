@@ -421,5 +421,29 @@ I18N.ru = {
         referralInviteText: 'Присоединяйся к CorrerJuntos! Используй мою ссылку:',
         bannerReferralTitle: 'Пригласи друзей и получи награды!',
         bannerReferralDesc: 'Поделись ссылкой. 3 = бейдж, 5 = Premium, 10 = Ambassador',
-        bannerReferralBtn: '🔗 Моя ссылка'
+        bannerReferralBtn: '🔗 Моя ссылка',
+        // Nav
+        nav_home: 'Главная',
+        nav_map: 'Карта',
+        nav_create: 'Создать',
+        nav_social: 'Соцсеть',
+        nav_profile: 'Профиль',
+        // Floating card
+        fc_view_event: 'Подробнее',
+        fc_join_event: 'Присоединиться',
+        fc_joined: 'Участвую',
+        fc_organizer: 'Организатор',
+        fc_runners: 'бегунов',
+        fc_km: 'км',
+        // Social
+        social_find_partner: 'Найди идеального партнёра для бега',
+        social_community_active: 'Активное сообщество',
+        social_quick_links: 'Быстрый доступ',
+        social_active_runners: 'активных бегунов',
+        social_weekly_runs: 'пробежек на этой неделе',
+        social_cities: 'городов',
+        social_app_cta_title: 'GPS-трекинг и многое другое',
+        social_app_cta_desc: 'Скачайте приложение для записи активностей',
+        // Theme
+        theme_toggle: 'Тёмная тема'
 };

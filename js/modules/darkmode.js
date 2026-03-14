@@ -5,16 +5,17 @@
         var isLight = document.body.classList.contains('light-mode');
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
         var iconEmoji = isLight ? '\uD83C\uDF19' : '\u2600\uFE0F';
-        var icon = document.getElementById('theme-icon');
-        var iconLanding = document.getElementById('theme-icon-landing');
-        if (icon) icon.textContent = iconEmoji;
-        if (iconLanding) iconLanding.textContent = iconEmoji;
-        // Actualizar aria-pressed: true = modo oscuro activo, false = modo claro
-        var darkActive = isLight ? 'false' : 'true';
-        document.querySelectorAll('[id^="theme-toggle-"]').forEach(function(btn) {
-            btn.setAttribute('aria-pressed', darkActive);
-            btn.setAttribute('aria-label', isLight ? 'Activar modo oscuro' : 'Activar modo claro');
-        });
+        var iconProfile = document.getElementById('theme-icon-profile');
+        if (iconProfile) iconProfile.textContent = iconEmoji;
+        // Actualizar toggle switch visual
+        var toggleSwitch = document.getElementById('theme-toggle-profile');
+        if (toggleSwitch) {
+            toggleSwitch.setAttribute('aria-pressed', isLight ? 'false' : 'true');
+            var dot = toggleSwitch.querySelector('.toggle-dot');
+            if (dot) dot.style.transform = isLight ? 'translateX(0)' : 'translateX(20px)';
+            var bg = toggleSwitch.querySelector('.toggle-bg');
+            if (bg) bg.style.background = isLight ? '#475569' : '#f97316';
+        }
         // Actualizar tiles del mapa al cambiar tema
         if (typeof updateMapTiles === 'function') updateMapTiles();
     }
@@ -24,16 +25,16 @@
         if (saved !== 'dark') document.body.classList.add('light-mode');
         var isLight = saved !== 'dark';
         var iconEmoji = isLight ? '\uD83C\uDF19' : '\u2600\uFE0F';
-        var icon = document.getElementById('theme-icon');
-        var iconLanding = document.getElementById('theme-icon-landing');
-        if (icon) icon.textContent = iconEmoji;
-        if (iconLanding) iconLanding.textContent = iconEmoji;
-        // Inicializar aria-pressed: true = modo oscuro activo
-        var darkActive = isLight ? 'false' : 'true';
-        document.querySelectorAll('[id^="theme-toggle-"]').forEach(function(btn) {
-            btn.setAttribute('aria-pressed', darkActive);
-            btn.setAttribute('aria-label', isLight ? 'Activar modo oscuro' : 'Activar modo claro');
-        });
+        var iconProfile = document.getElementById('theme-icon-profile');
+        if (iconProfile) iconProfile.textContent = iconEmoji;
+        var toggleSwitch = document.getElementById('theme-toggle-profile');
+        if (toggleSwitch) {
+            toggleSwitch.setAttribute('aria-pressed', isLight ? 'false' : 'true');
+            var dot = toggleSwitch.querySelector('.toggle-dot');
+            if (dot) dot.style.transform = isLight ? 'translateX(0)' : 'translateX(20px)';
+            var bg = toggleSwitch.querySelector('.toggle-bg');
+            if (bg) bg.style.background = isLight ? '#475569' : '#f97316';
+        }
     }
 
     window.toggleTheme = toggleTheme;

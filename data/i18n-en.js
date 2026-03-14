@@ -593,5 +593,29 @@ I18N.en = {
         mpBioLabel: 'Matching bio',
         mpVisibleLabel: 'Visible in Matching',
         mpVisibleDesc: 'Other runners can find you',
-        mpSaveBtn: 'Save profile'
+        mpSaveBtn: 'Save profile',
+        // Nav
+        nav_home: 'Home',
+        nav_map: 'Map',
+        nav_create: 'Create',
+        nav_social: 'Social',
+        nav_profile: 'Profile',
+        // Floating card
+        fc_view_event: 'View meetup',
+        fc_join_event: 'Join',
+        fc_joined: 'Joined',
+        fc_organizer: 'Organizer',
+        fc_runners: 'runners',
+        fc_km: 'km',
+        // Social
+        social_find_partner: 'Find your ideal running partner',
+        social_community_active: 'Active community',
+        social_quick_links: 'Quick links',
+        social_active_runners: 'active runners',
+        social_weekly_runs: 'meetups this week',
+        social_cities: 'cities',
+        social_app_cta_title: 'GPS tracking and more',
+        social_app_cta_desc: 'Download the app to log your activities',
+        // Theme
+        theme_toggle: 'Dark mode'
 };

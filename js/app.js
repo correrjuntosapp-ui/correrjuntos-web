@@ -717,9 +717,15 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 badgeEl.innerHTML = t.landingBadge;
             }
 
-            // Matching screen
-            setText('app-nav-matching-label', t.matchingNav || 'Matching');
-            setText('matching-title', t.matchingTitle || 'Runners compatibles');
+            // Bottom nav
+            setText('app-nav-home-label', t.nav_home || 'Inicio');
+            setText('app-nav-map-label', t.nav_map || 'Mapa');
+            setText('app-nav-create-label', t.nav_create || 'Crear');
+            setText('app-nav-social-label', t.nav_social || 'Social');
+            setText('app-nav-profile-label', t.nav_profile || 'Perfil');
+            // Social / Matching screen
+            setText('matching-title', 'Social');
+            setText('matching-subtitle', t.social_find_partner || 'Encuentra tu compañero ideal de running');
             setText('matching-tab-results', t.matchingTabResults || 'Compatibles');
             setText('matching-tab-requests', t.matchingTabRequests || 'Solicitudes');
             setText('matching-edit-profile-btn', t.matchingEditProfile || 'Editar perfil');
@@ -745,6 +751,20 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             setText('mp-visible-label', t.mpVisibleLabel || 'Visible en Matching');
             setText('mp-visible-desc', t.mpVisibleDesc || 'Otros runners pueden encontrarte');
             setText('mp-save-btn', t.mpSaveBtn || 'Guardar perfil');
+            // Social sections
+            setText('social-community-title', t.social_community_active || 'Comunidad activa');
+            setText('social-quick-links-title', t.social_quick_links || 'Accesos rápidos');
+            setText('social-stat-runners-label', t.social_active_runners || 'runners activos');
+            setText('social-stat-quedadas-label', t.social_weekly_runs || 'quedadas esta semana');
+            setText('social-stat-cities-label', t.social_cities || 'ciudades');
+            setText('social-link-profile', t.nav_profile || 'Mi perfil');
+            setText('social-link-ranking', 'Ranking');
+            setText('social-link-connections', t.matchingAcceptedTitle || 'Conexiones');
+            setText('social-link-badges', t.btn_achievements || 'Logros');
+            setText('social-app-cta-title', t.social_app_cta_title || 'Tracking GPS y mucho más');
+            setText('social-app-cta-desc', t.social_app_cta_desc || 'Descarga la app para registrar tus actividades');
+            // Theme toggle in profile
+            setText('label-theme-toggle', t.theme_toggle || 'Modo oscuro');
 
             // Login modal
             const loginTitle = document.querySelector('#modal-login h2');
@@ -3319,6 +3339,131 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             if (e.key === 'Escape' && isMapFullscreen) toggleFullscreenMap();
         });
 
+        // ========== BOTTOM NAV HIGHLIGHT ==========
+        window.updateBottomNavHighlight = function(active) {
+            ['home','map','social','profile'].forEach(tab => {
+                const btn = document.getElementById('app-nav-' + tab);
+                if (!btn) return;
+                if (tab === active) {
+                    btn.style.color = '#f97316';
+                    btn.style.background = 'rgba(249,115,22,.1)';
+                } else {
+                    btn.style.color = '#94a3b8';
+                    btn.style.background = 'transparent';
+                }
+            });
+        };
+
+        // ========== SCROLL TO MAP ==========
+        window.scrollToMap = function() {
+            const mapContainer = document.getElementById('map-container');
+            if (mapContainer) {
+                mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Expand map if minimized
+                if (mapState === 'minimized') toggleMapSize();
+            }
+        };
+
+        // ========== NIVEL COLOR (matches mobile QuedadaMarker) ==========
+        function getNivelColor(nivel) {
+            switch ((nivel || '').toLowerCase()) {
+                case 'principiante': return '#22c55e';
+                case 'intermedio': return '#eab308';
+                case 'avanzado': return '#ef4444';
+                case 'elite': return '#8b5cf6';
+                default: return '#f97316';
+            }
+        }
+
+        // ========== FLOATING CARD (map marker click) ==========
+        let floatingCardQuedada = null;
+
+        window.showFloatingCard = function(quedadaId) {
+            const q = (quedadas || []).find(x => x.id === quedadaId);
+            if (!q) return;
+            floatingCardQuedada = q;
+
+            const card = document.getElementById('map-floating-card');
+            if (!card) return;
+
+            const t = I18N[currentLang] || I18N.es;
+            const nivelColor = getNivelColor(q.nivel);
+            const asistentes = Array.isArray(q.asistentes) ? q.asistentes : (Array.isArray(q.asistentes_info) ? q.asistentes_info.map(a => a.user_id) : []);
+            const isJoined = currentUser && asistentes.includes(currentUser.id);
+            const isCreator = currentUser && q.creador_id === currentUser.id;
+            const participantCount = asistentes.length;
+
+            // Header
+            const header = card.querySelector('#fc-header');
+            let statusHtml = '';
+            if (isJoined) {
+                statusHtml = `<span style="padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(34,197,94,.15);color:#22c55e">${t.fc_joined || 'Apuntado'} &#10003;</span>`;
+            } else if (isCreator) {
+                statusHtml = `<span style="padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(249,115,22,.15);color:#f97316">${t.fc_organizer || 'Organizador'}</span>`;
+            }
+            header.innerHTML = `
+                <div style="display:flex;align-items:center;gap:8px;flex:1">
+                    <span style="padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:${nivelColor}20;color:${nivelColor}">${escapeHtml(q.nivel || 'Todos')}</span>
+                    ${statusHtml}
+                </div>
+                <button onclick="dismissFloatingCard()" style="width:28px;height:28px;border-radius:14px;background:rgba(255,255,255,.1);border:none;color:#94a3b8;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px" aria-label="Cerrar">&times;</button>
+            `;
+
+            // Title
+            card.querySelector('#fc-title').textContent = q.titulo || '';
+
+            // Info
+            const info = card.querySelector('#fc-info');
+            const distText = q.distancia ? `<span style="display:flex;align-items:center;gap:4px"><span>📏</span> ${q.distancia} ${t.fc_km || 'km'}</span>` : '';
+            info.innerHTML = `
+                <span style="display:flex;align-items:center;gap:4px"><span>📅</span> ${formatDateShort(q.fecha)}</span>
+                <span style="display:flex;align-items:center;gap:4px"><span>⏰</span> ${formatHora(q.hora)}</span>
+                <span style="display:flex;align-items:center;gap:4px"><span>📍</span> ${escapeHtml(q.ciudad || q.ubicacion || '')}</span>
+                <span style="display:flex;align-items:center;gap:4px"><span>👥</span> ${participantCount} ${t.fc_runners || 'runners'}</span>
+                ${distText}
+            `;
+
+            // Actions
+            const actions = card.querySelector('#fc-actions');
+            const viewBtn = `<button onclick="dismissFloatingCard();openQuedadaDetail('${q.id}')" style="flex:1;padding:11px;border-radius:10px;border:1.5px solid rgba(249,115,22,.4);background:transparent;color:#f97316;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s">${t.fc_view_event || 'Ver quedada'}</button>`;
+
+            if (isJoined || isCreator) {
+                actions.innerHTML = viewBtn;
+            } else {
+                actions.innerHTML = `
+                    ${viewBtn}
+                    <button onclick="toggleJoin('${q.id}');dismissFloatingCard()" style="flex:1;padding:11px;border-radius:10px;border:none;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(249,115,22,.3);transition:all .2s">${t.fc_join_event || 'Unirme'}</button>
+                `;
+            }
+
+            // Show with animation
+            card.classList.remove('hidden');
+            card.style.transform = 'translateY(100%)';
+            card.style.opacity = '0';
+            requestAnimationFrame(() => {
+                card.style.transition = 'transform .3s cubic-bezier(.34,1.56,.64,1), opacity .2s';
+                card.style.transform = 'translateY(0)';
+                card.style.opacity = '1';
+            });
+
+            // Pan map slightly up
+            if (map && q.lat && q.lng) {
+                map.setView([q.lat - 0.003, q.lng], map.getZoom(), { animate: true });
+            }
+        };
+
+        window.dismissFloatingCard = function() {
+            const card = document.getElementById('map-floating-card');
+            if (!card || card.classList.contains('hidden')) return;
+            card.style.transition = 'transform .2s ease-in, opacity .15s';
+            card.style.transform = 'translateY(100%)';
+            card.style.opacity = '0';
+            setTimeout(() => {
+                card.classList.add('hidden');
+                floatingCardQuedada = null;
+            }, 200);
+        };
+
         // ========== PREMIUM: ANIMACIÓN BIENVENIDA ==========
         function showWelcomeAnimation() {
             // Añadir overlay
@@ -5217,6 +5362,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             map=L.map('map',{zoomControl:false}).setView([center.lat, center.lng], center.zoom);
             map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps" target="_blank" rel="noopener noreferrer">Leaflet</a>');
             L.control.zoom({position:'bottomright'}).addTo(map);
+            map.on('click', function(){ dismissFloatingCard(); });
             updateMapTiles();
             renderCityChips();
             updateMarkers();
@@ -5466,12 +5612,14 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             filtered = filtered.filter(q => !isQuedadaPasada(q));
 
             filtered.forEach(q=>{
+                const nivelColor = getNivelColor(q.nivel);
+                const horaStr = q.hora ? q.hora.split(':').slice(0,2).join(':') : '';
                 const icon=L.divIcon({
-                    html:`<div style="background:linear-gradient(135deg,#f97316,#ea580c);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid white;box-shadow:0 4px 12px rgba(0,0,0,0.3)"><span style="font-size:16px">🏃</span></div>`,
-                    className:'',iconSize:[36,36],iconAnchor:[18,18]
+                    html:`<div style="background:${nivelColor};display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:10px;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer"><span style="font-size:11px">🏃</span><span style="color:white;font-size:12px;font-weight:800">${horaStr}</span></div>`,
+                    className:'cj-marker',iconSize:[null,null],iconAnchor:[30,20]
                 });
-                const m=L.marker([q.lat,q.lng],{icon}).addTo(map)
-                  .bindPopup(`<div><b>${escapeHtml(q.titulo)}</b><br>📍 ${escapeHtml(q.ubicacion)}<br>📅 ${formatDate(q.fecha)}</div>`);
+                const m=L.marker([q.lat,q.lng],{icon}).addTo(map);
+                m.on('click', function(){ showFloatingCard(q.id); });
                 markers.push(m);
             });
 

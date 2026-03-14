@@ -617,5 +617,21 @@ I18N.en = {
         social_app_cta_title: 'GPS tracking and more',
         social_app_cta_desc: 'Download the app to log your activities',
         // Theme
-        theme_toggle: 'Dark mode'
+        theme_toggle: 'Dark mode',
+        // Matching explainer
+        matching_explainer_title: 'How we find compatible runners',
+        matching_exp_pace_title: 'Pace',
+        matching_exp_pace_desc: 'We analyze your usual pace to match with similar runners',
+        matching_exp_level_title: 'Level',
+        matching_exp_level_desc: 'Your experience level for balanced groups',
+        matching_exp_zone_title: 'Zone',
+        matching_exp_zone_desc: 'We search for runners near your usual area',
+        matching_exp_schedule_title: 'Schedule',
+        matching_exp_schedule_desc: 'Compatible schedules so you can meet hassle-free',
+        // Premium benefits
+        premium_benefit_matching: 'Unlimited runner matching',
+        premium_benefit_filters: 'Advanced filters: pace, verified',
+        premium_benefit_strava: 'Strava sync',
+        premium_benefit_stats: 'Advanced stats and heatmap',
+        premium_benefit_visibility: 'Boosted profile visibility'
 };

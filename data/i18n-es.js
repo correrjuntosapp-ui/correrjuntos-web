@@ -627,5 +627,21 @@ I18N.es = {
         social_app_cta_title: 'Tracking GPS y mucho más',
         social_app_cta_desc: 'Descarga la app para registrar tus actividades',
         // Theme
-        theme_toggle: 'Modo oscuro'
+        theme_toggle: 'Modo oscuro',
+        // Matching explainer
+        matching_explainer_title: 'Cómo encontramos runners compatibles',
+        matching_exp_pace_title: 'Ritmo',
+        matching_exp_pace_desc: 'Analizamos tu ritmo habitual para emparejar con runners similares',
+        matching_exp_level_title: 'Nivel',
+        matching_exp_level_desc: 'Tu nivel de experiencia para grupos equilibrados',
+        matching_exp_zone_title: 'Zona',
+        matching_exp_zone_desc: 'Buscamos runners cerca de tu zona habitual',
+        matching_exp_schedule_title: 'Horarios',
+        matching_exp_schedule_desc: 'Horarios compatibles para que quedes sin complicaciones',
+        // Premium benefits
+        premium_benefit_matching: 'Matching ilimitado de runners',
+        premium_benefit_filters: 'Filtros avanzados: ritmo, verificado',
+        premium_benefit_strava: 'Sincronización con Strava',
+        premium_benefit_stats: 'Estadísticas avanzadas y mapa de calor',
+        premium_benefit_visibility: 'Mayor visibilidad de perfil'
 };

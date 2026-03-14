@@ -1933,16 +1933,32 @@
             border-color: #efe6db !important;
             box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
         }
-        /* Quedadas banner redesign */
+        /* Quedadas banner / hero recommendation */
         .quedadas-banner-card {
-            background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.04) 100%);
-            border: 1px solid rgba(249,115,22,0.15);
-            border-radius: 16px;
-            padding: 20px;
+            background: linear-gradient(135deg, rgba(249,115,22,0.1) 0%, rgba(251,191,36,0.05) 100%);
+            border: 1px solid rgba(249,115,22,0.18);
+            border-left: 4px solid #f97316;
+            border-radius: 20px;
+            padding: 24px 28px;
+            box-shadow: 0 4px 24px rgba(249,115,22,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .quedadas-banner-card::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
         body.light-mode .quedadas-banner-card {
             background: linear-gradient(135deg, #fff7ed, #fffbeb) !important;
             border-color: rgba(249,115,22,0.2) !important;
+            border-left-color: #f97316 !important;
+            box-shadow: 0 4px 24px rgba(249,115,22,0.06) !important;
         }
         /* Plan status card */
         .plan-card {
@@ -1950,22 +1966,35 @@
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 16px;
             padding: 16px;
+            overflow: hidden;
+        }
+        .plan-progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #f97316, #fb923c, #f97316);
+            background-size: 200% 100%;
+            animation: plan-shimmer 3s linear infinite;
+            transition: width 0.5s ease;
+        }
+        @keyframes plan-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
         body.light-mode .plan-card {
             background: #fffcf9 !important;
             border-color: #efe6db !important;
             box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
         }
-        /* Welcome card compact */
+        /* Welcome card — compact context bar */
         .welcome-card {
-            background: linear-gradient(135deg, rgba(249,115,22,0.06) 0%, rgba(251,191,36,0.03) 100%);
-            border: 1px solid rgba(249,115,22,0.12);
-            border-radius: 16px;
-            padding: 14px 16px;
+            background: rgba(249,115,22,0.03);
+            border: 1px solid rgba(249,115,22,0.08);
+            border-radius: 14px;
+            padding: 10px 14px;
         }
         body.light-mode .welcome-card {
-            background: linear-gradient(135deg, #fff7ed, #fffbeb) !important;
-            border-color: rgba(249,115,22,0.15) !important;
+            background: rgba(249,115,22,0.04) !important;
+            border-color: rgba(249,115,22,0.12) !important;
         }
 
         /* Light mode: Social CTAs section */
@@ -2420,3 +2449,161 @@
             padding: 36px 12px 12px;
             overflow: hidden;
         }
+
+        /* ===== PREMIUM REDESIGN — App Header ===== */
+        .app-header-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11,18,32,0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 10px 0;
+        }
+        body.light-mode .app-header-bar {
+            background: rgba(254,247,237,0.97) !important;
+            border-bottom-color: #efe6db !important;
+        }
+        .app-nav-link {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        .app-nav-link:hover {
+            color: #f97316;
+            border-color: rgba(249,115,22,0.25);
+            background: rgba(249,115,22,0.06);
+        }
+        body.light-mode .app-nav-link {
+            color: #5c4d3d !important;
+            background: rgba(139,115,85,0.06) !important;
+            border-color: #efe6db !important;
+        }
+        body.light-mode .app-nav-link:hover {
+            color: #ea580c !important;
+            border-color: rgba(249,115,22,0.3) !important;
+            background: rgba(249,115,22,0.06) !important;
+        }
+
+        /* ===== App Store Badges ===== */
+        .app-store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #000;
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .app-store-badge:hover {
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+        .app-store-badge-label {
+            font-size: 9px;
+            color: #9ca3af;
+            line-height: 1.2;
+            display: block;
+        }
+        .app-store-badge-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            display: block;
+        }
+
+        /* ===== Stat Card Icons ===== */
+        .stat-icon {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(249,115,22,0.1);
+            color: #f97316;
+        }
+        .stat-icon svg { width: 18px; height: 18px; }
+        body.light-mode .stat-icon {
+            background: rgba(249,115,22,0.08) !important;
+            color: #ea580c !important;
+        }
+
+        /* ===== Matching Explainer ===== */
+        .matching-explainer {
+            background: linear-gradient(135deg, rgba(249,115,22,0.05) 0%, rgba(59,130,246,0.03) 100%);
+            border: 1px solid rgba(249,115,22,0.12);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .matching-explainer-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+        }
+        .matching-explainer-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .matching-explainer-icon svg { width: 18px; height: 18px; }
+        body.light-mode .matching-explainer {
+            background: linear-gradient(135deg, #fff7ed, #f0f9ff) !important;
+            border-color: rgba(249,115,22,0.15) !important;
+        }
+
+        /* ===== Premium Benefits List ===== */
+        .premium-benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+        .premium-benefits-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 13px;
+            color: #d4d4d8;
+        }
+        .premium-benefits-list li svg {
+            width: 16px;
+            height: 16px;
+            color: #f97316;
+            flex-shrink: 0;
+        }
+        body.light-mode .premium-benefits-list li {
+            color: #5c4d3d !important;
+        }
+
+        /* ===== Map Empty State ===== */
+        .map-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #64748b;
+            text-align: center;
+            gap: 12px;
+        }
+        .map-empty-state svg { width: 48px; height: 48px; opacity: 0.4; }

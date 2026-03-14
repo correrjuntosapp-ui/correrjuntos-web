@@ -1548,11 +1548,13 @@
 
     <!-- APP -->
     <section id="view-app" class="view bg-slate-950 p-4 md:p-8 pb-24">
-        <header class="max-w-7xl mx-auto mb-8">
+        <header class="app-header-bar max-w-7xl mx-auto mb-8" style="position:relative;border-bottom:none;background:transparent">
             <div class="flex justify-between items-center">
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
                     <div class="text-xl font-black cursor-pointer" onclick="showLanding()">CORRER<span class="text-orange-500">JUNTOS</span></div>
-                    <a href="/blog/" class="flex items-center ml-2" style="font-size:.85rem;font-weight:600;color:#94a3b8;text-decoration:none;transition:color .2s;padding:6px 8px;border-radius:8px" onmouseover="this.style.color='#FF7A00'" onmouseout="this.style.color='#94a3b8'" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'navbar'})">Blog</a>
+                    <div class="hidden md:flex items-center gap-1" style="background:rgba(255,255,255,.04);padding:3px;border-radius:999px;border:1px solid rgba(255,255,255,.06)">
+                        <a href="/blog/" class="app-nav-link" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'navbar'})">Blog</a>
+                    </div>
                 </div>
                 <div class="flex items-center gap-2 md:gap-3">
                     <span class="text-gray-400 text-sm hidden md:inline"><span id="header-hello">Hola</span>, <span id="user-name" class="text-white font-bold"></span></span>
@@ -1572,14 +1574,14 @@
             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                 <div><div class="text-3xl md:text-4xl font-black mb-2"><span id="app-title">Quedadas </span><span id="app-title-highlight" class="text-orange-500">cerca de ti</span></div><p id="app-subtitle" class="text-gray-500">Encuentra tu próxima ruta y conoce gente nueva</p></div>
                 <!-- App Store Badges (desktop only) -->
-                <div class="hidden md:flex items-center gap-2 mt-3 md:mt-0">
-                    <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-black px-3 py-2 rounded-lg border border-white/10 hover:border-white/20 transition text-xs">
-                        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                        <div class="text-left"><span class="text-[9px] text-gray-400 block leading-tight">Download on the</span><span class="text-white font-semibold leading-tight">App Store</span></div>
+                <div class="hidden md:flex items-center gap-3 mt-3 md:mt-0">
+                    <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="app-store-badge">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        <div class="text-left"><span class="app-store-badge-label">Download on the</span><span class="app-store-badge-name">App Store</span></div>
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-black px-3 py-2 rounded-lg border border-white/10 hover:border-white/20 transition text-xs">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
-                        <div class="text-left"><span class="text-[9px] text-gray-400 block leading-tight">GET IT ON</span><span class="text-white font-semibold leading-tight">Google Play</span></div>
+                    <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="app-store-badge">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
+                        <div class="text-left"><span class="app-store-badge-label">GET IT ON</span><span class="app-store-badge-name">Google Play</span></div>
                     </a>
                 </div>
                 <div class="mt-4 md:mt-0 text-sm text-gray-400"><span id="showing-prefix">Mostrando</span> <span id="quedadas-count" class="text-orange-500 font-bold">0</span> <span id="showing-suffix">quedadas</span></div>
@@ -1662,8 +1664,8 @@
                         <div class="flex items-center justify-between mb-2">
                             <span id="plan-status-counter" class="text-xs text-gray-400">Quedadas: <span id="plan-counter-value" class="text-white font-bold">0/3</span></span>
                         </div>
-                        <div class="w-full h-1.5 bg-slate-700/40 rounded-full overflow-hidden">
-                            <div id="plan-progress-bar" class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        <div class="w-full h-2 bg-slate-700/40 rounded-full overflow-hidden">
+                            <div id="plan-progress-bar" class="plan-progress-bar" style="width: 0%"></div>
                         </div>
                         <!-- Limit warning -->
                         <div id="plan-limit-warning" class="hidden mt-3 p-3 rounded-xl bg-red-500/8 border border-red-500/15">
@@ -1682,18 +1684,22 @@
                 <!-- Stats en grid -->
                 <div class="stats-grid">
                     <div class="stat-card">
+                        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
                         <div id="stat-quedadas" class="stat-value">0</div>
                         <div class="stat-label" id="label-total-runs">Quedadas totales</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div>
                         <div id="stat-km" class="stat-value">0</div>
                         <div class="stat-label" id="label-km-run">Km corridos</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
                         <div id="stat-runners" class="stat-value">0</div>
                         <div class="stat-label" id="label-runners-known">Runners conocidos</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
                         <div id="stat-proximas" class="stat-value">0</div>
                         <div class="stat-label" id="label-upcoming">Próximas quedadas</div>
                     </div>
@@ -1814,29 +1820,35 @@
 
                 <!-- Mensaje para no premium (stats) -->
                 <div id="premium-stats-locked" class="hidden mt-4">
-                    <div class="premium-stats-locked-container">
-                        <div class="py-4">
-                            <p id="premium-stats-title" class="text-sm font-semibold text-gray-300 mb-1 text-center">Sigue tu progreso como un runner serio</p>
-                            <p id="premium-stats-desc" class="text-xs text-gray-500 mb-4 text-center">Rachas, ritmos, comparativas mensuales y evolución semana a semana</p>
-                            <!-- Blurred preview data -->
-                            <div class="grid grid-cols-3 gap-3 mb-4">
-                                <div class="text-center p-2 rounded-lg bg-slate-800/40 border border-slate-700/30">
-                                    <div class="text-lg font-bold text-gray-600 blur-[3px]">5:24</div>
-                                    <div class="text-[10px] text-gray-600">Mejor ritmo</div>
-                                </div>
-                                <div class="text-center p-2 rounded-lg bg-slate-800/40 border border-slate-700/30">
-                                    <div class="text-lg font-bold text-gray-600 blur-[3px]">127</div>
-                                    <div class="text-[10px] text-gray-600">Km totales</div>
-                                </div>
-                                <div class="text-center p-2 rounded-lg bg-slate-800/40 border border-slate-700/30">
-                                    <div class="text-lg font-bold text-gray-600 blur-[3px]">4</div>
-                                    <div class="text-[10px] text-gray-600">Racha semanas</div>
-                                </div>
+                    <div style="background:linear-gradient(135deg,rgba(234,179,8,0.06) 0%,rgba(251,191,36,0.03) 100%);border:1px solid rgba(234,179,8,0.15);border-radius:16px;padding:20px">
+                        <p id="premium-stats-title" class="text-sm font-bold text-white mb-1 text-center">Sigue tu progreso como un runner serio</p>
+                        <p id="premium-stats-desc" class="text-xs text-gray-400 mb-3 text-center">Rachas, ritmos, comparativas mensuales y evolución semana a semana</p>
+                        <!-- Blurred preview data -->
+                        <div class="grid grid-cols-3 gap-3 mb-4">
+                            <div class="text-center p-2 rounded-lg bg-slate-800/40 border border-slate-700/30">
+                                <div class="text-lg font-bold text-gray-600 blur-[3px]">5:24</div>
+                                <div class="text-[10px] text-gray-600">Mejor ritmo</div>
                             </div>
-                            <button onclick="openPremiumSales(); trackPremiumCTA('stats_locked')" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-sm font-bold hover:shadow-lg transition">
-                                <svg class="w-4 h-4 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> <span id="premium-unlock-btn">Desbloquear estadísticas avanzadas</span>
-                            </button>
+                            <div class="text-center p-2 rounded-lg bg-slate-800/40 border border-slate-700/30">
+                                <div class="text-lg font-bold text-gray-600 blur-[3px]">127</div>
+                                <div class="text-[10px] text-gray-600">Km totales</div>
+                            </div>
+                            <div class="text-center p-2 rounded-lg bg-slate-800/40 border border-slate-700/30">
+                                <div class="text-lg font-bold text-gray-600 blur-[3px]">4</div>
+                                <div class="text-[10px] text-gray-600">Racha semanas</div>
+                            </div>
                         </div>
+                        <!-- Premium benefits list -->
+                        <ul class="premium-benefits-list">
+                            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span id="premium-b-matching">Matching ilimitado de runners</span></li>
+                            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg><span id="premium-b-filters">Filtros avanzados: ritmo, verificado</span></li>
+                            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg><span id="premium-b-strava">Sincronización con Strava</span></li>
+                            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg><span id="premium-b-stats">Estadísticas avanzadas y mapa de calor</span></li>
+                            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg><span id="premium-b-visibility">Mayor visibilidad de perfil</span></li>
+                        </ul>
+                        <button onclick="openPremiumSales(); trackPremiumCTA('stats_locked')" class="w-full py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
+                            <svg class="w-4 h-4 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> <span id="premium-unlock-btn">Desbloquear con Premium</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1850,9 +1862,31 @@
                 <div id="matching-preview-list" class="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <!-- Filled by JS -->
                 </div>
+                <!-- Matching explainer -->
+                <div id="matching-explainer" class="matching-explainer hidden mt-4">
+                    <p class="text-sm font-bold text-white mb-3" id="matching-explainer-title">Cómo encontramos runners compatibles</p>
+                    <div class="space-y-1">
+                        <div class="matching-explainer-item">
+                            <div class="matching-explainer-icon" style="background:rgba(249,115,22,0.1);color:#f97316"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                            <div><p class="text-sm text-white font-semibold" id="matching-exp-pace-title">Ritmo</p><p class="text-xs text-gray-400" id="matching-exp-pace-desc">Analizamos tu ritmo habitual para emparejar con runners similares</p></div>
+                        </div>
+                        <div class="matching-explainer-item">
+                            <div class="matching-explainer-icon" style="background:rgba(34,197,94,0.1);color:#22c55e"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                            <div><p class="text-sm text-white font-semibold" id="matching-exp-level-title">Nivel</p><p class="text-xs text-gray-400" id="matching-exp-level-desc">Tu nivel de experiencia para grupos equilibrados</p></div>
+                        </div>
+                        <div class="matching-explainer-item">
+                            <div class="matching-explainer-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+                            <div><p class="text-sm text-white font-semibold" id="matching-exp-zone-title">Zona</p><p class="text-xs text-gray-400" id="matching-exp-zone-desc">Buscamos runners cerca de tu zona habitual</p></div>
+                        </div>
+                        <div class="matching-explainer-item">
+                            <div class="matching-explainer-icon" style="background:rgba(168,85,247,0.1);color:#a855f7"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                            <div><p class="text-sm text-white font-semibold" id="matching-exp-schedule-title">Horarios</p><p class="text-xs text-gray-400" id="matching-exp-schedule-desc">Horarios compatibles para que quedes sin complicaciones</p></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 🔔 SMART ALERTS PREVIEW (solo FREE logueados) -->
+            <!-- SMART ALERTS PREVIEW (solo FREE logueados) -->
             <div id="smart-alerts-section" class="hidden mb-6 max-w-5xl mx-auto px-4">
                 <div class="p-4 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
                     <p class="text-white font-bold mb-1 flex items-center gap-2"><svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg> <span id="alerts-preview-title"><span id="alerts-count">3</span> quedadas encajan con tu ritmo</span></p>

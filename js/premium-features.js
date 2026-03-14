@@ -26,6 +26,8 @@
         var runners = Array.from(runnerMap.values()).slice(0, 4);
         if (runners.length === 0) return;
         section.classList.remove('hidden');
+        var explainer = document.getElementById('matching-explainer');
+        if (explainer) explainer.classList.remove('hidden');
         list.innerHTML = runners.map(function(r){
             var initials = (r.nombre || 'R').charAt(0).toUpperCase();
             var photo = r.photo ? '<img src="'+r.photo+'" class="w-10 h-10 rounded-full object-cover" alt="" loading="lazy"/>' : '<div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-bold text-white text-sm">'+initials+'</div>';

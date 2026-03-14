@@ -477,17 +477,17 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const created = userStats.created || 0;
             const joined = userStats.quedadas || 0;
             if (created >= 2) {
-                if (iconEl) iconEl.textContent = '👑';
+                if (iconEl) iconEl.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>';
                 if (titleEl) titleEl.textContent = 'Crea sin límites y organiza tu comunidad';
                 if (descEl) descEl.textContent = 'Ya has creado ' + created + ' quedadas. Desbloquea quedadas ilimitadas y lidera tu grupo.';
                 if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis — 7 días';
             } else if (joined >= 3) {
-                if (iconEl) iconEl.textContent = '🔍';
+                if (iconEl) iconEl.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>';
                 if (titleEl) titleEl.textContent = 'Encuentra runners compatibles y filtra mejor';
                 if (descEl) descEl.textContent = 'Ya has corrido con ' + (userStats.runners || 0) + ' runners. Filtra por ritmo real y nivel.';
                 if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis — 7 días';
             } else {
-                if (iconEl) iconEl.textContent = '🔔';
+                if (iconEl) iconEl.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>';
                 if (titleEl) titleEl.textContent = 'Activa alertas personalizadas y no te pierdas ninguna quedada';
                 if (descEl) descEl.textContent = 'Recibe notificaciones cuando aparezca una quedada perfecta para ti.';
                 if (btnEl) btnEl.textContent = 'Empieza tu prueba gratis — 7 días';
@@ -506,27 +506,27 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
         let quedadas = [];
         const communities = [
   // ESPAÑA (CCAA)
-  {id:1,name:"Andalucía Runners",ciudad:"Andalucía",members:312,icon:"🏃",color:"#f97316"},
-  {id:2,name:"Aragón Runners",ciudad:"Aragón",members:124,icon:"🏃",color:"#ec4899"},
-  {id:3,name:"Asturias Runners",ciudad:"Asturias",members:98,icon:"🏃",color:"#60a5fa"},
-  {id:4,name:"Illes Balears Runners",ciudad:"Illes Balears",members:145,icon:"🏃",color:"#a78bfa"},
-  {id:5,name:"Canarias Runners",ciudad:"Canarias",members:167,icon:"🏃",color:"#22c55e"},
-  {id:6,name:"Cantabria Runners",ciudad:"Cantabria",members:76,icon:"🏃",color:"#f59e0b"},
-  {id:7,name:"Castilla-La Mancha Runners",ciudad:"Castilla-La Mancha",members:132,icon:"🏃",color:"#38bdf8"},
-  {id:8,name:"Castilla y León Runners",ciudad:"Castilla y León",members:118,icon:"🏃",color:"#34d399"},
-  {id:9,name:"Cataluña Running",ciudad:"Cataluña",members:289,icon:"🏃",color:"#f43f5e"},
-  {id:10,name:"Comunidad Valenciana Corre",ciudad:"Comunidad Valenciana",members:214,icon:"🏃",color:"#f97316"},
-  {id:11,name:"Extremadura Runners",ciudad:"Extremadura",members:64,icon:"🏃",color:"#8b5cf6"},
-  {id:12,name:"Galicia Running",ciudad:"Galicia",members:153,icon:"🏃",color:"#22c55e"},
-  {id:13,name:"La Rioja Runners",ciudad:"La Rioja",members:41,icon:"🏃",color:"#60a5fa"},
-  {id:14,name:"Madrid Runners",ciudad:"Comunidad de Madrid",members:245,icon:"🏃",color:"#ec4899"},
-  {id:15,name:"Región de Murcia Runners",ciudad:"Región de Murcia",members:97,icon:"🏃",color:"#f59e0b"},
-  {id:16,name:"Navarra Running",ciudad:"Navarra",members:58,icon:"🏃",color:"#38bdf8"},
-  {id:17,name:"País Vasco Running",ciudad:"País Vasco",members:133,icon:"🏃",color:"#34d399"},
+  {id:1,name:"Andalucía Runners",ciudad:"Andalucía",members:312,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#f97316"},
+  {id:2,name:"Aragón Runners",ciudad:"Aragón",members:124,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#ec4899"},
+  {id:3,name:"Asturias Runners",ciudad:"Asturias",members:98,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#60a5fa"},
+  {id:4,name:"Illes Balears Runners",ciudad:"Illes Balears",members:145,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#a78bfa"},
+  {id:5,name:"Canarias Runners",ciudad:"Canarias",members:167,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#22c55e"},
+  {id:6,name:"Cantabria Runners",ciudad:"Cantabria",members:76,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#f59e0b"},
+  {id:7,name:"Castilla-La Mancha Runners",ciudad:"Castilla-La Mancha",members:132,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#38bdf8"},
+  {id:8,name:"Castilla y León Runners",ciudad:"Castilla y León",members:118,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#34d399"},
+  {id:9,name:"Cataluña Running",ciudad:"Cataluña",members:289,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#f43f5e"},
+  {id:10,name:"Comunidad Valenciana Corre",ciudad:"Comunidad Valenciana",members:214,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#f97316"},
+  {id:11,name:"Extremadura Runners",ciudad:"Extremadura",members:64,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#8b5cf6"},
+  {id:12,name:"Galicia Running",ciudad:"Galicia",members:153,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#22c55e"},
+  {id:13,name:"La Rioja Runners",ciudad:"La Rioja",members:41,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#60a5fa"},
+  {id:14,name:"Madrid Runners",ciudad:"Comunidad de Madrid",members:245,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#ec4899"},
+  {id:15,name:"Región de Murcia Runners",ciudad:"Región de Murcia",members:97,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#f59e0b"},
+  {id:16,name:"Navarra Running",ciudad:"Navarra",members:58,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#38bdf8"},
+  {id:17,name:"País Vasco Running",ciudad:"País Vasco",members:133,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#34d399"},
 
   // ESPAÑA (Ciudades autónomas)
-  {id:18,name:"Ceuta Runners",ciudad:"Ceuta",members:35,icon:"🏃",color:"#a78bfa"},
-  {id:19,name:"Melilla Runners",ciudad:"Melilla",members:30,icon:"🏃",color:"#f43f5e"},
+  {id:18,name:"Ceuta Runners",ciudad:"Ceuta",members:35,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#a78bfa"},
+  {id:19,name:"Melilla Runners",ciudad:"Melilla",members:30,icon:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',color:"#f43f5e"},
 
   // PORTUGAL
   {id:20,name:"Portugal Runners",ciudad:"Portugal",members:201,icon:"🇵🇹",color:"#22c55e"}
@@ -1556,7 +1556,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 } else {
                     inputWrap.innerHTML = `
                         <div class="text-center py-2">
-                            <button onclick="openPremiumSales()" class="text-xs text-yellow-400 hover:text-yellow-300 transition">${t.premiumCommentCta || '⭐ Premium para comentar'}</button>
+                            <button onclick="openPremiumSales()" class="text-xs text-yellow-400 hover:text-yellow-300 transition">${t.premiumCommentCta || '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Premium para comentar'}</button>
                         </div>`;
                 }
             }
@@ -1727,7 +1727,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                         <div class="bg-slate-800/60 rounded-xl p-4 text-center">
                             <p class="text-gray-400 text-sm mb-3">${currentLang === 'en' ? 'No upcoming runs in your area yet. Create one and others will join!' : 'Aún no hay quedadas en tu zona. ¡Crea una y otros se unirán!'}</p>
                             <button onclick="openModalCrear()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition">
-                                ➕ ${currentLang === 'en' ? 'Create a run' : 'Crear quedada'}
+                                <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg> ${currentLang === 'en' ? 'Create a run' : 'Crear quedada'}
                             </button>
                         </div>`;
                     missionEl.classList.remove('hidden');
@@ -1781,9 +1781,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 const showBadges = userStats.quedadas < 5;
                 const badgesHtml = showBadges ? `
                     <div class="flex flex-wrap gap-2 mt-3 text-xs text-gray-400" id="mission-social-badges">
-                        <span class="bg-slate-700/50 px-2 py-1 rounded-full">✔ ${currentLang === 'en' ? 'Relaxed group' : 'Grupo relajado'}</span>
-                        <span class="bg-slate-700/50 px-2 py-1 rounded-full">✔ ${currentLang === 'en' ? 'Adapted pace' : 'Ritmo adaptado'}</span>
-                        <span class="bg-slate-700/50 px-2 py-1 rounded-full">✔ ${currentLang === 'en' ? 'First-timers welcome' : 'Primera vez bienvenida'}</span>
+                        <span class="bg-slate-700/50 px-2 py-1 rounded-full"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> ${currentLang === 'en' ? 'Relaxed group' : 'Grupo relajado'}</span>
+                        <span class="bg-slate-700/50 px-2 py-1 rounded-full"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> ${currentLang === 'en' ? 'Adapted pace' : 'Ritmo adaptado'}</span>
+                        <span class="bg-slate-700/50 px-2 py-1 rounded-full"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> ${currentLang === 'en' ? 'First-timers welcome' : 'Primera vez bienvenida'}</span>
                     </div>` : '';
 
                 missionCard.innerHTML = `
@@ -1796,7 +1796,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                             <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${confirmedCount} runners</span>
                             ${bq.distancia ? `<span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg> ${formatDistancia(bq.distancia)}</span>` : ''}
                         </div>
-                        ${best.friendsGoing > 0 ? `<div class="text-xs text-green-400 mb-2">👥 ${best.friendsGoing} ${currentLang === 'en' ? 'friends going' : 'amigos van'}</div>` : ''}
+                        ${best.friendsGoing > 0 ? `<div class="text-xs text-green-400 mb-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg> ${best.friendsGoing} ${currentLang === 'en' ? 'friends going' : 'amigos van'}</div>` : ''}
                         <button onclick="openAttendanceModal('${bq.id}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition-all transform hover:scale-[1.02]">
                             ${currentLang === 'en' ? 'JOIN NOW' : 'UNIRME AHORA'}
                         </button>
@@ -1932,26 +1932,26 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                         const q = item.q;
                         // "Perfecta para tu nivel" — exact city + level match on first card
                         const isPerfect = idx === 0 && q.ciudad && q.ciudad.toLowerCase() === userCiudadLocal && (q.nivel === userNivelLocal || q.nivel === 'Todos los niveles');
-                        const perfectBadge = isPerfect ? '<div class="text-xs text-yellow-400 font-bold mb-1">⭐ Perfecta para tu nivel</div>' : '';
+                        const perfectBadge = isPerfect ? '<div class="text-xs text-yellow-400 font-bold mb-1"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Perfecta para tu nivel</div>' : '';
                         // Urgency badge
                         const confirmed = (q.asistentes_info || []).filter(a => a.status === 'confirmed' || !a.status).length;
                         const spotsLeft = q.max_participantes ? q.max_participantes - confirmed : null;
                         const hoursUntil = (new Date(q.fecha + 'T' + (q.hora || '00:00')) - new Date()) / 3600000;
                         let urgency = '';
-                        if (spotsLeft !== null && spotsLeft <= 3 && spotsLeft > 0) urgency = `<div class="text-xs text-red-400 mt-2">⚡ Quedan ${spotsLeft} plaza${spotsLeft === 1 ? '' : 's'}</div>`;
-                        else if (hoursUntil > 0 && hoursUntil <= 6) urgency = `<div class="text-xs text-yellow-400 mt-2">⏰ Empieza en ${Math.ceil(hoursUntil)} hora${Math.ceil(hoursUntil) === 1 ? '' : 's'}</div>`;
-                        else if (confirmed >= 3) urgency = `<div class="text-xs text-orange-400 mt-2">🔥 ${confirmed} runners ya se han unido</div>`;
+                        if (spotsLeft !== null && spotsLeft <= 3 && spotsLeft > 0) urgency = `<div class="text-xs text-red-400 mt-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Quedan ${spotsLeft} plaza${spotsLeft === 1 ? '' : 's'}</div>`;
+                        else if (hoursUntil > 0 && hoursUntil <= 6) urgency = `<div class="text-xs text-yellow-400 mt-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Empieza en ${Math.ceil(hoursUntil)} hora${Math.ceil(hoursUntil) === 1 ? '' : 's'}</div>`;
+                        else if (confirmed >= 3) urgency = `<div class="text-xs text-orange-400 mt-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg> ${confirmed} runners ya se han unido</div>`;
                         return `
                         <div class="flex-shrink-0 w-64 snap-start card-quedada p-4 rounded-xl cursor-pointer hover:border-orange-500/30 transition-all ${isPerfect ? 'border-yellow-500/30' : ''}" onclick="openQuedadaDetail('${q.id}')">
                             ${perfectBadge}
                             <div class="text-xs text-orange-400 font-bold mb-1">${formatDateShort(q.fecha)} · ${formatHora(q.hora)}</div>
                             <div class="text-sm font-bold text-white mb-1 line-clamp-1">${escapeHtml(q.titulo)}</div>
-                            <div class="text-xs text-gray-400 mb-2">📍 ${escapeHtml(q.ciudad || '')}</div>
+                            <div class="text-xs text-gray-400 mb-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${escapeHtml(q.ciudad || '')}</div>
                             <div class="flex gap-2 text-xs">
                                 <span class="px-2 py-0.5 rounded-full bg-slate-700 text-gray-300">${formatDistancia(q.distancia)}</span>
                                 <span class="px-2 py-0.5 rounded-full bg-slate-700 text-gray-300">${q.nivel}</span>
                             </div>
-                            ${item.friendsGoing > 0 ? `<div class="text-xs text-green-400 mt-2">👥 ${item.friendsGoing} ${t.premiumFriendsGoing || 'amigos van'}</div>` : ''}
+                            ${item.friendsGoing > 0 ? `<div class="text-xs text-green-400 mt-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg> ${item.friendsGoing} ${t.premiumFriendsGoing || 'amigos van'}</div>` : ''}
                             ${urgency}
                         </div>`;
                     }).join('');
@@ -1975,7 +1975,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             let html = '';
 
             // Badges normales
-            html += '<div class="mb-4"><h4 class="text-sm font-bold text-gray-400 mb-3 flex items-center gap-2">🏅 Logros</h4>';
+            html += '<div class="mb-4"><h4 class="text-sm font-bold text-gray-400 mb-3 flex items-center gap-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg> Logros</h4>';
             html += normalBadges.map(b => {
                 const unlocked = b.condition(userStats);
                 return `
@@ -1985,21 +1985,21 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                         <div class="font-bold text-white">${b.name}</div>
                         <div class="text-sm text-gray-400">${b.desc}</div>
                     </div>
-                    ${unlocked ? '<span class="text-green-400 text-xl">✓</span>' : '<span class="text-gray-600">🔒</span>'}
+                    ${unlocked ? '<span class="text-green-400 text-xl">✓</span>' : '<span class="text-gray-600"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></span>'}
                 </div>`;
             }).join('');
             html += '</div>';
 
             // Badges Premium (sección especial dorada)
             html += '<div class="mt-6 pt-4 border-t border-yellow-500/30">';
-            html += '<h4 class="text-sm font-bold text-yellow-400 mb-3 flex items-center gap-2">⭐ Badges Exclusivos Premium</h4>';
+            html += '<h4 class="text-sm font-bold text-yellow-400 mb-3 flex items-center gap-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Badges Exclusivos Premium</h4>';
 
             if (!isUserPremium) {
                 html += `<div class="text-center py-4 px-3 rounded-xl bg-gradient-to-br from-yellow-500/10 to-orange-500/5 border border-yellow-500/20">
-                    <p class="text-yellow-400 text-sm font-semibold mb-2">🔒 Desbloquea badges exclusivos</p>
+                    <p class="text-yellow-400 text-sm font-semibold mb-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg> Desbloquea badges exclusivos</p>
                     <p class="text-gray-400 text-xs mb-3">Hazte Premium para acceder a badges dorados únicos</p>
                     <button onclick="closeModal('modal-badges'); openModal('modal-profile')" class="px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold hover:shadow-lg transition">
-                        ⭐ Ver Premium
+                        <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Ver Premium
                     </button>
                 </div>`;
             } else {
@@ -2012,7 +2012,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                             <div class="font-bold text-yellow-300">${b.name}</div>
                             <div class="text-sm text-yellow-400/70">${b.desc}</div>
                         </div>
-                        ${unlocked ? '<span class="text-yellow-400 text-xl">⭐</span>' : '<span class="text-gray-600">🔒</span>'}
+                        ${unlocked ? '<span class="text-yellow-400 text-xl"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></span>' : '<span class="text-gray-600"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></span>'}
                     </div>`;
                 }).join('');
             }
@@ -2096,61 +2096,61 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             container.innerHTML = `
                 <!-- Horario -->
                 <div class="filter-group">
-                    <label class="text-sm font-semibold text-gray-300 mb-2 block">🌤️ Horario</label>
+                    <label class="text-sm font-semibold text-gray-300 mb-2 block"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Horario</label>
                     <div class="grid grid-cols-3 gap-2" role="group" aria-label="Filtro por horario">
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="horario" data-value="manana">🌅 Mañana</button>
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="horario" data-value="tarde">🌆 Tarde</button>
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="horario" data-value="noche">🌙 Noche</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="horario" data-value="manana"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg> Mañana</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="horario" data-value="tarde"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg> Tarde</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="horario" data-value="noche"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg> Noche</button>
                     </div>
                 </div>
 
                 <!-- Nivel -->
                 <div class="filter-group">
-                    <label class="text-sm font-semibold text-gray-300 mb-2 block">📊 Nivel</label>
+                    <label class="text-sm font-semibold text-gray-300 mb-2 block"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg> Nivel</label>
                     <div class="grid grid-cols-2 gap-2" role="group" aria-label="Filtro por nivel">
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Principiante">🟢 Principiante</button>
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Intermedio">🟡 Intermedio</button>
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Avanzado">🔴 Avanzado</button>
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Elite">🟣 Elite</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Principiante"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block"></span> Principiante</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Intermedio"><span style="width:8px;height:8px;border-radius:50%;background:#eab308;display:inline-block"></span> Intermedio</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Avanzado"><span style="width:8px;height:8px;border-radius:50%;background:#ef4444;display:inline-block"></span> Avanzado</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="nivel" data-value="Elite"><span style="width:8px;height:8px;border-radius:50%;background:#8b5cf6;display:inline-block"></span> Elite</button>
                     </div>
                 </div>
 
                 <!-- Distancia -->
                 <div class="filter-group">
-                    <label class="text-sm font-semibold text-gray-300 mb-2 block">📏 Distancia</label>
+                    <label class="text-sm font-semibold text-gray-300 mb-2 block"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg> Distancia</label>
                     <div class="grid grid-cols-3 gap-2" role="group" aria-label="Filtro por distancia">
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="distancia" data-value="corta">🌱 Corta</button>
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="distancia" data-value="media">🏃 Media</button>
-                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="distancia" data-value="larga">🔥 Larga</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="distancia" data-value="corta"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg> Corta</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="distancia" data-value="media"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Media</button>
+                        <button class="filter-pill-desktop" aria-pressed="false" data-filter="distancia" data-value="larga"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg> Larga</button>
                     </div>
                 </div>
 
                 <!-- Premium filters teaser -->
                 <div class="filter-group pt-4 border-t border-slate-700/50 ${isUserPremium ? 'hidden' : ''}">
                     <div class="flex items-center justify-between mb-2">
-                        <label class="text-sm font-semibold text-yellow-400 flex items-center gap-1">⭐ Filtros Premium</label>
+                        <label class="text-sm font-semibold text-yellow-400 flex items-center gap-1"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Filtros Premium</label>
                     </div>
                     <div class="text-xs text-gray-500 mb-3">Ritmo exacto, organizador verificado...</div>
                     <button onclick="openPremiumSales()" class="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 text-yellow-400 text-xs font-bold hover:border-yellow-500/50 transition">
-                        Desbloquear ⭐
+                        Desbloquear <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
                     </button>
                 </div>
 
                 <!-- Premium filters (si es premium) -->
                 <div id="premium-filters-desktop" class="${isUserPremium ? '' : 'hidden'} pt-4 border-t border-yellow-500/30">
-                    <label class="text-sm font-semibold text-yellow-400 mb-2 block flex items-center gap-1">⭐ Filtros Premium</label>
+                    <label class="text-sm font-semibold text-yellow-400 mb-2 block flex items-center gap-1"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Filtros Premium</label>
                     <div class="space-y-3">
                         <div>
                             <span class="text-xs text-gray-400">Ritmo</span>
                             <div class="grid grid-cols-3 gap-1 mt-1" role="group" aria-label="Filtro por ritmo">
-                                <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="ritmo" data-value="lento">🐢 Lento</button>
-                                <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="ritmo" data-value="moderado">🚶 Mod.</button>
-                                <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="ritmo" data-value="rapido">🏃 Rápido</button>
+                                <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="ritmo" data-value="lento"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg> Lento</button>
+                                <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="ritmo" data-value="moderado"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg> Mod.</button>
+                                <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="ritmo" data-value="rapido"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Rápido</button>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-2" role="group" aria-label="Filtros premium adicionales">
-                            <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="verificado" data-value="true">✅ Verificado</button>
-                            <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="premium_org" data-value="true">⭐ Premium</button>
+                            <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="verificado" data-value="true"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Verificado</button>
+                            <button class="filter-pill-desktop filter-pill-premium" aria-pressed="false" data-filter="premium_org" data-value="true"><svg style="width:16px;height:16px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Premium</button>
                         </div>
                     </div>
                 </div>
@@ -2218,7 +2218,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const summaryEl = document.getElementById('alert-filters-summary');
             if (summaryEl) {
                 const filterLabels = {
-                    horario: { label: 'Horario', values: { manana: '🌅 Mañana', mediodia: '☀️ Mediodía', tarde: '🌆 Tarde', noche: '🌙 Noche' } },
+                    horario: { label: 'Horario', values: { manana: 'Mañana', mediodia: 'Mediodía', tarde: 'Tarde', noche: 'Noche' } },
                     nivel: { label: 'Nivel', values: {} },
                     distancia: { label: 'Distancia', values: { '5': '≤5 km', '10': '≤10 km', '15': '≤15 km', '21': '≤21 km', '42': 'Maratón+' } },
                     dia: { label: 'Día', values: { '0': 'Domingo', '1': 'Lunes', '2': 'Martes', '3': 'Miércoles', '4': 'Jueves', '5': 'Viernes', '6': 'Sábado' } }
@@ -2607,12 +2607,12 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     statusDesc.textContent = 'Verifica tu nivel para ganar credibilidad';
                     statusContainer.className = 'p-4 rounded-xl bg-slate-800/50 border border-slate-700';
                 } else if (data.status === 'pending') {
-                    statusIcon.textContent = '🔄';
+                    statusIcon.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>';
                     statusText.textContent = 'Pendiente de revisión';
                     statusDesc.textContent = `Nivel ${data.claimed_level} - Enviado el ${new Date(data.created_at).toLocaleDateString()}`;
                     statusContainer.className = 'p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/30';
                 } else if (data.status === 'approved') {
-                    statusIcon.textContent = '✅';
+                    statusIcon.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>';
                     statusText.textContent = '¡Verificado!';
                     statusDesc.textContent = `Nivel ${data.claimed_level} verificado`;
                     statusContainer.className = 'p-4 rounded-xl bg-green-500/10 border border-green-500/30';
@@ -2746,10 +2746,10 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                         .maybeSingle();
 
                     if (pending?.status === 'pending') {
-                        verifyBtn.innerHTML = '<span>🔄</span> Pendiente';
+                        verifyBtn.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Pendiente';
                         verifyBtn.className = 'px-4 py-3 rounded-xl font-bold text-sm bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 flex items-center gap-2 whitespace-nowrap';
                         verifyStatus.classList.remove('hidden');
-                        verifyStatus.innerHTML = `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">🔄 Solicitud de ${pending.claimed_level} en revisión</span>`;
+                        verifyStatus.innerHTML = `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Solicitud de ${pending.claimed_level} en revisión</span>`;
                     } else {
                         verifyBtn.innerHTML = '<span>✓</span> Verificar';
                         verifyBtn.className = 'px-4 py-3 rounded-xl font-bold text-sm bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30 transition flex items-center gap-2 whitespace-nowrap';
@@ -3516,31 +3516,31 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 // 0: Despejado, 1-3: Parcialmente nublado, 45-48: Niebla
                 // 51-57: Llovizna, 61-67: Lluvia, 71-77: Nieve, 80-82: Chubascos, 95-99: Tormenta
                 let condition = 'good';
-                let icon = '☀️';
+                let icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>';
                 let desc = 'Despejado';
 
                 if (code === 0) {
-                    icon = '☀️'; desc = 'Despejado'; condition = 'good';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>'; desc = 'Despejado'; condition = 'good';
                 } else if (code >= 1 && code <= 3) {
-                    icon = '⛅'; desc = 'Parcial nublado'; condition = 'good';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>'; desc = 'Parcial nublado'; condition = 'good';
                 } else if (code >= 45 && code <= 48) {
-                    icon = '🌫️'; desc = 'Niebla'; condition = 'warn';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>'; desc = 'Niebla'; condition = 'warn';
                 } else if (code >= 51 && code <= 57) {
-                    icon = '🌦️'; desc = 'Llovizna'; condition = 'warn';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15zM16 16l-2 4m-1-6l-2 4m-1-6l-2 4"/></svg>'; desc = 'Llovizna'; condition = 'warn';
                 } else if (code >= 61 && code <= 67) {
-                    icon = '🌧️'; desc = 'Lluvia'; condition = rain > 60 ? 'bad' : 'warn';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15zM16 16l-2 4m-1-6l-2 4m-1-6l-2 4"/></svg>'; desc = 'Lluvia'; condition = rain > 60 ? 'bad' : 'warn';
                 } else if (code >= 71 && code <= 77) {
-                    icon = '❄️'; desc = 'Nieve'; condition = 'bad';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15zM8 19v.01M12 17v.01M16 19v.01M10 21v.01M14 21v.01"/></svg>'; desc = 'Nieve'; condition = 'bad';
                 } else if (code >= 80 && code <= 82) {
-                    icon = '🌧️'; desc = 'Chubascos'; condition = rain > 50 ? 'bad' : 'warn';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15zM16 16l-2 4m-1-6l-2 4m-1-6l-2 4"/></svg>'; desc = 'Chubascos'; condition = rain > 50 ? 'bad' : 'warn';
                 } else if (code >= 95) {
-                    icon = '⛈️'; desc = 'Tormenta'; condition = 'bad';
+                    icon = '<svg style="width:24px;height:24px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15zM13 10V3L4 14h7v7l9-11h-7z"/></svg>'; desc = 'Tormenta'; condition = 'bad';
                 }
 
                 // Texto estandarizado: siempre temperatura + lluvia si > 20%
                 let text = `${tempMax}°`;
                 if (rain > 20) {
-                    text += ` · ${rain}% 💧`;
+                    text += ` · ${rain}% <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a8 8 0 01-8-8c0-4.42 8-12 8-12s8 7.58 8 12a8 8 0 01-8 8z"/></svg>`;
                 }
 
                 return { condition, icon, text, desc, temp: tempMax, tempMin, rain };
@@ -3570,7 +3570,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 <span class="text-2xl">${weather.icon}</span>
                 <div class="flex-1">
                     <div class="text-sm font-bold text-white">${weather.desc} · ${weather.temp}°/${weather.tempMin}°</div>
-                    <div class="text-xs text-gray-400">${weather.rain > 20 ? `💧 ${weather.rain}% ${t.weatherRain || 'lluvia'} · ` : ''}${tip}</div>
+                    <div class="text-xs text-gray-400">${weather.rain > 20 ? `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a8 8 0 01-8-8c0-4.42 8-12 8-12s8 7.58 8 12a8 8 0 01-8 8z"/></svg> ${weather.rain}% ${t.weatherRain || 'lluvia'} · ` : ''}${tip}</div>
                 </div>`;
             section.classList.remove('hidden');
         }
@@ -3773,10 +3773,10 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             // Generar badges
             let badgesHtml = '';
             if (verified) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">✓ Verificado</span>`;
-            if (totalOrganized >= 20) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">🏆 Experto</span>`;
-            else if (totalOrganized >= 10) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">⭐ Veterano</span>`;
-            else if (totalOrganized >= 5) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">👍 Activo</span>`;
-            if (rating >= 4.5 && totalReviews >= 3) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">💫 Muy valorado</span>`;
+            if (totalOrganized >= 20) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg> Experto</span>`;
+            else if (totalOrganized >= 10) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Veterano</span>`;
+            else if (totalOrganized >= 5) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg> Activo</span>`;
+            if (rating >= 4.5 && totalReviews >= 3) badgesHtml += `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg> Muy valorado</span>`;
 
             // Generar HTML de reseñas
             let reviewsHtml = '';
@@ -3824,7 +3824,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                             }
                             <div>
                                 <h3 class="text-xl font-bold text-white">${nombre} ${apellidos}</h3>
-                                ${ciudad ? `<p class="text-sm text-gray-400">📍 ${ciudad}</p>` : ''}
+                                ${ciudad ? `<p class="text-sm text-gray-400"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${ciudad}</p>` : ''}
                                 <span class="inline-block mt-1 px-3 py-1 rounded-full text-xs font-bold ${nivel === 'Principiante' ? 'bg-green-500/20 text-green-400' : nivel === 'Intermedio' ? 'bg-yellow-500/20 text-yellow-400' : nivel === 'Avanzado' ? 'bg-red-500/20 text-red-400' : nivel === 'Elite' ? 'bg-purple-500/20 text-purple-400' : 'bg-slate-500/20 text-slate-400'}">${nivel}</span>
                             </div>
                         </div>
@@ -4007,7 +4007,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
           return (data||[]).map(m=>({
             id: m.id,
             author: m.author_name || 'Runner',
-            avatar: '🏃',
+            avatar: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
             content: m.content,
             time: 'online',
             likes: 0
@@ -4100,7 +4100,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
           if(!forumTopics[selectedCommunity])forumTopics[selectedCommunity]=[];
           forumTopics[selectedCommunity].unshift(newTopic);
           localStorage.setItem('forumTopics',JSON.stringify(forumTopics));
-          forumMessages[newTopic.id]=[{id:1,author:currentUser?.nombre||'Anónimo',avatar:'🏃',content,time:'ahora',likes:0}];
+          forumMessages[newTopic.id]=[{id:1,author:currentUser?.nombre||'Anónimo',avatar:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',content,time:'ahora',likes:0}];
           localStorage.setItem('forumMessages',JSON.stringify(forumMessages));
           showToast('¡Tema creado!');
           selectedTopic=newTopic.id;sidebarView='messages';renderSidebar();
@@ -4129,7 +4129,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
           }
 
           if(!forumMessages[selectedTopic])forumMessages[selectedTopic]=[];
-          forumMessages[selectedTopic].push({id:Date.now(),author:currentUser?.nombre||'Anónimo',avatar:'🏃',content,time:'ahora',likes:0});
+          forumMessages[selectedTopic].push({id:Date.now(),author:currentUser?.nombre||'Anónimo',avatar:'<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',content,time:'ahora',likes:0});
           localStorage.setItem('forumMessages',JSON.stringify(forumMessages));
           input.value='';
           showToast('¡Mensaje enviado!');
@@ -5615,7 +5615,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const nivelColor = getNivelColor(q.nivel);
                 const horaStr = q.hora ? q.hora.split(':').slice(0,2).join(':') : '';
                 const icon=L.divIcon({
-                    html:`<div style="background:${nivelColor};display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:10px;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer"><span style="font-size:11px">🏃</span><span style="color:white;font-size:12px;font-weight:800">${horaStr}</span></div>`,
+                    html:`<div style="background:${nivelColor};display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:10px;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer"><span style="font-size:11px"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span><span style="color:white;font-size:12px;font-weight:800">${horaStr}</span></div>`,
                     className:'cj-marker',iconSize:[null,null],iconAnchor:[30,20]
                 });
                 const m=L.marker([q.lat,q.lng],{icon}).addTo(map);
@@ -5922,7 +5922,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 hint.className = 'text-xs text-green-400 mt-1';
             } else if (val > 100) {
                 distInput.value = '';
-                hint.textContent = '⚠️ Máximo 100 km';
+                hint.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Máximo 100 km';
                 hint.className = 'text-xs text-orange-400 mt-1';
             } else {
                 distInput.value = '';
@@ -5949,21 +5949,21 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                 // Feedback según el ritmo
                 if (min <= 4) {
-                    hint.textContent = '🔥 Ritmo de élite';
+                    hint.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg> Ritmo de élite';
                     hint.className = 'text-xs text-purple-400 mt-1';
                 } else if (min <= 5) {
-                    hint.textContent = '⚡ Ritmo avanzado';
+                    hint.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Ritmo avanzado';
                     hint.className = 'text-xs text-red-400 mt-1';
                 } else if (min <= 6) {
-                    hint.textContent = '👍 Ritmo intermedio';
+                    hint.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg> Ritmo intermedio';
                     hint.className = 'text-xs text-yellow-400 mt-1';
                 } else {
-                    hint.textContent = '🌱 Ritmo principiante';
+                    hint.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg> Ritmo principiante';
                     hint.className = 'text-xs text-green-400 mt-1';
                 }
             } else if (min > 0) {
                 ritmoInput.value = '';
-                hint.textContent = '⚠️ Ritmo entre 3:00 y 10:00 min/km';
+                hint.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Ritmo entre 3:00 y 10:00 min/km';
                 hint.className = 'text-xs text-orange-400 mt-1';
             } else {
                 ritmoInput.value = '';
@@ -6083,7 +6083,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                 } else {
                     console.log('🗺️ Sin address en respuesta');
-                    if (textoEl) textoEl.textContent = `📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+                    if (textoEl) textoEl.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
                     showToast('🏃 Ubicación marcada', 'success');
                 }
 
@@ -6091,7 +6091,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             } catch (e) {
                 console.error('🗺️ ERROR REVERSE GEOCODING:', e);
-                if (textoEl) textoEl.textContent = `📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+                if (textoEl) textoEl.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
                 showToast('🏃 Ubicación marcada', 'success');
                 updateCrearProgress();
             }
@@ -6292,17 +6292,17 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 previewNivel.className = `px-2 py-1 rounded-full text-xs font-bold ${levelColors[nivel] || levelColors['Todos']}`;
             }
             if (previewFecha) {
-                let fechaStr = '📅 Sin fecha';
+                let fechaStr = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Sin fecha';
                 if (fecha) {
                     const d = new Date(fecha + 'T00:00:00');
-                    fechaStr = `📅 ${d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}`;
+                    fechaStr = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> ${d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}`;
                 }
-                if (hora) fechaStr += ` ⏰ ${hora}`;
+                if (hora) fechaStr += ` <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ${hora}`;
                 previewFecha.textContent = fechaStr;
             }
-            if (previewUbicacion) previewUbicacion.textContent = `📍 ${ubicacion !== 'Selecciona en el mapa...' ? ubicacion : 'Sin ubicación'}`;
-            if (previewDistancia) previewDistancia.textContent = `📏 ${distancia || '--'} km`;
-            if (previewRitmo) previewRitmo.textContent = `🏃 ${ritmo || '--'}`;
+            if (previewUbicacion) previewUbicacion.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${ubicacion !== 'Selecciona en el mapa...' ? ubicacion : 'Sin ubicación'}`;
+            if (previewDistancia) previewDistancia.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg> ${distancia || '--'} km`;
+            if (previewRitmo) previewRitmo.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> ${ritmo || '--'}`;
         }
 
         // Observar cambios en TODOS los campos del formulario crear quedada
@@ -7449,7 +7449,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         <span class="px-2 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 flex-shrink-0">PRO</span>
                     </div>
                     <div class="mt-3 flex items-center justify-center gap-2 py-2 rounded-xl bg-gradient-to-r from-[#FC5200] to-orange-600 text-white font-bold text-xs">
-                        ⭐ Desbloquear con Premium
+                        <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> Desbloquear con Premium
                     </div>
                 </div>
             ` : '';
@@ -7494,12 +7494,12 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const spotsLeft = q.max_participantes ? q.max_participantes - confirmedCount : null;
                 const hoursUntil = (new Date(`${q.fecha}T${q.hora || '00:00'}`) - new Date()) / 3600000;
                 if (spotsLeft !== null && spotsLeft <= 3 && spotsLeft > 0) {
-                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 font-semibold">⚡ Quedan ${spotsLeft} plaza${spotsLeft === 1 ? '' : 's'}</div>`;
+                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 font-semibold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Quedan ${spotsLeft} plaza${spotsLeft === 1 ? '' : 's'}</div>`;
                 } else if (hoursUntil > 0 && hoursUntil <= 6) {
                     const h = Math.ceil(hoursUntil);
-                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 font-semibold">⏰ Empieza en ${h} hora${h === 1 ? '' : 's'}</div>`;
+                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 font-semibold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Empieza en ${h} hora${h === 1 ? '' : 's'}</div>`;
                 } else if (confirmedCount >= 4) {
-                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 font-semibold">🔥 ${confirmedCount} runners ya se han unido</div>`;
+                    urgencyBadge = `<div class="text-xs mb-3 px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 font-semibold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg> ${confirmedCount} runners ya se han unido</div>`;
                 }
 
                 const nombres = asistentesInfo.length ? asistentesInfo.slice(0,3).map(a => (a.user_id===currentUser?.id ? (currentUser.nombre||'Tú') : (a.nombre || getUserName(a.user_id)))) : asistentes.slice(0,3).map(uid=>getUserName(uid));
@@ -7521,7 +7521,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     actionBtn = `<button onclick="event.stopPropagation();openModal('modal-register')" class="px-5 py-2.5 rounded-full font-extrabold text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-lg hover:shadow-orange-500/25 transition">${I18N[currentLang]?.join || 'Unirme'}</button>`;
                 } else if (isCreator) {
                     // El creador ve badge "Tu quedada" en lugar de "Unirme"
-                    actionBtn = `<span class="px-5 py-2.5 rounded-full font-extrabold text-sm bg-orange-500/20 text-orange-400 border border-orange-500/40 flex items-center gap-2">👑 Tu quedada</span>`;
+                    actionBtn = `<span class="px-5 py-2.5 rounded-full font-extrabold text-sm bg-orange-500/20 text-orange-400 border border-orange-500/40 flex items-center gap-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Tu quedada</span>`;
                 } else if (isJoined) {
                     const statusBadge = getStatusBadge(myStatus);
                     // Botón dinámico: muestra el estado actual con opción de cambiar o abandonar
@@ -7579,7 +7579,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                     // ⭐ Badge Premium (siempre primero si aplica)
                     if (isCreadorPremium) {
-                        badges.push({ icon: '⭐', text: 'Premium', class: 'badge-premium', title: 'Organizador Premium' });
+                        badges.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>', text: 'Premium', class: 'badge-premium', title: 'Organizador Premium' });
                     }
 
                     // Badge Verificado (email verificado)
@@ -7589,23 +7589,23 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                     // Badge por cantidad de quedadas organizadas
                     if (creadorOrganized >= 20) {
-                        badges.push({ icon: '🏆', text: 'Experto', class: 'badge-expert', title: 'Más de 20 quedadas organizadas' });
+                        badges.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>', text: 'Experto', class: 'badge-expert', title: 'Más de 20 quedadas organizadas' });
                     } else if (creadorOrganized >= 10) {
-                        badges.push({ icon: '🏅', text: 'Elite', class: 'badge-elite', title: 'Más de 10 quedadas organizadas' });
+                        badges.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>', text: 'Elite', class: 'badge-elite', title: 'Más de 10 quedadas organizadas' });
                     } else if (creadorOrganized >= 5) {
-                        badges.push({ icon: '⭐', text: 'Activo', class: 'badge-active', title: 'Más de 5 quedadas organizadas' });
+                        badges.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>', text: 'Activo', class: 'badge-active', title: 'Más de 5 quedadas organizadas' });
                     }
 
                     // Badge por rating alto
                     if (creadorRating >= 4.5 && creadorReviews >= 3) {
-                        badges.push({ icon: '💫', text: 'Top', class: 'badge-top-rated', title: 'Rating 4.5+ con 3+ reseñas' });
+                        badges.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>', text: 'Top', class: 'badge-top-rated', title: 'Rating 4.5+ con 3+ reseñas' });
                     } else if (creadorRating >= 4.0 && creadorReviews >= 2) {
-                        badges.push({ icon: '👍', text: 'Recomendado', class: 'badge-recommended', title: 'Rating 4.0+ con reseñas positivas' });
+                        badges.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>', text: 'Recomendado', class: 'badge-recommended', title: 'Rating 4.0+ con reseñas positivas' });
                     }
 
                     // Si no tiene badges y es organizador de al menos 1 quedada, mostrar badge "Nuevo"
                     if (badges.length === 0 && !esSeed) {
-                        badges.push({ icon: '🆕', text: 'Nuevo', class: 'badge-new', title: 'Nuevo organizador' });
+                        badges.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>', text: 'Nuevo', class: 'badge-new', title: 'Nuevo organizador' });
                     }
 
                     return badges;
@@ -7631,7 +7631,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                       <div class="text-xs text-gray-500">${currentLang==='en'?'Organized by':(currentLang==='pt'?'Organizado por':'Organiza')}</div>
                       <div class="flex items-center gap-2 flex-wrap">
                         <span class="text-sm font-bold text-white truncate">${creadorNombre} ${creadorApellidoCorto}</span>
-                        ${creadorRating ? `<span class="text-xs text-yellow-400 font-bold">⭐ ${creadorRating.toFixed(1)}</span>` : ''}
+                        ${creadorRating ? `<span class="text-xs text-yellow-400 font-bold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> ${creadorRating.toFixed(1)}</span>` : ''}
                         ${creadorReviews > 0 ? `<span class="text-xs text-gray-500">(${creadorReviews})</span>` : ''}
                         ${orgBadge ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold ${orgBadge.class} border">${orgBadge.icon}</span>` : ''}
                       </div>
@@ -7641,22 +7641,22 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                 // Generar lista de features (terreno + desnivel + amenities) DESTACADOS
                 const featuresArray = [];
-                if (q.terreno === 'asfalto') featuresArray.push({ icon: '🛣️', text: 'Asfalto' });
-                if (q.terreno === 'tierra') featuresArray.push({ icon: '🌲', text: 'Tierra' });
-                if (q.terreno === 'mixto') featuresArray.push({ icon: '🔀', text: 'Mixto' });
+                if (q.terreno === 'asfalto') featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>', text: 'Asfalto' });
+                if (q.terreno === 'tierra') featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>', text: 'Tierra' });
+                if (q.terreno === 'mixto') featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>', text: 'Mixto' });
                 if (q.desnivel === 'llano') featuresArray.push({ icon: '⬜', text: 'Llano' });
-                if (q.desnivel === 'suave') featuresArray.push({ icon: '📐', text: 'Suave' });
-                if (q.desnivel === 'moderado') featuresArray.push({ icon: '⛰️', text: 'Moderado' });
-                if (q.desnivel === 'fuerte') featuresArray.push({ icon: '🏔️', text: 'Fuerte' });
+                if (q.desnivel === 'suave') featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>', text: 'Suave' });
+                if (q.desnivel === 'moderado') featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21l7.5-12L15 15l6-9v15H3z"/></svg>', text: 'Moderado' });
+                if (q.desnivel === 'fuerte') featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21l5-8 4 4 4-8 5 12H3z"/></svg>', text: 'Fuerte' });
                 // Amenities detectados
-                if (detectedAmenities.includes('fuentes')) featuresArray.push({ icon: '💧', text: 'Fuentes' });
-                if (detectedAmenities.includes('banos')) featuresArray.push({ icon: '🚻', text: 'Baños' });
+                if (detectedAmenities.includes('fuentes')) featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a8 8 0 01-8-8c0-4.42 8-12 8-12s8 7.58 8 12a8 8 0 01-8 8z"/></svg>', text: 'Fuentes' });
+                if (detectedAmenities.includes('banos')) featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>', text: 'Baños' });
                 if (detectedAmenities.includes('parking')) featuresArray.push({ icon: '🅿️', text: 'Parking' });
-                if (detectedAmenities.includes('vestuarios')) featuresArray.push({ icon: '🚿', text: 'Vestuarios' });
-                if (detectedAmenities.includes('iluminacion')) featuresArray.push({ icon: '💡', text: 'Iluminado' });
-                if (detectedAmenities.includes('sombra')) featuresArray.push({ icon: '🌳', text: 'Sombra' });
-                if (detectedAmenities.includes('cafe')) featuresArray.push({ icon: '☕', text: 'Café' });
-                if (detectedAmenities.includes('transporte')) featuresArray.push({ icon: '🚇', text: 'Transporte' });
+                if (detectedAmenities.includes('vestuarios')) featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a8 8 0 01-8-8c0-4.42 8-12 8-12s8 7.58 8 12a8 8 0 01-8 8z"/></svg>', text: 'Vestuarios' });
+                if (detectedAmenities.includes('iluminacion')) featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>', text: 'Iluminado' });
+                if (detectedAmenities.includes('sombra')) featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>', text: 'Sombra' });
+                if (detectedAmenities.includes('cafe')) featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8m-4-4v4M6 17h12a2 2 0 002-2V5H4v10a2 2 0 002 2z"/></svg>', text: 'Café' });
+                if (detectedAmenities.includes('transporte')) featuresArray.push({ icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 21l4-4 4 4M3 5h18M5 5v10a2 2 0 002 2h10a2 2 0 002-2V5"/></svg>', text: 'Transporte' });
 
                 // Ubicación: extraer calle principal
                 const ubicacionParts = (q.ubicacion || '').split('·');
@@ -7673,15 +7673,15 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         <div class="text-[10px] text-orange-300/70 uppercase tracking-wide">${formatDateShort(q.fecha)}</div>
                       </div>
                       ${isLive ? `<span class="live-badge"><span class="live-dot"></span>¡Ahora!</span>` : ''}
-                      ${q.is_private ? `<span class="px-2 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">🔒</span>` : ''}
-                      ${q.recurrence ? `<span class="px-2 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">🔄</span>` : ''}
+                      ${q.is_private ? `<span class="px-2 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></span>` : ''}
+                      ${q.recurrence ? `<span class="px-2 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></span>` : ''}
                     </div>
                     <div class="flex flex-col items-end gap-1">
                       <div class="flex items-center gap-2">
                         <span class="px-3 py-1.5 rounded-full text-xs font-bold ${levelBadge}">${q.nivel}</span>
                         ${isJoined && !isCreator ? `<span class="px-2 py-1 rounded-full text-xs font-bold ${myStatus === 'confirmed' ? 'bg-green-500/20 text-green-400' : myStatus === 'maybe' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-blue-500/20 text-blue-400'}">✓</span>` : ''}
                       </div>
-                      ${creadorRating ? `<span class="text-xs text-yellow-400 font-semibold">⭐ ${creadorRating.toFixed(1)}${creadorReviews > 0 ? ` <span class="text-gray-500">(${creadorReviews})</span>` : ''}</span>` : ''}
+                      ${creadorRating ? `<span class="text-xs text-yellow-400 font-semibold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> ${creadorRating.toFixed(1)}${creadorReviews > 0 ? ` <span class="text-gray-500">(${creadorReviews})</span>` : ''}</span>` : ''}
                     </div>
                   </div>
 
@@ -7690,7 +7690,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                   <!-- ═══ SECCIÓN 3: UBICACIÓN ═══ -->
                   <div class="flex items-center gap-2 mb-5">
-                    <span class="text-orange-400">📍</span>
+                    <span class="text-orange-400"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
                     <span class="text-sm text-gray-300">${q.ciudad}${callePrincipal && callePrincipal !== q.ciudad ? ` · ${callePrincipal}` : ''}</span>
                   </div>
 
@@ -7720,7 +7720,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                   ${urgencyBadge}
 
                   <!-- ═══ SECCIÓN 6: FEATURES PREMIUM ═══ -->
-                  ${q.ruta_coords ? `<div class="flex items-center gap-2 mb-3 px-2 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20"><span class="text-xs">🗺️</span><span class="text-xs text-orange-400 font-semibold">Ruta GPS disponible</span></div>` : ''}
+                  ${q.ruta_coords ? `<div class="flex items-center gap-2 mb-3 px-2 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20"><span class="text-xs"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></span><span class="text-xs text-orange-400 font-semibold">Ruta GPS disponible</span></div>` : ''}
 
                   <!-- ═══ SECCIÓN 7: CLIMA ═══ -->
                   <div id="weather-${q.id}" class="mb-4"></div>
@@ -7783,10 +7783,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             };
 
             const t = I18N[currentLang] || I18N.es;
-            html += renderGroup(groups.hoy, t.dateToday, '🔥', 'text-orange-400');
-            html += renderGroup(groups.manana, t.dateTomorrow, '📅', 'text-blue-400');
-            html += renderGroup(groups.semana, t.dateThisWeek, '📆', 'text-green-400');
-            html += renderGroup(groups.proximas, t.dateLater, '🗓️', 'text-gray-400');
+            html += renderGroup(groups.hoy, t.dateToday, '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>', 'text-orange-400');
+            html += renderGroup(groups.manana, t.dateTomorrow, '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>', 'text-blue-400');
+            html += renderGroup(groups.semana, t.dateThisWeek, '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>', 'text-green-400');
+            html += renderGroup(groups.proximas, t.dateLater, '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>', 'text-gray-400');
 
             list.innerHTML = html;
 
@@ -7889,9 +7889,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             document.getElementById('detail-count').innerHTML = `
                 <span class="flex items-center gap-2">
-                    ${detailConfirmed > 0 ? `<span class="text-green-400 text-xs" title="${t.detailConfirmed}">✅ ${detailConfirmed}${q.max_participantes ? '/' + q.max_participantes : ''}</span>` : ''}
-                    ${detailMaybe > 0 ? `<span class="text-yellow-400 text-xs" title="${t.detailMaybe}">🤔 ${detailMaybe}</span>` : ''}
-                    ${detailInterested > 0 ? `<span class="text-blue-400 text-xs" title="${t.detailInterested}">👀 ${detailInterested}</span>` : ''}
+                    ${detailConfirmed > 0 ? `<span class="text-green-400 text-xs" title="${t.detailConfirmed}"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> ${detailConfirmed}${q.max_participantes ? '/' + q.max_participantes : ''}</span>` : ''}
+                    ${detailMaybe > 0 ? `<span class="text-yellow-400 text-xs" title="${t.detailMaybe}"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ${detailMaybe}</span>` : ''}
+                    ${detailInterested > 0 ? `<span class="text-blue-400 text-xs" title="${t.detailInterested}"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> ${detailInterested}</span>` : ''}
                     ${asistentes.length === 0 ? '<span class="text-gray-500">(0)</span>' : ''}
                     ${q.max_participantes ? `<span class="text-xs text-gray-500">(máx. ${q.max_participantes})</span>` : ''}
                 </span>`;
@@ -7912,7 +7912,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         : `<div class="w-8 h-8 rounded-full ${isMe ? 'bg-orange-500' : 'bg-slate-600'} flex items-center justify-center font-bold text-white text-xs">${initials}</div>`
                     }
                     <div class="flex-1 min-w-0">
-                        <div class="font-bold text-white text-sm truncate">${nombre} ${apellido} ${isMe ? `<span class="text-orange-400 text-xs">(${t.detailYou})</span>` : ''}${isOrg ? ' <span class="text-orange-400">👑</span>' : ''}</div>
+                        <div class="font-bold text-white text-sm truncate">${nombre} ${apellido} ${isMe ? `<span class="text-orange-400 text-xs">(${t.detailYou})</span>` : ''}${isOrg ? ' <span class="text-orange-400"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></span>' : ''}</div>
                     </div>
                     <span class="text-sm" title="${statusBadge.text}">${statusBadge.icon}</span>
                 </div>`;
@@ -7953,7 +7953,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         ${cVerified ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">✓ ${t.detailVerified}</span>` : ''}
                     </div>
                     <div class="flex items-center gap-3 mt-1 flex-wrap">
-                        ${cRating ? `<span class="text-sm text-yellow-400 font-bold">⭐ ${cRating.toFixed(1)} <span class="text-gray-500 font-normal">(${cReviews} ${cReviews === 1 ? t.detailReview : t.detailReviews})</span></span>` : `<span class="text-xs text-gray-500">${t.detailNoReviews}</span>`}
+                        ${cRating ? `<span class="text-sm text-yellow-400 font-bold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> ${cRating.toFixed(1)} <span class="text-gray-500 font-normal">(${cReviews} ${cReviews === 1 ? t.detailReview : t.detailReviews})</span></span>` : `<span class="text-xs text-gray-500">${t.detailNoReviews}</span>`}
                         ${cOrganized > 0 ? `<span class="text-xs text-gray-400">• ${cOrganized} ${cOrganized === 1 ? t.detailRunOrganized : t.detailRunsOrganized}</span>` : ''}
                     </div>
                 </div>`;
@@ -7979,32 +7979,32 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const newLeaveBtn = document.createElement('button');
                 newLeaveBtn.id = 'detail-leave-btn';
                 newLeaveBtn.className = 'hidden px-4 py-3 rounded-xl font-bold bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition flex items-center justify-center gap-2 text-sm';
-                newLeaveBtn.innerHTML = `<span>🚪</span> ${t.detailLeave}`;
+                newLeaveBtn.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg> ${t.detailLeave}`;
                 actionBtn.parentNode.insertBefore(newLeaveBtn, actionBtn.nextSibling);
             }
 
             const leaveBtnEl = document.getElementById('detail-leave-btn');
 
             if (!currentUser) {
-                actionBtn.textContent = '🏃 ' + t.detailRegisterToJoin;
+                actionBtn.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> ' + t.detailRegisterToJoin;
                 actionBtn.className = 'flex-1 min-w-[200px] py-3 rounded-xl font-black text-base bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:shadow-lg hover:shadow-orange-500/25 transition';
                 actionBtn.onclick = () => { closeModal('modal-quedada-detail'); openModal('modal-register'); };
                 if (leaveBtnEl) leaveBtnEl.classList.add('hidden');
             } else if (isCreator) {
                 // El creador ve "Tu quedada" con opción de editar/eliminar
-                actionBtn.innerHTML = `<span class="flex items-center justify-center gap-2">👑 ${t.detailYourRun}</span>`;
+                actionBtn.innerHTML = `<span class="flex items-center justify-center gap-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> ${t.detailYourRun}</span>`;
                 actionBtn.className = 'flex-1 min-w-[180px] py-3 rounded-xl font-black text-base bg-orange-500/20 text-orange-400 border-2 border-orange-500/40 cursor-default';
                 actionBtn.onclick = null;
 
                 // Botón de eliminar para el creador
                 if (leaveBtnEl) {
                     leaveBtnEl.classList.remove('hidden');
-                    leaveBtnEl.innerHTML = `<span>🗑️</span> ${t.detailDeleteRun}`;
+                    leaveBtnEl.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg> ${t.detailDeleteRun}`;
                     leaveBtnEl.className = 'px-4 py-3 rounded-xl font-bold bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition flex items-center justify-center gap-2 text-sm';
                     leaveBtnEl.onclick = () => {
                         document.getElementById('leave-quedada-id').value = id;
                         const confirmText = document.getElementById('leave-confirm-text');
-                        confirmText.innerHTML = '<span class="text-yellow-400 font-bold">⚠️ Eres el creador de esta quedada.</span><br>¿Estás seguro de que quieres eliminarla? Esta acción no se puede deshacer.';
+                        confirmText.innerHTML = '<span class="text-yellow-400 font-bold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Eres el creador de esta quedada.</span><br>¿Estás seguro de que quieres eliminarla? Esta acción no se puede deshacer.';
                         closeModal('modal-quedada-detail');
                         openModal('modal-leave-confirm');
                     };
@@ -8023,7 +8023,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 // Botón secundario: abandonar (visible y distintivo)
                 if (leaveBtnEl) {
                     leaveBtnEl.classList.remove('hidden');
-                    leaveBtnEl.innerHTML = `<span>🚪</span> ${t.detailLeave}`;
+                    leaveBtnEl.innerHTML = `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg> ${t.detailLeave}`;
                     leaveBtnEl.className = 'px-4 py-3 rounded-xl font-bold bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition flex items-center justify-center gap-2 text-sm';
                     leaveBtnEl.onclick = () => {
                         document.getElementById('leave-quedada-id').value = id;
@@ -8035,12 +8035,12 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 }
             } else if (q.max_participantes && detailConfirmed >= q.max_participantes) {
                 // Quedada completa
-                actionBtn.innerHTML = `<span class="flex items-center justify-center gap-2">🚫 Completa (${detailConfirmed}/${q.max_participantes})</span>`;
+                actionBtn.innerHTML = `<span class="flex items-center justify-center gap-2"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg> Completa (${detailConfirmed}/${q.max_participantes})</span>`;
                 actionBtn.className = 'flex-1 min-w-[200px] py-3 rounded-xl font-black text-base bg-red-500/20 text-red-400 border-2 border-red-500/40 cursor-not-allowed';
                 actionBtn.onclick = null;
                 if (leaveBtnEl) leaveBtnEl.classList.add('hidden');
             } else {
-                actionBtn.textContent = '🏃 ' + t.detailJoinRun;
+                actionBtn.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> ' + t.detailJoinRun;
                 actionBtn.className = 'flex-1 min-w-[200px] py-3 rounded-xl font-black text-base bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:shadow-lg hover:shadow-orange-500/25 transition';
                 actionBtn.onclick = () => { closeModal('modal-quedada-detail'); openAttendanceModal(id); };
                 if (leaveBtnEl) leaveBtnEl.classList.add('hidden');
@@ -8085,7 +8085,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 }).addTo(detailMap);
 
                 const icon = L.divIcon({
-                    html: `<div style="background:linear-gradient(135deg,#f97316,#ea580c);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"><span style="font-size:14px">🏃</span></div>`,
+                    html: `<div style="background:linear-gradient(135deg,#f97316,#ea580c);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"><span style="font-size:14px"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span></div>`,
                     className: '', iconSize: [32, 32], iconAnchor: [16, 16]
                 });
                 detailMarker = L.marker([lat, lng], { icon }).addTo(detailMap);
@@ -8121,7 +8121,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     const btn = document.createElement('button');
                     btn.id = 'detail-postrun-btn';
                     btn.className = 'hidden px-4 py-3 rounded-xl font-bold bg-orange-500/10 border border-orange-500/30 text-orange-400 hover:bg-orange-500/20 transition flex items-center justify-center gap-2 text-sm';
-                    btn.innerHTML = '🏁 Registrar mi rendimiento';
+                    btn.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg> Registrar mi rendimiento';
                     rateBtn.parentNode.insertBefore(btn, rateBtn);
                 }
             }
@@ -8145,7 +8145,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     const badge = document.createElement('span');
                     badge.id = 'detail-private-badge';
                     badge.className = 'inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30';
-                    badge.innerHTML = '🔒 Privada';
+                    badge.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg> Privada';
                     const nivelBadgeEl = document.getElementById('detail-nivel-badge');
                     if (nivelBadgeEl && nivelBadgeEl.parentNode) {
                         nivelBadgeEl.parentNode.insertBefore(badge, nivelBadgeEl.nextSibling);
@@ -8170,9 +8170,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             // Filtros simplificados: Mi ciudad → Mi país → Mundial
             const filterOptions = [
-                {label: '📍 ' + (t.geoMyCity || 'Mi ciudad'), value: 'city'},
+                {label: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ' + (t.geoMyCity || 'Mi ciudad'), value: 'city'},
                 {label: countryFlag + ' ' + (t.geoMyCountry || 'Mi país'), value: 'country'},
-                {label: '🌍 ' + (t.geoWorldwide || 'Mundial'), value: 'all'}
+                {label: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ' + (t.geoWorldwide || 'Mundial'), value: 'all'}
             ];
 
             wrap.innerHTML = '';
@@ -8413,7 +8413,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     const nivelCount = {};
                     niveles.forEach(n => nivelCount[n] = (nivelCount[n] || 0) + 1);
                     const topNivel = Object.entries(nivelCount).sort((a, b) => b[1] - a[1])[0][0];
-                    const nivelEmoji = { 'Principiante': '🟢', 'Intermedio': '🟡', 'Avanzado': '🔴', 'Elite': '🟣' };
+                    const nivelEmoji = { 'Principiante': '<span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block"></span>', 'Intermedio': '<span style="width:8px;height:8px;border-radius:50%;background:#eab308;display:inline-block"></span>', 'Avanzado': '<span style="width:8px;height:8px;border-radius:50%;background:#ef4444;display:inline-block"></span>', 'Elite': '<span style="width:8px;height:8px;border-radius:50%;background:#8b5cf6;display:inline-block"></span>' };
                     document.getElementById('ciudad-stat-nivel').textContent = (nivelEmoji[topNivel] || '') + ' ' + (topNivel || '-');
                 } else {
                     document.getElementById('ciudad-stat-nivel').textContent = '-';
@@ -8467,7 +8467,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 // Rating del organizador
                 let ratingHtml = '';
                 if (creador.organizer_rating) {
-                    ratingHtml = `<span class="text-yellow-400">⭐ ${creador.organizer_rating}</span>`;
+                    ratingHtml = `<span class="text-yellow-400"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> ${creador.organizer_rating}</span>`;
                     if (creador.total_reviews) {
                         ratingHtml += `<span class="text-gray-500">(${creador.total_reviews})</span>`;
                     }
@@ -8496,12 +8496,12 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                             <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             <span>${formatHora(q.hora)}</span>
                         </div>
-                        ${q.distancia ? `<div class="flex items-center gap-2"><span class="text-orange-500">📏</span><span>${q.distancia} km</span></div>` : ''}
+                        ${q.distancia ? `<div class="flex items-center gap-2"><span class="text-orange-500"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></span><span>${q.distancia} km</span></div>` : ''}
                     </div>
                     <div class="flex items-center gap-2 mt-3 text-sm">
-                        <span class="text-green-400" title="Confirmados">✅ ${confirmedCount}</span>
-                        ${maybeCount > 0 ? `<span class="text-yellow-400" title="Posiblemente">🤔 ${maybeCount}</span>` : ''}
-                        ${interestedCount > 0 ? `<span class="text-blue-400" title="Interesados">👀 ${interestedCount}</span>` : ''}
+                        <span class="text-green-400" title="Confirmados"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> ${confirmedCount}</span>
+                        ${maybeCount > 0 ? `<span class="text-yellow-400" title="Posiblemente"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ${maybeCount}</span>` : ''}
+                        ${interestedCount > 0 ? `<span class="text-blue-400" title="Interesados"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> ${interestedCount}</span>` : ''}
                     </div>
                     <div class="flex items-center gap-2 mt-3 pt-3 border-t border-slate-700">
                         <img src="${creador.photo_url || 'https://ui-avatars.com/api/?name=' + encodeURIComponent((creador.nombre || 'U') + ' ' + (creador.apellidos || ''))}" alt="${creador.nombre || 'Organizador'}" class="w-8 h-8 rounded-full object-cover border-2 border-slate-600">
@@ -8546,7 +8546,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                 let ratingHtml = '';
                 if (r.organizer_rating) {
-                    ratingHtml = `<div class="text-xs text-yellow-400 mt-1">⭐ ${r.organizer_rating} (${r.total_reviews || 0} reseñas)</div>`;
+                    ratingHtml = `<div class="text-xs text-yellow-400 mt-1"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg> ${r.organizer_rating} (${r.total_reviews || 0} reseñas)</div>`;
                 }
 
                 return `
@@ -8665,15 +8665,15 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 leaveBtn.classList.remove('hidden');
 
                 // Cambiar icono del header según estado
-                const statusIcons = { confirmed: '✅', maybe: '🤔', interested: '👀' };
-                iconEl.innerHTML = `<span class="text-3xl">${statusIcons[currentStatus] || '🏃'}</span>`;
+                const statusIcons = { confirmed: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>', maybe: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>', interested: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>' };
+                iconEl.innerHTML = `<span class="text-3xl">${statusIcons[currentStatus] || '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>'}</span>`;
             } else {
                 // Usuario no está apuntado - mostrar opciones para unirse
                 titleEl.textContent = '¿Cómo de seguro estás?';
                 subtitleEl.textContent = 'Ayuda al organizador a planificar';
                 currentStatusEl.classList.add('hidden');
                 leaveBtn.classList.add('hidden');
-                iconEl.innerHTML = '<span class="text-3xl">🏃</span>';
+                iconEl.innerHTML = '<span class="text-3xl"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>';
             }
 
             openModal('modal-attendance');
@@ -8692,7 +8692,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             const confirmText = document.getElementById('leave-confirm-text');
             if (isCreator) {
-                confirmText.innerHTML = '<span class="text-yellow-400 font-bold">⚠️ Eres el creador de esta quedada.</span><br>Si la abandonas y no queda nadie, se eliminará automáticamente.';
+                confirmText.innerHTML = '<span class="text-yellow-400 font-bold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Eres el creador de esta quedada.</span><br>Si la abandonas y no queda nadie, se eliminará automáticamente.';
             } else {
                 confirmText.textContent = '¿Seguro que quieres abandonar esta quedada?';
             }
@@ -8713,7 +8713,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
             const confirmText = document.getElementById('leave-confirm-text');
             if (isCreator) {
-                confirmText.innerHTML = '<span class="text-yellow-400 font-bold">⚠️ Eres el creador de esta quedada.</span><br>Si la abandonas y no queda nadie, se eliminará automáticamente.';
+                confirmText.innerHTML = '<span class="text-yellow-400 font-bold"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Eres el creador de esta quedada.</span><br>Si la abandonas y no queda nadie, se eliminará automáticamente.';
             } else {
                 confirmText.textContent = '¿Seguro que quieres abandonar esta quedada?';
             }
@@ -8942,9 +8942,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
         function getStatusBadge(status) {
             const badges = {
-                confirmed: { icon: '✅', text: 'Confirmado', class: 'bg-green-500/20 text-green-400 border-green-500/30' },
-                maybe: { icon: '🤔', text: 'Posiblemente', class: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' },
-                interested: { icon: '👀', text: 'Interesado', class: 'bg-blue-500/20 text-blue-400 border-blue-500/30' }
+                confirmed: { icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>', text: 'Confirmado', class: 'bg-green-500/20 text-green-400 border-green-500/30' },
+                maybe: { icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>', text: 'Posiblemente', class: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' },
+                interested: { icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>', text: 'Interesado', class: 'bg-blue-500/20 text-blue-400 border-blue-500/30' }
             };
             return badges[status] || badges.confirmed;
         }
@@ -9042,7 +9042,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
         async function saveQuedada(){
             const btn = document.querySelector('#modal-crear button[onclick="saveQuedada()"]');
-            const btnText = btn ? btn.textContent : '🚀 Publicar';
+            const btnText = btn ? btn.textContent : '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg> Publicar';
 
             if(!currentUser){showToast('Debes registrarte','error');closeModal('modal-crear');openModal('modal-register');return;}
 
@@ -10002,7 +10002,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             list.innerHTML = userQuedadas.map(q => {
                 const isCreator = q.creador_id === currentUser.id;
                 const action = isCreator ? 'Creaste' : 'Asististe a';
-                const icon = isCreator ? '👑' : '🏃';
+                const icon = isCreator ? '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>' : '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>';
                 const dateStr = q.fecha ? new Date(q.fecha).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }) : '';
                 return `<div class="flex items-center gap-2 p-2 rounded-lg bg-slate-800/30">
                     <span class="text-xs">${icon}</span>
@@ -10122,10 +10122,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 if (nextBadgesList) {
                     var _q = userStats.quedadas || 0, _c = userStats.created || 0, _r = userStats.runners || 0;
                     const nextBadges = [
-                        { icon: '🏃', name: currentLang === 'en' ? 'First Run' : 'Primera Carrera', desc: currentLang === 'en' ? 'Join your first run' : 'Asiste a tu primera quedada', current: _q, target: 1, unlocked: _q >= 1 },
-                        { icon: '👑', name: currentLang === 'en' ? 'Leader' : 'Líder', desc: currentLang === 'en' ? 'Create your first run' : 'Crea tu primera quedada', current: _c, target: 1, unlocked: _c >= 1 },
-                        { icon: '👥', name: currentLang === 'en' ? 'Social Runner' : 'Social Runner', desc: currentLang === 'en' ? 'Meet 5 different runners' : 'Conoce a 5 runners diferentes', current: _r, target: 5, unlocked: _r >= 5 },
-                        { icon: '🎖️', name: currentLang === 'en' ? 'Veteran' : 'Veterano', desc: currentLang === 'en' ? 'Complete 10 runs' : 'Completa 10 quedadas', current: _q, target: 10, unlocked: _q >= 10 },
+                        { icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>', name: currentLang === 'en' ? 'First Run' : 'Primera Carrera', desc: currentLang === 'en' ? 'Join your first run' : 'Asiste a tu primera quedada', current: _q, target: 1, unlocked: _q >= 1 },
+                        { icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>', name: currentLang === 'en' ? 'Leader' : 'Líder', desc: currentLang === 'en' ? 'Create your first run' : 'Crea tu primera quedada', current: _c, target: 1, unlocked: _c >= 1 },
+                        { icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>', name: currentLang === 'en' ? 'Social Runner' : 'Social Runner', desc: currentLang === 'en' ? 'Meet 5 different runners' : 'Conoce a 5 runners diferentes', current: _r, target: 5, unlocked: _r >= 5 },
+                        { icon: '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>', name: currentLang === 'en' ? 'Veteran' : 'Veterano', desc: currentLang === 'en' ? 'Complete 10 runs' : 'Completa 10 quedadas', current: _q, target: 10, unlocked: _q >= 10 },
                     ];
 
                     // Mostrar solo los primeros 3 badges no desbloqueados
@@ -10195,7 +10195,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                 container.innerHTML = ranking.map((r, i) => {
                     const isMe = currentUser && r.user_id === currentUser.id;
-                    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`;
+                    const medal = i === 0 ? '<span style="color:#fbbf24;font-weight:900">1</span>' : i === 1 ? '<span style="color:#94a3b8;font-weight:900">2</span>' : i === 2 ? '<span style="color:#d97706;font-weight:900">3</span>' : `${i + 1}`;
                     const initials = ((r.nombre?.charAt(0) || '') + (r.apellidos?.charAt(0) || '')).toUpperCase() || 'R';
                     const isFollowing = userFollowingIds.has(r.user_id);
                     const isPremium = r.es_premium;
@@ -10210,7 +10210,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                                 }
                             </div>
                             <div class="flex-1 min-w-0">
-                                <div class="font-bold text-white truncate">${r.nombre || ''} ${r.apellidos || ''} ${isPremium ? '⭐' : ''}</div>
+                                <div class="font-bold text-white truncate">${r.nombre || ''} ${r.apellidos || ''} ${isPremium ? '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>' : ''}</div>
                                 <div class="text-xs text-gray-500">${r.nivel || 'Novato'} · ${r.ciudad || ''}</div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -10336,16 +10336,16 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                     container.innerHTML = `
                         <div class="text-center py-4">
                             <div class="mb-4 p-4 rounded-xl bg-gradient-to-r from-orange-500/15 to-amber-500/10 border border-orange-500/30">
-                                <span class="text-3xl mb-2 block">📍</span>
+                                <span class="text-3xl mb-2 block"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
                                 <p class="text-white font-bold text-sm mb-1">${quedadasCount > 0 ? (currentLang === 'en' ? `${quedadasCount} runs waiting for you` : `${quedadasCount} quedadas te esperan`) : (currentLang === 'en' ? 'No runs yet' : 'Sin quedadas aún')}</p>
                                 <p class="text-gray-400 text-xs mb-3">${currentLang === 'en' ? 'Join one and meet your running crew' : 'Únete a una y conoce tu grupo de running'}</p>
                                 <button onclick="closeModal('modal-profile'); scrollToQuedadas()" class="w-full py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:shadow-lg hover:shadow-orange-500/25 transition flex items-center justify-center gap-2">
-                                    📍 ${currentLang === 'en' ? 'Discover runs' : 'Descubrir quedadas'}
+                                    <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${currentLang === 'en' ? 'Discover runs' : 'Descubrir quedadas'}
                                 </button>
                             </div>
                             <p class="text-gray-500 text-xs mb-2">${currentLang === 'en' ? 'Or create your own:' : '¿O prefieres crear la tuya?'}</p>
                             <button onclick="closeModal('modal-profile'); openModalCrear()" class="text-sm text-blue-400 hover:text-blue-300 font-semibold flex items-center justify-center gap-1 w-full">
-                                🏃 ${currentLang === 'en' ? 'Create my run' : 'Crear mi quedada'}
+                                <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> ${currentLang === 'en' ? 'Create my run' : 'Crear mi quedada'}
                             </button>
                         </div>
                     `;
@@ -10378,7 +10378,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         <div class="flex items-center justify-between">
                             <div class="flex-1 min-w-0">
                                 <p class="font-bold text-white text-sm truncate">${q.titulo || (currentLang === 'en' ? 'Run' : 'Quedada')}</p>
-                                <p class="text-xs text-gray-400 truncate">📍 ${q.ubicacion || q.ciudad || (currentLang === 'en' ? 'No location' : 'Sin ubicación')}</p>
+                                <p class="text-xs text-gray-400 truncate"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${q.ubicacion || q.ciudad || (currentLang === 'en' ? 'No location' : 'Sin ubicación')}</p>
                             </div>
                             <div class="text-right ml-3">
                                 <p class="text-xs font-bold ${esHoy ? 'text-orange-400' : 'text-blue-400'}">${fechaStr}</p>
@@ -10450,10 +10450,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             const container = document.getElementById('followers-list');
 
             if (type === 'seguidores') {
-                title.innerHTML = '<span>👥</span> Seguidores';
+                title.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg> Seguidores';
                 subtitle.textContent = 'Personas que te siguen';
             } else {
-                title.innerHTML = '<span>👤</span> Siguiendo';
+                title.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg> Siguiendo';
                 subtitle.textContent = 'Personas que sigues';
             }
 
@@ -10481,7 +10481,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 if (!users || users.length === 0) {
                     container.innerHTML = `
                         <div class="text-center py-8">
-                            <span class="text-4xl mb-3 block">${type === 'seguidores' ? '👥' : '🔍'}</span>
+                            <span class="text-4xl mb-3 block">${type === 'seguidores' ? '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>' : '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>'}</span>
                             <p class="text-gray-400 font-semibold mb-2">${type === 'seguidores' ? 'Sin seguidores aún' : 'No sigues a nadie'}</p>
                             <p class="text-gray-500 text-sm">${type === 'seguidores' ? 'Cuando otros runners te sigan, aparecerán aquí' : 'Busca runners en el ranking y síguelos'}</p>
                         </div>
@@ -10504,10 +10504,10 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                                 }
                             </div>
                             <div class="user-list-info">
-                                <div class="user-list-name">${u.nombre || ''} ${u.apellidos || ''} ${isPremium ? '⭐' : ''}</div>
+                                <div class="user-list-name">${u.nombre || ''} ${u.apellidos || ''} ${isPremium ? '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>' : ''}</div>
                                 <div class="user-list-meta">
                                     ${u.nivel ? `<span>${getNivelEmoji(u.nivel)} ${u.nivel}</span>` : ''}
-                                    ${u.ciudad ? `<span>📍 ${u.ciudad}</span>` : ''}
+                                    ${u.ciudad ? `<span><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${u.ciudad}</span>` : ''}
                                 </div>
                             </div>
                             ${isMe
@@ -10528,11 +10528,11 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
         function getNivelEmoji(nivel) {
             const n = (nivel || '').toLowerCase();
-            if (n === 'principiante') return '🌱';
-            if (n === 'intermedio') return '🏃';
-            if (n === 'avanzado') return '🔥';
-            if (n === 'elite') return '⚡';
-            return '🌱';
+            if (n === 'principiante') return '<span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block"></span>';
+            if (n === 'intermedio') return '<span style="width:8px;height:8px;border-radius:50%;background:#eab308;display:inline-block"></span>';
+            if (n === 'avanzado') return '<span style="width:8px;height:8px;border-radius:50%;background:#ef4444;display:inline-block"></span>';
+            if (n === 'elite') return '<span style="width:8px;height:8px;border-radius:50%;background:#8b5cf6;display:inline-block"></span>';
+            return '<span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block"></span>';
         }
 
         async function toggleFollow(userId, btn) {
@@ -10645,7 +10645,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         <!-- Nombre y badges -->
                         <h3 class="text-xl font-black text-white mb-1">
                             ${profile.nombre || ''} ${profile.apellidos || ''}
-                            ${isPremium ? '<span class="ml-1">⭐</span>' : ''}
+                            ${isPremium ? '<span class="ml-1"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></span>' : ''}
                             ${profile.verification_badge ? '<span class="ml-1 text-blue-400">✓</span>' : ''}
                         </h3>
 
@@ -10653,7 +10653,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                         <p class="text-gray-400 text-sm mb-4">
                             ${profile.nivel ? `${getNivelEmoji(profile.nivel)} ${profile.nivel.charAt(0).toUpperCase() + profile.nivel.slice(1)}` : ''}
                             ${profile.nivel && profile.ciudad ? ' • ' : ''}
-                            ${profile.ciudad ? `📍 ${profile.ciudad}` : ''}
+                            ${profile.ciudad ? `<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${profile.ciudad}` : ''}
                         </p>
 
                         <!-- Stats sociales -->
@@ -10676,7 +10676,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                                     ${isFollowing ? '✓ Siguiendo' : 'Seguir'}
                                 </button>
                                 <button class="px-4 py-3 rounded-xl bg-slate-700/50 border border-slate-600 text-gray-300 text-sm font-semibold hover:bg-slate-600/50 transition" onclick="sendDM('${userId}')">
-                                    💬 ${currentLang === 'en' ? 'Message' : 'Mensaje'}
+                                    <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg> ${currentLang === 'en' ? 'Message' : 'Mensaje'}
                                 </button>
                             </div>
                         `}
@@ -10684,7 +10684,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
 
                     <!-- Stats de running -->
                     <div class="bg-slate-800/50 rounded-2xl p-4 border border-slate-700">
-                        <h4 class="text-sm font-bold text-gray-400 mb-3">📊 Estadísticas</h4>
+                        <h4 class="text-sm font-bold text-gray-400 mb-3"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg> Estadísticas</h4>
                         <div class="grid grid-cols-3 gap-3">
                             <div class="text-center p-3 bg-slate-900/50 rounded-xl">
                                 <div class="text-lg font-black text-orange-400">${profile.puntos_totales?.toLocaleString() || 0}</div>
@@ -10925,7 +10925,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 content.innerHTML=`<div class="p-4">${communities.map(c=>`<div onclick="selectCommunity(${c.id})" class="community-item bg-slate-800/50 border border-slate-700 rounded-2xl p-4 mb-3 cursor-pointer"><div class="flex items-center gap-4"><div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl" style="background:${c.color}20">${c.icon}</div><div class="flex-1"><h3 class="font-bold">${c.name}</h3><div class="text-sm text-gray-500">${c.members} miembros</div></div><svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>`).join('')}</div>`;
             }else if(sidebarView==='topics'){
                 const c=communities.find(x=>x.id===selectedCommunity);const topics=forumTopics[selectedCommunity]||[];
-                content.innerHTML=`<div class="p-4 border-b border-slate-800"><button onclick="sidebarView='communities';renderSidebar()" class="flex items-center gap-2 text-gray-400 hover:text-white mb-4"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver</button><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl" style="background:${c.color}20">${c.icon}</div><div><h3 class="font-bold">${c.name}</h3><p class="text-sm text-gray-500">${c.members} miembros</p></div></div></div><div class="p-4 border-b border-slate-800"><button onclick="sidebarView='newTopic';renderSidebar()" class="w-full btn-gradient py-3 rounded-xl font-bold text-sm">Nuevo tema</button></div><div class="p-4">${topics.map(t=>`<div onclick="selectTopic(${t.id})" class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 mb-3 cursor-pointer hover:border-orange-500/30">${t.pinned?'<span class="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded text-xs font-bold mb-2 inline-block">📌</span>':''}<h4 class="font-bold mb-2">${t.title}</h4><div class="flex justify-between text-sm text-gray-500"><span>${t.author}</span><span>${t.replies} resp</span></div></div>`).join('')}</div>`;
+                content.innerHTML=`<div class="p-4 border-b border-slate-800"><button onclick="sidebarView='communities';renderSidebar()" class="flex items-center gap-2 text-gray-400 hover:text-white mb-4"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver</button><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl" style="background:${c.color}20">${c.icon}</div><div><h3 class="font-bold">${c.name}</h3><p class="text-sm text-gray-500">${c.members} miembros</p></div></div></div><div class="p-4 border-b border-slate-800"><button onclick="sidebarView='newTopic';renderSidebar()" class="w-full btn-gradient py-3 rounded-xl font-bold text-sm">Nuevo tema</button></div><div class="p-4">${topics.map(t=>`<div onclick="selectTopic(${t.id})" class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 mb-3 cursor-pointer hover:border-orange-500/30">${t.pinned?'<span class="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded text-xs font-bold mb-2 inline-block"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg></span>':''}<h4 class="font-bold mb-2">${t.title}</h4><div class="flex justify-between text-sm text-gray-500"><span>${t.author}</span><span>${t.replies} resp</span></div></div>`).join('')}</div>`;
             }else if(sidebarView==='messages'){
                 const topic=(forumTopics[selectedCommunity]||[]).find(t=>t.id===selectedTopic);const messages=forumMessages[selectedTopic]||[];
                 content.innerHTML=`<div class="p-4 border-b border-slate-800"><button onclick="sidebarView='topics';renderSidebar()" class="flex items-center gap-2 text-gray-400 hover:text-white mb-3"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver</button><h3 class="font-bold">${topic?.title||'Tema'}</h3></div><div class="flex-1 overflow-y-auto p-4" style="max-height:calc(100vh - 280px)">${messages.map(m=>`<div class="message-bubble mb-4"><div class="flex items-start gap-3"><div class="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-xl">${m.avatar}</div><div class="flex-1"><div class="flex items-center gap-2 mb-1"><span class="font-bold text-sm">${m.author}</span><span class="text-xs text-gray-500">${m.time}</span></div><p class="text-gray-300 bg-slate-800 rounded-2xl rounded-tl-none p-3 text-sm">${m.content}</p></div></div></div>`).join('')}</div><div class="p-4 border-t border-slate-800"><div class="flex gap-3"><input type="text" id="new-message" placeholder="Escribe..." class="input-dark flex-1 px-4 py-3 rounded-xl text-sm" aria-label="Escribe..."><button onclick="sendMessage()" class="btn-gradient px-4 py-3 rounded-xl"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg></button></div></div>`;
@@ -11130,7 +11130,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
           // Update city label
           var cityLabel = document.getElementById('matching-city-label');
           if(cityLabel && currentUser.ciudad){
-            cityLabel.textContent = '📍 ' + currentUser.ciudad;
+            cityLabel.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ' + currentUser.ciudad;
           }
 
           // Check if user has a matching profile set up
@@ -11264,9 +11264,9 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                   '<h4 class="font-bold text-white text-sm truncate">' + escapeHtml(name) + verified + '</h4>' +
                   '<span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:' + scoreColor + '20;color:' + scoreColor + '">' + score + '%</span>' +
                 '</div>' +
-                (ritmo ? '<div class="flex items-center gap-1 mt-1"><span class="text-gray-500 text-xs">⏱️</span><span class="text-gray-300 text-xs">' + ritmo + '</span>' + (nivel ? '<span class="text-gray-600 text-xs">·</span><span class="text-gray-400 text-xs">' + nivel + '</span>' : '') + '</div>' : '') +
-                (dias || horario ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs">📅</span><span class="text-gray-300 text-xs">' + dias + (horario ? ' ' + horario.toLowerCase() : '') + '</span></div>' : '') +
-                (objetivo ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs">🎯</span><span class="text-gray-400 text-xs">' + objetivo + '</span></div>' : '') +
+                (ritmo ? '<div class="flex items-center gap-1 mt-1"><span class="text-gray-500 text-xs"><svg style="width:12px;height:12px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><span class="text-gray-300 text-xs">' + ritmo + '</span>' + (nivel ? '<span class="text-gray-600 text-xs">·</span><span class="text-gray-400 text-xs">' + nivel + '</span>' : '') + '</div>' : '') +
+                (dias || horario ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs"><svg style="width:12px;height:12px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></span><span class="text-gray-300 text-xs">' + dias + (horario ? ' ' + horario.toLowerCase() : '') + '</span></div>' : '') +
+                (objetivo ? '<div class="flex items-center gap-1 mt-0.5"><span class="text-gray-500 text-xs"><svg style="width:12px;height:12px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></span><span class="text-gray-400 text-xs">' + objetivo + '</span></div>' : '') +
                 (runner.bio_matching ? '<p class="text-gray-500 text-xs mt-1 italic">"' + escapeHtml(runner.bio_matching.substring(0,100)) + '"</p>' : '') +
               '</div>' +
             '</div>' +

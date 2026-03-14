@@ -8655,7 +8655,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
                 const statusBadge = getStatusBadge(currentStatus);
                 currentStatusEl.classList.remove('hidden');
                 currentStatusEl.className = `mt-3 px-4 py-2 rounded-full inline-flex items-center gap-2 text-sm font-bold ${statusBadge.class}`;
-                currentIconEl.textContent = statusBadge.icon;
+                currentIconEl.innerHTML = statusBadge.icon;
                 currentTextEl.textContent = `Estado actual: ${statusBadge.text}`;
 
                 // Marcar el estado actual

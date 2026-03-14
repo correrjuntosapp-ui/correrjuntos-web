@@ -625,4 +625,92 @@
     });
   }
 
+  /* ══════════════════════════════════════════════
+     APP PROMOTION BANNER — inline after first h2
+     + Smart App Banner meta tag for iOS Safari
+     ══════════════════════════════════════════════ */
+  // Smart App Banner (iOS Safari native)
+  if(!document.querySelector('meta[name="apple-itunes-app"]')){
+    var sam = document.createElement('meta');
+    sam.name = 'apple-itunes-app';
+    sam.content = 'app-id=6758505910';
+    document.head.appendChild(sam);
+  }
+
+  // Inline app banner after first h2
+  (function(){
+    var BANNER_KEY = 'cj_blog_app_banner';
+    var BANNER_DAYS = 7;
+
+    // Don't show in standalone/PWA
+    if(window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return;
+
+    // Don't show if dismissed recently
+    var dismissed = localStorage.getItem(BANNER_KEY);
+    if(dismissed && (Date.now() - Number(dismissed)) < BANNER_DAYS * 86400000) return;
+
+    // Find first h2 in article (or anywhere in page)
+    var article = document.querySelector('article') || document.querySelector('.article-body') || document.querySelector('main') || document.body;
+    var firstH2 = article.querySelector('h2');
+    if(!firstH2) return;
+
+    var isEN = document.documentElement.lang === 'en' || window.location.pathname.indexOf('/en/') !== -1;
+    var slug = window.location.pathname.split('/').filter(Boolean).pop() || 'home';
+
+    // Create banner
+    var banner = document.createElement('div');
+    banner.className = 'cj-app-banner';
+    banner.innerHTML = [
+      '<button class="cj-app-banner-close" aria-label="Cerrar">&times;</button>',
+      '<div class="cj-app-banner-inner">',
+        '<img src="/icons/icon-96.png" alt="CorrerJuntos" class="cj-app-banner-icon" width="56" height="56" loading="lazy">',
+        '<div class="cj-app-banner-text">',
+          '<strong>' + (isEN ? 'Run with company!' : '\u00a1Corre acompa\u00f1ado!') + '</strong>',
+          '<span>' + (isEN ? 'Download the free app and find runners near you' : 'Descarga la app gratis y encuentra runners cerca de ti') + '</span>',
+        '</div>',
+        '<div class="cj-app-banner-badges">',
+          '<a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="cj-app-badge" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'blog_app_banner_click\',{store:\'appstore\',slug:\'' + slug + '\'})">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' +
+            '<span>App Store</span></a>',
+          '<a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="cj-app-badge" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'blog_app_banner_click\',{store:\'playstore\',slug:\'' + slug + '\'})">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>' +
+            '<span>Google Play</span></a>',
+        '</div>',
+      '</div>'
+    ].join('');
+
+    // Inject CSS
+    var bannerCSS = document.createElement('style');
+    bannerCSS.textContent = [
+      '.cj-app-banner{position:relative;margin:28px 0;padding:20px 24px;border-radius:16px;background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1px solid #fed7aa;box-shadow:0 2px 12px rgba(249,115,22,.08)}',
+      '.cj-app-banner-close{position:absolute;top:8px;right:12px;background:none;border:none;font-size:1.4rem;color:#9a8478;cursor:pointer;padding:4px;line-height:1}',
+      '.cj-app-banner-close:hover{color:#f97316}',
+      '.cj-app-banner-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap}',
+      '.cj-app-banner-icon{border-radius:14px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.1)}',
+      '.cj-app-banner-text{flex:1;min-width:180px}',
+      '.cj-app-banner-text strong{display:block;font-size:1.05rem;color:#3d3229;margin-bottom:2px}',
+      '.cj-app-banner-text span{font-size:.88rem;color:#6b5c4d;line-height:1.4}',
+      '.cj-app-banner-badges{display:flex;gap:8px;flex-shrink:0}',
+      '.cj-app-badge{display:inline-flex;align-items:center;gap:6px;background:#1a1a2e;color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;border:1px solid rgba(255,255,255,.08);transition:all .2s}',
+      '.cj-app-badge:hover{transform:translateY(-1px);border-color:rgba(249,115,22,.4);box-shadow:0 4px 12px rgba(249,115,22,.15)}',
+      '/* Dark mode */',
+      'body.dark-mode .cj-app-banner,.dark-mode .cj-app-banner{background:linear-gradient(135deg,#1e1b18,#292117);border-color:rgba(249,115,22,.2)}',
+      'body.dark-mode .cj-app-banner-text strong,.dark-mode .cj-app-banner-text strong{color:#fef3c7}',
+      'body.dark-mode .cj-app-banner-text span,.dark-mode .cj-app-banner-text span{color:#a89480}',
+      'body.dark-mode .cj-app-banner-close,.dark-mode .cj-app-banner-close{color:#6b5c4d}',
+      '@media(max-width:520px){.cj-app-banner-inner{flex-direction:column;text-align:center;align-items:center}.cj-app-banner-badges{justify-content:center}}'
+    ].join('\n');
+    document.head.appendChild(bannerCSS);
+
+    // Insert after first h2
+    firstH2.parentNode.insertBefore(banner, firstH2.nextSibling);
+
+    // Dismiss handler
+    banner.querySelector('.cj-app-banner-close').addEventListener('click', function(){
+      banner.style.display = 'none';
+      localStorage.setItem(BANNER_KEY, String(Date.now()));
+      trackEvent('blog_app_banner_dismiss', {slug: slug});
+    });
+  })();
+
 })();

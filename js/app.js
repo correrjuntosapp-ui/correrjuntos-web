@@ -8179,7 +8179,7 @@ async function getSupabaseClientOrToast(timeoutMs=12000, toastOnFail=false){
             const mkChip = (label, value, active=false) => {
                 const div = document.createElement('div');
                 div.className = 'chip px-6 py-2.5 rounded-full bg-slate-800 text-sm font-bold whitespace-nowrap' + (active ? ' active' : '');
-                div.textContent = label;
+                div.innerHTML = label;
                 div.onclick = () => filterBy(value, div);
                 return div;
             };

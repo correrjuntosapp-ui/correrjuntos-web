@@ -1698,19 +1698,19 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                         <div class="bg-slate-800/60 rounded-xl p-4 cursor-pointer hover:bg-slate-700/60 transition-all" onclick="openQuedadaDetail('${next.id}')">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
-                                    <div class="text-xs text-orange-400 font-bold mb-1">📍 ${escapeHtml(next.ciudad || '')} · ${escapeHtml(next.ubicacion || '')}</div>
+                                    <div class="text-xs text-orange-400 font-bold mb-1 flex items-center gap-1"><svg class="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${escapeHtml(next.ciudad || '')} · ${escapeHtml(next.ubicacion || '')}</div>
                                     <div class="text-sm font-bold text-white mb-1">${escapeHtml(next.titulo)}</div>
                                 </div>
                                 <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full font-bold whitespace-nowrap">${countdown}</span>
                             </div>
                             <div class="flex flex-wrap gap-2 text-xs">
-                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">🕒 ${formatDateShort(next.fecha)} · ${formatHora(next.hora)}</span>
-                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👟 ${next.nivel || 'Todos'}</span>
-                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👥 ${confirmedCount} runners</span>
+                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ${formatDateShort(next.fecha)} · ${formatHora(next.hora)}</span>
+                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> ${next.nivel || 'Todos'}</span>
+                                <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${confirmedCount} runners</span>
                             </div>
                             <div class="mt-3">
                                 <button class="w-full py-2.5 rounded-xl bg-slate-700 text-white text-sm font-bold hover:bg-slate-600 transition" onclick="event.stopPropagation(); openQuedadaDetail('${next.id}')">
-                                    ${currentLang === 'en' ? '📋 View details' : '📋 Ver detalles'}
+                                    ${currentLang === 'en' ? 'View details' : 'Ver detalles'}
                                 </button>
                             </div>
                         </div>`;
@@ -1788,17 +1788,17 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
                 missionCard.innerHTML = `
                     <div class="bg-slate-800/60 rounded-xl p-4">
-                        <div class="text-xs text-orange-400 font-bold mb-1">📍 ${escapeHtml(bq.ciudad || '')} · ${escapeHtml(bq.ubicacion || '')}</div>
+                        <div class="text-xs text-orange-400 font-bold mb-1 flex items-center gap-1"><svg class="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${escapeHtml(bq.ciudad || '')} · ${escapeHtml(bq.ubicacion || '')}</div>
                         <div class="text-sm font-bold text-white mb-1">${escapeHtml(bq.titulo)}</div>
                         <div class="flex flex-wrap gap-2 text-xs mb-3">
-                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">🕒 ${formatDateShort(bq.fecha)} · ${formatHora(bq.hora)}</span>
-                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👟 ${bq.nivel || 'Todos'}</span>
-                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">👥 ${confirmedCount} runners</span>
-                            ${bq.distancia ? `<span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300">📏 ${formatDistancia(bq.distancia)}</span>` : ''}
+                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ${formatDateShort(bq.fecha)} · ${formatHora(bq.hora)}</span>
+                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> ${bq.nivel || 'Todos'}</span>
+                            <span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${confirmedCount} runners</span>
+                            ${bq.distancia ? `<span class="bg-slate-700/50 px-2 py-1 rounded-full text-gray-300 inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg> ${formatDistancia(bq.distancia)}</span>` : ''}
                         </div>
                         ${best.friendsGoing > 0 ? `<div class="text-xs text-green-400 mb-2">👥 ${best.friendsGoing} ${currentLang === 'en' ? 'friends going' : 'amigos van'}</div>` : ''}
                         <button onclick="openAttendanceModal('${bq.id}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-orange-500/25 transition-all transform hover:scale-[1.02]">
-                            🏃 ${currentLang === 'en' ? 'JOIN NOW' : 'UNIRME AHORA'}
+                            ${currentLang === 'en' ? 'JOIN NOW' : 'UNIRME AHORA'}
                         </button>
                         ${badgesHtml}
                     </div>`;
@@ -3414,12 +3414,12 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
             // Info
             const info = card.querySelector('#fc-info');
-            const distText = q.distancia ? `<span style="display:flex;align-items:center;gap:4px"><span>📏</span> ${q.distancia} ${t.fc_km || 'km'}</span>` : '';
+            const distText = q.distancia ? `<span style="display:flex;align-items:center;gap:4px"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg> ${q.distancia} ${t.fc_km || 'km'}</span>` : '';
             info.innerHTML = `
-                <span style="display:flex;align-items:center;gap:4px"><span>📅</span> ${formatDateShort(q.fecha)}</span>
-                <span style="display:flex;align-items:center;gap:4px"><span>⏰</span> ${formatHora(q.hora)}</span>
-                <span style="display:flex;align-items:center;gap:4px"><span>📍</span> ${escapeHtml(q.ciudad || q.ubicacion || '')}</span>
-                <span style="display:flex;align-items:center;gap:4px"><span>👥</span> ${participantCount} ${t.fc_runners || 'runners'}</span>
+                <span style="display:flex;align-items:center;gap:4px"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> ${formatDateShort(q.fecha)}</span>
+                <span style="display:flex;align-items:center;gap:4px"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ${formatHora(q.hora)}</span>
+                <span style="display:flex;align-items:center;gap:4px"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${escapeHtml(q.ciudad || q.ubicacion || '')}</span>
+                <span style="display:flex;align-items:center;gap:4px"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${participantCount} ${t.fc_runners || 'runners'}</span>
                 ${distText}
             `;
 

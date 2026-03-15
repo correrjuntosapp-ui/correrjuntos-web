@@ -153,10 +153,11 @@ function generateBlogES() {
     }
 
     // Articles in subdir (as directories with index.html)
+    // No trailing slash — matches canonical + vercel.json trailingSlash:false
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
       if (isRedirectPage(file)) continue;
-      const loc = `${DOMAIN}/blog/${sub}/${slug}/`;
+      const loc = `${DOMAIN}/blog/${sub}/${slug}`;
       const mod = getLastmod(file);
       const enUrl = extractHreflang(file, 'es');
       const alternates = [
@@ -194,7 +195,7 @@ function generateBlogES() {
     }
     for (const slug of listHtmlDirs(catDir).sort()) {
       const file = path.join(catDir, slug, 'index.html');
-      xml += urlEntry(`${DOMAIN}/blog/categoria/${slug}/`, getLastmod(file));
+      xml += urlEntry(`${DOMAIN}/blog/categoria/${slug}`, getLastmod(file));
       count++;
     }
   }
@@ -262,10 +263,11 @@ function generateBlogEN() {
       xml += urlEntryHreflang(loc, mod, alternates);
       count++;
     }
+    // No trailing slash — matches canonical + vercel.json trailingSlash:false
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
       if (isRedirectPage(file)) continue;
-      const loc = `${DOMAIN}/blog/en/${sub}/${slug}/`;
+      const loc = `${DOMAIN}/blog/en/${sub}/${slug}`;
       const mod = getLastmod(file);
       const esUrl = extractHreflang(file, 'en');
       const alternates = [{ lang: 'en', href: loc }];

@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://images.pexels.com" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Carlos Ruiz">
-<title>Your First Ultra Trail: Complete Beginner's Guide [2026]</title>
+<title>Your First Ultra Trail: Complete Beginner's Guide [2026] | CorrerJuntos</title>
 <meta name="description" content="Complete guide to running your first ultra trail. Training, gear, nutrition, mental strategies and race-day tips for ultra distances from 50K to 100K....">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="first ultra trail, ultra trail beginners, ultra running guide, 50k trail race, ultra marathon preparation, first ultramarathon, ultra trail training">
@@ -18,6 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.correrjuntos.com/blog/en/first-ultra-trail-guide">
 <meta property="og:image" content="https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@CorrerJuntos">
@@ -275,7 +281,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </div>
 
 <div class="container content">
-  <nav class="toc" aria-label="Table of contents"><h2>In this article</h2><ul><li><a href="#are-you-ready">Are You Ready for an Ultra?</a></li><li><a href="#choosing-your-first-race">Choosing Your First Ultra Race</a></li><li><a href="#ultra-training-principles">Ultra Training Principles</a></li><li><a href="#gear-and-mandatory-equipment">Gear and Mandatory Equipment</a></li><li><a href="#race-day-strategy">Race Day Strategy</a></li><li><a href="#mental-game-and-low-points">The Mental Game and Low Points</a></li></ul></nav>
+  <nav class="toc" aria-label="Table of contents"><div class="toc-title text-xl font-bold" role="heading" aria-level="3">In this article</div><ul><li><a href="#are-you-ready">Are You Ready for an Ultra?</a></li><li><a href="#choosing-your-first-race">Choosing Your First Ultra Race</a></li><li><a href="#ultra-training-principles">Ultra Training Principles</a></li><li><a href="#gear-and-mandatory-equipment">Gear and Mandatory Equipment</a></li><li><a href="#race-day-strategy">Race Day Strategy</a></li><li><a href="#mental-game-and-low-points">The Mental Game and Low Points</a></li></ul></nav>
 
 <h2 id="are-you-ready">Are You Ready for an Ultra Trail?</h2>
 <p>The idea of running beyond the marathon distance on mountain trails is simultaneously exciting and terrifying. Ultra trail running pushes your physical and mental limits in ways that shorter races simply cannot. But here is what many runners do not realize: finishing an ultra is far more achievable than it appears from the outside. With proper preparation, realistic expectations, and a willingness to walk when necessary, most experienced trail runners can complete a 50K ultra.</p>
@@ -379,7 +385,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div class="cta-box" style="background:rgba(249,115,22,.03);border:1px solid rgba(249,115,22,.1)"><h2>Running tips in your inbox</h2><p style="color:#5c4d3d;margin-bottom:16px">Routes, training plans and tips to run better. No spam.</p><form id="nl-form" onsubmit="submitNL(event)" style="display:flex;gap:8px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center"><input type="email" id="nl-email" required placeholder="your@email.com" style="flex:1;min-width:200px;padding:12px 16px;background:#fffcf9;border:1px solid #efe6db;border-radius:12px;color:#3d3229;font-size:.9rem;outline:none" onfocus="this.style.borderColor='#f97316'" onblur="this.style.borderColor='rgba(255,255,255,.1)'"><button type="submit" id="nl-btn" class="cta" style="padding:12px 24px;font-size:.9rem">Subscribe</button></form><p style="font-size:.72rem;color:#64748b;margin-top:8px">We respect your privacy. Unsubscribe anytime.</p><div id="nl-ok" style="display:none;margin-top:12px;padding:10px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px"><p style="color:#4ade80;font-size:.85rem;font-weight:600;margin:0">Subscribed! We'll send you the best running tips.</p></div><div id="nl-err" style="display:none;margin-top:12px;padding:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:12px"><p style="color:#f87171;font-size:.85rem;margin:0">Error subscribing. Please try again.</p></div></div>
 <script>async function submitNL(e){e.preventDefault();var m=document.getElementById('nl-email').value.trim(),b=document.getElementById('nl-btn'),f=document.getElementById('nl-form'),o=document.getElementById('nl-ok'),r=document.getElementById('nl-err');if(!m)return;b.disabled=true;b.textContent='...';o.style.display='none';r.style.display='none';try{var s=await fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:m,lang:'en',source:'blog-en-first-ultra-trail-guide'})});if(s.ok||s.status===201){f.style.display='none';o.style.display='block'}else if(s.status===409){o.querySelector('p').textContent='Already subscribed. Thanks!';f.style.display='none';o.style.display='block'}else throw new Error('HTTP '+s.status)}catch(x){r.style.display='block';console.error('NL error:',x)}finally{b.disabled=false;b.textContent='Subscribe'}}</script>
 
-  <div class="related"><h2>Keep reading</h2><div class="related-links"><a href="/blog/en/start-trail-running">Start Trail Running</a><a href="/blog/en/trail-running-training-plan">Training Plan</a><a href="/blog/en/trail-running-nutrition">Trail Nutrition</a><a href="/blog/en/trail-running-safety">Trail Safety</a><a href="/blog/en/uphill-downhill-running-technique">Mountain Technique</a><a href="/blog/en/gps-navigation-trail-running">GPS Navigation</a></div></div>
+  <div class="related"><div class="related-title text-xl font-bold" role="heading" aria-level="3">Keep reading</div><div class="related-links"><a href="/blog/en/start-trail-running">Start Trail Running</a><a href="/blog/en/trail-running-training-plan">Training Plan</a><a href="/blog/en/trail-running-nutrition">Trail Nutrition</a><a href="/blog/en/trail-running-safety">Trail Safety</a><a href="/blog/en/uphill-downhill-running-technique">Mountain Technique</a><a href="/blog/en/gps-navigation-trail-running">GPS Navigation</a></div></div>
 </div>
 
 <div class="cookie-banner" id="cookie-banner"><div class="cookie-inner"><p>We use cookies to improve your experience. <a href="/legal/cookies.html">More info</a></p><div class="cookie-btns"><button class="btn-reject" onclick="rejectCookies()">Reject</button><button class="btn-accept" onclick="acceptCookies()">Accept</button></div></div></div>

@@ -60,7 +60,7 @@
       '<p class="author-role">' + author.role + '</p>' +
       (author.credentials ? '<div class="author-credentials">' + author.credentials + '</div>' : '') +
       '<p class="author-bio">' + author.bio + '</p>' +
-      '<a href="' + author.url + '" class="author-link">Ver todos sus art\u00edculos \u2192</a>' +
+      '<a href="' + author.url + '" class="author-link">Ver todos los art\u00edculos de ' + author.name + ' \u2192</a>' +
     '</div>';
 
   /* ── Inject before CTA or at end of .content ── */

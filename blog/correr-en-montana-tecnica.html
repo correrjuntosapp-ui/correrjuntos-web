@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="es-ES">
 <head>
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://images.pexels.com" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.correrjuntos.com/blog/correr-en-montana-tecnica">
 <meta property="og:image" content="https://images.pexels.com/photos/2609459/pexels-photo-2609459.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@CorrerJuntos">
@@ -276,7 +282,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <div class="container content">
 
   <nav class="toc" aria-label="Tabla de contenidos">
-    <h2>En este artículo</h2>
+    <div class="toc-title text-xl font-bold" role="heading" aria-level="3">En este artículo</div>
     <ul>
       <li><a href="#por-que-tecnica">Por Qué la Técnica Marca la Diferencia</a></li>
       <li><a href="#tecnica-subida">Técnica de Subida en Trail</a></li>
@@ -429,7 +435,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   </div>
 <script>async function submitNL(e){e.preventDefault();var m=document.getElementById('nl-email').value.trim(),b=document.getElementById('nl-btn'),f=document.getElementById('nl-form'),o=document.getElementById('nl-ok'),r=document.getElementById('nl-err');if(!m)return;b.disabled=true;b.textContent='...';o.style.display='none';r.style.display='none';try{var s=await fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:m,lang:'es',source:'blog-article'})});if(s.ok||s.status===201){f.style.display='none';o.style.display='block'}else if(s.status===409){o.querySelector('p').textContent='Ya estás suscrito/a. ¡Gracias!';f.style.display='none';o.style.display='block'}else throw new Error('HTTP '+s.status)}catch(x){r.style.display='block';console.error('NL error:',x)}finally{b.disabled=false;b.textContent='Suscribirme'}}</script>
 
-  <div class="related"><h2>Artículos relacionados</h2><div class="related-links"><a href="/blog/empezar-trail-running">Empezar en Trail Running</a><a href="/blog/entrenamiento-trail-running-plan">Plan Entrenamiento Trail</a><a href="/blog/bastones-trail-running">Bastones para Trail</a><a href="/blog/seguridad-trail-running">Seguridad en Trail</a><a href="/blog/nutricion-trail-running">Nutrición Trail Running</a><a href="/blog/ultra-trail-principiantes">Primer Ultra Trail</a></div></div>
+  <div class="related"><div class="related-title text-xl font-bold" role="heading" aria-level="3">Artículos relacionados</div><div class="related-links"><a href="/blog/empezar-trail-running">Empezar en Trail Running</a><a href="/blog/entrenamiento-trail-running-plan">Plan Entrenamiento Trail</a><a href="/blog/bastones-trail-running">Bastones para Trail</a><a href="/blog/seguridad-trail-running">Seguridad en Trail</a><a href="/blog/nutricion-trail-running">Nutrición Trail Running</a><a href="/blog/ultra-trail-principiantes">Primer Ultra Trail</a></div></div>
 </div>
 
 <footer style="background:#fef9f3;border-top:1px solid #efe6db;padding:48px 20px 24px;margin-top:60px">

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://images.pexels.com" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.correrjuntos.com/blog/en/best-energy-snacks-for-runners">
 <meta property="og:image" content="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@CorrerJuntos">
@@ -276,7 +282,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 
 <div class="container content">
 
-  <nav class="toc" aria-label="Table of contents"><h2>In this article</h2>
+  <nav class="toc" aria-label="Table of contents"><div class="toc-title text-xl font-bold" role="heading" aria-level="3">In this article</div>
     <ul>
       <li><a href="#why-snacks-matter">Why Smart Snacking Matters for Runners</a></li>
       <li><a href="#best-pre-run-snacks">Best Pre-Run Snacks</a></li>
@@ -417,7 +423,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 async function submitNL(e){e.preventDefault();var m=document.getElementById('nl-email').value.trim(),b=document.getElementById('nl-btn'),f=document.getElementById('nl-form'),o=document.getElementById('nl-ok'),r=document.getElementById('nl-err');if(!m)return;b.disabled=true;b.textContent='...';o.style.display='none';r.style.display='none';try{var s=await fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:m,lang:'en',source:'blog-en-best-energy-snacks-for-runners'})});if(s.ok||s.status===201){f.style.display='none';o.style.display='block'}else if(s.status===409){o.querySelector('p').textContent='Already subscribed. Thanks!';f.style.display='none';o.style.display='block'}else throw new Error('HTTP '+s.status)}catch(x){r.style.display='block';console.error('NL error:',x)}finally{b.disabled=false;b.textContent='Subscribe'}}
 </script>
 
-  <div class="related"><h2>Keep reading</h2><div class="related-links"><a href="/blog/en/runner-diet-what-to-eat">Runner Diet Guide</a><a href="/blog/en/quick-recipes-for-runners">Quick Recipes</a><a href="/blog/en/best-breakfasts-before-running">Breakfasts for Running</a><a href="/blog/en/post-run-recovery-nutrition">Post-Run Nutrition</a><a href="/blog/en/iron-for-runners">Iron for Runners</a><a href="/blog/en/how-to-avoid-stomach-issues-running">Avoid Stomach Issues</a></div></div>
+  <div class="related"><div class="related-title text-xl font-bold" role="heading" aria-level="3">Keep reading</div><div class="related-links"><a href="/blog/en/runner-diet-what-to-eat">Runner Diet Guide</a><a href="/blog/en/quick-recipes-for-runners">Quick Recipes</a><a href="/blog/en/best-breakfasts-before-running">Breakfasts for Running</a><a href="/blog/en/post-run-recovery-nutrition">Post-Run Nutrition</a><a href="/blog/en/iron-for-runners">Iron for Runners</a><a href="/blog/en/how-to-avoid-stomach-issues-running">Avoid Stomach Issues</a></div></div>
 </div>
 
 <div class="cookie-banner" id="cookie-banner"><div class="cookie-inner"><p>We use cookies to improve your experience. <a href="/legal/cookies.html">More info</a></p><div class="cookie-btns"><button class="btn-reject" onclick="rejectCookies()">Reject</button><button class="btn-accept" onclick="acceptCookies()">Accept</button></div></div></div>

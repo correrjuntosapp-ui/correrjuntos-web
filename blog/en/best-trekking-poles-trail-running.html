@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://images.pexels.com" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.correrjuntos.com/blog/en/best-trekking-poles-trail-running">
 <meta property="og:image" content="https://images.pexels.com/photos/2116469/pexels-photo-2116469.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@CorrerJuntos">
@@ -276,7 +282,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </div>
 
 <div class="container content">
-  <nav class="toc" aria-label="Table of contents"><h2>In this article</h2><ul><li><a href="#why-poles-for-trail-running">Why Use Poles for Trail Running</a></li><li><a href="#folding-vs-telescopic">Folding vs Telescopic Poles</a></li><li><a href="#carbon-vs-aluminum">Carbon vs Aluminum: Materials Guide</a></li><li><a href="#sizing-and-technique">Sizing and Pole Technique</a></li><li><a href="#carrying-and-stowing">Carrying and Stowing Poles</a></li><li><a href="#when-to-use-poles">When to Use Poles in Races</a></li></ul></nav>
+  <nav class="toc" aria-label="Table of contents"><div class="toc-title text-xl font-bold" role="heading" aria-level="3">In this article</div><ul><li><a href="#why-poles-for-trail-running">Why Use Poles for Trail Running</a></li><li><a href="#folding-vs-telescopic">Folding vs Telescopic Poles</a></li><li><a href="#carbon-vs-aluminum">Carbon vs Aluminum: Materials Guide</a></li><li><a href="#sizing-and-technique">Sizing and Pole Technique</a></li><li><a href="#carrying-and-stowing">Carrying and Stowing Poles</a></li><li><a href="#when-to-use-poles">When to Use Poles in Races</a></li></ul></nav>
 
 <h2 id="why-poles-for-trail-running">Why Use Poles for Trail Running</h2>
 <p>Trekking poles divide opinion among trail runners. Some consider them essential equipment for any mountain race. Others view them as unnecessary weight and hassle. The truth lies in between: poles are a specialized tool that provides genuine advantages in specific conditions, and understanding when they help and when they hinder is key to making the right choice.</p>
@@ -367,7 +373,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div class="cta-box" style="background:rgba(249,115,22,.03);border:1px solid rgba(249,115,22,.1)"><h2>Running tips in your inbox</h2><p style="color:#5c4d3d;margin-bottom:16px">Routes, training plans and tips to run better. No spam.</p><form id="nl-form" onsubmit="submitNL(event)" style="display:flex;gap:8px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center"><input type="email" id="nl-email" required placeholder="your@email.com" style="flex:1;min-width:200px;padding:12px 16px;background:#fffcf9;border:1px solid #efe6db;border-radius:12px;color:#3d3229;font-size:.9rem;outline:none" onfocus="this.style.borderColor='#f97316'" onblur="this.style.borderColor='rgba(255,255,255,.1)'"><button type="submit" id="nl-btn" class="cta" style="padding:12px 24px;font-size:.9rem">Subscribe</button></form><p style="font-size:.72rem;color:#64748b;margin-top:8px">We respect your privacy. Unsubscribe anytime.</p><div id="nl-ok" style="display:none;margin-top:12px;padding:10px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px"><p style="color:#4ade80;font-size:.85rem;font-weight:600;margin:0">Subscribed! We'll send you the best running tips.</p></div><div id="nl-err" style="display:none;margin-top:12px;padding:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:12px"><p style="color:#f87171;font-size:.85rem;margin:0">Error subscribing. Please try again.</p></div></div>
 <script>async function submitNL(e){e.preventDefault();var m=document.getElementById('nl-email').value.trim(),b=document.getElementById('nl-btn'),f=document.getElementById('nl-form'),o=document.getElementById('nl-ok'),r=document.getElementById('nl-err');if(!m)return;b.disabled=true;b.textContent='...';o.style.display='none';r.style.display='none';try{var s=await fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:m,lang:'en',source:'blog-en-best-trekking-poles-trail-running'})});if(s.ok||s.status===201){f.style.display='none';o.style.display='block'}else if(s.status===409){o.querySelector('p').textContent='Already subscribed. Thanks!';f.style.display='none';o.style.display='block'}else throw new Error('HTTP '+s.status)}catch(x){r.style.display='block';console.error('NL error:',x)}finally{b.disabled=false;b.textContent='Subscribe'}}</script>
 
-  <div class="related"><h2>Keep reading</h2><div class="related-links"><a href="/blog/en/start-trail-running">Start Trail Running</a><a href="/blog/en/trail-running-training-plan">Training Plan</a><a href="/blog/en/trail-running-nutrition">Trail Nutrition</a><a href="/blog/en/trail-running-safety">Trail Safety</a><a href="/blog/en/gps-navigation-trail-running">GPS Navigation</a><a href="/blog/en/first-ultra-trail-guide">First Ultra Trail</a></div></div>
+  <div class="related"><div class="related-title text-xl font-bold" role="heading" aria-level="3">Keep reading</div><div class="related-links"><a href="/blog/en/start-trail-running">Start Trail Running</a><a href="/blog/en/trail-running-training-plan">Training Plan</a><a href="/blog/en/trail-running-nutrition">Trail Nutrition</a><a href="/blog/en/trail-running-safety">Trail Safety</a><a href="/blog/en/gps-navigation-trail-running">GPS Navigation</a><a href="/blog/en/first-ultra-trail-guide">First Ultra Trail</a></div></div>
 </div>
 
 <div class="cookie-banner" id="cookie-banner"><div class="cookie-inner"><p>We use cookies to improve your experience. <a href="/legal/cookies.html">More info</a></p><div class="cookie-btns"><button class="btn-reject" onclick="rejectCookies()">Reject</button><button class="btn-accept" onclick="acceptCookies()">Accept</button></div></div></div>

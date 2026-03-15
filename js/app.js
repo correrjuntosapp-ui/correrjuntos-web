@@ -360,6 +360,8 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             }
             const stored = localStorage.getItem('cj_lang');
             if (stored && supported.includes(stored)) return stored;
+            // Bots (Google, Bing, etc.) must always see Spanish (the server-rendered default)
+            if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return 'es';
             const browserLang = (navigator.language || navigator.userLanguage || 'es').split('-')[0].toLowerCase();
             return supported.includes(browserLang) ? browserLang : 'es';
         }

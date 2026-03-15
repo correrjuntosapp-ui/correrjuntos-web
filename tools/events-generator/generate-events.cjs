@@ -127,20 +127,25 @@ function buildSchema(e) {
       inLanguage: 'es-ES'
     },
     {
-      '@type': 'SportsEvent',
-      '@id': canonicalUrl + '#event',
+      '@type': 'ItemList',
+      '@id': canonicalUrl + '#races',
       name: `Eventos de Running en ${e.cityName}`,
       description: e.shortDescription,
-      sport: 'Running',
-      location: {
-        '@type': 'City',
-        name: e.cityName,
-        address: {
-          '@type': 'PostalAddress',
-          addressCountry: e.country
-        }
-      },
-      organizer: { '@id': 'https://www.correrjuntos.com/#organization' }
+      numberOfItems: (e.majorRaces || []).length + (e.parkruns || []).length,
+      itemListElement: [
+        ...(e.majorRaces || []).map((r, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: r.name,
+          description: `${r.distance} — ${r.month} — ${r.participants} participantes`
+        })),
+        ...(e.parkruns || []).map((p, i) => ({
+          '@type': 'ListItem',
+          position: (e.majorRaces || []).length + i + 1,
+          name: `parkrun ${p.name}`,
+          description: `${p.location} — ${p.day}`
+        }))
+      ]
     },
     {
       '@type': 'BreadcrumbList',

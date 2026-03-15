@@ -1,74 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Equipamiento Index -->
   <url>
     <loc>https://www.correrjuntos.com/equipamiento/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Equipamiento Pages -->
-  <url>
-    <loc>https://www.correrjuntos.com/equipamiento/zapatillas-running</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/equipamiento/relojes-gps-running</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/equipamiento/geles-energeticos-running</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/equipamiento/bebidas-hidratacion-running</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/equipamiento/recuperadores-running</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-02-27</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/equipamiento/accesorios-running</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/equipamiento/ropa-running</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-02-27</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/equipamiento/auriculares-running</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-03-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/equipamiento/bebidas-hidratacion-running</loc>
+    <lastmod>2026-03-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/equipamiento/geles-energeticos-running</loc>
+    <lastmod>2026-02-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/equipamiento/recuperadores-running</loc>
+    <lastmod>2026-02-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/equipamiento/relojes-gps-running</loc>
+    <lastmod>2026-03-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/equipamiento/ropa-running</loc>
+    <lastmod>2026-02-27</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/equipamiento/suplementos-running</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/equipamiento/zapatillas-running</loc>
+    <lastmod>2026-03-02</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/equipamiento/zapatillas-trail-running</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
   </url>
-
 </urlset>

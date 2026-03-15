@@ -78,9 +78,5 @@ Crawl-delay: 10
 User-agent: MJ12bot
 Crawl-delay: 30
 
-# Sitemaps
-Sitemap: https://www.correrjuntos.com/sitemap.xml
-Sitemap: https://www.correrjuntos.com/sitemap-blog.xml
-Sitemap: https://www.correrjuntos.com/sitemap-cities.xml
-Sitemap: https://www.correrjuntos.com/sitemap-pages.xml
-Sitemap: https://www.correrjuntos.com/sitemap-equipamiento.xml
+# Sitemaps (sitemap-index.xml references all child sitemaps)
+Sitemap: https://www.correrjuntos.com/sitemap-index.xml

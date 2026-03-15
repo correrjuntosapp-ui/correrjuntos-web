@@ -1,5 +1,5 @@
 // Service Worker - CorrerJuntos PWA
-const CACHE_NAME = 'correrjuntos-v30';
+const CACHE_NAME = 'correrjuntos-v32';
 const OFFLINE_URL = '/offline.html';
 
 // Archivos a cachear (NO incluir index.html para que siempre cargue la versión más reciente)
@@ -8,6 +8,11 @@ const STATIC_ASSETS = [
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  '/blog/enhance.js',
+  '/blog/related.js',
+  '/blog/author.js',
+  '/blog/toc.js',
+  '/blog/city-links.js',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap'

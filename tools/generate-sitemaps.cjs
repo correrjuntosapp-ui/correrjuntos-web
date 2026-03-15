@@ -140,7 +140,15 @@ function generateBlogES() {
     for (const slug of listHtmlFiles(dir).sort()) {
       const file = path.join(dir, `${slug}.html`);
       if (isRedirectPage(file)) continue;
-      xml += urlEntry(`${DOMAIN}/blog/${sub}/${slug}`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/${sub}/${slug}`;
+      const mod = getLastmod(file);
+      const enUrl = extractHreflang(file, 'es');
+      const alternates = [
+        { lang: 'es', href: loc },
+        { lang: 'x-default', href: loc },
+      ];
+      if (enUrl) alternates.splice(1, 0, { lang: 'en', href: enUrl });
+      xml += urlEntryHreflang(loc, mod, alternates);
       count++;
     }
 
@@ -148,7 +156,15 @@ function generateBlogES() {
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
       if (isRedirectPage(file)) continue;
-      xml += urlEntry(`${DOMAIN}/blog/${sub}/${slug}/`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/${sub}/${slug}/`;
+      const mod = getLastmod(file);
+      const enUrl = extractHreflang(file, 'es');
+      const alternates = [
+        { lang: 'es', href: loc },
+        { lang: 'x-default', href: loc },
+      ];
+      if (enUrl) alternates.splice(1, 0, { lang: 'en', href: enUrl });
+      xml += urlEntryHreflang(loc, mod, alternates);
       count++;
     }
   }
@@ -222,7 +238,7 @@ function generateBlogEN() {
   }
 
   // EN subdirectory articles
-  const enSubdirs = ['categoria', 'category', 'equipment', 'hybrid-athletes', 'running-shoes', 'running'];
+  const enSubdirs = ['categoria', 'category', 'equipment', 'hybrid-athletes', 'running-shoes', 'running', 'training'];
   for (const sub of enSubdirs) {
     const dir = path.join(BASE, 'blog', 'en', sub);
     if (!fs.existsSync(dir)) continue;
@@ -235,13 +251,29 @@ function generateBlogEN() {
     for (const slug of listHtmlFiles(dir).sort()) {
       const file = path.join(dir, `${slug}.html`);
       if (isRedirectPage(file)) continue;
-      xml += urlEntry(`${DOMAIN}/blog/en/${sub}/${slug}`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/en/${sub}/${slug}`;
+      const mod = getLastmod(file);
+      const esUrl = extractHreflang(file, 'en');
+      const alternates = [{ lang: 'en', href: loc }];
+      if (esUrl) {
+        alternates.push({ lang: 'es', href: esUrl });
+        alternates.push({ lang: 'x-default', href: esUrl });
+      }
+      xml += urlEntryHreflang(loc, mod, alternates);
       count++;
     }
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
       if (isRedirectPage(file)) continue;
-      xml += urlEntry(`${DOMAIN}/blog/en/${sub}/${slug}/`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/en/${sub}/${slug}/`;
+      const mod = getLastmod(file);
+      const esUrl = extractHreflang(file, 'en');
+      const alternates = [{ lang: 'en', href: loc }];
+      if (esUrl) {
+        alternates.push({ lang: 'es', href: esUrl });
+        alternates.push({ lang: 'x-default', href: esUrl });
+      }
+      xml += urlEntryHreflang(loc, mod, alternates);
       count++;
     }
   }

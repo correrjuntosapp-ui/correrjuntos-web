@@ -87,17 +87,22 @@
   /* ── CSS ── */
   var css=document.createElement('style');
   css.textContent=[
-    '.city-links-section{margin:40px 0 32px;padding:32px 0 0;border-top:1px solid rgba(255,255,255,.06)}',
-    '.city-links-title{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 20px}',
+    '.city-links-section{margin:40px 0 32px;padding:32px 0 0;border-top:1px solid #efe6db}',
+    '.city-links-title{font-size:1.1rem;font-weight:800;color:#3d3229;margin:0 0 20px}',
     '.city-links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}',
-    '.city-link-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;text-decoration:none;transition:all .25s;display:block}',
-    '.city-link-card:hover{background:rgba(255,255,255,.06);border-color:rgba(249,115,22,.3);transform:translateY(-2px)}',
+    '.city-link-card{background:#fffcf9;border:1px solid #efe6db;border-radius:14px;overflow:hidden;text-decoration:none;transition:all .25s;display:block}',
+    '.city-link-card:hover{background:#fff;border-color:rgba(249,115,22,.3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}',
     '.city-link-img{width:100%;height:100px;object-fit:cover;display:block}',
     '.city-link-body{padding:12px 16px}',
-    '.city-link-name{font-size:.95rem;font-weight:700;color:#fff;margin:0 0 4px}',
+    '.city-link-name{font-size:.95rem;font-weight:700;color:#3d3229;margin:0 0 4px}',
     '.city-link-cta{font-size:.75rem;color:#f97316;margin:0;transition:color .2s}',
     '.city-link-card:hover .city-link-cta{color:#fb923c}',
-    '@media(max-width:640px){.city-links-grid{grid-template-columns:1fr}.city-link-card{display:flex;flex-direction:row}.city-link-img{width:100px;height:80px;flex-shrink:0}.city-link-body{display:flex;flex-direction:column;justify-content:center}}'
+    '@media(max-width:640px){.city-links-grid{grid-template-columns:1fr}.city-link-card{display:flex;flex-direction:row}.city-link-img{width:100px;height:80px;flex-shrink:0}.city-link-body{display:flex;flex-direction:column;justify-content:center}}',
+    '.dark-mode .city-links-section{border-top-color:rgba(255,255,255,.06)}',
+    '.dark-mode .city-links-title{color:#fff}',
+    '.dark-mode .city-link-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}',
+    '.dark-mode .city-link-card:hover{background:rgba(255,255,255,.06);box-shadow:0 8px 24px rgba(0,0,0,.2)}',
+    '.dark-mode .city-link-name{color:#fff}'
   ].join('\n');
   document.head.appendChild(css);
 

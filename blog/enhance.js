@@ -669,12 +669,10 @@
           '<span>' + (isEN ? 'Download the free app and find runners near you' : 'Descarga la app gratis y encuentra runners cerca de ti') + '</span>',
         '</div>',
         '<div class="cj-app-banner-badges">',
-          '<a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="cj-app-badge" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'blog_app_banner_click\',{store:\'appstore\',slug:\'' + slug + '\'})">' +
-            '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' +
-            '<span>App Store</span></a>',
-          '<a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="cj-app-badge" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'blog_app_banner_click\',{store:\'playstore\',slug:\'' + slug + '\'})">' +
-            '<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>' +
-            '<span>Google Play</span></a>',
+          '<a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="cj-app-badge cj-app-badge--apple" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'blog_app_banner_click\',{store:\'appstore\',slug:\'' + slug + '\'})">' +
+            '<svg viewBox="0 0 120 40" width="120" height="40"><rect width="120" height="40" rx="6" fill="#000"/><path d="M24.77 20.3a4.95 4.95 0 012.36-4.15 5.07 5.07 0 00-3.99-2.16c-1.68-.18-3.31 1.01-4.17 1.01-.87 0-2.19-.99-3.61-.96a5.32 5.32 0 00-4.48 2.73c-1.93 3.34-.49 8.27 1.36 10.97.93 1.33 2.01 2.82 3.44 2.76 1.39-.06 1.91-.88 3.58-.88 1.66 0 2.14.88 3.59.85 1.49-.02 2.43-1.33 3.33-2.67a11.1 11.1 0 001.51-3.09 4.79 4.79 0 01-2.92-4.41zm-2.73-8.11a4.88 4.88 0 001.12-3.5 4.97 4.97 0 00-3.21 1.67 4.65 4.65 0 00-1.14 3.37 4.12 4.12 0 003.23-1.54z" fill="#fff"/><text x="42" y="15" fill="#fff" font-family="system-ui,-apple-system,sans-serif" font-size="8" font-weight="400">' + (isEN ? 'Download on the' : 'Descargar en') + '</text><text x="42" y="27" fill="#fff" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600">App Store</text></svg></a>',
+          '<a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" class="cj-app-badge cj-app-badge--google" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'blog_app_banner_click\',{store:\'playstore\',slug:\'' + slug + '\'})">' +
+            '<svg viewBox="0 0 135 40" width="135" height="40"><rect width="135" height="40" rx="6" fill="#000"/><path d="M20.44 17.54l-8.87-8.87a1.62 1.62 0 00-.45 1.14v20.38c0 .42.16.82.45 1.14l.06.05 9.92-9.93v-.03l-1.11-3.88z" fill="#4285F4"/><path d="M23.76 20.88l-3.32-3.34v-.08l3.32-3.34.07.04 3.93 2.23c1.12.64 1.12 1.68 0 2.32l-3.93 2.23-.07-.06z" fill="#FBBC04"/><path d="M20.51 20.95l-9.39 9.39c.73.77 1.93.82 2.73.36l10.59-6.01-3.93-3.74z" fill="#EA4335"/><path d="M20.51 17.47l3.93-3.73-10.59-6.01c-.8-.46-2-.41-2.73.36l9.39 9.38z" fill="#34A853"/><text x="35" y="15" fill="#fff" font-family="system-ui,-apple-system,sans-serif" font-size="7" font-weight="400">' + (isEN ? 'GET IT ON' : 'DISPONIBLE EN') + '</text><text x="35" y="27" fill="#fff" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600">Google Play</text></svg></a>',
         '</div>',
       '</div>'
     ].join('');
@@ -691,8 +689,9 @@
       '.cj-app-banner-text strong{display:block;font-size:1.05rem;color:#3d3229;margin-bottom:2px}',
       '.cj-app-banner-text span{font-size:.88rem;color:#6b5c4d;line-height:1.4}',
       '.cj-app-banner-badges{display:flex;gap:8px;flex-shrink:0}',
-      '.cj-app-badge{display:inline-flex;align-items:center;gap:6px;background:#1a1a2e;color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;border:1px solid rgba(255,255,255,.08);transition:all .2s}',
-      '.cj-app-badge:hover{transform:translateY(-1px);border-color:rgba(249,115,22,.4);box-shadow:0 4px 12px rgba(249,115,22,.15)}',
+      '.cj-app-badge{display:inline-flex;align-items:center;text-decoration:none;transition:all .2s;border-radius:6px;overflow:hidden}',
+      '.cj-app-badge svg{display:block}',
+      '.cj-app-badge:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2);opacity:.9}',
       '/* Dark mode */',
       'body.dark-mode .cj-app-banner,.dark-mode .cj-app-banner{background:linear-gradient(135deg,#1e1b18,#292117);border-color:rgba(249,115,22,.2)}',
       'body.dark-mode .cj-app-banner-text strong,.dark-mode .cj-app-banner-text strong{color:#fef3c7}',

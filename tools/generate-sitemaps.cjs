@@ -14,6 +14,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const BASE = path.resolve(__dirname, '..');
 const DOMAIN = 'https://www.correrjuntos.com';
@@ -43,9 +44,19 @@ function urlEntryHreflang(loc, lastmod, alternates) {
 
 function getLastmod(filePath) {
   try {
-    const stat = fs.statSync(filePath);
-    return stat.mtime.toISOString().split('T')[0];
+    const rel = path.relative(BASE, filePath).replace(/\\/g, '/');
+    const date = execSync(`git log -1 --format=%cd --date=short -- "${rel}"`, {
+      cwd: BASE, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe']
+    }).trim();
+    return date || TODAY;
   } catch { return TODAY; }
+}
+
+function isRedirectPage(filePath) {
+  try {
+    const html = fs.readFileSync(filePath, 'utf8').slice(0, 500);
+    return html.includes('meta http-equiv="refresh"') || html.includes('window.location.replace');
+  } catch { return false; }
 }
 
 function listHtmlFiles(dir) {
@@ -128,6 +139,7 @@ function generateBlogES() {
     // Articles in subdir (as html files)
     for (const slug of listHtmlFiles(dir).sort()) {
       const file = path.join(dir, `${slug}.html`);
+      if (isRedirectPage(file)) continue;
       xml += urlEntry(`${DOMAIN}/blog/${sub}/${slug}`, getLastmod(file));
       count++;
     }
@@ -135,6 +147,7 @@ function generateBlogES() {
     // Articles in subdir (as directories with index.html)
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
+      if (isRedirectPage(file)) continue;
       xml += urlEntry(`${DOMAIN}/blog/${sub}/${slug}/`, getLastmod(file));
       count++;
     }
@@ -221,11 +234,13 @@ function generateBlogEN() {
     }
     for (const slug of listHtmlFiles(dir).sort()) {
       const file = path.join(dir, `${slug}.html`);
+      if (isRedirectPage(file)) continue;
       xml += urlEntry(`${DOMAIN}/blog/en/${sub}/${slug}`, getLastmod(file));
       count++;
     }
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
+      if (isRedirectPage(file)) continue;
       xml += urlEntry(`${DOMAIN}/blog/en/${sub}/${slug}/`, getLastmod(file));
       count++;
     }
@@ -353,10 +368,10 @@ function generateEquipamiento() {
   const idx = path.join(dir, 'index.html');
   if (fs.existsSync(idx)) xml += urlEntry(`${DOMAIN}/equipamiento/`, getLastmod(idx));
 
-  // Equipment pages
+  // Equipment pages (canonical uses .html extension)
   for (const slug of listHtmlFiles(dir).sort()) {
     const file = path.join(dir, `${slug}.html`);
-    xml += urlEntry(`${DOMAIN}/equipamiento/${slug}`, getLastmod(file));
+    xml += urlEntry(`${DOMAIN}/equipamiento/${slug}.html`, getLastmod(file));
   }
 
   xml += xmlTail;
@@ -452,6 +467,14 @@ function generatePages() {
 
 // ── 8. Sitemap Index ────────────────────────────────────
 
+function getMaxLastmod(sitemapFile) {
+  try {
+    const content = fs.readFileSync(path.join(BASE, sitemapFile), 'utf8');
+    const dates = [...content.matchAll(/<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/g)].map(m => m[1]);
+    return dates.sort().pop() || TODAY;
+  } catch { return TODAY; }
+}
+
 function generateIndex(counts) {
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
   xml += `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
@@ -467,9 +490,10 @@ function generateIndex(counts) {
   ];
 
   for (const name of sitemaps) {
+    const lastmod = getMaxLastmod(name);
     xml += `  <sitemap>\n`;
     xml += `    <loc>${DOMAIN}/${name}</loc>\n`;
-    xml += `    <lastmod>${TODAY}</lastmod>\n`;
+    xml += `    <lastmod>${lastmod}</lastmod>\n`;
     xml += `  </sitemap>\n`;
   }
 

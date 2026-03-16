@@ -209,7 +209,8 @@
 {s:'sandbag-lunges-hyrox',t:'Los 11 Mejores Sandbags para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/sandbag-hero.jpg'},
 {s:'kettlebells-farmer-carry-hyrox',t:'Las 11 Mejores Kettlebells para Farmer\u2019s Carry',c:'Atleta H\u00edbrido',i:'/blog/img/kettlebell-hero.jpg'},
 {s:'entrenar-skierg-row-hyrox',t:'C\u00f3mo Entrenar SkiErg y Remo para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/skierg-hero.jpg'},
-{s:'rodillo-vs-pistola-masaje-recuperacion',t:'Los 20 Mejores Rodillos y Pistolas de Masaje',c:'Atleta H\u00edbrido',i:'/blog/img/roller-hero.jpg'}
+{s:'rodillo-vs-pistola-masaje-recuperacion',t:'Los 20 Mejores Rodillos y Pistolas de Masaje',c:'Atleta H\u00edbrido',i:'/blog/img/roller-hero.jpg'},
+{s:'mejores-bandas-elasticas-running',t:'12 Mejores Bandas El\u00e1sticas y Accesorios de Fuerza para Runners',c:'Equipamiento',i:'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
   ];
 
   var DB_EN=[
@@ -395,7 +396,20 @@
 {s:'start-running-after-50',t:'Start Running After 50: Complete Guide',c:'Salud',i:'/blog/img/empezar-correr-50.jpg'},
 {s:'tapering-race-week-guide',t:'Tapering: Race Week Guide for Runners',c:'Entrenamiento',i:'https://images.pexels.com/photos/7187803/pexels-photo-7187803.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'treadmill-vs-outdoor-running',t:'Treadmill vs Outdoor Running',c:'Entrenamiento',i:'https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'what-to-wear-running-by-temperature',t:'What to Wear Running by Temperature',c:'Equipamiento',i:'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
+{s:'what-to-wear-running-by-temperature',t:'What to Wear Running by Temperature',c:'Equipamiento',i:'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'best-resistance-bands-for-runners',t:'12 Best Resistance Bands & Strength Accessories for Runners',c:'Equipamiento',i:'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'muscle-cramps-while-running',t:'Muscle Cramps While Running: Causes & Solutions',c:'Salud',i:'https://images.pexels.com/photos/3771055/pexels-photo-3771055.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'running-on-empty-stomach',t:'Running on an Empty Stomach: Benefits & Risks',c:'Entrenamiento',i:'https://images.pexels.com/photos/3621183/pexels-photo-3621183.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'strength-training-for-runners',t:'Strength Training for Runners: Complete Guide 2026',c:'Entrenamiento',i:'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'running-groups-bilbao',t:'Running Groups in Bilbao 2026',c:'Rutas',i:'/blog/img/grupos-running-bilbao.webp'},
+{s:'running-groups-malaga',t:'Running Groups in Malaga 2026',c:'Rutas',i:'/blog/img/grupos-running-malaga.jpg'},
+{s:'running-groups-zaragoza',t:'Running Groups in Zaragoza 2026',c:'Rutas',i:'/blog/img/grupos-running-zaragoza.webp'},
+{s:'best-trail-running-poles',t:'10 Best Trail Running Poles 2026',c:'Trail',i:'/blog/img/bastones-anykuu.jpg'},
+{s:'best-bcaas-for-runners',t:'8 Best BCAAs for Runners 2026',c:'Nutricion',i:'https://m.media-amazon.com/images/I/81sNxindnTS._AC_SX425_.jpg'},
+{s:'best-collagen-for-runners',t:'8 Best Collagen Supplements for Runners 2026',c:'Nutricion',i:'https://m.media-amazon.com/images/I/713PkEvjiUL._AC_SL1500_.jpg'},
+{s:'best-magnesium-for-runners',t:'8 Best Magnesium Supplements for Runners 2026',c:'Nutricion',i:'https://m.media-amazon.com/images/I/61vNhmdroGL._AC_SL1500_.jpg'},
+{s:'best-multivitamins-for-runners',t:'8 Best Multivitamins for Runners 2026',c:'Nutricion',i:'https://m.media-amazon.com/images/I/518SC6nn97L._AC_SX425_.jpg'},
+{s:'foam-roller-vs-massage-gun',t:'Foam Roller vs Massage Gun: Which Is Best for Recovery?',c:'Equipamiento',i:'/blog/img/roller-hero.jpg'}
   ];
 
   var DB = isEN ? DB_EN : DB_ES;

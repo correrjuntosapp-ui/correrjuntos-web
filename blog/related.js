@@ -211,6 +211,17 @@
 {s:'entrenar-skierg-row-hyrox',t:'C\u00f3mo Entrenar SkiErg y Remo para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/skierg-hero.jpg'},
 {s:'rodillo-vs-pistola-masaje-recuperacion',t:'Los 20 Mejores Rodillos y Pistolas de Masaje',c:'Atleta H\u00edbrido',i:'/blog/img/roller-hero.jpg'},
 {s:'mejores-bandas-elasticas-running',t:'12 Mejores Bandas El\u00e1sticas y Accesorios de Fuerza para Runners',c:'Equipamiento',i:'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
+{s:'plan-running-perder-peso',t:'Plan de Running para Perder Peso: Guía Completa',c:'Entrenamiento',i:'https://images.pexels.com/photos/4498155/pexels-photo-4498155.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'zona-2-running-quemar-grasa',t:'Zona 2 Running: Cómo Quemar Grasa Corriendo Despacio',c:'Entrenamiento',i:'https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'cuantas-calorias-se-queman-corriendo',t:'Cuántas Calorías se Queman Corriendo',c:'Salud',i:'https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'que-comer-despues-de-correr',t:'Qué Comer Después de Correr para Recuperarte',c:'Nutrición',i:'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'alimentos-sin-gluten-para-corredores',t:'Alimentos Sin Gluten para Corredores',c:'Nutrición',i:'https://images.pexels.com/photos/4033328/pexels-photo-4033328.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'mejores-alimentos-para-runners',t:'Los 20 Mejores Alimentos para Runners',c:'Nutrición',i:'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'como-mantener-motivacion-para-correr',t:'Cómo Mantener la Motivación para Correr',c:'Entrenamiento',i:'https://images.pexels.com/photos/3764014/pexels-photo-3764014.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'como-crear-habito-de-correr',t:'Cómo Crear el Hábito de Correr en 30 Días',c:'Entrenamiento',i:'https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'correr-mejora-salud-mental',t:'Por Qué Correr Mejora tu Salud Mental',c:'Salud',i:'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'encontrar-companeros-running-cerca',t:'Cómo Encontrar Compañeros de Running Cerca de Ti',c:'Rutas',i:'https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'como-organizar-quedadas-running',t:'Cómo Organizar Quedadas de Running',c:'Rutas',i:'https://images.pexels.com/photos/2444852/pexels-photo-2444852.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
   ];
 
   var DB_EN=[

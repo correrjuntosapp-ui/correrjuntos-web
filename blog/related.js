@@ -420,7 +420,19 @@
 {s:'best-collagen-for-runners',t:'8 Best Collagen Supplements for Runners 2026',c:'Nutricion',i:'https://m.media-amazon.com/images/I/713PkEvjiUL._AC_SL1500_.jpg'},
 {s:'best-magnesium-for-runners',t:'8 Best Magnesium Supplements for Runners 2026',c:'Nutricion',i:'https://m.media-amazon.com/images/I/61vNhmdroGL._AC_SL1500_.jpg'},
 {s:'best-multivitamins-for-runners',t:'8 Best Multivitamins for Runners 2026',c:'Nutricion',i:'https://m.media-amazon.com/images/I/518SC6nn97L._AC_SX425_.jpg'},
-{s:'foam-roller-vs-massage-gun',t:'Foam Roller vs Massage Gun: Which Is Best for Recovery?',c:'Equipamiento',i:'/blog/img/roller-hero.jpg'}
+{s:'foam-roller-vs-massage-gun',t:'Foam Roller vs Massage Gun: Which Is Best for Recovery?',c:'Equipamiento',i:'/blog/img/roller-hero.jpg'},
+{s:'running-plan-lose-weight',t:'Running Plan to Lose Weight: Complete Guide',c:'Entrenamiento',i:'https://images.pexels.com/photos/4498155/pexels-photo-4498155.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'zone-2-running-burn-fat',t:'Zone 2 Running: How to Burn Fat Running Slow',c:'Entrenamiento',i:'https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'how-many-calories-burned-running',t:'How Many Calories Burned Running: Calculator & Charts',c:'Salud',i:'https://images.pexels.com/photos/6551486/pexels-photo-6551486.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'what-to-eat-before-running',t:'What to Eat Before Running: Complete Guide',c:'Nutricion',i:'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'what-to-eat-after-running',t:'What to Eat After Running for Recovery',c:'Nutricion',i:'https://images.pexels.com/photos/2662875/pexels-photo-2662875.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'gluten-free-foods-for-runners',t:'Gluten-Free Foods for Runners',c:'Nutricion',i:'https://images.pexels.com/photos/4725725/pexels-photo-4725725.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'best-foods-for-runners',t:'The 20 Best Foods for Runners',c:'Nutricion',i:'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'how-to-stay-motivated-to-run',t:'How to Stay Motivated to Run: 15 Strategies',c:'Entrenamiento',i:'https://images.pexels.com/photos/6250939/pexels-photo-6250939.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'how-to-build-running-habit',t:'How to Build a Running Habit in 30 Days',c:'Entrenamiento',i:'https://images.pexels.com/photos/4944978/pexels-photo-4944978.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'running-improves-mental-health',t:'Why Running Improves Your Mental Health',c:'Salud',i:'https://images.pexels.com/photos/32062397/pexels-photo-32062397.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'find-running-partners-near-you',t:'How to Find Running Partners Near You',c:'Rutas',i:'https://images.pexels.com/photos/2530130/pexels-photo-2530130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'how-to-organize-running-meetups',t:'How to Organize Running Meetups',c:'Rutas',i:'https://images.pexels.com/photos/3629/jogger-jogging-sport-marathon.jpg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
   ];
 
   var DB = isEN ? DB_EN : DB_ES;

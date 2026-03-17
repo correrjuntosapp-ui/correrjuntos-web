@@ -1,5 +1,5 @@
 // CorrerJuntos — i18n core (META_I18N + I18N container)
-var I18N = {};
+var I18N = window.I18N || {};
 var META_I18N = {
     es: {
         title: "CorrerJuntos - Quedadas para Correr en Grupo | App Gratis Mundial",

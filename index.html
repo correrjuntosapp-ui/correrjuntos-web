@@ -375,7 +375,7 @@
     <!-- Core scripts: preload para descarga paralela temprana -->
     <link rel="preload" href="/js/app.min.js?v=20260314a" as="script">
     <link rel="preload" href="/data/geo-data.min.js" as="script">
-    <link rel="preload" href="/data/i18n-core.js" as="script">
+    <link rel="preload" href="/data/i18n-core.min.js" as="script">
     <script>
     // C3: Preload only the detected language (saves ~10 KB gzip for non-ES users)
     (function(){var s=['es','en','pt','ru'],u=new URLSearchParams(location.search).get('lang'),
@@ -386,7 +386,7 @@
     window.__cj_detected_lang=lang;})();
     </script>
     <!-- Módulos lazy: PWA, Deep Linking, Premium (se cargan tras idle) -->
-    <link rel="prefetch" href="/js/pwa.js" as="script">
+    <link rel="prefetch" href="/js/pwa.min.js" as="script">
     <link rel="prefetch" href="/js/deeplink.js" as="script">
     <link rel="prefetch" href="/js/premium-features.min.js" as="script">
     <style>
@@ -3705,17 +3705,31 @@
 <script src="/data/i18n-core.min.js" defer></script>
 <script>
 // C3: Load only the detected language file (not all languages)
+// Ensure I18N exists before lang file loads (dynamic scripts ignore defer)
+window.I18N = window.I18N || {};
 (function(){var lang=window.__cj_detected_lang||'es';
-var s=document.createElement('script');s.src='/data/i18n-'+lang+'.min.js';s.defer=true;
+var s=document.createElement('script');s.src='/data/i18n-'+lang+'.min.js';s.async=false;
 document.currentScript.parentNode.insertBefore(s,document.currentScript.nextSibling);})();
 </script>
-<!-- Modulos extraidos de app.js (Fase 1) -->
-<script src="/js/modules/toast.js" defer></script>
-<script src="/js/modules/skeletons.js" defer></script>
-<script src="/js/modules/confetti.js" defer></script>
-<script src="/js/modules/darkmode.js" defer></script>
-<script src="/js/modules/badges.js" defer></script>
-<script src="/js/app.min.js?v=20260314a" defer></script>
+<!-- Core modules (load order matters) -->
+<script src="/js/modules/state.min.js" defer></script>
+<script src="/js/modules/validation.min.js" defer></script>
+<script src="/js/modules/error-handler.min.js" defer></script>
+<script src="/js/modules/toast.min.js" defer></script>
+<script src="/js/modules/skeletons.min.js" defer></script>
+<script src="/js/modules/confetti.min.js" defer></script>
+<script src="/js/modules/darkmode.min.js" defer></script>
+<script src="/js/modules/badges.min.js" defer></script>
+<script src="/js/modules/i18n-ui.min.js" defer></script>
+<!-- Feature modules (Phase 4) -->
+<script src="/js/modules/ui.min.js" defer></script>
+<script src="/js/modules/auth.min.js" defer></script>
+<script src="/js/modules/profile.min.js" defer></script>
+<script src="/js/modules/map-core.min.js" defer></script>
+<script src="/js/modules/quedadas.min.js" defer></script>
+<script src="/js/modules/filters.min.js" defer></script>
+<!-- Bootstrap + remaining features -->
+<script src="/js/app.min.js" defer></script>
 
 
   <!-- PWA Install Banner (Custom) -->

@@ -1,5 +1,5 @@
 // Service Worker - CorrerJuntos PWA
-const CACHE_NAME = 'correrjuntos-v32';
+const CACHE_NAME = 'correrjuntos-v36';
 const OFFLINE_URL = '/offline.html';
 
 // Archivos a cachear (NO incluir index.html para que siempre cargue la versión más reciente)
@@ -8,11 +8,35 @@ const STATIC_ASSETS = [
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  // Blog assets
   '/blog/enhance.js',
   '/blog/related.js',
   '/blog/author.js',
   '/blog/toc.js',
   '/blog/city-links.js',
+  // Core modules (Phase 2-3)
+  '/js/modules/state.min.js',
+  '/js/modules/validation.min.js',
+  '/js/modules/error-handler.min.js',
+  '/js/modules/toast.min.js',
+  '/js/modules/skeletons.min.js',
+  '/js/modules/confetti.min.js',
+  '/js/modules/darkmode.min.js',
+  '/js/modules/badges.min.js',
+  '/js/modules/i18n-ui.min.js',
+  // Feature modules (Phase 4)
+  '/js/modules/ui.min.js',
+  '/js/modules/auth.min.js',
+  '/js/modules/profile.min.js',
+  '/js/modules/map-core.min.js',
+  '/js/modules/quedadas.min.js',
+  '/js/modules/filters.min.js',
+  // i18n + geo data
+  '/data/i18n-core.min.js',
+  '/data/i18n-es.min.js',
+  '/data/i18n-en.min.js',
+  '/data/geo-data.min.js',
+  // External CDN
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap'

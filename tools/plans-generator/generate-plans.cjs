@@ -298,6 +298,7 @@ function buildNav(lang) {
   <div class="nav-links">
     <a href="/matching/en/">Matching</a>
     <a href="/plans/" class="active">Plans</a>
+    <a href="/races/">Races</a>
     <a href="/blog/en/">Blog</a>
     <a href="/#app">App</a>
   </div>
@@ -310,6 +311,7 @@ function buildNav(lang) {
   <div class="nav-links">
     <a href="/matching/">Matching</a>
     <a href="/planes/" class="active">Planes</a>
+    <a href="/carreras/">Carreras</a>
     <a href="/blog/">Blog</a>
     <a href="/#app">App</a>
   </div>

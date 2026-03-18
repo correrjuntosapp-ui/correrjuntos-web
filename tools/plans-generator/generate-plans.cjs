@@ -291,29 +291,28 @@ function levelBadge(level, lang) {
 // Nav
 // ────────────────────────────────────────────
 function buildNav(lang) {
+  const logo = '<a href="/" class="nav-logo" style="text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-0.02em"><span style="color:#3d3229">CORRER</span><span style="color:#f97316">JUNTOS</span></a>';
   if (lang === 'en') {
     return `<div class="nav-wrapper">
 <nav class="nav">
-  <a href="/" class="nav-logo">CORRER<b>JUNTOS</b></a>
+  ${logo}
   <div class="nav-links">
     <a href="/matching/en/">Matching</a>
     <a href="/plans/" class="active">Plans</a>
     <a href="/races/">Races</a>
     <a href="/blog/en/">Blog</a>
-    <a href="/#app">App</a>
   </div>
 </nav>
 </div>`;
   }
   return `<div class="nav-wrapper">
 <nav class="nav">
-  <a href="/" class="nav-logo">CORRER<b>JUNTOS</b></a>
+  ${logo}
   <div class="nav-links">
     <a href="/matching/">Matching</a>
     <a href="/planes/" class="active">Planes</a>
     <a href="/carreras/">Carreras</a>
     <a href="/blog/">Blog</a>
-    <a href="/#app">App</a>
   </div>
 </nav>
 </div>`;

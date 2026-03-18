@@ -182,7 +182,7 @@
 {s:'correr-con-musica-beneficios',t:'Correr con M\u00fasica: Beneficios y BPM Ideal',c:'Entrenamiento',i:'https://images.pexels.com/photos/2291874/pexels-photo-2291874.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70'},
 {s:'correr-con-perro-canicross',t:'Correr con Perro (Canicross): Gu\u00eda Completa',c:'Entrenamiento',i:'https://images.pexels.com/photos/6089707/pexels-photo-6089707.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'correr-embarazada-seguro',t:'Correr Embarazada: Gu\u00eda Segura por Trimestre',c:'Salud',i:'https://images.pexels.com/photos/7055663/pexels-photo-7055663.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'correr-en-ayunas',t:'Correr en Ayunas: Beneficios y Riesgos',c:'Entrenamiento',i:'https://images.pexels.com/photos/3621183/pexels-photo-3621183.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'correr-en-ayunas',t:'Correr en Ayunas: Beneficios y Riesgos',c:'Entrenamiento',i:'https://images.pexels.com/photos/13077241/pexels-photo-13077241.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'correr-en-cinta-vs-calle',t:'Correr en Cinta vs Calle: Comparativa',c:'Entrenamiento',i:'https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'correr-en-verano-calor',t:'Correr en Verano con Calor: Gu\u00eda Segura',c:'Entrenamiento',i:'https://images.pexels.com/photos/3621183/pexels-photo-3621183.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'correr-por-la-noche-consejos',t:'Correr por la Noche: Consejos de Seguridad',c:'Entrenamiento',i:'https://images.pexels.com/photos/796545/pexels-photo-796545.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

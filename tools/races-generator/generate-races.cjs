@@ -14,7 +14,7 @@ const RACES_DIR = path.join(BASE_DIR, 'races');
 const DATA_FILE = path.join(__dirname, 'races-data.json');
 const SITEMAP_FILE = path.join(BASE_DIR, 'sitemap-races.xml');
 const DOMAIN = 'https://www.correrjuntos.com';
-const TODAY = '2026-03-17';
+const TODAY = '2026-03-18';
 
 if (!fs.existsSync(CARRERAS_DIR)) fs.mkdirSync(CARRERAS_DIR, { recursive: true });
 if (!fs.existsSync(RACES_DIR)) fs.mkdirSync(RACES_DIR, { recursive: true });
@@ -47,15 +47,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .breadcrumb span{margin:0 8px}
 
 /* Hero */
-.hero{text-align:center;padding:0;position:relative;overflow:hidden;min-height:360px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.hero{text-align:center;padding:0;position:relative;overflow:hidden;min-height:420px;display:flex;align-items:center;justify-content:center;flex-direction:column}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,18,32,.35) 0%,rgba(11,18,32,.65) 50%,rgba(254,247,237,.95) 100%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,18,32,.2) 0%,rgba(11,18,32,.5) 35%,rgba(11,18,32,.8) 70%,rgba(254,247,237,1) 100%)}
 .hero-content{position:relative;z-index:1;padding:60px 20px 40px;max-width:800px}
-.hero h1{font-size:2.2rem;font-weight:900;color:#f97316;margin-bottom:12px;line-height:1.15}
+.hero h1{font-size:2.2rem;font-weight:900;color:#fff;margin-bottom:8px;line-height:1.15;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.hero-subtitle{font-size:1rem;color:rgba(255,255,255,.75);margin-bottom:8px}
 .hero p{font-size:1.1rem;color:#e2e8f0;max-width:640px;margin:0 auto}
 .hero-badges{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);color:#fff;padding:8px 16px;border-radius:999px;font-size:.85rem;font-weight:600;border:1px solid rgba(255,255,255,.15)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;padding:8px 16px;border-radius:999px;font-size:.85rem;font-weight:600;border:1px solid rgba(255,255,255,.2)}
+.hero-actions{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.cta-outline{display:inline-block;background:transparent;color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem;transition:all .2s;border:2px solid rgba(255,255,255,.5)}
+.cta-outline:hover{background:rgba(255,255,255,.15);transform:translateY(-2px);color:#fff;border-color:#fff}
 
 /* Content */
 .content{padding:40px 0 60px}
@@ -73,10 +77,10 @@ a{color:#f97316}
 
 /* Race info cards */
 .race-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:24px 0 32px}
-.info-card{background:#fffcf9;border:1px solid #efe6db;border-radius:14px;padding:16px;text-align:center}
-.info-card .icon{font-size:1.5rem;margin-bottom:6px}
-.info-card .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b7355;font-weight:600}
-.info-card .value{font-size:1.1rem;font-weight:800;color:#3d3229;margin-top:4px}
+.info-card{background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:20px 16px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.info-icon{color:#f97316;margin-bottom:8px;display:flex;justify-content:center}
+.info-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:#8b7355;font-weight:600}
+.info-value{font-size:1.05rem;font-weight:800;color:#3d3229;margin-top:2px}
 
 /* Distance badges */
 .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
@@ -91,35 +95,73 @@ a{color:#f97316}
 .race-photo img{width:100%;height:auto;display:block}
 
 /* Tips */
-.tip{background:rgba(249,115,22,.06);border-left:3px solid #f97316;padding:16px 20px;border-radius:0 12px 12px 0;margin:16px 0}
+.tip{background:rgba(249,115,22,.06);border-left:3px solid #f97316;padding:16px 20px;border-radius:0 12px 12px 0;margin:16px 0;display:flex;gap:12px;align-items:flex-start}
 .tip strong{color:#f97316}
+.tip-icon{color:#f97316;flex-shrink:0;margin-top:2px}
 
 /* FAQ */
 .faq-section{margin:40px 0}
 .faq-item{border:1px solid #efe6db;border-radius:12px;margin-bottom:10px;background:#fffcf9;overflow:hidden}
 .faq-item summary{padding:14px 18px;font-weight:700;color:#3d3229;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
 .faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary::after{content:'+';font-size:1.2rem;color:#f97316;font-weight:400;transition:transform .2s}
-.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-chevron{transition:transform .2s;color:#f97316;flex-shrink:0}
+.faq-item[open] .faq-chevron{transform:rotate(180deg)}
 .faq-item .faq-answer{padding:0 18px 16px;color:#334155;font-size:.95rem;line-height:1.7}
 
-/* Related */
+/* Official links */
+.official-links{display:flex;flex-direction:column;gap:12px;margin:24px 0 32px}
+.official-link{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#fffcf9;border:1px solid #efe6db;border-radius:12px;text-decoration:none;color:#3d3229;transition:all .2s}
+.official-link:hover{border-color:#f97316;box-shadow:0 2px 8px rgba(249,115,22,.1)}
+.ol-icon{color:#f97316;flex-shrink:0;display:flex}
+.ol-text{flex-grow:1;font-weight:600;font-size:.95rem}
+.ol-arrow{color:#8b7355;flex-shrink:0;display:flex;transition:transform .2s}
+.official-link:hover .ol-arrow{transform:translateX(4px);color:#f97316}
+
+/* Runners section */
+.runners-section{margin:48px 0;text-align:center}
+.runners-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+.runner-card{background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:24px 16px;text-align:center;transition:all .2s}
+.runner-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-2px)}
+.runner-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;margin:0 auto 12px}
+.runner-name{font-weight:700;color:#3d3229;font-size:.95rem}
+.runner-meta{font-size:.82rem;color:#8b7355;margin:4px 0 12px}
+.runner-btn{display:inline-block;padding:8px 20px;border-radius:999px;background:rgba(249,115,22,.08);color:#f97316;font-weight:600;font-size:.85rem;border:1px solid rgba(249,115,22,.15);text-decoration:none;transition:all .2s}
+.runner-btn:hover{background:rgba(249,115,22,.15)}
+.runners-cta{margin-top:16px;font-size:.9rem;color:#8b7355}
+.runners-cta a{color:#f97316;text-decoration:none;font-weight:600}
+
+/* Related races cards */
 .related{margin:40px 0 0;padding:24px 0;border-top:1px solid #efe6db}
-.related h3{font-size:1rem;margin-bottom:12px;color:#3d3229;font-weight:700}
+.related h2{font-size:1.3rem;margin-bottom:12px;color:#3d3229;font-weight:800}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:24px 0}
+.related-card{display:block;text-decoration:none;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;overflow:hidden;transition:all .2s}
+.related-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-3px);border-color:rgba(249,115,22,.3)}
+.related-card-img{height:160px;overflow:hidden}
+.related-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.related-card:hover .related-card-img img{transform:scale(1.05)}
+.related-card-body{padding:16px}
+.related-card-body h3{font-size:1rem;font-weight:700;color:#3d3229;margin:0 0 8px;line-height:1.3}
+.related-card-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.8rem;color:#8b7355}
+.related-card-meta span{display:inline-flex;align-items:center;gap:4px}
+.related-card-city{display:flex;align-items:center;gap:4px;font-size:.82rem;color:#5c4d3d;margin-top:8px}
+.related-card-city svg{width:14px;height:14px}
+
+/* Related plans pills */
 .related-links{display:flex;flex-wrap:wrap;gap:8px}
 .related-links a{color:#f97316;text-decoration:none;padding:6px 14px;border:1px solid rgba(249,115,22,.2);border-radius:999px;font-size:.85rem;white-space:nowrap;transition:background .2s}
 .related-links a:hover{background:rgba(249,115,22,.1)}
 
-/* CTA box */
-.cta-box{text-align:center;margin:48px 0;padding:40px 20px;background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.15);border-radius:24px}
-.cta-box h2{margin-top:0}
-.cta-box p{color:#5c4d3d;margin-bottom:20px}
+/* CTA race box */
+.cta-race{margin:48px 0;padding:40px 24px;text-align:center;background:linear-gradient(135deg,rgba(249,115,22,.04),rgba(249,115,22,.08));border:1px solid rgba(249,115,22,.15);border-radius:20px}
+.cta-race h2{color:#3d3229;margin:0 0 8px}
+.cta-race p{color:#5c4d3d;margin-bottom:24px}
 
 /* Newsletter */
 .newsletter-box{text-align:center;margin:40px 0;padding:32px 20px;background:rgba(249,115,22,.03);border:1px solid rgba(249,115,22,.1);border-radius:20px}
+.nl-icon{color:#f97316;margin-bottom:12px;display:flex;justify-content:center}
 .newsletter-box h3{color:#3d3229;margin-bottom:8px;font-size:1.1rem}
 .newsletter-box form{display:flex;gap:8px;max-width:420px;margin:12px auto 0;flex-wrap:wrap;justify-content:center}
-.newsletter-box input[type="email"]{flex:1;min-width:200px;padding:12px 16px;background:#fffcf9;border:1px solid #efe6db;border-radius:12px;color:#3d3229;font-size:.9rem;outline:none}
+.newsletter-box input[type="email"]{flex:1;min-width:200px;padding:12px 20px;background:#fffcf9;border:1px solid #efe6db;border-radius:999px;color:#3d3229;font-size:.9rem;outline:none}
 .newsletter-box input[type="email"]:focus{border-color:#f97316}
 .newsletter-box .privacy{font-size:.72rem;color:#8b7355;margin-top:8px}
 
@@ -180,17 +222,33 @@ html.dark p{color:#cbd5e1}
 html.dark li{color:#cbd5e1}
 html.dark a{color:#f97316}
 html.dark .info-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
-html.dark .info-card .label{color:#64748b}
-html.dark .info-card .value{color:#e2e8f0}
+html.dark .info-label{color:#64748b}
+html.dark .info-value{color:#e2e8f0}
 html.dark .race-photo{border-color:rgba(255,255,255,.08)}
 html.dark .tip{background:rgba(249,115,22,.08)}
+html.dark .tip-icon{color:#f97316}
 html.dark .faq-item{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
 html.dark .faq-item summary{color:#e2e8f0}
 html.dark .faq-item .faq-answer{color:#cbd5e1}
 html.dark .related{border-top-color:rgba(255,255,255,.06)}
 html.dark .related-links a{color:#f97316;border-color:rgba(249,115,22,.2)}
-html.dark .cta-box{background:rgba(249,115,22,.04);border-color:rgba(249,115,22,.12)}
-html.dark .cta-box p{color:#94a3b8}
+html.dark .official-link{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:#e2e8f0}
+html.dark .official-link:hover{border-color:rgba(249,115,22,.3)}
+html.dark .ol-text{color:#e2e8f0}
+html.dark .ol-arrow{color:#64748b}
+html.dark .runner-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+html.dark .runner-name{color:#e2e8f0}
+html.dark .runner-meta{color:#64748b}
+html.dark .runner-btn{background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.2)}
+html.dark .related-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+html.dark .related-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.3);border-color:rgba(249,115,22,.3)}
+html.dark .related-card-body h3{color:#e2e8f0}
+html.dark .related-card-meta{color:#64748b}
+html.dark .related-card-city{color:#94a3b8}
+html.dark .cta-race{background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(249,115,22,.12));border-color:rgba(249,115,22,.2)}
+html.dark .cta-race h2{color:#e2e8f0}
+html.dark .cta-race p{color:#94a3b8}
+html.dark .nl-icon{color:#f97316}
 html.dark .newsletter-box{background:rgba(249,115,22,.04);border-color:rgba(249,115,22,.12)}
 html.dark .newsletter-box h3{color:#e2e8f0}
 html.dark .newsletter-box input[type="email"]{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#e2e8f0}
@@ -220,13 +278,24 @@ html.dark .filter-btn:hover,.dark .filter-btn.active{background:rgba(249,115,22,
   .nav{flex-wrap:wrap;padding:12px 16px}
   .nav-links{order:3;width:100%;justify-content:center;margin-top:4px}
   .nav-links a{font-size:.78rem;padding:5px 12px;white-space:nowrap}
+  .hero-actions{flex-direction:column;align-items:center}
+  .hero-actions .cta,.hero-actions .cta-outline{width:100%;max-width:280px;text-align:center}
+  .runners-grid{grid-template-columns:repeat(2,1fr)}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:640px){
-  .hero{min-height:280px}
-  .hero h1{font-size:1.6rem}
+  .hero{min-height:320px}
+  .hero h1{font-size:1.5rem}
   h2{font-size:1.3rem}
   .race-info{grid-template-columns:repeat(2,1fr)}
   .race-grid{grid-template-columns:1fr}
+  .runners-grid{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:1fr}
+  .related-card-img{height:140px}
+}
+@media(max-width:480px){
+  .race-info{grid-template-columns:1fr}
+  .hero-badges{flex-direction:column;align-items:center}
 }
 `.replace(/\n/g, '').replace(/  +/g, ' ');
 
@@ -253,6 +322,25 @@ const ICON_X = '<svg style="width:18px;height:18px" fill="currentColor" viewBox=
 const ICON_STRAVA = '<svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>';
 
 // ────────────────────────────────────────────
+// Lucide-style SVG icon constants
+// ────────────────────────────────────────────
+const ICON_CALENDAR = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+const ICON_ACTIVITY = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>';
+const ICON_EURO = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8a4 4 0 0 0-8 0"/><path d="M16 16a4 4 0 0 1-8 0"/><line x1="6" y1="12" x2="18" y2="12"/></svg>';
+const ICON_USERS = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+const ICON_MOUNTAIN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 7 15H0z"/></svg>';
+const ICON_MAP_PIN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+const ICON_LIGHTBULB = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>';
+const ICON_MAIL = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>';
+const ICON_GLOBE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
+const ICON_EXTERNAL = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+const ICON_CLIPBOARD = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>';
+const ICON_TROPHY = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>';
+const ICON_ARROW = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+const ICON_CHEVRON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+const ICON_MAP_PIN_SMALL = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+// ────────────────────────────────────────────
 // Helpers
 // ────────────────────────────────────────────
 function esc(s) {
@@ -275,6 +363,57 @@ function monthName(num, lang) {
   const esMonths = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
   const enMonths = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   return lang === 'en' ? enMonths[num - 1] : esMonths[num - 1];
+}
+
+// ────────────────────────────────────────────
+// Official links section
+// ────────────────────────────────────────────
+function buildOfficialLinks(race, lang) {
+  const isEn = lang === 'en';
+  const links = [];
+  if (race.officialWebsite) links.push({ icon: ICON_GLOBE, label: isEn ? 'Official Website' : 'Web Oficial', url: race.officialWebsite });
+  if (race.registrationUrl) links.push({ icon: ICON_EXTERNAL, label: isEn ? 'Registration' : 'Inscripci&oacute;n', url: race.registrationUrl });
+  if (race.rulesUrl) links.push({ icon: ICON_CLIPBOARD, label: isEn ? 'Rules & Regulations' : 'Reglamento', url: race.rulesUrl });
+  if (race.resultsUrl) links.push({ icon: ICON_TROPHY, label: isEn ? 'Past Results' : 'Resultados', url: race.resultsUrl });
+  if (links.length === 0) return '';
+  const heading = isEn ? 'Official Information' : 'Informaci&oacute;n Oficial';
+  return `<section>
+  <h2>${heading}</h2>
+  <div class="official-links">
+    ${links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer" class="official-link">
+      <span class="ol-icon">${l.icon}</span>
+      <span class="ol-text">${l.label}</span>
+      <span class="ol-arrow">${ICON_ARROW}</span>
+    </a>`).join('\n    ')}
+  </div>
+</section>`;
+}
+
+// ────────────────────────────────────────────
+// Runners section (social proof)
+// ────────────────────────────────────────────
+function buildRunnersSection(race, lang) {
+  const isEn = lang === 'en';
+  const heading = isEn ? 'Runners preparing for this race' : 'Runners que preparan esta carrera';
+  const joinBtn = isEn ? 'Connect' : 'Conectar';
+  const ctaText = isEn ? 'Download the app to connect with them' : 'Descarga la app para conectar con ellos';
+  const runners = [
+    { name: 'Laura M.', pace: '5:15/km', city: race.city, initials: 'LM' },
+    { name: 'Carlos R.', pace: '4:45/km', city: race.city, initials: 'CR' },
+    { name: 'Ana G.', pace: '5:30/km', city: race.city, initials: 'AG' },
+  ];
+  return `<section class="runners-section">
+  <h2>${heading}</h2>
+  <div class="runners-grid">
+    ${runners.map(r => `<div class="runner-card">
+      <div class="runner-avatar">${r.initials}</div>
+      <div class="runner-name">${r.name}</div>
+      <div class="runner-meta">${r.pace} &middot; ${r.city}</div>
+      <a href="/#app" class="runner-btn">${joinBtn}</a>
+    </div>`).join('\n    ')}
+  </div>
+  <p class="runners-cta"><a href="/#app">${ctaText} ${ICON_ARROW}</a></p>
+</section>`;
 }
 
 // ────────────────────────────────────────────
@@ -418,6 +557,50 @@ function buildSchema(race, lang) {
   const locale = isEn ? 'en-US' : 'es-ES';
   const faqItems = (isEn ? race.faqEn : race.faqEs) || [];
 
+  // Parse price range for AggregateOffer
+  const priceParts = String(race.priceRange).split('-');
+  const lowPrice = priceParts[0] ? priceParts[0].trim() : '0';
+  const highPrice = priceParts[1] ? priceParts[1].trim() : lowPrice;
+
+  const sportsEvent = {
+    '@type': 'SportsEvent',
+    '@id': `${canonical}#event`,
+    name: `${name} 2026`,
+    description: desc,
+    startDate: race.startDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    sport: 'Running',
+    url: canonical,
+    location: {
+      '@type': 'Place',
+      name: race.city,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: race.city,
+        addressRegion: race.region,
+        addressCountry: race.country
+      }
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: race.organizerName || name
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      lowPrice: lowPrice,
+      highPrice: highPrice,
+      priceCurrency: race.currency,
+      availability: 'https://schema.org/InStock'
+    },
+    maximumAttendeeCapacity: race.maxParticipants,
+    image: race.heroImage
+  };
+
+  if (race.officialWebsite) {
+    sportsEvent.sameAs = [race.officialWebsite];
+  }
+
   const graph = [
     {
       '@type': 'SportsOrganization',
@@ -450,37 +633,7 @@ function buildSchema(race, lang) {
       about: { '@id': `${DOMAIN}/#organization` },
       inLanguage: locale
     },
-    {
-      '@type': 'SportsEvent',
-      '@id': `${canonical}#event`,
-      name: `${name} 2026`,
-      description: desc,
-      startDate: race.startDate,
-      eventStatus: 'https://schema.org/EventScheduled',
-      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-      location: {
-        '@type': 'Place',
-        name: race.city,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: race.city,
-          addressRegion: race.region,
-          addressCountry: race.country
-        }
-      },
-      organizer: {
-        '@type': 'Organization',
-        name: name
-      },
-      offers: {
-        '@type': 'Offer',
-        price: race.priceRange.split('-')[0],
-        priceCurrency: race.currency,
-        availability: 'https://schema.org/InStock'
-      },
-      maximumAttendeeCapacity: race.maxParticipants,
-      image: race.heroImage
-    },
+    sportsEvent,
     {
       '@type': 'BreadcrumbList',
       '@id': `${canonical}#breadcrumbs`,
@@ -535,60 +688,79 @@ function generateRacePage(race, lang) {
     price: 'Price', participants: 'Participants', elevation: 'Elevation',
     city: 'City', route: 'Route &amp; Course', tips: 'Tips',
     faq: 'FAQ', relatedPlans: 'Train for this Race', relatedRaces: 'Similar Races',
-    ctaTitle: 'Find training partners', ctaDesc: 'Train with other runners preparing for this race.',
-    ctaBtn: 'Join Free', nlTitle: 'Get race info and tips in your email',
+    nlTitle: 'Get race info and tips in your email',
     nlPlaceholder: 'your@email.com', nlBtn: 'Subscribe',
     nlPrivacy: 'We respect your privacy. Cancel anytime.',
-    about: 'About the Race', prepareTitle: 'Prepare for this Race'
+    about: 'About the Race', prepareTitle: 'Prepare for this Race',
+    tip: 'Tip',
+    findRunners: 'Find Runners',
+    createQuedada: 'Create Group Run',
+    joinFree: 'Join Free',
+    ctaSpecific: 'Find runners also preparing for this race',
+    ctaQuestion: function(n) { return 'Running ' + n + '?'; }
   } : {
     home: 'Inicio', races: 'Carreras', date: 'Fecha', distance: 'Distancia',
     price: 'Precio', participants: 'Participantes', elevation: 'Desnivel',
     city: 'Ciudad', route: 'Recorrido', tips: 'Consejos',
     faq: 'Preguntas Frecuentes', relatedPlans: 'Prepara esta Carrera', relatedRaces: 'Carreras Similares',
-    ctaTitle: 'Encuentra compa&ntilde;eros de entrenamiento',
-    ctaDesc: 'Entrena con otros runners que preparan esta carrera.',
-    ctaBtn: 'Unirme Gratis', nlTitle: 'Recibe info de carreras y consejos en tu email',
+    nlTitle: 'Recibe info de carreras y consejos en tu email',
     nlPlaceholder: 'tu@email.com', nlBtn: 'Suscribirme',
     nlPrivacy: 'Respetamos tu privacidad. Cancela cuando quieras.',
-    about: 'Sobre la Carrera', prepareTitle: 'Prepara esta Carrera'
+    about: 'Sobre la Carrera', prepareTitle: 'Prepara esta Carrera',
+    tip: 'Consejo',
+    findRunners: 'Encontrar Runners',
+    createQuedada: 'Crear Quedada',
+    joinFree: 'Unirme Gratis',
+    ctaSpecific: 'Encuentra runners que tambi&eacute;n la preparan',
+    ctaQuestion: function(n) { return '&iquest;Vas a correr ' + n + '?'; }
   };
 
-  // Info cards
+  // Info cards with SVG icons
   const infoHtml = `
   <div class="race-info">
-    <div class="info-card"><div class="icon">&#128197;</div><div class="label">${L.date}</div><div class="value">${dateText}</div></div>
-    <div class="info-card"><div class="icon">&#127939;</div><div class="label">${L.distance}</div><div class="value">${distLabel}</div></div>
-    <div class="info-card"><div class="icon">&#128176;</div><div class="label">${L.price}</div><div class="value">${race.priceRange}&euro;</div></div>
-    <div class="info-card"><div class="icon">&#128101;</div><div class="label">${L.participants}</div><div class="value">${race.maxParticipants.toLocaleString()}</div></div>
-    <div class="info-card"><div class="icon">&#9968;</div><div class="label">${L.elevation}</div><div class="value">${elevation}</div></div>
-    <div class="info-card"><div class="icon">&#128205;</div><div class="label">${L.city}</div><div class="value">${race.city}</div></div>
+    <div class="info-card"><div class="info-icon">${ICON_CALENDAR}</div><div class="info-label">${L.date}</div><div class="info-value">${dateText}</div></div>
+    <div class="info-card"><div class="info-icon">${ICON_ACTIVITY}</div><div class="info-label">${L.distance}</div><div class="info-value">${distLabel}</div></div>
+    <div class="info-card"><div class="info-icon">${ICON_EURO}</div><div class="info-label">${L.price}</div><div class="info-value">${race.priceRange}&euro;</div></div>
+    <div class="info-card"><div class="info-icon">${ICON_USERS}</div><div class="info-label">${L.participants}</div><div class="info-value">${race.maxParticipants.toLocaleString()}</div></div>
+    <div class="info-card"><div class="info-icon">${ICON_MOUNTAIN}</div><div class="info-label">${L.elevation}</div><div class="info-value">${elevation}</div></div>
+    <div class="info-card"><div class="info-icon">${ICON_MAP_PIN}</div><div class="info-label">${L.city}</div><div class="info-value">${race.city}</div></div>
   </div>`;
 
   // Second photo
   const secondPhotoHtml = race.secondImage ? `
   <div class="race-photo">
-    <img src="${race.secondImage}" alt="${esc(name)} - ${isEn ? 'atmosphere' : 'ambiente'}" loading="lazy" width="1200" height="800">
+    <img src="${race.secondImage}" alt="${esc(name)} - ${isEn ? 'course atmosphere' : 'ambiente del recorrido'}" loading="lazy" width="1200" height="800">
   </div>` : '';
 
-  // Tips
+  // Tips with SVG icon
   const tipsHtml = (tips && tips.length > 0) ? `
+  <section>
   <h2>${L.tips}</h2>
-  ${tips.map(t => `<div class="tip"><strong>&#128161;</strong> ${t}</div>`).join('\n')}` : '';
+  ${tips.map((t, i) => `<div class="tip">
+    <span class="tip-icon">${ICON_LIGHTBULB}</span>
+    <div><strong>${L.tip} ${i + 1}:</strong> ${t}</div>
+  </div>`).join('\n  ')}
+  </section>` : '';
 
-  // FAQ
+  // FAQ with chevron icon
   const faqHtml = (faq && faq.length > 0) ? `
-  <div class="faq-section">
+  <section class="faq-section">
     <h2>${L.faq}</h2>
     ${faq.map(f => `
     <details class="faq-item">
-      <summary>${esc(f.q)}</summary>
+      <summary>${esc(f.q)} <span class="faq-chevron">${ICON_CHEVRON}</span></summary>
       <div class="faq-answer"><p>${f.a}</p></div>
     </details>`).join('')}
-  </div>` : '';
+  </section>` : '';
+
+  // Official links
+  const officialLinksHtml = buildOfficialLinks(race, lang);
+
+  // Runners section
+  const runnersHtml = buildRunnersSection(race, lang);
 
   // Related plans
   const relatedPlans = race.relatedPlans || [];
-  // Load plans data for titles
   let plansData = {};
   const plansFile = path.join(BASE_DIR, 'tools', 'plans-generator', 'plans-data.json');
   if (fs.existsSync(plansFile)) {
@@ -596,7 +768,7 @@ function generateRacePage(race, lang) {
   }
   const relatedPlansHtml = relatedPlans.length > 0 ? `
   <div class="related">
-    <h3>${L.prepareTitle}</h3>
+    <h2>${L.prepareTitle}</h2>
     <div class="related-links">
       ${relatedPlans.map(rs => {
         const rp = plansData[rs];
@@ -608,22 +780,33 @@ function generateRacePage(race, lang) {
     </div>
   </div>` : '';
 
-  // Related races (same category)
+  // Related races (same category) — card style
   const allRaces = Object.values(races);
   const sameCategory = allRaces
     .filter(r => r.distanceCategory === race.distanceCategory && r.slugEs !== race.slugEs)
-    .slice(0, 4);
+    .slice(0, 6);
   const relatedRacesHtml = sameCategory.length > 0 ? `
-  <div class="related">
-    <h3>${L.relatedRaces}</h3>
-    <div class="related-links">
+  <section class="related">
+    <h2>${L.relatedRaces}</h2>
+    <div class="related-grid">
       ${sameCategory.map(r => {
         const rSlug = isEn ? r.slugEn : r.slugEs;
         const rName = isEn ? r.nameEn : r.nameEs;
-        return `<a href="/${dir}/${rSlug}">${rName}</a>`;
+        const rDate = isEn ? r.dateText2026En : r.dateText2026Es;
+        return `<a href="/${dir}/${rSlug}" class="related-card">
+        <div class="related-card-img"><img src="${r.heroImage}" alt="${esc(rName)}" loading="lazy" width="600" height="320"></div>
+        <div class="related-card-body">
+          <h3>${rName}</h3>
+          <div class="related-card-meta">
+            <span>${ICON_CALENDAR} ${rDate}</span>
+            <span>${distanceBadge(r.distanceCategory)}</span>
+          </div>
+          <div class="related-card-city">${ICON_MAP_PIN_SMALL} ${r.city}</div>
+        </div>
+      </a>`;
       }).join('\n      ')}
     </div>
-  </div>` : '';
+  </section>` : '';
 
   // Hreflang
   let hreflangHtml;
@@ -687,58 +870,71 @@ ${buildNav(lang)}
   </div>
 </div>
 
-<div class="hero">
-  <div class="hero-bg"><img src="${race.heroImage}" alt="${esc(name)}" loading="eager" fetchpriority="high" width="1200" height="600"></div>
+<header class="hero">
+  <div class="hero-bg"><img src="${race.heroImage}" alt="${esc(name)} - ${isEn ? 'race start' : 'salida de la carrera'}" loading="eager" fetchpriority="high" width="1200" height="600"></div>
   <div class="hero-content">
     <h1>${name}</h1>
+    <p class="hero-subtitle">${race.city}, ${race.region}</p>
     <div class="hero-badges">
-      <span class="hero-badge">&#128197; ${dateText}</span>
-      <span class="hero-badge">&#127939; ${distLabel}</span>
-      <span class="hero-badge">&#128205; ${race.city}</span>
+      <span class="hero-badge">${ICON_CALENDAR} ${dateText}</span>
+      <span class="hero-badge">${ICON_ACTIVITY} ${distLabel}</span>
+      <span class="hero-badge">${ICON_MAP_PIN} ${race.city}</span>
+    </div>
+    <div class="hero-actions">
+      <a href="/#app" class="cta">${L.findRunners}</a>
+      <a href="/#app" class="cta-outline">${L.createQuedada}</a>
     </div>
   </div>
-</div>
+</header>
 
-<div class="container content">
+<main class="container content">
 
   ${infoHtml}
 
-  <h2>${L.about}</h2>
-  ${description.split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('\n  ')}
+  <section>
+    <h2>${L.about}</h2>
+    ${description.split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('\n    ')}
+  </section>
 
   ${secondPhotoHtml}
 
-  <h2>${L.route}</h2>
-  ${route.split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('\n  ')}
+  <section>
+    <h2>${L.route}</h2>
+    ${route.split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('\n    ')}
+    ${eventsLink}
+  </section>
 
-  ${eventsLink}
+  ${officialLinksHtml}
 
   ${tipsHtml}
 
   ${faqHtml}
 
+  ${runnersHtml}
+
   ${relatedPlansHtml}
 
   ${relatedRacesHtml}
 
-  <div class="cta-box">
-    <h2>${L.ctaTitle}</h2>
-    <p>${L.ctaDesc}</p>
-    <a href="/#app" class="cta">${L.ctaBtn}</a>
+  <section class="cta-race">
+    <h2>${L.ctaQuestion(name)}</h2>
+    <p>${L.ctaSpecific}</p>
+    <a href="/#app" class="cta">${L.joinFree}</a>
     ${storeBadges(lang)}
-  </div>
+  </section>
 
-  <div class="newsletter-box">
-    <h3>&#128231; ${L.nlTitle}</h3>
+  <section class="newsletter-box">
+    <div class="nl-icon">${ICON_MAIL}</div>
+    <h3>${L.nlTitle}</h3>
     <form id="nlForm" onsubmit="return false">
       <input type="email" id="nlEmail" placeholder="${L.nlPlaceholder}" required>
-      <button type="submit" class="cta" style="padding:12px 24px;font-size:.9rem">${L.nlBtn}</button>
+      <button type="submit" class="cta" style="padding:12px 24px;font-size:.9rem;border-radius:999px">${L.nlBtn}</button>
     </form>
     <p id="nlMsg" style="display:none"></p>
     <p class="privacy">${L.nlPrivacy}</p>
-  </div>
+  </section>
 
-</div>
+</main>
 
 ${buildFooter(lang)}
 ${nlScript(lang)}

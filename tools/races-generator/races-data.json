@@ -91,7 +91,13 @@
       "maraton-principiantes",
       "maraton-sub-4"
     ],
-    "relatedEvents": "valencia"
+    "relatedEvents": "valencia",
+    "officialWebsite": "https://www.valenciaciudaddelrunning.com/maraton/",
+    "registrationUrl": "https://www.valenciaciudaddelrunning.com/maraton/inscripcion/",
+    "rulesUrl": "https://www.valenciaciudaddelrunning.com/maraton/reglamento/",
+    "resultsUrl": "https://www.valenciaciudaddelrunning.com/maraton/resultados/",
+    "organizerName": "SD Correcaminos",
+    "organizerUrl": "https://www.sdcorrecaminos.com/"
   },
   "maraton-barcelona": {
     "slugEs": "maraton-barcelona",
@@ -185,7 +191,13 @@
       "maraton-principiantes",
       "maraton-sub-4"
     ],
-    "relatedEvents": "barcelona"
+    "relatedEvents": "barcelona",
+    "officialWebsite": "https://www.zurichmaratobarcelona.es/",
+    "registrationUrl": "https://www.zurichmaratobarcelona.es/inscripcion/",
+    "rulesUrl": "https://www.zurichmaratobarcelona.es/reglamento/",
+    "resultsUrl": "https://www.zurichmaratobarcelona.es/resultados/",
+    "organizerName": "RPM Racing",
+    "organizerUrl": "https://www.rpmracing.es/"
   },
   "maraton-sevilla": {
     "slugEs": "maraton-sevilla",
@@ -279,7 +291,13 @@
       "maraton-sub-4",
       "maraton-sub-3-30"
     ],
-    "relatedEvents": "sevilla"
+    "relatedEvents": "sevilla",
+    "officialWebsite": "https://www.zurichmaratonsevilla.es/",
+    "registrationUrl": "https://www.zurichmaratonsevilla.es/inscripcion/",
+    "rulesUrl": "https://www.zurichmaratonsevilla.es/reglamento/",
+    "resultsUrl": "https://www.zurichmaratonsevilla.es/resultados/",
+    "organizerName": "Instituto Municipal de Deportes de Sevilla",
+    "organizerUrl": "https://www.imsevilla.org/"
   },
   "maraton-madrid": {
     "slugEs": "maraton-madrid",
@@ -346,7 +364,11 @@
       "maraton-principiantes",
       "maraton-sub-4"
     ],
-    "relatedEvents": "madrid"
+    "relatedEvents": "madrid",
+    "officialWebsite": "https://www.rockandrollmadridmarathon.com/",
+    "registrationUrl": "https://www.rockandrollmadridmarathon.com/inscripcion/",
+    "organizerName": "Ironman Group",
+    "organizerUrl": "https://www.ironman.com/"
   },
   "maraton-san-sebastian": {
     "slugEs": "maraton-san-sebastian",
@@ -440,7 +462,12 @@
       "maraton-principiantes",
       "maraton-sub-3-30"
     ],
-    "relatedEvents": "san-sebastian"
+    "relatedEvents": "san-sebastian",
+    "officialWebsite": "https://www.zurichmaratonsansebastian.com/",
+    "registrationUrl": "https://www.zurichmaratonsansebastian.com/inscripcion/",
+    "resultsUrl": "https://www.zurichmaratonsansebastian.com/resultados/",
+    "organizerName": "Zurich Seguros",
+    "organizerUrl": "https://www.zurich.es/"
   },
   "media-maraton-valencia": {
     "slugEs": "media-maraton-valencia",

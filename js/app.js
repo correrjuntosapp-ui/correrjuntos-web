@@ -4125,7 +4125,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
         if (prof && prof.pais) {
           // Convertir nombre de país a código
           const paisNombre = String(prof.pais);
-          for (const [code, names] of Object.entries(COUNTRY_CODE_MAP || {})) {
+          for (const [code, names] of Object.entries(window.COUNTRY_CODE_MAP || {})) {
             if (names.some(n => n.toLowerCase() === paisNombre.toLowerCase())) {
               userCountry = code;
               break;

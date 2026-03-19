@@ -3881,9 +3881,9 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             try{ detectReferralParam(); }catch(e){ console.warn('detectReferralParam:', e); }
             // App mundial: detectar ubicación del usuario automáticamente
             if('geolocation' in navigator){
-                navigator.geolocation.getCurrentPosition((pos)=>{
+                navigator.geolocation.getCurrentPosition(async (pos)=>{
                     userLoc = {lat: pos.coords.latitude, lng: pos.coords.longitude};
-                    detectUserCountry(userLoc.lat, userLoc.lng);
+                    await detectUserCountry(userLoc.lat, userLoc.lng);
                     // Activar filtro "Mi país" por defecto
                     currentFilter = 'country';
                     renderCityChips();

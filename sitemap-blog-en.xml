@@ -379,6 +379,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/core-para-runners"/>
   </url>
   <url>
+    <loc>https://www.correrjuntos.com/blog/en/core-workout-for-runners</loc>
+    <lastmod>2026-03-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/core-workout-for-runners"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/core-para-runners"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/core-para-runners"/>
+  </url>
+  <url>
     <loc>https://www.correrjuntos.com/blog/en/coros-pace-3-review</loc>
     <lastmod>2026-03-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/coros-pace-3-review"/>
@@ -487,6 +494,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/gps-navigation-trail-running"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/navegacion-gps-trail-running"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/navegacion-gps-trail-running"/>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/blog/en/gym-exercises-for-runners</loc>
+    <lastmod>2026-03-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/gym-exercises-for-runners"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/ejercicios-gimnasio-para-running"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/ejercicios-gimnasio-para-running"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/en/half-marathon-training-plan</loc>
@@ -1402,10 +1416,10 @@
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/en/strength-training-for-runners</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/strength-training-for-runners"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/entrenamiento-fuerza-corredores"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/entrenamiento-fuerza-corredores"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/entrenamiento-de-fuerza-para-corredores"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/entrenamiento-de-fuerza-para-corredores"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/en/running-groups-bilbao</loc>

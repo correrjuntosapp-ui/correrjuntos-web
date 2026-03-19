@@ -59,6 +59,16 @@
   ],
   "redirects": [
     {
+      "source": "/blog/entrenamiento-de-fuerza-para-corredores",
+      "destination": "/blog/entrenamiento-fuerza-corredores",
+      "permanent": true
+    },
+    {
+      "source": "/blog/cross-training-running",
+      "destination": "/blog/entrenamiento-cruzado-running",
+      "permanent": true
+    },
+    {
       "source": "/sponsors",
       "destination": "/patrocinadores",
       "permanent": true

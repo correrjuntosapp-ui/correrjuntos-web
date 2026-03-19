@@ -365,7 +365,8 @@ const COUNTRY_CODE_MAP = window.COUNTRY_CODE_MAP = {
 };
 
 function matchesCountry(quedadaPais, userCountryCode) {
-    if (!quedadaPais || !userCountryCode) return true; // Si no hay país, mostrar
+    if (!userCountryCode) return true; // Sin país del usuario, mostrar todo
+    if (!quedadaPais) return false; // Sin país en la quedada, no mostrar en filtro de país
     const validNames = COUNTRY_CODE_MAP[userCountryCode] || [userCountryCode];
     return validNames.some(name =>
         quedadaPais.toLowerCase() === name.toLowerCase() ||

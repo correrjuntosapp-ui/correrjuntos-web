@@ -7,13 +7,20 @@
     "@supabase/supabase-js": "^2.39.0"
   },
   "scripts": {
+    "lint": "npx eslint js/modules/*.js js/app.js js/premium-features.js js/pwa.js",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "build": "node tools/build-minify.cjs",
     "images:scan": "node tools/image-audit/scan-images.cjs",
     "images:verify": "node tools/image-audit/verify-image-usage.cjs",
     "images:ci": "node tools/image-audit/ci-check.cjs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "eslint": "^10.0.3",
     "serve": "^14.2.5",
     "sharp": "^0.34.5",
-    "tailwindcss": "^3.4.19"
+    "tailwindcss": "^3.4.19",
+    "terser": "^5.46.0"
   }
 }

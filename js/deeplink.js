@@ -249,18 +249,12 @@
         }
       }
 
-      // ========== PUSH NOTIFICATIONS ==========
-      const VAPID_PUBLIC_KEY = 'BMJxPir7IPDJHeKEfA1BH6F3X-ltnFm6xoKBAj2u02DjYLAuzFb3xQ4O2WB9eNsuRnPg7xB4GzVGn5AfDfvGZJQ';
-
-      // Comprobar si el navegador soporta notificaciones
-      function isPushSupported() {
-        return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
-      }
+      // ========== PUSH NOTIFICATION UX (subscription logic in push.js) ==========
 
       // Mostrar modal para pedir permiso (solo si no ha respondido antes)
       function showNotificationPrompt() {
         // No mostrar si no soporta push
-        if (!isPushSupported()) return;
+        if (typeof isPushSupported === 'function' && !isPushSupported()) return;
 
         // No mostrar si ya tiene permiso o lo denegó
         if (Notification.permission !== 'default') return;
@@ -271,87 +265,30 @@
         // No mostrar si no está logueado
         if (!currentUser) return;
 
-        // Mostrar después de que el usuario haya interactuado un poco
         openModal('modal-enable-notifications');
       }
 
-      // Pedir permiso de notificaciones
+      // Pedir permiso — delega a push.js para suscripcion
       async function requestNotificationPermission() {
         try {
-          const permission = await Notification.requestPermission();
-
-          if (permission === 'granted') {
-            // Registrar para push
-            await subscribeToPush();
+          if (typeof window.requestPushPermission === 'function') {
+            var ok = await window.requestPushPermission();
             closeModal('modal-enable-notifications');
-            showToast('¡Notificaciones activadas!', 'success');
-          } else if (permission === 'denied') {
+            if (!ok) return;
+          } else {
+            // Fallback si push.js aún no cargó
+            var permission = await Notification.requestPermission();
             closeModal('modal-enable-notifications');
-            showToast('Notificaciones bloqueadas. Puedes activarlas en la configuración del navegador.', 'info');
+            if (permission === 'granted') {
+              showToast('Notificaciones activadas', 'success');
+            } else if (permission === 'denied') {
+              showToast('Notificaciones bloqueadas. Puedes activarlas en la configuración del navegador.', 'info');
+            }
           }
         } catch (error) {
           console.error('Error pidiendo permiso:', error);
           closeModal('modal-enable-notifications');
           showToast('No se pudieron activar las notificaciones', 'error');
-        }
-      }
-
-      // Suscribirse a push notifications
-      async function subscribeToPush() {
-        try {
-          const registration = await navigator.serviceWorker.ready;
-
-          // Verificar si ya está suscrito
-          let subscription = await registration.pushManager.getSubscription();
-
-          if (!subscription) {
-            // Crear nueva suscripción
-            subscription = await registration.pushManager.subscribe({
-              userVisibleOnly: true,
-              applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
-            });
-          }
-
-          // Guardar suscripción en Supabase
-          if (currentUser && subscription) {
-            await savePushSubscription(subscription);
-          }
-
-          console.log('Suscrito a push:', subscription);
-          return subscription;
-        } catch (error) {
-          console.error('Error suscribiendo a push:', error);
-          throw error;
-        }
-      }
-
-      // Guardar suscripción en Supabase
-      async function savePushSubscription(subscription) {
-        if (!currentUser) return;
-
-        try {
-          // Extraer los datos de la suscripción
-          const subscriptionData = subscription.toJSON();
-
-          const { error } = await supabase
-            .from('push_subscriptions')
-            .upsert({
-              user_id: currentUser.id,
-              endpoint: subscriptionData.endpoint,
-              p256dh: subscriptionData.keys?.p256dh || null,
-              auth: subscriptionData.keys?.auth || null,
-              updated_at: new Date().toISOString()
-            }, {
-              onConflict: 'user_id'
-            });
-
-          if (error) {
-            console.error('Error guardando suscripción:', error);
-          } else {
-            console.log('Suscripción guardada en Supabase');
-          }
-        } catch (e) {
-          console.error('Error en savePushSubscription:', e);
         }
       }
 
@@ -362,28 +299,13 @@
         localStorage.setItem('notification-modal-dismissed-time', Date.now().toString());
       }
 
-      // Convertir VAPID key a Uint8Array
-      function urlBase64ToUint8Array(base64String) {
-        const padding = '='.repeat((4 - base64String.length % 4) % 4);
-        const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
-        const rawData = window.atob(base64);
-        const outputArray = new Uint8Array(rawData.length);
-        for (let i = 0; i < rawData.length; ++i) {
-          outputArray[i] = rawData.charCodeAt(i);
-        }
-        return outputArray;
-      }
-
       // Mostrar prompt de notificaciones después de primera acción significativa
       function checkShowNotificationPrompt() {
-        // Solo mostrar después de que el usuario se una a su primera quedada
-        const joinCount = parseInt(localStorage.getItem('user-join-count') || '0');
-
-        // Mostrar después de la primera vez que se une a algo
+        var joinCount = parseInt(localStorage.getItem('user-join-count') || '0');
         if (joinCount === 1 && Notification.permission === 'default') {
-          setTimeout(() => {
+          setTimeout(function() {
             showNotificationPrompt();
-          }, 2000); // Esperar 2 segundos después de unirse
+          }, 2000);
         }
       }
 

@@ -51,6 +51,12 @@ function parseArray(arraySource) {
 const dbES = parseArray(extractArraySource(src, 'DB_ES'));
 const dbEN = parseArray(extractArraySource(src, 'DB_EN'));
 
+// Categories with transactional/affiliate content
+const AFFILIATE_CATEGORIES = [
+  'Zapatillas', 'Equipamiento', 'Tecnología',
+  'Suplementación', 'Atleta Híbrido',
+];
+
 // Map to clean article objects
 function mapArticles(arr) {
   return arr.map(a => ({
@@ -58,6 +64,7 @@ function mapArticles(arr) {
     title: a.t,
     category: a.c,
     image: a.i,
+    ...(AFFILIATE_CATEGORIES.includes(a.c) ? { affiliate: true } : {}),
   }));
 }
 

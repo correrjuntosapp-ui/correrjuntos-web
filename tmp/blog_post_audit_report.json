@@ -1,0 +1,2432 @@
+{
+  "top_broken_link_pages": [
+    {
+      "path": "/blog/correr-embarazada-seguro",
+      "broken_count": 6,
+      "examples": [
+        "/blog/descanso-y-recuperacion-running",
+        "/blog/estiramientos-despues-de-correr",
+        "/blog/hidratacion-running",
+        "/blog/nutricion-para-corredores",
+        "/blog/ritmo-para-principiantes"
+      ]
+    },
+    {
+      "path": "/blog/en/how-to-get-back-into-running",
+      "broken_count": 6,
+      "examples": [
+        "/blog/en/beginners-guide-to-running",
+        "/blog/en/couch-to-5k",
+        "/blog/en/running-motivation"
+      ]
+    },
+    {
+      "path": "/blog/en/how-to-prepare-first-5k-race",
+      "broken_count": 5,
+      "examples": [
+        "/blog/en/benefits-of-running-in-a-group",
+        "/blog/en/start-running-beginners-guide",
+        "/blog/en/stretches-before-after-running"
+      ]
+    },
+    {
+      "path": "/blog/en/running-groups-seville",
+      "broken_count": 5,
+      "examples": [
+        "/blog/en/benefits-of-running-in-a-group",
+        "/blog/en/best-running-routes-seville",
+        "/blog/en/join-a-running-group"
+      ]
+    },
+    {
+      "path": "/blog/en/beginner-running-mistakes-nobody-tells",
+      "broken_count": 4,
+      "examples": [
+        "/blog/en/beginner-running-guide",
+        "/blog/en/couch-to-5k"
+      ]
+    },
+    {
+      "path": "/blog/en/find-runners-malaga",
+      "broken_count": 4,
+      "examples": [
+        "/blog/en/benefits-of-running-in-a-group",
+        "/blog/en/how-to-join-a-running-group"
+      ]
+    },
+    {
+      "path": "/blog/en/how-to-build-running-endurance",
+      "broken_count": 4,
+      "examples": [
+        "/blog/en/hydration-running-complete-guide",
+        "/blog/en/runner-nutrition-guide"
+      ]
+    },
+    {
+      "path": "/blog/en/running-with-others-cadiz",
+      "broken_count": 4,
+      "examples": [
+        "/blog/en/benefits-of-running-in-a-group",
+        "/blog/en/join-a-running-group"
+      ]
+    },
+    {
+      "path": "/blog/en/start-running-when-embarrassed",
+      "broken_count": 4,
+      "examples": [
+        "/blog/en/beginner-running-guide",
+        "/blog/en/couch-to-5k"
+      ]
+    },
+    {
+      "path": "/blog/beneficios-de-correr",
+      "broken_count": 3,
+      "examples": [
+        "/blog/empezar-a-correr-desde-cero",
+        "/blog/nutricion-antes-de-correr"
+      ]
+    },
+    {
+      "path": "/blog/en/beginner-running-groups-madrid",
+      "broken_count": 3,
+      "examples": [
+        "/blog/en/benefits-of-running-in-a-group",
+        "/blog/en/how-to-join-a-running-group"
+      ]
+    },
+    {
+      "path": "/blog/en/benefits-of-running",
+      "broken_count": 3,
+      "examples": [
+        "/blog/empezar-a-correr-desde-cero",
+        "/blog/nutricion-antes-de-correr"
+      ]
+    },
+    {
+      "path": "/blog/en/best-creatine-running",
+      "broken_count": 3,
+      "examples": [
+        "/blog/en/best-gps-watch-running",
+        "/blog/en/best-running-shoes-road",
+        "/blog/en/marathon-nutrition-guide"
+      ]
+    },
+    {
+      "path": "/blog/en/best-energy-gels-running",
+      "broken_count": 3,
+      "examples": [
+        "/blog/en/best-gps-watch-running",
+        "/blog/en/best-running-shoes-road",
+        "/blog/en/marathon-nutrition-guide"
+      ]
+    },
+    {
+      "path": "/blog/en/",
+      "broken_count": 3,
+      "examples": [
+        "/blog/en/empezar-a-correr-guia-principiantes",
+        "/blog/en/mejores-zapatillas-running-asfalto",
+        "/blog/en/que-comer-antes-de-correr"
+      ]
+    },
+    {
+      "path": "/blog/en/running-in-winter",
+      "broken_count": 3,
+      "examples": [
+        "/blog/en/benefits-of-running-in-a-group",
+        "/blog/en/stretches-before-after-running",
+        "/blog/en/technical-running-clothing"
+      ]
+    },
+    {
+      "path": "/blog/en/running-meetups-barcelona",
+      "broken_count": 3,
+      "examples": [
+        "/blog/en/benefits-of-running-in-a-group",
+        "/blog/en/how-to-join-a-running-group"
+      ]
+    },
+    {
+      "path": "/blog/como-calentar-antes-de-correr",
+      "broken_count": 2,
+      "examples": [
+        "/blog/empezar-a-correr-desde-cero"
+      ]
+    },
+    {
+      "path": "/blog/como-respirar-al-correr",
+      "broken_count": 2,
+      "examples": [
+        "/blog/empezar-a-correr-desde-cero"
+      ]
+    },
+    {
+      "path": "/blog/entrenamiento-trail-running-plan",
+      "broken_count": 2,
+      "examples": [
+        "/blog/mejores-zapatillas-trail"
+      ]
+    },
+    {
+      "path": "/blog/mejores-bebidas-hidratacion-running",
+      "broken_count": 2,
+      "examples": [
+        "/blog/mejores-geles-energia-running",
+        "/blog/nutricion-maraton-guia-completa"
+      ]
+    },
+    {
+      "path": "/blog/mejores-superficies-para-correr",
+      "broken_count": 2,
+      "examples": [
+        "/blog/mejores-zapatillas-running",
+        "/blog/zapatillas-trail-running"
+      ]
+    },
+    {
+      "path": "/blog/en/average-5k-time-by-age",
+      "broken_count": 2,
+      "examples": [
+        "/blog/en/prepare-first-5k-race"
+      ]
+    },
+    {
+      "path": "/blog/en/best-hydration-drinks-running",
+      "broken_count": 2,
+      "examples": [
+        "/blog/en/best-running-gels",
+        "/blog/en/nutrition-tips-marathon"
+      ]
+    },
+    {
+      "path": "/blog/en/best-protein-running",
+      "broken_count": 2,
+      "examples": [
+        "/blog/en/best-gps-watch-running",
+        "/blog/en/best-running-shoes-road"
+      ]
+    }
+  ],
+  "orphan_articles": [
+    "/blog/en/equipment/best-heart-rate-chest-straps-armbands-running/",
+    "/blog/en/hybrid-athletes/best-crossfit-backpacks-2026/",
+    "/blog/en/running-shoes/best-running-shoes-to-start-running-2026/",
+    "/blog/en/running/how-to-start-running-from-scratch/",
+    "/blog/en/training/16-week-marathon-plan-sub4h",
+    "/blog/equipamiento/las-10-mejores-gafas-deportivas-para-correr-en-2026/",
+    "/blog/running/como-empezar-a-correr-desde-cero/"
+  ],
+  "weakest_linked_es_articles": [
+    {
+      "path": "/blog/running/como-empezar-a-correr-desde-cero/",
+      "indegree": 0,
+      "out": 3,
+      "words": 823,
+      "cta": 0
+    },
+    {
+      "path": "/blog/equipamiento/las-10-mejores-gafas-deportivas-para-correr-en-2026/",
+      "indegree": 0,
+      "out": 9,
+      "words": 1850,
+      "cta": 0
+    },
+    {
+      "path": "/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/",
+      "indegree": 1,
+      "out": 3,
+      "words": 1208,
+      "cta": 0
+    },
+    {
+      "path": "/blog/zapatillas/mejores-zapatillas-empezar-correr-2026/",
+      "indegree": 1,
+      "out": 4,
+      "words": 1433,
+      "cta": 0
+    },
+    {
+      "path": "/blog/atletas-hibridos/mejores-mochilas-crossfit-2026/",
+      "indegree": 1,
+      "out": 7,
+      "words": 1598,
+      "cta": 0
+    },
+    {
+      "path": "/blog/mochilas-trail-running",
+      "indegree": 2,
+      "out": 4,
+      "words": 1812,
+      "cta": 2
+    },
+    {
+      "path": "/blog/bidones-running",
+      "indegree": 2,
+      "out": 4,
+      "words": 1798,
+      "cta": 2
+    },
+    {
+      "path": "/blog/soft-flasks-running",
+      "indegree": 2,
+      "out": 4,
+      "words": 1760,
+      "cta": 2
+    },
+    {
+      "path": "/blog/mejores-garmin-running",
+      "indegree": 2,
+      "out": 5,
+      "words": 1903,
+      "cta": 2
+    },
+    {
+      "path": "/blog/salomon-speedcross-6-vs-hoka-speedgoat-6",
+      "indegree": 2,
+      "out": 6,
+      "words": 1989,
+      "cta": 2
+    },
+    {
+      "path": "/blog/mejores-proteinas-running",
+      "indegree": 2,
+      "out": 7,
+      "words": 3799,
+      "cta": 3
+    },
+    {
+      "path": "/blog/mejores-colagenos-runners",
+      "indegree": 2,
+      "out": 7,
+      "words": 3374,
+      "cta": 4
+    },
+    {
+      "path": "/blog/mejores-bcaas-runners",
+      "indegree": 2,
+      "out": 7,
+      "words": 3347,
+      "cta": 4
+    },
+    {
+      "path": "/blog/mejores-multivitaminicos-runners",
+      "indegree": 2,
+      "out": 7,
+      "words": 2998,
+      "cta": 2
+    },
+    {
+      "path": "/blog/asics-gel-nimbus-26-vs-nike-pegasus-41",
+      "indegree": 2,
+      "out": 7,
+      "words": 1759,
+      "cta": 2
+    },
+    {
+      "path": "/blog/creatina-para-runners",
+      "indegree": 2,
+      "out": 8,
+      "words": 3221,
+      "cta": 2
+    },
+    {
+      "path": "/blog/correr-embarazada-seguro",
+      "indegree": 2,
+      "out": 8,
+      "words": 3034,
+      "cta": 1
+    },
+    {
+      "path": "/blog/gorras-running",
+      "indegree": 2,
+      "out": 9,
+      "words": 6842,
+      "cta": 2
+    },
+    {
+      "path": "/blog/mejores-calleras-crossfit",
+      "indegree": 2,
+      "out": 9,
+      "words": 1257,
+      "cta": 1
+    },
+    {
+      "path": "/blog/entrenamiento-fuerza-corredores",
+      "indegree": 2,
+      "out": 10,
+      "words": 3092,
+      "cta": 1
+    },
+    {
+      "path": "/blog/mejores-bebidas-hidratacion-running",
+      "indegree": 2,
+      "out": 10,
+      "words": 1630,
+      "cta": 2
+    },
+    {
+      "path": "/blog/mallas-running",
+      "indegree": 2,
+      "out": 11,
+      "words": 8083,
+      "cta": 2
+    },
+    {
+      "path": "/blog/mejores-auriculares-baratos-running",
+      "indegree": 2,
+      "out": 11,
+      "words": 5688,
+      "cta": 2
+    },
+    {
+      "path": "/blog/jbl-reflect-flow-pro-review",
+      "indegree": 2,
+      "out": 11,
+      "words": 5468,
+      "cta": 2
+    },
+    {
+      "path": "/blog/ropa-correr-segun-temperatura",
+      "indegree": 2,
+      "out": 11,
+      "words": 3410,
+      "cta": 1
+    },
+    {
+      "path": "/blog/mejores-superficies-para-correr",
+      "indegree": 2,
+      "out": 11,
+      "words": 3000,
+      "cta": 1
+    },
+    {
+      "path": "/blog/empezar-a-correr-con-verguenza",
+      "indegree": 2,
+      "out": 11,
+      "words": 2331,
+      "cta": 1
+    },
+    {
+      "path": "/blog/mejores-recuperadores-running",
+      "indegree": 2,
+      "out": 11,
+      "words": 1883,
+      "cta": 2
+    },
+    {
+      "path": "/blog/auriculares-running-natacion",
+      "indegree": 2,
+      "out": 12,
+      "words": 6216,
+      "cta": 2
+    },
+    {
+      "path": "/blog/correr-con-perro-canicross",
+      "indegree": 2,
+      "out": 12,
+      "words": 4173,
+      "cta": 1
+    },
+    {
+      "path": "/blog/correr-es-social-tendencia",
+      "indegree": 2,
+      "out": 12,
+      "words": 2954,
+      "cta": 3
+    },
+    {
+      "path": "/blog/soledad-del-runner",
+      "indegree": 2,
+      "out": 12,
+      "words": 2109,
+      "cta": 1
+    },
+    {
+      "path": "/blog/correr-y-gimnasio-mismo-dia",
+      "indegree": 2,
+      "out": 12,
+      "words": 1563,
+      "cta": 2
+    },
+    {
+      "path": "/blog/garmin-venu-3-review",
+      "indegree": 2,
+      "out": 13,
+      "words": 4867,
+      "cta": 2
+    },
+    {
+      "path": "/blog/zapatillas-running-pronadores",
+      "indegree": 2,
+      "out": 13,
+      "words": 4435,
+      "cta": 2
+    },
+    {
+      "path": "/blog/grupos-running-bilbao",
+      "indegree": 2,
+      "out": 13,
+      "words": 3570,
+      "cta": 2
+    },
+    {
+      "path": "/blog/correr-con-musica-beneficios",
+      "indegree": 2,
+      "out": 13,
+      "words": 2789,
+      "cta": 3
+    },
+    {
+      "path": "/blog/calambres-al-correr",
+      "indegree": 2,
+      "out": 13,
+      "words": 2730,
+      "cta": 1
+    },
+    {
+      "path": "/blog/empezar-a-correr-despues-de-los-50",
+      "indegree": 2,
+      "out": 13,
+      "words": 2661,
+      "cta": 1
+    },
+    {
+      "path": "/blog/recuperar-ganas-de-correr",
+      "indegree": 2,
+      "out": 13,
+      "words": 2450,
+      "cta": 1
+    },
+    {
+      "path": "/blog/mejores-bastones-trail-running",
+      "indegree": 2,
+      "out": 13,
+      "words": 2420,
+      "cta": 2
+    },
+    {
+      "path": "/blog/cuanto-tardo-en-correr-5km",
+      "indegree": 2,
+      "out": 13,
+      "words": 1689,
+      "cta": 1
+    },
+    {
+      "path": "/blog/cafeina-running-rendimiento",
+      "indegree": 2,
+      "out": 14,
+      "words": 5475,
+      "cta": 2
+    },
+    {
+      "path": "/blog/grupos-running-malaga",
+      "indegree": 2,
+      "out": 14,
+      "words": 3824,
+      "cta": 2
+    },
+    {
+      "path": "/blog/grupos-running-valencia",
+      "indegree": 2,
+      "out": 14,
+      "words": 3690,
+      "cta": 1
+    },
+    {
+      "path": "/blog/por-que-dejan-correr-3-meses",
+      "indegree": 2,
+      "out": 14,
+      "words": 2486,
+      "cta": 1
+    },
+    {
+      "path": "/blog/correr-antes-o-despues-de-comer",
+      "indegree": 2,
+      "out": 14,
+      "words": 2030,
+      "cta": 1
+    },
+    {
+      "path": "/blog/grupos-running-zaragoza",
+      "indegree": 2,
+      "out": 15,
+      "words": 3662,
+      "cta": 1
+    },
+    {
+      "path": "/blog/alimentos-antiinflamatorios-runners",
+      "indegree": 2,
+      "out": 16,
+      "words": 6152,
+      "cta": 2
+    },
+    {
+      "path": "/blog/ayuno-intermitente-running",
+      "indegree": 2,
+      "out": 17,
+      "words": 4574,
+      "cta": 2
+    },
+    {
+      "path": "/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners",
+      "indegree": 3,
+      "out": 5,
+      "words": 2265,
+      "cta": 0
+    },
+    {
+      "path": "/blog/mejores-magnesios-runners",
+      "indegree": 3,
+      "out": 7,
+      "words": 3192,
+      "cta": 4
+    },
+    {
+      "path": "/blog/rodillo-vs-pistola-masaje-recuperacion",
+      "indegree": 3,
+      "out": 7,
+      "words": 2951,
+      "cta": 2
+    },
+    {
+      "path": "/blog/zapatillas-deka-strong-atlas",
+      "indegree": 3,
+      "out": 7,
+      "words": 1206,
+      "cta": 2
+    },
+    {
+      "path": "/blog/sandbag-lunges-hyrox",
+      "indegree": 3,
+      "out": 8,
+      "words": 1834,
+      "cta": 2
+    },
+    {
+      "path": "/blog/entrenar-skierg-row-hyrox",
+      "indegree": 3,
+      "out": 8,
+      "words": 1716,
+      "cta": 2
+    },
+    {
+      "path": "/blog/deka-fit-vs-deka-strong",
+      "indegree": 3,
+      "out": 8,
+      "words": 1298,
+      "cta": 2
+    },
+    {
+      "path": "/blog/nike-pegasus-41-vs-brooks-ghost-16",
+      "indegree": 3,
+      "out": 9,
+      "words": 1713,
+      "cta": 2
+    },
+    {
+      "path": "/blog/chubasqueros-running",
+      "indegree": 3,
+      "out": 11,
+      "words": 5791,
+      "cta": 2
+    },
+    {
+      "path": "/blog/volver-a-correr-despues-de-lesion",
+      "indegree": 3,
+      "out": 11,
+      "words": 3512,
+      "cta": 1
+    },
+    {
+      "path": "/blog/potencia-en-running",
+      "indegree": 3,
+      "out": 12,
+      "words": 6716,
+      "cta": 2
+    },
+    {
+      "path": "/blog/cinturones-running",
+      "indegree": 3,
+      "out": 12,
+      "words": 6667,
+      "cta": 2
+    },
+    {
+      "path": "/blog/mejores-zapatillas-running-mujer",
+      "indegree": 3,
+      "out": 12,
+      "words": 4303,
+      "cta": 2
+    },
+    {
+      "path": "/blog/empezar-a-correr-despues-de-los-40",
+      "indegree": 3,
+      "out": 12,
+      "words": 2142,
+      "cta": 2
+    },
+    {
+      "path": "/blog/correr-acompanado-engancha-mas",
+      "indegree": 3,
+      "out": 12,
+      "words": 1992,
+      "cta": 2
+    },
+    {
+      "path": "/blog/puedo-correr-todos-los-dias",
+      "indegree": 3,
+      "out": 12,
+      "words": 1584,
+      "cta": 2
+    },
+    {
+      "path": "/blog/correr-en-cinta-vs-calle",
+      "indegree": 3,
+      "out": 12,
+      "words": 1492,
+      "cta": 2
+    },
+    {
+      "path": "/blog/entrenamiento/plan-maraton-16-semanas-sub4h",
+      "indegree": 3,
+      "out": 13,
+      "words": 2719,
+      "cta": 1
+    },
+    {
+      "path": "/blog/mejores-zapatillas-running-sobrepeso",
+      "indegree": 3,
+      "out": 14,
+      "words": 4650,
+      "cta": 2
+    },
+    {
+      "path": "/blog/apple-watch-running-review",
+      "indegree": 3,
+      "out": 16,
+      "words": 5899,
+      "cta": 2
+    },
+    {
+      "path": "/blog/strava-vs-garmin-connect",
+      "indegree": 3,
+      "out": 17,
+      "words": 5495,
+      "cta": 2
+    },
+    {
+      "path": "/blog/smartwatch-vs-reloj-gps-running",
+      "indegree": 3,
+      "out": 19,
+      "words": 6299,
+      "cta": 2
+    },
+    {
+      "path": "/blog/mejores-omega-3-runners",
+      "indegree": 4,
+      "out": 7,
+      "words": 3414,
+      "cta": 3
+    },
+    {
+      "path": "/blog/calcetines-running",
+      "indegree": 4,
+      "out": 8,
+      "words": 6788,
+      "cta": 2
+    },
+    {
+      "path": "/blog/wall-ball-hyrox-comprar",
+      "indegree": 4,
+      "out": 8,
+      "words": 1903,
+      "cta": 2
+    },
+    {
+      "path": "/blog/hyrox-vs-deka-fit",
+      "indegree": 4,
+      "out": 8,
+      "words": 1232,
+      "cta": 2
+    },
+    {
+      "path": "/blog/que-comer-antes-de-correr",
+      "indegree": 4,
+      "out": 11,
+      "words": 1667,
+      "cta": 2
+    },
+    {
+      "path": "/blog/flato-dolor-costado-al-correr",
+      "indegree": 4,
+      "out": 13,
+      "words": 1656,
+      "cta": 2
+    },
+    {
+      "path": "/blog/variabilidad-cardiaca-running",
+      "indegree": 4,
+      "out": 18,
+      "words": 7593,
+      "cta": 3
+    },
+    {
+      "path": "/blog/quedadas-correr-barcelona",
+      "indegree": 4,
+      "out": 18,
+      "words": 2489,
+      "cta": 1
+    }
+  ],
+  "most_linked_es_articles": [
+    {
+      "path": "/blog/empezar-a-correr-guia-principiantes",
+      "indegree": 84,
+      "out": 27,
+      "words": 1987
+    },
+    {
+      "path": "/blog/nutricion-para-runners",
+      "indegree": 66,
+      "out": 12,
+      "words": 1030
+    },
+    {
+      "path": "/blog/beneficios-correr-en-grupo",
+      "indegree": 62,
+      "out": 21,
+      "words": 1327
+    },
+    {
+      "path": "/blog/mejores-apps-running",
+      "indegree": 61,
+      "out": 15,
+      "words": 2647
+    },
+    {
+      "path": "/blog/mejores-zapatillas-running-asfalto",
+      "indegree": 56,
+      "out": 21,
+      "words": 2526
+    },
+    {
+      "path": "/blog/encontrar-gente-para-correr",
+      "indegree": 48,
+      "out": 19,
+      "words": 2475
+    },
+    {
+      "path": "/blog/ropa-tecnica-running",
+      "indegree": 46,
+      "out": 13,
+      "words": 3111
+    },
+    {
+      "path": "/blog/correr-en-invierno",
+      "indegree": 43,
+      "out": 10,
+      "words": 2411
+    },
+    {
+      "path": "/blog/plan-entrenamiento-media-maraton",
+      "indegree": 42,
+      "out": 8,
+      "words": 1695
+    },
+    {
+      "path": "/blog/como-elegir-reloj-gps-running",
+      "indegree": 41,
+      "out": 11,
+      "words": 1895
+    },
+    {
+      "path": "/blog/nutricion-dia-de-carrera",
+      "indegree": 35,
+      "out": 7,
+      "words": 930
+    },
+    {
+      "path": "/blog/mejor-reloj-gps-running-calidad-precio",
+      "indegree": 34,
+      "out": 12,
+      "words": 4710
+    },
+    {
+      "path": "/blog/dieta-runner-que-comer",
+      "indegree": 33,
+      "out": 22,
+      "words": 4516
+    },
+    {
+      "path": "/blog/mejores-suplementos-runners",
+      "indegree": 33,
+      "out": 15,
+      "words": 2869
+    },
+    {
+      "path": "/blog/errores-comunes-corredores",
+      "indegree": 33,
+      "out": 14,
+      "words": 1065
+    },
+    {
+      "path": "/blog/mejores-zapatillas-running-principiantes",
+      "indegree": 33,
+      "out": 9,
+      "words": 2609
+    },
+    {
+      "path": "/blog/estiramientos-antes-despues-correr",
+      "indegree": 33,
+      "out": 8,
+      "words": 1218
+    },
+    {
+      "path": "/blog/garmin-forerunner-265-vs-coros-pace-3",
+      "indegree": 33,
+      "out": 8,
+      "words": 1388
+    },
+    {
+      "path": "/blog/empezar-trail-running",
+      "indegree": 31,
+      "out": 21,
+      "words": 5435
+    },
+    {
+      "path": "/blog/que-gel-energetico-usar-maraton",
+      "indegree": 30,
+      "out": 11,
+      "words": 4094
+    },
+    {
+      "path": "/blog/entrenamiento-por-zonas-running",
+      "indegree": 29,
+      "out": 19,
+      "words": 5307
+    },
+    {
+      "path": "/blog/mejores-auriculares-running",
+      "indegree": 28,
+      "out": 10,
+      "words": 1619
+    },
+    {
+      "path": "/blog/como-elegir-zapatillas-running",
+      "indegree": 26,
+      "out": 19,
+      "words": 1537
+    },
+    {
+      "path": "/blog/auriculares-conduccion-osea-vs-in-ear-running",
+      "indegree": 25,
+      "out": 10,
+      "words": 4435
+    },
+    {
+      "path": "/blog/plan-entrenamiento-10k",
+      "indegree": 24,
+      "out": 9,
+      "words": 949
+    },
+    {
+      "path": "/blog/beneficios-de-correr",
+      "indegree": 23,
+      "out": 10,
+      "words": 2301
+    },
+    {
+      "path": "/blog/prevenir-lesiones-running",
+      "indegree": 21,
+      "out": 18,
+      "words": 4578
+    },
+    {
+      "path": "/blog/drop-zapatillas-running",
+      "indegree": 21,
+      "out": 13,
+      "words": 1301
+    },
+    {
+      "path": "/blog/entrenamiento-trail-running-plan",
+      "indegree": 20,
+      "out": 18,
+      "words": 1678
+    },
+    {
+      "path": "/blog/hidratacion-running-guia-completa",
+      "indegree": 20,
+      "out": 15,
+      "words": 5426
+    },
+    {
+      "path": "/blog/como-correr-mas-rapido",
+      "indegree": 20,
+      "out": 14,
+      "words": 2174
+    },
+    {
+      "path": "/blog/chalecos-hidratacion-running",
+      "indegree": 20,
+      "out": 9,
+      "words": 5817
+    },
+    {
+      "path": "/blog/unirse-grupo-running",
+      "indegree": 19,
+      "out": 22,
+      "words": 2537
+    },
+    {
+      "path": "/blog/de-cero-a-5k",
+      "indegree": 19,
+      "out": 18,
+      "words": 2383
+    },
+    {
+      "path": "/blog/grupos-correr-sevilla",
+      "indegree": 19,
+      "out": 15,
+      "words": 3786
+    },
+    {
+      "path": "/blog/garmin-forerunner-55-review",
+      "indegree": 19,
+      "out": 13,
+      "words": 5110
+    },
+    {
+      "path": "/blog/estiramientos-post-carrera",
+      "indegree": 18,
+      "out": 8,
+      "words": 1295
+    },
+    {
+      "path": "/blog/recetas-runners-rapidas",
+      "indegree": 17,
+      "out": 17,
+      "words": 1446
+    },
+    {
+      "path": "/blog/cuanto-duran-zapatillas-running",
+      "indegree": 17,
+      "out": 16,
+      "words": 1452
+    },
+    {
+      "path": "/blog/pack-basico-running-principiantes",
+      "indegree": 16,
+      "out": 17,
+      "words": 4324
+    },
+    {
+      "path": "/blog/seguridad-trail-running",
+      "indegree": 16,
+      "out": 16,
+      "words": 1448
+    },
+    {
+      "path": "/blog/nutricion-recuperacion-post-entreno",
+      "indegree": 16,
+      "out": 15,
+      "words": 1422
+    },
+    {
+      "path": "/blog/bastones-trail-running",
+      "indegree": 16,
+      "out": 14,
+      "words": 1290
+    },
+    {
+      "path": "/blog/mejores-rutas-correr-madrid",
+      "indegree": 16,
+      "out": 12,
+      "words": 2912
+    },
+    {
+      "path": "/blog/encontrar-runners-malaga",
+      "indegree": 15,
+      "out": 17,
+      "words": 3147
+    },
+    {
+      "path": "/blog/zapatillas-running-pisada-neutra",
+      "indegree": 15,
+      "out": 15,
+      "words": 1315
+    },
+    {
+      "path": "/blog/como-preparar-primera-carrera-5k",
+      "indegree": 15,
+      "out": 10,
+      "words": 1243
+    },
+    {
+      "path": "/blog/hoka-clifton-9-vs-bondi-8",
+      "indegree": 15,
+      "out": 6,
+      "words": 1491
+    },
+    {
+      "path": "/blog/desayunos-antes-de-correr",
+      "indegree": 14,
+      "out": 21,
+      "words": 2007
+    },
+    {
+      "path": "/blog/hierro-para-corredores",
+      "indegree": 14,
+      "out": 14,
+      "words": 1470
+    },
+    {
+      "path": "/blog/correr-solo-vs-acompanado",
+      "indegree": 13,
+      "out": 22,
+      "words": 2483
+    },
+    {
+      "path": "/blog/apps-correr-en-grupo",
+      "indegree": 13,
+      "out": 19,
+      "words": 2821
+    },
+    {
+      "path": "/blog/nutricion-trail-running",
+      "indegree": 13,
+      "out": 14,
+      "words": 1603
+    },
+    {
+      "path": "/blog/como-respirar-al-correr",
+      "indegree": 13,
+      "out": 10,
+      "words": 2182
+    },
+    {
+      "path": "/blog/new-balance-1080-vs-hoka-clifton",
+      "indegree": 12,
+      "out": 23,
+      "words": 1677
+    },
+    {
+      "path": "/blog/correr-para-adelgazar",
+      "indegree": 12,
+      "out": 20,
+      "words": 2774
+    },
+    {
+      "path": "/blog/snacks-energeticos-running",
+      "indegree": 12,
+      "out": 20,
+      "words": 1695
+    },
+    {
+      "path": "/blog/cuantas-veces-semana-correr",
+      "indegree": 12,
+      "out": 16,
+      "words": 2145
+    },
+    {
+      "path": "/blog/conocer-gente-haciendo-deporte",
+      "indegree": 12,
+      "out": 14,
+      "words": 2945
+    },
+    {
+      "path": "/blog/rodilla-del-corredor",
+      "indegree": 12,
+      "out": 14,
+      "words": 4326
+    }
+  ],
+  "duplicate_titles": [
+    {
+      "title": "trail running vs asfalto: diferencias, ventajas y que elegir",
+      "paths": [
+        "/blog/diferencias-trail-vs-asfalto",
+        "/blog/en/trail-vs-road-running"
+      ],
+      "count": 2
+    },
+    {
+      "title": "cómo empezar en trail running: guía completa para principiantes",
+      "paths": [
+        "/blog/empezar-trail-running",
+        "/blog/en/start-trail-running"
+      ],
+      "count": 2
+    },
+    {
+      "title": "las mejores rutas para correr en barcelona | top 10",
+      "paths": [
+        "/blog/mejores-rutas-correr-barcelona",
+        "/blog/en/best-running-routes-barcelona"
+      ],
+      "count": 2
+    },
+    {
+      "title": "las 10 mejores rutas para correr en malaga 2026 | correrjuntos",
+      "paths": [
+        "/blog/mejores-rutas-correr-malaga",
+        "/blog/en/best-running-routes-malaga"
+      ],
+      "count": 2
+    },
+    {
+      "title": "las 10 mejores rutas para correr en sevilla 2026 - correrjuntos",
+      "paths": [
+        "/blog/mejores-rutas-correr-sevilla",
+        "/blog/en/best-running-routes-sevilla"
+      ],
+      "count": 2
+    },
+    {
+      "title": "las mejores rutas para correr en valencia | top 10 - correrjuntos",
+      "paths": [
+        "/blog/mejores-rutas-correr-valencia",
+        "/blog/en/best-running-routes-valencia"
+      ],
+      "count": 2
+    }
+  ],
+  "duplicate_meta_descriptions": [
+    {
+      "meta": "comparativa completa entre trail running y running en asfalto. biomecanica, lesiones, equipamiento, zapatillas, entrenamiento y cual elegir segun tu...",
+      "paths": [
+        "/blog/diferencias-trail-vs-asfalto",
+        "/blog/en/trail-vs-road-running"
+      ],
+      "count": 2
+    },
+    {
+      "meta": "guía completa para empezar en trail running en 2026. preparación física, equipamiento esencial, tipos de terreno, navegación, seguridad y plan de...",
+      "paths": [
+        "/blog/empezar-trail-running",
+        "/blog/en/start-trail-running"
+      ],
+      "count": 2
+    },
+    {
+      "meta": "las 10 mejores rutas para correr en barcelona: montjuïc, paseo marítimo, carretera de les aigües y más. distancias, dificultad y consejos para runners.",
+      "paths": [
+        "/blog/mejores-rutas-correr-barcelona",
+        "/blog/en/best-running-routes-barcelona"
+      ],
+      "count": 2
+    },
+    {
+      "meta": "las mejores rutas para correr en malaga: paseo maritimo, montes de malaga, desembocadura del guadalhorce y más. distancias, dificultad y consejos para.",
+      "paths": [
+        "/blog/mejores-rutas-correr-malaga",
+        "/blog/en/best-running-routes-malaga"
+      ],
+      "count": 2
+    },
+    {
+      "meta": "las mejores rutas para correr en sevilla. parque de maria luisa, guadalquivir, alamillo y más. distancias, dificultad y consejos para runners.",
+      "paths": [
+        "/blog/mejores-rutas-correr-sevilla",
+        "/blog/en/best-running-routes-sevilla"
+      ],
+      "count": 2
+    },
+    {
+      "meta": "las 10 mejores rutas para correr en valencia: jardín del turia, paseo marítimo, albufera y más. distancias, dificultad y consejos para runners.",
+      "paths": [
+        "/blog/mejores-rutas-correr-valencia",
+        "/blog/en/best-running-routes-valencia"
+      ],
+      "count": 2
+    }
+  ],
+  "potential_cannibalization": [
+    {
+      "a": "/blog/bastones-trail-running",
+      "b": "/blog/mejores-bastones-trail-running",
+      "score": 1.0,
+      "shared_tokens": [
+        "bastones",
+        "trail"
+      ]
+    },
+    {
+      "a": "/blog/correr-antes-o-despues-de-comer",
+      "b": "/blog/que-comer-antes-de-correr",
+      "score": 0.667,
+      "shared_tokens": [
+        "antes",
+        "comer"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-despues-de-los-40",
+      "b": "/blog/empezar-a-correr-despues-de-los-50",
+      "score": 0.6,
+      "shared_tokens": [
+        "a",
+        "despues",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/carreras-trail-principiantes",
+      "b": "/blog/ultra-trail-principiantes",
+      "score": 0.5,
+      "shared_tokens": [
+        "principiantes",
+        "trail"
+      ]
+    },
+    {
+      "a": "/blog/como-elegir-reloj-gps-running",
+      "b": "/blog/smartwatch-vs-reloj-gps-running",
+      "score": 0.5,
+      "shared_tokens": [
+        "gps",
+        "reloj"
+      ]
+    },
+    {
+      "a": "/blog/correr-antes-o-despues-de-comer",
+      "b": "/blog/estiramientos-antes-despues-correr",
+      "score": 0.5,
+      "shared_tokens": [
+        "antes",
+        "despues"
+      ]
+    },
+    {
+      "a": "/blog/deka-fit-vs-deka-strong",
+      "b": "/blog/hyrox-vs-deka-fit",
+      "score": 0.5,
+      "shared_tokens": [
+        "deka",
+        "fit"
+      ]
+    },
+    {
+      "a": "/blog/dieta-runner-que-comer",
+      "b": "/blog/dieta-vegetariana-runner",
+      "score": 0.5,
+      "shared_tokens": [
+        "dieta",
+        "runner"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-con-verguenza",
+      "b": "/blog/empezar-a-correr-guia-principiantes",
+      "score": 0.5,
+      "shared_tokens": [
+        "a",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/entrenamiento-trail-running-plan",
+      "b": "/blog/plan-entrenamiento-10k",
+      "score": 0.5,
+      "shared_tokens": [
+        "entrenamiento",
+        "plan"
+      ]
+    },
+    {
+      "a": "/blog/coros-pace-3-review",
+      "b": "/blog/garmin-forerunner-265-vs-coros-pace-3",
+      "score": 0.429,
+      "shared_tokens": [
+        "3",
+        "coros",
+        "pace"
+      ]
+    },
+    {
+      "a": "/blog/plan-entrenamiento-media-maraton",
+      "b": "/blog/entrenamiento/plan-maraton-16-semanas-sub4h",
+      "score": 0.429,
+      "shared_tokens": [
+        "entrenamiento",
+        "maraton",
+        "plan"
+      ]
+    },
+    {
+      "a": "/blog/como-elegir-reloj-gps-running",
+      "b": "/blog/mejor-reloj-gps-running-calidad-precio",
+      "score": 0.4,
+      "shared_tokens": [
+        "gps",
+        "reloj"
+      ]
+    },
+    {
+      "a": "/blog/de-cero-a-5k",
+      "b": "/blog/running/como-empezar-a-correr-desde-cero/",
+      "score": 0.4,
+      "shared_tokens": [
+        "a",
+        "cero"
+      ]
+    },
+    {
+      "a": "/blog/deka-fit-vs-deka-strong",
+      "b": "/blog/zapatillas-deka-strong-atlas",
+      "score": 0.4,
+      "shared_tokens": [
+        "deka",
+        "strong"
+      ]
+    },
+    {
+      "a": "/blog/dolor-rodilla-al-correr",
+      "b": "/blog/flato-dolor-costado-al-correr",
+      "score": 0.4,
+      "shared_tokens": [
+        "al",
+        "dolor"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-con-verguenza",
+      "b": "/blog/empezar-a-correr-despues-de-los-40",
+      "score": 0.4,
+      "shared_tokens": [
+        "a",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-con-verguenza",
+      "b": "/blog/empezar-a-correr-despues-de-los-50",
+      "score": 0.4,
+      "shared_tokens": [
+        "a",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-con-verguenza",
+      "b": "/blog/running/como-empezar-a-correr-desde-cero/",
+      "score": 0.4,
+      "shared_tokens": [
+        "a",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-despues-de-los-40",
+      "b": "/blog/empezar-a-correr-guia-principiantes",
+      "score": 0.4,
+      "shared_tokens": [
+        "a",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-despues-de-los-50",
+      "b": "/blog/empezar-a-correr-guia-principiantes",
+      "score": 0.4,
+      "shared_tokens": [
+        "a",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/empezar-a-correr-guia-principiantes",
+      "b": "/blog/running/como-empezar-a-correr-desde-cero/",
+      "score": 0.4,
+      "shared_tokens": [
+        "a",
+        "empezar"
+      ]
+    },
+    {
+      "a": "/blog/entrenamiento-trail-running-plan",
+      "b": "/blog/plan-entrenamiento-media-maraton",
+      "score": 0.4,
+      "shared_tokens": [
+        "entrenamiento",
+        "plan"
+      ]
+    },
+    {
+      "a": "/blog/mejor-reloj-gps-running-calidad-precio",
+      "b": "/blog/smartwatch-vs-reloj-gps-running",
+      "score": 0.4,
+      "shared_tokens": [
+        "gps",
+        "reloj"
+      ]
+    },
+    {
+      "a": "/blog/plan-entrenamiento-10k",
+      "b": "/blog/plan-entrenamiento-media-maraton",
+      "score": 0.4,
+      "shared_tokens": [
+        "entrenamiento",
+        "plan"
+      ]
+    },
+    {
+      "a": "/blog/plan-entrenamiento-media-maraton",
+      "b": "/blog/zapatillas-running-media-maraton",
+      "score": 0.4,
+      "shared_tokens": [
+        "maraton",
+        "media"
+      ]
+    }
+  ],
+  "deep_articles": [
+    {
+      "path": "/blog/en/equipment/best-heart-rate-chest-straps-armbands-running/",
+      "depth": null,
+      "indegree": 0
+    },
+    {
+      "path": "/blog/en/hybrid-athletes/best-crossfit-backpacks-2026/",
+      "depth": null,
+      "indegree": 0
+    },
+    {
+      "path": "/blog/en/running/how-to-start-running-from-scratch/",
+      "depth": null,
+      "indegree": 0
+    },
+    {
+      "path": "/blog/en/running-shoes/best-running-shoes-to-start-running-2026/",
+      "depth": null,
+      "indegree": 0
+    },
+    {
+      "path": "/blog/en/training/16-week-marathon-plan-sub4h",
+      "depth": null,
+      "indegree": 0
+    },
+    {
+      "path": "/blog/equipamiento/las-10-mejores-gafas-deportivas-para-correr-en-2026/",
+      "depth": null,
+      "indegree": 0
+    },
+    {
+      "path": "/blog/running/como-empezar-a-correr-desde-cero/",
+      "depth": null,
+      "indegree": 0
+    }
+  ],
+  "pages_missing_preconnect": [
+    "/blog/como-elegir-zapatillas-running",
+    "/blog/correr-acompanado-cadiz",
+    "/blog/empezar-a-correr-despues-de-los-50",
+    "/blog/entrenar-skierg-row-hyrox",
+    "/blog/flato-dolor-costado-al-correr",
+    "/blog/grupos-running-bilbao",
+    "/blog/grupos-running-malaga",
+    "/blog/grupos-running-valencia",
+    "/blog/grupos-running-zaragoza",
+    "/blog/kettlebells-farmer-carry-hyrox",
+    "/blog/mejores-bastones-trail-running",
+    "/blog/mejores-bebidas-hidratacion-running",
+    "/blog/mejores-geles-energeticos-running",
+    "/blog/mejores-recuperadores-running",
+    "/blog/mejores-rutas-correr-malaga",
+    "/blog/mejores-rutas-correr-sevilla",
+    "/blog/mejores-zapatillas-hyrox",
+    "/blog/prevenir-lesiones-running",
+    "/blog/quedadas-correr-barcelona",
+    "/blog/rodillo-vs-pistola-masaje-recuperacion",
+    "/blog/sandbag-lunges-hyrox",
+    "/blog/ultra-trail-principiantes",
+    "/blog/volver-a-correr-despues-de-lesion",
+    "/blog/wall-ball-hyrox-comprar",
+    "/blog/zapatillas-deka-strong-atlas",
+    "/blog/zapatillas-running-media-maraton",
+    "/blog/atletas-hibridos/",
+    "/blog/categoria/",
+    "/blog/categoria/entrenamiento/",
+    "/blog/en/best-half-marathon-shoes",
+    "/blog/en/best-running-routes-malaga",
+    "/blog/en/best-running-routes-sevilla",
+    "/blog/en/how-to-choose-running-shoes",
+    "/blog/en/prevent-running-injuries",
+    "/blog/en/return-to-running-after-injury",
+    "/blog/en/running-meetups-barcelona",
+    "/blog/en/running-with-others-cadiz",
+    "/blog/en/side-stitch-while-running",
+    "/blog/en/start-running-after-50",
+    "/blog/en/categoria/",
+    "/blog/en/equipment/best-heart-rate-chest-straps-armbands-running/",
+    "/blog/en/running/best-running-shoes-to-start-running-2026/",
+    "/blog/en/training/16-week-marathon-plan-sub4h",
+    "/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners",
+    "/blog/entrenamiento/",
+    "/blog/entrenamiento/plan-maraton-16-semanas-sub4h",
+    "/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/",
+    "/blog/running/mejores-zapatillas-empezar-correr-2026/",
+    "/blog/zapatillas/"
+  ],
+  "pages_canonical_issue": [
+    {
+      "path": "/blog/atletas-hibridos/",
+      "canonical": "https://www.correrjuntos.com/blog/?cat=atleta-hibrido",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/categoria/",
+      "canonical": "",
+      "ok": false,
+      "abs": false
+    },
+    {
+      "path": "/blog/categoria/entrenamiento/",
+      "canonical": "https://www.correrjuntos.com/blog/categoria/?cat=entrenamiento",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/en/best-running-routes-barcelona",
+      "canonical": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/en/best-running-routes-malaga",
+      "canonical": "https://www.correrjuntos.com/blog/mejores-rutas-correr-malaga",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/en/best-running-routes-sevilla",
+      "canonical": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/en/best-running-routes-valencia",
+      "canonical": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/en/start-trail-running",
+      "canonical": "https://www.correrjuntos.com/blog/empezar-trail-running",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/en/trail-vs-road-running",
+      "canonical": "https://www.correrjuntos.com/blog/diferencias-trail-vs-asfalto",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/en/running/best-running-shoes-to-start-running-2026/",
+      "canonical": "https://www.correrjuntos.com/blog/en/running-shoes/best-running-shoes-to-start-running-2026",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/running/mejores-zapatillas-empezar-correr-2026/",
+      "canonical": "https://www.correrjuntos.com/blog/zapatillas/mejores-zapatillas-empezar-correr-2026",
+      "ok": false,
+      "abs": true
+    },
+    {
+      "path": "/blog/zapatillas/",
+      "canonical": "https://www.correrjuntos.com/blog/?cat=zapatillas",
+      "ok": false,
+      "abs": true
+    }
+  ],
+  "pages_h1_issue": [
+    {
+      "path": "/blog/atletas-hibridos/",
+      "h1_count": 0,
+      "h1": ""
+    },
+    {
+      "path": "/blog/categoria/entrenamiento/",
+      "h1_count": 0,
+      "h1": ""
+    },
+    {
+      "path": "/blog/en/running/best-running-shoes-to-start-running-2026/",
+      "h1_count": 0,
+      "h1": ""
+    },
+    {
+      "path": "/blog/running/mejores-zapatillas-empezar-correr-2026/",
+      "h1_count": 0,
+      "h1": ""
+    },
+    {
+      "path": "/blog/zapatillas/",
+      "h1_count": 0,
+      "h1": ""
+    }
+  ],
+  "articles_without_app_links": [],
+  "articles_without_cta_anchor": [
+    "/blog/atletas-hibridos/mejores-mochilas-crossfit-2026/",
+    "/blog/en/equipment/best-heart-rate-chest-straps-armbands-running/",
+    "/blog/en/hybrid-athletes/best-crossfit-backpacks-2026/",
+    "/blog/en/running/how-to-start-running-from-scratch/",
+    "/blog/en/running-shoes/best-running-shoes-to-start-running-2026/",
+    "/blog/en/training/16-week-marathon-plan-sub4h",
+    "/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners",
+    "/blog/equipamiento/las-10-mejores-gafas-deportivas-para-correr-en-2026/",
+    "/blog/equipamiento/mejores-bandas-frecuencia-cardiaca-running/",
+    "/blog/running/como-empezar-a-correr-desde-cero/",
+    "/blog/zapatillas/mejores-zapatillas-empezar-correr-2026/"
+  ],
+  "pages_with_weak_anchor_ratio_high": [
+    {
+      "path": "/blog/en/treadmill-vs-outdoor-running",
+      "weak": 5,
+      "all": 49,
+      "ratio": 0.102
+    },
+    {
+      "path": "/blog/correr-en-cinta-vs-calle",
+      "weak": 5,
+      "all": 50,
+      "ratio": 0.1
+    },
+    {
+      "path": "/blog/correr-es-social-tendencia",
+      "weak": 5,
+      "all": 50,
+      "ratio": 0.1
+    },
+    {
+      "path": "/blog/como-respirar-al-correr",
+      "weak": 5,
+      "all": 51,
+      "ratio": 0.098
+    },
+    {
+      "path": "/blog/correr-acompanado-engancha-mas",
+      "weak": 5,
+      "all": 51,
+      "ratio": 0.098
+    },
+    {
+      "path": "/blog/dolor-rodilla-al-correr",
+      "weak": 5,
+      "all": 52,
+      "ratio": 0.096
+    },
+    {
+      "path": "/blog/creatina-para-runners",
+      "weak": 5,
+      "all": 53,
+      "ratio": 0.094
+    },
+    {
+      "path": "/blog/recuperar-ganas-de-correr",
+      "weak": 5,
+      "all": 53,
+      "ratio": 0.094
+    },
+    {
+      "path": "/blog/seguridad-correr-con-desconocidos",
+      "weak": 5,
+      "all": 53,
+      "ratio": 0.094
+    },
+    {
+      "path": "/blog/beneficios-de-correr",
+      "weak": 5,
+      "all": 54,
+      "ratio": 0.093
+    },
+    {
+      "path": "/blog/primera-quedada-running",
+      "weak": 5,
+      "all": 54,
+      "ratio": 0.093
+    },
+    {
+      "path": "/blog/deka-fit-vs-deka-strong",
+      "weak": 4,
+      "all": 44,
+      "ratio": 0.091
+    },
+    {
+      "path": "/blog/hyrox-vs-deka-fit",
+      "weak": 4,
+      "all": 44,
+      "ratio": 0.091
+    },
+    {
+      "path": "/blog/en/common-running-mistakes",
+      "weak": 4,
+      "all": 44,
+      "ratio": 0.091
+    },
+    {
+      "path": "/blog/errores-principiante-running",
+      "weak": 5,
+      "all": 56,
+      "ratio": 0.089
+    },
+    {
+      "path": "/blog/hyrox-principiantes-guia",
+      "weak": 4,
+      "all": 45,
+      "ratio": 0.089
+    },
+    {
+      "path": "/blog/por-que-dejan-correr-3-meses",
+      "weak": 5,
+      "all": 57,
+      "ratio": 0.088
+    },
+    {
+      "path": "/blog/correr-solo-vs-acompanado",
+      "weak": 6,
+      "all": 69,
+      "ratio": 0.087
+    },
+    {
+      "path": "/blog/errores-comunes-corredores",
+      "weak": 4,
+      "all": 46,
+      "ratio": 0.087
+    },
+    {
+      "path": "/blog/conocer-gente-haciendo-deporte",
+      "weak": 5,
+      "all": 58,
+      "ratio": 0.086
+    },
+    {
+      "path": "/blog/cuantas-veces-semana-correr",
+      "weak": 5,
+      "all": 59,
+      "ratio": 0.085
+    },
+    {
+      "path": "/blog/correr-acompanado-cadiz",
+      "weak": 5,
+      "all": 60,
+      "ratio": 0.083
+    },
+    {
+      "path": "/blog/de-cero-a-5k",
+      "weak": 5,
+      "all": 60,
+      "ratio": 0.083
+    },
+    {
+      "path": "/blog/entrenar-skierg-row-hyrox",
+      "weak": 4,
+      "all": 48,
+      "ratio": 0.083
+    },
+    {
+      "path": "/blog/grupos-running-bilbao",
+      "weak": 5,
+      "all": 60,
+      "ratio": 0.083
+    },
+    {
+      "path": "/blog/zapatillas-deka-strong-atlas",
+      "weak": 4,
+      "all": 48,
+      "ratio": 0.083
+    },
+    {
+      "path": "/blog/en/training/16-week-marathon-plan-sub4h",
+      "weak": 3,
+      "all": 36,
+      "ratio": 0.083
+    },
+    {
+      "path": "/blog/grupos-running-madrid-principiantes",
+      "weak": 5,
+      "all": 61,
+      "ratio": 0.082
+    },
+    {
+      "path": "/blog/grupos-running-zaragoza",
+      "weak": 5,
+      "all": 61,
+      "ratio": 0.082
+    },
+    {
+      "path": "/blog/mejor-hora-para-correr",
+      "weak": 5,
+      "all": 61,
+      "ratio": 0.082
+    },
+    {
+      "path": "/blog/quedadas-correr-barcelona",
+      "weak": 5,
+      "all": 61,
+      "ratio": 0.082
+    },
+    {
+      "path": "/blog/en/running-is-social-fitness-trend",
+      "weak": 4,
+      "all": 49,
+      "ratio": 0.082
+    },
+    {
+      "path": "/blog/encontrar-runners-malaga",
+      "weak": 5,
+      "all": 62,
+      "ratio": 0.081
+    },
+    {
+      "path": "/blog/correr-y-gimnasio-mismo-dia",
+      "weak": 4,
+      "all": 50,
+      "ratio": 0.08
+    },
+    {
+      "path": "/blog/puedo-correr-todos-los-dias",
+      "weak": 4,
+      "all": 50,
+      "ratio": 0.08
+    },
+    {
+      "path": "/blog/soledad-del-runner",
+      "weak": 4,
+      "all": 50,
+      "ratio": 0.08
+    },
+    {
+      "path": "/blog/en/how-to-breathe-while-running",
+      "weak": 4,
+      "all": 50,
+      "ratio": 0.08
+    },
+    {
+      "path": "/blog/en/loneliness-of-running",
+      "weak": 4,
+      "all": 50,
+      "ratio": 0.08
+    },
+    {
+      "path": "/blog/en/why-group-running-is-addictive",
+      "weak": 4,
+      "all": 50,
+      "ratio": 0.08
+    },
+    {
+      "path": "/blog/correr-para-adelgazar",
+      "weak": 5,
+      "all": 63,
+      "ratio": 0.079
+    },
+    {
+      "path": "/blog/grupos-correr-sevilla",
+      "weak": 5,
+      "all": 63,
+      "ratio": 0.079
+    },
+    {
+      "path": "/blog/grupos-running-malaga",
+      "weak": 5,
+      "all": 63,
+      "ratio": 0.079
+    },
+    {
+      "path": "/blog/grupos-running-valencia",
+      "weak": 5,
+      "all": 63,
+      "ratio": 0.079
+    },
+    {
+      "path": "/blog/en/stretching-before-after-running",
+      "weak": 3,
+      "all": 38,
+      "ratio": 0.079
+    },
+    {
+      "path": "/blog/bidones-running",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/correr-por-la-noche-consejos",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/mochilas-trail-running",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/soft-flasks-running",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/en/best-running-apps",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/en/how-many-days-week-run",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/en/how-to-get-back-into-running",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/en/how-to-join-running-group",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/en/knee-pain-while-running",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/en/safety-running-with-strangers",
+      "weak": 4,
+      "all": 51,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/alimentos-antiinflamatorios-runners",
+      "weak": 5,
+      "all": 64,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/motivacion-para-correr",
+      "weak": 5,
+      "all": 64,
+      "ratio": 0.078
+    },
+    {
+      "path": "/blog/como-calentar-antes-de-correr",
+      "weak": 4,
+      "all": 52,
+      "ratio": 0.077
+    },
+    {
+      "path": "/blog/empezar-a-correr-con-verguenza",
+      "weak": 4,
+      "all": 52,
+      "ratio": 0.077
+    },
+    {
+      "path": "/blog/estiramientos-antes-despues-correr",
+      "weak": 3,
+      "all": 39,
+      "ratio": 0.077
+    },
+    {
+      "path": "/blog/mejores-garmin-running",
+      "weak": 4,
+      "all": 52,
+      "ratio": 0.077
+    },
+    {
+      "path": "/blog/en/benefits-of-running",
+      "weak": 4,
+      "all": 52,
+      "ratio": 0.077
+    },
+    {
+      "path": "/blog/en/race-day-nutrition",
+      "weak": 4,
+      "all": 52,
+      "ratio": 0.077
+    },
+    {
+      "path": "/blog/en/start-running-when-embarrassed",
+      "weak": 4,
+      "all": 52,
+      "ratio": 0.077
+    },
+    {
+      "path": "/blog/mejores-calleras-crossfit",
+      "weak": 4,
+      "all": 53,
+      "ratio": 0.075
+    },
+    {
+      "path": "/blog/que-comer-antes-de-correr",
+      "weak": 4,
+      "all": 53,
+      "ratio": 0.075
+    },
+    {
+      "path": "/blog/en/10k-training-plan",
+      "weak": 3,
+      "all": 40,
+      "ratio": 0.075
+    },
+    {
+      "path": "/blog/como-correr-mas-rapido",
+      "weak": 4,
+      "all": 54,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/wall-ball-hyrox-comprar",
+      "weak": 4,
+      "all": 54,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/en/beginner-running-mistakes-nobody-tells",
+      "weak": 4,
+      "all": 54,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/en/creatine-for-runners",
+      "weak": 4,
+      "all": 54,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/en/why-people-quit-running-3-months",
+      "weak": 4,
+      "all": 54,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/entrenamiento/plan-maraton-16-semanas-sub4h",
+      "weak": 4,
+      "all": 54,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/encontrar-gente-para-correr",
+      "weak": 5,
+      "all": 68,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/unirse-grupo-running",
+      "weak": 5,
+      "all": 68,
+      "ratio": 0.074
+    },
+    {
+      "path": "/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners",
+      "weak": 3,
+      "all": 41,
+      "ratio": 0.073
+    },
+    {
+      "path": "/blog/en/couch-to-5k-plan",
+      "weak": 4,
+      "all": 55,
+      "ratio": 0.073
+    },
+    {
+      "path": "/blog/en/meet-people-through-sports",
+      "weak": 4,
+      "all": 55,
+      "ratio": 0.073
+    },
+    {
+      "path": "/blog/en/running-to-lose-weight",
+      "weak": 4,
+      "all": 55,
+      "ratio": 0.073
+    },
+    {
+      "path": "/blog/en/what-to-eat-before-running",
+      "weak": 4,
+      "all": 55,
+      "ratio": 0.073
+    },
+    {
+      "path": "/blog/dieta-runner-que-comer",
+      "weak": 5,
+      "all": 70,
+      "ratio": 0.071
+    },
+    {
+      "path": "/blog/en/how-to-prepare-first-5k-race",
+      "weak": 3,
+      "all": 42,
+      "ratio": 0.071
+    },
+    {
+      "path": "/blog/kettlebells-farmer-carry-hyrox",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/mejores-apps-running",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/sandbag-lunges-hyrox",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/en/best-carbon-plate-running-shoes",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/en/best-creatine-running",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/en/best-omega-3-running",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/en/first-running-meetup",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/en/running-alone-vs-group",
+      "weak": 4,
+      "all": 57,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/plan-entrenamiento-10k",
+      "weak": 3,
+      "all": 43,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/en/post-run-stretches",
+      "weak": 3,
+      "all": 43,
+      "ratio": 0.07
+    },
+    {
+      "path": "/blog/ayuno-intermitente-running",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/mejores-bastones-trail-running",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/mejores-omega-3-runners",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/mejores-zapatillas-placa-carbono",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/en/find-running-partners",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/en/intermittent-fasting-running",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/en/walking-vs-running",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/en/what-energy-gel-marathon",
+      "weak": 4,
+      "all": 58,
+      "ratio": 0.069
+    },
+    {
+      "path": "/blog/cuanto-tardo-en-correr-5km",
+      "weak": 3,
+      "all": 44,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/andar-vs-correr",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/gafas-running",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/mejores-creatinas-running",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/no-tengo-con-quien-correr",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/que-gel-energetico-usar-maraton",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/en/best-protein-running",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/en/running-overweight-guide",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/en/running-with-others-cadiz",
+      "weak": 4,
+      "all": 59,
+      "ratio": 0.068
+    },
+    {
+      "path": "/blog/correr-con-sobrepeso",
+      "weak": 4,
+      "all": 60,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/mejores-zapatillas-hyrox",
+      "weak": 4,
+      "all": 60,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/en/beginner-running-groups-madrid",
+      "weak": 4,
+      "all": 60,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/en/benefits-of-group-running",
+      "weak": 3,
+      "all": 45,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/en/garmin-forerunner-55-review",
+      "weak": 4,
+      "all": 60,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/en/return-to-running-after-injury",
+      "weak": 3,
+      "all": 45,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/en/running-meetups-barcelona",
+      "weak": 4,
+      "all": 60,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/en/running-power",
+      "weak": 4,
+      "all": 60,
+      "ratio": 0.067
+    },
+    {
+      "path": "/blog/apps-correr-en-grupo",
+      "weak": 5,
+      "all": 76,
+      "ratio": 0.066
+    },
+    {
+      "path": "/blog/mejores-relojes-gps-running",
+      "weak": 4,
+      "all": 61,
+      "ratio": 0.066
+    },
+    {
+      "path": "/blog/potencia-en-running",
+      "weak": 4,
+      "all": 61,
+      "ratio": 0.066
+    },
+    {
+      "path": "/blog/en/find-runners-malaga",
+      "weak": 4,
+      "all": 61,
+      "ratio": 0.066
+    }
+  ],
+  "schema_type_counts": {
+    "Answer": 357,
+    "BlogPosting": 365,
+    "BreadcrumbList": 367,
+    "FAQPage": 357,
+    "ImageObject": 361,
+    "ListItem": 367,
+    "Organization": 365,
+    "Person": 365,
+    "Question": 357,
+    "WebPage": 356,
+    "WebSite": 353,
+    "ItemList": 46,
+    "HowTo": 12,
+    "HowToStep": 12,
+    "Blog": 2,
+    "CollectionPage": 2,
+    "SpeakableSpecification": 1
+  },
+  "preconnect_host_counts": {
+    "images.pexels.com": 307,
+    "m.media-amazon.com": 103,
+    "fonts.googleapis.com": 2,
+    "fonts.gstatic.com": 2
+  }
+}

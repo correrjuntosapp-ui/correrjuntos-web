@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sin conexion - CorrerJuntos</title>
+  <title>Sin conexión - CorrerJuntos</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -34,14 +34,32 @@
       text-decoration: none;
     }
     .btn:hover { background: #ea580c; }
+    .brand { color: #f97316; font-weight: 800; font-size: 14px; margin-top: 32px; letter-spacing: 0.5px; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="icon">📡</div>
-    <h1>Sin conexion</h1>
-    <p>Parece que no tienes conexion a internet. Comprueba tu red e intentalo de nuevo.</p>
-    <button class="btn" onclick="location.reload()">Reintentar</button>
+    <h1 id="title">Sin conexión</h1>
+    <p id="message">Parece que no tienes conexión a internet. Comprueba tu red e inténtalo de nuevo.</p>
+    <button class="btn" onclick="location.reload()" id="retry">Reintentar</button>
+    <div class="brand">CORRERJUNTOS</div>
   </div>
+  <script>
+    (function(){
+      var lang = (navigator.language || '').slice(0,2);
+      var t = {
+        en: { title: 'No connection', message: 'It looks like you\'re offline. Check your network and try again.', retry: 'Retry' },
+        pt: { title: 'Sem conexão', message: 'Parece que você está offline. Verifique sua rede e tente novamente.', retry: 'Tentar novamente' },
+        ru: { title: 'Нет соединения', message: 'Похоже, вы не в сети. Проверьте подключение и попробуйте снова.', retry: 'Повторить' }
+      };
+      if(t[lang]){
+        document.documentElement.lang = lang;
+        document.getElementById('title').textContent = t[lang].title;
+        document.getElementById('message').textContent = t[lang].message;
+        document.getElementById('retry').textContent = t[lang].retry;
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,307 @@
+{
+  "sitemaps_counts": {
+    "https://www.correrjuntos.com/sitemap.xml": 488,
+    "https://www.correrjuntos.com/sitemap-blog.xml": 180,
+    "https://www.correrjuntos.com/sitemap-cities.xml": 59,
+    "https://www.correrjuntos.com/sitemap-pages.xml": 9,
+    "https://www.correrjuntos.com/sitemap-equipamiento.xml": 11
+  },
+  "blog_total_urls": 180,
+  "blog_es_urls": 92,
+  "url_depth_distribution": {
+    "1": 1,
+    "2": 86,
+    "3": 90,
+    "4": 3
+  },
+  "home_blog_links_unique": 192,
+  "sitemap_es_not_in_home_count": 3,
+  "sitemap_es_not_in_home_sample": [
+    "https://www.correrjuntos.com/blog/equipamiento/las-10-mejores-gafas-deportivas-para-correr-en-2026",
+    "https://www.correrjuntos.com/blog/mejores-zapatillas-running-principiantes",
+    "https://www.correrjuntos.com/blog/running/como-empezar-a-correr-desde-cero"
+  ],
+  "home_blog_not_in_sitemap_count": 106,
+  "home_blog_not_in_sitemap_sample": [
+    "https://www.correrjuntos.com/blog",
+    "https://www.correrjuntos.com/blog/agujetas-despues-de-correr",
+    "https://www.correrjuntos.com/blog/andar-vs-correr",
+    "https://www.correrjuntos.com/blog/apps-correr-en-grupo",
+    "https://www.correrjuntos.com/blog/bastones-trail-running",
+    "https://www.correrjuntos.com/blog/bidones-running",
+    "https://www.correrjuntos.com/blog/calambres-al-correr",
+    "https://www.correrjuntos.com/blog/como-aumentar-resistencia-corriendo",
+    "https://www.correrjuntos.com/blog/como-elegir-zapatillas-running",
+    "https://www.correrjuntos.com/blog/como-evitar-problemas-digestivos-correr",
+    "https://www.correrjuntos.com/blog/conocer-gente-haciendo-deporte",
+    "https://www.correrjuntos.com/blog/correr-acompanado-cadiz",
+    "https://www.correrjuntos.com/blog/correr-acompanado-engancha-mas",
+    "https://www.correrjuntos.com/blog/correr-antes-o-despues-de-comer",
+    "https://www.correrjuntos.com/blog/correr-con-musica-beneficios",
+    "https://www.correrjuntos.com/blog/correr-con-perro-canicross",
+    "https://www.correrjuntos.com/blog/correr-con-sobrepeso",
+    "https://www.correrjuntos.com/blog/correr-embarazada-seguro",
+    "https://www.correrjuntos.com/blog/correr-en-ayunas",
+    "https://www.correrjuntos.com/blog/correr-en-cinta-vs-calle"
+  ],
+  "article_audit": [
+    {
+      "url": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes",
+      "title": "Cómo Empezar a Correr desde Cero: Guía + Plan 8 Semanas",
+      "title_len": 55,
+      "meta_description": "Guía paso a paso para empezar a correr desde cero. Plan de 8 semanas, técnica de carrera, nutrición básica y cómo evitar lesiones. Actualizado 2026.",
+      "meta_len": 148,
+      "h1_count": 1,
+      "h1": [
+        "Cómo Empezar a Correr desde Cero: Guía Completa"
+      ],
+      "h2_count": 13,
+      "h2_sample": [
+        "En este artículo",
+        "¿Por Qué Empezar a Correr?",
+        "Equipamiento Básico que Necesitas",
+        "Técnica Básica de Carrera",
+        "Plan de 8 Semanas para Principiantes",
+        "Cuándo y Dónde Correr",
+        "5 Errores Comunes de Principiante",
+        "Nutrición Básica para Principiantes"
+      ],
+      "h3_count": 20,
+      "word_count": 2073,
+      "images_total": 3,
+      "images_missing_alt": 1,
+      "images_empty_alt": 0,
+      "canonical": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes",
+      "schema_types": [
+        "Answer",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Question",
+        "WebPage",
+        "WebSite"
+      ],
+      "internal_links_total": 50,
+      "internal_blog_links": 24,
+      "app_links": 6,
+      "cta_term_hits": 2,
+      "keywords_count": {
+        "running": 17,
+        "entrenamiento": 4,
+        "plan": 11,
+        "equipamiento": 3,
+        "correr en grupo": 2,
+        "companeros": 0,
+        "compa?eros": 0
+      }
+    },
+    {
+      "url": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-asfalto",
+      "title": "Mejores Zapatillas Running Asfalto 2026 ▷ Comprar en España",
+      "title_len": 59,
+      "meta_description": "Las 10 mejores zapatillas de running para asfalto 2026 y dónde comprarlas en España. Nike Pegasus, Hoka Clifton, ASICS Nimbus, Brooks Ghost. Precios desde 89€. Guía por pisada y nivel.",
+      "meta_len": 184,
+      "h1_count": 1,
+      "h1": [
+        "Las 10 Mejores Zapatillas de Running para Asfalto en 2026"
+      ],
+      "h2_count": 10,
+      "h2_sample": [
+        "Contenido de esta guía",
+        "Como elegir: que buscar segun tu nivel",
+        "Las 10 mejores zapatillas de asfalto en 2026",
+        "Tabla comparativa rápida",
+        "Resumen rápido: cual comprar",
+        "Preguntas frecuentes sobre zapatillas de running",
+        "Estrena tus zapatillas corriendo en grupo",
+        "📬 Tips de Running en tu Email"
+      ],
+      "h3_count": 18,
+      "word_count": 2557,
+      "images_total": 13,
+      "images_missing_alt": 1,
+      "images_empty_alt": 0,
+      "canonical": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-asfalto",
+      "schema_types": [
+        "Answer",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Question",
+        "WebPage",
+        "WebSite"
+      ],
+      "internal_links_total": 48,
+      "internal_blog_links": 23,
+      "app_links": 6,
+      "cta_term_hits": 2,
+      "keywords_count": {
+        "running": 34,
+        "entrenamiento": 3,
+        "plan": 0,
+        "equipamiento": 2,
+        "correr en grupo": 0,
+        "companeros": 0,
+        "compa?eros": 0
+      }
+    },
+    {
+      "url": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa",
+      "title": "Hidratación para Running: Cuánto Beber Antes, Durante y Después de Correr (2026) | CorrerJuntos",
+      "title_len": 95,
+      "meta_description": "Plan de hidratación completo para runners: cuánto beber por km, electrolitos que necesitas, señales de deshidratación y errores que cometen el 90% de corredores.",
+      "meta_len": 161,
+      "h1_count": 1,
+      "h1": [
+        "Hidratación para Running: Guía Completa para Corredores"
+      ],
+      "h2_count": 14,
+      "h2_sample": [
+        "Contenido",
+        "Por qué la hidratación es clave en running",
+        "Cuánto beber antes de correr",
+        "Hidratación durante la carrera",
+        "Recuperación post-carrera",
+        "Señales de deshidratación y sobrehidratación",
+        "Bebidas isotónicas vs agua: ¿cuándo usar cada una?",
+        "Las mejores bebidas para runners"
+      ],
+      "h3_count": 26,
+      "word_count": 5993,
+      "images_total": 3,
+      "images_missing_alt": 1,
+      "images_empty_alt": 0,
+      "canonical": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa",
+      "schema_types": [
+        "Answer",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Question",
+        "WebPage",
+        "WebSite"
+      ],
+      "internal_links_total": 45,
+      "internal_blog_links": 16,
+      "app_links": 6,
+      "cta_term_hits": 3,
+      "keywords_count": {
+        "running": 11,
+        "entrenamiento": 6,
+        "plan": 10,
+        "equipamiento": 1,
+        "correr en grupo": 0,
+        "companeros": 0,
+        "compa?eros": 0
+      }
+    },
+    {
+      "url": "https://www.correrjuntos.com/blog/beneficios-correr-en-grupo",
+      "title": "7 Beneficios de Correr en Grupo Respaldados por Ciencia",
+      "title_len": 55,
+      "meta_description": "Los 7 beneficios de correr en grupo según la ciencia: más constancia, mejor rendimiento y salud mental. Descubre por qué correr acompañado engancha.",
+      "meta_len": 148,
+      "h1_count": 1,
+      "h1": [
+        "7 Beneficios de Correr en Grupo (Respaldados por la Ciencia)"
+      ],
+      "h2_count": 8,
+      "h2_sample": [
+        "En este artículo",
+        "¿Por Qué Correr en Grupo?",
+        "Los 7 Beneficios Comprobados",
+        "Cómo Encontrar tu Grupo de Running",
+        "¿Y si Soy Principiante?",
+        "¿Listo para correr en compañía?",
+        "📬 Tips de Running en tu Email",
+        "Artículos relacionados"
+      ],
+      "h3_count": 7,
+      "word_count": 1390,
+      "images_total": 3,
+      "images_missing_alt": 1,
+      "images_empty_alt": 0,
+      "canonical": "https://www.correrjuntos.com/blog/beneficios-correr-en-grupo",
+      "schema_types": [
+        "Answer",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Question",
+        "WebPage",
+        "WebSite"
+      ],
+      "internal_links_total": 41,
+      "internal_blog_links": 21,
+      "app_links": 6,
+      "cta_term_hits": 2,
+      "keywords_count": {
+        "running": 19,
+        "entrenamiento": 1,
+        "plan": 0,
+        "equipamiento": 0,
+        "correr en grupo": 8,
+        "companeros": 1,
+        "compa?eros": 0
+      }
+    }
+  ],
+  "tech_pages": [
+    {
+      "url": "https://www.correrjuntos.com/blog",
+      "status": "200",
+      "title": "Blog de Running | CorrerJuntos - Tips, Rutas y Guías para Corredores",
+      "meta_len": 152,
+      "canonical": "https://www.correrjuntos.com/blog/",
+      "schema": [
+        "Blog",
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
+      ],
+      "h1_count": 1,
+      "links_total": 252
+    },
+    {
+      "url": "https://www.correrjuntos.com/blog/categoria/",
+      "status": "200",
+      "title": "",
+      "meta_len": 51,
+      "canonical": "",
+      "schema": [],
+      "h1_count": 1,
+      "links_total": 13
+    },
+    {
+      "url": "https://www.correrjuntos.com/blog/en/",
+      "status": "200",
+      "title": "Running Blog | CorrerJuntos - Tips, Routes & Guides for Runners",
+      "meta_len": 120,
+      "canonical": "https://www.correrjuntos.com/blog/en/",
+      "schema": [
+        "Blog",
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
+      ],
+      "h1_count": 1,
+      "links_total": 225
+    }
+  ]
+}

@@ -30,8 +30,11 @@
         if (explainer) explainer.classList.remove('hidden');
         list.innerHTML = runners.map(function(r){
             var initials = (r.nombre || 'R').charAt(0).toUpperCase();
-            var photo = r.photo ? '<img src="'+r.photo+'" class="w-10 h-10 rounded-full object-cover" alt="" loading="lazy"/>' : '<div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-bold text-white text-sm">'+initials+'</div>';
-            return '<div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-center cursor-pointer hover:border-orange-500/30 transition" onclick="openUserProfile(\''+r.id+'\'); trackPremiumCTA(\'matching\')"><div class="flex justify-center mb-2">'+photo+'</div><p class="text-sm font-semibold text-white truncate">'+r.nombre+'</p><p class="text-xs text-gray-500">'+(r.nivel || currentUser.ciudad)+'</p><button class="mt-2 text-xs px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 font-semibold hover:bg-orange-500/30 transition">Conectar</button></div>';
+            var safeName = (typeof escapeLocationText === 'function') ? escapeLocationText(r.nombre || 'Runner') : (r.nombre || 'Runner').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            var safeNivel = (typeof escapeLocationText === 'function') ? escapeLocationText(r.nivel || currentUser.ciudad || '') : (r.nivel || currentUser.ciudad || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            var safeInitials = initials.replace(/</g,'&lt;');
+            var photo = r.photo ? '<img src="'+r.photo+'" class="w-10 h-10 rounded-full object-cover" alt="" loading="lazy"/>' : '<div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-bold text-white text-sm">'+safeInitials+'</div>';
+            return '<div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-center cursor-pointer hover:border-orange-500/30 transition" onclick="openUserProfile(\''+r.id+'\'); trackPremiumCTA(\'matching\')"><div class="flex justify-center mb-2">'+photo+'</div><p class="text-sm font-semibold text-white truncate">'+safeName+'</p><p class="text-xs text-gray-500">'+safeNivel+'</p><button class="mt-2 text-xs px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 font-semibold hover:bg-orange-500/30 transition">Conectar</button></div>';
         }).join('');
     };
 

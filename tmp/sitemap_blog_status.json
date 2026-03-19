@@ -1,0 +1,902 @@
+[
+  {
+    "url": "https://www.correrjuntos.com/blog/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/categoria/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/categoria"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/categoria/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/categoria"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/autor/jose-marquez",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/autor/jose-marquez"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/autor/carlos-ruiz"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/alimentos-antiinflamatorios-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/anti-inflammatory-foods-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/anti-inflammatory-foods-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/apple-watch-running-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/apple-watch-running-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/apple-watch-running-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/apple-watch-running-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/asics-gel-nimbus-26-vs-nike-pegasus-41",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/asics-gel-nimbus-26-vs-nike-pegasus-41"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/asics-gel-nimbus-26-vs-nike-pegasus-41",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/asics-gel-nimbus-26-vs-nike-pegasus-41"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/auriculares-conduccion-osea-vs-in-ear-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/auriculares-conduccion-osea-vs-in-ear-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/bone-conduction-vs-in-ear-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/bone-conduction-vs-in-ear-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/auriculares-running-natacion",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/auriculares-running-natacion"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/waterproof-headphones-running-swimming",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/waterproof-headphones-running-swimming"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/ayuno-intermitente-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/ayuno-intermitente-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/intermittent-fasting-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/beneficios-correr-en-grupo",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/beneficios-correr-en-grupo"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/benefits-of-group-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/benefits-of-group-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/beneficios-de-correr",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/beneficios-de-correr"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/benefits-of-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/benefits-of-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/cafeina-running-rendimiento",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/cafeina-running-rendimiento"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/caffeine-running-performance",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/caffeine-running-performance"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/calcetines-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/calcetines-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-socks",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-socks"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/carga-hidratos-maraton",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/carga-hidratos-maraton"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/marathon-carb-loading",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/marathon-carb-loading"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/carreras-trail-principiantes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/carreras-trail-principiantes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/trail-races-beginners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/trail-races-beginners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/chalecos-hidratacion-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/chalecos-hidratacion-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-hydration-vests",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-hydration-vests"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/chubasqueros-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/chubasqueros-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-rain-jackets",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-rain-jackets"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/cinturones-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/cinturones-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-belts",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-belts"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/como-calentar-antes-de-correr",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/como-calentar-antes-de-correr"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/how-to-warm-up-before-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/how-to-warm-up-before-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/como-correr-mas-rapido",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/como-correr-mas-rapido"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/how-to-run-faster",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/how-to-run-faster"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/como-elegir-reloj-gps-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/como-elegir-reloj-gps-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/how-to-choose-gps-running-watch",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/how-to-choose-gps-running-watch"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/como-preparar-primera-carrera-5k",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/como-preparar-primera-carrera-5k"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/how-to-prepare-first-5k-race",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/how-to-prepare-first-5k-race"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/como-respirar-al-correr",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/como-respirar-al-correr"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/how-to-breathe-while-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/how-to-breathe-while-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/coros-pace-3-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/coros-pace-3-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/coros-pace-3-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/coros-pace-3-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/correr-en-invierno",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/correr-en-invierno"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-in-winter",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-in-winter"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/creatina-para-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/creatina-para-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/creatine-for-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/creatine-for-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/dieta-runner-que-comer",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/dieta-runner-que-comer"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/runner-diet-what-to-eat",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/runner-diet-what-to-eat"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/diferencias-trail-vs-asfalto",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/diferencias-trail-vs-asfalto"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/trail-vs-road-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/trail-vs-road-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/dolor-rodilla-al-correr",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/dolor-rodilla-al-correr"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/knee-pain-while-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/knee-pain-while-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/how-to-start-running-beginners-guide",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/how-to-start-running-beginners-guide"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/empezar-trail-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/empezar-trail-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/start-trail-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/start-trail-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/entrenamiento-por-zonas-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/entrenamiento-por-zonas-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/zone-training-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/zone-training-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/errores-comunes-corredores",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/errores-comunes-corredores"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/common-running-mistakes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/common-running-mistakes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/estiramientos-antes-despues-correr"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/stretching-before-after-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/stretching-before-after-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/estiramientos-post-carrera",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/estiramientos-post-carrera"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/post-run-stretches",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/post-run-stretches"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/fascitis-plantar-corredores",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/fascitis-plantar-corredores"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/plantar-fasciitis-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/plantar-fasciitis-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/foam-rollers-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/foam-rollers-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/foam-rollers-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/foam-rollers-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/garmin-forerunner-265-vs-coros-pace-3",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/garmin-forerunner-265-vs-coros-pace-3"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/garmin-forerunner-265-vs-coros-pace-3",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/garmin-forerunner-265-vs-coros-pace-3"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/garmin-forerunner-55-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/garmin-forerunner-55-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/garmin-venu-3-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/garmin-venu-3-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/garmin-venu-3-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/garmin-venu-3-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/gorras-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/gorras-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-caps",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-caps"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/hidratacion-running-guia-completa"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-hydration-complete-guide"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/hoka-clifton-9-vs-bondi-8",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/hoka-clifton-9-vs-bondi-8"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/hoka-clifton-9-vs-bondi-8",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/hoka-clifton-9-vs-bondi-8"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/jbl-reflect-flow-pro-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/jbl-reflect-flow-pro-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/jbl-reflect-flow-pro-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/jbl-reflect-flow-pro-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/lamparas-frontales-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/lamparas-frontales-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-headlamps",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-headlamps"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mallas-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mallas-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-tights",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-tights"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/material-trail-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/material-trail-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/trail-running-gear",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/trail-running-gear"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejor-reloj-gps-running-calidad-precio",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejor-reloj-gps-running-calidad-precio"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-value-gps-running-watch",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-value-gps-running-watch"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-apps-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-apps-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-apps",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-apps"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-auriculares-baratos-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-auriculares-baratos-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-budget-running-headphones",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-budget-running-headphones"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-auriculares-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-auriculares-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-headphones",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-headphones"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-creatinas-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-creatinas-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-creatine-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-creatine-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-rutas-correr-barcelona"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-routes-barcelona",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-routes-barcelona"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-madrid",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-rutas-correr-madrid"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-routes-madrid"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-malaga",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-rutas-correr-malaga"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-routes-malaga",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-routes-malaga"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-rutas-correr-sevilla"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-routes-sevilla",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-routes-sevilla"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-rutas-correr-valencia"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-routes-valencia",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-routes-valencia"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-suplementos-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-suplementos-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-supplements-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-supplements-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-asfalto",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-asfalto"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-road-running-shoes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-road-running-shoes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-baratas",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-baratas"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-budget-running-shoes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-budget-running-shoes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-mujer",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-mujer"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-womens-running-shoes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-womens-running-shoes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-principiantes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-principiantes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-shoes-beginners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-shoes-beginners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-sobrepeso",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-zapatillas-running-sobrepeso"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/best-running-shoes-overweight",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/best-running-shoes-overweight"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/nike-pegasus-41-vs-brooks-ghost-16",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/nike-pegasus-41-vs-brooks-ghost-16"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/nike-pegasus-41-vs-brooks-ghost-16",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/nike-pegasus-41-vs-brooks-ghost-16"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/nutricion-dia-de-carrera"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/race-day-nutrition",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/race-day-nutrition"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/nutricion-para-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/nutricion-para-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/nutrition-for-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/nutrition-for-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/pack-basico-running-principiantes"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/basic-running-pack-beginners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/periostitis-tibial-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/periostitis-tibial-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/shin-splints-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/shin-splints-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/plan-entrenamiento-10k",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/plan-entrenamiento-10k"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/10k-training-plan",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/10k-training-plan"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/plan-entrenamiento-media-maraton"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/half-marathon-training-plan",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/half-marathon-training-plan"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/polar-pacer-pro-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/polar-pacer-pro-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/polar-pacer-pro-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/polar-pacer-pro-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/potencia-en-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/potencia-en-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-power",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-power"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/prevenir-lesiones-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/prevenir-lesiones-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/prevent-running-injuries",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/prevent-running-injuries"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/proteinas-para-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/proteinas-para-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/protein-for-runners",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/protein-for-runners"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/que-comer-antes-de-correr",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/que-comer-antes-de-correr"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/what-to-eat-before-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/what-to-eat-before-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/que-gel-energetico-usar-maraton",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/que-gel-energetico-usar-maraton"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/what-energy-gel-marathon",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/what-energy-gel-marathon"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/que-zapatillas-running-comprar-segun-nivel",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/que-zapatillas-running-comprar-segun-nivel"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/which-running-shoes-by-level",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/which-running-shoes-by-level"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/rodilla-del-corredor",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/rodilla-del-corredor"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/runners-knee",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/runners-knee"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/ropa-tecnica-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/ropa-tecnica-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-technical-clothing",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-technical-clothing"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/salomon-speedcross-6-vs-hoka-speedgoat-6",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/salomon-speedcross-6-vs-hoka-speedgoat-6"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/salomon-speedcross-6-vs-hoka-speedgoat-6",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/salomon-speedcross-6-vs-hoka-speedgoat-6"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/shokz-openrun-pro-2-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/shokz-openrun-pro-2-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/shokz-openrun-pro-2-review",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/shokz-openrun-pro-2-review"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/smartwatch-vs-reloj-gps-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/smartwatch-vs-reloj-gps-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/smartwatch-vs-gps-watch-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/smartwatch-vs-gps-watch-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/strava-vs-garmin-connect",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/strava-vs-garmin-connect"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/strava-vs-garmin-connect"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/tendinitis-aquiles-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/tendinitis-aquiles-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/achilles-tendinitis-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/achilles-tendinitis-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/variabilidad-cardiaca-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/variabilidad-cardiaca-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/heart-rate-variability-running"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/zapatillas-running-pronadores",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/zapatillas-running-pronadores"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-shoes-overpronators",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-shoes-overpronators"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/mejores-calleras-crossfit",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/mejores-calleras-crossfit"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/atletas-hibridos/mejores-mochilas-crossfit-2026/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/atletas-hibridos/mejores-mochilas-crossfit-2026"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/hybrid-athletes/best-crossfit-backpacks-2026/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/hybrid-athletes/best-crossfit-backpacks-2026"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/zapatillas/mejores-zapatillas-empezar-correr-2026/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/zapatillas/mejores-zapatillas-empezar-correr-2026"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running-shoes/best-running-shoes-to-start-running-2026/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running-shoes/best-running-shoes-to-start-running-2026"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/running/como-empezar-a-correr-desde-cero/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/running/como-empezar-a-correr-desde-cero"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/en/running/how-to-start-running-from-scratch/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/en/running/how-to-start-running-from-scratch"
+  },
+  {
+    "url": "https://www.correrjuntos.com/blog/equipamiento/las-10-mejores-gafas-deportivas-para-correr-en-2026/",
+    "status": 200,
+    "final": "https://www.correrjuntos.com/blog/equipamiento/las-10-mejores-gafas-deportivas-para-correr-en-2026"
+  }
+]

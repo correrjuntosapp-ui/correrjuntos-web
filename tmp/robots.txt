@@ -1,0 +1,82 @@
+# CorrerJuntos - robots.txt
+# https://www.correrjuntos.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+
+# ═══ AI Search Bots — ALLOW for AI search visibility ═══
+
+# OpenAI (ChatGPT Search, GPT responses)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI (Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Apple (Siri, Apple Intelligence)
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Microsoft Copilot
+User-agent: Bytespider
+Disallow: /
+
+# ═══ SEO Crawlers — Rate limit ═══
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 30
+
+# Sitemaps
+Sitemap: https://www.correrjuntos.com/sitemap.xml
+Sitemap: https://www.correrjuntos.com/sitemap-blog.xml
+Sitemap: https://www.correrjuntos.com/sitemap-cities.xml
+Sitemap: https://www.correrjuntos.com/sitemap-pages.xml
+Sitemap: https://www.correrjuntos.com/sitemap-equipamiento.xml

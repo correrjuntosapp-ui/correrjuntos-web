@@ -1741,35 +1741,43 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     maxZoom: 18
                 }).addTo(landingMap);
 
-                // Load recent quedadas markers
-                const sb = await getSupabaseClientOrToast(5000, false);
-                if (sb) {
-                    const { data } = await window.supabaseClient
-                        .from('quedadas')
-                        .select('lat, lng, titulo, ciudad')
-                        .not('lat', 'is', null)
-                        .not('lng', 'is', null)
-                        .order('created_at', { ascending: false })
-                        .limit(30);
+                // Load recent quedadas markers via direct REST (no auth dependency)
+                try {
+                    const todayStr = new Date().toISOString().split('T')[0];
+                    const resp = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/rest/v1/quedadas?select=lat,lng,titulo,ciudad,hora,nivel,fecha&lat=not.is.null&lng=not.is.null&fecha=gte.' + todayStr + '&order=fecha.asc&limit=30', {
+                        headers: { 'apikey': SUPABASE_ANON_KEY }
+                    });
+                    const data = await resp.json();
                     if (data && data.length) {
-                        const orangeIcon = L.divIcon({
-                            html: '<div style="width:10px;height:10px;background:#f97316;border-radius:50%;box-shadow:0 0 8px rgba(249,115,22,0.6);"></div>',
-                            className: '',
-                            iconSize: [10, 10],
-                            iconAnchor: [5, 5]
-                        });
+                        const getNivelColorLanding = function(n) {
+                            if (!n) return '#f97316';
+                            var nl = String(n).toLowerCase();
+                            if (nl.includes('principiante')) return '#22c55e';
+                            if (nl.includes('intermedio')) return '#f97316';
+                            if (nl.includes('avanzado')) return '#ef4444';
+                            if (nl.includes('elite')) return '#eab308';
+                            return '#f97316';
+                        };
                         data.forEach(q => {
                             if (q.lat && q.lng) {
-                                L.marker([q.lat, q.lng], { icon: orangeIcon }).addTo(landingMap);
+                                var color = getNivelColorLanding(q.nivel);
+                                var horaStr = q.hora ? q.hora.split(':').slice(0,2).join(':') : '';
+                                var icon = L.divIcon({
+                                    html: '<div style="background:' + color + ';display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:10px;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer"><span style="font-size:11px"><svg style="width:14px;height:14px;display:inline-block;vertical-align:middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span><span style="color:white;font-size:12px;font-weight:800">' + horaStr + '</span></div>',
+                                    className: 'cj-marker',
+                                    iconSize: [null, null],
+                                    iconAnchor: [30, 20]
+                                });
+                                L.marker([q.lat, q.lng], { icon: icon }).addTo(landingMap);
                             }
                         });
                         // Fit bounds
-                        const bounds = data.filter(q => q.lat && q.lng).map(q => [q.lat, q.lng]);
+                        var bounds = data.filter(q => q.lat && q.lng).map(q => [q.lat, q.lng]);
                         if (bounds.length > 1) {
-                            landingMap.fitBounds(bounds, { padding: [30, 30], maxZoom: 5 });
+                            landingMap.fitBounds(bounds, { padding: [30, 30], maxZoom: 6 });
                         }
                     }
-                }
+                } catch(mapErr) { console.warn('Landing map markers:', mapErr); }
             } catch (e) {
                 console.warn('initLandingMap:', e);
             }
@@ -1859,16 +1867,11 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             const grid = document.getElementById('quedadas-preview-grid');
             if (!grid) return;
             try {
-                const sb = await getSupabaseClientOrToast(8000, false);
-                if (!sb) { renderFallbackQuedadas(); return; }
-
-                const now = new Date().toISOString();
-                const { data } = await window.supabaseClient
-                    .from('quedadas')
-                    .select('id, titulo, ciudad, fecha, hora, nivel, lat, lng, organizador_nombre, ubicacion')
-                    .gte('fecha', now.split('T')[0])
-                    .order('fecha', { ascending: true })
-                    .limit(6);
+                const todayStr = new Date().toISOString().split('T')[0];
+                const resp = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/rest/v1/quedadas?select=id,titulo,ciudad,fecha,hora,nivel,lat,lng,organizador_nombre,ubicacion&fecha=gte.' + todayStr + '&order=fecha.asc&limit=6', {
+                    headers: { 'apikey': SUPABASE_ANON_KEY }
+                });
+                const data = await resp.json();
 
                 if (!data || data.length === 0) { renderFallbackQuedadas(); return; }
                 renderQuedadasCards(data, grid);

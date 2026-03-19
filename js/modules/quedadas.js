@@ -494,7 +494,7 @@ async function loadQuedadas(){
     const sb = window.supabaseClient;
     if (sb && typeof sb.from === 'function') {
         const premiumCols = ',is_private,access_code,recurrence,ruta_coords';
-        const baseCols = 'id,titulo,ciudad,ubicacion,direccion,lat,lng,fecha,hora,nivel,distancia,ritmo,descripcion,creador_id,created_at,es_seed,organizador_nombre,organizador_foto,participantes_seed,max_participantes';
+        const baseCols = 'id,titulo,ciudad,ubicacion,direccion,lat,lng,fecha,hora,nivel,distancia,ritmo,descripcion,creador_id,created_at,es_seed,organizador_nombre,organizador_foto,participantes_seed,max_participantes,pais';
         const joinCols = 'creador:profiles!quedadas_creador_id_fkey(id,nombre,apellidos,photo_url,organizer_rating,total_reviews,total_organized,verification_badge,es_premium),participantes(user_id,status,es_seed,profiles!participantes_user_id_fkey_profiles(id,nombre,apellidos,photo_url,es_seed,es_premium))';
 
         let query = sb.from('quedadas').select(baseCols + premiumCols + ',' + joinCols).gte('fecha', todayStr).order('fecha', { ascending: true }).order('hora', { ascending: true }).limit(100);

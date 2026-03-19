@@ -484,52 +484,65 @@ async function loadQuedadas(){
     // Mostrar skeletons mientras carga
     showSkeletons('lista-quedadas', 3);
 
-    const sb = await getSupabaseClientOrToast(12000, true);
-    if(!sb){
-        quedadas = [];
-        renderQuedadas();
-        updateMarkers();
-        return;
-    }
-
-    // Construir query base - incluir datos del creador/organizador
-    // Premium columns (is_private,access_code,recurrence,ruta_coords) require migration 16_premium_features.sql
-    const premiumCols = ',is_private,access_code,recurrence,ruta_coords';
-    const baseCols = 'id,titulo,ciudad,ubicacion,direccion,lat,lng,fecha,hora,nivel,distancia,ritmo,descripcion,creador_id,created_at,es_seed,organizador_nombre,organizador_foto,participantes_seed,max_participantes';
-    const joinCols = `creador:profiles!quedadas_creador_id_fkey(id,nombre,apellidos,photo_url,organizer_rating,total_reviews,total_organized,verification_badge,es_premium),participantes(user_id,status,es_seed,profiles!participantes_user_id_fkey_profiles(id,nombre,apellidos,photo_url,es_seed,es_premium))`;
-
-    // Filtrar quedadas futuras (>= hoy) para alinear con la app móvil
+    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhaWhpd2RidGNiZGF6bWF4ZG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1NTQwNjAsImV4cCI6MjA4NDEzMDA2MH0.C1Zus9DOIDJOGkdPWmMd_ZaSfG0ARVYobv66POrT-QU';
+    const API_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co/rest/v1';
     const todayStr = new Date().toISOString().split('T')[0];
 
-    let query = window.supabaseClient
-      .from('quedadas')
-      .select(`${baseCols}${premiumCols},${joinCols}`)
-      .gte('fecha', todayStr)
-      .order('fecha', { ascending: true })
-      .order('hora', { ascending: true })
-      .limit(100);
+    let data = null, error = null;
 
-    // Filtrar contenido seed solo para usuarios existentes (no nuevos)
-    if (!isNewUser()) {
-        query = query.or('es_seed.is.null,es_seed.eq.false');
+    // Try Supabase client first (with 8s timeout), fallback to REST
+    const sb = window.supabaseClient;
+    if (sb && typeof sb.from === 'function') {
+        const premiumCols = ',is_private,access_code,recurrence,ruta_coords';
+        const baseCols = 'id,titulo,ciudad,ubicacion,direccion,lat,lng,fecha,hora,nivel,distancia,ritmo,descripcion,creador_id,created_at,es_seed,organizador_nombre,organizador_foto,participantes_seed,max_participantes';
+        const joinCols = 'creador:profiles!quedadas_creador_id_fkey(id,nombre,apellidos,photo_url,organizer_rating,total_reviews,total_organized,verification_badge,es_premium),participantes(user_id,status,es_seed,profiles!participantes_user_id_fkey_profiles(id,nombre,apellidos,photo_url,es_seed,es_premium))';
+
+        let query = sb.from('quedadas').select(baseCols + premiumCols + ',' + joinCols).gte('fecha', todayStr).order('fecha', { ascending: true }).order('hora', { ascending: true }).limit(100);
+        if (!isNewUser()) query = query.or('es_seed.is.null,es_seed.eq.false');
+
+        try {
+            const result = await Promise.race([
+                query,
+                new Promise((_, rej) => setTimeout(() => rej(new Error('sdk_timeout')), 8000))
+            ]);
+            data = result.data;
+            error = result.error;
+
+            // Fallback: If premium columns don't exist
+            if (error && error.message && (error.message.includes('is_private') || error.message.includes('access_code'))) {
+                let q2 = sb.from('quedadas').select(baseCols + ',' + joinCols).gte('fecha', todayStr).order('fecha', { ascending: true }).order('hora', { ascending: true }).limit(100);
+                if (!isNewUser()) q2 = q2.or('es_seed.is.null,es_seed.eq.false');
+                const r2 = await Promise.race([q2, new Promise((_, rej) => setTimeout(() => rej(new Error('sdk_timeout')), 8000))]);
+                data = r2.data;
+                error = r2.error;
+            }
+        } catch(e) {
+            console.warn('Supabase SDK timeout, using REST fallback');
+            data = null;
+            error = null;
+        }
     }
 
-    let { data, error } = await query;
-
-    // Fallback: If premium columns don't exist yet, retry without them
-    if (error && error.message && (error.message.includes('is_private') || error.message.includes('access_code') || error.message.includes('recurrence') || error.message.includes('ruta_coords'))) {
-        console.warn('Premium columns not found, retrying without them:', error.message);
-        let fallbackQuery = window.supabaseClient
-            .from('quedadas')
-            .select(`${baseCols},${joinCols}`)
-            .gte('fecha', todayStr)
-            .order('fecha', { ascending: true })
-            .order('hora', { ascending: true })
-            .limit(100);
-        if (!isNewUser()) fallbackQuery = fallbackQuery.or('es_seed.is.null,es_seed.eq.false');
-        const fallback = await fallbackQuery;
-        data = fallback.data;
-        error = fallback.error;
+    // REST fallback if SDK failed or timed out
+    if (!data) {
+        try {
+            const resp = await fetch(API_URL + '/quedadas?select=id,titulo,ciudad,ubicacion,direccion,lat,lng,fecha,hora,nivel,distancia,ritmo,descripcion,creador_id,created_at,es_seed,organizador_nombre,organizador_foto,pais&fecha=gte.' + todayStr + '&or=(es_seed.is.null,es_seed.eq.false)&order=fecha.asc,hora.asc&limit=100', {
+                headers: { 'apikey': ANON_KEY }
+            });
+            data = await resp.json();
+            if (!Array.isArray(data)) data = [];
+            // Map REST data to expected format (no joins available via REST)
+            data = data.map(q => ({
+                ...q,
+                creador: { nombre: q.organizador_nombre || '', photo_url: q.organizador_foto || '' },
+                participantes: [],
+                asistentes: []
+            }));
+            error = null;
+        } catch(e) {
+            console.warn('REST fallback failed:', e.message);
+            error = { message: e.message };
+        }
     }
 
     if(error){

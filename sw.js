@@ -1,5 +1,5 @@
 // Service Worker - CorrerJuntos PWA
-const CACHE_NAME = 'correrjuntos-v37';
+const CACHE_NAME = 'correrjuntos-v38';
 const OFFLINE_URL = '/offline.html';
 
 // Archivos a cachear (NO incluir index.html para que siempre cargue la versión más reciente)

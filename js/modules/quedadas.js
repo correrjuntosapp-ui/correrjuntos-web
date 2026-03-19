@@ -716,9 +716,9 @@ function renderQuedadas(){
     const countEl = document.getElementById('quedadas-count');
     if(!list) return;
 
-    // Primero filtrar por país del usuario (si no está en modo mundial)
+    // Filtrar por país del usuario
     let quedadasPais = quedadas;
-    if (geoFilterMode === 'country' && userCountry) {
+    if (userCountry) {
         quedadasPais = quedadas.filter(q => matchesCountry(q.pais, userCountry));
     }
 

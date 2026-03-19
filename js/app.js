@@ -4002,7 +4002,21 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 
       // 3) Hidratar usuario (si hay sesión) y enganchar listener
       async function hydrateUserFromSession(){
-        const { data: u } = await sb.auth.getUser();
+        // Timeout auth.getUser() to prevent hanging on corrupted OAuth sessions
+        let authResult;
+        try {
+          authResult = await Promise.race([
+            sb.auth.getUser(),
+            new Promise((_, rej) => setTimeout(() => rej(new Error('auth_timeout')), 8000))
+          ]);
+        } catch(e) {
+          console.warn('auth.getUser timeout/error, clearing session:', e.message);
+          try { await sb.auth.signOut(); } catch(_) {}
+          window.currentUser = null;
+          try{ currentUser = null; }catch(_){}
+          return null;
+        }
+        const { data: u } = authResult;
         const user = u && u.user;
         if(!user){
           window.currentUser = null;

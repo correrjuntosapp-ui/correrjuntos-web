@@ -331,8 +331,8 @@ function getCountryCenter(countryCode) {
     return COUNTRY_CENTERS[countryCode] || COUNTRY_CENTERS['DEFAULT'];
 }
 
-// Mapeo de códigos de país a nombres
-const COUNTRY_CODE_MAP = {
+// Mapeo de códigos de país a nombres (exposed globally for app.js)
+const COUNTRY_CODE_MAP = window.COUNTRY_CODE_MAP = {
     'ES': ['España', 'Spain', 'ES'],
     'PT': ['Portugal', 'PT'],
     'AR': ['Argentina', 'AR'],

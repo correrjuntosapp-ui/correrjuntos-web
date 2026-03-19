@@ -2125,7 +2125,12 @@
             <!-- Lista de quedadas -->
             <div class="mb-4 max-w-5xl mx-auto px-4">
                 <h3 class="text-xl font-bold text-white mb-1" id="list-title">Quedadas disponibles</h3>
-                <p class="text-gray-500 text-sm" id="list-subtitle">Únete a una y corre con tu gente</p>
+                <p class="text-gray-500 text-sm mb-3" id="list-subtitle">Únete a una y corre con tu gente</p>
+                <div id="list-filters" class="flex gap-2 flex-wrap">
+                    <button onclick="filterQuedadasList('country')" id="list-filter-country" class="px-4 py-1.5 rounded-full text-sm font-semibold bg-orange-500 text-white transition">Mi país</button>
+                    <button onclick="filterQuedadasList('city')" id="list-filter-city" class="px-4 py-1.5 rounded-full text-sm font-semibold bg-slate-800 text-gray-400 hover:bg-slate-700 transition">Mi ciudad</button>
+                    <button onclick="filterQuedadasList('all')" id="list-filter-all" class="px-4 py-1.5 rounded-full text-sm font-semibold bg-slate-800 text-gray-400 hover:bg-slate-700 transition">Mundial</button>
+                </div>
             </div>
             <div id="lista-quedadas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-5xl w-full px-4"></div>
         </div>
@@ -3725,11 +3730,11 @@ document.currentScript.parentNode.insertBefore(s,document.currentScript.nextSibl
 <script src="/js/modules/ui.min.js" defer></script>
 <script src="/js/modules/auth.min.js" defer></script>
 <script src="/js/modules/profile.min.js" defer></script>
-<script src="/js/modules/map-core.min.js?v=20260319b" defer></script>
-<script src="/js/modules/quedadas.min.js?v=20260319b" defer></script>
+<script src="/js/modules/map-core.min.js?v=20260319c" defer></script>
+<script src="/js/modules/quedadas.min.js?v=20260319c" defer></script>
 <script src="/js/modules/filters.min.js" defer></script>
 <!-- Bootstrap + remaining features -->
-<script src="/js/app.min.js?v=20260319b" defer></script>
+<script src="/js/app.min.js?v=20260319c" defer></script>
 
 
   <!-- PWA Install Banner (Custom) -->

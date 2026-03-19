@@ -1624,7 +1624,33 @@ async function filterBy(filter, el){
 
     renderQuedadas();
     updateMarkers();
+    updateListFilterButtons(filter);
 }
+
+// ========== FILTROS DE LISTA DE QUEDADAS ==========
+function updateListFilterButtons(activeFilter) {
+    const buttons = {
+        country: document.getElementById('list-filter-country'),
+        city: document.getElementById('list-filter-city'),
+        all: document.getElementById('list-filter-all')
+    };
+    Object.entries(buttons).forEach(([key, btn]) => {
+        if (!btn) return;
+        if (key === activeFilter) {
+            btn.className = 'px-4 py-1.5 rounded-full text-sm font-semibold bg-orange-500 text-white transition';
+        } else {
+            btn.className = 'px-4 py-1.5 rounded-full text-sm font-semibold bg-slate-800 text-gray-400 hover:bg-slate-700 transition';
+        }
+    });
+}
+
+window.filterQuedadasList = function(filter) {
+    // Sync with map filter chips too
+    const chipMap = { country: 1, city: 2, all: 0 };
+    const chips = document.querySelectorAll('#city-chips .chip');
+    const targetChip = chips[chipMap[filter]] || null;
+    filterBy(filter, targetChip);
+};
 
 // ========== SISTEMA DE PÁGINA DE CIUDAD ==========
 let currentCiudad = null;

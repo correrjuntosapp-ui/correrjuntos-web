@@ -519,12 +519,12 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             if (ta) ta.checked = saved ? saved.analytics : true;
             if (tm) tm.checked = saved ? saved.marketing : true;
             if (tf) tf.checked = saved ? saved.functional : true;
-            banner.style.display = '';
+            banner.style.display = 'block';
+            // Force layout so translate-y-full is applied before animating
+            void banner.offsetHeight;
             requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    banner.classList.remove('translate-y-full');
-                    banner.classList.add('translate-y-0');
-                });
+                banner.classList.remove('translate-y-full');
+                banner.classList.add('translate-y-0');
             });
         }
         function closeCookieBanner() {

@@ -169,7 +169,7 @@
         setText('footer-advertise', t.footerAdvertise);
         setText('footer-global', t.footerGlobal);
         var badgeEl = document.getElementById('landing-badge');
-        if(badgeEl) {
+        if(badgeEl && t.landingBadge && badgeEl.innerHTML !== t.landingBadge) {
             badgeEl.innerHTML = t.landingBadge;
         }
 

@@ -240,17 +240,12 @@ function ensureHtml2Canvas() {
 }
 
 let currentTileLayer = null;
+let isInitialLoad = true;
 
 function initMap(){
     if(map) return;
-    // Centrar mapa: 1) ciudad del perfil, 2) geolocalización, 3) país
+    // Centrar mapa: siempre vista país completo al inicio
     var center = getCountryCenter(userCountry);
-    if(window.currentUser && window.currentUser.ciudad){
-        var cityCoords = getCityCenterByName(window.currentUser.ciudad);
-        if(cityCoords) center = {lat: cityCoords.lat, lng: cityCoords.lng, zoom: 12};
-    } else if(userLoc){
-        center = {lat: userLoc.lat, lng: userLoc.lng, zoom: 12};
-    }
     map=L.map('map',{zoomControl:false}).setView([center.lat, center.lng], center.zoom);
     map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps" target="_blank" rel="noopener noreferrer">Leaflet</a>');
     L.control.zoom({position:'bottomright'}).addTo(map);
@@ -515,8 +510,17 @@ function updateMarkers(){
         markers.push(m);
     });
 
-    // NO recentrar el mapa aquí - el recentrado se hace en filterBy()
-    // Solo dejamos el mapa donde filterBy() lo posicionó
+    // En carga inicial, mostrar país completo; si hay pins dispersos, expandir
+    if(isInitialLoad){
+        if(markers.length > 1){
+            var bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
+            var countryZoom = getCountryCenter(userCountry).zoom;
+            // maxZoom = countryZoom → nunca más cerca que la vista país completo
+            map.fitBounds(bounds, {padding: [50, 50], maxZoom: countryZoom});
+        }
+        // Si 0-1 pins, mantener la vista país del initMap (no hacer nada)
+        isInitialLoad = false;
+    }
 }
 
 

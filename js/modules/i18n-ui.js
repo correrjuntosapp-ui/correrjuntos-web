@@ -27,7 +27,7 @@
         var langSel = document.getElementById('lang-select');
         if(langSel && langSel.value !== currentLang) langSel.value = currentLang;
 
-        var setText = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
+        var setText = function(id, val) { var el = document.getElementById(id); if(el && val != null && el.textContent !== val) el.textContent = val; };
 
         setText('nav-login', t.navLogin);
         setText('nav-register', t.navRegister);

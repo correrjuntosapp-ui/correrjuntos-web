@@ -3934,7 +3934,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             // PWA y Deep Linking: cargar siempre, pero diferidos
             var loadDeferred = function() {
                 lazyLoadScript('/js/pwa.js');
-                lazyLoadScript('/js/deeplink.js');
+                lazyLoadScript('/js/deeplink.min.js');
             };
             if ('requestIdleCallback' in window) {
                 requestIdleCallback(loadDeferred);

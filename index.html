@@ -387,11 +387,13 @@
     </script>
     <!-- Módulos lazy: PWA, Deep Linking, Premium (se cargan tras idle) -->
     <link rel="prefetch" href="/js/pwa.min.js" as="script">
-    <link rel="prefetch" href="/js/deeplink.js" as="script">
+    <link rel="prefetch" href="/js/deeplink.min.js" as="script">
     <link rel="prefetch" href="/js/premium-features.min.js" as="script">
     <style>
+/* Fallback font metrics matching Inter to prevent CLS on font swap */
+@font-face { font-family: 'Inter Fallback'; src: local('Arial'); ascent-override: 90.49%; descent-override: 22.56%; line-gap-override: 0%; size-adjust: 107.64%; }
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: #0b1220; color: white; overflow-x: hidden; }
+        body { font-family: 'Inter', 'Inter Fallback', sans-serif; background: #0b1220; color: white; overflow-x: hidden; }
 
         /* Accesibilidad - Mejorar contraste y focus */
         :focus-visible { outline: 2px solid #f97316; outline-offset: 2px; }
@@ -932,21 +934,21 @@
                     <div class="phone-frame reveal-scale" style="transition-delay:0s">
                         <picture>
                             <source srcset="/images/app-mapa.webp" type="image/webp">
-                            <img src="/images/app-mapa.jpg" alt="Pantalla principal de CorrerJuntos — mapa interactivo con quedadas cerca de ti en España" loading="eager" fetchpriority="high" width="280" height="607" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:33px;">
+                            <img src="/images/app-mapa.jpg" alt="Pantalla principal de CorrerJuntos — mapa interactivo con quedadas cerca de ti en España" loading="lazy" width="280" height="607" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:33px;">
                         </picture>
                     </div>
                     <!-- Screenshot 2: Mi Perfil -->
                     <div class="phone-frame reveal-scale" style="transition-delay:0.15s">
                         <picture>
                             <source srcset="/images/app-perfil.webp" type="image/webp">
-                            <img src="/images/app-perfil.jpg" alt="Pantalla Mi Perfil de la app CorrerJuntos — nivel, estadísticas y progreso del corredor" loading="eager" fetchpriority="high" width="280" height="607" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:33px;">
+                            <img src="/images/app-perfil.jpg" alt="Pantalla Mi Perfil de la app CorrerJuntos — nivel, estadísticas y progreso del corredor" loading="lazy" width="280" height="607" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:33px;">
                         </picture>
                     </div>
                     <!-- Screenshot 3: Nueva Quedada -->
                     <div class="phone-frame reveal-scale" style="transition-delay:0.3s">
                         <picture>
                             <source srcset="/images/app-nueva-quedada.webp" type="image/webp">
-                            <img src="/images/app-nueva-quedada.jpg" alt="Pantalla Crear Nueva Quedada de la app CorrerJuntos — organiza tu próximo entrenamiento en Sevilla" loading="eager" fetchpriority="high" width="280" height="607" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:33px;">
+                            <img src="/images/app-nueva-quedada.jpg" alt="Pantalla Crear Nueva Quedada de la app CorrerJuntos — organiza tu próximo entrenamiento en Sevilla" loading="lazy" width="280" height="607" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:33px;">
                         </picture>
                     </div>
                 </div>
@@ -1493,7 +1495,7 @@
                         </div>
                     </div>
                     <div>
-                        <h4 id="footer-explore-title" class="font-bold text-white mb-4">Explorar</h4>
+                        <p id="footer-explore-title" class="font-bold text-white mb-4">Explorar</p>
                         <ul class="space-y-2">
                             <li><a href="/blog/" class="text-gray-500 hover:text-orange-500 text-sm transition">Blog Running</a></li>
                             <li><a href="/cities/" class="text-gray-500 hover:text-orange-500 text-sm transition">Ciudades</a></li>
@@ -1503,7 +1505,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 id="footer-download-title" class="font-bold text-white mb-4">Descargar la App</h4>
+                        <p id="footer-download-title" class="font-bold text-white mb-4">Descargar la App</p>
                         <div class="space-y-2.5">
                             <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer"
                                class="flex items-center gap-2.5 bg-black text-white px-3.5 py-2 rounded-xl border border-white/10 hover:border-orange-500/30 transition w-fit"
@@ -1529,7 +1531,7 @@
                         </div>
                     </div>
                     <div>
-                        <h4 id="footer-legal-title" class="font-bold text-white mb-4">Legal</h4>
+                        <p id="footer-legal-title" class="font-bold text-white mb-4">Legal</p>
                         <ul class="space-y-2">
                             <li><a href="/legal/terminos.html" onclick="event.preventDefault();openModal('modal-terms')" class="text-gray-500 hover:text-orange-500 text-sm transition" id="footer-terms">Términos y Condiciones</a></li>
                             <li><a href="/legal/privacidad.html" onclick="event.preventDefault();openModal('modal-privacy')" class="text-gray-500 hover:text-orange-500 text-sm transition" id="footer-privacy">Política de Privacidad</a></li>
@@ -1538,7 +1540,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 id="footer-contact-title" class="font-bold text-white mb-4">Contacto</h4>
+                        <p id="footer-contact-title" class="font-bold text-white mb-4">Contacto</p>
                         <ul class="space-y-2">
                             <li class="flex items-center gap-2 text-gray-500 text-sm"><svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><a href="mailto:hola@correrjuntos.com" class="hover:text-orange-500">hola@correrjuntos.com</a></li>
                             <li class="flex items-center gap-2 text-gray-500 text-sm"><svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><a href="/sobre-nosotros" class="hover:text-orange-500">Sobre Nosotros</a></li>
@@ -2449,7 +2451,7 @@
                     <div class="pt-2">
                         <label class="flex items-start gap-3 cursor-pointer">
                             <input type="checkbox" id="reg-terminos" class="checkbox-custom mt-0.5 w-5 h-5" aria-label="Acepto los términos y condiciones">
-                            <span class="text-sm text-gray-400">Soy mayor de 18 y acepto los <a href="javascript:void(0)" class="text-orange-500 hover:underline" onclick="event.stopPropagation(); openModal('modal-terms')">términos</a> y <a href="javascript:void(0)" class="text-orange-500 hover:underline" onclick="event.stopPropagation(); openModal('modal-privacy')">privacidad</a></span>
+                            <span class="text-sm text-gray-400">Soy mayor de 18 y acepto los <a href="/legal/terminos.html" class="text-orange-500 hover:underline" onclick="event.preventDefault(); event.stopPropagation(); openModal('modal-terms')">términos</a> y <a href="/legal/privacidad.html" class="text-orange-500 hover:underline" onclick="event.preventDefault(); event.stopPropagation(); openModal('modal-privacy')">privacidad</a></span>
                         </label>
                     </div>
                     <!-- Hidden checkbox para compatibilidad -->
@@ -4102,7 +4104,7 @@ document.currentScript.parentNode.insertBefore(s,document.currentScript.nextSibl
     </div>
 
     <!-- COOKIE CONSENT BANNER (CMP granular RGPD/LOPD) -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[9999] transition-transform duration-500 translate-y-full" role="dialog" aria-label="Configuración de cookies" aria-modal="true">
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[9999] transition-transform duration-500 translate-y-full" role="dialog" aria-label="Configuración de cookies" aria-modal="true" style="contain:layout size style;will-change:transform">
       <div class="max-w-4xl mx-auto p-4 m-4 bg-slate-900/95 backdrop-blur-lg border border-slate-700 rounded-2xl shadow-2xl">
         <!-- Vista inicial: mensaje + botones -->
         <div id="cookie-banner-main" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">

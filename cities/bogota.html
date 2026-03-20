@@ -473,5 +473,6 @@ if(document.documentElement.classList.contains('dark-mode')){document.body.class
 window.toggleBlogTheme=function(){document.body.classList.toggle('dark-mode');document.documentElement.classList.toggle('dark-mode');var d=document.body.classList.contains('dark-mode');localStorage.setItem('blog_theme',d?'dark':'light');document.querySelectorAll('.theme-toggle').forEach(function(b){b.textContent=d?'🌙':'☀️';});};
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.theme-toggle').forEach(function(b){b.textContent=document.body.classList.contains('dark-mode')?'🌙':'☀️';});});
 </script>
+<script src="/blog/cro.js" defer></script>
 </body>
 </html>

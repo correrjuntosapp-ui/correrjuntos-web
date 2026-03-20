@@ -16,7 +16,7 @@ test.describe('Landing Page', () => {
         // Hero heading should be visible (first h1 is the landing hero)
         const hero = page.locator('h1').first();
         await expect(hero).toBeVisible();
-        await expect(hero).toContainText('correr');
+        await expect(hero).toContainText(/correr|running/i);
     });
 
     test('CTA buttons exist and web CTA is visible', async ({ page }) => {

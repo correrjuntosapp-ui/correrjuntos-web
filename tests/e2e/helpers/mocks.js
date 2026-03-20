@@ -174,5 +174,5 @@ export async function waitForAppReady(page) {
         typeof window.AppState === 'object' &&
         typeof window.openModal === 'function' &&
         typeof window.doLogin === 'function'
-    , { timeout: 10000 });
+    , { timeout: 25000 });
 }

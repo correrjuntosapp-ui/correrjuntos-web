@@ -345,13 +345,13 @@
 
     <!-- Preloads críticos para LCP -->
     <link rel="preload" href="/css/deferred.min.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" as="style" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=optional" as="style" crossorigin>
 
-    <!-- Fonts: async + display=swap = zero CLS + non-blocking -->
+    <!-- Fonts: async + display=optional = zero CLS + non-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=optional" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=optional"></noscript>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
@@ -547,7 +547,7 @@
                 </svg>
             </div>
 
-            <div id="main-content" class="text-center mb-16">
+            <div id="main-content" class="text-center mb-16" style="min-height:520px">
                 <!-- Badge con social proof real -->
                 <div class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-bold mb-8 animate-pulse">
                     <span class="w-2 h-2 bg-orange-500 rounded-full"></span>

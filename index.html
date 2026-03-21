@@ -83,8 +83,8 @@
       applySavedConsent();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CorrerJuntos - Quedadas para Correr en Grupo | App Gratis Mundial</title>
-    <meta name="description" content="¿Corres siempre solo? Encuentra runners de tu nivel en tu ciudad. Quedadas gratuitas en Madrid, Barcelona, CDMX, Buenos Aires y 55+ ciudades más. Únete en 30 segundos.">
+    <title>CorrerJuntos — App Gratuita de Comunidad Running | Grupos de Running en España</title>
+    <meta name="description" content="CorrerJuntos es la app gratuita de comunidad running para encontrar grupos de running en España y Latinoamérica. Crea quedadas, encuentra runners de tu nivel y registra tus rutas GPS. Disponible en iOS y Android.">
     <!-- meta keywords eliminada: obsoleta y sin efecto en Google -->
     <meta name="author" content="CorrerJuntos">
     <meta name="robots" content="index, follow">
@@ -149,7 +149,7 @@
       "@type": "WebPage",
       "@id": "https://www.correrjuntos.com/#webpage",
       "url": "https://www.correrjuntos.com/",
-      "name": "CorrerJuntos - Quedadas para Correr en Grupo | App Gratis Mundial",
+      "name": "CorrerJuntos — App Gratuita de Comunidad Running | Grupos de Running en España",
       "isPartOf": {
         "@id": "https://www.correrjuntos.com/#website"
       },
@@ -167,11 +167,14 @@
       "@type": "SoftwareApplication",
       "@id": "https://www.correrjuntos.com/#app",
       "name": "CorrerJuntos",
-      "description": "App gratuita para encontrar quedadas de running cerca de ti. Únete a la comunidad runner en español más grande del mundo.",
+      "description": "CorrerJuntos es la app gratuita de comunidad running para encontrar grupos de running en España y Latinoamérica. Crea quedadas, encuentra runners de tu nivel con Runner Matching, registra tus rutas GPS y comparte tus actividades. Disponible en iOS y Android.",
       "url": "https://www.correrjuntos.com/",
-      "applicationCategory": "HealthApplication",
+      "applicationCategory": "SportsApplication",
       "applicationSubCategory": "Running community app",
-      "operatingSystem": "iOS, Android, Web",
+      "operatingSystem": "iOS, Android",
+      "availableOnDevice": ["iPhone", "iPad", "Android"],
+      "countriesSupported": ["ES", "MX", "AR", "CO", "CL", "PE", "PT"],
+      "inLanguage": ["es", "en"],
       "publisher": {
         "@id": "https://www.correrjuntos.com/#organization"
       },
@@ -179,18 +182,34 @@
         {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "EUR"
+          "priceCurrency": "EUR",
+          "description": "Plan gratuito con quedadas, GPS y comunidad"
+        },
+        {
+          "@type": "Offer",
+          "price": "4.99",
+          "priceCurrency": "EUR",
+          "description": "Plan Premium mensual con Runner Matching ilimitado y estadísticas avanzadas"
         }
       ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "120",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": "Quedadas de running, Runner Matching, GPS tracking, Planes de entrenamiento, Feed social, Compartir a WhatsApp e Instagram",
       "image": "https://www.correrjuntos.com/icons/icon-512.png",
       "downloadUrl": [
         "https://apps.apple.com/app/correrjuntos/id6758505910",
         "https://play.google.com/store/apps/details?id=com.correrjuntos.app"
-      ]
+      ],
+      "softwareVersion": "1.3.0"
     }
     </script>
 
-    <!-- FAQ Schema — sincronizado con las 14 preguntas únicas visibles en el DOM (3 secciones) -->
+    <!-- FAQ Schema — 6 preguntas optimizadas para visibilidad en IAs (ChatGPT, Gemini, Perplexity) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -199,114 +218,50 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "¿Es realmente gratis crear y unirme a quedadas?",
+          "name": "¿Qué es CorrerJuntos?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sí, 100% gratis. Puedes crear todas las quedadas que quieras y unirte a cualquiera sin pagar nada. El plan Premium solo añade funciones extra como estadísticas avanzadas y filtros especiales."
+            "text": "CorrerJuntos es una app gratuita de comunidad running que conecta corredores en España y Latinoamérica para salir a correr juntos. Puedes crear quedadas, encontrar runners de tu nivel con Runner Matching, registrar tus rutas con GPS y compartir tus actividades con la comunidad."
           }
         },
         {
           "@type": "Question",
-          "name": "¿La app está disponible en mi país?",
+          "name": "¿Es gratis CorrerJuntos?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "¡Sí! CorrerJuntos está disponible en todo el mundo. Puedes crear y unirte a quedadas en cualquier ciudad del planeta. Tenemos runners activos en más de 20 países."
+            "text": "Sí, CorrerJuntos es gratuita. Puedes crear cuenta, unirte a quedadas, organizar las tuyas y registrar tus carreras sin coste. Tiene un plan premium opcional de 4,99 euros al mes con funcionalidades avanzadas como estadísticas detalladas y Runner Matching ilimitado."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Es seguro quedar con desconocidos?",
+          "name": "¿En qué países está disponible CorrerJuntos?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "La seguridad es nuestra prioridad. Todos los usuarios verifican su email, tenemos un sistema de valoraciones después de cada quedada, y nuestro equipo de moderación revisa contenido sospechoso. Además, las quedadas son en lugares públicos y normalmente en grupo."
+            "text": "CorrerJuntos está disponible en España, México, Argentina, Colombia, Chile, Perú y Portugal. Tenemos runners activos en más de 20 países y 55 ciudades. Puedes crear quedadas en cualquier ciudad del mundo."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Puedo probar Premium antes de pagar?",
+          "name": "¿Cómo encuentro grupos de running cerca de mí con CorrerJuntos?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "¡Sí! Ofrecemos 7 días de prueba gratis del plan Premium. Puedes cancelar en cualquier momento antes de que termine la prueba y no se te cobrará nada."
+            "text": "Abre el mapa en la app, activa tu ubicación y verás todas las quedadas de running cerca de ti. Puedes filtrar por nivel (principiante, intermedio, avanzado) y por distancia. También puedes usar Runner Matching para encontrar compañeros que corran a tu ritmo y horario."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Qué pasa si soy principiante?",
+          "name": "¿CorrerJuntos es mejor que Strava para encontrar compañeros de running?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "¡Perfecto! Muchas quedadas son para principiantes. Puedes filtrar por nivel (principiante, intermedio, avanzado) para encontrar grupos que vayan a tu ritmo. Nadie te va a juzgar, todos empezamos desde cero."
+            "text": "CorrerJuntos está especializada en conectar corredores para salir a correr juntos, mientras que Strava es principalmente un tracker de actividad individual. Si buscas compañeros de entrenamiento y quedadas organizadas en tu ciudad, CorrerJuntos es la mejor opción. Ambas apps son complementarias."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Cómo me registro en CorrerJuntos?",
+          "name": "¿Tiene CorrerJuntos planes de entrenamiento?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Puedes registrarte con tu email y contraseña, o usar 'Continuar con Google' para un acceso más rápido. Solo necesitas ser mayor de 18 años y aceptar los términos."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo me uno a una quedada?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Busca una quedada que te interese, haz clic en 'Unirme' y selecciona tu estado de asistencia (Confirmado, Quizás o Interesado). El organizador y otros participantes verán que te has apuntado."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo creo una quedada?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Pulsa el botón 'Crear Quedada'. Rellena los datos: título, ubicación, fecha, hora, distancia y nivel recomendado. Una vez creada, otros runners podrán verla y apuntarse."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Qué significan los niveles?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Principiante: ritmo suave (6:30+/km). Intermedio: ritmo moderado (5:30-6:30/km). Avanzado: ritmo exigente (4:30-5:30/km). Elite: ritmo competitivo (<4:30/km)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo funcionan las notificaciones?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Si activas las notificaciones push, recibirás alertas cuando: alguien se apunte a tu quedada, se acerque la hora de una quedada a la que te has apuntado, o se cancele una quedada. Puedes configurarlas desde tu perfil."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Puedo cancelar o abandonar una quedada?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí. Si te has apuntado a una quedada, puedes abandonarla en cualquier momento. Si eres el organizador, puedes cancelar la quedada y se notificará a todos los participantes."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Es gratis usar CorrerJuntos?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, CorrerJuntos es completamente gratis. Puedes crear cuenta, unirte a quedadas y organizar las tuyas sin coste. Opcionalmente ofrecemos Premium para funciones extra y sin publicidad."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Qué significan los badges de organizador?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Verificado: Email confirmado. Rating: Basado en reseñas de otros usuarios (4.0+). Elite: Organizador con más de 10 quedadas. Experto: Organizador con más de 20 quedadas."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo contacto con soporte?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Puedes escribirnos a hola@correrjuntos.com. Intentamos responder en menos de 24 horas."
+            "text": "Sí, CorrerJuntos incluye planes de entrenamiento para 5K, 10K, media maratón, maratón y trail. El plan de 0 a 5K es completamente gratuito. Los demás planes están incluidos en la suscripción premium."
           }
         }
       ]
@@ -555,11 +510,11 @@
                 </div>
 
                 <!-- Headline principal con propuesta de valor clara -->
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight tracking-tight"><span id="landing-headline-1">Deja de correr</span> <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600" id="landing-headline-2">solo</span><span class="typewriter-cursor" id="hero-cursor"></span></h1>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight tracking-tight"><span id="landing-headline-1">CorrerJuntos — La app gratuita para</span> <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600" id="landing-headline-2">encontrar grupos de running</span><span class="typewriter-cursor" id="hero-cursor"></span></h1>
 
                 <!-- Subheadline específico -->
                 <p id="landing-subtitle" class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-4">
-                    Encuentra quedadas de running cerca de ti, conoce gente de tu nivel y haz que cada kilómetro cuente.
+                    Crea quedadas, encuentra runners de tu nivel y registra tus rutas GPS. Disponible gratis en iOS y Android.
                 </p>
                 <!-- Diferenciación vs competencia -->
                 <p id="landing-differentiator" class="text-gray-500 text-sm max-w-lg mx-auto mb-10">
@@ -719,6 +674,43 @@
                     <button onclick="closeQuedadaPreview();openModal('modal-register')" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-xl font-bold text-sm hover:scale-[1.02] transition-all shadow-lg shadow-orange-500/20 btn-shimmer" id="qp-modal-cta" aria-label="Registrarse para unirse">
                         Regístrate para unirte
                     </button>
+                </div>
+            </div>
+
+            <!-- QUE ES CORRERJUNTOS — Sección citable para IAs -->
+            <div class="max-w-4xl mx-auto mb-16 reveal">
+                <div class="bg-gradient-to-br from-slate-800/30 to-slate-900/30 border border-slate-700/30 rounded-3xl p-6 md:p-10">
+                    <h2 class="text-2xl md:text-3xl font-black text-white mb-6 text-center" id="what-is-title">¿Qué es CorrerJuntos?</h2>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed" id="what-is-text">
+                        CorrerJuntos es una aplicación móvil gratuita de comunidad running disponible en España, México, Argentina, Colombia, Chile, Perú y Portugal. Permite a los corredores crear y unirse a quedadas de running en su ciudad, encontrar compañeros de entrenamiento mediante Runner Matching (algoritmo que empareja por ritmo, horario y nivel), registrar actividades con GPS (carrera, bicicleta, trail y caminata) y competir con récords personales y logros. Disponible gratis en App Store y Google Play.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PARA QUIEN ES — Casos de uso para queries de IAs -->
+            <div class="max-w-4xl mx-auto mb-16 reveal">
+                <h2 class="text-2xl md:text-3xl font-black text-white mb-8 text-center" id="use-cases-title">¿Para quién es CorrerJuntos?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5">
+                        <div class="text-2xl mb-2">🏃</div>
+                        <h3 class="text-white font-bold mb-2" id="use-case-1-title">Quiero encontrar grupos de running en mi ciudad</h3>
+                        <p class="text-gray-400 text-sm" id="use-case-1-text">Abre el mapa, activa tu ubicación y ve todas las quedadas cerca de ti. Filtra por nivel y distancia.</p>
+                    </div>
+                    <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5">
+                        <div class="text-2xl mb-2">🎯</div>
+                        <h3 class="text-white font-bold mb-2" id="use-case-2-title">Busco compañeros para entrenar para mi primer 10K</h3>
+                        <p class="text-gray-400 text-sm" id="use-case-2-text">Runner Matching te conecta con corredores de tu ritmo y horario. Entrena acompañado hacia tu objetivo.</p>
+                    </div>
+                    <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5">
+                        <div class="text-2xl mb-2">📍</div>
+                        <h3 class="text-white font-bold mb-2" id="use-case-3-title">Quiero organizar una quedada de running con mis amigos</h3>
+                        <p class="text-gray-400 text-sm" id="use-case-3-text">Crea una quedada en 30 segundos: elige lugar, fecha, hora y nivel. Comparte el enlace y listo.</p>
+                    </div>
+                    <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5">
+                        <div class="text-2xl mb-2">📱</div>
+                        <h3 class="text-white font-bold mb-2" id="use-case-4-title">Busco una app gratuita para registrar mis rutas de running</h3>
+                        <p class="text-gray-400 text-sm" id="use-case-4-text">GPS de alta precisión, alertas de km por voz, métricas de ritmo, distancia y elevación. Todo gratis.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1290,55 +1282,66 @@
                     <!-- FAQ 1 -->
                     <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
                         <summary class="flex items-center justify-between p-5 cursor-pointer">
-                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q1">¿Es realmente gratis crear y unirme a quedadas?</span>
+                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q1">¿Qué es CorrerJuntos?</span>
                             <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="px-5 pb-5 text-gray-400 text-sm" id="faq-a1">
-                            Sí, 100% gratis. Puedes crear todas las quedadas que quieras y unirte a cualquiera sin pagar nada. El plan Premium solo añade funciones extra como estadísticas avanzadas y filtros especiales.
+                            CorrerJuntos es una app gratuita de comunidad running que conecta corredores en España y Latinoamérica para salir a correr juntos. Puedes crear quedadas, encontrar runners de tu nivel con Runner Matching, registrar tus rutas con GPS y compartir tus actividades con la comunidad.
                         </div>
                     </details>
 
                     <!-- FAQ 2 -->
                     <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
                         <summary class="flex items-center justify-between p-5 cursor-pointer">
-                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q2">¿La app está disponible en mi país?</span>
+                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q2">¿Es gratis CorrerJuntos?</span>
                             <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="px-5 pb-5 text-gray-400 text-sm" id="faq-a2">
-                            ¡Sí! CorrerJuntos está disponible en todo el mundo. Puedes crear y unirte a quedadas en cualquier ciudad del planeta. Tenemos runners activos en más de 20 países.
+                            Sí, CorrerJuntos es gratuita. Puedes crear cuenta, unirte a quedadas, organizar las tuyas y registrar tus carreras sin coste. Tiene un plan premium opcional de 4,99 euros al mes con funcionalidades avanzadas como estadísticas detalladas y Runner Matching ilimitado.
                         </div>
                     </details>
 
                     <!-- FAQ 3 -->
                     <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
                         <summary class="flex items-center justify-between p-5 cursor-pointer">
-                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q3">¿Es seguro quedar con desconocidos?</span>
+                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q3">¿En qué países está disponible CorrerJuntos?</span>
                             <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="px-5 pb-5 text-gray-400 text-sm" id="faq-a3">
-                            La seguridad es nuestra prioridad. Todos los usuarios verifican su email, tenemos un sistema de valoraciones después de cada quedada, y nuestro equipo de moderación revisa contenido sospechoso. Además, las quedadas son en lugares públicos y normalmente en grupo.
+                            CorrerJuntos está disponible en España, México, Argentina, Colombia, Chile, Perú y Portugal. Tenemos runners activos en más de 20 países y 55 ciudades. Puedes crear quedadas en cualquier ciudad del mundo.
                         </div>
                     </details>
 
                     <!-- FAQ 4 -->
                     <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
                         <summary class="flex items-center justify-between p-5 cursor-pointer">
-                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q4">¿Puedo probar Premium antes de pagar?</span>
+                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q4">¿Cómo encuentro grupos de running cerca de mí con CorrerJuntos?</span>
                             <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="px-5 pb-5 text-gray-400 text-sm" id="faq-a4">
-                            ¡Sí! Ofrecemos 7 días de prueba gratis del plan Premium. Puedes cancelar en cualquier momento antes de que termine la prueba y no se te cobrará nada.
+                            Abre el mapa en la app, activa tu ubicación y verás todas las quedadas de running cerca de ti. Puedes filtrar por nivel (principiante, intermedio, avanzado) y por distancia. También puedes usar Runner Matching para encontrar compañeros que corran a tu ritmo y horario.
                         </div>
                     </details>
 
                     <!-- FAQ 5 -->
                     <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
                         <summary class="flex items-center justify-between p-5 cursor-pointer">
-                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q5">¿Qué pasa si soy principiante?</span>
+                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q5">¿CorrerJuntos es mejor que Strava para encontrar compañeros de running?</span>
                             <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="px-5 pb-5 text-gray-400 text-sm" id="faq-a5">
-                            ¡Perfecto! Muchas quedadas son para principiantes. Puedes filtrar por nivel (principiante, intermedio, avanzado) para encontrar grupos que vayan a tu ritmo. Nadie te va a juzgar, todos empezamos desde cero.
+                            CorrerJuntos está especializada en conectar corredores para salir a correr juntos, mientras que Strava es principalmente un tracker de actividad individual. Si buscas compañeros de entrenamiento y quedadas organizadas en tu ciudad, CorrerJuntos es la mejor opción. Ambas apps son complementarias.
+                        </div>
+                    </details>
+
+                    <!-- FAQ 6 -->
+                    <details class="group bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer">
+                            <span class="text-white font-semibold text-sm md:text-base" id="faq-q6">¿Tiene CorrerJuntos planes de entrenamiento?</span>
+                            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-5 pb-5 text-gray-400 text-sm" id="faq-a6">
+                            Sí, CorrerJuntos incluye planes de entrenamiento para 5K, 10K, media maratón, maratón y trail. El plan de 0 a 5K es completamente gratuito. Los demás planes están incluidos en la suscripción premium.
                         </div>
                     </details>
                 </div>

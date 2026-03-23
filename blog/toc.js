@@ -109,10 +109,9 @@
   toc.insertBefore(btn, tocHeader.nextSibling);
   if (tocH2) tocH2.style.display = 'none';
 
-  /* Start collapsed on mobile */
+  /* Start expanded always */
   function isMobile(){ return window.innerWidth < 1200; }
-  if (isMobile()) toc.classList.add('collapsed');
-  else toc.classList.add('expanded');
+  toc.classList.add('expanded');
 
   btn.addEventListener('click', function(){
     var collapsed = toc.classList.contains('collapsed');

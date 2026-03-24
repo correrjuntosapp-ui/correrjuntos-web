@@ -13,6 +13,12 @@
       "runtimeArgs": ["node_modules/expo/bin/cli", "start", "--web", "--port", "8081"],
       "port": 8081,
       "cwd": "correr-juntos-app"
+    },
+    {
+      "name": "nonadessolo-web",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/serve/build/main.js", "-l", "3001", "../NoNadesSolo"],
+      "port": 3001
     }
   ]
 }

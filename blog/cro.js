@@ -248,4 +248,58 @@
     }).observe(scrollBanner, {attributes: true, attributeFilter: ['class']});
   }
 
+  /* ══════════════════════════════════════════════
+     4. MICRO-CONVERSION FUNNEL TRACKING
+     ══════════════════════════════════════════════ */
+
+  /* Track page category for funnel analysis */
+  var pageCategory = 'other';
+  if(/zapatilla|shoe|nike|asics|hoka|on-running/.test(slug)) pageCategory = 'zapatillas';
+  else if(/plan|entrenamiento|training|5k|10k|maraton|marathon|trail/.test(slug)) pageCategory = 'planes';
+  else if(/nutricion|nutrition|comer|dieta|diet/.test(slug)) pageCategory = 'nutricion';
+  else if(/salud|health|lesion|injury|dolor/.test(slug)) pageCategory = 'salud';
+  else if(/grupo|quedada|group|meetup|social|acompan/.test(slug)) pageCategory = 'comunidad';
+  else if(/reloj|gps|garmin|coros|apple|tech/.test(slug)) pageCategory = 'tecnologia';
+  else if(/principiante|beginner|empezar|start/.test(slug)) pageCategory = 'principiantes';
+
+  /* Blog article view with category */
+  ga('blog_article_view', {slug: slug, category: pageCategory, lang: lang});
+
+  /* Track scroll depth milestones */
+  var scrollMilestones = {25: false, 50: false, 75: false, 100: false};
+  window.addEventListener('scroll', function(){
+    var pct = Math.round(100 * window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
+    [25,50,75,100].forEach(function(m){
+      if(pct >= m && !scrollMilestones[m]){
+        scrollMilestones[m] = true;
+        ga('blog_scroll_depth', {slug: slug, depth: m, category: pageCategory});
+      }
+    });
+  }, {passive: true});
+
+  /* Track CTA box clicks (static ones in the HTML) */
+  var ctaBox = document.querySelector('.cta-box');
+  if(ctaBox){
+    ctaBox.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        var dest = a.href.indexOf('apple') !== -1 ? 'ios' : (a.href.indexOf('google') !== -1 ? 'android' : 'web');
+        ga('cta_box_click', {slug: slug, category: pageCategory, destination: dest});
+      });
+    });
+  }
+
+  /* Track navigation to plan landing pages */
+  document.querySelectorAll('a[href*="/planes/"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      ga('blog_to_plan_landing', {slug: slug, plan_url: a.getAttribute('href'), category: pageCategory});
+    });
+  });
+
+  /* Track time on page (30s, 60s, 120s, 300s) */
+  [30,60,120,300].forEach(function(s){
+    setTimeout(function(){
+      ga('blog_time_on_page', {slug: slug, seconds: s, category: pageCategory});
+    }, s * 1000);
+  });
+
 })();

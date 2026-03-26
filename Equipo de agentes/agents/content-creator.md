@@ -259,6 +259,10 @@ Grid de productos:
 - SIEMPRE verificar unicidad: `grep "pexels-photo-XXXXX" blog/*.html` = 0 resultados
 - NO repetir fotos NUNCA entre artículos
 - Fotos REPARTIDAS por el artículo, 1 por sección — no agrupadas
+- **NUNCA usar fotos con menores de edad** (niños, adolescentes, uniformes escolares)
+- **NUNCA usar fotos genéricas** que no tengan que ver con el nicho running/deporte
+- SIEMPRE verificar visualmente que la foto muestra ADULTOS haciendo DEPORTE/RUNNING
+- Si la foto es un paisaje sin personas corriendo, NO sirve
 
 ## Reglas de COMMIT
 - Hacer commit + push automáticamente SIN preguntar

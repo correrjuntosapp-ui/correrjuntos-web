@@ -123,7 +123,7 @@
 {s:'mejores-recuperadores-running',t:'10 Mejores Recuperadores para Running',c:'Suplementaci\u00f3n',i:'/blog/img/recuperadores-running.jpg'},
 {s:'mejores-pulsometros-running-2026',t:'10 Mejores Puls\u00f3metros para Running 2026',c:'Equipamiento',i:'https://m.media-amazon.com/images/I/61DZ9mOKb2L._AC_SL1500_.jpg'},
 {s:'mejores-relojes-gps-running',t:'10 Mejores Relojes GPS para Running',c:'Tecnolog\u00eda',i:'https://images.pexels.com/photos/4379234/pexels-photo-4379234.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
-{s:'mejores-suplementos-runners',t:'Mejores Suplementos para Runners',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'mejores-suplementos-runners',t:'Mejores Suplementos para Runners 2026: Creatina, Geles y M\u00e1s',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-zapatillas-placa-carbono',t:'10 Mejores Zapatillas Placa de Carbono',c:'Zapatillas',i:'https://images.pexels.com/photos/6481840/pexels-photo-6481840.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-zapatillas-running',t:'Mejores Zapatillas Running 2026 — Gu\u00eda Definitiva',c:'Zapatillas',i:'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'mejores-zapatillas-running-asfalto',t:'10 Mejores Zapatillas para Asfalto',c:'Zapatillas',i:'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

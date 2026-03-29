@@ -135,7 +135,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .product-card{background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:20px 24px;margin:24px 0}
 .product-card h3{margin-top:0;font-size:1.1rem}.price-tag{display:inline-block;padding:3px 12px;border-radius:999px;font-size:.85rem;font-weight:700;color:#f97316;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);margin-bottom:10px}.best-for{font-size:.85rem;color:#16a34a;font-weight:600;margin-bottom:12px}
 .product-img{text-align:center;padding:16px;background:rgba(255,255,255,.95);border-radius:12px;margin-bottom:16px}.product-img img{max-height:220px;max-width:100%;object-fit:contain}
-.buy-btn{display:block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(249,115,22,.25);margin:16px auto;text-align:center;max-width:300px}.buy-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(249,115,22,.35)}
+.buy-wrap{text-align:center;margin:16px 0}.buy-btn{display:inline-flex;align-items:center;gap:8px;background:#FF9900;color:#111;padding:11px 22px;border-radius:8px;font-weight:700;text-decoration:none;font-size:.9rem;transition:all .2s;box-shadow:0 2px 8px rgba(255,153,0,.3);white-space:nowrap}.buy-btn:hover{background:#e68900;transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,153,0,.4)}.buy-btn svg{flex-shrink:0}
 .score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.score-item{background:#fef7ed;border:1px solid rgba(0,0,0,.06);border-radius:10px;padding:10px;text-align:center}.score-item .score-label{display:block;font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}.score-item .score-val{font-size:1.1rem;font-weight:800;color:#f97316}.score-total{grid-column:1/-1;background:linear-gradient(135deg,rgba(249,115,22,.1),rgba(234,88,12,.08));border:2px solid rgba(249,115,22,.3)}.score-total .score-val{font-size:1.4rem;color:#ea580c}
 .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.pros,.cons{padding:12px 16px;border-radius:10px}.pros{background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.15)}.cons{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15)}.pros h4{color:#16a34a;font-size:.85rem;margin:0 0 8px}.cons h4{color:#dc2626;font-size:.85rem;margin:0 0 8px}.pros li,.cons li{font-size:.83rem;margin-bottom:4px;color:#334155}
 .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0 16px;font-size:.85rem}.spec-item{background:#fef7ed;border:1px solid rgba(0,0,0,.06);border-radius:10px;padding:8px 12px;text-align:center}.spec-item .spec-label{display:block;color:#64748b;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}.spec-item .spec-value{color:#3d3229;font-weight:700;font-size:.9rem}
@@ -224,14 +224,18 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <!-- ==================== PRODUCTO 1: CREATINA ==================== -->
   <div class="product-card" id="hsn-creatina">
     <h3>1. HSN Creatina Monohidrato 500g &#8212; El Suplemento Mejor Estudiado para Runners <span class="evidence-badge ev-a">Evidencia A+</span></h3>
-    <div class="product-img">
-      <a href="https://amzn.to/40Xo6R0" target="_blank" rel="nofollow sponsored noopener">
-        <img src="https://m.media-amazon.com/images/I/61YOwo028EL._AC_SL1500_.jpg" alt="HSN Creatina Monohidrato 500g polvo sin sabor" loading="eager" width="300" height="300">
+    <div style="display:flex;gap:20px;align-items:flex-start;margin:16px 0">
+      <a href="https://amzn.to/40Xo6R0" target="_blank" rel="nofollow sponsored noopener" style="flex:0 0 130px;background:#fff;border:1px solid #efe6db;border-radius:12px;padding:10px;display:block;text-align:center">
+        <img src="https://m.media-amazon.com/images/I/61YOwo028EL._AC_SL1500_.jpg" alt="HSN Creatina Monohidrato 500g" loading="eager" width="110" height="110" style="object-fit:contain;display:block;margin:0 auto">
       </a>
+      <div style="flex:1">
+        <span class="price-tag">Mejor base diaria</span>
+        <p class="best-for" style="margin-top:6px">&#127945; Ideal para: corredores que incluyen series, intervalos o trabajo de fuerza.</p>
+        <div class="buy-wrap" style="text-align:left;margin:12px 0 0">
+          <a href="https://amzn.to/40Xo6R0" target="_blank" rel="nofollow sponsored noopener" class="buy-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.5 8H7.5L5.17 5z"/></svg> Ver precio en Amazon</a>
+        </div>
+      </div>
     </div>
-    <a href="https://amzn.to/40Xo6R0" target="_blank" rel="nofollow sponsored noopener" class="buy-btn">&#128722; Comprar en Amazon &#8212; ver precio</a>
-    <span class="price-tag">Mejor base diaria</span>
-    <p class="best-for">&#127945; Ideal para: corredores que incluyen series, intervalos o trabajo de fuerza en su plan de entrenamiento.</p>
     <div class="specs-grid">
       <div class="spec-item"><span class="spec-label">Formato</span><span class="spec-value">Polvo neutro</span></div>
       <div class="spec-item"><span class="spec-label">Cantidad</span><span class="spec-value">500g (~166 dosis)</span></div>
@@ -266,9 +270,9 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <!-- ==================== PRODUCTO 2: MAGNESIO ==================== -->
   <div class="product-card" id="hsn-magnesio">
     <h3>2. HSN Bisglicinato de Magnesio &#8212; La Forma M&#225;s Asimilable para Runners <span class="evidence-badge ev-a">Evidencia A</span></h3>
-    <a href="https://amzn.to/46MvQZm" target="_blank" rel="nofollow sponsored noopener" class="buy-btn">&#128722; Comprar en Amazon &#8212; ver precio</a>
     <span class="price-tag">Mejor recuperaci&#243;n nocturna</span>
     <p class="best-for">&#127945; Ideal para: runners con alta carga de entrenamiento, insomnio o calambres frecuentes.</p>
+    <div class="buy-wrap"><a href="https://amzn.to/46MvQZm" target="_blank" rel="nofollow sponsored noopener" class="buy-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.5 8H7.5L5.17 5z"/></svg> Ver precio en Amazon</a></div>
     <div class="specs-grid">
       <div class="spec-item"><span class="spec-label">Forma</span><span class="spec-value">Bisglicinato</span></div>
       <div class="spec-item"><span class="spec-label">Biodisponibilidad</span><span class="spec-value">Alta</span></div>
@@ -305,9 +309,9 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <!-- ==================== PRODUCTO 3: OMEGA 3 ==================== -->
   <div class="product-card" id="omega3">
     <h3>3. Omega&#8209;3 EPA+DHA &#8212; Antiinflamatorio Natural para Corredores de Alto Volumen <span class="evidence-badge ev-a">Evidencia A</span></h3>
-    <a href="https://www.amazon.es/dp/B0C7KT42M7?tag=diezmejores21-21" target="_blank" rel="nofollow sponsored noopener" class="buy-btn">&#128722; Comprar en Amazon &#8212; ver precio</a>
     <span class="price-tag">Antiinflamatorio base</span>
     <p class="best-for">&#127945; Ideal para: runners que entrenan m&#225;s de 40km/semana o tienen dolor articular recurrente.</p>
+    <div class="buy-wrap"><a href="https://www.amazon.es/dp/B0C7KT42M7?tag=diezmejores21-21" target="_blank" rel="nofollow sponsored noopener" class="buy-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.5 8H7.5L5.17 5z"/></svg> Ver precio en Amazon</a></div>
     <div class="specs-grid">
       <div class="spec-item"><span class="spec-label">EPA+DHA</span><span class="spec-value">Alta concentraci&#243;n</span></div>
       <div class="spec-item"><span class="spec-label">Forma</span><span class="spec-value">Triacilglicerol (TG)</span></div>
@@ -347,9 +351,9 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <!-- ==================== PRODUCTO 4: GEL ==================== -->
   <div class="product-card" id="sis-gel">
     <h3>4. SiS Go Isotonic Energy Gel &#8212; El Gel que No Necesita Agua <span class="evidence-badge ev-a">Evidencia A+</span></h3>
-    <a href="https://amzn.to/4aWO7FG" target="_blank" rel="nofollow sponsored noopener" class="buy-btn">&#128722; Comprar en Amazon &#8212; ver precio</a>
     <span class="price-tag">Mejor para competici&#243;n</span>
     <p class="best-for">&#127945; Ideal para: rodajes largos, medias maratones y maratones donde no quieres depender de los avituallamientos.</p>
+    <div class="buy-wrap"><a href="https://amzn.to/4aWO7FG" target="_blank" rel="nofollow sponsored noopener" class="buy-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.5 8H7.5L5.17 5z"/></svg> Ver precio en Amazon</a></div>
     <div class="specs-grid">
       <div class="spec-item"><span class="spec-label">Carbohidratos</span><span class="spec-value">22g por gel</span></div>
       <div class="spec-item"><span class="spec-label">Volumen</span><span class="spec-value">60ml</span></div>
@@ -384,9 +388,9 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <!-- ==================== PRODUCTO 5: ISOTÓNICA ==================== -->
   <div class="product-card" id="isostar">
     <h3>5. Isostar Hydrate &amp; Perform &#8212; Electrolitos y Carbohidratos en un Solo Producto <span class="evidence-badge ev-a">Evidencia A</span></h3>
-    <a href="https://amzn.to/3Ol6QSG" target="_blank" rel="nofollow sponsored noopener" class="buy-btn">&#128722; Comprar en Amazon &#8212; ver precio</a>
     <span class="price-tag">Mejor isotónica completa</span>
     <p class="best-for">&#127945; Ideal para: entrenos de 45&#8209;90 min, preparaci&#243;n de carreras con avituallamientos y d&#237;as de calor.</p>
+    <div class="buy-wrap"><a href="https://amzn.to/3Ol6QSG" target="_blank" rel="nofollow sponsored noopener" class="buy-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.5 8H7.5L5.17 5z"/></svg> Ver precio en Amazon</a></div>
     <div class="specs-grid">
       <div class="spec-item"><span class="spec-label">Carbohidratos</span><span class="spec-value">6&#8209;8%</span></div>
       <div class="spec-item"><span class="spec-label">Electrolitos</span><span class="spec-value">Na&#8311;, K&#8314;, Mg&#178;&#8314;</span></div>
@@ -424,9 +428,9 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <!-- ==================== PRODUCTO 6: RECUPERADOR ==================== -->
   <div class="product-card" id="226ers-recovery">
     <h3>6. 226ERS Recovery Drink &#8212; Ratio 4:1 Carbohidratos/Prote&#237;na Post&#8209;Entreno <span class="evidence-badge ev-a">Evidencia A</span></h3>
-    <a href="https://amzn.to/4aFFONk" target="_blank" rel="nofollow sponsored noopener" class="buy-btn">&#128722; Comprar en Amazon &#8212; ver precio</a>
     <span class="price-tag">Mejor recuperador</span>
     <p class="best-for">&#127945; Ideal para: runners con dobles sesiones, preparaci&#243;n de marat&#243;n o trail, o sesi&#243;n de fuerza + carrera en el mismo d&#237;a.</p>
+    <div class="buy-wrap"><a href="https://amzn.to/4aFFONk" target="_blank" rel="nofollow sponsored noopener" class="buy-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.5 8H7.5L5.17 5z"/></svg> Ver precio en Amazon</a></div>
     <div class="specs-grid">
       <div class="spec-item"><span class="spec-label">Ratio</span><span class="spec-value">4:1 CH/Prot</span></div>
       <div class="spec-item"><span class="spec-label">Prote&#237;na</span><span class="spec-value">Whey isolado</span></div>

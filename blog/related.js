@@ -26,6 +26,7 @@
 {s:'calambres-al-correr',t:'Calambres al Correr: Causas y Soluciones',c:'Salud',i:'https://images.pexels.com/photos/3771055/pexels-photo-3771055.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'calcetines-running',t:'Los 8 Mejores Calcetines para Running',c:'Equipamiento',i:'https://images.pexels.com/photos/8454900/pexels-photo-8454900.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'carga-hidratos-maraton',t:'Carga de Hidratos antes de un Marat\u00f3n',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'cursa-de-la-merce-2026',t:'Cursa de la Merc\u00e8 2026 Barcelona: Fecha, Recorrido e Inscripci\u00f3n',c:'Carreras',i:'https://images.pexels.com/photos/2567025/pexels-photo-2567025.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'maraton-barcelona-guia',t:'Marat\u00f3n de Barcelona 2026: Gu\u00eda Completa',c:'Entrenamiento',i:'https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'maraton-madrid-guia',t:'Marat\u00f3n de Madrid 2026: Gu\u00eda Completa',c:'Entrenamiento',i:'https://images.pexels.com/photos/3757144/pexels-photo-3757144.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'maraton-sevilla-guia',t:'Marat\u00f3n de Sevilla 2026: Gu\u00eda Completa',c:'Entrenamiento',i:'https://images.pexels.com/photos/16643958/pexels-photo-16643958.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

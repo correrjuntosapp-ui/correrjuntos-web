@@ -3538,7 +3538,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var noResults = document.getElementById('noResults');
   var endIndicator = document.getElementById('endIndicator');
   var buttons = filterBar.querySelectorAll('.filter-btn');
-  var cards = grid.querySelectorAll('.article-card');
+  var cards = grid.querySelectorAll('.article-card, .card[data-category]');
   var searchInput = document.getElementById('searchInput');
   var searchClear = document.getElementById('searchClear');
   var visibleCountEl = document.getElementById('visibleCount');

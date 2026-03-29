@@ -144,6 +144,7 @@
 {s:'periostitis-tibial-running',t:'Periostitis Tibial: Causas y Tratamiento',c:'Salud',i:'https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'plan-entrenamiento-10k',t:'Plan de Entrenamiento 10K',c:'Entrenamiento',i:'https://images.pexels.com/photos/3019696/pexels-photo-3019696.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'plan-maraton-sub-3-30',t:'Plan Marat\u00f3n Sub 3:30 en 16 Semanas',c:'Entrenamiento',i:'https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'plan-maraton-sub-4-horas',t:'Plan Marat\u00f3n Sub 4 Horas en 16 Semanas',c:'Entrenamiento',i:'https://images.unsplash.com/photo-1590333748338-d629e4564ad9?q=80&w=400&h=200&fit=crop'},
 {s:'entrenamiento-series-fartlek',t:'Series y Fartlek: Gu\u00eda Completa de Intervalos',c:'Entrenamiento',i:'https://images.pexels.com/photos/1265952/pexels-photo-1265952.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'periodizacion-entrenamiento-running',t:'Periodizaci\u00f3n del Entrenamiento Running',c:'Entrenamiento',i:'https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'tapering-semana-previa-carrera',t:'Tapering: Gu\u00eda de la Semana Previa a tu Carrera',c:'Entrenamiento',i:'https://images.pexels.com/photos/7187803/pexels-photo-7187803.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

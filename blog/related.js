@@ -476,20 +476,51 @@
   var DEFAULT_IMG = '/blog/img/shokz-openrun-pro-2.png';
 
   /* ── CSS ── */
+  /* ── Category color map ── */
+  var CAT_COLORS = {
+    'Entrenamiento':'#16a34a','Trail':'#059669','Zapatillas':'#f97316',
+    'Equipamiento':'#2563eb','Tecnolog\u00eda':'#7c3aed','Salud':'#0891b2',
+    'Nutrici\u00f3n':'#d97706','Rutas':'#0284c7','Suplementaci\u00f3n':'#dc2626',
+    'Atleta H\u00edbrido':'#be185d','Carreras':'#ea580c'
+  };
+
+  /* ── Difficulty from slug keywords ── */
+  function getDifficulty(s, en){
+    var sl = s.toLowerCase();
+    if(/principiante|beginner|empezar|start|cero|couch|basic|primer|first/.test(sl))
+      return en ? '\uD83C\uDF31 Beginner' : '\uD83C\uDF31 Principiante';
+    if(/ultra|ironman|elite|sub-3|sub3/.test(sl))
+      return en ? '\uD83C\uDFC6 Elite' : '\uD83C\uDFC6 \u00c9lite';
+    if(/maraton|marathon|trail|avanzad|advanced/.test(sl))
+      return en ? '\u26A1 Advanced' : '\u26A1 Avanzado';
+    return en ? '\uD83C\uDFC3 Intermediate' : '\uD83C\uDFC3 Intermedio';
+  }
+
   var css = document.createElement('style');
   css.textContent = [
     '.related-section{margin:40px 0 32px;padding:32px 0 0;border-top:1px solid #efe6db}',
     '.related-title{font-size:1.1rem;font-weight:800;color:#3d3229;margin:0 0 20px}',
     '.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}',
     '.related-card{background:#fffcf9;border:1px solid #efe6db;border-radius:14px;padding:0;text-decoration:none;transition:all .25s;display:block;overflow:hidden}',
-    '.related-card:hover{background:rgba(249,115,22,.04);border-color:rgba(249,115,22,.3);transform:translateY(-2px)}',
+    '.related-card:hover{background:rgba(249,115,22,.04);border-color:rgba(249,115,22,.3);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.07)}',
     '.related-img{width:100%;height:120px;object-fit:cover;display:block}',
-    '.related-body{padding:14px 16px 16px}',
-    '.related-cat{font-size:.7rem;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px}',
-    '.related-card-title{font-size:.9rem;font-weight:700;color:#3d3229;line-height:1.4;margin:0;transition:color .2s}',
+    '.related-body{padding:12px 14px 14px}',
+    '.related-meta{display:flex;align-items:center;gap:6px;margin:0 0 6px;flex-wrap:wrap}',
+    '.related-cat{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:999px;color:#fff;display:inline-block}',
+    '.related-diff{font-size:.65rem;color:#94a3b8;white-space:nowrap}',
+    '.related-card-title{font-size:.875rem;font-weight:700;color:#3d3229;line-height:1.4;margin:0;transition:color .2s}',
     '.related-card:hover .related-card-title{color:#f97316}',
-    '.related-arrow{font-size:.75rem;color:#64748b;margin-top:8px;transition:color .2s}',
+    '.related-arrow{font-size:.72rem;color:#94a3b8;margin-top:8px;transition:color .2s;display:flex;align-items:center;gap:4px}',
     '.related-card:hover .related-arrow{color:#f97316}',
+    /* Archive link */
+    '.related-archive{display:block;text-align:center;margin-top:16px;padding:10px;border:1.5px dashed #efe6db;border-radius:12px;font-size:.82rem;font-weight:600;color:#64748b;text-decoration:none;transition:all .2s}',
+    '.related-archive:hover{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.04)}',
+    /* Dark mode */
+    '.dark-mode .related-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}',
+    '.dark-mode .related-card:hover{background:rgba(249,115,22,.07);border-color:rgba(249,115,22,.25)}',
+    '.dark-mode .related-card-title{color:#fef3c7}',
+    '.dark-mode .related-archive{border-color:rgba(255,255,255,.1);color:#64748b}',
+    '.dark-mode .related-archive:hover{border-color:#f97316;color:#f97316}',
     '@media(max-width:640px){.related-grid{grid-template-columns:repeat(2,1fr);gap:10px}}'
   ].join('\n');
   document.head.appendChild(css);
@@ -522,19 +553,26 @@
   var cta = isEN ? 'Read article \u2192' : 'Leer art\u00edculo \u2192';
   var section = document.createElement('div');
   section.className = 'related-section';
+  var archiveBase = isEN ? '/blog/en/' : '/blog/';
+  var archiveLbl  = isEN ? '\uD83D\uDCDA Browse all articles \u2192' : '\uD83D\uDCDA Ver todos los art\u00edculos del blog \u2192';
   var html = '<h2 class="related-title">'+title+'</h2><div class="related-grid">';
   for(var k=0;k<picks.length;k++){
     var p = picks[k];
     var img = p.i || CAT_IMGS[p.c] || DEFAULT_IMG;
+    var catColor = CAT_COLORS[p.c] || '#f97316';
+    var diff = getDifficulty(p.s, isEN);
     html += '<a href="'+basePath+p.s+'" class="related-card">' +
       '<img class="related-img" src="'+img+'" alt="'+p.t+'" loading="lazy" width="400" height="200">' +
       '<div class="related-body">' +
-      '<div class="related-cat">'+p.c+'</div>' +
+      '<div class="related-meta">' +
+        '<span class="related-cat" style="background:'+catColor+'">'+p.c+'</span>' +
+        '<span class="related-diff">'+diff+'</span>' +
+      '</div>' +
       '<p class="related-card-title">'+p.t+'</p>' +
       '<div class="related-arrow">'+cta+'</div>' +
       '</div></a>';
   }
-  html += '</div>';
+  html += '</div><a href="'+archiveBase+'" class="related-archive">'+archiveLbl+'</a>';
   section.innerHTML = html;
 
   /* ── Hide old inline text-based related sections ── */

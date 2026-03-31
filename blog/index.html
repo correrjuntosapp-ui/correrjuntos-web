@@ -120,7 +120,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Filter Bar — dropdown grid */
 .filter-bar-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:20px 0 8px;position:relative;z-index:20}
-.filter-btn-todos{display:none}
+.filter-btn-todos{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:12px;border:1px solid #efe6db;background:#fffcf9;color:#5c4d3d;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .25s;white-space:nowrap;flex-shrink:0}
+.filter-btn-todos:hover{border-color:#e8ddd0;background:rgba(0,0,0,.02);transform:translateY(-1px)}
+.filter-btn-todos.active{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.3);color:#f97316}
 .filter-dropdown-trigger{display:none}
 .filter-active-label{display:none}
 .filter-panel{display:flex;flex-wrap:wrap;gap:8px;opacity:1;pointer-events:auto}
@@ -146,6 +148,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .fp-tecnologia.active{background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.35);color:#38bdf8}
 .fp-lesiones.active{background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.35);color:#e11d48}
 .fp-atleta-hibrido.active{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.35);color:#ef4444}
+.fp-divider{width:1px;height:28px;background:rgba(0,0,0,.1);align-self:center;flex-shrink:0;margin:0 4px}
+.dark-mode .fp-divider{background:rgba(255,255,255,.12)}
 .fp-calculadora{background:rgba(5,150,105,.1)!important;border-color:rgba(5,150,105,.3)!important;color:#059669!important;text-decoration:none;cursor:pointer;transition:all .2s}.fp-calculadora:hover{background:rgba(5,150,105,.2)!important;border-color:rgba(5,150,105,.5)!important;transform:translateY(-1px);box-shadow:0 2px 8px rgba(5,150,105,.15)}
 .dark-mode .fp-calculadora{background:rgba(5,150,105,.15)!important;border-color:rgba(5,150,105,.25)!important;color:#34d399!important}.dark-mode .fp-calculadora:hover{background:rgba(5,150,105,.25)!important}
 /* keep old filter-btn for JS compat — hidden */
@@ -369,6 +373,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .dark-mode .search-wrap input::placeholder{color:#94a3b8}
 .dark-mode .filter-panel-btn{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);color:#cbd5e1}
 .dark-mode .filter-panel-btn:hover{border-color:rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.08)}
+.dark-mode .filter-btn-todos{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);color:#cbd5e1}
+.dark-mode .filter-btn-todos.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.3);color:#f97316}
 .dark-mode .article-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
 .dark-mode .article-card:hover{box-shadow:0 20px 48px rgba(0,0,0,.3)}
 .dark-mode .card-img::after{background:linear-gradient(transparent,rgba(11,18,32,.6))}
@@ -482,6 +488,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/></svg></span><span class="cat-name">Trail</span></button>
     <button class="filter-panel-btn fp-suplementacion" data-filter="suplementacion"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4.22 11.29l4.53-4.53a4.001 4.001 0 015.66 0l4.53 4.53a4.001 4.001 0 010 5.66l-4.53 4.53a4.001 4.001 0 01-5.66 0l-4.53-4.53a4.001 4.001 0 010-5.66zm10.03-.8L12.01 8.2 9.75 10.5l2.25 2.25 2.25-2.26z"/></svg></span><span class="cat-name">Suplementación</span></button>
     <button class="filter-panel-btn fp-atleta-hibrido" data-filter="atleta-hibrido"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></span><span class="cat-name">Atleta Híbrido</span></button>
+    <span class="fp-divider"></span>
     <a href="/calculadora/" class="filter-panel-btn fp-calculadora"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7.5 4h5v2h-5V7zm0 4h5v2h-5v-2zm-4-4h2v4h-2V7zm6.5 10H7.5v-2h6.5v2zm2-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg></span><span class="cat-name">Calculadora de Ritmos</span></a>
   </div>
   <!-- Hidden original bar for JS compat -->
@@ -3626,6 +3633,7 @@ document.addEventListener('DOMContentLoaded', function() {
     filterActiveLabel.className = '';
     filterActiveLabel.innerHTML = '';
     filterActiveLabel.style.cssText = 'display:none';
+    history.pushState({}, '', location.pathname);
     filterCards();
   });
 
@@ -3642,6 +3650,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (todosBtn2) todosBtn2.classList.add('active');
         panelBtns.forEach(function(b) { b.classList.remove('active'); });
         if (filterActiveLabel) { filterActiveLabel.className = ''; filterActiveLabel.innerHTML = ''; filterActiveLabel.style.cssText = 'display:none'; }
+        history.pushState({}, '', location.pathname);
         filterCards();
         return;
       }
@@ -3660,6 +3669,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Close panel
       filterPanel.classList.remove('open');
       filterTrigger.classList.remove('open');
+      history.pushState({}, '', location.pathname + '?cat=' + cat);
       filterCards();
       grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -3703,6 +3713,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (filterTodos) filterTodos.classList.remove('active');
       // Show active label
       showActiveLabel(cat);
+      history.pushState({}, '', location.pathname + '?cat=' + cat);
       filterCards();
       // Scroll to top of grid
       grid.scrollIntoView({ behavior: 'smooth', block: 'start' });

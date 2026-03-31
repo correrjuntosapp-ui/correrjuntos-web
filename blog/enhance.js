@@ -115,9 +115,10 @@
   if(navWrapper && !isBlogIndex){
     var cssBack = document.createElement('style');
     cssBack.textContent = [
-      '.blog-back{max-width:1000px;margin:0 auto;padding:10px 20px 0}',
+      '.blog-back{padding:4px 20px 8px;border-top:1px solid rgba(0,0,0,.05)}',
       '.blog-back a{color:#f97316;text-decoration:none;font-size:.85rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.15);transition:all .2s}',
       '.blog-back a:hover{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.3);transform:translateX(-2px)}',
+      '.dark-mode .blog-back{border-top-color:rgba(255,255,255,.06)}',
       '.dark-mode .blog-back a{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.2)}',
       '.dark-mode .blog-back a:hover{background:rgba(249,115,22,.18)}'
     ].join('\n');
@@ -126,7 +127,7 @@
     var backDiv = document.createElement('div');
     backDiv.className = 'blog-back';
     backDiv.innerHTML = '<a href="'+(isEN ? '/blog/en/' : '/blog/')+'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>'+(isEN ? 'Back to Blog' : 'Volver al Blog')+'</a>';
-    navWrapper.parentNode.insertBefore(backDiv, navWrapper.nextSibling);
+    navWrapper.appendChild(backDiv);
   }
 
   /* ══════════════════════════════════════════════
@@ -697,7 +698,7 @@
       'body.dark-mode .cj-app-banner-text strong,.dark-mode .cj-app-banner-text strong{color:#fef3c7}',
       'body.dark-mode .cj-app-banner-text span,.dark-mode .cj-app-banner-text span{color:#a89480}',
       'body.dark-mode .cj-app-banner-close,.dark-mode .cj-app-banner-close{color:#6b5c4d}',
-      '@media(max-width:520px){.cj-app-banner-inner{flex-direction:column;text-align:center;align-items:center}.cj-app-banner-badges{justify-content:center}}'
+      '@media(max-width:520px){.cj-app-banner-inner{flex-direction:column;text-align:center;align-items:center}.cj-app-banner-badges{justify-content:center}.cj-app-banner{padding:12px 48px 16px 16px}.cj-app-banner-close{font-size:1.8rem;padding:10px;top:2px;right:4px}}'
     ].join('\n');
     document.head.appendChild(bannerCSS);
 

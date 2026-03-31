@@ -491,7 +491,7 @@
     '.related-card:hover .related-card-title{color:#f97316}',
     '.related-arrow{font-size:.75rem;color:#64748b;margin-top:8px;transition:color .2s}',
     '.related-card:hover .related-arrow{color:#f97316}',
-    '@media(max-width:640px){.related-grid{grid-template-columns:1fr}}'
+    '@media(max-width:640px){.related-grid{grid-template-columns:repeat(2,1fr);gap:10px}}'
   ].join('\n');
   document.head.appendChild(css);
 

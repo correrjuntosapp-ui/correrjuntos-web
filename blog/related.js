@@ -1,7 +1,6 @@
 /* Related Articles — shows 4 related posts based on category (ES + EN) */
 (function(){
   'use strict';
-
   /* ── Language detection ── */
   var isEN = /\/blog\/en\//.test(window.location.pathname);
 
@@ -217,7 +216,7 @@
 {s:'kettlebells-farmer-carry-hyrox',t:'Las 11 Mejores Kettlebells para Farmer\u2019s Carry',c:'Atleta H\u00edbrido',i:'/blog/img/kettlebell-hero.jpg'},
 {s:'entrenar-skierg-row-hyrox',t:'C\u00f3mo Entrenar SkiErg y Remo para HYROX',c:'Atleta H\u00edbrido',i:'/blog/img/skierg-hero.jpg'},
 {s:'rodillo-vs-pistola-masaje-recuperacion',t:'Los 20 Mejores Rodillos y Pistolas de Masaje',c:'Atleta H\u00edbrido',i:'/blog/img/roller-hero.jpg'},
-{s:'mejores-bandas-elasticas-running',t:'12 Mejores Bandas El\u00e1sticas y Accesorios de Fuerza para Runners',c:'Equipamiento',i:'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'}
+{s:'mejores-bandas-elasticas-running',t:'12 Mejores Bandas El\u00e1sticas y Accesorios de Fuerza para Runners',c:'Equipamiento',i:'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'plan-running-perder-peso',t:'Plan de Running para Perder Peso: Guía Completa',c:'Entrenamiento',i:'https://images.pexels.com/photos/4498155/pexels-photo-4498155.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'zona-2-running-quemar-grasa',t:'Zona 2 Running: Cómo Quemar Grasa Corriendo Despacio',c:'Entrenamiento',i:'https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'cuantas-calorias-se-queman-corriendo',t:'Cuántas Calorías se Queman Corriendo',c:'Salud',i:'https://images.pexels.com/photos/6551486/pexels-photo-6551486.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
@@ -541,16 +540,23 @@
   /* ── Hide old inline text-based related sections ── */
   document.querySelectorAll('.related, .related-links').forEach(function(el){ el.style.display = 'none'; });
 
-  /* ── Inject after author card or before CTA ── */
+  /* ── Inject: prefer inside article content, fallback to body ── */
+  var inserted = false;
   var author = document.querySelector('.author-card');
+  var content = document.querySelector('.content, article, main, .container.content, .article-body');
   var ctaBox = document.querySelector('.cta-box');
   if(author && author.parentNode){
     author.parentNode.insertBefore(section, author.nextSibling);
+    inserted = true;
+  } else if(content){
+    var ctaInContent = content.querySelector('.cta-box');
+    if(ctaInContent){ content.insertBefore(section, ctaInContent); }
+    else { content.appendChild(section); }
+    inserted = true;
   } else if(ctaBox && ctaBox.parentNode){
     ctaBox.parentNode.insertBefore(section, ctaBox);
-  } else {
-    var content = document.querySelector('.content');
-    if(content) content.appendChild(section);
+    inserted = true;
   }
+  if(!inserted){ document.body.appendChild(section); }
 
 })();

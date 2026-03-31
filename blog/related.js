@@ -559,4 +559,56 @@
   }
   if(!inserted){ document.body.appendChild(section); }
 
+  /* ── Prev / Next navigation (same category) ── */
+  var notUsed = sameCat.filter(function(a){
+    return picks.every(function(p){ return p.s !== a.s; });
+  });
+  shuffle(notUsed);
+  var navPrev = notUsed[0] || null;
+  var navNext = notUsed[1] || null;
+  if(!navPrev && !navNext && otherCat.length >= 1){ navPrev = otherCat[0]; navNext = otherCat[1] || null; }
+
+  if(navPrev || navNext){
+    var pnCSS = document.createElement('style');
+    pnCSS.textContent = [
+      '.pn-nav{display:grid;gap:12px;margin:0 0 32px;border-top:1px solid #efe6db;padding-top:24px}',
+      '.pn-nav.pn-two{grid-template-columns:1fr 1fr}',
+      '.pn-nav.pn-one{grid-template-columns:1fr;max-width:280px}',
+      '.pn-nav a{display:flex;flex-direction:column;gap:4px;padding:14px 16px;background:#fffcf9;border:1px solid #efe6db;border-radius:14px;text-decoration:none;transition:all .25s}',
+      '.pn-nav a:hover{border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.04);transform:translateY(-2px)}',
+      '.pn-label{font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;font-weight:600}',
+      '.pn-title{font-size:.88rem;font-weight:700;color:#3d3229;line-height:1.4}',
+      '.pn-nav a:hover .pn-title{color:#f97316}',
+      '.pn-next{text-align:right}',
+      '.dark-mode .pn-nav{border-top-color:rgba(255,255,255,.08)}',
+      '.dark-mode .pn-nav a{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}',
+      '.dark-mode .pn-nav a:hover{background:rgba(249,115,22,.08);border-color:rgba(249,115,22,.3)}',
+      '.dark-mode .pn-title{color:#fef3c7}',
+      '@media(max-width:480px){.pn-nav.pn-two{grid-template-columns:1fr}}'
+    ].join('\n');
+    document.head.appendChild(pnCSS);
+
+    var pnDiv = document.createElement('div');
+    pnDiv.className = 'pn-nav' + (navPrev && navNext ? ' pn-two' : ' pn-one');
+    var pnHtml = '';
+    if(navPrev){
+      pnHtml += '<a href="'+basePath+navPrev.s+'" class="pn-prev">' +
+        '<span class="pn-label">\u2190 '+(isEN?'Previous article':'Art\u00edculo anterior')+'</span>' +
+        '<span class="pn-title">'+navPrev.t+'</span></a>';
+    }
+    if(navNext){
+      pnHtml += '<a href="'+basePath+navNext.s+'" class="pn-next">' +
+        '<span class="pn-label">'+(isEN?'Next article':'Siguiente art\u00edculo')+' \u2192</span>' +
+        '<span class="pn-title">'+navNext.t+'</span></a>';
+    }
+    pnDiv.innerHTML = pnHtml;
+
+    /* Insert right after related section */
+    if(section.parentNode){
+      section.parentNode.insertBefore(pnDiv, section.nextSibling);
+    } else {
+      document.body.appendChild(pnDiv);
+    }
+  }
+
 })();

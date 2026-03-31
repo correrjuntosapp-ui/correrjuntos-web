@@ -412,11 +412,15 @@
     if(link.closest('.related-section')) trackEvent('related_click', {target_slug: link.href.split('/').pop(), article_slug: slug});
   });
 
-  /* 6c. Newsletter submit tracking */
+  /* 6c. Newsletter submit tracking + prevent duplicate slide-in */
   document.addEventListener('submit', function(e){
     var form = e.target;
     if(form.id === 'newsletter-form' || form.id === 'nl-form'){
       trackEvent('newsletter_submit', {form_location: 'inline', article_slug: slug});
+      /* Mark as subscribed so slide-in doesn't appear */
+      localStorage.setItem('cj_newsletter_dismissed', '1');
+      var si = document.getElementById('nl-slidein');
+      if(si){ si.classList.remove('show'); si.style.display = 'none'; }
     }
   });
   /* Slide-in newsletter (button click, no form submit) */
@@ -761,6 +765,114 @@
         window.location.href = base + '?cat=' + catKey;
       });
     });
+  }
+
+  /* ══════════════════════════════════════════════
+     11. "LO QUE APRENDERÁS" KEY TAKEAWAYS BOX
+     ══════════════════════════════════════════════ */
+  if(!isBlogIndex){
+    var tocLinks = document.querySelectorAll('.toc-list li a, nav[aria-label] li a, .toc li a, #toc-nav li a');
+    var articleContent = document.querySelector('.content, article, .container.content');
+    var firstH2 = articleContent && articleContent.querySelector('h2');
+    if(tocLinks.length >= 3 && articleContent && firstH2){
+      var learnCSS = document.createElement('style');
+      learnCSS.textContent = [
+        '.learn-box{margin:0 0 32px;padding:20px 24px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.18);border-left:4px solid #f97316;border-radius:0 14px 14px 0}',
+        '.learn-header{font-size:.95rem;font-weight:800;color:#3d3229;margin:0 0 12px;display:flex;align-items:center;gap:8px}',
+        '.learn-list{margin:0;padding-left:20px}',
+        '.learn-list li{font-size:.875rem;color:#6b5c4d;line-height:1.5;margin-bottom:6px}',
+        '.learn-list li:last-child{margin-bottom:0}',
+        '.dark-mode .learn-box{background:rgba(249,115,22,.07);border-color:rgba(249,115,22,.22)}',
+        '.dark-mode .learn-header{color:#fef3c7}',
+        '.dark-mode .learn-list li{color:#94a3b8}'
+      ].join('\n');
+      document.head.appendChild(learnCSS);
+
+      var learnDiv = document.createElement('div');
+      learnDiv.className = 'learn-box';
+      var learnItems = '';
+      var maxItems = Math.min(tocLinks.length, 5);
+      for(var li2 = 0; li2 < maxItems; li2++){
+        var itemText = tocLinks[li2].textContent.trim();
+        /* Strip leading numbers like "1." or "1 " */
+        itemText = itemText.replace(/^\d+[\.\s]\s*/,'');
+        learnItems += '<li>'+itemText+'</li>';
+      }
+      learnDiv.innerHTML = '<div class="learn-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" style="flex-shrink:0"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>'+(isEN?'What you\'ll learn':'Qu\u00e9 aprender\u00e1s en este art\u00edculo')+'</div><ul class="learn-list">'+learnItems+'</ul>';
+      articleContent.insertBefore(learnDiv, firstH2);
+    }
+  }
+
+  /* ══════════════════════════════════════════════
+     12. ARTICLE RATING (thumbs up / down)
+     ══════════════════════════════════════════════ */
+  if(!isBlogIndex){
+    var RATING_KEY = 'cj_rating_' + slug;
+    var existingVote = localStorage.getItem(RATING_KEY);
+
+    var ratingCSS = document.createElement('style');
+    ratingCSS.textContent = [
+      '.article-rating{margin:32px 0 0;padding:20px 24px;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;text-align:center}',
+      '.rating-q{font-size:.92rem;font-weight:700;color:#3d3229;margin:0 0 14px}',
+      '.rating-btns{display:flex;gap:10px;justify-content:center}',
+      '.rating-btn{display:flex;align-items:center;gap:6px;padding:9px 18px;border-radius:999px;border:1.5px solid #efe6db;background:#fff;cursor:pointer;font-size:.85rem;font-weight:600;color:#6b5c4d;transition:all .2s}',
+      '.rating-btn:hover{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.06)}',
+      '.rating-btn.voted-yes{border-color:#22c55e;color:#16a34a;background:rgba(34,197,94,.08);cursor:default}',
+      '.rating-btn.voted-no{border-color:#ef4444;color:#dc2626;background:rgba(239,68,68,.08);cursor:default}',
+      '.rating-thanks{font-size:.85rem;color:#64748b;margin:10px 0 0;display:none}',
+      '.dark-mode .article-rating{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}',
+      '.dark-mode .rating-q{color:#fef3c7}',
+      '.dark-mode .rating-btn{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:#94a3b8}',
+      '.dark-mode .rating-btn:hover{border-color:#f97316;color:#f97316}',
+      '.dark-mode .rating-thanks{color:#64748b}'
+    ].join('\n');
+    document.head.appendChild(ratingCSS);
+
+    var ratingDiv = document.createElement('div');
+    ratingDiv.className = 'article-rating';
+    var yesActive = existingVote === 'yes' ? ' voted-yes' : '';
+    var noActive  = existingVote === 'no'  ? ' voted-no'  : '';
+    ratingDiv.innerHTML =
+      '<p class="rating-q">'+(isEN?'Was this article helpful?':'\u00bfTe ha sido \u00fatil este art\u00edculo?')+'</p>' +
+      '<div class="rating-btns">' +
+        '<button class="rating-btn'+yesActive+'" data-vote="yes">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>' +
+          (isEN?'Yes, helpful':'S\u00ed, muy \u00fatil') +
+        '</button>' +
+        '<button class="rating-btn'+noActive+'" data-vote="no">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 15v4a3 3 0 003 3l4-9V2H5.72a2 2 0 00-2 1.7l-1.38 9a2 2 0 002 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0122 4v7a2.31 2.31 0 01-2.33 2H17"/></svg>' +
+          (isEN?'Could be better':'Puede mejorar') +
+        '</button>' +
+      '</div>' +
+      '<p class="rating-thanks">'+(isEN?'Thanks for your feedback!':'\u00a1Gracias por tu valoraci\u00f3n!')+'</p>';
+
+    /* Find insertion point: after .related-section or before .cta-box or at end of content */
+    var ratingInserted = false;
+    var relatedSec = document.querySelector('.related-section');
+    var pnNav = document.querySelector('.pn-nav');
+    var anchor = pnNav || relatedSec;
+    if(anchor && anchor.parentNode){
+      anchor.parentNode.insertBefore(ratingDiv, (pnNav ? pnNav.nextSibling : relatedSec.nextSibling));
+      ratingInserted = true;
+    } else {
+      var ac = document.querySelector('.content, article, .container.content');
+      if(ac){ ac.appendChild(ratingDiv); ratingInserted = true; }
+    }
+    if(!ratingInserted){ document.body.appendChild(ratingDiv); }
+
+    /* Vote handler */
+    if(!existingVote){
+      ratingDiv.querySelectorAll('.rating-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var vote = btn.dataset.vote;
+          localStorage.setItem(RATING_KEY, vote);
+          ratingDiv.querySelectorAll('.rating-btn').forEach(function(b){ b.disabled = true; b.style.cursor = 'default'; });
+          btn.classList.add(vote === 'yes' ? 'voted-yes' : 'voted-no');
+          ratingDiv.querySelector('.rating-thanks').style.display = 'block';
+          trackEvent('article_rating', {vote: vote, article_slug: slug});
+        });
+      });
+    }
   }
 
 })();

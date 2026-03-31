@@ -1282,4 +1282,114 @@
     }
   })();
 
+  /* ══════════════════════════════════════════════
+     SECTION 19 — Dynamic Schema: FAQPage + ItemList
+     Injects missing rich-snippet schemas for articles
+     that have FAQ accordions or ranked product lists
+     ══════════════════════════════════════════════ */
+  (function(){
+    if(!isArticle) return;
+    try{
+      /* ── Check existing schemas to avoid duplicates ── */
+      var existingTypes = [];
+      document.querySelectorAll('script[type="application/ld+json"]').forEach(function(s){
+        try{
+          var d = JSON.parse(s.textContent);
+          var graph = d['@graph'] || [d];
+          graph.forEach(function(item){ if(item['@type']) existingTypes.push(item['@type']); });
+        }catch(e){}
+      });
+      var hasFAQPage = existingTypes.indexOf('FAQPage') >= 0;
+      var hasItemList = existingTypes.indexOf('ItemList') >= 0;
+
+      /* ── 19a: FAQPage schema from accordion ── */
+      if(!hasFAQPage){
+        var faqQs = document.querySelectorAll('.faq-q, [data-faq-q], .faq-question');
+        var faqAs = document.querySelectorAll('.faq-a, [data-faq-a], .faq-answer');
+        if(faqQs.length >= 2 && faqAs.length >= 2){
+          var mainEntity = [];
+          var minLen = Math.min(faqQs.length, faqAs.length);
+          for(var fi=0; fi<minLen; fi++){
+            var qEl = faqQs[fi];
+            var aEl = faqAs[fi];
+            /* Get clean text: remove the chevron icon */
+            var qClone = qEl.cloneNode(true);
+            var chevron = qClone.querySelector('.faq-chevron, svg');
+            if(chevron) chevron.remove();
+            var qText = (qClone.textContent || '').replace(/\s+/g,' ').trim();
+            var aText = (aEl.textContent || '').replace(/\s+/g,' ').trim();
+            if(qText.length > 5 && aText.length > 5){
+              mainEntity.push({
+                '@type':'Question',
+                'name': qText,
+                'acceptedAnswer':{'@type':'Answer','text': aText.slice(0, 500)}
+              });
+            }
+          }
+          if(mainEntity.length >= 2){
+            var faqSchema = {
+              '@context':'https://schema.org',
+              '@type':'FAQPage',
+              'mainEntity': mainEntity
+            };
+            var faqTag = document.createElement('script');
+            faqTag.type = 'application/ld+json';
+            faqTag.textContent = JSON.stringify(faqSchema);
+            document.head.appendChild(faqTag);
+          }
+        }
+      }
+
+      /* ── 19b: ItemList schema from ranking/comparison articles ── */
+      if(!hasItemList){
+        /* Detect ranking articles: H2/H3 with numeric prefix like "1.", "#1", "Nº 1", or "vs" */
+        var articleEl = document.querySelector('article, .article-content, [itemprop="articleBody"], .blog-content');
+        if(articleEl){
+          var headings = articleEl.querySelectorAll('h2, h3');
+          var rankedItems = [];
+          var posCounter = 0;
+          headings.forEach(function(h){
+            var txt = (h.textContent || '').trim();
+            /* Match patterns: "1.", "#1", "Nº 1", "N.º 1", or starts with digit then dot/close-paren */
+            if(/^(#\d|N[oº°]\.?\s*\d|\d+[.)]\s)/.test(txt) || /^\d+\.\s/.test(txt)){
+              posCounter++;
+              /* Grab short description from next sibling paragraph */
+              var desc = '';
+              var next = h.nextElementSibling;
+              if(next && (next.tagName==='P' || next.tagName==='DIV')){
+                desc = (next.textContent || '').slice(0,150).replace(/\s+/g,' ').trim();
+              }
+              var cleanTitle = txt.replace(/^[#Nnoº°.)\d\s]+/, '').trim();
+              if(cleanTitle.length > 2){
+                rankedItems.push({
+                  '@type':'ListItem',
+                  'position': posCounter,
+                  'name': cleanTitle,
+                  'description': desc || undefined
+                });
+              }
+            }
+          });
+          /* Only inject if we found 3+ ranked items */
+          if(rankedItems.length >= 3){
+            var pageTitle = document.title.replace(/\s*\|.*$/, '').trim();
+            var pageUrl = window.location.href.split('?')[0];
+            var ilSchema = {
+              '@context':'https://schema.org',
+              '@type':'ItemList',
+              'name': pageTitle,
+              'url': pageUrl,
+              'numberOfItems': rankedItems.length,
+              'itemListElement': rankedItems
+            };
+            var ilTag = document.createElement('script');
+            ilTag.type = 'application/ld+json';
+            ilTag.textContent = JSON.stringify(ilSchema);
+            document.head.appendChild(ilTag);
+          }
+        }
+      }
+    }catch(ex){}
+  })();
+
 })();

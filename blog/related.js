@@ -480,7 +480,7 @@
   var css = document.createElement('style');
   css.textContent = [
     '.related-section{margin:40px 0 32px;padding:32px 0 0;border-top:1px solid #efe6db}',
-    '.related-title{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 20px}',
+    '.related-title{font-size:1.1rem;font-weight:800;color:#3d3229;margin:0 0 20px}',
     '.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}',
     '.related-card{background:#fffcf9;border:1px solid #efe6db;border-radius:14px;padding:0;text-decoration:none;transition:all .25s;display:block;overflow:hidden}',
     '.related-card:hover{background:rgba(249,115,22,.04);border-color:rgba(249,115,22,.3);transform:translateY(-2px)}',
@@ -537,6 +537,9 @@
   }
   html += '</div>';
   section.innerHTML = html;
+
+  /* ── Hide old inline text-based related sections ── */
+  document.querySelectorAll('.related, .related-links').forEach(function(el){ el.style.display = 'none'; });
 
   /* ── Inject after author card or before CTA ── */
   var author = document.querySelector('.author-card');

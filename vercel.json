@@ -94,7 +94,7 @@
       "permanent": true
     },
 
-    { "source": "/blog/mejores-zapatillas-trail-running", "destination": "/equipamiento/zapatillas-trail-running", "permanent": true },
+    { "source": "/blog/mejores-zapatillas-trail-running-old", "destination": "/blog/mejores-zapatillas-trail-running", "permanent": true },
     { "source": "/blog/en/best-bcaas-runners", "destination": "/blog/en/best-supplements-runners", "permanent": true },
     { "source": "/blog/en/running-groups-zaragoza", "destination": "/cities/zaragoza", "permanent": true },
     { "source": "/blog/en/running-at-night-tips", "destination": "/blog/en/running-at-night-safety-tips", "permanent": true },

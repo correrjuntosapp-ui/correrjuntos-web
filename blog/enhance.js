@@ -107,6 +107,25 @@
   }
 
   /* ══════════════════════════════════════════════
+     0a. READING PROGRESS BAR
+     ══════════════════════════════════════════════ */
+  (function(){
+    var cleanP = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+    var isIdx = (cleanP === '/blog' || cleanP === '/blog/en');
+    if(isIdx) return; // only on articles
+    var bar = document.createElement('div');
+    bar.id = 'reading-progress';
+    document.body.prepend(bar);
+    var cssBar = document.createElement('style');
+    cssBar.textContent = '#reading-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:#f97316;z-index:1001;transition:width .08s linear;pointer-events:none}';
+    document.head.appendChild(cssBar);
+    window.addEventListener('scroll', function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(window.scrollY / h * 100, 100) : 0) + '%';
+    }, {passive: true});
+  })();
+
+  /* ══════════════════════════════════════════════
      0b. BACK TO BLOG BUTTON
      ══════════════════════════════════════════════ */
   var navWrapper = document.querySelector('.nav-wrapper');
@@ -712,5 +731,36 @@
       trackEvent('blog_app_banner_dismiss', {slug: slug});
     });
   })();
+
+  /* ══════════════════════════════════════════════
+     10. CLICKABLE CATEGORY BADGE → filters blog
+     ══════════════════════════════════════════════ */
+  if(!isBlogIndex){
+    var CAT_MAP = {
+      'entrenamiento':'entrenamiento','zapatillas':'zapatillas','nutrici\u00f3n':'nutricion',
+      'nutricion':'nutricion','salud':'salud','equipamiento':'equipamiento',
+      'tecnolog\u00eda':'tecnologia','tecnologia':'tecnologia','rutas':'rutas',
+      'trail':'trail','suplementaci\u00f3n':'suplementacion','suplementacion':'suplementacion',
+      'atleta h\u00edbrido':'atleta-hibrido','atleta-hibrido':'atleta-hibrido'
+    };
+    document.querySelectorAll('.meta .category, .hero .category, .hero-category, [class*="cat-badge-"]').forEach(function(el){
+      var text = el.textContent.trim().toLowerCase();
+      var catKey = CAT_MAP[text];
+      if(!catKey) {
+        var classes = el.className.split(' ');
+        for(var i=0;i<classes.length;i++){
+          if(classes[i].indexOf('cat-badge-')===0){ catKey = classes[i].replace('cat-badge-',''); break; }
+        }
+      }
+      if(!catKey) return;
+      el.style.cursor = 'pointer';
+      el.title = isEN ? 'See all in this category' : 'Ver todos de esta categor\u00eda';
+      el.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        var base = isEN ? '/blog/en/' : '/blog/';
+        window.location.href = base + '?cat=' + catKey;
+      });
+    });
+  }
 
 })();

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan — Calendario Semanal Dark</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111; min-height: 100vh;
+    display: flex; justify-content: center; align-items: flex-start; gap: 24px; padding: 20px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone {
+    width: 100%; max-width: 390px; background: #0D0D0F;
+    display: flex; flex-direction: column; height: 844px;
+    position: relative; overflow: hidden;
+    border-radius: 40px; border: 2px solid #2A2A30;
+  }
+  .island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+  .label { color: #FF6B00; font-size: 11px; font-weight: 700; text-align: center; margin: 8px 0 4px; letter-spacing: 1px; }
+
+  /* ═══ HEADER ═══ */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px 8px; flex-shrink: 0;
+  }
+  .header-back { color: #FF6B00; font-size: 20px; cursor: pointer; width: 36px; }
+  .header-title { font-size: 17px; font-weight: 700; color: #F5F5F7; }
+  .header-save { font-size: 15px; font-weight: 600; color: #FF6B00; cursor: pointer; width: 60px; text-align: right; }
+  .header-save.disabled { color: #555560; }
+
+  /* ═══ WEEK HEADER ═══ */
+  .week-header {
+    padding: 12px 20px 8px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .week-info { display: flex; flex-direction: column; gap: 4px; }
+  .week-range {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .week-dates { font-size: 15px; font-weight: 600; color: #F5F5F7; }
+  .week-badge {
+    background: #FF6B0020; color: #FF6B00; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 10px; letter-spacing: 0.3px;
+  }
+  .week-total { font-size: 13px; color: #9A9AA6; }
+  .week-total span { font-weight: 600; color: #F5F5F7; }
+  .week-nav {
+    display: flex; gap: 4px;
+  }
+  .week-nav-btn {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: #1A1A1E; border: 1px solid #2A2A30;
+    color: #9A9AA6; font-size: 13px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .week-nav-btn:hover { background: #2A2A30; color: #F5F5F7; }
+
+  .reset-btn {
+    display: flex; align-items: center; gap: 4px;
+    color: #9A9AA6; font-size: 12px; cursor: pointer;
+    margin: 0 20px 4px; align-self: flex-end;
+  }
+  .reset-btn:hover { color: #FF6B00; }
+
+  /* ═══ SEPARATOR ═══ */
+  .sep { height: 1px; background: #1A1A1E; margin: 0 20px; }
+
+  /* ═══ DAY LIST ═══ */
+  .day-list {
+    flex: 1; overflow-y: auto; padding: 0 0 20px;
+    scrollbar-width: none;
+  }
+  .day-list::-webkit-scrollbar { display: none; }
+
+  .day-row {
+    display: flex; align-items: flex-start; padding: 0 20px;
+    min-height: 64px; position: relative;
+  }
+  .day-row + .day-row { border-top: 1px solid #1A1A1E; }
+
+  /* Left date column */
+  .day-date {
+    width: 50px; flex-shrink: 0; padding: 14px 0;
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+  }
+  .day-label { font-size: 11px; font-weight: 600; color: #555560; text-transform: uppercase; letter-spacing: 0.5px; }
+  .day-number { font-size: 20px; font-weight: 700; color: #9A9AA6; }
+  .day-row.today .day-label { color: #FF6B00; }
+  .day-row.today .day-number { color: #FF6B00; }
+
+  /* Workout card in the day */
+  .day-content {
+    flex: 1; padding: 10px 0; display: flex; align-items: center; gap: 8px;
+    min-height: 64px;
+  }
+
+  .workout-card {
+    flex: 1; background: #1A1A1E; border-radius: 12px;
+    padding: 10px 14px; border-left: 3px solid #FF6B00;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .workout-card:hover { background: #222226; }
+  .workout-card.completed { border-left-color: #22C55E; opacity: 0.7; }
+  .workout-card.rest { border-left-color: #555560; background: transparent; border: 1px dashed #2A2A30; border-left: 3px solid #555560; }
+
+  .workout-name { font-size: 14px; font-weight: 600; color: #F5F5F7; }
+  .workout-card.completed .workout-name { color: #9A9AA6; text-decoration: line-through; }
+  .workout-details {
+    display: flex; align-items: center; gap: 6px; margin-top: 3px;
+  }
+  .workout-km { font-size: 12px; color: #9A9AA6; font-weight: 500; }
+  .workout-type-icon { font-size: 12px; }
+  .workout-stats { font-size: 11px; color: #6B6B78; margin-top: 2px; }
+
+  /* Add button */
+  .add-btn {
+    display: flex; align-items: center; gap: 6px;
+    color: #555560; font-size: 13px; cursor: pointer;
+    padding: 8px 0; transition: color 0.15s;
+  }
+  .add-btn:hover { color: #FF6B00; }
+  .add-plus {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 1.5px dashed #555560; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 14px; transition: all 0.15s;
+  }
+  .add-btn:hover .add-plus { border-color: #FF6B00; color: #FF6B00; }
+
+  /* ═══ DRAG HANDLE ═══ */
+  .drag-handle {
+    width: 20px; display: flex; align-items: center; justify-content: center;
+    color: #555560; font-size: 16px; cursor: grab; padding: 10px 0;
+    flex-shrink: 0;
+  }
+  .drag-handle:hover { color: #9A9AA6; }
+
+  /* ═══ PHONE 2: EDIT MODE ═══ */
+  .workout-card.editing {
+    border: 1px solid #FF6B00; background: #1E1510;
+  }
+  .edit-actions {
+    display: flex; gap: 8px; margin-top: 8px;
+  }
+  .edit-btn {
+    font-size: 11px; padding: 4px 10px; border-radius: 6px;
+    cursor: pointer; border: none; font-weight: 600;
+    transition: all 0.15s;
+  }
+  .edit-btn.move { background: #FF6B0020; color: #FF6B00; }
+  .edit-btn.move:hover { background: #FF6B0040; }
+  .edit-btn.delete { background: #FF3B3010; color: #FF3B30; }
+  .edit-btn.delete:hover { background: #FF3B3030; }
+  .edit-btn.cancel { background: #2A2A30; color: #9A9AA6; }
+
+  /* ═══ BOTTOM BAR ═══ */
+  .bottom-bar {
+    padding: 12px 20px 30px;
+    background: linear-gradient(transparent, #0D0D0F 30%);
+    flex-shrink: 0;
+  }
+  .bottom-summary {
+    display: flex; justify-content: space-around;
+    background: #1A1A1E; border-radius: 12px; padding: 12px;
+    margin-bottom: 8px;
+  }
+  .summary-item { text-align: center; }
+  .summary-value { font-size: 16px; font-weight: 700; color: #F5F5F7; }
+  .summary-label { font-size: 10px; color: #555560; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PHONE 1 — CALENDARIO SEMANAL              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="phone">
+  <div class="island"></div>
+  <div class="label">CALENDARIO — VISTA SEMANAL</div>
+
+  <div class="header">
+    <div class="header-back">‹</div>
+    <div class="header-title">Calendario</div>
+    <div class="header-save disabled">Guardar</div>
+  </div>
+
+  <!-- Week header -->
+  <div class="week-header">
+    <div class="week-info">
+      <div class="week-range">
+        <span class="week-dates">30 mar – 5 abr</span>
+        <span class="week-badge">SEMANA 2</span>
+      </div>
+      <div class="week-total">Total: <span>9,8 km</span></div>
+    </div>
+    <div class="week-nav">
+      <div class="week-nav-btn">‹</div>
+      <div class="week-nav-btn">›</div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:flex-end;padding:0 20px 4px;">
+    <div class="reset-btn">↻ Reiniciar</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Day list -->
+  <div class="day-list">
+    <!-- LUN 30 — empty -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Lun</span>
+        <span class="day-number">30</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAR 31 — workout -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Mar</span>
+        <span class="day-number">31</span>
+      </div>
+      <div class="day-content">
+        <div class="workout-card completed">
+          <div class="workout-name">Inicio: semana 2</div>
+          <div class="workout-details">
+            <span class="workout-km">3,2 km</span>
+            <span class="workout-type-icon">🏃</span>
+          </div>
+          <div class="workout-stats">18:40 · 5:50/km · 142 bpm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIE 1 — empty -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Mié</span>
+        <span class="day-number">1</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUE 2 — empty (descanso) -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Jue</span>
+        <span class="day-number">2</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIE 3 — workout -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Vie</span>
+        <span class="day-number">3</span>
+      </div>
+      <div class="day-content">
+        <div class="workout-card">
+          <div class="workout-name">Caminatas enérgicas</div>
+          <div class="workout-details">
+            <span class="workout-km">3,8 km</span>
+            <span class="workout-type-icon">🏃</span>
+          </div>
+        </div>
+        <div class="drag-handle">⋮⋮</div>
+      </div>
+    </div>
+
+    <!-- SAB 4 — empty -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Sáb</span>
+        <span class="day-number">4</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOM 5 — workout -->
+    <div class="day-row today">
+      <div class="day-date">
+        <span class="day-label">Dom</span>
+        <span class="day-number">5</span>
+      </div>
+      <div class="day-content">
+        <div class="workout-card" style="border-left-color: #FF6B00; box-shadow: 0 0 0 1px #FF6B0040;">
+          <div class="workout-name">Carrera conversacional</div>
+          <div class="workout-details">
+            <span class="workout-km">2,8 km</span>
+            <span class="workout-type-icon">🏃</span>
+          </div>
+        </div>
+        <div class="drag-handle">⋮⋮</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom summary -->
+  <div class="bottom-bar">
+    <div class="bottom-summary">
+      <div class="summary-item">
+        <div class="summary-value">3</div>
+        <div class="summary-label">Entrenos</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-value">9,8</div>
+        <div class="summary-label">Km total</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-value">1/3</div>
+        <div class="summary-label">Completados</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PHONE 2 — EDITAR ENTRENO (tap on card)     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="phone">
+  <div class="island"></div>
+  <div class="label">EDITAR ENTRENO — AL TOCAR CARD</div>
+
+  <div class="header">
+    <div class="header-back">‹</div>
+    <div class="header-title">Calendario</div>
+    <div class="header-save">Guardar</div>
+  </div>
+
+  <div class="week-header">
+    <div class="week-info">
+      <div class="week-range">
+        <span class="week-dates">30 mar – 5 abr</span>
+        <span class="week-badge">SEMANA 2</span>
+      </div>
+      <div class="week-total">Total: <span>9,8 km</span></div>
+    </div>
+    <div class="week-nav">
+      <div class="week-nav-btn">‹</div>
+      <div class="week-nav-btn">›</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="day-list">
+    <!-- LUN 30 -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Lun</span>
+        <span class="day-number">30</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAR 31 — completed -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Mar</span>
+        <span class="day-number">31</span>
+      </div>
+      <div class="day-content">
+        <div class="workout-card completed">
+          <div class="workout-name">Inicio: semana 2</div>
+          <div class="workout-details">
+            <span class="workout-km">3,2 km</span>
+            <span class="workout-type-icon">🏃</span>
+          </div>
+          <div class="workout-stats">18:40 · 5:50/km · 142 bpm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIE 1 -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Mié</span>
+        <span class="day-number">1</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUE 2 -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Jue</span>
+        <span class="day-number">2</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIE 3 — EDITING THIS ONE -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Vie</span>
+        <span class="day-number">3</span>
+      </div>
+      <div class="day-content">
+        <div class="workout-card editing">
+          <div class="workout-name">Caminatas enérgicas</div>
+          <div class="workout-details">
+            <span class="workout-km">3,8 km</span>
+            <span class="workout-type-icon">🏃</span>
+          </div>
+          <div class="edit-actions">
+            <button class="edit-btn move">📅 Mover</button>
+            <button class="edit-btn delete">🗑 Quitar</button>
+            <button class="edit-btn cancel">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAB 4 -->
+    <div class="day-row">
+      <div class="day-date">
+        <span class="day-label">Sáb</span>
+        <span class="day-number">4</span>
+      </div>
+      <div class="day-content">
+        <div class="add-btn">
+          <div class="add-plus">+</div>
+          <span>Añadir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOM 5 — today -->
+    <div class="day-row today">
+      <div class="day-date">
+        <span class="day-label">Dom</span>
+        <span class="day-number">5</span>
+      </div>
+      <div class="day-content">
+        <div class="workout-card" style="border-left-color: #FF6B00; box-shadow: 0 0 0 1px #FF6B0040;">
+          <div class="workout-name">Carrera conversacional</div>
+          <div class="workout-details">
+            <span class="workout-km">2,8 km</span>
+            <span class="workout-type-icon">🏃</span>
+          </div>
+        </div>
+        <div class="drag-handle">⋮⋮</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bottom-summary">
+      <div class="summary-item">
+        <div class="summary-value">3</div>
+        <div class="summary-label">Entrenos</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-value">9,8</div>
+        <div class="summary-label">Km total</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-value">1/3</div>
+        <div class="summary-label">Completados</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

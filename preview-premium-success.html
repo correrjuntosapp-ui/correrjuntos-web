@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview — PremiumSuccessScreen</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 20px;
+  gap: 40px;
+}
+
+.phone {
+  width: 375px;
+  height: 812px;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 3px solid #333;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ── Success Screen ── */
+.success-screen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0D0D0F 0%, #1a1205 40%, #0D0D0F 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 24px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Confetti */
+.confetti-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  top: -10px;
+  animation: confettiFall 3s ease-out forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(750px) rotate(720deg); opacity: 0; }
+}
+
+/* Crown */
+.crown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: crownBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform: scale(0);
+  margin-top: 40px;
+}
+
+@keyframes crownBounce {
+  0% { transform: scale(0) rotate(-15deg); }
+  60% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.crown-glow {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.crown-glow-inner {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.crown-icon {
+  font-size: 72px;
+  line-height: 1;
+  filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.3));
+}
+
+/* Title */
+.success-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #fbbf24;
+  text-align: center;
+  margin-top: 28px;
+  letter-spacing: -0.5px;
+  animation: fadeUp 0.5s ease-out 0.6s both;
+}
+
+.success-subtitle {
+  font-size: 15px;
+  color: #9A9AA6;
+  text-align: center;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding: 0 20px;
+  animation: fadeUp 0.4s ease-out 0.9s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Features card */
+.features-card {
+  width: 100%;
+  background: #1A1A1E;
+  border: 1px solid #2A2A30;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeUp 0.5s ease-out 1.2s both;
+}
+
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+.feature-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #F5F5F7;
+}
+
+/* CTA */
+.success-cta-wrapper {
+  width: 100%;
+  animation: fadeUp 0.5s ease-out 1.5s both;
+}
+
+.success-cta {
+  width: 100%;
+  background: linear-gradient(90deg, #FF6B00, #e05500);
+  border: none;
+  border-radius: 14px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.success-cta:active {
+  transform: scale(0.97);
+}
+
+.success-cta-text {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.success-cta svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Label */
+.screen-label {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FF6B00;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+/* Flow arrow */
+.flow-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.flow-arrow {
+  font-size: 28px;
+  color: #FF6B00;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Paywall mini ── */
+.paywall-mini {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0D0D0F 0%, #1c1205 30%, #2d1810 60%, #0D0D0F 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 24px 30px;
+}
+
+.paywall-mini .close-btn {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9A9AA6;
+  font-size: 18px;
+}
+
+.paywall-mini .crown { font-size: 56px; margin-top: 20px; }
+.paywall-mini .pw-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fbbf24;
+  margin-top: 12px;
+}
+.paywall-mini .pw-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin-top: 6px;
+  padding: 0 10px;
+}
+
+.plan-cards {
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan-card {
+  background: #1A1A1E;
+  border: 2px solid #333;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.plan-card.selected {
+  border-color: #FF6B00;
+  background: #1A1A1E;
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.radio.active {
+  border-color: #FF6B00;
+}
+
+.radio.active::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FF6B00;
+}
+
+.plan-info { flex: 1; }
+.plan-name { font-size: 15px; font-weight: 600; color: #F5F5F7; }
+.plan-sub { font-size: 12px; color: #9A9AA6; margin-top: 2px; }
+.plan-price { font-size: 16px; font-weight: 700; color: #FF6B00; text-align: right; }
+
+.save-badge {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  background: #FF6B00;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+.pw-cta {
+  width: 100%;
+  background: linear-gradient(90deg, #FF6B00, #e05500);
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 24px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pw-restore {
+  color: #666;
+  font-size: 13px;
+  margin-top: 14px;
+}
+
+/* ── PlanWizard mini ── */
+.wizard-mini {
+  width: 100%;
+  height: 100%;
+  background: #0D0D0F;
+  padding: 60px 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wizard-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.wizard-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #FF6B00;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.wizard-plan-name {
+  font-size: 24px;
+  font-weight: 800;
+  color: #F5F5F7;
+  margin-top: 4px;
+}
+
+.wizard-plan-meta {
+  font-size: 13px;
+  color: #FF6B00;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.wizard-step-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #F5F5F7;
+  margin-top: 28px;
+}
+
+.wizard-step-sub {
+  font-size: 13px;
+  color: #9A9AA6;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.level-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.level-card {
+  background: #1A1A1E;
+  border: 2px solid #2A2A30;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.level-card.selected {
+  border-color: #FF6B00;
+  background: #2A1A0A;
+}
+
+.level-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #F5F5F7;
+}
+
+.level-desc {
+  font-size: 13px;
+  color: #9A9AA6;
+  margin-top: 4px;
+}
+
+.wizard-cta {
+  width: 100%;
+  background: linear-gradient(90deg, #FF6B00, #e05500);
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: auto;
+  cursor: pointer;
+  text-align: center;
+}
+
+.step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #FF6B00;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+</style>
+</head>
+<body>
+
+<!-- PHONE 1: PaywallScreen (compra) -->
+<div class="phone" style="position:relative;">
+  <div class="step-number">1</div>
+  <div class="screen-label">PAYWALL — COMPRA</div>
+  <div class="paywall-mini">
+    <div class="close-btn">&times;</div>
+    <div class="crown">&#x1F451;</div>
+    <div class="pw-title">Entrena como un PRO</div>
+    <div class="pw-sub">Desbloquea todos los planes, ritmos personalizados y mucho mas</div>
+
+    <div class="plan-cards">
+      <div class="plan-card">
+        <div class="radio"></div>
+        <div class="plan-info">
+          <div class="plan-name">Mensual</div>
+          <div class="plan-sub">Cancela cuando quieras</div>
+        </div>
+        <div class="plan-price">4,99 &euro;/mes</div>
+      </div>
+      <div class="plan-card selected">
+        <div class="save-badge">Ahorra 40%</div>
+        <div class="radio active"></div>
+        <div class="plan-info">
+          <div class="plan-name">Anual</div>
+          <div class="plan-sub">Solo 2,49 &euro;/mes</div>
+        </div>
+        <div class="plan-price">29,99 &euro;/ano</div>
+      </div>
+    </div>
+
+    <button class="pw-cta" style="opacity:0.7; pointer-events:none;">
+      &#x2714; Procesando pago...
+    </button>
+    <div class="pw-restore">Restaurar compras</div>
+  </div>
+</div>
+
+<!-- Arrow -->
+<div class="flow-info">
+  <div class="flow-arrow">&rarr;</div>
+  <div>Compra OK</div>
+</div>
+
+<!-- PHONE 2: PremiumSuccessScreen (NUEVO) -->
+<div class="phone" style="position:relative;">
+  <div class="step-number">2</div>
+  <div class="screen-label" style="background:#22c55e;">PREMIUMSUCCESSSCREEN (NUEVO)</div>
+  <div class="success-screen">
+    <!-- Confetti particles -->
+    <div class="confetti-container">
+      <div class="confetti" style="left:10%;width:8px;height:20px;background:#FF6B00;animation-delay:0s;animation-duration:2.5s;"></div>
+      <div class="confetti" style="left:20%;width:6px;height:6px;border-radius:50%;background:#fbbf24;animation-delay:0.1s;animation-duration:2.8s;"></div>
+      <div class="confetti" style="left:35%;width:7px;height:18px;background:#22c55e;animation-delay:0.2s;animation-duration:2.3s;"></div>
+      <div class="confetti" style="left:45%;width:6px;height:6px;border-radius:50%;background:#3b82f6;animation-delay:0.05s;animation-duration:2.6s;"></div>
+      <div class="confetti" style="left:55%;width:8px;height:22px;background:#a855f7;animation-delay:0.15s;animation-duration:2.4s;"></div>
+      <div class="confetti" style="left:65%;width:6px;height:6px;border-radius:50%;background:#ef4444;animation-delay:0.25s;animation-duration:2.7s;"></div>
+      <div class="confetti" style="left:75%;width:7px;height:16px;background:#FF6B00;animation-delay:0.3s;animation-duration:2.2s;"></div>
+      <div class="confetti" style="left:85%;width:6px;height:6px;border-radius:50%;background:#fbbf24;animation-delay:0.08s;animation-duration:2.9s;"></div>
+      <div class="confetti" style="left:50%;width:8px;height:20px;background:#22c55e;animation-delay:0.18s;animation-duration:2.5s;"></div>
+      <div class="confetti" style="left:30%;width:6px;height:6px;border-radius:50%;background:#3b82f6;animation-delay:0.35s;animation-duration:2.6s;"></div>
+      <div class="confetti" style="left:70%;width:7px;height:18px;background:#a855f7;animation-delay:0.12s;animation-duration:2.3s;"></div>
+      <div class="confetti" style="left:15%;width:6px;height:6px;border-radius:50%;background:#ef4444;animation-delay:0.22s;animation-duration:2.8s;"></div>
+      <div class="confetti" style="left:90%;width:8px;height:14px;background:#fbbf24;animation-delay:0.28s;animation-duration:2.4s;"></div>
+      <div class="confetti" style="left:5%;width:6px;height:6px;border-radius:50%;background:#FF6B00;animation-delay:0.32s;animation-duration:2.7s;"></div>
+      <div class="confetti" style="left:60%;width:7px;height:20px;background:#22c55e;animation-delay:0.06s;animation-duration:2.5s;"></div>
+    </div>
+
+    <div class="content-area">
+      <!-- Crown -->
+      <div class="crown-wrapper">
+        <div class="crown-glow"></div>
+        <div class="crown-glow-inner"></div>
+        <div class="crown-icon">&#x1F451;</div>
+      </div>
+
+      <!-- Title -->
+      <div class="success-title">Bienvenido a Premium!</div>
+      <div class="success-subtitle">Ya tienes acceso a todos los planes y funcionalidades</div>
+
+      <!-- Features card -->
+      <div class="features-card">
+        <div class="feature-row">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="feature-text">7 planes de entrenamiento personalizados</span>
+        </div>
+        <div class="feature-row">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="feature-text">Ritmos auto-ajustados</span>
+        </div>
+        <div class="feature-row">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="feature-text">Graficas de progreso y analiticas</span>
+        </div>
+        <div class="feature-row">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="feature-text">Sync con reloj (Garmin, COROS, Apple)</span>
+        </div>
+        <div class="feature-row">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="feature-text">Soporte prioritario</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="success-cta-wrapper">
+      <button class="success-cta">
+        <span class="success-cta-text">Empezar mi plan</span>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Arrow -->
+<div class="flow-info">
+  <div class="flow-arrow">&rarr;</div>
+  <div>4s o tap</div>
+</div>
+
+<!-- PHONE 3: PlanWizard -->
+<div class="phone" style="position:relative;">
+  <div class="step-number">3</div>
+  <div class="screen-label">PLANWIZARD — NIVEL</div>
+  <div class="wizard-mini">
+    <div class="wizard-header">
+      <div class="wizard-label">TU PLAN</div>
+      <div class="wizard-plan-name">Preparar un 10K</div>
+      <div class="wizard-plan-meta">12 semanas &middot; 4 dias/semana</div>
+    </div>
+
+    <div class="wizard-step-title">Tu nivel actual</div>
+    <div class="wizard-step-sub">Esto nos ayuda a ajustar la intensidad de tu plan</div>
+
+    <div class="level-cards">
+      <div class="level-card">
+        <div class="level-name">Relajado</div>
+        <div class="level-desc">Corro a un ritmo comodo ~7:00/km</div>
+      </div>
+      <div class="level-card selected">
+        <div class="level-name">Comodo</div>
+        <div class="level-desc">Mantengo buen ritmo ~6:00/km</div>
+      </div>
+      <div class="level-card">
+        <div class="level-name">Exigente</div>
+        <div class="level-desc">Entreno fuerte ~5:15/km</div>
+      </div>
+      <div class="level-card">
+        <div class="level-name">Rapido</div>
+        <div class="level-desc">Busco marca ~4:30/km</div>
+      </div>
+    </div>
+
+    <button class="wizard-cta">Siguiente &rarr;</button>
+  </div>
+</div>
+
+</body>
+</html>

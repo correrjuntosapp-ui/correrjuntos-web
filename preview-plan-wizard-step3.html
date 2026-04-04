@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 3: Ritmo — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0A0A0C; min-height: 100vh;
+    display: flex; justify-content: center; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone {
+    width: 100%; max-width: 375px; background: #111214;
+    display: flex; flex-direction: column; height: 100vh;
+  }
+  .dynamic-island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px 8px; flex-shrink: 0; }
+  .btn-back { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.07); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .btn-back:hover { background: rgba(255,255,255,0.12); }
+  .header-title { font-size: 15px; font-weight: 600; color: #F5F5F7; letter-spacing: -0.2px; }
+  .header-spacer { width: 34px; }
+
+  .step-dots { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 8px 0 2px; flex-shrink: 0; }
+  .step-dot { height: 4px; border-radius: 2px; background: #2A2A2E; }
+  .step-dot.active { width: 22px; background: #FF6B00; }
+  .step-dot.done { width: 6px; background: #555; }
+  .step-dot.inactive { width: 6px; }
+
+  .scroll-area { flex: 1; overflow-y: auto; padding: 0 16px 16px; scrollbar-width: none; min-height: 0; }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  .section-title { font-size: 26px; font-weight: 800; color: #F5F5F7; letter-spacing: -0.5px; margin-top: 20px; margin-bottom: 4px; }
+  .section-subtitle { font-size: 14px; color: #8A8A96; margin-bottom: 24px; line-height: 1.4; }
+
+  /* ─── Pace Card ───────────────────────── */
+  .pace-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 16px; border-radius: 14px;
+    border: 1.5px solid rgba(255,255,255,0.07);
+    background: #1C1C20; margin-bottom: 10px;
+    cursor: pointer; transition: all 0.2s ease;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .pace-card:hover { background: #252529; }
+  .pace-card:active { transform: scale(0.988); }
+  .pace-card.selected { background: #1F1A14; border-color: #FF6B00; border-width: 2px; }
+  .pace-card.recommended { border-color: rgba(34,197,94,0.3); }
+  .pace-card.recommended.selected { border-color: #FF6B00; }
+
+  .pace-icon {
+    width: 44px; height: 44px; min-width: 44px; border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform 0.2s;
+  }
+  .pace-card.selected .pace-icon { transform: scale(1.06); }
+
+  .pace-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .pace-name { font-size: 15px; font-weight: 700; color: #F5F5F7; letter-spacing: -0.2px; }
+  .pace-desc { font-size: 13px; color: #8A8A96; line-height: 1.4; }
+  .rec-tag {
+    font-size: 10px; font-weight: 700; color: #22C55E;
+    letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 2px;
+  }
+
+  .radio-wrap {
+    width: 22px; height: 22px; border-radius: 50%; border: 2px solid #3A3A42;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.2s; background: transparent;
+  }
+  .pace-card.selected .radio-wrap {
+    background: #FF6B00; border-color: #FF6B00;
+    box-shadow: 0 0 0 3px rgba(255,107,0,0.18);
+  }
+  .radio-check { opacity: 0; transform: scale(0.4); transition: all 0.2s; }
+  .pace-card.selected .radio-check { opacity: 1; transform: scale(1); }
+
+  /* ─── Expandable sections ─────────────── */
+  .expand-wrap {
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height 300ms ease, opacity 200ms ease, margin 200ms ease;
+    margin-bottom: 0;
+  }
+  .expand-wrap.open {
+    max-height: 400px; opacity: 1;
+    margin-bottom: 10px;
+  }
+
+  /* 5K input */
+  .pace-input {
+    width: 100%; padding: 12px 14px; border-radius: 10px;
+    border: 1.5px solid #3A3A3C; background: #151517;
+    color: #FFFFFF; font-size: 16px; font-weight: 600;
+    font-family: inherit; outline: none; transition: border-color 0.2s;
+    margin-top: 6px;
+  }
+  .pace-input:focus { border-color: #FF6B00; }
+  .pace-input::placeholder { color: #555; font-weight: 400; }
+
+  /* ─── Perception Grid ─────────────────── */
+  .perception-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; padding-top: 6px;
+  }
+
+  .perc-card {
+    padding: 16px 14px; border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.07);
+    background: #1C1C20; cursor: pointer;
+    transition: all 0.2s; user-select: none;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .perc-card:hover { background: #252529; }
+  .perc-card:active { transform: scale(0.97); }
+  .perc-card.active {
+    border-color: #FF6B00; border-width: 2px;
+    background: #1F1A14;
+  }
+
+  .perc-label { font-size: 14px; font-weight: 700; color: #F5F5F7; }
+  .perc-pace { font-size: 15px; font-weight: 800; color: #FF6B00; letter-spacing: -0.3px; }
+
+  /* Intensity bars */
+  .intensity-bars { display: flex; gap: 3px; align-items: flex-end; height: 8px; }
+  .intensity-bar {
+    width: 14px; height: 4px; border-radius: 2px;
+    background: #2A2A2E; transition: background 0.2s;
+  }
+  .intensity-bar.filled { background: #FF6B00; }
+  .perc-card.active .intensity-bar.filled { background: #FF8C38; }
+
+  /* Footer */
+  .footer { padding: 10px 16px 24px; flex-shrink: 0; background: #111214; border-top: 1px solid rgba(255,255,255,0.06); }
+  .btn-continue { width: 100%; height: 52px; border-radius: 14px; border: none; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; transition: all 0.25s; letter-spacing: -0.2px; }
+  .btn-continue.inactive { background: #2A2A2E; color: #4A4A55; cursor: not-allowed; }
+  .btn-continue.active { background: linear-gradient(135deg, #FF6B00 0%, #FF8C38 100%); color: #FFF; box-shadow: 0 4px 20px rgba(255,107,0,0.32); }
+  .footer-status { text-align: center; font-size: 12px; color: #4A4A55; margin-top: 8px; font-weight: 500; min-height: 15px; }
+  .footer-status.has-selection { color: #FF6B00; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="dynamic-island"></div>
+  <div class="header">
+    <button class="btn-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="#8A8A96" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <span class="header-title">Crear tu plan</span>
+    <div class="header-spacer"></div>
+  </div>
+  <div class="step-dots">
+    <div class="step-dot done"></div>
+    <div class="step-dot done"></div>
+    <div class="step-dot active"></div>
+    <div class="step-dot inactive"></div>
+    <div class="step-dot inactive"></div>
+  </div>
+
+  <div class="scroll-area">
+    <div class="section-title">¿Cuál es tu ritmo?</div>
+    <div class="section-subtitle">Ajustaremos las zonas de tu plan</div>
+
+    <!-- 1. Auto GPS (recommended) -->
+    <div class="pace-card recommended" data-mode="auto" onclick="selectPace(this)">
+      <div class="pace-icon" style="background:rgba(34,197,94,0.13);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M18 20V10M12 20V4M6 20v-6" stroke="#22C55E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pace-body">
+        <span class="rec-tag">Recomendado</span>
+        <span class="pace-name">Según tus carreras: 5:45/km</span>
+        <span class="pace-desc">Calculado de tus actividades GPS</span>
+      </div>
+      <div class="radio-wrap">
+        <svg class="radio-check" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- 2. Manual 5K time -->
+    <div class="pace-card" data-mode="5k" onclick="selectPace(this)">
+      <div class="pace-icon" style="background:rgba(96,165,250,0.13);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M10 2h4" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="14" r="8" stroke="#60A5FA" stroke-width="1.8"/>
+          <path d="M12 10v4l2.5 1.5" stroke="#60A5FA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pace-body">
+        <span class="pace-name">Tengo un tiempo de 5K</span>
+        <span class="pace-desc">Introduce tu marca personal</span>
+      </div>
+      <div class="radio-wrap">
+        <svg class="radio-check" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <!-- 5K input expandable -->
+    <div class="expand-wrap" id="expand5k">
+      <input type="text" class="pace-input" placeholder="Ej: 25:30" maxlength="5" id="paceInput"/>
+    </div>
+
+    <!-- 3. Perception -->
+    <div class="pace-card" data-mode="perception" onclick="selectPace(this)">
+      <div class="pace-icon" style="background:rgba(249,115,22,0.13);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="#F97316" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="9" cy="6" r="2.5" fill="#F97316"/>
+          <circle cx="15" cy="12" r="2.5" fill="#F97316"/>
+          <circle cx="9" cy="18" r="2.5" fill="#F97316"/>
+        </svg>
+      </div>
+      <div class="pace-body">
+        <span class="pace-name">No lo sé, estimar por nivel</span>
+        <span class="pace-desc">Elige cómo te sientes al correr</span>
+      </div>
+      <div class="radio-wrap">
+        <svg class="radio-check" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <!-- Perception grid expandable -->
+    <div class="expand-wrap" id="expandPerception">
+      <div class="perception-grid">
+        <!-- Tranquilo: 1 bar -->
+        <div class="perc-card" data-pace="7:00" data-label="Tranquilo" onclick="selectPerception(this)">
+          <div class="intensity-bars">
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar"></div>
+            <div class="intensity-bar"></div>
+            <div class="intensity-bar"></div>
+          </div>
+          <div class="perc-label">Tranquilo</div>
+          <div class="perc-pace">7:00/km</div>
+        </div>
+        <!-- Cómodo: 2 bars -->
+        <div class="perc-card" data-pace="6:00" data-label="Cómodo" onclick="selectPerception(this)">
+          <div class="intensity-bars">
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar"></div>
+            <div class="intensity-bar"></div>
+          </div>
+          <div class="perc-label">Cómodo</div>
+          <div class="perc-pace">6:00/km</div>
+        </div>
+        <!-- Fuerte: 3 bars -->
+        <div class="perc-card" data-pace="5:15" data-label="Fuerte" onclick="selectPerception(this)">
+          <div class="intensity-bars">
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar"></div>
+          </div>
+          <div class="perc-label">Fuerte</div>
+          <div class="perc-pace">5:15/km</div>
+        </div>
+        <!-- Rápido: 4 bars -->
+        <div class="perc-card" data-pace="4:30" data-label="Rápido" onclick="selectPerception(this)">
+          <div class="intensity-bars">
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar filled"></div>
+            <div class="intensity-bar filled"></div>
+          </div>
+          <div class="perc-label">Rápido</div>
+          <div class="perc-pace">4:30/km</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="btn-continue inactive" id="btnContinue" disabled>Continuar</button>
+    <div class="footer-status" id="footerStatus">Sin selección</div>
+  </div>
+</div>
+
+<script>
+  var selectedCard = null;
+  var selectedPerc = null;
+
+  function selectPace(card) {
+    var mode = card.dataset.mode;
+    if (selectedCard) selectedCard.classList.remove('selected');
+
+    // Toggle off
+    if (selectedCard === card) {
+      selectedCard = null;
+      closeAll();
+      updateFooter(null);
+      return;
+    }
+
+    card.classList.add('selected');
+    selectedCard = card;
+
+    // Collapse all, then expand the right one
+    closeAll();
+    if (mode === '5k') {
+      document.getElementById('expand5k').classList.add('open');
+      setTimeout(function(){ document.getElementById('paceInput').focus(); }, 150);
+      updateFooter('Tiempo 5K');
+    } else if (mode === 'perception') {
+      document.getElementById('expandPerception').classList.add('open');
+      if (selectedPerc) {
+        updateFooter('Ritmo: ' + selectedPerc.dataset.pace + '/km (' + selectedPerc.dataset.label + ')');
+      } else {
+        updateFooter(null);
+      }
+    } else if (mode === 'auto') {
+      updateFooter('GPS: 5:45/km');
+    }
+  }
+
+  function closeAll() {
+    document.getElementById('expand5k').classList.remove('open');
+    document.getElementById('expandPerception').classList.remove('open');
+  }
+
+  function selectPerception(item) {
+    if (selectedPerc) selectedPerc.classList.remove('active');
+    item.classList.add('active');
+    selectedPerc = item;
+    updateFooter('Ritmo: ' + item.dataset.pace + '/km (' + item.dataset.label + ')');
+  }
+
+  function updateFooter(label) {
+    var btn = document.getElementById('btnContinue');
+    var status = document.getElementById('footerStatus');
+    if (label) {
+      btn.className = 'btn-continue active'; btn.disabled = false;
+      status.textContent = label;
+      status.className = 'footer-status has-selection';
+    } else {
+      btn.className = 'btn-continue inactive'; btn.disabled = true;
+      status.textContent = 'Sin selección';
+      status.className = 'footer-status';
+    }
+  }
+</script>
+</body>
+</html>

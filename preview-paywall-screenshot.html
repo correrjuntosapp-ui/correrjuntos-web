@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correr Juntos Premium</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: #111111;
+    color: #fff;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .screen {
+    width: 100%;
+    height: 844px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .header {
+    padding: 60px 20px 20px;
+    text-align: center;
+  }
+  .close-btn {
+    position: absolute;
+    top: 56px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+  }
+  .crown {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+  }
+  .features {
+    padding: 0 28px;
+    margin-bottom: 28px;
+  }
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(255,107,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .feature-text h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .feature-text p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+  }
+  .plans {
+    padding: 0 20px;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .plan {
+    flex: 1;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 16px 12px;
+    text-align: center;
+    position: relative;
+  }
+  .plan.selected {
+    border-color: #FF6B00;
+    background: rgba(255,107,0,0.08);
+  }
+  .plan-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FF6B00;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .plan-duration {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 4px;
+  }
+  .plan-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FF6B00;
+  }
+  .plan-unit {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+  .plan-saving {
+    font-size: 11px;
+    color: #4CAF50;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .cta-container {
+    padding: 0 20px;
+    margin-bottom: 12px;
+  }
+  .cta-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #FF6B00, #FF8C33);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+  }
+  .trial-text {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+  .restore {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    padding: 8px;
+  }
+  .restore a {
+    color: #FF6B00;
+    text-decoration: none;
+  }
+  .radio-outer {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.3);
+    position: absolute;
+    top: 16px;
+    right: 12px;
+  }
+  .plan.selected .radio-outer {
+    border-color: #FF6B00;
+    background: #FF6B00;
+  }
+  .radio-inner {
+    display: none;
+  }
+  .plan.selected .radio-inner {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: #fff;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="close-btn">✕</div>
+  <div class="header">
+    <div class="crown">👑</div>
+    <div class="title">Correr Juntos Premium</div>
+    <div class="subtitle">Desbloquea todo el potencial de la app</div>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🏃</div>
+      <div class="feature-text">
+        <h3>Quedadas ilimitadas</h3>
+        <p>Crea y únete a quedadas sin límite</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🤝</div>
+      <div class="feature-text">
+        <h3>Runner Matching</h3>
+        <p>Encuentra runners compatibles con tu nivel</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <div class="feature-text">
+        <h3>Analytics avanzados</h3>
+        <p>Estadísticas detalladas de tu progreso</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📋</div>
+      <div class="feature-text">
+        <h3>Planes de entrenamiento</h3>
+        <p>De 5K a Maratón con coach virtual</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="plans">
+    <div class="plan">
+      <div class="plan-duration">Mensual</div>
+      <div class="plan-price">4,99€</div>
+      <div class="plan-unit">/mes</div>
+      <div class="radio-outer"><div class="radio-inner"></div></div>
+    </div>
+    <div class="plan selected">
+      <div class="plan-badge">Ahorra 50%</div>
+      <div class="plan-duration">Anual</div>
+      <div class="plan-price">29,99€</div>
+      <div class="plan-unit">/año</div>
+      <div class="plan-saving">Solo 2,49€/mes</div>
+      <div class="radio-outer"><div class="radio-inner"></div></div>
+    </div>
+  </div>
+
+  <div class="trial-text">7 días de prueba gratis</div>
+  <div class="cta-container">
+    <button class="cta-btn">Comenzar prueba gratis</button>
+  </div>
+  <div class="restore">¿Ya eres premium? <a href="#">Restaurar compra</a></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planes de Entrenamiento — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111; min-height: 100vh;
+    display: flex; justify-content: center; padding: 40px 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .phone {
+    width: 390px; background: #0D0D0F;
+    border-radius: 50px; border: 6px solid #1c1c1e;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+    overflow: hidden; position: relative;
+  }
+  .island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; }
+
+  .scroll { max-height: 780px; overflow-y: auto; scrollbar-width: none; }
+  .scroll::-webkit-scrollbar { display: none; }
+  .inner { padding-bottom: 140px; }
+
+  /* ═══ FIXED CTA BAR ═══ */
+  .fixed-cta {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0 20px 28px;
+    background: linear-gradient(to top, #0D0D0F 60%, transparent);
+    z-index: 10;
+  }
+  .fixed-cta-btn {
+    width: 100%; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, #F59E0B, #F77F00);
+    color: #0D0D0F; font-weight: 800; font-size: 15px;
+    border: none; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 4px 16px rgba(245,158,11,0.3);
+    transition: transform 0.1s;
+  }
+  .fixed-cta-btn:active { transform: scale(0.98); }
+
+  /* ═══ 1. HEADER ═══ */
+  .header {
+    padding: 12px 20px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .h-btn {
+    width: 36px; height: 36px; border-radius: 10px; background: #1A1A1E;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .h-title { font-size: 17px; font-weight: 700; color: #F5F5F7; }
+  .h-placeholder { width: 36px; height: 36px; }
+
+  /* ═══ 2. HERO ═══ */
+  .hero { padding: 0 20px; text-align: center; margin-top: 20px; }
+  .hero-badge {
+    display: inline-flex; align-items: center;
+    background: rgba(255,107,0,0.1); color: #FF6B00;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    padding: 5px 14px; border-radius: 20px;
+  }
+  .hero-title {
+    font-size: 28px; font-weight: 800; color: #F5F5F7;
+    line-height: 1.2; margin-top: 12px;
+  }
+  .hero-title span { color: #FF6B00; }
+  .hero-sub {
+    font-size: 15px; color: #9A9AA6; line-height: 1.5;
+    margin-top: 10px;
+  }
+
+  /* ═══ 3. TABS ═══ */
+  .tabs-wrap { margin: 28px 20px 0; }
+  .tabs {
+    background: #1A1A1E; border-radius: 12px; padding: 4px;
+    display: flex;
+  }
+  .tab {
+    flex: 1; padding: 10px 0; text-align: center;
+    font-size: 14px; font-weight: 600; color: #9A9AA6;
+    border-radius: 10px; cursor: pointer; border: none; background: none;
+    font-family: inherit; transition: all 0.25s ease;
+  }
+  .tab.active {
+    background: #FF6B00; color: #FFFFFF; font-weight: 700;
+  }
+  .tab .star { color: #F59E0B; }
+
+  /* ═══ 4. PLAN SECTIONS ═══ */
+  .section { padding: 0 20px; margin-top: 20px; }
+  .section-sub { font-size: 13px; color: #9A9AA6; text-align: center; margin-bottom: 16px; }
+
+  .plan-card {
+    background: #1A1A1E; border-radius: 16px; padding: 22px;
+    border: 1px solid #2A2A30; margin-bottom: 12px;
+    transition: opacity 0.3s;
+  }
+  .plan-card.locked { opacity: 0.8; }
+
+  .plan-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .plan-left { display: flex; gap: 14px; align-items: center; }
+  .plan-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .plan-name { font-size: 15px; font-weight: 700; color: #F5F5F7; white-space: nowrap; }
+  .plan-weeks { font-size: 12px; color: #9A9AA6; margin-top: 2px; }
+
+  .badge-free {
+    background: rgba(34,197,94,0.1); color: #22C55E;
+    font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 8px;
+    white-space: nowrap;
+  }
+  .badge-premium {
+    background: rgba(245,158,11,0.1); color: #F59E0B;
+    font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 8px;
+    white-space: nowrap;
+  }
+  .badge-popular {
+    background: rgba(255,107,0,0.1); color: #FF6B00;
+    font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 6px;
+    white-space: nowrap;
+  }
+  .badges { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+
+  .plan-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+  .pill {
+    background: #222228; color: #9A9AA6;
+    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+  }
+
+  .plan-desc {
+    font-size: 13px; color: #9A9AA6; line-height: 1.5; margin-top: 14px;
+  }
+
+  .plan-stats {
+    display: flex; gap: 16px; margin-top: 14px; padding-top: 14px;
+    border-top: 1px solid #2A2A30;
+  }
+  .plan-stat-item { display: flex; align-items: center; gap: 5px; }
+  .plan-stat-val { font-size: 13px; font-weight: 700; color: #F5F5F7; }
+  .plan-stat-lbl { font-size: 11px; color: #555560; }
+
+  .btn-free {
+    width: 100%; height: 44px; border-radius: 10px;
+    background: #22C55E; color: #FFFFFF; font-weight: 700; font-size: 14px;
+    border: none; cursor: pointer; margin-top: 18px;
+    font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 6px;
+    transition: transform 0.1s;
+  }
+  .btn-free:active { transform: scale(0.98); }
+
+  .btn-premium-lock {
+    width: 100%; height: 44px; border-radius: 10px;
+    background: #222228; color: #F59E0B; font-weight: 700; font-size: 14px;
+    border: 1px solid rgba(245,158,11,0.3); cursor: pointer; margin-top: 18px;
+    font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 6px;
+    transition: transform 0.1s;
+  }
+  .btn-premium-lock:active { transform: scale(0.98); }
+
+  /* ═══ 5. PREMIUM BANNER ═══ */
+  .premium-banner {
+    background: linear-gradient(135deg, #1A1410, #251A0A);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 16px; padding: 20px; margin-bottom: 20px;
+  }
+  .pb-badge {
+    font-size: 10px; font-weight: 700; color: #F59E0B;
+    letter-spacing: 1.5px;
+  }
+  .pb-title {
+    font-size: 18px; font-weight: 800; color: #F5F5F7; margin-top: 8px;
+  }
+  .pb-list { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .pb-item { display: flex; align-items: center; gap: 8px; }
+  .pb-item-text { font-size: 13px; color: #9A9AA6; }
+
+  .pricing-row { display: flex; gap: 10px; margin-top: 16px; }
+  .price-card {
+    flex: 1; border-radius: 12px; padding: 14px;
+    cursor: pointer; transition: all 0.2s; position: relative;
+  }
+  .price-card.monthly {
+    background: #222228; border: 2px solid transparent;
+  }
+  .price-card.annual {
+    background: #251A0A; border: 2px solid #F59E0B;
+  }
+  .price-card.selected { border-color: #F59E0B; }
+  .price-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    color: #9A9AA6;
+  }
+  .price-card.annual .price-label { color: #F59E0B; }
+  .price-val {
+    font-size: 22px; font-weight: 800; color: #F5F5F7;
+    margin-top: 4px;
+  }
+  .price-per { font-size: 12px; color: #9A9AA6; }
+  .price-card.annual .price-per { font-size: 11px; }
+  .save-badge {
+    display: inline-block; background: #F59E0B; color: #0D0D0F;
+    font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .price-radio {
+    position: absolute; top: 14px; right: 14px;
+    width: 18px; height: 18px; border-radius: 9px;
+    border: 2px solid #555560; display: flex; align-items: center; justify-content: center;
+  }
+  .price-radio.checked {
+    border-color: #F59E0B; background: #F59E0B;
+  }
+  .price-radio.checked::after {
+    content: ''; width: 6px; height: 6px; border-radius: 3px; background: #0D0D0F;
+  }
+
+  .btn-premium-cta {
+    width: 100%; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, #F59E0B, #F77F00);
+    color: #0D0D0F; font-weight: 800; font-size: 15px;
+    border: none; cursor: pointer; margin-top: 16px;
+    font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 6px;
+    box-shadow: 0 4px 16px rgba(245,158,11,0.3);
+    transition: transform 0.1s;
+  }
+  .btn-premium-cta:active { transform: scale(0.98); }
+
+  .legal-note {
+    font-size: 11px; color: #555560; text-align: center; margin-top: 8px;
+  }
+
+  /* ═══ 6. COMPARATIVA ═══ */
+  .compare-section { margin: 28px 20px 0; }
+  .compare-title {
+    font-size: 18px; font-weight: 800; color: #F5F5F7; text-align: center;
+    margin-bottom: 16px;
+  }
+  .compare-table {
+    background: #1A1A1E; border-radius: 14px; border: 1px solid #2A2A30;
+    overflow: hidden;
+  }
+  .ct-header {
+    display: flex; padding: 12px 14px;
+    border-bottom: 1px solid #2A2A30;
+  }
+  .ct-feature-h { flex: 2; font-size: 11px; font-weight: 700; color: #555560; text-transform: uppercase; letter-spacing: 1px; }
+  .ct-plan-h { flex: 1; text-align: center; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ct-plan-h.free { color: #22C55E; }
+  .ct-plan-h.prem { color: #F59E0B; }
+  .ct-row {
+    display: flex; align-items: center; padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .ct-row:last-child { border-bottom: none; }
+  .ct-feature { flex: 2; font-size: 13px; color: #9A9AA6; }
+  .ct-val { flex: 1; text-align: center; font-size: 13px; }
+  .ct-check { color: #22C55E; }
+  .ct-check-gold { color: #F59E0B; }
+  .ct-dash { display: flex; align-items: center; justify-content: center; }
+  .ct-x-circle {
+    width: 16px; height: 16px; border-radius: 8px;
+    background: rgba(239,68,68,0.08);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ═══ 7. FAQ ═══ */
+  .faq-section { margin: 28px 20px 0; }
+  .faq-title {
+    font-size: 18px; font-weight: 800; color: #F5F5F7;
+    text-align: center; margin-bottom: 16px;
+  }
+  .faq-item {
+    background: #1A1A1E; border-radius: 12px; padding: 16px;
+    border: 1px solid #2A2A30; margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-q-text { font-size: 14px; font-weight: 600; color: #F5F5F7; flex: 1; padding-right: 12px; }
+  .faq-arrow { color: #9A9AA6; font-size: 14px; transition: transform 0.3s ease; flex-shrink: 0; }
+  .faq-a {
+    font-size: 13px; color: #9A9AA6; line-height: 1.6;
+    margin-top: 0; max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+  .faq-item.open .faq-a { max-height: 200px; margin-top: 10px; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  /* ═══ PHONE LABEL ═══ */
+  .phone-label {
+    text-align: center; color: #555; font-size: 12px; margin-top: 16px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div style="display:flex;flex-direction:column;align-items:center;">
+<div class="phone">
+  <div class="island"></div>
+  <div class="scroll">
+    <div class="inner">
+
+  <!-- 1. HEADER -->
+  <div class="header">
+    <button class="h-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <span class="h-title">Planes de Entrenamiento</span>
+    <div class="h-placeholder"></div>
+  </div>
+
+  <!-- 2. HERO -->
+  <div class="hero">
+    <span class="hero-badge">ENTRENA CON OBJETIVO</span>
+    <div class="hero-title">Elige el plan que<br>te llevará <span>más lejos</span></div>
+    <div class="hero-sub">Planes estructurados por expertos, adaptados a tu nivel y objetivos</div>
+  </div>
+
+  <!-- 3. TABS -->
+  <div class="tabs-wrap">
+    <div class="tabs">
+      <button class="tab active" id="tabFree" onclick="switchTab('free')">Gratuito</button>
+      <button class="tab" id="tabPrem" onclick="switchTab('premium')">Premium <span class="star">&#9830;</span></button>
+    </div>
+  </div>
+
+  <!-- 4A. PLANES GRATUITOS -->
+  <div class="section" id="sectionFree">
+    <div class="section-sub">Empieza gratis, sin tarjeta de crédito</div>
+
+    <!-- Plan 1 — Empieza a Moverte -->
+    <div class="plan-card">
+      <div class="plan-top">
+        <div class="plan-left">
+          <div class="plan-icon" style="background:rgba(34,197,94,0.12)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="4" r="2" fill="#22C55E"/>
+              <path d="M12 6v6M12 12l-3 6M12 12l3 6M8 10l4-1M16 10l-4-1" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="plan-name">Empieza a Moverte</div>
+            <div class="plan-weeks">6 semanas · 18 sesiones</div>
+          </div>
+        </div>
+        <span class="badge-free">GRATIS</span>
+      </div>
+      <div class="plan-pills">
+        <span class="pill">Principiante</span>
+        <span class="pill">Caminar y correr</span>
+        <span class="pill">3 dias/semana</span>
+      </div>
+      <div class="plan-desc">Perfecto para empezar desde cero. Alterna caminata y carrera de forma progresiva hasta correr 20 minutos seguidos.</div>
+      <div class="plan-stats">
+        <div class="plan-stat-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#555560" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="#555560" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="plan-stat-val">25-40</span><span class="plan-stat-lbl">min/sesion</span>
+        </div>
+        <div class="plan-stat-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 11l11-7 7 11H3z" stroke="#555560" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="plan-stat-val">68</span><span class="plan-stat-lbl">steps</span>
+        </div>
+      </div>
+      <button class="btn-free" onclick="alert('Navegando al wizard...')">
+        Empezar gratis
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Plan 2 — Empezar a Correr 0→5K -->
+    <div class="plan-card">
+      <div class="plan-top">
+        <div class="plan-left">
+          <div class="plan-icon" style="background:rgba(34,197,94,0.12)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="14" cy="4" r="2" fill="#22C55E"/>
+              <path d="M6 20l3-5 2.5 2L14 13l2 4" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13.5 11L12 8l-3 1.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="plan-name" style="font-size:16px;">Empezar a Correr</div>
+            <div style="display:flex;gap:6px;margin-top:4px;margin-bottom:2px;">
+              <span class="badge-popular">POPULAR</span>
+              <span class="badge-free">GRATIS</span>
+            </div>
+            <div class="plan-weeks">8 semanas · 24 sesiones</div>
+          </div>
+        </div>
+      </div>
+      <div class="plan-pills">
+        <span class="pill">Principiante</span>
+        <span class="pill">De cero a 5K</span>
+        <span class="pill">3 dias/semana</span>
+      </div>
+      <div class="plan-desc">De no correr a completar 5K sin parar. El plan mas popular para nuevos corredores, con progresión gradual semana a semana.</div>
+      <div class="plan-stats">
+        <div class="plan-stat-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#555560" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="#555560" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="plan-stat-val">30-50</span><span class="plan-stat-lbl">min/sesion</span>
+        </div>
+        <div class="plan-stat-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 11l11-7 7 11H3z" stroke="#555560" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="plan-stat-val">80</span><span class="plan-stat-lbl">steps</span>
+        </div>
+      </div>
+      <button class="btn-free" onclick="alert('Navegando al wizard...')">
+        Empezar gratis
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 4B. PLANES PREMIUM -->
+  <div class="section" id="sectionPremium" style="display:none;">
+
+    <!-- Premium Banner -->
+    <div class="premium-banner">
+      <div class="pb-badge">&#9830; PREMIUM</div>
+      <div class="pb-title">Acceso ilimitado a todos los planes</div>
+      <div class="pb-list">
+        <div class="pb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pb-item-text">5 planes de entrenamiento avanzados</span>
+        </div>
+        <div class="pb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pb-item-text">Ritmos personalizados a tu nivel</span>
+        </div>
+        <div class="pb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pb-item-text">Recalibración automática de pace</span>
+        </div>
+        <div class="pb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pb-item-text">Estadísticas detalladas de progreso</span>
+        </div>
+        <div class="pb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="pb-item-text">Nuevos planes y actualizaciones</span>
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="pricing-row">
+        <div class="price-card monthly" id="priceMonthly" onclick="selectPrice('monthly')">
+          <div class="price-radio" id="radioMonthly"></div>
+          <div class="price-label">MENSUAL</div>
+          <div class="price-val">4,99&#8364;</div>
+          <div class="price-per">/mes</div>
+        </div>
+        <div class="price-card annual selected" id="priceAnnual" onclick="selectPrice('annual')">
+          <div class="price-radio checked" id="radioAnnual"></div>
+          <div class="save-badge">AHORRA 50%</div>
+          <div class="price-label">ANUAL</div>
+          <div class="price-val">2,49&#8364;</div>
+          <div class="price-per">/mes · 29,99&#8364;/ano</div>
+        </div>
+      </div>
+
+      <button class="btn-premium-cta" onclick="alert('Abriendo PaywallScreen...')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" fill="#0D0D0F"/></svg>
+        Empezar Premium — 7 dias gratis
+      </button>
+      <div class="legal-note">Sin compromiso. Cancela cuando quieras.</div>
+    </div>
+
+    <!-- Plan 3 — Prep 5K -->
+    <div class="plan-card locked">
+      <div class="plan-top">
+        <div class="plan-left">
+          <div class="plan-icon" style="background:rgba(255,107,0,0.12)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FF6B00" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="plan-name">Preparar un 5K</div>
+            <div class="plan-weeks">8 semanas · 32 sesiones</div>
+          </div>
+        </div>
+        <span class="badge-premium">PREMIUM</span>
+      </div>
+      <div class="plan-pills">
+        <span class="pill">Intermedio</span>
+        <span class="pill">Mejora tu marca</span>
+        <span class="pill">4 dias/semana</span>
+      </div>
+      <div class="plan-desc">Bate tu marca personal en 5K con entrenamientos progresivos, series y tempo runs específicos.</div>
+      <button class="btn-premium-lock" onclick="scrollToPremium()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="#F59E0B" stroke-width="1.8" fill="none"/></svg>
+        Desbloquear con Premium
+      </button>
+    </div>
+
+    <!-- Plan 4 — Prep 10K -->
+    <div class="plan-card locked">
+      <div class="plan-top">
+        <div class="plan-left">
+          <div class="plan-icon" style="background:rgba(255,107,0,0.12)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4.5 13H11L10 22L19.5 11H13L13 2Z" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="plan-name">Preparar un 10K</div>
+            <div class="plan-weeks">12 semanas · 48 sesiones</div>
+          </div>
+        </div>
+        <div class="badges">
+          <span class="badge-popular">POPULAR</span>
+          <span class="badge-premium">PREMIUM</span>
+        </div>
+      </div>
+      <div class="plan-pills">
+        <span class="pill">Intermedio</span>
+        <span class="pill">Tu mejor 10K</span>
+        <span class="pill">4 dias/semana</span>
+      </div>
+      <div class="plan-desc">Lleva tu 10K al siguiente nivel con fartleks, tempo runs y tiradas largas progresivas.</div>
+      <button class="btn-premium-lock" onclick="scrollToPremium()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="#F59E0B" stroke-width="1.8" fill="none"/></svg>
+        Desbloquear con Premium
+      </button>
+    </div>
+
+    <!-- Plan 5 — Prep Trail -->
+    <div class="plan-card locked">
+      <div class="plan-top">
+        <div class="plan-left">
+          <div class="plan-icon" style="background:rgba(96,165,250,0.12)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 20L8 10l4 6 4-8 5 12H3z" stroke="#60A5FA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="plan-name">Trail Running</div>
+            <div class="plan-weeks">10 semanas · 40 sesiones</div>
+          </div>
+        </div>
+        <span class="badge-premium">PREMIUM</span>
+      </div>
+      <div class="plan-pills">
+        <span class="pill">Avanzado</span>
+        <span class="pill">Trail y montaña</span>
+        <span class="pill">4 dias/semana</span>
+      </div>
+      <div class="plan-desc">Conquista el trail con entrenamiento específico de montaña, desnivel y técnica en terreno variado.</div>
+      <button class="btn-premium-lock" onclick="scrollToPremium()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="#F59E0B" stroke-width="1.8" fill="none"/></svg>
+        Desbloquear con Premium
+      </button>
+    </div>
+
+    <!-- Plan 6 — Media Maratón -->
+    <div class="plan-card locked">
+      <div class="plan-top">
+        <div class="plan-left">
+          <div class="plan-icon" style="background:rgba(245,158,11,0.12)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="6" stroke="#F59E0B" stroke-width="1.8"/><path d="M12 14v4M8 22h8M12 2v2" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round"/><path d="M9 7l2 2 3-3" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="plan-name">Media Maratón</div>
+            <div class="plan-weeks">16 semanas · 70 sesiones</div>
+          </div>
+        </div>
+        <span class="badge-premium">PREMIUM</span>
+      </div>
+      <div class="plan-pills">
+        <span class="pill">Avanzado</span>
+        <span class="pill">21K completo</span>
+        <span class="pill">5 dias/semana</span>
+      </div>
+      <div class="plan-desc">Prepara tu primer 21K o bate tu récord personal con un plan estructurado de 16 semanas con series, tempo y tiradas largas.</div>
+      <button class="btn-premium-lock" onclick="scrollToPremium()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="#F59E0B" stroke-width="1.8" fill="none"/></svg>
+        Desbloquear con Premium
+      </button>
+    </div>
+
+    <!-- Plan 7 — Maratón -->
+    <div class="plan-card locked">
+      <div class="plan-top">
+        <div class="plan-left">
+          <div class="plan-icon" style="background:rgba(239,68,68,0.12)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <!-- Trophy with flame -->
+              <path d="M8 21h8M12 17v4" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M7 4h10v4a5 5 0 01-10 0V4z" stroke="#EF4444" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M7 4H5a2 2 0 000 4h2M17 4h2a2 2 0 010 4h-2" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 4c0 0-1.5 1.5-1.5 2.5S11.5 8 12 8s1.5-.5 1.5-1.5S12 4 12 4z" fill="#EF4444" opacity="0.6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="plan-name">Maratón 42K</div>
+            <div class="plan-weeks">18 semanas · 90 sesiones</div>
+          </div>
+        </div>
+        <span class="badge-premium">PREMIUM</span>
+      </div>
+      <div class="plan-pills">
+        <span class="pill">Avanzado</span>
+        <span class="pill">42K completo</span>
+        <span class="pill">5 dias/semana</span>
+      </div>
+      <div class="plan-desc">El reto definitivo. 18 semanas de preparación completa para tu maratón con periodización, tapering y estrategia de carrera.</div>
+      <button class="btn-premium-lock" onclick="scrollToPremium()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="#F59E0B" stroke-width="1.8" fill="none"/></svg>
+        Desbloquear con Premium
+      </button>
+    </div>
+
+  </div><!-- end sectionPremium -->
+
+  <!-- 6. COMPARATIVA -->
+  <div class="compare-section">
+    <div class="compare-title">Comparativa de planes</div>
+    <div class="compare-table">
+      <div class="ct-header">
+        <div class="ct-feature-h">Caracteristica</div>
+        <div class="ct-plan-h free">Gratis</div>
+        <div class="ct-plan-h prem">Premium</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-feature">Planes disponibles</div>
+        <div class="ct-val" style="color:#F5F5F7">2</div>
+        <div class="ct-val" style="color:#F5F5F7">7</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-feature">Ritmos personalizados</div>
+        <div class="ct-val ct-dash"><span class="ct-x-circle"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="rgba(239,68,68,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+        <div class="ct-val ct-check-gold">&#10003;</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-feature">Recalibración de pace</div>
+        <div class="ct-val ct-dash"><span class="ct-x-circle"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="rgba(239,68,68,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+        <div class="ct-val ct-check-gold">&#10003;</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-feature">Gráficas de progreso</div>
+        <div class="ct-val ct-check">&#10003;</div>
+        <div class="ct-val ct-check-gold">&#10003;</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-feature">Objetivo vs Real</div>
+        <div class="ct-val ct-dash"><span class="ct-x-circle"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="rgba(239,68,68,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+        <div class="ct-val ct-check-gold">&#10003;</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-feature">Alertas audio por km</div>
+        <div class="ct-val ct-check">&#10003;</div>
+        <div class="ct-val ct-check-gold">&#10003;</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-feature">Sincronización con reloj <span style="background:rgba(255,107,0,0.1);color:#FF6B00;font-size:8px;font-weight:700;padding:2px 6px;border-radius:4px;margin-left:4px;">PRÓX.</span></div>
+        <div class="ct-val ct-dash"><span class="ct-x-circle"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="rgba(239,68,68,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+        <div class="ct-val ct-check-gold">&#10003;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. FAQ -->
+  <div class="faq-section">
+    <div class="faq-title">Preguntas frecuentes</div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">¿Puedo cambiar de plan en cualquier momento?</span>
+        <svg class="faq-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="faq-a">Sí, puedes cambiar o pausar tu plan cuando quieras. Tu progreso se guarda automáticamente.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">¿Qué pasa si cancelo Premium?</span>
+        <svg class="faq-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="faq-a">Mantienes acceso hasta el final del período pagado. Después vuelves al plan gratuito sin perder tu historial.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">¿Necesito un reloj GPS?</span>
+        <svg class="faq-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="faq-a">No es necesario. Puedes usar solo tu teléfono. Si tienes reloj GPS, lo sincronizaremos en el futuro.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">¿Los planes se adaptan a mi nivel?</span>
+        <svg class="faq-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="faq-a">Sí, en el wizard inicial evaluamos tu nivel y ajustamos ritmos, distancias y volumen a tu forma física actual.</div>
+    </div>
+  </div>
+
+    </div><!-- end inner -->
+  </div><!-- end scroll -->
+
+  <!-- FIXED CTA -->
+  <div class="fixed-cta">
+    <button class="fixed-cta-btn" onclick="alert('Abriendo PaywallScreen...')">
+      ✦ Empezar Premium — 7 días gratis
+    </button>
+  </div>
+</div><!-- end phone -->
+<div class="phone-label">PlansScreen — Planes de Entrenamiento v1.3.1</div>
+</div>
+
+<script>
+  function switchTab(tab) {
+    var free = document.getElementById('sectionFree');
+    var prem = document.getElementById('sectionPremium');
+    var tabF = document.getElementById('tabFree');
+    var tabP = document.getElementById('tabPrem');
+
+    if (tab === 'free') {
+      free.style.display = 'block';
+      prem.style.display = 'none';
+      tabF.classList.add('active');
+      tabP.classList.remove('active');
+    } else {
+      free.style.display = 'none';
+      prem.style.display = 'block';
+      tabF.classList.remove('active');
+      tabP.classList.add('active');
+    }
+  }
+
+  function selectPrice(plan) {
+    var monthly = document.getElementById('priceMonthly');
+    var annual = document.getElementById('priceAnnual');
+    var radioM = document.getElementById('radioMonthly');
+    var radioA = document.getElementById('radioAnnual');
+
+    if (plan === 'monthly') {
+      monthly.classList.add('selected');
+      monthly.style.borderColor = '#F59E0B';
+      annual.classList.remove('selected');
+      annual.style.borderColor = 'rgba(245,158,11,0.3)';
+      radioM.classList.add('checked');
+      radioA.classList.remove('checked');
+    } else {
+      annual.classList.add('selected');
+      annual.style.borderColor = '#F59E0B';
+      monthly.classList.remove('selected');
+      monthly.style.borderColor = 'transparent';
+      radioM.classList.remove('checked');
+      radioA.classList.add('checked');
+    }
+  }
+
+  function scrollToPremium() {
+    document.querySelector('.premium-banner').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

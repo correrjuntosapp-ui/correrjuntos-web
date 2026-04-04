@@ -18,7 +18,7 @@ Eres el creador de contenido de CorrerJuntos. Escribes artículos SEO de nivel p
 - Día 5 ✅ hoka-clifton-10-vs-asics-novablast-5 (Zapatillas, 2 affiliates)
 - Día 6 ✅ triatlon-para-runners-principiantes (Entrenamiento, 8 affiliates)
 - Día 7 ✅ nike-vomero-18-review (Zapatillas, 5 affiliates)
-- Día 8: calendario-carreras-populares-2026 (Seasonal)
+- Día 8 ✅ calendario-carreras-populares-2026 (Seasonal, 10 affiliates, 7 photos)
 - Día 9: sobreentrenamiento-running-sintomas (Salud)
 - Día 10: asics-novablast-5-opinion (Review)
 - ...
@@ -61,10 +61,28 @@ Cada artículo debe tener calidad de medio especializado. NO artículos genéric
 #### Artículos INFORMATIVOS (salud, entrenamiento, motivación):
 - **MÍNIMO 6 fotos de Pexels** repartidas por el artículo (1 por sección principal)
 - Fotos RELEVANTES al tema, NO genéricas
-- VERIFICAR UNICIDAD antes de usar cualquier foto:
-  1. Ejecutar: `grep -roh "pexels-photo-[0-9]*" blog/*.html blog/**/*.html 2>/dev/null | sort -u`
-  2. NUNCA usar un ID que ya exista en el blog
-  3. Verificar CADA foto: `grep "pexels-photo-XXXXX" blog/*.html` — debe dar 0 resultados
+
+#### VERIFICACIÓN DE FOTOS — PROCESO OBLIGATORIO (3 pasos):
+
+**Paso 1: Buscar fotos por KEYWORD en Google**
+```
+Buscar: site:pexels.com [keyword del artículo] runners adults
+```
+NUNCA inventar IDs aleatorios — siempre buscar por keyword para encontrar fotos relevantes.
+
+**Paso 2: Verificar unicidad contra el blog**
+```bash
+# Obtener todos los IDs usados
+all_used=$(grep -roh "pexels-photo-[0-9]*" blog/ 2>/dev/null | grep -o "[0-9]*" | sort -u)
+# Verificar cada candidato
+echo "$all_used" | grep -w "ID_CANDIDATO"  # Si devuelve algo, NO usar
+```
+
+**Paso 3: Verificar visualmente cada foto**
+- Descargar la foto y MIRARLA antes de usarla
+- RECHAZAR si: menores de edad, no es running/deporte, paisaje sin personas, otro deporte (fútbol, ciclismo), genérica
+- ACEPTAR solo si: adultos haciendo running/deporte, relevante al tema del artículo
+- **IDs aleatorios de Pexels NO corresponden a temas** — un ID al azar puede ser un coche, un plátano o un edificio. SIEMPRE buscar por keyword.**
 
 #### Artículos de PRODUCTO (reviews, comparativas):
 - **MÍNIMO 4-5 fotos de Amazon** del producto (distintos ángulos)
@@ -259,10 +277,23 @@ Grid de productos:
 - SIEMPRE verificar unicidad: `grep "pexels-photo-XXXXX" blog/*.html` = 0 resultados
 - NO repetir fotos NUNCA entre artículos
 - Fotos REPARTIDAS por el artículo, 1 por sección — no agrupadas
-- **NUNCA usar fotos con menores de edad** (niños, adolescentes, uniformes escolares)
-- **NUNCA usar fotos genéricas** que no tengan que ver con el nicho running/deporte
-- SIEMPRE verificar visualmente que la foto muestra ADULTOS haciendo DEPORTE/RUNNING
+- **🚫 PROHIBIDO ABSOLUTO: fotos con menores de edad** (niños, adolescentes, uniformes escolares, aspecto juvenil). Si hay CUALQUIER duda de si son menores, NO usar la foto. VERIFICAR VISUALMENTE SIEMPRE.
+- **🚫 PROHIBIDO: fotos genéricas** que no tengan que ver con running/deporte (zapatos casuales, Converse, Jordan, camping, paisajes, cine, fútbol)
+- **🚫 PROHIBIDO: fotos de playa en bikini/bañador** — no son de running aunque la gente esté corriendo
+- SIEMPRE verificar visualmente CADA foto descargándola y viéndola — que muestre ADULTOS haciendo DEPORTE/RUNNING con ropa deportiva
 - Si la foto es un paisaje sin personas corriendo, NO sirve
+- **NUNCA inventar IDs de Pexels al azar** — buscar siempre por keyword en Google (site:pexels.com [tema] running adults)
+- **NUNCA repetir la misma foto** en hero, og:image y dentro del artículo — usar fotos DIFERENTES para el contenido
+- Si no encuentras fotos relevantes en Pexels, buscar en Google: `site:pexels.com [tema] running adults`
+- **VERIFICACIÓN OBLIGATORIA**: Antes de usar CUALQUIER foto, descargarla con WebFetch y verificar visualmente que: (1) son adultos, (2) están haciendo running/deporte, (3) llevan ropa deportiva, (4) es relevante al tema del artículo
+
+## Reglas de CARD en blog/index.html — OBLIGATORIO
+- Al crear o modificar un artículo, SIEMPRE verificar su tarjeta en blog/index.html
+- La card DEBE tener una imagen relevante del nicho (Pexels o Amazon)
+- Si la card usa una imagen local (/blog/img/) verificar que existe y es relevante
+- Si la card no tiene imagen o es genérica, actualizarla con una Pexels del nicho
+- Formato card image: `<img src="https://images.pexels.com/photos/XXXXXXX/pexels-photo-XXXXXXX.jpeg?auto=compress&cs=tinysrgb&w=600&h=340&fit=crop&q=70" alt="[Desc]" loading="lazy">`
+- NUNCA dejar una card sin imagen visible
 
 ## Reglas de COMMIT
 - Hacer commit + push automáticamente SIN preguntar

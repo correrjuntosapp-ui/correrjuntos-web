@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Sprint 1 — Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #111; display: flex; justify-content: center; align-items: flex-start; padding: 32px 16px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; gap: 40px; flex-wrap: wrap; }
+
+  .label { text-align: center; color: #888; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+  .phone { width: 375px; background: #0A0A0A; border-radius: 44px; overflow: hidden; border: 2px solid #2A2A2A; flex-shrink: 0; }
+  .phone-inner { padding: 16px 0 34px; overflow-y: auto; max-height: 860px; scrollbar-width: none; }
+  .phone-inner::-webkit-scrollbar { display: none; }
+
+  :root {
+    --bg: #0A0A0A; --card: #1A1A1A; --bord: #2A2A2A; --acc: #FF6B00;
+    --w: #FFFFFF; --s2: #888888; --s3: #555555; --green: #22c55e;
+  }
+
+  /* Header */
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px 16px; }
+  .header-title { font-size: 26px; font-weight: 800; color: var(--w); letter-spacing: -0.5px; }
+  .header-pills { display: flex; align-items: center; background: var(--card); border-radius: 12px; border: 1px solid var(--bord); overflow: hidden; }
+  .pill { padding: 10px 20px; text-align: center; }
+  .pill-value { font-size: 18px; font-weight: 800; color: var(--w); line-height: 1.2; }
+  .pill-label { font-size: 10px; font-weight: 600; color: var(--s2); text-transform: uppercase; letter-spacing: 0.3px; margin-top: 2px; }
+  .pill-divider { width: 1px; height: 32px; background: var(--bord); }
+
+  /* Matching CTA */
+  .match-card { display: flex; align-items: center; background: var(--card); border-radius: 14px; border: 1px solid var(--bord); margin: 0 16px 20px; overflow: hidden; padding-right: 16px; padding-top: 16px; padding-bottom: 16px; gap: 14px; }
+  .match-accent { width: 3px; align-self: stretch; background: var(--acc); border-radius: 2px; }
+  .match-info { flex: 1; }
+  .match-title { font-size: 15px; font-weight: 700; color: var(--w); margin-bottom: 4px; }
+  .match-desc { font-size: 12px; color: var(--s2); }
+  .match-btn { background: var(--acc); border-radius: 10px; padding: 9px 16px; }
+  .match-btn-text { color: #fff; font-size: 13px; font-weight: 700; }
+
+  /* Section */
+  .section { margin-bottom: 24px; padding: 0 16px; }
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .section-title { font-size: 17px; font-weight: 700; color: var(--w); }
+  .section-link { font-size: 13px; font-weight: 600; color: var(--acc); }
+
+  /* ═══ NEW: Runner cards with gradient avatars + affinity bar ═══ */
+  .runners-scroll { display: flex; gap: 12px; overflow-x: auto; padding-right: 16px; scrollbar-width: none; }
+  .runners-scroll::-webkit-scrollbar { display: none; }
+  .runner-sug { width: 130px; min-width: 130px; background: var(--card); border-radius: 14px; border: 1px solid var(--bord); padding: 12px; text-align: center; }
+  .runner-avatar { width: 52px; height: 52px; border-radius: 26px; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 22px; }
+  .runner-name { font-size: 13px; font-weight: 700; color: var(--w); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .runner-meta { font-size: 11px; color: #aaa; text-transform: capitalize; }
+
+  /* Affinity bar */
+  .affinity { margin-top: 6px; }
+  .affinity-text { font-size: 10px; font-weight: 600; color: var(--acc); margin-bottom: 3px; }
+  .affinity-bg { height: 2px; background: #333; border-radius: 2px; overflow: hidden; }
+  .affinity-fill { height: 2px; background: var(--acc); border-radius: 2px; }
+
+  .follow-btn { margin-top: 6px; background: var(--acc); border-radius: 16px; padding: 6px 0; text-align: center; font-size: 12px; font-weight: 700; color: #fff; }
+
+  /* ═══ NEW: Quedadas cards redesigned ═══ */
+  .quedada-scroll { display: flex; gap: 12px; overflow-x: auto; padding-right: 16px; scrollbar-width: none; }
+  .quedada-scroll::-webkit-scrollbar { display: none; }
+  .quedada-card { width: 220px; min-width: 220px; background: var(--card); border-radius: 16px; border: 1px solid var(--bord); padding: 14px; }
+
+  .quedada-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .quedada-date-chip { background: var(--acc); border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 800; color: #fff; letter-spacing: 0.3px; }
+  .level-pill { border-radius: 6px; padding: 3px 7px; border: 1px solid; font-size: 10px; font-weight: 700; text-transform: capitalize; background: transparent; }
+
+  .quedada-title { font-size: 15px; font-weight: 700; color: var(--w); line-height: 1.35; margin-bottom: 4px; }
+  .quedada-meta { font-size: 12px; color: var(--s2); margin-bottom: 8px; }
+  .quedada-divider { height: 1px; background: var(--bord); margin-bottom: 10px; }
+
+  .quedada-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .quedada-avatars { display: flex; align-items: center; gap: 6px; }
+  .avatars-stack { display: flex; }
+  .avatar-mini { width: 24px; height: 24px; border-radius: 12px; border: 2px solid var(--card); margin-left: -8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; }
+  .avatar-mini:first-child { margin-left: 0; }
+  .count-text { font-size: 12px; color: var(--s2); }
+  .count-bold { font-weight: 800; color: var(--acc); font-size: 14px; }
+
+  .join-btn { background: var(--acc); border-radius: 10px; padding: 7px 14px; font-size: 12px; font-weight: 700; color: #fff; }
+  .joined-btn { background: transparent; border: 1px solid var(--green); color: var(--green); }
+
+  /* View all button */
+  .view-all { margin-top: 14px; border: 1px solid var(--acc); border-radius: 12px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--acc); }
+
+  /* Ranking */
+  .ranking-tabs { display: flex; background: var(--card); border-radius: 10px; border: 1px solid var(--bord); overflow: hidden; margin-bottom: 12px; }
+  .ranking-tab { flex: 1; padding: 9px 4px; text-align: center; font-size: 12px; font-weight: 600; color: var(--s2); }
+  .ranking-tab.active { color: var(--acc); background: rgba(255,107,0,0.1); }
+  .ranking-divider { width: 1px; background: var(--bord); }
+  .ranking-row { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--bord); }
+  .ranking-row.me { background: rgba(255,107,0,0.06); margin: 0 -16px; padding: 11px 16px; }
+  .ranking-pos { font-size: 14px; font-weight: 800; width: 24px; text-align: center; }
+  .ranking-avatar { width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; }
+  .ranking-info { flex: 1; }
+  .ranking-name { font-size: 14px; font-weight: 600; color: var(--w); }
+  .ranking-meta { font-size: 11px; color: var(--s2); text-transform: capitalize; margin-top: 2px; }
+  .ranking-pts { font-size: 13px; font-weight: 700; color: var(--acc); }
+
+  /* Tab bar */
+  .tab-bar { display: flex; justify-content: space-around; align-items: center; padding: 10px 0 22px; background: #111; border-top: 1px solid var(--bord); position: sticky; bottom: 0; }
+  .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .tab-item svg { width: 22px; height: 22px; }
+  .tab-label { font-size: 10px; font-weight: 600; }
+  .tab-item.active svg { color: var(--acc); }
+  .tab-item.active .tab-label { color: var(--acc); }
+  .tab-item:not(.active) svg { color: var(--s3); }
+  .tab-item:not(.active) .tab-label { color: var(--s3); }
+</style>
+</head>
+<body>
+
+<!-- ═══ PHONE: SOCIAL SCREEN — Sprint 1 ═══ -->
+<div>
+  <div class="label">Social — Sprint 1</div>
+  <div class="phone">
+    <div class="phone-inner">
+
+      <!-- Header -->
+      <div class="header">
+        <div class="header-title">Social</div>
+        <div class="header-pills">
+          <div class="pill"><div class="pill-value">24</div><div class="pill-label">Siguiendo</div></div>
+          <div class="pill-divider"></div>
+          <div class="pill"><div class="pill-value">18</div><div class="pill-label">Seguidores</div></div>
+        </div>
+      </div>
+
+      <!-- Matching CTA -->
+      <div class="match-card">
+        <div class="match-accent"></div>
+        <div class="match-info">
+          <div class="match-title">Encuentra tu companero de carrera</div>
+          <div class="match-desc">Compatible por ritmo, nivel y horario</div>
+        </div>
+        <div class="match-btn"><div class="match-btn-text">Buscar</div></div>
+      </div>
+
+      <!-- ═══ NEW: Runners sugeridos con avatares gradiente + afinidad ═══ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Runners que quizas conozcas</div>
+          <div class="section-link">Ver mas</div>
+        </div>
+        <div class="runners-scroll">
+          <!-- Principiante — orange gradient -->
+          <div class="runner-sug">
+            <div class="runner-avatar" style="background: linear-gradient(135deg, #FF6B00, #FF9500);">P</div>
+            <div class="runner-name">Paula F.</div>
+            <div class="runner-meta">Principiante · Madrid</div>
+            <div class="affinity">
+              <div class="affinity-text">92% compatible</div>
+              <div class="affinity-bg"><div class="affinity-fill" style="width: 92%;"></div></div>
+            </div>
+            <div class="follow-btn">Seguir</div>
+          </div>
+          <!-- Intermedio — purple gradient -->
+          <div class="runner-sug">
+            <div class="runner-avatar" style="background: linear-gradient(135deg, #6B00FF, #9500FF);">D</div>
+            <div class="runner-name">Diego N.</div>
+            <div class="runner-meta">Intermedio · Barcelona</div>
+            <div class="affinity">
+              <div class="affinity-text">85% compatible</div>
+              <div class="affinity-bg"><div class="affinity-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="follow-btn">Seguir</div>
+          </div>
+          <!-- Avanzado — blue gradient -->
+          <div class="runner-sug">
+            <div class="runner-avatar" style="background: linear-gradient(135deg, #00B4FF, #0066FF);">L</div>
+            <div class="runner-name">Laura V.</div>
+            <div class="runner-meta">Avanzado · Valencia</div>
+            <div class="affinity">
+              <div class="affinity-text">78% compatible</div>
+              <div class="affinity-bg"><div class="affinity-fill" style="width: 78%;"></div></div>
+            </div>
+            <div class="follow-btn">Seguir</div>
+          </div>
+          <!-- Elite — green gradient -->
+          <div class="runner-sug">
+            <div class="runner-avatar" style="background: linear-gradient(135deg, #00FF9D, #00CC7A);">C</div>
+            <div class="runner-name">Carlos L.</div>
+            <div class="runner-meta">Elite · Sevilla</div>
+            <div class="affinity">
+              <div class="affinity-text">70% compatible</div>
+              <div class="affinity-bg"><div class="affinity-fill" style="width: 70%;"></div></div>
+            </div>
+            <div class="follow-btn">Seguir</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ NEW: Quedadas redesigned ═══ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Proximas quedadas</div>
+        </div>
+        <div class="quedada-scroll">
+          <!-- Quedada 1 -->
+          <div class="quedada-card">
+            <div class="quedada-top">
+              <div class="quedada-date-chip">6 ABR</div>
+              <div class="level-pill" style="border-color: #22c55e; color: #22c55e;">Principiante</div>
+            </div>
+            <div class="quedada-title">Rodaje mananero Retiro</div>
+            <div class="quedada-meta">📍 Madrid · 8km · 08:00</div>
+            <div class="quedada-divider"></div>
+            <div class="quedada-bottom">
+              <div class="quedada-avatars">
+                <div class="avatars-stack">
+                  <div class="avatar-mini" style="background: linear-gradient(135deg, #FF6B00, #FF9500);">M</div>
+                  <div class="avatar-mini" style="background: linear-gradient(135deg, #6B00FF, #9500FF);">A</div>
+                  <div class="avatar-mini" style="background: linear-gradient(135deg, #00B4FF, #0066FF);">J</div>
+                </div>
+                <div class="count-text"><span class="count-bold">5</span> van</div>
+              </div>
+              <div class="join-btn">Unirme →</div>
+            </div>
+          </div>
+          <!-- Quedada 2 (joined) -->
+          <div class="quedada-card">
+            <div class="quedada-top">
+              <div class="quedada-date-chip">5 ABR</div>
+              <div class="level-pill" style="border-color: #f97316; color: #f97316;">Intermedio</div>
+            </div>
+            <div class="quedada-title">Turia por la manana</div>
+            <div class="quedada-meta">📍 Valencia · 10km · 08:00</div>
+            <div class="quedada-divider"></div>
+            <div class="quedada-bottom">
+              <div class="quedada-avatars">
+                <div class="avatars-stack">
+                  <div class="avatar-mini" style="background: linear-gradient(135deg, #00FF9D, #00CC7A);">R</div>
+                  <div class="avatar-mini" style="background: linear-gradient(135deg, #FF6B00, #FF9500);">S</div>
+                </div>
+                <div class="count-text"><span class="count-bold">4</span> van</div>
+              </div>
+              <div class="join-btn joined-btn">Apuntado ✓</div>
+            </div>
+          </div>
+          <!-- Quedada 3 -->
+          <div class="quedada-card">
+            <div class="quedada-top">
+              <div class="quedada-date-chip">12 ABR</div>
+              <div class="level-pill" style="border-color: #f97316; color: #f97316;">Intermedio</div>
+            </div>
+            <div class="quedada-title">Trail Sierra Guadarrama</div>
+            <div class="quedada-meta">📍 Navacerrada · 15km · 09:00</div>
+            <div class="quedada-divider"></div>
+            <div class="quedada-bottom">
+              <div class="quedada-avatars">
+                <div class="avatars-stack">
+                  <div class="avatar-mini" style="background: linear-gradient(135deg, #6B00FF, #9500FF);">T</div>
+                </div>
+                <div class="count-text"><span class="count-bold">3</span> van</div>
+              </div>
+              <div class="join-btn">Unirme →</div>
+            </div>
+          </div>
+        </div>
+        <!-- View all button -->
+        <div class="view-all">Ver todas las quedadas →</div>
+      </div>
+
+      <!-- Ranking -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Ranking de runners</div>
+        </div>
+        <div class="ranking-tabs">
+          <div class="ranking-tab active">Mi pais</div>
+          <div class="ranking-tab">Mundial</div>
+          <div class="ranking-divider"></div>
+          <div class="ranking-tab active">Este mes</div>
+          <div class="ranking-tab">Historico</div>
+        </div>
+        <div>
+          <div class="ranking-row">
+            <div class="ranking-pos" style="color:#F5A623;">1</div>
+            <div class="ranking-avatar" style="background: linear-gradient(135deg, #00B4FF, #0066FF);">A</div>
+            <div class="ranking-info"><div class="ranking-name">Ana Garcia</div><div class="ranking-meta">Avanzado · Barcelona</div></div>
+            <div class="ranking-pts">1.850 pts</div>
+          </div>
+          <div class="ranking-row">
+            <div class="ranking-pos" style="color:#A0AEC0;">2</div>
+            <div class="ranking-avatar" style="background: linear-gradient(135deg, #6B00FF, #9500FF);">M</div>
+            <div class="ranking-info"><div class="ranking-name">Miguel Torres</div><div class="ranking-meta">Intermedio · Madrid</div></div>
+            <div class="ranking-pts">1.620 pts</div>
+          </div>
+          <div class="ranking-row">
+            <div class="ranking-pos" style="color:#C47921;">3</div>
+            <div class="ranking-avatar" style="background: linear-gradient(135deg, #00B4FF, #0066FF);">L</div>
+            <div class="ranking-info"><div class="ranking-name">Laura Vega</div><div class="ranking-meta">Avanzado · Valencia</div></div>
+            <div class="ranking-pts">1.430 pts</div>
+          </div>
+          <div class="ranking-row me">
+            <div class="ranking-pos" style="color:#555;">4</div>
+            <div class="ranking-avatar" style="background: linear-gradient(135deg, #FF6B00, #FF9500);">J</div>
+            <div class="ranking-info"><div class="ranking-name">Javi M. <span style="color:var(--acc);">(tu)</span></div><div class="ranking-meta">Veterano · Madrid</div></div>
+            <div class="ranking-pts">1.325 pts</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <div class="tab-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="tab-label">Inicio</div>
+        </div>
+        <div class="tab-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="tab-label">Mapa</div>
+        </div>
+        <div class="tab-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+          <div class="tab-label">Empezar</div>
+        </div>
+        <div class="tab-item active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="tab-label">Social</div>
+        </div>
+        <div class="tab-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4"/></svg>
+          <div class="tab-label">Perfil</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

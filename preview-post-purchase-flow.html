@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview — Flujo Post-Compra Completo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 20px;
+  gap: 32px;
+}
+
+.phone {
+  width: 375px;
+  height: 812px;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 3px solid #333;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #FF6B00;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.screen-label {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FF6B00;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.flow-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.flow-arrow span { font-size: 28px; color: #FF6B00; }
+
+/* ══════════════════════════════════════
+   SCREEN 1: PremiumSuccess
+   ══════════════════════════════════════ */
+.success-screen {
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, #0D0D0F 0%, #1a1205 40%, #0D0D0F 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 24px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.confetti-container { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; }
+.confetti { position: absolute; top: -10px; animation: confettiFall 3s ease-out forwards; }
+@keyframes confettiFall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(750px) rotate(720deg); opacity: 0; } }
+
+.content-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+.crown-wrapper {
+  display: flex; align-items: center; justify-content: center;
+  position: relative; width: 140px; height: 140px;
+  animation: crownBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes crownBounce { 0% { transform: scale(0) rotate(-15deg); } 60% { transform: scale(1.1) rotate(5deg); } 100% { transform: scale(1) rotate(0deg); } }
+
+.crown-glow { position: absolute; width: 140px; height: 140px; border-radius: 50%; background: rgba(251,191,36,0.08); }
+.crown-glow-inner { position: absolute; width: 100px; height: 100px; border-radius: 50%; background: rgba(251,191,36,0.15); }
+.crown-icon { font-size: 72px; filter: drop-shadow(0 0 20px rgba(251,191,36,0.3)); }
+
+.s-title { font-size: 28px; font-weight: 800; color: #fbbf24; text-align: center; margin-top: 24px; }
+.s-subtitle { font-size: 14px; color: #9A9AA6; text-align: center; line-height: 1.5; margin-top: 8px; padding: 0 10px; }
+
+.features-card {
+  width: 100%; background: #1A1A1E; border: 1px solid #2A2A30;
+  border-radius: 16px; padding: 18px; margin-top: 28px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.feat-row { display: flex; align-items: center; gap: 10px; }
+.feat-check {
+  width: 22px; height: 22px; border-radius: 50%; background: rgba(34,197,94,0.15);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  color: #22c55e; font-size: 12px; font-weight: 700;
+}
+.feat-text { font-size: 14px; font-weight: 500; color: #F5F5F7; }
+
+.s-cta-wrapper { width: 100%; }
+.s-cta {
+  width: 100%; background: linear-gradient(90deg, #FF6B00, #e05500);
+  border: none; border-radius: 14px; padding: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer; color: #fff; font-size: 16px; font-weight: 700;
+}
+
+/* ══════════════════════════════════════
+   SCREEN 2: PlanWizard Summary
+   ══════════════════════════════════════ */
+.wizard-screen {
+  width: 100%; height: 100%;
+  background: #0D0D0F;
+  padding: 55px 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wiz-close { position: absolute; top: 50px; right: 20px; color: #9A9AA6; font-size: 20px; cursor: pointer; }
+.wiz-progress { display: flex; gap: 4px; margin-bottom: 20px; }
+.wiz-dot { flex: 1; height: 3px; border-radius: 2px; background: #2A2A30; }
+.wiz-dot.done { background: #FF6B00; }
+.wiz-dot.active { background: #FF6B00; }
+
+.wiz-label { font-size: 11px; font-weight: 600; color: #FF6B00; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+.wiz-plan-name { font-size: 24px; font-weight: 800; color: #F5F5F7; text-align: center; margin-top: 4px; }
+.wiz-plan-meta { font-size: 13px; color: #FF6B00; font-weight: 600; text-align: center; margin-top: 4px; }
+
+.wiz-section-title { font-size: 20px; font-weight: 700; color: #F5F5F7; margin-top: 24px; }
+.wiz-section-sub { font-size: 13px; color: #9A9AA6; margin-top: 4px; margin-bottom: 16px; }
+
+.summary-card {
+  background: #1A1A1E; border: 1px solid #2A2A30;
+  border-radius: 14px; padding: 16px; margin-bottom: 12px;
+}
+.summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+.summary-row + .summary-row { border-top: 1px solid #2A2A30; }
+.summary-label { font-size: 14px; color: #9A9AA6; }
+.summary-value { font-size: 14px; font-weight: 600; color: #F5F5F7; }
+.summary-value.orange { color: #FF6B00; }
+
+.wiz-info {
+  background: rgba(255,107,0,0.08); border: 1px solid rgba(255,107,0,0.2);
+  border-radius: 12px; padding: 14px; margin-top: 12px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.wiz-info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.wiz-info-text { font-size: 12px; color: #9A9AA6; line-height: 1.5; }
+
+.wiz-cta {
+  width: 100%; background: linear-gradient(90deg, #FF6B00, #e05500);
+  border: none; border-radius: 14px; padding: 16px;
+  color: #fff; font-size: 16px; font-weight: 700;
+  margin-top: auto; cursor: pointer; text-align: center;
+}
+
+/* ══════════════════════════════════════
+   SCREEN 3: PlanScreen (plan activo)
+   ══════════════════════════════════════ */
+.plan-screen {
+  width: 100%; height: 100%;
+  background: #0D0D0F;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.plan-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 50px 16px 12px;
+}
+.plan-back { color: #9A9AA6; font-size: 22px; cursor: pointer; padding: 4px 8px; }
+.plan-header-title { font-size: 16px; font-weight: 700; color: #F5F5F7; }
+.plan-header-icons { display: flex; gap: 14px; }
+.plan-header-icons svg { width: 22px; height: 22px; }
+.header-icon { color: #888; font-size: 18px; opacity: 0.7; }
+
+/* Progress bar */
+.plan-progress-bar {
+  height: 3px; background: #2A2A30; margin: 0 16px;
+  border-radius: 2px; overflow: hidden;
+}
+.plan-progress-fill {
+  height: 100%; background: linear-gradient(90deg, #FF6B00, #FF8C33);
+  border-radius: 2px; width: 8%;
+}
+
+/* Tabs */
+.plan-tabs {
+  display: flex; border-bottom: 1px solid #2A2A30;
+  padding: 0 16px; margin-top: 8px;
+}
+.plan-tab {
+  flex: 1; text-align: center; padding: 12px 0; font-size: 14px;
+  color: #9A9AA6; font-weight: 500; position: relative; cursor: pointer;
+}
+.plan-tab.active { color: #F5F5F7; font-weight: 700; }
+.plan-tab.active::after {
+  content: ''; position: absolute; bottom: -1px; left: 20%; right: 20%;
+  height: 2px; background: #FF6B00; border-radius: 1px;
+}
+
+/* Calendar strip */
+.cal-strip {
+  display: flex; justify-content: space-around;
+  padding: 12px 12px 8px; background: #0D0D0F;
+}
+.cal-day { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.cal-day-initial { font-size: 11px; font-weight: 600; color: #8E8E93; }
+.cal-day-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600; color: #9A9AA6;
+}
+.cal-day-num.today { background: #FF6B00; color: #fff; }
+.cal-dot { width: 5px; height: 5px; border-radius: 50%; }
+.cal-dot.orange { background: #FF6B00; }
+.cal-dot.empty { background: #2A2A30; }
+
+.cal-separator { height: 1px; background: #2A2A30; margin: 0 16px; }
+
+/* Plan content */
+.plan-content { flex: 1; overflow-y: auto; padding: 0 16px 16px; }
+
+/* Hero */
+.plan-hero { padding: 16px 0 8px; }
+.plan-hero-title { font-size: 26px; font-weight: 800; color: #F5F5F7; line-height: 1.2; }
+.plan-hero-sub { font-size: 14px; color: #9A9AA6; margin-top: 6px; }
+
+/* Week summary card */
+.week-summary {
+  background: #1A1A1E; border-radius: 14px; padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.week-summary-row {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.week-summary-label { font-size: 14px; font-weight: 600; color: #F5F5F7; }
+.week-summary-arrow { color: #555560; font-size: 16px; }
+
+.week-progress-track {
+  height: 4px; background: #2A2A30; border-radius: 2px;
+  margin: 10px 0 8px; overflow: hidden;
+}
+.week-progress-fill {
+  height: 100%; background: linear-gradient(90deg, #FF6B00, #FF8C33);
+  border-radius: 2px; width: 0%;
+}
+.week-progress-meta {
+  display: flex; justify-content: space-between;
+}
+.week-meta-text { font-size: 11px; color: #555560; }
+
+/* Today card */
+.today-card {
+  background: #1A1A1E; border-radius: 14px; padding: 16px;
+  margin-bottom: 12px; border: 2px solid #FF6B00;
+}
+.today-label {
+  font-size: 10px; font-weight: 800; color: #FF6B00;
+  letter-spacing: 1px; margin-bottom: 6px;
+}
+.today-title { font-size: 17px; font-weight: 700; color: #F5F5F7; }
+.today-desc { font-size: 13px; color: #9A9AA6; margin-top: 4px; line-height: 1.4; }
+.today-metrics { display: flex; gap: 14px; margin-top: 10px; }
+.today-metric { font-size: 12px; color: #555560; font-weight: 500; }
+
+.today-weather {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 8px; padding: 6px 10px; margin-top: 10px;
+  font-size: 12px; color: #4ade80;
+}
+
+.today-btn {
+  width: 100%; background: linear-gradient(90deg, #FF6B00, #FF8C38);
+  border: none; border-radius: 12px; padding: 14px;
+  color: #fff; font-size: 15px; font-weight: 700;
+  margin-top: 12px; cursor: pointer; text-align: center;
+}
+
+/* Workout cards */
+.workout-card {
+  background: #1A1A1E; border-radius: 12px; padding: 14px;
+  margin-bottom: 10px; border: 1px solid #2A2A30;
+  display: flex; gap: 10px;
+}
+.workout-bar { width: 3px; border-radius: 2px; align-self: stretch; flex-shrink: 0; }
+.workout-info { flex: 1; }
+.workout-date { font-size: 10px; font-weight: 700; color: #9A9AA6; letter-spacing: 0.5px; margin-bottom: 2px; }
+.workout-type-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 600;
+  margin-bottom: 6px;
+}
+.workout-title { font-size: 15px; font-weight: 600; color: #F5F5F7; }
+.workout-metrics { display: flex; gap: 12px; margin-top: 6px; }
+.workout-metric { font-size: 12px; color: #555560; }
+
+/* Bottom area */
+.plan-bottom {
+  border-top: 1px solid #2A2A30;
+  background: #0D0D0F;
+}
+.coach-row {
+  display: flex; align-items: center; padding: 12px 16px; gap: 10px;
+}
+.coach-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B00, #e05500);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 14px; font-weight: 700;
+  flex-shrink: 0;
+}
+.coach-name { font-size: 11px; font-weight: 700; color: #FF6B00; letter-spacing: 0.2px; }
+.coach-msg { font-size: 12px; color: #9A9AA6; }
+.coach-arrow { color: #555560; font-size: 14px; margin-left: auto; }
+
+.register-btn {
+  margin: 0 20px 20px;
+  background: #FF6B00;
+  border: none; border-radius: 12px; padding: 14px;
+  color: #fff; font-size: 15px; font-weight: 700;
+  cursor: pointer; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ PHONE 1: PremiumSuccess ══════ -->
+<div class="phone" style="position:relative;">
+  <div class="step-number">1</div>
+  <div class="screen-label" style="background:#22c55e;">PREMIUM SUCCESS</div>
+  <div class="success-screen">
+    <div class="confetti-container">
+      <div class="confetti" style="left:8%;width:8px;height:20px;background:#FF6B00;animation-delay:0s;animation-duration:2.5s;"></div>
+      <div class="confetti" style="left:18%;width:6px;height:6px;border-radius:50%;background:#fbbf24;animation-delay:0.1s;animation-duration:2.8s;"></div>
+      <div class="confetti" style="left:32%;width:7px;height:18px;background:#22c55e;animation-delay:0.2s;animation-duration:2.3s;"></div>
+      <div class="confetti" style="left:48%;width:6px;height:6px;border-radius:50%;background:#3b82f6;animation-delay:0.05s;animation-duration:2.6s;"></div>
+      <div class="confetti" style="left:58%;width:8px;height:22px;background:#a855f7;animation-delay:0.15s;animation-duration:2.4s;"></div>
+      <div class="confetti" style="left:72%;width:6px;height:6px;border-radius:50%;background:#ef4444;animation-delay:0.25s;animation-duration:2.7s;"></div>
+      <div class="confetti" style="left:82%;width:7px;height:16px;background:#FF6B00;animation-delay:0.3s;animation-duration:2.2s;"></div>
+      <div class="confetti" style="left:90%;width:6px;height:6px;border-radius:50%;background:#fbbf24;animation-delay:0.08s;animation-duration:2.9s;"></div>
+    </div>
+    <div class="content-area">
+      <div class="crown-wrapper">
+        <div class="crown-glow"></div>
+        <div class="crown-glow-inner"></div>
+        <div class="crown-icon">&#x1F451;</div>
+      </div>
+      <div class="s-title">Bienvenido a Premium!</div>
+      <div class="s-subtitle">Ya tienes acceso a todos los planes y funcionalidades</div>
+      <div class="features-card">
+        <div class="feat-row"><div class="feat-check">&#x2713;</div><span class="feat-text">7 planes de entrenamiento</span></div>
+        <div class="feat-row"><div class="feat-check">&#x2713;</div><span class="feat-text">Ritmos auto-ajustados</span></div>
+        <div class="feat-row"><div class="feat-check">&#x2713;</div><span class="feat-text">Graficas de progreso</span></div>
+        <div class="feat-row"><div class="feat-check">&#x2713;</div><span class="feat-text">Sync con reloj</span></div>
+        <div class="feat-row"><div class="feat-check">&#x2713;</div><span class="feat-text">Soporte prioritario</span></div>
+      </div>
+    </div>
+    <div class="s-cta-wrapper">
+      <button class="s-cta">Empezar mi plan &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<div class="flow-arrow"><span>&rarr;</span><div>4s o tap</div></div>
+
+<!-- ══════ PHONE 2: PlanWizard — Summary step ══════ -->
+<div class="phone" style="position:relative;">
+  <div class="step-number">2</div>
+  <div class="screen-label">WIZARD — RESUMEN FINAL</div>
+  <div class="wizard-screen">
+    <div class="wiz-close">&times;</div>
+    <div class="wiz-progress">
+      <div class="wiz-dot done"></div>
+      <div class="wiz-dot done"></div>
+      <div class="wiz-dot done"></div>
+      <div class="wiz-dot done"></div>
+      <div class="wiz-dot active"></div>
+    </div>
+    <div class="wiz-label">TU PLAN</div>
+    <div class="wiz-plan-name">Preparar un 10K</div>
+    <div class="wiz-plan-meta">12 semanas &middot; 4 dias/semana</div>
+
+    <div class="wiz-section-title">Resumen de tu plan</div>
+    <div class="wiz-section-sub">Revisa los detalles antes de empezar</div>
+
+    <div class="summary-card">
+      <div class="summary-row">
+        <span class="summary-label">Objetivo</span>
+        <span class="summary-value orange">Preparar un 10K</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Nivel</span>
+        <span class="summary-value">Comodo (~6:00/km)</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Dias</span>
+        <span class="summary-value">Lun, Mie, Vie, Dom</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Duracion</span>
+        <span class="summary-value">12 semanas</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Inicio</span>
+        <span class="summary-value">7 abril 2026</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Carrera</span>
+        <span class="summary-value orange">29 junio 2026</span>
+      </div>
+    </div>
+
+    <div class="wiz-info">
+      <span class="wiz-info-icon">&#x1F4A1;</span>
+      <span class="wiz-info-text">Tu plan se ajustara automaticamente segun tu progreso. El entrenador virtual te guiara en cada sesion.</span>
+    </div>
+
+    <button class="wiz-cta">Generar mi plan &#x1F3C3;</button>
+  </div>
+</div>
+
+<div class="flow-arrow"><span>&rarr;</span><div>Genera plan</div></div>
+
+<!-- ══════ PHONE 3: PlanScreen (plan activo) ══════ -->
+<div class="phone" style="position:relative;">
+  <div class="step-number">3</div>
+  <div class="screen-label" style="background:#22c55e;">PLANSCREEN — TU PLAN ACTIVO</div>
+  <div class="plan-screen">
+    <!-- Header -->
+    <div class="plan-header">
+      <div class="plan-back">&larr;</div>
+      <div class="plan-header-title">Preparar un 10K</div>
+      <div class="plan-header-icons">
+        <span class="header-icon">&#x1F504;</span>
+        <span class="header-icon">&#x1F4C5;</span>
+        <span class="header-icon">&#x2699;</span>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="plan-progress-bar">
+      <div class="plan-progress-fill"></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="plan-tabs">
+      <div class="plan-tab active">Mi Plan</div>
+      <div class="plan-tab">Progreso</div>
+    </div>
+
+    <!-- Calendar strip -->
+    <div class="cal-strip">
+      <div class="cal-day">
+        <span class="cal-day-initial">L</span>
+        <div class="cal-day-num today">7</div>
+        <div class="cal-dot orange"></div>
+      </div>
+      <div class="cal-day">
+        <span class="cal-day-initial">M</span>
+        <div class="cal-day-num">8</div>
+        <div class="cal-dot empty"></div>
+      </div>
+      <div class="cal-day">
+        <span class="cal-day-initial">X</span>
+        <div class="cal-day-num">9</div>
+        <div class="cal-dot orange"></div>
+      </div>
+      <div class="cal-day">
+        <span class="cal-day-initial">J</span>
+        <div class="cal-day-num">10</div>
+        <div class="cal-dot empty"></div>
+      </div>
+      <div class="cal-day">
+        <span class="cal-day-initial">V</span>
+        <div class="cal-day-num">11</div>
+        <div class="cal-dot orange"></div>
+      </div>
+      <div class="cal-day">
+        <span class="cal-day-initial" style="color:#555560;">S</span>
+        <div class="cal-day-num" style="color:#555560;">12</div>
+        <div class="cal-dot empty"></div>
+      </div>
+      <div class="cal-day">
+        <span class="cal-day-initial" style="color:#555560;">D</span>
+        <div class="cal-day-num" style="color:#555560;">13</div>
+        <div class="cal-dot orange"></div>
+      </div>
+    </div>
+    <div class="cal-separator"></div>
+
+    <!-- Content -->
+    <div class="plan-content">
+      <!-- Hero -->
+      <div class="plan-hero">
+        <div class="plan-hero-title">Preparar un 10K</div>
+        <div class="plan-hero-sub">Carrera suave + ejercicios tecnicos</div>
+      </div>
+
+      <!-- Week summary -->
+      <div class="week-summary">
+        <div class="week-summary-row">
+          <span class="week-summary-label">Resumen de la semana 1</span>
+          <span class="week-summary-arrow">&#x203A;</span>
+        </div>
+        <div class="week-progress-track">
+          <div class="week-progress-fill"></div>
+        </div>
+        <div class="week-progress-meta">
+          <span class="week-meta-text">Entrenos: 0/4</span>
+          <span class="week-meta-text">Distancia: 0/18.5 km</span>
+        </div>
+      </div>
+
+      <!-- Today's session -->
+      <div class="today-card">
+        <div class="today-label">HOY</div>
+        <div class="today-title">Carrera suave + tecnica</div>
+        <div class="today-desc">Calentamiento 5min + 4km ritmo comodo + 4x strides + vuelta a la calma</div>
+        <div class="today-metrics">
+          <span class="today-metric">5 km</span>
+          <span class="today-metric">6:15/km</span>
+          <span class="today-metric">35 min</span>
+        </div>
+        <div class="today-weather">
+          &#x2600;&#xFE0F; 18° — Despejado
+        </div>
+        <button class="today-btn">Empezar sesion</button>
+      </div>
+
+      <!-- Next workouts -->
+      <div class="workout-card">
+        <div class="workout-bar" style="background:#22c55e;"></div>
+        <div class="workout-info">
+          <div class="workout-date">MIERCOLES 9 ABR</div>
+          <div style="margin-bottom:4px;">
+            <span class="workout-type-badge" style="background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);">Easy run</span>
+          </div>
+          <div class="workout-title">Carrera continua</div>
+          <div class="workout-metrics">
+            <span class="workout-metric">6 km</span>
+            <span class="workout-metric">6:15/km</span>
+            <span class="workout-metric">40 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="workout-card">
+        <div class="workout-bar" style="background:#f59e0b;"></div>
+        <div class="workout-info">
+          <div class="workout-date">VIERNES 11 ABR</div>
+          <div style="margin-bottom:4px;">
+            <span class="workout-type-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);">Tempo</span>
+          </div>
+          <div class="workout-title">Tempo progresivo</div>
+          <div class="workout-metrics">
+            <span class="workout-metric">5 km</span>
+            <span class="workout-metric">5:45/km</span>
+            <span class="workout-metric">32 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="workout-card">
+        <div class="workout-bar" style="background:#16a34a;"></div>
+        <div class="workout-info">
+          <div class="workout-date">DOMINGO 13 ABR</div>
+          <div style="margin-bottom:4px;">
+            <span class="workout-type-badge" style="background:rgba(22,163,74,0.1);color:#16a34a;border:1px solid rgba(22,163,74,0.2);">Long run</span>
+          </div>
+          <div class="workout-title">Tirada larga</div>
+          <div class="workout-metrics">
+            <span class="workout-metric">8 km</span>
+            <span class="workout-metric">6:30/km</span>
+            <span class="workout-metric">55 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom: Coach + Register -->
+    <div class="plan-bottom">
+      <div class="coach-row">
+        <div class="coach-avatar">J</div>
+        <div>
+          <div class="coach-name">Entrenador Jose</div>
+          <div class="coach-msg">Primera semana — empieza suave!</div>
+        </div>
+        <span class="coach-arrow">&#x203A;</span>
+      </div>
+      <button class="register-btn">
+        &#x25B6; Registrar entrenamiento
+      </button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

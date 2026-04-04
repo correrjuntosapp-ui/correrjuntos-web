@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<title>PaywallScreen — Plan Individual + Premium</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif; background: #1a1a2e; }
+
+  .phone-frame {
+    width: 390px; margin: 20px auto; background: #0b1220;
+    border-radius: 40px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 3px solid #333;
+  }
+  .notch { width: 160px; height: 34px; background: #000; border-radius: 0 0 20px 20px; margin: 0 auto; position: relative; z-index: 10; }
+
+  .scroll-area { height: 844px; overflow-y: auto; position: relative; }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* Hero gradient */
+  .hero {
+    background: linear-gradient(180deg, #0b1220 0%, #1c1205 50%, #2d1810 100%);
+    padding: 0 24px 32px; text-align: center; position: relative;
+  }
+  .close-btn {
+    position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+    border-radius: 18px; background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 18px;
+    cursor: pointer; border: none;
+  }
+  .crown-container { margin-top: 50px; margin-bottom: 16px; position: relative; display: inline-block; }
+  .crown-glow { position: absolute; width: 100px; height: 100px; border-radius: 50%; background: rgba(251,191,36,0.08); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .crown { font-size: 56px; position: relative; z-index: 1; }
+  .hero-title { font-size: 30px; font-weight: 900; color: #fbbf24; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.6); line-height: 22px; }
+
+  /* Sections */
+  .section { padding: 0 20px; margin-bottom: 28px; }
+  .section-title { font-size: 18px; font-weight: 800; color: #f0f0f0; margin-bottom: 14px; }
+
+  /* Features Grid */
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .feature-card {
+    background: #1a2332; border: 1px solid #2a3544; border-radius: 14px; padding: 14px;
+  }
+  .feature-icon-circle {
+    width: 40px; height: 40px; border-radius: 20px; background: rgba(249,115,22,0.12);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-size: 18px;
+  }
+  .feature-title { font-size: 14px; font-weight: 700; color: #f0f0f0; margin-bottom: 3px; }
+  .feature-desc { font-size: 11px; line-height: 15px; font-weight: 500; color: #9ca3af; }
+
+  /* Plan Preview */
+  .plan-preview-card { background: #1a2332; border: 1px solid #2a3544; border-radius: 16px; overflow: hidden; position: relative; }
+  .preview-row { display: flex; align-items: center; padding: 12px 14px; gap: 10px; border-bottom: 1px solid #2a3544; }
+  .preview-row:last-of-type { border-bottom: none; }
+  .preview-day { font-size: 12px; font-weight: 700; width: 32px; text-transform: uppercase; color: #9ca3af; }
+  .preview-color-bar { width: 3px; height: 28px; border-radius: 2px; }
+  .preview-title { font-size: 14px; font-weight: 600; color: #f0f0f0; flex: 1; }
+  .preview-dist { font-size: 13px; font-weight: 800; }
+  .plan-preview-blur {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 70%;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 16px;
+    background: linear-gradient(180deg, rgba(11,18,32,0) 0%, rgba(11,18,32,0.85) 50%, rgba(11,18,32,0.98) 100%);
+  }
+  .lock-content { text-align: center; }
+  .lock-icon { font-size: 28px; }
+  .lock-text { font-size: 14px; font-weight: 800; color: #f0f0f0; margin-top: 4px; }
+
+  /* Benefits */
+  .benefits-list { background: #1a2332; border: 1px solid #2a3544; border-radius: 16px; padding: 16px; margin-top: 12px; }
+  .benefit-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .benefit-row:last-child { margin-bottom: 0; }
+  .benefit-icon { font-size: 16px; }
+  .benefit-text { font-size: 14px; font-weight: 600; color: #f0f0f0; flex: 1; }
+
+  /* Comparison Table */
+  .comparison-table { background: #1a2332; border: 1px solid #2a3544; border-radius: 16px; overflow: hidden; }
+  .comp-row { display: flex; align-items: center; padding: 12px 14px; border-bottom: 1px solid #2a3544; }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-header { border-bottom: 1px solid #2a3544; padding: 10px 14px; }
+  .comp-feature { flex: 1.4; font-size: 13px; font-weight: 600; color: #f0f0f0; }
+  .comp-col { flex: 0.8; text-align: center; font-size: 13px; font-weight: 600; }
+  .comp-col-header { flex: 0.8; text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #9ca3af; }
+  .comp-col-premium { color: #f97316; font-weight: 800; }
+  .check { color: #22c55e; font-size: 16px; }
+  .cross { color: #ef4444; font-size: 16px; }
+
+  /* ============ ROI-OPTIMIZED PLAN PURCHASE ============ */
+  /* Premium card (RECOMENDADO — first, green border) */
+  .premium-recommend-card {
+    border-radius: 16px; border: 2.5px solid #22c55e; padding: 20px;
+    text-align: center; position: relative; background: #1a2332;
+  }
+  .recommend-badge {
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: #22c55e; padding: 3px 14px; border-radius: 10px;
+    font-size: 11px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .premium-card-title { font-size: 18px; font-weight: 900; color: #f0f0f0; margin-top: 8px; }
+  .premium-card-includes { font-size: 13px; font-weight: 600; color: #9ca3af; margin-bottom: 8px; }
+  .premium-card-price-row { display: flex; align-items: baseline; justify-content: center; margin-bottom: 4px; }
+  .premium-card-price { font-size: 28px; font-weight: 900; color: #f97316; }
+  .premium-card-period { font-size: 14px; font-weight: 600; color: #9ca3af; margin-left: 2px; }
+  .premium-value-props { text-align: left; margin: 8px 0 12px; }
+  .premium-value-prop { font-size: 13px; font-weight: 600; color: #9ca3af; margin-bottom: 6px; }
+  .premium-value-prop.highlight { color: #f97316; font-weight: 700; }
+  .premium-card-cta {
+    width: 100%; padding: 14px; border-radius: 12px;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    color: #fff; font-size: 16px; font-weight: 800; border: none; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.25);
+  }
+
+  /* Individual plan card (secondary — grey border) */
+  .individual-plan-card {
+    border-radius: 16px; border: 1.5px solid #2a3544; padding: 20px;
+    text-align: center; position: relative; background: #1a2332;
+  }
+  .individual-plan-badge {
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: #6b7280; padding: 3px 14px; border-radius: 10px;
+    font-size: 11px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .individual-plan-name { font-size: 17px; font-weight: 900; color: #f0f0f0; margin-top: 8px; margin-bottom: 4px; }
+  .individual-plan-price-row { display: flex; align-items: baseline; justify-content: center; }
+  .individual-plan-price { font-size: 24px; font-weight: 900; color: #f0f0f0; }
+  .individual-plan-period { font-size: 12px; font-weight: 600; color: #9ca3af; margin-left: 4px; }
+  .individual-plan-unit { font-size: 12px; color: #9ca3af; margin-top: 2px; margin-bottom: 12px; }
+  .individual-plan-cta {
+    width: 100%; padding: 14px; border-radius: 12px; background: transparent;
+    color: #f0f0f0; font-size: 16px; font-weight: 800; border: 2px solid #2a3544; cursor: pointer;
+  }
+
+  /* Or Separator */
+  .or-separator { display: flex; align-items: center; margin: 20px 0; gap: 12px; }
+  .or-line { flex: 1; height: 1px; background: #2a3544; }
+  .or-text { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; }
+
+  /* Dual sticky CTA */
+  .cta-button-secondary {
+    width: 100%; padding: 13px; border-radius: 14px;
+    background: transparent; color: #f0f0f0; font-size: 15px; font-weight: 700;
+    border: 2px solid #2a3544; cursor: pointer; margin-top: 8px;
+  }
+
+  /* Plan selector (Monthly / Yearly) */
+  .plan-selector { display: flex; gap: 12px; }
+  .plan-card {
+    flex: 1; border-radius: 16px; border: 2px solid #2a3544; padding: 18px;
+    text-align: center; background: #1a2332; cursor: pointer; position: relative; overflow: visible;
+    transition: border-color 0.2s;
+  }
+  .plan-card.active { border-color: #f97316; box-shadow: 0 2px 12px rgba(249,115,22,0.15); }
+  .plan-name { font-size: 14px; font-weight: 700; color: #f0f0f0; margin-bottom: 6px; }
+  .plan-price { font-size: 24px; font-weight: 900; color: #f0f0f0; }
+  .plan-card.active .plan-price { color: #f97316; }
+  .plan-period { font-size: 12px; font-weight: 500; color: #6b7280; margin-top: 2px; }
+  .plan-savings { color: #22c55e; font-size: 12px; font-weight: 700; margin-top: 4px; }
+  .save-badge {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: #f97316; padding: 2px 10px; border-radius: 10px;
+    font-size: 10px; font-weight: 800; color: #fff; white-space: nowrap;
+  }
+
+  /* Social proof */
+  .social-proof { text-align: center; padding: 0 20px; margin-bottom: 16px; }
+  .avatar-stack { display: flex; justify-content: center; margin-bottom: 8px; }
+  .avatar-circle {
+    width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    border: 2px solid #0b1220; font-size: 13px; font-weight: 800; color: #fff;
+  }
+  .avatar-circle + .avatar-circle { margin-left: -10px; }
+  .social-proof-text { font-size: 13px; font-weight: 600; color: #9ca3af; }
+
+  /* Sticky CTA */
+  .cta-container {
+    position: sticky; bottom: 0; left: 0; right: 0; padding: 12px 20px 16px;
+    background: #0b1220; border-top: 1px solid #2a3544;
+  }
+  .cta-button {
+    width: 100%; padding: 16px; border-radius: 14px; border: none; cursor: pointer;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    color: #fff; font-size: 18px; font-weight: 900; letter-spacing: 0.3px;
+    box-shadow: 0 4px 16px rgba(249,115,22,0.3);
+    transition: transform 0.1s;
+  }
+  .cta-button:active { transform: scale(0.98); }
+  .guarantee { text-align: center; font-size: 12px; font-weight: 600; color: #9ca3af; margin-top: 10px; }
+  .bottom-row { display: flex; justify-content: center; align-items: center; margin-top: 6px; gap: 4px; }
+  .restore-text { font-size: 12px; font-weight: 600; color: #6b7280; text-decoration: underline; cursor: pointer; }
+  .legal-text { font-size: 10px; font-weight: 500; color: #6b7280; }
+
+  /* Spacer */
+  .bottom-spacer { height: 160px; }
+
+  /* Title bar for demo */
+  .demo-bar {
+    background: #111827; padding: 12px 20px; text-align: center; border-bottom: 1px solid #2a3544;
+  }
+  .demo-bar h3 { color: #f97316; font-size: 14px; font-weight: 700; margin: 0; }
+  .demo-bar p { color: #9ca3af; font-size: 11px; margin: 4px 0 0; }
+
+  /* Two phones side by side */
+  .phones-container { display: flex; gap: 40px; justify-content: center; padding: 30px 20px; flex-wrap: wrap; }
+  .phone-label { text-align: center; margin-bottom: 10px; }
+  .phone-label h2 { color: #f97316; font-size: 16px; font-weight: 800; margin: 0; }
+  .phone-label p { color: #9ca3af; font-size: 12px; margin: 4px 0 0; }
+
+  /* Highlight box around individual purchase section */
+  .highlight-section { position: relative; }
+  .highlight-section::before {
+    content: 'NUEVO'; position: absolute; top: -24px; left: 50%; transform: translateX(-50%);
+    background: #22c55e; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 10px;
+    border-radius: 8px; letter-spacing: 1px; z-index: 1;
+  }
+  .highlight-section::after {
+    content: ''; position: absolute; top: -8px; left: -8px; right: -8px; bottom: -8px;
+    border: 2px dashed #22c55e; border-radius: 20px; opacity: 0.4; pointer-events: none;
+  }
+
+  /* [CRO] Urgency badge */
+  .urgency-container { text-align: center; margin-top: 16px; }
+  .urgency-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(251,191,36,0.12); padding: 6px 14px; border-radius: 20px;
+    border: 1px solid rgba(251,191,36,0.25);
+  }
+  .urgency-badge-icon { font-size: 12px; }
+  .urgency-badge-text { color: #fbbf24; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+  .urgency-detail { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.45); margin-top: 6px; }
+
+  /* [CRO] Testimonial */
+  .testimonial-card {
+    background: #1a2332; border: 1px solid #2a3544; border-radius: 16px; padding: 18px;
+  }
+  .testimonial-quote-icon { margin-bottom: 8px; font-size: 18px; color: #f97316; }
+  .testimonial-text { font-size: 14px; font-weight: 500; line-height: 21px; font-style: italic; color: #f0f0f0; margin-bottom: 14px; }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .testimonial-avatar {
+    width: 32px; height: 32px; border-radius: 16px; background: #f97316;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px; font-weight: 800;
+  }
+  .testimonial-name { font-size: 13px; font-weight: 700; color: #f0f0f0; }
+  .testimonial-meta { font-size: 11px; font-weight: 500; color: #6b7280; }
+  .testimonial-stars { margin-left: auto; color: #facc15; font-size: 10px; letter-spacing: 1px; }
+
+  /* [CRO] Individual plan link — orange tint */
+  .individual-plan-link-container {
+    margin-top: 16px; margin-bottom: 8px; padding: 10px 16px;
+    border-radius: 10px; background: rgba(249,115,22,0.08); text-align: center;
+  }
+  .individual-plan-link-container a {
+    color: #fb923c; font-size: 13px; font-weight: 600; text-decoration: underline;
+  }
+
+  /* [CRO] Value prop with check icon */
+  .value-prop-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .value-prop-check { font-size: 15px; }
+  .value-prop-text { font-size: 13px; font-weight: 600; color: #9ca3af; }
+  .value-prop-text.highlight { color: #f97316; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="phones-container">
+
+  <!-- ========== PHONE 1: Normal Premium Paywall ========== -->
+  <div>
+    <div class="phone-label">
+      <h2>Modo Normal (sin goalKey)</h2>
+      <p>Cuando llega de Settings, Profile, etc.</p>
+    </div>
+    <div class="phone-frame">
+      <div class="notch"></div>
+      <div class="scroll-area">
+        <!-- Hero -->
+        <div class="hero">
+          <button class="close-btn">&times;</button>
+          <div class="crown-container">
+            <div class="crown-glow"></div>
+            <div class="crown">&#x1F451;</div>
+          </div>
+          <div class="hero-title">Entrena sin l&iacute;mites</div>
+          <div class="hero-subtitle">Desbloquea todo el potencial de tu running</div>
+          <!-- [CRO] Urgency badge -->
+          <div class="urgency-container">
+            <div class="urgency-badge">
+              <span class="urgency-badge-icon">&#x23F0;</span>
+              <span class="urgency-badge-text">Oferta de lanzamiento</span>
+            </div>
+            <div class="urgency-detail">Precio especial para los primeros 500 usuarios</div>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="section">
+          <div class="section-title">Todo lo que incluye Premium</div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(129,140,248,0.1);color:#818cf8;">&#x1F465;</div>
+              <div class="feature-title">Matching</div>
+              <div class="feature-desc">Encuentra runners compatibles</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(52,211,153,0.1);color:#34d399;">&#x1F4CA;</div>
+              <div class="feature-title">Estad&iacute;sticas</div>
+              <div class="feature-desc">An&aacute;lisis avanzado</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(248,113,113,0.1);color:#f87171;">&#x2764;&#xFE0F;</div>
+              <div class="feature-title">Sensores BLE</div>
+              <div class="feature-desc">FC, cadencia, potencia</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(251,146,60,0.1);color:#fb923c;">&#x1F517;</div>
+              <div class="feature-title">Strava Sync</div>
+              <div class="feature-desc">Importa actividades</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(250,204,21,0.1);color:#facc15;">&#x1F514;</div>
+              <div class="feature-title">Alertas Auto</div>
+              <div class="feature-desc">Audio cada km</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(167,139,250,0.1);color:#a78bfa;">&#x2B50;</div>
+              <div class="feature-title">Perfil Destacado</div>
+              <div class="feature-desc">M&aacute;s visibilidad</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- [CRO] Testimonial -->
+        <div class="section">
+          <div class="testimonial-card">
+            <div class="testimonial-quote-icon">&#x275D;</div>
+            <div class="testimonial-text">Baj&eacute; mi marca en 10K de 52 a 47 minutos en 8 semanas. El plan se ajust&oacute; solo cuando mejor&eacute; ritmo.</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">M</div>
+              <div>
+                <div class="testimonial-name">Mar&iacute;a G.</div>
+                <div class="testimonial-meta">Plan 10K &middot; Madrid</div>
+              </div>
+              <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan selector (only) -->
+        <div class="section">
+          <div class="plan-selector">
+            <div class="plan-card active" style="overflow:visible;">
+              <div class="save-badge">Ahorra 40%</div>
+              <div class="plan-name">Anual</div>
+              <div class="plan-price">29,99 &euro;</div>
+              <div class="plan-period">/a&ntilde;o</div>
+              <div class="plan-savings">= 2,49 &euro;/mes</div>
+            </div>
+            <div class="plan-card">
+              <div class="plan-name">Mensual</div>
+              <div class="plan-price" style="color:#f0f0f0;">4,99 &euro;</div>
+              <div class="plan-period">/mes</div>
+              <div style="color:#6b7280; font-size:11px; font-weight:600; margin-top:4px;">Sin compromiso</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- [CRO] Social proof with rating -->
+        <div class="social-proof">
+          <div class="avatar-stack">
+            <div class="avatar-circle" style="background:#f97316;">J</div>
+            <div class="avatar-circle" style="background:#3b82f6;">M</div>
+            <div class="avatar-circle" style="background:#22c55e;">A</div>
+            <div class="avatar-circle" style="background:#a855f7;">L</div>
+          </div>
+          <div class="social-proof-text">4.8 &#x2605; &middot; +500 runners ya entrenan con Premium</div>
+        </div>
+
+        <!-- [CRO] Pricing hint — shows price before CTA -->
+        <div style="text-align:center; padding:0 20px; margin-bottom:16px;">
+          <div style="width:40px; height:1px; background:#2a3544; margin:0 auto 12px;"></div>
+          <div style="font-size:13px; color:#94a3b8;">Desde</div>
+          <div style="font-size:28px; font-weight:800; color:#f59e0b;">2,49 &euro;/mes</div>
+          <div style="font-size:12px; color:#64748b; margin-top:2px;">con plan anual &middot; 29,99 &euro;/a&ntilde;o</div>
+        </div>
+
+        <div class="bottom-spacer"></div>
+
+        <!-- [CRO] Dynamic Sticky CTA -->
+        <div class="cta-container">
+          <button class="cta-button">Activar Premium Anual &mdash; 29,99 &euro;/a&ntilde;o &rarr;</button>
+          <div class="guarantee">Garant&iacute;a 30 d&iacute;as &middot; Cancela cuando quieras</div>
+          <div class="bottom-row">
+            <span class="restore-text">Restaurar compras</span>
+            <span class="legal-text"> &middot; Se renueva autom&aacute;ticamente. Cancela en cualquier momento.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PHONE 2: Individual Plan Purchase Mode ========== -->
+  <div>
+    <div class="phone-label">
+      <h2>Modo Plan Individual (goalKey=10k)</h2>
+      <p>Premium RECOMENDADO + plan individual como fallback</p>
+    </div>
+    <div class="phone-frame">
+      <div class="notch"></div>
+      <div class="scroll-area">
+        <!-- Hero — [CRO] Dynamic title for plan mode -->
+        <div class="hero">
+          <button class="close-btn">&times;</button>
+          <div class="crown-container">
+            <div class="crown-glow"></div>
+            <div class="crown">&#x1F451;</div>
+          </div>
+          <div class="hero-title">Tu Plan 10K te espera</div>
+          <div class="hero-subtitle">Plan personalizado &middot; Ajuste autom&aacute;tico &middot; Resultados reales</div>
+          <!-- [CRO] Urgency badge -->
+          <div class="urgency-container">
+            <div class="urgency-badge">
+              <span class="urgency-badge-icon">&#x23F0;</span>
+              <span class="urgency-badge-text">Oferta de lanzamiento</span>
+            </div>
+            <div class="urgency-detail">Precio especial para los primeros 500 usuarios</div>
+          </div>
+        </div>
+
+        <!-- Features (same with per-feature colors) -->
+        <div class="section">
+          <div class="section-title">Todo lo que incluye Premium</div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(129,140,248,0.1);color:#818cf8;">&#x1F465;</div>
+              <div class="feature-title">Matching</div>
+              <div class="feature-desc">Encuentra runners compatibles</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(52,211,153,0.1);color:#34d399;">&#x1F4CA;</div>
+              <div class="feature-title">Estad&iacute;sticas</div>
+              <div class="feature-desc">An&aacute;lisis avanzado</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(248,113,113,0.1);color:#f87171;">&#x2764;&#xFE0F;</div>
+              <div class="feature-title">Sensores BLE</div>
+              <div class="feature-desc">FC, cadencia, potencia</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(251,146,60,0.1);color:#fb923c;">&#x1F517;</div>
+              <div class="feature-title">Strava Sync</div>
+              <div class="feature-desc">Importa actividades</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(250,204,21,0.1);color:#facc15;">&#x1F514;</div>
+              <div class="feature-title">Alertas Auto</div>
+              <div class="feature-desc">Audio cada km</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon-circle" style="background:rgba(167,139,250,0.1);color:#a78bfa;">&#x2B50;</div>
+              <div class="feature-title">Perfil Destacado</div>
+              <div class="feature-desc">M&aacute;s visibilidad</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Preview with blur -->
+        <div class="section">
+          <div class="section-title">Tu plan de entreno &mdash; Semana 1</div>
+          <div class="plan-preview-card">
+            <div class="preview-row">
+              <span class="preview-day">LUN</span>
+              <div class="preview-color-bar" style="background:#22c55e;"></div>
+              <span class="preview-title">Rodaje suave 5km</span>
+              <span class="preview-dist" style="color:#22c55e;">5km</span>
+            </div>
+            <div class="preview-row">
+              <span class="preview-day">MIE</span>
+              <div class="preview-color-bar" style="background:#ef4444;"></div>
+              <span class="preview-title">Intervalos 6x800m</span>
+              <span class="preview-dist" style="color:#ef4444;">7km</span>
+            </div>
+            <div class="preview-row">
+              <span class="preview-day">VIE</span>
+              <div class="preview-color-bar" style="background:#f59e0b;"></div>
+              <span class="preview-title">Tempo 4km</span>
+              <span class="preview-dist" style="color:#f59e0b;">6km</span>
+            </div>
+            <div class="preview-row" style="border-bottom:none;">
+              <span class="preview-day">DOM</span>
+              <div class="preview-color-bar" style="background:#16a34a;"></div>
+              <span class="preview-title">Tirada larga 10km</span>
+              <span class="preview-dist" style="color:#16a34a;">10km</span>
+            </div>
+            <div class="plan-preview-blur">
+              <div class="lock-content">
+                <div class="lock-icon">&#x1F512;</div>
+                <div class="lock-text">Desbloquea tu plan completo</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <div class="benefits-list">
+            <div class="benefit-row">
+              <span class="benefit-icon">&#x1F3AF;</span>
+              <span class="benefit-text">Plan personalizado a tu ritmo actual</span>
+            </div>
+            <div class="benefit-row">
+              <span class="benefit-icon">&#x26A1;</span>
+              <span class="benefit-text">Ajuste autom&aacute;tico si mejoras o bajas ritmo</span>
+            </div>
+            <div class="benefit-row">
+              <span class="benefit-icon">&#x1F514;</span>
+              <span class="benefit-text">Notificaciones diarias de entrenamiento</span>
+            </div>
+            <div class="benefit-row">
+              <span class="benefit-icon">&#x1F4CA;</span>
+              <span class="benefit-text">Historial de todos tus planes</span>
+            </div>
+            <div class="benefit-row">
+              <span class="benefit-icon">&#x1F5D3;</span>
+              <span class="benefit-text">Calendario visual con progreso</span>
+            </div>
+            <div class="benefit-row">
+              <span class="benefit-icon">&#x1F3C1;</span>
+              <span class="benefit-text">5 planes: 5K, 10K, 21K, Trail, Maraton</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- [CRO] Testimonial -->
+        <div class="section">
+          <div class="testimonial-card">
+            <div class="testimonial-quote-icon">&#x275D;</div>
+            <div class="testimonial-text">Baj&eacute; mi marca en 10K de 52 a 47 minutos en 8 semanas. El plan se ajust&oacute; solo cuando mejor&eacute; ritmo.</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">M</div>
+              <div>
+                <div class="testimonial-name">Mar&iacute;a G.</div>
+                <div class="testimonial-meta">Plan 10K &middot; Madrid</div>
+              </div>
+              <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison -->
+        <div class="section">
+          <div class="section-title">Free vs Premium</div>
+          <div class="comparison-table">
+            <div class="comp-row comp-header">
+              <div class="comp-feature" style="color:#6b7280;"></div>
+              <div class="comp-col-header">FREE</div>
+              <div class="comp-col-header comp-col-premium">PREMIUM</div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-feature">Matches por dia</div>
+              <div class="comp-col" style="color:#6b7280;">3</div>
+              <div class="comp-col comp-col-premium">Ilimitado</div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-feature">Estad&iacute;sticas</div>
+              <div class="comp-col" style="color:#6b7280;">B&aacute;sicas</div>
+              <div class="comp-col comp-col-premium">Avanzadas</div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-feature">Sensores BLE</div>
+              <div class="comp-col"><span class="cross">&#x2717;</span></div>
+              <div class="comp-col"><span class="check">&#x2713;</span></div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-feature">Filtros matching</div>
+              <div class="comp-col"><span class="cross">&#x2717;</span></div>
+              <div class="comp-col"><span class="check">&#x2713;</span></div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-feature">Alertas auto</div>
+              <div class="comp-col"><span class="cross">&#x2717;</span></div>
+              <div class="comp-col"><span class="check">&#x2713;</span></div>
+            </div>
+            <div class="comp-row" style="border-bottom:none;">
+              <div class="comp-feature">Perfil destacado</div>
+              <div class="comp-col"><span class="cross">&#x2717;</span></div>
+              <div class="comp-col"><span class="check">&#x2713;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ ROI-OPTIMIZED: Premium FIRST (MÁS POPULAR) ============ -->
+        <div class="section highlight-section">
+          <!-- PREMIUM — green border, MÁS POPULAR badge -->
+          <div class="premium-recommend-card">
+            <div class="recommend-badge">M&Aacute;S POPULAR</div>
+            <div class="premium-card-title">Premium</div>
+            <div class="premium-card-includes">Incluye Plan 10K y todos los dem&aacute;s</div>
+            <div class="premium-value-props">
+              <div class="value-prop-row">
+                <span class="value-prop-check" style="color:#f97316;">&#x2714;</span>
+                <span class="value-prop-text highlight">Plan 10K</span>
+              </div>
+              <div class="value-prop-row">
+                <span class="value-prop-check" style="color:#22c55e;">&#x2714;</span>
+                <span class="value-prop-text">Los 5 planes de entrenamiento</span>
+              </div>
+              <div class="value-prop-row">
+                <span class="value-prop-check" style="color:#22c55e;">&#x2714;</span>
+                <span class="value-prop-text">Social + matching runners</span>
+              </div>
+              <div class="value-prop-row">
+                <span class="value-prop-check" style="color:#22c55e;">&#x2714;</span>
+                <span class="value-prop-text">Cancela cuando quieras</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- [CRO] Individual plan link — orange tint background -->
+          <div class="individual-plan-link-container">
+            <a href="#">&iquest;Solo quieres el Plan 10K? C&oacute;mpralo por 5,99 &euro; &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Plan selector (monthly / yearly) -->
+        <div class="section">
+          <div class="plan-selector">
+            <div class="plan-card active" style="overflow:visible;">
+              <div class="save-badge">Ahorra 40%</div>
+              <div class="plan-name">Anual</div>
+              <div class="plan-price">29,99 &euro;</div>
+              <div class="plan-period">/a&ntilde;o</div>
+              <div class="plan-savings">= 2,49 &euro;/mes</div>
+            </div>
+            <div class="plan-card">
+              <div class="plan-name">Mensual</div>
+              <div class="plan-price" style="color:#f0f0f0;">4,99 &euro;</div>
+              <div class="plan-period">/mes</div>
+              <div style="color:#6b7280; font-size:11px; font-weight:600; margin-top:4px;">Sin compromiso</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- [CRO] Social proof with rating -->
+        <div class="social-proof">
+          <div class="avatar-stack">
+            <div class="avatar-circle" style="background:#f97316;">J</div>
+            <div class="avatar-circle" style="background:#3b82f6;">M</div>
+            <div class="avatar-circle" style="background:#22c55e;">A</div>
+            <div class="avatar-circle" style="background:#a855f7;">L</div>
+          </div>
+          <div class="social-proof-text">4.8 &#x2605; &middot; +500 runners ya entrenan con Premium</div>
+        </div>
+
+        <div class="bottom-spacer"></div>
+
+        <!-- [CRO] Dynamic Sticky CTA — changes based on selected plan -->
+        <div class="cta-container">
+          <button class="cta-button">Activar Premium Anual &mdash; 29,99 &euro;/a&ntilde;o &rarr;</button>
+          <div class="guarantee">Garant&iacute;a 30 d&iacute;as &middot; Cancela cuando quieras</div>
+          <div class="bottom-row">
+            <span class="restore-text">Restaurar compras</span>
+            <span class="legal-text"> &middot; Se renueva autom&aacute;ticamente. Cancela en cualquier momento.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Price table -->
+<div style="max-width:600px; margin:40px auto; padding:20px;">
+  <h2 style="color:#f97316; text-align:center; margin-bottom:20px; font-size:20px;">Tabla de Precios — Compra Individual</h2>
+  <table style="width:100%; border-collapse:collapse; background:#1a2332; border-radius:12px; overflow:hidden;">
+    <thead>
+      <tr style="background:#111827;">
+        <th style="padding:12px 16px; text-align:left; color:#f97316; font-size:13px;">Plan</th>
+        <th style="padding:12px 16px; text-align:center; color:#f97316; font-size:13px;">Precio</th>
+        <th style="padding:12px 16px; text-align:center; color:#f97316; font-size:13px;">Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #2a3544;">
+        <td style="padding:12px 16px; color:#f0f0f0; font-weight:600;">Plan 5K</td>
+        <td style="padding:12px 16px; color:#22c55e; text-align:center; font-weight:800;">3,99 &euro;</td>
+        <td style="padding:12px 16px; color:#9ca3af; text-align:center;">One-time</td>
+      </tr>
+      <tr style="border-bottom:1px solid #2a3544;">
+        <td style="padding:12px 16px; color:#f0f0f0; font-weight:600;">Plan 10K</td>
+        <td style="padding:12px 16px; color:#22c55e; text-align:center; font-weight:800;">5,99 &euro;</td>
+        <td style="padding:12px 16px; color:#9ca3af; text-align:center;">One-time</td>
+      </tr>
+      <tr style="border-bottom:1px solid #2a3544;">
+        <td style="padding:12px 16px; color:#f0f0f0; font-weight:600;">Plan Trail</td>
+        <td style="padding:12px 16px; color:#22c55e; text-align:center; font-weight:800;">5,99 &euro;</td>
+        <td style="padding:12px 16px; color:#9ca3af; text-align:center;">One-time</td>
+      </tr>
+      <tr style="border-bottom:1px solid #2a3544;">
+        <td style="padding:12px 16px; color:#f0f0f0; font-weight:600;">Plan 21K</td>
+        <td style="padding:12px 16px; color:#22c55e; text-align:center; font-weight:800;">7,99 &euro;</td>
+        <td style="padding:12px 16px; color:#9ca3af; text-align:center;">One-time</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 16px; color:#f0f0f0; font-weight:600;">Plan Maraton</td>
+        <td style="padding:12px 16px; color:#22c55e; text-align:center; font-weight:800;">9,99 &euro;</td>
+        <td style="padding:12px 16px; color:#9ca3af; text-align:center;">One-time</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:16px; padding:16px; background:#111827; border-radius:12px; border:1px solid #2a3544;">
+    <p style="color:#f97316; font-weight:700; margin-bottom:8px;">vs Premium (todo incluido)</p>
+    <p style="color:#f0f0f0; font-size:14px;">Mensual: <strong>4,99 &euro;/mes</strong> &middot; Anual: <strong>29,99 &euro;/a&ntilde;o</strong> (2,49 &euro;/mes)</p>
+    <p style="color:#9ca3af; font-size:12px; margin-top:6px;">Premium incluye TODOS los planes + matching + social + estadisticas avanzadas + BLE</p>
+  </div>
+</div>
+
+</body>
+</html>

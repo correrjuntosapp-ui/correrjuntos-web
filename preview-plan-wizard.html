@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elige tu objetivo — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ─── Reset & Base ─────────────────────────────── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0A0A0C;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Phone Shell ───────────────────────────────── */
+  .phone {
+    width: 100%;
+    max-width: 375px;
+    background: #111214;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* Dynamic island */
+  .dynamic-island {
+    width: 120px; height: 32px;
+    background: #000;
+    border-radius: 18px;
+    margin: 10px auto 0;
+    flex-shrink: 0;
+  }
+
+  /* ─── Header ─────────────────────────────────────── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px 8px;
+    flex-shrink: 0;
+  }
+
+  .btn-back {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  .btn-back:hover { background: rgba(255,255,255,0.12); }
+
+  .header-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #F5F5F7;
+    letter-spacing: -0.2px;
+  }
+  .header-spacer { width: 34px; }
+
+  /* ─── Step Dots ──────────────────────────────────── */
+  .step-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 0 2px;
+    flex-shrink: 0;
+  }
+  .step-dot {
+    height: 4px;
+    border-radius: 2px;
+    background: #2A2A2E;
+    transition: all 0.3s ease;
+  }
+  .step-dot.active { width: 22px; background: #FF6B00; }
+  .step-dot.inactive { width: 6px; }
+
+  /* ─── Scroll Area ────────────────────────────────── */
+  .scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 16px 16px;
+    scrollbar-width: none;
+    /* ensures content taller than screen scrolls */
+    min-height: 0;
+  }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* ─── Section Title ──────────────────────────────── */
+  .section-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #F5F5F7;
+    letter-spacing: -0.5px;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    line-height: 1.15;
+  }
+  .section-subtitle {
+    font-size: 14px;
+    color: #8A8A96;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  /* ─── Divider Label ──────────────────────────────── */
+  .divider-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6B6B78;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  /* ─── Plan Card ──────────────────────────────────── */
+  .plan-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1.5px solid rgba(255,255,255,0.07);
+    background: #1C1C20;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .plan-card:hover { background: #252529; border-color: rgba(255,255,255,0.12); }
+  .plan-card:active { transform: scale(0.988); }
+
+  .plan-card.selected {
+    background: #1F1A14;
+    border-color: #FF6B00;
+    border-width: 2px;
+  }
+  .plan-card.selected:hover { background: #231D15; }
+  .plan-card.locked { opacity: 0.72; }
+
+  /* ─── Icon Circle ────────────────────────────────── */
+  .plan-icon {
+    width: 44px; height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .plan-card.selected .plan-icon { transform: scale(1.06); }
+
+  /* ─── Card Body ──────────────────────────────────── */
+  .plan-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* Line 1: name */
+  .plan-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #F5F5F7;
+    letter-spacing: -0.2px;
+    line-height: 1.25;
+    /* Never truncate — always show full name */
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  /* Line 2: badges + meta */
+  .plan-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    row-gap: 4px;
+  }
+
+  .plan-meta-text {
+    font-size: 12px;
+    color: #8A8A96;
+    /* can wrap to 2 lines */
+    white-space: normal;
+    line-height: 1.4;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* ─── Badges ─────────────────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  .badge-free     { background: #14532D; color: #22C55E; }
+  .badge-easy     { background: #14532D; color: #22C55E; }
+  .badge-medium   { background: #1C3461; color: #60A5FA; }
+  .badge-advanced { background: #3B1F0A; color: #F97316; }
+  .badge-premium  { background: #451A03; color: #F59E0B; }
+
+  /* ─── Right side (radio / premium badge) ─────────── */
+  .card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .radio-wrap {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid #3A3A42;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease;
+    background: transparent;
+    flex-shrink: 0;
+  }
+  .plan-card.selected .radio-wrap {
+    background: #FF6B00;
+    border-color: #FF6B00;
+    box-shadow: 0 0 0 3px rgba(255,107,0,0.18);
+  }
+  .radio-check {
+    opacity: 0;
+    transform: scale(0.4);
+    transition: all 0.2s ease;
+  }
+  .plan-card.selected .radio-check {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* ─── Footer ──────────────────────────────────────── */
+  .footer {
+    padding: 10px 16px 24px;
+    flex-shrink: 0;
+    background: #111214;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .btn-continue {
+    width: 100%;
+    height: 52px;
+    border-radius: 14px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    letter-spacing: -0.2px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .btn-continue.inactive {
+    background: #2A2A2E;
+    color: #4A4A55;
+    cursor: not-allowed;
+  }
+  .btn-continue.active {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C38 100%);
+    color: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(255,107,0,0.32);
+  }
+  .btn-continue.active:hover {
+    box-shadow: 0 6px 28px rgba(255,107,0,0.45);
+    transform: translateY(-1px);
+  }
+  .btn-continue.active:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 12px rgba(255,107,0,0.3);
+  }
+
+  .footer-status {
+    text-align: center;
+    font-size: 12px;
+    color: #4A4A55;
+    margin-top: 8px;
+    font-weight: 500;
+    transition: color 0.2s;
+    min-height: 15px;
+  }
+  .footer-status.has-selection { color: #FF6B00; }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <div class="dynamic-island"></div>
+
+  <!-- ── Header ─────────────────────────────────── -->
+  <div class="header">
+    <button class="btn-back" aria-label="Volver">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M19 12H5M12 19l-7-7 7-7" stroke="#8A8A96" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <span class="header-title">Crear tu plan</span>
+    <div class="header-spacer"></div>
+  </div>
+
+  <!-- ── Step Dots ──────────────────────────────── -->
+  <div class="step-dots">
+    <div class="step-dot active"></div>
+    <div class="step-dot inactive"></div>
+    <div class="step-dot inactive"></div>
+    <div class="step-dot inactive"></div>
+    <div class="step-dot inactive"></div>
+  </div>
+
+  <!-- ── Scroll Area ────────────────────────────── -->
+  <div class="scroll-area">
+
+    <div class="section-title">Elige tu objetivo</div>
+    <div class="section-subtitle">Selecciona el plan que se adapta a ti</div>
+
+    <!-- PLANES GRATUITOS ────────────────────────── -->
+    <div class="divider-label">Planes gratuitos</div>
+
+    <!-- 1. Empieza a Moverte -->
+    <div class="plan-card" data-plan="Empieza a Moverte" onclick="selectPlan(this)">
+      <div class="plan-icon" style="background:rgba(34,197,94,0.13);">
+        <!-- Walking person SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="4" r="2" fill="#22C55E"/>
+          <path d="M12 6.5L10 11H14L12 6.5Z" fill="#22C55E"/>
+          <path d="M10 11L7.5 20M14 11L16.5 20" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M10 15H14" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M9 9L7 10.5M15 9L17 10.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="plan-body">
+        <span class="plan-name">Empieza a Moverte</span>
+        <div class="plan-meta">
+          <span class="badge badge-free">Gratis</span>
+          <span class="badge badge-easy">Fácil</span>
+          <span class="plan-meta-text">6 semanas · Caminar y correr</span>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="radio-wrap">
+          <svg class="radio-check" width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Empezar a correr -->
+    <div class="plan-card" data-plan="Empezar a correr" onclick="selectPlan(this)">
+      <div class="plan-icon" style="background:rgba(34,197,94,0.13);">
+        <!-- Running person SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="14" cy="3.5" r="2" fill="#22C55E"/>
+          <path d="M14 5.5L11.5 10.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M11.5 8L8 9.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M11.5 10.5L9 17M11.5 10.5L14.5 14.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14.5 14.5L17 19" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M7 18l2 2M15.5 18.5l2 2" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="plan-body">
+        <span class="plan-name">Empezar a correr</span>
+        <div class="plan-meta">
+          <span class="badge badge-free">Gratis</span>
+          <span class="badge badge-easy">Fácil</span>
+          <span class="plan-meta-text">8 semanas · De cero a 5K</span>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="radio-wrap">
+          <svg class="radio-check" width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLANES PREMIUM ───────────────────────────── -->
+    <div class="divider-label">Planes premium</div>
+
+    <!-- 3. Preparar un 5K — PREMIUM -->
+    <div class="plan-card locked" data-plan="Preparar un 5K" data-premium="true" onclick="selectPlan(this)">
+      <div class="plan-icon" style="background:rgba(249,115,22,0.13);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M10 2h4" stroke="#F97316" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 6a8 8 0 100 16A8 8 0 0012 6z" stroke="#F97316" stroke-width="1.8"/>
+          <path d="M12 10v4l2.5 1.5" stroke="#F97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 5l1.5 1.5" stroke="#F97316" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="plan-body">
+        <span class="plan-name">Preparar un 5K</span>
+        <div class="plan-meta">
+          <span class="badge badge-easy">Fácil</span>
+          <span class="plan-meta-text">8 semanas · Mejora tu marca en 5K</span>
+        </div>
+      </div>
+      <div class="card-right">
+        <span class="badge badge-premium">Premium</span>
+      </div>
+    </div>
+
+    <!-- 4. Preparar un 10K — PREMIUM -->
+    <div class="plan-card locked" data-plan="Preparar un 10K" data-premium="true" onclick="selectPlan(this)">
+      <div class="plan-icon" style="background:rgba(96,165,250,0.13);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L4.5 13.5H11.5L10 22L19.5 10.5H12.5L13 2Z"
+                fill="#60A5FA" stroke="#60A5FA" stroke-width="0.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="plan-body">
+        <span class="plan-name">Preparar un 10K</span>
+        <div class="plan-meta">
+          <span class="badge badge-medium">Intermedio</span>
+          <span class="plan-meta-text">12 semanas · Tu mejor marca en 10K</span>
+        </div>
+      </div>
+      <div class="card-right">
+        <span class="badge badge-premium">Premium</span>
+      </div>
+    </div>
+
+    <!-- 5. Media Maratón -->
+    <div class="plan-card locked" data-plan="Media Maratón" data-premium="true" onclick="selectPlan(this)">
+      <div class="plan-icon" style="background:rgba(245,158,11,0.13);">
+        <!-- Medal SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="15" r="6" stroke="#F59E0B" stroke-width="1.8"/>
+          <path d="M9 8.5L7 3h10l-2 5.5" stroke="#F59E0B" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 12v3l2 1" stroke="#F59E0B" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="plan-body">
+        <span class="plan-name">Media Maratón</span>
+        <div class="plan-meta">
+          <span class="badge badge-advanced">Avanzado</span>
+          <span class="plan-meta-text">16 semanas · Completa tu primer 21K</span>
+        </div>
+      </div>
+      <div class="card-right">
+        <span class="badge badge-premium">Premium</span>
+      </div>
+    </div>
+
+    <!-- 6. Trail Running -->
+    <div class="plan-card locked" data-plan="Trail Running" data-premium="true" onclick="selectPlan(this)">
+      <div class="plan-icon" style="background:rgba(245,158,11,0.13);">
+        <!-- Mountain SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M2 20L9 6L14 14L17 10L22 20H2Z"
+                stroke="#F59E0B" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"
+                fill="none"/>
+          <path d="M9 6L7.5 9.5M9 6L10.5 9.5"
+                stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="plan-body">
+        <span class="plan-name">Trail Running</span>
+        <div class="plan-meta">
+          <span class="badge badge-advanced">Avanzado</span>
+          <span class="plan-meta-text">10 semanas · Trail y montaña</span>
+        </div>
+      </div>
+      <div class="card-right">
+        <span class="badge badge-premium">Premium</span>
+      </div>
+    </div>
+
+    <div style="height:8px;"></div>
+  </div><!-- /scroll-area -->
+
+  <!-- ── Footer ─────────────────────────────────── -->
+  <div class="footer">
+    <button class="btn-continue inactive" id="btnContinue" disabled>
+      Continuar
+    </button>
+    <div class="footer-status" id="footerStatus">Sin selección (inicial)</div>
+  </div>
+
+</div><!-- /phone -->
+
+<script>
+  var selected = null;
+
+  function selectPlan(card) {
+    var planName = card.dataset.plan;
+
+    // Deselect previous
+    if (selected && selected !== card) {
+      selected.classList.remove('selected');
+    }
+
+    // Toggle
+    if (selected === card) {
+      card.classList.remove('selected');
+      selected = null;
+      updateFooter(null);
+    } else {
+      card.classList.add('selected');
+      selected = card;
+      updateFooter(planName);
+    }
+  }
+
+  function updateFooter(planName) {
+    var btn    = document.getElementById('btnContinue');
+    var status = document.getElementById('footerStatus');
+
+    if (planName) {
+      btn.className = 'btn-continue active';
+      btn.disabled  = false;
+      status.textContent = 'Con selección (' + planName + ')';
+      status.className   = 'footer-status has-selection';
+    } else {
+      btn.className = 'btn-continue inactive';
+      btn.disabled  = true;
+      status.textContent = 'Sin selección (inicial)';
+      status.className   = 'footer-status';
+    }
+  }
+</script>
+</body>
+</html>

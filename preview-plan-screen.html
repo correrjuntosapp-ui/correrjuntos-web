@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Plan — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #E8E8ED; min-height: 100vh;
+    display: flex; justify-content: center; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone { width: 100%; max-width: 390px; background: #F2F2F7; display: flex; flex-direction: column; height: 100vh; }
+  .island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+
+  /* ═══ HEADER ═══════════════════════════ */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px 0; flex-shrink: 0; background: #fff;
+  }
+  .hdr-left { display: flex; align-items: center; gap: 14px; }
+  /* Logo: clean rounded square with CJ text */
+  .hdr-logo {
+    width: 30px; height: 30px; border-radius: 8px; background: #FF6B00;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: #fff; letter-spacing: -0.5px;
+  }
+  .hdr-icon { cursor: pointer; display: flex; align-items: center; }
+  .week-pill {
+    display: flex; align-items: center; gap: 7px;
+    padding: 7px 14px; border-radius: 18px;
+    background: #F2F2F7; border: 1px solid #E5E5EA; cursor: pointer;
+  }
+  .week-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; flex-shrink: 0; }
+  .week-text { font-size: 13px; font-weight: 600; color: #1C1C1E; }
+  .week-arrow { font-size: 9px; color: #8E8E93; margin-left: 1px; }
+  .hdr-right { display: flex; align-items: center; gap: 6px; }
+  .hdr-btn {
+    width: 36px; height: 36px; border-radius: 10px; background: #F2F2F7;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .hdr-btn:hover { background: #E5E5EA; }
+
+  /* ═══ CALENDAR ═════════════════════════ */
+  .cal-wrap { background: #fff; padding: 0 20px 12px; flex-shrink: 0; }
+  .cal {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    text-align: center; padding-top: 14px;
+  }
+  .cl { font-size: 11px; font-weight: 600; color: #8E8E93; letter-spacing: 0.3px; }
+  .cn-w { margin-top: 8px; display: flex; justify-content: center; }
+  .cn {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 500; color: #C7C7CC;
+  }
+  .cn.has { color: #3C3C43; font-weight: 600; }
+  .cn.completed { color: #FF6B00; font-weight: 700; }
+  .cn.today { background: #FF6B00; color: #fff; font-weight: 700; }
+  .cd-w { margin-top: 5px; display: flex; justify-content: center; }
+  .cd { width: 5px; height: 5px; border-radius: 50%; }
+  .cd.g { background: #22C55E; }
+  .cd.o { background: #FF6B00; }
+  .cd.f { background: #C7C7CC; }
+
+  /* ═══ SCROLL ═══════════════════════════ */
+  .scroll { flex: 1; overflow-y: auto; scrollbar-width: none; min-height: 0; background: #F2F2F7; }
+  .scroll::-webkit-scrollbar { display: none; }
+  .si { padding: 0 16px 140px; }
+
+  /* ═══ TODAY BAR ════════════════════════ */
+  .today-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 4px 12px;
+  }
+  .tb-title { font-size: 17px; font-weight: 700; color: #1C1C1E; }
+  .tb-weather { display: flex; align-items: center; gap: 5px; }
+  .tb-wt { font-size: 14px; color: #8E8E93; font-weight: 500; }
+
+  /* ═══ SESSION CARD ════════════════════ */
+  .card {
+    background: #FFFFFF; border-radius: 14px; padding: 16px;
+    margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .sc-row1 { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .sc-meta { font-size: 12px; color: #8E8E93; }
+  .sc-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid #D1D1D6; background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .sc-check.done { border-color: #22C55E; background: #22C55E; }
+  .sc-title { font-size: 17px; font-weight: 700; color: #1C1C1E; margin-bottom: 6px; }
+  .sc-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .sc-tag { font-size: 12px; font-weight: 500; color: #8E8E93; display: flex; align-items: center; gap: 4px; }
+  .sc-tag-badge {
+    padding: 2px 8px; border-radius: 4px;
+    background: #F2F2F7; font-size: 11px; font-weight: 600; color: #FF6B00;
+  }
+
+  /* ═══ WEEK SUMMARY ════════════════════ */
+  .wk-card {
+    background: #FFFFFF; border-radius: 14px; padding: 16px;
+    margin-bottom: 12px; cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .wk-card:active { background: #F9F9FB; }
+  .wk-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .wk-label { font-size: 15px; font-weight: 600; color: #1C1C1E; }
+  .wk-chev { color: #C7C7CC; transition: transform 0.3s; }
+  .wk-chev.open { transform: rotate(90deg); }
+
+  /* Progress bar */
+  .wk-progress { margin-bottom: 8px; }
+  .wk-track { height: 6px; background: #F2F2F7; border-radius: 3px; overflow: hidden; }
+  .wk-fill { height: 6px; border-radius: 3px; background: #22C55E; transition: width 0.6s ease; }
+  .wk-stats { display: flex; justify-content: space-between; margin-top: 6px; }
+  .wk-stat-text { font-size: 12px; color: #8E8E93; }
+  .wk-stat-text b { color: #1C1C1E; font-weight: 600; }
+
+  /* Expandable sessions */
+  .wk-expand {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 350ms ease, opacity 250ms ease;
+  }
+  .wk-expand.open { max-height: 400px; opacity: 1; }
+  .wk-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-top: 1px solid #F2F2F7;
+  }
+  .wk-rd { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: #D1D1D6; }
+  .wk-rd.g { background: #22C55E; }
+  .wk-rd.o { background: #FF6B00; }
+  .wk-rb { flex: 1; min-width: 0; }
+  .wk-rn { font-size: 13px; font-weight: 600; color: #1C1C1E; }
+  .wk-rn.dim { color: #8E8E93; }
+  .wk-rs { font-size: 11px; color: #8E8E93; margin-top: 1px; }
+  .wk-rt { font-size: 11px; font-weight: 600; flex-shrink: 0; }
+  .wk-rt.done { color: #22C55E; }
+  .wk-rt.now { color: #FF6B00; }
+  .wk-rt.later { color: #C7C7CC; }
+
+  /* ═══ MY DATA ═════════════════════════ */
+  .data-section { margin-bottom: 12px; }
+  .ds-header { display: flex; align-items: center; justify-content: space-between; padding: 4px 4px 10px; }
+  .ds-title { font-size: 15px; font-weight: 600; color: #1C1C1E; }
+  .ds-expand { font-size: 12px; font-weight: 600; color: #8E8E93; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+
+  /* Top row: weather + week count */
+  .ds-top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+
+  /* Weather card (warm gradient, our brand) */
+  .ds-weather-card {
+    background: linear-gradient(135deg, #FF8C38 0%, #FF6B00 100%);
+    border-radius: 14px; padding: 16px; color: #fff;
+    min-height: 120px; display: flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .ds-wc-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .ds-wc-date { font-size: 13px; font-weight: 600; opacity: 0.9; }
+  .ds-wc-details { font-size: 11px; opacity: 0.75; line-height: 1.5; text-align: right; }
+  .ds-wc-bottom {}
+  .ds-wc-city { font-size: 13px; font-weight: 600; opacity: 0.85; margin-bottom: 2px; }
+  .ds-wc-temp { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+
+  /* Week count card */
+  .ds-week-card {
+    background: #FFFFFF; border-radius: 14px; padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 120px;
+  }
+  .ds-wk-label { font-size: 11px; font-weight: 600; color: #8E8E93; letter-spacing: 0.3px; }
+  .ds-wk-big { font-size: 36px; font-weight: 800; color: #1C1C1E; letter-spacing: -1px; }
+  .ds-wk-bar-row { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .ds-wk-bar-icon { flex-shrink: 0; }
+  .ds-wk-bar-label { font-size: 11px; color: #8E8E93; }
+  .ds-wk-bar-count { font-size: 12px; font-weight: 700; color: #1C1C1E; margin-left: auto; }
+  .ds-wk-bars { display: flex; gap: 4px; flex: 1; }
+  .ds-wk-bar-seg { height: 4px; border-radius: 2px; flex: 1; background: #E5E5EA; }
+  .ds-wk-bar-seg.done { background: #22C55E; }
+
+  /* Distance ring card */
+  .ds-ring-card {
+    background: #FFFFFF; border-radius: 14px; padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center;
+  }
+  .ds-ring-wrap { position: relative; width: 100px; height: 100px; margin-bottom: 8px; }
+  .ds-ring-text {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    text-align: center;
+  }
+  .ds-ring-val { font-size: 20px; font-weight: 800; color: #1C1C1E; }
+  .ds-ring-unit { font-size: 11px; color: #8E8E93; }
+  .ds-ring-label { font-size: 11px; font-weight: 600; color: #8E8E93; text-align: center; letter-spacing: 0.3px; }
+
+  /* Expanded extra stats */
+  .ds-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 350ms ease, opacity 250ms ease, margin 200ms ease;
+    margin-top: 0;
+  }
+  .ds-grid.open { max-height: 300px; opacity: 1; margin-top: 10px; }
+  .ds-grid-card {
+    background: #FFFFFF; border-radius: 12px; padding: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .ds-grid-val { font-size: 18px; font-weight: 700; color: #1C1C1E; margin-bottom: 2px; }
+  .ds-grid-lbl { font-size: 11px; color: #8E8E93; }
+
+  /* ═══ COACH BANNER (Runna style) ═══════ */
+  .coach-banner {
+    background: #FFFFFF; border-radius: 14px;
+    padding: 14px 16px; margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    cursor: pointer;
+  }
+  .coach-banner:active { background: #F9F9FB; }
+  .cb-top {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .cb-photo {
+    width: 36px; height: 36px; border-radius: 50%;
+    flex-shrink: 0; overflow: hidden;
+    background-image: url('/public/coach-jose.jpg');
+    background-size: cover; background-position: center 20%;
+  }
+  .cb-info { flex: 1; min-width: 0; }
+  .cb-nm { font-size: 13px; font-weight: 600; color: #1C1C1E; }
+  .cb-sub { font-size: 11px; color: #8E8E93; }
+  .cb-chevron { flex-shrink: 0; }
+  .cb-msg {
+    font-size: 13px; color: #3C3C43; line-height: 1.45;
+    padding-left: 46px;
+  }
+
+  /* ═══ STICKY FOOTER ═══════════════════ */
+  .sticky {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    width: 100%; max-width: 390px; margin: 0 auto;
+    background: linear-gradient(to top, #F2F2F7 85%, transparent);
+    z-index: 100; box-sizing: border-box;
+    padding: 12px 16px 28px;
+  }
+  .reg-btn {
+    width: 100%; height: 50px; border-radius: 14px;
+    border: none; background: #1C1C1E;
+    color: #FFFFFF; font-size: 15px; font-weight: 600;
+    font-family: inherit; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.15s;
+  }
+  .reg-btn:hover { background: #2C2C2E; }
+  .reg-btn:active { transform: scale(0.98); }
+
+  /* ═══ SETTINGS BOTTOM SHEET ═══════════ */
+  .bs-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45); z-index: 200;
+    display: none; align-items: flex-end;
+  }
+  .bs-overlay.show { display: flex; }
+  .bs-panel {
+    width: 100%; background: #fff; border-radius: 20px 20px 0 0;
+    padding: 0 0 34px; animation: bsUp 0.28s ease;
+  }
+  @keyframes bsUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .bs-handle { width: 36px; height: 4px; background: #D1D1D6; border-radius: 2px; margin: 10px auto 16px; }
+  .bs-opt {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 20px; cursor: pointer; transition: background 0.15s;
+  }
+  .bs-opt:hover { background: #F9F9F9; }
+  .bs-opt-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .bs-opt-text { flex: 1; font-size: 16px; font-weight: 600; color: #1C1C1E; }
+  .bs-opt-text.danger { color: #FF3B30; }
+  .bs-opt-text.amber { color: #F59E0B; }
+  .bs-sep { height: 1px; background: #F2F2F7; margin: 0 20px; }
+  .bs-cancel {
+    margin: 10px 20px 0; height: 48px; border-radius: 12px;
+    background: #F2F2F7; border: none; width: calc(100% - 40px);
+    font-size: 15px; font-weight: 600; color: #1C1C1E;
+    font-family: inherit; cursor: pointer; transition: background 0.15s;
+  }
+  .bs-cancel:hover { background: #E5E5EA; }
+
+  /* Confirm abandon sheet */
+  .bs-confirm-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: rgba(255,59,48,0.08);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .bs-confirm-title { text-align: center; font-size: 19px; font-weight: 800; color: #1C1C1E; }
+  .bs-confirm-sub { text-align: center; font-size: 14px; color: #8E8E93; margin-top: 6px; line-height: 1.5; padding: 0 10px; }
+  .bs-warn {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: #FEF2F2; border-radius: 12px; padding: 14px;
+    margin: 18px 20px 0;
+  }
+  .bs-warn-text { font-size: 13px; color: #991B1B; line-height: 1.5; }
+  .bs-btn-danger {
+    margin: 18px 20px 0; height: 50px; border-radius: 14px;
+    background: #FF3B30; border: none; width: calc(100% - 40px);
+    color: #fff; font-size: 16px; font-weight: 700;
+    font-family: inherit; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="island"></div>
+
+  <!-- HEADER (white bg) -->
+  <div class="header">
+    <div class="hdr-left">
+      <div class="hdr-logo">CJ</div>
+      <div class="hdr-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9z" stroke="#8E8E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="#8E8E93" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div class="week-pill">
+      <div class="week-dot"></div>
+      <span class="week-text">Semana 2/8</span>
+      <span class="week-arrow">&#9662;</span>
+    </div>
+    <div class="hdr-right">
+      <div class="hdr-btn" title="Calendario">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="4" width="18" height="18" rx="3" stroke="#8E8E93" stroke-width="1.8"/>
+          <path d="M16 2v4M8 2v4M3 10h18" stroke="#8E8E93" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="hdr-btn" title="Ajustes del plan" onclick="openSheet('settingsSheet')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="#8E8E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="#8E8E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDAR (white bg) -->
+  <div class="cal-wrap">
+    <div class="cal">
+      <span class="cl">LUN</span><span class="cl">MAR</span><span class="cl">MIÉ</span>
+      <span class="cl">JUE</span><span class="cl">VIE</span><span class="cl">SÁB</span><span class="cl">DOM</span>
+      <div class="cn-w"><span class="cn">30</span></div>
+      <div class="cn-w"><span class="cn completed">31</span></div>
+      <div class="cn-w"><span class="cn">1</span></div>
+      <div class="cn-w"><span class="cn">2</span></div>
+      <div class="cn-w"><span class="cn today">3</span></div>
+      <div class="cn-w"><span class="cn">4</span></div>
+      <div class="cn-w"><span class="cn has">5</span></div>
+      <div class="cd-w"><div class="cd"></div></div>
+      <div class="cd-w"><div class="cd g"></div></div>
+      <div class="cd-w"><div class="cd"></div></div>
+      <div class="cd-w"><div class="cd"></div></div>
+      <div class="cd-w"><div class="cd o"></div></div>
+      <div class="cd-w"><div class="cd"></div></div>
+      <div class="cd-w"><div class="cd f"></div></div>
+    </div>
+  </div>
+
+  <!-- SCROLL -->
+  <div class="scroll">
+    <div class="si">
+
+      <!-- TODAY BAR -->
+      <div class="today-bar">
+        <span class="tb-title">Entrenamientos de hoy</span>
+        <div class="tb-weather">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="4" fill="#F59E0B"/>
+            <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="tb-wt">22°</span>
+        </div>
+      </div>
+
+      <!-- TODAY SESSION -->
+      <div class="card">
+        <div class="sc-row1">
+          <span class="sc-meta">viernes, 3 abr · 35m - 45m</span>
+          <div class="sc-check" onclick="this.classList.toggle('done')"></div>
+        </div>
+        <div class="sc-title">Fartlek 6x3'</div>
+        <div class="sc-tags">
+          <span class="sc-tag">Caminata/Carrera</span>
+          <span class="sc-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M3 11l11-7 7 11H3z" stroke="#8E8E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            8 km
+          </span>
+          <span class="sc-tag-badge">NTR</span>
+        </div>
+      </div>
+
+      <!-- WEEK SUMMARY with progress bar -->
+      <div class="wk-card" onclick="toggleWk()">
+        <div class="wk-top">
+          <span class="wk-label">Resumen de la semana 2</span>
+          <svg class="wk-chev" id="wkChev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <!-- Progress bar -->
+        <div class="wk-progress">
+          <div class="wk-track"><div class="wk-fill" style="width:33%;"></div></div>
+        </div>
+        <div class="wk-stats">
+          <span class="wk-stat-text">Entrenamientos: <b>1/3</b></span>
+          <span class="wk-stat-text">Distancia: <b>6.5/26.5 km</b></span>
+        </div>
+
+        <!-- Expandable sessions -->
+        <div class="wk-expand" id="wkExpand">
+          <div class="wk-row">
+            <div class="wk-rd g"></div>
+            <div class="wk-rb"><div class="wk-rn dim">Rodaje suave</div><div class="wk-rs">Mar 31 · 6.5 km · 5:40/km</div></div>
+            <span class="wk-rt done">Hecho</span>
+          </div>
+          <div class="wk-row">
+            <div class="wk-rd o"></div>
+            <div class="wk-rb"><div class="wk-rn">Fartlek 6x3'</div><div class="wk-rs">Vie 3 · 8 km · 5:15/km</div></div>
+            <span class="wk-rt now">Hoy</span>
+          </div>
+          <div class="wk-row">
+            <div class="wk-rd"></div>
+            <div class="wk-rb"><div class="wk-rn dim">Tirada larga 12km</div><div class="wk-rs">Dom 5 · 12 km · 6:00/km</div></div>
+            <span class="wk-rt later">Dom</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY DATA (expandable) -->
+      <div class="data-section">
+        <div class="ds-header">
+          <span class="ds-title">Mis datos</span>
+          <span class="ds-expand" id="dsToggle" onclick="toggleData()">
+            EXPANDIR
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#8E8E93" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+
+        <!-- Top row: weather + week (always visible) -->
+        <div class="ds-top-grid">
+          <!-- Weather card (orange gradient, our brand) -->
+          <div class="ds-weather-card">
+            <div class="ds-wc-top">
+              <div class="ds-wc-date">3 Abr</div>
+              <div class="ds-wc-details">0%<br>8:10<br>20:51</div>
+            </div>
+            <div class="ds-wc-bottom">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:4px;">
+                <circle cx="12" cy="12" r="5" fill="#fff" fill-opacity="0.9"/>
+                <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#fff" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <div class="ds-wc-city">Madrid</div>
+              <div class="ds-wc-temp">22°</div>
+            </div>
+          </div>
+
+          <!-- Week count card -->
+          <div class="ds-week-card">
+            <div class="ds-wk-label">SEMANA 2</div>
+            <div class="ds-wk-big">1/3</div>
+            <div>
+              <div class="ds-wk-bar-row">
+                <svg class="ds-wk-bar-icon" width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <circle cx="14" cy="4" r="2" fill="#8E8E93"/>
+                  <path d="M14 6l-2 5M12 11l-2.5 6M12 11l3 4" stroke="#8E8E93" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="ds-wk-bar-label">CARRERA</span>
+                <div class="ds-wk-bars">
+                  <div class="ds-wk-bar-seg done"></div>
+                  <div class="ds-wk-bar-seg"></div>
+                  <div class="ds-wk-bar-seg"></div>
+                </div>
+                <span class="ds-wk-bar-count">1/3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Distance ring (always visible) -->
+        <div class="ds-ring-card">
+          <div class="ds-ring-wrap">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="#E5E5EA" stroke-width="6"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="#FF6B00" stroke-width="6"
+                      stroke-dasharray="264" stroke-dashoffset="198"
+                      stroke-linecap="round" transform="rotate(-90 50 50)"
+                      style="transition: stroke-dashoffset 0.8s ease;"/>
+            </svg>
+            <div class="ds-ring-text">
+              <div class="ds-ring-val">6.5<span style="font-size:13px;font-weight:500;color:#8E8E93;">/26.5</span></div>
+              <div class="ds-ring-unit">km</div>
+            </div>
+          </div>
+          <div class="ds-ring-label">DISTANCIA SEMANAL TOTAL</div>
+        </div>
+
+        <!-- Expanded extra stats -->
+        <div class="ds-grid" id="dsGrid">
+          <div class="ds-grid-card">
+            <div class="ds-grid-val">5:40/km</div>
+            <div class="ds-grid-lbl">Ritmo base</div>
+          </div>
+          <div class="ds-grid-card">
+            <div class="ds-grid-val">83%</div>
+            <div class="ds-grid-lbl">Adherencia</div>
+          </div>
+          <div class="ds-grid-card">
+            <div class="ds-grid-val">4 días</div>
+            <div class="ds-grid-lbl">Racha actual</div>
+          </div>
+          <div class="ds-grid-card">
+            <div class="ds-grid-val">52 km</div>
+            <div class="ds-grid-lbl">Km total plan</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COACH BANNER (Runna style) -->
+      <div class="coach-banner">
+        <div class="cb-top">
+          <div class="cb-photo"></div>
+          <div class="cb-info">
+            <div class="cb-nm">Seguimos progresando juntos</div>
+          </div>
+          <svg class="cb-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="cb-msg">El reto de hoy es mantener un ritmo enérgico durante los bloques rápidos del fartlek. Calienta bien antes de empezar.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- STICKY FOOTER -->
+  <div class="sticky">
+    <button class="reg-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="#fff"/></svg>
+      Registrar entrenamiento
+    </button>
+  </div>
+</div>
+
+  <!-- ═══ SETTINGS BOTTOM SHEET ═══════════ -->
+  <div class="bs-overlay" id="settingsSheet">
+    <div class="bs-panel">
+      <div class="bs-handle"></div>
+
+      <div class="bs-opt">
+        <div class="bs-opt-icon" style="background: #FFF4EC;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FF6B00" stroke-width="1.8"/><path d="M12 8v4l2.5 2.5" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="bs-opt-text">Recalibrar ritmo</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="bs-sep"></div>
+
+      <div class="bs-opt">
+        <div class="bs-opt-icon" style="background: #EEF2FF;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="3" stroke="#5E5CE6" stroke-width="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="#5E5CE6" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span class="bs-opt-text">Cambiar días de entreno</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="bs-sep"></div>
+
+      <div class="bs-opt" onclick="closeSheet('settingsSheet'); setTimeout(()=>openSheet('pauseConfirm'),200)">
+        <div class="bs-opt-icon" style="background: #F5F5F5;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10 4H6v16h4V4zM18 4h-4v16h4V4z" stroke="#8E8E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="bs-opt-text amber">Pausar plan</span>
+      </div>
+
+      <div class="bs-sep"></div>
+
+      <div class="bs-opt" onclick="closeSheet('settingsSheet'); setTimeout(()=>openSheet('abandonConfirm'),200)">
+        <div class="bs-opt-icon" style="background: rgba(255,59,48,0.08);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="#FF3B30" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="bs-opt-text danger">Abandonar plan</span>
+      </div>
+
+      <button class="bs-cancel" onclick="closeSheet('settingsSheet')">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- ═══ ABANDON CONFIRM SHEET ═══════════ -->
+  <div class="bs-overlay" id="abandonConfirm">
+    <div class="bs-panel" style="padding-top: 6px;">
+      <div class="bs-handle"></div>
+      <div class="bs-confirm-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="bs-confirm-title">¿Abandonar el plan?</div>
+      <div class="bs-confirm-sub">Estás a punto de abandonar <strong>"Empieza a Moverte"</strong>.<br>Podrás empezar un nuevo plan después.</div>
+      <div class="bs-warn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:1px;"><path d="M12 9v3.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke="#991B1B" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="bs-warn-text">Se perderá todo el progreso del plan actual. Las actividades registradas se mantienen en tu historial.</span>
+      </div>
+      <button class="bs-btn-danger" onclick="alert('Plan abandonado'); closeSheet('abandonConfirm')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Sí, abandonar plan
+      </button>
+      <button class="bs-cancel" onclick="closeSheet('abandonConfirm')">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- ═══ PAUSE CONFIRM SHEET ═══════════ -->
+  <div class="bs-overlay" id="pauseConfirm">
+    <div class="bs-panel" style="padding-top: 6px;">
+      <div class="bs-handle"></div>
+      <div class="bs-confirm-icon" style="background: rgba(245,158,11,0.08);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" stroke="#F59E0B" stroke-width="2" fill="rgba(245,158,11,0.15)"/><rect x="14" y="4" width="4" height="16" rx="1" stroke="#F59E0B" stroke-width="2" fill="rgba(245,158,11,0.15)"/></svg>
+      </div>
+      <div class="bs-confirm-title">¿Pausar el plan?</div>
+      <div class="bs-confirm-sub">Tu plan <strong>"Empieza a Moverte"</strong> se pausará.<br>Podrás retomarlo en cualquier momento.</div>
+      <button class="bs-btn-danger" style="background: #F59E0B;" onclick="alert('Plan pausado'); closeSheet('pauseConfirm')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg>
+        Sí, pausar plan
+      </button>
+      <button class="bs-cancel" onclick="closeSheet('pauseConfirm')">Cancelar</button>
+    </div>
+  </div>
+
+<script>
+  function openSheet(id) { document.getElementById(id).classList.add('show'); }
+  function closeSheet(id) { document.getElementById(id).classList.remove('show'); }
+</script>
+<script>
+  function toggleWk() {
+    document.getElementById('wkExpand').classList.toggle('open');
+    document.getElementById('wkChev').classList.toggle('open');
+  }
+  function toggleData() {
+    var grid = document.getElementById('dsGrid');
+    var btn = document.getElementById('dsToggle');
+    grid.classList.toggle('open');
+    btn.innerHTML = grid.classList.contains('open')
+      ? 'CONTRAER <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="#8E8E93" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      : 'EXPANDIR <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#8E8E93" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+</script>
+</body>
+</html>

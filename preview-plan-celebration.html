@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celebración — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0A0A0C; min-height: 100vh;
+    display: flex; justify-content: center; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone { width: 100%; max-width: 390px; background: #0D0D0D; display: flex; flex-direction: column; height: 100vh; }
+  .dynamic-island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+
+  .scroll-area { flex: 1; overflow-y: auto; padding: 32px 20px 160px; scrollbar-width: none; min-height: 0; }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* ─── Check Icon ──────────────────────── */
+  .check-outer {
+    width: 80px; height: 80px; border-radius: 40px;
+    border: 2px solid #FF6B00;
+    background: rgba(255,107,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    animation: checkPop 600ms cubic-bezier(0.34,1.56,0.64,1) forwards,
+               glowPulse 2s ease-in-out 800ms infinite;
+    transform: scale(0);
+  }
+  @keyframes checkPop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+  }
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,0,0.3); }
+    50% { box-shadow: 0 0 24px 6px rgba(255,107,0,0.5); }
+  }
+
+  /* ─── Titles ──────────────────────────── */
+  .title-block { text-align: center; margin-bottom: 28px; }
+  .main-title {
+    font-size: 32px; font-weight: 800; color: #FFFFFF;
+    letter-spacing: 0.5px; margin-bottom: 6px;
+  }
+  .plan-accent { font-size: 16px; font-weight: 700; color: #FF6B00; margin-bottom: 4px; }
+  .plan-meta { font-size: 14px; color: #8A8A96; }
+
+  /* ─── Metrics 3-col ───────────────────── */
+  .metrics-row {
+    display: flex; border-radius: 14px;
+    border: 1px solid #2C2C2C; background: #1C1C20;
+    overflow: hidden; margin-bottom: 12px;
+  }
+  .metric-col {
+    flex: 1; text-align: center;
+    padding: 18px 4px;
+  }
+  .metric-col:not(:last-child) { border-right: 1px solid #2C2C2C; }
+  .metric-icon { margin-bottom: 8px; display: flex; justify-content: center; }
+  .metric-val { font-size: 24px; font-weight: 700; color: #F5F5F7; letter-spacing: -0.3px; }
+  .metric-lbl { font-size: 11px; font-weight: 600; color: #8A8A96; letter-spacing: 0.6px; margin-top: 3px; }
+
+  /* ─── Detail Card ─────────────────────── */
+  .detail-card {
+    border-radius: 14px; border: 1px solid #2C2C2C;
+    background: #1C1C20; overflow: hidden; margin-bottom: 12px;
+  }
+  .detail-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+  }
+  .detail-row:not(:last-child) { border-bottom: 1px solid #2C2C2C; }
+  .detail-icon { width: 28px; display: flex; justify-content: center; flex-shrink: 0; }
+  .detail-label { flex: 1; font-size: 14px; color: #8A8A96; }
+  .detail-value { font-size: 14px; font-weight: 700; color: #F5F5F7; }
+
+  /* ─── Community Strip ─────────────────── */
+  .community-strip {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px; border-radius: 12px;
+    background: #1A1400; border: 1px solid #2A1800;
+    margin-top: 4px; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .community-strip:hover { background: #221A05; }
+  .community-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255,107,0,0.12);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .community-title { font-size: 14px; font-weight: 600; color: #F5F5F7; margin-bottom: 2px; }
+  .community-sub { font-size: 12px; color: #8A8A96; }
+
+  /* ─── Sticky Footer ───────────────────── */
+  .sticky-footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    width: 100%; max-width: 390px; margin: 0 auto;
+    padding: 16px 20px 28px; box-sizing: border-box;
+    background: linear-gradient(to top, #0D0D0D 70%, transparent);
+    z-index: 100;
+  }
+  .btn-primary {
+    width: 100%; height: 56px; border-radius: 16px; border: none;
+    background: linear-gradient(135deg, #FF6B00, #FF8C38);
+    color: #FFF; font-size: 17px; font-weight: 700;
+    font-family: inherit; cursor: pointer; display: block;
+    box-shadow: 0 4px 24px rgba(255,107,0,0.4);
+    transition: all 200ms; text-align: center;
+    animation: btnPulse 2s ease-in-out 1.5s infinite;
+  }
+  .btn-primary:hover { box-shadow: 0 6px 32px rgba(255,107,0,0.55); transform: translateY(-1px); }
+  .btn-primary:active { transform: scale(0.98); }
+  @keyframes btnPulse {
+    0%, 100% { box-shadow: 0 4px 24px rgba(255,107,0,0.4); }
+    50% { box-shadow: 0 4px 32px rgba(255,107,0,0.6); }
+  }
+
+  /* ─── Stagger ─────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .anim { opacity: 0; animation: fadeUp 500ms ease-out forwards; }
+  .d1 { animation-delay: 200ms; }
+  .d2 { animation-delay: 400ms; }
+  .d3 { animation-delay: 550ms; }
+  .d4 { animation-delay: 700ms; }
+  .d5 { animation-delay: 850ms; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="dynamic-island"></div>
+
+  <div class="scroll-area">
+    <!-- Check icon -->
+    <div class="check-outer">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+        <path d="M5 12l5 5L20 7" stroke="#FF6B00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Titles -->
+    <div class="title-block anim d1">
+      <div class="main-title">Todo listo.</div>
+      <div class="plan-accent">Preparar un 10K</div>
+      <div class="plan-meta">12 semanas · Empieza el 7 abril</div>
+    </div>
+
+    <!-- Metrics 3-col -->
+    <div class="metrics-row anim d2">
+      <div class="metric-col">
+        <div class="metric-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="18" rx="3" stroke="#FF6B00" stroke-width="1.8"/>
+            <path d="M3 9h18" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M8 2v4M16 2v4" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M8 14l2.5 2.5L16 13" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="metric-val">48</div>
+        <div class="metric-lbl">SESIONES</div>
+      </div>
+      <div class="metric-col">
+        <div class="metric-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12h18M3 6h18M3 18h12" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="metric-val">~180</div>
+        <div class="metric-lbl">KM TOTALES</div>
+      </div>
+      <div class="metric-col">
+        <div class="metric-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
+                  stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 22v-7" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="metric-val">12</div>
+        <div class="metric-lbl">SEMANAS</div>
+      </div>
+    </div>
+
+    <!-- Detail card -->
+    <div class="detail-card anim d3">
+      <div class="detail-row">
+        <div class="detail-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M17 1l4 4-4 4" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 11V9a4 4 0 014-4h14" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 23l-4-4 4-4" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 13v2a4 4 0 01-4 4H3" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="detail-label">Días</span>
+        <span class="detail-value">L · X · V · D</span>
+      </div>
+      <div class="detail-row">
+        <div class="detail-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 12m-8 0a8 8 0 1016 0 8 8 0 10-16 0" stroke="#FF6B00" stroke-width="2"/>
+            <path d="M12 12l4-3" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 8v1" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="detail-label">Ritmo base</span>
+        <span class="detail-value">5:45 /km</span>
+      </div>
+      <div class="detail-row">
+        <div class="detail-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
+                  stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 22v-7" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="detail-label">Carrera larga</span>
+        <span class="detail-value">Domingo</span>
+      </div>
+    </div>
+
+    <!-- Community strip -->
+    <div class="community-strip anim d4">
+      <div class="community-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="7" r="3" stroke="#FF6B00" stroke-width="1.8"/>
+          <circle cx="15" cy="7" r="3" stroke="#FF6B00" stroke-width="1.8"/>
+          <path d="M3 20c0-3.3 2.7-6 6-6h6c3.3 0 6 2.7 6 6" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <div class="community-title">Conecta con otros runners</div>
+        <div class="community-sub">Encuentra compañeros en la pestaña Social</div>
+      </div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M9 18l6-6-6-6" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Sticky Footer -->
+  <div class="sticky-footer anim d5">
+    <button class="btn-primary">Ver mi plan &rarr;</button>
+  </div>
+</div>
+</body>
+</html>

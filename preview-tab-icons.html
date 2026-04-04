@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tab Bar Icons — Antes vs Después</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #111;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px 60px; gap: 40px;
+  }
+  h1 { font-size: 12px; color: #666; letter-spacing: 2px; text-transform: uppercase; }
+
+  .row { display: flex; gap: 60px; align-items: flex-start; justify-content: center; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .col-label { font-size: 11px; color: #666; letter-spacing: 1.5px; text-transform: uppercase; }
+
+  /* Phone shell */
+  .phone {
+    width: 340px;
+    background: #0b1220;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px #2a2a2a;
+  }
+  .notch {
+    background: #0b1220; height: 40px;
+    display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px;
+  }
+  .notch-pill { width: 110px; height: 28px; background: #000; border-radius: 14px; }
+
+  /* Screen content placeholder */
+  .screen-content {
+    height: 320px;
+    background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .screen-label { font-size: 13px; color: #374151; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Tab bar */
+  .tab-bar {
+    background: #0b1220;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: flex-end;
+    padding: 8px 4px 30px;
+    position: relative;
+  }
+  .tab-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+    padding-top: 4px; position: relative;
+  }
+  .tab-label { font-size: 9px; font-weight: 600; letter-spacing: 0.3px; }
+  .active-bar {
+    position: absolute; top: 0;
+    width: 20px; height: 3px;
+    background: #f97316; border-radius: 2px;
+  }
+
+  /* Center run button */
+  .run-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+    margin-top: -18px;
+  }
+  .run-outer {
+    width: 60px; height: 60px; border-radius: 30px;
+    background: #0b1220; padding: 4px;
+  }
+  .run-inner {
+    width: 52px; height: 52px; border-radius: 26px;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.5);
+  }
+  .run-inner-inactive {
+    background: linear-gradient(135deg, #374151, #1f2937);
+    box-shadow: none;
+  }
+
+  /* Issue badge */
+  .issue { color: #ef4444; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+  .ok { color: #22c55e; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<h1>Tab Bar Icons — Antes vs Después</h1>
+
+<div class="row">
+
+  <!-- ════ ANTES ════ -->
+  <div class="col">
+    <div class="col-label">Antes — Iconos actuales</div>
+    <div class="phone">
+      <div class="notch"><div class="notch-pill"></div></div>
+      <div class="screen-content"><div class="screen-label">Feed Screen</div></div>
+      <div class="tab-bar">
+
+        <!-- Feed (Home icon — house) — ACTIVO -->
+        <div class="tab-item">
+          <div class="active-bar"></div>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"
+              fill="#f97316" stroke="#f97316" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="tab-label" style="color:#f97316">Feed</span>
+        </div>
+
+        <!-- Map (Pin) -->
+        <div class="tab-item">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#9ca3af" stroke-width="2"/>
+            <circle cx="12" cy="9" r="2.5" stroke="#9ca3af" stroke-width="2"/>
+          </svg>
+          <span class="tab-label" style="color:#6b7280">Mapa</span>
+        </div>
+
+        <!-- Run — CENTER -->
+        <div class="run-item">
+          <div class="run-outer">
+            <div class="run-inner-inactive" style="width:52px;height:52px;border-radius:26px;background:linear-gradient(135deg,#374151,#1f2937);display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <circle cx="14" cy="3.5" r="2" fill="white"/>
+                <path d="M14 5.5L12 11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 7.5l-3-1.5M12 7.5l3 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 11L9.5 17M12 11l2.5 3.5 2 4.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <span class="tab-label" style="color:#6b7280">Correr</span>
+        </div>
+
+        <!-- Social — TROFEO (INCORRECTO) -->
+        <div class="tab-item">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M12 15c3.866 0 7-2.239 7-5V5H5v5c0 2.761 3.134 5 7 5z" stroke="#9ca3af" stroke-width="2"/>
+            <path d="M5 5H3v2c0 1.1.9 2 2 2M19 5h2v2c0 1.1-.9 2-2 2M12 15v3M8 21h8" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="tab-label" style="color:#6b7280">Social</span>
+        </div>
+
+        <!-- Profile -->
+        <div class="tab-item">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="#9ca3af" stroke-width="2"/>
+            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="tab-label" style="color:#6b7280">Perfil</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Issues -->
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:0 4px;">
+      <span class="ok">✓ Casa/Feed — reconocible</span>
+      <span class="ok">✓ Pin/Mapa — OK</span>
+      <span class="ok">✓ Botón central — excelente</span>
+      <span class="issue">✗ Social = icono de trofeo 🏆</span>
+      <span class="ok">✓ Perfil — OK</span>
+    </div>
+  </div>
+
+  <!-- ════ DESPUÉS ════ -->
+  <div class="col">
+    <div class="col-label">Después — Rediseño</div>
+    <div class="phone">
+      <div class="notch"><div class="notch-pill"></div></div>
+      <div class="screen-content"><div class="screen-label">Feed Screen</div></div>
+      <div class="tab-bar">
+
+        <!-- Feed — icono actividad (rayo + líneas) ACTIVO -->
+        <div class="tab-item">
+          <div class="active-bar"></div>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <!-- Casa más limpia, filled cuando activo -->
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#f97316"/>
+          </svg>
+          <span class="tab-label" style="color:#f97316">Feed</span>
+        </div>
+
+        <!-- Map — pin más limpio -->
+        <div class="tab-item">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.686 2 6 4.686 6 8c0 4.418 6 12 6 12s6-7.582 6-12c0-3.314-2.686-6-6-6z" stroke="#9ca3af" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="12" cy="8" r="2.2" stroke="#9ca3af" stroke-width="1.8"/>
+          </svg>
+          <span class="tab-label" style="color:#6b7280">Mapa</span>
+        </div>
+
+        <!-- Run — CENTER, igual de bueno -->
+        <div class="run-item">
+          <div class="run-outer">
+            <div style="width:52px;height:52px;border-radius:26px;background:linear-gradient(135deg,#374151,#1f2937);display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <circle cx="14" cy="3.5" r="2" fill="white"/>
+                <path d="M14 5.5L12 11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 7.5l-3-1.5M12 7.5l3 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 11L9.5 17M12 11l2.5 3.5 2 4.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <span class="tab-label" style="color:#6b7280">Correr</span>
+        </div>
+
+        <!-- Social — DOS PERSONAS (correcto) -->
+        <div class="tab-item">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <!-- Persona trasera -->
+            <circle cx="15.5" cy="8" r="2.5" stroke="#9ca3af" stroke-width="1.8"/>
+            <path d="M20 19c0-2.21-2.015-4-4.5-4" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/>
+            <!-- Persona delantera -->
+            <circle cx="9" cy="8" r="3" stroke="#9ca3af" stroke-width="1.8"/>
+            <path d="M3 19c0-2.761 2.686-5 6-5s6 2.239 6 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="tab-label" style="color:#6b7280">Social</span>
+        </div>
+
+        <!-- Perfil — más limpio -->
+        <div class="tab-item">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="3.5" stroke="#9ca3af" stroke-width="1.8"/>
+            <path d="M4 20c0-3.866 3.582-7 8-7s8 3.134 8 7" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="tab-label" style="color:#6b7280">Perfil</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:0 4px;">
+      <span class="ok">✓ Casa material — filled, reconocible</span>
+      <span class="ok">✓ Pin — stroke 1.8, más delicado</span>
+      <span class="ok">✓ Botón central — sin cambios</span>
+      <span class="ok">✓ Social = 2 personas 👥</span>
+      <span class="ok">✓ Perfil — stroke 1.8, más limpio</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Zoom activo -->
+<div style="margin-top:20px;">
+  <div class="col-label" style="color:#888;text-align:center;margin-bottom:20px;">Estado activo (tab Feed seleccionado)</div>
+  <div class="row" style="gap:30px;">
+
+    <!-- Todos activos ANTES -->
+    <div style="background:#0b1220;border-radius:16px;padding:12px 8px 16px;border:1px solid #1f2937;">
+      <div style="font-size:10px;color:#555;text-align:center;margin-bottom:10px;letter-spacing:1px;">ANTES — TODOS ACTIVOS</div>
+      <div style="display:flex;gap:16px;align-items:flex-end;">
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"
+              fill="#f97316" stroke="#f97316" stroke-width="0.5"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Feed</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#f97316"/>
+            <circle cx="12" cy="9" r="2.5" fill="white"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Mapa</span>
+        </div>
+
+        <!-- Social TROFEO activo -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 15c3.866 0 7-2.239 7-5V5H5v5c0 2.761 3.134 5 7 5z" fill="#f97316"/>
+            <path d="M5 5H3v2c0 1.1.9 2 2 2M19 5h2v2c0 1.1-.9 2-2 2M12 15v3M8 21h8" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Social</span>
+          <span style="font-size:8px;color:#ef4444;">¿trofeo?</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" fill="#f97316"/>
+            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="#f97316" stroke="#f97316" stroke-width="0.5"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Perfil</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Todos activos DESPUÉS -->
+    <div style="background:#0b1220;border-radius:16px;padding:12px 8px 16px;border:1px solid #374151;">
+      <div style="font-size:10px;color:#f97316;text-align:center;margin-bottom:10px;letter-spacing:1px;">DESPUÉS — TODOS ACTIVOS</div>
+      <div style="display:flex;gap:16px;align-items:flex-end;">
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#f97316"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Feed</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.686 2 6 4.686 6 8c0 4.418 6 12 6 12s6-7.582 6-12c0-3.314-2.686-6-6-6z" fill="#f97316"/>
+            <circle cx="12" cy="8" r="2.2" fill="white"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Mapa</span>
+        </div>
+
+        <!-- Social 2 PERSONAS activo -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="15.5" cy="8" r="2.5" fill="#f97316" opacity="0.6"/>
+            <path d="M20 19c0-2.21-2.015-4-4.5-4" stroke="#f97316" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="9" cy="8" r="3" fill="#f97316"/>
+            <path d="M3 19c0-2.761 2.686-5 6-5s6 2.239 6 5" fill="#f97316" stroke="#f97316" stroke-width="0.5" stroke-linecap="round"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Social</span>
+          <span style="font-size:8px;color:#22c55e;">✓ personas</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="3.5" fill="#f97316"/>
+            <path d="M4 20c0-3.866 3.582-7 8-7s8 3.134 8 7" fill="#f97316" stroke="#f97316" stroke-width="0.5"/>
+          </svg>
+          <span style="font-size:9px;color:#f97316;font-weight:700;">Perfil</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

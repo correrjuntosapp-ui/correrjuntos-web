@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 5: Evento — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0A0A0C; min-height: 100vh;
+    display: flex; justify-content: center; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone { width: 100%; max-width: 375px; background: #111214; display: flex; flex-direction: column; height: 100vh; }
+  .dynamic-island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px 8px; flex-shrink: 0; }
+  .btn-back { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.07); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .btn-back:hover { background: rgba(255,255,255,0.12); }
+  .header-title { font-size: 15px; font-weight: 600; color: #F5F5F7; letter-spacing: -0.2px; }
+  .header-spacer { width: 34px; }
+
+  .step-dots { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 8px 0 2px; flex-shrink: 0; }
+  .step-dot { height: 4px; border-radius: 2px; background: #2A2A2E; }
+  .step-dot.active { width: 22px; background: #FF6B00; }
+  .step-dot.done { width: 6px; background: #555; }
+  .step-dot.inactive { width: 6px; }
+
+  .scroll-area { flex: 1; overflow-y: auto; padding: 0 16px 16px; scrollbar-width: none; min-height: 0; }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* ─── Context Card ────────────────────── */
+  .context-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border-radius: 12px;
+    background: #1C1C20;
+    border: 1px solid rgba(255,107,0,0.3);
+    margin-top: 16px; margin-bottom: 24px;
+  }
+  .context-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(255,107,0,0.12);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .context-body { flex: 1; min-width: 0; }
+  .context-label {
+    font-size: 10px; font-weight: 700; color: #FF6B00;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px;
+  }
+  .context-plan { font-size: 16px; font-weight: 700; color: #F5F5F7; }
+
+  /* ─── Title ───────────────────────────── */
+  .section-title { font-size: 26px; font-weight: 800; color: #F5F5F7; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .section-subtitle { font-size: 14px; color: #8A8A96; margin-bottom: 24px; line-height: 1.4; }
+
+  /* ─── Option Card ─────────────────────── */
+  .option-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 20px 16px; border-radius: 14px;
+    border: 1.5px solid rgba(255,255,255,0.07);
+    background: #1C1C20; margin-bottom: 10px;
+    cursor: pointer; transition: all 0.2s ease;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .option-card:hover { background: #252529; }
+  .option-card:active { transform: scale(0.988); }
+  .option-card.selected {
+    background: #1F1A14; border-color: #FF6B00; border-width: 2px;
+  }
+
+  .option-icon {
+    width: 46px; height: 46px; border-radius: 23px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform 0.2s;
+  }
+  .option-card.selected .option-icon { transform: scale(1.06); }
+
+  .option-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .option-name { font-size: 16px; font-weight: 700; color: #F5F5F7; letter-spacing: -0.2px; }
+  .option-desc { font-size: 13px; color: #8A8A96; line-height: 1.4; }
+
+  .radio-wrap {
+    width: 22px; height: 22px; border-radius: 50%; border: 2px solid #3A3A42;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.2s; background: transparent;
+  }
+  .option-card.selected .radio-wrap {
+    background: #FF6B00; border-color: #FF6B00;
+    box-shadow: 0 0 0 3px rgba(255,107,0,0.18);
+  }
+  .radio-check { opacity: 0; transform: scale(0.4); transition: all 0.2s; }
+  .option-card.selected .radio-check { opacity: 1; transform: scale(1); }
+
+  /* ─── Date Picker (expandable) ─────────── */
+  .date-expand {
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height 300ms ease, opacity 200ms ease, margin 200ms ease;
+    margin-bottom: 0;
+  }
+  .date-expand.open { max-height: 120px; opacity: 1; margin-bottom: 10px; }
+
+  .date-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border-radius: 12px;
+    background: #252529; border: 1px solid #3A3A42;
+    cursor: pointer; transition: border-color 0.2s;
+    position: relative;
+  }
+  .date-card:hover { border-color: #555; }
+  .date-card.has-date { border-color: rgba(255,107,0,0.3); }
+
+  .date-card-icon { flex-shrink: 0; display: flex; align-items: center; }
+  .date-card-text {
+    flex: 1; font-size: 15px; font-weight: 600;
+    color: #8A8A96; transition: color 0.2s;
+  }
+  .date-card.has-date .date-card-text { color: #F5F5F7; }
+
+  .date-card-chevron { flex-shrink: 0; color: #8A8A96; font-size: 12px; }
+
+  .date-native {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; cursor: pointer; z-index: 2;
+    -webkit-appearance: none;
+    border: none; background: transparent;
+  }
+  .date-native::-webkit-calendar-picker-indicator {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    cursor: pointer; opacity: 0;
+  }
+
+  .date-feedback {
+    font-size: 13px; margin-top: 8px; padding-left: 2px;
+    transition: color 0.2s;
+  }
+  .date-feedback.green { color: #22C55E; }
+  .date-feedback.yellow { color: #F59E0B; }
+  .date-feedback.red { color: #EF4444; }
+
+  /* ─── Footer ──────────────────────────── */
+  .footer { padding: 10px 16px 24px; flex-shrink: 0; background: #111214; border-top: 1px solid rgba(255,255,255,0.06); }
+  .btn-continue { width: 100%; height: 52px; border-radius: 14px; border: none; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; transition: all 0.25s; letter-spacing: -0.2px; }
+  .btn-continue.inactive { background: #2A2A2E; color: #4A4A55; cursor: not-allowed; }
+  .btn-continue.active { background: linear-gradient(135deg, #FF6B00 0%, #FF8C38 100%); color: #FFF; box-shadow: 0 4px 20px rgba(255,107,0,0.32); }
+  .footer-status { text-align: center; font-size: 12px; color: #4A4A55; margin-top: 8px; font-weight: 500; min-height: 15px; }
+  .footer-status.has-selection { color: #FF6B00; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="dynamic-island"></div>
+  <div class="header">
+    <button class="btn-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="#8A8A96" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <span class="header-title">Crear tu plan</span>
+    <div class="header-spacer"></div>
+  </div>
+  <div class="step-dots">
+    <div class="step-dot done"></div>
+    <div class="step-dot done"></div>
+    <div class="step-dot done"></div>
+    <div class="step-dot done"></div>
+    <div class="step-dot active"></div>
+  </div>
+
+  <div class="scroll-area">
+    <!-- Plan context -->
+    <div class="context-card">
+      <div class="context-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M8 21h8M12 17v4" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M5 3H3v5c0 2.2 1.8 4 4 4h.5" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M19 3h2v5c0 2.2-1.8 4-4 4h-.5" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M6 3h12v7a6 6 0 01-12 0V3z" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="context-body">
+        <div class="context-label">Plan seleccionado</div>
+        <div class="context-plan">Preparar un 10K</div>
+      </div>
+    </div>
+
+    <div class="section-title">¿Entrenas para un evento?</div>
+    <div class="section-subtitle">Tu respuesta nos ayuda a estructurar mejor tu plan</div>
+
+    <!-- Option 1: Has race -->
+    <div class="option-card" data-mode="race" onclick="selectOption(this)">
+      <div class="option-icon" style="background:rgba(255,107,0,0.12);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="4" width="18" height="18" rx="3" stroke="#FF6B00" stroke-width="1.8"/>
+          <path d="M3 9h18" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M8 2v4M16 2v4" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="option-body">
+        <span class="option-name">Tengo una carrera programada</span>
+        <span class="option-desc">Ajustaremos el plan a tu fecha objetivo</span>
+      </div>
+      <div class="radio-wrap">
+        <svg class="radio-check" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <!-- Date picker expandable -->
+    <div class="date-expand" id="dateExpand">
+      <div class="date-card" id="dateCard">
+        <div class="date-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="18" rx="3" stroke="#FF6B00" stroke-width="1.8"/>
+            <path d="M3 9h18" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M8 2v4M16 2v4" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="date-card-text" id="dateDisplay">Selecciona la fecha de tu carrera</span>
+        <span class="date-card-chevron">&#9660;</span>
+        <input type="date" class="date-native" id="dateInput" onchange="onDateChange(this.value)" min="2026-04-10"/>
+      </div>
+      <div class="date-feedback" id="dateFeedback"></div>
+    </div>
+
+    <!-- Option 2: No race -->
+    <div class="option-card" data-mode="norace" onclick="selectOption(this)">
+      <div class="option-icon" style="background:rgba(96,165,250,0.12);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="14" cy="4" r="2" fill="#60A5FA"/>
+          <path d="M6 20l3-5 2.5 2L14 13l2 4" stroke="#60A5FA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.5 11L12 8l-3 1.5" stroke="#60A5FA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9.5L7 11" stroke="#60A5FA" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="option-body">
+        <span class="option-name">Solo quiero mejorar mi forma</span>
+        <span class="option-desc">Plan continuo sin fecha límite</span>
+      </div>
+      <div class="radio-wrap">
+        <svg class="radio-check" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="btn-continue inactive" id="btnContinue" disabled>Continuar</button>
+    <div class="footer-status" id="footerStatus">Sin selección</div>
+  </div>
+</div>
+
+<script>
+  var selectedCard = null;
+  var currentMode = null;
+
+  function selectOption(card) {
+    var mode = card.dataset.mode;
+    if (selectedCard) selectedCard.classList.remove('selected');
+
+    if (selectedCard === card) {
+      selectedCard = null; currentMode = null;
+      document.getElementById('dateExpand').classList.remove('open');
+      updateFooter(); return;
+    }
+
+    card.classList.add('selected');
+    selectedCard = card; currentMode = mode;
+
+    if (mode === 'race') {
+      document.getElementById('dateExpand').classList.add('open');
+      setTimeout(function(){ document.getElementById('dateInput').focus(); }, 150);
+    } else {
+      document.getElementById('dateExpand').classList.remove('open');
+    }
+    updateFooter();
+  }
+
+  var selectedDate = null;
+  var PLAN_WEEKS = 12; // Prep 10K
+
+  function onDateChange(val) {
+    if (!val) { selectedDate = null; updateDateCard(); updateFooter(); return; }
+    selectedDate = val;
+    updateDateCard();
+    updateFooter();
+  }
+
+  function updateDateCard() {
+    var display = document.getElementById('dateDisplay');
+    var card = document.getElementById('dateCard');
+    var fb = document.getElementById('dateFeedback');
+
+    if (!selectedDate) {
+      display.textContent = 'Selecciona la fecha de tu carrera';
+      card.classList.remove('has-date');
+      fb.textContent = ''; fb.className = 'date-feedback';
+      return;
+    }
+
+    // Format date in Spanish
+    var d = new Date(selectedDate + 'T00:00:00');
+    var formatted = d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+    display.textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    card.classList.add('has-date');
+
+    // Calculate weeks
+    var now = new Date(); now.setHours(0,0,0,0);
+    var diff = d - now;
+    var weeks = Math.floor(diff / (7 * 24 * 60 * 60 * 1000));
+
+    if (weeks < 0) {
+      fb.textContent = 'La fecha ya ha pasado';
+      fb.className = 'date-feedback red';
+    } else if (weeks < 4) {
+      fb.textContent = 'Faltan ' + weeks + ' semanas · Fecha demasiado cercana';
+      fb.className = 'date-feedback red';
+    } else if (weeks < PLAN_WEEKS) {
+      fb.textContent = 'Faltan ' + weeks + ' semanas · Plan comprimido';
+      fb.className = 'date-feedback yellow';
+    } else {
+      fb.textContent = 'Faltan ' + weeks + ' semanas · Tu plan se ajustará a esta fecha';
+      fb.className = 'date-feedback green';
+    }
+  }
+
+  function updateFooter() {
+    var btn = document.getElementById('btnContinue');
+    var status = document.getElementById('footerStatus');
+    if (!currentMode) {
+      btn.className = 'btn-continue inactive'; btn.disabled = true;
+      status.textContent = 'Sin selección'; status.className = 'footer-status'; return;
+    }
+    if (currentMode === 'norace') {
+      btn.className = 'btn-continue active'; btn.disabled = false;
+      status.textContent = 'Plan continuo sin fecha límite';
+      status.className = 'footer-status has-selection';
+    } else {
+      if (selectedDate) {
+        var d = new Date(selectedDate + 'T00:00:00');
+        var formatted = d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+        btn.className = 'btn-continue active'; btn.disabled = false;
+        status.textContent = 'Carrera: ' + formatted;
+        status.className = 'footer-status has-selection';
+      } else {
+        btn.className = 'btn-continue inactive'; btn.disabled = true;
+        status.textContent = 'Selecciona la fecha de tu carrera';
+        status.className = 'footer-status';
+      }
+    }
+  }
+</script>
+</body>
+</html>

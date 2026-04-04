@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Theme Default — Dark vs Light</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #111;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+    gap: 32px;
+  }
+
+  h1 { font-size: 12px; color: #666; letter-spacing: 2px; text-transform: uppercase; }
+
+  .row { display: flex; gap: 40px; align-items: flex-start; justify-content: center; }
+
+  .phone {
+    width: 320px;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px #2a2a2a;
+  }
+  .notch {
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4px;
+  }
+  .notch-pill {
+    width: 110px; height: 28px;
+    border-radius: 16px;
+  }
+
+  /* ═══ DARK ═══ */
+  .dark { background: #0b1220; }
+  .dark .notch { background: #0b1220; }
+  .dark .notch-pill { background: #000; }
+
+  .dark .status-bar {
+    background: #0b1220;
+    padding: 4px 20px 6px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .dark .status-bar span { font-size: 11px; color: #fff; font-weight: 600; }
+
+  .dark .tab-bar {
+    background: #0f172a;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; justify-content: space-around;
+    padding: 10px 0 20px;
+  }
+  .dark .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .dark .tab-icon { font-size: 20px; }
+  .dark .tab-label { font-size: 9px; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .dark .tab-label.active { color: #f97316; }
+  .dark .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: #f97316; margin-top: 1px; }
+
+  /* Feed card dark */
+  .dark .feed-card {
+    background: #1a1a2e;
+    border-radius: 14px;
+    margin: 8px 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .dark .card-header { padding: 12px 12px 8px; display: flex; align-items: center; gap: 8px; }
+  .dark .card-avatar {
+    width: 36px; height: 36px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: white;
+    flex-shrink: 0;
+  }
+  .dark .card-name { font-size: 13px; font-weight: 700; color: #fff; }
+  .dark .card-sub { font-size: 11px; color: #6b7280; margin-top: 1px; }
+  .dark .card-map {
+    height: 120px; background: #0d1520;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .dark .map-grid {
+    position: absolute; inset: 0; opacity: 0.12;
+    background-image: linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .dark .map-route {
+    position: absolute;
+    width: 140px; height: 50px;
+    border-bottom: 3px solid #f97316;
+    border-right: 3px solid #f97316;
+    border-radius: 0 0 20px 0;
+    bottom: 40px; left: 50px;
+  }
+  .dark .card-stats {
+    display: flex; padding: 10px 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    gap: 0;
+  }
+  .dark .stat { flex: 1; text-align: center; }
+  .dark .stat-val { font-size: 16px; font-weight: 800; color: #fff; }
+  .dark .stat-lbl { font-size: 9px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 1px; }
+  .dark .stat-div { width: 1px; background: rgba(255,255,255,0.08); margin: 4px 0; }
+  .dark .card-social {
+    display: flex; padding: 8px 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    gap: 16px; align-items: center;
+  }
+  .dark .social-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #6b7280; }
+  .dark .social-liked { color: #ef4444; }
+
+  /* Header dark */
+  .dark .screen-header {
+    background: #0b1220;
+    padding: 8px 16px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dark .screen-title { font-size: 20px; font-weight: 800; color: #fff; }
+  .dark .screen-sub { font-size: 12px; color: #6b7280; margin-top: 1px; }
+  .dark .header-action {
+    width: 32px; height: 32px; border-radius: 16px;
+    background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* ═══ LIGHT ═══ */
+  .light { background: #f5f5f5; }
+  .light .notch { background: #f5f5f5; }
+  .light .notch-pill { background: #1a1a1a; }
+
+  .light .status-bar {
+    background: #f5f5f5;
+    padding: 4px 20px 6px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .light .status-bar span { font-size: 11px; color: #1a1a1a; font-weight: 600; }
+
+  .light .tab-bar {
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    display: flex; justify-content: space-around;
+    padding: 10px 0 20px;
+  }
+  .light .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .light .tab-icon { font-size: 20px; }
+  .light .tab-label { font-size: 9px; color: #9ca3af; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .light .tab-label.active { color: #f97316; }
+  .light .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: #f97316; margin-top: 1px; }
+
+  .light .screen-header {
+    background: #fff;
+    padding: 8px 16px 10px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .light .screen-title { font-size: 20px; font-weight: 800; color: #1a1a2e; }
+  .light .screen-sub { font-size: 12px; color: #9ca3af; margin-top: 1px; }
+  .light .header-action {
+    width: 32px; height: 32px; border-radius: 16px;
+    background: #f0f0f0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .light .feed-card {
+    background: #fff;
+    border-radius: 14px;
+    margin: 8px 12px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .light .card-header { padding: 12px 12px 8px; display: flex; align-items: center; gap: 8px; }
+  .light .card-avatar {
+    width: 36px; height: 36px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+  .light .card-name { font-size: 13px; font-weight: 700; color: #1a1a2e; }
+  .light .card-sub { font-size: 11px; color: #9ca3af; margin-top: 1px; }
+  .light .card-map {
+    height: 120px; background: #e8f0fe;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .light .map-grid {
+    position: absolute; inset: 0; opacity: 0.15;
+    background-image: linear-gradient(#93c5fd 1px, transparent 1px), linear-gradient(90deg, #93c5fd 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .light .map-route {
+    position: absolute;
+    width: 140px; height: 50px;
+    border-bottom: 3px solid #f97316;
+    border-right: 3px solid #f97316;
+    border-radius: 0 0 20px 0;
+    bottom: 40px; left: 50px;
+  }
+  .light .card-stats {
+    display: flex; padding: 10px 12px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .light .stat { flex: 1; text-align: center; }
+  .light .stat-val { font-size: 16px; font-weight: 800; color: #1a1a2e; }
+  .light .stat-lbl { font-size: 9px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 1px; }
+  .light .stat-div { width: 1px; background: #e5e5e5; margin: 4px 0; }
+  .light .card-social {
+    display: flex; padding: 8px 12px;
+    border-top: 1px solid #f0f0f0;
+    gap: 16px; align-items: center;
+  }
+  .light .social-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #9ca3af; }
+  .light .social-liked { color: #ef4444; }
+
+  /* Labels */
+  .label {
+    text-align: center; font-size: 11px; letter-spacing: 1px;
+    text-transform: uppercase; margin-top: 10px;
+  }
+  .label-dark { color: #f97316; }
+  .label-light { color: #888; }
+
+  .badge-new {
+    background: #f97316; color: #fff;
+    font-size: 9px; font-weight: 700;
+    padding: 2px 6px; border-radius: 6px;
+    letter-spacing: 0.5px;
+    vertical-align: middle; margin-left: 6px;
+  }
+
+  .arrow-row {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    color: #f97316; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    margin-top: 20px;
+  }
+  .arrow { font-size: 28px; }
+</style>
+</head>
+<body>
+
+<h1>Default Theme — Antes vs Después</h1>
+
+<div class="row">
+
+  <!-- ═══════ ANTES — LIGHT DEFAULT ═══════ -->
+  <div>
+    <div class="phone light">
+      <div class="notch"><div class="notch-pill"></div></div>
+      <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+
+      <div class="screen-header">
+        <div>
+          <div class="screen-title">Feed</div>
+          <div class="screen-sub">Lo que hacen tus runners</div>
+        </div>
+        <div class="header-action">🔔</div>
+      </div>
+
+      <!-- Card -->
+      <div class="feed-card">
+        <div class="card-header">
+          <div class="card-avatar" style="background:linear-gradient(135deg,#f97316,#ea580c);">C</div>
+          <div>
+            <div class="card-name">Carlos G.</div>
+            <div class="card-sub">Hoy · 07:34 · Madrid</div>
+          </div>
+        </div>
+        <div class="card-map">
+          <div class="map-grid"></div>
+          <div class="map-route"></div>
+        </div>
+        <div class="card-stats">
+          <div class="stat"><div class="stat-val">12.4</div><div class="stat-lbl">km</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">1:02</div><div class="stat-lbl">tiempo</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">5:02</div><div class="stat-lbl">/km</div></div>
+        </div>
+        <div class="card-social">
+          <div class="social-btn social-liked">♥ 14</div>
+          <div class="social-btn">💬 3</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="feed-card">
+        <div class="card-header">
+          <div class="card-avatar" style="background:linear-gradient(135deg,#22c55e,#16a34a);">A</div>
+          <div>
+            <div class="card-name">Ana R.</div>
+            <div class="card-sub">Ayer · Trail · Sierra</div>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="stat"><div class="stat-val">18.7</div><div class="stat-lbl">km</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">2:34</div><div class="stat-lbl">tiempo</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">8:14</div><div class="stat-lbl">/km</div></div>
+        </div>
+        <div class="card-social">
+          <div class="social-btn">♥ 7</div>
+          <div class="social-btn">💬 1</div>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><div class="tab-icon">📰</div><div class="tab-label active">Feed</div><div class="tab-dot"></div></div>
+        <div class="tab-item"><div class="tab-icon">🗺️</div><div class="tab-label">Mapa</div></div>
+        <div class="tab-item"><div class="tab-icon">▶️</div><div class="tab-label">Correr</div></div>
+        <div class="tab-item"><div class="tab-icon">👥</div><div class="tab-label">Social</div></div>
+        <div class="tab-item"><div class="tab-icon">👤</div><div class="tab-label">Perfil</div></div>
+      </div>
+    </div>
+    <div class="label label-light">ANTES — Light default<br><small style="font-size:10px;color:#555">systemColorScheme === 'light' → light mode</small></div>
+  </div>
+
+  <!-- ═══════ DESPUÉS — DARK DEFAULT ═══════ -->
+  <div>
+    <div class="phone dark">
+      <div class="notch"><div class="notch-pill"></div></div>
+      <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+
+      <div class="screen-header">
+        <div>
+          <div class="screen-title">Feed <span class="badge-new">NUEVO</span></div>
+          <div class="screen-sub" style="color:#6b7280;">Lo que hacen tus runners</div>
+        </div>
+        <div class="header-action" style="background:rgba(255,255,255,0.06); color:white;">🔔</div>
+      </div>
+
+      <!-- Card -->
+      <div class="feed-card">
+        <div class="card-header">
+          <div class="card-avatar" style="background:linear-gradient(135deg,#f97316,#ea580c);">C</div>
+          <div>
+            <div class="card-name">Carlos G.</div>
+            <div class="card-sub">Hoy · 07:34 · Madrid</div>
+          </div>
+        </div>
+        <div class="card-map">
+          <div class="map-grid"></div>
+          <div class="map-route"></div>
+        </div>
+        <div class="card-stats">
+          <div class="stat"><div class="stat-val">12.4</div><div class="stat-lbl">km</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">1:02</div><div class="stat-lbl">tiempo</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">5:02</div><div class="stat-lbl">/km</div></div>
+        </div>
+        <div class="card-social">
+          <div class="social-btn social-liked">♥ 14</div>
+          <div class="social-btn" style="color:#6b7280;">💬 3</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="feed-card">
+        <div class="card-header">
+          <div class="card-avatar" style="background:linear-gradient(135deg,#22c55e,#16a34a);">A</div>
+          <div>
+            <div class="card-name">Ana R.</div>
+            <div class="card-sub">Ayer · Trail · Sierra</div>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="stat"><div class="stat-val">18.7</div><div class="stat-lbl">km</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">2:34</div><div class="stat-lbl">tiempo</div></div>
+          <div class="stat-div"></div>
+          <div class="stat"><div class="stat-val">8:14</div><div class="stat-lbl">/km</div></div>
+        </div>
+        <div class="card-social">
+          <div class="social-btn" style="color:#6b7280;">♥ 7</div>
+          <div class="social-btn" style="color:#6b7280;">💬 1</div>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><div class="tab-icon">📰</div><div class="tab-label active">Feed</div><div class="tab-dot"></div></div>
+        <div class="tab-item"><div class="tab-icon">🗺️</div><div class="tab-label">Mapa</div></div>
+        <div class="tab-item"><div class="tab-icon">▶️</div><div class="tab-label">Correr</div></div>
+        <div class="tab-item"><div class="tab-icon">👥</div><div class="tab-label">Social</div></div>
+        <div class="tab-item"><div class="tab-icon">👤</div><div class="tab-label">Perfil</div></div>
+      </div>
+    </div>
+    <div class="label label-dark">DESPUÉS — Dark default ✓<br><small style="font-size:10px;color:#555">useState(true) → siempre dark por defecto</small></div>
+  </div>
+
+</div>
+
+<div class="arrow-row">
+  <div style="font-size:11px; color:#888; letter-spacing:1px; text-transform:uppercase;">El toggle sigue funcionando — el usuario puede cambiar a light cuando quiera</div>
+</div>
+
+</body>
+</html>

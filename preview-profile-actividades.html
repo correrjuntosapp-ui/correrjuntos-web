@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfileScreen — Tab Actividades + botón +</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0D0D0D;
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, sans-serif;
+    display: flex; justify-content: center; gap: 40px; padding: 40px 20px;
+    flex-wrap: wrap; align-items: flex-start;
+  }
+
+  .phone {
+    width: 375px;
+    background: #111;
+    border-radius: 50px;
+    border: 8px solid #1c1c1e;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.9), inset 0 0 0 1px #2a2a2a;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .notch {
+    width: 120px; height: 28px; background: #000;
+    border-radius: 0 0 18px 18px;
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10;
+  }
+  .screen { background: #111; padding-top: 44px; min-height: 780px; position: relative; overflow: hidden; }
+  .scroll { overflow-y: auto; max-height: 680px; padding-bottom: 80px; }
+  .scroll::-webkit-scrollbar { width: 0; }
+
+  .header {
+    display: flex; align-items: center;
+    height: 52px; padding: 0 16px;
+    background: #111;
+    border-bottom: 1px solid #1E1E1E;
+  }
+  .header-avatar {
+    width: 36px; height: 36px; border-radius: 18px;
+    background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .header-title { flex: 1; text-align: center; font-size: 17px; font-weight: 700; color: #fff; }
+  .header-actions { display: flex; gap: 16px; align-items: center; }
+  .header-icon { opacity: 0.6; }
+
+  .tab-bar { display: flex; height: 44px; background: #111; border-bottom: 1px solid #1E1E1E; }
+  .tab { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: #666; position: relative; }
+  .tab.active { color: #fff; font-weight: 700; }
+  .tab-underline { position: absolute; bottom: 0; left: 20%; right: 20%; height: 2px; background: #FF6B35; border-radius: 1px; }
+
+  /* Search bar */
+  .search-wrap { padding: 12px 16px; }
+  .search-bar {
+    background: #1A1A1A; border-radius: 12px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px;
+  }
+  .search-input { color: #555; font-size: 14px; flex: 1; }
+
+  /* Activity card */
+  .activity-card {
+    background: #1A1A1A;
+    border-radius: 14px;
+    margin: 0 16px 12px;
+    overflow: hidden;
+    border: 1px solid #2A2A2A;
+  }
+  .card-header {
+    display: flex; align-items: center;
+    padding: 14px 16px 4px;
+    gap: 8px;
+  }
+  .sport-icon {
+    width: 16px; height: 16px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; opacity: 0.5;
+  }
+  .card-title { font-size: 16px; font-weight: 700; color: #fff; flex: 1; }
+  .sport-badge {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 8px; border-radius: 20px;
+    background: #1E1E1E; color: #fff;
+    border: 1px solid #2A2A2A;
+  }
+  .card-subtitle { font-size: 13px; color: #666; padding: 2px 16px 10px; }
+  .card-stats {
+    display: flex; align-items: center; padding: 0 16px 12px; gap: 0;
+  }
+  .stat-col { flex: 1; }
+  .stat-sep { width: 1px; height: 28px; background: #2A2A2A; margin: 0 4px; }
+  .stat-value { font-size: 18px; font-weight: 800; color: #fff; }
+  .stat-label { font-size: 10px; font-weight: 600; color: #555; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .card-map {
+    margin: 0 16px 14px;
+    border-radius: 10px; overflow: hidden;
+    background: #111;
+    height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .map-route {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Bottom sheet */
+  .sheet-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.7); z-index: 10;
+  }
+  .sheet {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: #1A1A1A; border-radius: 20px 20px 0 0;
+    border-top: 1px solid #2A2A2A;
+    padding: 0 20px 44px; z-index: 11;
+  }
+  .sheet-handle {
+    width: 36px; height: 4px; background: #2A2A2A; border-radius: 2px;
+    margin: 12px auto 20px;
+  }
+  .sheet-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .sheet-option {
+    display: flex; align-items: center; gap: 14px; padding: 16px 0;
+  }
+  .sheet-opt-icon {
+    width: 44px; height: 44px; border-radius: 22px; background: #2A2A2A;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .sheet-opt-text { flex: 1; }
+  .sheet-opt-title { font-size: 16px; font-weight: 600; color: #fff; }
+  .sheet-opt-sub { font-size: 13px; color: #888; margin-top: 2px; }
+  .sheet-arrow { display: flex; align-items: center; opacity: 0.5; }
+  .sheet-divider { height: 1px; background: #2A2A2A; margin-left: 58px; }
+
+  /* bottom tabs */
+  .bottom-tabs {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 83px;
+    background: rgba(17,17,17,0.97); border-top: 1px solid #1E1E1E;
+    display: flex; align-items: flex-start; justify-content: space-around;
+    padding-top: 10px;
+  }
+  .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; }
+  .tab-text { font-size: 10px; color: #9ca3af; }
+  .tab-text.active { color: #FF6B35; }
+
+  /* ── Right panel: + explanation ── */
+  .explanation {
+    width: 340px;
+    display: flex; flex-direction: column; gap: 20px;
+    padding-top: 60px;
+  }
+  .exp-title { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .exp-subtitle { font-size: 14px; color: #AAAAAA; line-height: 1.6; }
+  .option-card {
+    background: #1A1A1A; border-radius: 14px; border: 1px solid #2A2A2A;
+    padding: 16px;
+  }
+  .option-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .option-icon {
+    width: 36px; height: 36px; border-radius: 50%; background: #2A2A2A;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .option-title { font-size: 15px; font-weight: 700; color: #fff; }
+  .option-desc { font-size: 13px; color: #AAAAAA; line-height: 1.5; }
+  .option-badge {
+    display: inline-block; margin-top: 8px;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .badge-green { background: rgba(48,209,88,0.15); color: #30D158; }
+  .badge-orange { background: rgba(255,107,53,0.15); color: #FF6B35; }
+  .badge-gray { background: rgba(255,255,255,0.08); color: #888; }
+  .current-state {
+    background: #111; border-radius: 12px; border: 1px solid #333;
+    padding: 14px; font-size: 13px; color: #888; line-height: 1.6;
+  }
+  .current-state strong { color: #fff; }
+  .divider { width: 100%; height: 1px; background: #1E1E1E; }
+</style>
+</head>
+<body>
+
+<!-- ── Phone: Actividades Tab ── -->
+<div class="phone">
+  <div class="notch"></div>
+  <div class="screen">
+
+    <div class="header">
+      <div class="header-avatar">A</div>
+      <div class="header-title">Tú</div>
+      <div class="header-actions">
+        <div class="header-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12h14" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="header-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" stroke="#AAAAAA" stroke-width="1.8"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06A1.65 1.65 0 0015 19.4a1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="#AAAAAA" stroke-width="1.8"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab">Progreso</div>
+      <div class="tab active">Actividades <div class="tab-underline"></div></div>
+    </div>
+
+    <div class="scroll">
+      <!-- Search -->
+      <div class="search-wrap">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="8" stroke="#555" stroke-width="2"/>
+            <path d="M21 21l-4.35-4.35" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div class="search-input">Busca y filtra tus actividades</div>
+        </div>
+      </div>
+
+      <!-- Card 1 -->
+      <div class="activity-card">
+        <div class="card-header">
+          <div class="sport-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6.49 8.98v5h2v-3.5l1.8-.7-1.6 8.1-4.9-1-.4 2 6 1.3z" fill="#FF6B35"/>
+            </svg>
+          </div>
+          <div class="card-title">Fartlek 6×3'</div>
+          <div class="sport-badge">Carrera</div>
+        </div>
+        <div class="card-subtitle">2 abr 2026 a las 07:45 · Madrid</div>
+        <div class="card-stats">
+          <div class="stat-col">
+            <div class="stat-value">9.40</div>
+            <div class="stat-label">DISTANCIA (KM)</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-col">
+            <div class="stat-value">5:06 /km</div>
+            <div class="stat-label">RITMO</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-col">
+            <div class="stat-value">48min 10s</div>
+            <div class="stat-label">TIEMPO</div>
+          </div>
+        </div>
+        <div class="card-map">
+          <div class="map-route">
+            <svg width="100%" height="80" viewBox="0 0 320 80" preserveAspectRatio="xMidYMid slice">
+              <rect width="320" height="80" fill="#111"/>
+              <path d="M25,58 L55,44 L85,48 L110,32 L140,28 L165,36 L195,24 L225,30 L250,20 L280,28" stroke="#FF6B35" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="25" cy="58" r="4" fill="#30D158"/>
+              <circle cx="280" cy="28" r="4" fill="#FF453A"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="activity-card">
+        <div class="card-header">
+          <div class="sport-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6.49 8.98v5h2v-3.5l1.8-.7-1.6 8.1-4.9-1-.4 2 6 1.3z" fill="#FF6B35"/>
+            </svg>
+          </div>
+          <div class="card-title">Rodaje suave — Retiro</div>
+          <div class="sport-badge">Carrera</div>
+        </div>
+        <div class="card-subtitle">31 mar 2026 a las 06:30 · Madrid</div>
+        <div class="card-stats">
+          <div class="stat-col">
+            <div class="stat-value">8.20</div>
+            <div class="stat-label">DISTANCIA (KM)</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-col">
+            <div class="stat-value">5:32 /km</div>
+            <div class="stat-label">RITMO</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-col">
+            <div class="stat-value">45min 25s</div>
+            <div class="stat-label">TIEMPO</div>
+          </div>
+        </div>
+        <div class="card-map">
+          <div class="map-route">
+            <svg width="100%" height="80" viewBox="0 0 320 80" preserveAspectRatio="xMidYMid slice">
+              <rect width="320" height="80" fill="#111"/>
+              <path d="M30,55 C80,20 200,15 230,42 C250,58 190,70 140,65 C90,60 30,55 30,55" stroke="#FF6B35" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <circle cx="30" cy="55" r="4" fill="#30D158"/>
+              <circle cx="32" cy="53" r="4" fill="#FF453A"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Cycling -->
+      <div class="activity-card">
+        <div class="card-header">
+          <div class="sport-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="6" cy="15" r="3" stroke="#0066FF" stroke-width="2"/>
+              <circle cx="18" cy="15" r="3" stroke="#0066FF" stroke-width="2"/>
+              <path d="M6 15l4-8h4l3 8M10 7l2 4" stroke="#0066FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="card-title">Bici por la Casa de Campo</div>
+          <div class="sport-badge">Bici</div>
+        </div>
+        <div class="card-subtitle">28 mar 2026 a las 09:00 · Madrid</div>
+        <div class="card-stats">
+          <div class="stat-col">
+            <div class="stat-value">24.80</div>
+            <div class="stat-label">DISTANCIA (KM)</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-col">
+            <div class="stat-value">21.4 km/h</div>
+            <div class="stat-label">VEL. MEDIA</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-col">
+            <div class="stat-value">1h 09min</div>
+            <div class="stat-label">TIEMPO</div>
+          </div>
+        </div>
+        <div class="card-map">
+          <div class="map-route">
+            <svg width="100%" height="80" viewBox="0 0 320 80" preserveAspectRatio="xMidYMid slice">
+              <rect width="320" height="80" fill="#111"/>
+              <path d="M20,40 L50,28 L90,52 L130,20 L170,36 L200,48 L230,28 L260,40" stroke="#0066FF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="20" cy="40" r="4" fill="#30D158"/>
+              <circle cx="260" cy="40" r="4" fill="#FF453A"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end scroll -->
+
+    <!-- Bottom sheet (shown on + press) -->
+    <div class="sheet-overlay"></div>
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title">Nueva actividad</div>
+      <div class="sheet-option">
+        <div class="sheet-opt-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path fill="#FF6B35" d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6.49 8.98v5h2v-3.5l1.8-.7-1.6 8.1-4.9-1-.4 2 6 1.3z"/>
+          </svg>
+        </div>
+        <div class="sheet-opt-text">
+          <div class="sheet-opt-title">Iniciar actividad</div>
+          <div class="sheet-opt-sub">Carrera, bici, trail con GPS</div>
+        </div>
+        <div class="sheet-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="sheet-divider"></div>
+      <div class="sheet-option">
+        <div class="sheet-opt-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sheet-opt-text">
+          <div class="sheet-opt-title">Registrar manualmente</div>
+          <div class="sheet-opt-sub">Añade distancia, tiempo, tipo</div>
+        </div>
+        <div class="sheet-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </div>
+
+    <!-- Bottom tabs -->
+    <div class="bottom-tabs">
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" stroke="#9ca3af" stroke-width="1.8" fill="none"/></svg>
+        <span class="tab-text">Inicio</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z" stroke="#9ca3af" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="#9ca3af" stroke-width="1.8"/></svg>
+        <span class="tab-text">Mapa</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M8 5.5v13L19 12 8 5.5z" fill="white"/></svg>
+        <span class="tab-text">Correr</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="15.5" cy="8" r="2.5" stroke="#9ca3af" stroke-width="1.8" opacity="0.7"/><path d="M20 19c0-2.21-2.015-4-4.5-4" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/><circle cx="9" cy="8" r="3" stroke="#9ca3af" stroke-width="1.8"/><path d="M3 19c0-2.761 2.686-5 6-5s6 2.239 6 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="tab-text">Social</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#FF6B35"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="tab-text active">Perfil</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Implementado: bottom sheet ── -->
+<div class="explanation">
+  <div>
+    <div class="exp-title">Implementado ✓</div>
+    <div class="exp-subtitle" style="margin-top:8px">
+      El botón <strong style="color:#fff">+</strong> abre un <strong style="color:#fff">bottom sheet</strong> con dos opciones. Se ha añadido al lado del ⚙️ en la cabecera del perfil.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="font-size:13px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">Cambios aplicados</div>
+
+  <div class="option-card">
+    <div class="option-header">
+      <div class="option-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5v14M5 12h14" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="option-title">Botón + en ProfileHeader</div>
+    </div>
+    <div class="option-desc">Prop <code style="color:#FF6B35;font-size:12px">onAddPress</code> añadida. Aparece junto al ⚙️ en la cabecera.</div>
+    <span class="option-badge badge-green">Implementado</span>
+  </div>
+
+  <div class="option-card" style="margin-top:12px">
+    <div class="option-header">
+      <div class="option-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="11" width="14" height="10" rx="2" stroke="#FF6B35" stroke-width="2"/>
+          <path d="M7 11V7a4 4 0 018 0v4" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="option-title">Tarjetas de actividad</div>
+    </div>
+    <div class="option-desc">Badge neutral · icono 50% opacidad · labels uppercase · separadores · mapa 80px de alto</div>
+    <span class="option-badge badge-green">Actualizado</span>
+  </div>
+
+  <div class="option-card" style="margin-top:12px">
+    <div class="option-header">
+      <div class="option-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="8" stroke="#FF6B35" stroke-width="2"/>
+          <path d="M21 21l-4.35-4.35" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="option-title">Barra de búsqueda</div>
+    </div>
+    <div class="option-desc">Fondo <code style="color:#FF6B35;font-size:12px">#1A1A1A</code> · borde <code style="color:#FF6B35;font-size:12px">#2A2A2A</code> · icono y placeholder #555</div>
+    <span class="option-badge badge-green">Actualizado</span>
+  </div>
+
+  <div class="option-card" style="margin-top:12px">
+    <div class="option-header">
+      <div class="option-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B35">
+          <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6.49 8.98v5h2v-3.5l1.8-.7-1.6 8.1-4.9-1-.4 2 6 1.3z"/>
+        </svg>
+      </div>
+      <div class="option-title">Estado vacío</div>
+    </div>
+    <div class="option-desc">Icono gris 48px · "Sin actividades aún" · subtexto · botón naranja "Empezar actividad"</div>
+    <span class="option-badge badge-green">Actualizado</span>
+  </div>
+</div>
+
+</body>
+</html>

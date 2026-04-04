@@ -1,0 +1,382 @@
+# CORRERJUNTOS
+## Plan de Empresa y Estructura de Equipo
+*Documento Confidencial — Marzo 2026*
+
+---
+
+# 1. Qué es CorrerJuntos
+
+CorrerJuntos es una aplicación móvil de comunidad running que conecta corredores para salir a correr juntos. Disponible gratis en iOS y Android con modelo freemium (4,99€/mes premium).
+
+No es solo un tracker GPS como Strava ni solo una red social. Es el puente entre querer correr y tener a alguien con quien hacerlo.
+
+## El problema
+
+El 70% de la gente que empieza a correr lo deja antes de 3 meses. La razón principal: correr solo es aburrido, duro y fácil de abandonar. Las apps actuales (Strava, Nike Run Club, Garmin Connect) están diseñadas para corredores individuales. Te dan datos pero no te dan a nadie con quien correr.
+
+## La solución
+
+- Quedadas de running geolocalizadas por ciudad, nivel y distancia
+- Runner Matching: algoritmo que encuentra corredores compatibles
+- 7 planes de entrenamiento con 1.025 workouts estructurados
+- GPS tracking con audio alertas en segundo plano
+- Sincronización con Garmin, COROS y Apple Watch
+- Feed social: compartir actividades, likes, comentarios
+
+---
+
+# 2. Misión, Visión y Valores
+
+## Misión
+
+**Que nadie tenga que correr solo si no quiere.** Conectar a cada corredor con personas de su nivel, ritmo y zona para que correr sea una actividad social, motivadora y sostenible en el tiempo.
+
+## Visión
+
+Ser la app de referencia de la comunidad running en español. El lugar donde cualquier persona — desde un sedentario que quiere dar su primer paso hasta un maratoniano — encuentra su grupo.
+
+## Valores
+
+1. **Comunidad primero** — Cada funcionalidad se evalúa por si mejora la conexión entre corredores
+2. **Accesibilidad** — Lo esencial es gratis. Premium mejora la experiencia, nunca la bloquea
+3. **Inclusividad** — Todos los niveles, todas las edades. De caminar a maratón
+4. **Datos reales** — GPS real, métricas reales, personas reales con fotos verificadas
+5. **Simplicidad** — Abrir la app, encontrar una quedada, salir a correr
+
+---
+
+# 3. Cliente Ideal
+
+## Perfil Primario — El Corredor Solitario (70% de usuarios)
+
+- 25-55 años
+- Corre 2-3 veces/semana pero siempre solo
+- Tiene Strava pero no interactúa con nadie
+- Quiere compañía pero no sabe cómo encontrarla
+- No pertenece a ningún club de running
+- Vive en ciudad mediana-grande en España o Latinoamérica
+
+## Perfil Secundario — El Principiante Motivado (20%)
+
+- 30-60 años
+- Quiere empezar a correr pero no sabe cómo
+- Le da vergüenza correr solo/a
+- Busca un plan paso a paso + apoyo social
+- Descarga la app por un artículo del blog
+
+## Perfil Terciario — El Organizador de Grupo (10%)
+
+- Corredor experimentado que ya organiza quedadas informales
+- Quiere una herramienta para gestionar su grupo
+- Crea quedadas, invita gente, registra actividades del grupo
+
+---
+
+# 4. Servicios Principales
+
+| Servicio | Descripción | Precio |
+|----------|-------------|--------|
+| Quedadas de running | Crear y unirse a quedadas geolocalizadas | Gratis |
+| GPS Tracking | Carrera/Bici/Trail/Caminata con audio alertas km | Gratis |
+| Runner Matching | Algoritmo 5 factores: ritmo, horario, nivel, objetivos, actividad | Gratis parcial / Premium |
+| Planes entrenamiento | 7 planes, 1.025 workouts estructurados | 2 gratis / 5 Premium |
+| Sync relojes | Garmin + COROS + Apple Watch | Premium |
+| Feed social | Publicar actividades, likes, comentarios | Gratis |
+| Blog SEO | 400+ artículos, motor captación orgánica | Gratis (web) |
+
+---
+
+# 5. Modelo de Negocio
+
+## Ingresos
+
+| Canal | Estado | Detalle |
+|-------|--------|---------|
+| Premium mensual | ACTIVO | 4,99€/mes |
+| Premium anual | Abril 2026 | 29,99€/año |
+| Amazon afiliados | ACTIVO | Comisión por venta en blog |
+| Patrocinios | Futuro | Tiendas, eventos, marcas |
+
+## Unit Economics
+
+- **CAC (coste adquisición):** ~0€ (SEO orgánico, sin ads)
+- **Conversión free → premium:** 5-10% objetivo
+- **LTV (6 meses):** 30€
+- **Margen:** >90%
+
+## Embudo de conversión
+
+1. SEO: 400+ artículos generan 3.300 impresiones/día en Google
+2. Landing pages de planes convierten visita en descarga
+3. Plan 0→5K gratis engancha al usuario durante 8 semanas
+4. Comunidad + quedadas retienen al usuario a largo plazo
+5. Paywall premium al querer plan 10K+ o sync con reloj
+
+---
+
+# 6. Equipo: 10 Personas con IA
+
+CorrerJuntos opera con un equipo de 10 personas potenciado por inteligencia artificial. Cada miembro utiliza herramientas de IA específicas para multiplicar su productividad x5-x10, permitiendo competir con equipos de 40-50 personas.
+
+## Organigrama
+
+```
+              CEO / FOUNDER
+          ┌────────┼────────┐
+      PRODUCTO   CRECIMIENTO   NEGOCIO
+      (3 pers)   (4 pers)     (2 pers)
+                               + 1 Transversal
+```
+
+---
+
+## ÁREA 1: PRODUCTO (3 personas)
+
+### PERSONA 1: CEO / Founder / CTO
+
+**Función:** Lidera el producto, toma decisiones de arquitectura, desarrolla features críticas. Define roadmap, prioriza backlog. Programa app, backend y web.
+
+**Responsabilidades diarias:**
+- Revisión de PRs y calidad de código
+- Desarrollo de features críticas (planes, GPS, pagos)
+- Decisiones de arquitectura y stack técnico
+- Reuniones semanales con cada área
+- Definir prioridades del sprint
+
+**Herramientas IA:** Claude Code (desarrollo + automatización), GitHub Copilot (código), Cursor (IDE IA)
+
+---
+
+### PERSONA 2: UX/UI Designer
+
+**Función:** Diseña todas las pantallas de la app, flujos de usuario, prototipos interactivos. Realiza tests de usabilidad con usuarios reales. Mantiene el design system (colores, tipografía, componentes).
+
+**Responsabilidades diarias:**
+- Diseñar nuevas pantallas y flujos en Figma
+- Crear prototipos interactivos para validar con usuarios
+- Mantener y actualizar el design system
+- Colaborar con desarrollo para implementación pixel-perfect
+- Realizar 2 tests de usabilidad por semana
+
+**Herramientas IA:** Figma + plugins IA, Midjourney (conceptos visuales), Maze (user testing automatizado)
+
+---
+
+### PERSONA 3: QA Engineer
+
+**Función:** Prueba cada release antes de subir a tiendas. Testing manual en iOS + Android + web. Escribe tests automatizados E2E. Verifica flows críticos.
+
+**Responsabilidades diarias:**
+- Testing manual de nuevas features en ambas plataformas
+- Mantenimiento de la suite de tests automatizados
+- Verificar: registro, GPS tracking, compra premium, planes, compartir
+- Reportar bugs con pasos de reproducción exactos
+- Validar fixes antes de cada release
+
+**Herramientas IA:** Playwright + Claude (generación tests), BrowserStack (dispositivos), Detox (mobile E2E)
+
+---
+
+## ÁREA 2: CRECIMIENTO (4 personas)
+
+### PERSONA 4: Director de Marketing
+
+**Función:** Define la estrategia global de crecimiento. Coordina SEO, contenido, redes sociales y partnerships. Gestiona presupuesto de marketing. Reporta KPIs semanales.
+
+**Responsabilidades diarias:**
+- Revisar métricas de crecimiento en GA4 + Search Console
+- Coordinar publicaciones de la semana con todo el equipo
+- Analizar qué canales funcionan y cuáles cortar
+- Reunión semanal con CEO sobre estrategia
+- Definir objetivos mensuales por canal
+
+**KPIs que gestiona:** descargas/semana, CTR blog, conversión premium, retención D7/D30
+
+**Herramientas IA:** Claude (análisis + estrategia), GA4 + Looker Studio (dashboards), Semrush (competencia)
+
+---
+
+### PERSONA 5: Especialista SEO + Analista de Datos
+
+**Función:** Gestiona posicionamiento orgánico en Google. Optimiza títulos y metas, construye internal linking. Analiza funnels de conversión en GA4. A/B testing de CTAs.
+
+**Responsabilidades diarias:**
+- Revisar Search Console: nuevas queries, errores, posiciones
+- Optimizar 10-20 artículos por semana (títulos, metas)
+- Construir internal linking entre artículos relacionados
+- Analizar embudo blog → descarga → premium
+- Reporte semanal: páginas indexadas, CTR, posición media
+
+**KPIs:** páginas indexadas, posición media, CTR, clics orgánicos/día
+
+**Herramientas IA:** Claude (optimización masiva títulos/metas), Semrush, Ahrefs, Screaming Frog, Search Console API
+
+---
+
+### PERSONA 6: Creador de Contenido
+
+**Función:** Escribe 5-7 artículos/semana para el blog (SEO-optimized). Gestiona el calendario editorial de 30 días. Crea newsletter semanal. Produce contenido para redes.
+
+**Responsabilidades diarias:**
+- Escribir 1 artículo SEO completo (1.200-2.000 palabras)
+- Buscar keywords y tendencias para próximos artículos
+- Preparar newsletter semanal en Brevo
+- Crear 3-5 piezas de contenido para redes sociales
+- Coordinar con SEO specialist las prioridades
+
+**KPIs:** artículos publicados/semana, tráfico orgánico generado, suscriptores newsletter
+
+**Herramientas IA:** Claude (redacción + SEO), Canva (gráficos), CapCut (vídeo), Brevo (email)
+
+---
+
+### PERSONA 7: Community Manager
+
+**Función:** Gestiona Instagram, TikTok, X y Strava Club. Responde comentarios y DMs en menos de 2 horas. Coordina embajadores runners. Genera UGC (User Generated Content).
+
+**Responsabilidades diarias:**
+- Publicar 1-2 posts/stories en Instagram + TikTok
+- Responder TODOS los comentarios y DMs del día
+- Coordinar con embajadores: verificar que publican sus quedadas
+- Moderar comunidad: resolver conflictos, reportar problemas
+- Crear quedadas semanales en ciudades clave desde la app
+
+**KPIs:** engagement rate, tiempo respuesta DMs, UGC generado, quedadas creadas
+
+**Herramientas IA:** Buffer/Hootsuite (programación), ChatGPT (respuestas), Canva (stories)
+
+---
+
+## ÁREA 3: NEGOCIO (2 personas)
+
+### PERSONA 8: Business Developer
+
+**Función:** Cierra acuerdos con tiendas de running, clubs, eventos y marcas deportivas. Negocia patrocinios de quedadas. Gestiona relaciones con Amazon Afiliados y marcas de zapatillas.
+
+**Responsabilidades diarias:**
+- Contactar 5-10 tiendas/clubs/marcas por semana
+- Preparar propuestas de colaboración personalizadas
+- Seguimiento de leads activos en CRM
+- Negociar términos de patrocinio
+- Reportar pipeline de partnerships al CEO
+
+**KPIs:** partnerships cerrados/mes, revenue por partnerships, leads contactados
+
+**Herramientas IA:** LinkedIn Sales Navigator, HubSpot CRM, Claude (propuestas comerciales)
+
+---
+
+### PERSONA 9: ASO Specialist + Growth Hacker
+
+**Función:** Optimiza fichas de App Store y Google Play. Gestiona reviews y ratings. Diseña experimentos de crecimiento: referral programs, onboarding optimization, push notification strategy.
+
+**Responsabilidades diarias:**
+- Monitorizar rankings en App Store y Google Play
+- A/B testing de screenshots, título, descripción
+- Analizar reviews nuevas y responder todas
+- Diseñar y medir experimentos de conversión
+- Optimizar onboarding flow y paywall
+
+**KPIs:** conversion rate tienda, rating medio, descargas orgánicas, trial-to-paid
+
+**Herramientas IA:** AppTweak/Sensor Tower (ASO), Firebase A/B Testing, Claude (copy variaciones)
+
+---
+
+## SOPORTE TRANSVERSAL (1 persona)
+
+### PERSONA 10: Coordinador de Embajadores
+
+**Función:** Recluta y gestiona 10-20 embajadores runners en ciudades clave. Cada embajador crea 1 quedada/semana y publica 2-3 stories. Les da premium gratis + material de marca. Organiza eventos presenciales trimestrales.
+
+**Responsabilidades diarias:**
+- Comunicación diaria con embajadores via WhatsApp
+- Verificar que cada embajador cumple su compromiso semanal
+- Reclutar nuevos embajadores en ciudades sin cobertura
+- Crear kits de marca (plantillas stories, logos, hashtags)
+- Organizar 1 evento presencial por trimestre por ciudad
+
+**Ciudades objetivo:** Madrid, Barcelona, Valencia, Sevilla, México DF, Buenos Aires
+
+**KPIs:** quedadas creadas por embajadores, descargas atribuidas, UGC generado
+
+**Herramientas IA:** Notion (gestión embajadores), WhatsApp Business (comunicación), Canva (kits marca)
+
+---
+
+# 7. El Multiplicador IA
+
+Cada persona rinde como 3-5 gracias a herramientas de IA:
+
+| Tarea | Sin IA | Con IA | Multiplicador |
+|-------|--------|--------|---------------|
+| Escribir artículo SEO 1.500 palabras | 4-6 horas | 30-45 min | x8 |
+| Optimizar títulos 400 artículos | 2 semanas | 4 horas | x20 |
+| Diseñar pantalla app completa | 2-3 días | 4-6 horas | x4 |
+| Desarrollar feature completa | 1-2 semanas | 2-3 días | x4 |
+| Crear 6 landing pages SEO | 3 semanas | 1 día | x15 |
+| Analizar Search Console + plan acción | 1 día | 30 min | x16 |
+| Generar tests E2E | 3-4 días | 2-3 horas | x10 |
+
+**Un equipo de 10 personas con IA equivale a un equipo tradicional de 40-50 personas en output, con un coste 4x menor.**
+
+---
+
+# 8. Métricas Actuales (Marzo 2026)
+
+- App publicada en iOS App Store + Google Play
+- 88 descargas Android (creciendo)
+- 400+ artículos blog (210 ES + 188 EN)
+- 722 páginas indexadas en Google
+- 3.300 impresiones/día
+- 6 landing pages de planes con testimonios
+- 7 planes, 322 sesiones, 1.025 workouts estructurados
+- Países: España, México, Argentina, Colombia, Chile, Perú, Portugal
+- Garmin API solicitada + COROS API solicitada + Apple Watch SDK público
+
+---
+
+# 9. Roadmap 2026
+
+| Mes | Hito | KPI objetivo |
+|-----|------|-------------|
+| Marzo 2026 ✅ | v1.3.0, 400 artículos SEO, 6 landings | 88 descargas |
+| Abril 2026 | Activar 7 planes + anual + Apple Watch | 200 descargas |
+| Mayo 2026 | Garmin + COROS sync + 30 artículos | 500 descargas |
+| Junio 2026 | Clubs de running + primer patrocinio | 1.000 descargas |
+| Q3 2026 | 1.000 usuarios activos + embajadores 5 ciudades | 3.000 descargas |
+| Q4 2026 | Internacionalización UK, Francia, Italia | 10.000 descargas |
+
+---
+
+# 10. Análisis Competitivo
+
+| Feature | CorrerJuntos | Strava | TrainingPeaks | Nike Run Club |
+|---------|-------------|--------|---------------|---------------|
+| Planes estructurados | 7 planes | No | Sí | 4 planes |
+| Sync con reloj | Garmin+COROS+Apple | No | Solo Garmin | No |
+| Comunidad + quedadas | Sí | Parcial | No | No |
+| GPS tracking | Sí | Sí | No | Sí |
+| Runner Matching | Sí | No | No | No |
+| Plan gratuito completo | 2 planes gratis | — | Todo pago | Gratis |
+| Precio premium | 4,99€/mes | 7,99€/mes | 9,99€/mes | Gratis |
+| Mercado | ES + LATAM | Global | Global (EN) | Global |
+
+**Ventaja única: Ninguna app en español combina planes estructurados + sync con relojes + comunidad social.**
+
+---
+
+# 11. Por Qué Invertir Ahora
+
+1. **Producto construido** — 1.025 workouts, 7 planes, app en ambas tiendas, 400+ artículos SEO
+2. **Sin competencia en español** — nadie combina planes + reloj + comunidad
+3. **SEO como motor gratuito** — tráfico orgánico sin coste de adquisición
+4. **Mercado de 50M+ runners** — España + Latinoamérica, creciendo 15% anual
+5. **Unit economics claros** — CAC ~0€, LTV 30€, margen >90%
+6. **Equipo IA = 10 personas = 40 tradicionales** — eficiencia operativa desde día 1
+
+---
+
+**CorrerJuntos — La app que convierte correr solo en correr acompañado.**
+
+¿Qué hacemos ahora?

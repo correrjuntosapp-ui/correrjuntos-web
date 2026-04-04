@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RunDetailScreen — Strava Style</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* ── Phone frame ── */
+.phone {
+  width: 375px;
+  background: #111111;
+  border-radius: 48px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 40px 80px rgba(0,0,0,0.7);
+  flex-shrink: 0;
+}
+
+/* Dynamic island */
+.island {
+  background: #111111;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.island-pill {
+  width: 126px;
+  height: 34px;
+  background: #000;
+  border-radius: 20px;
+}
+
+/* Scroll area */
+.screen {
+  overflow-y: auto;
+  max-height: 780px;
+  background: #111111;
+}
+.screen::-webkit-scrollbar { width: 0; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECCIÓN 1 — CABECERA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px 10px;
+  gap: 12px;
+  background: #111111;
+}
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  font-weight: 800;
+  color: #ccc;
+  flex-shrink: 0;
+}
+.header-text {
+  flex: 1;
+  min-width: 0;
+}
+.header-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+.header-date {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.4;
+  margin-top: 1px;
+}
+.header-sport {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+.header-sport-text {
+  font-size: 13px;
+  color: #888;
+}
+.more-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECCIÓN 2 — TÍTULO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.title-section {
+  padding: 8px 16px 16px;
+}
+.run-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECCIÓN 3 — MÉTRICAS PRINCIPALES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.key-metrics {
+  display: flex;
+  padding: 0 16px 20px;
+  gap: 0;
+}
+.metric-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.metric-label {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+.metric-value-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  line-height: 1;
+}
+.metric-value {
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.metric-unit {
+  font-size: 14px;
+  font-weight: 500;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECCIÓN 4 — MAPA PROTAGONISTA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.map-container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  background: #0d1117;
+}
+
+/* Mapa oscuro simulado — tonos Strava */
+.map-bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #0d1520;
+}
+
+/* Grid de calles simuladas */
+.map-streets {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECCIÓN 5 — MÉTRICAS SECUNDARIAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.secondary-metrics {
+  padding: 4px 0;
+}
+.metric-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #1e1e1e;
+}
+.metric-row:first-child {
+  border-top: 1px solid #1e1e1e;
+}
+.metric-row-label {
+  flex: 1;
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+}
+.metric-row-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+.metric-row-value.accent { color: #FF6B35; }
+.metric-row-unit {
+  font-size: 13px;
+  font-weight: 500;
+  color: #888;
+  margin-left: 3px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECCIÓN 6 — FRECUENCIA CARDÍACA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.section-header {
+  padding: 20px 16px 14px;
+  border-top: 1px solid #1e1e1e;
+}
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.hr-row {
+  display: flex;
+  padding: 0 16px 20px;
+  gap: 0;
+}
+.hr-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hr-label {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+.hr-label.accent { color: #FF6B35; }
+.hr-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECCIÓN 7 — PARCIALES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.splits-section {
+  border-top: 1px solid #1e1e1e;
+}
+.splits-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.splits-table thead tr {
+  background: #111111;
+}
+.splits-table thead th {
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-align: left;
+}
+.splits-table thead th:last-child { text-align: right; }
+.splits-table thead th:nth-child(2) { text-align: center; }
+.splits-table tbody tr:nth-child(odd)  { background: #111111; }
+.splits-table tbody tr:nth-child(even) { background: #0d0d0d; }
+.splits-table tbody td {
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 500;
+}
+.splits-table tbody td:nth-child(2) { text-align: center; }
+.splits-table tbody td:last-child {
+  text-align: right;
+  font-size: 13px;
+  color: #555;
+}
+.splits-table tbody tr.best td:first-child,
+.splits-table tbody tr.best td:nth-child(2) { color: #FF6B35; font-weight: 700; }
+
+.bottom-pad { height: 60px; background: #111111; }
+
+/* Label bajo el teléfono */
+.phone-label {
+  text-align: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  margin-top: 14px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+}
+</style>
+</head>
+<body>
+
+<div>
+<div class="phone">
+  <div class="island"><div class="island-pill"></div></div>
+  <div class="screen">
+
+    <!-- SECCIÓN 1 — CABECERA -->
+    <div class="header">
+      <button class="back-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M12 5l-7 7 7 7" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="avatar">C</div>
+
+      <div class="header-text">
+        <div class="header-name">Carlos García</div>
+        <div class="header-date">Hoy a las 07:34 · Madrid</div>
+        <div class="header-sport">
+          <!-- Icono runner gris, sin color -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M13.5 5.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM9.89 19.38l1-4.38L13 17v6h2v-7.5l-2.11-2 .61-3A7.04 7.04 0 0 0 19 13v-2a5.02 5.02 0 0 1-3.78-1.75L14 7.5a2 2 0 0 0-1.61-.83c-.26 0-.52.06-.76.17L6 9.5v5h2v-3.5l1.77-.77L8.5 17l-4 1.87.93 1.82L9.89 19.38Z" fill="#888"/>
+          </svg>
+          <span class="header-sport-text">Carrera · Madrid</span>
+        </div>
+      </div>
+
+      <button class="more-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="5" r="1.5" fill="#888"/>
+          <circle cx="12" cy="12" r="1.5" fill="#888"/>
+          <circle cx="12" cy="19" r="1.5" fill="#888"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- SECCIÓN 2 — TÍTULO -->
+    <div class="title-section">
+      <div class="run-title">Rodaje mañanero por el Retiro</div>
+    </div>
+
+    <!-- SECCIÓN 3 — MÉTRICAS PRINCIPALES -->
+    <div class="key-metrics">
+      <div class="metric-item">
+        <span class="metric-label">Distancia</span>
+        <div class="metric-value-row">
+          <span class="metric-value">12.40</span>
+          <span class="metric-unit">km</span>
+        </div>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">Desnivel +</span>
+        <div class="metric-value-row">
+          <span class="metric-value">+84</span>
+          <span class="metric-unit">m</span>
+        </div>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">Tiempo</span>
+        <div class="metric-value-row">
+          <span class="metric-value">1:02:18</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 4 — MAPA PROTAGONISTA -->
+    <div class="map-container">
+      <div class="map-bg">
+        <!-- Fondo de mapa oscuro estilo Strava -->
+        <svg viewBox="0 0 375 400" xmlns="http://www.w3.org/2000/svg"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <!-- Fondo base oscuro -->
+          <rect width="375" height="400" fill="#0d1520"/>
+
+          <!-- Agua / lago -->
+          <path d="M0,280 Q60,260 120,275 Q180,290 230,270 Q280,255 330,265 L375,260 L375,400 L0,400 Z" fill="#0a1a28" opacity="0.8"/>
+
+          <!-- Bloques de manzanas (gris muy oscuro) -->
+          <rect x="20" y="20" width="60" height="40" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="100" y="10" width="80" height="35" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="200" y="15" width="55" height="45" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="275" y="20" width="85" height="38" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="20" y="80" width="50" height="55" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="90" y="75" width="70" height="60" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="185" y="70" width="65" height="50" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="270" y="78" width="90" height="45" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="25" y="165" width="55" height="50" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="100" y="160" width="75" height="55" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="200" y="155" width="60" height="60" rx="2" fill="#131d2a" opacity="0.9"/>
+          <rect x="280" y="160" width="80" height="48" rx="2" fill="#131d2a" opacity="0.9"/>
+          <!-- Parque (tono verde muy oscuro) -->
+          <ellipse cx="187" cy="200" rx="80" ry="55" fill="#0e1f10" opacity="0.7"/>
+
+          <!-- Calles principales (gris medio) -->
+          <line x1="0" y1="65" x2="375" y2="65" stroke="#1a2535" stroke-width="3"/>
+          <line x1="0" y1="145" x2="375" y2="145" stroke="#1a2535" stroke-width="3"/>
+          <line x1="0" y1="235" x2="375" y2="235" stroke="#1a2535" stroke-width="4"/>
+          <line x1="0" y1="315" x2="375" y2="315" stroke="#1a2535" stroke-width="3"/>
+          <!-- Calles secundarias -->
+          <line x1="75" y1="0" x2="75" y2="400" stroke="#1a2535" stroke-width="2.5"/>
+          <line x1="155" y1="0" x2="155" y2="400" stroke="#1a2535" stroke-width="2.5"/>
+          <line x1="235" y1="0" x2="235" y2="400" stroke="#1a2535" stroke-width="3"/>
+          <line x1="320" y1="0" x2="320" y2="400" stroke="#1a2535" stroke-width="2.5"/>
+          <!-- Calles menores -->
+          <line x1="0" y1="105" x2="375" y2="105" stroke="#151f2d" stroke-width="1"/>
+          <line x1="0" y1="185" x2="375" y2="185" stroke="#151f2d" stroke-width="1"/>
+          <line x1="115" y1="0" x2="115" y2="400" stroke="#151f2d" stroke-width="1"/>
+          <line x1="195" y1="0" x2="195" y2="400" stroke="#151f2d" stroke-width="1"/>
+          <line x1="280" y1="0" x2="280" y2="400" stroke="#151f2d" stroke-width="1"/>
+
+          <!-- Nombres de calles (gris muy sutil) -->
+          <text x="38" y="62" font-size="8" fill="#2a3a4a" font-family="Inter,sans-serif">C/ Serrano</text>
+          <text x="165" y="62" font-size="8" fill="#2a3a4a" font-family="Inter,sans-serif">C/ Velázquez</text>
+          <text x="80" y="142" font-size="8" fill="#2a3a4a" font-family="Inter,sans-serif">C/ Alcalá</text>
+          <text x="250" y="142" font-size="8" fill="#2a3a4a" font-family="Inter,sans-serif">P.° Recoletos</text>
+          <text x="160" y="195" font-size="9" fill="#1e3020" font-family="Inter,sans-serif">Parque del Retiro</text>
+
+          <!-- ─── SOMBRA de la ruta ─── -->
+          <path d="M55,340 C70,310 90,275 120,250 C148,228 168,215 192,200
+                   C215,186 238,178 262,170 C285,163 305,158 325,148 C340,140 352,128 358,112"
+            fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="9"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- ─── RUTA principal (naranja Strava) ─── -->
+          <path d="M55,340 C70,310 90,275 120,250 C148,228 168,215 192,200
+                   C215,186 238,178 262,170 C285,163 305,158 325,148 C340,140 352,128 358,112"
+            fill="none" stroke="#FF6B35" stroke-width="4.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Marcador INICIO (verde sólido) -->
+          <circle cx="55" cy="340" r="7" fill="#00C853"/>
+          <circle cx="55" cy="340" r="11" fill="none" stroke="#00C853" stroke-width="2" opacity="0.35"/>
+
+          <!-- Marcador FIN (naranja sólido) -->
+          <circle cx="358" cy="112" r="7" fill="#FF6B35"/>
+          <circle cx="358" cy="112" r="11" fill="none" stroke="#FF6B35" stroke-width="2" opacity="0.35"/>
+
+          <!-- Copyright (mínimo) -->
+          <text x="8" y="394" font-size="8" fill="#333" font-family="Inter,sans-serif">© OpenStreetMap</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 5 — MÉTRICAS SECUNDARIAS -->
+    <div class="secondary-metrics">
+      <div class="metric-row">
+        <span class="metric-row-label">Ritmo medio</span>
+        <span class="metric-row-value">5:01</span>
+        <span class="metric-row-unit">/km</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-row-label">Calorías</span>
+        <span class="metric-row-value">587</span>
+        <span class="metric-row-unit">kcal</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-row-label">Vel. máxima</span>
+        <span class="metric-row-value">14.2</span>
+        <span class="metric-row-unit">km/h</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-row-label">Mejor parcial</span>
+        <span class="metric-row-value accent">4:32</span>
+        <span class="metric-row-unit">/km</span>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 6 — FRECUENCIA CARDÍACA -->
+    <div class="section-header">
+      <div class="section-title">Frecuencia Cardíaca</div>
+    </div>
+    <div class="hr-row">
+      <div class="hr-item">
+        <span class="hr-label">Media</span>
+        <span class="hr-value">152</span>
+      </div>
+      <div class="hr-item">
+        <span class="hr-label accent">Máx</span>
+        <span class="hr-value">178</span>
+      </div>
+      <div class="hr-item">
+        <span class="hr-label">Mín</span>
+        <span class="hr-value">132</span>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 7 — PARCIALES -->
+    <div class="splits-section">
+      <div class="section-header" style="border-top:none; padding-bottom: 4px;">
+        <div class="section-title">Parciales</div>
+      </div>
+      <table class="splits-table">
+        <thead>
+          <tr>
+            <th>km</th>
+            <th>Ritmo</th>
+            <th>Desnivel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>4:58</td><td>+8 m</td></tr>
+          <tr><td>2</td><td>5:04</td><td>+12 m</td></tr>
+          <tr><td>3</td><td>4:45</td><td>−4 m</td></tr>
+          <tr class="best"><td>4 ★</td><td>4:32</td><td>−6 m</td></tr>
+          <tr><td>5</td><td>5:12</td><td>+18 m</td></tr>
+          <tr><td>+0.40</td><td>5:05</td><td>+5 m</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bottom-pad"></div>
+  </div><!-- /screen -->
+</div><!-- /phone -->
+<div class="phone-label">STRAVA STYLE — SIEMPRE OSCURO</div>
+</div>
+
+</body>
+</html>

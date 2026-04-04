@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<title>FeedScreen — Home Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif; background: #1a1a2e; display: flex; justify-content: center; padding: 30px 20px; }
+
+  .phone-frame {
+    width: 390px; background: #0b1220;
+    border-radius: 40px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 3px solid #333;
+  }
+  .notch { width: 160px; height: 34px; background: #000; border-radius: 0 0 20px 20px; margin: 0 auto; position: relative; z-index: 10; }
+  .scroll-area { height: 844px; overflow-y: auto; position: relative; }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* ── Header ── */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; border-bottom: 1px solid #1a2332;
+  }
+  .header-title { font-size: 20px; font-weight: 900; color: #FF6B00; letter-spacing: -0.5px; }
+  .header-right { display: flex; gap: 12px; align-items: center; }
+  .header-bell {
+    width: 36px; height: 36px; border-radius: 18px; background: #1a2332;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .header-avatar {
+    width: 36px; height: 36px; border-radius: 18px; background: #FF6B00;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px; font-weight: 800;
+  }
+
+  /* ── Latest Activity Card ── */
+  .latest-card {
+    margin: 12px 12px 0; border-radius: 14px; border: 1px solid #1a2332;
+    background: #111827; overflow: hidden;
+  }
+  .latest-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 14px 14px 10px;
+  }
+  .latest-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: #6b7280; margin-bottom: 4px;
+  }
+  .latest-title-row { display: flex; align-items: center; gap: 8px; }
+  .latest-title { font-size: 15px; font-weight: 700; color: #f0f0f0; }
+  .latest-type-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(255,107,0,0.1); padding: 2px 8px; border-radius: 6px;
+    font-size: 10px; font-weight: 700; color: #FF6B00; text-transform: uppercase;
+  }
+  .latest-date { font-size: 11px; color: #6b7280; white-space: nowrap; }
+  .latest-map {
+    height: 120px; background: #1a2332; margin: 0 14px;
+    border-radius: 10px; overflow: hidden; position: relative;
+  }
+  .latest-map-route {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 80%; height: 60%;
+  }
+  .latest-map-route svg { width: 100%; height: 100%; }
+  .latest-metrics {
+    display: flex; padding: 12px 14px; gap: 0;
+  }
+  .latest-metric {
+    flex: 1; text-align: center;
+  }
+  .latest-metric-value { font-size: 16px; font-weight: 800; color: #f0f0f0; }
+  .latest-metric-label { font-size: 10px; font-weight: 600; color: #6b7280; margin-top: 2px; }
+  .latest-metric-divider { width: 1px; background: #2a3544; align-self: stretch; margin: 4px 0; }
+
+  /* ── Week Summary ── */
+  .week-card {
+    margin: 8px 12px 0; border-radius: 14px; border: 1px solid #1a2332;
+    background: #111827; overflow: hidden; display: flex;
+  }
+  .week-accent { width: 4px; background: #FF6B00; flex-shrink: 0; }
+  .week-content { flex: 1; padding: 12px 14px; }
+  .week-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .week-title { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6b7280; }
+  .week-goal { font-size: 12px; font-weight: 700; color: #FF6B00; }
+  .week-progress-bg { height: 4px; border-radius: 2px; background: #222228; margin-bottom: 10px; }
+  .week-progress-fill { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #FF6B00, #FF8C33); }
+  .week-stats-row { display: flex; }
+  .week-stat { flex: 1; text-align: center; }
+  .week-stat-value { font-size: 16px; font-weight: 800; color: #f0f0f0; }
+  .week-stat-label { font-size: 10px; font-weight: 600; color: #6b7280; margin-top: 2px; }
+  .week-divider { width: 1px; background: #2a3544; align-self: stretch; margin: 2px 0; }
+
+  /* ── Training Teaser (Active Plan) ── */
+  .training-active-card {
+    margin: 8px 12px 0; border-radius: 14px; overflow: hidden;
+  }
+  .training-active-gradient {
+    background: linear-gradient(135deg, #1A1A1E, #1A1400);
+    padding: 16px;
+  }
+  .training-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6b7280; }
+  .training-title-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .training-badge {
+    background: rgba(255,107,0,0.15); padding: 2px 8px; border-radius: 6px;
+    font-size: 9px; font-weight: 800; color: #FF6B00; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .training-title { font-size: 16px; font-weight: 800; color: #f0f0f0; margin-bottom: 2px; }
+  .training-meta { font-size: 12px; font-weight: 500; color: #6b7280; margin-bottom: 12px; }
+  .training-cta {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(90deg, #FF6B00, #FF8C38);
+    padding: 12px; border-radius: 10px; border: none; cursor: pointer; width: 100%;
+  }
+  .training-cta-text { color: #fff; font-size: 14px; font-weight: 800; }
+  .training-cta-icon { font-size: 14px; color: #fff; }
+
+  /* ── Training Teaser (No Plan — CTA card) ── */
+  .plan-feature-card {
+    margin: 8px 12px 0; border-radius: 14px; overflow: hidden; cursor: pointer;
+  }
+  .plan-feature-gradient {
+    background: linear-gradient(90deg, #FF6B00, #FF3D00);
+    padding: 16px; display: flex; align-items: center; gap: 14px;
+  }
+  .plan-feature-icon {
+    width: 44px; height: 44px; border-radius: 22px; background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 22px;
+  }
+  .plan-feature-content { flex: 1; }
+  .plan-feature-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+  .plan-feature-title { font-size: 15px; font-weight: 800; color: #fff; }
+  .plan-feature-free-badge {
+    background: rgba(255,255,255,0.25); padding: 1px 6px; border-radius: 4px;
+    font-size: 9px; font-weight: 800; color: #fff; letter-spacing: 0.5px;
+  }
+  .plan-feature-subtitle { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.8); margin-bottom: 6px; }
+  .plan-feature-pills { display: flex; gap: 6px; }
+  .plan-feature-pill {
+    background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 8px;
+    font-size: 10px; font-weight: 700; color: #fff;
+  }
+  .plan-feature-chevron { color: rgba(255,255,255,0.8); font-size: 20px; }
+
+  /* ── Quedadas Section ── */
+  .quedadas-section { padding: 0 12px; margin-top: 16px; }
+  .quedadas-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .quedadas-title { font-size: 16px; font-weight: 800; color: #f0f0f0; }
+  .create-quedada-btn {
+    background: linear-gradient(90deg, #FF6B00, #ea580c);
+    padding: 6px 14px; border-radius: 8px; border: none; cursor: pointer;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+
+  /* Event Card Compact */
+  .event-card {
+    background: #111827; border: 1px solid #1a2332; border-radius: 12px;
+    padding: 12px; margin-bottom: 8px; display: flex; gap: 12px; align-items: center;
+  }
+  .event-photo {
+    width: 56px; height: 56px; border-radius: 10px; background: #2a3544;
+    overflow: hidden; flex-shrink: 0;
+  }
+  .event-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .event-info { flex: 1; }
+  .event-name { font-size: 14px; font-weight: 700; color: #f0f0f0; margin-bottom: 2px; }
+  .event-meta { font-size: 11px; font-weight: 500; color: #6b7280; }
+  .event-meta-row { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+  .event-participants {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 600; color: #9ca3af;
+  }
+  .event-badge {
+    background: rgba(34,197,94,0.12); padding: 2px 8px; border-radius: 6px;
+    font-size: 10px; font-weight: 700; color: #22c55e;
+  }
+
+  /* ── Feed Label ── */
+  .feed-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #6b7280; padding: 16px 12px 8px;
+  }
+
+  /* ── Feed Activity Card (run_completed) ── */
+  .feed-activity {
+    background: #111827; border: 1px solid #1a2332; border-radius: 14px;
+    margin: 0 12px 8px; overflow: hidden;
+  }
+  .feed-activity-header {
+    display: flex; align-items: center; gap: 10px; padding: 12px 14px 8px;
+  }
+  .feed-avatar {
+    width: 40px; height: 40px; border-radius: 20px; background: #2a3544;
+    display: flex; align-items: center; justify-content: center; position: relative;
+    overflow: hidden; flex-shrink: 0;
+  }
+  .feed-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .feed-avatar-letter { font-size: 16px; font-weight: 700; color: #FF6B00; }
+  .feed-type-dot {
+    position: absolute; bottom: -1px; right: -1px;
+    width: 16px; height: 16px; border-radius: 8px; background: #222228;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: #FF6B00;
+  }
+  .feed-user-name { font-size: 14px; font-weight: 700; color: #f0f0f0; }
+  .feed-time { font-size: 11px; color: #6b7280; margin-left: auto; }
+  .feed-activity-title { padding: 0 14px 6px; font-size: 15px; font-weight: 700; color: #f0f0f0; }
+  .feed-activity-map {
+    height: 140px; background: #1a2332; margin: 0 14px; border-radius: 10px; overflow: hidden;
+  }
+  .feed-activity-metrics {
+    display: flex; padding: 10px 14px; gap: 0;
+  }
+  .feed-metric { flex: 1; text-align: center; }
+  .feed-metric-value { font-size: 15px; font-weight: 800; color: #f0f0f0; }
+  .feed-metric-label { font-size: 9px; font-weight: 600; color: #6b7280; text-transform: uppercase; }
+  .feed-metric-divider { width: 1px; background: #2a3544; align-self: stretch; margin: 2px 0; }
+  .feed-actions {
+    display: flex; padding: 8px 14px 12px; gap: 20px; border-top: 1px solid #1a2332;
+  }
+  .feed-action {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: #6b7280; cursor: pointer;
+    background: none; border: none;
+  }
+  .feed-action.liked { color: #ef4444; }
+
+  /* ── Bottom Tab Bar ── */
+  .tab-bar {
+    display: flex; justify-content: space-around; align-items: center;
+    padding: 8px 0 20px; background: #0b1220; border-top: 1px solid #1a2332;
+    position: sticky; bottom: 0;
+  }
+  .tab-item { text-align: center; cursor: pointer; }
+  .tab-icon { font-size: 20px; margin-bottom: 2px; }
+  .tab-label { font-size: 9px; font-weight: 600; color: #6b7280; }
+  .tab-item.active .tab-label { color: #FF6B00; }
+  .tab-item.active .tab-icon { color: #FF6B00; }
+
+  /* ── [CRO] Premium Upsell Strip — contextual ── */
+  .upsell-strip {
+    margin: 10px 12px 0; border-radius: 12px; overflow: hidden; cursor: pointer;
+    background: linear-gradient(135deg, rgba(249,115,22,0.06), rgba(251,191,36,0.1));
+    border: 1px solid rgba(249,115,22,0.2);
+    padding: 14px; display: flex; align-items: center; gap: 12px;
+  }
+  .upsell-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, #f97316, #fbbf24);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .upsell-content { flex: 1; }
+  .upsell-title { font-size: 13px; font-weight: 800; color: #f0f0f0; margin-bottom: 2px; }
+  .upsell-desc { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.45); line-height: 15px; }
+  .upsell-cta {
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    padding: 8px 14px; border-radius: 10px; border: none; cursor: pointer;
+    font-size: 11px; font-weight: 800; color: #fff; white-space: nowrap;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .upsell-cta-sub {
+    font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.7);
+    display: block; margin-top: 1px;
+  }
+
+  /* ── [CRO] Locked Stat (blurred) ── */
+  .week-stat-locked {
+    flex: 1; text-align: center; position: relative; cursor: pointer;
+  }
+  .week-stat-locked .week-stat-value {
+    filter: blur(6px); user-select: none; opacity: 0.6;
+  }
+  .week-stat-lock-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .week-stat-lock-icon {
+    font-size: 12px; opacity: 0.7; margin-bottom: 1px;
+  }
+  .pro-label {
+    font-size: 7px; font-weight: 800; color: #f97316; background: rgba(249,115,22,0.15);
+    padding: 1px 5px; border-radius: 3px; letter-spacing: 0.5px;
+  }
+
+  /* ── [CRO] PRO Badge on feed users ── */
+  .pro-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    background: linear-gradient(90deg, rgba(249,115,22,0.15), rgba(251,191,36,0.15));
+    border: 1px solid rgba(249,115,22,0.3);
+    padding: 2px 7px; border-radius: 5px;
+    font-size: 9px; font-weight: 800; color: #fbbf24;
+    letter-spacing: 0.5px; margin-left: 6px;
+  }
+  .pro-badge-icon { font-size: 8px; }
+
+  /* [CRO] PRO extra data — visible only on premium users' cards */
+  .feed-pro-extras {
+    display: flex; gap: 0; padding: 0 14px 8px; margin-top: -2px;
+  }
+  .feed-pro-extra {
+    flex: 1; text-align: center; padding: 6px 0;
+    background: rgba(249,115,22,0.04); border-radius: 8px;
+  }
+  .feed-pro-extra + .feed-pro-extra { margin-left: 6px; }
+  .feed-pro-extra-value { font-size: 12px; font-weight: 800; color: #fbbf24; }
+  .feed-pro-extra-label { font-size: 8px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.3px; }
+  .feed-pro-extra-lock {
+    flex: 1; text-align: center; padding: 8px 0;
+    background: rgba(249,115,22,0.04); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer;
+  }
+  .feed-pro-extra-lock-text { font-size: 9px; font-weight: 700; color: #6b7280; }
+
+  /* ── [CRO] Milestone upsell card ── */
+  .milestone-card {
+    margin: 8px 12px 0; border-radius: 14px; overflow: hidden;
+    background: linear-gradient(135deg, #1a1400, #1A1A1E);
+    border: 1px solid rgba(251,191,36,0.2);
+    padding: 16px;
+  }
+  .milestone-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .milestone-emoji { font-size: 28px; }
+  .milestone-title { font-size: 15px; font-weight: 800; color: #fbbf24; }
+  .milestone-subtitle { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5); }
+  .milestone-cta {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    padding: 11px; border-radius: 10px; border: none; cursor: pointer; width: 100%;
+    font-size: 13px; font-weight: 800; color: #fff; margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+  <div class="notch"></div>
+  <div class="scroll-area">
+
+    <!-- ── Header ── -->
+    <div class="header">
+      <div class="header-title">CorrerJuntos</div>
+      <div class="header-right">
+        <div class="header-bell">&#x1F514;</div>
+        <div class="header-avatar">J</div>
+      </div>
+    </div>
+
+    <!-- ── Latest Activity Card ── -->
+    <div class="latest-card">
+      <div class="latest-header">
+        <div>
+          <div class="latest-label">&Uacute;ltima actividad</div>
+          <div class="latest-title-row">
+            <span class="latest-title">Rodaje matutino</span>
+            <span class="latest-type-badge">&#x1F3C3; Carrera</span>
+          </div>
+        </div>
+        <div class="latest-date">3 abr 2026</div>
+      </div>
+      <div class="latest-map">
+        <div class="latest-map-route">
+          <svg viewBox="0 0 200 80" fill="none">
+            <path d="M10 60 Q30 20, 60 40 T100 30 T140 50 T190 25" stroke="#FF6B00" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <circle cx="10" cy="60" r="4" fill="#22c55e"/>
+            <circle cx="190" cy="25" r="4" fill="#ef4444"/>
+          </svg>
+        </div>
+      </div>
+      <div class="latest-metrics">
+        <div class="latest-metric">
+          <div class="latest-metric-value">7.42</div>
+          <div class="latest-metric-label">km</div>
+        </div>
+        <div class="latest-metric-divider"></div>
+        <div class="latest-metric">
+          <div class="latest-metric-value">10.6</div>
+          <div class="latest-metric-label">km/h</div>
+        </div>
+        <div class="latest-metric-divider"></div>
+        <div class="latest-metric">
+          <div class="latest-metric-value">5:39</div>
+          <div class="latest-metric-label">min/km</div>
+        </div>
+        <div class="latest-metric-divider"></div>
+        <div class="latest-metric">
+          <div class="latest-metric-value">42:01</div>
+          <div class="latest-metric-label">tiempo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Week Summary ── -->
+    <div class="week-card">
+      <div class="week-accent"></div>
+      <div class="week-content">
+        <div class="week-header-row">
+          <div class="week-title">Esta semana</div>
+          <div class="week-goal">2/3 sesiones</div>
+        </div>
+        <div class="week-progress-bg">
+          <div class="week-progress-fill" style="width: 66%;"></div>
+        </div>
+        <div class="week-stats-row">
+          <div class="week-stat">
+            <div class="week-stat-value">2</div>
+            <div class="week-stat-label">carreras</div>
+          </div>
+          <div class="week-divider"></div>
+          <div class="week-stat">
+            <div class="week-stat-value">14.8</div>
+            <div class="week-stat-label">km</div>
+          </div>
+          <div class="week-divider"></div>
+          <div class="week-stat">
+            <div class="week-stat-value">1h 24m</div>
+            <div class="week-stat-label">tiempo</div>
+          </div>
+          <div class="week-divider"></div>
+          <!-- [CRO] Locked stat — real data (racha), not fake VO2max -->
+          <div class="week-stat-locked">
+            <div class="week-stat-value">5:28</div>
+            <div class="week-stat-label" style="font-size:10px;font-weight:600;color:#6b7280;margin-top:2px;">ritmo med.</div>
+            <div class="week-stat-lock-overlay">
+              <span class="week-stat-lock-icon">&#x1F512;</span>
+              <span class="pro-label">PRO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- [CRO] Premium Upsell Strip — contextual + trial CTA -->
+    <div class="upsell-strip">
+      <div class="upsell-icon">&#x1F3C3;</div>
+      <div class="upsell-content">
+        <div class="upsell-title">Ya corres 2 veces/semana</div>
+        <div class="upsell-desc">Un plan personalizado te har&iacute;a m&aacute;s r&aacute;pido. Runners con plan mejoran un 12%</div>
+      </div>
+      <button class="upsell-cta">Probar gratis<span class="upsell-cta-sub">7 d&iacute;as</span></button>
+    </div>
+
+    <!-- ── Training Teaser (Active Plan — today's session) ── -->
+    <div class="training-active-card">
+      <div class="training-active-gradient">
+        <div class="training-title-row">
+          <div class="training-label">Tu sesi&oacute;n de hoy</div>
+          <div class="training-badge">INTERVALOS</div>
+        </div>
+        <div class="training-title">Intervalos 6x800m</div>
+        <div class="training-meta">7km &middot; ~40min &middot; Semana 3 &middot; Prep 10K</div>
+        <button class="training-cta">
+          <span class="training-cta-icon">&#x25B6;</span>
+          <span class="training-cta-text">Empezar sesi&oacute;n</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Training Teaser ALT (No Plan — gradient CTA) ── -->
+    <!--
+    <div class="plan-feature-card">
+      <div class="plan-feature-gradient">
+        <div class="plan-feature-icon">&#x1F3C3;</div>
+        <div class="plan-feature-content">
+          <div class="plan-feature-title-row">
+            <span class="plan-feature-title">Planes de Entrenamiento</span>
+            <span class="plan-feature-free-badge">GRATIS</span>
+          </div>
+          <div class="plan-feature-subtitle">6 planes &middot; Desde principiante a marat&oacute;n</div>
+          <div class="plan-feature-pills">
+            <span class="plan-feature-pill">5K</span>
+            <span class="plan-feature-pill">10K</span>
+            <span class="plan-feature-pill">21K</span>
+            <span class="plan-feature-pill">Trail</span>
+          </div>
+        </div>
+        <span class="plan-feature-chevron">&#x203A;</span>
+      </div>
+    </div>
+    -->
+
+    <!-- [CRO] Milestone upsell — triggers at 3+ activities, concrete data -->
+    <div class="milestone-card">
+      <div class="milestone-header">
+        <div class="milestone-emoji">&#x1F525;</div>
+        <div>
+          <div class="milestone-title">&iexcl;Racha de 3 d&iacute;as corriendo!</div>
+          <div class="milestone-subtitle">Runners con plan mejoran su marca <strong style="color:#fbbf24;">un 12% en 8 semanas</strong>. T&uacute; ya tienes el h&aacute;bito.</div>
+        </div>
+      </div>
+      <button class="milestone-cta">&#x1F3AF; Probar plan gratis 7 d&iacute;as</button>
+    </div>
+
+    <!-- ── Quedadas Section ── -->
+    <div class="quedadas-section">
+      <div class="quedadas-header">
+        <div class="quedadas-title">Pr&oacute;ximas quedadas</div>
+        <button class="create-quedada-btn">Crear Quedada</button>
+      </div>
+
+      <!-- Event 1 -->
+      <div class="event-card">
+        <div class="event-photo">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#FF6B00,#FF3D00);display:flex;align-items:center;justify-content:center;font-size:24px;">&#x1F3C3;</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Running matutino Retiro</div>
+          <div class="event-meta">S&aacute;b 5 abr &middot; 09:00 &middot; Madrid</div>
+          <div class="event-meta-row">
+            <span class="event-participants">&#x1F465; 4 runners</span>
+            <span class="event-badge">&#x2714; Apuntado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card">
+        <div class="event-photo">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:24px;">&#x1F3D4;</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Trail Collserola</div>
+          <div class="event-meta">Dom 6 abr &middot; 08:00 &middot; Barcelona</div>
+          <div class="event-meta-row">
+            <span class="event-participants">&#x1F465; 6 runners</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card">
+        <div class="event-photo">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:24px;">&#x1F305;</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Carrera nocturna CDMX</div>
+          <div class="event-meta">Vie 4 abr &middot; 20:00 &middot; Ciudad de M&eacute;xico</div>
+          <div class="event-meta-row">
+            <span class="event-participants">&#x1F465; 3 runners</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Feed Label ── -->
+    <div class="feed-label">ACTIVIDAD RECIENTE</div>
+
+    <!-- ── Feed Activity 1 ── -->
+    <div class="feed-activity">
+      <div class="feed-activity-header">
+        <div class="feed-avatar">
+          <span class="feed-avatar-letter">M</span>
+          <div class="feed-type-dot">&#x1F3C3;</div>
+        </div>
+        <span class="feed-user-name">Mar&iacute;a G&oacute;mez</span>
+        <span class="pro-badge"><span class="pro-badge-icon">&#x1F451;</span> PRO</span>
+        <span class="feed-time">hace 2h</span>
+      </div>
+      <div class="feed-activity-title">Rodaje tranquilo por el r&iacute;o</div>
+      <div class="feed-activity-map">
+        <div class="latest-map-route">
+          <svg viewBox="0 0 200 80" fill="none">
+            <path d="M15 50 Q50 10, 80 35 T130 20 T185 45" stroke="#FF6B00" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <circle cx="15" cy="50" r="3" fill="#22c55e"/>
+            <circle cx="185" cy="45" r="3" fill="#ef4444"/>
+          </svg>
+        </div>
+      </div>
+      <div class="feed-activity-metrics">
+        <div class="feed-metric">
+          <div class="feed-metric-value">5.20</div>
+          <div class="feed-metric-label">KM</div>
+        </div>
+        <div class="feed-metric-divider"></div>
+        <div class="feed-metric">
+          <div class="feed-metric-value">5:48</div>
+          <div class="feed-metric-label">RITMO</div>
+        </div>
+        <div class="feed-metric-divider"></div>
+        <div class="feed-metric">
+          <div class="feed-metric-value">30:10</div>
+          <div class="feed-metric-label">TIEMPO</div>
+        </div>
+        <div class="feed-metric-divider"></div>
+        <div class="feed-metric">
+          <div class="feed-metric-value">148</div>
+          <div class="feed-metric-label">BPM</div>
+        </div>
+      </div>
+      <!-- [CRO] PRO user extra data — creates aspiration for free users -->
+      <div class="feed-pro-extras">
+        <div class="feed-pro-extra">
+          <div class="feed-pro-extra-value">Z2</div>
+          <div class="feed-pro-extra-label">Zona FC</div>
+        </div>
+        <div class="feed-pro-extra">
+          <div class="feed-pro-extra-value">142</div>
+          <div class="feed-pro-extra-label">FC media</div>
+        </div>
+        <div class="feed-pro-extra">
+          <div class="feed-pro-extra-value">+0.8%</div>
+          <div class="feed-pro-extra-label">Progreso</div>
+        </div>
+      </div>
+      <div class="feed-actions">
+        <button class="feed-action liked">&#x2764; 12</button>
+        <button class="feed-action">&#x1F4AC; 3</button>
+        <button class="feed-action">&#x1F517; Compartir</button>
+      </div>
+    </div>
+
+    <!-- ── Feed Activity 2 ── -->
+    <div class="feed-activity">
+      <div class="feed-activity-header">
+        <div class="feed-avatar">
+          <span class="feed-avatar-letter">A</span>
+          <div class="feed-type-dot">&#x1F3C3;</div>
+        </div>
+        <span class="feed-user-name">Andr&eacute;s L&oacute;pez</span>
+        <span class="feed-time">hace 5h</span>
+      </div>
+      <div class="feed-activity-title">Series en pista</div>
+      <div class="feed-activity-metrics">
+        <div class="feed-metric">
+          <div class="feed-metric-value">8.10</div>
+          <div class="feed-metric-label">KM</div>
+        </div>
+        <div class="feed-metric-divider"></div>
+        <div class="feed-metric">
+          <div class="feed-metric-value">4:52</div>
+          <div class="feed-metric-label">RITMO</div>
+        </div>
+        <div class="feed-metric-divider"></div>
+        <div class="feed-metric">
+          <div class="feed-metric-value">39:28</div>
+          <div class="feed-metric-label">TIEMPO</div>
+        </div>
+        <div class="feed-metric-divider"></div>
+        <div class="feed-metric">
+          <div class="feed-metric-value">162</div>
+          <div class="feed-metric-label">BPM</div>
+        </div>
+      </div>
+      <!-- [CRO] Non-PRO user: locked extra row — "want this? go PRO" -->
+      <div class="feed-pro-extras">
+        <div class="feed-pro-extra-lock">
+          <span style="font-size:10px;">&#x1F512;</span>
+          <span class="feed-pro-extra-lock-text">Zona FC, progreso y m&aacute;s con <strong style="color:#fbbf24;">PRO</strong></span>
+        </div>
+      </div>
+      <div class="feed-actions">
+        <button class="feed-action">&#x2661; 5</button>
+        <button class="feed-action">&#x1F4AC; 1</button>
+        <button class="feed-action">&#x1F517; Compartir</button>
+      </div>
+    </div>
+
+    <!-- spacer for tab bar -->
+    <div style="height: 70px;"></div>
+
+    <!-- ── Bottom Tab Bar ── -->
+    <div class="tab-bar">
+      <div class="tab-item active">
+        <div class="tab-icon">&#x1F3E0;</div>
+        <div class="tab-label">Feed</div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon">&#x1F5FA;</div>
+        <div class="tab-label">Mapa</div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon" style="font-size:28px; color:#FF6B00;">&#x25B6;</div>
+        <div class="tab-label" style="color:#FF6B00;">Correr</div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon">&#x1F465;</div>
+        <div class="tab-label">Social</div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon">&#x1F464;</div>
+        <div class="tab-label">Perfil</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

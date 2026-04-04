@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feed — CorrerJuntos Dark Mode</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111; min-height: 100vh;
+    display: flex; justify-content: center;
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone { width: 100%; max-width: 390px; background: #0D0D0F; display: flex; flex-direction: column; height: 100vh; position: relative; }
+  .island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+
+  /* ═══ HEADER ═══════════════════════════ */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px; background: #0D0D0F;
+    border-bottom: 1px solid #1A1A1E;
+  }
+  .hdr-left { display: flex; align-items: center; gap: 10px; }
+  .hdr-logo {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B00, #FF8C38);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: #fff;
+    border: 2px solid #2A2A30;
+  }
+  .hdr-brand { font-size: 18px; font-weight: 800; color: #F5F5F7; letter-spacing: -0.5px; }
+  .hdr-brand span { color: #FF6B00; }
+  .hdr-bell { position: relative; cursor: pointer; padding: 4px; }
+  .hdr-badge {
+    position: absolute; top: 0; right: 0;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #EF4444; border: 2px solid #0D0D0F;
+    font-size: 9px; font-weight: 700; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ═══ SCROLL ═══════════════════════════ */
+  .scroll { flex: 1; overflow-y: auto; scrollbar-width: none; }
+  .scroll::-webkit-scrollbar { display: none; }
+  .content { padding: 0 0 120px; }
+
+  /* ═══ ÚLTIMA ACTIVIDAD ═════════════════ */
+  .last-activity {
+    margin: 12px 12px 0; background: #1A1A1E;
+    border: 1px solid #2A2A30; border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .la-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .la-label { font-size: 10px; font-weight: 700; color: #555560; letter-spacing: 1px; text-transform: uppercase; }
+  .la-date { font-size: 11px; color: #555560; }
+  .la-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .la-title { font-size: 15px; font-weight: 700; color: #F5F5F7; }
+  .la-sport {
+    font-size: 10px; font-weight: 600; color: #FF6B00;
+    background: rgba(255,107,0,0.1); padding: 2px 8px; border-radius: 6px;
+  }
+  .la-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .la-stat { text-align: center; position: relative; }
+  .la-stat:not(:last-child)::after {
+    content: ''; position: absolute; right: 0; top: 4px; bottom: 4px;
+    width: 1px; background: #2A2A30;
+  }
+  .la-val { font-size: 18px; font-weight: 800; color: #F5F5F7; }
+  .la-lbl { font-size: 9px; color: #555560; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ═══ ESTA SEMANA ══════════════════════ */
+  .week-card {
+    margin: 8px 12px 0; background: #1A1A1E;
+    border: 1px solid #2A2A30; border-radius: 14px;
+    padding: 14px 16px; position: relative; overflow: hidden;
+  }
+  .week-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #FF6B00; border-radius: 4px 0 0 4px; }
+  .wk-header { display: flex; justify-content: space-between; margin-bottom: 12px; padding-left: 8px; }
+  .wk-label { font-size: 10px; font-weight: 700; color: #9A9AA6; letter-spacing: 1px; text-transform: uppercase; }
+  .wk-sessions { font-size: 11px; color: #FF6B00; font-weight: 600; }
+  .wk-stats { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; padding-left: 8px; }
+  .wk-val { font-size: 22px; font-weight: 800; color: #F5F5F7; }
+  .wk-lbl { font-size: 9px; color: #555560; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .wk-progress { margin-top: 12px; padding-left: 8px; }
+  .wk-track { height: 4px; background: #222228; border-radius: 2px; overflow: hidden; }
+  .wk-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #FF6B00, #FF8C33); }
+
+  /* ═══ TRAINING TEASER (con plan activo) ══ */
+  .training-active {
+    margin: 8px 12px 0;
+    background: linear-gradient(135deg, #1A1A1E, #1A1400);
+    border: 1px solid rgba(255,107,0,0.15); border-radius: 16px;
+    padding: 16px; cursor: pointer;
+  }
+  .ta-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .ta-label { font-size: 10px; font-weight: 700; color: #FF6B00; letter-spacing: 0.8px; text-transform: uppercase; }
+  .ta-type {
+    font-size: 10px; font-weight: 600; color: #9A9AA6;
+    background: #222228; padding: 3px 10px; border-radius: 6px;
+  }
+  .ta-title { font-size: 17px; font-weight: 700; color: #F5F5F7; }
+  .ta-meta { font-size: 12px; color: #9A9AA6; margin-top: 3px; }
+  .ta-cta {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 14px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, #FF6B00, #FF8C38);
+    color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; border: none;
+    width: 100%;
+  }
+
+  /* ═══ TRAINING TEASER (sin plan) ══════ */
+  .training-promo {
+    margin: 8px 12px 0;
+    background: linear-gradient(135deg, #FF6B00, #FF3D00);
+    border-radius: 16px; padding: 16px; cursor: pointer;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 4px 8px rgba(255,107,0,0.3);
+  }
+  .tp-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .tp-content { flex: 1; }
+  .tp-title-row { display: flex; align-items: center; gap: 8px; }
+  .tp-title { font-size: 16px; font-weight: 700; color: #fff; }
+  .tp-badge {
+    font-size: 9px; font-weight: 800; color: #FF6B00;
+    background: #fff; padding: 2px 8px; border-radius: 20px;
+  }
+  .tp-sub { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 3px; }
+  .tp-pills { display: flex; gap: 6px; margin-top: 8px; }
+  .tp-pill {
+    font-size: 10px; font-weight: 600; color: #fff;
+    background: rgba(0,0,0,0.15); padding: 3px 10px; border-radius: 8px;
+  }
+  .tp-chevron { flex-shrink: 0; }
+
+  /* ═══ QUEDADAS ═════════════════════════ */
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 16px 10px;
+  }
+  .section-title { font-size: 17px; font-weight: 700; color: #F5F5F7; }
+  .btn-crear {
+    font-size: 12px; font-weight: 700; color: #fff;
+    background: linear-gradient(90deg, #FF6B00, #ea580c);
+    border: none; padding: 8px 16px; border-radius: 20px;
+    cursor: pointer; font-family: inherit;
+  }
+
+  .quedada-card {
+    margin: 0 12px 8px; background: #1A1A1E;
+    border: 1px solid #2A2A30; border-radius: 14px;
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .quedada-card:hover { background: #222228; }
+  .qc-date {
+    width: 44px; text-align: center; flex-shrink: 0;
+    background: rgba(255,107,0,0.1); border-radius: 10px; padding: 6px 0;
+  }
+  .qc-day { font-size: 18px; font-weight: 800; color: #FF6B00; }
+  .qc-month { font-size: 9px; font-weight: 700; color: #FF6B00; text-transform: uppercase; letter-spacing: 0.5px; }
+  .qc-info { flex: 1; min-width: 0; }
+  .qc-title { font-size: 14px; font-weight: 700; color: #F5F5F7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .qc-meta { font-size: 11px; color: #9A9AA6; margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+  .qc-meta svg { flex-shrink: 0; }
+  .qc-badges { display: flex; gap: 6px; margin-top: 5px; }
+  .qc-badge {
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 6px;
+  }
+  .qc-badge.inter { background: rgba(245,158,11,0.12); color: #F59E0B; }
+  .qc-badge.princ { background: rgba(34,197,94,0.12); color: #22C55E; }
+  .qc-badge.unido { background: rgba(59,130,246,0.12); color: #60A5FA; }
+  .qc-participants { font-size: 11px; color: #555560; flex-shrink: 0; display: flex; align-items: center; gap: 4px; }
+
+  /* ═══ ACTIVIDAD RECIENTE ═══════════════ */
+  .feed-label {
+    font-size: 10px; font-weight: 700; color: #555560;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 20px 16px 8px;
+  }
+
+  .feed-card {
+    margin: 0 12px 10px; background: #1A1A1E;
+    border: 1px solid #2A2A30; border-radius: 14px;
+    overflow: hidden;
+  }
+  .fc-header { padding: 14px 16px 0; display: flex; align-items: center; gap: 10px; }
+  .fc-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B00, #FF8C38);
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #2A2A30; font-size: 14px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .fc-user { flex: 1; }
+  .fc-name { font-size: 14px; font-weight: 700; color: #F5F5F7; }
+  .fc-meta { font-size: 11px; color: #9A9AA6; margin-top: 1px; }
+  .fc-dots { cursor: pointer; padding: 4px; }
+
+  .fc-map {
+    margin: 12px 16px 0; height: 140px; border-radius: 12px;
+    background: #111114; border: 1px solid #222228;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+
+  .fc-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    text-align: center; padding: 14px 16px;
+    border-top: 1px solid #222228; margin-top: 12px;
+  }
+  .fc-stat-val { font-size: 16px; font-weight: 800; color: #F5F5F7; }
+  .fc-stat-lbl { font-size: 9px; color: #555560; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .fc-social {
+    display: flex; align-items: center; gap: 16px;
+    padding: 0 16px 14px;
+  }
+  .fc-social-btn { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+  .fc-social-count { font-size: 12px; color: #9A9AA6; }
+  .fc-social-share { margin-left: auto; cursor: pointer; }
+
+  /* ═══ TAB BAR ══════════════════════════ */
+  .tabbar {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 390px;
+    background: #0D0D0F; border-top: 1px solid #1A1A1E;
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 8px 0 28px; z-index: 100;
+  }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+  .tab-label { font-size: 10px; font-weight: 500; }
+  .tab-label.active { color: #FF6B00; }
+  .tab-label.inactive { color: #555560; }
+  .tab-center {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #FF6B00; display: flex; align-items: center; justify-content: center;
+    margin-top: -28px; box-shadow: 0 4px 16px rgba(255,107,0,0.4);
+    cursor: pointer;
+  }
+
+  /* Toggle button */
+  .toggle-row {
+    display: flex; gap: 8px; padding: 12px 16px 0; justify-content: center;
+  }
+  .toggle-btn {
+    font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 8px;
+    border: 1px solid #2A2A30; background: transparent; color: #9A9AA6;
+    cursor: pointer; font-family: inherit; transition: all 0.2s;
+  }
+  .toggle-btn.active { background: #FF6B00; color: #fff; border-color: #FF6B00; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="island"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hdr-left">
+      <div class="hdr-logo">C</div>
+      <div class="hdr-brand">CORRER<span>JUNTOS</span></div>
+    </div>
+    <div class="hdr-bell">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9z" stroke="#9A9AA6" stroke-width="1.8" stroke-linecap="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="#9A9AA6" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <div class="hdr-badge">3</div>
+    </div>
+  </div>
+
+  <!-- Toggle: con plan / sin plan -->
+  <div class="toggle-row">
+    <button class="toggle-btn active" id="btnConPlan" onclick="showState('conPlan')">Con plan activo</button>
+    <button class="toggle-btn" id="btnSinPlan" onclick="showState('sinPlan')">Sin plan</button>
+  </div>
+
+  <div class="scroll">
+    <div class="content">
+
+      <!-- ÚLTIMA ACTIVIDAD -->
+      <div class="last-activity">
+        <div class="la-header">
+          <span class="la-label">Última actividad</span>
+          <span class="la-date">2 abr 2026</span>
+        </div>
+        <div class="la-title-row">
+          <span class="la-title">Carrera vespertina</span>
+          <span class="la-sport">Carrera</span>
+        </div>
+        <div class="la-stats">
+          <div class="la-stat"><div class="la-val">0.00</div><div class="la-lbl">km</div></div>
+          <div class="la-stat"><div class="la-val">0.0</div><div class="la-lbl">km/h</div></div>
+          <div class="la-stat"><div class="la-val">--:--</div><div class="la-lbl">min/km</div></div>
+          <div class="la-stat"><div class="la-val">0:06</div><div class="la-lbl">tiempo</div></div>
+        </div>
+      </div>
+
+      <!-- ESTA SEMANA -->
+      <div class="week-card">
+        <div class="week-accent"></div>
+        <div class="wk-header">
+          <span class="wk-label">Esta semana</span>
+          <span class="wk-sessions">8/3 sesiones</span>
+        </div>
+        <div class="wk-stats">
+          <div><div class="wk-val">8</div><div class="wk-lbl">carreras</div></div>
+          <div><div class="wk-val">0.0</div><div class="wk-lbl">km</div></div>
+          <div><div class="wk-val">49m</div><div class="wk-lbl">tiempo</div></div>
+        </div>
+        <div class="wk-progress">
+          <div class="wk-track"><div class="wk-fill" style="width: 67%;"></div></div>
+        </div>
+      </div>
+
+      <!-- TRAINING TEASER — CON PLAN ACTIVO -->
+      <div class="training-active" id="conPlanSection">
+        <div class="ta-header">
+          <span class="ta-label">Tu próxima sesión</span>
+          <span class="ta-type">CAMINAR/CORRER</span>
+        </div>
+        <div class="ta-title">Caminata 20 min</div>
+        <div class="ta-meta">~20min · Semana 1 · Empieza a Moverte</div>
+        <button class="ta-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="#fff"/></svg>
+          Empezar sesión
+        </button>
+      </div>
+
+      <!-- TRAINING TEASER — SIN PLAN -->
+      <div class="training-promo" id="sinPlanSection" style="display: none;">
+        <div class="tp-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="14" cy="4" r="2" fill="#fff"/><path d="M7 22l2-8-3-1 3-5h4l2 4h4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 22l2-8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="tp-content">
+          <div class="tp-title-row">
+            <span class="tp-title">Planes de Entrenamiento</span>
+            <span class="tp-badge">GRATIS</span>
+          </div>
+          <div class="tp-sub">6 planes · Desde principiante a maratón</div>
+          <div class="tp-pills">
+            <span class="tp-pill">5K</span><span class="tp-pill">10K</span>
+            <span class="tp-pill">21K</span><span class="tp-pill">Trail</span>
+          </div>
+        </div>
+        <div class="tp-chevron">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- QUEDADAS -->
+      <div class="section-header">
+        <span class="section-title">Próximas quedadas</span>
+        <button class="btn-crear">Crear Quedada</button>
+      </div>
+
+      <div class="quedada-card">
+        <div class="qc-date"><div class="qc-day">18</div><div class="qc-month">ABR</div></div>
+        <div class="qc-info">
+          <div class="qc-title">Carrera contra el cáncer Madrid</div>
+          <div class="qc-meta">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#555560" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#555560" stroke-width="2"/></svg>
+            Madrid · 10 km · 09:00
+          </div>
+          <div class="qc-badges">
+            <span class="qc-badge inter">Intermedio</span>
+          </div>
+        </div>
+        <div class="qc-participants">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#555560" stroke-width="1.5"/><circle cx="9" cy="7" r="4" stroke="#555560" stroke-width="1.5"/></svg>
+          2
+        </div>
+      </div>
+
+      <div class="quedada-card">
+        <div class="qc-date"><div class="qc-day">12</div><div class="qc-month">ABR</div></div>
+        <div class="qc-info">
+          <div class="qc-title">Tirada larga Madrid Río</div>
+          <div class="qc-meta">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#555560" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#555560" stroke-width="2"/></svg>
+            Madrid · 15 km · 08:30
+          </div>
+          <div class="qc-badges">
+            <span class="qc-badge inter">Intermedio</span>
+          </div>
+        </div>
+        <div class="qc-participants">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#555560" stroke-width="1.5"/><circle cx="9" cy="7" r="4" stroke="#555560" stroke-width="1.5"/></svg>
+          5
+        </div>
+      </div>
+
+      <div class="quedada-card">
+        <div class="qc-date"><div class="qc-day">5</div><div class="qc-month">ABR</div></div>
+        <div class="qc-info">
+          <div class="qc-title">Rodaje mañanero Retiro</div>
+          <div class="qc-meta">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#555560" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#555560" stroke-width="2"/></svg>
+            Madrid · 8 km · 08:00
+          </div>
+          <div class="qc-badges">
+            <span class="qc-badge princ">Principiante</span>
+          </div>
+        </div>
+        <div class="qc-participants">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#555560" stroke-width="1.5"/><circle cx="9" cy="7" r="4" stroke="#555560" stroke-width="1.5"/></svg>
+          4
+        </div>
+      </div>
+
+      <!-- ACTIVIDAD RECIENTE -->
+      <div class="feed-label">Actividad reciente</div>
+
+      <div class="feed-card">
+        <div class="fc-header">
+          <div class="fc-avatar">J</div>
+          <div class="fc-user">
+            <div class="fc-name">Javi</div>
+            <div class="fc-meta">Ha completado una carrera · 17 mar</div>
+          </div>
+          <div class="fc-dots">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="1.5" fill="#555560"/><circle cx="12" cy="12" r="1.5" fill="#555560"/><circle cx="12" cy="19" r="1.5" fill="#555560"/></svg>
+          </div>
+        </div>
+        <div class="fc-map">
+          <svg width="200" height="80" viewBox="0 0 200 80" fill="none">
+            <path d="M10 60 C30 55, 50 20, 80 35 S130 10, 160 30 S185 50, 190 40" stroke="#FF6B00" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <circle cx="10" cy="60" r="4" fill="#22C55E"/>
+            <circle cx="190" cy="40" r="4" fill="#FF6B00"/>
+          </svg>
+        </div>
+        <div class="fc-stats">
+          <div><div class="fc-stat-val">5.20</div><div class="fc-stat-lbl">km</div></div>
+          <div><div class="fc-stat-val">28:14</div><div class="fc-stat-lbl">tiempo</div></div>
+          <div><div class="fc-stat-val">5:25</div><div class="fc-stat-lbl">/km</div></div>
+        </div>
+        <div class="fc-social">
+          <div class="fc-social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="#EF4444" fill="#EF4444" stroke-width="1.5"/></svg>
+            <span class="fc-social-count" style="color: #EF4444;">14</span>
+          </div>
+          <div class="fc-social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="#9A9AA6" stroke-width="1.5"/></svg>
+            <span class="fc-social-count">3</span>
+          </div>
+          <div class="fc-social-share">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" stroke="#9A9AA6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tabbar">
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" fill="#FF6B00" stroke="#FF6B00" stroke-width="1.5"/><path d="M9 22V12h6v10" stroke="#0D0D0F" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="tab-label active">Inicio</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#555560" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="#555560" stroke-width="1.5"/></svg>
+      <span class="tab-label inactive">Mapa</span>
+    </div>
+    <div class="tab-center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="#fff"/></svg>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#555560" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#555560" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#555560" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="tab-label inactive">Social</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="4" stroke="#555560" stroke-width="1.5"/><path d="M6 21v-1a6 6 0 0112 0v1" stroke="#555560" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="tab-label inactive">Perfil</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showState(state) {
+  const conPlan = document.getElementById('conPlanSection');
+  const sinPlan = document.getElementById('sinPlanSection');
+  const btnCon = document.getElementById('btnConPlan');
+  const btnSin = document.getElementById('btnSinPlan');
+  if (state === 'conPlan') {
+    conPlan.style.display = ''; sinPlan.style.display = 'none';
+    btnCon.classList.add('active'); btnSin.classList.remove('active');
+  } else {
+    conPlan.style.display = 'none'; sinPlan.style.display = 'flex';
+    btnSin.classList.add('active'); btnCon.classList.remove('active');
+  }
+}
+</script>
+</body>
+</html>

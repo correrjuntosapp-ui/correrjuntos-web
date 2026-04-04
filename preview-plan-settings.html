@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajustes del Plan — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #E8E8ED; min-height: 100vh;
+    display: flex; justify-content: center; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone { width: 100%; max-width: 390px; background: #F2F2F7; display: flex; flex-direction: column; height: 100vh; position: relative; }
+  .island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+
+  /* ═══ HEADER ═══════════════════════════ */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px; flex-shrink: 0; background: #fff;
+    border-bottom: 1px solid #E5E5EA;
+  }
+  .hdr-back {
+    width: 36px; height: 36px; border-radius: 10px; background: #F2F2F7;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .hdr-title { font-size: 17px; font-weight: 700; color: #1C1C1E; }
+  .hdr-spacer { width: 36px; }
+
+  /* ═══ SCROLL CONTENT ═══════════════════ */
+  .scroll { flex: 1; overflow-y: auto; padding: 20px 16px; }
+
+  /* ── Plan Info Card ── */
+  .plan-info {
+    background: #fff; border-radius: 16px; padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .plan-row { display: flex; align-items: center; gap: 14px; }
+  .plan-icon-wrap {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: rgba(34,197,94,0.1);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .plan-name { font-size: 18px; font-weight: 700; color: #1C1C1E; }
+  .plan-meta { font-size: 13px; color: #8E8E93; margin-top: 3px; }
+  .plan-badge {
+    display: inline-block; margin-top: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+    padding: 3px 10px; border-radius: 6px;
+    background: rgba(34,197,94,0.1); color: #22C55E;
+  }
+  .plan-progress-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 16px;
+  }
+  .plan-progress-label { font-size: 12px; font-weight: 600; color: #8E8E93; }
+  .plan-progress-pct { font-size: 12px; font-weight: 700; color: #FF6B00; }
+  .plan-progress-track {
+    height: 6px; background: #F2F2F7; border-radius: 3px; margin-top: 8px;
+    overflow: hidden;
+  }
+  .plan-progress-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, #FF6B00, #FF8C33);
+  }
+
+  /* ── Settings Section ── */
+  .section-title {
+    font-size: 12px; font-weight: 700; color: #8E8E93; text-transform: uppercase;
+    letter-spacing: 1px; margin: 28px 0 12px 4px;
+  }
+
+  .settings-group {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .setting-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 20px; border-bottom: 1px solid #F2F2F7; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .setting-item:last-child { border-bottom: none; }
+  .setting-item:hover { background: #F9F9F9; }
+  .setting-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .setting-icon.blue { background: rgba(59,130,246,0.1); }
+  .setting-icon.orange { background: rgba(255,107,0,0.1); }
+  .setting-icon.green { background: rgba(34,197,94,0.1); }
+  .setting-icon.amber { background: rgba(245,158,11,0.1); }
+  .setting-icon.red { background: rgba(239,68,68,0.1); }
+
+  .setting-text { flex: 1; }
+  .setting-label { font-size: 15px; font-weight: 600; color: #1C1C1E; }
+  .setting-desc { font-size: 12px; color: #8E8E93; margin-top: 2px; }
+  .setting-chevron { color: #C7C7CC; font-size: 14px; }
+  .setting-value { font-size: 14px; font-weight: 600; color: #FF6B00; margin-right: 4px; }
+
+  /* ── Danger Zone ── */
+  .danger-group {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    margin-bottom: 40px;
+  }
+  .danger-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 20px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .danger-item:hover { background: #FEF2F2; }
+  .danger-label { font-size: 15px; font-weight: 600; color: #EF4444; }
+  .danger-desc { font-size: 12px; color: #8E8E93; margin-top: 2px; }
+
+  /* ═══ BOTTOM SHEET OVERLAY ═══════════════ */
+  .overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5); z-index: 100;
+    display: none; align-items: flex-end; justify-content: center;
+  }
+  .overlay.show { display: flex; }
+
+  .sheet {
+    width: 100%; background: #fff; border-radius: 20px 20px 0 0;
+    padding: 0 20px 40px; animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .sheet-handle {
+    width: 36px; height: 4px; background: #D1D1D6; border-radius: 2px;
+    margin: 10px auto 20px;
+  }
+
+  .sheet-icon-wrap {
+    width: 64px; height: 64px; border-radius: 18px;
+    background: rgba(239,68,68,0.08);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  .sheet-title {
+    text-align: center; font-size: 20px; font-weight: 800; color: #1C1C1E;
+  }
+  .sheet-subtitle {
+    text-align: center; font-size: 14px; color: #8E8E93; margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .sheet-warning {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: #FEF2F2; border-radius: 12px; padding: 14px;
+    margin-top: 20px;
+  }
+  .sheet-warning-icon { flex-shrink: 0; margin-top: 1px; }
+  .sheet-warning-text { font-size: 13px; color: #991B1B; line-height: 1.5; }
+
+  .sheet-btns { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+
+  .btn-danger {
+    width: 100%; height: 52px; border-radius: 14px;
+    background: #EF4444; color: #fff;
+    font-size: 16px; font-weight: 700; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: opacity 0.15s;
+  }
+  .btn-danger:hover { opacity: 0.9; }
+
+  .btn-cancel {
+    width: 100%; height: 48px; border-radius: 14px;
+    background: #F2F2F7; color: #1C1C1E;
+    font-size: 15px; font-weight: 600; border: none; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-cancel:hover { background: #E5E5EA; }
+
+  /* ═══ PAUSE SHEET ════════════════════════ */
+  .sheet-pause-icon {
+    width: 64px; height: 64px; border-radius: 18px;
+    background: rgba(245,158,11,0.08);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .btn-pause {
+    width: 100%; height: 52px; border-radius: 14px;
+    background: #F59E0B; color: #fff;
+    font-size: 16px; font-weight: 700; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: opacity 0.15s;
+  }
+  .btn-pause:hover { opacity: 0.9; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="island"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hdr-back" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#1C1C1E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="hdr-title">Ajustes del plan</span>
+    <div class="hdr-spacer"></div>
+  </div>
+
+  <!-- SCROLL -->
+  <div class="scroll">
+
+    <!-- Plan Info Card -->
+    <div class="plan-info">
+      <div class="plan-row">
+        <div class="plan-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="5" r="2.5" stroke="#22C55E" stroke-width="2"/>
+            <path d="M9 22l1.5-7L8 12h3l1-5 4 5h-3l1.5 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="plan-name">Empieza a Moverte</div>
+          <div class="plan-meta">6 semanas · 18 sesiones · 3 días/semana</div>
+          <span class="plan-badge">ACTIVO</span>
+        </div>
+      </div>
+      <div class="plan-progress-row">
+        <span class="plan-progress-label">Progreso general</span>
+        <span class="plan-progress-pct">6%</span>
+      </div>
+      <div class="plan-progress-track">
+        <div class="plan-progress-fill" style="width: 6%;"></div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="section-title">Configuración</div>
+    <div class="settings-group">
+
+      <div class="setting-item">
+        <div class="setting-icon blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="setting-label">Días de entrenamiento</div>
+          <div class="setting-desc">Cambia tus días disponibles</div>
+        </div>
+        <span class="setting-value">L, X, V</span>
+        <span class="setting-chevron">›</span>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-icon orange">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="setting-label">Ritmo base</div>
+          <div class="setting-desc">Tu ritmo actual de referencia</div>
+        </div>
+        <span class="setting-value">6:30/km</span>
+        <span class="setting-chevron">›</span>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-icon green">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#22C55E" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="setting-label">Recordatorios</div>
+          <div class="setting-desc">Notificaciones antes de cada sesión</div>
+        </div>
+        <span class="setting-value">1h antes</span>
+        <span class="setting-chevron">›</span>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-icon amber">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="setting-label">Nivel de exigencia</div>
+          <div class="setting-desc">Ajusta la intensidad del plan</div>
+        </div>
+        <span class="setting-value">Normal</span>
+        <span class="setting-chevron">›</span>
+      </div>
+
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="section-title" style="color: #EF4444;">Zona de riesgo</div>
+    <div class="danger-group">
+
+      <div class="danger-item" onclick="document.getElementById('pauseSheet').classList.add('show')">
+        <div class="setting-icon" style="background: rgba(245,158,11,0.1);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#F59E0B"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#F59E0B"/></svg>
+        </div>
+        <div class="setting-text">
+          <div style="font-size: 15px; font-weight: 600; color: #F59E0B;">Pausar plan</div>
+          <div class="danger-desc">Puedes retomarlo cuando quieras</div>
+        </div>
+        <span class="setting-chevron">›</span>
+      </div>
+
+      <div class="danger-item" style="border-top: 1px solid #F2F2F7;" onclick="document.getElementById('abandonSheet').classList.add('show')">
+        <div class="setting-icon red">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="danger-label">Abandonar plan</div>
+          <div class="danger-desc">Se perderá todo el progreso</div>
+        </div>
+        <span class="setting-chevron">›</span>
+      </div>
+
+    </div>
+
+  </div><!-- /scroll -->
+
+  <!-- ═══ ABANDON BOTTOM SHEET ═══════════════ -->
+  <div class="overlay" id="abandonSheet">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+
+      <div class="sheet-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="sheet-title">¿Abandonar el plan?</div>
+      <div class="sheet-subtitle">
+        Estás a punto de abandonar <strong>"Empieza a Moverte"</strong>.<br>
+        Podrás empezar un nuevo plan después.
+      </div>
+
+      <div class="sheet-warning">
+        <div class="sheet-warning-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 9v3.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke="#991B1B" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="sheet-warning-text">
+          Se perderá todo el progreso del plan actual. Las actividades que ya hayas registrado se mantienen en tu historial.
+        </div>
+      </div>
+
+      <div class="sheet-btns">
+        <button class="btn-danger" onclick="alert('Plan abandonado')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Sí, abandonar plan
+        </button>
+        <button class="btn-cancel" onclick="document.getElementById('abandonSheet').classList.remove('show')">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PAUSE BOTTOM SHEET ═══════════════ -->
+  <div class="overlay" id="pauseSheet">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+
+      <div class="sheet-pause-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <rect x="6" y="4" width="4" height="16" rx="1" stroke="#F59E0B" stroke-width="2" fill="rgba(245,158,11,0.15)"/>
+          <rect x="14" y="4" width="4" height="16" rx="1" stroke="#F59E0B" stroke-width="2" fill="rgba(245,158,11,0.15)"/>
+        </svg>
+      </div>
+
+      <div class="sheet-title">¿Pausar el plan?</div>
+      <div class="sheet-subtitle">
+        Tu plan <strong>"Empieza a Moverte"</strong> se pausará.<br>
+        Podrás retomarlo en cualquier momento desde donde lo dejaste.
+      </div>
+
+      <div class="sheet-btns" style="margin-top: 20px;">
+        <button class="btn-pause" onclick="alert('Plan pausado')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg>
+          Sí, pausar plan
+        </button>
+        <button class="btn-cancel" onclick="document.getElementById('pauseSheet').classList.remove('show')">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

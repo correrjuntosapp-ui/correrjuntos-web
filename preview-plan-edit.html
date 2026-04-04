@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan — Editar Fechas y Dias</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111; min-height: 100vh;
+    display: flex; justify-content: center; align-items: flex-start; gap: 20px; padding: 20px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  @media (max-width: 1250px) {
+    body { flex-wrap: wrap; }
+  }
+  .phone { width: 100%; max-width: 390px; background: #0D0D0F; display: flex; flex-direction: column; height: 844px; position: relative; overflow: hidden; border-radius: 40px; border: 2px solid #2A2A30; }
+  .island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; }
+  .label { color: #FF6B00; font-size: 11px; font-weight: 700; text-align: center; margin: 8px 0 4px; letter-spacing: 1px; }
+
+  /* ═══ HEADER ═══ */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px 8px; flex-shrink: 0;
+  }
+  .header-back { color: #FF6B00; font-size: 22px; cursor: pointer; }
+  .header-title { font-size: 17px; font-weight: 700; color: #F5F5F7; }
+  .header-icons { display: flex; gap: 6px; }
+  .header-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: #1C1C1E; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .header-icon:hover { background: #2C2C2E; }
+  .header-icon.synced svg path { fill: #22C55E; }
+
+  /* Week pill */
+  .week-pill {
+    display: flex; align-items: center; gap: 7px;
+    background: #1C1C1E; border-radius: 10px; padding: 8px 14px;
+    margin: 0 16px 8px;
+  }
+  .week-dot { width: 6px; height: 6px; border-radius: 3px; background: #FF6B00; }
+  .week-text { font-size: 14px; font-weight: 600; color: #F5F5F7; }
+  .week-arrow { font-size: 9px; color: #555560; margin-left: auto; }
+
+  /* Progress bar */
+  .progress-bar { height: 3px; background: #1E1E1E; margin: 0 16px 12px; border-radius: 2px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #FF6B00, #FF8C33); border-radius: 2px; width: 25%; }
+
+  /* Tabs */
+  .tabs { display: flex; border-bottom: 1px solid #2A2A30; margin: 0 16px; }
+  .tab { flex: 1; text-align: center; padding: 10px 0; font-size: 14px; font-weight: 500; color: #555560; cursor: pointer; position: relative; }
+  .tab.active { color: #F5F5F7; font-weight: 700; }
+  .tab.active::after { content: ''; position: absolute; bottom: -1px; left: 20%; right: 20%; height: 2px; background: #FF6B00; border-radius: 1px; }
+
+  /* ═══ WORKOUT CARDS ═══ */
+  .workouts { flex: 1; overflow-y: auto; padding: 12px 16px 100px; scrollbar-width: none; }
+  .workouts::-webkit-scrollbar { display: none; }
+
+  .workout-card {
+    background: #1C1C1E; border-radius: 14px; padding: 14px; margin-bottom: 10px;
+    border: 1px solid #2C2C2E; cursor: pointer; transition: border-color 0.15s;
+  }
+  .workout-card:hover { border-color: #3A3A3C; }
+  .workout-card.today { border: 2px solid #FF6B00; }
+
+  .workout-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+  }
+  .workout-date-row { display: flex; align-items: center; gap: 6px; }
+  .workout-date { font-size: 11px; font-weight: 600; color: #8E8E93; letter-spacing: 0.3px; }
+  .workout-date.today-text { color: #FF6B00; }
+
+  /* ── EDIT ICON (NEW) ── */
+  .edit-date-btn {
+    width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; border-radius: 4px; transition: background 0.15s;
+  }
+  .edit-date-btn:hover { background: rgba(255,255,255,0.08); }
+  .edit-date-btn svg { width: 13px; height: 13px; }
+
+  .type-badge {
+    display: flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 8px; font-size: 11px; font-weight: 600;
+  }
+  .type-badge.easy { background: rgba(52,199,89,0.12); color: #34C759; border: 1px solid rgba(52,199,89,0.25); }
+  .type-badge.walk { background: rgba(156,163,175,0.12); color: #9ca3af; border: 1px solid rgba(156,163,175,0.25); }
+  .type-badge.long { background: rgba(255,107,0,0.12); color: #FF6B00; border: 1px solid rgba(255,107,0,0.25); }
+  .type-badge.interval { background: rgba(255,59,48,0.12); color: #FF3B30; border: 1px solid rgba(255,59,48,0.25); }
+
+  .workout-body { display: flex; gap: 12px; }
+  .color-bar { width: 3px; border-radius: 2px; min-height: 40px; }
+  .color-bar.green { background: #34C759; }
+  .color-bar.gray { background: #9ca3af; }
+  .color-bar.orange { background: #FF6B00; }
+  .color-bar.red { background: #FF3B30; }
+
+  .workout-info { flex: 1; }
+  .workout-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .workout-metrics { display: flex; gap: 10px; font-size: 12px; color: #8E8E93; }
+  .workout-desc { font-size: 12px; color: #636366; margin-top: 4px; }
+
+  .workout-status { display: flex; align-items: center; justify-content: center; }
+  .status-upcoming { font-size: 11px; color: #8E8E93; }
+  .status-start { width: 32px; height: 32px; border-radius: 16px; background: #FF6B00; display: flex; align-items: center; justify-content: center; }
+  .status-done { width: 32px; height: 32px; border-radius: 16px; background: rgba(48,209,88,0.12); display: flex; align-items: center; justify-content: center; }
+
+  /* ═══ BOTTOM SHEET OVERLAY ═══ */
+  .sheet-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55); z-index: 50;
+    display: flex; align-items: flex-end;
+  }
+  .sheet-panel {
+    width: 100%; background: #1C1C1E; border-radius: 20px 20px 0 0;
+    padding: 12px 0 40px;
+  }
+  .sheet-handle { width: 36px; height: 4px; background: #3A3A3C; border-radius: 2px; margin: 0 auto 20px; }
+  .sheet-title { font-size: 18px; font-weight: 700; color: #F5F5F7; padding: 0 24px; margin-bottom: 6px; }
+  .sheet-subtitle { font-size: 14px; color: #9A9AA6; padding: 0 24px; margin-bottom: 24px; }
+
+  /* Day selector */
+  .day-selector { display: flex; justify-content: center; gap: 8px; padding: 0 24px; margin-bottom: 28px; }
+  .day-btn {
+    width: 42px; height: 42px; border-radius: 21px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    border: 1px solid #3A3A3C; background: #2C2C2E; color: #9A9AA6;
+    transition: all 0.15s;
+  }
+  .day-btn.selected { background: #FF6B00; color: #fff; border-color: #FF6B00; }
+  .day-btn:hover:not(.selected) { background: #3A3A3C; }
+
+  .sheet-btn {
+    margin: 0 24px; padding: 15px; border-radius: 14px;
+    text-align: center; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: opacity 0.15s;
+  }
+  .sheet-btn.primary { background: #FF6B00; color: #fff; }
+  .sheet-btn.secondary { background: #2C2C2E; color: #F5F5F7; margin-top: 10px; }
+
+  /* ═══ DATE PICKER SHEET ═══ */
+  .datepicker-sheet {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55); z-index: 50;
+    display: flex; align-items: flex-end;
+  }
+  .datepicker-panel {
+    width: 100%; background: #1C1C1E; border-radius: 20px 20px 0 0;
+    padding: 12px 0 40px;
+  }
+  .datepicker-title { font-size: 16px; font-weight: 700; color: #F5F5F7; text-align: center; margin-bottom: 16px; }
+
+  /* Calendar mini */
+  .cal-header { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; margin-bottom: 12px; }
+  .cal-month { font-size: 16px; font-weight: 700; color: #F5F5F7; }
+  .cal-arrow { color: #FF6B00; font-size: 18px; cursor: pointer; padding: 4px 12px; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; padding: 0 16px; }
+  .cal-day-header { text-align: center; font-size: 11px; font-weight: 600; color: #555560; padding: 4px 0; }
+  .cal-day {
+    text-align: center; padding: 10px 0; font-size: 14px; font-weight: 500; color: #9A9AA6;
+    border-radius: 10px; cursor: pointer; transition: all 0.15s;
+  }
+  .cal-day:hover { background: #2C2C2E; }
+  .cal-day.selected { background: #FF6B00; color: #fff; font-weight: 700; }
+  .cal-day.today { color: #FF6B00; font-weight: 700; }
+  .cal-day.muted { color: #3A3A3C; }
+
+  .hidden { display: none; }
+
+  /* Annotation arrows */
+  .annotation {
+    position: absolute; z-index: 100;
+    font-size: 11px; font-weight: 600; color: #FF6B00;
+    background: rgba(255,107,0,0.12); border: 1px solid rgba(255,107,0,0.3);
+    padding: 4px 10px; border-radius: 8px;
+    pointer-events: none; white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- PHONE 1: Workout cards with edit date icon  -->
+<!-- ════════════════════════════════════════════ -->
+<div class="phone" style="position: relative;">
+  <div class="island"></div>
+  <div class="label">PANTALLA PLAN — WORKOUT CARDS</div>
+
+  <div class="header">
+    <span class="header-back">‹</span>
+    <span class="header-title">Empieza a Moverte</span>
+    <div class="header-icons">
+      <div class="header-icon synced" title="Sync calendario">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 12a8 8 0 018-8V1l4 3-4 3V4a6 6 0 100 12v2a8 8 0 01-8-8z" fill="#22C55E"/></svg>
+      </div>
+      <div class="header-icon" title="Calendario app">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><rect x="3" y="4" width="18" height="18" rx="3" stroke="#888" stroke-width="1.8"/><path d="M16 2v4M8 2v4M3 10h18" stroke="#888" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div class="header-icon" title="Ajustes" onclick="toggleSheet('settings')">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="#888" stroke-width="1.8"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9" stroke="#888" stroke-width="1.8"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-pill">
+    <div class="week-dot"></div>
+    <span class="week-text">Semana 1/6</span>
+    <span class="week-arrow">&#9662;</span>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+
+  <div class="tabs">
+    <div class="tab active">Mi Plan</div>
+    <div class="tab">Progreso</div>
+  </div>
+
+  <div class="workouts">
+
+    <!-- Workout 1: TODAY -->
+    <div class="workout-card today">
+      <div class="workout-header">
+        <div class="workout-date-row">
+          <span class="workout-date today-text">HOY</span>
+          <div class="edit-date-btn" onclick="toggleSheet('datepicker')" title="Mover a otro dia">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="#636366" stroke-width="1.5" stroke-linecap="round"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#636366" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="type-badge walk">Caminata</div>
+      </div>
+      <div class="workout-body">
+        <div class="color-bar gray"></div>
+        <div class="workout-info">
+          <div class="workout-title">Caminata 20 min</div>
+          <div class="workout-metrics"><span>20 min</span></div>
+          <div class="workout-desc">Camina a paso ligero y constante</div>
+        </div>
+        <div class="workout-status">
+          <div class="status-start">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" fill="#fff"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workout 2 -->
+    <div class="workout-card">
+      <div class="workout-header">
+        <div class="workout-date-row">
+          <span class="workout-date">MIE 9 ABR</span>
+          <div class="edit-date-btn" onclick="toggleSheet('datepicker')" title="Mover a otro dia">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="#636366" stroke-width="1.5" stroke-linecap="round"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#636366" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="type-badge walk">Caminata</div>
+      </div>
+      <div class="workout-body">
+        <div class="color-bar gray"></div>
+        <div class="workout-info">
+          <div class="workout-title">Caminata 20 min</div>
+          <div class="workout-metrics"><span>20 min</span></div>
+        </div>
+        <div class="workout-status"><span class="status-upcoming">Pendiente</span></div>
+      </div>
+    </div>
+
+    <!-- Workout 3 -->
+    <div class="workout-card">
+      <div class="workout-header">
+        <div class="workout-date-row">
+          <span class="workout-date">JUE 10 ABR</span>
+          <div class="edit-date-btn" onclick="toggleSheet('datepicker')" title="Mover a otro dia">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="#636366" stroke-width="1.5" stroke-linecap="round"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#636366" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="type-badge walk">Caminata</div>
+      </div>
+      <div class="workout-body">
+        <div class="color-bar gray"></div>
+        <div class="workout-info">
+          <div class="workout-title">Caminata 25 min</div>
+          <div class="workout-metrics"><span>25 min</span></div>
+        </div>
+        <div class="workout-status"><span class="status-upcoming">Pendiente</span></div>
+      </div>
+    </div>
+
+    <!-- Completed workout (NO edit icon) -->
+    <div class="workout-card" style="opacity: 0.7;">
+      <div class="workout-header">
+        <div class="workout-date-row">
+          <span class="workout-date">LUN 7 ABR</span>
+          <!-- No edit icon for completed -->
+        </div>
+        <div class="type-badge easy">Rodaje</div>
+      </div>
+      <div class="workout-body">
+        <div class="color-bar green"></div>
+        <div class="workout-info">
+          <div class="workout-title">Caminata 20 min</div>
+          <div class="workout-metrics"><span>20 min</span></div>
+        </div>
+        <div class="workout-status">
+          <div class="status-done">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#30D158" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+      <div style="font-size: 12px; color: #30D158; margin-top: 6px; padding-left: 15px;">2.1km · 20min · 9:32/km</div>
+    </div>
+
+  </div>
+
+  <!-- Annotation -->
+  <div class="annotation" style="top: 220px; right: 100px;">Icono nuevo: mover fecha ✏️</div>
+</div>
+
+
+<!-- ════════════════════════════════════════════ -->
+<!-- PHONE 2: Change Days Sheet                   -->
+<!-- ════════════════════════════════════════════ -->
+<div class="phone" style="position: relative;">
+  <div class="island"></div>
+  <div class="label">SHEET — CAMBIAR DIAS DE ENTRENO</div>
+
+  <!-- Dimmed background -->
+  <div style="flex: 1; background: #0D0D0F; opacity: 0.4;"></div>
+
+  <!-- Sheet -->
+  <div class="sheet-overlay" style="position: relative; flex-shrink: 0;">
+    <div class="sheet-panel">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title">Cambiar dias de entreno</div>
+      <div class="sheet-subtitle">Toca los dias para seleccionarlos. Los entrenos pendientes se redistribuiran.</div>
+
+      <div class="day-selector">
+        <div class="day-btn selected">L</div>
+        <div class="day-btn">M</div>
+        <div class="day-btn selected">X</div>
+        <div class="day-btn">J</div>
+        <div class="day-btn selected">V</div>
+        <div class="day-btn">S</div>
+        <div class="day-btn selected">D</div>
+      </div>
+
+      <div class="sheet-btn primary">Guardar cambios</div>
+      <div class="sheet-btn secondary">Cancelar</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════ -->
+<!-- PHONE 3: Date Picker Sheet                   -->
+<!-- ════════════════════════════════════════════ -->
+<div class="phone" style="position: relative;">
+  <div class="island"></div>
+  <div class="label">SHEET — MOVER ENTRENO A OTRO DIA</div>
+
+  <!-- Dimmed background -->
+  <div style="flex: 1; background: #0D0D0F; opacity: 0.4;"></div>
+
+  <!-- Date picker sheet -->
+  <div class="datepicker-sheet" style="position: relative; flex-shrink: 0;">
+    <div class="datepicker-panel">
+      <div class="sheet-handle"></div>
+      <div class="datepicker-title">Mover entreno a otro dia</div>
+
+      <!-- Mini calendar -->
+      <div class="cal-header">
+        <span class="cal-arrow">&#8249;</span>
+        <span class="cal-month">Abril 2026</span>
+        <span class="cal-arrow">&#8250;</span>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-day-header">L</div>
+        <div class="cal-day-header">M</div>
+        <div class="cal-day-header">X</div>
+        <div class="cal-day-header">J</div>
+        <div class="cal-day-header">V</div>
+        <div class="cal-day-header">S</div>
+        <div class="cal-day-header">D</div>
+
+        <div class="cal-day muted"></div>
+        <div class="cal-day muted"></div>
+        <div class="cal-day muted">1</div>
+        <div class="cal-day muted">2</div>
+        <div class="cal-day muted">3</div>
+        <div class="cal-day today">4</div>
+        <div class="cal-day">5</div>
+        <div class="cal-day">6</div>
+        <div class="cal-day">7</div>
+        <div class="cal-day">8</div>
+        <div class="cal-day selected">9</div>
+        <div class="cal-day">10</div>
+        <div class="cal-day">11</div>
+        <div class="cal-day">12</div>
+        <div class="cal-day">13</div>
+        <div class="cal-day">14</div>
+        <div class="cal-day">15</div>
+        <div class="cal-day">16</div>
+        <div class="cal-day">17</div>
+        <div class="cal-day">18</div>
+        <div class="cal-day">19</div>
+        <div class="cal-day">20</div>
+        <div class="cal-day">21</div>
+        <div class="cal-day">22</div>
+        <div class="cal-day">23</div>
+        <div class="cal-day">24</div>
+        <div class="cal-day">25</div>
+        <div class="cal-day">26</div>
+        <div class="cal-day">27</div>
+        <div class="cal-day">28</div>
+        <div class="cal-day">29</div>
+        <div class="cal-day">30</div>
+      </div>
+
+      <div style="padding: 16px 24px 0;">
+        <div class="sheet-btn primary">Mover al 9 de abril</div>
+        <div class="sheet-btn secondary">Cancelar</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Interactive day buttons
+  document.querySelectorAll('.day-btn').forEach(btn => {
+    btn.addEventListener('click', () => btn.classList.toggle('selected'));
+  });
+  // Interactive calendar days
+  document.querySelectorAll('.cal-day:not(.muted):not(.cal-day-header)').forEach(day => {
+    day.addEventListener('click', () => {
+      document.querySelectorAll('.cal-day.selected').forEach(d => d.classList.remove('selected'));
+      day.classList.add('selected');
+      const num = day.textContent;
+      const btn = document.querySelector('.datepicker-panel .sheet-btn.primary');
+      if (btn && num) btn.textContent = `Mover al ${num} de abril`;
+    });
+  });
+</script>
+</body>
+</html>

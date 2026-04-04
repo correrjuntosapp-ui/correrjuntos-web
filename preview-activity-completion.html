@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumen de Actividad — CorrerJuntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0A0A0C; min-height: 100vh;
+    display: flex; justify-content: center; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone { width: 100%; max-width: 390px; background: #0D0D0F; display: flex; flex-direction: column; height: 100vh; }
+  .island { width: 120px; height: 32px; background: #000; border-radius: 18px; margin: 10px auto 0; flex-shrink: 0; z-index: 10; position: relative; }
+
+  .scroll { flex: 1; overflow-y: auto; scrollbar-width: none; min-height: 0; }
+  .scroll::-webkit-scrollbar { display: none; }
+
+  /* ═══════════════════════════════════════
+     1. MAPA CON RUTA (hero)
+     ═══════════════════════════════════════ */
+  .map-hero {
+    position: relative; width: 100%; height: 280px;
+    background: radial-gradient(ellipse at 50% 45%, #1A2035 0%, #0D1117 55%, #0D0D0F 100%);
+    overflow: hidden;
+  }
+  /* Calles simuladas */
+  .map-streets {
+    position: absolute; inset: 0; opacity: 0.6;
+  }
+  /* Ruta SVG */
+  .map-route-svg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* Gradiente inferior para fundir con fondo */
+  .map-fade {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+    background: linear-gradient(to top, #0D0D0F, transparent);
+    pointer-events: none;
+  }
+  /* Badge COMPLETADO */
+  .badge-completed {
+    position: absolute; top: 16px; right: 16px;
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(34,197,94,0.4);
+    padding: 6px 14px; border-radius: 20px;
+    animation: badgeFade 600ms ease-out 300ms both;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.6); }
+  .badge-text { font-size: 11px; font-weight: 700; color: #22C55E; letter-spacing: 1px; }
+
+  /* ═══════════════════════════════════════
+     2. HEADER SESION
+     ═══════════════════════════════════════ */
+  .session-header {
+    padding: 20px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .sh-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+  .sh-check {
+    width: 36px; height: 36px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sh-info { flex: 1; min-width: 0; }
+  .sh-label { font-size: 10px; font-weight: 700; color: #FF6B00; letter-spacing: 1.5px; }
+  .sh-title { font-size: 18px; font-weight: 700; color: #F5F5F7; margin-top: 3px; }
+  .sh-pill {
+    display: flex; align-items: center; gap: 6px;
+    background: #222228; border: 1px solid #2A2A30;
+    border-radius: 20px; padding: 6px 14px; flex-shrink: 0;
+  }
+  .sh-pill-text { font-size: 10px; font-weight: 700; color: #F5F5F7; letter-spacing: 0.5px; }
+
+  /* ═══════════════════════════════════════
+     3. STATS PRINCIPALES 2×2
+     ═══════════════════════════════════════ */
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    padding: 0 20px; margin-top: 4px;
+  }
+  .stat-card {
+    background: #1A1A1E; border-radius: 16px; padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .stat-top { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+  .stat-label { font-size: 10px; font-weight: 600; color: #9A9AA6; letter-spacing: 1px; }
+  .stat-value { font-size: 32px; font-weight: 800; color: #F5F5F7; line-height: 1; letter-spacing: -0.5px; }
+  .stat-unit { font-size: 16px; font-weight: 500; color: #9A9AA6; margin-left: 2px; }
+  .stat-value-sm { font-size: 28px; }
+  .stat-unit-sm { font-size: 14px; }
+
+  /* ═══════════════════════════════════════
+     4. STATS SECUNDARIAS 2×2
+     ═══════════════════════════════════════ */
+  .stats-secondary {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    padding: 0 20px; margin-top: 10px;
+  }
+  .stat-card-s {
+    background: #1A1A1E; border-radius: 14px; padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .stat-card-s .stat-value { font-size: 28px; }
+  .stat-card-s .stat-unit { font-size: 14px; }
+
+  /* ═══════════════════════════════════════
+     5. RECORD PERSONAL
+     ═══════════════════════════════════════ */
+  .pr-card {
+    margin: 10px 20px 0; background: #1A1A1E;
+    border: 1px solid rgba(255,107,0,0.2);
+    border-radius: 16px; padding: 18px 20px;
+  }
+  .pr-header { display: flex; align-items: center; gap: 8px; }
+  .pr-title { font-size: 15px; font-weight: 700; color: #F5F5F7; }
+  .pr-pills { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .pr-pill {
+    display: flex; align-items: center; gap: 5px;
+    background: #222228; border: 1px solid #2A2A30;
+    border-radius: 20px; padding: 6px 12px;
+    font-size: 12px; font-weight: 600; color: #F5F5F7;
+  }
+
+  /* ═══════════════════════════════════════
+     6. PARCIALES POR KM
+     ═══════════════════════════════════════ */
+  .splits-card {
+    margin: 10px 20px 0; background: #1A1A1E;
+    border-radius: 16px; padding: 20px;
+  }
+  .splits-title { font-size: 15px; font-weight: 700; color: #F5F5F7; margin-bottom: 16px; }
+  .split-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .split-row:last-child { border-bottom: none; }
+  .split-km { font-size: 12px; font-weight: 600; color: #9A9AA6; width: 38px; flex-shrink: 0; }
+  .split-bar-bg { flex: 1; height: 6px; background: #222228; border-radius: 3px; overflow: hidden; }
+  .split-bar { height: 100%; border-radius: 3px; transition: width 800ms ease-out; }
+  .split-bar.orange { background: linear-gradient(90deg, #FF6B00, #FF8C38); }
+  .split-bar.green { background: linear-gradient(90deg, #22C55E, #4ADE80); }
+  .split-bar.red { background: linear-gradient(90deg, #EF4444, #F87171); }
+  .split-bar.yellow { background: linear-gradient(90deg, #F59E0B, #FBBF24); }
+  .split-time { font-size: 13px; font-weight: 700; color: #F5F5F7; width: 52px; text-align: right; flex-shrink: 0; }
+  .split-time.best { color: #22C55E; }
+  .split-time.slow { color: #EF4444; }
+  .split-best-dot { width: 5px; height: 5px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 4px rgba(34,197,94,0.5); flex-shrink: 0; }
+  .split-legend {
+    display: flex; gap: 14px; margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .legend-text { font-size: 10px; color: #555560; }
+
+  /* ═══════════════════════════════════════
+     7. PLAN SESSION CARD
+     ═══════════════════════════════════════ */
+  .plan-card {
+    margin: 10px 20px 0; padding: 16px 18px;
+    background: rgba(34,197,94,0.06);
+    border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .plan-label { font-size: 10px; font-weight: 700; color: #22C55E; letter-spacing: 0.8px; }
+  .plan-title { font-size: 14px; font-weight: 600; color: #F5F5F7; margin-top: 3px; }
+
+  /* ═══════════════════════════════════════
+     8. COMPARTIR ACTIVIDAD
+     ═══════════════════════════════════════ */
+  .share-section { padding: 0 20px; margin-top: 20px; }
+  .share-heading { font-size: 15px; font-weight: 700; color: #F5F5F7; margin-bottom: 14px; }
+  .share-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .share-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    cursor: pointer; transition: all 0.15s; text-decoration: none;
+    background: none; border: none; padding: 0;
+  }
+  .share-btn:active { transform: scale(0.93); }
+  .share-icon {
+    width: 64px; height: 64px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .share-name { font-size: 11px; font-weight: 600; color: #9A9AA6; }
+  .share-name.copied { color: #22C55E; }
+
+  /* ═══════════════════════════════════════
+     9. BOTTOM BAR
+     ═══════════════════════════════════════ */
+  .bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    max-width: 390px; margin: 0 auto;
+    padding: 16px 20px 32px;
+    background: linear-gradient(to top, #0D0D0F 70%, transparent);
+    z-index: 100;
+  }
+  .btn-listo {
+    width: 100%; height: 56px; border-radius: 14px; border: none;
+    background: linear-gradient(135deg, #FF6B00, #FF8C38);
+    color: #fff; font-size: 17px; font-weight: 700;
+    font-family: inherit; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 4px 24px rgba(255,107,0,0.35);
+    transition: all 0.15s;
+  }
+  .btn-listo:hover { box-shadow: 0 6px 32px rgba(255,107,0,0.5); transform: translateY(-1px); }
+  .btn-listo:active { transform: scale(0.98); }
+
+  /* ═══════════════════════════════════════
+     ANIMACIONES
+     ═══════════════════════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes badgeFade {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes routeDraw {
+    from { stroke-dashoffset: 600; }
+    to   { stroke-dashoffset: 0; }
+  }
+  @keyframes dotPop {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes glowPulse {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(255,107,0,0.3)); }
+    50%      { filter: drop-shadow(0 0 10px rgba(255,107,0,0.6)); }
+  }
+  .anim { opacity: 0; animation: fadeUp 500ms ease-out forwards; }
+  .d1 { animation-delay: 200ms; }
+  .d2 { animation-delay: 350ms; }
+  .d3 { animation-delay: 500ms; }
+  .d4 { animation-delay: 650ms; }
+  .d5 { animation-delay: 800ms; }
+  .d6 { animation-delay: 950ms; }
+  .d7 { animation-delay: 1100ms; }
+  .d8 { animation-delay: 1250ms; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="island"></div>
+
+  <div class="scroll">
+
+    <!-- ═══════════════════════════════════
+         1. MAPA CON RUTA
+         ═══════════════════════════════════ -->
+    <div class="map-hero">
+      <!-- Calles simuladas -->
+      <svg class="map-streets" viewBox="0 0 390 280" preserveAspectRatio="none">
+        <!-- Calles horizontales -->
+        <line x1="0" y1="45" x2="390" y2="45" stroke="#1A1F2E" stroke-width="1" opacity="0.5"/>
+        <line x1="0" y1="95" x2="390" y2="95" stroke="#1A1F2E" stroke-width="0.8" opacity="0.4"/>
+        <line x1="0" y1="140" x2="390" y2="140" stroke="#1A1F2E" stroke-width="1.2" opacity="0.5"/>
+        <line x1="0" y1="190" x2="390" y2="190" stroke="#1A1F2E" stroke-width="0.8" opacity="0.3"/>
+        <line x1="0" y1="230" x2="390" y2="230" stroke="#1A1F2E" stroke-width="1" opacity="0.4"/>
+        <!-- Calles verticales -->
+        <line x1="60" y1="0" x2="60" y2="280" stroke="#1A1F2E" stroke-width="0.8" opacity="0.4"/>
+        <line x1="130" y1="0" x2="130" y2="280" stroke="#1A1F2E" stroke-width="1" opacity="0.5"/>
+        <line x1="195" y1="0" x2="195" y2="280" stroke="#1A1F2E" stroke-width="0.8" opacity="0.3"/>
+        <line x1="260" y1="0" x2="260" y2="280" stroke="#1A1F2E" stroke-width="1" opacity="0.5"/>
+        <line x1="330" y1="0" x2="330" y2="280" stroke="#1A1F2E" stroke-width="0.8" opacity="0.4"/>
+        <!-- Calles diagonales / irregulares -->
+        <line x1="0" y1="65" x2="195" y2="120" stroke="#1A1F2E" stroke-width="0.6" opacity="0.3"/>
+        <line x1="195" y1="50" x2="390" y2="165" stroke="#1A1F2E" stroke-width="0.6" opacity="0.25"/>
+        <line x1="80" y1="0" x2="160" y2="280" stroke="#1A1F2E" stroke-width="0.6" opacity="0.2"/>
+        <line x1="290" y1="0" x2="340" y2="280" stroke="#1A1F2E" stroke-width="0.6" opacity="0.2"/>
+        <!-- Bloques de manzanas sutiles -->
+        <rect x="70" y="50" width="50" height="35" rx="2" fill="#151A25" opacity="0.4"/>
+        <rect x="140" y="100" width="45" height="30" rx="2" fill="#151A25" opacity="0.35"/>
+        <rect x="210" y="55" width="40" height="32" rx="2" fill="#151A25" opacity="0.3"/>
+        <rect x="270" y="145" width="48" height="35" rx="2" fill="#151A25" opacity="0.35"/>
+        <rect x="100" y="195" width="55" height="28" rx="2" fill="#151A25" opacity="0.3"/>
+        <rect x="200" y="180" width="42" height="30" rx="2" fill="#151A25" opacity="0.25"/>
+      </svg>
+
+      <!-- Ruta SVG -->
+      <div class="map-route-svg">
+        <svg width="320" height="220" viewBox="0 0 320 220" fill="none">
+          <defs>
+            <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FF6B00"/>
+              <stop offset="100%" stop-color="#FF8C38"/>
+            </linearGradient>
+            <filter id="routeGlow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="greenGlow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Glow layer -->
+          <path d="M45 175 C60 160, 75 120, 95 110 S130 130, 150 105 S175 70, 200 80 S230 120, 250 95 S270 55, 285 65"
+                stroke="rgba(255,107,0,0.25)" stroke-width="14" stroke-linecap="round" fill="none"/>
+          <!-- Main route -->
+          <path d="M45 175 C60 160, 75 120, 95 110 S130 130, 150 105 S175 70, 200 80 S230 120, 250 95 S270 55, 285 65"
+                stroke="url(#routeGrad)" stroke-width="4" stroke-linecap="round" fill="none"
+                filter="url(#routeGlow)"
+                stroke-dasharray="600" stroke-dashoffset="600"
+                style="animation: routeDraw 1.5s ease-out 400ms forwards"/>
+          <!-- Start dot (green) -->
+          <circle cx="45" cy="175" r="5" fill="#22C55E" filter="url(#greenGlow)"
+                  style="animation: dotPop 400ms ease-out 300ms both"/>
+          <!-- End dot (orange) -->
+          <circle cx="285" cy="65" r="5" fill="#FF6B00" filter="url(#routeGlow)"
+                  style="animation: dotPop 400ms ease-out 1800ms both"/>
+        </svg>
+      </div>
+
+      <div class="map-fade"></div>
+      <div class="badge-completed">
+        <div class="badge-dot"></div>
+        <span class="badge-text">COMPLETADO</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. HEADER SESION
+         ═══════════════════════════════════ -->
+    <div class="session-header anim d1">
+      <div class="sh-left">
+        <div class="sh-check">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" stroke="#FF6B00" stroke-width="2"/>
+            <path d="M10 16.5l4 4 8.5-8.5" stroke="#FF6B00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sh-info">
+          <div class="sh-label">SESION COMPLETADA</div>
+          <div class="sh-title">Running matutino</div>
+        </div>
+      </div>
+      <div class="sh-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <circle cx="14" cy="4" r="2" fill="#FF6B00"/>
+          <path d="M6 20l3-5 2.5 2L14 13l2 4" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="sh-pill-text">RUNNING</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. STATS PRINCIPALES 2×2
+         ═══════════════════════════════════ -->
+    <div class="stats-grid anim d2">
+      <div class="stat-card">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="10" r="3" stroke="#FF6B00" stroke-width="2"/></svg>
+          <span class="stat-label">DISTANCIA</span>
+        </div>
+        <span class="stat-value">8.42<span class="stat-unit">km</span></span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FF6B00" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="stat-label">DURACION</span>
+        </div>
+        <span class="stat-value">42:18</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="stat-label">RITMO MEDIO</span>
+        </div>
+        <span class="stat-value stat-value-sm">5:01<span class="stat-unit stat-unit-sm">/km</span></span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="stat-label">KCAL</span>
+        </div>
+        <span class="stat-value">412</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         4. STATS SECUNDARIAS 2×2
+         ═══════════════════════════════════ -->
+    <div class="stats-secondary anim d3">
+      <div class="stat-card-s">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M23 6l-9.5 9.5-5-5L1 18" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="stat-label">DESNIVEL</span>
+        </div>
+        <span class="stat-value">+86<span class="stat-unit">m</span></span>
+      </div>
+      <div class="stat-card-s">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="stat-label">VEL. MAX.</span>
+        </div>
+        <span class="stat-value">14.2<span class="stat-unit stat-unit-sm">km/h</span></span>
+      </div>
+      <div class="stat-card-s">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M2 18h2v-4h2v4h2v-8h2v8h2V8h2v10h2V4h2v14h2" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="stat-label">CADENCIA</span>
+        </div>
+        <span class="stat-value">172<span class="stat-unit stat-unit-sm">spm</span></span>
+      </div>
+      <div class="stat-card-s">
+        <div class="stat-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="stat-label">FC MEDIA</span>
+        </div>
+        <span class="stat-value">158<span class="stat-unit stat-unit-sm">bpm</span></span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. RECORD PERSONAL
+         ═══════════════════════════════════ -->
+    <div class="pr-card anim d4">
+      <div class="pr-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9V2h12v7" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 9H3v3c0 1.66 1.34 3 3 3h0M18 9h3v3c0 1.66-1.34 3-3 3h0" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 15h12M9 15v4h6v-4" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 22h8" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="pr-title">Record personal</span>
+      </div>
+      <div class="pr-pills">
+        <div class="pr-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M23 6l-9.5 9.5-5-5L1 18" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Mejor 5K
+        </div>
+        <div class="pr-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Mejor ritmo 1K
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         6. PARCIALES POR KM
+         ═══════════════════════════════════ -->
+    <div class="splits-card anim d5">
+      <div class="splits-title">Parciales por kilometro</div>
+      <div class="split-row">
+        <span class="split-km">KM 1</span>
+        <div class="split-bar-bg"><div class="split-bar orange" style="width:82%"></div></div>
+        <span class="split-time">5:12</span>
+      </div>
+      <div class="split-row">
+        <span class="split-km">KM 2</span>
+        <div class="split-bar-bg"><div class="split-bar orange" style="width:86%"></div></div>
+        <span class="split-time">5:08</span>
+      </div>
+      <div class="split-row">
+        <span class="split-km">KM 3</span>
+        <div class="split-bar-bg"><div class="split-bar red" style="width:72%"></div></div>
+        <span class="split-time slow">5:18</span>
+      </div>
+      <div class="split-row">
+        <span class="split-km">KM 4</span>
+        <div class="split-bar-bg"><div class="split-bar green" style="width:100%"></div></div>
+        <span class="split-time best">4:48</span>
+        <div class="split-best-dot"></div>
+        <span style="font-size:10px;font-weight:700;color:#22C55E;margin-left:4px;white-space:nowrap;">MEJOR KM</span>
+      </div>
+      <div class="split-row">
+        <span class="split-km">KM 5</span>
+        <div class="split-bar-bg"><div class="split-bar orange" style="width:84%"></div></div>
+        <span class="split-time">5:10</span>
+      </div>
+      <div class="split-row">
+        <span class="split-km">KM 6</span>
+        <div class="split-bar-bg"><div class="split-bar orange" style="width:88%"></div></div>
+        <span class="split-time">5:05</span>
+      </div>
+      <div class="split-row">
+        <span class="split-km">KM 7</span>
+        <div class="split-bar-bg"><div class="split-bar green" style="width:92%"></div></div>
+        <span class="split-time best">4:58</span>
+      </div>
+      <div class="split-row">
+        <span class="split-km">KM 8</span>
+        <div class="split-bar-bg"><div class="split-bar green" style="width:94%"></div></div>
+        <span class="split-time best">4:55</span>
+      </div>
+      <!-- Leyenda -->
+      <div class="split-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#22C55E"></div><span class="legend-text">Mejor</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#FF6B00"></div><span class="legend-text">Normal</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#F59E0B"></div><span class="legend-text">Medio</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#EF4444"></div><span class="legend-text">Lento</span></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         7. PLAN SESSION CARD
+         ═══════════════════════════════════ -->
+    <div class="plan-card anim d6">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M9 11l3 3L22 4" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="plan-label">SESION DE PLAN COMPLETADA</div>
+        <div class="plan-title">Fartlek 6x3'</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         8. COMPARTIR ACTIVIDAD
+         ═══════════════════════════════════ -->
+    <div class="share-section anim d7">
+      <div class="share-heading">Compartir actividad</div>
+      <div class="share-grid">
+        <!-- Feed CJ -->
+        <div class="share-btn" onclick="alert('Compartiendo en el Feed')">
+          <div class="share-icon" style="background:linear-gradient(135deg,#FF6B00,#FF8C38);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <span class="share-name">Feed</span>
+        </div>
+        <!-- WhatsApp -->
+        <div class="share-btn" onclick="window.open('whatsapp://send?text=¡Completé 8.42km en 42:18! 🏃')">
+          <div class="share-icon" style="background:#25D366;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+          </div>
+          <span class="share-name">WhatsApp</span>
+        </div>
+        <!-- Instagram Stories -->
+        <div class="share-btn" onclick="alert('Creando Story de Instagram')">
+          <div class="share-icon" style="background:linear-gradient(135deg,#833AB4 0%,#FD1D1D 50%,#F77737 100%);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="3"/><circle cx="12" cy="14.5" r="3.5"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/><circle cx="17.5" cy="10.5" r="1" fill="white" stroke="none"/></svg>
+          </div>
+          <span class="share-name">Stories</span>
+        </div>
+        <!-- Copiar -->
+        <div class="share-btn" onclick="handleCopy(this)">
+          <div class="share-icon" style="background:#2A2A30; border:1px solid #3A3A42;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <span class="share-name" id="copyLabel">Copiar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer para bottom bar -->
+    <div style="height: 140px;"></div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════
+       9. BOTTOM BAR
+       ═══════════════════════════════════ -->
+  <div class="bottom-bar anim d8">
+    <button class="btn-listo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Listo
+    </button>
+  </div>
+</div>
+
+<script>
+  // Copy handler
+  function handleCopy(btn) {
+    navigator.clipboard.writeText('https://app.correrjuntos.com/activity/123');
+    var label = btn.querySelector('.share-name');
+    label.textContent = '¡Copiado!';
+    label.classList.add('copied');
+    setTimeout(function() { label.textContent = 'Copiar'; label.classList.remove('copied'); }, 2000);
+  }
+
+  // Animate split bars on scroll into view
+  var observed = false;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !observed) {
+        observed = true;
+        var bars = document.querySelectorAll('.split-bar');
+        bars.forEach(function(bar, i) {
+          var w = bar.style.width;
+          bar.style.width = '0%';
+          setTimeout(function() { bar.style.width = w; }, 100 + i * 80);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  var splitsCard = document.querySelector('.splits-card');
+  if (splitsCard) observer.observe(splitsCard);
+</script>
+</body>
+</html>

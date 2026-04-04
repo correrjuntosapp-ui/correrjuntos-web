@@ -139,7 +139,8 @@
       '.blog-back a:hover{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.3);transform:translateX(-2px)}',
       '.dark-mode .blog-back{border-top-color:rgba(255,255,255,.06)}',
       '.dark-mode .blog-back a{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.2)}',
-      '.dark-mode .blog-back a:hover{background:rgba(249,115,22,.18)}'
+      '.dark-mode .blog-back a:hover{background:rgba(249,115,22,.18)}',
+      '@media(max-width:640px){.breadcrumb{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}}'
     ].join('\n');
     document.head.appendChild(cssBack);
 

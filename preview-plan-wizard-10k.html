@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=960, initial-scale=1">
+<title>Flujo Plan 10K — Wizard → Paywall</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif; background: #1a1a2e; }
+
+  .phones-container { display: flex; gap: 30px; justify-content: center; padding: 20px; flex-wrap: wrap; }
+  .phone-wrapper { text-align: center; }
+  .phone-label { margin-bottom: 10px; }
+  .phone-label h2 { color: #f97316; font-size: 14px; font-weight: 800; margin: 0; }
+  .phone-label p { color: #9ca3af; font-size: 11px; margin: 4px 0 0; }
+
+  .phone-frame {
+    width: 360px; background: #0b1220;
+    border-radius: 36px; overflow: hidden; position: relative;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    border: 3px solid #333;
+  }
+  .notch { width: 140px; height: 30px; background: #000; border-radius: 0 0 18px 18px; margin: 0 auto; }
+  .scroll-area { height: 780px; overflow-y: auto; }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* Arrow between phones */
+  .arrow { display: flex; align-items: center; justify-content: center; font-size: 32px; color: #f97316; padding-top: 350px; }
+
+  /* ── Wizard Header ── */
+  .wizard-header {
+    display: flex; align-items: center; padding: 12px 16px; gap: 12px;
+  }
+  .wizard-close {
+    width: 32px; height: 32px; border-radius: 16px; background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 16px;
+    border: none; cursor: pointer;
+  }
+  .wizard-title { flex: 1; font-size: 16px; font-weight: 800; color: #f0f0f0; text-align: center; }
+
+  /* Progress dots */
+  .progress-dots { display: flex; justify-content: center; gap: 6px; padding: 8px 0 16px; }
+  .dot { width: 8px; height: 8px; border-radius: 4px; background: #2a3544; }
+  .dot.active { width: 22px; background: #FF6B00; }
+  .dot.done { background: #6b7280; }
+
+  /* ── Step Title ── */
+  .step-title { font-size: 22px; font-weight: 900; color: #f0f0f0; padding: 0 20px; margin-bottom: 4px; }
+  .step-subtitle { font-size: 13px; font-weight: 500; color: #6b7280; padding: 0 20px; margin-bottom: 20px; }
+
+  /* ── Section Label ── */
+  .section-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #6b7280; padding: 0 20px; margin-bottom: 10px; margin-top: 8px;
+  }
+  .section-label.free { color: #22c55e; }
+
+  /* ── Goal Card ── */
+  .goal-card {
+    margin: 0 20px 10px; border-radius: 14px; border: 2px solid #1a2332;
+    background: #111827; padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .goal-card:hover { border-color: #2a3544; }
+  .goal-card.selected { border-color: #FF6B00; background: #1a1400; box-shadow: 0 0 20px rgba(255,107,0,0.1); }
+  .goal-card.locked { opacity: 0.95; }
+
+  .goal-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .goal-icon.free { background: rgba(34,197,94,0.1); }
+  .goal-icon.premium { background: rgba(249,115,22,0.1); }
+
+  .goal-info { flex: 1; }
+  .goal-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+  .goal-name { font-size: 15px; font-weight: 700; color: #f0f0f0; }
+  .goal-level {
+    font-size: 8px; font-weight: 800; padding: 2px 6px; border-radius: 4px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .goal-level.easy { background: rgba(34,197,94,0.1); color: #22c55e; }
+  .goal-level.medium { background: rgba(249,115,22,0.1); color: #f97316; }
+  .goal-level.hard { background: rgba(239,68,68,0.1); color: #ef4444; }
+  .goal-level.free { background: rgba(34,197,94,0.15); color: #22c55e; }
+
+  .goal-desc { font-size: 11px; color: #6b7280; font-weight: 500; }
+
+  .goal-right { flex-shrink: 0; display: flex; align-items: center; }
+  .radio-empty { width: 20px; height: 20px; border-radius: 10px; border: 2px solid #2a3544; }
+  .radio-filled { width: 20px; height: 20px; border-radius: 10px; border: 2px solid #FF6B00; background: #FF6B00; display: flex; align-items: center; justify-content: center; }
+  .radio-dot { width: 8px; height: 8px; border-radius: 4px; background: #fff; }
+  .premium-badge-small {
+    background: linear-gradient(90deg, rgba(249,115,22,0.15), rgba(251,191,36,0.15));
+    border: 1px solid rgba(249,115,22,0.3);
+    padding: 3px 8px; border-radius: 6px;
+    font-size: 9px; font-weight: 800; color: #fbbf24; letter-spacing: 0.5px;
+  }
+
+  /* ── Bottom CTA ── */
+  .wizard-bottom {
+    position: sticky; bottom: 0; padding: 12px 20px 20px;
+    background: linear-gradient(0deg, #0b1220 70%, transparent);
+  }
+  .wizard-cta {
+    width: 100%; padding: 15px; border-radius: 12px; border: none; cursor: pointer;
+    background: linear-gradient(90deg, #FF6B00, #ea580c);
+    color: #fff; font-size: 16px; font-weight: 800;
+    box-shadow: 0 4px 16px rgba(255,107,0,0.3);
+  }
+  .wizard-cta:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Paywall styles (reused) ── */
+  .hero {
+    background: linear-gradient(180deg, #0b1220 0%, #1c1205 50%, #2d1810 100%);
+    padding: 0 20px 28px; text-align: center;
+  }
+  .close-btn {
+    position: absolute; top: 12px; right: 14px; width: 32px; height: 32px;
+    border-radius: 16px; background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 16px;
+    cursor: pointer; border: none;
+  }
+  .crown-container { margin-top: 40px; margin-bottom: 14px; display: inline-block; position: relative; }
+  .crown-glow { position: absolute; width: 80px; height: 80px; border-radius: 40px; background: rgba(251,191,36,0.08); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .crown { font-size: 48px; position: relative; z-index: 1; }
+  .hero-title { font-size: 26px; font-weight: 900; color: #fbbf24; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.55); line-height: 20px; }
+  .urgency-container { text-align: center; margin-top: 14px; }
+  .urgency-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(251,191,36,0.12); padding: 5px 12px; border-radius: 16px;
+    border: 1px solid rgba(251,191,36,0.25);
+    font-size: 10px; font-weight: 800; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .urgency-detail { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.35); margin-top: 5px; }
+
+  .section { padding: 0 18px; margin-bottom: 24px; }
+  .section-title-pw { font-size: 16px; font-weight: 800; color: #f0f0f0; margin-bottom: 12px; }
+
+  /* Premium recommend card */
+  .premium-rec-card {
+    border-radius: 14px; border: 2.5px solid #22c55e; padding: 18px;
+    text-align: center; position: relative; background: #111827;
+  }
+  .rec-badge {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: #22c55e; padding: 3px 12px; border-radius: 8px;
+    font-size: 10px; font-weight: 800; color: #fff; text-transform: uppercase; white-space: nowrap;
+  }
+  .rec-title { font-size: 17px; font-weight: 900; color: #f0f0f0; margin-top: 6px; }
+  .rec-includes { font-size: 12px; font-weight: 600; color: #9ca3af; margin-bottom: 8px; }
+  .rec-props { text-align: left; margin: 6px 0 10px; }
+  .rec-prop { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; font-size: 12px; font-weight: 600; color: #9ca3af; }
+  .rec-prop.hl { color: #f97316; font-weight: 700; }
+  .rec-check { font-size: 13px; }
+
+  /* Individual plan link */
+  .ind-link {
+    margin-top: 14px; padding: 10px 14px; border-radius: 10px;
+    background: rgba(249,115,22,0.08); text-align: center;
+  }
+  .ind-link a { color: #fb923c; font-size: 12px; font-weight: 600; text-decoration: underline; }
+
+  /* Plan selector */
+  .plan-selector { display: flex; gap: 10px; }
+  .plan-card {
+    flex: 1; border-radius: 14px; border: 2px solid #2a3544; padding: 14px;
+    text-align: center; background: #111827; position: relative; overflow: visible;
+  }
+  .plan-card.active { border-color: #f97316; box-shadow: 0 2px 10px rgba(249,115,22,0.15); }
+  .plan-name-pw { font-size: 13px; font-weight: 700; color: #f0f0f0; margin-bottom: 4px; }
+  .plan-price-pw { font-size: 22px; font-weight: 900; }
+  .plan-period { font-size: 11px; font-weight: 500; color: #6b7280; margin-top: 2px; }
+  .plan-savings { color: #22c55e; font-size: 11px; font-weight: 700; margin-top: 3px; }
+  .save-badge-pw {
+    position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+    background: #f97316; padding: 2px 8px; border-radius: 8px;
+    font-size: 9px; font-weight: 800; color: #fff; white-space: nowrap;
+  }
+
+  /* Testimonial */
+  .testimonial { background: #111827; border: 1px solid #1a2332; border-radius: 14px; padding: 16px; }
+  .testimonial-q { font-size: 16px; color: #f97316; margin-bottom: 6px; }
+  .testimonial-text { font-size: 13px; font-weight: 500; line-height: 19px; font-style: italic; color: #f0f0f0; margin-bottom: 12px; }
+  .testimonial-author { display: flex; align-items: center; gap: 8px; }
+  .testimonial-av { width: 28px; height: 28px; border-radius: 14px; background: #f97316; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 800; }
+  .testimonial-name { font-size: 12px; font-weight: 700; color: #f0f0f0; }
+  .testimonial-meta { font-size: 10px; font-weight: 500; color: #6b7280; }
+  .testimonial-stars { margin-left: auto; color: #facc15; font-size: 9px; letter-spacing: 1px; }
+
+  /* Sticky CTA */
+  .cta-container {
+    position: sticky; bottom: 0; padding: 10px 18px 14px;
+    background: #0b1220; border-top: 1px solid #1a2332;
+  }
+  .cta-button {
+    width: 100%; padding: 14px; border-radius: 12px; border: none; cursor: pointer;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    color: #fff; font-size: 16px; font-weight: 900; letter-spacing: 0.3px;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.3);
+  }
+  .guarantee { text-align: center; font-size: 11px; font-weight: 600; color: #6b7280; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .bottom-row { display: flex; justify-content: center; align-items: center; margin-top: 5px; gap: 4px; }
+  .restore-text { font-size: 11px; font-weight: 600; color: #4b5563; text-decoration: underline; }
+  .legal-text { font-size: 9px; font-weight: 500; color: #4b5563; }
+</style>
+</head>
+<body>
+
+<div class="phones-container">
+
+  <!-- ========== PHONE 1: Wizard Step 1 — Goal Selection ========== -->
+  <div class="phone-wrapper">
+    <div class="phone-label">
+      <h2>Paso 1: Elige tu objetivo</h2>
+      <p>2 planes gratis + 5 premium</p>
+    </div>
+    <div class="phone-frame">
+      <div class="notch"></div>
+      <div class="scroll-area">
+        <div class="wizard-header">
+          <button class="wizard-close">&times;</button>
+          <div class="wizard-title">Plan de Entrenamiento</div>
+          <div style="width:32px;"></div>
+        </div>
+
+        <div class="progress-dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+
+        <div class="step-title">Elige tu objetivo</div>
+        <div class="step-subtitle">Selecciona el plan que se adapta a ti</div>
+
+        <!-- Free Plans -->
+        <div class="section-label free">&#x2714; PLANES GRATUITOS</div>
+
+        <div class="goal-card">
+          <div class="goal-icon free">&#x1F6B6;</div>
+          <div class="goal-info">
+            <div class="goal-name-row">
+              <span class="goal-name">Empieza a Moverte</span>
+              <span class="goal-level free">GRATIS</span>
+            </div>
+            <div class="goal-desc">6 semanas &middot; Caminar + trotar</div>
+          </div>
+          <div class="goal-right"><div class="radio-empty"></div></div>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-icon free">&#x1F3C3;</div>
+          <div class="goal-info">
+            <div class="goal-name-row">
+              <span class="goal-name">Empezar a correr</span>
+              <span class="goal-level free">GRATIS</span>
+            </div>
+            <div class="goal-desc">8 semanas &middot; De 0 a 5K</div>
+          </div>
+          <div class="goal-right"><div class="radio-empty"></div></div>
+        </div>
+
+        <!-- Premium Plans -->
+        <div class="section-label">&#x1F451; PLANES PREMIUM</div>
+
+        <div class="goal-card locked">
+          <div class="goal-icon premium">&#x23F1;</div>
+          <div class="goal-info">
+            <div class="goal-name-row">
+              <span class="goal-name">Preparar un 5K</span>
+              <span class="goal-level easy">F&Aacute;CIL</span>
+            </div>
+            <div class="goal-desc">8 semanas &middot; Mejora tu marca</div>
+          </div>
+          <div class="goal-right"><span class="premium-badge-small">&#x1F451; PRO</span></div>
+        </div>
+
+        <!-- 10K SELECTED -->
+        <div class="goal-card selected">
+          <div class="goal-icon premium" style="background:rgba(255,107,0,0.2);">&#x26A1;</div>
+          <div class="goal-info">
+            <div class="goal-name-row">
+              <span class="goal-name">Preparar un 10K</span>
+              <span class="goal-level medium">INTERMEDIO</span>
+            </div>
+            <div class="goal-desc">12 semanas &middot; 48 sesiones</div>
+          </div>
+          <div class="goal-right">
+            <div class="radio-filled"><div class="radio-dot"></div></div>
+          </div>
+        </div>
+
+        <div class="goal-card locked">
+          <div class="goal-icon premium">&#x1F3D4;</div>
+          <div class="goal-info">
+            <div class="goal-name-row">
+              <span class="goal-name">Trail Running</span>
+              <span class="goal-level hard">AVANZADO</span>
+            </div>
+            <div class="goal-desc">10 semanas &middot; Monta&ntilde;a + fuerza</div>
+          </div>
+          <div class="goal-right"><span class="premium-badge-small">&#x1F451; PRO</span></div>
+        </div>
+
+        <div class="goal-card locked">
+          <div class="goal-icon premium">&#x1F3C5;</div>
+          <div class="goal-info">
+            <div class="goal-name-row">
+              <span class="goal-name">Media Marat&oacute;n</span>
+              <span class="goal-level hard">AVANZADO</span>
+            </div>
+            <div class="goal-desc">16 semanas &middot; 70 sesiones</div>
+          </div>
+          <div class="goal-right"><span class="premium-badge-small">&#x1F451; PRO</span></div>
+        </div>
+
+        <div class="goal-card locked">
+          <div class="goal-icon premium">&#x1F3C6;</div>
+          <div class="goal-info">
+            <div class="goal-name-row">
+              <span class="goal-name">Marat&oacute;n</span>
+              <span class="goal-level hard">AVANZADO</span>
+            </div>
+            <div class="goal-desc">18 semanas &middot; 90 sesiones</div>
+          </div>
+          <div class="goal-right"><span class="premium-badge-small">&#x1F451; PRO</span></div>
+        </div>
+
+        <div style="height: 80px;"></div>
+
+        <div class="wizard-bottom">
+          <button class="wizard-cta">Siguiente &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow -->
+  <div class="arrow">&rarr;</div>
+
+  <!-- ========== PHONE 2: PaywallScreen (goalKey=10k) ========== -->
+  <div class="phone-wrapper">
+    <div class="phone-label">
+      <h2>Paywall (Plan 10K)</h2>
+      <p>Premium recomendado + compra individual</p>
+    </div>
+    <div class="phone-frame">
+      <div class="notch"></div>
+      <div class="scroll-area">
+        <!-- Hero -->
+        <div class="hero" style="position:relative;">
+          <button class="close-btn">&times;</button>
+          <div class="crown-container">
+            <div class="crown-glow"></div>
+            <div class="crown">&#x1F451;</div>
+          </div>
+          <div class="hero-title">Tu Plan 10K te espera</div>
+          <div class="hero-subtitle">Plan personalizado &middot; Ajuste autom&aacute;tico &middot; Resultados reales</div>
+          <div class="urgency-container">
+            <div class="urgency-badge">&#x23F0; Oferta de lanzamiento</div>
+            <div class="urgency-detail">Precio especial para los primeros 500 usuarios</div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="section">
+          <div class="testimonial">
+            <div class="testimonial-q">&#x275D;</div>
+            <div class="testimonial-text">Baj&eacute; mi marca en 10K de 52 a 47 min en 8 semanas. El plan se ajust&oacute; solo cuando mejor&eacute;.</div>
+            <div class="testimonial-author">
+              <div class="testimonial-av">M</div>
+              <div>
+                <div class="testimonial-name">Mar&iacute;a G.</div>
+                <div class="testimonial-meta">Plan 10K &middot; Madrid</div>
+              </div>
+              <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium RECOMENDADO card -->
+        <div class="section">
+          <div class="premium-rec-card">
+            <div class="rec-badge">M&Aacute;S POPULAR</div>
+            <div class="rec-title">Premium</div>
+            <div class="rec-includes">Incluye Plan 10K y todos los dem&aacute;s</div>
+            <div class="rec-props">
+              <div class="rec-prop hl"><span class="rec-check" style="color:#f97316;">&#x2714;</span> Plan 10K</div>
+              <div class="rec-prop"><span class="rec-check" style="color:#22c55e;">&#x2714;</span> Los 5 planes de entrenamiento</div>
+              <div class="rec-prop"><span class="rec-check" style="color:#22c55e;">&#x2714;</span> Social + matching runners</div>
+              <div class="rec-prop"><span class="rec-check" style="color:#22c55e;">&#x2714;</span> Cancela cuando quieras</div>
+            </div>
+          </div>
+
+          <div class="ind-link">
+            <a href="#">&iquest;Solo quieres el Plan 10K? C&oacute;mpralo por 5,99 &euro; &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Plan selector -->
+        <div class="section">
+          <div class="plan-selector">
+            <div class="plan-card active" style="overflow:visible;">
+              <div class="save-badge-pw">Ahorra 40%</div>
+              <div class="plan-name-pw">Anual</div>
+              <div class="plan-price-pw" style="color:#f97316;">29,99 &euro;</div>
+              <div class="plan-period">/a&ntilde;o</div>
+              <div class="plan-savings">= 2,49 &euro;/mes</div>
+            </div>
+            <div class="plan-card">
+              <div class="plan-name-pw">Mensual</div>
+              <div class="plan-price-pw" style="color:#f0f0f0;">4,99 &euro;</div>
+              <div class="plan-period">/mes</div>
+              <div style="color:#6b7280; font-size:10px; font-weight:600; margin-top:3px;">Sin compromiso</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 140px;"></div>
+
+        <!-- Sticky CTA -->
+        <div class="cta-container">
+          <button class="cta-button">Activar Premium Anual &mdash; 29,99 &euro;/a&ntilde;o &rarr;</button>
+          <div class="guarantee">&#x1F6E1; Garant&iacute;a 30 d&iacute;as &middot; Cancela cuando quieras</div>
+          <div class="bottom-row">
+            <span class="restore-text">Restaurar compras</span>
+            <span class="legal-text"> &middot; Se renueva autom&aacute;ticamente.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

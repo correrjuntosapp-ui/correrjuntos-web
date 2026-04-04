@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfileScreen — Tab Progreso (Strava pattern)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0D0D0D;
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Inter', sans-serif;
+    display: flex; justify-content: center; padding: 40px 20px;
+  }
+
+  /* ── Phone shell ── */
+  .phone {
+    width: 390px;
+    background: #111111;
+    border-radius: 50px;
+    border: 8px solid #1c1c1e;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.9), inset 0 0 0 1px #2a2a2a;
+    overflow: hidden;
+    position: relative;
+  }
+  .notch {
+    width: 120px; height: 28px; background: #000;
+    border-radius: 0 0 18px 18px;
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10;
+  }
+  .screen {
+    background: #111111;
+    padding-top: 44px;
+    overflow: hidden;
+    min-height: 820px;
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex; align-items: center;
+    height: 52px; padding: 0 16px;
+    background: #111111;
+    border-bottom: 1px solid #1E1E1E;
+  }
+  .header-avatar {
+    width: 36px; height: 36px; border-radius: 18px;
+    background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px; font-weight: 700; color: #fff;
+  }
+  .header-title {
+    flex: 1; text-align: center;
+    font-size: 17px; font-weight: 700; color: #FFFFFF;
+  }
+  .header-actions {
+    display: flex; gap: 16px; align-items: center;
+  }
+  .header-icon { opacity: 0.6; }
+
+  /* ── Tabs ── */
+  .tab-bar {
+    display: flex; height: 44px;
+    background: #111111;
+    border-bottom: 1px solid #1E1E1E;
+  }
+  .tab {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 500; color: #666; position: relative;
+  }
+  .tab.active { color: #FFFFFF; font-weight: 700; }
+  .tab-underline {
+    position: absolute; bottom: 0; left: 20%; right: 20%;
+    height: 2px; background: #FF6B35; border-radius: 1px;
+  }
+
+  /* ── Scroll area ── */
+  .scroll { background: #111111; overflow-y: auto; max-height: 720px; padding-bottom: 80px; }
+  .scroll::-webkit-scrollbar { width: 0; }
+
+  /* ── Section Block ── */
+  .section {
+    background: #111111;
+    border-bottom: 1px solid #1E1E1E;
+    padding: 20px 16px;
+  }
+  .section:nth-child(even) { background: #0F0F0F; }
+
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .section-title-row { display: flex; align-items: center; gap: 8px; }
+  .section-icon {
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .section-title {
+    font-size: 18px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.3px;
+  }
+  .section-desc {
+    font-size: 13px; color: #AAAAAA; margin-bottom: 16px; line-height: 1.5;
+  }
+  .see-more {
+    font-size: 13px; font-weight: 600; color: #FF6B35;
+    display: flex; align-items: center; gap: 2px;
+    margin-top: 14px;
+  }
+  .see-more-right { justify-content: flex-end; }
+
+  /* ── BLOQUE 1: Actividades del mes ── */
+  .month-stats-row {
+    display: flex; align-items: flex-end; gap: 0;
+  }
+  .month-metrics {
+    display: flex; gap: 28px; flex: 1;
+  }
+  .metric-item { display: flex; flex-direction: column; }
+  .metric-value { font-size: 24px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px; line-height: 1.1; }
+  .metric-label { font-size: 12px; color: #AAAAAA; margin-top: 3px; letter-spacing: 0.3px; }
+  .mini-chart {
+    width: 80px; height: 48px; flex-shrink: 0;
+  }
+
+  /* ── BLOQUE 2: Registro de entrenamiento ── */
+  .training-log-row {
+    display: flex; justify-content: space-between; margin-bottom: 6px;
+  }
+  .day-circle-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .day-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #FFFFFF; position: relative;
+  }
+  /* empty: gris oscuro, sin actividad */
+  .day-circle.empty { background: #1A1A1A; color: #333; }
+  /* today sin actividad: borde naranja, fondo transparente */
+  .day-circle.today-empty { background: transparent; border: 1.5px solid #FF6B35; color: #FFFFFF; }
+  /* 1 actividad: naranja 60% */
+  .day-circle.one { background: rgba(255,107,53,0.60); }
+  /* 2 actividades: naranja 80% */
+  .day-circle.two { background: rgba(255,107,53,0.80); }
+  /* 3+ actividades: naranja 100% */
+  .day-circle.full { background: #FF6B35; }
+  .day-label { font-size: 10px; color: #555; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .day-label.today-lbl { color: #FF6B35; }
+  .act-count {
+    position: absolute; top: -3px; right: -3px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #FF6B35; color: #fff;
+    font-size: 8px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid #111111;
+  }
+
+  /* ── BLOQUE 3: Mejores tiempos ── */
+  .record-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0 12px 12px;
+    border-bottom: 1px solid #1E1E1E;
+    border-left: 3px solid #FF6B35;
+  }
+  .record-row:last-child { border-bottom: none; }
+  .record-center { flex: 1; }
+  .record-dist { font-size: 15px; font-weight: 700; color: #FFFFFF; }
+  .record-date { font-size: 12px; color: #AAAAAA; margin-top: 2px; }
+  .record-right { text-align: right; }
+  .record-time { font-size: 18px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px; }
+  .record-pace { font-size: 12px; color: #AAAAAA; margin-top: 2px; }
+
+  /* ── BLOQUE 4: Calendario ── */
+  .cal-header-row {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .cal-month-big { font-size: 26px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px; }
+  .share-pill {
+    background: #1A1A1A; border-radius: 20px; padding: 6px 14px;
+    font-size: 12px; font-weight: 600; color: #AAAAAA;
+    border: 1px solid #2A2A2A;
+  }
+  .streak-row { margin-bottom: 14px; }
+  .streak-main { font-size: 13px; color: #AAAAAA; margin-bottom: 3px; }
+  .streak-main strong { font-size: 15px; font-weight: 700; color: #FFFFFF; margin-left: 4px; }
+  .streak-sub { font-size: 13px; color: #AAAAAA; }
+  .cal-grid { }
+  .cal-day-headers {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 6px;
+  }
+  .cal-day-header { text-align: center; font-size: 10px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .cal-cell {
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; position: relative;
+  }
+  .cal-cell-num { font-size: 13px; color: #444; }
+  .cal-cell.has-run { background: #1A1A1A; }
+  .cal-cell.has-run .cal-cell-num { color: #FFFFFF; font-weight: 600; }
+  .cal-cell.streak-day { background: #FF6B35; }
+  .cal-cell.streak-day .cal-cell-num { color: #FFFFFF; font-weight: 800; }
+  .cal-cell.today-cal { border: 2px solid #FF6B35; background: transparent; }
+  .cal-cell.today-cal .cal-cell-num { color: #FFFFFF; font-weight: 800; }
+  .cal-cell.today-run { background: #FF6B35; }
+  .cal-cell.today-run .cal-cell-num { color: #FFFFFF; font-weight: 800; }
+  .cal-sport-icon { font-size: 10px; }
+
+  /* ── BLOQUE 5: Objetivo sugerido ── */
+  .goal-card {
+    background: #1A1A1A; border-radius: 14px; border: 1px solid #2A2A2A;
+    padding: 14px; margin-bottom: 14px;
+    display: flex; gap: 12px; align-items: center;
+  }
+  .goal-card-icon {
+    width: 44px; height: 44px; border-radius: 50%; background: #2A2A2A;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .goal-card-text { flex: 1; }
+  .goal-card-title { font-size: 15px; font-weight: 700; color: #FFFFFF; margin-bottom: 3px; }
+  .goal-card-desc { font-size: 13px; color: #AAAAAA; line-height: 1.4; }
+  .goal-buttons { display: flex; gap: 10px; }
+  .btn-orange {
+    flex: 1; height: 44px; background: #FF6B35; border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #FFFFFF;
+  }
+  .btn-outline {
+    flex: 1; height: 44px; border: 1.5px solid #FF6B35; border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; color: #FF6B35; background: transparent;
+  }
+
+  /* ── BLOQUE 6: Gráficos ── */
+  .chart-area { margin-top: 8px; }
+  .chart-svg-wrap { width: 100%; overflow: hidden; }
+
+  /* ── Bottom tab bar ── */
+  .bottom-tabs {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 83px;
+    background: rgba(17,17,17,0.97);
+    border-top: 1px solid #1E1E1E;
+    display: flex; align-items: flex-start; justify-content: space-around;
+    padding-top: 10px;
+  }
+  .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; }
+  .tab-item-text { font-size: 10px; color: #9ca3af; }
+  .tab-item-text.active { color: #FF6B35; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="notch"></div>
+  <div class="screen">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-avatar">A</div>
+      <div class="header-title">Tú</div>
+      <div class="header-actions">
+        <div class="header-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12h14" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="header-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" stroke="#AAAAAA" stroke-width="1.8"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="#AAAAAA" stroke-width="1.8"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-bar">
+      <div class="tab active">Progreso <div class="tab-underline"></div></div>
+      <div class="tab">Actividades</div>
+    </div>
+
+    <!-- Scroll content -->
+    <div class="scroll">
+
+      <!-- ═══════════════════════════════════ -->
+      <!-- BLOQUE 1 — Actividades del mes      -->
+      <!-- ═══════════════════════════════════ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="section-title">Actividades mensuales</span>
+          </div>
+        </div>
+        <div class="section-desc">Has completado 14 actividades este mes · abril 2026</div>
+
+        <div class="month-stats-row">
+          <div class="month-metrics">
+            <div class="metric-item">
+              <div class="metric-value">8h 24m</div>
+              <div class="metric-label">Tiempo activo</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">98.6</div>
+              <div class="metric-label">km totales</div>
+            </div>
+          </div>
+          <!-- Mini trend line -->
+          <svg class="mini-chart" viewBox="0 0 80 48" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="miniGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,40 L12,32 L20,36 L30,22 L40,28 L52,14 L64,18 L80,8 L80,48 L0,48 Z" fill="url(#miniGrad)"/>
+            <path d="M0,40 L12,32 L20,36 L30,22 L40,28 L52,14 L64,18 L80,8" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="see-more see-more-right">Ver más estadísticas de abril →</div>
+      </div>
+
+      <!-- ═══════════════════════════════════ -->
+      <!-- BLOQUE 2 — Registro entrenamiento   -->
+      <!-- ═══════════════════════════════════ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                <path d="M16 2v4M8 2v4M3 10h18" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="section-title">Registro de entrenamiento</span>
+          </div>
+        </div>
+        <div class="section-desc">Descubre patrones en tu historial de actividad</div>
+
+        <!-- 7-day circles: L M X J V S D (esta semana) -->
+        <div class="training-log-row">
+          <!-- Lunes: 1 actividad — naranja 60% -->
+          <div class="day-circle-wrap">
+            <div class="day-circle one">
+              <span>1</span>
+              <div class="act-count">1</div>
+            </div>
+            <div class="day-label">L</div>
+          </div>
+          <!-- Martes: sin actividad -->
+          <div class="day-circle-wrap">
+            <div class="day-circle empty">–</div>
+            <div class="day-label">M</div>
+          </div>
+          <!-- Miércoles: 1 actividad — naranja 60% -->
+          <div class="day-circle-wrap">
+            <div class="day-circle one">
+              <span>1</span>
+              <div class="act-count">1</div>
+            </div>
+            <div class="day-label">X</div>
+          </div>
+          <!-- Jueves: sin actividad -->
+          <div class="day-circle-wrap">
+            <div class="day-circle empty">–</div>
+            <div class="day-label">J</div>
+          </div>
+          <!-- Viernes: 2 actividades — naranja 80% -->
+          <div class="day-circle-wrap">
+            <div class="day-circle two">
+              <span>2</span>
+              <div class="act-count">2</div>
+            </div>
+            <div class="day-label">V</div>
+          </div>
+          <!-- Sábado: 1 actividad — naranja 60% -->
+          <div class="day-circle-wrap">
+            <div class="day-circle one">
+              <span>1</span>
+              <div class="act-count">1</div>
+            </div>
+            <div class="day-label">S</div>
+          </div>
+          <!-- Domingo: hoy, sin actividad — borde naranja, fondo transparente -->
+          <div class="day-circle-wrap">
+            <div class="day-circle today-empty">–</div>
+            <div class="day-label today-lbl">D</div>
+          </div>
+        </div>
+
+        <div class="see-more">Ver más sobre tu entrenamiento →</div>
+      </div>
+
+      <!-- ═══════════════════════════════════ -->
+      <!-- BLOQUE 3 — Mejores tiempos         -->
+      <!-- ═══════════════════════════════════ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#FF6B35" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="section-title">Mejores tiempos</span>
+          </div>
+        </div>
+        <div class="section-desc">Tus récords y avances personales</div>
+
+        <div class="record-row">
+          <div class="record-center">
+            <div class="record-dist">5 km</div>
+            <div class="record-date">14 mar 2026</div>
+          </div>
+          <div class="record-right">
+            <div class="record-time">21:34</div>
+            <div class="record-pace">4:19 /km</div>
+          </div>
+        </div>
+
+        <div class="record-row">
+          <div class="record-center">
+            <div class="record-dist">10 km</div>
+            <div class="record-date">2 feb 2026</div>
+          </div>
+          <div class="record-right">
+            <div class="record-time">45:11</div>
+            <div class="record-pace">4:31 /km</div>
+          </div>
+        </div>
+
+        <div class="record-row">
+          <div class="record-center">
+            <div class="record-dist">Media maratón</div>
+            <div class="record-date">18 ene 2026</div>
+          </div>
+          <div class="record-right">
+            <div class="record-time">1:48:22</div>
+            <div class="record-pace">5:07 /km</div>
+          </div>
+        </div>
+
+        <div class="see-more">Ver tus mejores tiempos →</div>
+      </div>
+
+      <!-- ═══════════════════════════════════ -->
+      <!-- BLOQUE 4 — Calendario de actividad -->
+      <!-- ═══════════════════════════════════ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                <path d="M16 2v4M8 2v4M3 10h18" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="section-title">Calendario</span>
+          </div>
+        </div>
+
+        <!-- Month + share -->
+        <div class="cal-header-row">
+          <div class="cal-month-big">abril 2026</div>
+          <div class="share-pill">Compartir</div>
+        </div>
+
+        <!-- Streak -->
+        <div class="streak-row">
+          <div class="streak-main">Tu serie: <strong>3 semanas</strong></div>
+          <div class="streak-sub">Actividades en serie: 12</div>
+        </div>
+
+        <!-- Calendar grid -->
+        <div class="cal-day-headers">
+          <div class="cal-day-header">L</div>
+          <div class="cal-day-header">M</div>
+          <div class="cal-day-header">X</div>
+          <div class="cal-day-header">J</div>
+          <div class="cal-day-header">V</div>
+          <div class="cal-day-header">S</div>
+          <div class="cal-day-header">D</div>
+        </div>
+        <div class="cal-days">
+          <!-- Week 1: starts Tue -->
+          <div class="cal-cell"></div>
+          <div class="cal-cell streak-day"><span class="cal-cell-num">1</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">2</span></div>
+          <div class="cal-cell has-run"><span class="cal-cell-num">3</span></div>
+          <div class="cal-cell streak-day"><span class="cal-cell-num">4</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">5</span></div>
+          <div class="cal-cell has-run"><span class="cal-cell-num">6</span></div>
+          <!-- Week 2 -->
+          <div class="cal-cell has-run"><span class="cal-cell-num">7</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">8</span></div>
+          <div class="cal-cell streak-day"><span class="cal-cell-num">9</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">10</span></div>
+          <div class="cal-cell has-run"><span class="cal-cell-num">11</span></div>
+          <div class="cal-cell streak-day"><span class="cal-cell-num">12</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">13</span></div>
+          <!-- Week 3 -->
+          <div class="cal-cell streak-day"><span class="cal-cell-num">14</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">15</span></div>
+          <div class="cal-cell has-run"><span class="cal-cell-num">16</span></div>
+          <div class="cal-cell streak-day"><span class="cal-cell-num">17</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">18</span></div>
+          <div class="cal-cell has-run"><span class="cal-cell-num">19</span></div>
+          <div class="cal-cell streak-day"><span class="cal-cell-num">20</span></div>
+          <!-- Week 4 -->
+          <div class="cal-cell has-run"><span class="cal-cell-num">21</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#444">22</span></div>
+          <div class="cal-cell today-cal"><span class="cal-cell-num">23</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#2a2a2a">24</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#2a2a2a">25</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#2a2a2a">26</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#2a2a2a">27</span></div>
+          <!-- Week 5 -->
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#2a2a2a">28</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#2a2a2a">29</span></div>
+          <div class="cal-cell"><span class="cal-cell-num" style="color:#2a2a2a">30</span></div>
+        </div>
+
+        <div class="see-more" style="margin-top:12px">Ver tu resumen completo →</div>
+      </div>
+
+      <!-- ═══════════════════════════════════ -->
+      <!-- BLOQUE 5 — Objetivo sugerido       -->
+      <!-- ═══════════════════════════════════ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="#FF6B35" stroke-width="2"/>
+                <circle cx="12" cy="12" r="5" stroke="#FF6B35" stroke-width="2"/>
+                <circle cx="12" cy="12" r="1.5" fill="#FF6B35"/>
+              </svg>
+            </div>
+            <span class="section-title">Objetivo sugerido</span>
+          </div>
+        </div>
+        <div class="section-desc">Los objetivos pueden ser de distancia, tiempo o actividades</div>
+
+        <!-- Suggested goal card -->
+        <div class="goal-card">
+          <div class="goal-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="13.5" cy="3.5" r="1.5" stroke="#FF6B35" stroke-width="1.8"/>
+              <path d="M9 11.5l2.5-2.5 2 2L16 8M6 19l3.5-1.5L8 14l2-3 2 2v4h2v-5l-2-2 1-2.5c1 1.2 2.5 2 4 2v-2" stroke="#FF6B35" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="goal-card-text">
+            <div class="goal-card-title">Corre 100 km en mayo</div>
+            <div class="goal-card-desc">Basado en tu promedio reciente de 25 km/semana</div>
+          </div>
+        </div>
+
+        <div class="goal-buttons">
+          <div class="btn-orange">Crear objetivo</div>
+          <div class="btn-outline">Personalizar</div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════ -->
+      <!-- BLOQUE 6A — Distancia en el tiempo -->
+      <!-- ═══════════════════════════════════ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="12" width="4" height="9" rx="1" fill="#FF6B35" opacity="0.4"/>
+                <rect x="10" y="7" width="4" height="14" rx="1" fill="#FF6B35" opacity="0.7"/>
+                <rect x="17" y="3" width="4" height="18" rx="1" fill="#FF6B35"/>
+              </svg>
+            </div>
+            <span class="section-title">Distancia en el tiempo</span>
+          </div>
+        </div>
+        <div class="section-desc">Evolución de tus kilómetros en los últimos 30 días</div>
+
+        <!-- Bar chart -->
+        <div class="chart-area">
+          <svg width="100%" height="90" viewBox="0 0 340 90" preserveAspectRatio="none">
+            <!-- Horizontal grid -->
+            <line x1="0" y1="15" x2="340" y2="15" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="45" x2="340" y2="45" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="75" x2="340" y2="75" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <!-- Bars (daily km, 30 days) -->
+            <rect x="2" y="72" width="8" height="8" rx="2" fill="#FF6B35" opacity="0.5"/>
+            <rect x="13" y="50" width="8" height="30" rx="2" fill="#FF6B35" opacity="0.7"/>
+            <rect x="24" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.4"/>
+            <rect x="35" y="40" width="8" height="40" rx="2" fill="#FF6B35"/>
+            <rect x="46" y="70" width="8" height="10" rx="2" fill="#FF6B35" opacity="0.5"/>
+            <rect x="57" y="55" width="8" height="25" rx="2" fill="#FF6B35" opacity="0.7"/>
+            <rect x="68" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.3"/>
+            <rect x="79" y="30" width="8" height="50" rx="2" fill="#FF6B35"/>
+            <rect x="90" y="65" width="8" height="15" rx="2" fill="#FF6B35" opacity="0.5"/>
+            <rect x="101" y="45" width="8" height="35" rx="2" fill="#FF6B35" opacity="0.7"/>
+            <rect x="112" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.3"/>
+            <rect x="123" y="20" width="8" height="60" rx="2" fill="#FF6B35"/>
+            <rect x="134" y="70" width="8" height="10" rx="2" fill="#FF6B35" opacity="0.4"/>
+            <rect x="145" y="50" width="8" height="30" rx="2" fill="#FF6B35" opacity="0.6"/>
+            <rect x="156" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.3"/>
+            <rect x="167" y="35" width="8" height="45" rx="2" fill="#FF6B35"/>
+            <rect x="178" y="60" width="8" height="20" rx="2" fill="#FF6B35" opacity="0.5"/>
+            <rect x="189" y="42" width="8" height="38" rx="2" fill="#FF6B35" opacity="0.7"/>
+            <rect x="200" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.3"/>
+            <rect x="211" y="25" width="8" height="55" rx="2" fill="#FF6B35"/>
+            <rect x="222" y="68" width="8" height="12" rx="2" fill="#FF6B35" opacity="0.4"/>
+            <rect x="233" y="48" width="8" height="32" rx="2" fill="#FF6B35" opacity="0.6"/>
+            <rect x="244" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.3"/>
+            <rect x="255" y="18" width="8" height="62" rx="2" fill="#FF6B35"/>
+            <rect x="266" y="62" width="8" height="18" rx="2" fill="#FF6B35" opacity="0.5"/>
+            <rect x="277" y="38" width="8" height="42" rx="2" fill="#FF6B35" opacity="0.7"/>
+            <rect x="288" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.3"/>
+            <rect x="299" y="28" width="8" height="52" rx="2" fill="#FF6B35"/>
+            <rect x="310" y="55" width="8" height="25" rx="2" fill="#FF6B35" opacity="0.6"/>
+            <rect x="321" y="75" width="8" height="5" rx="2" fill="#FF6B35" opacity="0.3"/>
+          </svg>
+          <div style="display:flex; justify-content:space-between; margin-top:4px;">
+            <span style="font-size:10px;color:#555">3 mar</span>
+            <span style="font-size:10px;color:#555">2 abr</span>
+          </div>
+        </div>
+
+        <div class="see-more see-more-right">Ver tendencia hasta 2 años →</div>
+      </div>
+
+      <!-- ═══════════════════════════════════ -->
+      <!-- BLOQUE 6B — Evolución del ritmo    -->
+      <!-- ═══════════════════════════════════ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="section-title">Evolución del ritmo</span>
+          </div>
+        </div>
+        <div class="section-desc">Tu ritmo medio por sesión · min/km (menor = más rápido)</div>
+
+        <!-- Line chart -->
+        <div class="chart-area">
+          <svg width="100%" height="100" viewBox="0 0 340 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="paceGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <line x1="0" y1="20" x2="340" y2="20" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="50" x2="340" y2="50" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="80" x2="340" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <!-- Fill area -->
+            <path d="M0,75 L45,70 L90,78 L135,62 L180,55 L225,48 L270,40 L315,32 L340,28 L340,95 L0,95 Z" fill="url(#paceGrad)"/>
+            <!-- Line -->
+            <path d="M0,75 L45,70 L90,78 L135,62 L180,55 L225,48 L270,40 L315,32 L340,28" stroke="#FF6B35" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Dots -->
+            <circle cx="0" cy="75" r="3" fill="#FF6B35"/>
+            <circle cx="45" cy="70" r="3" fill="#FF6B35"/>
+            <circle cx="90" cy="78" r="3" fill="#FF6B35"/>
+            <circle cx="135" cy="62" r="3" fill="#FF6B35"/>
+            <circle cx="180" cy="55" r="3" fill="#FF6B35"/>
+            <circle cx="225" cy="48" r="3" fill="#FF6B35"/>
+            <circle cx="270" cy="40" r="3" fill="#FF6B35"/>
+            <circle cx="315" cy="32" r="3" fill="#FF6B35"/>
+          </svg>
+          <div style="display:flex; justify-content:space-between; margin-top:4px;">
+            <span style="font-size:10px;color:#555">ene</span>
+            <span style="font-size:10px;color:#555">feb</span>
+            <span style="font-size:10px;color:#555">mar</span>
+            <span style="font-size:10px;color:#555">abr</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-top:8px;">
+            <span style="font-size:11px;color:#555">Inicio: <span style="color:#FFFFFF;font-weight:600">5:45/km</span></span>
+            <span style="font-size:11px;color:#555">Ahora: <span style="color:#FF6B35;font-weight:700">4:58/km ↗</span></span>
+          </div>
+        </div>
+
+        <div class="see-more see-more-right">Ver tendencia hasta 2 años →</div>
+      </div>
+
+      <!-- Spacer -->
+      <div style="height:20px"></div>
+    </div><!-- end scroll -->
+
+    <!-- Bottom tabs -->
+    <div class="bottom-tabs">
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" stroke="#9ca3af" stroke-width="1.8" fill="none"/>
+        </svg>
+        <span class="tab-item-text">Inicio</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z" stroke="#9ca3af" stroke-width="1.8"/>
+          <circle cx="12" cy="10" r="3" stroke="#9ca3af" stroke-width="1.8"/>
+        </svg>
+        <span class="tab-item-text">Mapa</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M8 5.5v13L19 12 8 5.5z" fill="white"/>
+        </svg>
+        <span class="tab-item-text">Correr</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="15.5" cy="8" r="2.5" stroke="#9ca3af" stroke-width="1.8" opacity="0.7"/>
+          <path d="M20 19c0-2.21-2.015-4-4.5-4" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="9" cy="8" r="3" stroke="#9ca3af" stroke-width="1.8"/>
+          <path d="M3 19c0-2.761 2.686-5 6-5s6 2.239 6 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="tab-item-text">Social</span>
+      </div>
+      <div class="tab-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="4" fill="#FF6B35"/>
+          <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="tab-item-text active">Perfil</span>
+      </div>
+    </div>
+
+  </div><!-- end screen -->
+</div><!-- end phone -->
+</body>
+</html>

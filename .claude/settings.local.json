@@ -110,7 +110,23 @@
       "WebFetch(domain:search.google.com)",
       "Bash(done)",
       "WebSearch",
-      "mcp__2d47ac23-f00d-46cd-b405-c57a5403862b__execute_sql"
+      "mcp__2d47ac23-f00d-46cd-b405-c57a5403862b__execute_sql",
+      "mcp__claude_ai_Supabase__execute_sql",
+      "mcp__claude_ai_Canva__generate-design",
+      "mcp__claude_ai_Canva__create-design-from-candidate",
+      "mcp__claude_ai_Canva__export-design",
+      "mcp__claude_ai_Canva__upload-asset-from-url",
+      "mcp__claude_ai_Canva__start-editing-transaction",
+      "mcp__claude_ai_Canva__perform-editing-operations",
+      "mcp__claude_ai_Canva__commit-editing-transaction",
+      "WebFetch(domain:www.palabraderunner.com)",
+      "WebFetch(domain:www.soycorredor.es)",
+      "Bash(node redes/export-png.cjs)",
+      "Bash(while read:*)",
+      "Bash(do echo:*)",
+      "Bash(do git:*)",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Read(//c/Program Files \\(x86\\)/Google/Chrome/Application/**)"
     ]
   }
 }

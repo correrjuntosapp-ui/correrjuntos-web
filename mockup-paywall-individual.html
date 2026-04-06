@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PaywallScreen Individual — Rediseno Final</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif; display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; padding: 40px 20px; }
+  h1 { width: 100%; text-align: center; color: #fff; font-size: 24px; margin-bottom: 4px; }
+  .subtitle { width: 100%; text-align: center; color: #888; font-size: 13px; margin-bottom: 24px; }
+
+  .phone { width: 375px; height: 812px; background: #0D0D1A; border-radius: 40px; overflow: hidden; position: relative; border: 3px solid #333; flex-shrink: 0; }
+  .phone-label { text-align: center; color: #ccc; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .notch { width: 150px; height: 28px; background: #000; border-radius: 0 0 18px 18px; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 20; }
+  .screen { width: 100%; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; }
+  .screen::-webkit-scrollbar { display: none; }
+
+  .hero { background: linear-gradient(180deg, #0D0D1A 0%, #1c1205 50%, #2d1810 100%); padding: 56px 24px 24px; text-align: center; position: relative; }
+  .back-btn { position: absolute; top: 44px; left: 16px; width: 36px; height: 36px; border-radius: 18px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: #888; font-size: 20px; z-index: 10; }
+  .close-btn { position: absolute; top: 44px; right: 16px; width: 36px; height: 36px; border-radius: 18px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: #666; font-size: 16px; z-index: 10; }
+  .crown { font-size: 48px; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(251,191,36,0.3)); }
+  .hero-title { color: #fbbf24; font-size: 26px; font-weight: 900; margin-bottom: 8px; }
+  .hero-tagline { color: rgba(255,255,255,0.6); font-size: 15px; font-weight: 500; line-height: 1.4; }
+
+  .content { flex: 1; padding: 16px; overflow-y: auto; }
+
+  /* Individual plan card */
+  .ip-card { background: #1A1A2E; border-radius: 16px; padding: 20px; border-width: 1.5px; border-style: solid; margin-bottom: 4px; }
+  .ip-badge { border-radius: 6px; padding: 4px 10px; display: inline-block; margin-bottom: 12px; }
+  .ip-badge-text { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+  .ip-price { font-size: 36px; font-weight: 800; color: #fff; }
+  .ip-price-note { font-size: 13px; color: #666680; margin-bottom: 16px; margin-top: 4px; }
+  .ip-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 14px; }
+  .ip-benefit { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+  .ip-benefit-check { font-size: 14px; font-weight: 700; margin-top: 1px; }
+  .ip-benefit-text { font-size: 14px; color: #CCCCDD; }
+
+  /* Separator */
+  .ip-separator { display: flex; align-items: center; gap: 10px; margin: 16px 0; }
+  .ip-separator-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+  .ip-separator-text { font-size: 11px; color: #666680; font-weight: 600; letter-spacing: 0.5px; }
+
+  /* Premium card */
+  .ip-premium { background: linear-gradient(180deg, #1A1A2E, #2A1A0E); border-radius: 16px; padding: 20px; border: 1.5px solid rgba(255,107,0,0.3); margin-bottom: 8px; }
+  .ip-premium-badge { background: rgba(255,107,0,0.15); border-radius: 6px; padding: 4px 10px; display: inline-block; margin-bottom: 12px; }
+  .ip-premium-badge-text { font-size: 11px; font-weight: 700; color: #FF6B00; letter-spacing: 0.5px; }
+  .ip-premium-price { font-size: 36px; font-weight: 800; color: #f97316; }
+  .ip-premium-period { font-size: 16px; color: #999BB0; margin-bottom: 6px; display: inline; }
+  .ip-premium-includes { font-size: 13px; color: #FF6B00; font-weight: 500; margin-bottom: 14px; }
+
+  /* Sticky CTAs */
+  .cta-area { padding: 12px 16px 28px; border-top: 1px solid rgba(255,255,255,0.06); background: #0D0D1A; }
+  .cta-primary { width: 100%; padding: 16px; border-radius: 14px; text-align: center; color: #fff; font-size: 16px; font-weight: 700; border: none; cursor: pointer; }
+  .cta-secondary { width: 100%; padding: 14px; border-radius: 14px; text-align: center; font-size: 15px; font-weight: 600; color: #FF6B00; border: 1.5px solid rgba(255,107,0,0.4); background: transparent; cursor: pointer; margin-top: 8px; }
+  .cta-restore { text-align: center; font-size: 13px; color: #666680; margin-top: 10px; }
+  .cta-trust { text-align: center; font-size: 12px; color: #555568; margin-top: 6px; }
+
+  .phone-wrapper { display: flex; flex-direction: column; align-items: center; }
+  .vs-label { width: 100%; text-align: center; color: #555; font-size: 11px; margin-top: 24px; margin-bottom: -10px; letter-spacing: 2px; }
+
+  @media (max-width: 1400px) { .phone { transform: scale(0.85); transform-origin: top center; } }
+</style>
+</head>
+<body>
+
+<h1>PaywallScreen Individual — Rediseno Final</h1>
+<p class="subtitle">Hero + Card individual (precio 36px) + "O LLEVATE MAS" + Card Premium + 2 CTAs (color del plan + outline Premium). Sin features grid, sin comparison.</p>
+
+<!-- ═══════════════ PLAN 5K ═══════════════ -->
+<div class="phone-wrapper">
+  <div class="phone-label">Plan 5K — 3,99 &euro; <span style="color:#4CAF50">&#9679;</span></div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="hero">
+        <div class="back-btn">&#8249;</div>
+        <div class="close-btn">&#10005;</div>
+        <div class="crown">👑</div>
+        <div class="hero-title">Tu Plan 5K te espera</div>
+        <div class="hero-tagline">De principiante a corredor en 8 semanas</div>
+      </div>
+      <div class="content">
+        <div class="ip-card" style="border-color: rgba(76,175,80,0.4);">
+          <div class="ip-badge" style="background:rgba(76,175,80,0.13);"><span class="ip-badge-text" style="color:#4CAF50;">PLAN 5K</span></div>
+          <div class="ip-price">3,99 &euro;</div>
+          <div class="ip-price-note">Paga una vez, tuyo para siempre</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#4CAF50">✓</span><span class="ip-benefit-text">Programa completo semana a semana</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#4CAF50">✓</span><span class="ip-benefit-text">Calendario + guia del entrenador</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#4CAF50">✓</span><span class="ip-benefit-text">Actualizaciones del plan incluidas</span></div>
+        </div>
+        <div class="ip-separator">
+          <div class="ip-separator-line"></div>
+          <span class="ip-separator-text">O LLEVATE MAS</span>
+          <div class="ip-separator-line"></div>
+        </div>
+        <div class="ip-premium">
+          <div class="ip-premium-badge"><span class="ip-premium-badge-text">PREMIUM — TODO INCLUIDO</span></div>
+          <div><span class="ip-premium-price">2,49 &euro;</span><span class="ip-premium-period">/mes</span></div>
+          <div class="ip-price-note">29,99&euro;/ano &middot; Ahorra 40%</div>
+          <div class="ip-premium-includes">Incluye Plan 5K y todos los demas</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Todos los planes de entrenamiento</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Quedadas exclusivas Premium</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Estadisticas avanzadas</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Sin anuncios</span></div>
+        </div>
+      </div>
+      <div class="cta-area">
+        <button class="cta-primary" style="background:#4CAF50; box-shadow:0 4px 16px rgba(76,175,80,0.35);">Comprar Plan 5K — 3,99 &euro; →</button>
+        <button class="cta-secondary">Activar Premium — 29,99 &euro;/ano →</button>
+        <div class="cta-restore">Restaurar compras</div>
+        <div class="cta-trust">🔒 Cancela cuando quieras &middot; Sin compromisos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PLAN 10K ═══════════════ -->
+<div class="phone-wrapper">
+  <div class="phone-label">Plan 10K — 5,99 &euro; <span style="color:#FF6B00">&#9679;</span></div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="hero">
+        <div class="back-btn">&#8249;</div>
+        <div class="close-btn">&#10005;</div>
+        <div class="crown">👑</div>
+        <div class="hero-title">Tu Plan 10K te espera</div>
+        <div class="hero-tagline">Del sofa a los 10K en 10 semanas</div>
+      </div>
+      <div class="content">
+        <div class="ip-card" style="border-color: rgba(255,107,0,0.4);">
+          <div class="ip-badge" style="background:rgba(255,107,0,0.13);"><span class="ip-badge-text" style="color:#FF6B00;">PLAN 10K</span></div>
+          <div class="ip-price">5,99 &euro;</div>
+          <div class="ip-price-note">Paga una vez, tuyo para siempre</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Programa completo semana a semana</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Calendario + guia del entrenador</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Actualizaciones del plan incluidas</span></div>
+        </div>
+        <div class="ip-separator">
+          <div class="ip-separator-line"></div>
+          <span class="ip-separator-text">O LLEVATE MAS</span>
+          <div class="ip-separator-line"></div>
+        </div>
+        <div class="ip-premium">
+          <div class="ip-premium-badge"><span class="ip-premium-badge-text">PREMIUM — TODO INCLUIDO</span></div>
+          <div><span class="ip-premium-price">2,49 &euro;</span><span class="ip-premium-period">/mes</span></div>
+          <div class="ip-price-note">29,99&euro;/ano &middot; Ahorra 40%</div>
+          <div class="ip-premium-includes">Incluye Plan 10K y todos los demas</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Todos los planes de entrenamiento</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Quedadas exclusivas Premium</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Estadisticas avanzadas</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Sin anuncios</span></div>
+        </div>
+      </div>
+      <div class="cta-area">
+        <button class="cta-primary" style="background:#FF6B00; box-shadow:0 4px 16px rgba(255,107,0,0.35);">Comprar Plan 10K — 5,99 &euro; →</button>
+        <button class="cta-secondary">Activar Premium — 29,99 &euro;/ano →</button>
+        <div class="cta-restore">Restaurar compras</div>
+        <div class="cta-trust">🔒 Cancela cuando quieras &middot; Sin compromisos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PLAN TRAIL ═══════════════ -->
+<div class="phone-wrapper">
+  <div class="phone-label">Plan Trail — 5,99 &euro; <span style="color:#8BC34A">&#9679;</span></div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="hero">
+        <div class="back-btn">&#8249;</div>
+        <div class="close-btn">&#10005;</div>
+        <div class="crown">👑</div>
+        <div class="hero-title">Tu Plan Trail te espera</div>
+        <div class="hero-tagline">Conquista el trail en 12 semanas</div>
+      </div>
+      <div class="content">
+        <div class="ip-card" style="border-color: rgba(139,195,74,0.4);">
+          <div class="ip-badge" style="background:rgba(139,195,74,0.13);"><span class="ip-badge-text" style="color:#8BC34A;">PLAN TRAIL</span></div>
+          <div class="ip-price">5,99 &euro;</div>
+          <div class="ip-price-note">Paga una vez, tuyo para siempre</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#8BC34A">✓</span><span class="ip-benefit-text">Programa completo semana a semana</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#8BC34A">✓</span><span class="ip-benefit-text">Calendario + guia del entrenador</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#8BC34A">✓</span><span class="ip-benefit-text">Actualizaciones del plan incluidas</span></div>
+        </div>
+        <div class="ip-separator">
+          <div class="ip-separator-line"></div>
+          <span class="ip-separator-text">O LLEVATE MAS</span>
+          <div class="ip-separator-line"></div>
+        </div>
+        <div class="ip-premium">
+          <div class="ip-premium-badge"><span class="ip-premium-badge-text">PREMIUM — TODO INCLUIDO</span></div>
+          <div><span class="ip-premium-price">2,49 &euro;</span><span class="ip-premium-period">/mes</span></div>
+          <div class="ip-price-note">29,99&euro;/ano &middot; Ahorra 40%</div>
+          <div class="ip-premium-includes">Incluye Plan Trail y todos los demas</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Todos los planes de entrenamiento</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Quedadas exclusivas Premium</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Estadisticas avanzadas</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Sin anuncios</span></div>
+        </div>
+      </div>
+      <div class="cta-area">
+        <button class="cta-primary" style="background:#8BC34A; box-shadow:0 4px 16px rgba(139,195,74,0.35);">Comprar Plan Trail — 5,99 &euro; →</button>
+        <button class="cta-secondary">Activar Premium — 29,99 &euro;/ano →</button>
+        <div class="cta-restore">Restaurar compras</div>
+        <div class="cta-trust">🔒 Cancela cuando quieras &middot; Sin compromisos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PLAN 21K ═══════════════ -->
+<div class="phone-wrapper">
+  <div class="phone-label">Plan 21K — 7,99 &euro; <span style="color:#2196F3">&#9679;</span></div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="hero">
+        <div class="back-btn">&#8249;</div>
+        <div class="close-btn">&#10005;</div>
+        <div class="crown">👑</div>
+        <div class="hero-title">Tu Plan 21K te espera</div>
+        <div class="hero-tagline">Tu primera media en 16 semanas</div>
+      </div>
+      <div class="content">
+        <div class="ip-card" style="border-color: rgba(33,150,243,0.4);">
+          <div class="ip-badge" style="background:rgba(33,150,243,0.13);"><span class="ip-badge-text" style="color:#2196F3;">PLAN 21K</span></div>
+          <div class="ip-price">7,99 &euro;</div>
+          <div class="ip-price-note">Paga una vez, tuyo para siempre</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#2196F3">✓</span><span class="ip-benefit-text">Programa completo semana a semana</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#2196F3">✓</span><span class="ip-benefit-text">Calendario + guia del entrenador</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#2196F3">✓</span><span class="ip-benefit-text">Actualizaciones del plan incluidas</span></div>
+        </div>
+        <div class="ip-separator">
+          <div class="ip-separator-line"></div>
+          <span class="ip-separator-text">O LLEVATE MAS</span>
+          <div class="ip-separator-line"></div>
+        </div>
+        <div class="ip-premium">
+          <div class="ip-premium-badge"><span class="ip-premium-badge-text">PREMIUM — TODO INCLUIDO</span></div>
+          <div><span class="ip-premium-price">2,49 &euro;</span><span class="ip-premium-period">/mes</span></div>
+          <div class="ip-price-note">29,99&euro;/ano &middot; Ahorra 40%</div>
+          <div class="ip-premium-includes">Incluye Plan 21K y todos los demas</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Todos los planes de entrenamiento</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Quedadas exclusivas Premium</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Estadisticas avanzadas</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Sin anuncios</span></div>
+        </div>
+      </div>
+      <div class="cta-area">
+        <button class="cta-primary" style="background:#2196F3; box-shadow:0 4px 16px rgba(33,150,243,0.35);">Comprar Plan 21K — 7,99 &euro; →</button>
+        <button class="cta-secondary">Activar Premium — 29,99 &euro;/ano →</button>
+        <div class="cta-restore">Restaurar compras</div>
+        <div class="cta-trust">🔒 Cancela cuando quieras &middot; Sin compromisos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PLAN MARATON ═══════════════ -->
+<div class="phone-wrapper">
+  <div class="phone-label">Plan Maraton — 9,99 &euro; <span style="color:#9C27B0">&#9679;</span></div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="hero">
+        <div class="back-btn">&#8249;</div>
+        <div class="close-btn">&#10005;</div>
+        <div class="crown">👑</div>
+        <div class="hero-title">Tu Plan Maraton te espera</div>
+        <div class="hero-tagline">El reto definitivo en 20 semanas</div>
+      </div>
+      <div class="content">
+        <div class="ip-card" style="border-color: rgba(156,39,176,0.4);">
+          <div class="ip-badge" style="background:rgba(156,39,176,0.13);"><span class="ip-badge-text" style="color:#9C27B0;">PLAN MARATON</span></div>
+          <div class="ip-price">9,99 &euro;</div>
+          <div class="ip-price-note">Paga una vez, tuyo para siempre</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#9C27B0">✓</span><span class="ip-benefit-text">Programa completo semana a semana</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#9C27B0">✓</span><span class="ip-benefit-text">Calendario + guia del entrenador</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#9C27B0">✓</span><span class="ip-benefit-text">Actualizaciones del plan incluidas</span></div>
+        </div>
+        <div class="ip-separator">
+          <div class="ip-separator-line"></div>
+          <span class="ip-separator-text">O LLEVATE MAS</span>
+          <div class="ip-separator-line"></div>
+        </div>
+        <div class="ip-premium">
+          <div class="ip-premium-badge"><span class="ip-premium-badge-text">PREMIUM — TODO INCLUIDO</span></div>
+          <div><span class="ip-premium-price">2,49 &euro;</span><span class="ip-premium-period">/mes</span></div>
+          <div class="ip-price-note">29,99&euro;/ano &middot; Ahorra 40%</div>
+          <div class="ip-premium-includes">Incluye Plan Maraton y todos los demas</div>
+          <div class="ip-divider"></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Todos los planes de entrenamiento</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Quedadas exclusivas Premium</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Estadisticas avanzadas</span></div>
+          <div class="ip-benefit"><span class="ip-benefit-check" style="color:#FF6B00">✓</span><span class="ip-benefit-text">Sin anuncios</span></div>
+        </div>
+      </div>
+      <div class="cta-area">
+        <button class="cta-primary" style="background:#9C27B0; box-shadow:0 4px 16px rgba(156,39,176,0.35);">Comprar Plan Maraton — 9,99 &euro; →</button>
+        <button class="cta-secondary">Activar Premium — 29,99 &euro;/ano →</button>
+        <div class="cta-restore">Restaurar compras</div>
+        <div class="cta-trust">🔒 Cancela cuando quieras &middot; Sin compromisos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

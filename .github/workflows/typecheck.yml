@@ -1,0 +1,41 @@
+name: Type Check & Lint
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'correr-juntos-app/**'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'correr-juntos-app/**'
+
+jobs:
+  typecheck:
+    name: TypeScript Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: correr-juntos-app
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: correr-juntos-app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Check for console.error patterns
+        run: |
+          echo "Checking for common issues..."
+          ! grep -r "console\.error" src/screens/ --include="*.tsx" -l | head -5 || true

@@ -17,6 +17,7 @@
           "/equipamiento/*",
           "/app/*",
           "/recursos/*",
+          "/invite/*",
           "NOT /api/*",
           "NOT /js/*",
           "NOT /css/*",

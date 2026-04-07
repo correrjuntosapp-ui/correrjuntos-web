@@ -57,6 +57,9 @@
       ]
     }
   ],
+  "rewrites": [
+    { "source": "/invite/:code", "destination": "/invite/index.html" }
+  ],
   "redirects": [
     {
       "source": "/blog/entrenamiento-de-fuerza-para-corredores",

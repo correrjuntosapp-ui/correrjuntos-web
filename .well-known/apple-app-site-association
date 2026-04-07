@@ -3,19 +3,31 @@
     "apps": [],
     "details": [
       {
-        "appID": "TEAM_ID.com.correrjuntos.app",
+        "appID": "4AVU63B7Q4.com.correrjuntos.app",
         "paths": [
+          "/blog/*",
+          "/blog/en/*",
+          "/planes/*",
+          "/cities/*",
+          "/places/*",
+          "/events/*",
           "/quedada/*",
           "/perfil/*",
-          "/matching/",
-          "/app/"
+          "/matching/*",
+          "/equipamiento/*",
+          "/app/*",
+          "/recursos/*",
+          "NOT /api/*",
+          "NOT /js/*",
+          "NOT /css/*",
+          "NOT /.well-known/*"
         ]
       }
     ]
   },
   "webcredentials": {
     "apps": [
-      "TEAM_ID.com.correrjuntos.app"
+      "4AVU63B7Q4.com.correrjuntos.app"
     ]
   }
 }

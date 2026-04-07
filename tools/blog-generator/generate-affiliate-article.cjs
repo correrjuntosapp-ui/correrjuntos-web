@@ -140,6 +140,14 @@ ${enSlug ? `<link rel="alternate" hreflang="en" href="${enUrl}">` : ''}
 <meta name="twitter:title" content="${c.ogTitle || c.title}">
 <meta name="twitter:description" content="${c.ogDescription || c.metaDescription}">
 <meta name="twitter:image" content="${heroUrl}">
+<!-- App Links Protocol — Deep linking from social apps -->
+<meta property="al:ios:app_store_id" content="6758505910">
+<meta property="al:ios:app_name" content="Correr Juntos">
+<meta property="al:ios:url" content="${canonicalUrl}">
+<meta property="al:android:package" content="com.correrjuntos.app">
+<meta property="al:android:app_name" content="Correr Juntos">
+<meta property="al:android:url" content="${canonicalUrl}">
+<meta property="al:web:url" content="${canonicalUrl}">
 `;
 
   // SCHEMA JSON-LD

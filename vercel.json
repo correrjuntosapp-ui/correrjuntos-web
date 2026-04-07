@@ -58,7 +58,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/invite/:code", "destination": "/invite/index.html" }
+    { "source": "/invite/:code([A-Za-z0-9]+)", "destination": "/invite" }
   ],
   "redirects": [
     {

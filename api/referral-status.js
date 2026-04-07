@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       const referredIds = claims.map(c => c.referred_id);
       const { data: referredProfiles } = await supabase
         .from('profiles')
-        .select('id, nombre, foto_perfil')
+        .select('id, nombre, photo_url')
         .in('id', referredIds);
 
       const profileMap = {};
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
       referrals = claims.map(c => ({
         id: c.id,
         name: profileMap[c.referred_id]?.nombre?.split(' ')[0] || 'Runner',
-        photo: profileMap[c.referred_id]?.foto_perfil || null,
+        photo: profileMap[c.referred_id]?.photo_url || null,
         date: c.created_at,
         premiumUntil: c.referrer_premium_expires,
       }));

@@ -20,10 +20,14 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (!SUPABASE_SERVICE_KEY) {
+      return res.status(500).json({ valid: false, error: 'Missing service key config' });
+    }
+
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
     const { data, error } = await supabase
       .from('profiles')
-      .select('id, nombre, foto_perfil')
+      .select('id, nombre, photo_url')
       .eq('referral_code', code.toUpperCase())
       .single();
 
@@ -37,7 +41,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       valid: true,
       referrerName: firstName,
-      referrerPhoto: data.foto_perfil || null,
+      referrerPhoto: data.photo_url || null,
     });
   } catch (e) {
     console.error('referral-validate error:', e);

@@ -24,7 +24,21 @@
   var ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';
   var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   var isAndroid = /Android/.test(navigator.userAgent);
+  var isMobile = isIOS || isAndroid;
   var storeUrl = isAndroid ? ANDROID_URL : IOS_URL;
+
+  /* ── Deep link helpers ── */
+  var BASE_URL = 'https://www.correrjuntos.com';
+  function deepLink(path){ return BASE_URL + path; }
+  function ctaDeepLink(){
+    /* Contextual deep link based on page content */
+    if(/plan|5k|10k|maraton|marathon|media|half|trail/.test(slug)) return deepLink('/planes');
+    if(/principiante|beginner|empezar|start|couch|cero/.test(slug)) return deepLink('/planes');
+    if(/matching|compa|partner|pareja/.test(slug)) return deepLink('/matching');
+    if(/quedada|meetup|grupo|group/.test(slug)) return deepLink('/map');
+    return deepLink('/feed');
+  }
+  var contextDeepLink = ctaDeepLink();
 
   /* ── Store badges SVG (compact) ── */
   var appleBadge = '<a href="' + IOS_URL + '" target="_blank" rel="noopener" class="cro-badge" onclick="ga(\'cro_click\',{location:\'badge_ios\',slug:\'' + slug + '\'})">' +
@@ -65,6 +79,15 @@
     '.cro-mid .cro-proof strong{color:#ea580c}',
     '.cro-mid .cro-link{display:inline-flex;align-items:center;gap:4px;color:#ea580c;font-size:.82rem;font-weight:600;text-decoration:none;margin-top:8px;transition:gap .2s}',
     '.cro-mid .cro-link:hover{gap:8px}',
+
+    /* Deep link primary CTA button (mobile) */
+    '.cro-deep{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.95rem;font-weight:700;border-radius:50px;text-decoration:none;margin-bottom:14px;box-shadow:0 4px 16px rgba(249,115,22,.35);transition:all .2s}',
+    '.cro-deep:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(249,115,22,.45)}',
+    '.cro-deep svg{flex-shrink:0}',
+    '.cro-deep-alt{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.95rem;font-weight:700;border-radius:50px;text-decoration:none;margin-bottom:14px;box-shadow:0 4px 16px rgba(249,115,22,.35);transition:all .2s;border:2px solid rgba(249,115,22,.5)}',
+    '.cro-deep-alt:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(249,115,22,.45)}',
+    '.cro-or{font-size:.78rem;color:#9a8478;margin:8px 0;font-weight:500}',
+    '.dark-mode .cro-or{color:#6b5c4d}',
 
     /* End-article CTA */
     '.cro-end{margin:48px 0 24px;padding:36px 28px;border-radius:24px;background:linear-gradient(145deg,#1a1208,#2a1f0e);border:1px solid rgba(249,115,22,.2);text-align:center;position:relative;overflow:hidden}',
@@ -149,9 +172,30 @@
 
       var midCTA = document.createElement('div');
       midCTA.className = 'cro-mid';
+
+      /* Contextual deep link button text */
+      var midBtnText;
+      if(/plan|5k|10k|maraton|marathon|media|half|trail/.test(slug)){
+        midBtnText = isEN ? 'Start your training plan free' : 'Empieza tu plan de entrenamiento gratis';
+      } else if(/principiante|beginner|empezar|start|couch|cero/.test(slug)){
+        midBtnText = isEN ? 'Start your free plan' : 'Empieza tu plan gratis';
+      } else if(/matching|compa|partner|pareja/.test(slug)){
+        midBtnText = isEN ? 'Find your running partner' : 'Encuentra tu compa\u00f1ero de running';
+      } else if(/quedada|meetup|grupo|group/.test(slug)){
+        midBtnText = isEN ? 'Find meetups near you' : 'Encuentra quedadas cerca de ti';
+      } else {
+        midBtnText = isEN ? 'Join the community free' : '\u00danete a la comunidad gratis';
+      }
+
+      var midDeepBtn = '<a href="' + contextDeepLink + '" class="cro-deep" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'mid_deep\',slug:\'' + slug + '\'})">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
+        midBtnText + ' \u2192</a>';
+
       midCTA.innerHTML =
         '<h3>' + midTitle + '</h3>' +
         '<p>' + midText + '</p>' +
+        midDeepBtn +
+        '<div class="cro-or">' + (isEN ? 'or download the app' : 'o descarga la app') + '</div>' +
         '<div class="cro-badges">' + appleBadge + googleBadge + '</div>' +
         '<a href="' + (isEN ? '/cities/' : '/cities/') + '" class="cro-link">\uD83D\uDDFA\uFE0F ' + (isEN ? 'See meetups near me' : 'Ver quedadas cerca de m\u00ed') + ' \u2192</a>' +
         '<div class="cro-fomo">' + fomoText + '</div>' +
@@ -189,9 +233,17 @@
     endCTA.style.maxWidth = '720px';
     endCTA.style.marginLeft = 'auto';
     endCTA.style.marginRight = 'auto';
+
+    var endBtnText = isEN ? 'Open Correr Juntos free' : 'Abre Correr Juntos gratis';
+    var endDeepBtn = '<a href="' + contextDeepLink + '" class="cro-deep-alt" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'end_deep\',slug:\'' + slug + '\'})">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
+      endBtnText + ' \u2192</a>';
+
     endCTA.innerHTML =
       '<h3>' + endTitle + '</h3>' +
       '<p>' + endText + '</p>' +
+      endDeepBtn +
+      '<div class="cro-or" style="color:#6b5c4d">' + (isEN ? 'or download the app' : 'o descarga la app') + '</div>' +
       '<div class="cro-badges">' + appleBadge + googleBadge + '</div>' +
       '<a href="' + (isEN ? '/matching/en/' : '/matching/') + '" class="cro-link">\uD83E\uDD1D ' + (isEN ? 'Find your running partner' : 'Encuentra tu compa\u00f1ero de running') + ' \u2192</a>' +
       '<div class="cro-fomo">' + fomoText + '</div>' +
@@ -217,7 +269,7 @@
     scrollBanner.innerHTML =
       '<p>' + (isEN ? 'Don\'t run alone today' : 'No corras solo hoy') +
         '<span>' + scrollFomo + '</span></p>' +
-      '<a href="' + storeUrl + '" target="_blank" rel="noopener" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'scroll\',slug:\'' + slug + '\'})">' + (isEN ? 'Join free' : '\u00danete gratis') + '</a>' +
+      '<a href="' + contextDeepLink + '" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'scroll_deep\',slug:\'' + slug + '\'})">' + (isEN ? 'Open app free' : 'Abrir app gratis') + '</a>' +
       '<button class="cro-x" aria-label="Close">&times;</button>';
     document.body.appendChild(scrollBanner);
 

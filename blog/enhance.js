@@ -566,60 +566,40 @@
   if(!stickyDismissed && window.innerWidth < 768){
     var cssSticky = document.createElement('style');
     cssSticky.textContent = [
-      '#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:890;background:linear-gradient(135deg,rgba(11,18,32,.97),rgba(11,18,32,.95));border-top:1px solid rgba(249,115,22,.25);padding:10px 16px;display:flex;align-items:center;gap:10px;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.68,0,1);backdrop-filter:blur(12px)}',
+      '#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:890;background:linear-gradient(135deg,#f8f8f8,#efefef);border-top:1px solid #ddd;padding:10px 12px;display:flex;align-items:center;gap:8px;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.68,0,1)}',
       '#sticky-cta.show{transform:translateY(0)}',
       '#sticky-cta.hidden{transform:translateY(100%)}',
-      '#sticky-cta a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.88rem;font-weight:700;border-radius:12px;text-decoration:none;white-space:nowrap}',
-      '#sticky-cta a:active{transform:scale(.97)}',
-      '#sticky-cta .sticky-close{background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;padding:6px;flex-shrink:0}',
-      '#sticky-cta .sticky-close:hover{color:#f97316}'
+      '#sticky-cta .sticky-badges{display:flex!important;gap:6px!important;flex:1!important;justify-content:center!important;flex-direction:row!important;flex-wrap:nowrap!important}',
+      '#sticky-cta .sticky-badge{display:inline-flex!important;align-items:center!important;gap:5px!important;padding:7px 10px!important;border-radius:8px!important;text-decoration:none!important;white-space:nowrap!important;transition:all .2s!important}',
+      '#sticky-cta .sticky-badge:active{transform:scale(.97)!important}',
+      '#sticky-cta .sticky-badge.apple{background:#000!important}',
+      '#sticky-cta .sticky-badge.apple *{color:#fff!important}',
+      '#sticky-cta .sticky-badge.google{background:#fff!important}',
+      '#sticky-cta .sticky-badge.google *{color:#222!important}',
+      '#sticky-cta .sticky-badge svg{flex-shrink:0!important}',
+      '#sticky-cta .sticky-badge span{display:flex!important;flex-direction:column!important;line-height:1.2!important}',
+      '#sticky-cta .sb-sub{font-size:.5rem!important;font-weight:400!important;font-style:normal!important;opacity:.75}',
+      '#sticky-cta .sb-store{font-size:.82rem!important;font-weight:700!important;font-style:normal!important}',
+      '#sticky-cta .sticky-close{background:none;border:none;color:#999;font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0}',
+      '#sticky-cta .sticky-close:hover{color:#333}'
     ].join('\n');
     document.head.appendChild(cssSticky);
 
     var sticky = document.createElement('div');
     sticky.id = 'sticky-cta';
-    // Detect platform for correct store link
-    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    var isAndroid = /Android/.test(navigator.userAgent);
-    var storeUrl = isAndroid
-      ? 'https://play.google.com/store/apps/details?id=com.correrjuntos.app'
-      : 'https://apps.apple.com/us/app/correr-juntos/id6758505910';
-    var storeLabel = isAndroid
-      ? (isEN ? 'Download the app' : 'Descargar la app')
-      : (isEN ? 'Download the app' : 'Descargar la app');
-    /* Contextual CTA based on article category */
-    var catMeta = document.querySelector('meta[name="category"]');
-    var catTag = document.querySelector('.article-category, [class*="category"]');
-    var catText = (catMeta && catMeta.content) || (catTag && catTag.textContent) || '';
-    catText = catText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    var stickyUrl = storeUrl;
-    var stickyLabel = storeLabel;
-    var stickyIcon = '\uD83D\uDCF2';
-    if(/zapatilla|shoe|calzado|equipamiento|gear|reloj|watch|gafa|malla|gorra|accesorio/.test(catText) ||
-       /zapatilla|shoe|reloj|watch|gafa|malla|gorra/.test(slug)){
-      stickyUrl = storeUrl;
-      stickyLabel = isEN ? 'Track your runs free' : 'Registra tus carreras gratis';
-      stickyIcon = '\uD83C\uDFC3';
-    } else if(/comunidad|group|social|quedada|matching/.test(catText) ||
-              /grupo|group|comunidad|encontrar|find-people|matching|acompan/.test(slug)){
-      stickyUrl = isEN ? '/matching/en/' : '/matching/';
-      stickyLabel = isEN ? 'Find runners near you' : 'Encuentra runners cerca de ti';
-      stickyIcon = '\uD83E\uDD1D';
-    } else if(/nutricion|nutrition|suplemento|supplement|creatina|gel|hidratacion/.test(catText) ||
-              /nutricion|nutrition|creatina|geles|hidratacion|dieta|suplemento/.test(slug)){
-      stickyUrl = storeUrl;
-      stickyLabel = isEN ? 'Log nutrition + runs' : 'Registra nutrici\u00f3n + carreras';
-      stickyIcon = '\uD83C\uDF4F';
-    } else if(/lesion|injury|dolor|pain|fascitis|periostitis|tendinitis|rodilla|agujeta/.test(catText) ||
-              /lesion|dolor|fascitis|periostitis|tendinitis|rodilla|agujeta|injury/.test(slug)){
-      stickyUrl = storeUrl;
-      stickyLabel = isEN ? 'Track recovery + training' : 'Controla recuperaci\u00f3n + entreno';
-      stickyIcon = '\uD83D\uDCAA';
-    }
+    var IOS_URL = 'https://apps.apple.com/us/app/correr-juntos/id6758505910';
+    var ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';
     sticky.innerHTML =
-      '<a href="' + stickyUrl + '" target="_blank" rel="noopener">' +
-        stickyIcon + ' ' + stickyLabel +
-      '</a>' +
+      '<div class="sticky-badges">' +
+        '<a href="' + IOS_URL + '" target="_blank" rel="noopener" class="sticky-badge apple" style="background:#000">' +
+          '<svg width="14" height="17" viewBox="0 0 814 1000" fill="#fff"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57.8-155.5-127.4c-58.3-81.4-105.7-206-105.7-324.5 0-190.8 124.1-292.1 246.1-292.1 64.9 0 118.9 42.7 159.5 42.7 38.6 0 98.9-45.3 173.1-45.3 28 0 128.5 2.6 194.6 99.6zm-282-187.2c30.1-35.6 51.4-85 51.4-134.5 0-6.9-.7-13.9-2-20.2-49 1.6-106.3 32.6-141.3 73.4-27.5 31.3-53.6 81-53.6 131.1 0 7.5.9 15.1 1.3 17.5 2.3.3 5.9.9 9.5.9 44.1 0 99.3-29.4 134.7-68.2z"/></svg>' +
+          '<span style="display:flex;flex-direction:column;line-height:1.15"><small style="font-size:.45rem;color:#ccc;font-style:normal">' + (isEN ? 'Get it on' : 'Descargar en') + '</small><b style="font-size:.78rem;color:#fff;font-style:normal">App Store</b></span>' +
+        '</a>' +
+        '<a href="' + ANDROID_URL + '" target="_blank" rel="noopener" class="sticky-badge google" style="background:#fff;border:1px solid #ddd">' +
+          '<svg width="14" height="16" viewBox="0 0 512 512"><path fill="#4285F4" d="M386.2 288.9l93.6-54.2c12.8-7.4 12.8-19.4 0-26.8l-93.6-54.2"/><path fill="#34A853" d="M60.1 494.3L286.7 268l99.5 99.5L78.5 506.7c-9.7 5.6-18.4 1.2-18.4-12.4"/><path fill="#FBBC04" d="M60.1 17.7L286.7 244 386.2 144.5 78.5 5.3C68.8-.3 60.1 4.1 60.1 17.7"/><path fill="#EA4335" d="M286.7 268L60.1 494.3V17.7L286.7 244v24z"/></svg>' +
+          '<span style="display:flex;flex-direction:column;line-height:1.15"><small style="font-size:.45rem;color:#666;font-style:normal">' + (isEN ? 'Get it on' : 'Disponible en') + '</small><b style="font-size:.78rem;color:#222;font-style:normal">Google Play</b></span>' +
+        '</a>' +
+      '</div>' +
       '<button class="sticky-close" aria-label="'+(isEN ? 'Close' : 'Cerrar')+'">&times;</button>';
     document.body.appendChild(sticky);
 
@@ -669,7 +649,11 @@
   if(!document.querySelector('meta[name="apple-itunes-app"]')){
     var sam = document.createElement('meta');
     sam.name = 'apple-itunes-app';
-    sam.content = 'app-id=6758505910';
+    var appArg = location.pathname.indexOf('/blog') !== -1 ? '/feed' : '/planes';
+    if(/plan|5k|10k|maraton|marathon|media|half|trail/.test(location.pathname)) appArg = '/planes';
+    else if(/matching/.test(location.pathname)) appArg = '/matching';
+    else if(/cities|places|map/.test(location.pathname)) appArg = '/map';
+    sam.content = 'app-id=6758505910, app-argument=https://www.correrjuntos.com' + appArg;
     document.head.appendChild(sam);
   }
 

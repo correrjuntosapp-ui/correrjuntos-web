@@ -103,12 +103,21 @@
     '.cro-end .cro-link:hover{gap:8px}',
 
     /* Scroll trigger banner */
-    '.cro-scroll{position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);z-index:880;background:linear-gradient(135deg,#1a1208,#2a1f0e);border:1px solid rgba(249,115,22,.3);border-radius:16px;padding:14px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 32px rgba(0,0,0,.4);transition:bottom .5s cubic-bezier(.22,.68,0,1);max-width:520px;width:calc(100% - 32px);backdrop-filter:blur(12px)}',
+    '.cro-scroll{position:fixed;bottom:-100px;left:50%;transform:translateX(-50%);z-index:880;background:#f8f8f8;border:1px solid #ddd;border-radius:16px;padding:14px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 32px rgba(0,0,0,.15);transition:bottom .5s cubic-bezier(.22,.68,0,1);max-width:560px;width:calc(100% - 32px)}',
     '.cro-scroll.show{bottom:20px}',
-    '.cro-scroll p{flex:1;color:#fef3c7;font-size:.88rem;font-weight:600;margin:0;line-height:1.3}',
-    '.cro-scroll p span{display:block;font-size:.75rem;color:#a89480;font-weight:400;margin-top:2px}',
-    '.cro-scroll a{flex-shrink:0;padding:10px 18px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.82rem;font-weight:700;border-radius:50px;text-decoration:none;white-space:nowrap}',
-    '.cro-scroll .cro-x{background:none;border:none;color:#6b5c4d;font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0}',
+    '.cro-scroll p{flex:1;color:#1a1a2e;font-size:.88rem;font-weight:600;margin:0;line-height:1.3}',
+    '.cro-scroll p span{display:block;font-size:.75rem;color:#888;font-weight:400;margin-top:2px}',
+    '.cro-scroll .cro-scroll-badges{display:flex;gap:6px;flex-shrink:0}',
+    '.cro-scroll .cro-sb{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border-radius:8px;text-decoration:none;white-space:nowrap}',
+    '.cro-scroll .cro-sb.apple{background:#000}',
+    '.cro-scroll .cro-sb.apple small{color:#ccc}',
+    '.cro-scroll .cro-sb.apple b{color:#fff}',
+    '.cro-scroll .cro-sb.google{background:#fff;border:1px solid #ddd}',
+    '.cro-scroll .cro-sb.google small{color:#666}',
+    '.cro-scroll .cro-sb.google b{color:#222}',
+    '.cro-scroll .cro-sb small{font-size:.45rem;font-style:normal;display:block;line-height:1.1}',
+    '.cro-scroll .cro-sb b{font-size:.75rem;font-style:normal;display:block;line-height:1.2}',
+    '.cro-scroll .cro-x{background:none;border:none;color:#999;font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0}',
 
     /* Dark mode overrides for mid CTA */
     '.dark-mode .cro-mid{background:linear-gradient(135deg,#1e1b18,#292117);border-color:rgba(249,115,22,.2)}',
@@ -269,7 +278,16 @@
     scrollBanner.innerHTML =
       '<p>' + (isEN ? 'Don\'t run alone today' : 'No corras solo hoy') +
         '<span>' + scrollFomo + '</span></p>' +
-      '<a href="' + contextDeepLink + '" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'scroll_deep\',slug:\'' + slug + '\'})">' + (isEN ? 'Open app free' : 'Abrir app gratis') + '</a>' +
+      '<div class="cro-scroll-badges">' +
+        '<a href="' + IOS_URL + '" target="_blank" rel="noopener" class="cro-sb apple" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'scroll_ios\',slug:\'' + slug + '\'})">' +
+          '<svg width="14" height="17" viewBox="0 0 814 1000" fill="#fff"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57.8-155.5-127.4c-58.3-81.4-105.7-206-105.7-324.5 0-190.8 124.1-292.1 246.1-292.1 64.9 0 118.9 42.7 159.5 42.7 38.6 0 98.9-45.3 173.1-45.3 28 0 128.5 2.6 194.6 99.6zm-282-187.2c30.1-35.6 51.4-85 51.4-134.5 0-6.9-.7-13.9-2-20.2-49 1.6-106.3 32.6-141.3 73.4-27.5 31.3-53.6 81-53.6 131.1 0 7.5.9 15.1 1.3 17.5 2.3.3 5.9.9 9.5.9 44.1 0 99.3-29.4 134.7-68.2z"/></svg>' +
+          '<span><small>' + (isEN ? 'Get it on' : 'Descargar en') + '</small><b>App Store</b></span>' +
+        '</a>' +
+        '<a href="' + ANDROID_URL + '" target="_blank" rel="noopener" class="cro-sb google" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'scroll_android\',slug:\'' + slug + '\'})">' +
+          '<svg width="14" height="16" viewBox="0 0 512 512"><path fill="#4285F4" d="M386.2 288.9l93.6-54.2c12.8-7.4 12.8-19.4 0-26.8l-93.6-54.2"/><path fill="#34A853" d="M60.1 494.3L286.7 268l99.5 99.5L78.5 506.7c-9.7 5.6-18.4 1.2-18.4-12.4"/><path fill="#FBBC04" d="M60.1 17.7L286.7 244 386.2 144.5 78.5 5.3C68.8-.3 60.1 4.1 60.1 17.7"/><path fill="#EA4335" d="M286.7 268L60.1 494.3V17.7L286.7 244v24z"/></svg>' +
+          '<span><small>' + (isEN ? 'Get it on' : 'Disponible en') + '</small><b>Google Play</b></span>' +
+        '</a>' +
+      '</div>' +
       '<button class="cro-x" aria-label="Close">&times;</button>';
     document.body.appendChild(scrollBanner);
 

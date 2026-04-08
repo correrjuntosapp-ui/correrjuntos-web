@@ -296,7 +296,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .dark-mode .race-table tbody tr:hover{background:rgba(249,115,22,.08)}
 .dark-mode .month-badge{box-shadow:0 2px 12px rgba(249,115,22,.3)}
 </style>
-<script>(function(){var s=localStorage.getItem('blog_theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(!s&&d))document.documentElement.classList.add('dark-mode')})()</script>
+<script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 

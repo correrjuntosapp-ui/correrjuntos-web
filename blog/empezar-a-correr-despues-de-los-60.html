@@ -238,7 +238,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .dark-mode footer a[aria-label]{background:rgba(255,255,255,.06)!important}
 .plan-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.95rem}.plan-table th,.plan-table td{padding:12px 16px;text-align:left;border-bottom:1px solid #efe6db}.plan-table th{background:rgba(249,115,22,.08);color:#ea580c;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.03em}.plan-table tr:hover{background:rgba(249,115,22,.03)}.dark-mode .plan-table th{background:rgba(249,115,22,.12)}.dark-mode .plan-table td{border-bottom-color:rgba(255,255,255,.06)}.dark-mode .plan-table tr:hover{background:rgba(255,255,255,.03)}
 </style>
-<script>(function(){var s=localStorage.getItem('blog_theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(!s&&d))document.documentElement.classList.add('dark-mode')})()</script>
+<script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 

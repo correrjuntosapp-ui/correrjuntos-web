@@ -271,7 +271,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .dark-mode .theme-toggle{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fb923c}
 .dark-mode .back-to-blog{border-color:rgba(249,115,22,.45);color:#fb923c;background:rgba(249,115,22,.1)}
 @media(max-width:768px){.lang-switch{display:none}.page-top{padding:8px 20px 2px}}
-</style><script>(function(){var s=localStorage.getItem('blog_theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(!s&&d))document.documentElement.classList.add('dark-mode')})()</script>
+</style><script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 

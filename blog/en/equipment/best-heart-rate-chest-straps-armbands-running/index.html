@@ -171,7 +171,7 @@ li{margin-bottom:8px;color:#334155}
 @media(max-width:640px){.hero{min-height:260px}.hero h1{font-size:1.6rem}h2{font-size:1.3rem}.specs-table{font-size:.8rem}.specs-table th,.specs-table td{padding:8px 10px}}
 @media(max-width:768px){.nav{flex-wrap:wrap;padding:12px 16px}.nav-links{order:3;width:100%;justify-content:center;margin-top:4px}.nav-links a{font-size:.78rem;padding:5px 12px;white-space:nowrap}}
 </style>
-<script>(function(){var s=localStorage.getItem('blog_theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(!s&&d))document.documentElement.classList.add('dark-mode')})()</script>
+<script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 </head>
 <body>
 <div class="nav-wrapper"><nav class="nav"><a href="/" class="nav-logo" style="text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-0.02em"><span style="color:#3d3229">CORRER</span><span style="color:#f97316">JUNTOS</span></a><div class="nav-links"><a href="/matching/">Matching</a><a href="/plans/">Plans</a>

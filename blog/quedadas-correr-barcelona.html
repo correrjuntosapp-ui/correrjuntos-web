@@ -277,7 +277,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .dark-mode .cookie-banner{background:rgba(11,18,32,.97);border-top-color:rgba(255,255,255,.1)}
 .dark-mode .btn-reject{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
 </style>
-<script>(function(){var s=localStorage.getItem('blog_theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(!s&&d))document.documentElement.classList.add('dark-mode')})()</script>
+<script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 

@@ -241,7 +241,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .plan-table{width:100%;border-collapse:collapse;margin:20px 0 28px;font-size:.88rem}.plan-table th{background:#f97316;color:#fff;padding:10px 8px;text-align:center;font-weight:700;font-size:.82rem}.plan-table td{padding:8px;text-align:center;border-bottom:1px solid #efe6db;font-size:.85rem}.plan-table tr:nth-child(even){background:rgba(249,115,22,.04)}.plan-table td:first-child{font-weight:700;color:#ea580c;text-align:left;white-space:nowrap}
 .dark-mode .plan-table th{background:#ea580c}.dark-mode .plan-table td{border-bottom-color:rgba(255,255,255,.08)}.dark-mode .plan-table tr:nth-child(even){background:rgba(255,255,255,.03)}.dark-mode .plan-table td:first-child{color:#f97316}
 </style>
-<script>(function(){var s=localStorage.getItem('blog_theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(!s&&d))document.documentElement.classList.add('dark-mode')})()</script>
+<script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 

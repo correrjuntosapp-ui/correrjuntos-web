@@ -17,6 +17,13 @@
   /* Skip blog index pages (but allow cities/places/events index) */
   if(isIndex && !isCity && !isPlace && !isEvent) return;
 
+  /* ── Detect article type for CTA strategy ── */
+  var pageHTML = document.body ? document.body.innerHTML : '';
+  var isAffiliate = (pageHTML.match(/amzn\.to/g) || []).length >= 3; /* 3+ affiliate links = product article */
+  var isInformational = !isAffiliate && isBlog;
+  /* Affiliate articles: fewer app CTAs (don't compete with Amazon)
+     Informational articles: more app CTAs (app download is the goal) */
+
   /* ── Helpers ── */
   function ga(name, params){ if(typeof gtag === 'function') gtag('event', name, params || {}); }
 
@@ -142,6 +149,19 @@
     /* Skip if already has an app banner nearby (from enhance.js) */
     var nextEl = targetH2 ? targetH2.nextElementSibling : null;
     if(targetH2 && !(nextEl && nextEl.classList && nextEl.classList.contains('cj-app-banner'))){
+      /* For affiliate articles: skip mid-CTA (don't compete with Amazon links) */
+      if(isAffiliate){
+        /* Lighter CTA — just a small inline mention, no big block */
+        var lightCTA = document.createElement('p');
+        lightCTA.style.cssText = 'text-align:center;font-size:.85rem;color:#6b5c4d;margin:24px 0;padding:12px;background:rgba(249,115,22,.04);border-radius:10px;border:1px solid rgba(249,115,22,.1)';
+        lightCTA.innerHTML = (isEN
+          ? 'Track your gear performance with <a href="' + IOS_URL + '" target="_blank" rel="noopener" style="color:#f97316;font-weight:600">CorrerJuntos GPS</a> — free on iOS and Android.'
+          : 'Registra el rendimiento de tu equipamiento con <a href="' + IOS_URL + '" target="_blank" rel="noopener" style="color:#f97316;font-weight:600">CorrerJuntos GPS</a> — gratis en iOS y Android.');
+        targetH2.parentNode.insertBefore(lightCTA, targetH2);
+        ga('cro_impression', {location: 'mid_light', slug: slug});
+      } else {
+      /* Non-affiliate articles get the full CTA block */
+
       var midTitle, midText;
 
       if(isCity){
@@ -212,6 +232,7 @@
 
       targetH2.parentNode.insertBefore(midCTA, targetH2);
       ga('cro_impression', {location: 'mid', slug: slug});
+    } /* end else (non-affiliate) */
     }
   }
 
@@ -259,6 +280,33 @@
       '<div class="cro-proof">' + (isEN ? 'Active in <strong>58+ cities</strong> worldwide \u00b7 <strong>100% free</strong>' : 'Activo en <strong>58+ ciudades</strong> del mundo \u00b7 <strong>100% gratis</strong>') + '</div>';
 
     footer.parentNode.insertBefore(endCTA, footer);
+  }
+
+  /* ══════════════════════════════════════════════
+     2b. EXTRA INLINE CTA (informational articles only — 70% of content)
+     Mentions Coach José for app-download articles (not affiliate)
+     ══════════════════════════════════════════════ */
+  if(isInformational && content && h2s && h2s.length >= 5){
+    var extraH2 = h2s[Math.floor(h2s.length * 0.7)] || h2s[h2s.length - 2];
+    if(extraH2){
+      var extraCTA = document.createElement('div');
+      extraCTA.className = 'cro-mid';
+      extraCTA.style.background = 'linear-gradient(135deg,#0b1220,#1a1208)';
+      extraCTA.style.border = '1px solid rgba(249,115,22,.25)';
+      extraCTA.innerHTML =
+        '<h3 style="color:#fff">' + (isEN ? 'Coach Jos\u00e9 can help you with this' : 'Coach Jos\u00e9 puede ayudarte con esto') + '</h3>' +
+        '<p style="color:#94a3b8">' + (isEN
+          ? 'Ask Coach Jos\u00e9 any question about your training. He analyzes your pace, cadence and heart rate to give you personalized advice after every run.'
+          : 'Preg\u00fantale a Coach Jos\u00e9 cualquier duda sobre tu entrenamiento. Analiza tu ritmo, cadencia y frecuencia card\u00edaca para darte feedback personalizado despu\u00e9s de cada carrera.') + '</p>' +
+        '<a href="' + deepLink('/feed') + '" class="cro-deep" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'mid_coach\',slug:\'' + slug + '\'})">' +
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>' +
+          (isEN ? 'Try Coach Jos\u00e9 free' : 'Prueba Coach Jos\u00e9 gratis') + ' \u2192</a>' +
+        '<div class="cro-or" style="color:#6b5c4d">' + (isEN ? 'Free post-run analysis included' : 'An\u00e1lisis post-carrera gratuito incluido') + '</div>' +
+        '<div class="cro-badges">' + appleBadge + googleBadge + '</div>';
+
+      extraH2.parentNode.insertBefore(extraCTA, extraH2);
+      ga('cro_impression', {location: 'mid_coach', slug: slug});
+    }
   }
 
   /* ══════════════════════════════════════════════

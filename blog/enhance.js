@@ -60,6 +60,14 @@
   ].join('\n');
   document.head.appendChild(themeCSS);
 
+  /* RSS auto-discovery */
+  if(!document.querySelector('link[type="application/rss+xml"]')){
+    var rssLink=document.createElement('link');
+    rssLink.rel='alternate';rssLink.type='application/rss+xml';
+    rssLink.title='CorrerJuntos Blog';rssLink.href='/blog/feed.xml';
+    document.head.appendChild(rssLink);
+  }
+
   /* ══════════════════════════════════════════════
      0. LANGUAGE DETECTION & TOGGLE
      ══════════════════════════════════════════════ */

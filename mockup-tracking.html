@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tracking Activo v2 — CorrerJuntos</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111; display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh; padding: 24px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  }
+
+  .phone {
+    width: 390px; height: 844px;
+    background: #0D0D0D;
+    border-radius: 44px; overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 3px #222, 0 0 60px rgba(0,0,0,0.8);
+    display: none;
+  }
+  .phone.active { display: block; }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 28px 0;
+    color: #fff; font-size: 13px; font-weight: 600;
+  }
+  .status-icons { display: flex; gap: 5px; align-items: center; }
+
+  /* ── CAPA 1: MAPA FULL SCREEN ── */
+  .map-full {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: #0d1b2a; overflow: hidden;
+  }
+  .map-full svg { width: 100%; height: 100%; }
+
+  /* ── CAPA 2: OVERLAY SUPERIOR ── */
+  .badge-row {
+    position: absolute; z-index: 55;
+    display: flex; gap: 6px;
+  }
+  .gps-badge, .rec-badge, .status-badge {
+    display: flex; align-items: center; gap: 5px;
+    border-radius: 14px; padding: 4px 10px;
+    font-size: 11px; font-weight: 700; color: #fff;
+  }
+  .gps-badge { background: rgba(0,0,0,0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+  .rec-badge { background: rgba(255,69,58,0.85); }
+  .pause-badge { background: rgba(255,159,10,0.85); border-radius: 14px; padding: 5px 14px; display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; color: #fff; letter-spacing: 1px; }
+  .gps-dot { width: 7px; height: 7px; border-radius: 50%; background: #30D158; box-shadow: 0 0 6px #30D158; animation: pulse 2s infinite; }
+  .rec-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: recP 1.2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  @keyframes recP { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  .map-toggle {
+    position: absolute; top: 54px; right: 12px; z-index: 55;
+    width: 34px; height: 34px; border-radius: 17px;
+    background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+
+  /* Warmup chips */
+  .chips-row {
+    position: absolute; left: 0; right: 0; z-index: 50;
+    display: flex; justify-content: center; gap: 8px; padding: 0 12px;
+  }
+  .chip {
+    display: flex; align-items: center; gap: 5px;
+    background: rgba(0,0,0,0.65); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 6px 12px;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+  .chip-lg {
+    padding: 8px 16px;
+  }
+  .chip-lg .chip-val { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+  .chip-lg .chip-unit { font-size: 11px; color: #636366; }
+
+  /* Session pill */
+  .session-pill {
+    position: absolute; z-index: 55;
+    background: rgba(0,0,0,0.78); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 6px 12px;
+    font-size: 12px; font-weight: 600; color: #fff;
+  }
+
+  /* ── CAPA 3: BOTTOM SHEET ── */
+  .bottom-sheet {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 60;
+    background: rgba(10,10,10,0.88); backdrop-filter: blur(24px);
+    border-top-left-radius: 24px; border-top-right-radius: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .zone-strip {
+    position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    border-top-left-radius: 24px; transition: background 0.6s;
+  }
+  .drag-handle {
+    width: 36px; height: 4px; border-radius: 2px;
+    background: rgba(255,255,255,0.2); margin: 10px auto 8px;
+  }
+
+  /* Block bar (plan workouts) */
+  .block-bar {
+    padding: 0 24px 8px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    margin-bottom: 2px;
+  }
+  .block-label { font-size: 10px; font-weight: 700; color: #8E8E93; letter-spacing: 1.5px; margin-bottom: 2px; }
+  .block-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .block-badge { padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+  .block-name { flex: 1; font-size: 14px; font-weight: 700; color: #fff; text-transform: uppercase; }
+  .block-index { font-size: 12px; font-weight: 500; color: #8E8E93; }
+  .block-progress { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .block-progress-fill { height: 100%; border-radius: 2px; }
+  .block-next { margin-top: 6px; }
+  .block-next-label { font-size: 10px; font-weight: 700; color: #8E8E93; letter-spacing: 1.5px; margin-bottom: 2px; }
+  .block-next-text { font-size: 13px; font-weight: 600; color: #AAA; }
+
+  /* Fila 1: RITMO + DISTANCIA */
+  .row-primary { display: flex; padding: 0 24px 10px; }
+  .metric-hero { flex: 1; }
+  .hero-val { font-size: 46px; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; letter-spacing: -2px; line-height: 50px; }
+  .hero-unit { font-size: 18px; font-weight: 500; color: #636366; letter-spacing: 0; }
+  .hero-label { font-size: 10px; font-weight: 700; color: #636366; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+  .hero-divider { width: 1px; background: rgba(255,255,255,0.08); margin: 4px 20px; }
+  .distance-val { color: #FF6B35; }
+  .distance-unit { color: #b8723a; }
+
+  /* Fila 2: TIEMPO + CALORIAS + ZONA */
+  .row-secondary { display: flex; padding: 10px 24px; border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .sec-cell { flex: 1; display: flex; flex-direction: column; align-items: center; }
+  .sec-val { font-size: 22px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; letter-spacing: -0.5px; }
+  .sec-unit { font-size: 12px; font-weight: 500; color: #636366; }
+  .sec-label { font-size: 9px; font-weight: 700; color: #636366; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .sec-divider { width: 0.5px; background: rgba(255,255,255,0.06); margin: 2px 0; }
+  .zone-indicator { display: flex; align-items: center; gap: 6px; }
+  .zone-dot { width: 10px; height: 10px; border-radius: 50%; transition: all 0.6s; }
+  .zone-text { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; transition: color 0.6s; }
+
+  /* BLE row */
+  .ble-row { display: flex; justify-content: center; gap: 24px; padding: 8px 24px; border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .ble-item { display: flex; align-items: center; gap: 5px; }
+  .ble-val { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .ble-lbl { font-size: 11px; font-weight: 500; color: #636366; letter-spacing: 0.5px; }
+
+  /* Expanded extras */
+  .expanded-row { display: flex; padding: 10px 24px; border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .splits-row { padding: 8px 16px 4px; border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .splits-title { font-size: 10px; font-weight: 700; color: #636366; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .splits-grid { display: flex; gap: 6px; }
+  .split-card { flex: 1; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 6px 8px; text-align: center; }
+  .split-card.active { background: rgba(255,107,53,0.08); border: 1px solid rgba(255,107,53,0.2); }
+  .split-km { font-size: 10px; color: #636366; font-weight: 600; }
+  .split-pace { font-size: 15px; font-weight: 700; }
+
+  /* Fila 3: CONTROLES */
+  .row-controls { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 12px 24px; border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .ctrl-circle { width: 48px; height: 48px; border-radius: 24px; background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .pause-pill { width: 150px; height: 52px; border-radius: 26px; background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+  .pause-pill.resume { background: rgba(48,209,88,0.12); border-color: #30D158; }
+  .pause-pill-text { font-size: 16px; font-weight: 700; color: #fff; }
+  .stop-circle { width: 48px; height: 48px; border-radius: 24px; background: rgba(255,69,58,0.12); border: 1.5px solid #FF453A; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .safe-bottom { height: 34px; }
+
+  /* Pause timer */
+  .pause-timer { text-align: center; font-size: 13px; font-weight: 500; color: #636366; padding: 6px 0; }
+
+  /* KM Flash */
+  .km-flash { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 200; pointer-events: none; display: flex; align-items: center; justify-content: center; }
+  .km-flash-bg { position: absolute; inset: 0; background: rgba(255,107,53,0.08); animation: flashFade 2s ease-out forwards; }
+  @keyframes flashFade { 0% { opacity:1; } 30% { opacity:0.6; } 100% { opacity:0; } }
+  .km-card { background: rgba(20,20,22,0.95); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 28px 44px; text-align: center; animation: kmPop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+  @keyframes kmPop { 0% { transform: scale(0.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  .km-num { font-size: 32px; font-weight: 900; color: #FF6B35; letter-spacing: 2px; }
+  .km-pace { font-size: 40px; font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 4px; line-height: 1; }
+  .km-pace.faster { color: #30D158; }
+  .km-pace.slower { color: #FF453A; }
+  .km-delta { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; font-size: 14px; font-weight: 700; }
+
+  /* Tab switcher */
+  .tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 0 0 16px; max-width: 600px; }
+  .tab { padding: 8px 14px; border-radius: 20px; background: #1C1C1E; border: 1px solid #333; color: #aaa; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .tab:hover, .tab.active { background: #FF6B35; color: #fff; border-color: #FF6B35; }
+  .title { color: #fff; font-size: 20px; font-weight: 800; text-align: center; margin-bottom: 4px; }
+  .subtitle { color: #888; font-size: 13px; text-align: center; margin-bottom: 16px; max-width: 520px; }
+
+  /* Shared map SVG elements */
+  .map-secondary { stroke: #152238; stroke-width: 1; }
+  .map-main { stroke: #1e3a5f; stroke-width: 3; fill: none; }
+  .map-road { stroke: #1e3a5f; stroke-width: 2; fill: none; }
+  .route-glow { stroke: rgba(255,107,53,0.25); stroke-width: 16; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .route-solid { stroke: #FF6B35; stroke-width: 4.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<div style="display:flex; flex-direction:column; align-items:center;">
+  <h1 class="title">Tracking Activo — Implementacion Final</h1>
+  <p class="subtitle">Mapa full-screen + bottom sheet semitransparente. Ritmo 46px, distancia naranja, zonas de esfuerzo por color.</p>
+
+  <div class="tabs">
+    <div class="tab active" onclick="show('z3',this)">Z3 Aerobico</div>
+    <div class="tab" onclick="show('z4',this)">Z4 Umbral</div>
+    <div class="tab" onclick="show('z5',this)">Z5 Maximo</div>
+    <div class="tab" onclick="show('plan',this)">Con Plan</div>
+    <div class="tab" onclick="show('km',this)">KM Split</div>
+    <div class="tab" onclick="show('pause',this)">En Pausa</div>
+    <div class="tab" onclick="show('expanded',this)">Expandido</div>
+    <div class="tab" onclick="show('collapsed',this)">Colapsado</div>
+    <div class="tab" onclick="show('finish',this)">Finalizar</div>
+    <div class="tab" onclick="show('completed',this)">Completado</div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- Z3 AEROBICO — estado normal              -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone active" id="v-z3">
+    <div class="status-bar"><span style="font-weight:700">10:47</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+
+    <!-- MAPA -->
+    <div class="map-full">
+      <svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice">
+        <rect width="390" height="844" fill="#0d1b2a"/>
+        <ellipse cx="340" cy="130" rx="70" ry="45" fill="#0a1628" opacity="0.5"/>
+        <rect x="30" y="200" width="100" height="80" rx="8" fill="#0f2318" opacity="0.4"/>
+        <rect x="250" y="360" width="90" height="60" rx="6" fill="#0f2318" opacity="0.35"/>
+        <line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/>
+        <line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/>
+        <line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/>
+        <path d="M0,560 Q100,510 200,490 Q300,470 390,510" class="map-road"/>
+        <path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-glow"/>
+        <path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-solid"/>
+        <circle cx="90" cy="580" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="215" cy="340" r="24" fill="rgba(241,196,15,0.1)"><animate attributeName="r" values="18;30;18" dur="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.15;0.03;0.15" dur="2.5s" repeatCount="indefinite"/></circle>
+        <circle cx="215" cy="340" r="8" fill="#F1C40F" stroke="#fff" stroke-width="2.5"/>
+      </svg>
+    </div>
+
+    <!-- Badges -->
+    <div class="badge-row" style="top:54px; left:12px;"><div class="gps-badge"><div class="gps-dot"></div>GPS 2m</div></div>
+    <div style="position:absolute; top:54px; right:56px; z-index:55;"><div class="rec-badge"><div class="rec-dot"></div>REC</div></div>
+    <div class="map-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <!-- Chips -->
+    <div class="chips-row" style="top:96px;">
+      <div class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#F1C40F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#F1C40F">142</span> bpm</div>
+      <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M14 4v10.54a4 4 0 1 1-4-3.54V2h4" stroke="#5AC8FA" stroke-width="2" stroke-linecap="round"/></svg>18°</div>
+      <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8E8E93" stroke-width="2"/><path d="M12 6v6l3 2" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"/></svg>10:47</div>
+    </div>
+
+    <!-- BOTTOM SHEET -->
+    <div class="bottom-sheet">
+      <div class="zone-strip" style="background:#F1C40F;"></div>
+      <div class="drag-handle"></div>
+      <div class="row-primary">
+        <div class="metric-hero"><div class="hero-val">5:26<span class="hero-unit"> /km</span></div><div class="hero-label">RITMO</div></div>
+        <div class="hero-divider"></div>
+        <div class="metric-hero" style="text-align:right;"><div class="hero-val distance-val">2.4<span class="hero-unit distance-unit"> km</span></div><div class="hero-label" style="text-align:right;">DISTANCIA</div></div>
+      </div>
+      <div class="row-secondary">
+        <div class="sec-cell"><div class="sec-val">28:14</div><div class="sec-label">TIEMPO</div></div>
+        <div class="sec-divider"></div>
+        <div class="sec-cell"><div class="sec-val">93<span class="sec-unit"> kcal</span></div><div class="sec-label">CALORIAS</div></div>
+        <div class="sec-divider"></div>
+        <div class="sec-cell"><div class="zone-indicator"><div class="zone-dot" style="background:#F1C40F; box-shadow:0 0 8px #F1C40F;"></div><span class="zone-text" style="color:#F1C40F;">Z3</span></div><div class="sec-label">ZONA</div></div>
+      </div>
+      <div class="row-controls">
+        <div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="pause-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg><span class="pause-pill-text">Pausar</span></div>
+        <div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div>
+      </div>
+      <div class="safe-bottom"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- Z4 UMBRAL                                -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-z4">
+    <div class="status-bar"><span style="font-weight:700">10:52</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="12" height="8" rx="1.5" fill="#F1C40F"/></svg></div></div>
+    <div class="map-full"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#0d1b2a"/><rect x="30" y="200" width="100" height="80" rx="8" fill="#0f2318" opacity="0.4"/><line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/><line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/><line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-glow"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-solid"/><circle cx="90" cy="580" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/><circle cx="215" cy="340" r="24" fill="rgba(255,107,53,0.1)"><animate attributeName="r" values="18;30;18" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="215" cy="340" r="8" fill="#FF6B35" stroke="#fff" stroke-width="2.5"/></svg></div>
+    <div class="badge-row" style="top:54px; left:12px;"><div class="gps-badge"><div class="gps-dot"></div>GPS 2m</div></div>
+    <div style="position:absolute; top:54px; right:56px; z-index:55;"><div class="rec-badge"><div class="rec-dot"></div>REC</div></div>
+    <div class="map-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="chips-row" style="top:96px;">
+      <div class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#FF6B35">168</span> bpm</div>
+      <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M14 4v10.54a4 4 0 1 1-4-3.54V2h4" stroke="#5AC8FA" stroke-width="2" stroke-linecap="round"/></svg>18°</div>
+      <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8E8E93" stroke-width="2"/><path d="M12 6v6l3 2" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"/></svg>10:52</div>
+    </div>
+    <div class="bottom-sheet">
+      <div class="zone-strip" style="background:#FF6B35;"></div>
+      <div class="drag-handle"></div>
+      <div class="row-primary"><div class="metric-hero"><div class="hero-val">4:38<span class="hero-unit"> /km</span></div><div class="hero-label">RITMO</div></div><div class="hero-divider"></div><div class="metric-hero" style="text-align:right;"><div class="hero-val distance-val">4.7<span class="hero-unit distance-unit"> km</span></div><div class="hero-label" style="text-align:right;">DISTANCIA</div></div></div>
+      <div class="row-secondary"><div class="sec-cell"><div class="sec-val">33:12</div><div class="sec-label">TIEMPO</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="sec-val">184<span class="sec-unit"> kcal</span></div><div class="sec-label">CALORIAS</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="zone-indicator"><div class="zone-dot" style="background:#FF6B35; box-shadow:0 0 8px #FF6B35;"></div><span class="zone-text" style="color:#FF6B35;">Z4</span></div><div class="sec-label">ZONA</div></div></div>
+      <div class="row-controls"><div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pause-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg><span class="pause-pill-text">Pausar</span></div><div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div></div>
+      <div class="safe-bottom"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- Z5 MAXIMO                                -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-z5">
+    <div class="status-bar"><span style="font-weight:700">10:55</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="11" height="8" rx="1.5" fill="#FF9F0A"/></svg></div></div>
+    <div class="map-full"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#0d1b2a"/><line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/><line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/><line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-glow"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-solid"/><circle cx="90" cy="580" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/><circle cx="215" cy="340" r="24" fill="rgba(231,76,60,0.12)"><animate attributeName="r" values="18;30;18" dur="1.8s" repeatCount="indefinite"/></circle><circle cx="215" cy="340" r="8" fill="#E74C3C" stroke="#fff" stroke-width="2.5"/></svg></div>
+    <div class="badge-row" style="top:54px; left:12px;"><div class="gps-badge"><div class="gps-dot"></div>GPS 3m</div></div>
+    <div style="position:absolute; top:54px; right:56px; z-index:55;"><div class="rec-badge"><div class="rec-dot"></div>REC</div></div>
+    <div class="map-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="chips-row" style="top:96px;">
+      <div class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#E74C3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#E74C3C">185</span> bpm</div>
+      <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M14 4v10.54a4 4 0 1 1-4-3.54V2h4" stroke="#5AC8FA" stroke-width="2" stroke-linecap="round"/></svg>18°</div>
+      <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8E8E93" stroke-width="2"/><path d="M12 6v6l3 2" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"/></svg>10:55</div>
+    </div>
+    <div class="bottom-sheet">
+      <div class="zone-strip" style="background:#E74C3C;"></div>
+      <div class="drag-handle"></div>
+      <div class="row-primary"><div class="metric-hero"><div class="hero-val">3:52<span class="hero-unit"> /km</span></div><div class="hero-label">RITMO</div></div><div class="hero-divider"></div><div class="metric-hero" style="text-align:right;"><div class="hero-val distance-val">5.8<span class="hero-unit distance-unit"> km</span></div><div class="hero-label" style="text-align:right;">DISTANCIA</div></div></div>
+      <div class="row-secondary"><div class="sec-cell"><div class="sec-val">36:42</div><div class="sec-label">TIEMPO</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="sec-val">298<span class="sec-unit"> kcal</span></div><div class="sec-label">CALORIAS</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="zone-indicator"><div class="zone-dot" style="background:#E74C3C; box-shadow:0 0 10px #E74C3C;"></div><span class="zone-text" style="color:#E74C3C;">Z5</span></div><div class="sec-label">ZONA</div></div></div>
+      <div class="row-controls"><div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pause-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg><span class="pause-pill-text">Pausar</span></div><div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div></div>
+      <div class="safe-bottom"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- CON PLAN WORKOUT (block bar)             -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-plan">
+    <div class="status-bar"><span style="font-weight:700">10:47</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+    <div class="map-full"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#0d1b2a"/><rect x="250" y="360" width="90" height="60" rx="6" fill="#0f2318" opacity="0.35"/><line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/><line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/><line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/><path d="M120,550 Q150,510 180,480 Q210,450 235,420 Q260,390 275,370" class="route-glow"/><path d="M120,550 Q150,510 180,480 Q210,450 235,420 Q260,390 275,370" class="route-solid"/><circle cx="120" cy="550" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/><circle cx="275" cy="370" r="24" fill="rgba(255,69,58,0.12)"><animate attributeName="r" values="18;30;18" dur="2s" repeatCount="indefinite"/></circle><circle cx="275" cy="370" r="8" fill="#FF453A" stroke="#fff" stroke-width="2.5"/></svg></div>
+    <div class="badge-row" style="top:54px; left:12px;"><div class="gps-badge"><div class="gps-dot"></div>GPS 2m</div></div>
+    <div style="position:absolute; top:54px; right:56px; z-index:55;"><div class="rec-badge"><div class="rec-dot"></div>REC</div></div>
+    <div class="map-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="chips-row" style="top:96px;">
+      <div class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#FF453A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#FF453A">172</span> bpm</div>
+      <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8E8E93" stroke-width="2"/><path d="M12 6v6l3 2" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"/></svg>10:47</div>
+    </div>
+    <!-- Session pill on map -->
+    <div class="session-pill" style="bottom:370px; left:12px;">HOY · Intervalos 6x400m</div>
+
+    <div class="bottom-sheet">
+      <div class="zone-strip" style="background:#FF453A;"></div>
+      <div class="drag-handle"></div>
+      <!-- BLOCK BAR -->
+      <div class="block-bar">
+        <div class="block-label">ACTUAL</div>
+        <div class="block-row">
+          <div class="block-badge" style="background:rgba(255,69,58,0.15); color:#FF453A;">SERIE</div>
+          <div class="block-name">400m al 90% FCmax</div>
+          <div class="block-index">SERIE 3/6</div>
+        </div>
+        <div class="block-progress"><div class="block-progress-fill" style="width:62%; background:#FF453A;"></div></div>
+        <div class="block-next">
+          <div class="block-next-label">SIGUIENTE</div>
+          <div class="block-next-text">Recuperacion trote suave · 2min</div>
+        </div>
+      </div>
+      <div class="row-primary"><div class="metric-hero"><div class="hero-val">4:15<span class="hero-unit"> /km</span></div><div class="hero-label">RITMO</div></div><div class="hero-divider"></div><div class="metric-hero" style="text-align:right;"><div class="hero-val distance-val">3.42<span class="hero-unit distance-unit"> km</span></div><div class="hero-label" style="text-align:right;">DISTANCIA</div></div></div>
+      <div class="row-secondary"><div class="sec-cell"><div class="sec-val">18:34</div><div class="sec-label">TIEMPO</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="sec-val">187<span class="sec-unit"> kcal</span></div><div class="sec-label">CALORIAS</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="zone-indicator"><div class="zone-dot" style="background:#FF453A; box-shadow:0 0 10px #FF453A;"></div><span class="zone-text" style="color:#FF453A;">Z5</span></div><div class="sec-label">ZONA</div></div></div>
+      <div class="row-controls"><div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pause-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg><span class="pause-pill-text">Pausar</span></div><div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div></div>
+      <div class="safe-bottom"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- KM SPLIT FLASH                           -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-km">
+    <div class="status-bar"><span style="font-weight:700">10:47</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+    <div class="map-full" style="opacity:0.35;"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#0d1b2a"/><line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/><line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/><line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/><path d="M90,580 Q140,500 200,430 Q250,380 280,340 Q300,310 290,280" class="route-solid"/><circle cx="90" cy="580" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/><circle cx="290" cy="280" r="8" fill="#F1C40F" stroke="#fff" stroke-width="2.5"/></svg></div>
+    <div class="bottom-sheet" style="opacity:0.2;">
+      <div class="zone-strip" style="background:#F1C40F;"></div>
+      <div class="drag-handle"></div>
+      <div class="row-primary"><div class="metric-hero"><div class="hero-val">5:18<span class="hero-unit"> /km</span></div><div class="hero-label">RITMO</div></div><div class="hero-divider"></div><div class="metric-hero" style="text-align:right;"><div class="hero-val distance-val">5.0<span class="hero-unit distance-unit"> km</span></div><div class="hero-label" style="text-align:right;">DISTANCIA</div></div></div>
+      <div class="row-secondary"><div class="sec-cell"><div class="sec-val">26:32</div><div class="sec-label">TIEMPO</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="sec-val">142<span class="sec-unit"> kcal</span></div><div class="sec-label">CALORIAS</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="zone-indicator"><div class="zone-dot" style="background:#F1C40F;"></div><span class="zone-text" style="color:#F1C40F;">Z3</span></div><div class="sec-label">ZONA</div></div></div>
+      <div class="row-controls"><div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2"/></svg></div><div class="pause-pill"><span class="pause-pill-text">Pausar</span></div><div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div></div>
+      <div class="safe-bottom"></div>
+    </div>
+    <!-- KM FLASH -->
+    <div class="km-flash">
+      <div class="km-flash-bg"></div>
+      <div class="km-card">
+        <div class="km-num">KM 5</div>
+        <div class="km-pace faster">5:04<span style="font-size:20px; font-weight:500; color:#8E8E93;"> /km</span></div>
+        <div class="km-delta" style="color:#30D158;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="#30D158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>8s mas rapido</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- EN PAUSA                                 -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-pause">
+    <div class="status-bar"><span style="font-weight:700">10:49</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+    <div class="map-full" style="opacity:0.5;"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#0d1b2a"/><rect x="30" y="200" width="100" height="80" rx="8" fill="#0f2318" opacity="0.4"/><line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/><line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/><line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-glow"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-solid"/><circle cx="90" cy="580" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/><circle cx="215" cy="340" r="8" fill="#8E8E93" stroke="#fff" stroke-width="2.5"/></svg></div>
+    <!-- EN PAUSA badge -->
+    <div style="position:absolute; top:54px; left:50%; transform:translateX(-50%); z-index:55;">
+      <div class="pause-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg>EN PAUSA</div>
+    </div>
+    <div class="bottom-sheet">
+      <div class="zone-strip" style="background:#8E8E93;"></div>
+      <div class="drag-handle"></div>
+      <div class="row-primary" style="opacity:0.7;"><div class="metric-hero"><div class="hero-val">5:26<span class="hero-unit"> /km</span></div><div class="hero-label">RITMO</div></div><div class="hero-divider"></div><div class="metric-hero" style="text-align:right;"><div class="hero-val distance-val">2.4<span class="hero-unit distance-unit"> km</span></div><div class="hero-label" style="text-align:right;">DISTANCIA</div></div></div>
+      <div class="row-secondary" style="opacity:0.7;"><div class="sec-cell"><div class="sec-val">28:14</div><div class="sec-label">TIEMPO</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="sec-val">93<span class="sec-unit"> kcal</span></div><div class="sec-label">CALORIAS</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="zone-indicator"><div class="zone-dot" style="background:#8E8E93;"></div><span class="zone-text" style="color:#8E8E93;">--</span></div><div class="sec-label">ZONA</div></div></div>
+      <div class="pause-timer">Pausado hace 0:23</div>
+      <div class="row-controls">
+        <div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#8E8E93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 9l-6 6M17 9l6 6" stroke="#8E8E93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="pause-pill resume"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="8,5 20,12 8,19" fill="#30D158"/></svg><span class="pause-pill-text" style="color:#30D158;">Reanudar</span></div>
+        <div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div>
+      </div>
+      <div class="safe-bottom"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- EXPANDIDO (swipe up)                     -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-expanded">
+    <div class="status-bar"><span style="font-weight:700">10:47</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+    <div class="map-full"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#0d1b2a"/><rect x="30" y="200" width="100" height="80" rx="8" fill="#0f2318" opacity="0.4"/><line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/><line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/><line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-glow"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-solid"/><circle cx="90" cy="580" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/><circle cx="215" cy="340" r="8" fill="#F1C40F" stroke="#fff" stroke-width="2.5"/></svg></div>
+    <div class="badge-row" style="top:54px; left:12px;"><div class="gps-badge"><div class="gps-dot"></div>GPS 2m</div></div>
+    <div style="position:absolute; top:54px; right:56px; z-index:55;"><div class="rec-badge"><div class="rec-dot"></div>REC</div></div>
+    <div class="map-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="bottom-sheet">
+      <div class="zone-strip" style="background:#F1C40F;"></div>
+      <div class="drag-handle"></div>
+      <div class="row-primary"><div class="metric-hero"><div class="hero-val">5:26<span class="hero-unit"> /km</span></div><div class="hero-label">RITMO</div></div><div class="hero-divider"></div><div class="metric-hero" style="text-align:right;"><div class="hero-val distance-val">2.4<span class="hero-unit distance-unit"> km</span></div><div class="hero-label" style="text-align:right;">DISTANCIA</div></div></div>
+      <div class="row-secondary"><div class="sec-cell"><div class="sec-val">28:14</div><div class="sec-label">TIEMPO</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="sec-val">93<span class="sec-unit"> kcal</span></div><div class="sec-label">CALORIAS</div></div><div class="sec-divider"></div><div class="sec-cell"><div class="zone-indicator"><div class="zone-dot" style="background:#F1C40F; box-shadow:0 0 8px #F1C40F;"></div><span class="zone-text" style="color:#F1C40F;">Z3</span></div><div class="sec-label">ZONA</div></div></div>
+      <!-- EXPANDED: extra metrics -->
+      <div class="expanded-row">
+        <div class="sec-cell"><div class="sec-val" style="font-size:18px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="vertical-align:middle; margin-right:3px;"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#FF453A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>142</div><div class="sec-label">FC MEDIA</div></div>
+        <div class="sec-divider"></div>
+        <div class="sec-cell"><div class="sec-val" style="font-size:18px;">178</div><div class="sec-label">CADENCIA SPM</div></div>
+        <div class="sec-divider"></div>
+        <div class="sec-cell"><div class="sec-val" style="font-size:18px;">+48<span class="sec-unit"> m</span></div><div class="sec-label">DESNIVEL</div></div>
+      </div>
+      <!-- SPLITS -->
+      <div class="splits-row">
+        <div class="splits-title">ULTIMOS SPLITS</div>
+        <div class="splits-grid">
+          <div class="split-card"><div class="split-km">KM 1</div><div class="split-pace" style="color:#30D158;">5:18</div></div>
+          <div class="split-card"><div class="split-km">KM 2</div><div class="split-pace" style="color:#FF453A;">5:38</div></div>
+          <div class="split-card active"><div class="split-km" style="color:#FF6B35;">ACTUAL</div><div class="split-pace" style="color:#fff;">5:12</div></div>
+        </div>
+      </div>
+      <div class="row-controls"><div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pause-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg><span class="pause-pill-text">Pausar</span></div><div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div></div>
+      <div class="safe-bottom"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- COLAPSADO (tap en mapa)                  -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-collapsed">
+    <div class="status-bar"><span style="font-weight:700">10:47</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+    <div class="map-full"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#0d1b2a"/><ellipse cx="340" cy="130" rx="70" ry="45" fill="#0a1628" opacity="0.5"/><rect x="30" y="200" width="100" height="80" rx="8" fill="#0f2318" opacity="0.4"/><rect x="250" y="360" width="90" height="60" rx="6" fill="#0f2318" opacity="0.35"/><rect x="140" y="550" width="70" height="50" rx="5" fill="#0f2318" opacity="0.3"/><line x1="0" y1="100" x2="390" y2="100" class="map-secondary"/><line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/><line x1="0" y1="300" x2="390" y2="300" class="map-secondary"/><line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/><line x1="0" y1="500" x2="390" y2="500" class="map-secondary"/><line x1="0" y1="600" x2="390" y2="600" class="map-secondary"/><line x1="0" y1="700" x2="390" y2="700" class="map-secondary"/><line x1="65" y1="0" x2="65" y2="844" class="map-secondary"/><line x1="130" y1="0" x2="130" y2="844" class="map-secondary"/><line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/><line x1="260" y1="0" x2="260" y2="844" class="map-secondary"/><line x1="325" y1="0" x2="325" y2="844" class="map-secondary"/><line x1="0" y1="350" x2="390" y2="350" class="map-main"/><line x1="195" y1="0" x2="195" y2="844" class="map-main"/><path d="M0,560 Q100,510 200,490 Q300,470 390,510" class="map-road"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-glow"/><path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-solid"/><circle cx="90" cy="580" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/><circle cx="215" cy="340" r="24" fill="rgba(241,196,15,0.1)"><animate attributeName="r" values="18;30;18" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="215" cy="340" r="8" fill="#F1C40F" stroke="#fff" stroke-width="2.5"/></svg></div>
+    <div class="badge-row" style="top:54px; left:12px;"><div class="gps-badge"><div class="gps-dot"></div>GPS 2m</div></div>
+    <div style="position:absolute; top:54px; right:56px; z-index:55;"><div class="rec-badge"><div class="rec-dot"></div>REC</div></div>
+    <div class="map-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <!-- Floating metric chips -->
+    <div class="chips-row" style="top:96px;">
+      <div class="chip chip-lg"><span class="chip-val" style="color:#fff;">5:26</span><span class="chip-unit">/km</span></div>
+      <div class="chip chip-lg"><span class="chip-val" style="color:#FF6B35;">2.4</span><span class="chip-unit" style="color:#b8723a;">km</span></div>
+      <div class="chip chip-lg"><span class="chip-val" style="color:#fff;">28:14</span></div>
+    </div>
+    <!-- Collapsed sheet: only controls -->
+    <div class="bottom-sheet" style="border-top-left-radius:28px; border-top-right-radius:28px;">
+      <div class="zone-strip" style="background:#F1C40F; border-top-left-radius:28px;"></div>
+      <div class="drag-handle" style="margin-bottom:4px;"></div>
+      <div class="row-controls" style="border-top:none; padding-top:4px;">
+        <div class="ctrl-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="pause-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg><span class="pause-pill-text">Pausar</span></div>
+        <div class="stop-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="#FF453A"/></svg></div>
+      </div>
+      <div class="safe-bottom"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- FINALIZAR SESION — confirm sheet         -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-finish">
+    <div class="status-bar"><span style="font-weight:700">10:52</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+
+    <!-- Dimmed map behind -->
+    <div class="map-full" style="opacity:0.25;">
+      <svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice">
+        <rect width="390" height="844" fill="#0d1b2a"/>
+        <line x1="0" y1="200" x2="390" y2="200" class="map-secondary"/>
+        <line x1="0" y1="400" x2="390" y2="400" class="map-secondary"/>
+        <line x1="195" y1="0" x2="195" y2="844" class="map-secondary"/>
+        <path d="M90,580 Q110,540 140,500 Q175,450 210,410 Q240,370 260,340 Q275,310 270,280 Q260,250 240,235 Q220,220 200,230 Q185,245 185,270 Q190,310 215,340" class="route-solid"/>
+      </svg>
+    </div>
+
+    <!-- Dark overlay -->
+    <div style="position:absolute; inset:0; background:rgba(0,0,0,0.82); z-index:59;"></div>
+
+    <!-- Finish sheet -->
+    <div style="position:absolute; bottom:0; left:0; right:0; z-index:61; background:#1C1C1E; border-top-left-radius:24px; border-top-right-radius:24px; padding:0 20px 34px; display:flex; flex-direction:column; align-items:center;">
+      <!-- Handle -->
+      <div style="width:36px; height:4px; border-radius:2px; background:#3A3A3C; margin:10px auto 12px;"></div>
+
+      <!-- Mini-map with route -->
+      <div style="width:100%; height:180px; border-radius:16px; overflow:hidden; margin-bottom:16px; background:#0d1b2a; position:relative;">
+        <svg viewBox="0 0 350 180" preserveAspectRatio="xMidYMid slice" style="width:100%; height:100%;">
+          <rect width="350" height="180" fill="#0d1b2a"/>
+          <!-- Grid -->
+          <line x1="0" y1="45" x2="350" y2="45" stroke="#152238" stroke-width="0.5"/>
+          <line x1="0" y1="90" x2="350" y2="90" stroke="#152238" stroke-width="0.5"/>
+          <line x1="0" y1="135" x2="350" y2="135" stroke="#152238" stroke-width="0.5"/>
+          <line x1="87" y1="0" x2="87" y2="180" stroke="#152238" stroke-width="0.5"/>
+          <line x1="175" y1="0" x2="175" y2="180" stroke="#152238" stroke-width="0.5"/>
+          <line x1="262" y1="0" x2="262" y2="180" stroke="#152238" stroke-width="0.5"/>
+          <!-- Route glow -->
+          <path d="M50,150 Q80,120 110,100 Q150,70 190,55 Q220,45 250,50 Q275,60 290,80 Q300,100 285,115 Q265,125 245,110 Q240,95 255,85" stroke="rgba(255,107,53,0.25)" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Route solid -->
+          <path d="M50,150 Q80,120 110,100 Q150,70 190,55 Q220,45 250,50 Q275,60 290,80 Q300,100 285,115 Q265,125 245,110 Q240,95 255,85" stroke="#FF6B35" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Start dot green -->
+          <circle cx="50" cy="150" r="5" fill="#30D158" stroke="#fff" stroke-width="2"/>
+          <!-- End dot red -->
+          <circle cx="255" cy="85" r="5" fill="#FF453A" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <!-- Icon -->
+      <div style="width:48px; height:48px; border-radius:24px; background:rgba(255,107,53,0.12); border:1px solid rgba(255,107,53,0.2); display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 11l3 3L22 4" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Title -->
+      <div style="font-size:20px; font-weight:800; color:#fff; text-align:center; margin-bottom:4px;">Finalizar sesion?</div>
+      <div style="font-size:13px; color:#8E8E93; text-align:center; line-height:18px; margin-bottom:16px;">Tu actividad quedara registrada con los datos actuales.</div>
+
+      <!-- 4-stat summary -->
+      <div style="display:flex; align-items:center; background:#2C2C2E; border-radius:14px; padding:14px 12px; width:100%; margin-bottom:20px;">
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:18px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums;">2.40</div>
+          <div style="font-size:9px; font-weight:600; color:#636366; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">distancia</div>
+        </div>
+        <div style="width:0.5px; height:32px; background:rgba(255,255,255,0.1);"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:18px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums;">28:14</div>
+          <div style="font-size:9px; font-weight:600; color:#636366; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">tiempo</div>
+        </div>
+        <div style="width:0.5px; height:32px; background:rgba(255,255,255,0.1);"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:18px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums;">5:26</div>
+          <div style="font-size:9px; font-weight:600; color:#636366; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">ritmo</div>
+        </div>
+        <div style="width:0.5px; height:32px; background:rgba(255,255,255,0.1);"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:18px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums;">93</div>
+          <div style="font-size:9px; font-weight:600; color:#636366; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">kcal</div>
+        </div>
+      </div>
+
+      <!-- Guardar actividad button -->
+      <div style="width:100%; height:54px; border-radius:16px; background:#FF6B35; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:10px; cursor:pointer; box-shadow:0 4px 14px rgba(255,107,53,0.3);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-size:17px; font-weight:800; color:#fff; letter-spacing:0.3px;">Guardar actividad</span>
+      </div>
+
+      <!-- Seguir corriendo button -->
+      <div style="width:100%; padding:14px 0; border-radius:14px; background:rgba(48,209,88,0.08); border:1px solid rgba(48,209,88,0.2); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="#30D158" stroke-width="2" fill="#30D158" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-size:15px; font-weight:700; color:#30D158;">Seguir corriendo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- COMPLETADO — Post-run summary            -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone" id="v-completed">
+    <div class="status-bar"><span style="font-weight:700">10:55</span><div class="status-icons"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="5" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="9" y="1" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2" height="12" rx="1" fill="#fff" opacity="0.3"/></svg><svg width="20" height="12" viewBox="0 0 25 12"><rect x="0" y="0" width="22" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="#30D158"/></svg></div></div>
+
+    <!-- Full dark background -->
+    <div style="position:absolute; inset:0; background:#0A0A0A; overflow-y:auto;">
+      <!-- Hero map — 280px -->
+      <div style="width:100%; height:280px; position:relative; overflow:hidden;">
+        <svg viewBox="0 0 390 280" preserveAspectRatio="xMidYMid slice" style="width:100%; height:100%;">
+          <rect width="390" height="280" fill="#0d1b2a"/>
+          <line x1="0" y1="70" x2="390" y2="70" stroke="#152238" stroke-width="0.5"/>
+          <line x1="0" y1="140" x2="390" y2="140" stroke="#152238" stroke-width="0.5"/>
+          <line x1="0" y1="210" x2="390" y2="210" stroke="#152238" stroke-width="0.5"/>
+          <line x1="97" y1="0" x2="97" y2="280" stroke="#152238" stroke-width="0.5"/>
+          <line x1="195" y1="0" x2="195" y2="280" stroke="#152238" stroke-width="0.5"/>
+          <line x1="292" y1="0" x2="292" y2="280" stroke="#152238" stroke-width="0.5"/>
+          <line x1="0" y1="140" x2="390" y2="140" stroke="#1e3a5f" stroke-width="1"/>
+          <line x1="195" y1="0" x2="195" y2="280" stroke="#1e3a5f" stroke-width="1"/>
+          <!-- Route glow -->
+          <path d="M40,230 Q70,200 110,170 Q160,130 210,100 Q250,80 290,85 Q330,95 350,130 Q360,165 340,185 Q310,200 285,180 Q275,155 295,135" stroke="rgba(255,107,53,0.25)" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Route solid -->
+          <path d="M40,230 Q70,200 110,170 Q160,130 210,100 Q250,80 290,85 Q330,95 350,130 Q360,165 340,185 Q310,200 285,180 Q275,155 295,135" stroke="#FF6B35" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Start green -->
+          <circle cx="40" cy="230" r="6" fill="#30D158" stroke="#fff" stroke-width="2.5"/>
+          <!-- End red -->
+          <circle cx="295" cy="135" r="6" fill="#FF453A" stroke="#fff" stroke-width="2.5"/>
+        </svg>
+        <!-- COMPLETADO badge -->
+        <div style="position:absolute; top:50px; right:16px; display:flex; align-items:center; gap:5px; background:rgba(48,209,88,0.9); padding:5px 10px; border-radius:12px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-size:11px; font-weight:800; color:#fff; letter-spacing:1px;">COMPLETADO</span>
+        </div>
+        <!-- Bottom gradient -->
+        <div style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(transparent, rgba(10,10,10,0.9));"></div>
+      </div>
+
+      <!-- Celebration header -->
+      <div style="text-align:center; padding:20px 0 12px;">
+        <div style="font-size:28px; font-weight:800; color:#fff; letter-spacing:-0.5px;">¡Gran carrera!</div>
+        <div style="font-size:14px; color:#636366; margin-top:4px; font-weight:500;">Sesion completada</div>
+      </div>
+
+      <!-- Best split banner -->
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin:0 16px 16px; background:rgba(241,196,15,0.08); border:1px solid rgba(241,196,15,0.2); border-radius:12px; padding:10px 16px;">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F1C40F" stroke="#F1C40F" stroke-width="1"/></svg>
+        <span style="font-size:14px; font-weight:700; color:#F1C40F;">Mejor split: km 2 — 5:04</span>
+      </div>
+
+      <!-- Hero metrics: Ritmo + Distancia -->
+      <div style="display:flex; margin:0 16px; background:#1C1C1E; border-radius:20px; padding:24px; border:1px solid rgba(255,255,255,0.06);">
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:40px; font-weight:800; color:#fff; font-variant-numeric:tabular-nums; letter-spacing:-1px; line-height:44px;">5:26</div>
+          <div style="font-size:16px; font-weight:500; color:#636366; margin-top:-4px;">/km</div>
+          <div style="font-size:10px; font-weight:700; color:#636366; margin-top:6px; letter-spacing:1.5px;">RITMO MEDIO</div>
+        </div>
+        <div style="width:1px; height:50px; background:rgba(255,255,255,0.08); align-self:center;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:40px; font-weight:800; color:#FF6B35; font-variant-numeric:tabular-nums; letter-spacing:-1px; line-height:44px;">2.40</div>
+          <div style="font-size:16px; font-weight:500; color:#b8723a; margin-top:-4px;">km</div>
+          <div style="font-size:10px; font-weight:700; color:#636366; margin-top:6px; letter-spacing:1.5px;">DISTANCIA</div>
+        </div>
+      </div>
+
+      <!-- Secondary row: Tiempo + Kcal + Desnivel -->
+      <div style="display:flex; margin:12px 16px 0; background:#1C1C1E; border-radius:16px; padding:16px 20px; border:1px solid rgba(255,255,255,0.06);">
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:22px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums;">28:14</div>
+          <div style="font-size:9px; font-weight:700; color:#636366; margin-top:4px; letter-spacing:1px;">TIEMPO</div>
+        </div>
+        <div style="width:0.5px; height:28px; background:rgba(255,255,255,0.08); align-self:center;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:22px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums;">93</div>
+          <div style="font-size:9px; font-weight:700; color:#636366; margin-top:4px; letter-spacing:1px;">KCAL</div>
+        </div>
+        <div style="width:0.5px; height:28px; background:rgba(255,255,255,0.08); align-self:center;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:22px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums;">+48m</div>
+          <div style="font-size:9px; font-weight:700; color:#636366; margin-top:4px; letter-spacing:1px;">DESNIVEL</div>
+        </div>
+      </div>
+
+      <!-- Splits -->
+      <div style="margin:12px 16px 0; background:#1C1C1E; border-radius:16px; padding:16px 20px; border:1px solid rgba(255,255,255,0.06);">
+        <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:12px;">Splits</div>
+        <!-- KM 1 -->
+        <div style="display:flex; align-items:center; margin-bottom:8px;">
+          <span style="width:42px; font-size:13px; font-weight:600; color:#636366;">km 1</span>
+          <div style="flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; margin:0 10px; overflow:hidden;"><div style="width:80%; height:100%; background:#FF6B35; border-radius:3px;"></div></div>
+          <span style="width:42px; text-align:right; font-size:14px; font-weight:700; color:#d1d5db; font-variant-numeric:tabular-nums;">5:18</span>
+        </div>
+        <!-- KM 2 — BEST -->
+        <div style="display:flex; align-items:center; margin-bottom:8px;">
+          <span style="width:42px; font-size:13px; font-weight:800; color:#30D158;">km 2</span>
+          <div style="flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; margin:0 10px; overflow:hidden;"><div style="width:72%; height:100%; background:#30D158; border-radius:3px;"></div></div>
+          <span style="width:42px; text-align:right; font-size:14px; font-weight:800; color:#30D158; font-variant-numeric:tabular-nums;">5:04</span>
+          <span style="font-size:10px; font-weight:700; color:#30D158; margin-left:6px; background:rgba(48,209,88,0.15); padding:2px 6px; border-radius:4px;">MEJOR</span>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div style="margin:24px 16px 0; display:flex; flex-direction:column; gap:12px;">
+        <!-- Share -->
+        <div style="width:100%; height:54px; border-radius:16px; background:rgba(255,107,53,0.08); border:1.5px solid rgba(255,107,53,0.25); display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6l-4-4-4 4" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2v13" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-size:16px; font-weight:700; color:#FF6B35; letter-spacing:0.3px;">Compartir resultado</span>
+        </div>
+        <!-- Save -->
+        <div style="width:100%; height:56px; border-radius:16px; background:linear-gradient(90deg, #FF6B35, #ea580c); display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-size:18px; font-weight:800; color:#fff; letter-spacing:0.5px;">Guardar actividad</span>
+        </div>
+        <!-- Discard -->
+        <div style="text-align:center; padding:14px 0;">
+          <span style="font-size:14px; font-weight:600; color:#4b5563;">Descartar actividad</span>
+        </div>
+      </div>
+
+      <div style="height:40px;"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(id, tab) {
+  document.querySelectorAll('.phone').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const el = document.getElementById('v-' + id);
+  if (el) el.classList.add('active');
+  if (tab) tab.classList.add('active');
+}
+</script>
+</body>
+</html>

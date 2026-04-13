@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MapScreen — CorrerJuntos</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    flex-wrap: wrap;
+  }
+
+  .phone-wrap { text-align: center; }
+  .phone-label { color: #666; font-size: 11px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: #111114;
+    border-radius: 44px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #222;
+  }
+
+  /* Status bar */
+  .status-bar {
+    height: 54px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 28px 6px;
+    background: #111114;
+  }
+  .status-time { color: #fff; font-size: 15px; font-weight: 600; }
+  .status-icons { color: #fff; font-size: 12px; opacity: 0.6; }
+
+  /* Screen content */
+  .screen {
+    height: calc(100% - 54px - 94px);
+    overflow-y: auto;
+    background: #111114;
+  }
+  .screen::-webkit-scrollbar { display: none; }
+
+  /* ── Radius Pills ── */
+  .radius-pills {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    overflow-x: auto;
+  }
+  .radius-pill {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #2A2A30;
+    background: #1A1A1E;
+    color: #9A9AA6;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .radius-pill.active {
+    background: #FF6B00;
+    border-color: #FF6B00;
+    color: #fff;
+  }
+
+  /* ── Map Area ── */
+  .map-area {
+    height: 320px;
+    background: #1a1a22;
+    position: relative;
+    border-bottom: 1px solid #2A2A30;
+    overflow: hidden;
+  }
+  .map-bg {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(255,107,0,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(255,107,0,0.04) 0%, transparent 40%),
+      linear-gradient(135deg, #1a1a22, #15151d);
+    position: relative;
+  }
+  .map-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Map markers */
+  .marker {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .marker:hover { transform: rotate(-45deg) scale(1.2); }
+  .marker-inner {
+    transform: rotate(45deg);
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .marker.green { background: #22c55e; }
+  .marker.orange { background: #f59e0b; }
+  .marker.red { background: #ef4444; }
+  .marker.purple { background: #a855f7; }
+  .marker.selected {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #fff;
+    z-index: 5;
+  }
+
+  /* User location dot */
+  .user-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #4285F4;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(66,133,244,0.5);
+  }
+
+  /* Map floating buttons */
+  .map-btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #1A1A1E;
+    border: 1px solid #2A2A30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #FF6B00;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  .map-btn.heatmap {
+    top: 12px;
+    right: 12px;
+    width: auto;
+    padding: 0 12px;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .map-btn.location { bottom: 12px; right: 12px; }
+
+  /* ── Compact Filters ── */
+  .filters {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .time-row { display: flex; gap: 16px; }
+  .time-item { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+  .time-dot { width: 6px; height: 6px; border-radius: 3px; background: #555560; }
+  .time-item.active .time-dot { background: #FF6B00; }
+  .time-text { font-size: 12px; font-weight: 500; color: #555560; }
+  .time-item.active .time-text { color: #F5F5F7; }
+
+  .level-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .level-pill {
+    padding: 5px 14px;
+    border-radius: 16px;
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .count-row { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; }
+  .count-text { font-size: 13px; font-weight: 600; color: #9A9AA6; }
+  .btn-crear {
+    padding: 8px 18px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #FF6B00, #ea580c);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* ── Quedada Cards ── */
+  .quedada-card {
+    margin: 0 16px 12px;
+    border: 1px solid #2A2A30;
+    border-radius: 14px;
+    padding: 16px;
+    background: #1A1A1E;
+  }
+  .card-row1 { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .hora-badge { padding: 4px 10px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .hora-time { color: #fff; font-size: 14px; font-weight: 800; }
+  .hora-date { color: rgba(255,255,255,0.8); font-size: 10px; font-weight: 500; }
+  .card-tags { display: flex; gap: 6px; align-items: center; }
+  .tag { padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+
+  .card-title { color: #F5F5F7; font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+
+  .card-info { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .info-item { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #9A9AA6; }
+  .info-icon { font-size: 12px; opacity: 0.7; }
+  .weather-badge { display: flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1px solid; }
+
+  .occupancy { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+  .occupancy-bar { flex: 1; height: 4px; background: #2A2A30; border-radius: 2px; overflow: hidden; }
+  .occupancy-fill { height: 100%; border-radius: 2px; }
+  .occupancy-label { font-size: 11px; color: #666680; font-weight: 600; }
+
+  .meeting-point { font-size: 12px; color: #666680; margin-bottom: 12px; }
+
+  .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #2A2A30; padding-top: 12px; }
+  .organizer { display: flex; align-items: center; gap: 8px; }
+  .org-avatar { width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; }
+  .org-name { font-size: 12px; color: #9A9AA6; font-weight: 500; }
+  .card-buttons { display: flex; gap: 8px; }
+  .btn-ver { padding: 8px 14px; border-radius: 8px; border: 1px solid #3A3A3C; background: transparent; color: #9A9AA6; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .btn-unirse { padding: 8px 18px; border-radius: 8px; background: linear-gradient(90deg, #FF6B00, #ea580c); color: #fff; font-size: 12px; font-weight: 700; border: none; cursor: pointer; }
+  .btn-joined { padding: 8px 14px; border-radius: 8px; background: rgba(34,197,94,0.15); color: #22c55e; font-size: 12px; font-weight: 600; border: none; }
+
+  /* ── Floating Card ── */
+  .floating-card {
+    position: absolute;
+    bottom: 106px;
+    left: 12px;
+    right: 12px;
+    background: #1A1A1E;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
+    z-index: 20;
+  }
+  .floating-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 10px; }
+  .floating-close { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border-radius: 14px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: #F5F5F7; font-size: 12px; cursor: pointer; }
+  .floating-nivel { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+  .floating-title { color: #F5F5F7; font-size: 17px; font-weight: 800; margin-bottom: 10px; }
+  .floating-info { display: flex; gap: 12px; margin-bottom: 6px; font-size: 13px; color: #9A9AA6; }
+  .floating-info-item { display: flex; align-items: center; gap: 4px; }
+  .floating-actions { display: flex; gap: 10px; margin-top: 12px; }
+  .floating-btn-view { flex: 1; padding: 11px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.2); background: transparent; color: #F5F5F7; font-size: 14px; font-weight: 700; text-align: center; cursor: pointer; }
+  .floating-btn-join { flex: 1; padding: 11px; border-radius: 10px; background: linear-gradient(90deg, #FF6B00, #ea580c); color: #fff; font-size: 14px; font-weight: 700; text-align: center; border: none; cursor: pointer; }
+
+  /* ── Tab Bar ── */
+  .tab-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 94px;
+    background: #0D0D1A;
+    display: flex;
+    align-items: flex-start;
+    padding: 0 8px;
+  }
+  .tab-bar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.08); }
+  .tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 8px; gap: 4px; height: 64px; position: relative; }
+  .tab-icon { width: 22px; height: 22px; opacity: 0.6; }
+  .tab-item.active .tab-icon { opacity: 1; }
+  .tab-lbl { font-size: 10px; color: #666680; font-weight: 400; letter-spacing: 0.3px; }
+  .tab-item.active .tab-lbl { color: #FF6B00; font-weight: 600; }
+  .tab-indicator { position: absolute; top: 0; width: 20px; height: 2px; background: #FF6B00; border-radius: 2px; }
+  .center-tab { flex: 1; display: flex; flex-direction: column; align-items: center; margin-top: -16px; gap: 4px; }
+  .center-btn { width: 56px; height: 56px; border-radius: 28px; background: linear-gradient(135deg, #FF6B00, #FF8C00); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255,107,0,0.5); }
+  .center-glow { position: absolute; width: 64px; height: 64px; border-radius: 32px; background: rgba(255,107,0,0.15); top: -4px; }
+  .center-lbl { font-size: 10px; color: #FF6B00; font-weight: 500; letter-spacing: 0.3px; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PHONE 1: Map con quedadas + filtros + cards ═══════════ -->
+<div class="phone-wrap">
+  <div class="phone-label">MapScreen — Vista principal</div>
+  <div class="phone">
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons">5G</span>
+    </div>
+    <div class="screen">
+      <div class="radius-pills">
+        <div class="radius-pill active">Todas</div>
+        <div class="radius-pill">Mi region (100km)</div>
+        <div class="radius-pill">Mi ciudad (50km)</div>
+        <div class="radius-pill">Cerca (25km)</div>
+      </div>
+      <div class="map-area">
+        <div class="map-bg">
+          <div class="marker green" style="top:35%;left:25%;"><span class="marker-inner">07:00</span></div>
+          <div class="marker orange" style="top:55%;left:45%;"><span class="marker-inner">08:30</span></div>
+          <div class="marker red" style="top:40%;left:65%;"><span class="marker-inner">09:00</span></div>
+          <div class="marker green" style="top:70%;left:30%;"><span class="marker-inner">07:30</span></div>
+          <div class="marker purple" style="top:25%;left:55%;"><span class="marker-inner">20:00</span></div>
+          <div class="user-dot" style="top:48%;left:50%;"></div>
+        </div>
+        <div class="map-btn heatmap"><span>🔥</span> Heatmap</div>
+        <div class="map-btn location">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+        </div>
+      </div>
+      <div class="filters">
+        <div class="time-row">
+          <div class="time-item active"><div class="time-dot"></div><span class="time-text">Manana</span></div>
+          <div class="time-item"><div class="time-dot"></div><span class="time-text">Mediodia</span></div>
+          <div class="time-item"><div class="time-dot"></div><span class="time-text">Tarde</span></div>
+          <div class="time-item"><div class="time-dot"></div><span class="time-text">Noche</span></div>
+        </div>
+        <div class="level-row">
+          <div class="level-pill" style="border-color:#22c55e;background:rgba(34,197,94,0.08);color:#22c55e;">Principiante</div>
+          <div class="level-pill" style="border-color:#eab308;background:rgba(234,179,8,0.08);color:#eab308;">Intermedio</div>
+          <div class="level-pill" style="border-color:#ef4444;background:rgba(239,68,68,0.08);color:#ef4444;">Avanzado</div>
+          <div class="level-pill" style="border-color:#a855f7;background:rgba(168,85,247,0.08);color:#a855f7;">Elite</div>
+        </div>
+        <div class="count-row">
+          <span class="count-text">5 quedadas encontradas</span>
+          <button class="btn-crear">+ Crear Quedada</button>
+        </div>
+      </div>
+
+      <!-- Card 1 -->
+      <div class="quedada-card">
+        <div class="card-row1">
+          <div class="hora-badge" style="background:#f97316;"><span class="hora-time">09:00</span><span class="hora-date">Hoy</span></div>
+          <div class="card-tags"><span class="tag" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid #22c55e;">Principiante</span></div>
+        </div>
+        <div class="card-title">Ruta suave por el Retiro</div>
+        <div class="card-info">
+          <span class="info-item"><span class="info-icon">📍</span> Madrid</span>
+          <span class="info-item"><span class="info-icon">📏</span> 8 km</span>
+          <span class="info-item"><span class="info-icon">👥</span> 3 plazas libres 🔥</span>
+          <div class="weather-badge" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#22c55e;">☀️ 18°</div>
+        </div>
+        <div class="occupancy"><div class="occupancy-bar"><div class="occupancy-fill" style="width:70%;background:#f97316;"></div></div><span class="occupancy-label">7/10</span></div>
+        <div class="meeting-point">Puerta de Alcala, Parque del Retiro</div>
+        <div class="card-footer">
+          <div class="organizer"><div class="org-avatar" style="background:#22c55e;">CM</div><span class="org-name">Carlos Martinez</span></div>
+          <div class="card-buttons"><button class="btn-ver">Ver mas</button><button class="btn-unirse">Unirse</button></div>
+        </div>
+      </div>
+
+      <!-- Card 2 (joined) -->
+      <div class="quedada-card">
+        <div class="card-row1">
+          <div class="hora-badge" style="background:#eab308;"><span class="hora-time">12:00</span><span class="hora-date">Manana</span></div>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">Apuntado</span>
+            <span class="tag" style="background:rgba(234,179,8,0.15);color:#eab308;border:1px solid #eab308;">Intermedio</span>
+          </div>
+        </div>
+        <div class="card-title">Trail por Casa de Campo</div>
+        <div class="card-info">
+          <span class="info-item"><span class="info-icon">📍</span> Madrid</span>
+          <span class="info-item"><span class="info-icon">📏</span> 15 km</span>
+          <span class="info-item"><span class="info-icon">👥</span> 8 van</span>
+          <div class="weather-badge" style="background:rgba(234,179,8,0.1);border-color:rgba(234,179,8,0.3);color:#eab308;">⛅ 14°</div>
+        </div>
+        <div class="meeting-point">Lago de Casa de Campo, junto al embarcadero</div>
+        <div class="card-footer">
+          <div class="organizer"><div class="org-avatar" style="background:#eab308;">LR</div><span class="org-name">Laura Rodriguez</span></div>
+          <div class="card-buttons"><button class="btn-ver">Ver mas</button><button class="btn-joined">Apuntado ✓</button></div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="quedada-card">
+        <div class="card-row1">
+          <div class="hora-badge" style="background:#8b5cf6;"><span class="hora-time">20:00</span><span class="hora-date">sab. 12 abr.</span></div>
+          <div class="card-tags"><span class="tag" style="background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid #ef4444;">Avanzado</span></div>
+        </div>
+        <div class="card-title">Series 1000m en Complutense</div>
+        <div class="card-info">
+          <span class="info-item"><span class="info-icon">📍</span> Madrid</span>
+          <span class="info-item"><span class="info-icon">📏</span> 12 km</span>
+          <span class="info-item"><span class="info-icon">👥</span> 5 plazas libres</span>
+        </div>
+        <div class="meeting-point">Pista de atletismo, Ciudad Universitaria</div>
+        <div class="card-footer">
+          <div class="organizer"><div class="org-avatar" style="background:#ef4444;">JP</div><span class="org-name">Javier Perez</span></div>
+          <div class="card-buttons"><button class="btn-ver">Ver mas</button><button class="btn-unirse">Unirse</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1m-2 0h2"/></svg><span class="tab-lbl">Inicio</span></div>
+      <div class="tab-item active"><div class="tab-indicator"></div><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><span class="tab-lbl">Mapa</span></div>
+      <div class="center-tab" style="position:relative;"><div class="center-glow"></div><div class="center-btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="15" cy="4" r="2" fill="#fff"/><path d="M13 7l-3 5h4l-2 7M7 12l3-5M10 17l-4 3M17 10l2-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="center-lbl">Correr</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span class="tab-lbl">Social</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1" stroke-linecap="round"/></svg><span class="tab-lbl">Perfil</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PHONE 2: Floating card (marker selected) ═══════════ -->
+<div class="phone-wrap">
+  <div class="phone-label">Floating card — Marker seleccionado</div>
+  <div class="phone">
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons">5G</span>
+    </div>
+    <div class="screen" style="position:relative;">
+      <div class="radius-pills">
+        <div class="radius-pill">Todas</div>
+        <div class="radius-pill active">Mi ciudad (50km)</div>
+        <div class="radius-pill">Cerca (25km)</div>
+      </div>
+      <div class="map-area" style="height:480px;">
+        <div class="map-bg">
+          <div class="marker green" style="top:30%;left:20%;"><span class="marker-inner">07:00</span></div>
+          <div class="marker red selected" style="top:45%;left:50%;"><span class="marker-inner">09:00</span></div>
+          <div class="marker orange" style="top:60%;left:70%;"><span class="marker-inner">08:30</span></div>
+          <div class="user-dot" style="top:52%;left:45%;"></div>
+        </div>
+        <div class="map-btn location"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+      </div>
+    </div>
+    <div class="floating-card">
+      <div class="floating-handle"></div>
+      <div class="floating-close">✕</div>
+      <div><span class="floating-nivel" style="background:rgba(239,68,68,0.15);color:#ef4444;">Avanzado</span></div>
+      <div class="floating-title">Series 1000m en Complutense</div>
+      <div class="floating-info">
+        <span class="floating-info-item">📅 sab. 12 abr.</span>
+        <span class="floating-info-item">🕐 20:00</span>
+        <span class="floating-info-item">📍 Madrid</span>
+      </div>
+      <div class="floating-info">
+        <span class="floating-info-item">👥 5 runners</span>
+        <span class="floating-info-item">🏃 12 km</span>
+      </div>
+      <div class="floating-actions">
+        <button class="floating-btn-view">Ver detalle</button>
+        <button class="floating-btn-join">Unirse</button>
+      </div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1m-2 0h2"/></svg><span class="tab-lbl">Inicio</span></div>
+      <div class="tab-item active"><div class="tab-indicator"></div><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><span class="tab-lbl">Mapa</span></div>
+      <div class="center-tab" style="position:relative;"><div class="center-glow"></div><div class="center-btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="15" cy="4" r="2" fill="#fff"/><path d="M13 7l-3 5h4l-2 7M7 12l3-5M10 17l-4 3M17 10l2-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="center-lbl">Correr</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span class="tab-lbl">Social</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1" stroke-linecap="round"/></svg><span class="tab-lbl">Perfil</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

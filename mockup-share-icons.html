@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Icons — CorrerJuntos</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A0A; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 40px 20px; }
+  .container { width: 390px; }
+  h2 { font-size: 13px; color: #8E8E93; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; font-weight: 600; }
+  h3 { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 16px; font-weight: 600; }
+
+  .share-section {
+    background: #1A1A1E;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .share-title {
+    font-size: 13px;
+    color: #9A9AA6;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .share-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+  }
+  .share-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+  }
+  .share-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .share-label {
+    font-size: 11px;
+    color: #9A9AA6;
+    font-weight: 500;
+  }
+
+  /* Feed */
+  .icon-feed {
+    background: linear-gradient(135deg, #FF6B00, #FF8C38);
+  }
+  /* WhatsApp */
+  .icon-whatsapp {
+    background: #25D366;
+  }
+  /* Instagram */
+  .icon-instagram {
+    background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+  }
+  /* Copy */
+  .icon-copy {
+    background: #2A2A30;
+    border: 1px solid #3A3A42;
+  }
+
+  .comparison {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .version {
+    flex: 1;
+  }
+  .version-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF6B00;
+    margin-bottom: 4px;
+  }
+  .badge-fixed {
+    display: inline-block;
+    background: #22c55e22;
+    color: #22c55e;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  .badge-old {
+    display: inline-block;
+    background: #ef444422;
+    color: #ef4444;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Compartir Actividad — Iconos</h2>
+
+  <!-- COMPARISON -->
+  <div class="comparison">
+    <!-- BEFORE -->
+    <div class="version">
+      <div class="version-label">ANTES <span class="badge-old">OLD</span></div>
+      <h3>Stories usaba icono de camara</h3>
+      <div class="share-section">
+        <div class="share-grid">
+          <!-- Feed -->
+          <div class="share-btn">
+            <div class="share-icon icon-feed">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+                <path d="M22 7L13.5 15.5 8.5 10.5 2 17" />
+                <path d="M16 7L22 7 22 13" />
+              </svg>
+            </div>
+            <span class="share-label">Feed</span>
+          </div>
+          <!-- WhatsApp -->
+          <div class="share-btn">
+            <div class="share-icon icon-whatsapp">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+              </svg>
+            </div>
+            <span class="share-label">WhatsApp</span>
+          </div>
+          <!-- Stories OLD (camera) -->
+          <div class="share-btn">
+            <div class="share-icon icon-instagram">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 10a3 3 0 013-3h14a3 3 0 013 3v9a3 3 0 01-3 3H5a3 3 0 01-3-3z" />
+                <circle cx="12" cy="14.5" r="3.5" />
+                <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" />
+              </svg>
+            </div>
+            <span class="share-label">Stories</span>
+          </div>
+          <!-- Copy -->
+          <div class="share-btn">
+            <div class="share-icon icon-copy">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+              </svg>
+            </div>
+            <span class="share-label">Copiar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AFTER -->
+    <div class="version">
+      <div class="version-label">AHORA <span class="badge-fixed">FIXED</span></div>
+      <h3>Stories usa logo Instagram real</h3>
+      <div class="share-section">
+        <div class="share-grid">
+          <!-- Feed -->
+          <div class="share-btn">
+            <div class="share-icon icon-feed">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+                <path d="M22 7L13.5 15.5 8.5 10.5 2 17" />
+                <path d="M16 7L22 7 22 13" />
+              </svg>
+            </div>
+            <span class="share-label">Feed</span>
+          </div>
+          <!-- WhatsApp -->
+          <div class="share-btn">
+            <div class="share-icon icon-whatsapp">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+              </svg>
+            </div>
+            <span class="share-label">WhatsApp</span>
+          </div>
+          <!-- Stories NEW (Instagram logo) -->
+          <div class="share-btn">
+            <div class="share-icon icon-instagram">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z" />
+                <circle cx="12" cy="12" r="4.5" />
+                <circle cx="18" cy="6" r="1" fill="#fff" stroke="none" />
+              </svg>
+            </div>
+            <span class="share-label">Stories</span>
+          </div>
+          <!-- Copy -->
+          <div class="share-btn">
+            <div class="share-icon icon-copy">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+              </svg>
+            </div>
+            <span class="share-label">Copiar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size reference -->
+  <div style="margin-top: 40px; padding: 20px; background: #1A1A1E; border-radius: 16px;">
+    <div class="share-title">Vista completa — Como se ve en la app</div>
+    <div class="share-grid" style="max-width: 340px; margin: 0 auto;">
+      <div class="share-btn">
+        <div class="share-icon icon-feed">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+            <path d="M22 7L13.5 15.5 8.5 10.5 2 17" />
+            <path d="M16 7L22 7 22 13" />
+          </svg>
+        </div>
+        <span class="share-label">Feed</span>
+      </div>
+      <div class="share-btn">
+        <div class="share-icon icon-whatsapp">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+          </svg>
+        </div>
+        <span class="share-label">WhatsApp</span>
+      </div>
+      <div class="share-btn">
+        <div class="share-icon icon-instagram">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z" />
+            <circle cx="12" cy="12" r="4.5" />
+            <circle cx="18" cy="6" r="1" fill="#fff" stroke="none" />
+          </svg>
+        </div>
+        <span class="share-label">Stories</span>
+      </div>
+      <div class="share-btn">
+        <div class="share-icon icon-copy">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9A9AA6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+          </svg>
+        </div>
+        <span class="share-label">Copiar</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

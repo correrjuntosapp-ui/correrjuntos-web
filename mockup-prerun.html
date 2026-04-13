@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=414, user-scalable=no">
+<title>CorrerJuntos — Pre-Run Screen Redesign</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif;
+    background: #0A0A0A;
+    color: #fff;
+    max-width: 390px;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Full-screen map background ── */
+  .map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0e1a2e;
+    overflow: hidden;
+  }
+  .map-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Status Bar ── */
+  .status-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px 4px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 20;
+  }
+  .status-bar .time { font-weight: 700; }
+  .status-icons { display: flex; gap: 5px; align-items: center; }
+  .status-icons svg { width: 18px; height: 18px; }
+
+  /* ── GPS Badge ── */
+  .gps-badge {
+    position: absolute;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 5px 12px;
+    z-index: 20;
+  }
+  .gps-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: gpsPulse 2s infinite;
+  }
+  @keyframes gpsPulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px #22c55e; }
+    50% { opacity: 0.6; box-shadow: 0 0 8px #22c55e; }
+  }
+  .gps-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #22c55e;
+  }
+
+  /* ── User location dot ── */
+  .user-dot {
+    position: absolute;
+    top: 38%;
+    left: 48%;
+    z-index: 15;
+  }
+  .user-dot-outer {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 107, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: dotPulse 2.5s infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 0.3; }
+  }
+  .user-dot-inner {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #FF6B00;
+    border: 3px solid #fff;
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.5);
+  }
+
+  /* ── Warmup Metrics Strip ── */
+  .warmup-strip {
+    position: absolute;
+    top: 90px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+  }
+  .warmup-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 6px 10px;
+  }
+  .warmup-chip svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .warmup-chip-label {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+  }
+  .warmup-chip-value {
+    font-size: 12px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* ── Bottom Sheet (collapsed = ~35%) ── */
+  .bottom-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111114;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-top: 1px solid #2A2A2A;
+    z-index: 30;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  .bottom-sheet.collapsed {
+    transform: translateY(0);
+  }
+  .bottom-sheet.expanded {
+    transform: translateY(-180px);
+  }
+
+  /* Handle */
+  .sheet-handle {
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: #3A3A3A;
+    margin: 10px auto 14px;
+    cursor: pointer;
+  }
+
+  /* ── Sport Selector ── */
+  .sport-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 0 20px 16px;
+  }
+  .sport-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .sport-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2C2C2E;
+    transition: all 0.2s;
+  }
+  .sport-circle.active {
+    background: #FF6B00;
+    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.35);
+  }
+  .sport-circle svg { width: 24px; height: 24px; }
+  .sport-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+  }
+  .sport-label.active {
+    color: #FF6B00;
+  }
+
+  /* ── Settings rows (collapsible) ── */
+  .settings-section {
+    padding: 0 20px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+  .settings-section.visible {
+    max-height: 300px;
+    opacity: 1;
+    padding: 0 20px 8px;
+  }
+  .setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #1E1E20;
+  }
+  .setting-row:last-child { border-bottom: none; }
+  .setting-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .setting-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #2A2A2C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .setting-icon svg { width: 16px; height: 16px; }
+  .setting-text {}
+  .setting-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .setting-sub {
+    font-size: 12px;
+    color: #666;
+    margin-top: 1px;
+  }
+  .toggle {
+    width: 48px;
+    height: 28px;
+    border-radius: 14px;
+    background: #FF6B00;
+    position: relative;
+    cursor: pointer;
+  }
+  .toggle-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    transition: right 0.2s;
+  }
+  .setting-arrow {
+    color: #555;
+    font-size: 18px;
+  }
+
+  /* ── Expand/collapse hint ── */
+  .expand-hint {
+    text-align: center;
+    padding: 4px 0 12px;
+    font-size: 11px;
+    color: #555;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .expand-hint svg { width: 12px; height: 12px; }
+
+  /* ── Start Button Area ── */
+  .start-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 0 0;
+  }
+  .start-btn {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B00, #FF3D00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(255, 107, 0, 0.4);
+    animation: startPulse 2.5s ease-in-out infinite;
+    position: relative;
+  }
+  @keyframes startPulse {
+    0%, 100% { box-shadow: 0 6px 20px rgba(255, 107, 0, 0.35); transform: scale(1); }
+    50% { box-shadow: 0 8px 32px rgba(255, 107, 0, 0.55); transform: scale(1.04); }
+  }
+  .start-btn svg { width: 32px; height: 32px; }
+  .start-btn-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 107, 0, 0.15);
+  }
+
+  /* ── Bottom Tab Bar (behind sheet) ── */
+  .tab-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111114;
+    border-top: 1px solid #1A1A1E;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 8px 0 28px;
+    z-index: 5;
+  }
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 48px;
+  }
+  .nav-item svg { width: 24px; height: 24px; }
+  .nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #6B6B7B;
+  }
+  .nav-label.active { color: #FF6B00; }
+  .nav-center {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B00, #FF3D00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -18px;
+    box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
+  }
+
+  /* ── Safe area bottom ── */
+  .safe-bottom {
+    height: 34px;
+    background: #111114;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FULL-SCREEN DARK MAP BACKGROUND            -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="map-container">
+  <svg class="map-svg" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <!-- Custom dark map style palette -->
+      <linearGradient id="waterGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0a1628"/>
+        <stop offset="100%" stop-color="#0e1e38"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Map base (dark custom theme) -->
+    <rect width="390" height="844" fill="#1d2c4d"/>
+
+    <!-- Water bodies -->
+    <path d="M280,0 Q320,40 350,20 L390,0 L390,100 Q360,80 330,90 Q300,100 280,70 Z" fill="#0e1626" opacity="0.9"/>
+    <path d="M310,80 Q340,100 370,85 L390,90 L390,200 Q360,170 330,180 Q310,190 300,160 Z" fill="#0e1626" opacity="0.85"/>
+
+    <!-- Road grid (custom dark style) -->
+    <!-- Major roads -->
+    <line x1="0" y1="180" x2="290" y2="180" stroke="#304a7d" stroke-width="3" opacity="0.4"/>
+    <line x1="100" y1="0" x2="100" y2="400" stroke="#304a7d" stroke-width="3" opacity="0.35"/>
+    <line x1="200" y1="50" x2="200" y2="500" stroke="#304a7d" stroke-width="3" opacity="0.35"/>
+    <line x1="0" y1="320" x2="280" y2="290" stroke="#304a7d" stroke-width="3" opacity="0.3"/>
+
+    <!-- Minor roads -->
+    <line x1="50" y1="0" x2="50" y2="500" stroke="#253761" stroke-width="1.5" opacity="0.3"/>
+    <line x1="150" y1="0" x2="150" y2="500" stroke="#253761" stroke-width="1.5" opacity="0.3"/>
+    <line x1="250" y1="0" x2="250" y2="350" stroke="#253761" stroke-width="1.5" opacity="0.3"/>
+    <line x1="0" y1="100" x2="300" y2="100" stroke="#253761" stroke-width="1.5" opacity="0.3"/>
+    <line x1="0" y1="250" x2="280" y2="240" stroke="#253761" stroke-width="1.5" opacity="0.3"/>
+    <line x1="0" y1="400" x2="300" y2="380" stroke="#253761" stroke-width="1.5" opacity="0.25"/>
+
+    <!-- Parks / green areas -->
+    <rect x="60" y="200" width="60" height="45" rx="6" fill="#1a3830" opacity="0.5"/>
+    <rect x="220" y="120" width="40" height="50" rx="6" fill="#1a3830" opacity="0.4"/>
+
+    <!-- Building blocks -->
+    <rect x="110" y="110" width="30" height="25" rx="3" fill="#223355" opacity="0.35"/>
+    <rect x="155" y="195" width="35" height="20" rx="3" fill="#223355" opacity="0.3"/>
+    <rect x="110" y="200" width="25" height="30" rx="3" fill="#223355" opacity="0.3"/>
+    <rect x="60" y="100" width="30" height="60" rx="3" fill="#223355" opacity="0.25"/>
+
+    <!-- Map labels (subtle teal) -->
+    <text x="70" y="218" fill="#8ec3b9" font-size="7" font-weight="500" opacity="0.5">Parque</text>
+    <text x="130" y="175" fill="#8ec3b9" font-size="6" font-weight="400" opacity="0.4">Av. Principal</text>
+    <text x="55" y="97" fill="#8ec3b9" font-size="6" font-weight="400" opacity="0.35">C/ Norte</text>
+  </svg>
+</div>
+
+<!-- User Location Dot -->
+<div class="user-dot">
+  <div class="user-dot-outer">
+    <div class="user-dot-inner"></div>
+  </div>
+</div>
+
+<!-- Status Bar -->
+<div class="status-bar">
+  <span class="time">14:47</span>
+  <div class="status-icons">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9z"/><path d="M5 13l2 2c2.76-2.76 7.24-2.76 10 0l2-2C14.14 8.14 9.87 8.14 5 13z"/><path d="M9 17l3 3 3-3c-1.65-1.66-4.34-1.66-6 0z"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="7" width="4" height="14" rx="1" fill="#fff" opacity="0.3"/><rect x="7" y="5" width="4" height="16" rx="1" fill="#fff" opacity="0.5"/><rect x="13" y="3" width="4" height="18" rx="1" fill="#fff" opacity="0.7"/><rect x="19" y="1" width="4" height="20" rx="1" fill="#fff"/></svg>
+    <svg viewBox="0 0 28 14" fill="currentColor"><rect x="0" y="1" width="24" height="12" rx="2" stroke="#fff" stroke-width="1.5" fill="none"/><rect x="25" y="4.5" width="2" height="5" rx="1" fill="#fff" opacity="0.5"/><rect x="2" y="3" width="14" height="8" rx="1" fill="#34D399"/></svg>
+    <span style="font-size:12px; opacity:0.7; margin-left:2px">90%</span>
+  </div>
+</div>
+
+<!-- GPS Badge -->
+<div class="gps-badge">
+  <div class="gps-dot"></div>
+  <span class="gps-text">GPS 3m</span>
+</div>
+
+<!-- Warmup Metrics Strip -->
+<div class="warmup-strip">
+  <div class="warmup-chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <span class="warmup-chip-value">--</span>
+    <span class="warmup-chip-label">bpm</span>
+  </div>
+  <div class="warmup-chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+    <span class="warmup-chip-value">18&deg;</span>
+  </div>
+  <div class="warmup-chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <span class="warmup-chip-value">10:32</span>
+    <span class="warmup-chip-label">am</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BOTTOM SHEET (35% collapsed)               -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="bottom-sheet collapsed" id="bottomSheet">
+  <div class="sheet-handle" onclick="toggleSheet()"></div>
+
+  <!-- Sport Selector Row -->
+  <div class="sport-row">
+    <div class="sport-btn">
+      <div class="sport-circle active">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6.49 8.98v5h2v-3.5l1.8-.7-1.6 8.1-4.9-1-.4 2 6 1.3z" fill="#fff"/></svg>
+      </div>
+      <span class="sport-label active">Carrera</span>
+    </div>
+    <div class="sport-btn">
+      <div class="sport-circle">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 3l4 8 5-5 5 15H2L8 3z" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="sport-label">Trail</span>
+    </div>
+    <div class="sport-btn">
+      <div class="sport-circle">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#888" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="#888" stroke-width="2"/></svg>
+      </div>
+      <span class="sport-label">Caminar</span>
+    </div>
+    <div class="sport-btn">
+      <div class="sport-circle">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="5.5" cy="17.5" r="3.5" stroke="#888" stroke-width="2"/><circle cx="18.5" cy="17.5" r="3.5" stroke="#888" stroke-width="2"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 2.5-2.5L15 12h3" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="sport-label">Bici</span>
+    </div>
+  </div>
+
+  <!-- Expand hint -->
+  <div class="expand-hint" onclick="toggleSheet()">
+    <svg id="expandIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    <span id="expandText">Audio, sensores y ajustes</span>
+  </div>
+
+  <!-- Collapsible Settings -->
+  <div class="settings-section" id="settingsSection">
+    <!-- Audio / Voz -->
+    <div class="setting-row">
+      <div class="setting-left">
+        <div class="setting-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="setting-title">Audio / Voz</div>
+          <div class="setting-sub">Cada 1km</div>
+        </div>
+      </div>
+      <div class="toggle"><div class="toggle-dot"></div></div>
+    </div>
+
+    <!-- Auto-pausa -->
+    <div class="setting-row">
+      <div class="setting-left">
+        <div class="setting-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="setting-title">Auto-pausa</div>
+          <div class="setting-sub">Pausa al detenerse</div>
+        </div>
+      </div>
+      <div class="toggle"><div class="toggle-dot"></div></div>
+    </div>
+
+    <!-- Sensores -->
+    <div class="setting-row">
+      <div class="setting-left">
+        <div class="setting-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="setting-text">
+          <div class="setting-title">Sensores</div>
+          <div class="setting-sub">No conectados</div>
+        </div>
+      </div>
+      <span class="setting-arrow">&#x203A;</span>
+    </div>
+  </div>
+
+  <!-- Start Button -->
+  <div class="start-section">
+    <div class="start-btn">
+      <div class="start-btn-ring"></div>
+      <svg viewBox="0 0 24 24" fill="#fff"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+    </div>
+  </div>
+
+  <!-- Safe bottom area -->
+  <div class="safe-bottom"></div>
+</div>
+
+<script>
+let isExpanded = false;
+
+function toggleSheet() {
+  isExpanded = !isExpanded;
+  const sheet = document.getElementById('bottomSheet');
+  const settings = document.getElementById('settingsSection');
+  const icon = document.getElementById('expandIcon');
+  const text = document.getElementById('expandText');
+
+  if (isExpanded) {
+    settings.classList.add('visible');
+    icon.innerHTML = '<polyline points="6 9 12 15 18 9"/>';
+    text.textContent = 'Ocultar ajustes';
+  } else {
+    settings.classList.remove('visible');
+    icon.innerHTML = '<polyline points="18 15 12 9 6 15"/>';
+    text.textContent = 'Audio, sensores y ajustes';
+  }
+}
+</script>
+
+</body>
+</html>

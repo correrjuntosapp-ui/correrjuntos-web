@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PaywallScreen — Mockup</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; display: flex; justify-content: center; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif; gap: 24px; flex-wrap: wrap; }
+
+  .phone { width: 390px; height: 844px; background: #111114; border-radius: 44px; overflow: hidden; position: relative; border: 3px solid #333; }
+  .notch { width: 160px; height: 34px; background: #000; border-radius: 0 0 20px 20px; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10; }
+  .screen { height: 100%; overflow-y: auto; padding-bottom: 160px; }
+  .screen::-webkit-scrollbar { display: none; }
+
+  /* Tab labels */
+  .phone-label { text-align: center; color: #9A9AA6; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+
+  /* Sticky CTA bar */
+  .sticky-cta { position: absolute; bottom: 0; left: 0; right: 0; background: #111114; border-top: 1px solid #2A2A30; padding: 12px 20px 28px; z-index: 10; }
+  .cta-btn { background: linear-gradient(90deg, #f97316, #ea580c); border-radius: 14px; padding: 16px; text-align: center; color: #fff; font-size: 16px; font-weight: 900; letter-spacing: 0.3px; box-shadow: 0 4px 16px rgba(249,115,22,0.3); }
+  .guarantee-row { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 10px; }
+  .guarantee-text { color: #64748b; font-size: 12px; font-weight: 600; }
+  .bottom-row { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 6px; }
+  .restore-text { color: #64748b; font-size: 12px; font-weight: 600; text-decoration: underline; }
+  .legal-text { color: #64748b; font-size: 10px; font-weight: 500; }
+
+  /* Hero */
+  .hero { background: linear-gradient(180deg, #111114 0%, #1c1205 50%, #2d1810 100%); padding: 50px 24px 32px; text-align: center; }
+  .close-btn { position: absolute; top: 52px; right: 20px; width: 36px; height: 36px; border-radius: 18px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: #9A9AA6; font-size: 20px; font-weight: 300; z-index: 5; cursor: pointer; }
+  .crown-container { margin: 20px auto 16px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .crown-glow { position: absolute; width: 100px; height: 100px; border-radius: 50%; background: rgba(251,191,36,0.08); }
+  .crown-icon { font-size: 56px; position: relative; z-index: 1; }
+  .hero-title { font-size: 30px; font-weight: 900; letter-spacing: -0.5px; color: #fbbf24; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.6); line-height: 1.4; }
+
+  /* Urgency */
+  .urgency-container { margin-top: 16px; display: flex; flex-direction: column; align-items: center; }
+  .urgency-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.25); padding: 6px 14px; border-radius: 20px; }
+  .urgency-badge-text { color: #fbbf24; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+  .urgency-detail { color: rgba(255,255,255,0.45); font-size: 11px; font-weight: 500; margin-top: 6px; }
+
+  /* Sections */
+  .section { padding: 0 20px; margin-bottom: 28px; }
+  .section-title { font-size: 18px; font-weight: 800; color: #F5F5F7; margin-bottom: 14px; }
+
+  /* Features Grid */
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .feature-card { background: #1A1A1E; border: 1px solid #2A2A30; border-radius: 14px; padding: 14px; }
+  .feature-icon { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-size: 20px; }
+  .feature-title { font-size: 14px; font-weight: 700; color: #F5F5F7; margin-bottom: 3px; }
+  .feature-desc { font-size: 11px; line-height: 1.35; font-weight: 500; color: #9A9AA6; }
+
+  /* Plan Preview */
+  .plan-preview { background: #1A1A1E; border: 1px solid #2A2A30; border-radius: 16px; overflow: hidden; position: relative; }
+  .preview-row { display: flex; align-items: center; padding: 12px 14px; gap: 10px; border-bottom: 1px solid #2A2A30; }
+  .preview-row:last-of-type { border-bottom: none; }
+  .preview-day { font-size: 12px; font-weight: 700; width: 32px; text-transform: uppercase; color: #9A9AA6; }
+  .preview-bar { width: 3px; height: 28px; border-radius: 2px; }
+  .preview-title { font-size: 14px; font-weight: 600; color: #F5F5F7; flex: 1; }
+  .preview-dist { font-size: 13px; font-weight: 800; }
+  .plan-blur { position: absolute; bottom: 0; left: 0; right: 0; height: 70%; background: linear-gradient(180deg, transparent 0%, rgba(11,18,32,0.85) 50%, rgba(11,18,32,0.98) 100%); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 16px; }
+  .plan-lock-icon { font-size: 28px; color: #94a3b8; margin-bottom: 4px; }
+  .plan-lock-text { font-size: 14px; font-weight: 800; color: #F5F5F7; }
+
+  /* Benefits */
+  .benefits-list { background: #1A1A1E; border: 1px solid #2A2A30; border-radius: 16px; padding: 16px; margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+  .benefit-row { display: flex; align-items: center; gap: 10px; }
+  .benefit-icon { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .benefit-text { font-size: 14px; font-weight: 600; color: #F5F5F7; }
+
+  /* Comparison Table */
+  .comparison-table { background: #1A1A1E; border: 1px solid #2A2A30; border-radius: 16px; overflow: hidden; }
+  .comp-row { display: flex; align-items: center; padding: 12px 14px; border-bottom: 1px solid #2A2A30; }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-row.header { padding: 10px 14px; }
+  .comp-feature { flex: 1.4; font-size: 13px; font-weight: 600; color: #F5F5F7; }
+  .comp-col { flex: 0.8; text-align: center; font-size: 13px; font-weight: 600; }
+  .comp-col.free { color: #9A9AA6; }
+  .comp-col.premium { color: #f97316; font-weight: 800; }
+  .comp-col .check { color: #22c55e; font-size: 16px; }
+  .comp-col .cross { color: #ef4444; font-size: 16px; }
+
+  /* Testimonial */
+  .testimonial-card { background: #1A1A1E; border: 1px solid #2A2A30; border-radius: 16px; padding: 18px; }
+  .testimonial-quote-icon { color: #f97316; font-size: 24px; margin-bottom: 8px; }
+  .testimonial-text { font-size: 14px; font-weight: 500; line-height: 1.5; font-style: italic; color: #F5F5F7; margin-bottom: 14px; }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .testimonial-avatar { width: 32px; height: 32px; border-radius: 16px; background: #f97316; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+  .testimonial-name { font-size: 13px; font-weight: 700; color: #F5F5F7; }
+  .testimonial-meta { font-size: 11px; font-weight: 500; color: #64748b; }
+  .testimonial-stars { margin-left: auto; color: #facc15; font-size: 10px; letter-spacing: 1px; }
+
+  /* Individual Plan Mode */
+  .individual-card { background: #1A1A1E; border: 2.5px solid #22c55e; border-radius: 16px; padding: 20px; text-align: center; position: relative; overflow: visible; }
+  .individual-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: #22c55e; padding: 3px 14px; border-radius: 10px; color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .individual-title { font-size: 18px; font-weight: 900; color: #F5F5F7; margin-top: 8px; margin-bottom: 4px; }
+  .individual-subtitle { font-size: 13px; font-weight: 600; color: #9A9AA6; margin-bottom: 8px; }
+  .value-props { text-align: left; margin: 4px 0 12px; display: flex; flex-direction: column; gap: 8px; }
+  .value-prop { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #9A9AA6; }
+  .value-prop.highlight { color: #f97316; font-weight: 700; }
+  .value-prop .vp-check { font-size: 15px; }
+  .individual-link { margin-top: 16px; padding: 10px 16px; background: rgba(249,115,22,0.08); border-radius: 10px; }
+  .individual-link-text { font-size: 13px; font-weight: 600; color: #fb923c; text-decoration: underline; text-align: center; }
+
+  /* Plan Selector */
+  .plan-selector { display: flex; gap: 12px; }
+  .plan-card { flex: 1; background: #1A1A1E; border: 2px solid #2A2A30; border-radius: 16px; padding: 18px; text-align: center; position: relative; overflow: visible; cursor: pointer; transition: border-color 0.2s; }
+  .plan-card.active { border-color: #f97316; box-shadow: 0 2px 12px rgba(249,115,22,0.15); }
+  .plan-save-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #f97316; padding: 2px 10px; border-radius: 10px; color: #fff; font-size: 10px; font-weight: 800; white-space: nowrap; }
+  .plan-name { font-size: 14px; font-weight: 700; color: #F5F5F7; margin-bottom: 6px; }
+  .plan-price { font-size: 24px; font-weight: 900; }
+  .plan-price.active { color: #f97316; }
+  .plan-price.inactive { color: #F5F5F7; }
+  .plan-period { font-size: 12px; font-weight: 500; color: #64748b; margin-top: 2px; }
+  .plan-equiv { font-size: 12px; font-weight: 700; margin-top: 4px; }
+  .plan-equiv.green { color: #22c55e; }
+  .plan-equiv.muted { color: #64748b; font-size: 11px; font-weight: 600; }
+
+  /* Social Proof */
+  .social-proof { display: flex; flex-direction: column; align-items: center; padding: 0 20px; margin-bottom: 16px; }
+  .avatar-stack { display: flex; margin-bottom: 8px; }
+  .avatar-circle { width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 13px; border: 2px solid #111114; }
+  .avatar-circle:not(:first-child) { margin-left: -10px; }
+  .social-stars { color: #facc15; font-size: 12px; letter-spacing: 1px; margin-bottom: 4px; }
+  .social-text { font-size: 13px; font-weight: 600; color: #9A9AA6; text-align: center; }
+
+  /* Pricing hint */
+  .pricing-hint { text-align: center; padding: 0 20px; margin-bottom: 16px; }
+  .pricing-separator { width: 40px; height: 1px; background: #2A2A30; margin: 0 auto 12px; }
+  .pricing-from { font-size: 13px; color: #94a3b8; margin-bottom: 2px; }
+  .pricing-price { font-size: 28px; font-weight: 800; color: #f59e0b; }
+  .pricing-detail { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  /* SVG icons inline */
+  .svg-icon { display: inline-flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+
+<!-- ==================== TAB 1: GENERIC PAYWALL (no plan context) ==================== -->
+<div>
+  <div class="phone-label">Estado 1 — Paywall Generico</div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <!-- Hero -->
+      <div class="hero" style="position: relative;">
+        <div class="close-btn">&times;</div>
+        <div class="crown-container">
+          <div class="crown-glow"></div>
+          <div class="crown-icon">&#x1F451;</div>
+        </div>
+        <div class="hero-title">Entrena sin limites</div>
+        <div class="hero-subtitle">Desbloquea todo el potencial de tu running</div>
+        <div class="urgency-container">
+          <div class="urgency-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span class="urgency-badge-text">Oferta de lanzamiento</span>
+          </div>
+          <div class="urgency-detail">Precio especial para los primeros 500 usuarios</div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="section">
+        <div class="section-title">Todo lo que incluye Premium</div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(129,140,248,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="feature-title">Matching</div>
+            <div class="feature-desc">Encuentra runners compatibles cerca de ti</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(52,211,153,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            </div>
+            <div class="feature-title">Estadisticas</div>
+            <div class="feature-desc">Analisis avanzado de ritmo, zonas y progreso</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(248,113,113,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5l11 11"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="feature-title">Sensores BLE</div>
+            <div class="feature-desc">Conecta tu pulsometro y sensor de cadencia</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(251,146,60,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10"/><path d="M20.49 15a9 9 0 01-14.85 3.36L1 14"/></svg>
+            </div>
+            <div class="feature-title">Sync Strava</div>
+            <div class="feature-desc">Sincroniza actividades automaticamente</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(250,204,21,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            </div>
+            <div class="feature-title">Alertas auto</div>
+            <div class="feature-desc">Alertas de km y ritmo en background</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(167,139,250,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="feature-title">Perfil PRO</div>
+            <div class="feature-desc">Destaca en busquedas y matching</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plan Preview (blurred) -->
+      <div class="section">
+        <div class="section-title">Tu plan de entrenamiento — Semana 1</div>
+        <div class="plan-preview">
+          <div class="preview-row">
+            <span class="preview-day">Lun</span>
+            <div class="preview-bar" style="background: #22c55e;"></div>
+            <span class="preview-title">Rodaje suave 5km</span>
+            <span class="preview-dist" style="color: #22c55e;">5km</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-day">Mie</span>
+            <div class="preview-bar" style="background: #ef4444;"></div>
+            <span class="preview-title">Intervalos 6x800m</span>
+            <span class="preview-dist" style="color: #ef4444;">7km</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-day">Vie</span>
+            <div class="preview-bar" style="background: #f59e0b;"></div>
+            <span class="preview-title">Tempo 4km</span>
+            <span class="preview-dist" style="color: #f59e0b;">6km</span>
+          </div>
+          <div class="preview-row" style="border-bottom: none;">
+            <span class="preview-day">Dom</span>
+            <div class="preview-bar" style="background: #16a34a;"></div>
+            <span class="preview-title">Tirada larga 10km</span>
+            <span class="preview-dist" style="color: #16a34a;">10km</span>
+          </div>
+          <div class="plan-blur">
+            <div class="plan-lock-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <div class="plan-lock-text">Desbloquea tu plan completo</div>
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits-list">
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+            <span class="benefit-text">Plan personalizado a tu ritmo actual</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span class="benefit-text">Ajuste automatico si mejoras o bajas ritmo</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            <span class="benefit-text">Notificaciones diarias de entrenamiento</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+            <span class="benefit-text">Historial de todos tus planes</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+            <span class="benefit-text">Calendario visual con progreso</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            <span class="benefit-text">5 planes: 5K, 10K, 21K, Trail, Maraton</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="section">
+        <div class="section-title">Free vs Premium</div>
+        <div class="comparison-table">
+          <div class="comp-row header">
+            <div class="comp-feature" style="color: #64748b;"></div>
+            <div class="comp-col free" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">FREE</div>
+            <div class="comp-col premium" style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">PREMIUM</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Matches por dia</div>
+            <div class="comp-col free">3</div>
+            <div class="comp-col premium">Ilimitado</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Estadisticas</div>
+            <div class="comp-col free">Basicas</div>
+            <div class="comp-col premium">Avanzadas</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Sensores BLE</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Filtros matching</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Alertas auto</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+          <div class="comp-row" style="border-bottom: none;">
+            <div class="comp-feature">Perfil destacado</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="section">
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f97316" stroke="none"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="testimonial-text">Baje mi marca en 10K de 52 a 47 minutos en 8 semanas. El plan se ajusto solo cuando mejore ritmo.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Maria G.</div>
+              <div class="testimonial-meta">Plan 10K · Madrid</div>
+            </div>
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plan Selector -->
+      <div class="section">
+        <div class="plan-selector">
+          <div class="plan-card active">
+            <div class="plan-save-badge">Ahorra 40%</div>
+            <div class="plan-name">Anual</div>
+            <div class="plan-price active">29,99 &#8364;</div>
+            <div class="plan-period">/ano</div>
+            <div class="plan-equiv green">= 2,49 &#8364;/mes</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-name">Mensual</div>
+            <div class="plan-price inactive">4,99 &#8364;</div>
+            <div class="plan-period">/mes</div>
+            <div class="plan-equiv muted">Sin compromiso</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="social-proof">
+        <div class="avatar-stack">
+          <div class="avatar-circle" style="background: #f97316;">J</div>
+          <div class="avatar-circle" style="background: #3b82f6;">M</div>
+          <div class="avatar-circle" style="background: #22c55e;">A</div>
+          <div class="avatar-circle" style="background: #a855f7;">L</div>
+        </div>
+        <div class="social-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="social-text">4.8 · +500 runners ya entrenan con Premium</div>
+      </div>
+
+      <!-- Pricing Hint -->
+      <div class="pricing-hint">
+        <div class="pricing-separator"></div>
+        <div class="pricing-from">Desde</div>
+        <div class="pricing-price">2,49 &#8364;/mes</div>
+        <div class="pricing-detail">con plan anual · 29,99 &#8364;/ano</div>
+      </div>
+    </div>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+      <div class="cta-btn">Activar Premium Anual — 29,99 &#8364;/ano &#8594;</div>
+      <div class="guarantee-row">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span class="guarantee-text">Garantia 30 dias · Cancela cuando quieras</span>
+      </div>
+      <div class="bottom-row">
+        <span class="restore-text">Restaurar compras</span>
+        <span class="legal-text"> · </span>
+        <span class="legal-text">Se renueva automaticamente. Cancela en cualquier momento.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAB 2: INDIVIDUAL PLAN MODE (from PlanWizard) ==================== -->
+<div>
+  <div class="phone-label">Estado 2 — Desde Plan 10K (compra individual)</div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <!-- Hero -->
+      <div class="hero" style="position: relative;">
+        <div class="close-btn">&times;</div>
+        <div class="crown-container">
+          <div class="crown-glow"></div>
+          <div class="crown-icon">&#x1F451;</div>
+        </div>
+        <div class="hero-title">Tu Plan 10K te espera</div>
+        <div class="hero-subtitle">Plan personalizado · Ajuste automatico · Resultados reales</div>
+        <div class="urgency-container">
+          <div class="urgency-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span class="urgency-badge-text">Oferta de lanzamiento</span>
+          </div>
+          <div class="urgency-detail">Precio especial para los primeros 500 usuarios</div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="section">
+        <div class="section-title">Todo lo que incluye Premium</div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(129,140,248,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="feature-title">Matching</div>
+            <div class="feature-desc">Encuentra runners compatibles cerca de ti</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(52,211,153,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            </div>
+            <div class="feature-title">Estadisticas</div>
+            <div class="feature-desc">Analisis avanzado de ritmo, zonas y progreso</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(248,113,113,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5l11 11"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="feature-title">Sensores BLE</div>
+            <div class="feature-desc">Conecta tu pulsometro y sensor de cadencia</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(251,146,60,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10"/><path d="M20.49 15a9 9 0 01-14.85 3.36L1 14"/></svg>
+            </div>
+            <div class="feature-title">Sync Strava</div>
+            <div class="feature-desc">Sincroniza actividades automaticamente</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(250,204,21,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            </div>
+            <div class="feature-title">Alertas auto</div>
+            <div class="feature-desc">Alertas de km y ritmo en background</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(167,139,250,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="feature-title">Perfil PRO</div>
+            <div class="feature-desc">Destaca en busquedas y matching</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plan Preview -->
+      <div class="section">
+        <div class="section-title">Tu plan de entrenamiento — Semana 1</div>
+        <div class="plan-preview">
+          <div class="preview-row">
+            <span class="preview-day">Lun</span>
+            <div class="preview-bar" style="background: #22c55e;"></div>
+            <span class="preview-title">Rodaje suave 5km</span>
+            <span class="preview-dist" style="color: #22c55e;">5km</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-day">Mie</span>
+            <div class="preview-bar" style="background: #ef4444;"></div>
+            <span class="preview-title">Intervalos 6x800m</span>
+            <span class="preview-dist" style="color: #ef4444;">7km</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-day">Vie</span>
+            <div class="preview-bar" style="background: #f59e0b;"></div>
+            <span class="preview-title">Tempo 4km</span>
+            <span class="preview-dist" style="color: #f59e0b;">6km</span>
+          </div>
+          <div class="preview-row" style="border-bottom: none;">
+            <span class="preview-day">Dom</span>
+            <div class="preview-bar" style="background: #16a34a;"></div>
+            <span class="preview-title">Tirada larga 10km</span>
+            <span class="preview-dist" style="color: #16a34a;">10km</span>
+          </div>
+          <div class="plan-blur">
+            <div class="plan-lock-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <div class="plan-lock-text">Desbloquea tu plan completo</div>
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits-list">
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+            <span class="benefit-text">Plan personalizado a tu ritmo actual</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span class="benefit-text">Ajuste automatico si mejoras o bajas ritmo</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            <span class="benefit-text">Notificaciones diarias de entrenamiento</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+            <span class="benefit-text">Historial de todos tus planes</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+            <span class="benefit-text">Calendario visual con progreso</span>
+          </div>
+          <div class="benefit-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            <span class="benefit-text">5 planes: 5K, 10K, 21K, Trail, Maraton</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="section">
+        <div class="section-title">Free vs Premium</div>
+        <div class="comparison-table">
+          <div class="comp-row header">
+            <div class="comp-feature" style="color: #64748b;"></div>
+            <div class="comp-col free" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">FREE</div>
+            <div class="comp-col premium" style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">PREMIUM</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Matches por dia</div>
+            <div class="comp-col free">3</div>
+            <div class="comp-col premium">Ilimitado</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Estadisticas</div>
+            <div class="comp-col free">Basicas</div>
+            <div class="comp-col premium">Avanzadas</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Sensores BLE</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Filtros matching</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-feature">Alertas auto</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+          <div class="comp-row" style="border-bottom: none;">
+            <div class="comp-feature">Perfil destacado</div>
+            <div class="comp-col free"><span class="cross">&#x2717;</span></div>
+            <div class="comp-col premium"><span class="check">&#x2713;</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="section">
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f97316" stroke="none"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="testimonial-text">Baje mi marca en 10K de 52 a 47 minutos en 8 semanas. El plan se ajusto solo cuando mejore ritmo.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Maria G.</div>
+              <div class="testimonial-meta">Plan 10K · Madrid</div>
+            </div>
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Plan Card (MAS POPULAR = Premium) -->
+      <div class="section">
+        <div class="individual-card">
+          <div class="individual-badge">MAS POPULAR</div>
+          <div class="individual-title">Premium</div>
+          <div class="individual-subtitle">Incluye Plan 10K y todos los demas</div>
+          <div class="value-props">
+            <div class="value-prop highlight">
+              <span class="vp-check" style="color: #f97316;">&#x2713;</span>
+              Plan 10K
+            </div>
+            <div class="value-prop">
+              <span class="vp-check" style="color: #22c55e;">&#x2713;</span>
+              Los 5 planes de entrenamiento
+            </div>
+            <div class="value-prop">
+              <span class="vp-check" style="color: #22c55e;">&#x2713;</span>
+              Social + matching runners
+            </div>
+            <div class="value-prop">
+              <span class="vp-check" style="color: #22c55e;">&#x2713;</span>
+              Cancela cuando quieras
+            </div>
+          </div>
+        </div>
+        <div class="individual-link">
+          <div class="individual-link-text">Solo quieres el Plan 10K? Compralo por 5,99 &#8364; &#8594;</div>
+        </div>
+      </div>
+
+      <!-- Plan Selector -->
+      <div class="section">
+        <div class="plan-selector">
+          <div class="plan-card active">
+            <div class="plan-save-badge">Ahorra 40%</div>
+            <div class="plan-name">Anual</div>
+            <div class="plan-price active">29,99 &#8364;</div>
+            <div class="plan-period">/ano</div>
+            <div class="plan-equiv green">= 2,49 &#8364;/mes</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-name">Mensual</div>
+            <div class="plan-price inactive">4,99 &#8364;</div>
+            <div class="plan-period">/mes</div>
+            <div class="plan-equiv muted">Sin compromiso</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="social-proof">
+        <div class="avatar-stack">
+          <div class="avatar-circle" style="background: #f97316;">J</div>
+          <div class="avatar-circle" style="background: #3b82f6;">M</div>
+          <div class="avatar-circle" style="background: #22c55e;">A</div>
+          <div class="avatar-circle" style="background: #a855f7;">L</div>
+        </div>
+        <div class="social-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="social-text">4.8 · +500 runners ya entrenan con Premium</div>
+      </div>
+    </div>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+      <div class="cta-btn">Activar Premium Anual — 29,99 &#8364;/ano &#8594;</div>
+      <div class="guarantee-row">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span class="guarantee-text">Garantia 30 dias · Cancela cuando quieras</span>
+      </div>
+      <div class="bottom-row">
+        <span class="restore-text">Restaurar compras</span>
+        <span class="legal-text"> · </span>
+        <span class="legal-text">Se renueva automaticamente. Cancela en cualquier momento.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

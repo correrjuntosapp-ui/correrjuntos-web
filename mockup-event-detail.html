@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CorrerJuntos — Detalle Quedada</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --card: #1A1A1A;
+    --bord: #2A2A2A;
+    --acc: #FF6B35;
+    --green: #22C55E;
+    --white: #FFFFFF;
+    --s2: #888888;
+    --s3: #555555;
+    --muted: #555555;
+    --font: 'Inter', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: var(--font);
+    background: #111;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone {
+    width: 390px;
+    min-height: 100vh;
+    background: var(--bg);
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 180px;
+  }
+
+  /* Status bar */
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 24px 6px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .status-icons { display: flex; gap: 6px; align-items: center; }
+  .status-icons svg { width: 16px; height: 16px; fill: var(--white); }
+
+  /* Header */
+  .header-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 12px;
+    gap: 10px;
+  }
+  .header-back {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .header-back svg { width: 22px; height: 22px; stroke: var(--white); fill: none; stroke-width: 2; }
+  .header-center {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .header-badges {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .badge-pill {
+    background: var(--card);
+    border: 1px solid var(--bord);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--s2);
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+  .header-title {
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.3px;
+  }
+  .header-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .header-close svg { width: 20px; height: 20px; stroke: var(--s2); fill: none; stroke-width: 2; }
+
+  /* Description */
+  .description {
+    padding: 4px 16px 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #AAA;
+  }
+
+  /* Info chips */
+  .info-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 10px;
+  }
+  .chip {
+    background: var(--card);
+    border: 1px solid var(--bord);
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+  .chip-weather {
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+  }
+
+  /* Nivel hint */
+  .nivel-hint {
+    padding: 2px 16px 14px;
+    font-size: 12px;
+    color: #eab308;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Separator */
+  .sep {
+    height: 1px;
+    background: #1E1E1E;
+    margin: 0 16px;
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 16px 16px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-label-icon { font-size: 13px; }
+
+  /* Meeting point */
+  .meeting-point-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    padding: 0 16px 12px;
+  }
+  .mini-map {
+    margin: 0 16px 12px;
+    height: 120px;
+    background: var(--card);
+    border: 1px solid var(--bord);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .mini-map-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1f2e 0%, #141820 100%);
+    opacity: 0.8;
+  }
+  .mini-map-pin {
+    position: relative;
+    z-index: 1;
+    font-size: 28px;
+    filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.4));
+  }
+  .mini-map-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .map-buttons {
+    display: flex;
+    gap: 8px;
+    padding: 0 16px 14px;
+  }
+  .map-btn {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: opacity 0.15s;
+  }
+  .map-btn:hover { opacity: 0.85; }
+  .map-btn-google {
+    background: rgba(66, 133, 244, 0.15);
+    border: 1px solid rgba(66, 133, 244, 0.3);
+    color: #93bbfc;
+  }
+  .map-btn-apple {
+    background: transparent;
+    border: 1px solid var(--bord);
+    color: var(--s2);
+  }
+
+  /* Organizer */
+  .organizer-row {
+    display: flex;
+    align-items: center;
+    padding: 0 16px 14px;
+    gap: 12px;
+  }
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--card);
+  }
+  .avatar-small {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--card);
+  }
+  .org-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .org-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .org-subtitle {
+    font-size: 12px;
+    color: #AAA;
+    margin-top: 1px;
+  }
+  .ask-btn {
+    background: var(--card);
+    border: 1px solid var(--bord);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--acc);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .ask-btn:hover {
+    background: rgba(255, 107, 53, 0.08);
+    border-color: rgba(255, 107, 53, 0.3);
+  }
+
+  /* Participants */
+  .participants-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 10px;
+  }
+  .participants-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .participants-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--acc);
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 8px;
+    padding: 2px 10px;
+  }
+  .participant-row {
+    display: flex;
+    align-items: center;
+    padding: 7px 16px;
+    gap: 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 0 8px;
+    transition: background 0.15s;
+  }
+  .participant-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .participant-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    flex: 1;
+  }
+  .org-badge {
+    background: rgba(255, 107, 53, 0.12);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    color: var(--acc);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .check-orange {
+    background: var(--acc);
+  }
+  .check-grey {
+    background: var(--bord);
+  }
+  .check-icon svg {
+    width: 13px;
+    height: 13px;
+    stroke: var(--white);
+    stroke-width: 2.5;
+    fill: none;
+  }
+  .participants-list {
+    padding-bottom: 6px;
+  }
+
+  /* Comments */
+  .comments-empty {
+    padding: 0 16px 12px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .comment-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 0 16px 16px;
+    align-items: center;
+  }
+  .comment-input {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--bord);
+    border-radius: 24px;
+    padding: 11px 16px;
+    font-size: 13px;
+    color: var(--s2);
+    font-family: var(--font);
+    outline: none;
+  }
+  .comment-send {
+    width: 40px;
+    height: 40px;
+    background: var(--acc);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+  .comment-send:hover { transform: scale(1.05); }
+  .comment-send svg { width: 18px; height: 18px; fill: var(--white); }
+
+  /* Footer */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 390px;
+    background: var(--bg);
+    border-top: 1px solid #1E1E1E;
+    padding: 12px 16px 20px;
+    z-index: 10;
+  }
+  .occupancy-section {
+    margin-bottom: 12px;
+  }
+  .occupancy-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .occupancy-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .occupancy-left-icon { font-size: 14px; }
+  .occupancy-right {
+    font-size: 12px;
+    color: var(--s2);
+    font-weight: 500;
+  }
+  .occupancy-bar {
+    height: 4px;
+    background: var(--bord);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .occupancy-fill {
+    height: 100%;
+    background: var(--acc);
+    border-radius: 4px;
+    width: 50%;
+    transition: width 0.3s;
+  }
+  .cta-btn {
+    width: 100%;
+    padding: 17px 0;
+    background: var(--acc);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: -0.2px;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    transition: all 0.15s;
+    font-family: var(--font);
+  }
+  .cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px rgba(255, 107, 53, 0.4);
+  }
+  .footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .share-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--acc);
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: 10px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .share-link:hover {
+    background: rgba(255, 107, 53, 0.14);
+  }
+  .close-link {
+    font-size: 13px;
+    color: var(--s2);
+    cursor: pointer;
+    padding: 7px 14px;
+  }
+  .close-link:hover { color: var(--white); }
+
+  /* Utility */
+  .dot-sep {
+    color: var(--s3);
+    font-size: 10px;
+    margin: 0 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <!-- Status bar -->
+  <div class="status-bar">
+    <span>14:00</span>
+    <div class="status-icons">
+      <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+    </div>
+  </div>
+
+  <!-- Header bar -->
+  <div class="header-bar">
+    <div class="header-back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <div class="header-center">
+      <div class="header-badges">
+        <span class="badge-pill">Sevilla</span>
+        <span class="badge-pill">intermedio</span>
+      </div>
+      <div class="header-title">Fartlek orilla del Guad...</div>
+    </div>
+    <div class="header-close">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="description">
+    Cambios de ritmo por la orilla del rio. Farolas encendidas y brisa del Guadalquivir. Quedamos en el Puente de Triana.
+  </div>
+
+  <!-- Info chips -->
+  <div class="info-chips">
+    <div class="chip">&#x1F4C5; 15 abr 2026</div>
+    <div class="chip">&#x1F550; 19:30</div>
+    <div class="chip">&#x1F4CF; 8 km</div>
+    <div class="chip chip-weather">&#x2600;&#xFE0F; 22&deg; &middot; 10% &#x1F4A7;</div>
+  </div>
+
+  <!-- Nivel hint -->
+  <div class="nivel-hint">
+    &#x26A1; Ritmo moderado, runners con experiencia &middot; 5:45/km
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Punto de encuentro -->
+  <div class="section-label">
+    <span class="section-label-icon">&#x1F4CD;</span> PUNTO DE ENCUENTRO
+  </div>
+  <div class="meeting-point-value">Orilla Guadalquivir</div>
+  <div class="mini-map">
+    <div class="mini-map-bg"></div>
+    <div class="mini-map-grid"></div>
+    <div class="mini-map-pin">&#x1F4CD;</div>
+  </div>
+  <div class="map-buttons">
+    <div class="map-btn map-btn-google">&#x1F4CD; Google Maps</div>
+    <div class="map-btn map-btn-apple">&#x1F4CD; Apple Maps</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Organizador -->
+  <div class="section-label">
+    <span class="section-label-icon">&#x1F464;</span> ORGANIZADOR
+  </div>
+  <div class="organizer-row">
+    <img class="avatar" src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Marta L.">
+    <div class="org-info">
+      <div class="org-name">Marta L.</div>
+      <div class="org-subtitle">Organizador en CorrerJuntos</div>
+    </div>
+    <div class="ask-btn">Preguntar &rarr;</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Participantes -->
+  <div class="participants-header">
+    <div class="participants-label">PARTICIPANTES</div>
+    <div class="participants-count">4</div>
+  </div>
+  <div class="participants-list">
+    <!-- Participant 1 - Organizer -->
+    <div class="participant-row">
+      <img class="avatar-small" src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Marta L.">
+      <div class="participant-name">Marta L.</div>
+      <span class="org-badge">Organizador</span>
+      <div class="check-icon check-orange">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+    <!-- Participant 2 -->
+    <div class="participant-row">
+      <img class="avatar-small" src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Ana P.">
+      <div class="participant-name">Ana P.</div>
+      <div class="check-icon check-grey">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+    <!-- Participant 3 -->
+    <div class="participant-row">
+      <img class="avatar-small" src="https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Ana M.">
+      <div class="participant-name">Ana M.</div>
+      <div class="check-icon check-grey">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+    <!-- Participant 4 -->
+    <div class="participant-row">
+      <img class="avatar-small" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Pablo R.">
+      <div class="participant-name">Pablo R.</div>
+      <div class="check-icon check-grey">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Comentarios -->
+  <div class="section-label">
+    <span class="section-label-icon">&#x1F4AC;</span> COMENTARIOS
+  </div>
+  <div class="comments-empty">
+    Sin comentarios todavia. Se el primero en comentar.
+  </div>
+  <div class="comment-input-row">
+    <div class="comment-input">Escribe un comentario...</div>
+    <div class="comment-send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </div>
+  </div>
+
+  <!-- Spacer for footer -->
+  <div style="height: 40px;"></div>
+</div>
+
+<!-- Footer (sticky) -->
+<div class="footer">
+  <div class="occupancy-section">
+    <div class="occupancy-header">
+      <div class="occupancy-left">
+        <span class="occupancy-left-icon">&#x1F465;</span>
+        4 plazas libres
+      </div>
+      <div class="occupancy-right">4/8</div>
+    </div>
+    <div class="occupancy-bar">
+      <div class="occupancy-fill"></div>
+    </div>
+  </div>
+  <button class="cta-btn">&#x00A1;Unirme a esta quedada!</button>
+  <div class="footer-links">
+    <div class="share-link">&#x1F517; Compartir</div>
+    <div class="close-link">Cerrar</div>
+  </div>
+</div>
+
+</body>
+</html>

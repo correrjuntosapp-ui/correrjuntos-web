@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MapScreen V2 — CorrerJuntos</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    flex-wrap: wrap;
+  }
+  .phone-wrap { text-align: center; }
+  .phone-label { color: #666; font-size: 11px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: #111114;
+    border-radius: 44px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #222;
+  }
+  .status-bar {
+    height: 54px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 28px 6px;
+    background: #111114;
+    position: relative;
+    z-index: 30;
+  }
+  .status-time { color: #fff; font-size: 15px; font-weight: 600; }
+  .status-icons { color: #fff; font-size: 12px; opacity: 0.6; }
+
+  /* ── Top filter bar (compact) ── */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #111114;
+    position: relative;
+    z-index: 25;
+  }
+  .filter-pill {
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid #2A2A30;
+    background: #1A1A1E;
+    color: #9A9AA6;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .filter-pill.active {
+    background: #FF6B00;
+    border-color: #FF6B00;
+    color: #fff;
+  }
+  .filter-pill .filter-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background: #FF6B00;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── Map Area (65-70%) ── */
+  .map-area {
+    height: 480px;
+    background: #1a1a22;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-bg {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(255,107,0,0.05) 0%, transparent 50%),
+      radial-gradient(circle at 70% 55%, rgba(33,150,243,0.04) 0%, transparent 40%),
+      linear-gradient(135deg, #1a1a22, #15151d);
+    position: relative;
+  }
+  .map-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* ── Compact markers ── */
+  .marker {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .marker:hover { transform: scale(1.15); }
+  .marker-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .marker-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    margin-top: 2px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  }
+  .marker.selected .marker-dot {
+    width: 22px;
+    height: 22px;
+    border-width: 3px;
+    box-shadow: 0 0 12px rgba(255,255,255,0.3);
+  }
+  .marker.selected .marker-label {
+    font-size: 11px;
+    color: #fff;
+  }
+  .marker.dimmed { opacity: 0.4; }
+
+  /* Cluster — neutral gray to not confuse with Avanzado orange */
+  .cluster {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background: rgba(136,136,170,0.2);
+    border: 2px solid rgba(136,136,170,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .cluster-count {
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  /* User dot */
+  .user-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #4285F4;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(66,133,244,0.5);
+    z-index: 5;
+  }
+
+  /* Friend running avatar */
+  .friend-running {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    z-index: 6;
+  }
+  .friend-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    border: 2px solid #22c55e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: #1A1A1E;
+    position: relative;
+  }
+  .friend-pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(34,197,94,0.4);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0; }
+  }
+  .friend-tooltip {
+    background: rgba(0,0,0,0.85);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 9px;
+    color: #22c55e;
+    font-weight: 600;
+    margin-top: 3px;
+    white-space: nowrap;
+  }
+
+  /* Map floating buttons */
+  .map-buttons {
+    position: absolute;
+    bottom: 16px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+  }
+  .map-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(26,26,30,0.9);
+    border: 1px solid #2A2A30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+
+  /* ── Bottom Sheet ── */
+  .bottom-sheet {
+    position: absolute;
+    bottom: 94px;
+    left: 0;
+    right: 0;
+    background: #111114;
+    border-radius: 20px 20px 0 0;
+    z-index: 20;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+  }
+  .sheet-handle-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 16px 8px;
+    cursor: grab;
+  }
+  .sheet-handle {
+    width: 36px;
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .sheet-count {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F5F5F7;
+  }
+  .sheet-count span { color: #9A9AA6; font-weight: 500; }
+  .sheet-crear {
+    padding: 7px 16px;
+    border-radius: 18px;
+    background: linear-gradient(90deg, #FF6B00, #ea580c);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+  .sheet-swipe-hint {
+    font-size: 11px;
+    color: #555560;
+    margin-top: 4px;
+    width: 100%;
+    text-align: center;
+  }
+  .sheet-cards {
+    padding: 8px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .sheet-cards::-webkit-scrollbar { display: none; }
+
+  /* ── Quedada Card (compact for bottom sheet) ── */
+  .q-card {
+    border: 1px solid #2A2A30;
+    border-radius: 14px;
+    padding: 14px;
+    background: #1A1A1E;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .q-time-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 10px;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+  .q-time { color: #fff; font-size: 14px; font-weight: 800; }
+  .q-date { color: rgba(255,255,255,0.75); font-size: 9px; font-weight: 600; margin-top: 1px; }
+  .q-content { flex: 1; min-width: 0; }
+  .q-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .q-title { color: #F5F5F7; font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .q-nivel-tag { padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; flex-shrink: 0; margin-left: 8px; }
+  .q-meta { display: flex; gap: 10px; font-size: 11px; color: #9A9AA6; margin-bottom: 6px; flex-wrap: wrap; }
+  .q-meta-item { display: flex; align-items: center; gap: 3px; }
+
+  /* Urgency spots */
+  .q-spots { font-size: 11px; font-weight: 700; }
+  .q-spots.urgent { color: #ef4444; }
+  .q-spots.warning { color: #f59e0b; }
+  .q-spots.normal { color: #9A9AA6; }
+
+  .q-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+  .q-org { display: flex; align-items: center; gap: 6px; }
+  .q-org-avatar { width: 22px; height: 22px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; }
+  .q-org-name { font-size: 11px; color: #666680; }
+  .q-btn { padding: 6px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; border: none; cursor: pointer; }
+  .q-btn-join { background: linear-gradient(90deg, #FF6B00, #ea580c); color: #fff; }
+  .q-btn-joined { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .q-btn-full { background: rgba(239,68,68,0.1); color: #ef4444; font-weight: 600; cursor: default; }
+
+  /* ── Selected Marker Bottom Sheet ── */
+  .selected-sheet {
+    position: absolute;
+    bottom: 94px;
+    left: 0;
+    right: 0;
+    background: #111114;
+    border-radius: 20px 20px 0 0;
+    z-index: 20;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    padding: 12px 16px 20px;
+  }
+  .sel-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 12px; }
+  .sel-top { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .sel-tag { padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+  .sel-city { font-size: 12px; color: #9A9AA6; }
+  .sel-time-tag { font-size: 12px; color: #9A9AA6; }
+  .sel-title { color: #F5F5F7; font-size: 18px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+  .sel-info { display: flex; gap: 16px; margin-bottom: 6px; font-size: 13px; color: #9A9AA6; }
+  .sel-info-item { display: flex; align-items: center; gap: 4px; }
+
+  /* Spots indicator */
+  .sel-spots-row { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
+  .sel-spots-dots { display: flex; gap: 3px; }
+  .sel-spot-dot { width: 8px; height: 8px; border-radius: 4px; }
+  .sel-spot-dot.filled { background: #FF6B00; }
+  .sel-spot-dot.empty { background: #2A2A30; }
+  .sel-spot-dot.urgent { background: #ef4444; }
+  .sel-spots-text { font-size: 12px; font-weight: 600; }
+
+  .sel-point { font-size: 12px; color: #666680; margin-bottom: 14px; }
+  .sel-actions { display: flex; gap: 10px; }
+  .sel-btn-view { flex: 1; padding: 12px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.15); background: transparent; color: #F5F5F7; font-size: 14px; font-weight: 700; text-align: center; cursor: pointer; }
+  .sel-btn-join { flex: 1; padding: 12px; border-radius: 12px; background: linear-gradient(90deg, #FF6B00, #ea580c); color: #fff; font-size: 14px; font-weight: 700; text-align: center; border: none; cursor: pointer; }
+
+  /* ── Empty State ── */
+  .empty-sheet {
+    position: absolute;
+    bottom: 94px;
+    left: 0;
+    right: 0;
+    background: #111114;
+    border-radius: 20px 20px 0 0;
+    z-index: 20;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    padding: 20px 32px 28px;
+    text-align: center;
+  }
+  .empty-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 20px; }
+  .empty-icon { font-size: 40px; margin-bottom: 12px; }
+  .empty-title { color: #F5F5F7; font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .empty-text { color: #9A9AA6; font-size: 13px; line-height: 1.5; margin-bottom: 20px; }
+  .empty-btn { display: block; width: 100%; padding: 13px; border-radius: 12px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; margin-bottom: 10px; text-align: center; }
+  .empty-btn-primary { background: linear-gradient(90deg, #FF6B00, #ea580c); color: #fff; }
+  .empty-btn-outline { background: transparent; border: 1.5px solid #FF6B00; color: #FF6B00; }
+
+  /* ── Tab Bar ── */
+  .tab-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 94px;
+    background: #0D0D1A;
+    display: flex;
+    align-items: flex-start;
+    padding: 0 8px;
+    z-index: 25;
+  }
+  .tab-bar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.08); }
+  .tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 8px; gap: 4px; height: 64px; position: relative; }
+  .tab-icon { width: 22px; height: 22px; opacity: 0.6; }
+  .tab-item.active .tab-icon { opacity: 1; }
+  .tab-lbl { font-size: 10px; color: #666680; font-weight: 400; letter-spacing: 0.3px; }
+  .tab-item.active .tab-lbl { color: #FF6B00; font-weight: 600; }
+  .tab-indicator { position: absolute; top: 0; width: 20px; height: 2px; background: #FF6B00; border-radius: 2px; }
+  .center-tab { flex: 1; display: flex; flex-direction: column; align-items: center; margin-top: -16px; gap: 4px; position: relative; }
+  .center-btn { width: 56px; height: 56px; border-radius: 28px; background: linear-gradient(135deg, #FF6B00, #FF8C00); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255,107,0,0.5); position: relative; z-index: 2; }
+  .center-glow { position: absolute; width: 64px; height: 64px; border-radius: 32px; background: rgba(255,107,0,0.15); top: -4px; }
+  .center-lbl { font-size: 10px; color: #FF6B00; font-weight: 500; letter-spacing: 0.3px; margin-top: 2px; }
+
+  /* Level colors — UPDATED */
+  .level-green { background: rgba(76,175,80,0.15); color: #4CAF50; border-color: #4CAF50; }
+  .level-blue { background: rgba(33,150,243,0.15); color: #2196F3; border-color: #2196F3; }
+  .level-orange { background: rgba(255,107,0,0.15); color: #FF6B00; border-color: #FF6B00; }
+  .level-purple { background: rgba(156,39,176,0.15); color: #9C27B0; border-color: #9C27B0; }
+  .dot-green { background: #4CAF50; }
+  .dot-blue { background: #2196F3; }
+  .dot-orange { background: #FF6B00; }
+  .dot-purple { background: #9C27B0; }
+
+  /* Filter bottom sheet overlay */
+  .filter-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 30;
+  }
+  .filter-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1A1A1E;
+    border-radius: 20px 20px 0 0;
+    padding: 16px 20px 32px;
+    z-index: 31;
+  }
+  .fs-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto 16px; }
+  .fs-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .fs-title { color: #F5F5F7; font-size: 16px; font-weight: 700; }
+  .fs-clear { color: #FF6B00; font-size: 13px; font-weight: 600; cursor: pointer; background: none; border: none; }
+  .fs-section { margin-bottom: 16px; }
+  .fs-label { color: #9A9AA6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .fs-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .fs-pill {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #3A3A3C;
+    background: transparent;
+    color: #9A9AA6;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .fs-pill.active { border-color: #FF6B00; color: #FF6B00; background: rgba(255,107,0,0.1); }
+  .fs-level {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .fs-apply {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: #FF6B00;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PHONE 1: Vista principal con bottom sheet ═══════════ -->
+<div class="phone-wrap">
+  <div class="phone-label">V2 — Vista principal</div>
+  <div class="phone">
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons">5G</span>
+    </div>
+
+    <!-- Compact filter bar -->
+    <div class="filter-bar">
+      <div class="filter-pill active">Todas</div>
+      <div class="filter-pill">50 km</div>
+      <div class="filter-pill">25 km</div>
+      <div class="filter-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9A9AA6" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+        </svg>
+        Filtros
+        <span class="filter-badge">2</span>
+      </div>
+    </div>
+
+    <!-- Map (65% of screen) -->
+    <div class="map-area">
+      <div class="map-bg">
+        <!-- Compact markers with NEW colors -->
+        <div class="marker" style="top:28%;left:22%;">
+          <div class="marker-dot dot-green"></div>
+          <span class="marker-label">07:00</span>
+        </div>
+        <div class="marker" style="top:42%;left:60%;">
+          <div class="marker-dot dot-blue"></div>
+          <span class="marker-label">08:30</span>
+        </div>
+        <div class="marker" style="top:35%;left:45%;">
+          <div class="marker-dot dot-orange"></div>
+          <span class="marker-label">09:00</span>
+        </div>
+        <div class="marker" style="top:55%;left:30%;">
+          <div class="marker-dot dot-green"></div>
+          <span class="marker-label">07:30</span>
+        </div>
+
+        <!-- Cluster -->
+        <div class="cluster" style="top:20%;left:70%;">
+          <span class="cluster-count">3</span>
+        </div>
+
+        <!-- User dot -->
+        <div class="user-dot" style="top:45%;left:48%;"></div>
+
+        <!-- Friend running in real time -->
+        <div class="friend-running" style="top:52%;left:38%;">
+          <div class="friend-avatar">
+            <div class="friend-pulse"></div>
+            AM
+          </div>
+          <div class="friend-tooltip">Ana · 3.2 km</div>
+        </div>
+      </div>
+
+      <!-- Map floating buttons -->
+      <div class="map-buttons">
+        <div class="map-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+        </div>
+        <div class="map-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 10-16 0c0 4.5 4 8 8 12z"/><path d="M12 22c-2-2-4-3.5-4-6a4 4 0 018 0c0 2.5-2 4-4 6z" opacity="0.3"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom sheet with cards -->
+    <div class="bottom-sheet">
+      <div class="sheet-handle-area">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <div class="sheet-count">5 quedadas <span>cerca de ti</span></div>
+          <button class="sheet-crear">+ Crear</button>
+        </div>
+      </div>
+      <div class="sheet-cards">
+        <!-- Card 1 — urgent -->
+        <div class="q-card">
+          <div class="q-time-badge" style="background: #f97316;">
+            <span class="q-time">09:00</span>
+            <span class="q-date">HOY</span>
+          </div>
+          <div class="q-content">
+            <div class="q-top-row">
+              <div class="q-title">Ruta suave por el Retiro</div>
+              <span class="q-nivel-tag level-green">Principiante</span>
+            </div>
+            <div class="q-meta">
+              <span class="q-meta-item">📍 Madrid</span>
+              <span class="q-meta-item">📏 8 km</span>
+              <span class="q-meta-item">☀️ 18°</span>
+            </div>
+            <div class="q-spots urgent">Solo 2 plazas libres</div>
+            <div class="q-footer">
+              <div class="q-org">
+                <div class="q-org-avatar" style="background:#555568;">CM</div>
+                <span class="q-org-name">Carlos M.</span>
+              </div>
+              <button class="q-btn q-btn-join">Unirse</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — joined -->
+        <div class="q-card">
+          <div class="q-time-badge" style="background: #2196F3;">
+            <span class="q-time">12:00</span>
+            <span class="q-date">MAR</span>
+          </div>
+          <div class="q-content">
+            <div class="q-top-row">
+              <div class="q-title">Trail por Casa de Campo</div>
+              <span class="q-nivel-tag level-blue">Intermedio</span>
+            </div>
+            <div class="q-meta">
+              <span class="q-meta-item">📍 Madrid</span>
+              <span class="q-meta-item">📏 15 km</span>
+              <span class="q-meta-item">⛅ 14°</span>
+            </div>
+            <div class="q-spots normal">8 participantes</div>
+            <div class="q-footer">
+              <div class="q-org">
+                <div class="q-org-avatar" style="background:#2196F3;">LR</div>
+                <span class="q-org-name">Laura R.</span>
+              </div>
+              <button class="q-btn q-btn-joined">Apuntado ✓</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1m-2 0h2"/></svg><span class="tab-lbl">Inicio</span></div>
+      <div class="tab-item active"><div class="tab-indicator"></div><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><span class="tab-lbl">Mapa</span></div>
+      <div class="center-tab"><div class="center-glow"></div><div class="center-btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="15" cy="4" r="2" fill="#fff"/><path d="M13 7l-3 5h4l-2 7M7 12l3-5M10 17l-4 3M17 10l2-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="center-lbl">Correr</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span class="tab-lbl">Social</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1" stroke-linecap="round"/></svg><span class="tab-lbl">Perfil</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PHONE 2: Marker seleccionado ═══════════ -->
+<div class="phone-wrap">
+  <div class="phone-label">V2 — Marker seleccionado</div>
+  <div class="phone">
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons">5G</span>
+    </div>
+    <div class="filter-bar">
+      <div class="filter-pill active">Todas</div>
+      <div class="filter-pill">50 km</div>
+      <div class="filter-pill">25 km</div>
+      <div class="filter-pill">Filtros <span class="filter-badge">2</span></div>
+    </div>
+
+    <!-- Map: marker panned to upper 30% so card doesn't cover it -->
+    <div class="map-area" style="height: 400px;">
+      <div class="map-bg">
+        <div class="marker dimmed" style="top:20%;left:22%;">
+          <div class="marker-dot dot-green" style="width:18px;height:18px;border-radius:9px;"></div>
+          <span class="marker-label">07:00</span>
+        </div>
+        <!-- Selected marker centered in top 35% of visible map -->
+        <div class="marker selected" style="top:28%;left:50%;">
+          <div class="marker-dot dot-orange"></div>
+          <span class="marker-label">09:00</span>
+        </div>
+        <div class="marker dimmed" style="top:45%;left:70%;">
+          <div class="marker-dot dot-blue" style="width:18px;height:18px;border-radius:9px;"></div>
+          <span class="marker-label">08:30</span>
+        </div>
+        <div class="user-dot" style="top:38%;left:45%;"></div>
+      </div>
+      <div class="map-buttons">
+        <div class="map-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+      </div>
+    </div>
+
+    <!-- Selected marker bottom sheet — fixed height, buttons always visible -->
+    <div class="selected-sheet" style="bottom: 94px; max-height: 48%;">
+      <div class="sel-handle"></div>
+      <div class="sel-top">
+        <span class="sel-tag level-orange">Avanzado</span>
+        <span class="sel-city">📍 Madrid</span>
+        <span class="sel-time-tag">🕐 09:00</span>
+      </div>
+      <div class="sel-title">Series 1000m en Complutense</div>
+      <div class="sel-info">
+        <span class="sel-info-item">📅 12 abr. · Sab</span>
+        <span class="sel-info-item">📏 12 km</span>
+      </div>
+      <div class="sel-spots-row">
+        <div class="sel-spots-dots">
+          <div class="sel-spot-dot filled"></div>
+          <div class="sel-spot-dot filled"></div>
+          <div class="sel-spot-dot filled"></div>
+          <div class="sel-spot-dot filled"></div>
+          <div class="sel-spot-dot filled"></div>
+          <div class="sel-spot-dot filled"></div>
+          <div class="sel-spot-dot filled"></div>
+          <div class="sel-spot-dot empty"></div>
+          <div class="sel-spot-dot empty"></div>
+          <div class="sel-spot-dot empty"></div>
+        </div>
+        <span class="sel-spots-text" style="color: #f59e0b;">3 plazas libres</span>
+      </div>
+      <div class="sel-point">📌 Pista de atletismo, Ciudad Universitaria</div>
+      <div class="sel-actions">
+        <button class="sel-btn-view">Ver detalle</button>
+        <button class="sel-btn-join">Unirse</button>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1m-2 0h2"/></svg><span class="tab-lbl">Inicio</span></div>
+      <div class="tab-item active"><div class="tab-indicator"></div><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><span class="tab-lbl">Mapa</span></div>
+      <div class="center-tab"><div class="center-glow"></div><div class="center-btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="15" cy="4" r="2" fill="#fff"/><path d="M13 7l-3 5h4l-2 7M7 12l3-5M10 17l-4 3M17 10l2-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="center-lbl">Correr</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span class="tab-lbl">Social</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1" stroke-linecap="round"/></svg><span class="tab-lbl">Perfil</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PHONE 3: Estado vacio ═══════════ -->
+<div class="phone-wrap">
+  <div class="phone-label">V2 — Estado vacio</div>
+  <div class="phone">
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons">5G</span>
+    </div>
+    <div class="filter-bar">
+      <div class="filter-pill">Todas</div>
+      <div class="filter-pill active">25 km</div>
+      <div class="filter-pill">Filtros <span class="filter-badge">1</span></div>
+    </div>
+
+    <div class="map-area" style="height: 500px;">
+      <div class="map-bg">
+        <div class="user-dot" style="top:45%;left:48%;"></div>
+      </div>
+      <div class="map-buttons">
+        <div class="map-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+      </div>
+    </div>
+
+    <!-- Empty state bottom sheet -->
+    <div class="empty-sheet">
+      <div class="empty-handle"></div>
+      <div class="empty-icon">🏃</div>
+      <div class="empty-title">No hay quedadas cerca</div>
+      <div class="empty-text">No encontramos quedadas con estos filtros. Prueba a ampliar el radio o crea la primera.</div>
+      <button class="empty-btn empty-btn-primary">Ampliar radio de búsqueda</button>
+      <button class="empty-btn empty-btn-outline">Crear la primera quedada</button>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1m-2 0h2"/></svg><span class="tab-lbl">Inicio</span></div>
+      <div class="tab-item active"><div class="tab-indicator"></div><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><span class="tab-lbl">Mapa</span></div>
+      <div class="center-tab"><div class="center-glow"></div><div class="center-btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="15" cy="4" r="2" fill="#fff"/><path d="M13 7l-3 5h4l-2 7M7 12l3-5M10 17l-4 3M17 10l2-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="center-lbl">Correr</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span class="tab-lbl">Social</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1" stroke-linecap="round"/></svg><span class="tab-lbl">Perfil</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PHONE 4: Filtros bottom sheet ═══════════ -->
+<div class="phone-wrap">
+  <div class="phone-label">V2 — Bottom sheet filtros</div>
+  <div class="phone">
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons">5G</span>
+    </div>
+
+    <!-- Dimmed map behind overlay -->
+    <div class="filter-bar" style="opacity: 0.4;">
+      <div class="filter-pill active">Todas</div>
+      <div class="filter-pill">50 km</div>
+      <div class="filter-pill">Filtros <span class="filter-badge">2</span></div>
+    </div>
+    <div class="map-area" style="height: 400px; opacity: 0.3;">
+      <div class="map-bg"></div>
+    </div>
+
+    <!-- Filter overlay -->
+    <div class="filter-overlay"></div>
+    <div class="filter-sheet">
+      <div class="fs-handle"></div>
+      <div class="fs-title-row">
+        <div class="fs-title">Filtros</div>
+        <button class="fs-clear">Limpiar filtros</button>
+      </div>
+
+      <div class="fs-section">
+        <div class="fs-label">Horario</div>
+        <div class="fs-row">
+          <div class="fs-pill active">🌅 Mañana</div>
+          <div class="fs-pill">☀️ Mediodía</div>
+          <div class="fs-pill">🌆 Tarde</div>
+          <div class="fs-pill">🌙 Noche</div>
+        </div>
+      </div>
+
+      <div class="fs-section">
+        <div class="fs-label">Nivel</div>
+        <div class="fs-row">
+          <div class="fs-level" style="border-color:#4CAF50; color:#4CAF50;">Principiante</div>
+          <div class="fs-level active" style="border-color:#2196F3; color:#fff; background:#2196F3;">Intermedio</div>
+          <div class="fs-level" style="border-color:#FF6B00; color:#FF6B00;">Avanzado</div>
+          <div class="fs-level" style="border-color:#9C27B0; color:#9C27B0;">Elite</div>
+        </div>
+      </div>
+
+      <div class="fs-section">
+        <div class="fs-label">Distancia del evento</div>
+        <div class="fs-row">
+          <div class="fs-pill">< 5 km</div>
+          <div class="fs-pill active">5-10 km</div>
+          <div class="fs-pill">10-21 km</div>
+          <div class="fs-pill">21+ km</div>
+        </div>
+      </div>
+
+      <button class="fs-apply">Aplicar filtros (3)</button>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1m-2 0h2"/></svg><span class="tab-lbl">Inicio</span></div>
+      <div class="tab-item active"><div class="tab-indicator"></div><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><span class="tab-lbl">Mapa</span></div>
+      <div class="center-tab"><div class="center-glow"></div><div class="center-btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="15" cy="4" r="2" fill="#fff"/><path d="M13 7l-3 5h4l-2 7M7 12l3-5M10 17l-4 3M17 10l2-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="center-lbl">Correr</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span class="tab-lbl">Social</span></div>
+      <div class="tab-item"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#666680" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1" stroke-linecap="round"/></svg><span class="tab-lbl">Perfil</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

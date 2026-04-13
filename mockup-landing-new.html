@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CorrerJuntos — Landing Page Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   CSS VARIABLES
+   ════════════════════════════════════════ */
+:root {
+  --bg:          #fef7ed;
+  --bg-white:    #ffffff;
+  --orange:      #f97316;
+  --orange-light:#fff7ed;
+  --orange-dark: #ea580c;
+  --text:        #3d3229;
+  --text-sec:    #6b5e52;
+  --text-light:  #9a8d82;
+  --border:      #e8ddd2;
+  --radius:      16px;
+  --radius-sm:   10px;
+  --radius-pill: 100px;
+  --font:        'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --max-w:       1200px;
+  --section-pad: 100px 0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ════════════════════════════════════════
+   1. NAV BAR
+   ════════════════════════════════════════ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(254, 247, 237, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: var(--orange); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-sec);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  background: var(--orange-dark);
+  transform: translateY(-1px);
+}
+
+.nav-mobile-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* ════════════════════════════════════════
+   2. HERO
+   ════════════════════════════════════════ */
+.hero {
+  padding: 80px 0 100px;
+  overflow: hidden;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange-light);
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 24px;
+  border: 1px solid rgba(249, 115, 22, 0.15);
+}
+
+.hero-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.hero-subtitle {
+  font-size: 19px;
+  color: var(--text-sec);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+
+.store-badges {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #111;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.store-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.store-badge-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.store-badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.store-badge-text small {
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.store-badge-text strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero-proof {
+  font-size: 14px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-proof-dots {
+  display: flex;
+  gap: -4px;
+}
+
+.hero-proof-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  margin-left: -8px;
+}
+
+.hero-proof-dot:first-child { margin-left: 0; }
+
+/* Phone Mockup */
+.hero-phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-frame {
+  width: 300px;
+  height: 620px;
+  background: #111;
+  border-radius: 44px;
+  padding: 12px;
+  position: relative;
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.12),
+    0 20px 40px rgba(0,0,0,0.08),
+    inset 0 0 0 2px rgba(255,255,255,0.08);
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: #1a1a2e;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-notch {
+  width: 120px;
+  height: 28px;
+  background: #111;
+  border-radius: 0 0 18px 18px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.phone-ui {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phone-ui-header {
+  text-align: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.phone-ui-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.phone-ui-card-title {
+  color: rgba(255,255,255,0.5);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.phone-ui-card-value {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.phone-ui-card-value span { color: var(--orange); }
+
+.phone-ui-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.phone-ui-stat {
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+.phone-ui-stat-val {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.phone-ui-stat-label {
+  color: rgba(255,255,255,0.4);
+  font-size: 9px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.phone-ui-coach {
+  background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.05));
+  border: 1px solid rgba(249,115,22,0.2);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.phone-ui-coach-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.phone-ui-coach-text {
+  color: rgba(255,255,255,0.8);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.phone-ui-coach-name {
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.phone-ui-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0 4px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: auto;
+}
+
+.phone-ui-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 8px;
+  color: rgba(255,255,255,0.3);
+  font-weight: 500;
+}
+
+.phone-ui-nav-item.active { color: var(--orange); }
+
+.phone-ui-nav-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.phone-ui-nav-item.active .phone-ui-nav-dot { opacity: 0.6; }
+
+/* ════════════════════════════════════════
+   3. FEATURES GRID
+   ════════════════════════════════════════ */
+.features {
+  padding: var(--section-pad);
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-sec);
+  max-width: 560px;
+  margin-bottom: 60px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(61,50,41,0.06);
+}
+
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--orange-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.feature-icon svg {
+  width: 26px;
+  height: 26px;
+  color: var(--orange);
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: var(--text-sec);
+  line-height: 1.6;
+}
+
+/* ════════════════════════════════════════
+   4. COACH JOSE
+   ════════════════════════════════════════ */
+.coach {
+  padding: var(--section-pad);
+}
+
+.coach-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: center;
+  background: var(--bg-white);
+  border-radius: 24px;
+  padding: 64px;
+  border: 1px solid var(--border);
+}
+
+.coach-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.coach-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a1a2e, #2d2b55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+  border: 4px solid var(--orange);
+  box-shadow: 0 0 0 12px rgba(249,115,22,0.1);
+}
+
+.coach-avatar-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sec);
+}
+
+.coach-content h2 {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  margin-bottom: 20px;
+}
+
+.coach-content p {
+  font-size: 17px;
+  color: var(--text-sec);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+
+.coach-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.coach-feature-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--orange-light);
+  color: var(--orange-dark);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.coach-feature-tag svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ════════════════════════════════════════
+   5. SOCIAL PROOF
+   ════════════════════════════════════════ */
+.social-proof {
+  padding: var(--section-pad);
+}
+
+.social-proof .section-title { text-align: center; }
+.social-proof .section-label { text-align: center; }
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+  margin-bottom: 48px;
+}
+
+.testimonial-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.testimonial-stars svg {
+  width: 18px;
+  height: 18px;
+  color: #f59e0b;
+  fill: #f59e0b;
+}
+
+.testimonial-text {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.testimonial-name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.testimonial-city {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.proof-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.proof-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-white);
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+}
+
+.proof-stat-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proof-stat-text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════
+   6. QUEDADAS TEASER
+   ════════════════════════════════════════ */
+.quedadas {
+  padding: var(--section-pad);
+}
+
+.quedadas-inner {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quedadas-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, #1a3a5c, #0f2a40);
+  opacity: 1;
+}
+
+.quedadas-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Ccircle cx='200' cy='200' r='4' fill='%23fff' opacity='0.15'/%3E%3Ccircle cx='400' cy='150' r='4' fill='%23fff' opacity='0.15'/%3E%3Ccircle cx='600' cy='250' r='4' fill='%23fff' opacity='0.15'/%3E%3Ccircle cx='300' cy='300' r='4' fill='%23fff' opacity='0.15'/%3E%3Ccircle cx='500' cy='100' r='4' fill='%23f97316' opacity='0.4'/%3E%3Ccircle cx='150' cy='150' r='4' fill='%23f97316' opacity='0.4'/%3E%3Ccircle cx='650' cy='180' r='4' fill='%23f97316' opacity='0.4'/%3E%3Ccircle cx='350' cy='350' r='3' fill='%23f97316' opacity='0.3'/%3E%3Ccircle cx='500' cy='300' r='3' fill='%23fff' opacity='0.1'/%3E%3Ccircle cx='250' cy='100' r='3' fill='%23fff' opacity='0.1'/%3E%3C/svg%3E") center/cover;
+}
+
+.quedadas-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 640px;
+  padding: 60px 40px;
+}
+
+.quedadas-content h2 {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  margin-bottom: 16px;
+}
+
+.quedadas-content p {
+  font-size: 17px;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.quedadas-cities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.city-tag {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(4px);
+}
+
+.quedadas .store-badges {
+  justify-content: center;
+}
+
+.quedadas .store-badge {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+}
+
+.quedadas .store-badge:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ════════════════════════════════════════
+   7. BLOG PREVIEW
+   ════════════════════════════════════════ */
+.blog-preview {
+  padding: var(--section-pad);
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+}
+
+.blog-link {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blog-link:hover { text-decoration: underline; }
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.blog-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(61,50,41,0.06);
+}
+
+.blog-card-img {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #e8ddd2, #d4c8bb);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.05), transparent);
+}
+
+.blog-card-img-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-card-body {
+  padding: 24px;
+}
+
+.blog-card-category {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--orange);
+  background: var(--orange-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 12px;
+}
+
+.blog-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+
+/* ════════════════════════════════════════
+   8. PLANES PREVIEW
+   ════════════════════════════════════════ */
+.planes-preview {
+  padding: var(--section-pad);
+}
+
+.planes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.plan-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(61,50,41,0.06);
+}
+
+.plan-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--orange-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.plan-card-icon svg {
+  width: 30px;
+  height: 30px;
+  color: var(--orange);
+}
+
+.plan-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.plan-card-weeks {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.plan-card-price {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.plan-card-price.free {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.plan-card-price.paid {
+  background: var(--orange-light);
+  color: var(--orange-dark);
+}
+
+.planes-cta {
+  text-align: center;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-white);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--orange);
+  transform: translateY(-1px);
+}
+
+/* ════════════════════════════════════════
+   9. FINAL CTA
+   ════════════════════════════════════════ */
+.final-cta {
+  padding: 0 0 100px;
+}
+
+.final-cta-inner {
+  background: linear-gradient(135deg, var(--orange), #c2410c);
+  border-radius: 24px;
+  padding: 80px 40px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta-inner::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+
+.final-cta-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+
+.final-cta h2 {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.final-cta p {
+  font-size: 19px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.final-cta .store-badges {
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 40px;
+}
+
+.final-cta .store-badge {
+  background: #fff;
+  color: #111;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.final-cta .store-badge:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+.qr-placeholder {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 16px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.qr-placeholder-inner {
+  width: 92px;
+  height: 92px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 2px;
+}
+
+.qr-cell {
+  background: #111;
+  border-radius: 2px;
+}
+
+.qr-cell.empty { background: transparent; }
+
+.qr-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ════════════════════════════════════════
+   10. FOOTER
+   ════════════════════════════════════════ */
+.footer {
+  background: #1c1612;
+  color: #fff;
+  padding: 72px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.footer-brand-name span { color: var(--orange); }
+
+.footer-brand p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copyright {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+}
+
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.footer-social a:hover { background: rgba(255,255,255,0.12); }
+
+.footer-social svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero h1 { font-size: 44px; }
+  .section-title { font-size: 36px; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .planes-grid { grid-template-columns: repeat(2, 1fr); }
+  .coach-inner { gap: 48px; padding: 48px; }
+  .final-cta h2 { font-size: 36px; }
+}
+
+@media (max-width: 768px) {
+  :root { --section-pad: 72px 0; }
+
+  .nav-links { display: none; }
+  .nav-mobile-btn { display: flex; }
+
+  .hero { padding: 48px 0 64px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+    letter-spacing: -1.5px;
+  }
+
+  .hero-subtitle { margin: 0 auto 32px; }
+  .hero-badge { margin: 0 auto 24px; }
+  .store-badges { justify-content: center; }
+  .hero-proof { justify-content: center; }
+
+  .hero-phone { order: -1; }
+  .phone-frame {
+    width: 240px;
+    height: 500px;
+    border-radius: 36px;
+  }
+  .phone-screen { border-radius: 28px; }
+  .phone-notch { width: 100px; height: 24px; border-radius: 0 0 14px 14px; }
+
+  .section-title { font-size: 32px; }
+  .features-grid { grid-template-columns: 1fr; }
+
+  .coach-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 40px 28px;
+    gap: 32px;
+  }
+  .coach-content p { margin: 0 auto 24px; }
+  .coach-features { justify-content: center; }
+  .coach-avatar { width: 140px; height: 140px; font-size: 56px; }
+
+  .testimonials { grid-template-columns: 1fr; }
+  .proof-stats { flex-direction: column; align-items: center; }
+
+  .blog-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .blog-grid { grid-template-columns: 1fr; }
+
+  .planes-grid { grid-template-columns: 1fr 1fr; }
+
+  .final-cta-inner { padding: 56px 24px; }
+  .final-cta h2 { font-size: 30px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+
+  .quedadas-content h2 { font-size: 30px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 32px; }
+  .store-badges { flex-direction: column; align-items: center; }
+  .store-badge { width: 100%; max-width: 220px; justify-content: center; }
+  .planes-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     1. NAV BAR
+     ════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CORRER<span>JUNTOS</span></a>
+    <div class="nav-links">
+      <a href="/planes/">Planes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/events/">Carreras</a>
+      <a href="#download" class="btn-primary">Descargar App</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="this.nextElementSibling?.classList.toggle('show')" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     2. HERO
+     ════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">La app #1 de running social en Espana</div>
+      <h1>Tu entrenador personal de running con IA</h1>
+      <p class="hero-subtitle">Coach Jose te guia en cada carrera. Planes personalizados, logros, quedadas con runners cerca de ti.</p>
+      <div class="store-badges">
+        <a href="https://apps.apple.com/app/id6758505910" class="store-badge">
+          <div class="store-badge-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          </div>
+          <div class="store-badge-text">
+            <small>Descargar en</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" class="store-badge">
+          <div class="store-badge-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 12l2.302-3.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/></svg>
+          </div>
+          <div class="store-badge-text">
+            <small>Descargar en</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+      </div>
+      <div class="hero-proof">
+        <div class="hero-proof-dots">
+          <div class="hero-proof-dot" style="background:#f97316"></div>
+          <div class="hero-proof-dot" style="background:#c2410c"></div>
+          <div class="hero-proof-dot" style="background:#ea580c"></div>
+          <div class="hero-proof-dot" style="background:#fb923c"></div>
+        </div>
+        <span>390+ runners ya entrenan con nosotros</span>
+      </div>
+    </div>
+
+    <div class="hero-phone">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <div class="phone-ui">
+            <div class="phone-ui-header">CORRER JUNTOS</div>
+            <div class="phone-ui-card">
+              <div class="phone-ui-card-title">Ultima carrera</div>
+              <div class="phone-ui-card-value">5.2 <span>km</span></div>
+            </div>
+            <div class="phone-ui-row">
+              <div class="phone-ui-stat">
+                <div class="phone-ui-stat-val">5'42"</div>
+                <div class="phone-ui-stat-label">RITMO/KM</div>
+              </div>
+              <div class="phone-ui-stat">
+                <div class="phone-ui-stat-val">29:34</div>
+                <div class="phone-ui-stat-label">TIEMPO</div>
+              </div>
+            </div>
+            <div class="phone-ui-coach">
+              <div class="phone-ui-coach-avatar">J</div>
+              <div>
+                <div class="phone-ui-coach-name">Coach Jose</div>
+                <div class="phone-ui-coach-text">Gran carrera! Tu ritmo medio mejoro 12s respecto a la semana pasada. Sigue asi.</div>
+              </div>
+            </div>
+            <div class="phone-ui-nav">
+              <div class="phone-ui-nav-item active">
+                <div class="phone-ui-nav-dot"></div>
+                Inicio
+              </div>
+              <div class="phone-ui-nav-item">
+                <div class="phone-ui-nav-dot"></div>
+                Plan
+              </div>
+              <div class="phone-ui-nav-item">
+                <div class="phone-ui-nav-dot"></div>
+                Social
+              </div>
+              <div class="phone-ui-nav-item">
+                <div class="phone-ui-nav-dot"></div>
+                Perfil
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     3. FEATURES GRID
+     ════════════════════════════════════════ -->
+<section class="features">
+  <div class="container">
+    <div class="section-label">Funcionalidades</div>
+    <h2 class="section-title">Todo lo que necesitas para correr mejor</h2>
+    <p class="section-subtitle">Una app completa que combina entrenamiento inteligente, coaching IA y comunidad runner.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+        </div>
+        <h3>Coach Jose IA</h3>
+        <p>Tu entrenador personal analiza cada carrera y te da feedback personalizado con inteligencia artificial.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+        </div>
+        <h3>Planes de entrenamiento</h3>
+        <p>De 0 a maraton. 7 planes estructurados con 1.025 sesiones adaptadas a tu nivel.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <h3>Quedadas running</h3>
+        <p>Encuentra runners cerca de ti y corre acompanado. Eventos en 8 ciudades de todo el mundo.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        </div>
+        <h3>33 Logros</h3>
+        <p>Desbloquea badges de bronce a diamante. Rachas, PRs, hitos y retos semanales para mantener la motivacion.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3>Graficas de progreso</h3>
+        <p>Evolucion de ritmo, VO2max, km semanales y mucho mas en graficas claras y motivadoras.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+        </div>
+        <h3>Audio coaching</h3>
+        <p>Coach Jose te habla durante la carrera con coaching contextual. Ritmo, km y motivacion en tu oido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     4. COACH JOSE
+     ════════════════════════════════════════ -->
+<section class="coach">
+  <div class="container">
+    <div class="coach-inner">
+      <div class="coach-avatar-wrap">
+        <div class="coach-avatar">J</div>
+        <div class="coach-avatar-label">Entrenador IA</div>
+      </div>
+      <div class="coach-content">
+        <div class="section-label">Tu entrenador personal</div>
+        <h2>Conoce a Coach Jose</h2>
+        <p>Tu entrenador IA que conoce tu historial, tu plan y tus objetivos. Despues de cada carrera, Jose analiza tu ritmo, RPE y splits para darte feedback personalizado. Los usuarios premium pueden chatear directamente con el.</p>
+        <div class="coach-features">
+          <div class="coach-feature-tag">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Analisis post-carrera
+          </div>
+          <div class="coach-feature-tag">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Chat ilimitado
+          </div>
+          <div class="coach-feature-tag">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Audio en carrera
+          </div>
+          <div class="coach-feature-tag">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Ajustes de plan
+          </div>
+        </div>
+        <a href="#download" class="btn-primary">Prueba Coach Jose gratis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     5. SOCIAL PROOF
+     ════════════════════════════════════════ -->
+<section class="social-proof">
+  <div class="container">
+    <div class="section-label">Testimonios</div>
+    <h2 class="section-title">Runners que ya entrenan con nosotros</h2>
+
+    <div class="testimonials">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="testimonial-text">"Empece de cero y en 8 semanas ya corria 5K sin parar. Coach Jose me iba guiando semana a semana. Nunca pense que lo lograria."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c)">M</div>
+          <div>
+            <div class="testimonial-name">Maria Garcia</div>
+            <div class="testimonial-city">Madrid, Espana</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="testimonial-text">"Las quedadas me cambiaron la forma de correr. Ahora tengo un grupo fijo los sabados en el Retiro. La app lo hace muy facil de organizar."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #3b82f6, #2563eb)">C</div>
+          <div>
+            <div class="testimonial-name">Carlos Mendez</div>
+            <div class="testimonial-city">Barcelona, Espana</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="testimonial-text">"El plan de media maraton me llevo de correr 10K a cruzar la meta en 1:58. El audio coaching es genial para los dias de series."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981, #059669)">A</div>
+          <div>
+            <div class="testimonial-name">Ana Rodriguez</div>
+            <div class="testimonial-city">Valencia, Espana</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-stats">
+      <div class="proof-stat">
+        <div class="proof-stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <div class="proof-stat-text">4.8 en App Store</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </div>
+        <div class="proof-stat-text">88 descargas en Google Play</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     6. QUEDADAS TEASER
+     ════════════════════════════════════════ -->
+<section class="quedadas">
+  <div class="container">
+    <div class="quedadas-inner">
+      <div class="quedadas-bg"></div>
+      <div class="quedadas-content">
+        <h2>Corre acompanado, nunca solo</h2>
+        <p>Quedadas de running en 8 ciudades. Encuentra tu grupo y comparte kilometros.</p>
+        <div class="quedadas-cities">
+          <span class="city-tag">Madrid</span>
+          <span class="city-tag">Barcelona</span>
+          <span class="city-tag">Valencia</span>
+          <span class="city-tag">Sevilla</span>
+          <span class="city-tag">Londres</span>
+          <span class="city-tag">Paris</span>
+          <span class="city-tag">CDMX</span>
+          <span class="city-tag">Buenos Aires</span>
+        </div>
+        <div class="store-badges">
+          <a href="https://apps.apple.com/app/id6758505910" class="store-badge">
+            <div class="store-badge-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            </div>
+            <div class="store-badge-text">
+              <small>Descargar en</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" class="store-badge">
+            <div class="store-badge-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 12l2.302-3.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/></svg>
+            </div>
+            <div class="store-badge-text">
+              <small>Descargar en</small>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     7. BLOG PREVIEW
+     ════════════════════════════════════════ -->
+<section class="blog-preview">
+  <div class="container">
+    <div class="blog-header">
+      <div>
+        <div class="section-label">Blog</div>
+        <h2 class="section-title">Blog de running</h2>
+      </div>
+      <a href="/blog/" class="blog-link">
+        Ver todos los articulos
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="blog-grid">
+      <a href="/blog/empezar-a-correr-guia-principiantes.html" class="blog-card">
+        <div class="blog-card-img" style="background: linear-gradient(135deg, #fed7aa, #fdba74)">
+          <div class="blog-card-img-icon">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#9a3412" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-category">Principiantes</span>
+          <h3>Guia completa para empezar a correr desde cero en 2026</h3>
+        </div>
+      </a>
+
+      <a href="/blog/mejores-zapatillas-on-running.html" class="blog-card">
+        <div class="blog-card-img" style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe)">
+          <div class="blog-card-img-icon">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#4338ca" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-category">Zapatillas</span>
+          <h3>Mejores zapatillas On Running 2026: analisis y comparativa</h3>
+        </div>
+      </a>
+
+      <a href="/blog/vo2-max-running-como-mejorar.html" class="blog-card">
+        <div class="blog-card-img" style="background: linear-gradient(135deg, #d1fae5, #a7f3d0)">
+          <div class="blog-card-img-icon">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#065f46" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-category">Entrenamiento</span>
+          <h3>VO2max en running: que es y como mejorarlo este 2026</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     8. PLANES PREVIEW
+     ════════════════════════════════════════ -->
+<section class="planes-preview">
+  <div class="container">
+    <div class="section-label">Planes</div>
+    <h2 class="section-title">Planes de entrenamiento para cada nivel</h2>
+    <p class="section-subtitle">Desde tu primera carrera hasta el maraton. Planes estructurados semana a semana con Coach Jose.</p>
+
+    <div class="planes-grid">
+      <div class="plan-card">
+        <div class="plan-card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>0 a 5K</h3>
+        <div class="plan-card-weeks">8 semanas</div>
+        <span class="plan-card-price free">Gratis</span>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3>Prep 5K</h3>
+        <div class="plan-card-weeks">8 semanas</div>
+        <span class="plan-card-price paid">3,99</span>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+        </div>
+        <h3>Prep 10K</h3>
+        <div class="plan-card-weeks">12 semanas</div>
+        <span class="plan-card-price paid">5,99</span>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        </div>
+        <h3>Media Maraton</h3>
+        <div class="plan-card-weeks">16 semanas</div>
+        <span class="plan-card-price paid">7,99</span>
+      </div>
+    </div>
+
+    <div class="planes-cta">
+      <a href="/planes/" class="btn-secondary">
+        Explorar todos los planes
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     9. FINAL CTA
+     ════════════════════════════════════════ -->
+<section class="final-cta" id="download">
+  <div class="container">
+    <div class="final-cta-inner">
+      <h2>Empieza a correr con Coach Jose hoy</h2>
+      <p>Descarga gratis. Tu primer plan incluido.</p>
+      <div class="store-badges">
+        <a href="https://apps.apple.com/app/id6758505910" class="store-badge">
+          <div class="store-badge-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          </div>
+          <div class="store-badge-text">
+            <small>Descargar en</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" class="store-badge">
+          <div class="store-badge-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 12l2.302-3.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/></svg>
+          </div>
+          <div class="store-badge-text">
+            <small>Descargar en</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+      </div>
+      <div class="qr-placeholder">
+        <div class="qr-placeholder-inner">
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+        </div>
+      </div>
+      <div class="qr-label">Escanea para descargar</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     10. FOOTER
+     ════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">CORRER<span>JUNTOS</span></div>
+        <p>La app de running social con coaching IA. Planes de entrenamiento, quedadas y una comunidad de runners que te acompana en cada kilometro.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <a href="#features">Funcionalidades</a>
+        <a href="#coach">Coach Jose</a>
+        <a href="/planes/">Planes</a>
+        <a href="#download">Descargar App</a>
+      </div>
+      <div class="footer-col">
+        <h4>Planes</h4>
+        <a href="/planes/0-5k/">0 a 5K (Gratis)</a>
+        <a href="/planes/5k/">Prep 5K</a>
+        <a href="/planes/10k/">Prep 10K</a>
+        <a href="/planes/media-maraton/">Media Maraton</a>
+        <a href="/planes/maraton/">Maraton</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacidad</a>
+        <a href="/terms.html">Terminos</a>
+        <a href="/blog/">Blog</a>
+        <a href="mailto:correrjuntosapp@gmail.com">Contacto</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">2026 CorrerJuntos. Todos los derechos reservados.</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/correrjuntosapp" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.facebook.com/correrjuntos" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@correrjuntosapp" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48v-7.13A8.16 8.16 0 0019.59 14V10.5a4.83 4.83 0 01-3.77-1.37V6.69h3.77z"/></svg>
+        </a>
+        <a href="https://es.pinterest.com/correrjuntos/" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

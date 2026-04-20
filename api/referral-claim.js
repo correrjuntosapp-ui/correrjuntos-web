@@ -5,7 +5,10 @@ import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-const REWARD_DAYS = 7;
+// Reward length mirrors the App Store / Google Play free-trial length.
+// Bumped to 14 days in Sprint 1 CRO pass for consistent brand messaging
+// ("14 días gratis" everywhere) and to give referrals two full weekends.
+const REWARD_DAYS = 14;
 const MAX_REFERRALS_PER_USER = 20;
 const MAX_ACCOUNT_AGE_DAYS = 30;
 

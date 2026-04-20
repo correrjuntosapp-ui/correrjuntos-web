@@ -110,7 +110,7 @@ I18N.en = {
         faqQ3: 'Is it safe to meet with strangers?',
         faqA3: 'Safety is our top priority. We implement multiple layers of protection: mandatory email verification, rating system after each meetup, moderation team reviewing suspicious content, and all meetups are in public places. Plus, you can see each runner\'s complete profile before joining, including their history and ratings from other users.',
         faqQ4: 'Can I try Premium before paying?',
-        faqA4: 'Yes! We offer a 7-day free trial of Premium with full access to all features. No credit card required to start. You can cancel anytime from the app before the trial ends and you won\'t be charged anything.',
+        faqA4: 'Yes! We offer a 14-day free trial of Premium with full access to all features. No credit card required to start. You can cancel anytime from the app before the trial ends and you won\'t be charged anything.',
         faqQ5: 'What if I\'m a beginner?',
         faqA5: 'Welcome! CorrerJuntos is perfect for beginners. Many meetups are specifically designed for people just starting out. You can filter by level (beginner, intermediate, advanced) to find groups at your pace. The community is super welcoming - no one will judge you. We all started from zero and understand how important support is when beginning.',
         // CTA Final

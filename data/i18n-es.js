@@ -110,7 +110,7 @@ I18N.es = {
         faqQ3: '¿Es seguro quedar con desconocidos?',
         faqA3: 'La seguridad es nuestra máxima prioridad. Implementamos múltiples capas de protección: verificación de email obligatoria, sistema de valoraciones después de cada quedada, equipo de moderación que revisa contenido sospechoso, y todas las quedadas son en lugares públicos. Además, puedes ver el perfil completo de cada runner antes de unirte, incluyendo su historial y valoraciones de otros usuarios.',
         faqQ4: '¿Puedo probar Premium antes de pagar?',
-        faqA4: '¡Sí! Ofrecemos 7 días de prueba gratis del plan Premium con acceso completo a todas las funciones. No necesitas tarjeta para empezar. Puedes cancelar en cualquier momento desde la app antes de que termine la prueba y no se te cobrará absolutamente nada.',
+        faqA4: '¡Sí! Ofrecemos 14 días de prueba gratis del plan Premium con acceso completo a todas las funciones. No necesitas tarjeta para empezar. Puedes cancelar en cualquier momento desde la app antes de que termine la prueba y no se te cobrará absolutamente nada.',
         faqQ5: '¿Qué pasa si soy principiante?',
         faqA5: '¡Bienvenido! CorrerJuntos es perfecto para principiantes. Muchas quedadas están diseñadas específicamente para gente que empieza. Puedes filtrar por nivel (principiante, intermedio, avanzado) para encontrar grupos que vayan a tu ritmo. La comunidad es súper acogedora - nadie te va a juzgar. Todos empezamos desde cero y entendemos lo importante que es el apoyo al comenzar.',
         // CTA Final

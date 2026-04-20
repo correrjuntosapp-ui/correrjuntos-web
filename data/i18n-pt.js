@@ -95,7 +95,7 @@ I18N.pt = {
         faqQ3: 'É seguro combinar com desconhecidos?',
         faqA3: 'A segurança é a nossa máxima prioridade. Implementamos múltiplas camadas de proteção: verificação de email obrigatória, sistema de avaliações após cada encontro, equipa de moderação que revisa conteúdo suspeito, e todos os encontros são em locais públicos. Além disso, podes ver o perfil completo de cada runner antes de te juntares, incluindo o seu histórico e avaliações de outros utilizadores.',
         faqQ4: 'Posso experimentar Premium antes de pagar?',
-        faqA4: 'Sim! Oferecemos 7 dias de teste grátis do plano Premium com acesso completo a todas as funções. Não precisas de cartão para começar. Podes cancelar a qualquer momento na app antes de terminar o teste e não serás cobrado absolutamente nada.',
+        faqA4: 'Sim! Oferecemos 14 dias de teste grátis do plano Premium com acesso completo a todas as funções. Não precisas de cartão para começar. Podes cancelar a qualquer momento na app antes de terminar o teste e não serás cobrado absolutamente nada.',
         faqQ5: 'E se eu for principiante?',
         faqA5: 'Bem-vindo! CorrerJuntos é perfeito para principiantes. Muitos encontros são especificamente desenhados para quem está a começar. Podes filtrar por nível (principiante, intermédio, avançado) para encontrar grupos ao teu ritmo. A comunidade é super acolhedora - ninguém te vai julgar. Todos começámos do zero e percebemos como é importante o apoio no início.',
         // CTA Final

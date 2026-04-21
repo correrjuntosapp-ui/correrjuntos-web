@@ -31,8 +31,8 @@
         "id": "shock-absorber",
         "name": "Shock Absorber Active Multi Sports",
         "tagline": "Mejor sujeci\u00f3n global (referente del mercado)",
-        "amazonUrl": "https://www.amazon.es/dp/B01BOVED8I?tag=diezmejores21-21",
-        "amazonImageUrl": "",
+        "amazonUrl": "https://amzn.to/4sQMgbo",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/51XdXmxhjUL._AC_SY445_.jpg",
         "specs": [
           { "label": "Nivel impacto", "value": "Alto" },
           { "label": "Tecnolog\u00eda", "value": "Encapsulated + compresi\u00f3n" },
@@ -47,8 +47,8 @@
         "id": "triumph",
         "name": "Triumph Triaction Fitness F",
         "tagline": "El mejor para pecho grande (D+)",
-        "amazonUrl": "https://www.amazon.es/dp/B09TBQY1LB?tag=diezmejores21-21",
-        "amazonImageUrl": "",
+        "amazonUrl": "https://amzn.to/42k1niu",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/611OboOW+zL._AC_SX385_.jpg",
         "specs": [
           { "label": "Nivel impacto", "value": "Alto" },
           { "label": "Tecnolog\u00eda", "value": "Copas preformadas sin costuras" },
@@ -63,8 +63,8 @@
         "id": "under-armour",
         "name": "Under Armour Infinity High",
         "tagline": "Mejor relaci\u00f3n calidad-precio",
-        "amazonUrl": "https://www.amazon.es/s?k=under+armour+infinity+high+bra&rh=n%3A14655706031&tag=diezmejores21-21",
-        "amazonImageUrl": "",
+        "amazonUrl": "https://amzn.to/4u47mnJ",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/51V73F8k1iL._AC_SX385_.jpg",
         "specs": [
           { "label": "Nivel impacto", "value": "Alto" },
           { "label": "Tecnolog\u00eda", "value": "HeatGear + compresi\u00f3n" },
@@ -79,8 +79,8 @@
         "id": "nike",
         "name": "Nike Swoosh High Support",
         "tagline": "Ultraligero y transpirable",
-        "amazonUrl": "https://www.amazon.es/s?k=nike+swoosh+high+support+bra&rh=n%3A14655706031&tag=diezmejores21-21",
-        "amazonImageUrl": "",
+        "amazonUrl": "https://amzn.to/4vHcKyr",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/41VE+uooHpL._AC_SX425_.jpg",
         "specs": [
           { "label": "Nivel impacto", "value": "Alto" },
           { "label": "Tecnolog\u00eda", "value": "Dri-FIT transpirable" },
@@ -95,8 +95,8 @@
         "id": "adidas",
         "name": "Adidas FastImpact Luxe",
         "tagline": "Look moderno + alto rendimiento",
-        "amazonUrl": "https://www.amazon.es/s?k=adidas+fastimpact+luxe+bra&rh=n%3A14655706031&tag=diezmejores21-21",
-        "amazonImageUrl": "",
+        "amazonUrl": "https://amzn.to/4cmGBVw",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/71wLzzqn2bL._AC_SX385_.jpg",
         "specs": [
           { "label": "Nivel impacto", "value": "Alto" },
           { "label": "Tecnolog\u00eda", "value": "Aeroready + molde 3D" },
@@ -108,11 +108,11 @@
         "descriptionHtml": "      <p>Adidas FastImpact Luxe combina alto rendimiento con un dise&ntilde;o m&aacute;s elegante que los sujetadores deportivos tradicionales. Las copas est&aacute;n moldeadas en 3D para adaptarse anat&oacute;micamente al pecho y el tejido <strong>Aeroready</strong> mantiene la piel seca incluso en sesiones intensas.</p>\n      <p>El cierre trasero de 2 ganchos permite ajuste fino y los tirantes son extra anchos (28 mm) con acolchado interior. La banda bajo copa es plana y no deja marca visible bajo camisetas t&eacute;cnicas ajustadas.</p>\n      <p>Funciona bien en running, cross-training y HIIT. No alcanza el nivel del Shock Absorber en sujeci&oacute;n bruta pero mejora claramente en est&eacute;tica y comodidad visual &mdash; importante para quien lo lleva tambi&eacute;n fuera del entrenamiento.</p>\n      <p>Disponible en varios colores. Una opci&oacute;n s&oacute;lida de rango medio-alto sin llegar al precio premium de Triumph.</p>"
       },
       {
-        "id": "decathlon-kalenji",
-        "name": "Kalenji Running Confort (Decathlon)",
+        "id": "economico",
+        "name": "Sujetador deportivo alto impacto (opci\u00f3n econ\u00f3mica)",
         "tagline": "Mejor econ\u00f3mico (funciona de verdad)",
-        "amazonUrl": "https://www.amazon.es/s?k=sujetador+deportivo+alto+impacto+running&rh=n%3A14655706031&tag=diezmejores21-21",
-        "amazonImageUrl": "",
+        "amazonUrl": "https://amzn.to/4cl33hK",
+        "amazonImageUrl": "https://m.media-amazon.com/images/I/71Wc4R74dyL._AC_SX342_.jpg",
         "specs": [
           { "label": "Nivel impacto", "value": "Alto" },
           { "label": "Tecnolog\u00eda", "value": "Compresi\u00f3n + banda ancha" },
@@ -121,10 +121,10 @@
         ],
         "price": "~15-18\u20ac",
         "bestFor": "runners principiantes, presupuesto ajustado, 2-3 sesiones semana",
-        "descriptionHtml": "      <p>El Kalenji Running Confort (marca propia de Decathlon) demuestra que no hace falta gastar 40&euro; para tener sujeci&oacute;n decente. Por <strong>15-18&euro;</strong> obtienes un sujetador de alto impacto con banda inferior ancha, tirantes reforzados y tejido transpirable b&aacute;sico.</p>\n      <p>No tiene los extras premium (copas individuales, tejido t&eacute;cnico regulador de temperatura, cremallera frontal), pero cubre la funci&oacute;n esencial: reducir el movimiento del pecho durante la carrera. Para pecho peque&ntilde;o-medio que entrena 2-3 veces por semana, es m&aacute;s que suficiente.</p>\n      <p>Durabilidad correcta &mdash; aguanta 40-50 lavados antes de perder elasticidad (el Shock Absorber aguanta 80-100). Pero al precio que cuesta, comprar dos al a&ntilde;o sigue siendo m&aacute;s barato que un premium.</p>\n      <p>Recomendado como primer sujetador deportivo para quien empieza a correr y no quiere invertir 40&euro; sin saber si va a mantener el h&aacute;bito.</p>"
+        "descriptionHtml": "      <p>No hace falta gastar 40&euro; para tener sujeci&oacute;n decente. Por <strong>15-20&euro;</strong> existen opciones de alto impacto con banda inferior ancha, tirantes reforzados y tejido transpirable b&aacute;sico que cumplen la funci&oacute;n esencial: reducir el movimiento del pecho durante la carrera.</p>\n      <p>No tienen los extras premium (copas individuales, tejido t&eacute;cnico regulador de temperatura, cremallera frontal), pero para pecho peque&ntilde;o-medio que entrena 2-3 veces por semana es m&aacute;s que suficiente.</p>\n      <p>Durabilidad correcta &mdash; aguantan 40-50 lavados antes de perder elasticidad (el Shock Absorber aguanta 80-100). Pero al precio que cuestan, comprar dos al a&ntilde;o sigue siendo m&aacute;s barato que un premium.</p>\n      <p>Recomendado como primer sujetador deportivo para quien empieza a correr y no quiere invertir 40&euro; sin saber si va a mantener el h&aacute;bito.</p>"
       }
     ],
-    "comparisonTableHtml": "    <h2 id=\"comparativa\">Tabla comparativa</h2>\n    <div style=\"overflow-x:auto\">\n    <table class=\"comparison-table\">\n      <thead><tr><th>Modelo</th><th>Tallas</th><th>Tecnolog&iacute;a</th><th>Precio</th><th>Mejor para</th></tr></thead>\n      <tbody>\n        <tr><td>Shock Absorber Active Multi Sports</td><td>32A-40H</td><td>Encapsulated</td><td>~38&euro;</td><td>Referente global</td></tr>\n        <tr><td>Triumph Triaction Fitness F</td><td>75B-110G</td><td>Copas sin costuras</td><td>~52&euro;</td><td>Pecho grande (D+)</td></tr>\n        <tr><td>Under Armour Infinity High</td><td>XS-XXL</td><td>HeatGear</td><td>~32&euro;</td><td>Calidad-precio</td></tr>\n        <tr><td>Nike Swoosh High Support</td><td>XS-XL</td><td>Dri-FIT</td><td>~35&euro;</td><td>Verano + ligero</td></tr>\n        <tr><td>Adidas FastImpact Luxe</td><td>XS-XXL</td><td>Aeroready 3D</td><td>~40&euro;</td><td>Est&eacute;tica + rendimiento</td></tr>\n        <tr><td>Kalenji Running Confort</td><td>XS-XL</td><td>Compresi&oacute;n</td><td>~16&euro;</td><td>Presupuesto</td></tr>\n      </tbody>\n    </table>\n    </div>",
+    "comparisonTableHtml": "    <h2 id=\"comparativa\">Tabla comparativa</h2>\n    <div style=\"overflow-x:auto\">\n    <table class=\"comparison-table\">\n      <thead><tr><th>Modelo</th><th>Tallas</th><th>Tecnolog&iacute;a</th><th>Precio</th><th>Mejor para</th></tr></thead>\n      <tbody>\n        <tr><td>Shock Absorber Active Multi Sports</td><td>32A-40H</td><td>Encapsulated</td><td>~38&euro;</td><td>Referente global</td></tr>\n        <tr><td>Triumph Triaction Fitness F</td><td>75B-110G</td><td>Copas sin costuras</td><td>~52&euro;</td><td>Pecho grande (D+)</td></tr>\n        <tr><td>Under Armour Infinity High</td><td>XS-XXL</td><td>HeatGear</td><td>~32&euro;</td><td>Calidad-precio</td></tr>\n        <tr><td>Nike Swoosh High Support</td><td>XS-XL</td><td>Dri-FIT</td><td>~35&euro;</td><td>Verano + ligero</td></tr>\n        <tr><td>Adidas FastImpact Luxe</td><td>XS-XXL</td><td>Aeroready 3D</td><td>~40&euro;</td><td>Est&eacute;tica + rendimiento</td></tr>\n        <tr><td>Opci&oacute;n econ&oacute;mica alto impacto</td><td>XS-XL</td><td>Compresi&oacute;n</td><td>~16&euro;</td><td>Presupuesto</td></tr>\n      </tbody>\n    </table>\n    </div>",
     "afterProductsHtml": "    <h2 id=\"guia-compra\">Gu&iacute;a de tallas y ajuste</h2>\n    <h3>C&oacute;mo medir correctamente tu talla</h3>\n    <p>Un <strong>80% de mujeres lleva una talla incorrecta</strong> de sujetador seg&uacute;n estudios de Triumph y Berlei. Para running el ajuste debe ser preciso al mil&iacute;metro: una talla demasiado grande permite rebote; demasiado peque&ntilde;a comprime en exceso y corta circulaci&oacute;n.</p>\n    <ol>\n      <li><strong>Medida de contorno bajo pecho:</strong> con cinta m&eacute;trica, justo bajo el tejido mamario. <em>Esta medida determina el n&uacute;mero</em> (ej. 85 cm &rarr; talla 85 o 34 US).</li>\n      <li><strong>Medida de contorno sobre pezones:</strong> con sujetador c&oacute;modo puesto, cinta m&eacute;trica sobre la parte m&aacute;s prominente del pecho.</li>\n      <li><strong>Diferencia entre ambas medidas = talla de copa:</strong> 12-14 cm = B, 15-17 cm = C, 18-20 cm = D, 21-23 cm = DD, 24-26 cm = E, etc.</li>\n    </ol>\n    <div class=\"tip\"><strong>Verificaci&oacute;n r&aacute;pida:</strong> la banda bajo el pecho debe quedar <strong>horizontal en la espalda</strong>, no subir ni bajar. Si sube por la espalda, la talla de banda es demasiado grande.</div>\n\n    <h3>Se\u00f1ales de que tu sujetador no ajusta bien</h3>\n    <ul>\n      <li>La banda se desplaza hacia arriba por la espalda mientras corres</li>\n      <li>Notas rebote en el pecho durante zancadas r&aacute;pidas</li>\n      <li>Los tirantes se te caen o se clavan en el hombro dej&aacute;ndote marca</li>\n      <li>Tienes marcas rojas profundas bajo el pecho al quit&aacute;rtelo</li>\n      <li>Sientes rozadura en axila o esternon</li>\n      <li>Las copas arrugan o forman &quot;doble pecho&quot; por desbordamiento</li>\n    </ul>\n\n    <h2 id=\"errores-comunes\">Errores comunes al comprar sujetador running</h2>\n    <ul>\n      <li><strong>Confiar en la talla estandar XS-XL sin medirse:</strong> la correspondencia entre marcas var&iacute;a mucho. Una XS de Nike puede ser XS de Under Armour pero equivalente a S de Adidas.</li>\n      <li><strong>Elegir solo por est&eacute;tica:</strong> un sujetador bonito pero mal dimensionado arruina sesiones y acelera da&ntilde;o al tejido mam&aacute;rio.</li>\n      <li><strong>No reemplazarlo al perder elasticidad:</strong> un sujetador deportivo pierde sujeci&oacute;n gradualmente. Tras 50-80 lavados su capacidad de absorci&oacute;n de impacto cae un 30%. Aunque visualmente parezca intacto, ya no sujeta igual.</li>\n      <li><strong>Usar solo un sujetador deportivo y rotarlo diariamente:</strong> tener 2-3 en rotaci&oacute;n alarga su vida &uacute;til. El elasticano necesita 24h para recuperar tensi&oacute;n entre usos.</li>\n      <li><strong>Lavarlo en lavadora con otra ropa y detergente normal:</strong> el cloro y los suavizantes degradan el elasticano. A mano con jab&oacute;n neutro o ciclo delicado en bolsa de malla.</li>\n      <li><strong>Compartir misma talla entre marcas:</strong> una 85C de Triumph no equivale necesariamente a una 85C de Shock Absorber. Prueba cada marca individualmente.</li>\n    </ul>",
     "faqTitle": "Preguntas frecuentes sobre sujetadores deportivos para running",
     "faqItems": [
@@ -150,18 +150,18 @@
       },
       {
         "question": "\u00bfMerece la pena invertir en un Shock Absorber o Triumph frente a un gen\u00e9rico de 15\u20ac?",
-        "answer": "Depende del volumen de entrenamiento. Si corres 2-3 veces por semana en sesiones cortas, un Kalenji de 15\u20ac funciona bien. Si corres 4+ veces por semana o haces tiradas largas (1h+), la inversi&oacute;n en un Shock Absorber o Triumph se amortiza en comodidad, sujeci&oacute;n y durabilidad. A 2 a\u00f1os el coste por sesi&oacute;n sale igual o m\u00e1s barato."
+        "answer": "Depende del volumen de entrenamiento. Si corres 2-3 veces por semana en sesiones cortas, una opci\u00f3n b\u00e1sica de 15-20\u20ac funciona bien. Si corres 4+ veces por semana o haces tiradas largas (1h+), la inversi&oacute;n en un Shock Absorber o Triumph se amortiza en comodidad, sujeci&oacute;n y durabilidad. A 2 a\u00f1os el coste por sesi&oacute;n sale igual o m\u00e1s barato."
       },
       {
         "question": "\u00bfPuedo correr sin sujetador si tengo pecho muy peque\u00f1o?",
-        "answer": "T&eacute;cnicamente s\u00ed, pero no es recomendable. Incluso con talla AA hay movimiento suficiente para causar microlesiones a largo plazo en los ligamentos de Cooper. Un sujetador ligero de compresi\u00f3n (Nike Swoosh, Kalenji b\u00e1sico) es suficiente y muy barato. Correr sin sujetador es una falsa econom\u00eda."
+        "answer": "T&eacute;cnicamente s\u00ed, pero no es recomendable. Incluso con talla AA hay movimiento suficiente para causar microlesiones a largo plazo en los ligamentos de Cooper. Un sujetador ligero de compresi\u00f3n (Nike Swoosh, cualquier opci\u00f3n b\u00e1sica de alto impacto) es suficiente y muy barato. Correr sin sujetador es una falsa econom\u00eda."
       },
       {
         "question": "\u00bfLos sujetadores con cremallera frontal aguantan la sujeci\u00f3n igual que los trad?",
         "answer": "S\u00ed, cuando la cremallera est\u00e1 correctamente dise\u00f1ada (Under Armour Infinity, Shock Absorber Zip). Tienen refuerzo interno paralelo a la cremallera que distribuye la tensi\u00f3n. Son muy pr\u00e1cticos para pecho grande, donde meter un sujetador por la cabeza es complicado. Confirma que la marca especifica \u0022high support\u0022 o \u0022alto impacto\u0022."
       }
     ],
-    "conclusionHtml": "    <h2>Conclusi&oacute;n</h2>\n    <p>El sujetador deportivo es el equipamiento m&aacute;s cr&iacute;tico para una corredora &mdash; por encima de zapatillas, reloj GPS o cualquier otra pieza. Un modelo adecuado protege tu salud mamaria a largo plazo, evita dolor durante el entrenamiento y te deja centrarte en correr sin molestias constantes.</p>\n    <p>Si solo pudi&eacute;ramos recomendar uno, ser&iacute;a el <strong><a href=\"#shock-absorber\" style=\"color:#f97316\">Shock Absorber Active Multi Sports</a></strong>. Para pecho grande (D+), el <strong><a href=\"#triumph\" style=\"color:#f97316\">Triumph Triaction Fitness F</a></strong> es imbatible. Para presupuesto ajustado, el <strong><a href=\"#decathlon-kalenji\" style=\"color:#f97316\">Kalenji Running Confort</a></strong> cubre lo esencial por 15&euro;.</p>\n    <p>Invierte bien aqu&iacute; y no solo mejorar&aacute;s tu experiencia corriendo: cuidar&aacute;s los ligamentos de Cooper &mdash; tejido que no se regenera una vez da&ntilde;ado. Tu yo de 60 a&ntilde;os te lo agradecer&aacute;.</p>",
+    "conclusionHtml": "    <h2>Conclusi&oacute;n</h2>\n    <p>El sujetador deportivo es el equipamiento m&aacute;s cr&iacute;tico para una corredora &mdash; por encima de zapatillas, reloj GPS o cualquier otra pieza. Un modelo adecuado protege tu salud mamaria a largo plazo, evita dolor durante el entrenamiento y te deja centrarte en correr sin molestias constantes.</p>\n    <p>Si solo pudi&eacute;ramos recomendar uno, ser&iacute;a el <strong><a href=\"#shock-absorber\" style=\"color:#f97316\">Shock Absorber Active Multi Sports</a></strong>. Para pecho grande (D+), el <strong><a href=\"#triumph\" style=\"color:#f97316\">Triumph Triaction Fitness F</a></strong> es imbatible. Para presupuesto ajustado, una <strong><a href=\"#economico\" style=\"color:#f97316\">opci&oacute;n b&aacute;sica de alto impacto</a></strong> cubre lo esencial por 15-20&euro;.</p>\n    <p>Invierte bien aqu&iacute; y no solo mejorar&aacute;s tu experiencia corriendo: cuidar&aacute;s los ligamentos de Cooper &mdash; tejido que no se regenera una vez da&ntilde;ado. Tu yo de 60 a&ntilde;os te lo agradecer&aacute;.</p>",
     "relatedLinks": [
       { "href": "/blog/mejores-zapatillas-running-mujer", "label": "Mejores zapatillas running mujer" },
       { "href": "/blog/correr-durante-menopausia", "label": "Correr durante menopausia" },

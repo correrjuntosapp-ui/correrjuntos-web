@@ -1,0 +1,142 @@
+<!--
+  BREVO DOUBLE OPT-IN TEMPLATE
+  ─────────────────────────────────────────────────────────────
+  Para activar el flujo DOI del lead magnet Plan 10K:
+
+  1. Entra en https://app.brevo.com → Campaigns → Templates → New template
+  2. Nombre del template: "Lead Magnet — Plan 10K DOI"
+  3. Subject: Confirma tu email y descarga el Plan 10K (PDF)
+  4. From name: CorrerJuntos
+  5. From email: [tu email de Brevo, típicamente hola@correrjuntos.com]
+  6. Editor: "HTML editor" (no el drag-and-drop) — pega este HTML completo
+  7. Save
+  8. Copia el TEMPLATE ID que aparece (ej: 42)
+  9. En Vercel → Settings → Environment Variables:
+       BREVO_DOI_TEMPLATE_ID = 42
+  10. Redeploy (o esperar al próximo push)
+
+  VARIABLE IMPORTANTE: {{ params.DOUBLE_OPT_IN }}
+  Brevo la reemplaza automáticamente por el link único de confirmación.
+  NO la cambies. NO la borres.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirma tu email y descarga el Plan 10K</title>
+</head>
+<body style="margin:0;padding:0;background:#fef7ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#3d3229;line-height:1.6">
+
+<!-- Outer wrapper -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fef7ed">
+  <tr>
+    <td align="center" style="padding:40px 20px">
+
+      <!-- Card -->
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(61,50,41,.08)">
+
+        <!-- Header bar -->
+        <tr>
+          <td style="padding:32px 40px 24px;text-align:left;border-bottom:1px solid #f0ebe3">
+            <span style="font-size:18px;font-weight:800;color:#f97316;letter-spacing:-.5px">Correr<span style="color:#1a1208">Juntos</span></span>
+          </td>
+        </tr>
+
+        <!-- Main content -->
+        <tr>
+          <td style="padding:40px 40px 20px">
+            <p style="margin:0 0 10px;font-family:'Courier New',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#f97316;font-weight:600">
+              ✓ ÚLTIMO PASO
+            </p>
+            <h1 style="margin:0 0 20px;font-size:28px;font-weight:800;color:#1a1208;line-height:1.2;letter-spacing:-.02em">
+              Confirma tu email y <span style="color:#f97316">descarga el Plan 10K</span>
+            </h1>
+            <p style="margin:0 0 24px;font-size:16px;color:#5c4d3d;line-height:1.6">
+              Has pedido el <strong style="color:#1a1208">Plan 10K — primeras 2 semanas</strong> en
+              correrjuntos.com. Para enviártelo, solo necesitamos que confirmes que este email
+              es tuyo haciendo clic en el botón de abajo.
+            </p>
+
+            <!-- CTA Button -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:24px 0">
+              <tr>
+                <td align="center">
+                  <a href="{{ params.DOUBLE_OPT_IN }}"
+                     style="display:inline-block;padding:16px 36px;background:#f97316;color:#ffffff;font-size:16px;font-weight:700;text-decoration:none;border-radius:12px;letter-spacing:-.01em;box-shadow:0 4px 14px rgba(249,115,22,.3)">
+                    Confirmar y descargar PDF →
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:24px 0 0;font-size:14px;color:#9a8e7f;line-height:1.5">
+              Al hacer clic te llevamos directamente a la descarga del PDF. El enlace caduca
+              en <strong>7 días</strong>.
+            </p>
+          </td>
+        </tr>
+
+        <!-- Divider -->
+        <tr>
+          <td style="padding:0 40px">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr><td style="border-top:1px solid #f0ebe3;height:1px"></td></tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- What's inside -->
+        <tr>
+          <td style="padding:28px 40px 32px">
+            <p style="margin:0 0 14px;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6b5c4d;font-weight:600">
+              ▸ QUÉ CONTIENE EL PDF
+            </p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding:6px 0;font-size:14px;color:#5c4d3d;line-height:1.55">
+                  ▸ <strong style="color:#1a1208">8 sesiones</strong> estructuradas (2 semanas completas)
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;font-size:14px;color:#5c4d3d;line-height:1.55">
+                  ▸ <strong style="color:#1a1208">Ritmos por zona</strong> (fácil, largo, fartlek)
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;font-size:14px;color:#5c4d3d;line-height:1.55">
+                  ▸ <strong style="color:#1a1208">Notas del coach</strong> en cada sesión
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;font-size:14px;color:#5c4d3d;line-height:1.55">
+                  ▸ <strong style="color:#1a1208">Guía de nutrición</strong> pre-10K
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- Footer -->
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;margin-top:24px">
+        <tr>
+          <td align="center" style="padding:0 20px;font-size:12px;color:#9a8e7f;line-height:1.6">
+            <p style="margin:0 0 8px">
+              Si no has pedido este email, puedes ignorarlo y no pasará nada.
+            </p>
+            <p style="margin:0">
+              &copy; 2026 CorrerJuntos ·
+              <a href="https://www.correrjuntos.com" style="color:#f97316;text-decoration:none">correrjuntos.com</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

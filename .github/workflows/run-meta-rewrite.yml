@@ -1,0 +1,30 @@
+name: Run meta-rewrite (one-shot)
+# Manual trigger only — run once to apply 29 meta description fixes
+# After running, delete this workflow or it can be triggered again accidentally
+on:
+  workflow_dispatch:
+
+jobs:
+  meta-rewrite:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run meta-rewrite
+        run: node tools/meta-rewrite.cjs
+
+      - name: Commit updated meta descriptions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/
+          git diff --staged --quiet || git commit -m "seo: rewrite 29 meta descriptions (GENERIC/MISSING/TOO_SHORT/TOO_LONG fixes)"
+          git push

@@ -144,8 +144,13 @@
   var content = document.querySelector('.content') || document.querySelector('article') || document.querySelector('main');
   if(content){
     var h2s = content.querySelectorAll('h2');
-    /* Insert after the 2nd h2 (roughly 30% of content) */
-    var targetH2 = h2s.length >= 3 ? h2s[1] : (h2s.length >= 2 ? h2s[1] : null);
+    /* Skip TOC H2 ("Contenido de esta guía", "Índice", etc.) when picking the anchor.
+       Without this, h2s[0] is the TOC header and the CTA lands too early, squeezed
+       between TOC and the first content section (~1400px). With the skip, the CTA
+       lands after the 2nd REAL content H2 (~2200px — well inside the article). */
+    var tocPattern = /contenido|en este art|\u00edndice|indice|tabla de contenido|table of contents|in this guide/i;
+    var skip = (h2s[0] && tocPattern.test(h2s[0].textContent || '')) ? 1 : 0;
+    var targetH2 = h2s[skip + 1] || h2s[skip] || null;
     /* Skip if already has an app banner nearby (from enhance.js) */
     var nextEl = targetH2 ? targetH2.nextElementSibling : null;
     if(targetH2 && !(nextEl && nextEl.classList && nextEl.classList.contains('cj-app-banner'))){
@@ -157,7 +162,7 @@
         lightCTA.innerHTML = (isEN
           ? 'Track your gear performance with <a href="' + IOS_URL + '" target="_blank" rel="noopener" style="color:#f97316;font-weight:600">CorrerJuntos GPS</a> — free on iOS and Android.'
           : 'Registra el rendimiento de tu equipamiento con <a href="' + IOS_URL + '" target="_blank" rel="noopener" style="color:#f97316;font-weight:600">CorrerJuntos GPS</a> — gratis en iOS y Android.');
-        targetH2.parentNode.insertBefore(lightCTA, targetH2);
+        targetH2.insertAdjacentElement('afterend', lightCTA);
         ga('cro_impression', {location: 'mid_light', slug: slug});
       } else {
       /* Non-affiliate articles get the full CTA block */
@@ -230,7 +235,7 @@
         '<div class="cro-fomo">' + fomoText + '</div>' +
         '<div class="cro-proof">' + (isEN ? '<strong>5,000+</strong> runners \u00b7 <strong>58+ cities</strong> \u00b7 100% free' : '<strong>5.000+</strong> runners \u00b7 <strong>58+ ciudades</strong> \u00b7 100% gratis') + '</div>';
 
-      targetH2.parentNode.insertBefore(midCTA, targetH2);
+      targetH2.insertAdjacentElement('afterend', midCTA);
       ga('cro_impression', {location: 'mid', slug: slug});
     } /* end else (non-affiliate) */
     }

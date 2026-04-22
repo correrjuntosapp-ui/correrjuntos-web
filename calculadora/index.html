@@ -20,20 +20,70 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Calculadora de Ritmos Running",
-  "description": "Calcula tu ritmo de running, velocidad y tiempos estimados para cualquier distancia.",
-  "url": "https://www.correrjuntos.com/calculadora/",
-  "applicationCategory": "HealthApplication",
-  "operatingSystem": "Web",
-  "publisher": {"@type": "Organization", "name": "CorrerJuntos", "logo": {"@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png"}},
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com"},
-      {"@type": "ListItem", "position": 2, "name": "Calculadora de Ritmos"}
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/calculadora/#webpage",
+      "url": "https://www.correrjuntos.com/calculadora/",
+      "name": "Calculadora de Ritmos Running | Pace Calculator",
+      "description": "Calcula tu ritmo de running, velocidad y tiempos estimados para cualquier distancia. Desde 1K hasta maratón. Gratis y sin registro.",
+      "inLanguage": "es-ES",
+      "isPartOf": {"@id": "https://www.correrjuntos.com/#website"},
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com"},
+          {"@type": "ListItem", "position": 2, "name": "Calculadora de Ritmos"}
+        ]
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.correrjuntos.com/calculadora/#app",
+      "name": "Calculadora de Ritmos Running",
+      "alternateName": "Pace Calculator",
+      "description": "Herramienta gratuita online para calcular ritmo de running, velocidad, tiempos estimados para 5K, 10K, media maratón y maratón, y zonas de frecuencia cardíaca.",
+      "url": "https://www.correrjuntos.com/calculadora/",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "es-ES",
+      "featureList": [
+        "Calcular ritmo (min/km) a partir de tiempo y distancia",
+        "Calcular velocidad (km/h) y tiempo estimado por distancia",
+        "Predicción de tiempos para 5K, 10K, 21K y 42K",
+        "Zonas de frecuencia cardíaca (Z1-Z5) según fórmula Karvonen",
+        "Tabla de paces de referencia por nivel (principiante, intermedio, avanzado, élite)"
+      ],
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+      "publisher": {"@type": "Organization", "name": "CorrerJuntos", "logo": {"@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png"}}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.correrjuntos.com/calculadora/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo se calcula el ritmo (pace) en running?",
+          "acceptedAnswer": {"@type": "Answer", "text": "El ritmo se calcula dividiendo el tiempo total entre la distancia recorrida, y se expresa en minutos por kilómetro (min/km). Por ejemplo, si corres 10 km en 50 minutos, tu ritmo es 5:00 min/km. Esta calculadora hace la conversión automática y también la velocidad equivalente en km/h."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué ritmo necesito para bajar de 4 horas en maratón?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Para terminar un maratón por debajo de 4 horas necesitas sostener un ritmo de 5:41 min/km durante los 42,195 km. La calculadora te muestra el ritmo exacto para cualquier tiempo objetivo en 5K, 10K, media y maratón."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué son las zonas de frecuencia cardíaca y para qué sirven?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Las zonas de frecuencia cardíaca (Z1 a Z5) dividen tu rango de esfuerzo en intensidades. Z1-Z2 son recuperación y aeróbico ligero; Z3 es tempo; Z4 es umbral (series largas); Z5 es intervalos máximos. Entrenar en la zona correcta evita el sobreentrenamiento y maximiza adaptaciones fisiológicas."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿La calculadora funciona para trail running y carreras de montaña?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Sí, pero con matiz: el ritmo calculado es para superficie plana. En trail, con desnivel positivo, tu ritmo real será 20-40% más lento en subidas. Usa la calculadora como referencia de esfuerzo objetivo y ajusta según el perfil altimétrico de la carrera."}
+        }
+      ]
+    }
+  ]
 }
 </script>
 <script>
@@ -145,6 +195,32 @@ nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-betw
 .cta-card p{color:#94a3b8;margin-bottom:20px;font-size:.95rem}
 .cta-btn{display:inline-block;padding:14px 32px;border-radius:14px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-weight:700;font-size:1rem;text-decoration:none;transition:all .2s}
 .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.3)}
+
+/* SEO content block */
+.calc-seo{max-width:820px;margin:56px auto 32px;padding:0 4px;color:#cbd5e1;line-height:1.7;font-size:.98rem}
+.calc-seo h2{font-size:1.45rem;font-weight:800;color:#fff;margin:40px 0 14px;letter-spacing:-.01em;line-height:1.25}
+.calc-seo h2:first-child{margin-top:0}
+.calc-seo h3{font-size:1.05rem;font-weight:700;color:#f1eadf;margin:24px 0 8px}
+.calc-seo p{margin:0 0 14px;color:#cbd5e1}
+.calc-seo p strong{color:#fff;font-weight:700}
+.calc-seo em{color:#94a3b8;font-style:italic}
+.calc-seo a{color:#f97316;text-decoration:none;border-bottom:1px solid rgba(249,115,22,.35);transition:border-color .2s}
+.calc-seo a:hover{border-bottom-color:#f97316}
+.calc-formula{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:3px solid #f97316;padding:14px 18px;margin:12px 0 20px;font-family:'JetBrains Mono','Menlo','Consolas',monospace;font-size:.86rem;color:#fbbf24;border-radius:8px;white-space:pre-wrap;line-height:1.6}
+.calc-table-wrap{overflow-x:auto;margin:16px -4px 12px;padding:0 4px}
+.calc-table{width:100%;border-collapse:collapse;font-size:.9rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden}
+.calc-table thead{background:rgba(249,115,22,.08)}
+.calc-table th{padding:12px 14px;text-align:left;font-weight:700;color:#fef3c7;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.calc-table td{padding:12px 14px;border-top:1px solid rgba(255,255,255,.06);color:#cbd5e1}
+.calc-table td:first-child{color:#fff}
+.calc-table tbody tr:hover{background:rgba(249,115,22,.04)}
+.calc-note{font-size:.85rem;color:#94a3b8;font-style:italic;margin:8px 0 20px}
+.calc-goals,.calc-zones{list-style:none;padding:0;margin:12px 0 20px}
+.calc-goals li,.calc-zones li{padding:10px 0 10px 22px;border-bottom:1px solid rgba(255,255,255,.06);position:relative;color:#cbd5e1}
+.calc-goals li::before,.calc-zones li::before{content:"";position:absolute;left:0;top:17px;width:10px;height:2px;background:#f97316}
+.calc-goals li:last-child,.calc-zones li:last-child{border-bottom:none}
+.calc-goals li strong,.calc-zones li strong{color:#fff;font-weight:700}
+@media(max-width:640px){.calc-seo{font-size:.94rem}.calc-seo h2{font-size:1.25rem}.calc-table{font-size:.82rem}.calc-table th,.calc-table td{padding:10px 10px}}
 
 /* Footer */
 .footer{text-align:center;padding:32px 20px;color:#475569;font-size:.78rem;border-top:1px solid rgba(255,255,255,.06);margin-top:40px}
@@ -388,6 +464,74 @@ nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-betw
       <div class="zone-pace" id="z5pace">--:--</div>
     </div>
   </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SEO content — pace reference tables + how-to +
+       internal links. Essential for Google to rank
+       the calculator (a tool alone without text is
+       thin content).
+       ═══════════════════════════════════════════════ -->
+  <section class="calc-seo">
+    <h2 id="como-se-calcula">Cómo se calcula el ritmo de running</h2>
+    <p>El <strong>ritmo</strong> (o <em>pace</em> en inglés) es el tiempo que tardas en recorrer un kilómetro. Se expresa en <strong>min/km</strong> y se calcula dividiendo el tiempo total entre la distancia. Por ejemplo, correr 10 km en 50 minutos equivale a un ritmo de <strong>5:00 min/km</strong>, que en velocidad son <strong>12 km/h</strong>.</p>
+    <p>La fórmula es simple pero esencial para todo corredor:</p>
+    <pre class="calc-formula">Ritmo (min/km) = Tiempo total (min) ÷ Distancia (km)
+Velocidad (km/h) = 60 ÷ Ritmo (min/km)</pre>
+    <p>Saber tu ritmo medio te permite <strong>entrenar con precisión</strong>, planificar tu tiempo objetivo en una carrera y elegir la zona de frecuencia cardíaca adecuada para cada sesión.</p>
+
+    <h2 id="tabla-paces">Tabla de paces de referencia por nivel</h2>
+    <p>Esta tabla resume los ritmos orientativos que maneja un corredor en cada distancia según su nivel. Úsala para fijar objetivos realistas y medir tu progreso.</p>
+    <div class="calc-table-wrap">
+      <table class="calc-table">
+        <thead>
+          <tr>
+            <th>Nivel</th>
+            <th>5K</th>
+            <th>10K</th>
+            <th>Media maratón</th>
+            <th>Maratón</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Principiante</strong></td><td>7:00 min/km</td><td>7:15 min/km</td><td>7:30 min/km</td><td>8:00 min/km</td></tr>
+          <tr><td><strong>Intermedio</strong></td><td>5:30 min/km</td><td>5:45 min/km</td><td>6:00 min/km</td><td>6:15 min/km</td></tr>
+          <tr><td><strong>Avanzado</strong></td><td>4:30 min/km</td><td>4:45 min/km</td><td>5:00 min/km</td><td>5:15 min/km</td></tr>
+          <tr><td><strong>Élite</strong></td><td>3:00 min/km</td><td>3:10 min/km</td><td>3:20 min/km</td><td>3:30 min/km</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="calc-note">Los ritmos son estimaciones para superficie plana. En <a href="/blog/trail/">trail running</a>, con desnivel positivo, el ritmo real será 20-40% más lento en subidas.</p>
+
+    <h2 id="tiempos-objetivo">Tiempos objetivo populares y ritmo necesario</h2>
+    <ul class="calc-goals">
+      <li><strong>Sub 25 min en 5K</strong> → ritmo 5:00 min/km</li>
+      <li><strong>Sub 50 min en 10K</strong> → ritmo 5:00 min/km</li>
+      <li><strong>Sub 2h en media maratón</strong> → ritmo 5:41 min/km</li>
+      <li><strong>Sub 1h30 en media maratón</strong> → ritmo 4:16 min/km</li>
+      <li><strong>Sub 4h en maratón</strong> → ritmo 5:41 min/km</li>
+      <li><strong>Sub 3h30 en maratón</strong> → ritmo 4:58 min/km</li>
+      <li><strong>Sub 3h en maratón</strong> → ritmo 4:15 min/km</li>
+    </ul>
+
+    <h2 id="zonas-frecuencia">Zonas de frecuencia cardíaca en running</h2>
+    <p>Esta calculadora también estima tus cinco <strong>zonas de frecuencia cardíaca</strong> a partir de tu FC máxima. Cada zona tiene un objetivo fisiológico distinto:</p>
+    <ul class="calc-zones">
+      <li><strong>Zona 1 (50-60%)</strong> — Recuperación activa. Rodajes muy suaves post-carrera.</li>
+      <li><strong>Zona 2 (60-70%)</strong> — Base aeróbica. La zona donde debe pasar el 70-80% del volumen semanal.</li>
+      <li><strong>Zona 3 (70-80%)</strong> — Tempo. Esfuerzo controlado, sostenible 30-60 min.</li>
+      <li><strong>Zona 4 (80-90%)</strong> — Umbral. Series largas de 5-15 min a ritmo de 10K o media maratón.</li>
+      <li><strong>Zona 5 (90-100%)</strong> — VO2 Max. Intervalos cortos, esfuerzo máximo.</li>
+    </ul>
+    <p>Para profundizar en cómo entrenar cada zona, lee nuestra <a href="/blog/vo2-max-running-como-mejorar">guía completa de VO2 Max</a> y la <a href="/blog/entrenamiento/">sección de entrenamiento</a> del blog.</p>
+
+    <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
+    <h3>¿Por qué mi ritmo cambia cuando subo cuestas?</h3>
+    <p>El ritmo en plano no se traslada 1:1 a terreno con desnivel. En subidas moderadas (4-6%) tu ritmo cae 30-60 segundos por km aunque mantengas el mismo esfuerzo cardiovascular. Por eso en trail se prioriza <strong>pulsaciones</strong> sobre pace.</p>
+    <h3>¿El ritmo predicho para maratón es fiable a partir de un 5K?</h3>
+    <p>Solo parcialmente. Un 5K fuerte predice bien tu 10K, pero <strong>no</strong> garantiza el maratón — requiere adaptaciones específicas de resistencia que no se miden en distancias cortas. Usa el predictor como referencia, no como garantía.</p>
+    <h3>¿Puedo usar la calculadora para triatlón?</h3>
+    <p>Sí, para el segmento de carrera a pie. Los tiempos de natación y ciclismo siguen otras fórmulas. Si preparas un triatlón, consulta nuestra guía <a href="/blog/triatlon-para-runners-principiantes">triatlón para runners principiantes</a>.</p>
+  </section>
 
   <!-- CTA -->
   <div class="cta-card">

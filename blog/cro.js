@@ -86,6 +86,16 @@
     '.cro-mid .cro-proof strong{color:#ea580c}',
     '.cro-mid .cro-link{display:inline-flex;align-items:center;gap:4px;color:#ea580c;font-size:.82rem;font-weight:600;text-decoration:none;margin-top:8px;transition:gap .2s}',
     '.cro-mid .cro-link:hover{gap:8px}',
+    /* Premium secondary CTA — shown only on training / race slugs.
+       Distinguished from the primary app CTA with a subtle amber gradient
+       background so it reads as "upsell option", not a competing main action. */
+    '.cro-premium-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 16px;border-radius:10px;background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(249,115,22,.08));border:1px solid rgba(251,191,36,.3);color:#78350f;font-size:.82rem;font-weight:500;text-decoration:none;transition:all .2s;letter-spacing:.003em;line-height:1.4}',
+    '.cro-premium-link svg{color:#f97316;flex-shrink:0}',
+    '.cro-premium-link strong{font-weight:700;color:#78350f}',
+    '.cro-premium-link:hover{border-color:#f97316;background:linear-gradient(135deg,rgba(251,191,36,.2),rgba(249,115,22,.15));transform:translateY(-1px);box-shadow:0 4px 12px rgba(249,115,22,.15)}',
+    '.dark-mode .cro-premium-link{color:#fde68a;background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(249,115,22,.05));border-color:rgba(251,191,36,.25)}',
+    '.dark-mode .cro-premium-link strong{color:#fef3c7}',
+    '.dark-mode .cro-premium-link:hover{border-color:#f97316;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(249,115,22,.1))}',
 
     /* Deep link primary CTA button (mobile) */
     '.cro-deep{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:.95rem;font-weight:700;border-radius:50px;text-decoration:none;margin-bottom:14px;box-shadow:0 4px 16px rgba(249,115,22,.35);transition:all .2s}',
@@ -225,6 +235,17 @@
         '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
         midBtnText + ' \u2192</a>';
 
+      /* Premium secondary CTA — shown on training-plan / race-guide slugs
+         where the visitor is specifically hungry for a plan. Pushes the
+         free 7-day trial, not the monthly paywall directly. */
+      var showPremiumLink = /plan|5k|10k|21k|42k|maraton|marathon|media|half|trail|sub-|vo2|tirada|serie|tempo/.test(slug);
+      var premiumLink = showPremiumLink
+        ? '<a href="' + contextDeepLink + '" class="cro-premium-link" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_premium_click\',{location:\'mid\',slug:\'' + slug + '\'})">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>' +
+            (isEN ? 'Or try <strong>Premium free for 7 days</strong> — personalized AI plans &rarr;' : 'O prueba <strong>Premium 7 d\u00edas gratis</strong> — planes con IA personalizados \u2192') +
+          '</a>'
+        : '';
+
       midCTA.innerHTML =
         '<h3>' + midTitle + '</h3>' +
         '<p>' + midText + '</p>' +
@@ -232,6 +253,7 @@
         '<div class="cro-or">' + (isEN ? 'or download the app' : 'o descarga la app') + '</div>' +
         '<div class="cro-badges">' + appleBadge + googleBadge + '</div>' +
         '<a href="' + (isEN ? '/cities/' : '/cities/') + '" class="cro-link">\uD83D\uDDFA\uFE0F ' + (isEN ? 'See meetups near me' : 'Ver quedadas cerca de m\u00ed') + ' \u2192</a>' +
+        premiumLink +
         '<div class="cro-fomo">' + fomoText + '</div>' +
         '<div class="cro-proof">' + (isEN ? '<strong>5,000+</strong> runners \u00b7 <strong>58+ cities</strong> \u00b7 100% free' : '<strong>5.000+</strong> runners \u00b7 <strong>58+ ciudades</strong> \u00b7 100% gratis') + '</div>';
 

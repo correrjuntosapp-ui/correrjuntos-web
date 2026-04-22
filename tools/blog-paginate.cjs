@@ -69,6 +69,14 @@ function buildPage({ cfg, pageNum, totalPages, cards }) {
   const nextUrl   = pageNum < totalPages ? `${cfg.baseUrl}page/${pageNum + 1}/` : null;
   const L = cfg.labels;
   const pageTitle = pageNum === 1 ? cfg.title : `${cfg.title} — ${L.page} ${pageNum}`;
+  // Unique meta per page: cite the article range + total pages to avoid DUPLICATE flag
+  const firstArticleIdx = (pageNum - 1) * 20 + 1;
+  const lastArticleIdx  = firstArticleIdx + cards.length - 1;
+  const pageDesc = pageNum === 1
+    ? cfg.desc
+    : (cfg.lang === 'en'
+        ? `Page ${pageNum} of our running blog — articles ${firstArticleIdx}-${lastArticleIdx} of the full archive. Guides, reviews and training plans for runners of all levels.`
+        : `Página ${pageNum} del blog de running — artículos ${firstArticleIdx}-${lastArticleIdx} del archivo completo. Guías, reviews y planes de entrenamiento para corredores de todos los niveles.`);
 
   return `<!DOCTYPE html>
 <html lang="${cfg.lang}">
@@ -76,13 +84,13 @@ function buildPage({ cfg, pageNum, totalPages, cards }) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${pageTitle}</title>
-<meta name="description" content="${cfg.desc}">
+<meta name="description" content="${pageDesc}">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="${canonical}">
 ${prevUrl ? `<link rel="prev" href="${prevUrl}">` : ''}
 ${nextUrl ? `<link rel="next" href="${nextUrl}">` : ''}
 <meta property="og:title" content="${pageTitle}">
-<meta property="og:description" content="${cfg.desc}">
+<meta property="og:description" content="${pageDesc}">
 <meta property="og:url" content="${canonical}">
 <meta property="og:locale" content="${cfg.locale}">
 <meta property="og:type" content="website">

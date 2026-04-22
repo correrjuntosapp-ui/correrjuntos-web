@@ -128,41 +128,67 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .search-wrap .search-clear:hover{color:#f97316}
 .search-wrap .search-clear svg{display:block}
 
-/* ── Editorial filter bar — typographic, no pills, no icons ── */
-.filter-bar-wrap{padding:28px 0 10px;position:relative;z-index:20}
-.filter-section-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:0 2px}
-.filter-section-label{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
-.filter-section-rule{flex:1;height:1px;background:#d9cfc2}
-.filter-section-count{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#9a8e7f;white-space:nowrap}
+/* ── Navega por categoría ── */
+.filter-bar-wrap{padding:24px 0 8px;position:relative;z-index:20}
+.filter-section-head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.filter-section-label{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
+.filter-section-rule{flex:1;height:1px;background:#e8ddd1}
+.filter-section-count{font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#b5a797;white-space:nowrap}
 .dark-mode .filter-section-label{color:#f1eadf}
 .dark-mode .filter-section-rule{background:rgba(255,255,255,.14)}
 .dark-mode .filter-section-count{color:#94a3b8}
 
-.filter-btn-todos{display:inline-block;padding:7px 0;margin-right:22px;border:0;background:transparent;color:#3d3229;font-size:.86rem;font-weight:600;cursor:pointer;transition:color .2s;white-space:nowrap;flex-shrink:0;letter-spacing:.003em;border-bottom:2px solid transparent;border-radius:0}
-.filter-btn-todos:hover{color:#f97316}
-.filter-btn-todos.active{color:#f97316;border-bottom-color:#f97316}
-.filter-dropdown-trigger{display:none}
-.filter-active-label{display:none}
+.fp-divider,#filterActiveLabel,.filter-dropdown-trigger{display:none!important}
 
-.filter-panel{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:2px 22px;opacity:1;pointer-events:auto}
-.filter-panel-btn{padding:7px 0;border:0;background:transparent;color:#6b5c4d;font-size:.84rem;font-weight:500;cursor:pointer;transition:color .2s,border-color .2s;white-space:nowrap;letter-spacing:.003em;border-bottom:2px solid transparent;border-radius:0;text-decoration:none;text-align:left;display:inline-block}
-.filter-panel-btn:hover{color:#f97316}
-.filter-panel-btn.active{color:#f97316;border-bottom-color:#f97316;font-weight:600}
-.filter-panel-btn .cat-name{white-space:nowrap}
+.filter-panel{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:0;opacity:1;pointer-events:auto}
 
-.fp-divider{width:1px;height:14px;background:#d9cfc2;align-self:center;flex-shrink:0;margin:0 8px;display:inline-block;vertical-align:middle}
-.dark-mode .fp-divider{background:rgba(255,255,255,.14)}
+.filter-btn-todos{display:inline-flex;align-items:center;padding:7px 18px;background:#f97316;border:1.5px solid #f97316;border-radius:6px;color:#fff;font-size:.79rem;font-weight:700;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .18s ease;box-shadow:0 2px 8px rgba(249,115,22,.28)}
+.filter-btn-todos:hover{background:#ea580c;border-color:#ea580c;box-shadow:0 4px 14px rgba(249,115,22,.38);transform:translateY(-1px)}
+.filter-btn-todos.active{background:#ea580c;border-color:#ea580c;box-shadow:0 4px 14px rgba(249,115,22,.38)}
 
-.fp-calculadora{color:#f97316!important;font-weight:600!important}
-.fp-calculadora:hover{color:#ea580c!important;border-bottom-color:#ea580c!important}
-.dark-mode .fp-calculadora{color:#fb923c!important}
-.dark-mode .fp-calculadora:hover{color:#f97316!important}
+.filter-panel-btn{display:inline-flex;align-items:center;padding:7px 14px;border:1.5px solid;border-radius:6px;font-size:.79rem;font-weight:600;cursor:pointer;transition:all .18s ease;white-space:nowrap;letter-spacing:.015em;background:transparent;text-decoration:none;text-align:left}
+.filter-panel-btn:hover{color:#fff!important;box-shadow:0 3px 10px rgba(0,0,0,.14);transform:translateY(-1px)}
 
-/* ── Shared editorial section head (Most Read, Continúa leyendo) ── */
+.fp-entrenamiento{background:#fff4ee;border-color:#f5c4a3;color:#9a3412}
+.fp-entrenamiento:hover{background:#ea580c;border-color:#ea580c}
+.fp-nutricion{background:#f0fdf4;border-color:#a7f3d0;color:#065f46}
+.fp-nutricion:hover{background:#059669;border-color:#059669}
+.fp-equipamiento{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.fp-equipamiento:hover{background:#2563eb;border-color:#2563eb}
+.fp-tecnologia{background:#f5f3ff;border-color:#ddd6fe;color:#5b21b6}
+.fp-tecnologia:hover{background:#7c3aed;border-color:#7c3aed}
+.fp-zapatillas{background:#fff1f2;border-color:#fecdd3;color:#9f1239}
+.fp-zapatillas:hover{background:#e11d48;border-color:#e11d48}
+.fp-salud{background:#f0fdfa;border-color:#99f6e4;color:#134e4a}
+.fp-salud:hover{background:#0d9488;border-color:#0d9488}
+.fp-rutas{background:#fffbeb;border-color:#fcd34d;color:#78350f}
+.fp-rutas:hover{background:#d97706;border-color:#d97706}
+.fp-trail{background:#fafaf9;border-color:#d6d3d1;color:#292524}
+.fp-trail:hover{background:#57534e;border-color:#57534e}
+.fp-suplementacion{background:#fdf4ff;border-color:#e9d5ff;color:#701a75}
+.fp-suplementacion:hover{background:#a21caf;border-color:#a21caf}
+.fp-atleta-hibrido{background:#f8fafc;border-color:#94a3b8;color:#1e293b}
+.fp-atleta-hibrido:hover{background:#475569;border-color:#475569}
+.fp-calculadora{background:#fefce8;border-color:#fde047;color:#713f12}
+.fp-calculadora:hover{background:#ca8a04;border-color:#ca8a04;color:#fff!important}
+
+/* Active state — same look as hover (solid fill) so selection is visible */
+.fp-entrenamiento.active{background:#ea580c;border-color:#ea580c;color:#fff}
+.fp-nutricion.active{background:#059669;border-color:#059669;color:#fff}
+.fp-equipamiento.active{background:#2563eb;border-color:#2563eb;color:#fff}
+.fp-tecnologia.active{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.fp-zapatillas.active{background:#e11d48;border-color:#e11d48;color:#fff}
+.fp-salud.active{background:#0d9488;border-color:#0d9488;color:#fff}
+.fp-rutas.active{background:#d97706;border-color:#d97706;color:#fff}
+.fp-trail.active{background:#57534e;border-color:#57534e;color:#fff}
+.fp-suplementacion.active{background:#a21caf;border-color:#a21caf;color:#fff}
+.fp-atleta-hibrido.active{background:#475569;border-color:#475569;color:#fff}
+
+/* ── Shared editorial section head (Most Read) ── */
 .section-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding:0 2px}
 .section-label{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
-.section-rule{flex:1;height:1px;background:#d9cfc2}
-.section-meta{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#9a8e7f;white-space:nowrap}
+.section-rule{flex:1;height:1px;background:#e8ddd1}
+.section-meta{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#b5a797;white-space:nowrap}
 .dark-mode .section-label{color:#f1eadf}
 .dark-mode .section-rule{background:rgba(255,255,255,.14)}
 .dark-mode .section-meta{color:#94a3b8}
@@ -387,10 +413,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .dark-mode .search-wrap input{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#fff}
 .dark-mode .search-wrap input:focus{background:rgba(255,255,255,.07)}
 .dark-mode .search-wrap input::placeholder{color:#94a3b8}
-.dark-mode .filter-panel-btn{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);color:#cbd5e1}
-.dark-mode .filter-panel-btn:hover{border-color:rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.08)}
-.dark-mode .filter-btn-todos{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);color:#cbd5e1}
-.dark-mode .filter-btn-todos.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.3);color:#f97316}
+/* dark-mode filter chips keep light pastel palette — the buttons are the colorful anchor of the navigation */
+.dark-mode .filter-btn-todos{background:#f97316;border-color:#f97316;color:#fff}
+.dark-mode .filter-btn-todos:hover,.dark-mode .filter-btn-todos.active{background:#ea580c;border-color:#ea580c;color:#fff}
 .dark-mode .article-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
 .dark-mode .article-card:hover{box-shadow:0 20px 48px rgba(0,0,0,.3)}
 .dark-mode .card-img::after{background:linear-gradient(transparent,rgba(11,18,32,.6))}

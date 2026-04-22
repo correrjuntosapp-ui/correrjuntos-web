@@ -181,6 +181,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .fp-suplementacion:hover{background:#a21caf;border-color:#a21caf}
 .fp-atleta-hibrido{background:#f8fafc;border-color:#94a3b8;color:#1e293b}
 .fp-atleta-hibrido:hover{background:#475569;border-color:#475569}
+.fp-carreras{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+.fp-carreras:hover{background:#dc2626;border-color:#dc2626}
 
 /* Active state — same look as hover (solid fill) so selection is visible */
 .fp-entrenamiento.active{background:#ea580c;border-color:#ea580c;color:#fff}
@@ -193,6 +195,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .fp-trail.active{background:#57534e;border-color:#57534e;color:#fff}
 .fp-suplementacion.active{background:#a21caf;border-color:#a21caf;color:#fff}
 .fp-atleta-hibrido.active{background:#475569;border-color:#475569;color:#fff}
+.fp-carreras.active{background:#dc2626;border-color:#dc2626;color:#fff}
 
 /* ── Shared editorial section head (Most Read) ── */
 .section-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding:0 2px}
@@ -293,6 +296,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .cat-badge-suplementacion{color:#d946ef;background:rgba(217,70,239,.12)}
 .cat-badge-atleta-hibrido{color:#ef4444;background:rgba(239,68,68,.12)}
 .cat-badge-comunidad{color:#ea580c;background:rgba(251,146,60,.12)}
+.cat-badge-carreras{color:#991b1b;background:rgba(220,38,38,.12)}
 
 .card-body h2{font-size:1.15rem;font-weight:800;color:#3d3229;line-height:1.3;margin-top:2px}
 .card-body p{font-size:.88rem;color:#5c4d3d;line-height:1.6;flex-grow:1}
@@ -525,7 +529,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <div class="filter-section-head">
     <span class="filter-section-label">Navega por categoría</span>
     <span class="filter-section-rule"></span>
-    <span class="filter-section-count"><span id="filterCount">174</span> artículos</span>
+    <span class="filter-section-count"><span id="filterCount">239</span> artículos</span>
   </div>
   <div class="filter-primary">
     <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">Todos</button>
@@ -544,6 +548,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-name">Trail</span></button>
     <button class="filter-panel-btn fp-suplementacion" data-filter="suplementacion"><span class="cat-name">Suplementación</span></button>
     <button class="filter-panel-btn fp-atleta-hibrido" data-filter="atleta-hibrido"><span class="cat-name">Atleta Híbrido</span></button>
+    <button class="filter-panel-btn fp-carreras" data-filter="carreras"><span class="cat-name">Carreras</span></button>
   </div>
   <!-- Hidden original bar for JS compat -->
   <div class="filter-bar" id="filterBar">
@@ -558,6 +563,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <button class="filter-btn" data-filter="trail">Trail</button>
     <button class="filter-btn" data-filter="suplementacion">Suplementación</button>
     <button class="filter-btn" data-filter="atleta-hibrido">Atleta Híbrido</button>
+    <button class="filter-btn" data-filter="carreras">Carreras</button>
   </div>
   </div>
 
@@ -687,13 +693,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Mentalidad Runner Cluster (15 mar 2026) -->
-    <a href="/blog/psicologia-del-corredor" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+    <a href="/blog/psicologia-del-corredor" class="article-card" data-category="salud" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3771074/pexels-photo-3771074.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Psicología del corredor" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Psicolog&iacute;a del Corredor: Motivaci&oacute;n y Muro Mental</h2><p>Motivaci&oacute;n intr&iacute;nseca, disciplina, superar el muro y t&eacute;cnicas de visualizaci&oacute;n.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">15 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Psicolog&iacute;a del Corredor: Motivaci&oacute;n y Muro Mental</h2><p>Motivaci&oacute;n intr&iacute;nseca, disciplina, superar el muro y t&eacute;cnicas de visualizaci&oacute;n.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">15 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/ansiedad-pre-carrera" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+    <a href="/blog/ansiedad-pre-carrera" class="article-card" data-category="salud" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3760514/pexels-photo-3760514.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Ansiedad pre-carrera" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Ansiedad Pre-Carrera: 8 T&eacute;cnicas para los Nervios</h2><p>C&oacute;mo controlar la ansiedad antes de competir: respiraci&oacute;n, visualizaci&oacute;n y estrategias mentales.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">15 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Ansiedad Pre-Carrera: 8 T&eacute;cnicas para los Nervios</h2><p>C&oacute;mo controlar la ansiedad antes de competir: respiraci&oacute;n, visualizaci&oacute;n y estrategias mentales.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">15 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/volver-a-correr-tras-pausa-larga" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/421160/pexels-photo-421160.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Volver a correr tras pausa larga" loading="lazy"></div>
@@ -717,13 +723,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/puma-pwrframe-hyrox.jpg" alt="Zapatillas HYROX" loading="lazy"></div>
       <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Mejores Zapatillas para HYROX 2026</h2><p>PUMA HYROX, Nike Metcon, Reebok Nano. Cu&aacute;l elegir seg&uacute;n tu perfil.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/mejores-calleras-crossfit" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+    <a href="/blog/mejores-calleras-crossfit" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Mejores calleras para CrossFit" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Las 10 Mejores Calleras para CrossFit en 2026</h2><p>Gu&iacute;a biling&uuml;e con 10 calleras reales para CrossFit, pros y contras, y enlaces Amazon para atletas h&iacute;bridos.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Las 10 Mejores Calleras para CrossFit en 2026</h2><p>Gu&iacute;a biling&uuml;e con 10 calleras reales para CrossFit, pros y contras, y enlaces Amazon para atletas h&iacute;bridos.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/atletas-hibridos/mejores-mochilas-crossfit-2026" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+    <a href="/blog/atletas-hibridos/mejores-mochilas-crossfit-2026" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/61gMPhI91rL._AC_SL1200_.jpg" alt="Mochilas CrossFit 2026" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Las 10 mejores mochilas para CrossFit en 2026</h2><p>Comparativa con 10 mochilas resistentes y vers&aacute;tiles para CrossFit, entrenamiento h&iacute;brido y gym training.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Las 10 mejores mochilas para CrossFit en 2026</h2><p>Comparativa con 10 mochilas resistentes y vers&aacute;tiles para CrossFit, entrenamiento h&iacute;brido y gym training.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/zapatillas-deka-strong-atlas" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/deka-hero.jpg" alt="Zapatillas DEKA" loading="lazy"></div>
@@ -745,13 +751,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/skierg-hero.jpg" alt="SkiErg y Remo HYROX" loading="lazy"></div>
       <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>C&oacute;mo Entrenar SkiErg y Remo para HYROX 2026</h2><p>T&eacute;cnica, equipamiento Concept2 y planes de entrenamiento para las estaciones 1 y 5.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/rodillo-vs-pistola-masaje-recuperacion" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+    <a href="/blog/rodillo-vs-pistola-masaje-recuperacion" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/roller-hero.jpg" alt="Rodillo vs Pistola masaje recuperación" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Los 20 Mejores Rodillos y Pistolas de Masaje 2026</h2><p>TriggerPoint, RENPHO, Theragun, KALAHARI, arboleaf y m&aacute;s. Comparativa con los 20 mejores productos para recuperaci&oacute;n.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Los 20 Mejores Rodillos y Pistolas de Masaje 2026</h2><p>TriggerPoint, RENPHO, Theragun, KALAHARI, arboleaf y m&aacute;s. Comparativa con los 20 mejores productos para recuperaci&oacute;n.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/foam-rollers-runners" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+    <a href="/blog/foam-rollers-runners" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/foam-runners-hero.jpg" alt="Foam rollers para corredores" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Los 7 Mejores Foam Rollers para Corredores 2026</h2><p>TriggerPoint GRID, Blackroll, Hyperice y m&aacute;s. Gu&iacute;a completa de liberaci&oacute;n miofascial post-carrera.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Los 7 Mejores Foam Rollers para Corredores 2026</h2><p>TriggerPoint GRID, Blackroll, Hyperice y m&aacute;s. Gu&iacute;a completa de liberaci&oacute;n miofascial post-carrera.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
     <!-- Amazon Affiliate Articles (6 mar 2026) -->
@@ -759,9 +765,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/10168184/pexels-photo-10168184.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Gafas de sol running" loading="lazy"></div>
       <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Las 8 Mejores Gafas de Sol para Running 2026</h2><p>Oakley, Julbo, Nike y m&aacute;s. Protecci&oacute;n UV, ligereza y agarre para correr sin molestias.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/mejores-pulsometros-running-2026" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+    <a href="/blog/mejores-pulsometros-running-2026" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://m.media-amazon.com/images/I/61DZ9mOKb2L._AC_SL1500_.jpg" alt="Mejores puls&oacute;metros running 2026" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>10 Mejores Puls&oacute;metros para Running 2026</h2><p>Garmin HRM-200, COOSPO H6, COROS Arm y m&aacute;s. Cintas pectorales y brazaletes para entrenar por zonas.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">29 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h2>10 Mejores Puls&oacute;metros para Running 2026</h2><p>Garmin HRM-200, COOSPO H6, COROS Arm y m&aacute;s. Cintas pectorales y brazaletes para entrenar por zonas.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">29 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/mejores-relojes-gps-running" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://m.media-amazon.com/images/I/71aTpnUJu0L._AC_SX425_.jpg" alt="Relojes GPS running" loading="lazy"></div>
@@ -793,9 +799,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Plan marat&oacute;n 16 semanas sub 4h" loading="lazy"></div>
       <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Plan Marat&oacute;n 16 Semanas (Sub 4h y Terminar Fuerte)</h2><p>Plan semanal con tabla, ritmos, tiradas largas, nutrici&oacute;n y estrategia para correr una marat&oacute;n por debajo de 4 horas.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">11 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+    <a href="/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners" class="article-card" data-category="salud" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8567597/pexels-photo-8567597.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr durante la menstruaci&oacute;n" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr durante la Menstruaci&oacute;n: Gu&iacute;a Completa para Runners</h2><p>C&oacute;mo adaptar el running al ciclo menstrual, beneficios del ejercicio y productos recomendados para entrenar c&oacute;moda.</p><span class="author">Por Julia Mart&iacute;nez</span><div class="card-meta"><span class="meta">11 mar 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Correr durante la Menstruaci&oacute;n: Gu&iacute;a Completa para Runners</h2><p>C&oacute;mo adaptar el running al ciclo menstrual, beneficios del ejercicio y productos recomendados para entrenar c&oacute;moda.</p><span class="author">Por Julia Mart&iacute;nez</span><div class="card-meta"><span class="meta">11 mar 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/mejores-superficies-para-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/332835/pexels-photo-332835.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Pista de atletismo - mejores superficies para correr" loading="lazy"></div>
@@ -849,9 +855,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Cinta vs calle" loading="lazy"></div>
       <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr en Cinta vs Calle: Comparativa</h2><p>Biomec&aacute;nica, calor&iacute;as e impacto articular. Cu&aacute;ndo elegir cinta o asfalto.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <a href="/blog/diferencia-zapatillas-running-normales" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+    <a href="/blog/diferencia-zapatillas-running-normales" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/elegir-zapatillas-running.jpg" alt="Zapatillas running vs normales" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Zapatillas Running vs Normales: La Diferencia</h2><p>Amortiguaci&oacute;n, drop, transpiraci&oacute;n y soporte. Por qu&eacute; necesitas calzado espec&iacute;fico.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h2>Zapatillas Running vs Normales: La Diferencia</h2><p>Amortiguaci&oacute;n, drop, transpiraci&oacute;n y soporte. Por qu&eacute; necesitas calzado espec&iacute;fico.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/ritmo-para-principiantes-running" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Ritmo para principiantes" loading="lazy"></div>
@@ -875,19 +881,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Running Social Cluster — Block 3: Cities + Comparatives -->
-    <a href="/blog/grupos-running-madrid" class="article-card" data-category="entrenamiento" style="animation-delay:.044s">
+    <a href="/blog/grupos-running-madrid" class="article-card" data-category="rutas" style="animation-delay:.044s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/878151/pexels-photo-878151.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&crop=center&q=80" alt="Grupos de running en Madrid" loading="lazy" width="640" height="360"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Grupos de Running en Madrid: Los 15 Mejores para Correr en 2026</h2><p>Gu&iacute;a completa de los mejores grupos de running en Madrid: clubes, quedadas gratuitas, rutas y c&oacute;mo encontrar tu grupo ideal.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running en Madrid: Los 15 Mejores para Correr en 2026</h2><p>Gu&iacute;a completa de los mejores grupos de running en Madrid: clubes, quedadas gratuitas, rutas y c&oacute;mo encontrar tu grupo ideal.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
-    <a href="/blog/grupos-running-barcelona" class="article-card" data-category="entrenamiento" style="animation-delay:.046s">
+    <a href="/blog/grupos-running-barcelona" class="article-card" data-category="rutas" style="animation-delay:.046s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2539658/pexels-photo-2539658.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Grupos de running en Barcelona" loading="lazy" width="640" height="360"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Grupos de Running en Barcelona: Los Mejores Grupos para Correr en 2026</h2><p>Descubre los mejores grupos de running en Barcelona: Barceloneta, Montju&iuml;c, Carretera de les Aig&uuml;es y m&aacute;s.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running en Barcelona: Los Mejores Grupos para Correr en 2026</h2><p>Descubre los mejores grupos de running en Barcelona: Barceloneta, Montju&iuml;c, Carretera de les Aig&uuml;es y m&aacute;s.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
-    <a href="/blog/grupos-running-valencia" class="article-card" data-category="entrenamiento" style="animation-delay:.048s">
+    <a href="/blog/grupos-running-valencia" class="article-card" data-category="rutas" style="animation-delay:.048s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8381736/pexels-photo-8381736.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Grupos de running en Valencia" loading="lazy" width="640" height="360"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Grupos de Running en Valencia: Los Mejores Grupos para Correr en 2026</h2><p>Los mejores grupos de running en Valencia: Jard&iacute;n del Turia, Malvarrosa, parkrun y quedadas gratuitas.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running en Valencia: Los Mejores Grupos para Correr en 2026</h2><p>Los mejores grupos de running en Valencia: Jard&iacute;n del Turia, Malvarrosa, parkrun y quedadas gratuitas.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
     <a href="/blog/correrjuntos-vs-strava-grupos" class="article-card" data-category="tecnologia" style="animation-delay:.049s">
@@ -901,14 +907,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Running Social Cluster — Block 2 -->
-    <a href="/blog/no-tengo-con-quien-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+    <a href="/blog/no-tengo-con-quien-correr" class="article-card" data-category="rutas" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/5319373/pexels-photo-5319373.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="No tengo con quien correr" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>No Tengo con Qui&eacute;n Correr: 5 Soluciones Reales</h2><p>La frustraci&oacute;n de querer correr pero no tener a nadie. 5 soluciones probadas para encontrar compa&ntilde;eros de running.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>No Tengo con Qui&eacute;n Correr: 5 Soluciones Reales</h2><p>La frustraci&oacute;n de querer correr pero no tener a nadie. 5 soluciones probadas para encontrar compa&ntilde;eros de running.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
-    <a href="/blog/por-que-dejan-correr-3-meses" class="article-card" data-category="entrenamiento" style="animation-delay:.052s">
+    <a href="/blog/por-que-dejan-correr-3-meses" class="article-card" data-category="rutas" style="animation-delay:.052s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/5067671/pexels-photo-5067671.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Dejar de correr" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Por Qu&eacute; la Mayor&iacute;a Deja de Correr en 3 Meses</h2><p>El 80% abandona antes de 90 d&iacute;as. Las razones psicol&oacute;gicas y c&oacute;mo evitar ser uno m&aacute;s en la estad&iacute;stica.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Por Qu&eacute; la Mayor&iacute;a Deja de Correr en 3 Meses</h2><p>El 80% abandona antes de 90 d&iacute;as. Las razones psicol&oacute;gicas y c&oacute;mo evitar ser uno m&aacute;s en la estad&iacute;stica.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
     <a href="/blog/empezar-a-correr-con-verguenza" class="article-card" data-category="entrenamiento" style="animation-delay:.054s">
@@ -932,30 +938,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>La Soledad del Runner: Algo de lo que Nadie Habla</h2><p>La paradoja del deporte saludable: correr es bueno pero hacerlo siempre solo puede aislar. C&oacute;mo superarlo.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
-    <a href="/blog/correr-acompanado-engancha-mas" class="article-card" data-category="entrenamiento" style="animation-delay:.062s">
+    <a href="/blog/correr-acompanado-engancha-mas" class="article-card" data-category="rutas" style="animation-delay:.062s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/5038843/pexels-photo-5038843.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70" alt="Correr acompañado engancha" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Por Qu&eacute; Correr Acompa&ntilde;ado Engancha M&aacute;s</h2><p>La ciencia del running social: endorfinas amplificadas, accountability y oxitocina. Por qu&eacute; el grupo es adictivo.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Por Qu&eacute; Correr Acompa&ntilde;ado Engancha M&aacute;s</h2><p>La ciencia del running social: endorfinas amplificadas, accountability y oxitocina. Por qu&eacute; el grupo es adictivo.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
-    <a href="/blog/correr-es-social-tendencia" class="article-card" data-category="entrenamiento" style="animation-delay:.064s">
+    <a href="/blog/correr-es-social-tendencia" class="article-card" data-category="rutas" style="animation-delay:.064s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3776816/pexels-photo-3776816.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running social tendencia" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Correr Es Social: La Nueva Tendencia Fitness 2026</h2><p>El running social es la tendencia fitness del a&ntilde;o. Clubes, apps y quedadas est&aacute;n revolucionando c&oacute;mo corremos.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Correr Es Social: La Nueva Tendencia Fitness 2026</h2><p>El running social es la tendencia fitness del a&ntilde;o. Clubes, apps y quedadas est&aacute;n revolucionando c&oacute;mo corremos.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
     <!-- Authority Cluster: Grupos de Running -->
-    <a href="/blog/grupos-de-running-guia-completa" class="article-card" data-category="entrenamiento" style="animation-delay:.066s">
+    <a href="/blog/grupos-de-running-guia-completa" class="article-card" data-category="rutas" style="animation-delay:.066s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8381747/pexels-photo-8381747.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Grupos de running gu&iacute;a completa" loading="lazy" width="640" height="360"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Grupos de Running: Gu&iacute;a Completa para Encontrar tu Grupo Ideal</h2><p>Todo sobre grupos de running: tipos, c&oacute;mo elegir el mejor, d&oacute;nde encontrarlos y c&oacute;mo crear el tuyo. Gu&iacute;a 2026.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running: Gu&iacute;a Completa para Encontrar tu Grupo Ideal</h2><p>Todo sobre grupos de running: tipos, c&oacute;mo elegir el mejor, d&oacute;nde encontrarlos y c&oacute;mo crear el tuyo. Gu&iacute;a 2026.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
-    <a href="/blog/quedadas-running-como-organizar" class="article-card" data-category="entrenamiento" style="animation-delay:.068s">
+    <a href="/blog/quedadas-running-como-organizar" class="article-card" data-category="rutas" style="animation-delay:.068s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2461982/pexels-photo-2461982.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Quedadas running c&oacute;mo organizar" loading="lazy" width="640" height="360"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Quedadas Running: Gu&iacute;a para Organizar la Quedada Perfecta</h2><p>C&oacute;mo organizar quedadas de running exitosas: planificaci&oacute;n, ruta, comunicaci&oacute;n y herramientas. Gu&iacute;a paso a paso.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Quedadas Running: Gu&iacute;a para Organizar la Quedada Perfecta</h2><p>C&oacute;mo organizar quedadas de running exitosas: planificaci&oacute;n, ruta, comunicaci&oacute;n y herramientas. Gu&iacute;a paso a paso.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
-    <a href="/blog/running-social-revolucion-2026" class="article-card" data-category="entrenamiento" style="animation-delay:.07s">
+    <a href="/blog/running-social-revolucion-2026" class="article-card" data-category="rutas" style="animation-delay:.07s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8974283/pexels-photo-8974283.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running social revoluci&oacute;n 2026" loading="lazy" width="640" height="360"></div>
-      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>Running Social: La Revoluci&oacute;n que Cambia C&oacute;mo Corremos</h2><p>El running social transforma c&oacute;mo entrenamos: m&aacute;s motivaci&oacute;n, amistades reales y mejor rendimiento. El futuro del running.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 8 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Running Social: La Revoluci&oacute;n que Cambia C&oacute;mo Corremos</h2><p>El running social transforma c&oacute;mo entrenamos: m&aacute;s motivaci&oacute;n, amistades reales y mejor rendimiento. El futuro del running.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 8 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
     <!-- FEATURED: Errores Comunes -->
@@ -1056,11 +1062,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Entrenamiento de fuerza para corredores" loading="lazy"></div>
       <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Entrenamiento de Fuerza para Corredores: Gu&iacute;a Completa</h2><p>Ejercicios clave, rutina semanal, series y repeticiones. C&oacute;mo combinar fuerza y carrera sin sobreentrenarte.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
-    <!-- Correr en Ayunas -->
-    <a href="/blog/correr-en-ayunas" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/13077241/pexels-photo-13077241.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr en ayunas beneficios" loading="lazy"></div>
-      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr en Ayunas: Beneficios, Riesgos y C&oacute;mo Hacerlo Bien</h2><p>&iquest;Adelgaza m&aacute;s? Analizamos la ciencia: beneficios reales, riesgos, qui&eacute;n deber&iacute;a y c&oacute;mo empezar.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
     <!-- Calambres al Correr -->
     <a href="/blog/calambres-al-correr" class="article-card" data-category="salud" style="animation-delay:.05s">
       <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3771055/pexels-photo-3771055.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Calambres al correr causas" loading="lazy"></div>
@@ -1122,13 +1123,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Encontrar Gente para Correr -->
-    <a href="/blog/encontrar-gente-para-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.055s">
+    <a href="/blog/encontrar-gente-para-correr" class="article-card" data-category="rutas" style="animation-delay:.055s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/7266749/pexels-photo-7266749.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Encontrar gente para correr" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>C&oacute;mo Encontrar Gente para Correr Cerca de Ti en 2026</h2>
         <p>6 m&eacute;todos probados para encontrar compa&ntilde;eros de running: apps, clubes, redes sociales, parkrun y m&aacute;s.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1140,13 +1141,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Correr Solo vs Acompañado -->
-    <a href="/blog/correr-solo-vs-acompanado" class="article-card" data-category="entrenamiento" style="animation-delay:.0555s">
+    <a href="/blog/correr-solo-vs-acompanado" class="article-card" data-category="rutas" style="animation-delay:.0555s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/6293192/pexels-photo-6293192.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr solo vs acompañado" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>Correr Solo vs Acompa&ntilde;ado: Ventajas, Desventajas y Ciencia</h2>
         <p>An&aacute;lisis completo con estudios cient&iacute;ficos sobre los beneficios de correr solo y en grupo. Cu&aacute;ndo elegir cada opci&oacute;n.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1158,13 +1159,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Primera Quedada Running -->
-    <a href="/blog/primera-quedada-running" class="article-card" data-category="entrenamiento" style="animation-delay:.056s">
+    <a href="/blog/primera-quedada-running" class="article-card" data-category="rutas" style="animation-delay:.056s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/2530124/pexels-photo-2530124.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Primera quedada running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>Tu Primera Quedada Running: Gu&iacute;a Completa para Principiantes</h2>
         <p>Todo lo que necesitas saber: qu&eacute; llevar, c&oacute;mo prepararte, etiqueta del grupo y consejos para disfrutar al m&aacute;ximo.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1176,13 +1177,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Apps Correr en Grupo -->
-    <a href="/blog/apps-correr-en-grupo" class="article-card" data-category="entrenamiento" style="animation-delay:.0565s">
+    <a href="/blog/apps-correr-en-grupo" class="article-card" data-category="rutas" style="animation-delay:.0565s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/4426517/pexels-photo-4426517.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Apps para correr en grupo" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>Las 10 Mejores Apps para Correr en Grupo en Espa&ntilde;a 2026</h2>
         <p>Comparativa de CorrerJuntos, Strava, Nike Run Club, Garmin Connect y m&aacute;s. Pros, contras y precios.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1194,13 +1195,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Unirse Grupo Running -->
-    <a href="/blog/unirse-grupo-running" class="article-card" data-category="entrenamiento" style="animation-delay:.057s">
+    <a href="/blog/unirse-grupo-running" class="article-card" data-category="rutas" style="animation-delay:.057s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/33860616/pexels-photo-33860616.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Unirse a grupo de running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>C&oacute;mo Unirte a un Grupo de Running: Gu&iacute;a Paso a Paso</h2>
         <p>Todo lo que necesitas saber para encontrar, elegir y unirte al grupo de running perfecto para ti.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1212,13 +1213,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Seguridad Correr con Desconocidos -->
-    <a href="/blog/seguridad-correr-con-desconocidos" class="article-card" data-category="entrenamiento" style="animation-delay:.0575s">
+    <a href="/blog/seguridad-correr-con-desconocidos" class="article-card" data-category="rutas" style="animation-delay:.0575s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/1727717/pexels-photo-1727717.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Seguridad correr con desconocidos" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>&iquest;Es Seguro Correr con Desconocidos? Gu&iacute;a de Seguridad</h2>
         <p>Precauciones antes, durante y despu&eacute;s de una quedada de running. Consejos espec&iacute;ficos para hombres y mujeres.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1230,13 +1231,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Conocer Gente Haciendo Deporte -->
-    <a href="/blog/conocer-gente-haciendo-deporte" class="article-card" data-category="entrenamiento" style="animation-delay:.058s">
+    <a href="/blog/conocer-gente-haciendo-deporte" class="article-card" data-category="rutas" style="animation-delay:.058s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/8381748/pexels-photo-8381748.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Conocer gente haciendo deporte" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>C&oacute;mo Conocer Gente Haciendo Deporte en 2026</h2>
         <p>Las mejores formas de hacer amigos a trav&eacute;s del deporte: running, p&aacute;del, senderismo, deportes de equipo y m&aacute;s.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1320,13 +1321,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Correr con Sobrepeso -->
-    <a href="/blog/correr-con-sobrepeso" class="article-card" data-category="entrenamiento" style="animation-delay:.063s">
+    <a href="/blog/correr-con-sobrepeso" class="article-card" data-category="salud" style="animation-delay:.063s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/6551282/pexels-photo-6551282.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr con sobrepeso guía segura" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-salud">Salud</span>
         <h2>Correr con Sobrepeso: Gu&iacute;a Segura para Empezar</h2>
         <p>Protecci&oacute;n articular, zapatillas adecuadas, progresi&oacute;n caminar-correr y motivaci&oacute;n para correr con peso extra.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1356,13 +1357,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Andar vs Correr -->
-    <a href="/blog/andar-vs-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.065s">
+    <a href="/blog/andar-vs-correr" class="article-card" data-category="salud" style="animation-delay:.065s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/10432232/pexels-photo-10432232.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Andar vs correr comparativa" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-salud">Salud</span>
         <h2>Andar vs Correr: &iquest;Qu&eacute; Es Mejor para tu Salud?</h2>
         <p>Calor&iacute;as, impacto articular, beneficios cardiovasculares, p&eacute;rdida de peso y cu&aacute;ndo elegir cada uno.</p>
         <span class="author">Por Jos&eacute; M&aacute;rquez</span>
@@ -1422,13 +1423,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Beneficios de Correr -->
-    <a href="/blog/beneficios-de-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.06s">
+    <a href="/blog/beneficios-de-correr" class="article-card" data-category="salud" style="animation-delay:.06s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/3771071/pexels-photo-3771071.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Corredor disfrutando de los beneficios de correr" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-salud">Salud</span>
         <h2>Beneficios de Correr: 15 Razones Respaldadas por la Ciencia</h2>
         <p>Salud cardiovascular, control de peso, salud mental, longevidad y m&aacute;s. Todo lo que correr puede hacer por ti.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1638,13 +1639,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Gel Energético Maratón -->
-    <a href="/blog/que-gel-energetico-usar-maraton" class="article-card" data-category="nutricion" style="animation-delay:.09s">
+    <a href="/blog/que-gel-energetico-usar-maraton" class="article-card" data-category="suplementacion" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=640&h=360&q=80" alt="Geles energéticos maratón" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-nutricion">Nutrición</span>
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
         <h2>Qué Gel Energético Usar en un Maratón</h2>
         <p>Tipos de geles, plan de nutrición por kilómetro, cómo entrenar el estómago y los 5 mejores.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1656,13 +1657,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Auriculares Conducción Ósea vs In-Ear -->
-    <a href="/blog/auriculares-conduccion-osea-vs-in-ear-running" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
+    <a href="/blog/auriculares-conduccion-osea-vs-in-ear-running" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=640&h=360&q=80" alt="Auriculares conducción ósea vs in-ear" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-equipamiento">Equipamiento</span>
+        <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
         <h2>Conducción Ósea vs In-Ear para Correr: ¿Cuál Elegir?</h2>
         <p>Comparativa de auriculares: seguridad, sonido, comodidad. Shokz, JBL, Beats y Sony analizados.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1674,13 +1675,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Pack Básico Running -->
-    <a href="/blog/pack-basico-running-principiantes" class="article-card" data-category="entrenamiento" style="animation-delay:.09s">
+    <a href="/blog/pack-basico-running-principiantes" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Pack básico running principiantes" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-equipamiento">Equipamiento</span>
         <h2>Pack Básico de Running: Todo para Empezar a Correr</h2>
         <p>Guía de equipamiento por niveles: imprescindible, recomendable y nice-to-have. Con presupuestos.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1818,13 +1819,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Maratón de Valencia Guía -->
-    <a href="/blog/maraton-valencia-guia" class="article-card" data-category="entrenamiento" style="animation-delay:.09s">
+    <a href="/blog/maraton-valencia-guia" class="article-card" data-category="carreras" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Maratón de Valencia 2026" loading="lazy" width="640" height="360">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-carreras">Carreras</span>
         <h2>Maratón de Valencia 2026: Guía Completa</h2>
         <p>Todo sobre el maratón más rápido de España: inscripción, recorrido, récords, preparación y consejos para el día de carrera.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1836,13 +1837,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Maratón de Barcelona Guía -->
-    <a href="/blog/maraton-barcelona-guia" class="article-card" data-category="entrenamiento" style="animation-delay:.09s">
+    <a href="/blog/maraton-barcelona-guia" class="article-card" data-category="carreras" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Maratón de Barcelona 2026" loading="lazy" width="640" height="360">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-carreras">Carreras</span>
         <h2>Maratón de Barcelona 2026: Guía Completa</h2>
         <p>Todo sobre el maratón de Barcelona: inscripción, recorrido por la Sagrada Familia y el Eixample, consejos y preparación.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1854,13 +1855,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Maratón de Sevilla Guía -->
-    <a href="/blog/maraton-sevilla-guia" class="article-card" data-category="entrenamiento" style="animation-delay:.09s">
+    <a href="/blog/maraton-sevilla-guia" class="article-card" data-category="carreras" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/16643958/pexels-photo-16643958.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Maratón de Sevilla 2026" loading="lazy" width="640" height="360">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-carreras">Carreras</span>
         <h2>Maratón de Sevilla 2026: Guía Completa</h2>
         <p>El maratón más plano de Europa: inscripción, recorrido por la Plaza de España y Triana, récords y preparación.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1872,13 +1873,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Maratón de Madrid Guía -->
-    <a href="/blog/maraton-madrid-guia" class="article-card" data-category="entrenamiento" style="animation-delay:.09s">
+    <a href="/blog/maraton-madrid-guia" class="article-card" data-category="carreras" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/3757144/pexels-photo-3757144.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Maratón de Madrid 2026" loading="lazy" width="640" height="360">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-carreras">Carreras</span>
         <h2>Maratón de Madrid 2026: Guía Completa</h2>
         <p>El Rock'n'Roll Maratón de Madrid: recorrido por Cibeles y Gran Vía, música en directo y ambiente único.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1890,13 +1891,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- San Silvestre Vallecana Guía -->
-    <a href="/blog/san-silvestre-vallecana-guia" class="article-card" data-category="entrenamiento" style="animation-delay:.09s">
+    <a href="/blog/san-silvestre-vallecana-guia" class="article-card" data-category="carreras" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.pexels.com/photos/2928057/pexels-photo-2928057.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="San Silvestre Vallecana 2026" loading="lazy" width="640" height="360">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-carreras">Carreras</span>
         <h2>San Silvestre Vallecana 2026: Guía Completa</h2>
         <p>La carrera más emblemática de España: 10K en Nochevieja del Bernabéu a Vallecas, inscripción, recorrido y tradición.</p>
         <span class="author">Por Jose Marquez</span>
@@ -1980,13 +1981,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Cafeína y Running -->
-    <a href="/blog/cafeina-running-rendimiento" class="article-card" data-category="nutricion" style="animation-delay:.09s">
+    <a href="/blog/cafeina-running-rendimiento" class="article-card" data-category="suplementacion" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1720650647051-d884d2c48572?w=640&q=80" alt="Cafeína y rendimiento en running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-nutricion">Nutrición</span>
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
         <h2>Cafeína y Running: Cómo Mejorar tu Rendimiento</h2>
         <p>Dosis óptima (3-6 mg/kg), timing exacto, protocolo día de carrera y genética CYP1A2.</p>
         <span class="author">Por Jose Marquez</span>
@@ -2016,13 +2017,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Shokz OpenRun Pro 2 Review -->
-    <a href="/blog/shokz-openrun-pro-2-review" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
+    <a href="/blog/shokz-openrun-pro-2-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="/blog/img/shokz-openrun-pro-2.png" alt="Shokz OpenRun Pro 2 review" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-equipamiento">Equipamiento</span>
+        <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
         <h2>Shokz OpenRun Pro 2: Review Completa para Runners</h2>
         <p>Conducción ósea mejorada, 10h batería, IP55 y Bluetooth 5.3. ¿Merece la pena para correr?</p>
         <span class="author">Por Jose Marquez</span>
@@ -2034,13 +2035,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- JBL Reflect Flow Pro Review -->
-    <a href="/blog/jbl-reflect-flow-pro-review" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
+    <a href="/blog/jbl-reflect-flow-pro-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=640&h=360&q=80" alt="JBL Reflect Flow Pro review running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-equipamiento">Equipamiento</span>
+        <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
         <h2>JBL Reflect Flow Pro: Review para Runners</h2>
         <p>ANC, Ambient Aware, IP68 y JBL Signature Sound. Auriculares TWS premium para running.</p>
         <span class="author">Por Jose Marquez</span>
@@ -2052,13 +2053,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Mejores Auriculares Baratos Running -->
-    <a href="/blog/mejores-auriculares-baratos-running" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
+    <a href="/blog/mejores-auriculares-baratos-running" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=640&h=360&q=80" alt="Mejores auriculares baratos running" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-equipamiento">Equipamiento</span>
+        <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
         <h2>Los 8 Mejores Auriculares Baratos para Running 2026</h2>
         <p>Auriculares por menos de 60€ que merecen la pena para correr. 8 opciones probadas y comparadas.</p>
         <span class="author">Por Jose Marquez</span>
@@ -2070,13 +2071,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Auriculares Running Natación -->
-    <a href="/blog/auriculares-running-natacion" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
+    <a href="/blog/auriculares-running-natacion" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=640&h=360&q=80" alt="Auriculares running natación waterproof" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-equipamiento">Equipamiento</span>
+        <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
         <h2>Mejores Auriculares para Running y Natación 2026</h2>
         <p>Auriculares sumergibles que funcionan bajo el agua y corriendo. Conducción ósea, MP3 y Bluetooth.</p>
         <span class="author">Por Jose Marquez</span>
@@ -2396,13 +2397,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Auriculares -->
-    <a href="/blog/mejores-auriculares-running" class="article-card" data-category="equipamiento" style="animation-delay:.15s">
+    <a href="/blog/mejores-auriculares-running" class="article-card" data-category="tecnologia" style="animation-delay:.15s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=640&h=360&q=80" alt="Auriculares deportivos" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-equipamiento">Equipamiento</span>
+        <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
         <h2>Mejores Auriculares para Correr: Guía 2026</h2>
         <p>Conducción ósea, in-ear y open-ear. 8 modelos analizados con Shokz, JBL, Beats y Sony.</p>
         <span class="author">Por Jose Marquez</span>
@@ -2552,12 +2553,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Suplementos -->
-    <a href="/blog/mejores-suplementos-runners" class="article-card" data-category="nutricion" style="animation-delay:.6s">
+    <a href="/blog/mejores-suplementos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.6s">
       <div class="card-img">
         <img src="https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Suplementos deportivos running" loading="lazy" onerror="this.style.display='none'">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-nutricion">Nutrición</span>
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
         <h2>Mejores Suplementos para Runners: Lo que Necesitas</h2>
         <p>Geles, isotónicas, recuperadores y vitaminas. Que funciona de verdad y que no merece la pena.</p>
         <span class="author">Por Jose Marquez</span>
@@ -2569,13 +2570,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Creatina para Runners — Beneficios -->
-    <a href="/blog/creatina-para-runners" class="article-card" data-category="nutricion" style="animation-delay:.62s">
+    <a href="/blog/creatina-para-runners" class="article-card" data-category="suplementacion" style="animation-delay:.62s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?auto=format&fit=crop&w=640&h=360&q=80" alt="Creatina para corredores beneficios ciencia" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-nutricion">Nutrición</span>
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
         <h2>Creatina para Corredores: 7 Beneficios con Ciencia</h2>
         <p>No es solo para culturistas. Descubre los 7 beneficios de la creatina para runners avalados por estudios cientificos.</p>
         <span class="author">Por Jose Marquez</span>
@@ -2617,42 +2618,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="author">Por Jose Marquez</span>
         <div class="card-meta">
           <span class="meta">19 feb 2026 · 14 min</span>
-          <span class="card-arrow">Leer →</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Plan Maraton 16 Semanas Sub 4h -->
-    <a href="/blog/entrenamiento/plan-maraton-16-semanas-sub4h" class="article-card" data-category="entrenamiento" style="animation-delay:.72s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Plan maraton 16 semanas sub 4h" loading="lazy">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
-        <h2>Plan maraton 16 semanas (sub 4h y terminar fuerte)</h2>
-        <p>Guia completa con tabla semanal, tiradas largas, tapering, nutricion y estrategia para bajar de 4 horas.</p>
-        <span class="author">Por Carlos Ruiz</span>
-        <div class="card-meta">
-          <span class="meta">11 mar 2026 · 14 min</span>
-          <span class="card-arrow">Leer →</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Correr durante la menstruación -->
-    <a href="/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners" class="article-card" data-category="entrenamiento" style="animation-delay:.73s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="https://images.pexels.com/photos/8567597/pexels-photo-8567597.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr durante la menstruación guía runners" loading="lazy">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
-        <h2>Correr durante la menstruación: guía completa para runners</h2>
-        <p>Cómo adaptar el entrenamiento al ciclo menstrual y qué productos ayudan a correr con más comodidad.</p>
-        <span class="author">Por Carlos Ruiz</span>
-        <div class="card-meta">
-          <span class="meta">11 mar 2026 · 16 min</span>
           <span class="card-arrow">Leer →</span>
         </div>
       </div>
@@ -2710,12 +2675,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     </a>
 
     <!-- Beneficios Correr en Grupo -->
-    <a href="/blog/beneficios-correr-en-grupo" class="article-card" data-category="entrenamiento" style="animation-delay:.9s">
+    <a href="/blog/beneficios-correr-en-grupo" class="article-card" data-category="rutas" style="animation-delay:.9s">
       <div class="card-img">
         <img src="https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Grupo corriendo juntos" loading="lazy">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <span class="category cat-badge-rutas">Rutas</span>
         <h2>7 Beneficios de Correr en Grupo (Respaldados por la Ciencia)</h2>
         <p>Correr acompanado mejora rendimiento, consistencia y salud mental. Que dice la ciencia.</p>
         <span class="author">Por Jose Marquez</span>
@@ -3408,24 +3373,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         <span class="author">Por Carlos Ruiz</span>
         <div class="card-meta">
           <span class="meta">1 mar 2026 &middot; 12 min</span>
-          <span class="card-arrow">Leer &rarr;</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- SEO Local Cluster: Valencia -->
-    <a href="/blog/grupos-running-valencia" class="article-card" data-category="rutas" style="animation-delay:.05s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="/blog/img/grupos-running-valencia.jpg" alt="Grupos de running en Valencia" loading="lazy">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-rutas">Rutas</span>
-        <h2>Grupos de Running en Valencia 2026: Clubes, Quedadas y Rutas</h2>
-        <p>Los mejores grupos de running en Valencia: clubes, quedadas por el Tur&iacute;a, la Albufera y el paseo mar&iacute;timo.</p>
-        <span class="author">Por Carlos Ruiz</span>
-        <div class="card-meta">
-          <span class="meta">4 mar 2026 &middot; 12 min</span>
           <span class="card-arrow">Leer &rarr;</span>
         </div>
       </div>

@@ -3925,21 +3925,26 @@ async function submitNewsletter(e) {
                 lead_magnet: 'plan-10k-preview'
             })
         });
-        if (res.ok || res.status === 201) {
-            form.style.display = 'none';
-            successDiv.style.display = 'block';
+        if (res.ok || res.status === 201 || res.status === 409) {
+            // Fire tracking events before redirect
             if (typeof gtag === 'function') {
                 gtag('event', 'lead_magnet_signup', {
                     lead_magnet: 'plan-10k-preview',
-                    location: 'blog-index'
+                    location: 'blog-index',
+                    duplicate: res.status === 409
                 });
             }
             if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Plan 10K Preview' }); }
-        } else if (res.status === 409) {
-            successDiv.querySelector('p').textContent = '✓ Ya estás suscrito';
-            successDiv.querySelectorAll('p')[1].innerHTML = 'Hemos reenviado el enlace al <strong>Plan 10K</strong> a tu email. Si no lo encuentras, revisa la carpeta de spam.';
+            // Brief inline confirmation, then hard-redirect so the user gets
+            // their PDF immediately. (Brevo DOI email is still sent in the
+            // background if BREVO_DOI_TEMPLATE_ID is configured.)
             form.style.display = 'none';
+            successDiv.querySelector('p').textContent = '✓ Llevándote a tu descarga...';
+            successDiv.querySelectorAll('p')[1].textContent = '';
             successDiv.style.display = 'block';
+            setTimeout(function () {
+                window.location.href = '/blog/descarga-plan-10k/';
+            }, 600);
         } else { throw new Error('HTTP ' + res.status); }
     } catch (err) {
         errorDiv.style.display = 'block';

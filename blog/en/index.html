@@ -118,34 +118,46 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 @keyframes heroFloat{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-8px) scale(1.02)}}
 
 /* Search Bar */
-.search-wrap{max-width:480px;margin:0 auto 8px;position:relative}
-.search-wrap input{width:100%;padding:12px 18px 12px 44px;background:#fffcf9;border:1px solid #e8ddd0;border-radius:14px;color:#3d3229;font-size:.92rem;outline:none;transition:border-color .2s,background .2s}
-.search-wrap input:focus{border-color:rgba(249,115,22,.4);background:#fff}
-.search-wrap input::placeholder{color:#506074}
-.search-wrap .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1rem;color:#506074;pointer-events:none}
-.search-wrap .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#506074;font-size:1.1rem;cursor:pointer;display:none;padding:4px}
-.search-wrap .search-clear:hover{color:#3d3229}
+.search-wrap{max-width:520px;margin:28px auto 4px;position:relative}
+.search-wrap input{width:100%;padding:13px 44px 13px 44px;background:#fffcf9;border:1px solid #e8ddd0;border-radius:0;color:#3d3229;font-size:.95rem;font-weight:400;outline:none;transition:border-color .25s;letter-spacing:.005em}
+.search-wrap input:focus{border-color:#f97316}
+.search-wrap input::placeholder{color:#9a8e7f;font-weight:400}
+.search-wrap .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#9a8e7f;pointer-events:none;display:inline-flex;align-items:center}
+.search-wrap .search-icon svg{display:block}
+.search-wrap .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#9a8e7f;cursor:pointer;display:none;padding:6px;transition:color .2s}
+.search-wrap .search-clear:hover{color:#f97316}
+.search-wrap .search-clear svg{display:block}
 
-/* Filter Bar — dropdown grid */
-.filter-bar-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:20px 0 8px;position:relative;z-index:20}
-.filter-btn-todos{display:none}
+/* ── Editorial filter bar — typographic, no pills, no icons ── */
+.filter-bar-wrap{padding:28px 0 10px;position:relative;z-index:20}
+.filter-section-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:0 2px}
+.filter-section-label{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
+.filter-section-rule{flex:1;height:1px;background:#d9cfc2}
+.filter-section-count{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#9a8e7f;white-space:nowrap}
+.dark-mode .filter-section-label{color:#f1eadf}
+.dark-mode .filter-section-rule{background:rgba(255,255,255,.14)}
+.dark-mode .filter-section-count{color:#94a3b8}
+
+.filter-btn-todos{display:inline-block;padding:7px 0;margin-right:22px;border:0;background:transparent;color:#3d3229;font-size:.86rem;font-weight:600;cursor:pointer;transition:color .2s;white-space:nowrap;flex-shrink:0;letter-spacing:.003em;border-bottom:2px solid transparent;border-radius:0}
+.filter-btn-todos:hover{color:#f97316}
+.filter-btn-todos.active{color:#f97316;border-bottom-color:#f97316}
 .filter-dropdown-trigger{display:none}
 .filter-active-label{display:none}
-.filter-panel{display:flex;flex-wrap:wrap;gap:8px;opacity:1;pointer-events:auto}
-.filter-panel-btn{padding:10px 14px;border-radius:12px;border:1px solid #efe6db;background:#fffcf9;color:#5c4d3d;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px;text-align:left}
-.filter-panel-btn:hover{border-color:rgba(0,0,0,.15);color:#3d3229;background:rgba(0,0,0,.03);transform:translateY(-1px)}
-.filter-panel-btn.active{color:#fff;transform:translateY(-1px)}
-.filter-panel-btn .cat-icon{flex-shrink:0;display:inline-flex;align-items:center}.filter-panel-btn .cat-icon svg{width:15px;height:15px;fill:currentColor}
-.filter-panel-btn .cat-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fp-entrenamiento.active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:#3b82f6}
-.fp-nutricion.active{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.35);color:#22c55e}
-.fp-equipamiento.active{background:rgba(6,182,212,.15);border-color:rgba(6,182,212,.35);color:#06b6d4}
-.fp-tecnologia.active{background:rgba(234,179,8,.15);border-color:rgba(234,179,8,.35);color:#eab308}
-.fp-zapatillas.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);color:#f97316}
-.fp-salud.active{background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.35);color:#e11d48}
-.fp-rutas.active{background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.35);color:#a855f7}
-.fp-trail.active{background:rgba(132,204,22,.15);border-color:rgba(132,204,22,.35);color:#84cc16}
-.fp-suplementacion.active{background:rgba(217,70,239,.15);border-color:rgba(217,70,239,.35);color:#d946ef}
+
+.filter-panel{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:2px 22px;opacity:1;pointer-events:auto;padding-top:2px}
+.filter-panel-btn{padding:7px 0;border:0;background:transparent;color:#6b5c4d;font-size:.84rem;font-weight:500;cursor:pointer;transition:color .2s,border-color .2s;white-space:nowrap;letter-spacing:.003em;border-bottom:2px solid transparent;border-radius:0;text-decoration:none;text-align:left;display:inline-block}
+.filter-panel-btn:hover{color:#f97316}
+.filter-panel-btn.active{color:#f97316;border-bottom-color:#f97316;font-weight:600}
+.filter-panel-btn .cat-name{white-space:nowrap}
+
+/* ── Shared editorial section head (Most Read, Continue reading) ── */
+.section-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding:0 2px}
+.section-label{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
+.section-rule{flex:1;height:1px;background:#d9cfc2}
+.section-meta{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#9a8e7f;white-space:nowrap}
+.dark-mode .section-label{color:#f1eadf}
+.dark-mode .section-rule{background:rgba(255,255,255,.14)}
+.dark-mode .section-meta{color:#94a3b8}
 /* keep old filter-btn for JS compat — hidden */
 .filter-bar{display:none}
 .filter-btn{display:none}
@@ -246,13 +258,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Most Read Section */
 .most-read{margin:48px 0 40px}
-.most-read h2{font-size:1.4rem;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+/* deprecated — replaced by .section-head */
 .most-read-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.most-read-card{display:flex;gap:16px;align-items:center;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:16px;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
-.most-read-card:hover{transform:translateY(-4px);border-color:rgba(249,115,22,.3);box-shadow:0 12px 32px rgba(0,0,0,.08)}
-.rank-badge{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;flex-shrink:0;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.2)}
-.most-read-card:nth-child(2) .rank-badge{background:linear-gradient(135deg,#64748b,#475569)}
-.most-read-card:nth-child(3) .rank-badge{background:linear-gradient(135deg,#92400e,#78350f)}
+.most-read-card{display:flex;gap:16px;align-items:center;background:#fffcf9;border:1px solid #efe6db;border-radius:0;padding:18px;text-decoration:none;color:inherit;transition:border-color .25s,box-shadow .25s;overflow:hidden}
+.most-read-card:hover{border-color:#f97316;box-shadow:0 10px 28px rgba(61,50,41,.08)}
+.rank-badge{width:32px;height:32px;border-radius:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;background:transparent;color:#3d3229;font-family:'JetBrains Mono','Menlo','Consolas',monospace;letter-spacing:.02em;border:1px solid #d9cfc2}
+.most-read-card:nth-child(2) .rank-badge,.most-read-card:nth-child(3) .rank-badge{background:transparent;color:#3d3229}
+.dark-mode .rank-badge{color:#f1eadf;border-color:rgba(255,255,255,.18)}
 .mr-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;flex-shrink:0}
 .mr-thumb img{width:100%;height:100%;object-fit:cover}
 .most-read-info{flex:1;min-width:0}
@@ -286,8 +298,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .end-text{white-space:nowrap;font-weight:500}
 
 /* No results */
-.no-results{display:none;text-align:center;padding:60px 20px;color:#506074;font-size:1rem;grid-column:1 / -1}
-.no-results span{font-size:2.5rem;display:block;margin-bottom:12px}
+.no-results{display:none;text-align:center;padding:60px 20px;color:#6b5c4d;font-size:.95rem;grid-column:1 / -1}
+.no-results .no-results-icon{display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;color:#9a8e7f}
+.no-results .no-results-icon svg{display:block}
+.no-results strong{display:block;margin-bottom:8px;color:#3d3229;font-weight:700;font-size:1.05rem}
 
 /* Author bio section */
 .author-bio{display:flex;gap:24px;align-items:flex-start;padding:32px;background:#fffcf9;border:1px solid #efe6db;border-radius:20px;margin:48px 0 32px}
@@ -456,26 +470,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
   <!-- Search Bar -->
   <div class="search-wrap">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
     <input type="text" id="searchInput" placeholder="Search articles..." autocomplete="off">
-    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
 
-  <!-- Category Filter — Dropdown Grid -->
+  <!-- Category Filter — Editorial Navigation -->
   <div class="filter-bar-wrap" id="filterBarWrap">
-  <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">All <span class="filter-count" id="filterCount">83</span></button>
-  <button class="filter-dropdown-trigger" id="filterDropdownTrigger">📂 Categories <span class="arrow">▼</span></button>
+  <div class="filter-section-head">
+    <span class="filter-section-label">Browse by category</span>
+    <span class="filter-section-rule"></span>
+    <span class="filter-section-count"><span id="filterCount">83</span> articles</span>
+  </div>
+  <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">All</button>
+  <button class="filter-dropdown-trigger" id="filterDropdownTrigger">Categories <span class="arrow">▾</span></button>
   <span id="filterActiveLabel"></span>
   <div class="filter-panel" id="filterPanel">
-    <button class="filter-panel-btn fp-entrenamiento" data-filter="entrenamiento"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6.49 8.98v5h2v-3.5l1.8-.7-1.6 8.1-4.9-1-.4 2 6 1.2z"/></svg></span><span class="cat-name">Training</span></button>
-    <button class="filter-panel-btn fp-nutricion" data-filter="nutricion"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg></span><span class="cat-name">Nutrition</span></button>
-    <button class="filter-panel-btn fp-equipamiento" data-filter="equipamiento"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14zm-4.2-5.78v1.75l3.2 1.87V14.9l-3.2 1.87zm-1.6 1.75v-1.75L8 15.09v1.94l3.2-1.87z"/></svg></span><span class="cat-name">Gear</span></button>
-    <button class="filter-panel-btn fp-tecnologia" data-filter="tecnologia"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.95 5.73C5.19 7.19 4 9.45 4 12s1.19 4.81 3.05 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg></span><span class="cat-name">Technology</span></button>
-    <button class="filter-panel-btn fp-zapatillas" data-filter="zapatillas"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M21.4 11.6l-9-8C12.1 3.2 11.5 3 11 3H4C2.9 3 2 3.9 2 5v4c0 .5.2 1.1.6 1.4l9 8c.8.7 1.9.7 2.6 0l7.1-7.1c.8-.7.8-1.9.1-2.7zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg></span><span class="cat-name">Shoes</span></button>
-    <button class="filter-panel-btn fp-salud" data-filter="salud"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M10.5 13H8v-3h2.5V7.5h3V10H16v3h-2.5v2.5h-3V13zM12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg></span><span class="cat-name">Health</span></button>
-    <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></span><span class="cat-name">Routes</span></button>
-    <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/></svg></span><span class="cat-name">Trail</span></button>
-    <button class="filter-panel-btn fp-suplementacion" data-filter="suplementacion"><span class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4.22 11.29l4.53-4.53a4.001 4.001 0 015.66 0l4.53 4.53a4.001 4.001 0 010 5.66l-4.53 4.53a4.001 4.001 0 01-5.66 0l-4.53-4.53a4.001 4.001 0 010-5.66zm10.03-.8L12.01 8.2 9.75 10.5l2.25 2.25 2.25-2.26z"/></svg></span><span class="cat-name">Supplements</span></button>
+    <button class="filter-panel-btn fp-entrenamiento" data-filter="entrenamiento"><span class="cat-name">Training</span></button>
+    <button class="filter-panel-btn fp-nutricion" data-filter="nutricion"><span class="cat-name">Nutrition</span></button>
+    <button class="filter-panel-btn fp-equipamiento" data-filter="equipamiento"><span class="cat-name">Gear</span></button>
+    <button class="filter-panel-btn fp-tecnologia" data-filter="tecnologia"><span class="cat-name">Technology</span></button>
+    <button class="filter-panel-btn fp-zapatillas" data-filter="zapatillas"><span class="cat-name">Shoes</span></button>
+    <button class="filter-panel-btn fp-salud" data-filter="salud"><span class="cat-name">Health</span></button>
+    <button class="filter-panel-btn fp-rutas" data-filter="rutas"><span class="cat-name">Routes</span></button>
+    <button class="filter-panel-btn fp-trail" data-filter="trail"><span class="cat-name">Trail</span></button>
+    <button class="filter-panel-btn fp-suplementacion" data-filter="suplementacion"><span class="cat-name">Supplements</span></button>
   </div>
   <!-- Hidden original bar for JS compat -->
   <div class="filter-bar" id="filterBar">
@@ -494,7 +513,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
   <!-- Most Read — positioned prominently -->
   <div class="most-read">
-    <h2>🔥 Most Read</h2>
+    <div class="section-head">
+      <span class="section-label">Most Read</span>
+      <span class="section-rule"></span>
+      <span class="section-meta">Top 3 · this week</span>
+    </div>
     <div class="most-read-grid">
       <a href="/blog/en/how-to-start-running-beginners-guide" class="most-read-card">
         <div class="rank-badge">#1</div>
@@ -3451,7 +3474,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
     <!-- No results -->
     <div class="no-results" id="noResults">
-      <span>🔍</span>
+      <span class="no-results-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
       <strong id="noResultsMsg">No articles found.</strong><br>
       <span style="color:#94a3b8">Try different keywords or explore the categories.</span>
       <div id="noResultsSuggestions" style="margin-top:24px;display:flex;flex-direction:column;gap:12px;align-items:center">

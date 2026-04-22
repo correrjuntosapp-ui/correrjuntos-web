@@ -1296,22 +1296,27 @@
 
         var histCSS = document.createElement('style');
         histCSS.textContent = [
-          '.reading-hist{margin:0 auto 28px;max-width:860px;padding:0 16px}',
-          '.reading-hist-title{font-size:.78rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px;display:flex;align-items:center;gap:6px}',
-          '.reading-hist-list{display:flex;gap:8px;flex-wrap:wrap}',
-          '.reading-hist-item{display:flex;align-items:center;gap:6px;padding:6px 12px;background:#fffcf9;border:1px solid #efe6db;border-radius:999px;text-decoration:none;font-size:.78rem;color:#6b5c4d;font-weight:600;transition:all .2s;white-space:nowrap;max-width:220px}',
-          '.reading-hist-item:hover{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.05)}',
-          '.reading-hist-item span{overflow:hidden;text-overflow:ellipsis}',
-          '.dark-mode .reading-hist-item{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:#94a3b8}',
-          '.dark-mode .reading-hist-item:hover{border-color:#f97316;color:#f97316}'
+          '.reading-hist{margin:32px auto 8px;max-width:1100px;padding:0 20px}',
+          '.reading-hist-head{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:0 2px}',
+          '.reading-hist-head .label{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#3d3229;white-space:nowrap}',
+          '.reading-hist-head .rule{flex:1;height:1px;background:#d9cfc2}',
+          '.reading-hist-head .meta{font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#9a8e7f;white-space:nowrap}',
+          '.dark-mode .reading-hist-head .label{color:#f1eadf}',
+          '.dark-mode .reading-hist-head .rule{background:rgba(255,255,255,.14)}',
+          '.dark-mode .reading-hist-head .meta{color:#94a3b8}',
+          '.reading-hist-list{display:flex;gap:20px;flex-wrap:wrap}',
+          '.reading-hist-item{display:inline-block;padding:4px 0;background:transparent;border:0;border-bottom:1px solid transparent;border-radius:0;text-decoration:none;font-size:.85rem;color:#3d3229;font-weight:500;transition:color .2s,border-color .2s;white-space:nowrap;max-width:280px;overflow:hidden;text-overflow:ellipsis;letter-spacing:.003em}',
+          '.reading-hist-item:hover{color:#f97316;border-bottom-color:#f97316}',
+          '.dark-mode .reading-hist-item{color:#f1eadf}',
+          '.dark-mode .reading-hist-item:hover{color:#f97316}'
         ].join('\n');
         document.head.appendChild(histCSS);
 
         var histDiv = document.createElement('div');
         histDiv.className = 'reading-hist';
-        var histHtml = '<div class="reading-hist-title"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'+(isEN?'Continue reading':'Continúa leyendo')+'</div><div class="reading-hist-list">';
+        var histHtml = '<div class="reading-hist-head"><span class="label">'+(isEN?'Continue reading':'Continúa leyendo')+'</span><span class="rule"></span><span class="meta">'+histItems.length+(isEN?' saved':' guardados')+'</span></div><div class="reading-hist-list">';
         histItems.forEach(function(h){
-          histHtml += '<a href="'+h.url+'" class="reading-hist-item">\uD83D\uDCDA <span>'+h.title+'</span></a>';
+          histHtml += '<a href="'+h.url+'" class="reading-hist-item">'+h.title+'</a>';
         });
         histHtml += '</div>';
         histDiv.innerHTML = histHtml;

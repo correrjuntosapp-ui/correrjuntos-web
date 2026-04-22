@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog de Running | CorrerJuntos — Página 3</title>
+<meta name="description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/blog/page/3/">
+<link rel="prev" href="https://www.correrjuntos.com/blog/page/2/">
+<link rel="next" href="https://www.correrjuntos.com/blog/page/4/">
+<meta property="og:title" content="Blog de Running | CorrerJuntos — Página 3">
+<meta property="og:description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/page/3/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #fef7ed; color: #3d3229; line-height: 1.6 }
+.nav-wrapper { position: sticky; top: 0; z-index: 100; background: rgba(254,247,237,.97); backdrop-filter: blur(12px); border-bottom: 1px solid #efe6db }
+nav { padding: 16px 20px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between }
+nav > a { color: #f97316; text-decoration: none; font-weight: 700; font-size: 1.1rem }
+nav .links { display: flex; gap: 16px; font-size: .9rem }
+nav .links a { color: #5c4d3d; text-decoration: none; font-weight: 600 }
+nav .links a:hover { color: #f97316 }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px }
+.page-head { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #e8ddd1 }
+.page-head h1 { font-size: 1.5rem; font-weight: 800; color: #3d3229; letter-spacing: -.015em }
+.page-head .sub { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: #b5a797; margin-top: 6px; font-weight: 600 }
+.articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px }
+.article-card { background: #fffcf9; border: 1px solid #efe6db; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color .2s, box-shadow .2s, transform .2s }
+.article-card:hover { border-color: #f97316; box-shadow: 0 8px 24px rgba(61,50,41,.08); transform: translateY(-2px) }
+.article-card .card-img { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #f0ebe3 }
+.article-card .card-img img { width: 100%; height: 100%; object-fit: cover }
+.article-card .badge-new { position: absolute; top: 10px; left: 10px; background: #f97316; color: #fff; font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase }
+.article-card .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 6px }
+.article-card .category { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; align-self: flex-start; margin-bottom: 2px }
+.cat-badge-entrenamiento { color: #9a3412; background: #fff4ee }
+.cat-badge-nutricion { color: #065f46; background: #f0fdf4 }
+.cat-badge-equipamiento { color: #1e40af; background: #eff6ff }
+.cat-badge-tecnologia { color: #5b21b6; background: #f5f3ff }
+.cat-badge-zapatillas { color: #9f1239; background: #fff1f2 }
+.cat-badge-salud { color: #134e4a; background: #f0fdfa }
+.cat-badge-rutas { color: #78350f; background: #fffbeb }
+.cat-badge-trail { color: #292524; background: #fafaf9 }
+.cat-badge-suplementacion { color: #701a75; background: #fdf4ff }
+.cat-badge-atleta-hibrido { color: #1e293b; background: #f8fafc }
+.cat-badge-carreras { color: #991b1b; background: #fef2f2 }
+.cat-badge-comunidad { color: #ea580c; background: #fff4ee }
+.article-card h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: #3d3229 }
+.article-card p { font-size: .88rem; color: #6b5c4d; line-height: 1.5; flex: 1 }
+.article-card .author { font-size: .76rem; color: #9a8e7f }
+.article-card .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 10px; border-top: 1px solid #f0ebe3 }
+.article-card .meta { font-size: .76rem; color: #9a8e7f }
+.article-card .card-arrow { font-size: .82rem; color: #f97316; font-weight: 600 }
+
+.pagination { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8ddd1 }
+.pagination a { padding: 10px 18px; border: 1.5px solid #e8ddd1; background: #fff; border-radius: 8px; text-decoration: none; color: #3d3229; font-size: .85rem; font-weight: 600; transition: all .18s }
+.pagination a:hover { border-color: #f97316; color: #f97316; background: #fff8f4 }
+.pagination .info { color: #9a8e7f; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500 }
+.pagination .disabled { opacity: .35; pointer-events: none }
+.all-pages { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center }
+.all-pages a { padding: 6px 12px; border: 1px solid #e8ddd1; background: #fff; border-radius: 6px; text-decoration: none; color: #6b5c4d; font-size: .78rem; font-weight: 600 }
+.all-pages a.current { background: #f97316; border-color: #f97316; color: #fff }
+.all-pages a:hover:not(.current) { border-color: #f97316; color: #f97316 }
+
+footer { text-align: center; padding: 24px 20px; color: #9a8e7f; font-size: .78rem; border-top: 1px solid #efe6db }
+</style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+<nav>
+  <a href="/">CorrerJuntos</a>
+  <div class="links">
+    <a href="https://www.correrjuntos.com/blog/">Blog</a>
+    <a href="/calculadora/">Calculadora</a>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="page-head">
+    <div class="sub">Página 3 de 12</div>
+    <h1>Blog de Running | CorrerJuntos</h1>
+  </div>
+
+  <div class="articles">
+    <a href="/blog/mejores-calleras-crossfit" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Mejores calleras para CrossFit" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Las 10 Mejores Calleras para CrossFit en 2026</h2><p>Gu&iacute;a biling&uuml;e con 10 calleras reales para CrossFit, pros y contras, y enlaces Amazon para atletas h&iacute;bridos.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/atletas-hibridos/mejores-mochilas-crossfit-2026" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/61gMPhI91rL._AC_SL1200_.jpg" alt="Mochilas CrossFit 2026" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Las 10 mejores mochilas para CrossFit en 2026</h2><p>Comparativa con 10 mochilas resistentes y vers&aacute;tiles para CrossFit, entrenamiento h&iacute;brido y gym training.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/zapatillas-deka-strong-atlas" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/deka-hero.webp" alt="Zapatillas DEKA" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Mejores Zapatillas para DEKA STRONG y ATLAS 2026</h2><p>Nike Metcon, Reebok Nano y m&aacute;s. Las mejores opciones para training funcional.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/wall-ball-hyrox-comprar" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/wall-ball-hero.webp" alt="Wall ball HYROX" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Mejores Wall Balls para HYROX y Training 2026</h2><p>Los 8 mejores wall balls: RUSTER, FORZA METIS, Sveltus, BOOMFIT y m&aacute;s.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/sandbag-lunges-hyrox" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/sandbag-hero.webp" alt="Sandbag HYROX" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Los 11 Mejores Sandbags para HYROX 2026</h2><p>Los 11 mejores sandbags: chlius, Sveltus, RDX, Yes4All, Gymbox, BOOMFIT y m&aacute;s.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/kettlebells-farmer-carry-hyrox" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/kettlebell-hero.webp" alt="Kettlebells HYROX" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>Las 11 Mejores Kettlebells para Farmer&apos;s Carry HYROX 2026</h2><p>Amazon Basics, Sveltus, HYPEFIT, Bowflex y 7 m&aacute;s. Pesos oficiales y t&eacute;cnica de agarre.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/entrenar-skierg-row-hyrox" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/skierg-hero.webp" alt="SkiErg y Remo HYROX" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h2>C&oacute;mo Entrenar SkiErg y Remo para HYROX 2026</h2><p>T&eacute;cnica, equipamiento Concept2 y planes de entrenamiento para las estaciones 1 y 5.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/rodillo-vs-pistola-masaje-recuperacion" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/roller-hero.webp" alt="Rodillo vs Pistola masaje recuperación" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Los 20 Mejores Rodillos y Pistolas de Masaje 2026</h2><p>TriggerPoint, RENPHO, Theragun, KALAHARI, arboleaf y m&aacute;s. Comparativa con los 20 mejores productos para recuperaci&oacute;n.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/foam-rollers-runners" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/foam-runners-hero.webp" alt="Foam rollers para corredores" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Los 7 Mejores Foam Rollers para Corredores 2026</h2><p>TriggerPoint GRID, Blackroll, Hyperice y m&aacute;s. Gu&iacute;a completa de liberaci&oacute;n miofascial post-carrera.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/gafas-running" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/10168184/pexels-photo-10168184.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Gafas de sol running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Las 8 Mejores Gafas de Sol para Running 2026</h2><p>Oakley, Julbo, Nike y m&aacute;s. Protecci&oacute;n UV, ligereza y agarre para correr sin molestias.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-pulsometros-running-2026" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://m.media-amazon.com/images/I/61DZ9mOKb2L._AC_SL1500_.jpg" alt="Mejores puls&oacute;metros running 2026" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h2>10 Mejores Puls&oacute;metros para Running 2026</h2><p>Garmin HRM-200, COOSPO H6, COROS Arm y m&aacute;s. Cintas pectorales y brazaletes para entrenar por zonas.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">29 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-relojes-gps-running" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://m.media-amazon.com/images/I/71aTpnUJu0L._AC_SX425_.jpg" alt="Relojes GPS running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h2>Los 10 Mejores Relojes GPS para Running 2026</h2><p>Garmin, COROS, Apple Watch y Polar comparados. GPS, cardio y m&eacute;tricas avanzadas.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-garmin-running" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://m.media-amazon.com/images/I/71ggA0GZLgL._AC_SX425_.jpg" alt="Mejores Garmin running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h2>Los 8 Mejores Relojes Garmin para Running 2026</h2><p>Forerunner 965, 265, 165, Fenix 7 Pro y m&aacute;s. Cu&aacute;l elegir seg&uacute;n nivel y presupuesto.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mochilas-trail-running" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2330502/pexels-photo-2330502.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Mochilas trail running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-trail">Trail</span><h2>Las 8 Mejores Mochilas de Trail Running 2026</h2><p>Salomon, CamelBak, Deuter y m&aacute;s. Comparativa de capacidad, ajuste e hidrataci&oacute;n.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/bidones-running" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/10226372/pexels-photo-10226372.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Bidones running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Los 8 Mejores Bidones para Running 2026</h2><p>Salomon, Nike, FITLY y m&aacute;s. Botellas de mano, cinturones y sistemas de hidrataci&oacute;n.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/soft-flasks-running" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/10734244/pexels-photo-10734244.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Soft flasks running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Las 8 Mejores Soft Flasks para Running 2026</h2><p>Salomon, DORNNA, TRIWONDER y m&aacute;s. Bidones blandos por tama&ntilde;o y compatibilidad.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/ropa-correr-segun-temperatura" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Ropa para correr seg&uacute;n temperatura" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Ropa para Correr Seg&uacute;n la Temperatura: Gu&iacute;a Visual</h2><p>Qu&eacute; ponerte para correr en cada temperatura. Capas, tejidos y accesorios desde -5&deg;C hasta 35&deg;C.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/entrenamiento/plan-maraton-16-semanas-sub4h" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Plan marat&oacute;n 16 semanas sub 4h" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Plan Marat&oacute;n 16 Semanas (Sub 4h y Terminar Fuerte)</h2><p>Plan semanal con tabla, ritmos, tiradas largas, nutrici&oacute;n y estrategia para correr una marat&oacute;n por debajo de 4 horas.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">11 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8567597/pexels-photo-8567597.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr durante la menstruaci&oacute;n" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Correr durante la Menstruaci&oacute;n: Gu&iacute;a Completa para Runners</h2><p>C&oacute;mo adaptar el running al ciclo menstrual, beneficios del ejercicio y productos recomendados para entrenar c&oacute;moda.</p><span class="author">Por Julia Mart&iacute;nez</span><div class="card-meta"><span class="meta">11 mar 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-superficies-para-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/332835/pexels-photo-332835.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Pista de atletismo - mejores superficies para correr" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Mejores Superficies para Correr: Comparativa Completa</h2><p>Asfalto, tierra, hierba, cinta o arena: impacto, velocidad y riesgo de lesi&oacute;n comparados.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+  </div>
+
+  <nav class="pagination" aria-label="pagination">
+    <a href="https://www.correrjuntos.com/blog/page/2/" rel="prev">← Anterior</a>
+    <span class="info">Página 3 de 12</span>
+    <a href="https://www.correrjuntos.com/blog/page/4/" rel="next">Siguiente →</a>
+  </nav>
+
+  <div class="all-pages">
+    <a href="https://www.correrjuntos.com/blog/">1</a>
+    <a href="https://www.correrjuntos.com/blog/page/2/">2</a>
+    <a href="https://www.correrjuntos.com/blog/page/3/" class="current">3</a>
+    <a href="https://www.correrjuntos.com/blog/page/4/">4</a>
+    <a href="https://www.correrjuntos.com/blog/page/5/">5</a>
+    <a href="https://www.correrjuntos.com/blog/page/6/">6</a>
+    <a href="https://www.correrjuntos.com/blog/page/7/">7</a>
+    <a href="https://www.correrjuntos.com/blog/page/8/">8</a>
+    <a href="https://www.correrjuntos.com/blog/page/9/">9</a>
+    <a href="https://www.correrjuntos.com/blog/page/10/">10</a>
+    <a href="https://www.correrjuntos.com/blog/page/11/">11</a>
+    <a href="https://www.correrjuntos.com/blog/page/12/">12</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 CorrerJuntos.</footer>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Running Blog | CorrerJuntos — Page 3</title>
+<meta name="description" content="Tips, routes and guides for runners of all levels.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/blog/en/page/3/">
+<link rel="prev" href="https://www.correrjuntos.com/blog/en/page/2/">
+<link rel="next" href="https://www.correrjuntos.com/blog/en/page/4/">
+<meta property="og:title" content="Running Blog | CorrerJuntos — Page 3">
+<meta property="og:description" content="Tips, routes and guides for runners of all levels.">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/en/page/3/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #fef7ed; color: #3d3229; line-height: 1.6 }
+.nav-wrapper { position: sticky; top: 0; z-index: 100; background: rgba(254,247,237,.97); backdrop-filter: blur(12px); border-bottom: 1px solid #efe6db }
+nav { padding: 16px 20px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between }
+nav > a { color: #f97316; text-decoration: none; font-weight: 700; font-size: 1.1rem }
+nav .links { display: flex; gap: 16px; font-size: .9rem }
+nav .links a { color: #5c4d3d; text-decoration: none; font-weight: 600 }
+nav .links a:hover { color: #f97316 }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px }
+.page-head { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #e8ddd1 }
+.page-head h1 { font-size: 1.5rem; font-weight: 800; color: #3d3229; letter-spacing: -.015em }
+.page-head .sub { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: #b5a797; margin-top: 6px; font-weight: 600 }
+.articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px }
+.article-card { background: #fffcf9; border: 1px solid #efe6db; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color .2s, box-shadow .2s, transform .2s }
+.article-card:hover { border-color: #f97316; box-shadow: 0 8px 24px rgba(61,50,41,.08); transform: translateY(-2px) }
+.article-card .card-img { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #f0ebe3 }
+.article-card .card-img img { width: 100%; height: 100%; object-fit: cover }
+.article-card .badge-new { position: absolute; top: 10px; left: 10px; background: #f97316; color: #fff; font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase }
+.article-card .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 6px }
+.article-card .category { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; align-self: flex-start; margin-bottom: 2px }
+.cat-badge-entrenamiento { color: #9a3412; background: #fff4ee }
+.cat-badge-nutricion { color: #065f46; background: #f0fdf4 }
+.cat-badge-equipamiento { color: #1e40af; background: #eff6ff }
+.cat-badge-tecnologia { color: #5b21b6; background: #f5f3ff }
+.cat-badge-zapatillas { color: #9f1239; background: #fff1f2 }
+.cat-badge-salud { color: #134e4a; background: #f0fdfa }
+.cat-badge-rutas { color: #78350f; background: #fffbeb }
+.cat-badge-trail { color: #292524; background: #fafaf9 }
+.cat-badge-suplementacion { color: #701a75; background: #fdf4ff }
+.cat-badge-atleta-hibrido { color: #1e293b; background: #f8fafc }
+.cat-badge-carreras { color: #991b1b; background: #fef2f2 }
+.cat-badge-comunidad { color: #ea580c; background: #fff4ee }
+.article-card h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: #3d3229 }
+.article-card p { font-size: .88rem; color: #6b5c4d; line-height: 1.5; flex: 1 }
+.article-card .author { font-size: .76rem; color: #9a8e7f }
+.article-card .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 10px; border-top: 1px solid #f0ebe3 }
+.article-card .meta { font-size: .76rem; color: #9a8e7f }
+.article-card .card-arrow { font-size: .82rem; color: #f97316; font-weight: 600 }
+
+.pagination { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8ddd1 }
+.pagination a { padding: 10px 18px; border: 1.5px solid #e8ddd1; background: #fff; border-radius: 8px; text-decoration: none; color: #3d3229; font-size: .85rem; font-weight: 600; transition: all .18s }
+.pagination a:hover { border-color: #f97316; color: #f97316; background: #fff8f4 }
+.pagination .info { color: #9a8e7f; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500 }
+.pagination .disabled { opacity: .35; pointer-events: none }
+.all-pages { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center }
+.all-pages a { padding: 6px 12px; border: 1px solid #e8ddd1; background: #fff; border-radius: 6px; text-decoration: none; color: #6b5c4d; font-size: .78rem; font-weight: 600 }
+.all-pages a.current { background: #f97316; border-color: #f97316; color: #fff }
+.all-pages a:hover:not(.current) { border-color: #f97316; color: #f97316 }
+
+footer { text-align: center; padding: 24px 20px; color: #9a8e7f; font-size: .78rem; border-top: 1px solid #efe6db }
+</style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+<nav>
+  <a href="/">CorrerJuntos</a>
+  <div class="links">
+    <a href="https://www.correrjuntos.com/blog/en/">Blog</a>
+    <a href="/calculadora/">Pace Calculator</a>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="page-head">
+    <div class="sub">Page 3 of 11</div>
+    <h1>Running Blog | CorrerJuntos</h1>
+  </div>
+
+  <div class="articles">
+    <a href="/blog/en/running-at-night-safety-tips" class="article-card" data-category="entrenamiento" style="animation-delay:.066s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/796545/pexels-photo-796545.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running at night safety" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Running at Night: Safety Tips and Essential Gear</h2><p>A guide to running at night safely. Essential gear, recommended routes, visibility tips and advice for night runners.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 9 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/running-and-gym-same-day" class="article-card" data-category="entrenamiento" style="animation-delay:.068s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/4162445/pexels-photo-4162445.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running and gym same day" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Running and Gym Same Day: How to Combine Both Safely</h2><p>Can you run and work out at the gym the same day? How to combine running and strength training and avoid overtraining.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 10 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/running-with-music-benefits" class="article-card" data-category="entrenamiento" style="animation-delay:.07s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/2291874/pexels-photo-2291874.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70" alt="Running with music benefits" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Running with Music: Benefits, Risks and the Perfect BPM Guide</h2><p>How music improves your running performance. Ideal BPM by pace, headphone types, safety tips and playlist strategies.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 10 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/average-5k-time-by-age" class="article-card" data-category="entrenamiento" style="animation-delay:.072s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/2524739/pexels-photo-2524739.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Average 5K time by age" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Average 5K Time by Age: What's a Good Time and How to Improve</h2><p>Average 5K running times by age and gender. Full table, how to estimate your time and a plan to beat your personal best.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 9 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/running-before-or-after-eating" class="article-card" data-category="nutricion" style="animation-delay:.074s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running before or after eating" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-nutricion">Nutrition</span><h2>Running Before or After Eating: Best Timing for Your Run</h2><p>Should you run on an empty stomach or after eating? Wait times, pre-run meals, fasted running pros and cons explained.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 10 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/start-running-after-50" class="article-card" data-category="salud" style="animation-delay:.076s">
+      <div class="card-img"><span class="badge-new">New</span><img src="/blog/img/empezar-correr-50.webp" alt="Start running after 50" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Health</span><h2>Start Running After 50: Complete Guide to Running Safely</h2><p>It is never too late. Complete guide to running after 50 with medical checklist, 8-week walk-jog plan and recovery tips.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 11 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/how-to-build-running-endurance" class="article-card" data-category="entrenamiento" style="animation-delay:.078s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Build running endurance" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>How to Build Running Endurance: 7 Proven Strategies</h2><p>Learn to run longer without getting tired. 7 science-backed strategies: aerobic base, progressive overload, long runs and more.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 10 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/running-with-your-dog-canicross" class="article-card" data-category="entrenamiento" style="animation-delay:.08s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/6089707/pexels-photo-6089707.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running with your dog canicross" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Running with Your Dog (Canicross): Complete Beginner's Guide</h2><p>Best dog breeds for running, essential gear, training technique, common mistakes and how to start safely with your dog.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 11 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/running-while-pregnant-guide" class="article-card" data-category="salud" style="animation-delay:.082s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/7055663/pexels-photo-7055663.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running while pregnant" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Health</span><h2>Running While Pregnant: Safe Trimester-by-Trimester Guide</h2><p>Can you run during pregnancy? Trimester-by-trimester guide with adaptations, warning signs and when to stop safely.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 11 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/return-to-running-after-injury" class="article-card" data-category="salud" style="animation-delay:.084s">
+      <div class="card-img"><span class="badge-new">New</span><img src="/blog/img/volver-correr-lesion.webp" alt="Return to running after injury" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Health</span><h2>Return to Running After Injury: Safe Comeback Guide</h2><p>How to safely return to running after an injury. Progressive comeback plan, warning signs and strengthening exercises.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 10 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/best-surfaces-for-running" class="article-card" data-category="entrenamiento" style="animation-delay:.086s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/332835/pexels-photo-332835.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running track - best surfaces for running" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Best Surfaces for Running: Complete Comparison Guide</h2><p>Asphalt, dirt, grass, treadmill or sand: comparing surfaces by impact, speed, injury risk and ideal training type.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 9 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/what-to-wear-running-by-temperature" class="article-card" data-category="equipamiento" style="animation-delay:.088s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="What to wear running by temperature" width="640" height="360" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-equipamiento">Gear</span><h2>What to Wear Running by Temperature: Complete Visual Guide</h2><p>What to wear for every running temperature. Layering guide, fabric tips and accessories from freezing to 95°F heat.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 2, 2026 · 10 min</span><span class="card-arrow">Read →</span></div></div>
+    </a>
+    <a href="/blog/en/no-one-to-run-with" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/5319373/pexels-photo-5319373.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="No one to run with" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-comunidad">Community</span><h2>No One to Run With? 5 Real Solutions</h2><p>The frustration of wanting to run but having nobody to join you. 5 proven solutions to find running partners.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 10 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/why-people-quit-running-3-months" class="article-card" data-category="entrenamiento" style="animation-delay:.052s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/5067671/pexels-photo-5067671.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Why people quit running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Why Most People Quit Running Within 3 Months</h2><p>80% drop out before 90 days. The psychological reasons and how to avoid becoming another statistic.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 11 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/start-running-when-embarrassed" class="article-card" data-category="entrenamiento" style="animation-delay:.054s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/6551282/pexels-photo-6551282.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Start running when embarrassed" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>How to Start Running When You Feel Too Embarrassed</h2><p>Fear of being judged paralyzes thousands. A practical plan to overcome self-consciousness and start running.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 10 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/beginner-running-mistakes-nobody-tells" class="article-card" data-category="entrenamiento" style="animation-delay:.056s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Beginner running mistakes" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Training</span><h2>Beginner Running Mistakes Nobody Tells You About</h2><p>The mistakes every new runner makes that experts never mention. From going too fast to ignoring rest days.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 10 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/how-to-get-back-into-running" class="article-card" data-category="entrenamiento" style="animation-delay:.058s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/1040427/pexels-photo-1040427.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Get back into running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-comunidad">Community</span><h2>How to Get Back Into Running After Losing Motivation</h2><p>Emotional guide to returning to running after a break. Progressive plan and how the community pulls you back.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 11 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/loneliness-of-running" class="article-card" data-category="entrenamiento" style="animation-delay:.06s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Loneliness of running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-comunidad">Community</span><h2>The Loneliness of Running: Nobody Talks About It</h2><p>The paradox of healthy sport: running is good but doing it alone can isolate you. How to overcome it.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 10 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/why-group-running-is-addictive" class="article-card" data-category="entrenamiento" style="animation-delay:.062s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/5038843/pexels-photo-5038843.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70" alt="Group running is addictive" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-comunidad">Community</span><h2>Why Group Running Is More Addictive Than Solo</h2><p>The science of social running: amplified endorphins, accountability and oxytocin. Why groups are addictive.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 11 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/running-is-social-fitness-trend" class="article-card" data-category="entrenamiento" style="animation-delay:.064s">
+      <div class="card-img"><span class="badge-new">New</span><img src="https://images.pexels.com/photos/3776816/pexels-photo-3776816.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running is social trend" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-comunidad">Community</span><h2>Running Is Social: The Biggest Fitness Trend of 2026</h2><p>Social running is the fitness trend of the year. Clubs, apps and meetups are revolutionizing how we run.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Mar 1, 2026 &middot; 10 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+  </div>
+
+  <nav class="pagination" aria-label="pagination">
+    <a href="https://www.correrjuntos.com/blog/en/page/2/" rel="prev">← Previous</a>
+    <span class="info">Page 3 of 11</span>
+    <a href="https://www.correrjuntos.com/blog/en/page/4/" rel="next">Next →</a>
+  </nav>
+
+  <div class="all-pages">
+    <a href="https://www.correrjuntos.com/blog/en/">1</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/2/">2</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/3/" class="current">3</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/4/">4</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/5/">5</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/6/">6</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/7/">7</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/8/">8</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/9/">9</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/10/">10</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/11/">11</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 CorrerJuntos.</footer>
+
+</body>
+</html>

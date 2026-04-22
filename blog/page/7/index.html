@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog de Running | CorrerJuntos — Página 7</title>
+<meta name="description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/blog/page/7/">
+<link rel="prev" href="https://www.correrjuntos.com/blog/page/6/">
+<link rel="next" href="https://www.correrjuntos.com/blog/page/8/">
+<meta property="og:title" content="Blog de Running | CorrerJuntos — Página 7">
+<meta property="og:description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/page/7/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #fef7ed; color: #3d3229; line-height: 1.6 }
+.nav-wrapper { position: sticky; top: 0; z-index: 100; background: rgba(254,247,237,.97); backdrop-filter: blur(12px); border-bottom: 1px solid #efe6db }
+nav { padding: 16px 20px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between }
+nav > a { color: #f97316; text-decoration: none; font-weight: 700; font-size: 1.1rem }
+nav .links { display: flex; gap: 16px; font-size: .9rem }
+nav .links a { color: #5c4d3d; text-decoration: none; font-weight: 600 }
+nav .links a:hover { color: #f97316 }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px }
+.page-head { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #e8ddd1 }
+.page-head h1 { font-size: 1.5rem; font-weight: 800; color: #3d3229; letter-spacing: -.015em }
+.page-head .sub { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: #b5a797; margin-top: 6px; font-weight: 600 }
+.articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px }
+.article-card { background: #fffcf9; border: 1px solid #efe6db; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color .2s, box-shadow .2s, transform .2s }
+.article-card:hover { border-color: #f97316; box-shadow: 0 8px 24px rgba(61,50,41,.08); transform: translateY(-2px) }
+.article-card .card-img { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #f0ebe3 }
+.article-card .card-img img { width: 100%; height: 100%; object-fit: cover }
+.article-card .badge-new { position: absolute; top: 10px; left: 10px; background: #f97316; color: #fff; font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase }
+.article-card .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 6px }
+.article-card .category { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; align-self: flex-start; margin-bottom: 2px }
+.cat-badge-entrenamiento { color: #9a3412; background: #fff4ee }
+.cat-badge-nutricion { color: #065f46; background: #f0fdf4 }
+.cat-badge-equipamiento { color: #1e40af; background: #eff6ff }
+.cat-badge-tecnologia { color: #5b21b6; background: #f5f3ff }
+.cat-badge-zapatillas { color: #9f1239; background: #fff1f2 }
+.cat-badge-salud { color: #134e4a; background: #f0fdfa }
+.cat-badge-rutas { color: #78350f; background: #fffbeb }
+.cat-badge-trail { color: #292524; background: #fafaf9 }
+.cat-badge-suplementacion { color: #701a75; background: #fdf4ff }
+.cat-badge-atleta-hibrido { color: #1e293b; background: #f8fafc }
+.cat-badge-carreras { color: #991b1b; background: #fef2f2 }
+.cat-badge-comunidad { color: #ea580c; background: #fff4ee }
+.article-card h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: #3d3229 }
+.article-card p { font-size: .88rem; color: #6b5c4d; line-height: 1.5; flex: 1 }
+.article-card .author { font-size: .76rem; color: #9a8e7f }
+.article-card .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 10px; border-top: 1px solid #f0ebe3 }
+.article-card .meta { font-size: .76rem; color: #9a8e7f }
+.article-card .card-arrow { font-size: .82rem; color: #f97316; font-weight: 600 }
+
+.pagination { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8ddd1 }
+.pagination a { padding: 10px 18px; border: 1.5px solid #e8ddd1; background: #fff; border-radius: 8px; text-decoration: none; color: #3d3229; font-size: .85rem; font-weight: 600; transition: all .18s }
+.pagination a:hover { border-color: #f97316; color: #f97316; background: #fff8f4 }
+.pagination .info { color: #9a8e7f; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500 }
+.pagination .disabled { opacity: .35; pointer-events: none }
+.all-pages { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center }
+.all-pages a { padding: 6px 12px; border: 1px solid #e8ddd1; background: #fff; border-radius: 6px; text-decoration: none; color: #6b5c4d; font-size: .78rem; font-weight: 600 }
+.all-pages a.current { background: #f97316; border-color: #f97316; color: #fff }
+.all-pages a:hover:not(.current) { border-color: #f97316; color: #f97316 }
+
+footer { text-align: center; padding: 24px 20px; color: #9a8e7f; font-size: .78rem; border-top: 1px solid #efe6db }
+</style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+<nav>
+  <a href="/">CorrerJuntos</a>
+  <div class="links">
+    <a href="https://www.correrjuntos.com/blog/">Blog</a>
+    <a href="/calculadora/">Calculadora</a>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="page-head">
+    <div class="sub">Página 7 de 12</div>
+    <h1>Blog de Running | CorrerJuntos</h1>
+  </div>
+
+  <div class="articles">
+    <a href="/blog/andar-vs-correr" class="article-card" data-category="salud" style="animation-delay:.065s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/10432232/pexels-photo-10432232.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Andar vs correr comparativa" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-salud">Salud</span>
+        <h2>Andar vs Correr: &iquest;Qu&eacute; Es Mejor para tu Salud?</h2>
+        <p>Calor&iacute;as, impacto articular, beneficios cardiovasculares, p&eacute;rdida de peso y cu&aacute;ndo elegir cada uno.</p>
+        <span class="author">Por Jos&eacute; M&aacute;rquez</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 11 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-bastones-trail-running" class="article-card" data-category="trail" style="animation-delay:.054s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/blog/img/bastones-anykuu.webp" alt="Mejores bastones trail running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>Los 10 Mejores Bastones para Trail Running 2026</h2>
+        <p>Comparativa de bastones plegables y telesc&oacute;picos: aluminio, carbono, peso y precio para trail y ultras.</p>
+      </div>
+    </a>
+    <a href="/blog/mejores-zapatillas-trail-running" class="article-card" data-category="zapatillas" style="animation-delay:.055s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/31721671/pexels-photo-31721671.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Zapatillas trail running montaña" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Zapatillas</span>
+        <h2>Las 10 Mejores Zapatillas de Trail Running 2026</h2>
+        <p>Salomon, Hoka, Nike, La Sportiva y m&aacute;s. Comparativa por terreno, distancia y nivel. Con links a Amazon.</p>
+        <span class="author">Por Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">27 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-zapatillas-placa-carbono" class="article-card" data-category="zapatillas" style="animation-delay:.057s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/6481840/pexels-photo-6481840.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Zapatillas placa carbono competici&oacute;n" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Zapatillas</span>
+        <h2>Las 10 Mejores Zapatillas con Placa de Carbono 2026</h2>
+        <p>Nike Vaporfly, Adidas Adios Pro, Hoka Cielo y m&aacute;s. Gu&iacute;a completa para competir m&aacute;s r&aacute;pido.</p>
+        <span class="author">Por Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">27 feb 2026 &middot; 20 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/beneficios-de-correr" class="article-card" data-category="salud" style="animation-delay:.06s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/3771071/pexels-photo-3771071.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Corredor disfrutando de los beneficios de correr" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-salud">Salud</span>
+        <h2>Beneficios de Correr: 15 Razones Respaldadas por la Ciencia</h2>
+        <p>Salud cardiovascular, control de peso, salud mental, longevidad y m&aacute;s. Todo lo que correr puede hacer por ti.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">24 feb 2026 &middot; 12 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/como-respirar-al-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.07s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=640&h=360&q=80" alt="Corredora respirando correctamente al correr" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <h2>C&oacute;mo Respirar al Correr: Gu&iacute;a Completa</h2>
+        <p>Respiraci&oacute;n diafragm&aacute;tica, patrones r&iacute;tmicos 3:2 y 2:1, nariz vs boca y ejercicios pr&aacute;cticos para cada ritmo.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">24 feb 2026 &middot; 10 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/como-correr-mas-rapido" class="article-card" data-category="entrenamiento" style="animation-delay:.075s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/7869580/pexels-photo-7869580.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Corredor haciendo series para correr más rápido" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <h2>C&oacute;mo Correr M&aacute;s R&aacute;pido: 12 Claves para Mejorar tu Ritmo</h2>
+        <p>Series, fartlek, fuerza, t&eacute;cnica y planes para bajar tu marca personal. Gu&iacute;a completa y pr&aacute;ctica.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">24 feb 2026 &middot; 14 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/dolor-rodilla-al-correr" class="article-card" data-category="salud" style="animation-delay:.076s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/4056832/pexels-photo-4056832.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Dolor de rodilla al correr tratamiento" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-salud">Salud</span>
+        <h2>Dolor de Rodilla al Correr: Causas, Tratamiento y Prevenci&oacute;n</h2>
+        <p>Las 6 causas m&aacute;s comunes de dolor de rodilla en corredores, c&oacute;mo tratarlas y ejercicios de fortalecimiento.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">24 feb 2026 &middot; 13 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/que-comer-antes-de-correr" class="article-card" data-category="nutricion" style="animation-delay:.077s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=640&h=360&q=80" alt="Alimentaci&oacute;n antes de correr pl&aacute;tano avena" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-nutricion">Nutrici&oacute;n</span>
+        <h2>Qu&eacute; Comer Antes de Correr: Gu&iacute;a de Alimentaci&oacute;n Pre-Entreno</h2>
+        <p>Alimentos, timing y cantidades seg&uacute;n tu tipo de entrenamiento. Sin molestias digestivas.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">24 feb 2026 &middot; 11 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/como-calentar-antes-de-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.078s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=640&h=360&q=80" alt="Calentamiento din&aacute;mico antes de correr" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <h2>C&oacute;mo Calentar Antes de Correr: Rutina Completa Paso a Paso</h2>
+        <p>Movilidad, trote, ejercicios din&aacute;micos y activaciones. Rutina de 5-15 min para cada tipo de sesi&oacute;n.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">24 feb 2026 &middot; 10 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-zapatillas-running-mujer" class="article-card" data-category="zapatillas" style="animation-delay:.08s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ca3cd774-463b-49f9-b068-ca3804d692ef/AIR+ZOOM+ALPHAFLY+NEXT%25+3.png" alt="Zapatillas running mujer Nike Alphafly" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Zapatillas</span>
+        <h2>Las 10 Mejores Zapatillas Running para Mujer 2026</h2>
+        <p>Ranking de zapatillas diseñadas para corredoras: biomecánica, horma y amortiguación específica.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 16 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/que-zapatillas-running-comprar-segun-nivel" class="article-card" data-category="zapatillas" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8ec52f52-a6f3-42db-89f8-aa2a10aec506/NIKE+VOMERO+PLUS.png" alt="Nike Vomero Plus - zapatillas running por nivel" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Zapatillas</span>
+        <h2>Qué Zapatillas de Running Comprar Según tu Nivel</h2>
+        <p>Guía por nivel: principiante, intermedio, avanzado y competición. Recomendaciones concretas con precios.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 18 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/zapatillas-running-pronadores" class="article-card" data-category="zapatillas" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://dms.deckers.com/hoka/image/upload/t_slider-grid-tile-wp/v1719294990/1147910-FSTC_1.png?_s=RAABAB0" alt="Hoka zapatillas running pronadores" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Zapatillas</span>
+        <h2>Zapatillas Running para Pronadores: Guía Completa 2026</h2>
+        <p>Qué es la pronación, cómo saber tu pisada y las 7 mejores zapatillas de estabilidad.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 16 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-zapatillas-running-baratas" class="article-card" data-category="zapatillas" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://m.media-amazon.com/images/I/71DUSHzxNGL._AC_SL1500_.jpg" alt="Zapatillas running baratas" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Zapatillas</span>
+        <h2>Mejores Zapatillas Running Baratas 2026 (Menos de 100€)</h2>
+        <p>8 zapatillas de calidad por menos de 100 euros. Modelos de temporada anterior y trucos para ahorrar.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-zapatillas-running-sobrepeso" class="article-card" data-category="zapatillas" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/4065509/pexels-photo-4065509.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Zapatillas running sobrepeso" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Zapatillas</span>
+        <h2>Mejores Zapatillas Running para Corredores con Sobrepeso</h2>
+        <p>Zapatillas con máxima amortiguación para corredores de +80 kg. Guía inclusiva y sin juicios.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 16 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejor-reloj-gps-running-calidad-precio" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://m.media-amazon.com/images/I/81OX6InPf2L._AC_SL1500_.jpg" alt="Reloj GPS running calidad precio" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-tecnologia">Tecnología</span>
+        <h2>Mejor Reloj GPS Running Calidad-Precio 2026</h2>
+        <p>Comparativa por rango de precio: Garmin, COROS, Polar y Apple Watch. Cuál merece la pena.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/que-gel-energetico-usar-maraton" class="article-card" data-category="suplementacion" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=640&h=360&q=80" alt="Geles energéticos maratón" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h2>Qué Gel Energético Usar en un Maratón</h2>
+        <p>Tipos de geles, plan de nutrición por kilómetro, cómo entrenar el estómago y los 5 mejores.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/auriculares-conduccion-osea-vs-in-ear-running" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=640&h=360&q=80" alt="Auriculares conducción ósea vs in-ear" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
+        <h2>Conducción Ósea vs In-Ear para Correr: ¿Cuál Elegir?</h2>
+        <p>Comparativa de auriculares: seguridad, sonido, comodidad. Shokz, JBL, Beats y Sony analizados.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 16 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/pack-basico-running-principiantes" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/373984/pexels-photo-373984.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Pack básico running principiantes" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-equipamiento">Equipamiento</span>
+        <h2>Pack Básico de Running: Todo para Empezar a Correr</h2>
+        <p>Guía de equipamiento por niveles: imprescindible, recomendable y nice-to-have. Con presupuestos.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/garmin-forerunner-55-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://m.media-amazon.com/images/I/61zIe+LogJL._AC_SL1500_.jpg" alt="Garmin Forerunner 55 review" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-tecnologia">Tecnología</span>
+        <h2>Garmin Forerunner 55: Review Completa para Runners</h2>
+        <p>El reloj GPS más vendido para empezar a correr. Funciones, batería, GPS y comparativa.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <nav class="pagination" aria-label="pagination">
+    <a href="https://www.correrjuntos.com/blog/page/6/" rel="prev">← Anterior</a>
+    <span class="info">Página 7 de 12</span>
+    <a href="https://www.correrjuntos.com/blog/page/8/" rel="next">Siguiente →</a>
+  </nav>
+
+  <div class="all-pages">
+    <a href="https://www.correrjuntos.com/blog/">1</a>
+    <a href="https://www.correrjuntos.com/blog/page/2/">2</a>
+    <a href="https://www.correrjuntos.com/blog/page/3/">3</a>
+    <a href="https://www.correrjuntos.com/blog/page/4/">4</a>
+    <a href="https://www.correrjuntos.com/blog/page/5/">5</a>
+    <a href="https://www.correrjuntos.com/blog/page/6/">6</a>
+    <a href="https://www.correrjuntos.com/blog/page/7/" class="current">7</a>
+    <a href="https://www.correrjuntos.com/blog/page/8/">8</a>
+    <a href="https://www.correrjuntos.com/blog/page/9/">9</a>
+    <a href="https://www.correrjuntos.com/blog/page/10/">10</a>
+    <a href="https://www.correrjuntos.com/blog/page/11/">11</a>
+    <a href="https://www.correrjuntos.com/blog/page/12/">12</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 CorrerJuntos.</footer>
+
+</body>
+</html>

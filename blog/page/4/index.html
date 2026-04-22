@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog de Running | CorrerJuntos — Página 4</title>
+<meta name="description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/blog/page/4/">
+<link rel="prev" href="https://www.correrjuntos.com/blog/page/3/">
+<link rel="next" href="https://www.correrjuntos.com/blog/page/5/">
+<meta property="og:title" content="Blog de Running | CorrerJuntos — Página 4">
+<meta property="og:description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/page/4/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #fef7ed; color: #3d3229; line-height: 1.6 }
+.nav-wrapper { position: sticky; top: 0; z-index: 100; background: rgba(254,247,237,.97); backdrop-filter: blur(12px); border-bottom: 1px solid #efe6db }
+nav { padding: 16px 20px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between }
+nav > a { color: #f97316; text-decoration: none; font-weight: 700; font-size: 1.1rem }
+nav .links { display: flex; gap: 16px; font-size: .9rem }
+nav .links a { color: #5c4d3d; text-decoration: none; font-weight: 600 }
+nav .links a:hover { color: #f97316 }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px }
+.page-head { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #e8ddd1 }
+.page-head h1 { font-size: 1.5rem; font-weight: 800; color: #3d3229; letter-spacing: -.015em }
+.page-head .sub { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: #b5a797; margin-top: 6px; font-weight: 600 }
+.articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px }
+.article-card { background: #fffcf9; border: 1px solid #efe6db; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color .2s, box-shadow .2s, transform .2s }
+.article-card:hover { border-color: #f97316; box-shadow: 0 8px 24px rgba(61,50,41,.08); transform: translateY(-2px) }
+.article-card .card-img { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #f0ebe3 }
+.article-card .card-img img { width: 100%; height: 100%; object-fit: cover }
+.article-card .badge-new { position: absolute; top: 10px; left: 10px; background: #f97316; color: #fff; font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase }
+.article-card .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 6px }
+.article-card .category { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; align-self: flex-start; margin-bottom: 2px }
+.cat-badge-entrenamiento { color: #9a3412; background: #fff4ee }
+.cat-badge-nutricion { color: #065f46; background: #f0fdf4 }
+.cat-badge-equipamiento { color: #1e40af; background: #eff6ff }
+.cat-badge-tecnologia { color: #5b21b6; background: #f5f3ff }
+.cat-badge-zapatillas { color: #9f1239; background: #fff1f2 }
+.cat-badge-salud { color: #134e4a; background: #f0fdfa }
+.cat-badge-rutas { color: #78350f; background: #fffbeb }
+.cat-badge-trail { color: #292524; background: #fafaf9 }
+.cat-badge-suplementacion { color: #701a75; background: #fdf4ff }
+.cat-badge-atleta-hibrido { color: #1e293b; background: #f8fafc }
+.cat-badge-carreras { color: #991b1b; background: #fef2f2 }
+.cat-badge-comunidad { color: #ea580c; background: #fff4ee }
+.article-card h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: #3d3229 }
+.article-card p { font-size: .88rem; color: #6b5c4d; line-height: 1.5; flex: 1 }
+.article-card .author { font-size: .76rem; color: #9a8e7f }
+.article-card .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 10px; border-top: 1px solid #f0ebe3 }
+.article-card .meta { font-size: .76rem; color: #9a8e7f }
+.article-card .card-arrow { font-size: .82rem; color: #f97316; font-weight: 600 }
+
+.pagination { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8ddd1 }
+.pagination a { padding: 10px 18px; border: 1.5px solid #e8ddd1; background: #fff; border-radius: 8px; text-decoration: none; color: #3d3229; font-size: .85rem; font-weight: 600; transition: all .18s }
+.pagination a:hover { border-color: #f97316; color: #f97316; background: #fff8f4 }
+.pagination .info { color: #9a8e7f; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500 }
+.pagination .disabled { opacity: .35; pointer-events: none }
+.all-pages { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center }
+.all-pages a { padding: 6px 12px; border: 1px solid #e8ddd1; background: #fff; border-radius: 6px; text-decoration: none; color: #6b5c4d; font-size: .78rem; font-weight: 600 }
+.all-pages a.current { background: #f97316; border-color: #f97316; color: #fff }
+.all-pages a:hover:not(.current) { border-color: #f97316; color: #f97316 }
+
+footer { text-align: center; padding: 24px 20px; color: #9a8e7f; font-size: .78rem; border-top: 1px solid #efe6db }
+</style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+<nav>
+  <a href="/">CorrerJuntos</a>
+  <div class="links">
+    <a href="https://www.correrjuntos.com/blog/">Blog</a>
+    <a href="/calculadora/">Calculadora</a>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="page-head">
+    <div class="sub">Página 4 de 12</div>
+    <h1>Blog de Running | CorrerJuntos</h1>
+  </div>
+
+  <div class="articles">
+    <a href="/blog/volver-a-correr-despues-de-lesion" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/volver-correr-lesion.webp" alt="Volver a correr tras lesi&oacute;n" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Volver a Correr Despu&eacute;s de una Lesi&oacute;n</h2><p>Plan de retorno progresivo de 6 semanas, fortalecimiento y errores que retrasan la recuperaci&oacute;n.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-embarazada-seguro" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/7055663/pexels-photo-7055663.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr embarazada" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Correr Embarazada: Gu&iacute;a Segura por Trimestre</h2><p>Adaptaciones por trimestre, se&ntilde;ales de alerta, ejercicios alternativos y cu&aacute;ndo parar.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-con-perro-canicross" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/6089707/pexels-photo-6089707.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Canicross correr con perro" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr con Perro (Canicross): Gu&iacute;a Completa</h2><p>Razas ideales, equipamiento, t&eacute;cnica de carrera con perro y errores comunes del canicross.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/como-aumentar-resistencia-corriendo" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Aumentar resistencia corriendo" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>C&oacute;mo Aumentar tu Resistencia Corriendo</h2><p>7 estrategias probadas para correr m&aacute;s tiempo y m&aacute;s lejos. Base aer&oacute;bica, intervalos y m&aacute;s.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/empezar-a-correr-despues-de-los-50" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/empezar-correr-50.webp" alt="Empezar a correr a los 50" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Empezar a Correr Despu&eacute;s de los 50</h2><p>Revisi&oacute;n m&eacute;dica, plan progresivo de 8 semanas, cuidado articular y motivaci&oacute;n para 50+.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-antes-o-despues-de-comer" class="article-card" data-category="nutricion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr antes o despu&eacute;s de comer" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-nutricion">Nutrici&oacute;n</span><h2>Correr Antes o Despu&eacute;s de Comer</h2><p>Cu&aacute;nto esperar, qu&eacute; comer antes y despu&eacute;s, y ventajas del running en ayunas.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/cuanto-tardo-en-correr-5km" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2524739/pexels-photo-2524739.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Cu&aacute;nto tardo en correr 5km" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Cu&aacute;nto se Tarda en Correr 5K por Edad</h2><p>Tablas de tiempos medios en 5K por edad y g&eacute;nero. Descubre si tu marca es buena.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-con-musica-beneficios" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2291874/pexels-photo-2291874.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70" alt="Correr con m&uacute;sica" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr con M&uacute;sica: Beneficios y BPM Ideal</h2><p>C&oacute;mo la m&uacute;sica mejora tu rendimiento. BPM ideal por ritmo y tipos de auriculares.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-y-gimnasio-mismo-dia" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/4162445/pexels-photo-4162445.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr y gimnasio" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr y Gimnasio el Mismo D&iacute;a</h2><p>Orden &oacute;ptimo, recuperaci&oacute;n y errores al combinar running con fuerza.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-por-la-noche-consejos" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/796545/pexels-photo-796545.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr por la noche" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr por la Noche: Consejos de Seguridad</h2><p>Visibilidad, rutas seguras, equipamiento reflectante y ventajas de correr de noche.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/agujetas-despues-de-correr" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3771071/pexels-photo-3771071.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Agujetas despu&eacute;s de correr" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Agujetas Despu&eacute;s de Correr: Causas y Remedios</h2><p>Por qu&eacute; aparecen, cu&aacute;nto duran, remedios efectivos y cu&aacute;ndo volver a correr.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-en-cinta-vs-calle" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Cinta vs calle" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr en Cinta vs Calle: Comparativa</h2><p>Biomec&aacute;nica, calor&iacute;as e impacto articular. Cu&aacute;ndo elegir cinta o asfalto.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/diferencia-zapatillas-running-normales" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/elegir-zapatillas-running.webp" alt="Zapatillas running vs normales" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h2>Zapatillas Running vs Normales: La Diferencia</h2><p>Amortiguaci&oacute;n, drop, transpiraci&oacute;n y soporte. Por qu&eacute; necesitas calzado espec&iacute;fico.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/ritmo-para-principiantes-running" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3756165/pexels-photo-3756165.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Ritmo para principiantes" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Ritmo para Principiantes: Gu&iacute;a de Pace</h2><p>C&oacute;mo calcular tu ritmo ideal, la regla conversacional y tablas de pace por nivel.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-en-verano-calor" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3621183/pexels-photo-3621183.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr en verano" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Correr en Verano con Calor: Gu&iacute;a Segura</h2><p>Hidrataci&oacute;n, horarios, ropa y se&ntilde;ales de alerta para correr seguro con calor.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/empezar-a-correr-despues-de-los-40" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3764554/pexels-photo-3764554.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Empezar a correr a los 40" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Empezar a Correr Despu&eacute;s de los 40</h2><p>Plan progresivo, revisi&oacute;n m&eacute;dica y protecci&oacute;n articular para empezar a los 40+.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/puedo-correr-todos-los-dias" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/4426325/pexels-photo-4426325.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Correr todos los d&iacute;as" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>&iquest;Puedo Correr Todos los D&iacute;as?</h2><p>Ventajas e inconvenientes, se&ntilde;ales de sobreentrenamiento y cu&aacute;ndo descansar.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/flato-dolor-costado-al-correr" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/blog/img/flato-correr.webp" alt="Flato al correr" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h2>Flato al Correr: Por Qu&eacute; Duele y C&oacute;mo Evitarlo</h2><p>Causas del dolor de costado, t&eacute;cnicas para eliminarlo en segundos y prevenci&oacute;n.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/grupos-running-madrid" class="article-card" data-category="rutas" style="animation-delay:.044s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/878151/pexels-photo-878151.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&crop=center&q=80" alt="Grupos de running en Madrid" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running en Madrid: Los 15 Mejores para Correr en 2026</h2><p>Gu&iacute;a completa de los mejores grupos de running en Madrid: clubes, quedadas gratuitas, rutas y c&oacute;mo encontrar tu grupo ideal.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/grupos-running-barcelona" class="article-card" data-category="rutas" style="animation-delay:.046s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2539658/pexels-photo-2539658.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Grupos de running en Barcelona" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running en Barcelona: Los Mejores Grupos para Correr en 2026</h2><p>Descubre los mejores grupos de running en Barcelona: Barceloneta, Montju&iuml;c, Carretera de les Aig&uuml;es y m&aacute;s.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+  </div>
+
+  <nav class="pagination" aria-label="pagination">
+    <a href="https://www.correrjuntos.com/blog/page/3/" rel="prev">← Anterior</a>
+    <span class="info">Página 4 de 12</span>
+    <a href="https://www.correrjuntos.com/blog/page/5/" rel="next">Siguiente →</a>
+  </nav>
+
+  <div class="all-pages">
+    <a href="https://www.correrjuntos.com/blog/">1</a>
+    <a href="https://www.correrjuntos.com/blog/page/2/">2</a>
+    <a href="https://www.correrjuntos.com/blog/page/3/">3</a>
+    <a href="https://www.correrjuntos.com/blog/page/4/" class="current">4</a>
+    <a href="https://www.correrjuntos.com/blog/page/5/">5</a>
+    <a href="https://www.correrjuntos.com/blog/page/6/">6</a>
+    <a href="https://www.correrjuntos.com/blog/page/7/">7</a>
+    <a href="https://www.correrjuntos.com/blog/page/8/">8</a>
+    <a href="https://www.correrjuntos.com/blog/page/9/">9</a>
+    <a href="https://www.correrjuntos.com/blog/page/10/">10</a>
+    <a href="https://www.correrjuntos.com/blog/page/11/">11</a>
+    <a href="https://www.correrjuntos.com/blog/page/12/">12</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 CorrerJuntos.</footer>
+
+</body>
+</html>

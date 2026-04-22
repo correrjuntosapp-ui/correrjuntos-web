@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog de Running | CorrerJuntos — Página 5</title>
+<meta name="description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/blog/page/5/">
+<link rel="prev" href="https://www.correrjuntos.com/blog/page/4/">
+<link rel="next" href="https://www.correrjuntos.com/blog/page/6/">
+<meta property="og:title" content="Blog de Running | CorrerJuntos — Página 5">
+<meta property="og:description" content="Tips, rutas y guías para corredores de todos los niveles. Aprende, mejora y corre en compañía.">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/page/5/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #fef7ed; color: #3d3229; line-height: 1.6 }
+.nav-wrapper { position: sticky; top: 0; z-index: 100; background: rgba(254,247,237,.97); backdrop-filter: blur(12px); border-bottom: 1px solid #efe6db }
+nav { padding: 16px 20px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between }
+nav > a { color: #f97316; text-decoration: none; font-weight: 700; font-size: 1.1rem }
+nav .links { display: flex; gap: 16px; font-size: .9rem }
+nav .links a { color: #5c4d3d; text-decoration: none; font-weight: 600 }
+nav .links a:hover { color: #f97316 }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px }
+.page-head { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #e8ddd1 }
+.page-head h1 { font-size: 1.5rem; font-weight: 800; color: #3d3229; letter-spacing: -.015em }
+.page-head .sub { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: #b5a797; margin-top: 6px; font-weight: 600 }
+.articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px }
+.article-card { background: #fffcf9; border: 1px solid #efe6db; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color .2s, box-shadow .2s, transform .2s }
+.article-card:hover { border-color: #f97316; box-shadow: 0 8px 24px rgba(61,50,41,.08); transform: translateY(-2px) }
+.article-card .card-img { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #f0ebe3 }
+.article-card .card-img img { width: 100%; height: 100%; object-fit: cover }
+.article-card .badge-new { position: absolute; top: 10px; left: 10px; background: #f97316; color: #fff; font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase }
+.article-card .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 6px }
+.article-card .category { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; align-self: flex-start; margin-bottom: 2px }
+.cat-badge-entrenamiento { color: #9a3412; background: #fff4ee }
+.cat-badge-nutricion { color: #065f46; background: #f0fdf4 }
+.cat-badge-equipamiento { color: #1e40af; background: #eff6ff }
+.cat-badge-tecnologia { color: #5b21b6; background: #f5f3ff }
+.cat-badge-zapatillas { color: #9f1239; background: #fff1f2 }
+.cat-badge-salud { color: #134e4a; background: #f0fdfa }
+.cat-badge-rutas { color: #78350f; background: #fffbeb }
+.cat-badge-trail { color: #292524; background: #fafaf9 }
+.cat-badge-suplementacion { color: #701a75; background: #fdf4ff }
+.cat-badge-atleta-hibrido { color: #1e293b; background: #f8fafc }
+.cat-badge-carreras { color: #991b1b; background: #fef2f2 }
+.cat-badge-comunidad { color: #ea580c; background: #fff4ee }
+.article-card h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: #3d3229 }
+.article-card p { font-size: .88rem; color: #6b5c4d; line-height: 1.5; flex: 1 }
+.article-card .author { font-size: .76rem; color: #9a8e7f }
+.article-card .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 10px; border-top: 1px solid #f0ebe3 }
+.article-card .meta { font-size: .76rem; color: #9a8e7f }
+.article-card .card-arrow { font-size: .82rem; color: #f97316; font-weight: 600 }
+
+.pagination { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8ddd1 }
+.pagination a { padding: 10px 18px; border: 1.5px solid #e8ddd1; background: #fff; border-radius: 8px; text-decoration: none; color: #3d3229; font-size: .85rem; font-weight: 600; transition: all .18s }
+.pagination a:hover { border-color: #f97316; color: #f97316; background: #fff8f4 }
+.pagination .info { color: #9a8e7f; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500 }
+.pagination .disabled { opacity: .35; pointer-events: none }
+.all-pages { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center }
+.all-pages a { padding: 6px 12px; border: 1px solid #e8ddd1; background: #fff; border-radius: 6px; text-decoration: none; color: #6b5c4d; font-size: .78rem; font-weight: 600 }
+.all-pages a.current { background: #f97316; border-color: #f97316; color: #fff }
+.all-pages a:hover:not(.current) { border-color: #f97316; color: #f97316 }
+
+footer { text-align: center; padding: 24px 20px; color: #9a8e7f; font-size: .78rem; border-top: 1px solid #efe6db }
+</style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+<nav>
+  <a href="/">CorrerJuntos</a>
+  <div class="links">
+    <a href="https://www.correrjuntos.com/blog/">Blog</a>
+    <a href="/calculadora/">Calculadora</a>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="page-head">
+    <div class="sub">Página 5 de 12</div>
+    <h1>Blog de Running | CorrerJuntos</h1>
+  </div>
+
+  <div class="articles">
+    <a href="/blog/grupos-running-valencia" class="article-card" data-category="rutas" style="animation-delay:.048s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8381736/pexels-photo-8381736.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Grupos de running en Valencia" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running en Valencia: Los Mejores Grupos para Correr en 2026</h2><p>Los mejores grupos de running en Valencia: Jard&iacute;n del Turia, Malvarrosa, parkrun y quedadas gratuitas.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correrjuntos-vs-strava-grupos" class="article-card" data-category="tecnologia" style="animation-delay:.049s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/4679246/pexels-photo-4679246.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&crop=top&q=80" alt="CorrerJuntos vs Strava grupos" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h2>CorrerJuntos vs Strava: &iquest;Cu&aacute;l es Mejor para Grupos de Running?</h2><p>Comparativa honesta entre CorrerJuntos y Strava para grupos de running: funciones sociales, tracking y comunidad.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correrjuntos-vs-meetup-running" class="article-card" data-category="tecnologia" style="animation-delay:.0495s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://www.correrjuntos.com/images/app-mapa.jpg" alt="CorrerJuntos vs Meetup running" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h2>CorrerJuntos vs Meetup: &iquest;D&oacute;nde Encontrar Grupos de Running?</h2><p>Comparativa entre CorrerJuntos y Meetup para encontrar grupos de running: funciones, matching y comunidad.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/no-tengo-con-quien-correr" class="article-card" data-category="rutas" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/5319373/pexels-photo-5319373.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="No tengo con quien correr" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>No Tengo con Qui&eacute;n Correr: 5 Soluciones Reales</h2><p>La frustraci&oacute;n de querer correr pero no tener a nadie. 5 soluciones probadas para encontrar compa&ntilde;eros de running.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/por-que-dejan-correr-3-meses" class="article-card" data-category="rutas" style="animation-delay:.052s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/5067671/pexels-photo-5067671.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Dejar de correr" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Por Qu&eacute; la Mayor&iacute;a Deja de Correr en 3 Meses</h2><p>El 80% abandona antes de 90 d&iacute;as. Las razones psicol&oacute;gicas y c&oacute;mo evitar ser uno m&aacute;s en la estad&iacute;stica.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/empezar-a-correr-con-verguenza" class="article-card" data-category="entrenamiento" style="animation-delay:.054s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/6551282/pexels-photo-6551282.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Empezar a correr con vergüenza" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>Plan para Empezar a Correr Si Te Da Verg&uuml;enza</h2><p>El miedo a ser juzgado paraliza a miles de personas. Plan pr&aacute;ctico para superar la verg&uuml;enza y empezar a correr.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/errores-principiante-running" class="article-card" data-category="entrenamiento" style="animation-delay:.056s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Errores principiante running" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h2>7 Errores de Principiante que Nadie Te Cuenta</h2><p>Los errores que todo runner novato comete y que los expertos callan. Desde ir demasiado r&aacute;pido hasta ignorar el descanso.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/recuperar-ganas-de-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.058s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/1040427/pexels-photo-1040427.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Recuperar ganas de correr" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>C&oacute;mo Recuperar las Ganas de Correr</h2><p>Gu&iacute;a emocional para volver a correr despu&eacute;s de un par&oacute;n. Plan progresivo y c&oacute;mo la comunidad te ayuda.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/soledad-del-runner" class="article-card" data-category="entrenamiento" style="animation-delay:.06s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Soledad del runner" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-comunidad">Comunidad</span><h2>La Soledad del Runner: Algo de lo que Nadie Habla</h2><p>La paradoja del deporte saludable: correr es bueno pero hacerlo siempre solo puede aislar. C&oacute;mo superarlo.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-acompanado-engancha-mas" class="article-card" data-category="rutas" style="animation-delay:.062s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/5038843/pexels-photo-5038843.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70" alt="Correr acompañado engancha" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Por Qu&eacute; Correr Acompa&ntilde;ado Engancha M&aacute;s</h2><p>La ciencia del running social: endorfinas amplificadas, accountability y oxitocina. Por qu&eacute; el grupo es adictivo.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/correr-es-social-tendencia" class="article-card" data-category="rutas" style="animation-delay:.064s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/3776816/pexels-photo-3776816.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running social tendencia" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Correr Es Social: La Nueva Tendencia Fitness 2026</h2><p>El running social es la tendencia fitness del a&ntilde;o. Clubes, apps y quedadas est&aacute;n revolucionando c&oacute;mo corremos.</p><span class="author">Por Carlos Ruiz</span><div class="card-meta"><span class="meta">1 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/grupos-de-running-guia-completa" class="article-card" data-category="rutas" style="animation-delay:.066s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8381747/pexels-photo-8381747.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Grupos de running gu&iacute;a completa" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Grupos de Running: Gu&iacute;a Completa para Encontrar tu Grupo Ideal</h2><p>Todo sobre grupos de running: tipos, c&oacute;mo elegir el mejor, d&oacute;nde encontrarlos y c&oacute;mo crear el tuyo. Gu&iacute;a 2026.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/quedadas-running-como-organizar" class="article-card" data-category="rutas" style="animation-delay:.068s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/2461982/pexels-photo-2461982.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Quedadas running c&oacute;mo organizar" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Quedadas Running: Gu&iacute;a para Organizar la Quedada Perfecta</h2><p>C&oacute;mo organizar quedadas de running exitosas: planificaci&oacute;n, ruta, comunicaci&oacute;n y herramientas. Gu&iacute;a paso a paso.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/running-social-revolucion-2026" class="article-card" data-category="rutas" style="animation-delay:.07s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="https://images.pexels.com/photos/8974283/pexels-photo-8974283.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running social revoluci&oacute;n 2026" loading="lazy" width="640" height="360"></div>
+      <div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h2>Running Social: La Revoluci&oacute;n que Cambia C&oacute;mo Corremos</h2><p>El running social transforma c&oacute;mo entrenamos: m&aacute;s motivaci&oacute;n, amistades reales y mejor rendimiento. El futuro del running.</p><span class="author">Por Jos&eacute; M&aacute;rquez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 8 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/errores-comunes-corredores" class="article-card featured" data-category="entrenamiento" data-featured-dup="true" style="animation-delay:.05s">
+      <div class="featured-img">
+        <div class="featured-badge">El mas leido de febrero</div>
+        <img src="https://images.pexels.com/photos/5038820/pexels-photo-5038820.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop&q=80" alt="Corredor en carretera" loading="eager">
+      </div>
+      <div class="featured-content">
+        <span class="category cat-badge-entrenamiento">Entrenamiento</span>
+        <h2>Los 10 Errores Más Comunes de los Corredores</h2>
+        <p>El 90% de runners comete al menos 3 de estos errores. Sobreentrenamiento, zapatillas, nutrición y cómo corregirlos para mejorar tu rendimiento.</p>
+        <span class="author">Por Jose Marquez</span>
+        <div class="card-meta">
+          <span class="meta">20 feb 2026 · 9 min</span>
+          <span class="card-arrow">Leer artículo →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-geles-energeticos-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/blog/img/geles-energeticos-running.webp" alt="Geles energéticos running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h2>Los 10 Mejores Geles Energ&eacute;ticos para Running 2026</h2>
+        <p>Maurten, SiS, GU Energy, PowerBar y m&aacute;s. Comparativa por calor&iacute;as, carbohidratos y precio. Con links a Amazon.</p>
+        <span class="author">Por Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-bebidas-hidratacion-running" class="article-card" data-category="suplementacion" style="animation-delay:.052s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/blog/img/bebidas-hidratacion-running.webp" alt="Bebidas hidratación running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h2>Las 10 Mejores Bebidas de Hidrataci&oacute;n para Running 2026</h2>
+        <p>Maurten, SiS, Nuun, Tailwind y m&aacute;s. Electrolitos, isot&oacute;nicas y pastillas efervescentes. Con links a Amazon.</p>
+        <span class="author">Por Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-creatinas-running" class="article-card" data-category="suplementacion" style="animation-delay:.053s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="https://images.pexels.com/photos/33921585/pexels-photo-33921585.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Creatinas para running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h2>Las 10 Mejores Creatinas para Running 2026</h2>
+        <p>Optimum Nutrition, Myprotein, HSN Creapure y m&aacute;s. Comparativa por pureza, formato y precio por dosis. Con links a Amazon.</p>
+        <span class="author">Por Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-colagenos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/713PkEvjiUL._AC_SL1500_.jpg" alt="Mejores colágenos para runners" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h2>Los 8 Mejores Col&aacute;genos para Runners 2026</h2><p>Colnatur, Vital Proteins, Ana Mar&iacute;a Lajusticia y m&aacute;s. Hidrolizado, marino y con magnesio comparados.</p><span class="author">Por Jose Marquez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-bcaas-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/81sNxindnTS._AC_SX425_.jpg" alt="Mejores BCAAs para runners" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h2>Los 8 Mejores BCAAs para Runners 2026</h2><p>Scivation Xtend, HSN, Optimum Nutrition y m&aacute;s. Ratio 2:1:1 vs 4:1:1 para corredores.</p><span class="author">Por Jose Marquez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+  </div>
+
+  <nav class="pagination" aria-label="pagination">
+    <a href="https://www.correrjuntos.com/blog/page/4/" rel="prev">← Anterior</a>
+    <span class="info">Página 5 de 12</span>
+    <a href="https://www.correrjuntos.com/blog/page/6/" rel="next">Siguiente →</a>
+  </nav>
+
+  <div class="all-pages">
+    <a href="https://www.correrjuntos.com/blog/">1</a>
+    <a href="https://www.correrjuntos.com/blog/page/2/">2</a>
+    <a href="https://www.correrjuntos.com/blog/page/3/">3</a>
+    <a href="https://www.correrjuntos.com/blog/page/4/">4</a>
+    <a href="https://www.correrjuntos.com/blog/page/5/" class="current">5</a>
+    <a href="https://www.correrjuntos.com/blog/page/6/">6</a>
+    <a href="https://www.correrjuntos.com/blog/page/7/">7</a>
+    <a href="https://www.correrjuntos.com/blog/page/8/">8</a>
+    <a href="https://www.correrjuntos.com/blog/page/9/">9</a>
+    <a href="https://www.correrjuntos.com/blog/page/10/">10</a>
+    <a href="https://www.correrjuntos.com/blog/page/11/">11</a>
+    <a href="https://www.correrjuntos.com/blog/page/12/">12</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 CorrerJuntos.</footer>
+
+</body>
+</html>

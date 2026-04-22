@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Running Blog | CorrerJuntos — Page 10</title>
+<meta name="description" content="Tips, routes and guides for runners of all levels.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/blog/en/page/10/">
+<link rel="prev" href="https://www.correrjuntos.com/blog/en/page/9/">
+<link rel="next" href="https://www.correrjuntos.com/blog/en/page/11/">
+<meta property="og:title" content="Running Blog | CorrerJuntos — Page 10">
+<meta property="og:description" content="Tips, routes and guides for runners of all levels.">
+<meta property="og:url" content="https://www.correrjuntos.com/blog/en/page/10/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #fef7ed; color: #3d3229; line-height: 1.6 }
+.nav-wrapper { position: sticky; top: 0; z-index: 100; background: rgba(254,247,237,.97); backdrop-filter: blur(12px); border-bottom: 1px solid #efe6db }
+nav { padding: 16px 20px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between }
+nav > a { color: #f97316; text-decoration: none; font-weight: 700; font-size: 1.1rem }
+nav .links { display: flex; gap: 16px; font-size: .9rem }
+nav .links a { color: #5c4d3d; text-decoration: none; font-weight: 600 }
+nav .links a:hover { color: #f97316 }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px }
+.page-head { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #e8ddd1 }
+.page-head h1 { font-size: 1.5rem; font-weight: 800; color: #3d3229; letter-spacing: -.015em }
+.page-head .sub { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: #b5a797; margin-top: 6px; font-weight: 600 }
+.articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px }
+.article-card { background: #fffcf9; border: 1px solid #efe6db; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color .2s, box-shadow .2s, transform .2s }
+.article-card:hover { border-color: #f97316; box-shadow: 0 8px 24px rgba(61,50,41,.08); transform: translateY(-2px) }
+.article-card .card-img { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #f0ebe3 }
+.article-card .card-img img { width: 100%; height: 100%; object-fit: cover }
+.article-card .badge-new { position: absolute; top: 10px; left: 10px; background: #f97316; color: #fff; font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase }
+.article-card .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 6px }
+.article-card .category { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; align-self: flex-start; margin-bottom: 2px }
+.cat-badge-entrenamiento { color: #9a3412; background: #fff4ee }
+.cat-badge-nutricion { color: #065f46; background: #f0fdf4 }
+.cat-badge-equipamiento { color: #1e40af; background: #eff6ff }
+.cat-badge-tecnologia { color: #5b21b6; background: #f5f3ff }
+.cat-badge-zapatillas { color: #9f1239; background: #fff1f2 }
+.cat-badge-salud { color: #134e4a; background: #f0fdfa }
+.cat-badge-rutas { color: #78350f; background: #fffbeb }
+.cat-badge-trail { color: #292524; background: #fafaf9 }
+.cat-badge-suplementacion { color: #701a75; background: #fdf4ff }
+.cat-badge-atleta-hibrido { color: #1e293b; background: #f8fafc }
+.cat-badge-carreras { color: #991b1b; background: #fef2f2 }
+.cat-badge-comunidad { color: #ea580c; background: #fff4ee }
+.article-card h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: #3d3229 }
+.article-card p { font-size: .88rem; color: #6b5c4d; line-height: 1.5; flex: 1 }
+.article-card .author { font-size: .76rem; color: #9a8e7f }
+.article-card .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 10px; border-top: 1px solid #f0ebe3 }
+.article-card .meta { font-size: .76rem; color: #9a8e7f }
+.article-card .card-arrow { font-size: .82rem; color: #f97316; font-weight: 600 }
+
+.pagination { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8ddd1 }
+.pagination a { padding: 10px 18px; border: 1.5px solid #e8ddd1; background: #fff; border-radius: 8px; text-decoration: none; color: #3d3229; font-size: .85rem; font-weight: 600; transition: all .18s }
+.pagination a:hover { border-color: #f97316; color: #f97316; background: #fff8f4 }
+.pagination .info { color: #9a8e7f; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500 }
+.pagination .disabled { opacity: .35; pointer-events: none }
+.all-pages { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center }
+.all-pages a { padding: 6px 12px; border: 1px solid #e8ddd1; background: #fff; border-radius: 6px; text-decoration: none; color: #6b5c4d; font-size: .78rem; font-weight: 600 }
+.all-pages a.current { background: #f97316; border-color: #f97316; color: #fff }
+.all-pages a:hover:not(.current) { border-color: #f97316; color: #f97316 }
+
+footer { text-align: center; padding: 24px 20px; color: #9a8e7f; font-size: .78rem; border-top: 1px solid #efe6db }
+</style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+<nav>
+  <a href="/">CorrerJuntos</a>
+  <div class="links">
+    <a href="https://www.correrjuntos.com/blog/en/">Blog</a>
+    <a href="/calculadora/">Pace Calculator</a>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="page-head">
+    <div class="sub">Page 10 of 11</div>
+    <h1>Running Blog | CorrerJuntos</h1>
+  </div>
+
+  <div class="articles">
+    <a href="/blog/en/how-to-avoid-stomach-issues-running" class="article-card" data-category="nutricion" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/7298668/pexels-photo-7298668.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="How to Avoid Stomach Issues While Running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-nutricion">Nutrition</span>
+        <h2>How to Avoid Stomach Issues While Running</h2>
+        <p>Runner's gut, foods to avoid, hydration and race day tips.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/how-long-running-shoes-last" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/31381389/pexels-photo-31381389.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="How Long Do Running Shoes Last?" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Shoes</span>
+        <h2>How Long Do Running Shoes Last?</h2>
+        <p>Lifespan in kilometers, signs of wear and how to extend durability.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/how-to-choose-running-shoes" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="/blog/img/elegir-zapatillas-running.webp" alt="How to Choose Running Shoes" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Shoes</span>
+        <h2>How to Choose Running Shoes</h2>
+        <p>Buyer's guide: gait, drop, cushioning and the best options for your level.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/best-running-shoes-neutral-gait" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Best Running Shoes for Neutral Gait [Top 7]" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Shoes</span>
+        <h2>Best Running Shoes for Neutral Gait [Top 7]</h2>
+        <p>The best neutral shoes on the market. Compared by cushioning, weight and price.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/running-shoe-drop-explained" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/8456072/pexels-photo-8456072.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running Shoe Drop Explained" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Shoes</span>
+        <h2>Running Shoe Drop Explained</h2>
+        <p>What is drop, how it affects your run and what drop to choose for your style.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/best-half-marathon-shoes" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="/blog/img/zapatillas-media-maraton.webp" alt="Best Half Marathon Shoes 2026" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Shoes</span>
+        <h2>Best Half Marathon Shoes 2026</h2>
+        <p>Top shoes for half marathons: cushioning, speed and the best models.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/new-balance-1080-vs-hoka-clifton" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="/blog/img/nb-1080-vs-hoka-clifton.webp" alt="New Balance 1080 vs Hoka Clifton" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Shoes</span>
+        <h2>New Balance 1080 vs Hoka Clifton</h2>
+        <p>Head-to-head: cushioning, durability, price and who each shoe suits best.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/best-running-shoes-supinators" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://m.media-amazon.com/images/I/712RAgdWszL._AC_SL1500_.jpg" alt="Best Running Shoes for Supinators" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-zapatillas">Shoes</span>
+        <h2>Best Running Shoes for Supinators</h2>
+        <p>What supination is, features to look for and the best models.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/asics-gel-nimbus-26-vs-nike-pegasus-41" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img"><img src="https://m.media-amazon.com/images/I/51eXW2PN1WL._AC_SL1500_.jpg" alt="ASICS Gel-Nimbus 26 vs Nike Pegasus 41" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-zapatillas">Shoes</span><h2>ASICS Gel-Nimbus 26 vs Nike Pegasus 41</h2><p>Premium cushioning vs daily versatility. Weight, price and which one to choose.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Feb 22, 2026 &middot; 12 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/nike-pegasus-41-vs-brooks-ghost-16" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
+      <div class="card-img"><img src="https://images.pexels.com/photos/1040427/pexels-photo-1040427.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Nike Pegasus 41 vs Brooks Ghost 16" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-zapatillas">Shoes</span><h2>Nike Pegasus 41 vs Brooks Ghost 16</h2><p>The two most versatile running shoes face to face. Which one is better for you.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Feb 22, 2026 &middot; 12 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/trail-running-training-plan" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/2116475/pexels-photo-2116475.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Trail Running Training Plan: 12 Weeks" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>Trail Running Training Plan: 12 Weeks</h2>
+        <p>Progressive trail running plan with elevation, strength and technique work.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/trail-running-nutrition" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Trail Running Nutrition: Complete Guide" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>Trail Running Nutrition: Complete Guide</h2>
+        <p>What to eat before, during and after trail running races.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/trail-running-safety" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/3617500/pexels-photo-3617500.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Trail Running Safety: Essential Tips" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>Trail Running Safety: Essential Tips</h2>
+        <p>Safety tips, mandatory gear and what to do in mountain emergencies.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/uphill-downhill-running-technique" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Uphill &amp; Downhill Running Technique" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>Uphill &amp; Downhill Running Technique</h2>
+        <p>How to run uphill and downhill efficiently and injury-free.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/best-trekking-poles-trail-running" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/2116469/pexels-photo-2116469.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Best Trekking Poles for Trail Running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>Best Trekking Poles for Trail Running</h2>
+        <p>When to use poles, how to choose them and proper technique.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/gps-navigation-trail-running" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/3912477/pexels-photo-3912477.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="GPS Navigation for Trail Running" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>GPS Navigation for Trail Running</h2>
+        <p>GPS watches, navigation apps, waypoints and offline maps for trail.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/first-ultra-trail-guide" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Your First Ultra Trail: Beginner's Guide" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-trail">Trail</span>
+        <h2>Your First Ultra Trail: Beginner's Guide</h2>
+        <p>Physical and mental prep, gear and nutrition for your first ultra.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 9 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/salomon-speedcross-6-vs-hoka-speedgoat-6" class="article-card" data-category="trail" style="animation-delay:.05s">
+      <div class="card-img"><img src="https://images.pexels.com/photos/1040427/pexels-photo-1040427.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Salomon Speedcross 6 vs Hoka Speedgoat 6" loading="lazy"></div>
+      <div class="card-body"><span class="category cat-badge-trail">Trail</span><h2>Salomon Speedcross 6 vs Hoka Speedgoat 6</h2><p>The two best trail shoes of 2026 face to face. Grip, cushioning, terrain and verdict.</p><span class="author">By Carlos Ruiz</span><div class="card-meta"><span class="meta">Feb 22, 2026 &middot; 12 min</span><span class="card-arrow">Read &rarr;</span></div></div>
+    </a>
+    <a href="/blog/en/running-groups-seville" class="article-card" data-category="rutas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="https://images.pexels.com/photos/8612041/pexels-photo-8612041.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop&q=80" alt="Running groups in Seville" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-rutas">Routes</span>
+        <h2>Running Groups in Seville: Complete Guide 2026</h2>
+        <p>Find running groups in Seville, weekly meetups, popular routes and clubs for all levels.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 12 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/en/running-with-others-cadiz" class="article-card" data-category="rutas" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">New</span>
+        <img src="/blog/img/correr-cadiz.webp" alt="Running with others in Cadiz" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-rutas">Routes</span>
+        <h2>Running With Others in Cadiz: Groups and Meetups 2026</h2>
+        <p>Running groups in Cadiz, beach meetups, coastal routes and clubs to run with company.</p>
+        <span class="author">By Carlos Ruiz</span>
+        <div class="card-meta">
+          <span class="meta">Mar 1, 2026 &middot; 12 min</span>
+          <span class="card-arrow">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <nav class="pagination" aria-label="pagination">
+    <a href="https://www.correrjuntos.com/blog/en/page/9/" rel="prev">← Previous</a>
+    <span class="info">Page 10 of 11</span>
+    <a href="https://www.correrjuntos.com/blog/en/page/11/" rel="next">Next →</a>
+  </nav>
+
+  <div class="all-pages">
+    <a href="https://www.correrjuntos.com/blog/en/">1</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/2/">2</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/3/">3</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/4/">4</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/5/">5</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/6/">6</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/7/">7</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/8/">8</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/9/">9</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/10/" class="current">10</a>
+    <a href="https://www.correrjuntos.com/blog/en/page/11/">11</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 CorrerJuntos.</footer>
+
+</body>
+</html>

@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Plan 10K Preview — CorrerJuntos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --ink-soft: #3d3229;
+    --body: #5c4d3d;
+    --muted: #9a8e7f;
+    --line: #e8ddd1;
+    --paper: #fef7ed;
+    --paper-soft: #fffcf9;
+    --orange: #f97316;
+    --orange-deep: #ea580c;
+    --orange-tint: #fff4ee;
+    --amber: #fbbf24;
+  }
+
+  @page { size: A4; margin: 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--body);
+    font-size: 10pt;
+    line-height: 1.55;
+    letter-spacing: 0.003em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 20mm 22mm 18mm;
+    position: relative;
+    page-break-after: always;
+    break-after: page;
+    background: var(--paper);
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  /* ──────────────────────────────────────
+     PAGE HEADER & FOOTER (all pages except cover)
+     ────────────────────────────────────── */
+  .page-header {
+    position: absolute;
+    top: 10mm; left: 22mm; right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 0.5pt solid var(--line);
+    padding-bottom: 4mm;
+  }
+  .page-header .brand { color: var(--orange); font-weight: 700; }
+  .page-footer {
+    position: absolute;
+    bottom: 10mm; left: 22mm; right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    font-weight: 500;
+    color: var(--muted);
+    border-top: 0.5pt solid var(--line);
+    padding-top: 3mm;
+  }
+  .page-footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
+
+  /* ──────────────────────────────────────
+     COVER (page 1)
+     ────────────────────────────────────── */
+  .cover {
+    background: linear-gradient(160deg, #0b1220 0%, #1a1208 45%, #2a1f0e 100%);
+    color: var(--paper-soft);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 140mm;
+    height: 140mm;
+    background: radial-gradient(circle at top right, rgba(249,115,22,.35) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .cover .cover-top {
+    padding: 22mm 22mm 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+  }
+  .cover .brand-mark {
+    font-size: 11pt;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--paper-soft);
+  }
+  .cover .brand-mark .o { color: var(--orange); }
+  .cover .edition-mark {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(254,247,237,.5);
+  }
+  .cover .edition-mark .key { color: var(--orange); display: block; font-weight: 500; }
+
+  .cover .cover-middle {
+    padding: 0 22mm;
+    position: relative;
+  }
+  .cover .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10mm;
+    display: inline-flex;
+    align-items: center;
+    gap: 4mm;
+  }
+  .cover .eyebrow::before {
+    content: "";
+    width: 12mm;
+    height: 0.8pt;
+    background: var(--orange);
+  }
+  .cover h1 {
+    font-size: 52pt;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    color: var(--paper-soft);
+    margin-bottom: 8mm;
+  }
+  .cover h1 .big { display: block; font-weight: 200; font-size: 56pt; }
+  .cover h1 .strong { color: var(--orange); font-weight: 900; }
+  .cover .sub {
+    font-size: 12pt;
+    color: rgba(254,247,237,.75);
+    font-weight: 400;
+    max-width: 140mm;
+    line-height: 1.45;
+  }
+  .cover .sub strong { color: var(--paper-soft); font-weight: 600; }
+
+  .cover .cover-bottom {
+    padding: 0 22mm 22mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 0.5pt solid rgba(254,247,237,.14);
+    padding-top: 10mm;
+    position: relative;
+  }
+  .cover .stat { display: flex; flex-direction: column; gap: 1mm; }
+  .cover .stat .num { font-size: 22pt; font-weight: 700; color: var(--orange); letter-spacing: -0.02em; line-height: 1; }
+  .cover .stat .lbl { font-size: 7.5pt; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(254,247,237,.55); font-weight: 500; }
+  .cover .author {
+    font-size: 8pt;
+    color: rgba(254,247,237,.55);
+    text-align: right;
+    line-height: 1.5;
+  }
+  .cover .author strong { color: var(--paper-soft); font-weight: 600; display: block; font-size: 9pt; margin-bottom: 0.5mm; }
+
+  /* ──────────────────────────────────────
+     CONTENT BLOCKS (shared)
+     ────────────────────────────────────── */
+  .content h2 {
+    font-size: 20pt;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-top: 2mm;
+    margin-bottom: 3mm;
+  }
+  .content h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    color: var(--orange);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 2mm;
+  }
+  .content h3 {
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: var(--ink-soft);
+    letter-spacing: -0.005em;
+    margin: 6mm 0 2mm;
+  }
+  .content p { margin-bottom: 3mm; color: var(--body); }
+  .content p.lead { font-size: 10.5pt; color: var(--ink-soft); line-height: 1.65; }
+  .content p strong { color: var(--ink-soft); font-weight: 600; }
+  .content ul { margin: 2mm 0 4mm 6mm; }
+  .content ul li { margin-bottom: 1.5mm; color: var(--body); }
+  .content ul li strong { color: var(--ink-soft); }
+
+  .divider {
+    height: 0.5pt;
+    background: var(--line);
+    margin: 6mm 0;
+  }
+
+  .zone-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm 8mm;
+    margin: 3mm 0 5mm;
+    padding: 4mm 5mm;
+    background: var(--paper-soft);
+    border: 0.5pt solid var(--line);
+    border-radius: 2mm;
+  }
+  .zone-legend .z {
+    display: flex;
+    gap: 3mm;
+    align-items: baseline;
+    font-size: 9pt;
+  }
+  .zone-legend .z .dot {
+    width: 8pt;
+    height: 8pt;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 1mm;
+  }
+  .zone-legend .z .dot.easy   { background: #22c55e; }
+  .zone-legend .z .dot.long   { background: #3b82f6; }
+  .zone-legend .z .dot.fartlek{ background: var(--orange); }
+  .zone-legend .z .txt b { color: var(--ink-soft); font-weight: 600; display: inline; margin-right: 1mm; }
+  .zone-legend .z .txt { color: var(--body); font-size: 8.5pt; line-height: 1.35; }
+
+  /* ──────────────────────────────────────
+     WEEK BLOCKS (pages 3-4-5-6)
+     ────────────────────────────────────── */
+  .week-hero {
+    margin: 0 0 6mm;
+    padding: 5mm 6mm;
+    background: linear-gradient(135deg, #1a1208 0%, #2a1f0e 100%);
+    color: var(--paper-soft);
+    border-radius: 3mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .week-hero::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 40mm;
+    background: radial-gradient(circle at right, rgba(249,115,22,.25) 0%, transparent 70%);
+  }
+  .week-hero .week-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 2mm;
+  }
+  .week-hero h2 {
+    font-size: 22pt;
+    font-weight: 800;
+    color: var(--paper-soft);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0 0 2mm;
+  }
+  .week-hero .week-desc {
+    font-size: 10pt;
+    color: rgba(254,247,237,.75);
+    margin-bottom: 3mm;
+  }
+  .week-hero .week-stats {
+    display: flex;
+    gap: 10mm;
+    padding-top: 3mm;
+    border-top: 0.5pt solid rgba(254,247,237,.14);
+    font-size: 8pt;
+  }
+  .week-hero .week-stats .s .n { color: var(--orange); font-weight: 700; font-size: 14pt; display: block; line-height: 1; margin-bottom: 0.5mm; }
+  .week-hero .week-stats .s .l { color: rgba(254,247,237,.5); font-size: 7pt; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+
+  .session {
+    display: grid;
+    grid-template-columns: 15mm 1fr 24mm;
+    gap: 5mm;
+    padding: 4mm 0;
+    border-bottom: 0.5pt solid var(--line);
+    align-items: start;
+  }
+  .session:last-child { border-bottom: none; }
+
+  .session .day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1mm;
+  }
+  .session .day .d-num {
+    width: 10mm;
+    height: 10mm;
+    border: 1pt solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .session .day .d-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .session .body { padding-top: 0.5mm; }
+  .session .s-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5mm;
+    letter-spacing: -0.005em;
+  }
+  .session .s-desc {
+    font-size: 9.5pt;
+    color: var(--body);
+    line-height: 1.45;
+  }
+  .session .s-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 1mm 2.5mm;
+    border-radius: 1mm;
+    margin-top: 1.5mm;
+  }
+  .session .s-tag .dot { width: 5pt; height: 5pt; border-radius: 50%; }
+  .session .s-tag.easy    { background: rgba(34,197,94,.1);  color: #15803d; }
+  .session .s-tag.easy .dot    { background: #22c55e; }
+  .session .s-tag.long    { background: rgba(59,130,246,.1); color: #1e40af; }
+  .session .s-tag.long .dot    { background: #3b82f6; }
+  .session .s-tag.fartlek { background: rgba(249,115,22,.1); color: var(--orange-deep); }
+  .session .s-tag.fartlek .dot { background: var(--orange); }
+
+  .session .metrics {
+    text-align: right;
+    padding-top: 0.5mm;
+  }
+  .session .metrics .km {
+    font-size: 16pt;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: block;
+  }
+  .session .metrics .km .unit { font-size: 9pt; font-weight: 500; color: var(--muted); }
+  .session .metrics .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    color: var(--muted);
+    margin-top: 1mm;
+    display: block;
+    font-weight: 500;
+  }
+  .session .metrics .check {
+    width: 8pt;
+    height: 8pt;
+    border: 0.8pt solid var(--line);
+    border-radius: 1pt;
+    margin-top: 2mm;
+    margin-left: auto;
+  }
+
+  /* Coach tip box */
+  .tip {
+    margin-top: 6mm;
+    padding: 4mm 5mm;
+    background: var(--orange-tint);
+    border-left: 2pt solid var(--orange);
+    border-radius: 0 2mm 2mm 0;
+  }
+  .tip .tip-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange-deep);
+    font-weight: 600;
+    margin-bottom: 1.5mm;
+  }
+  .tip .tip-body {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .tip .tip-body strong { color: var(--ink); font-weight: 600; }
+
+  /* ──────────────────────────────────────
+     NUTRITION PAGE
+     ────────────────────────────────────── */
+  .nutri-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin: 4mm 0;
+  }
+  .nutri-card {
+    padding: 5mm;
+    background: var(--paper-soft);
+    border: 0.5pt solid var(--line);
+    border-radius: 2mm;
+  }
+  .nutri-card .nt-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 2mm;
+  }
+  .nutri-card h4 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2mm;
+    letter-spacing: -0.005em;
+  }
+  .nutri-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nutri-card ul li {
+    font-size: 9pt;
+    color: var(--body);
+    padding: 1mm 0 1mm 5mm;
+    position: relative;
+    line-height: 1.45;
+  }
+  .nutri-card ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3mm;
+    width: 3mm;
+    height: 0.8pt;
+    background: var(--orange);
+  }
+  .nutri-card ul li strong { color: var(--ink-soft); font-weight: 600; }
+
+  /* ──────────────────────────────────────
+     FINAL PAGE (CTA)
+     ────────────────────────────────────── */
+  .final {
+    background: linear-gradient(160deg, #0b1220 0%, #1a1208 100%);
+    color: var(--paper-soft);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .final::before {
+    content: "";
+    position: absolute;
+    top: -40mm; right: -40mm;
+    width: 160mm; height: 160mm;
+    background: radial-gradient(circle, rgba(249,115,22,.25) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .final .inner {
+    padding: 40mm 28mm;
+    position: relative;
+    z-index: 1;
+  }
+  .final .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10mm;
+    display: inline-flex;
+    align-items: center;
+    gap: 4mm;
+  }
+  .final .eyebrow::before, .final .eyebrow::after {
+    content: "";
+    width: 12mm;
+    height: 0.8pt;
+    background: var(--orange);
+  }
+  .final h2 {
+    font-size: 34pt;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    color: var(--paper-soft);
+    margin-bottom: 6mm;
+  }
+  .final h2 .strong { color: var(--orange); }
+  .final .sub {
+    font-size: 11pt;
+    line-height: 1.55;
+    color: rgba(254,247,237,.75);
+    max-width: 130mm;
+    margin: 0 auto 12mm;
+  }
+  .final .sub strong { color: var(--paper-soft); font-weight: 600; }
+
+  .final .badges {
+    display: flex;
+    gap: 4mm;
+    justify-content: center;
+    margin-bottom: 10mm;
+  }
+  .final .badge {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    padding: 4mm 6mm;
+    background: var(--paper-soft);
+    border-radius: 2mm;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .final .badge svg { width: 8mm; height: 8mm; flex-shrink: 0; }
+  .final .badge .m { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
+  .final .badge .m .l1 { font-size: 7pt; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .final .badge .m .l2 { font-size: 11pt; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+
+  .final .url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    font-weight: 500;
+    margin-top: 6mm;
+  }
+  .final .proof {
+    margin-top: 16mm;
+    padding-top: 8mm;
+    border-top: 0.5pt solid rgba(254,247,237,.14);
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(254,247,237,.5);
+    font-weight: 500;
+  }
+  .final .proof strong { color: var(--orange); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — COVER
+     ══════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="brand-mark">Correr<span class="o">Juntos</span></div>
+    <div class="edition-mark">
+      <span class="key">PLAN № 10K-12W</span>
+      EDICIÓN ABRIL · MMXXVI
+    </div>
+  </div>
+
+  <div class="cover-middle">
+    <div class="eyebrow">PREVIEW · PRIMERAS 2 SEMANAS</div>
+    <h1>
+      <span class="big">Plan</span>
+      <span class="strong">10 Kilómetros</span>
+    </h1>
+    <p class="sub">
+      Un plan progresivo de <strong>12 semanas</strong> diseñado para llevarte a
+      correr un 10K con confianza. Este PDF contiene las <strong>primeras 2 semanas</strong>
+      del plan completo — las sesiones, los ritmos y las notas que recibirías
+      en la app.
+    </p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="stat">
+      <div class="num">47 km</div>
+      <div class="lbl">Volumen · 2 semanas</div>
+    </div>
+    <div class="stat">
+      <div class="num">8</div>
+      <div class="lbl">Sesiones estructuradas</div>
+    </div>
+    <div class="author">
+      <strong>Coach Ana</strong>
+      Entrenadora IA · CorrerJuntos
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — CÓMO USAR ESTE PLAN
+     ══════════════════════════════════════ -->
+<div class="page content">
+  <div class="page-header">
+    <span><span class="brand">CorrerJuntos</span> · Plan 10K — Preview</span>
+    <span>Pág. 02</span>
+  </div>
+
+  <h2 style="margin-top: 18mm;"><span class="num">01 · INTRODUCCIÓN</span>Cómo usar este plan</h2>
+
+  <p class="lead">
+    Este plan está estructurado en <strong>4 sesiones por semana</strong>: 3 rodajes
+    + 1 tirada larga. El volumen arranca suave (22 km en semana 1) y progresa de forma
+    controlada, respetando la regla del 10% para no generar sobrecarga.
+  </p>
+
+  <h3>Zonas de ritmo</h3>
+
+  <div class="zone-legend">
+    <div class="z">
+      <span class="dot easy"></span>
+      <span class="txt"><b>Fácil</b> Conversacional, puedes hablar en frases completas sin jadear. RPE 4-5/10.</span>
+    </div>
+    <div class="z">
+      <span class="dot long"></span>
+      <span class="txt"><b>Largo</b> Cómodo y sostenible durante 45-60 min. RPE 5/10.</span>
+    </div>
+    <div class="z">
+      <span class="dot fartlek"></span>
+      <span class="txt"><b>Fartlek</b> Alternas tramos rápidos (RPE 7-8) con recuperación suave.</span>
+    </div>
+    <div class="z">
+      <span class="dot" style="background:var(--muted)"></span>
+      <span class="txt"><b>Descanso</b> No corras los días que no aparecen. Camina, estira o haz yoga suave.</span>
+    </div>
+  </div>
+
+  <h3>Antes de cada sesión</h3>
+  <ul>
+    <li><strong>Calentamiento:</strong> 5 minutos de marcha + movilidad articular (tobillos, caderas, rodillas).</li>
+    <li><strong>Hidratación:</strong> bebe 200-300 ml de agua 30 minutos antes. Si hace calor, añade electrolitos.</li>
+    <li><strong>Terreno:</strong> asfalto plano o pista. Evita desniveles importantes las primeras semanas.</li>
+  </ul>
+
+  <h3>Después de cada sesión</h3>
+  <ul>
+    <li><strong>Enfriamiento:</strong> 5-10 minutos de marcha progresivamente más lenta.</li>
+    <li><strong>Estiramientos:</strong> isquiotibiales, cuádriceps, gemelos y glúteos. 20-30 segundos cada uno.</li>
+    <li><strong>Ventana de recuperación:</strong> proteína + carbohidrato en los 60 min siguientes (ej. batido de plátano con avena y yogur).</li>
+  </ul>
+
+  <div class="tip">
+    <div class="tip-label">Nota del coach</div>
+    <div class="tip-body">
+      Si un día no puedes entrenar, <strong>no compenses al día siguiente</strong> duplicando sesión.
+      Pasa a la siguiente según corresponda por el día de la semana. El descanso es parte del plan.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>correrjuntos.com</span>
+    <span>Plan 10K Preview · 2/8</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — SEMANA 1
+     ══════════════════════════════════════ -->
+<div class="page content">
+  <div class="page-header">
+    <span><span class="brand">CorrerJuntos</span> · Plan 10K — Preview</span>
+    <span>Pág. 03</span>
+  </div>
+
+  <div class="week-hero" style="margin-top: 14mm;">
+    <div class="week-label">◆ SEMANA 01 · FASE BASE</div>
+    <h2>Construir base aeróbica</h2>
+    <div class="week-desc">Arranca con rodajes cortos y suaves. El objetivo es acumular kilómetros a ritmo fácil, sin forzar.</div>
+    <div class="week-stats">
+      <div class="s"><span class="n">22</span><span class="l">km totales</span></div>
+      <div class="s"><span class="n">4</span><span class="l">sesiones</span></div>
+      <div class="s"><span class="n">3h</span><span class="l">tiempo aprox.</span></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">1</div>
+      <div class="d-label">Lun</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Easy Run 5 km</div>
+      <div class="s-desc">Carrera suave. Si no puedes mantener una conversación, baja el ritmo. Este es tu día de referencia — apunta cómo te sientes.</div>
+      <div class="s-tag easy"><span class="dot"></span>FÁCIL</div>
+    </div>
+    <div class="metrics">
+      <div class="km">5<span class="unit">km</span></div>
+      <div class="time">33 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">2</div>
+      <div class="d-label">Mié</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Easy Run 5 km + 5 rectas</div>
+      <div class="s-desc">5 km suaves + al terminar, 5 rectas de 80 m acelerando progresivamente. Recupera andando entre rectas. Trabaja neuromuscular sin fatigar.</div>
+      <div class="s-tag easy"><span class="dot"></span>FÁCIL + TÉCNICA</div>
+    </div>
+    <div class="metrics">
+      <div class="km">5<span class="unit">km</span></div>
+      <div class="time">35 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">3</div>
+      <div class="d-label">Vie</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Easy Run 4 km</div>
+      <div class="s-desc">Rodaje corto y muy suave. Si el cuerpo pide bajar más el ritmo, hazlo. El objetivo es llegar fresco a la tirada larga del fin de semana.</div>
+      <div class="s-tag easy"><span class="dot"></span>FÁCIL</div>
+    </div>
+    <div class="metrics">
+      <div class="km">4<span class="unit">km</span></div>
+      <div class="time">26 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">4</div>
+      <div class="d-label">Dom</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Tirada Larga 8 km</div>
+      <div class="s-desc">Ritmo cómodo, sostenible. Es la sesión más importante de la semana. Sal temprano, hidrata antes y durante (sorbos cada 3 km si hace calor).</div>
+      <div class="s-tag long"><span class="dot"></span>LARGO</div>
+    </div>
+    <div class="metrics">
+      <div class="km">8<span class="unit">km</span></div>
+      <div class="time">53 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>correrjuntos.com</span>
+    <span>Plan 10K Preview · 3/8</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 4 — NOTAS SEMANA 1
+     ══════════════════════════════════════ -->
+<div class="page content">
+  <div class="page-header">
+    <span><span class="brand">CorrerJuntos</span> · Plan 10K — Preview</span>
+    <span>Pág. 04</span>
+  </div>
+
+  <h2 style="margin-top: 16mm;"><span class="num">02 · SEMANA 01 — NOTAS</span>Qué aprender esta semana</h2>
+
+  <h3>La regla conversacional</h3>
+  <p>En todas las sesiones "fácil" de esta semana, aplica una regla simple: <strong>debes poder decir una frase completa sin jadear</strong>. Si te quedas sin aire a mitad de una frase, vas demasiado rápido. Este es el <em>ritmo aeróbico</em>, la base sobre la que construyes toda tu forma física.</p>
+
+  <h3>Por qué importa la tirada larga</h3>
+  <p>Los 8 km del domingo son <strong>la piedra angular del plan</strong>. No por velocidad, sino por tiempo en pie. Cada tirada larga adapta mitocondrias, aumenta densidad capilar y enseña a tu cuerpo a usar grasa como combustible. Corre a un ritmo en el que <strong>terminarías pudiendo correr 2 km más</strong>.</p>
+
+  <h3>Rectas — qué son y para qué sirven</h3>
+  <p>Las 5 rectas del miércoles son <strong>aceleraciones progresivas de 80 metros</strong> (unos 15-20 segundos cada una). Arrancas suave, aceleras hasta rápido pero controlado en los últimos 20 metros, y luego caminas hasta recuperar. No son series: el objetivo no es fatigarte, es trabajar reclutamiento neuromuscular y mejorar tu economía de carrera.</p>
+
+  <h3>Señales de alarma</h3>
+  <ul>
+    <li><strong>Dolor agudo localizado:</strong> para inmediatamente. Un pinchazo en rodilla, tendón de Aquiles o espinilla no se corre.</li>
+    <li><strong>Fatiga excesiva al día siguiente:</strong> reduce el próximo rodaje un 20% en distancia.</li>
+    <li><strong>Molestias al despertar:</strong> si el cuerpo pide un día de descanso extra, dáselo. Un día perdido no compromete el plan; una lesión sí.</li>
+  </ul>
+
+  <div class="tip">
+    <div class="tip-label">Dato honesto</div>
+    <div class="tip-body">
+      Si esta semana te parece <strong>demasiado fácil</strong>, es exactamente como debería sentirse.
+      La fase base no busca mejorar tus marcas — busca prepararte para que las siguientes
+      8 semanas (series, tempo, ritmo objetivo) no te rompan.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Checklist antes de la semana 2</h3>
+  <ul>
+    <li>Completé las 4 sesiones de la semana 1</li>
+    <li>No arrastro ningún dolor agudo</li>
+    <li>Mis zapatillas aguantan — revisé la suela</li>
+    <li>Dormí 7+ horas al menos 5 de los últimos 7 días</li>
+  </ul>
+
+  <div class="page-footer">
+    <span>correrjuntos.com</span>
+    <span>Plan 10K Preview · 4/8</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 5 — SEMANA 2
+     ══════════════════════════════════════ -->
+<div class="page content">
+  <div class="page-header">
+    <span><span class="brand">CorrerJuntos</span> · Plan 10K — Preview</span>
+    <span>Pág. 05</span>
+  </div>
+
+  <div class="week-hero" style="margin-top: 14mm;">
+    <div class="week-label">◆ SEMANA 02 · FASE BASE</div>
+    <h2>Introducir fartlek</h2>
+    <div class="week-desc">Mantienes el volumen bajo pero añades variabilidad de ritmo. La primera dosis de intensidad, muy controlada.</div>
+    <div class="week-stats">
+      <div class="s"><span class="n">25</span><span class="l">km totales</span></div>
+      <div class="s"><span class="n">4</span><span class="l">sesiones</span></div>
+      <div class="s"><span class="n">3h 43'</span><span class="l">tiempo aprox.</span></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">1</div>
+      <div class="d-label">Lun</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Easy Run 5,5 km</div>
+      <div class="s-desc">Carrera suave. Sube el volumen 0,5 km respecto a la semana pasada. Mismo ritmo, un poco más de tiempo en pie.</div>
+      <div class="s-tag easy"><span class="dot"></span>FÁCIL</div>
+    </div>
+    <div class="metrics">
+      <div class="km">5,5<span class="unit">km</span></div>
+      <div class="time">36 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">2</div>
+      <div class="d-label">Mié</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Fartlek 6 km · 5×1'/1'30"</div>
+      <div class="s-desc">Tras 15 min de calentamiento suave, 5 repeticiones de 1 minuto rápido (RPE 7-8) + 1'30" recuperación suave. Cierra con 10 min tranquilos.</div>
+      <div class="s-tag fartlek"><span class="dot"></span>FARTLEK</div>
+    </div>
+    <div class="metrics">
+      <div class="km">6<span class="unit">km</span></div>
+      <div class="time">38 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">3</div>
+      <div class="d-label">Vie</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Easy Run 4,5 km</div>
+      <div class="s-desc">Rodaje de recuperación. Intencionalmente corto y suave tras el fartlek del miércoles. Si sientes las piernas pesadas, baja aún más el ritmo.</div>
+      <div class="s-tag easy"><span class="dot"></span>FÁCIL</div>
+    </div>
+    <div class="metrics">
+      <div class="km">4,5<span class="unit">km</span></div>
+      <div class="time">29 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="session">
+    <div class="day">
+      <div class="d-num">4</div>
+      <div class="d-label">Dom</div>
+    </div>
+    <div class="body">
+      <div class="s-title">Tirada Larga 9 km</div>
+      <div class="s-desc">La tirada crece 1 km. Ritmo cómodo, sostenible. Prueba nutrición pre-carrera (desayuno 2 h antes) para ver cómo la toleras.</div>
+      <div class="s-tag long"><span class="dot"></span>LARGO</div>
+    </div>
+    <div class="metrics">
+      <div class="km">9<span class="unit">km</span></div>
+      <div class="time">60 min</div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Nota del coach</div>
+    <div class="tip-body">
+      El <strong>fartlek es tu primer contacto con la intensidad</strong>. Ve con prudencia — si los
+      primeros 2 minutos rápidos ya te dejan sin aire, baja el ritmo. Es mejor terminar con sensación de
+      "podía haber empujado más" que de "no llego al final".
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>correrjuntos.com</span>
+    <span>Plan 10K Preview · 5/8</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6 — NOTAS SEMANA 2
+     ══════════════════════════════════════ -->
+<div class="page content">
+  <div class="page-header">
+    <span><span class="brand">CorrerJuntos</span> · Plan 10K — Preview</span>
+    <span>Pág. 06</span>
+  </div>
+
+  <h2 style="margin-top: 16mm;"><span class="num">03 · SEMANA 02 — NOTAS</span>Qué aprender esta semana</h2>
+
+  <h3>Qué es el fartlek y para qué sirve</h3>
+  <p>"Fartlek" significa <em>juego de velocidades</em> en sueco. No es una serie rígida con tiempos exactos — es una forma de introducir variaciones de ritmo de forma lúdica. En esta semana, el formato <strong>5 × 1 minuto rápido / 1'30" suave</strong> es un fartlek estructurado. El beneficio: empieza a elevar tu umbral anaeróbico sin la carga mental de las series tradicionales.</p>
+
+  <h3>Cómo calibrar el ritmo rápido</h3>
+  <p>El minuto rápido no es sprint. Es un ritmo que podrías sostener durante <strong>unos 10-12 minutos si tuvieras que hacerlo</strong> — pero solo lo haces 60 segundos. Esto sitúa el esfuerzo en RPE 7-8/10 (respiras por la boca, puedes decir palabras sueltas pero no frases). Si acabas con taquicardia fuerte los últimos 10 segundos, has calibrado bien.</p>
+
+  <h3>Por qué sube el volumen un 14%</h3>
+  <p>Pasaste de 22 km a 25 km — +3 km que representan un <strong>incremento del 14%</strong>. Está por encima de la regla tradicional del 10%, pero es aceptable en fase base cuando parte de una base baja. La tirada larga solo sube 1 km; el resto del incremento se reparte en los rodajes suaves.</p>
+
+  <h3>Señales de que estás progresando bien</h3>
+  <ul>
+    <li><strong>Misma distancia, menor FC media:</strong> si tu reloj lo registra, ya estás adaptando el corazón.</li>
+    <li><strong>Recuperación más rápida:</strong> al terminar, tu FC baja a <110 bpm en 2-3 minutos.</li>
+    <li><strong>Menos molestia muscular al día siguiente:</strong> el DOMS (agujetas) va siendo menor.</li>
+    <li><strong>Ganas de la siguiente sesión:</strong> no te pesa salir. Esa es la mejor señal.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h3>Lo que viene después — las 10 semanas restantes</h3>
+  <p>En el plan completo (semanas 3-12), el volumen y la intensidad progresan en tres fases:</p>
+  <ul>
+    <li><strong>Semanas 3-5 (base alta):</strong> subes a 28-32 km/semana, introduces <em>progressive runs</em> y una segunda tirada larga de 10-12 km.</li>
+    <li><strong>Semanas 6-9 (específica):</strong> series al ritmo objetivo 10K (5×1 km, 4×1,5 km, 6×800 m), tempo de 20-25 minutos, tirada larga hasta 14 km.</li>
+    <li><strong>Semanas 10-12 (afinado + tapering):</strong> simulación de carrera, reducción progresiva del volumen, día D.</li>
+  </ul>
+
+  <div class="tip">
+    <div class="tip-label">Lo más importante</div>
+    <div class="tip-body">
+      Los planes genéricos funcionan a medias. En la app, <strong>Coach Ana ajusta los ritmos objetivo
+      según tu FC real de las últimas sesiones</strong>, retrasa series si llevas 3 días de fatiga acumulada,
+      y adapta la progresión si completas una semana por debajo de lo previsto.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>correrjuntos.com</span>
+    <span>Plan 10K Preview · 6/8</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 7 — NUTRICIÓN
+     ══════════════════════════════════════ -->
+<div class="page content">
+  <div class="page-header">
+    <span><span class="brand">CorrerJuntos</span> · Plan 10K — Preview</span>
+    <span>Pág. 07</span>
+  </div>
+
+  <h2 style="margin-top: 16mm;"><span class="num">04 · NUTRICIÓN</span>Qué comer cuando entrenas para 10K</h2>
+
+  <p class="lead">
+    Las primeras 2 semanas del plan son <strong>volumen bajo a moderado</strong> — no necesitas ningún
+    protocolo especial. Lo que comes en el día a día importa más que la comida pre-carrera. Aquí los
+    principios que funcionan.
+  </p>
+
+  <div class="nutri-grid">
+    <div class="nutri-card">
+      <div class="nt-head">▸ HIDRATACIÓN DIARIA</div>
+      <h4>Antes, durante y después</h4>
+      <ul>
+        <li><strong>Base diaria:</strong> 30-35 ml por kg de peso corporal. Un runner de 70 kg: 2,1-2,5 L al día.</li>
+        <li><strong>Pre-entreno:</strong> 300 ml de agua 30 min antes. Electrolitos si hace calor o sudas mucho.</li>
+        <li><strong>Durante:</strong> solo en tiradas de más de 60 min o calor intenso. En 2 semanas del plan, probablemente no hace falta.</li>
+        <li><strong>Post-entreno:</strong> bebe hasta que la orina vuelva a ser amarilla clara.</li>
+      </ul>
+    </div>
+
+    <div class="nutri-card">
+      <div class="nt-head">▸ ANTES DE CORRER</div>
+      <h4>Qué desayunar o merendar</h4>
+      <ul>
+        <li><strong>2-3 h antes:</strong> comida con carbohidrato + algo de proteína. Ej: avena con plátano y yogur.</li>
+        <li><strong>30-45 min antes:</strong> plátano o dátiles (si vas con el estómago vacío y vas a correr 45+ min).</li>
+        <li><strong>Evita:</strong> grasas, fibra alta, lácteos nuevos, picante. Dan problemas digestivos.</li>
+        <li><strong>En ayunas:</strong> sesiones fáciles menores de 45 min sí. Tirada larga o fartlek, no.</li>
+      </ul>
+    </div>
+
+    <div class="nutri-card">
+      <div class="nt-head">▸ DESPUÉS DE CORRER</div>
+      <h4>Ventana de recuperación</h4>
+      <ul>
+        <li><strong>Dentro de los 60 min:</strong> proteína 20-25 g + carbohidrato 40-60 g.</li>
+        <li><strong>Ejemplo real:</strong> batido de plátano, avena, cacahuete y proteína.</li>
+        <li><strong>Opción sin batido:</strong> dos tostadas integrales con huevo + fruta.</li>
+        <li><strong>Comida principal:</strong> 2-3 h después. Carbohidrato complejo + proteína + vegetales.</li>
+      </ul>
+    </div>
+
+    <div class="nutri-card">
+      <div class="nt-head">▸ ERRORES COMUNES</div>
+      <h4>Lo que NO hay que hacer</h4>
+      <ul>
+        <li><strong>Probar cosas nuevas el día D:</strong> geles, barritas, bebidas. Todo se prueba en tiradas largas, nunca en carrera.</li>
+        <li><strong>Irse a dormir con hambre tras la tirada:</strong> duermes peor, recuperas peor. Come algo antes.</li>
+        <li><strong>Obsesionarse con macros:</strong> para 25 km/semana no hace falta pesarlo todo. Come variado y suficiente.</li>
+        <li><strong>Suplementos caros:</strong> en esta fase solo aportan si hay déficit real (hierro, vitamina D).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Lectura recomendada</div>
+    <div class="tip-body">
+      Guía completa con 15 alimentos ideales, protocolo de carga de carbohidratos y menús por día:
+      <strong>correrjuntos.com/blog/dieta-runner-que-comer</strong>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>correrjuntos.com</span>
+    <span>Plan 10K Preview · 7/8</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 8 — CTA FINAL
+     ══════════════════════════════════════ -->
+<div class="page final">
+  <div class="inner">
+    <div class="eyebrow">CONTINÚA TU PLAN</div>
+    <h2>
+      Has completado las primeras<br>
+      <span class="strong">2 semanas</span>.
+    </h2>
+    <p class="sub">
+      Las <strong>10 semanas restantes</strong> del plan 10K están en la app, con ritmos personalizados
+      por Coach Ana, audio-alertas por kilómetro, control de FC y feed con otros runners preparando la
+      misma carrera. <strong>Gratis en iOS y Android</strong> — prueba 7 días de Premium sin compromiso.
+    </p>
+
+    <div class="badges">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="#000"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="m">
+          <span class="l1">Descargar en</span>
+          <span class="l2">App Store</span>
+        </div>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
+        <div class="m">
+          <span class="l1">Descargar en</span>
+          <span class="l2">Google Play</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="url">correrjuntos.com</div>
+
+    <div class="proof">
+      <strong>568</strong> runners · <strong>58+</strong> ciudades · 100% gratis
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

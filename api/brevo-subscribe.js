@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { email, lang, source } = req.body || {};
+    const { email, lang, source, lead_magnet } = req.body || {};
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return res.status(400).json({ error: 'Invalid email' });
@@ -35,6 +35,13 @@ export default async function handler(req, res) {
 
     const contactLang = lang || 'es';
     const contactSource = source || 'landing';
+    const contactLeadMagnet = lead_magnet || '';
+    // Lead-magnet signups should land on the thank-you page after DOI confirmation
+    // so the user sees the PDF download immediately. For other sources, use the
+    // default redirect (configured per-deploy via BREVO_REDIRECT_URL env var).
+    const dynamicRedirect = contactLeadMagnet === 'plan-10k-preview'
+        ? `https://www.correrjuntos.com/blog/descarga-plan-10k/`
+        : BREVO_REDIRECT_URL;
     let supabaseOk = false;
     let brevoOk = false;
     let isDuplicate = false;
@@ -80,10 +87,11 @@ export default async function handler(req, res) {
                         email,
                         includeListIds: [BREVO_LIST_ID],
                         templateId: BREVO_DOI_TEMPLATE_ID,
-                        redirectionUrl: BREVO_REDIRECT_URL,
+                        redirectionUrl: dynamicRedirect,
                         attributes: {
                             LANG: contactLang,
-                            SOURCE: contactSource
+                            SOURCE: contactSource,
+                            LEAD_MAGNET: contactLeadMagnet
                         }
                     })
                 });
@@ -114,7 +122,8 @@ export default async function handler(req, res) {
                         listIds: [BREVO_LIST_ID],
                         attributes: {
                             LANG: contactLang,
-                            SOURCE: contactSource
+                            SOURCE: contactSource,
+                            LEAD_MAGNET: contactLeadMagnet
                         },
                         updateEnabled: true
                     })

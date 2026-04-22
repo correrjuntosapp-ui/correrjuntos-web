@@ -6,7 +6,7 @@
  *
  * Usage:
  *   node tools/blog-generator/generate-affiliate-article.cjs configs/gafas-running.json
- *   node tools/blog-generator/generate-affiliate-article.cjs configs/gafas-running.json --lang es
+ *   node tools/blog-generatohr/generate-affiliate-article.cjs configs/gafas-running.json --lang es
  *   node tools/blog-generator/generate-affiliate-article.cjs configs/gafas-running.json --lang en
  */
 const fs = require('fs');
@@ -229,14 +229,47 @@ ${enSlug ? `<link rel="alternate" hreflang="en" href="${enUrl}">` : ''}
     });
   }
 
-  // ItemList for products
+  // ItemList + Product nodes (upgraded for rich results)
   if (c.products && c.products.length > 0) {
+    // 1. ItemList with item references
     schemaGraph.push({
       '@type': 'ItemList',
+      '@id': canonicalUrl + '#itemlist',
+      name: c.title || c.metaTitle || '',
+      description: c.metaDescription || '',
+      url: canonicalUrl,
+      numberOfItems: c.products.length,
       itemListElement: c.products.map((p, i) => ({
-        '@type': 'ListItem', position: i + 1, name: p.name, url: p.amazonUrl
+        '@type': 'ListItem',
+        position: i + 1,
+        item: { '@id': canonicalUrl + '#p' + (i + 1) }
       }))
     });
+    // 2. Individual Product nodes
+    c.products.forEach((p, i) => {
+      const productNode = {
+        '@type': 'Product',
+        '@id': canonicalUrl + '#p' + (i + 1),
+        name: p.name,
+        description: p.description || p.tagline || '',
+        image: p.amazonImageUrl || '',
+        brand: p.brand ? { '@type': 'Brand', name: p.brand } : undefined,
+        category: p.category || c.category || '',
+        offers: {
+          '@type': 'AggregateOffer',
+          priceCurrency: p.currency || 'EUR',
+          lowPrice: String(p.lowPrice || p.price || ''),
+          highPrice: String(p.highPrice || p.price || ''),
+          url: p.amazonUrl || '',
+          availability: 'https://schema.org/InStock',
+          seller: { '@type': 'Organization', name: 'Amazon' }
+        }
+      };
+      // Remove undefined fields
+      Object.keys(productNode).forEach(k => productNode[k] === undefined && delete productNode[k]);
+      schemaGraph.push(productNode);
+    });
+  }
   }
 
   html += `<script type="application/ld+json">

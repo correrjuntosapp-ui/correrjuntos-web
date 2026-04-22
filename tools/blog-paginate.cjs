@@ -78,6 +78,35 @@ function buildPage({ cfg, pageNum, totalPages, cards }) {
         ? `Page ${pageNum} of our running blog — articles ${firstArticleIdx}-${lastArticleIdx} of the full archive. Guides, reviews and training plans for runners of all levels.`
         : `Página ${pageNum} del blog de running — artículos ${firstArticleIdx}-${lastArticleIdx} del archivo completo. Guías, reviews y planes de entrenamiento para corredores de todos los niveles.`);
 
+  // LD+JSON: CollectionPage + BreadcrumbList — makes every paginated page
+  // emit at least 2 valid schema items Google can detect (mainly Breadcrumbs,
+  // which is eligible for rich-result enhancement). Clean, minimal, no
+  // inflated claims.
+  const isEN = cfg.lang === 'en';
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': canonical + '#webpage',
+        url: canonical,
+        name: pageTitle,
+        description: pageDesc,
+        isPartOf: { '@id': 'https://www.correrjuntos.com/#website' },
+        inLanguage: isEN ? 'en' : 'es-ES'
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': canonical + '#breadcrumbs',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: isEN ? 'Home' : 'Inicio', item: 'https://www.correrjuntos.com/' },
+          { '@type': 'ListItem', position: 2, name: isEN ? 'Blog' : 'Blog', item: cfg.baseUrl },
+          ...(pageNum === 1 ? [] : [{ '@type': 'ListItem', position: 3, name: `${L.page} ${pageNum}` }])
+        ]
+      }
+    ]
+  };
+
   return `<!DOCTYPE html>
 <html lang="${cfg.lang}">
 <head>
@@ -94,6 +123,7 @@ ${nextUrl ? `<link rel="next" href="${nextUrl}">` : ''}
 <meta property="og:url" content="${canonical}">
 <meta property="og:locale" content="${cfg.locale}">
 <meta property="og:type" content="website">
+<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>
 <link rel="icon" type="image/png" href="/icons/icon-192.png">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box }

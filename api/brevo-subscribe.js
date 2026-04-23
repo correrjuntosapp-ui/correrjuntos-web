@@ -44,10 +44,15 @@ export default async function handler(req, res) {
         : BREVO_REDIRECT_URL;
     let supabaseOk = false;
     let brevoOk = false;
-    let isDuplicate = false;
+    let brevoIsDuplicate = false;    // Authoritative: only true if Brevo says contact already opted-in
+    let supabaseIsDuplicate = false; // Advisory only: for logging/metrics, NOT for UX decisions
     let isNewSubscriber = false;
 
-    // 1. Save to Supabase
+    // 1. Save to Supabase (LOG ONLY — not the source of truth for duplicate detection)
+    //    Previous bug: Supabase duplicate caused us to skip the Brevo DOI attempt,
+    //    which meant users present in Supabase but missing from Brevo could never
+    //    actually receive their confirmation email. Brevo is now the authoritative
+    //    source for whether a DOI email should fire.
     try {
         if (SUPABASE_SERVICE_KEY) {
             const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
@@ -57,7 +62,7 @@ export default async function handler(req, res) {
 
             if (error) {
                 if (error.code === '23505') {
-                    isDuplicate = true;
+                    supabaseIsDuplicate = true;
                     supabaseOk = true;
                 } else {
                     console.error('Supabase error:', error);
@@ -72,10 +77,13 @@ export default async function handler(req, res) {
     }
 
     // 2. Create/update contact in Brevo (with DOI support)
+    //    Always attempt DOI when the template is configured, regardless of Supabase
+    //    state. Brevo will internally short-circuit if the contact is already
+    //    opted-in (returns duplicate_parameter) and we surface that as the true
+    //    duplicate signal.
     try {
         if (BREVO_API_KEY) {
-            // If DOI template is configured, use Double Opt-In flow
-            if (BREVO_DOI_TEMPLATE_ID > 0 && !isDuplicate) {
+            if (BREVO_DOI_TEMPLATE_ID > 0) {
                 const doiRes = await fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
                     method: 'POST',
                     headers: {
@@ -99,16 +107,17 @@ export default async function handler(req, res) {
                 if (!brevoOk) {
                     const doiErr = await doiRes.json().catch(() => ({}));
                     if (doiErr.code === 'duplicate_parameter') {
-                        isDuplicate = true;
+                        // Authoritative: contact is already opted-in in Brevo.
+                        brevoIsDuplicate = true;
                         brevoOk = true;
                     } else {
                         console.error('Brevo DOI error:', doiErr);
-                        // Fallback to direct contact creation
+                        // Fallback to direct contact creation below
                     }
                 }
             }
 
-            // Direct contact creation (no DOI or as fallback)
+            // Direct contact creation (no DOI configured, or DOI failed non-duplicate)
             if (!brevoOk) {
                 const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
                     method: 'POST',
@@ -146,12 +155,13 @@ export default async function handler(req, res) {
                                 listIds: [BREVO_LIST_ID],
                                 attributes: {
                                     LANG: contactLang,
-                                    SOURCE: contactSource
+                                    SOURCE: contactSource,
+                                    LEAD_MAGNET: contactLeadMagnet
                                 }
                             })
                         });
                         brevoOk = updateRes.ok || updateRes.status === 204;
-                        isDuplicate = true;
+                        brevoIsDuplicate = true;
                     } else {
                         console.error('Brevo error:', brevoErr);
                     }
@@ -159,7 +169,9 @@ export default async function handler(req, res) {
             }
 
             // 3. Send welcome email for NEW subscribers (if template configured)
-            if (brevoOk && isNewSubscriber && !isDuplicate && BREVO_DOI_TEMPLATE_ID === 0) {
+            //    Criterion: Brevo confirms this is not a duplicate, AND DOI template
+            //    is not in use (if DOI is configured, that IS the welcome email).
+            if (brevoOk && !brevoIsDuplicate && BREVO_DOI_TEMPLATE_ID === 0) {
                 const welcomeTemplateId = contactLang === 'en' ? BREVO_WELCOME_TEMPLATE_EN : BREVO_WELCOME_TEMPLATE_ES;
                 if (welcomeTemplateId > 0) {
                     try {
@@ -190,12 +202,22 @@ export default async function handler(req, res) {
         console.error('Brevo exception:', err);
     }
 
-    if (isDuplicate) {
+    // Final response logic:
+    //   Only return 409 if Brevo itself confirms the contact is already opted-in.
+    //   Supabase duplicates without Brevo duplicates are treated as fresh signups
+    //   (happens when a previous Brevo call failed but the Supabase insert succeeded,
+    //   or when the user was added to Supabase via a different channel).
+    if (brevoIsDuplicate) {
         return res.status(409).json({ status: 'duplicate', message: 'Already subscribed' });
     }
 
     if (supabaseOk || brevoOk) {
-        return res.status(201).json({ status: 'ok', supabase: supabaseOk, brevo: brevoOk });
+        return res.status(201).json({
+            status: 'ok',
+            supabase: supabaseOk,
+            brevo: brevoOk,
+            supabase_was_duplicate: supabaseIsDuplicate
+        });
     }
 
     return res.status(500).json({ error: 'Failed to subscribe' });

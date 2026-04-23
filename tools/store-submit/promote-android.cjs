@@ -36,23 +36,17 @@ const SA_KEY_PATH = path.resolve(
   'correrjuntos-8187a2854893.json'
 );
 const PACKAGE_NAME = 'com.correrjuntos.app';
-const RELEASE_NAME = '1.3.4 (81)';
-const RELEASE_NOTES_ES = `v1.3.4 — Rediseño completo
+const RELEASE_NAME = '1.3.5 (83)';
+const RELEASE_NOTES_ES = `v1.3.5
 
-• Nuevo feed Strava-style con actividades de runners compatibles
-• Pantalla "Mis estadísticas" con mapa de consistencia, zapatillas y logros
-• Nueva sección Privacidad en Ajustes
-• Sistema de notificaciones mejorado
-• Flujo de registro más rápido y estable
-• Múltiples mejoras de rendimiento y diseño`;
-const RELEASE_NOTES_EN = `v1.3.4 — Complete redesign
+• Nuevo paso de onboarding: configura tu ritmo medio en un toque
+• Corrección: las notificaciones push ahora se registran correctamente
+• Mejoras internas de estabilidad`;
+const RELEASE_NOTES_EN = `v1.3.5
 
-• Strava-style feed with activities from compatible runners
-• New Stats page with consistency heatmap, shoes and achievements
-• Privacy section in Settings
-• Functional notifications system
-• Faster, more stable signup flow
-• Multiple performance improvements`;
+• New onboarding step: set your average pace in one tap
+• Fix: push notifications now register correctly
+• Internal stability improvements`;
 
 // ── CLI args ────────────────────────────────────────────────
 const versionCode = parseInt(process.argv[2], 10);

@@ -32,23 +32,13 @@ const ISSUER_ID = '82269ea5-bead-4381-b767-3687965efa4b';
 const KEY_PATH = path.join(os.homedir(), 'Downloads', `AuthKey_${KEY_ID}.p8`);
 const APP_ID = '6758505910';  // ASC App ID for CorrerJuntos
 
-const WHATS_NEW_ES = `Rediseño completo.
+const WHATS_NEW_ES = `• Nuevo paso de onboarding: configura tu ritmo medio en un toque
+• Corrección: las notificaciones push ahora se registran correctamente
+• Mejoras internas de estabilidad`;
 
-• Feed Strava-style con actividades de runners compatibles
-• Mis estadísticas con mapa de consistencia, zapatillas y logros
-• Nueva sección Privacidad
-• Sistema de notificaciones funcional
-• Registro más rápido y estable
-• Mejoras de rendimiento`;
-
-const WHATS_NEW_EN = `Complete redesign.
-
-• Strava-style feed with activities from compatible runners
-• Stats page with consistency heatmap, shoes and achievements
-• New Privacy section
-• Functional notifications system
-• Faster, more stable signup flow
-• Performance improvements`;
+const WHATS_NEW_EN = `• New onboarding step: set your average pace in one tap
+• Fix: push notifications now register correctly
+• Internal stability improvements`;
 
 // ── CLI args ────────────────────────────────────────────────
 const targetBuildNumber = String(process.argv[2] || '').trim();

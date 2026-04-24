@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Onboarding 3 pasos — Meridian Motion premium</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+    --ash-fade-2: rgba(246,241,232,0.08);
+    --surface: rgba(246,241,232,0.04);
+    --surface-strong: rgba(246,241,232,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #1a1a1a;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .main-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--paper);
+    font-weight: 600;
+    text-align: center;
+  }
+  .main-sub {
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    max-width: 680px;
+    line-height: 1.55;
+    margin-top: -20px;
+  }
+  .main-sub strong { color: var(--ember); font-weight: 700; }
+
+  .section-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: -6px;
+  }
+
+  .row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .phone-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash-soft);
+    font-weight: 600;
+  }
+
+  .phone {
+    width: 340px;
+    height: 720px;
+    background: var(--ink);
+    border-radius: 42px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 9px #222, 0 0 0 11px #111, 0 24px 50px rgba(0,0,0,0.5);
+  }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 115px; height: 28px; background: #000; border-radius: 20px; z-index: 10; }
+  .screen { width: 100%; height: 100%; padding-top: 52px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+  .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px 0 24px; font-size: 12px; font-weight: 600; color: var(--paper); z-index: 5; }
+  .scroll { flex: 1; overflow-y: auto; padding: 0 20px; padding-bottom: 18px; }
+  .scroll::-webkit-scrollbar { display: none; }
+
+  /* ── Meridian Motion building blocks ── */
+  .stepbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 4px;
+    padding-bottom: 12px;
+  }
+  .stepmark { color: var(--ember); font-size: 10px; font-weight: 700; }
+  .steptext { color: var(--ash-soft); font-size: 10px; font-weight: 600; letter-spacing: 1.6px; }
+  .progress-rail { flex: 1; height: 2px; background: rgba(246,241,232,0.12); border-radius: 1px; overflow: hidden; margin-left: 4px; }
+  .progress-fill { height: 100%; background: var(--ember); }
+
+  .accent-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: var(--ember);
+    border-radius: 50%;
+    margin: 2px 0 14px 0;
+  }
+
+  .survey-marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ash-soft);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .survey-marker .dot { color: var(--ember); }
+  .survey-marker .divider { margin: 0 5px; color: rgba(246,241,232,0.2); }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--ember); }
+
+  .title-dramatic {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 36px;
+    line-height: 1.0;
+    letter-spacing: -1.1px;
+    color: var(--paper);
+  }
+  .title-dramatic strong {
+    font-weight: 700;
+    color: var(--ember);
+    font-style: normal;
+  }
+
+  .rule {
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--ember);
+    margin: 14px 0 14px 0;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    line-height: 19px;
+    color: var(--ash);
+    font-weight: 400;
+  }
+
+  /* Section labels inside screen */
+  .section-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ash-soft);
+    font-weight: 600;
+    margin: 22px 0 10px 0;
+  }
+
+  /* Goal cards in Welcome */
+  .goal-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 12px 12px 14px;
+    border: 1px solid var(--ash-fade);
+    background: var(--surface);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .goal-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--ember);
+    opacity: 0.5;
+  }
+  .goal-card.active {
+    background: rgba(249,115,22,0.08);
+    border-color: var(--ember);
+  }
+  .goal-card.active::before { opacity: 1; }
+  .goal-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ember);
+    letter-spacing: 1.2px;
+    width: 22px;
+  }
+  .goal-body { flex: 1; }
+  .goal-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 2px;
+    letter-spacing: -0.1px;
+  }
+  .goal-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ash-soft);
+    font-weight: 600;
+  }
+  .goal-card.active .goal-chip { color: var(--ember); }
+
+  /* Stats row */
+  .stats-row { display: flex; gap: 8px; margin-top: 6px; }
+  .stat-card {
+    flex: 1;
+    padding: 11px 8px 12px;
+    border: 1px solid var(--ash-fade);
+    background: var(--surface);
+    border-radius: 10px;
+  }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--ember);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .stat-val {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--paper);
+    letter-spacing: -0.4px;
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--ash-soft);
+    margin-top: 5px;
+    line-height: 1.3;
+  }
+
+  /* Avatar in welcome */
+  .avatar-wrap { margin-bottom: 14px; }
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, var(--ember), var(--ember-deep));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 800;
+    box-shadow: 0 4px 16px rgba(249,115,22,0.3);
+  }
+
+  /* Divider */
+  .divider-hairline {
+    height: 1px;
+    background: var(--ash-fade-2);
+    margin: 20px 0 16px;
+  }
+
+  /* Brand lockup */
+  .brand-lockup { text-align: center; margin-bottom: 10px; }
+  .brand-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.55px;
+    line-height: 1;
+    color: var(--paper);
+  }
+  .brand-name em {
+    font-style: normal;
+    color: var(--ember);
+  }
+  .brand-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-top: 5px;
+    font-weight: 600;
+  }
+
+  /* Meridian signature */
+  .mm-sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(246,241,232,0.28);
+    text-align: center;
+    margin-top: 14px;
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .cta-wrap {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 20px 18px;
+    background: var(--ink);
+    border-top: 1px solid var(--ash-fade-2);
+  }
+  .cta {
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(90deg, var(--ember), var(--ember-deep));
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    font-family: inherit;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.25);
+    cursor: pointer;
+  }
+
+  /* Bottom sheet for contextual prompts */
+  .bottom-sheet {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--ink);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 22px 20px 18px;
+    border-top: 1px solid var(--ash-fade-2);
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+  }
+  .bottom-sheet::before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(246,241,232,0.2);
+    margin: -8px auto 14px;
+  }
+
+  /* Background mock for context screens */
+  .bg-tabs {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    background: #0a0e1a;
+    border-top: 1px solid rgba(246,241,232,0.08);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding-top: 12px;
+  }
+  .tab-icon {
+    width: 24px;
+    height: 24px;
+    background: rgba(246,241,232,0.3);
+    border-radius: 4px;
+  }
+  .tab-icon.active { background: var(--ember); }
+
+  .feed-mock {
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ash-soft);
+  }
+  .feed-quedada {
+    margin: 10px 18px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .feed-quedada-title { font-size: 13px; font-weight: 700; color: var(--paper); font-family: 'Inter', sans-serif; letter-spacing: -0.1px; margin-bottom: 4px; }
+  .feed-quedada-meta { font-size: 11px; color: var(--ash-soft); font-family: 'Inter', sans-serif; }
+
+  /* Mock notification */
+  .mock-notif {
+    margin-top: 14px;
+    background: var(--surface-strong);
+    border: 1px solid var(--ash-fade);
+    border-radius: 12px;
+    padding: 11px 12px 11px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-notif::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 2px;
+    background: var(--ember);
+  }
+  .mock-icon {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--ember), var(--ember-deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 14px;
+  }
+  .mock-body { flex: 1; min-width: 0; }
+  .mock-app {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--ember);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .mock-title { font-size: 12px; font-weight: 700; color: var(--paper); line-height: 1.3; }
+  .mock-text { font-size: 11px; color: var(--ash-soft); line-height: 1.4; margin-top: 1px; }
+
+  /* Skip chip */
+  .skip-row { display: flex; justify-content: center; margin-top: 10px; }
+  .skip-chip {
+    border: 1px solid var(--ash-fade);
+    border-radius: 999px;
+    padding: 7px 14px;
+    color: var(--ash);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  /* Arrow between phones */
+  .arrow {
+    align-self: center;
+    font-size: 30px;
+    color: var(--ember);
+    margin: 0 -10px;
+  }
+
+  /* Info boxes */
+  .info-box {
+    max-width: 900px;
+    width: 100%;
+    padding: 22px 26px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 16px;
+    color: #ddd;
+  }
+  .info-box h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .info-box ul { list-style: none; }
+  .info-box li {
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 13px;
+    line-height: 1.55;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .info-box li:last-child { border-bottom: none; }
+  .info-box li::before { content: "●"; color: var(--ember); margin-top: 2px; font-size: 9px; }
+
+  @media (max-width: 1150px) {
+    .row { flex-direction: column; }
+    .arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="main-label">Onboarding de 3 pasos · Meridian Motion premium</div>
+  <div class="main-sub">
+    De <strong>6 pasos a 3</strong>. Photo y Notifications ya no son paso obligatorio:
+    se piden contextualmente cuando el user ya está dentro de la app
+    y la acción tiene sentido.
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- FLOW: 3 pasos onboarding -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="section-header">Flow principal · 3 pasos</div>
+  <div class="row">
+
+    <!-- PASO 1 · HOOK -->
+    <div class="phone-wrap">
+      <div class="phone-label">Paso 1 · Hook</div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>12:32</span><span>🔋</span></div>
+        <div class="screen">
+          <div class="scroll">
+            <div class="stepbar">
+              <span class="stepmark">●</span>
+              <span class="steptext">PASO 1 DE 3 · COMIENZA</span>
+              <div class="progress-rail"><div class="progress-fill" style="width:33.3%;"></div></div>
+            </div>
+            <span class="accent-dot"></span>
+            <div class="survey-marker">
+              <span class="dot">●</span>&nbsp;&nbsp;BIENVENIDO<span class="divider">·</span>ENCUENTRA TU GENTE
+            </div>
+            <div class="eyebrow">Corre acompañado</div>
+            <div class="title-dramatic">Ya no vuelves<br>a correr <strong>solo</strong>.</div>
+            <div class="rule"></div>
+            <div class="subtitle">Te emparejamos con runners en tu ciudad por ritmo, zona y horario.</div>
+
+            <div class="section-lbl">Por qué CorrerJuntos</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--ember);letter-spacing:1.2px;width:20px;padding-top:2px;">01</span><div><div style="font-size:13px;font-weight:700;color:var(--paper);">Matching</div><div style="font-size:11px;color:var(--ash-soft);margin-top:1px;">Por ritmo, zona y horario</div></div></div>
+              <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--ember);letter-spacing:1.2px;width:20px;padding-top:2px;">02</span><div><div style="font-size:13px;font-weight:700;color:var(--paper);">Quedadas reales</div><div style="font-size:11px;color:var(--ash-soft);margin-top:1px;">Con gente verificada de tu nivel</div></div></div>
+              <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--ember);letter-spacing:1.2px;width:20px;padding-top:2px;">03</span><div><div style="font-size:13px;font-weight:700;color:var(--paper);">Coach IA</div><div style="font-size:11px;color:var(--ash-soft);margin-top:1px;">Plan personal en 60 segundos</div></div></div>
+            </div>
+
+            <div class="divider-hairline"></div>
+            <div style="display:flex;gap:2px;margin-bottom:6px;">
+              <span style="color:var(--ember);font-size:11px;">★</span>
+              <span style="color:var(--ember);font-size:11px;">★</span>
+              <span style="color:var(--ember);font-size:11px;">★</span>
+              <span style="color:var(--ember);font-size:11px;">★</span>
+              <span style="color:var(--ember);font-size:11px;">★</span>
+            </div>
+            <div style="font-size:12px;font-style:italic;color:var(--paper);line-height:1.4;">"Hacía falta una app así. Te felicito."</div>
+            <div style="font-size:10px;color:var(--ash-soft);margin-top:4px;font-weight:500;letter-spacing:0.3px;">— Miguel, Dos Hermanas</div>
+          </div>
+          <div class="cta-wrap"><button class="cta">Empezar  →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- PASO 2 · PROFILE + RITMO (ya está diseñado, abreviado aquí) -->
+    <div class="phone-wrap">
+      <div class="phone-label">Paso 2 · Perfil + Ritmo</div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>12:32</span><span>🔋</span></div>
+        <div class="screen">
+          <div class="scroll">
+            <div class="stepbar">
+              <span class="stepmark">●</span>
+              <span class="steptext">PASO 2 DE 3 · PERFIL</span>
+              <div class="progress-rail"><div class="progress-fill" style="width:66.6%;"></div></div>
+            </div>
+            <span class="accent-dot"></span>
+            <div class="survey-marker"><span class="dot">●</span>&nbsp;&nbsp;TU PERFIL<span class="divider">·</span>PARA EL MATCHING</div>
+            <div class="eyebrow">Tu perfil de runner</div>
+            <div class="title-dramatic">Cuéntanos<br>cómo <strong>corres</strong>.</div>
+            <div class="rule"></div>
+            <div class="subtitle">Nombre, ciudad y ritmo. 30 segundos.</div>
+
+            <div style="margin-top:18px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.8px;color:var(--ash-soft);font-weight:600;margin-bottom:6px;">NOMBRE</div>
+              <input style="width:100%;padding:10px 12px;background:var(--surface);border:1px solid var(--ash-fade);border-radius:10px;color:var(--paper);font-size:14px;" value="Prueba1">
+            </div>
+            <div style="margin-top:14px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.8px;color:var(--ash-soft);font-weight:600;margin-bottom:6px;">¿DÓNDE ENTRENAS?</div>
+              <input style="width:100%;padding:10px 12px;background:var(--surface);border:1px solid var(--ash-fade);border-radius:10px;color:var(--paper);font-size:14px;" value="Punta Umbría">
+              <div style="margin-top:6px;display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border:1px solid rgba(34,197,94,0.3);background:rgba(34,197,94,0.08);border-radius:999px;"><span style="width:4px;height:4px;border-radius:50%;background:#22c55e;"></span><span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:#22c55e;font-weight:600;">España detectada</span></div>
+            </div>
+            <div style="margin-top:14px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.8px;color:var(--ash-soft);font-weight:600;margin-bottom:6px;">TU RITMO MEDIO</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                <div style="padding:10px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ash-soft);letter-spacing:1px;margin-bottom:4px;">01</div><div style="font-size:20px;font-weight:800;color:var(--paper);line-height:1;">4:30</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ember);letter-spacing:1.2px;margin-top:2px;">MIN / KM</div></div>
+                <div style="padding:10px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ash-soft);letter-spacing:1px;margin-bottom:4px;">02</div><div style="font-size:20px;font-weight:800;color:var(--paper);line-height:1;">5:00</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ember);letter-spacing:1.2px;margin-top:2px;">MIN / KM</div></div>
+                <div style="padding:10px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ash-soft);letter-spacing:1px;margin-bottom:4px;">03</div><div style="font-size:20px;font-weight:800;color:var(--paper);line-height:1;">5:30</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ember);letter-spacing:1.2px;margin-top:2px;">MIN / KM</div></div>
+                <div style="padding:10px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ash-soft);letter-spacing:1px;margin-bottom:4px;">04</div><div style="font-size:20px;font-weight:800;color:var(--paper);line-height:1;">6:00</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ember);letter-spacing:1.2px;margin-top:2px;">MIN / KM</div></div>
+                <div style="padding:10px;border:1px solid var(--ember);background:rgba(249,115,22,0.08);border-radius:10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ember);letter-spacing:1px;margin-bottom:4px;">05</div><div style="font-size:20px;font-weight:800;color:var(--paper);line-height:1;">6:30</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ember);letter-spacing:1.2px;margin-top:2px;">MIN / KM</div></div>
+                <div style="padding:10px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ash-soft);letter-spacing:1px;margin-bottom:4px;">06</div><div style="font-size:20px;font-weight:800;color:var(--paper);line-height:1;">7:00+</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ember);letter-spacing:1.2px;margin-top:2px;">MIN / KM</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="cta-wrap"><button class="cta">Continuar  →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- PASO 3 · WELCOME PREMIUM (con goal integrado) -->
+    <div class="phone-wrap">
+      <div class="phone-label">Paso 3 · Welcome premium ★</div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>12:33</span><span>🔋</span></div>
+        <div class="screen">
+          <div class="scroll">
+            <div class="stepbar">
+              <span class="stepmark">●</span>
+              <span class="steptext">PASO 3 DE 3 · LISTO</span>
+              <div class="progress-rail"><div class="progress-fill" style="width:100%;"></div></div>
+            </div>
+
+            <span class="accent-dot"></span>
+
+            <div class="survey-marker">
+              <span class="dot">●</span>&nbsp;&nbsp;CUENTA CREADA<span class="divider">·</span>PRUEBA1
+            </div>
+
+            <div class="eyebrow">Bienvenido a bordo</div>
+
+            <div class="avatar-wrap"><div class="avatar">P</div></div>
+
+            <div class="title-dramatic">Hola,<br><strong>Prueba1</strong>.</div>
+            <div class="rule"></div>
+            <div class="subtitle">Una última decisión y entras en la comunidad.</div>
+
+            <!-- Goal picker integrado -->
+            <div class="section-lbl">¿Qué buscas aquí?</div>
+            <div class="goal-card">
+              <span class="goal-num">01</span>
+              <div class="goal-body">
+                <div class="goal-title">Correr acompañado</div>
+                <div class="goal-chip">QUEDADAS + MATCHING</div>
+              </div>
+            </div>
+            <div class="goal-card">
+              <span class="goal-num">02</span>
+              <div class="goal-body">
+                <div class="goal-title">Empezar a correr</div>
+                <div class="goal-chip">GRATIS · 8 SEMANAS</div>
+              </div>
+            </div>
+            <div class="goal-card active">
+              <span class="goal-num">03</span>
+              <div class="goal-body">
+                <div class="goal-title">Mejorar mi marca</div>
+                <div class="goal-chip">5 PLANES · 5K A MARATÓN</div>
+              </div>
+            </div>
+
+            <!-- Stats de la zona -->
+            <div class="section-lbl">Tu zona ahora · Punta Umbría</div>
+            <div class="stats-row">
+              <div class="stat-card">
+                <div class="stat-num">01</div>
+                <div class="stat-val">317</div>
+                <div class="stat-lbl">RUNNERS<br>CERCA</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">02</div>
+                <div class="stat-val">2</div>
+                <div class="stat-lbl">QUEDADAS<br>HOY</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">03</div>
+                <div class="stat-val">87%</div>
+                <div class="stat-lbl">MATCH<br>MÁXIMO</div>
+              </div>
+            </div>
+
+            <div class="divider-hairline"></div>
+
+            <div class="brand-lockup">
+              <div class="brand-name">Correr<em>Juntos</em></div>
+              <div class="brand-tag">Corre acompañado, no solo</div>
+            </div>
+
+            <div class="mm-sig">Meridian Motion · Paso 3 de 3</div>
+          </div>
+          <div class="cta-wrap"><button class="cta">Entrar a la comunidad  →</button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- Prompts contextuales post-onboarding -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="section-header" style="margin-top:20px;">Después · Prompts contextuales (reemplazan los pasos eliminados)</div>
+  <div class="row">
+
+    <!-- Feed con prompt de Notifications -->
+    <div class="phone-wrap">
+      <div class="phone-label">Al entrar al Feed · Prompt notifications</div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>12:34</span><span>🔋</span></div>
+        <div class="screen">
+          <div style="padding-top:10px;">
+            <div class="feed-mock">● FEED · HOY</div>
+            <div class="feed-quedada"><div class="feed-quedada-title">Rodaje largo sábado 9:00</div><div class="feed-quedada-meta">Parque Moret · 10K · 5:30/km · 3 de 8</div></div>
+            <div class="feed-quedada"><div class="feed-quedada-title">Intervalos martes 19:00</div><div class="feed-quedada-meta">Estadio · 400×8 · 4:30/km · 5 de 10</div></div>
+            <div class="feed-quedada" style="opacity:0.5;"><div class="feed-quedada-title">Tirada domingo 8:00</div><div class="feed-quedada-meta">Muelle · 15K · 5:00/km</div></div>
+          </div>
+
+          <div class="bottom-sheet">
+            <div class="eyebrow" style="margin-bottom:12px;">No te pierdas quedadas</div>
+            <div class="title-dramatic" style="font-size:24px;line-height:26px;">Activa los <strong>avisos</strong>.</div>
+            <div class="rule" style="margin:10px 0 12px 0;"></div>
+
+            <div class="mock-notif">
+              <div class="mock-icon">🔔</div>
+              <div class="mock-body">
+                <div class="mock-app">CORRERJUNTOS · AHORA</div>
+                <div class="mock-title">Nueva quedada en Huelva</div>
+                <div class="mock-text">Sáb 9:00 · 10K ritmo 5:30 · Marta y 4 más</div>
+              </div>
+            </div>
+
+            <button class="cta" style="height:44px;font-size:14px;margin-top:14px;">Activar notificaciones  →</button>
+            <div class="skip-row"><button class="skip-chip">Ahora no</button></div>
+          </div>
+
+          <div class="bg-tabs">
+            <div class="tab-icon active"></div>
+            <div class="tab-icon"></div>
+            <div class="tab-icon"></div>
+            <div class="tab-icon"></div>
+            <div class="tab-icon"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">+</div>
+
+    <!-- Profile con prompt Photo -->
+    <div class="phone-wrap">
+      <div class="phone-label">Al entrar a Profile · Prompt foto</div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>12:35</span><span>🔋</span></div>
+        <div class="screen">
+          <div style="padding:16px 20px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <div style="width:60px;height:60px;border-radius:30px;background:linear-gradient(135deg,var(--ember),var(--ember-deep));display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:800;">P</div>
+              <div>
+                <div style="font-size:17px;font-weight:800;color:var(--paper);">Prueba1</div>
+                <div style="font-size:11px;color:var(--ash-soft);margin-top:3px;">Punta Umbría · 6:30/km</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+              <div style="padding:10px 8px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;text-align:center;"><div style="font-size:16px;font-weight:800;color:var(--paper);">0</div><div style="font-size:8px;color:var(--ash-soft);letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-top:3px;">KM</div></div>
+              <div style="padding:10px 8px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;text-align:center;"><div style="font-size:16px;font-weight:800;color:var(--paper);">0</div><div style="font-size:8px;color:var(--ash-soft);letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-top:3px;">CARRERAS</div></div>
+              <div style="padding:10px 8px;border:1px solid var(--ash-fade);background:var(--surface);border-radius:10px;text-align:center;"><div style="font-size:16px;font-weight:800;color:var(--paper);">0</div><div style="font-size:8px;color:var(--ash-soft);letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-top:3px;">QUEDADAS</div></div>
+            </div>
+          </div>
+
+          <div class="bottom-sheet">
+            <div class="eyebrow" style="margin-bottom:12px;">3x más matches</div>
+            <div class="title-dramatic" style="font-size:24px;line-height:26px;">Pon cara a<br>tu <strong>perfil</strong>.</div>
+            <div class="rule" style="margin:10px 0 12px 0;"></div>
+
+            <div style="display:flex;align-items:center;gap:12px;margin-top:10px;">
+              <div style="width:54px;height:54px;border-radius:27px;border:2px dashed rgba(249,115,22,0.4);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--ash-soft);font-size:22px;">+</div>
+              <div style="flex:1;font-size:12px;color:var(--ash-soft);line-height:1.4;">Los runners con foto reciben 3x más solicitudes de matching.</div>
+            </div>
+
+            <button class="cta" style="height:44px;font-size:14px;margin-top:14px;">Elegir foto  →</button>
+            <div class="skip-row"><button class="skip-chip">Otro día</button></div>
+          </div>
+
+          <div class="bg-tabs">
+            <div class="tab-icon"></div>
+            <div class="tab-icon"></div>
+            <div class="tab-icon"></div>
+            <div class="tab-icon"></div>
+            <div class="tab-icon active"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- What changes -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="info-box">
+    <h3>Qué cambia · los elementos email-grade aplicados</h3>
+    <ul>
+      <li><strong>Accent dot + survey marker arriba</strong> en cada paso (como el email: "● CONFIRMACIÓN · Nº 01")</li>
+      <li><strong>Título Inter 200 con palabra bold ember</strong>: "solo" en Hook, "corres" en Perfil, "Prueba1" en Welcome, "avisos" y "perfil" en los prompts (exactamente el patrón del email "Un paso más y estás <strong>dentro</strong>")</li>
+      <li><strong>Eyebrow</strong> con línea corta + mono ember en cada paso</li>
+      <li><strong>Accent rule</strong> 36×3 naranja bajo cada título</li>
+      <li><strong>Welcome paso 3</strong>: integra goal picker + stats de la zona en la misma pantalla (reemplaza el Goal de antes)</li>
+      <li><strong>Cards de goal</strong> con número mono + chip metadata (QUEDADAS + MATCHING / GRATIS · 8 SEMANAS / 5 PLANES · 5K A MARATÓN)</li>
+      <li><strong>Divider hairline + brand lockup</strong> al pie de Welcome: "Correr<em>Juntos</em>" + tagline mono + firma "MERIDIAN MOTION · Paso 3 de 3"</li>
+      <li><strong>Photo y Notifications desaparecen del onboarding</strong> obligatorio. Se piden como bottom-sheet contextual cuando:
+        <br>· Notifications → al entrar al Feed la primera vez
+        <br>· Photo → al entrar a Profile o intentar crear quedada</li>
+      <li><strong>Bottom-sheet de prompts</strong> tiene el mismo lenguaje email-grade: eyebrow + título con palabra ember + mock notif o avatar placeholder + CTA + skip chip</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Impacto esperado</h3>
+    <ul>
+      <li><strong>6 pasos → 3 pasos</strong> en onboarding obligatorio (50% menos fricción)</li>
+      <li><strong>Photo y Notifications se activan con contexto</strong>: el user entiende por qué los necesita → mayor % de aceptación cuando se piden</li>
+      <li><strong>Welcome premium</strong> cierra el onboarding con sensación de brand consistency (mismo lenguaje que los emails)</li>
+      <li><strong>Goal picker</strong> sigue existiendo pero integrado en Welcome → el user decide qué buscar viendo ya las stats de su zona</li>
+      <li><strong>Brand lockup CorrerJuntos + tagline + firma</strong> refuerzan identidad en la primera victoria</li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -162,22 +162,17 @@
   </div>
 
   <script>
-    // Best-effort: try to open the app automatically if it's installed.
-    // iOS Universal Links should capture this page BEFORE any JS runs — so if
-    // this script executes, the app probably isn't installed (or user opened
-    // the link on desktop). The scheme jump below is a belt-and-suspenders
-    // fallback that won't annoy users who already have the app (they
-    // won't see this page at all).
-    (function() {
-      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (!isMobile) return;
-      // Small delay to let the page render before attempting scheme jump
-      setTimeout(function() {
-        try {
-          window.location.href = 'correrjuntos://login';
-        } catch (e) { /* ignore */ }
-      }, 600);
-    })();
+    // No auto-jump. Historically we tried to redirect to correrjuntos://login
+    // automatically after 600ms, but in Gmail's in-app webview (where Universal
+    // Links don't fire) this produced the "¿Permitir abrir app?" system prompt
+    // on page load without any user intent — which feels broken.
+    //
+    // The correct UX: user lands on this page, reads "Email confirmado",
+    // and explicitly taps "Abrir CorrerJuntos →" to launch the app. One
+    // deliberate click instead of a prompt they didn't ask for.
+    //
+    // For users who arrive through Apple Mail or Safari, iOS fires the
+    // Universal Link BEFORE this page even renders, so they never see it.
   </script>
 </body>
 </html>

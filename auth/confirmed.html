@@ -162,17 +162,30 @@
   </div>
 
   <script>
-    // No auto-jump. Historically we tried to redirect to correrjuntos://login
-    // automatically after 600ms, but in Gmail's in-app webview (where Universal
-    // Links don't fire) this produced the "¿Permitir abrir app?" system prompt
-    // on page load without any user intent — which feels broken.
+    // Auto-forward for password recovery.
     //
-    // The correct UX: user lands on this page, reads "Email confirmado",
-    // and explicitly taps "Abrir CorrerJuntos →" to launch the app. One
-    // deliberate click instead of a prompt they didn't ask for.
+    // Why this lives here instead of on /auth/reset: Supabase's Site URL
+    // is set to /auth/confirmed and is used as the default redirect when
+    // the app-side redirectTo either isn't passed or isn't in the allow
+    // list. That means recovery emails (type=recovery) may land here
+    // first. Rather than show "Email confirmado" to a user who actually
+    // wanted to reset their password, we detect the hash and forward.
     //
-    // For users who arrive through Apple Mail or Safari, iOS fires the
-    // Universal Link BEFORE this page even renders, so they never see it.
+    // Hash is preserved verbatim so /auth/reset gets the access_token +
+    // refresh_token it needs to call updateUser().
+    (function () {
+      var h = window.location.hash || '';
+      if (h.indexOf('type=recovery') !== -1) {
+        window.location.replace('/auth/reset' + h);
+      }
+    })();
+
+    // No auto-jump to the app scheme. We used to redirect to
+    // correrjuntos://login automatically after 600ms, but in Gmail's
+    // in-app webview (where Universal Links don't fire) that produced
+    // the "¿Permitir abrir app?" system prompt on page load without
+    // any user intent — felt broken. The tap on "Abrir CorrerJuntos →"
+    // is a deliberate gesture and justifies the prompt.
   </script>
 </body>
 </html>

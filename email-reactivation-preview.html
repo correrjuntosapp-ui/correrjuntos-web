@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Email reactivation preview</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+    --ash-fade-2: rgba(246,241,232,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a1a1a; font-family: 'Inter', -apple-system, sans-serif; color: var(--paper); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  body { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+
+  .main-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--paper); font-weight: 600; text-align: center; }
+  .main-sub { color: #aaa; font-size: 14px; text-align: center; max-width: 620px; line-height: 1.55; margin-top: -12px; }
+  .main-sub strong { color: var(--ember); font-weight: 700; }
+
+  /* Email client simulation */
+  .email-client {
+    max-width: 640px;
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .email-header {
+    background: #f7f7f5;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .email-avatar {
+    width: 36px; height: 36px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 14px;
+  }
+  .email-meta-from { font-size: 13px; color: #333; font-weight: 600; }
+  .email-meta-to { font-size: 11px; color: #888; margin-top: 2px; }
+  .email-subject {
+    background: #fff;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  /* Email body (Meridian Motion) */
+  .email-body {
+    background: var(--ink);
+    padding: 48px 16px;
+  }
+  .email-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    background: var(--ink);
+    border: 1px solid rgba(246,241,232,0.08);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .email-content { padding: 36px 44px 34px; }
+
+  .accent-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--ember);
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .survey-marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ash-soft);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .survey-marker .dot { color: var(--ember); }
+  .survey-marker .divider { margin: 0 6px; color: rgba(246,241,232,0.2); }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before { content: ""; width: 36px; height: 1px; background: var(--ember); }
+
+  .email-headline {
+    font-family: 'Inter', sans-serif;
+    font-size: 34px;
+    line-height: 1.05;
+    letter-spacing: -0.9px;
+    font-weight: 200;
+    color: var(--paper);
+    margin-bottom: 0;
+  }
+  .email-headline strong { font-weight: 700; color: var(--ember); }
+
+  .rule {
+    width: 36px; height: 3px;
+    border-radius: 2px;
+    background: var(--ember);
+    margin: 20px 0 20px 0;
+  }
+
+  .email-p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(246,241,232,0.78);
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .email-p strong { color: var(--paper); font-weight: 600; }
+
+  .changes-list {
+    margin: 18px 0 22px;
+    padding: 18px 20px;
+    background: rgba(249,115,22,0.06);
+    border: 1px solid rgba(249,115,22,0.25);
+    border-left: 3px solid var(--ember);
+    border-radius: 8px;
+  }
+  .changes-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .changes-list ul { list-style: none; }
+  .changes-list li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(246,241,232,0.78);
+    padding: 3px 0;
+    display: flex;
+    gap: 8px;
+  }
+  .changes-list li::before {
+    content: "✓";
+    color: var(--ember);
+    font-weight: 700;
+  }
+
+  .gift-box {
+    margin: 22px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.12) 0%, rgba(11,18,32,0) 70%);
+    border: 1px solid rgba(249,115,22,0.35);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .gift-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .gift-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--paper);
+    letter-spacing: -0.4px;
+    margin-bottom: 4px;
+  }
+  .gift-value strong { color: var(--ember); }
+  .gift-sub {
+    font-size: 12px;
+    color: var(--ash);
+  }
+
+  .cta-row {
+    text-align: center;
+    margin: 28px 0 10px;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--ember);
+    color: #0b1220;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.3);
+  }
+
+  .fallback-link {
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(246,241,232,0.12);
+  }
+  .fallback-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(246,241,232,0.42);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .fallback-text {
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--ash);
+    word-break: break-all;
+  }
+  .fallback-text a { color: var(--ember); text-decoration: none; }
+
+  .email-footer {
+    padding: 22px 44px 32px;
+    border-top: 1px solid rgba(246,241,232,0.12);
+    margin-top: 6px;
+  }
+  .email-footer-sig {
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(246,241,232,0.72);
+  }
+  .email-footer-name {
+    font-weight: 700;
+    color: var(--paper);
+  }
+  .email-footer-brand {
+    margin-top: 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    color: var(--paper);
+  }
+  .email-footer-brand em {
+    font-style: normal;
+    color: var(--ember);
+  }
+  .email-footer-contact {
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ember);
+  }
+  .email-footer-contact a { color: var(--ember); text-decoration: none; }
+
+  .email-disclaimer {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(246,241,232,0.28);
+    margin-top: 18px;
+    padding-bottom: 8px;
+  }
+  .email-disclaimer a { color: rgba(246,241,232,0.42); text-decoration: none; }
+
+  /* Info boxes */
+  .info { max-width: 800px; width: 100%; padding: 22px 26px; background: #111; border: 1px solid #333; border-radius: 16px; color: #ddd; }
+  .info h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 14px; color: #fff; }
+  .info ul { list-style: none; }
+  .info li { padding: 8px 0; border-bottom: 1px solid #2a2a2a; font-size: 13px; line-height: 1.55; display: flex; gap: 12px; align-items: flex-start; }
+  .info li:last-child { border-bottom: none; }
+  .info li::before { content: "●"; color: var(--ember); margin-top: 2px; font-size: 9px; }
+
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 6px; font-weight: 700; background: rgba(34,197,94,0.15); color: #86efac; }
+</style>
+</head>
+<body>
+
+  <div class="main-label">Email reactivation · 555 users perdidos</div>
+  <div class="main-sub">Tono José honesto · Meridian Motion consistency con los emails de confirm y reset password · premium 1 mes como disculpa</div>
+
+  <span class="tag">Propuesta · por revisar</span>
+
+  <!-- Email client frame -->
+  <div class="email-client">
+    <div class="email-header">
+      <div class="email-avatar">C</div>
+      <div>
+        <div class="email-meta-from">CorrerJuntos &lt;hola@correrjuntos.com&gt;</div>
+        <div class="email-meta-to">Para: ti</div>
+      </div>
+    </div>
+
+    <div class="email-subject">Te debo una disculpa (y un premium gratis)</div>
+
+    <div class="email-body">
+      <div class="email-inner">
+        <div class="email-content">
+
+          <div class="accent-dot"></div>
+
+          <div class="survey-marker">
+            <span class="dot">●</span>&nbsp;&nbsp;MENSAJE DE JOSÉ<span class="divider">·</span>FUNDADOR
+          </div>
+
+          <div class="eyebrow">Recuperar acceso</div>
+
+          <div class="email-headline">
+            Hola,<br>
+            te debo una <strong>disculpa</strong>.
+          </div>
+
+          <div class="rule"></div>
+
+          <p class="email-p">Te registraste en CorrerJuntos hace tiempo. Y probablemente tuviste una mala experiencia al confirmar el email — el flujo estaba roto y acababas en la web en vez de en la app. La culpa fue mía.</p>
+
+          <p class="email-p">Esta semana lo he arreglado. Todo.</p>
+
+          <div class="changes-list">
+            <div class="changes-label">LO QUE HA CAMBIADO</div>
+            <ul>
+              <li>Confirmación de email que ahora sí abre la app</li>
+              <li>Onboarding de 6 pasos reducido a 3</li>
+              <li>Olvidaste tu contraseña que ya funciona end-to-end</li>
+              <li>Filtros de quedadas por tu ciudad real (no spam de otras)</li>
+              <li>Perfiles fantasma eliminados</li>
+            </ul>
+          </div>
+
+          <p class="email-p">Quiero pedirte <strong>5 minutos</strong>: abre CorrerJuntos otra vez y dime qué encuentras.</p>
+
+          <p class="email-p">Si sigue sin gustarte, no pasa nada — también es feedback útil. Si te gusta, me ayudas a construir esto con los que estamos empezando.</p>
+
+          <div class="gift-box">
+            <div class="gift-label">● COMO DISCULPA</div>
+            <div class="gift-value"><strong>1 mes</strong> de Premium gratis</div>
+            <div class="gift-sub">Sin tarjeta · sin compromiso · activado en tu cuenta</div>
+          </div>
+
+          <div class="cta-row">
+            <a href="https://www.correrjuntos.com/abrir-app" class="cta-btn">Abrir CorrerJuntos  →</a>
+          </div>
+
+          <div class="fallback-link">
+            <div class="fallback-label">ENLACE DIRECTO</div>
+            <div class="fallback-text">
+              <a href="https://www.correrjuntos.com/abrir-app">https://www.correrjuntos.com/abrir-app</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="email-footer">
+          <div class="email-footer-sig">
+            Un abrazo,<br>
+            <span class="email-footer-name">José</span> — fundador de CorrerJuntos
+          </div>
+
+          <div class="email-footer-brand">Correr<em>Juntos</em></div>
+          <div class="email-footer-contact">
+            <a href="mailto:hola@correrjuntos.com">hola@correrjuntos.com</a>
+          </div>
+        </div>
+
+        <div class="email-disclaimer">
+          Meridian Motion &middot; <a href="https://www.correrjuntos.com">correrjuntos.com</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Análisis -->
+  <div class="info">
+    <h3>Por qué este copy funciona · framework de recovery emails</h3>
+    <ul>
+      <li><strong>Asunto honesto:</strong> "Te debo una disculpa" → abre más del doble que subjects comerciales tipo "Vuelve con un descuento"</li>
+      <li><strong>Vulnerabilidad del founder</strong> → "La culpa fue mía". Genera confianza porque no es corporativo</li>
+      <li><strong>Cambios concretos y verificables</strong> → no "hemos mejorado la app" sino lista específica de qué se arregló</li>
+      <li><strong>Pide poco</strong> → "5 minutos". No una suscripción, no un compromiso</li>
+      <li><strong>Libertad de respuesta</strong> → "Si sigue sin gustarte, no pasa nada" elimina presión</li>
+      <li><strong>Regalo sin trampa</strong> → "1 mes · sin tarjeta · sin compromiso · activado en tu cuenta". El user entiende que es gratis de verdad</li>
+      <li><strong>CTA único y claro</strong> → "Abrir CorrerJuntos →" en botón ember prominente</li>
+      <li><strong>Firma real del founder</strong> → "José — fundador de CorrerJuntos" da cara humana</li>
+    </ul>
+  </div>
+
+  <div class="info">
+    <h3>Números conservadores del envío</h3>
+    <ul>
+      <li><strong>Lista</strong>: 555 users (415 que se fueron en 5 min + 140 que nunca volvieron)</li>
+      <li><strong>Open rate esperado</strong>: 35-45% (subjects de disculpa abren mejor) → ~200-250 aperturas</li>
+      <li><strong>Click rate esperado</strong>: 15-25% de los que abren → ~30-60 clicks</li>
+      <li><strong>Users que vuelven a abrir la app</strong>: 50-70% de los que clican → <strong>15-40 users reactivados</strong></li>
+      <li><strong>Users que responden por email</strong>: 2-5% de los que abren → <strong>5-15 respuestas</strong> con feedback gold</li>
+    </ul>
+  </div>
+
+  <div class="info" style="border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.04);">
+    <h3 style="color: var(--ember);">Qué falta antes de enviar</h3>
+    <ul>
+      <li><strong>Tu aprobación del copy</strong> (este email)</li>
+      <li><strong>Configurar el cupón premium 1 mes</strong> en RevenueCat o marcar <code style="color:var(--ember);">premium_until = NOW() + 30 days</code> en Supabase para cada user al abrir el email</li>
+      <li><strong>Landing "abrir-app"</strong>: URL que detecte móvil → redirige a App Store / Play Store / intent hacia la app si está instalada</li>
+      <li><strong>Segmentar los 555</strong>: excluir los 2 reales (Miguel, Juanan), excluir test accounts, excluir users borrados</li>
+      <li><strong>Envío en lotes</strong> respetando rate limit Brevo (300 emails/día en plan gratuito)</li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Home V4 · Feed de actividad estilo Strava</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+    --ash-fade-2: rgba(246,241,232,0.08);
+    --surface: rgba(246,241,232,0.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a1a1a; font-family: 'Inter', -apple-system, sans-serif; color: var(--paper); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  body { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+
+  .main-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--paper); font-weight: 600; text-align: center; }
+  .main-sub { color: #aaa; font-size: 14px; text-align: center; max-width: 620px; line-height: 1.55; margin-top: -12px; }
+  .main-sub strong { color: var(--ember); font-weight: 700; }
+
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 6px; font-weight: 700; background: rgba(34,197,94,0.15); color: #86efac; }
+
+  .phone {
+    width: 360px;
+    height: 820px;
+    background: var(--ink);
+    border-radius: 46px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 10px #222, 0 0 0 12px #111, 0 30px 60px rgba(0,0,0,0.6);
+  }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 125px; height: 30px; background: #000; border-radius: 22px; z-index: 10; }
+  .screen { width: 100%; height: 100%; padding-top: 50px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+  .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px 0 24px; font-size: 12px; font-weight: 600; color: var(--paper); z-index: 5; }
+  .scroll { flex: 1; overflow-y: auto; padding-bottom: 82px; }
+  .scroll::-webkit-scrollbar { display: none; }
+
+  /* Header */
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px 22px; }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 36px; height: 36px; border-radius: 18px; background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.4); display: flex; align-items: center; justify-content: center; color: var(--ember); font-weight: 700; font-size: 15px; }
+  .greet-hi { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.4px; color: var(--ash-soft); text-transform: uppercase; font-weight: 600; }
+  .greet-name { font-size: 17px; font-weight: 800; color: var(--paper); letter-spacing: -0.3px; line-height: 1.15; }
+  .bell { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; color: var(--ash); }
+
+  /* Stats compacto */
+  .stats { margin: 0 20px 18px; display: flex; gap: 8px; }
+  .stat-mini {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 10px;
+    padding: 10px 8px;
+  }
+  .stat-mini-val { font-size: 18px; font-weight: 800; color: var(--paper); line-height: 1; letter-spacing: -0.4px; }
+  .stat-mini-cap { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1.2px; color: var(--ash-soft); margin-top: 5px; font-weight: 700; }
+
+  /* Section */
+  .section-head { display: flex; justify-content: space-between; align-items: center; padding: 8px 20px 10px; }
+  .section-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--ash-soft); font-weight: 600; }
+  .section-cta { display: inline-flex; align-items: center; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.4px; color: var(--ember); font-weight: 700; border: 1px solid rgba(249,115,22,0.3); padding: 5px 11px; border-radius: 999px; }
+
+  /* ═══ FEED de actividad estilo Strava ═══ */
+  .feed-card {
+    margin: 0 20px 12px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .feed-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 10px;
+  }
+  .feed-avatar {
+    width: 38px; height: 38px;
+    border-radius: 19px;
+    background: linear-gradient(135deg, #ea580c, #f97316);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .feed-avatar.green { background: linear-gradient(135deg, #16a34a, #22c55e); }
+  .feed-avatar.blue { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+  .feed-user-info { flex: 1; min-width: 0; }
+  .feed-user-row { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+  .feed-user-name { font-size: 13px; font-weight: 700; color: var(--paper); letter-spacing: -0.1px; }
+  .feed-compat-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.8px;
+    color: var(--ember);
+    border: 1px solid rgba(249,115,22,0.35);
+    background: rgba(249,115,22,0.08);
+    padding: 1px 5px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .feed-relation-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.8px;
+    padding: 1px 5px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .feed-relation-chip.follow {
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.35);
+    background: rgba(34,197,94,0.08);
+  }
+  .feed-relation-chip.known {
+    color: #60a5fa;
+    border: 1px solid rgba(96,165,250,0.35);
+    background: rgba(96,165,250,0.08);
+  }
+  .feed-meta {
+    font-size: 11px;
+    color: var(--ash-soft);
+  }
+  .feed-when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--ash-soft);
+    letter-spacing: 0.5px;
+    text-align: right;
+  }
+
+  .feed-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--paper);
+    padding: 0 14px 8px;
+    letter-spacing: -0.2px;
+  }
+
+  /* Map canvas (polyline rendering) */
+  .feed-map {
+    height: 140px;
+    position: relative;
+    background: linear-gradient(135deg, #0f1c30 0%, #0a1525 100%);
+    overflow: hidden;
+  }
+  .feed-map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(249,115,22,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(249,115,22,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .feed-map-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .feed-map-locked {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    background: rgba(11,18,32,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .feed-map-locked-icon {
+    color: rgba(246,241,232,0.35);
+  }
+  .feed-map-locked-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.4px;
+    color: var(--ash-soft);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Stats row inside feed card */
+  .feed-stats {
+    display: flex;
+    gap: 0;
+    padding: 12px 14px 10px;
+    border-top: 1px solid var(--ash-fade-2);
+  }
+  .feed-stat {
+    flex: 1;
+    text-align: left;
+    padding-right: 12px;
+  }
+  .feed-stat + .feed-stat {
+    padding-left: 12px;
+    border-left: 1px solid var(--ash-fade-2);
+  }
+  .feed-stat-val {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--paper);
+    letter-spacing: -0.3px;
+    line-height: 1;
+  }
+  .feed-stat-cap {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    color: var(--ash-soft);
+    margin-top: 4px;
+    font-weight: 700;
+  }
+
+  /* Engagement row */
+  .feed-engage {
+    display: flex;
+    gap: 14px;
+    padding: 8px 14px 12px;
+    align-items: center;
+  }
+  .feed-engage-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--ash-soft);
+    font-weight: 500;
+  }
+  .feed-engage-btn.kudo-on { color: var(--ember); }
+
+  /* Planes card (más compacto) */
+  .planes-compact {
+    margin: 14px 20px 18px;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(11,18,32,0) 70%);
+    border: 1px solid rgba(249,115,22,0.3);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .planes-compact-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(249,115,22,0.15);
+    border: 1px solid rgba(249,115,22,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ember);
+  }
+  .planes-compact-body { flex: 1; }
+  .planes-compact-title { font-size: 13px; font-weight: 700; color: var(--paper); letter-spacing: -0.2px; margin-bottom: 2px; }
+  .planes-compact-title strong { color: var(--ember); }
+  .planes-compact-desc { font-size: 11px; color: var(--ash-soft); }
+  .planes-compact-cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    color: var(--ember);
+    font-weight: 700;
+    border: 1px solid rgba(249,115,22,0.3);
+    padding: 5px 10px;
+    border-radius: 999px;
+  }
+
+  /* Quedada row (compacta) */
+  .quedada-row {
+    margin: 0 20px 10px;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .quedada-date {
+    width: 44px; text-align: center;
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.2);
+    border-radius: 8px;
+    padding: 6px 2px;
+  }
+  .quedada-day { font-size: 14px; font-weight: 800; color: var(--ember); line-height: 1; }
+  .quedada-mon { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--ember); letter-spacing: 1px; font-weight: 700; margin-top: 2px; }
+  .quedada-body { flex: 1; min-width: 0; }
+  .quedada-title { font-size: 13px; font-weight: 700; color: var(--paper); letter-spacing: -0.1px; }
+  .quedada-meta { font-size: 10px; color: var(--ash-soft); margin-top: 2px; }
+
+  /* Tabs */
+  .tabs { position: absolute; bottom: 0; left: 0; right: 0; height: 74px; background: rgba(11,18,32,0.96); border-top: 1px solid var(--ash-fade-2); display: flex; align-items: flex-start; justify-content: space-around; padding-top: 10px; backdrop-filter: blur(16px); }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ash-soft); font-size: 10px; font-weight: 500; }
+  .tab.active { color: var(--paper); }
+  .tab-ico { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: currentColor; }
+  .tab-ico.main { width: 44px; height: 44px; background: rgba(249,115,22,0.15); border: 1px solid var(--ember); border-radius: 22px; color: var(--ember); margin-top: -6px; }
+
+  /* Info */
+  .info { max-width: 800px; width: 100%; padding: 22px 26px; background: #111; border: 1px solid #333; border-radius: 16px; color: #ddd; }
+  .info h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 14px; color: #fff; }
+  .info ul { list-style: none; }
+  .info li { padding: 8px 0; border-bottom: 1px solid #2a2a2a; font-size: 13px; line-height: 1.55; display: flex; gap: 12px; align-items: flex-start; }
+  .info li:last-child { border-bottom: none; }
+  .info li::before { content: "●"; color: var(--ember); margin-top: 2px; font-size: 9px; }
+</style>
+</head>
+<body>
+
+  <div class="main-label">Home V4 · Feed de actividad estilo Strava</div>
+  <div class="main-sub">El missing link: <strong>feed con mapa de polylines</strong> de runners compatibles. La tech ya existe en tu backend (<code style="color:var(--ember);">get_feed_with_compatible</code> RPC + <code style="color:var(--ember);">polyline_encoded</code>).</div>
+
+  <span class="tag">✓ Este SÍ sería 8-9/10</span>
+
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="statusbar">
+      <span>13:49</span>
+      <svg width="22" height="10" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="13" height="6" fill="currentColor"/><path d="M22 4v4" stroke-width="2"/></svg>
+    </div>
+    <div class="screen">
+      <div class="scroll">
+
+        <!-- Header -->
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar">P</div>
+            <div>
+              <div class="greet-hi">BUENAS TARDES</div>
+              <div class="greet-name">Prueba</div>
+            </div>
+          </div>
+          <div class="bell">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Stats compacto arriba -->
+        <div class="stats">
+          <div class="stat-mini">
+            <div class="stat-mini-val">0</div>
+            <div class="stat-mini-cap">CARRERAS</div>
+          </div>
+          <div class="stat-mini">
+            <div class="stat-mini-val">0</div>
+            <div class="stat-mini-cap">KM</div>
+          </div>
+          <div class="stat-mini">
+            <div class="stat-mini-val">0m</div>
+            <div class="stat-mini-cap">TIEMPO</div>
+          </div>
+        </div>
+
+        <!-- FEED DE ACTIVIDAD estilo Strava -->
+        <div class="section-head">
+          <span class="section-title">RUNNERS COMPATIBLES · HOY</span>
+        </div>
+
+        <!-- Card 1: runner compatible con mapa visible -->
+        <div class="feed-card">
+          <div class="feed-header">
+            <div class="feed-avatar">M</div>
+            <div class="feed-user-info">
+              <div class="feed-user-row">
+                <span class="feed-user-name">Marta R.</span>
+                <span class="feed-compat-chip">94% COMPAT</span>
+              </div>
+              <div class="feed-meta">5:28/km · Huelva · 4 km de ti</div>
+            </div>
+            <div class="feed-when">HACE 2H</div>
+          </div>
+          <div class="feed-title">Rodaje por el Muelle del Tinto</div>
+          <div class="feed-map">
+            <div class="feed-map-grid"></div>
+            <svg class="feed-map-svg" viewBox="0 0 360 140" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="route1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f97316" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#f97316" stop-opacity="1"/>
+                </linearGradient>
+              </defs>
+              <path d="M 30 100 Q 60 60, 100 80 T 180 50 Q 220 40, 250 70 T 330 45"
+                    fill="none" stroke="url(#route1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="30" cy="100" r="4" fill="#22c55e"/>
+              <circle cx="330" cy="45" r="4" fill="#ef4444"/>
+            </svg>
+          </div>
+          <div class="feed-stats">
+            <div class="feed-stat">
+              <div class="feed-stat-val">8.2</div>
+              <div class="feed-stat-cap">KM</div>
+            </div>
+            <div class="feed-stat">
+              <div class="feed-stat-val">44:58</div>
+              <div class="feed-stat-cap">TIEMPO</div>
+            </div>
+            <div class="feed-stat">
+              <div class="feed-stat-val">5:28</div>
+              <div class="feed-stat-cap">MIN/KM</div>
+            </div>
+          </div>
+          <div class="feed-engage">
+            <div class="feed-engage-btn kudo-on">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 11v10H4a2 2 0 01-2-2v-7a1 1 0 011-1h4zm5-11a1 1 0 011 .76L15 9h5a2 2 0 012 2v3.4a2 2 0 01-.15.77l-2.83 6.66A2 2 0 0117.17 23H10a2 2 0 01-2-2V9.41a2 2 0 01.59-1.41l5-5A1 1 0 0112 0z"/></svg>
+              <span>12 kudos</span>
+            </div>
+            <div class="feed-engage-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <span>3</span>
+            </div>
+            <div class="feed-engage-btn" style="margin-left:auto;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              <span>Seguir</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: conocido de quedada, mapa oculto -->
+        <div class="feed-card">
+          <div class="feed-header">
+            <div class="feed-avatar green">C</div>
+            <div class="feed-user-info">
+              <div class="feed-user-row">
+                <span class="feed-user-name">Carlos M.</span>
+                <span class="feed-relation-chip known">COINCIDISTEIS</span>
+              </div>
+              <div class="feed-meta">5:45/km · Huelva · Quedada 12 abr</div>
+            </div>
+            <div class="feed-when">AYER</div>
+          </div>
+          <div class="feed-title">Serie 5×1000 en la pista</div>
+          <div class="feed-map">
+            <div class="feed-map-grid"></div>
+            <svg class="feed-map-svg" viewBox="0 0 360 140" preserveAspectRatio="none">
+              <path d="M 180 30 Q 280 30, 290 70 Q 280 110, 180 110 Q 80 110, 70 70 Q 80 30, 180 30"
+                    fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="3 2" opacity="0.35"/>
+            </svg>
+            <div class="feed-map-locked">
+              <svg class="feed-map-locked-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              <div class="feed-map-locked-text">Mapa privado</div>
+            </div>
+          </div>
+          <div class="feed-stats">
+            <div class="feed-stat">
+              <div class="feed-stat-val">7.5</div>
+              <div class="feed-stat-cap">KM</div>
+            </div>
+            <div class="feed-stat">
+              <div class="feed-stat-val">37:12</div>
+              <div class="feed-stat-cap">TIEMPO</div>
+            </div>
+            <div class="feed-stat">
+              <div class="feed-stat-val">4:58</div>
+              <div class="feed-stat-cap">MIN/KM</div>
+            </div>
+          </div>
+          <div class="feed-engage">
+            <div class="feed-engage-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v10H4a2 2 0 01-2-2v-7a1 1 0 011-1h4z"/><path d="M13 1l3 8h5a2 2 0 012 2v3.4a2 2 0 01-.15.77l-2.83 6.66A2 2 0 0118.17 23H11a2 2 0 01-2-2v-10"/></svg>
+              <span>5 kudos</span>
+            </div>
+            <div class="feed-engage-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <span>1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: runner cerca -->
+        <div class="feed-card">
+          <div class="feed-header">
+            <div class="feed-avatar blue">J</div>
+            <div class="feed-user-info">
+              <div class="feed-user-row">
+                <span class="feed-user-name">Juanan P.</span>
+                <span class="feed-compat-chip">87% COMPAT</span>
+              </div>
+              <div class="feed-meta">5:40/km · Madrid · 612 km de ti</div>
+            </div>
+            <div class="feed-when">HOY 07:15</div>
+          </div>
+          <div class="feed-title">Tirada larga por Casa de Campo</div>
+          <div class="feed-map">
+            <div class="feed-map-grid"></div>
+            <svg class="feed-map-svg" viewBox="0 0 360 140" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="route3" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f97316" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#f97316" stop-opacity="1"/>
+                </linearGradient>
+              </defs>
+              <path d="M 50 80 Q 100 40, 140 70 Q 180 100, 220 50 T 310 90"
+                    fill="none" stroke="url(#route3)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="50" cy="80" r="4" fill="#22c55e"/>
+              <circle cx="310" cy="90" r="4" fill="#ef4444"/>
+            </svg>
+          </div>
+          <div class="feed-stats">
+            <div class="feed-stat">
+              <div class="feed-stat-val">15.3</div>
+              <div class="feed-stat-cap">KM</div>
+            </div>
+            <div class="feed-stat">
+              <div class="feed-stat-val">1:26:42</div>
+              <div class="feed-stat-cap">TIEMPO</div>
+            </div>
+            <div class="feed-stat">
+              <div class="feed-stat-val">5:40</div>
+              <div class="feed-stat-cap">MIN/KM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Planes card compacta (secundaria, no protagonista) -->
+        <div class="planes-compact">
+          <div class="planes-compact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="planes-compact-body">
+            <div class="planes-compact-title">Baja tu <strong>10K</strong> en 8 semanas</div>
+            <div class="planes-compact-desc">3.200+ runners con plan · 1º gratis</div>
+          </div>
+          <div class="planes-compact-cta">VER</div>
+        </div>
+
+      </div>
+
+      <div class="tabs">
+        <div class="tab active">
+          <div class="tab-ico">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          Inicio
+        </div>
+        <div class="tab">
+          <div class="tab-ico">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          </div>
+          Mapa
+        </div>
+        <div class="tab">
+          <div class="tab-ico main">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          Correr
+        </div>
+        <div class="tab">
+          <div class="tab-ico">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          Social
+        </div>
+        <div class="tab">
+          <div class="tab-ico">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          Perfil
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info" style="border-color:rgba(34,197,94,0.35);background:rgba(34,197,94,0.03);">
+    <h3 style="color:#86efac;">✓ Por qué V4 sube del 7 al 8-9</h3>
+    <ul>
+      <li><strong>Humanos visibles</strong>: avatars reales de Marta, Carlos, Juanan. La app se siente social</li>
+      <li><strong>Mapas de recorridos</strong>: polylines ember con gradient + marker inicio/fin. El corazón visual de Strava</li>
+      <li><strong>Compatibilidad explícita</strong>: chip "94% COMPAT" · mono ember. El algoritmo que ya tienes, visible</li>
+      <li><strong>Contexto de relación</strong>: chip COMPATIBLE / COINCIDISTEIS / SIGUES. El user entiende por qué le muestra a cada runner</li>
+      <li><strong>Stats estilo Strava</strong>: KM / Tiempo / Min-km con divisores hairline</li>
+      <li><strong>Engagement visible</strong>: kudos count + comentarios + "Seguir" → invita a interactuar</li>
+      <li><strong>Privacy respected</strong>: el mapa de Carlos está blurred con "MAPA PRIVADO" (usa el <code style="color:var(--ember);">map_visible</code> que ya calcula el RPC)</li>
+      <li><strong>Distancia geográfica</strong>: "4 km de ti" vs "612 km de ti" · el user sabe si es alcanzable</li>
+      <li><strong>Planes relegado</strong> a card compacta (ya no protagonista). Las actividades de la gente son el show</li>
+    </ul>
+  </div>
+
+  <div class="info">
+    <h3>Lo que tu backend YA soporta</h3>
+    <ul>
+      <li><code style="color:var(--ember);">get_feed_with_compatible(p_limit, p_offset)</code> RPC → devuelve runs de followed + known + compatible</li>
+      <li><code style="color:var(--ember);">polyline_encoded</code> en tabla <code style="color:var(--ember);">runs</code> → ruta GPS comprimida</li>
+      <li><code style="color:var(--ember);">compat_score</code> calculado por <code style="color:var(--ember);">compatibility_score()</code></li>
+      <li><code style="color:var(--ember);">relation</code>: 'follow' / 'known' / 'compatible'</li>
+      <li><code style="color:var(--ember);">map_visible</code> calculado server-side desde <code style="color:var(--ember);">privacy_settings</code></li>
+      <li><code style="color:var(--ember);">distance_km_from_me</code> → distancia en km del user al runner que creó la activity</li>
+    </ul>
+  </div>
+
+  <div class="info" style="border-color:rgba(249,115,22,0.4);background:rgba(249,115,22,0.04);">
+    <h3 style="color:var(--ember);">La realidad · qué hace falta para que este feed esté lleno</h3>
+    <ul>
+      <li><strong>Users que corran regularmente</strong> → mínimo 5-10 activos al mes para que el feed tenga contenido</li>
+      <li><strong>Users con <code style="color:var(--ember);">privacy_settings.activity_visibility = 'public'</code></strong> o 'followers' y tú siguiendo</li>
+      <li><strong>Polylines reales grabadas</strong> → ocurre cuando registran carrera con GPS (ya funciona)</li>
+      <li style="padding-top:10px;"><strong style="color:var(--ember);">Sin users reales activos = feed vacío = mismo problema que antes.</strong> Aplicar este V4 SIN la quedada física + email reactivation = el feed estará vacío y volverás a estar en 4/10 con empty state</li>
+      <li><strong style="color:var(--ember);">Con este V4 aplicado DESPUÉS de 10 users activos en Huelva = 8-9/10 real</strong></li>
+    </ul>
+  </div>
+
+  <div style="max-width:760px;text-align:center;color:#aaa;font-size:14px;line-height:1.7;margin-top:10px;">
+    <strong style="color:#fff;">Conclusión experta:</strong><br>
+    V4 es lo correcto para el diseño. Pero sin usuarios reales corriendo, será V4 con feed vacío.<br>
+    <strong style="color:var(--ember);">Orden óptimo: primero comunidad (quedada + email reactivation), luego aplicar V4.</strong>
+  </div>
+
+</body>
+</html>

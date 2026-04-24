@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Onboarding Hook — preview</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+    --ash-fade-2: rgba(246,241,232,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #1a1a1a;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--paper);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* Comparison label */
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #aaa;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: -10px;
+  }
+  .comparison {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* iPhone frame (simplified) */
+  .phone {
+    width: 380px;
+    height: 820px;
+    background: var(--ink);
+    border-radius: 48px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 0 0 10px #222,
+      0 0 0 12px #111,
+      0 30px 60px rgba(0,0,0,0.6);
+  }
+  .notch {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 32px;
+    background: #000;
+    border-radius: 24px;
+    z-index: 10;
+  }
+
+  .screen {
+    width: 100%;
+    height: 100%;
+    padding-top: 58px; /* space for status bar + notch */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  /* Fake status bar */
+  .statusbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px 0 28px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--paper);
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  /* Step bar */
+  .stepbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 22px 14px 22px;
+  }
+  .stepmark { color: var(--ember); font-size: 10px; font-weight: 700; }
+  .steptext {
+    color: var(--ash-soft);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+  }
+
+  /* Map */
+  .map-wrap {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+  .map-svg { width: 100%; height: 100%; display: block; }
+  .map-fade {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 90px;
+    background: linear-gradient(to bottom, transparent, var(--ink));
+    pointer-events: none;
+  }
+
+  /* Content */
+  .content {
+    padding: 16px 22px 10px 22px;
+  }
+  .headline {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    line-height: 38px;
+    color: var(--paper);
+  }
+  .accent-rule {
+    width: 36px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--ember);
+    margin: 16px 0 14px 0;
+  }
+  .subhead {
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0.1px;
+    color: var(--ash);
+    font-weight: 400;
+    max-width: 560px;
+  }
+
+  /* Social proof chip */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(249,115,22,0.3);
+    background: rgba(249,115,22,0.08);
+  }
+  .chip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ember);
+  }
+  .chip-text {
+    color: var(--ember);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  /* Pillars */
+  .pillars {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pillar {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .pillar-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ember);
+    letter-spacing: 1.2px;
+    width: 22px;
+    padding-top: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+  .pillar-body { flex: 1; }
+  .pillar-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.2px;
+  }
+  .pillar-desc {
+    font-size: 13px;
+    line-height: 18px;
+    color: rgba(246,241,232,0.58);
+    margin-top: 2px;
+  }
+
+  /* Testimonial */
+  .testimonial {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--ash-fade-2);
+  }
+  .stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+  .star {
+    width: 13px;
+    height: 13px;
+    fill: var(--ember);
+  }
+  .testimonial-quote {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--paper);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .testimonial-author {
+    font-size: 11px;
+    color: rgba(246,241,232,0.5);
+    letter-spacing: 0.3px;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .footer {
+    padding: 20px 22px 22px 22px;
+    margin-top: auto;
+  }
+  .cta {
+    display: block;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.25);
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+
+  /* Radar pulse animation */
+  @keyframes pulse {
+    0%   { r: 12; opacity: 0.55; }
+    100% { r: 40; opacity: 0;    }
+  }
+  .pulse-ring { animation: pulse 1.8s ease-out infinite; transform-origin: center; }
+
+  /* Caption under each phone */
+  .caption {
+    color: #ccc;
+    font-size: 13px;
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.5;
+  }
+  .caption strong { color: #fff; }
+
+  /* Changes list */
+  .changes {
+    max-width: 800px;
+    width: 100%;
+    margin-top: 30px;
+    padding: 24px 28px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 16px;
+    color: #ddd;
+  }
+  .changes h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .changes ul { list-style: none; }
+  .changes li {
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 13px;
+    line-height: 1.6;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .changes li:last-child { border-bottom: none; }
+  .changes li::before {
+    content: "●";
+    color: var(--ember);
+    margin-top: 2px;
+    font-size: 10px;
+  }
+
+  @media (max-width: 820px) {
+    .comparison { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="label">Comparación — Onboarding Paso 1 (Hook)</div>
+
+  <div class="comparison">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- BEFORE -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>12:32</span><span>🔋</span></div>
+        <div class="screen">
+
+          <div class="stepbar">
+            <span class="stepmark">●</span>
+            <span class="steptext">PASO 1 DE 6 · BIENVENIDO</span>
+          </div>
+
+          <div class="map-wrap" style="height:280px;">
+            <svg class="map-svg" viewBox="0 0 380 280" preserveAspectRatio="none">
+              <defs>
+                <radialGradient id="focus1" cx="50%" cy="50%" r="55%">
+                  <stop offset="0%" stop-color="#0f1e35"/>
+                  <stop offset="100%" stop-color="#0b1220"/>
+                </radialGradient>
+              </defs>
+              <rect width="380" height="280" fill="url(#focus1)"/>
+              <line x1="0" y1="140" x2="380" y2="140" stroke="#1e3a5f" stroke-width="0.6" stroke-opacity="0.5"/>
+              <line x1="190" y1="0" x2="190" y2="280" stroke="#1e3a5f" stroke-width="0.6" stroke-opacity="0.5"/>
+              <circle cx="190" cy="140" r="55" stroke="#1a2a44" stroke-width="0.8" fill="none"/>
+              <circle cx="190" cy="140" r="100" stroke="#1a2a44" stroke-width="0.6" fill="none"/>
+              <circle cx="190" cy="140" r="150" stroke="#1a2a44" stroke-width="0.4" fill="none"/>
+              <circle cx="122" cy="102" r="4" fill="#f97316"/>
+              <circle cx="266" cy="88"  r="4" fill="#f97316"/>
+              <circle cx="84"  cy="178" r="4" fill="#f97316"/>
+              <circle cx="289" cy="168" r="4" fill="#f97316" opacity="0.85"/>
+              <circle cx="175" cy="215" r="3.5" fill="#f97316" opacity="0.6"/>
+              <circle class="pulse-ring" cx="190" cy="140" r="14" stroke="#f97316" stroke-width="1.4" fill="none"/>
+              <circle cx="190" cy="140" r="7" fill="#f97316"/>
+              <circle cx="190" cy="140" r="3" fill="#ffffff"/>
+            </svg>
+            <div class="map-fade"></div>
+          </div>
+
+          <div class="content">
+            <h1 class="headline" style="font-size:34px;line-height:40px;">512 runners cerca de ti.</h1>
+            <div class="accent-rule"></div>
+            <p class="subhead">Te emparejamos por ritmo, zona y horario. Quedadas reales, en parques reales, con gente de tu nivel.</p>
+          </div>
+
+          <div class="footer">
+            <button class="cta">Continuar</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="caption"><strong>ANTES</strong> — headline estadístico (y "cerca de ti" es falso: el RPC devuelve count país, no geo-filtrado). Mucho espacio vacío. Bug "PASO 1 DE 6".</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- AFTER -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>12:32</span><span>🔋</span></div>
+        <div class="screen">
+
+          <div class="stepbar">
+            <span class="stepmark">●</span>
+            <span class="steptext">PASO 1 DE 7 · COMIENZA</span>
+          </div>
+
+          <div class="map-wrap">
+            <svg class="map-svg" viewBox="0 0 380 220" preserveAspectRatio="none">
+              <defs>
+                <radialGradient id="focus2" cx="50%" cy="50%" r="55%">
+                  <stop offset="0%" stop-color="#0f1e35"/>
+                  <stop offset="100%" stop-color="#0b1220"/>
+                </radialGradient>
+              </defs>
+              <rect width="380" height="220" fill="url(#focus2)"/>
+              <line x1="0" y1="110" x2="380" y2="110" stroke="#1e3a5f" stroke-width="0.6" stroke-opacity="0.5"/>
+              <line x1="190" y1="0" x2="190" y2="220" stroke="#1e3a5f" stroke-width="0.6" stroke-opacity="0.5"/>
+              <circle cx="190" cy="110" r="45"  stroke="#1a2a44" stroke-width="0.8" fill="none"/>
+              <circle cx="190" cy="110" r="80"  stroke="#1a2a44" stroke-width="0.6" fill="none"/>
+              <circle cx="190" cy="110" r="120" stroke="#1a2a44" stroke-width="0.4" fill="none"/>
+              <circle cx="122" cy="78"  r="4"   fill="#f97316"/>
+              <circle cx="266" cy="68"  r="4"   fill="#f97316"/>
+              <circle cx="84"  cy="140" r="4"   fill="#f97316"/>
+              <circle cx="289" cy="132" r="4"   fill="#f97316" opacity="0.85"/>
+              <circle cx="175" cy="175" r="3.5" fill="#f97316" opacity="0.6"/>
+              <circle class="pulse-ring" cx="190" cy="110" r="12" stroke="#f97316" stroke-width="1.4" fill="none"/>
+              <circle cx="190" cy="110" r="7" fill="#f97316"/>
+              <circle cx="190" cy="110" r="3" fill="#ffffff"/>
+            </svg>
+            <div class="map-fade"></div>
+          </div>
+
+          <div class="content">
+            <h1 class="headline">Ya no vuelves<br>a correr solo.</h1>
+            <div class="accent-rule"></div>
+            <p class="subhead">Te emparejamos con runners en tu ciudad por ritmo, zona y horario. Quedadas reales, gente real.</p>
+
+            <div class="chip">
+              <span class="chip-dot"></span>
+              <span class="chip-text">579+ runners ya en la app</span>
+            </div>
+
+            <div class="pillars">
+              <div class="pillar">
+                <div class="pillar-num">01</div>
+                <div class="pillar-body">
+                  <div class="pillar-label">Matching</div>
+                  <div class="pillar-desc">Por ritmo, zona y horario</div>
+                </div>
+              </div>
+              <div class="pillar">
+                <div class="pillar-num">02</div>
+                <div class="pillar-body">
+                  <div class="pillar-label">Quedadas</div>
+                  <div class="pillar-desc">Reales, con gente verificada</div>
+                </div>
+              </div>
+              <div class="pillar">
+                <div class="pillar-num">03</div>
+                <div class="pillar-body">
+                  <div class="pillar-label">Coach IA</div>
+                  <div class="pillar-desc">Plan personal en 60 segundos</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="stars">
+                <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div class="testimonial-quote">"Hacía falta una app así. Te felicito."</div>
+              <div class="testimonial-author">— Miguel, Dos Hermanas</div>
+            </div>
+          </div>
+
+          <div class="footer">
+            <button class="cta">Empezar  →</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="caption"><strong>DESPUÉS</strong> — headline emocional, chip social-proof honesto, 3 pilares claros, testimonio real de Miguel. Bug paso corregido.</div>
+    </div>
+
+  </div>
+
+  <div class="changes">
+    <h3>Cambios punto por punto</h3>
+    <ul>
+      <li><strong>Step indicator:</strong> "PASO 1 DE 6 · BIENVENIDO" → "PASO 1 DE 7 · COMIENZA" (bug + más activo)</li>
+      <li><strong>Mapa radar:</strong> altura 280 → 220 (más compacto, deja espacio para contenido nuevo). Misma animación radar-pulse.</li>
+      <li><strong>Headline:</strong> "512 runners cerca de ti" → "Ya no vuelves a correr solo." (promesa emocional, sin mentir geografía)</li>
+      <li><strong>Subhead:</strong> sutilmente editado — "con runners en tu ciudad" (afirma geografía sin mentir sobre un count geo-filtrado)</li>
+      <li><strong>Social-proof chip (NUEVO):</strong> pequeño, naranja, condicional (sólo si hay ≥10 users). Copy: "579+ runners ya en la app" — honesto, no dice "cerca"</li>
+      <li><strong>3 Pilares (NUEVO):</strong> monospace numbered 01/02/03 (Meridian Motion consistency) + label grande + descripción corta</li>
+      <li><strong>Testimonio (NUEVO):</strong> 5 estrellas + cita literal de Miguel (email 24 abril) + firma. Prueba social real</li>
+      <li><strong>CTA:</strong> "Continuar" → "Empezar  →" (activo, con flecha)</li>
+      <li><strong>Layout:</strong> envuelto en ScrollView por si pantalla pequeña (cabría sin scroll en la mayoría)</li>
+    </ul>
+  </div>
+
+</body>
+</html>

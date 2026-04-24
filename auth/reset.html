@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nueva contraseña — CorrerJuntos</title>
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b1220;
+      --paper: #f6f1e8;
+      --ember: #f97316;
+      --ember-deep: #ea580c;
+      --ash: rgba(246, 241, 232, 0.42);
+      --ash-fade: rgba(246, 241, 232, 0.12);
+      --danger: #ef4444;
+      --success: #22c55e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+      min-height: 100vh;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+    }
+    .card {
+      max-width: 460px;
+      width: 100%;
+      background: var(--ink);
+      border: 1px solid var(--ash-fade);
+      border-radius: 20px;
+      padding: 40px 32px;
+    }
+    .accent-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--ember);
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ember);
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--ember);
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    h1 {
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-weight: 200;
+      margin-bottom: 14px;
+    }
+    h1 strong { color: var(--ember); font-weight: 700; }
+    p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(246, 241, 232, 0.72);
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ash);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(246, 241, 232, 0.05);
+      border: 1px solid var(--ash-fade);
+      border-radius: 10px;
+      color: var(--paper);
+      font-size: 15px;
+      font-family: inherit;
+      margin-bottom: 18px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    input[type="password"]:focus { border-color: var(--ember); }
+    input[type="password"]::placeholder { color: rgba(246, 241, 232, 0.3); }
+    button {
+      width: 100%;
+      padding: 16px;
+      background: var(--ember);
+      color: var(--ink);
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.25);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    button:hover:not(:disabled) { transform: translateY(-1px); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .msg {
+      font-size: 13px;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      line-height: 1.5;
+    }
+    .msg.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+    .msg.success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #86efac;
+    }
+    .divider {
+      height: 1px;
+      background: var(--ash-fade);
+      margin: 28px 0 18px;
+    }
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      text-align: center;
+      margin-top: 18px;
+    }
+    .brand em { font-style: normal; color: var(--ember); }
+    .footer {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(246, 241, 232, 0.28);
+      text-align: center;
+      margin-top: 10px;
+    }
+    .footer a { color: rgba(246, 241, 232, 0.42); text-decoration: none; }
+    .hint {
+      font-size: 12px;
+      color: rgba(246, 241, 232, 0.5);
+      margin-top: -10px;
+      margin-bottom: 16px;
+    }
+    .success-state { text-align: center; }
+    .success-state .check {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1.5px solid #22c55e;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: #22c55e;
+      font-size: 24px;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- STATE: loading tokens -->
+    <div id="state-loading">
+      <div class="accent-dot"></div>
+      <div class="eyebrow">Verificando enlace</div>
+      <h1>Un momento…</h1>
+      <p>Validando tu enlace de recuperación.</p>
+    </div>
+
+    <!-- STATE: form -->
+    <div id="state-form" class="hidden">
+      <div class="accent-dot"></div>
+      <div class="eyebrow">Recuperar acceso</div>
+      <h1>Establece tu <strong>nueva contraseña</strong>.</h1>
+      <p>Elige una contraseña de al menos 8 caracteres. Luego podrás volver a la app e iniciar sesión.</p>
+
+      <form id="resetForm" autocomplete="off">
+        <label for="pw1">Nueva contraseña</label>
+        <input type="password" id="pw1" minlength="8" required autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+
+        <label for="pw2">Confirmar contraseña</label>
+        <input type="password" id="pw2" minlength="8" required autocomplete="new-password" placeholder="Repite la misma">
+
+        <button type="submit" id="submitBtn">Actualizar contraseña</button>
+        <div id="errorMsg" class="msg error hidden"></div>
+      </form>
+    </div>
+
+    <!-- STATE: success -->
+    <div id="state-success" class="hidden success-state">
+      <div class="check">✓</div>
+      <div class="eyebrow" style="display:block;text-align:center;">Listo</div>
+      <h1 style="text-align:center;">Contraseña <strong>actualizada</strong>.</h1>
+      <p style="text-align:center;">Ya puedes volver a CorrerJuntos e iniciar sesión con tu nueva contraseña.</p>
+      <a href="correrjuntos://login" id="openAppBtn" style="display:block;padding:16px;background:var(--ember);color:var(--ink);text-decoration:none;border-radius:12px;font-weight:600;text-align:center;letter-spacing:0.01em;box-shadow:0 6px 20px rgba(249,115,22,0.25);">Abrir CorrerJuntos →</a>
+    </div>
+
+    <!-- STATE: expired / invalid -->
+    <div id="state-expired" class="hidden">
+      <div class="accent-dot" style="background:#ef4444;"></div>
+      <div class="eyebrow" style="color:#ef4444;">Enlace caducado</div>
+      <h1>Este <strong>enlace</strong> ya no es válido.</h1>
+      <p>Los enlaces de recuperación caducan en 1 hora por seguridad. Vuelve a la app y pide un enlace nuevo desde "¿Olvidaste tu contraseña?".</p>
+      <a href="correrjuntos://login" style="display:block;padding:16px;background:var(--ember);color:var(--ink);text-decoration:none;border-radius:12px;font-weight:600;text-align:center;letter-spacing:0.01em;">Abrir CorrerJuntos →</a>
+    </div>
+
+    <div class="divider"></div>
+    <div class="brand">Correr<em>Juntos</em></div>
+    <div class="footer"><a href="https://www.correrjuntos.com">correrjuntos.com</a></div>
+  </div>
+
+  <!-- Supabase JS SDK (UMD) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function() {
+      const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhaWhpd2RidGNiZGF6bWF4ZG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1NTQwNjAsImV4cCI6MjA4NDEzMDA2MH0.C1Zus9DOIDJOGkdPWmMd_ZaSfG0ARVYobv66POrT-QU';
+
+      const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        auth: { detectSessionInUrl: false, persistSession: false, autoRefreshToken: false }
+      });
+
+      const $ = (id) => document.getElementById(id);
+      function show(stateId) {
+        ['state-loading', 'state-form', 'state-success', 'state-expired'].forEach(s => {
+          $(s).classList.add('hidden');
+        });
+        $(stateId).classList.remove('hidden');
+      }
+      function error(msg) {
+        const el = $('errorMsg');
+        el.textContent = msg;
+        el.classList.remove('hidden');
+      }
+
+      // Parse hash fragment (Supabase puts tokens there, not in query params)
+      function parseHash() {
+        const h = window.location.hash.replace(/^#/, '');
+        if (!h) return {};
+        const out = {};
+        h.split('&').forEach(p => {
+          const [k, v] = p.split('=');
+          if (k) out[decodeURIComponent(k)] = decodeURIComponent(v || '');
+        });
+        return out;
+      }
+
+      async function init() {
+        const params = parseHash();
+        const access_token = params.access_token;
+        const refresh_token = params.refresh_token;
+        const type = params.type;
+        const errParam = params.error || params.error_code;
+
+        if (errParam) {
+          show('state-expired');
+          return;
+        }
+
+        if (!access_token || !refresh_token || type !== 'recovery') {
+          show('state-expired');
+          return;
+        }
+
+        // Establish session so updateUser works
+        try {
+          const { error: setErr } = await client.auth.setSession({ access_token, refresh_token });
+          if (setErr) throw setErr;
+          show('state-form');
+        } catch (e) {
+          show('state-expired');
+        }
+      }
+
+      async function handleSubmit(ev) {
+        ev.preventDefault();
+        const pw1 = $('pw1').value;
+        const pw2 = $('pw2').value;
+        const btn = $('submitBtn');
+
+        $('errorMsg').classList.add('hidden');
+
+        if (pw1.length < 8) { error('La contraseña debe tener al menos 8 caracteres.'); return; }
+        if (pw1 !== pw2) { error('Las contraseñas no coinciden.'); return; }
+
+        btn.disabled = true;
+        btn.textContent = 'Actualizando…';
+
+        try {
+          const { error: updErr } = await client.auth.updateUser({ password: pw1 });
+          if (updErr) throw updErr;
+          // Sign out so next app open forces a fresh login with the new password
+          await client.auth.signOut().catch(() => {});
+          show('state-success');
+        } catch (e) {
+          btn.disabled = false;
+          btn.textContent = 'Actualizar contraseña';
+          error(e.message || 'No se pudo actualizar. Vuelve a solicitar el enlace.');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        $('resetForm').addEventListener('submit', handleSubmit);
+        init();
+      });
+    })();
+  </script>
+</body>
+</html>

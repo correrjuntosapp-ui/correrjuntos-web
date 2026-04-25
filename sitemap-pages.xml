@@ -2,66 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.correrjuntos.com/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/app/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-04-25</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/app/en/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-04-25</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/matching/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/matching/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/matching/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/matching/"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/matching/en/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/matching/en/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/matching/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/matching/"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/recursos/plan-0-5k/</loc>
-    <lastmod>2026-03-12</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/recursos/en/couch-to-5k-plan/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/recursos/en/couch-to-5k-plan/</loc>
-    <lastmod>2026-03-12</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/recursos/en/couch-to-5k-plan/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/calculadora/</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-04-25</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/sobre-nosotros</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-04-25</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/inversores</loc>
-    <lastmod>2026-03-12</lastmod>
+    <lastmod>2026-04-25</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/patrocinadores</loc>
-    <lastmod>2026-03-12</lastmod>
+    <lastmod>2026-04-25</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/media-kit</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-04-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/legal/privacidad</loc>
+    <lastmod>2026-02-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/legal/terminos</loc>
+    <lastmod>2026-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/legal/cookies</loc>
+    <lastmod>2026-04-13</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/privacy</loc>
@@ -70,161 +82,5 @@
   <url>
     <loc>https://www.correrjuntos.com/terms</loc>
     <lastmod>2026-03-06</lastmod>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/planes/0-5k</loc>
-    <lastmod>2026-03-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/planes/5k</loc>
-    <lastmod>2026-03-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/planes/trail</loc>
-    <lastmod>2026-03-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/planes/10k</loc>
-    <lastmod>2026-03-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/planes/media-maraton</loc>
-    <lastmod>2026-03-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/planes/maraton</loc>
-    <lastmod>2026-03-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/2/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/3/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/4/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/5/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/6/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/7/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/8/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/9/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/10/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/11/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/page/12/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/2/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/3/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/4/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/5/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/6/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/7/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/8/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/9/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/10/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/page/11/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>

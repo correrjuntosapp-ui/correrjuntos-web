@@ -267,6 +267,27 @@
      ══════════════════════════════════════════════ */
   var existingEndCTA = document.querySelector('.cta-box');
   var footer = document.querySelector('footer');
+
+  /* Static .cta-box (hardcoded in ~200 generator-produced articles) —
+     rewrite its h2 + p in place so the plan-first messaging applies
+     without having to edit each HTML file. Keeps existing App Store /
+     Google Play buttons inside the block untouched. */
+  if(existingEndCTA){
+    var _staticH2 = existingEndCTA.querySelector('h2');
+    var _staticP = existingEndCTA.querySelector('p');
+    if(_staticH2){
+      _staticH2.textContent = isEN
+        ? 'Your plan, your coach, your progress.'
+        : 'Tu plan, tu coach, tu progreso.';
+    }
+    if(_staticP){
+      _staticP.textContent = isEN
+        ? 'Free app with personalized plans, AI Coach Jose and km audio alerts in background.'
+        : 'App gratis con planes personalizados, Coach Jose IA y audio alertas km en background.';
+    }
+    ga('cro_static_rewrite', {slug: slug});
+  }
+
   /* Only inject if no existing CTA box (avoid duplicates) */
   if(!existingEndCTA && footer){
     var endTitle, endText;

@@ -38,12 +38,11 @@
   var BASE_URL = 'https://www.correrjuntos.com';
   function deepLink(path){ return BASE_URL + path; }
   function ctaDeepLink(){
-    /* Contextual deep link based on page content */
-    if(/plan|5k|10k|maraton|marathon|media|half|trail/.test(slug)) return deepLink('/planes');
-    if(/principiante|beginner|empezar|start|couch|cero/.test(slug)) return deepLink('/planes');
+    /* Contextual deep link based on page content.
+       Default: /planes (plan-first positioning is the primary value prop). */
     if(/matching|compa|partner|pareja/.test(slug)) return deepLink('/matching');
     if(/quedada|meetup|grupo|group/.test(slug)) return deepLink('/map');
-    return deepLink('/feed');
+    return deepLink('/planes');
   }
   var contextDeepLink = ctaDeepLink();
 
@@ -53,10 +52,10 @@
   var googleBadge = '<a href="' + ANDROID_URL + '" target="_blank" rel="noopener" class="cro-badge" onclick="ga(\'cro_click\',{location:\'badge_android\',slug:\'' + slug + '\'})">' +
     '<svg viewBox="0 0 135 40" width="135" height="40"><rect width="135" height="40" rx="6" fill="#000"/><path d="M20.44 17.54l-8.87-8.87a1.62 1.62 0 00-.45 1.14v20.38c0 .42.16.82.45 1.14l.06.05 9.92-9.93v-.03l-1.11-3.88z" fill="#4285F4"/><path d="M23.76 20.88l-3.32-3.34v-.08l3.32-3.34.07.04 3.93 2.23c1.12.64 1.12 1.68 0 2.32l-3.93 2.23-.07-.06z" fill="#FBBC04"/><path d="M20.51 20.95l-9.39 9.39c.73.77 1.93.82 2.73.36l10.59-6.01-3.93-3.74z" fill="#EA4335"/><path d="M20.51 17.47l3.93-3.73-10.59-6.01c-.8-.46-2-.41-2.73.36l9.39 9.38z" fill="#34A853"/><text x="35" y="15" fill="#fff" font-family="system-ui,sans-serif" font-size="7">' + (isEN ? 'GET IT ON' : 'DISPONIBLE EN') + '</text><text x="35" y="27" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Google Play</text></svg></a>';
 
-  /* ── FOMO / urgency helper ── */
+  /* ── Social proof / value-prop highlights (rotated randomly) ── */
   var fomoLines = isEN
-    ? ['12 runners joined this week', '3 meetups near you tomorrow', 'New group created 2h ago', '87 runners active today']
-    : ['12 runners se unieron esta semana', '3 quedadas cerca de ti ma\u00f1ana', 'Nuevo grupo creado hace 2h', '87 runners activos hoy'];
+    ? ['Free 0-5K plan · 8 weeks', 'AI Coach analyzes every run', 'Background km audio alerts', '7 plans from 0-5K to marathon']
+    : ['Plan 0-5K gratis \u00b7 8 semanas', 'Coach IA analiza cada carrera', 'Audio alertas km en background', '7 planes desde 0-5K a marat\u00f3n'];
   var fomoText = fomoLines[Math.floor(Math.random() * fomoLines.length)];
 
   /* ── Extract city name from path for contextual CTAs ── */
@@ -188,29 +187,29 @@
       } else {
         /* Blog — contextual based on slug keywords */
         if(/principiante|beginner|empezar|start|couch|cero/.test(slug)){
-          midTitle = isEN ? 'Starting is easier with company' : 'Empezar es m\u00e1s f\u00e1cil acompa\u00f1ado';
-          midText = isEN ? 'Find beginner-friendly groups near you and take the first step together.' : 'Encuentra grupos para principiantes cerca de ti y da el primer paso juntos.';
+          midTitle = isEN ? 'Start running with your personal plan' : 'Empieza a correr con tu plan personalizado';
+          midText = isEN ? 'Free 0-5K plan, km audio alerts and Coach Jose to guide you step by step.' : 'Plan 0-5K gratis, audio alertas km y Coach Jose para guiarte paso a paso.';
         } else if(/fuerza|strength|gym|ejercicio|core|cross/.test(slug)){
-          midTitle = isEN ? 'Train smarter, run together' : 'Entrena mejor, corre acompa\u00f1ado';
-          midText = isEN ? 'Find runners who share your training goals and push each other.' : 'Encuentra runners con tus mismos objetivos y motiv\u00e1os mutuamente.';
+          midTitle = isEN ? 'Your strength + running plan, free' : 'Tu plan de fuerza + carrera, gratis';
+          midText = isEN ? 'Combine strength and running with a structured plan and AI Coach feedback.' : 'Combina fuerza y carrera con un plan estructurado y feedback del Coach IA.';
         } else if(/zapatilla|shoe|nike|adidas|asics|hoka|gear|equip/.test(slug)){
-          midTitle = isEN ? 'The best gear means nothing without the right crew' : 'El mejor equipamiento no sirve sin la compa\u00f1\u00eda adecuada';
-          midText = isEN ? 'Join runners near you and test your new gear together.' : '\u00danete a runners cerca de ti y estrena tu equipamiento juntos.';
+          midTitle = isEN ? 'Make the most of your new gear' : 'Saca el m\u00e1ximo a tus zapatillas';
+          midText = isEN ? 'Get the best from your shoes with a plan tailored to you and GPS tracking.' : 'Saca el mejor rendimiento de tus zapatillas con un plan a medida y GPS preciso.';
         } else if(/nutricion|nutrition|comer|eat|dieta|diet/.test(slug)){
-          midTitle = isEN ? 'Fuel your runs, find your crew' : 'Alimenta tus carreras, encuentra tu grupo';
-          midText = isEN ? 'Connect with runners who share your pace and nutrition goals.' : 'Conecta con runners de tu ritmo que comparten tus objetivos.';
+          midTitle = isEN ? 'Your plan + your nutrition, all in one app' : 'Tu plan + tu nutrici\u00f3n, todo en una app';
+          midText = isEN ? 'Coach Jose analyzes your performance and tells you what to eat and when.' : 'Coach Jose analiza tu rendimiento y te dice qu\u00e9 comer y cu\u00e1ndo.';
         } else if(/plan|10k|5k|maraton|marathon|media|half/.test(slug)){
-          midTitle = isEN ? 'Train for your race with a group' : 'Prepara tu carrera con un grupo';
-          midText = isEN ? 'Find runners training for the same distance and pace as you.' : 'Encuentra runners que preparan la misma distancia y ritmo que t\u00fa.';
+          midTitle = isEN ? 'Your personalized plan for this race, free' : 'Tu plan personalizado para esta carrera, gratis';
+          midText = isEN ? '7 structured plans from 0-5K to marathon. Start free today.' : '7 planes estructurados desde 0-5K hasta marat\u00f3n. Empieza gratis hoy.';
         } else if(/lesion|injury|dolor|pain|fascitis|periostitis|tendinitis|rodilla|agujeta/.test(slug)){
-          midTitle = isEN ? 'Recover smarter, run with support' : 'Recupera mejor, corre con apoyo';
-          midText = isEN ? 'Track your recovery and find runners at your pace.' : 'Controla tu recuperaci\u00f3n y encuentra runners a tu ritmo.';
+          midTitle = isEN ? 'Get back to running with a progressive plan' : 'Vuelve a correr con un plan progresivo';
+          midText = isEN ? 'Return gradually with an adapted plan, GPS tracking and AI Coach guidance.' : 'Vuelve progresivamente con un plan adaptado, GPS preciso y guia del Coach IA.';
         } else if(/trail|monta/.test(slug)){
-          midTitle = isEN ? 'Find your trail crew' : 'Encuentra tu grupo de trail';
-          midText = isEN ? 'Connect with trail runners near you and explore routes together.' : 'Conecta con trail runners cerca de ti y explora rutas juntos.';
+          midTitle = isEN ? 'Your trail plan with AI Coach, free' : 'Tu plan de trail con Coach IA, gratis';
+          midText = isEN ? 'Trail plan with audio alerts, accurate GPS and AI Coach. Free.' : 'Plan trail con audio alertas, GPS preciso y Coach IA. Gratis.';
         } else {
-          midTitle = isEN ? 'Tired of running alone?' : '\u00bfCansado de correr solo?';
-          midText = isEN ? 'Find runners near you, join real meetups and start running with company today.' : 'Encuentra runners cerca de ti, \u00fanete a quedadas reales y empieza a correr acompa\u00f1ado.';
+          midTitle = isEN ? 'Want to improve as a runner?' : '\u00bfQuieres mejorar como runner?';
+          midText = isEN ? 'Your personalized plan, km audio alerts and Coach Jose IA \u2014 all free.' : 'Tu plan personalizado, audio alertas km y Coach Jose IA \u2014 todo gratis.';
         }
       }
 
@@ -228,7 +227,7 @@
       } else if(/quedada|meetup|grupo|group/.test(slug)){
         midBtnText = isEN ? 'Find meetups near you' : 'Encuentra quedadas cerca de ti';
       } else {
-        midBtnText = isEN ? 'Join the community free' : '\u00danete a la comunidad gratis';
+        midBtnText = isEN ? 'Start your free plan' : 'Empieza tu plan gratis';
       }
 
       var midDeepBtn = '<a href="' + contextDeepLink + '" class="cro-deep" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'mid_deep\',slug:\'' + slug + '\'})">' +
@@ -252,10 +251,10 @@
         midDeepBtn +
         '<div class="cro-or">' + (isEN ? 'or download the app' : 'o descarga la app') + '</div>' +
         '<div class="cro-badges">' + appleBadge + googleBadge + '</div>' +
-        '<a href="' + (isEN ? '/cities/' : '/cities/') + '" class="cro-link">\uD83D\uDDFA\uFE0F ' + (isEN ? 'See meetups near me' : 'Ver quedadas cerca de m\u00ed') + ' \u2192</a>' +
+        '<a href="' + (isEN ? '/cities/' : '/cities/') + '" class="cro-link">\uD83D\uDDFA\uFE0F ' + (isEN ? 'And meet runners near you' : 'Y conoce runners cerca de ti') + ' \u2192</a>' +
         premiumLink +
         '<div class="cro-fomo">' + fomoText + '</div>' +
-        '<div class="cro-proof">' + (isEN ? '<strong>5,000+</strong> runners \u00b7 <strong>58+ cities</strong> \u00b7 100% free' : '<strong>5.000+</strong> runners \u00b7 <strong>58+ ciudades</strong> \u00b7 100% gratis') + '</div>';
+        '<div class="cro-proof">' + (isEN ? '<strong>7 plans</strong> \u00b7 <strong>AI Coach</strong> \u00b7 <strong>GPS</strong> \u00b7 100% free' : '<strong>7 planes</strong> \u00b7 <strong>Coach IA</strong> \u00b7 <strong>GPS</strong> \u00b7 100% gratis') + '</div>';
 
       targetH2.insertAdjacentElement('afterend', midCTA);
       ga('cro_impression', {location: 'mid', slug: slug});
@@ -281,8 +280,8 @@
       endTitle = isEN ? 'Don\'t train alone for this race' : 'No entrenes solo para esta carrera';
       endText = isEN ? 'Find runners preparing for the same event and train together.' : 'Encuentra runners que preparan el mismo evento y entrena con ellos.';
     } else {
-      endTitle = isEN ? 'The next step isn\'t running more\u2026 it\'s running together' : 'El siguiente paso no es correr m\u00e1s\u2026 es correr acompa\u00f1ado';
-      endText = isEN ? 'Join the community of runners who train together. Free, real, verified.' : '\u00danete a la comunidad de runners que entrenan juntos. Gratis, real, verificado.';
+      endTitle = isEN ? 'Your plan, your coach, your progress.' : 'Tu plan, tu coach, tu progreso.';
+      endText = isEN ? 'Free app with personalized plans, AI Coach Jose and km audio alerts in background.' : 'App gratis con planes personalizados, Coach Jose IA y audio alertas km en background.';
     }
 
     var endCTA = document.createElement('div');
@@ -291,7 +290,7 @@
     endCTA.style.marginLeft = 'auto';
     endCTA.style.marginRight = 'auto';
 
-    var endBtnText = isEN ? 'Open Correr Juntos free' : 'Abre Correr Juntos gratis';
+    var endBtnText = isEN ? 'Start your free plan' : 'Empieza tu plan gratis';
     var endDeepBtn = '<a href="' + contextDeepLink + '" class="cro-deep-alt" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'end_deep\',slug:\'' + slug + '\'})">' +
       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
       endBtnText + ' \u2192</a>';
@@ -304,7 +303,7 @@
       '<div class="cro-badges">' + appleBadge + googleBadge + '</div>' +
       '<a href="' + (isEN ? '/matching/en/' : '/matching/') + '" class="cro-link">\uD83E\uDD1D ' + (isEN ? 'Find your running partner' : 'Encuentra tu compa\u00f1ero de running') + ' \u2192</a>' +
       '<div class="cro-fomo">' + fomoText + '</div>' +
-      '<div class="cro-proof">' + (isEN ? 'Active in <strong>58+ cities</strong> worldwide \u00b7 <strong>100% free</strong>' : 'Activo en <strong>58+ ciudades</strong> del mundo \u00b7 <strong>100% gratis</strong>') + '</div>';
+      '<div class="cro-proof">' + (isEN ? '<strong>7 plans</strong> \u00b7 <strong>AI Coach</strong> \u00b7 <strong>GPS</strong> \u00b7 <strong>100% free</strong>' : '<strong>7 planes</strong> \u00b7 <strong>Coach IA</strong> \u00b7 <strong>GPS</strong> \u00b7 <strong>100% gratis</strong>') + '</div>';
 
     footer.parentNode.insertBefore(endCTA, footer);
   }
@@ -351,7 +350,7 @@
 
     var scrollFomo = fomoLines[Math.floor(Math.random() * fomoLines.length)];
     scrollBanner.innerHTML =
-      '<p>' + (isEN ? 'Don\'t run alone today' : 'No corras solo hoy') +
+      '<p>' + (isEN ? 'Improve as a runner today' : 'Mejora como runner hoy') +
         '<span>' + scrollFomo + '</span></p>' +
       '<div class="cro-scroll-badges">' +
         '<a href="' + IOS_URL + '" target="_blank" rel="noopener" class="cro-sb apple" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'scroll_ios\',slug:\'' + slug + '\'})">' +

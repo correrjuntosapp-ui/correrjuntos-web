@@ -454,7 +454,7 @@
             <a href="/" style="color:#fff;text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em">CORRER<b style="color:#f97316">JUNTOS</b></a>
             <div class="flex" style="gap:4px;font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)">
                 <a href="/cities/" class="hidden md:inline" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Ciudades</a>
-                <a href="/blog/" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'navbar'})" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Blog</a>
+                <a href="/blog" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'navbar'})" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Blog</a>
                 <a href="/app/" class="nav-app-cta hidden md:inline" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(249,115,22,.3);transition:all .2s;text-decoration:none">App</a>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
@@ -1501,7 +1501,7 @@
                     <div>
                         <p id="footer-explore-title" class="font-bold text-white mb-4">Explorar</p>
                         <ul class="space-y-2">
-                            <li><a href="/blog/" class="text-gray-500 hover:text-orange-500 text-sm transition">Blog Running</a></li>
+                            <li><a href="/blog" class="text-gray-500 hover:text-orange-500 text-sm transition">Blog Running</a></li>
                             <li><a href="/cities/" class="text-gray-500 hover:text-orange-500 text-sm transition">Ciudades</a></li>
                             <li><a href="/events/" class="text-gray-500 hover:text-orange-500 text-sm transition">Eventos Running</a></li>
                             <li><a href="/places/" class="text-gray-500 hover:text-orange-500 text-sm transition">Lugares para Correr</a></li>
@@ -1569,7 +1569,7 @@
                 <div class="flex items-center gap-3">
                     <div class="text-xl font-black cursor-pointer" onclick="showLanding()">CORRER<span class="text-orange-500">JUNTOS</span></div>
                     <div class="hidden md:flex items-center gap-1" style="background:rgba(255,255,255,.04);padding:3px;border-radius:999px;border:1px solid rgba(255,255,255,.06)">
-                        <a href="/blog/" class="app-nav-link" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'navbar'})">Blog</a>
+                        <a href="/blog" class="app-nav-link" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'navbar'})">Blog</a>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 md:gap-3">
@@ -5493,7 +5493,7 @@ document.currentScript.parentNode.insertBefore(s,document.currentScript.nextSibl
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px">Inicio</span>
         </a>
-        <a href="/blog/" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'bottom_nav'})" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#94a3b8">
+        <a href="/blog" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'bottom_nav'})" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#94a3b8">
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px">Blog</span>
         </a>
@@ -5532,7 +5532,7 @@ document.currentScript.parentNode.insertBefore(s,document.currentScript.nextSibl
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px" id="app-nav-map-label">Mapa</span>
         </button>
-        <a href="/blog/" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'bottom_nav'})" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 12px;border-radius:12px;background:transparent;border:none;color:#94a3b8;cursor:pointer;transition:all .2s;text-decoration:none" id="app-nav-blog">
+        <a href="/blog" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'bottom_nav'})" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 12px;border-radius:12px;background:transparent;border:none;color:#94a3b8;cursor:pointer;transition:all .2s;text-decoration:none" id="app-nav-blog">
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px" id="app-nav-blog-label">Blog</span>
         </a>

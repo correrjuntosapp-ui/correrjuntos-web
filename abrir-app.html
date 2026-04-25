@@ -26,14 +26,90 @@ body{
   padding:24px;
   line-height:1.5;
 }
-.frame{
+.shell{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+  align-items:center;
+  width:100%;
   max-width:560px;
+}
+.frame{
   width:100%;
   background:#0b1220;
   border:1px solid rgba(246,241,232,0.08);
   border-radius:20px;
   overflow:hidden;
   padding:36px 36px 32px;
+}
+.aside{display:none}
+@media(min-width:900px){
+  .shell{
+    grid-template-columns:1.05fr .95fr;
+    max-width:1080px;
+    gap:64px;
+  }
+  .aside{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+  }
+  .phone-frame{
+    width:280px;
+    aspect-ratio:9/19;
+    border-radius:36px;
+    overflow:hidden;
+    border:8px solid #0b1220;
+    box-shadow:0 24px 64px rgba(11,18,32,0.5),0 0 0 1px rgba(246,241,232,0.08);
+    background:#0b1220;
+    position:relative;
+  }
+  .phone-frame::before{
+    content:"";
+    position:absolute;
+    top:14px;left:50%;
+    transform:translateX(-50%);
+    width:80px;height:6px;
+    background:#000;
+    border-radius:999px;
+    z-index:2;
+  }
+  .phone-frame img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .features-mini{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    width:100%;
+    max-width:280px;
+  }
+  .feat-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:rgba(246,241,232,0.72);
+  }
+  .feat-row::before{
+    content:"";
+    display:inline-block;
+    width:6px;height:6px;
+    background:#f97316;
+    border-radius:999px;
+    flex-shrink:0;
+  }
+  .feat-row strong{
+    color:#f6f1e8;
+    font-weight:700;
+  }
 }
 .dot{
   display:inline-block;
@@ -186,6 +262,7 @@ p{
 </head>
 <body>
 
+<div class="shell">
 <div class="frame">
   <span class="dot"></span>
 
@@ -221,6 +298,20 @@ p{
 
   <div class="lockup">Correr<em>Juntos</em></div>
   <a class="contact" href="mailto:hola@correrjuntos.com">hola@correrjuntos.com</a>
+</div>
+
+<aside class="aside">
+  <div class="phone-frame">
+    <img src="/public/screenshot-run.webp" alt="Pantalla de carrera en CorrerJuntos" loading="eager">
+  </div>
+  <div class="features-mini">
+    <div class="feat-row"><strong>7 planes</strong> &middot; 0-5K a marat&oacute;n</div>
+    <div class="feat-row"><strong>Coach Jos&eacute; IA</strong> &middot; an&aacute;lisis post-carrera</div>
+    <div class="feat-row"><strong>GPS + audio km</strong> &middot; en background</div>
+    <div class="feat-row"><strong>100&percnt; gratis</strong> &middot; sin tarjeta</div>
+  </div>
+</aside>
+
 </div>
 
 <div class="foot">Meridian Motion &middot; correrjuntos.com</div>

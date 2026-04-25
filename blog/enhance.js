@@ -743,8 +743,8 @@
       '<div class="cj-app-banner-inner">',
         '<img src="/icons/icon-96.png" alt="CorrerJuntos" class="cj-app-banner-icon" width="56" height="56" loading="lazy">',
         '<div class="cj-app-banner-text">',
-          '<strong>' + (isEN ? 'Run with company!' : '\u00a1Corre acompa\u00f1ado!') + '</strong>',
-          '<span>' + (isEN ? 'Download the free app and find runners near you' : 'Descarga la app gratis y encuentra runners cerca de ti') + '</span>',
+          '<strong>' + (isEN ? 'Start your free plan!' : '\u00a1Empieza tu plan gratis!') + '</strong>',
+          '<span>' + (isEN ? 'Your plan, your AI coach and GPS tracking &mdash; free' : 'Tu plan, tu coach IA y tracking GPS &mdash; gratis') + '</span>',
         '</div>',
         '<div class="cj-app-banner-badges">',
           '<a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" class="cj-app-badge cj-app-badge--apple" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'blog_app_banner_click\',{store:\'appstore\',slug:\'' + slug + '\'})">' +

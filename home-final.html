@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Home FINAL · 2 estados (vacío vs con comunidad)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+    --ash-fade-2: rgba(246,241,232,0.08);
+    --surface: rgba(246,241,232,0.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a1a1a; font-family: 'Inter', -apple-system, sans-serif; color: var(--paper); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  body { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+
+  .main-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--paper); font-weight: 600; text-align: center; }
+  .main-sub { color: #aaa; font-size: 14px; text-align: center; max-width: 660px; line-height: 1.55; margin-top: -12px; }
+  .main-sub strong { color: var(--ember); font-weight: 700; }
+
+  .comparison { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+  .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 6px; font-weight: 700; }
+  .tag.now { background: rgba(249,115,22,0.15); color: #fbbf77; }
+  .tag.future { background: rgba(34,197,94,0.15); color: #86efac; }
+
+  .phone { width: 350px; height: 780px; background: var(--ink); border-radius: 44px; overflow: hidden; position: relative; box-shadow: 0 0 0 9px #222, 0 0 0 11px #111, 0 28px 56px rgba(0,0,0,0.55); }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #000; border-radius: 22px; z-index: 10; }
+  .screen { width: 100%; height: 100%; padding-top: 48px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+  .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 0 22px; font-size: 11px; font-weight: 600; color: var(--paper); z-index: 5; }
+  .scroll { flex: 1; overflow-y: auto; padding-bottom: 78px; }
+  .scroll::-webkit-scrollbar { display: none; }
+
+  /* Header */
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px 18px; }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 34px; height: 34px; border-radius: 17px; background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.4); display: flex; align-items: center; justify-content: center; color: var(--ember); font-weight: 700; font-size: 14px; }
+  .greet-hi { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.4px; color: var(--ash-soft); text-transform: uppercase; font-weight: 600; }
+  .greet-name { font-size: 16px; font-weight: 800; color: var(--paper); letter-spacing: -0.3px; line-height: 1.15; }
+  .bell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--ash); }
+
+  /* Stats compacto */
+  .stats { margin: 0 20px 20px; }
+  .stats-head { display: flex; justify-content: space-between; margin-bottom: 9px; }
+  .stats-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.8px; color: var(--ash-soft); font-weight: 600; }
+  .stats-status { font-size: 11px; color: var(--ember); font-weight: 600; }
+  .stats-row { display: flex; gap: 7px; }
+  .stat-card { flex: 1; background: var(--surface); border: 1px solid var(--ash-fade); border-radius: 11px; padding: 11px 8px 10px; }
+  .stat-val { font-size: 20px; font-weight: 800; color: var(--paper); line-height: 1; letter-spacing: -0.4px; }
+  .stat-cap { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1.2px; color: var(--ash-soft); margin-top: 6px; font-weight: 700; }
+
+  /* Section */
+  .section-head { display: flex; justify-content: space-between; align-items: center; padding: 4px 20px 10px; }
+  .section-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.8px; color: var(--ash-soft); font-weight: 600; }
+  .section-cta { display: inline-flex; align-items: center; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.3px; color: var(--ember); font-weight: 700; border: 1px solid rgba(249,115,22,0.3); padding: 4px 10px; border-radius: 999px; }
+
+  /* Empty quedadas */
+  .empty-quedadas { margin: 0 20px 20px; padding: 18px; border: 1px dashed rgba(249,115,22,0.28); border-radius: 14px; background: rgba(249,115,22,0.03); text-align: center; }
+  .empty-marker { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.6px; color: var(--ember); font-weight: 600; margin-bottom: 8px; }
+  .empty-title { font-size: 16px; font-weight: 700; color: var(--paper); letter-spacing: -0.3px; line-height: 1.25; margin-bottom: 6px; }
+  .empty-title strong { color: var(--ember); }
+  .empty-desc { font-size: 11px; color: var(--ash-soft); line-height: 1.4; margin-bottom: 12px; }
+  .empty-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--ember); color: #0b1220; font-weight: 700; font-size: 12px; padding: 9px 14px; border-radius: 10px; letter-spacing: 0.2px; }
+
+  /* Planes hero */
+  .planes-hero {
+    margin: 0 20px 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.12) 0%, rgba(11,18,32,0) 70%);
+    border: 1px solid rgba(249,115,22,0.35);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(249,115,22,0.1);
+  }
+  .planes-hero::before { content: ""; position: absolute; top: -50px; right: -50px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, rgba(249,115,22,0) 65%); pointer-events: none; }
+  .planes-hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.8px; color: var(--ember); font-weight: 600; margin-bottom: 8px; display: inline-flex; align-items: center; gap: 6px; }
+  .planes-hero-eyebrow::before { content: ""; width: 16px; height: 1px; background: var(--ember); }
+  .planes-hero-title { font-family: 'Inter', sans-serif; font-size: 19px; font-weight: 700; color: var(--paper); line-height: 1.1; letter-spacing: -0.35px; margin-bottom: 6px; }
+  .planes-hero-title strong { color: var(--ember); }
+  .planes-hero-desc { font-size: 11px; color: var(--ash); line-height: 1.45; margin-bottom: 12px; }
+  .planes-benefits { display: flex; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; }
+  .planes-benefit { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1px; color: var(--ember); border: 1px solid rgba(249,115,22,0.3); padding: 2px 7px; border-radius: 999px; font-weight: 600; }
+  .planes-social { display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--ash-soft); margin-bottom: 12px; }
+  .planes-social-dot { width: 5px; height: 5px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+  .planes-social strong { color: var(--paper); font-weight: 700; }
+  .planes-cta-row { display: flex; align-items: center; gap: 8px; }
+  .planes-cta { flex: 1; background: var(--ember); color: #0b1220; font-weight: 700; font-size: 13px; padding: 10px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; letter-spacing: 0.2px; }
+  .planes-free-tag { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1.2px; color: #22c55e; border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.12); padding: 4px 8px; border-radius: 999px; font-weight: 700; }
+
+  /* Planes compact (cuando hay feed activo) */
+  .planes-compact { margin: 0 20px 16px; padding: 13px; background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(11,18,32,0) 70%); border: 1px solid rgba(249,115,22,0.28); border-radius: 12px; display: flex; align-items: center; gap: 11px; }
+  .planes-compact-icon { width: 36px; height: 36px; border-radius: 9px; background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3); display: flex; align-items: center; justify-content: center; color: var(--ember); }
+  .planes-compact-body { flex: 1; }
+  .planes-compact-title { font-size: 12px; font-weight: 700; color: var(--paper); letter-spacing: -0.15px; margin-bottom: 1px; }
+  .planes-compact-title strong { color: var(--ember); }
+  .planes-compact-desc { font-size: 10px; color: var(--ash-soft); }
+  .planes-compact-cta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.1px; color: var(--ember); font-weight: 700; border: 1px solid rgba(249,115,22,0.3); padding: 4px 9px; border-radius: 999px; }
+
+  /* Actions */
+  .actions-wrap { padding: 0 20px 16px; }
+  .action-card { padding: 12px; background: var(--surface); border: 1px solid var(--ash-fade); border-radius: 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 11px; }
+  .action-icon { width: 36px; height: 36px; border-radius: 9px; background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.3); display: flex; align-items: center; justify-content: center; color: var(--ember); flex-shrink: 0; }
+  .action-body { flex: 1; }
+  .action-title { font-size: 12px; font-weight: 700; color: var(--paper); letter-spacing: -0.1px; margin-bottom: 1px; }
+  .action-desc { font-size: 10px; color: var(--ash-soft); line-height: 1.4; }
+
+  /* Feed cards (Strava-style) */
+  .feed-card { margin: 0 20px 11px; background: var(--surface); border: 1px solid var(--ash-fade); border-radius: 13px; overflow: hidden; }
+  .feed-header { display: flex; align-items: center; gap: 9px; padding: 11px 12px 9px; }
+  .feed-avatar { width: 34px; height: 34px; border-radius: 17px; background: linear-gradient(135deg, #ea580c, #f97316); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 12px; }
+  .feed-avatar.green { background: linear-gradient(135deg, #16a34a, #22c55e); }
+  .feed-avatar.blue { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+  .feed-user-info { flex: 1; min-width: 0; }
+  .feed-user-row { display: flex; align-items: center; gap: 5px; margin-bottom: 1px; }
+  .feed-user-name { font-size: 12px; font-weight: 700; color: var(--paper); letter-spacing: -0.1px; }
+  .feed-compat-chip { font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 0.7px; color: var(--ember); border: 1px solid rgba(249,115,22,0.35); background: rgba(249,115,22,0.08); padding: 1px 4px; border-radius: 999px; font-weight: 700; }
+  .feed-relation-chip.known { font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 0.7px; color: #60a5fa; border: 1px solid rgba(96,165,250,0.35); background: rgba(96,165,250,0.08); padding: 1px 4px; border-radius: 999px; font-weight: 700; }
+  .feed-meta { font-size: 10px; color: var(--ash-soft); }
+  .feed-when { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--ash-soft); letter-spacing: 0.5px; text-align: right; }
+  .feed-title { font-size: 13px; font-weight: 700; color: var(--paper); padding: 0 12px 7px; letter-spacing: -0.2px; }
+
+  .feed-map { height: 110px; position: relative; background: linear-gradient(135deg, #0f1c30 0%, #0a1525 100%); overflow: hidden; }
+  .feed-map-grid { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(249,115,22,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(249,115,22,0.04) 1px, transparent 1px); background-size: 18px 18px; }
+  .feed-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .feed-map-locked { position: absolute; inset: 0; backdrop-filter: blur(4px); background: rgba(11,18,32,0.45); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+  .feed-map-locked-icon { color: rgba(246,241,232,0.35); }
+  .feed-map-locked-text { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1.3px; color: var(--ash-soft); text-transform: uppercase; font-weight: 600; }
+
+  .feed-stats { display: flex; gap: 0; padding: 10px 12px 8px; border-top: 1px solid var(--ash-fade-2); }
+  .feed-stat { flex: 1; padding-right: 10px; }
+  .feed-stat + .feed-stat { padding-left: 10px; border-left: 1px solid var(--ash-fade-2); }
+  .feed-stat-val { font-size: 14px; font-weight: 800; color: var(--paper); letter-spacing: -0.3px; line-height: 1; }
+  .feed-stat-cap { font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 1.1px; color: var(--ash-soft); margin-top: 4px; font-weight: 700; }
+
+  .feed-engage { display: flex; gap: 12px; padding: 7px 12px 10px; align-items: center; }
+  .feed-engage-btn { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--ash-soft); font-weight: 500; }
+  .feed-engage-btn.kudo-on { color: var(--ember); }
+
+  /* Quedadas reales */
+  .quedada-card { margin: 0 20px 9px; padding: 11px; background: var(--surface); border: 1px solid var(--ash-fade); border-radius: 11px; display: flex; gap: 10px; align-items: center; }
+  .quedada-date { width: 38px; text-align: center; background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.2); border-radius: 7px; padding: 5px 2px; }
+  .quedada-day { font-size: 13px; font-weight: 800; color: var(--ember); line-height: 1; }
+  .quedada-mon { font-family: 'JetBrains Mono', monospace; font-size: 7px; color: var(--ember); letter-spacing: 0.9px; font-weight: 700; margin-top: 2px; }
+  .quedada-body { flex: 1; min-width: 0; }
+  .quedada-title { font-size: 12px; font-weight: 700; color: var(--paper); letter-spacing: -0.1px; }
+  .quedada-meta { font-size: 9px; color: var(--ash-soft); margin-top: 1px; }
+  .quedada-spots { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--ember); border: 1px solid rgba(249,115,22,0.3); background: rgba(249,115,22,0.08); padding: 3px 7px; border-radius: 999px; font-weight: 700; letter-spacing: 0.5px; }
+
+  /* Tabs */
+  .tabs { position: absolute; bottom: 0; left: 0; right: 0; height: 70px; background: rgba(11,18,32,0.96); border-top: 1px solid var(--ash-fade-2); display: flex; align-items: flex-start; justify-content: space-around; padding-top: 9px; backdrop-filter: blur(16px); }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--ash-soft); font-size: 9px; font-weight: 500; }
+  .tab.active { color: var(--paper); }
+  .tab-ico { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: currentColor; }
+  .tab-ico.main { width: 40px; height: 40px; background: rgba(249,115,22,0.15); border: 1px solid var(--ember); border-radius: 20px; color: var(--ember); margin-top: -5px; }
+
+  /* Info */
+  .info { max-width: 820px; width: 100%; padding: 22px 26px; background: #111; border: 1px solid #333; border-radius: 16px; color: #ddd; }
+  .info h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 14px; color: #fff; }
+  .info ul { list-style: none; }
+  .info li { padding: 8px 0; border-bottom: 1px solid #2a2a2a; font-size: 13px; line-height: 1.55; display: flex; gap: 12px; align-items: flex-start; }
+  .info li:last-child { border-bottom: none; }
+  .info li::before { content: "●"; color: var(--ember); margin-top: 2px; font-size: 9px; }
+
+  @media (max-width: 800px) { .comparison { flex-direction: column; } }
+</style>
+</head>
+<body>
+
+  <div class="main-label">Home FINAL · La misma pantalla, dos estados</div>
+  <div class="main-sub">
+    <strong>Misma estructura adaptiva</strong>: el feed de actividad aparece automáticamente cuando hay data. Las quick actions desaparecen cuando ya tienes engagement. Una sola pantalla que evoluciona con la comunidad.
+  </div>
+
+  <div class="comparison">
+
+    <!-- ═══ ESTADO 1: USER NUEVO (sin feed) ═══ -->
+    <div class="phone-wrap">
+      <span class="tag now">Hoy · sin comunidad activa</span>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar">
+          <span>13:49</span>
+          <svg width="20" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="13" height="6" fill="currentColor"/><path d="M22 4v4" stroke-width="2"/></svg>
+        </div>
+        <div class="screen">
+          <div class="scroll">
+
+            <div class="header">
+              <div class="header-left">
+                <div class="avatar">P</div>
+                <div>
+                  <div class="greet-hi">BUENAS TARDES</div>
+                  <div class="greet-name">Prueba</div>
+                </div>
+              </div>
+              <div class="bell">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+              <div class="stats-head">
+                <span class="stats-label">ESTA SEMANA · PUNTA UMBRÍA</span>
+                <span class="stats-status">Tu primera te espera</span>
+              </div>
+              <div class="stats-row">
+                <div class="stat-card"><div class="stat-val">0</div><div class="stat-cap">CARRERAS</div></div>
+                <div class="stat-card"><div class="stat-val">0</div><div class="stat-cap">KM</div></div>
+                <div class="stat-card"><div class="stat-val">0m</div><div class="stat-cap">TIEMPO</div></div>
+              </div>
+            </div>
+
+            <!-- Quedadas empty -->
+            <div class="section-head">
+              <span class="section-title">QUEDADAS CERCA DE TI</span>
+              <span class="section-cta">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                CREAR
+              </span>
+            </div>
+            <div class="empty-quedadas">
+              <div class="empty-marker">● 0 A MENOS DE 50 KM</div>
+              <div class="empty-title">Sé el primero en <strong>Huelva</strong>.</div>
+              <div class="empty-desc">Crea la primera quedada de tu zona.</div>
+              <div class="empty-cta">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Crear quedada
+              </div>
+            </div>
+
+            <!-- Planes hero (protagonista cuando no hay feed) -->
+            <div class="planes-hero">
+              <div class="planes-hero-eyebrow">CON PLAN · PROGRESAS 3× MÁS</div>
+              <div class="planes-hero-title">Baja tu <strong>10K</strong><br>en 8 semanas.</div>
+              <div class="planes-hero-desc">Planes con audio coach, adaptados a tu ritmo. Empieza hoy.</div>
+              <div class="planes-benefits">
+                <span class="planes-benefit">● PROGRESIÓN</span>
+                <span class="planes-benefit">● COACH AUDIO</span>
+                <span class="planes-benefit">● 5K → 42K</span>
+              </div>
+              <div class="planes-social"><span class="planes-social-dot"></span><strong>3.200+</strong>&nbsp;runners con plan</div>
+              <div class="planes-cta-row">
+                <div class="planes-cta">Empezar gratis<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                <div class="planes-free-tag">1º GRATIS</div>
+              </div>
+            </div>
+
+            <!-- Quick actions (solo en estado nuevo) -->
+            <div class="section-head"><span class="section-title">¿POR DÓNDE EMPIEZO?</span></div>
+            <div class="actions-wrap">
+              <div class="action-card">
+                <div class="action-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div class="action-body">
+                  <div class="action-title">Registra tu primera carrera</div>
+                  <div class="action-desc">30 min basta · GPS activo</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(246,241,232,0.4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <div class="action-card">
+                <div class="action-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                </div>
+                <div class="action-body">
+                  <div class="action-title">Encuentra runners cerca</div>
+                  <div class="action-desc">Matching por ritmo y zona</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(246,241,232,0.4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="tabs">
+            <div class="tab active"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>Inicio</div>
+            <div class="tab"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>Mapa</div>
+            <div class="tab"><div class="tab-ico main"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>Correr</div>
+            <div class="tab"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>Social</div>
+            <div class="tab"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>Perfil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ESTADO 2: CON COMUNIDAD (con feed) ═══ -->
+    <div class="phone-wrap">
+      <span class="tag future">Próximas semanas · con comunidad</span>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar">
+          <span>13:49</span>
+          <svg width="20" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="13" height="6" fill="currentColor"/><path d="M22 4v4" stroke-width="2"/></svg>
+        </div>
+        <div class="screen">
+          <div class="scroll">
+
+            <div class="header">
+              <div class="header-left">
+                <div class="avatar">P</div>
+                <div>
+                  <div class="greet-hi">BUENAS TARDES</div>
+                  <div class="greet-name">Prueba</div>
+                </div>
+              </div>
+              <div class="bell">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Stats con datos reales -->
+            <div class="stats">
+              <div class="stats-head">
+                <span class="stats-label">ESTA SEMANA · PUNTA UMBRÍA</span>
+                <span class="stats-status">Vas bien · 2 de 3</span>
+              </div>
+              <div class="stats-row">
+                <div class="stat-card"><div class="stat-val">2</div><div class="stat-cap">CARRERAS</div></div>
+                <div class="stat-card"><div class="stat-val">12.4</div><div class="stat-cap">KM</div></div>
+                <div class="stat-card"><div class="stat-val">1h08</div><div class="stat-cap">TIEMPO</div></div>
+              </div>
+            </div>
+
+            <!-- Quedadas reales -->
+            <div class="section-head">
+              <span class="section-title">QUEDADAS CERCA · 3 ESTA SEMANA</span>
+              <span class="section-cta">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                CREAR
+              </span>
+            </div>
+            <div class="quedada-card">
+              <div class="quedada-date"><div class="quedada-day">04</div><div class="quedada-mon">MAY</div></div>
+              <div class="quedada-body">
+                <div class="quedada-title">Rodaje Muelle del Tinto</div>
+                <div class="quedada-meta">Huelva · 5 km · 09:00 · 5:30/km</div>
+              </div>
+              <div class="quedada-spots">7/12</div>
+            </div>
+            <div class="quedada-card">
+              <div class="quedada-date"><div class="quedada-day">07</div><div class="quedada-mon">MAY</div></div>
+              <div class="quedada-body">
+                <div class="quedada-title">Series en Parque Moret</div>
+                <div class="quedada-meta">Huelva · 7 km · 19:30 · 5:00/km</div>
+              </div>
+              <div class="quedada-spots">3/8</div>
+            </div>
+
+            <!-- FEED actividad reciente compañeros -->
+            <div class="section-head"><span class="section-title">RUNNERS COMPATIBLES · HOY</span></div>
+
+            <div class="feed-card">
+              <div class="feed-header">
+                <div class="feed-avatar">M</div>
+                <div class="feed-user-info">
+                  <div class="feed-user-row"><span class="feed-user-name">Marta R.</span><span class="feed-compat-chip">94% COMPAT</span></div>
+                  <div class="feed-meta">5:28/km · Huelva · 4 km de ti</div>
+                </div>
+                <div class="feed-when">HACE 2H</div>
+              </div>
+              <div class="feed-title">Rodaje por el Muelle del Tinto</div>
+              <div class="feed-map">
+                <div class="feed-map-grid"></div>
+                <svg class="feed-map-svg" viewBox="0 0 360 110" preserveAspectRatio="none">
+                  <defs><linearGradient id="r1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f97316" stop-opacity="0.3"/><stop offset="100%" stop-color="#f97316" stop-opacity="1"/></linearGradient></defs>
+                  <path d="M 30 80 Q 60 40, 100 60 T 180 35 Q 220 25, 250 55 T 330 30" fill="none" stroke="url(#r1)" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="30" cy="80" r="4" fill="#22c55e"/>
+                  <circle cx="330" cy="30" r="4" fill="#ef4444"/>
+                </svg>
+              </div>
+              <div class="feed-stats">
+                <div class="feed-stat"><div class="feed-stat-val">8.2</div><div class="feed-stat-cap">KM</div></div>
+                <div class="feed-stat"><div class="feed-stat-val">44:58</div><div class="feed-stat-cap">TIEMPO</div></div>
+                <div class="feed-stat"><div class="feed-stat-val">5:28</div><div class="feed-stat-cap">MIN/KM</div></div>
+              </div>
+              <div class="feed-engage">
+                <div class="feed-engage-btn kudo-on"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 11v10H4a2 2 0 01-2-2v-7a1 1 0 011-1h4zm5-11a1 1 0 011 .76L15 9h5a2 2 0 012 2v3.4a2 2 0 01-.15.77l-2.83 6.66A2 2 0 0117.17 23H10a2 2 0 01-2-2V9.41a2 2 0 01.59-1.41l5-5A1 1 0 0112 0z"/></svg><span>12 kudos</span></div>
+                <div class="feed-engage-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span>3</span></div>
+                <div class="feed-engage-btn" style="margin-left:auto;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span>Seguir</span></div>
+              </div>
+            </div>
+
+            <div class="feed-card">
+              <div class="feed-header">
+                <div class="feed-avatar green">C</div>
+                <div class="feed-user-info">
+                  <div class="feed-user-row"><span class="feed-user-name">Carlos M.</span><span class="feed-relation-chip known">COINCIDISTEIS</span></div>
+                  <div class="feed-meta">5:45/km · Huelva</div>
+                </div>
+                <div class="feed-when">AYER</div>
+              </div>
+              <div class="feed-title">Series 5×1000 en pista</div>
+              <div class="feed-map">
+                <div class="feed-map-grid"></div>
+                <svg class="feed-map-svg" viewBox="0 0 360 110" preserveAspectRatio="none">
+                  <path d="M 180 25 Q 280 25, 285 55 Q 280 85, 180 85 Q 80 85, 75 55 Q 80 25, 180 25" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="3 2" opacity="0.35"/>
+                </svg>
+                <div class="feed-map-locked">
+                  <svg class="feed-map-locked-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                  <div class="feed-map-locked-text">Mapa privado</div>
+                </div>
+              </div>
+              <div class="feed-stats">
+                <div class="feed-stat"><div class="feed-stat-val">7.5</div><div class="feed-stat-cap">KM</div></div>
+                <div class="feed-stat"><div class="feed-stat-val">37:12</div><div class="feed-stat-cap">TIEMPO</div></div>
+                <div class="feed-stat"><div class="feed-stat-val">4:58</div><div class="feed-stat-cap">MIN/KM</div></div>
+              </div>
+            </div>
+
+            <!-- Planes compact (relegado cuando hay feed) -->
+            <div class="planes-compact">
+              <div class="planes-compact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+              <div class="planes-compact-body">
+                <div class="planes-compact-title">Baja tu <strong>10K</strong> en 8 semanas</div>
+                <div class="planes-compact-desc">3.200+ runners · 1º gratis</div>
+              </div>
+              <div class="planes-compact-cta">VER</div>
+            </div>
+
+          </div>
+          <div class="tabs">
+            <div class="tab active"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>Inicio</div>
+            <div class="tab"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>Mapa</div>
+            <div class="tab"><div class="tab-ico main"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>Correr</div>
+            <div class="tab"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>Social</div>
+            <div class="tab"><div class="tab-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>Perfil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="info">
+    <h3>La estructura adaptiva · cómo se reordena</h3>
+    <ul>
+      <li><strong>Header</strong> (siempre): avatar + greeting + bell</li>
+      <li><strong>Stats semanales</strong> (siempre): copy adaptativo según data ("Tu primera te espera" → "Vas bien · 2 de 3" → "Crack · 5 esta semana")</li>
+      <li><strong>Quedadas cerca</strong> (siempre): empty state si 0 cerca · cards reales si hay quedadas</li>
+      <li><strong>Feed actividad</strong> (CONDICIONAL): aparece cuando <code style="color:var(--ember);">getFeedWithCompatible</code> devuelve runs · invisible cuando feed vacío</li>
+      <li><strong>Planes</strong> (siempre): hero grande cuando NO hay feed · compact cuando SÍ hay feed (relegado)</li>
+      <li><strong>¿Por dónde empiezo?</strong> (CONDICIONAL): solo aparece si stats == 0 · invisible cuando user ya tiene engagement</li>
+    </ul>
+  </div>
+
+  <div class="info" style="border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04);">
+    <h3 style="color: #86efac;">✓ Por qué esta estructura es definitiva</h3>
+    <ul>
+      <li><strong>Una sola pantalla</strong>, no dos. Mismo código, comportamiento adaptivo según data</li>
+      <li><strong>Crece con la comunidad</strong>: empty state honesto al principio → se llena solo cuando hay actividades</li>
+      <li><strong>No miente</strong>: stats reales, quedadas reales, feed real. Sin números inflados</li>
+      <li><strong>Planes con prioridad correcta</strong>: protagonista al principio (cuando es la única acción) · secundario cuando hay feed (lo importante son los runners)</li>
+      <li><strong>Quick actions desaparecen</strong> automáticamente cuando ya no hacen falta. Limpieza progresiva</li>
+      <li><strong>Lucide icons consistentes</strong> en toda la pantalla</li>
+      <li><strong>Naranja con criterio</strong>: 1 CTA sólido principal · resto acentos puntuales</li>
+    </ul>
+  </div>
+
+  <div class="info" style="border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.04);">
+    <h3 style="color: var(--ember);">Lo que aplicar en código (~2.5h)</h3>
+    <ul>
+      <li>Instalar <code style="color:var(--ember);">lucide-react-native</code> en submódulo</li>
+      <li>Reescribir <code style="color:var(--ember);">FeedScreen.tsx</code> con la estructura adaptiva</li>
+      <li>Implementar filtro geográfico real (50km del user) en <code style="color:var(--ember);">getQuedadas</code></li>
+      <li>Lógica condicional de secciones (feed visible si <code style="color:var(--ember);">feedV2.length &gt; 0</code>, etc.)</li>
+      <li>Eliminar paywall prematuro "0 de 2 quedadas gratis" del primer mes</li>
+      <li>Copy adaptativo del estado semanal (0 → "Tu primera te espera" / 1-2 → "Buen comienzo" / 3+ → "Vas bien" / 5+ → "Crack")</li>
+      <li>Tabs bottom con Lucide icons</li>
+      <li>Commit + OTA + test</li>
+    </ul>
+  </div>
+
+</body>
+</html>

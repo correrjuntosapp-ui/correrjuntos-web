@@ -144,6 +144,12 @@
     { "source": "/blog/nutricion-antes-de-correr", "destination": "/blog/que-comer-antes-de-correr", "permanent": true },
     { "source": "/blog/empezar-a-correr-desde-cero", "destination": "/blog/running/como-empezar-a-correr-desde-cero", "permanent": true },
 
+    { "source": "/blog/zapatillas", "destination": "/blog?cat=zapatillas", "permanent": true },
+    { "source": "/blog/atletas-hibridos", "destination": "/blog?cat=atleta-hibrido", "permanent": true },
+    { "source": "/blog/categoria/entrenamiento", "destination": "/blog?cat=entrenamiento", "permanent": true },
+    { "source": "/blog/running/mejores-zapatillas-empezar-correr-2026", "destination": "/blog/zapatillas/mejores-zapatillas-empezar-correr-2026", "permanent": true },
+    { "source": "/blog/en/running/best-running-shoes-to-start-running-2026", "destination": "/blog/en/running-shoes/best-running-shoes-to-start-running-2026", "permanent": true },
+
     { "source": "/equipamiento/en/trail-running-shoes", "destination": "/blog/en/best-trail-running-shoes", "permanent": true },
     { "source": "/equipamiento/en/running-shoes", "destination": "/blog/en/best-road-running-shoes", "permanent": true },
     { "source": "/equipamiento/en", "destination": "/equipamiento", "permanent": true },

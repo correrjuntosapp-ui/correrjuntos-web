@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b1220">
+<meta name="robots" content="noindex,nofollow">
+<title>Abrir CorrerJuntos</title>
+<meta name="apple-itunes-app" content="app-id=6758505910">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#0b1220;
+  color:#f6f1e8;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  line-height:1.5;
+}
+.frame{
+  max-width:560px;
+  width:100%;
+  background:#0b1220;
+  border:1px solid rgba(246,241,232,0.08);
+  border-radius:20px;
+  overflow:hidden;
+  padding:36px 36px 32px;
+}
+.dot{
+  display:inline-block;
+  width:10px;height:10px;
+  background:#f97316;
+  border-radius:999px;
+}
+.marker{
+  margin-top:14px;
+  font-family:'JetBrains Mono',SFMono-Regular,Consolas,Menlo,monospace;
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:rgba(246,241,232,0.42);
+  font-weight:500;
+}
+.marker .ember{color:#f97316}
+.eyebrow{
+  margin-top:32px;
+  font-family:'JetBrains Mono',SFMono-Regular,Consolas,Menlo,monospace;
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:#f97316;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:"";
+  display:inline-block;
+  width:24px;height:1px;
+  background:#f97316;
+}
+h1{
+  margin-top:18px;
+  font-weight:200;
+  font-size:36px;
+  line-height:1.12;
+  letter-spacing:-0.01em;
+  color:#f6f1e8;
+}
+h1 .ember{color:#f97316;font-weight:700}
+.rule{
+  width:36px;height:3px;
+  background:#f97316;
+  margin:24px 0;
+}
+p{
+  color:rgba(246,241,232,0.72);
+  font-size:15px;
+  line-height:1.6;
+}
+.cta{
+  display:inline-block;
+  margin-top:24px;
+  padding:16px 32px;
+  background:linear-gradient(180deg,#f97316,#ea580c);
+  color:#0b1220;
+  border-radius:10px;
+  font-weight:700;
+  font-size:15px;
+  text-decoration:none;
+  letter-spacing:0.01em;
+}
+.cta:hover{filter:brightness(1.05)}
+.divider{
+  margin:32px 0 20px;
+  height:1px;
+  background:rgba(246,241,232,0.12);
+}
+.label{
+  font-family:'JetBrains Mono',SFMono-Regular,Consolas,Menlo,monospace;
+  font-size:10px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:rgba(246,241,232,0.42);
+  font-weight:500;
+}
+.stores{
+  display:flex;
+  gap:12px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+.store{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  background:rgba(246,241,232,0.04);
+  border:1px solid rgba(246,241,232,0.12);
+  border-radius:10px;
+  text-decoration:none;
+  color:#f6f1e8;
+  flex:1 1 200px;
+  min-width:0;
+  transition:all .2s;
+}
+.store:hover{
+  background:rgba(246,241,232,0.07);
+  border-color:rgba(249,115,22,0.4);
+}
+.store svg{flex-shrink:0}
+.store .meta{display:flex;flex-direction:column;line-height:1.1}
+.store .small{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(246,241,232,0.42);
+}
+.store .big{
+  font-size:13px;
+  font-weight:700;
+  color:#f6f1e8;
+  margin-top:2px;
+}
+.lockup{
+  margin-top:36px;
+  font-size:22px;
+  font-weight:800;
+  color:#f6f1e8;
+  letter-spacing:-0.02em;
+}
+.lockup em{color:#f97316;font-style:normal}
+.contact{
+  margin-top:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:#f97316;
+  text-decoration:none;
+}
+.foot{
+  margin-top:28px;
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:rgba(246,241,232,0.32);
+}
+@media(max-width:480px){
+  .frame{padding:28px 24px}
+  h1{font-size:30px}
+  .store{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <span class="dot"></span>
+
+  <div class="marker">
+    <span class="ember">&bull;</span>&nbsp;&nbsp;Volver a CorrerJuntos
+  </div>
+
+  <div class="eyebrow">Abriendo la app</div>
+
+  <h1>Te llevamos<br>a <span class="ember">CorrerJuntos</span>.</h1>
+
+  <div class="rule"></div>
+
+  <p>Si tienes la app instalada, deber&iacute;a abrirse en unos segundos. Tu mes de Premium ya est&aacute; activo en tu cuenta.</p>
+
+  <a class="cta" href="correrjuntos://" id="openBtn">Abrir CorrerJuntos &rarr;</a>
+
+  <div class="divider"></div>
+
+  <div class="label">&iquest;Todav&iacute;a no la tienes?</div>
+  <div class="stores">
+    <a class="store" href="https://apps.apple.com/app/id6758505910" id="iosBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#f6f1e8" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div class="meta"><span class="small">Descargar en</span><span class="big">App Store</span></div>
+    </a>
+    <a class="store" href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" id="andBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
+      <div class="meta"><span class="small">Disponible en</span><span class="big">Google Play</span></div>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="lockup">Correr<em>Juntos</em></div>
+  <a class="contact" href="mailto:hola@correrjuntos.com">hola@correrjuntos.com</a>
+</div>
+
+<div class="foot">Meridian Motion &middot; correrjuntos.com</div>
+
+<script>
+(function(){
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+  var isAndroid = /Android/i.test(ua);
+  var APP_STORE = 'https://apps.apple.com/app/id6758505910';
+  var PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';
+  var SCHEME = 'correrjuntos://';
+
+  if (!isIOS && !isAndroid) return;
+
+  var fired = false;
+  var hidden = false;
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'hidden') hidden = true;
+  });
+
+  // Try the custom scheme on load. If app is installed it takes over and the
+  // page becomes hidden; if not, we fall back to the store.
+  function tryOpen(){
+    if (fired) return;
+    fired = true;
+    var t0 = Date.now();
+    window.location.href = SCHEME;
+    setTimeout(function(){
+      if (hidden) return;            // app opened
+      if (Date.now() - t0 > 2200) return;
+      window.location.href = isIOS ? APP_STORE : PLAY_STORE;
+    }, 1700);
+  }
+
+  // Some browsers block scheme triggers without user gesture. Run on first
+  // tap as well.
+  document.addEventListener('click', function(e){
+    var t = e.target.closest && e.target.closest('#openBtn');
+    if (!t) return;
+    e.preventDefault();
+    tryOpen();
+  });
+
+  // Try once on load (Apple Mail in-app webview allows it).
+  setTimeout(tryOpen, 250);
+})();
+</script>
+
+</body>
+</html>

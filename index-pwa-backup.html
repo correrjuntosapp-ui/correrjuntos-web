@@ -453,9 +453,9 @@
         <nav aria-label="Navegación principal" style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto">
             <a href="/" style="color:#fff;text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em">CORRER<b style="color:#f97316">JUNTOS</b></a>
             <div class="flex" style="gap:4px;font-size:.85rem;background:rgba(255,255,255,.04);padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.08)">
-                <a href="/cities/" class="hidden md:inline" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Ciudades</a>
+                <a href="/cities" class="hidden md:inline" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Ciudades</a>
                 <a href="/blog" onclick="if(typeof gtag==='function')gtag('event','blog_click',{location:'navbar'})" style="color:#94a3b8;font-weight:600;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:all .2s;text-decoration:none">Blog</a>
-                <a href="/app/" class="nav-app-cta hidden md:inline" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(249,115,22,.3);transition:all .2s;text-decoration:none">App</a>
+                <a href="/app" class="nav-app-cta hidden md:inline" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(249,115,22,.3);transition:all .2s;text-decoration:none">App</a>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
                 <select id="lang-select" onchange="changeLanguage(this.value)" style="background:#1e293b;color:#fff;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1);font-size:.75rem;outline:none;cursor:pointer" aria-label="Idioma">
@@ -1120,7 +1120,7 @@
                     </a>
                 </div>
                 <div class="text-center mt-6">
-                    <a href="/cities/" class="text-orange-500 hover:text-orange-400 font-semibold transition" id="cities-view-all">Ver todas las ciudades →</a>
+                    <a href="/cities" class="text-orange-500 hover:text-orange-400 font-semibold transition" id="cities-view-all">Ver todas las ciudades →</a>
                 </div>
             </div>
 
@@ -1502,10 +1502,10 @@
                         <p id="footer-explore-title" class="font-bold text-white mb-4">Explorar</p>
                         <ul class="space-y-2">
                             <li><a href="/blog" class="text-gray-500 hover:text-orange-500 text-sm transition">Blog Running</a></li>
-                            <li><a href="/cities/" class="text-gray-500 hover:text-orange-500 text-sm transition">Ciudades</a></li>
-                            <li><a href="/events/" class="text-gray-500 hover:text-orange-500 text-sm transition">Eventos Running</a></li>
-                            <li><a href="/places/" class="text-gray-500 hover:text-orange-500 text-sm transition">Lugares para Correr</a></li>
-                            <li><a href="/matching/" class="text-gray-500 hover:text-orange-500 text-sm transition">Encontrar Compañero</a></li>
+                            <li><a href="/cities" class="text-gray-500 hover:text-orange-500 text-sm transition">Ciudades</a></li>
+                            <li><a href="/events" class="text-gray-500 hover:text-orange-500 text-sm transition">Eventos Running</a></li>
+                            <li><a href="/places" class="text-gray-500 hover:text-orange-500 text-sm transition">Lugares para Correr</a></li>
+                            <li><a href="/matching" class="text-gray-500 hover:text-orange-500 text-sm transition">Encontrar Compañero</a></li>
                         </ul>
                     </div>
                     <div>
@@ -5497,11 +5497,11 @@ document.currentScript.parentNode.insertBefore(s,document.currentScript.nextSibl
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px">Blog</span>
         </a>
-        <a href="/equipamiento/" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#94a3b8">
+        <a href="/equipamiento" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#94a3b8">
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px">Equipo</span>
         </a>
-        <a href="/cities/" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#94a3b8">
+        <a href="/cities" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 12px;border-radius:12px;transition:all .2s;color:#94a3b8">
           <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <span style="font-size:.65rem;font-weight:700;letter-spacing:.3px">Ciudades</span>
         </a>

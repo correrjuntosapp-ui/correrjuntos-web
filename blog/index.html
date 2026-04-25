@@ -494,9 +494,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 <nav style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px">
   <a href="/" style="text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em"><span style="color:#3d3229">CORRER</span><span style="color:#f97316">JUNTOS</span></a>
   <div style="display:flex;gap:24px;align-items:center;font-size:.9rem;font-weight:600">
-    <a href="/planes/" style="color:#3d3229;text-decoration:none">Planes</a>
+    <a href="/planes" style="color:#3d3229;text-decoration:none">Planes</a>
     <a href="/blog" style="color:#f97316;text-decoration:none">Blog</a>
-    <a href="/carreras/" style="color:#3d3229;text-decoration:none">Carreras</a>
+    <a href="/carreras" style="color:#3d3229;text-decoration:none">Carreras</a>
     <a href="/#pricing" style="color:#3d3229;text-decoration:none">Precios</a>
     <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" style="background:#f97316;color:#fff;padding:8px 20px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none">Descargar App</a>
   </div>
@@ -520,7 +520,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <span><span class="dot"></span></span>
     <span>Actualizado abr 2026</span>
   </div>
-  <a href="/planes/0-5k/" class="hero-cta-link">Empieza con un plan gratis <span class="arrow">→</span></a>
+  <a href="/planes/0-5k" class="hero-cta-link">Empieza con un plan gratis <span class="arrow">→</span></a>
 </div>
 
 <div class="container">
@@ -542,7 +542,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   </div>
   <div class="filter-primary">
     <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">Todos</button>
-    <a href="/calculadora/" class="filter-tool fp-calculadora"><span class="cat-name">Calculadora de Ritmos</span><span class="tool-arrow" aria-hidden="true">→</span></a>
+    <a href="/calculadora" class="filter-tool fp-calculadora"><span class="cat-name">Calculadora de Ritmos</span><span class="tool-arrow" aria-hidden="true">→</span></a>
   </div>
   <button class="filter-dropdown-trigger" id="filterDropdownTrigger">Categorías <span class="arrow">▾</span></button>
   <span id="filterActiveLabel"></span>
@@ -3489,7 +3489,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <!-- Explore cards -->
   <p style="text-align:center;color:#94a3b8;font-size:1rem;margin:48px 0 4px;font-weight:700">Explora tambien</p>
   <div class="explore-cards">
-    <a href="/equipamiento/" class="explore-card">
+    <a href="/equipamiento" class="explore-card">
       <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14zm-4.2-5.78v1.75l3.2 1.87V14.9l-3.2 1.87zm-1.6 1.75v-1.75L8 15.09v1.94l3.2-1.87z"/></svg></span>
       <span class="explore-card-label">Equipamiento</span>
     </a>
@@ -3509,7 +3509,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg></span>
       <span class="explore-card-label">Auriculares</span>
     </a>
-    <a href="/cities/" class="explore-card">
+    <a href="/cities" class="explore-card">
       <span class="explore-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></span>
       <span class="explore-card-label">Ciudades</span>
     </a>
@@ -3964,7 +3964,7 @@ async function submitNewsletter(e) {
             form.style.display = 'none';
             successDiv.querySelector('p').innerHTML = '✓ Ya estabas suscrito/a';
             successDiv.querySelectorAll('p')[1].innerHTML =
-                '<a href="/blog/descarga-plan-10k/" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#f97316;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.85rem">Descargar Plan 10K (PDF) →</a>';
+                '<a href="/blog/descarga-plan-10k" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#f97316;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.85rem">Descargar Plan 10K (PDF) →</a>';
             successDiv.style.display = 'block';
         } else if (res.ok || res.status === 201) {
             // New subscription — brief confirmation, then hard-redirect to deliver the PDF
@@ -3996,11 +3996,11 @@ async function submitNewsletter(e) {
       <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
       <span>Blog</span>
     </a>
-    <a href="/equipamiento/">
+    <a href="/equipamiento">
       <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
       <span>Equipo</span>
     </a>
-    <a href="/cities/">
+    <a href="/cities">
       <svg style="width:22px;height:22px" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
       <span>Ciudades</span>
     </a>
@@ -4016,9 +4016,9 @@ async function submitNewsletter(e) {
   <div>
     <div style="font-weight:700;color:#fff;margin-bottom:16px;font-size:.9rem">Producto</div>
     <div style="display:flex;flex-direction:column;gap:10px;font-size:.85rem">
-      <a href="/planes/" style="color:#94a3b8;text-decoration:none">Planes</a>
+      <a href="/planes" style="color:#94a3b8;text-decoration:none">Planes</a>
       <a href="/blog" style="color:#94a3b8;text-decoration:none">Blog</a>
-      <a href="/carreras/" style="color:#94a3b8;text-decoration:none">Carreras</a>
+      <a href="/carreras" style="color:#94a3b8;text-decoration:none">Carreras</a>
       <a href="/#pricing" style="color:#94a3b8;text-decoration:none">Precios</a>
     </div>
   </div>

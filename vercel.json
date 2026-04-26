@@ -128,6 +128,11 @@
     { "source": "/blog/en/running-alone-vs-with-others", "destination": "/blog/en/running-alone-vs-group", "permanent": true },
     { "source": "/blog/en/beginner-running-guide", "destination": "/blog/en/how-to-start-running-beginners-guide", "permanent": true },
     { "source": "/blog/en/best-energy-gels-marathon", "destination": "/blog/en/what-energy-gel-marathon", "permanent": true },
+    { "source": "/blog/en/benefits-running-groups", "destination": "/blog/en/benefits-of-group-running", "permanent": true },
+    { "source": "/blog/en/best-omega-3-runners", "destination": "/blog/en/best-omega-3-running", "permanent": true },
+    { "source": "/blog/en/common-mistakes-runners", "destination": "/blog/en/beginner-running-mistakes-nobody-tells", "permanent": true },
+    { "source": "/blog/en/trail-running-mandatory-gear", "destination": "/blog/en/best-trail-running-shoes", "permanent": true },
+    { "source": "/races/trail-terres-ebre", "destination": "/carreras", "permanent": true },
 
     { "source": "/blog/grupos-running-barcelona", "destination": "/cities/barcelona", "permanent": true },
     { "source": "/blog/grupos-correr-granada", "destination": "/cities/granada", "permanent": true },

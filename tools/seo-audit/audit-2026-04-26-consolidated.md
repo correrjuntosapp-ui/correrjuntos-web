@@ -1,5 +1,5 @@
 # Auditoría SEO Consolidada — correrjuntos.com
-**Fecha:** 2026-04-25
+**Fecha:** 2026-04-26
 **Auditor:** Claude Code (sesión José Guettouche)
 **Scope:** Auditoría técnica + estratégica honesta
 **Datos pendientes para Fase 2:** GSC export, GA4 organic data
@@ -52,7 +52,7 @@ Posibles causas (a confirmar con datos GSC):
 
 ### 2.2 Sitemap (✅ FIXEADO HOY)
 - **Antes**: lastmod=2026-03-15 en 211 URLs (40 días sin actualizar)
-- **Después**: lastmod=2026-04-25 en 294 URLs
+- **Después**: lastmod=2026-04-26 en 294 URLs
 - IndexNow pinged con 31 URLs prioritarias
 
 ### 2.3 Redirect chains 308 (✅ FIXEADO HOY)

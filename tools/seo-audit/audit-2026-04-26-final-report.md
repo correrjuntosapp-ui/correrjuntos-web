@@ -1,4 +1,4 @@
-# Auditoría SEO Final — Sesión 2026-04-25
+# Auditoría SEO Final — Sesión 2026-04-26
 **6 commits ejecutados, deployed y pinged a IndexNow**
 
 ---
@@ -37,7 +37,7 @@
 2. **5 ghost pages** con `<meta http-equiv="refresh">` → reemplazadas por Vercel 308 directo
 3. **Cannibalization mergeada**: `entrenamiento-de-fuerza-para-corredores.html` (duplicado) eliminado
 4. **19 artículos** con Person schema bug `"name":"Carlos Ruiz"` + `"url":"jose-marquez"` → corregidos
-5. **Sitemap regenerado** (294 URLs con lastmod=2026-04-25, antes congelado en 2026-03-15)
+5. **Sitemap regenerado** (294 URLs con lastmod=2026-04-26, antes congelado en 2026-03-15)
 
 ### Fase B — Golden zone optimization (commit `f0dcdc37`)
 1. **Description corrupta** en `/blog/en/best-budget-running-shoes` (284 chars, texto duplicado) → reescrita 152 chars
@@ -132,12 +132,12 @@ Tu sitio probablemente está en DA 15-25. Para rankear top 5 en queries comercia
 
 ## 📁 ARCHIVOS GENERADOS HOY
 
-- `tools/seo-audit/audit-2026-04-25-consolidated.md` — auditoría inicial técnica
-- `tools/seo-audit/codebase-audit-2026-04-25.md` — análisis automated del código
+- `tools/seo-audit/audit-2026-04-26-consolidated.md` — auditoría inicial técnica
+- `tools/seo-audit/codebase-audit-2026-04-26.md` — análisis automated del código
 - `tools/seo-audit/golden-zone-50.csv` — 50 páginas priorizadas
 - `tools/seo-audit/gsc/pages.csv` — 1.000 páginas de GSC raw
 - `tools/seo-audit/gsc/queries.csv` — 1.037 queries de GSC raw
-- `tools/seo-audit/audit-2026-04-25-final-report.md` — este archivo
+- `tools/seo-audit/audit-2026-04-26-final-report.md` — este archivo
 
 ---
 

@@ -65,9 +65,19 @@ https://www.correrjuntos.com/blog/en/best-hydration-drinks-running
 
 | Resultado | Acción |
 |-----------|--------|
-| 🟢 Mejora ≥+15% CTR en 3+/5 pages | **Escalar**: replicar a otras 10 comparativas (~3h trabajo) |
-| 🟡 Mejora marginal o mixto | Esperar 1 semana más, revisar 14 mayo |
-| 🔴 Sin movimiento tras 21 días | **No es técnico**: pasar a Fase Autoridad (backlinks outreach) |
+| 🟢 Mejora ≥+15% CTR en 3+/5 pages | **Escalar** SOLO el patrón que funcionó (no reoptimizar). Replicar a otras 10 comparativas (~3h) |
+| 🟡 Mejora marginal o mixto | **Antes que esperar pasivo**: probar internal linking hacia estas 5 pages (hub-and-spoke). Suele ser falta de autoridad O de intención comercial en las queries. Después de eso, revisar 14 mayo |
+| 🔴 Sin movimiento tras 21 días | Backlinks como **driver principal de consolidación** (no único). Sprint outreach: 30 sitios running ES con DA 25-50 |
+
+## 🚨 Excepción a la cuarentena
+
+Las URLs están congeladas (no tocar HTML/JSON-LD/estructura) **EXCEPTO**:
+
+- ❌ Schema roto detectado → fix inmediato permitido
+- ❌ 404 / page dropped → fix inmediato permitido
+- ❌ Imagen caída (HEAD ≠ 200) → fix inmediato permitido
+
+Todo lo demás → congelado hasta el 7 mayo.
 
 ---
 

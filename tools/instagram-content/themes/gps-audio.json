@@ -1,0 +1,57 @@
+{
+  "id": "gps-audio",
+  "topic_label": "GPS · AUDIO · BACKGROUND",
+  "slides": [
+    {
+      "type": "hook",
+      "eyebrow": "TECH · CORRERJUNTOS",
+      "headline": "GPS preciso.",
+      "headline_em": "Audio cada km.",
+      "subline": "Sin sacar el móvil del bolsillo.",
+      "stat_label": "BACKGROUND",
+      "stat_value": "iOS · Android"
+    },
+    {
+      "type": "feature",
+      "eyebrow": "GPS",
+      "title": "Tracking preciso",
+      "subtitle": "Funciona en background",
+      "bullets": [
+        "iOS background location",
+        "Android foreground service",
+        "Sin pausas, sin glitches"
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "AUDIO ALERTAS",
+      "title": "Cada km, tu ritmo",
+      "subtitle": "Voz natural, sin tocar nada",
+      "bullets": [
+        "Distancia · Ritmo · Tiempo",
+        "Funciona con auriculares BT",
+        "Compatible con Spotify · Apple Music"
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "BLE · PULSÓMETRO",
+      "title": "Datos avanzados",
+      "subtitle": "Frecuencia · Cadencia · Potencia",
+      "bullets": [
+        "Conecta cualquier banda BT",
+        "Polar, Garmin, Coros, Wahoo",
+        "Visualización en tiempo real"
+      ]
+    },
+    {
+      "type": "cta",
+      "headline": "Tu app",
+      "headline_em": "técnica.",
+      "subline": "Pro features. 100% gratis.",
+      "eyebrow": "TECH · GRATIS"
+    }
+  ],
+  "caption": "La app de running más completa. Y gratis 📱⚡\n\n🛰️ GPS preciso en background (iOS + Android)\n🎧 Audio alertas cada km (con tu música puesta)\n💗 Conecta tu pulsómetro Bluetooth\n📊 Cadencia + potencia en tiempo real\n\nSin sacar el móvil del bolsillo. Sin perder señal. Sin pagar nada.\n\n→ Descarga gratis: correrjuntos.com/app",
+  "hashtags": "#running #correr #runningapp #appcorrer #gpsrunning #runningtech #correrjuntos #runners #runnersworld #runningtips #correresvida #runninglovers #runninglife #motivacionrunning #motivacionrunner #runningmadrid #runningbarcelona #runningespaña #runninggoals #runningmotivation #pulsometro #cadencia #runningwatch #runninggear #garmin #polar #coros #appsrunning #appsdeporte #appdeporte"
+}

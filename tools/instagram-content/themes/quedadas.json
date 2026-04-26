@@ -1,0 +1,57 @@
+{
+  "id": "quedadas",
+  "topic_label": "QUEDADAS · RUNNING SOCIAL",
+  "slides": [
+    {
+      "type": "hook",
+      "eyebrow": "QUEDADAS · CORRERJUNTOS",
+      "headline": "Corre",
+      "headline_em": "acompañado.",
+      "subline": "Encuentra runners en tu zona.",
+      "stat_label": "GRATIS",
+      "stat_value": "Sin tarjeta"
+    },
+    {
+      "type": "feature",
+      "eyebrow": "ENCUENTRA",
+      "title": "Quedadas en tu ciudad",
+      "subtitle": "Filtradas por ritmo y nivel",
+      "bullets": [
+        "Mapa con quedadas activas",
+        "Filtra por nivel · ritmo · día",
+        "Conecta con runners locales"
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "CREA",
+      "title": "Tu propia quedada",
+      "subtitle": "En 30 segundos",
+      "bullets": [
+        "Elige punto de encuentro",
+        "Define ritmo y distancia",
+        "Otros runners se unen"
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "MATCHING",
+      "title": "Runners compatibles",
+      "subtitle": "Algoritmo por ritmo + horario",
+      "bullets": [
+        "30% pace · 25% horario",
+        "25% nivel · 10% objetivos",
+        "Encuentra tu compañero ideal"
+      ]
+    },
+    {
+      "type": "cta",
+      "headline": "No corras",
+      "headline_em": "solo más.",
+      "subline": "Únete a la comunidad. Gratis.",
+      "eyebrow": "CORRE ACOMPAÑADO"
+    }
+  ],
+  "caption": "Correr solo está bien. Correr acompañado es mejor 🏃🏃\n\nEn CorrerJuntos:\n\n📍 Encuentra quedadas activas en tu ciudad\n🔍 Filtra por ritmo, nivel y día\n➕ Crea la tuya en 30 segundos\n🤝 Algoritmo de matching por ritmo + horario\n\nLa app es gratis. La comunidad es real.\n\n→ Descarga gratis: correrjuntos.com/app",
+  "hashtags": "#running #correr #runningcommunity #runningtogether #correrjuntos #quedadasrunning #runningmadrid #runningbarcelona #runningespaña #runners #runnersworld #runningapp #appcorrer #motivacionrunning #correresvida #runninglovers #runninglife #motivacionrunner #runningmadrid #runningbarcelona #runningvalencia #runningsevilla #runninggirl #runningman #runninggroup #grupoderunning #correrengrupo #runningfriends #compañerosderunning #runningcommunity"
+}

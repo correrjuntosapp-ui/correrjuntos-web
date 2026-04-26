@@ -1,0 +1,57 @@
+{
+  "id": "coach-ia",
+  "topic_label": "COACH IA",
+  "slides": [
+    {
+      "type": "hook",
+      "eyebrow": "COACH JOSÉ · IA",
+      "headline": "Tu coach",
+      "headline_em": "en 60 segundos.",
+      "subline": "Plan personalizado para ti, gratis.",
+      "stat_label": "PERSONALIZA",
+      "stat_value": "1 minuto"
+    },
+    {
+      "type": "feature",
+      "eyebrow": "PASO 1 · QUIZ",
+      "title": "Cuéntale tu objetivo",
+      "subtitle": "60 segundos de preguntas",
+      "bullets": [
+        "Tu nivel actual",
+        "Tu objetivo (5K, 10K, 21K, 42K)",
+        "Días por semana disponibles"
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "PASO 2 · PLAN",
+      "title": "Coach José IA",
+      "subtitle": "Genera tu plan personalizado",
+      "bullets": [
+        "Calibrado a tu ritmo y nivel",
+        "Tirada larga + series + descansos",
+        "Listo para empezar mañana"
+      ]
+    },
+    {
+      "type": "feature",
+      "eyebrow": "PASO 3 · ANÁLISIS",
+      "title": "Feedback post-carrera",
+      "subtitle": "El coach analiza cada sesión",
+      "bullets": [
+        "Comparativa con plan",
+        "Ajusta próximas sesiones",
+        "Detecta sobreentrenamiento"
+      ]
+    },
+    {
+      "type": "cta",
+      "headline": "Tu coach",
+      "headline_em": "te espera.",
+      "subline": "Plan personalizado en 60 segundos. Gratis.",
+      "eyebrow": "COACH JOSÉ · IA"
+    }
+  ],
+  "caption": "Tu coach personal de running, gratis y en tu bolsillo 🤖🏃\n\n¿Cómo funciona Coach José IA?\n\n1️⃣ 60 segundos de quiz (nivel, objetivo, disponibilidad)\n2️⃣ Plan personalizado calibrado a TU ritmo\n3️⃣ Análisis automático tras cada carrera\n\nNo es ChatGPT genérico. Es un coach especializado en running con datos de miles de planes reales.\n\n→ Descarga gratis: correrjuntos.com/app",
+  "hashtags": "#running #coachrunning #ia #runningcoach #correr #plan5k #plan10k #correrjuntos #runningapp #appcorrer #coachjose #runnersworld #runners #runningtips #runningcommunity #correresvida #runninglovers #motivacionrunning #planentrenamiento #runningmadrid #runningbarcelona #runningespaña #runninglife #motivacionrunner #runninggoals #runningmotivation #coachvirtual #coachia #runningplan #aitraining"
+}

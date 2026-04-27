@@ -10,7 +10,7 @@
 import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 const APP_STORE_URL = 'https://apps.apple.com/app/id6758505910';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';
@@ -75,13 +75,13 @@ export default async function handler(req, res) {
     return sendNotFound(res, 'Enlace no válido');
   }
 
-  if (!SUPABASE_ANON_KEY) {
+  if (!SUPABASE_SERVICE_KEY) {
     return sendNotFound(res, 'Configuración faltante');
   }
 
   let quedada = null;
   try {
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
     const { data, error } = await supabase
       .from('quedadas')
       .select('id, titulo, ciudad, fecha, hora, distancia_km, ritmo, nivel, punto_encuentro, descripcion, max_participantes, latitud, longitud, lat, lng, creador_id')

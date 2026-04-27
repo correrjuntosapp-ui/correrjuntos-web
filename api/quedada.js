@@ -84,7 +84,7 @@ export default async function handler(req, res) {
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
     const { data, error } = await supabase
       .from('quedadas')
-      .select('id, titulo, ciudad, fecha, hora, distancia_km, ritmo, nivel, punto_encuentro, descripcion, max_participantes, latitud, longitud, lat, lng, creador_id')
+      .select('id, titulo, ciudad, fecha, hora, distancia_km, distancia, ritmo, nivel, ubicacion, direccion, descripcion, max_participantes, lat, lng, creador_id')
       .eq('id', id)
       .single();
     if (error || !data) return sendNotFound(res);
@@ -98,7 +98,12 @@ export default async function handler(req, res) {
   const ciudad = quedada.ciudad || '';
   const fechaLarga = formatDateLong(quedada.fecha);
   const hora = formatTime(quedada.hora);
-  const distanciaKm = quedada.distancia_km ? `${quedada.distancia_km} km` : '';
+  // Las columnas reales: distancia_km (numeric) o distancia (texto legacy).
+  // El punto de encuentro vive en `ubicacion` o `direccion` según versión.
+  const distanciaKm = quedada.distancia_km
+    ? `${quedada.distancia_km} km`
+    : (quedada.distancia || '');
+  const puntoEncuentro = quedada.ubicacion || quedada.direccion || '';
   const ritmo = quedada.ritmo ? `${quedada.ritmo} min/km` : '';
   const nivel = (quedada.nivel || '').toLowerCase();
   const nivelLabel = nivel ? nivel.charAt(0).toUpperCase() + nivel.slice(1) : '';
@@ -153,7 +158,7 @@ ${JSON.stringify({
   location: {
     '@type': 'Place',
     name: ciudad || 'CorrerJuntos',
-    address: quedada.punto_encuentro || ciudad,
+    address: puntoEncuentro || ciudad,
   },
   url: canonical,
   organizer: { '@type': 'Organization', name: 'CorrerJuntos', url: SITE_URL },
@@ -320,10 +325,10 @@ ${JSON.stringify({
         <div class="info-label">Ritmo</div>
         <div class="info-value">${escapeHtml(ritmo)}</div>
       </div>` : ''}
-      ${quedada.punto_encuentro ? `
+      ${puntoEncuentro ? `
       <div class="info-cell full">
         <div class="info-label">Punto de encuentro</div>
-        <div class="info-value">${escapeHtml(quedada.punto_encuentro)}</div>
+        <div class="info-value">${escapeHtml(puntoEncuentro)}</div>
       </div>` : ''}
     </div>
 

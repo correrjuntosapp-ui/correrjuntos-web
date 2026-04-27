@@ -58,7 +58,8 @@
     }
   ],
   "rewrites": [
-    { "source": "/invite/:code([A-Za-z0-9]+)", "destination": "/invite" }
+    { "source": "/invite/:code([A-Za-z0-9]+)", "destination": "/invite" },
+    { "source": "/quedada/:id([0-9a-fA-F-]+)", "destination": "/api/quedada?id=:id" }
   ],
   "redirects": [
     {

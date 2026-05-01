@@ -337,7 +337,7 @@ const ARTICLES = [
   const page = await ctx.newPage();
 
   // ── Login ──────────────────────────────────────────────────────────────────
-  await page.goto('https://www.pinterest.es/login/');
+  await page.goto('https://es.pinterest.com/login/');
   await page.waitForLoadState('networkidle');
   await sleep(2000);
 
@@ -363,8 +363,8 @@ const ARTICLES = [
     const desc = `${art.t} — Guía para runners. #running #correr #correrjuntos`;
 
     try {
-      await page.goto('https://www.pinterest.es/pin-creation-tool/', { waitUntil: 'networkidle', timeout: 30000 });
-      await sleep(3000);
+      await page.goto('https://es.pinterest.com/pin-creation-tool/', { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await sleep(5000); // dar tiempo a que el form interno cargue tras DOMContentLoaded
 
       // ── Imagen: descargar y subir via file input ──
       const imgBuffer = await downloadImage(art.i);
@@ -558,6 +558,19 @@ const ARTICLES = [
     } catch (err) {
       console.log(`  ❌ [${i+1}/${ARTICLES.length}] ${art.s}: ${err.message.split('\n')[0]}`);
       console.log(`     ↩  Reanudar: --from ${i}`);
+      // Debug: screenshot + dump de inputs visibles
+      try {
+        await page.screenshot({ path: path.join(process.cwd(), 'tools', `debug-error-${i}.png`), fullPage: true });
+        const inputs = await page.evaluate(() =>
+          Array.from(document.querySelectorAll('input, button, [role="button"], [contenteditable="true"], [data-test-id]'))
+            .filter(el => el.offsetParent !== null)
+            .slice(0, 25)
+            .map(el => `<${el.tagName}> id="${el.id||''}" tid="${el.getAttribute('data-test-id')||''}" placeholder="${el.placeholder||''}" text="${(el.innerText||el.textContent||'').trim().slice(0,40)}"`)
+        );
+        console.log('     Visible elements on page:');
+        inputs.forEach(s => console.log('       ' + s));
+        console.log(`     URL actual: ${page.url()}`);
+      } catch(e) { console.log('     (no debug)'); }
       await sleep(3000);
     }
   }

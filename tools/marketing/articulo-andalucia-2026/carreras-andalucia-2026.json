@@ -1,0 +1,228 @@
+{
+  "_meta": {
+    "fuente": "ClubRunning + Onupolis web oficial",
+    "extraido": "2026-04-29",
+    "verificacion": "Datos extraídos directamente de páginas oficiales — no inventados",
+    "total_carreras": 105,
+    "rango": "Mayo 2026 → Diciembre 2026",
+    "provincias_cubiertas": 8,
+    "nota": "Algunas carreras pueden tener distancias múltiples (10K/5K/2K). Tipo principal listado."
+  },
+  "imprescindibles_2026": [
+    {
+      "ranking": 1,
+      "nombre": "10K Huelva Puerta del Descubrimiento",
+      "fecha": "2026-06-06",
+      "localidad": "Huelva",
+      "provincia": "Huelva",
+      "tipo": "10K asfalto",
+      "destacado_porque": "Sede del Campeonato de Andalucía 10K en Ruta 2026"
+    },
+    {
+      "ranking": 2,
+      "nombre": "IX Sherry Maratón",
+      "fecha": "2026-05-03",
+      "localidad": "Jerez de la Frontera",
+      "provincia": "Cádiz",
+      "tipo": "Trail",
+      "destacado_porque": "Trail icónico entre viñedos de Jerez, una experiencia única"
+    },
+    {
+      "ranking": 3,
+      "nombre": "XIII Media Maratón Vélez-Málaga",
+      "fecha": "2026-05-01",
+      "localidad": "Vélez-Málaga",
+      "provincia": "Málaga",
+      "tipo": "Media maratón asfalto",
+      "destacado_porque": "Una de las medias más populares de la Costa del Sol"
+    },
+    {
+      "ranking": 4,
+      "nombre": "Ultra Trail Bosques del Sur",
+      "fecha": "2026-05-30",
+      "localidad": "Cazorla",
+      "provincia": "Jaén",
+      "tipo": "Ultra trail",
+      "destacado_porque": "Reto extremo en la Sierra de Cazorla, Segura y Las Villas"
+    },
+    {
+      "ranking": 5,
+      "nombre": "XXVI 101 Km – 24 horas La Legión",
+      "fecha": "2026-05-09",
+      "localidad": "Ronda",
+      "provincia": "Málaga",
+      "tipo": "Ultra trail / marcha",
+      "destacado_porque": "La prueba mítica de La Legión Española, 101 km en 24h"
+    },
+    {
+      "ranking": 6,
+      "nombre": "III CxM Trail Puntademo",
+      "fecha": "2026-05-30",
+      "localidad": "Punta Umbría",
+      "provincia": "Huelva",
+      "tipo": "Trail",
+      "destacado_porque": "Trail costero con paso por las marismas onubenses"
+    },
+    {
+      "ranking": 7,
+      "nombre": "Carrera Parque de María Luisa - Powerade",
+      "fecha": "2026-05-10",
+      "localidad": "Sevilla",
+      "provincia": "Sevilla",
+      "tipo": "Carrera popular",
+      "destacado_porque": "Recorrido por el parque más emblemático de Sevilla"
+    }
+  ],
+  "carreras_por_provincia": {
+    "huelva": {
+      "total": 14,
+      "circuito_oficial": "Onupolis (Ayuntamiento de Huelva)",
+      "carreras": [
+        { "nombre": "Carrera de la Mujer Onupolis", "fecha": "2026-05-16", "localidad": "Huelva (Parque Zafra)", "tipo": "Popular", "distancias": "10K · 5K · 2K", "circuito": "Onupolis" },
+        { "nombre": "XIV Media Maratón Ruta de los Hoteles de Cartaya", "fecha": "2026-05-16", "localidad": "Cartaya", "tipo": "Media maratón asfalto", "distancias": "21K" },
+        { "nombre": "III CxM Trail Puntademo", "fecha": "2026-05-30", "localidad": "Punta Umbría", "tipo": "Trail", "distancias": "—" },
+        { "nombre": "XXIV Cross del Agua de Galaroza", "fecha": "2026-05-31", "localidad": "Galaroza", "tipo": "Cross", "distancias": "—" },
+        { "nombre": "10K Huelva Puerta del Descubrimiento", "fecha": "2026-06-06", "localidad": "Huelva", "tipo": "10K asfalto", "distancias": "10K", "destacada": true, "notas": "Campeonato de Andalucía 10K en Ruta" },
+        { "nombre": "Reto 4.1 Mazagón", "fecha": "2026-06-13", "localidad": "Palos de la Frontera", "tipo": "Popular", "distancias": "4.1K" },
+        { "nombre": "Nocturna Onupolis", "fecha": "2026-06-13", "localidad": "Huelva (La Placeta)", "tipo": "Nocturna", "distancias": "10K · 5K · 2K", "circuito": "Onupolis" },
+        { "nombre": "Golf Runner Onupolis", "fecha": "2026-07-04", "localidad": "Aljaraque (Club Bellavista)", "tipo": "Popular", "distancias": "10K · 5K · 2K", "circuito": "Onupolis" },
+        { "nombre": "Summer Night Aljaraque", "fecha": "2026-08-29", "localidad": "Aljaraque", "tipo": "Nocturna", "distancias": "—" },
+        { "nombre": "Huelva Verde Onupolis", "fecha": "2026-09-05", "localidad": "Huelva (Parque Moret)", "tipo": "Popular", "distancias": "10K · 5K · 2K", "circuito": "Onupolis" },
+        { "nombre": "VII Carrera Popular Villa de Escacena", "fecha": "2026-10-04", "localidad": "Escacena del Campo", "tipo": "Popular", "distancias": "—" },
+        { "nombre": "Vuelta a Huelva Onupolis", "fecha": "2026-10-12", "localidad": "Huelva (Andrés Estrada)", "tipo": "Popular", "distancias": "10K · 5K · 2K", "circuito": "Onupolis" },
+        { "nombre": "21K Ciudad de Huelva", "fecha": "2026-11-01", "localidad": "Huelva", "tipo": "Media maratón asfalto", "distancias": "21K", "destacada": true },
+        { "nombre": "San Silvestre Onupolis", "fecha": "2026-12-30", "localidad": "Huelva (Plaza El Punto)", "tipo": "Popular", "distancias": "10K · 5K · 2K", "circuito": "Onupolis" }
+      ]
+    },
+    "sevilla": {
+      "total": 15,
+      "carreras": [
+        { "nombre": "XXXVII Carrera Popular de Marchena", "fecha": "2026-05-01", "localidad": "Marchena", "tipo": "Popular" },
+        { "nombre": "XIII Half Triatlón de Sevilla", "fecha": "2026-05-03", "localidad": "Sevilla", "tipo": "Triatlón media distancia" },
+        { "nombre": "XXVI Carrera Popular del Deporte y la Amistad", "fecha": "2026-05-09", "localidad": "Pedrera", "tipo": "Popular" },
+        { "nombre": "Triatlón Arahal", "fecha": "2026-05-10", "localidad": "Arahal", "tipo": "Triatlón sprint" },
+        { "nombre": "Carrera Parque de María Luisa - Powerade", "fecha": "2026-05-10", "localidad": "Sevilla", "tipo": "Popular", "destacada": true },
+        { "nombre": "XII Carrera Nocturna Paraeña", "fecha": "2026-05-22", "localidad": "Paradas", "tipo": "Nocturna" },
+        { "nombre": "V Carrera Carolina Robles - Salud Mental", "fecha": "2026-05-24", "localidad": "Dos Hermanas", "tipo": "Solidaria" },
+        { "nombre": "II Carrera Nocturna TBF Jorge Bonsor", "fecha": "2026-05-29", "localidad": "Mairena del Alcor", "tipo": "Nocturna" },
+        { "nombre": "V Carrera Nocturna Ciudad Monumental de Osuna", "fecha": "2026-05-30", "localidad": "Osuna", "tipo": "Nocturna" },
+        { "nombre": "Carrera de las Capacidades", "fecha": "2026-05-31", "localidad": "Tomares", "tipo": "Popular" },
+        { "nombre": "XXI Carrera Nocturna la Mistela", "fecha": "2026-06-05", "localidad": "Los Palacios y Villafranca", "tipo": "Nocturna" },
+        { "nombre": "XX Carrera Nocturna Ribera del Genil", "fecha": "2026-06-06", "localidad": "Écija", "tipo": "Nocturna" },
+        { "nombre": "XXIX Triatlón de Sevilla", "fecha": "2026-06-07", "localidad": "Sevilla", "tipo": "Triatlón olímpico" },
+        { "nombre": "Carrera Nocturna del Alamillo", "fecha": "2026-06-12", "localidad": "Sevilla", "tipo": "Nocturna" },
+        { "nombre": "XI Carrera Nocturna Villa de Pilas", "fecha": "2026-06-12", "localidad": "Pilas", "tipo": "Nocturna" }
+      ]
+    },
+    "cadiz": {
+      "total": 15,
+      "carreras": [
+        { "nombre": "II CxM Algeciras Capitán Trail", "fecha": "2026-05-01", "localidad": "Algeciras", "tipo": "Trail" },
+        { "nombre": "Carrera de Colores Conil", "fecha": "2026-05-01", "localidad": "Conil de la Frontera", "tipo": "Popular" },
+        { "nombre": "VII Running Garbanzos de Naveros", "fecha": "2026-05-02", "localidad": "Vejer de la Frontera", "tipo": "Popular" },
+        { "nombre": "Desafío Sierra de Cádiz", "fecha": "2026-05-02", "localidad": "Arcos de la Frontera", "tipo": "OCR / Carrera de obstáculos" },
+        { "nombre": "IX Sherry Maratón", "fecha": "2026-05-03", "localidad": "Jerez de la Frontera", "tipo": "Trail", "destacada": true, "notas": "Trail entre viñedos de Jerez" },
+        { "nombre": "IX Carrera Popular Puente Mayorga", "fecha": "2026-05-10", "localidad": "Puente Mayorga", "tipo": "Popular" },
+        { "nombre": "IV Triatlón Trimanzanilla", "fecha": "2026-05-10", "localidad": "Sanlúcar de Barrameda", "tipo": "Triatlón sprint" },
+        { "nombre": "V Trail Villa de Trebujena", "fecha": "2026-05-10", "localidad": "Trebujena", "tipo": "Trail" },
+        { "nombre": "III Tagarnina Trail", "fecha": "2026-05-16", "localidad": "Paterna de Rivera", "tipo": "Trail" },
+        { "nombre": "Tio Pepe Running", "fecha": "2026-05-23", "localidad": "Jerez de la Frontera", "tipo": "Popular" },
+        { "nombre": "Media Maratón El Puerto", "fecha": "2026-05-24", "localidad": "El Puerto de Santa María", "tipo": "Media maratón asfalto" },
+        { "nombre": "XI Trail Nocturno Virgen de las Piedras", "fecha": "2026-05-30", "localidad": "Villaluenga del Rosario", "tipo": "Trail nocturno" },
+        { "nombre": "XV Carrera Popular Corpus-Tesorillo", "fecha": "2026-05-30", "localidad": "San Martín del Tesorillo", "tipo": "Popular" },
+        { "nombre": "IV CxM Cerro Verdugo", "fecha": "2026-05-30", "localidad": "Prado del Rey", "tipo": "Trail" },
+        { "nombre": "X Fan-Pin Miguel de Cervantes", "fecha": "2026-05-30", "localidad": "San Fernando", "tipo": "OCR" }
+      ]
+    },
+    "malaga": {
+      "total": 14,
+      "carreras": [
+        { "nombre": "XIII Media Maratón Vélez-Málaga", "fecha": "2026-05-01", "localidad": "Vélez-Málaga", "tipo": "Media maratón asfalto", "destacada": true },
+        { "nombre": "V CxM Trabuco Trail", "fecha": "2026-05-02", "localidad": "Villanueva del Trabuco", "tipo": "Trail" },
+        { "nombre": "XVI Carrera Multicultural Cruz del Humilladero", "fecha": "2026-05-03", "localidad": "Málaga", "tipo": "Popular" },
+        { "nombre": "XIII Carrera Urbana de Estepona", "fecha": "2026-05-03", "localidad": "Estepona", "tipo": "Popular" },
+        { "nombre": "I Carrera Internacional Nocturna La Cala del Moral", "fecha": "2026-05-09", "localidad": "La Cala del Moral", "tipo": "Nocturna" },
+        { "nombre": "XXVI 101 Km – 24 horas La Legión", "fecha": "2026-05-09", "localidad": "Ronda", "tipo": "Ultra trail / marcha", "destacada": true, "notas": "101 km en 24h, prueba mítica" },
+        { "nombre": "XIII Carrera IHSM La Mayora UMA-CSIC", "fecha": "2026-05-10", "localidad": "Algarrobo", "tipo": "Popular" },
+        { "nombre": "43º Trofeo San Isidro de Nerja", "fecha": "2026-05-13", "localidad": "Nerja", "tipo": "Popular" },
+        { "nombre": "IX Carrera Popular Pirineo Costa del Sol Alfarnate", "fecha": "2026-05-16", "localidad": "Alfarnate", "tipo": "Popular" },
+        { "nombre": "CxM Alpandeire", "fecha": "2026-05-24", "localidad": "Alpandeire", "tipo": "Trail" },
+        { "nombre": "X Carrera Popular Villa de Gaucín", "fecha": "2026-05-30", "localidad": "Gaucín", "tipo": "Popular" },
+        { "nombre": "Carrera de las Capacidades Málaga", "fecha": "2026-05-31", "localidad": "Málaga", "tipo": "Popular" },
+        { "nombre": "V Carrera 5K Donación Trasplante Vida", "fecha": "2026-05-31", "localidad": "Málaga", "tipo": "Solidaria" },
+        { "nombre": "X Carrera Monumental Nocturna Ciudad de Antequera", "fecha": "2026-06-05", "localidad": "Antequera", "tipo": "Nocturna" }
+      ]
+    },
+    "granada": {
+      "total": 15,
+      "carreras": [
+        { "nombre": "XII Carrera Popular del Hornazo", "fecha": "2026-05-01", "localidad": "Cádiar", "tipo": "Popular" },
+        { "nombre": "XVI Gran Premio de Fondo Villa de Salobreña", "fecha": "2026-05-10", "localidad": "Salobreña", "tipo": "Popular" },
+        { "nombre": "III CxM Molvízar", "fecha": "2026-05-10", "localidad": "Molvízar", "tipo": "Trail" },
+        { "nombre": "XI Carrera Vertical Sierra de Dúrcal", "fecha": "2026-05-16", "localidad": "Dúrcal", "tipo": "Trail vertical" },
+        { "nombre": "XXXVIII Prueba de Fondo Ciudad de Órgiva", "fecha": "2026-05-16", "localidad": "Órgiva", "tipo": "Popular" },
+        { "nombre": "VII Carrera Policía Nacional Ruta 091 Granada", "fecha": "2026-05-16", "localidad": "Granada", "tipo": "Popular" },
+        { "nombre": "III Trail Villa de Pórtugos", "fecha": "2026-05-23", "localidad": "Pórtugos", "tipo": "Trail" },
+        { "nombre": "IV Memorial Jose Miguel Megías Leyva", "fecha": "2026-05-24", "localidad": "Churriana de la Vega", "tipo": "Popular" },
+        { "nombre": "XXI Vuelta al Mencal", "fecha": "2026-05-24", "localidad": "Pedro Martínez", "tipo": "Trail" },
+        { "nombre": "XI Lanjarón Cañón Trail", "fecha": "2026-05-30", "localidad": "Lanjarón", "tipo": "Trail" },
+        { "nombre": "Dual Run Moraleda de Zafayona", "fecha": "2026-05-31", "localidad": "Moraleda de Zafayona", "tipo": "Popular" },
+        { "nombre": "III Trail El Bastitán", "fecha": "2026-05-31", "localidad": "Baza", "tipo": "Trail" },
+        { "nombre": "X CxM 51x13 Villa de la Peza", "fecha": "2026-06-07", "localidad": "La Peza", "tipo": "Trail" },
+        { "nombre": "La Nocturna CxM Benamaurel", "fecha": "2026-07-11", "localidad": "Benamaurel", "tipo": "Trail nocturno" },
+        { "nombre": "XV CxM Valle de los Guájares", "fecha": "2026-09-06", "localidad": "Los Guájares", "tipo": "Trail" }
+      ]
+    },
+    "almeria": {
+      "total": 13,
+      "carreras": [
+        { "nombre": "XIII Carrera Popular Francisco Montoya", "fecha": "2026-05-03", "localidad": "El Ejido (Norias de Daza)", "tipo": "Popular" },
+        { "nombre": "X Desafío Playa de los Muertos - Faro Mesa Roldán", "fecha": "2026-05-03", "localidad": "Carboneras", "tipo": "Trail" },
+        { "nombre": "X CxM Sierro", "fecha": "2026-05-03", "localidad": "Sierro", "tipo": "Trail" },
+        { "nombre": "II CxM Villa de Laroya", "fecha": "2026-05-10", "localidad": "Laroya", "tipo": "Trail" },
+        { "nombre": "XIX Media Maratón Ciudad de las Hortalizas", "fecha": "2026-05-10", "localidad": "El Ejido", "tipo": "Media maratón asfalto" },
+        { "nombre": "XX Carrera de Montaña Valle del Almanzora", "fecha": "2026-05-17", "localidad": "Armuña de Almanzora", "tipo": "Trail" },
+        { "nombre": "Carrera Solidaria Ruta 091 de Almería", "fecha": "2026-05-24", "localidad": "Almería", "tipo": "Solidaria" },
+        { "nombre": "Maimón Trail", "fecha": "2026-05-24", "localidad": "Vélez-Blanco", "tipo": "Trail" },
+        { "nombre": "V Road Running Vícar", "fecha": "2026-06-06", "localidad": "Vícar", "tipo": "Popular" },
+        { "nombre": "II Carrera Lago Victoria Almerimar", "fecha": "2026-06-21", "localidad": "El Ejido", "tipo": "Popular" },
+        { "nombre": "X Carrera Nocturna Contra el Cáncer Ciudad de Almería", "fecha": "2026-07-04", "localidad": "Almería", "tipo": "Nocturna solidaria" },
+        { "nombre": "XIII Carrera Nocturna Ciudad de Balerma", "fecha": "2026-07-11", "localidad": "El Ejido", "tipo": "Nocturna" },
+        { "nombre": "CxM Macael Mármol", "fecha": "2026-09-27", "localidad": "Macael", "tipo": "Trail" }
+      ]
+    },
+    "cordoba": {
+      "total": 7,
+      "circuito_oficial": "Circuito Provincial Diputación de Córdoba (58 carreras totales)",
+      "carreras": [
+        { "nombre": "44ª Carrera Popular María Auxiliadora Memorial Kiko Pastor", "fecha": "2026-05-10", "localidad": "Córdoba", "tipo": "Popular" },
+        { "nombre": "II Trail Castillo de Maimón", "fecha": "2026-06-14", "localidad": "Córdoba", "tipo": "Trail" },
+        { "nombre": "IV Trail Nocturno Castil de Campos", "fecha": "2026-08-01", "localidad": "Castil de Campos", "tipo": "Trail nocturno" },
+        { "nombre": "Cross de Montalbán", "fecha": "2026-09-27", "localidad": "Montalbán", "tipo": "Cross" },
+        { "nombre": "Cross de Santaella", "fecha": "2026-10-25", "localidad": "Santaella", "tipo": "Cross" },
+        { "nombre": "Cross de La Victoria", "fecha": "2026-11-08", "localidad": "La Victoria", "tipo": "Cross" },
+        { "nombre": "Cross de Puente Genil", "fecha": "2026-11-22", "localidad": "Puente Genil", "tipo": "Cross" }
+      ]
+    },
+    "jaen": {
+      "total": 15,
+      "carreras": [
+        { "nombre": "XXIV Carrera Urbana Villa de Ibros", "fecha": "2026-05-01", "localidad": "Ibros", "tipo": "Popular" },
+        { "nombre": "III Carrera la Pava Running", "fecha": "2026-05-02", "localidad": "Villanueva del Arzobispo", "tipo": "Popular" },
+        { "nombre": "XV Carrera Urbana Ciudad de La Carolina", "fecha": "2026-05-03", "localidad": "La Carolina", "tipo": "Popular" },
+        { "nombre": "XXVII Carrera Popular San Isidro", "fecha": "2026-05-09", "localidad": "Jabalquinto", "tipo": "Popular" },
+        { "nombre": "Sierra de Segura Infinita Trails", "fecha": "2026-05-10", "localidad": "Orcera", "tipo": "Trail" },
+        { "nombre": "Dual Run Frailes", "fecha": "2026-05-23", "localidad": "Frailes", "tipo": "Popular" },
+        { "nombre": "V CxM Rompealbarcas", "fecha": "2026-05-23", "localidad": "Valdepeñas de Jaén", "tipo": "Trail" },
+        { "nombre": "42 Carrera Popular El Viejo", "fecha": "2026-05-24", "localidad": "Úbeda", "tipo": "Popular" },
+        { "nombre": "Ultra Trail Bosques del Sur", "fecha": "2026-05-30", "localidad": "Cazorla", "tipo": "Ultra trail", "destacada": true, "notas": "Sierra de Cazorla, Segura y Las Villas" },
+        { "nombre": "Media Maratón Bosques del Sur", "fecha": "2026-06-06", "localidad": "Cazorla", "tipo": "Trail" },
+        { "nombre": "20ª Carrera Popular de la Luna Llena", "fecha": "2026-06-13", "localidad": "Marmolejo", "tipo": "Nocturna" },
+        { "nombre": "X Carrera de la Cereza", "fecha": "2026-06-14", "localidad": "Castillo de Locubín", "tipo": "Popular" },
+        { "nombre": "VII Carrera-Caminata Nocturna Begíjar", "fecha": "2026-06-27", "localidad": "Begíjar", "tipo": "Nocturna" },
+        { "nombre": "Rompiendo Barreras 10K", "fecha": "2026-07-04", "localidad": "Linares", "tipo": "10K asfalto" },
+        { "nombre": "VIII Maratón en Pista Ciudad de Jaén", "fecha": "2026-07-05", "localidad": "Jaén", "tipo": "Maratón en pista" }
+      ]
+    }
+  }
+}

@@ -335,7 +335,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <div class="container content">
 
   <p>Andaluc&iacute;a es probablemente la regi&oacute;n con el calendario de carreras populares m&aacute;s denso de Espa&ntilde;a. Solo entre mayo y diciembre de 2026 hay m&aacute;s de cien pruebas verificadas, repartidas entre las 8 provincias y entre todos los formatos imaginables: desde un 5K nocturno en Conil hasta el Ultra Trail Bosques del Sur en la Sierra de Cazorla, pasando por la m&iacute;tica 101 Km de La Legi&oacute;n en Ronda.</p>
-  <p>Esta gu&iacute;a est&aacute; pensada para que encuentres la tuya. La hemos construido a partir de las webs oficiales de los ayuntamientos, ClubRunning y los circuitos provinciales (Onupolis en Huelva, Diputaci&oacute;n de C&oacute;rdoba) &mdash; nada inventado, nada copiado de listas viejas. A continuaci&oacute;n tienes las 7 imprescindibles, el calendario mes a mes y un desglose detallado por provincia.</p>
+  <p>Esta gu&iacute;a est&aacute; pensada para que encuentres la tuya. La hemos construido tras revisar las <strong>webs oficiales de los 8 ayuntamientos</strong> capitales de provincia, el portal <strong>ClubRunning</strong>, los circuitos provinciales (<strong>Onupolis</strong> en Huelva, <strong>Diputaci&oacute;n de C&oacute;rdoba</strong>) y las actas federativas de la Federaci&oacute;n Andaluza de Atletismo &mdash; nada inventado, nada copiado de listas viejas. Si detectas un cambio o quieres a&ntilde;adir una prueba, escr&iacute;benos y la verificamos. A continuaci&oacute;n tienes las 7 imprescindibles, el calendario mes a mes y un desglose detallado por provincia.</p>
 
   <nav class="toc" aria-label="Tabla de contenidos">
     <div class="toc-title text-xl font-bold" role="heading" aria-level="3">En este art&iacute;culo</div>
@@ -352,6 +352,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
       <li><a href="#almeria">Carreras en Almer&iacute;a y Cabo de Gata</a></li>
       <li><a href="#preparacion">C&oacute;mo preparar tu carrera en Andaluc&iacute;a</a></li>
       <li><a href="#precios">Cu&aacute;nto cuesta inscribirse</a></li>
+      <li><a href="#trail-vs-asfalto">&iquest;Trail o asfalto? Decide en 30 segundos</a></li>
       <li><a href="#por-tiempo">Tu carrera ideal seg&uacute;n tiempo de prep</a></li>
       <li><a href="#info-practica">Informaci&oacute;n pr&aacute;ctica que nadie te cuenta</a></li>
       <li><a href="#elegir">C&oacute;mo elegir la carrera adecuada para ti</a></li>
@@ -393,8 +394,19 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <div class="cta-mid" style="margin:32px 0;padding:20px 24px;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(249,115,22,.03));border:1px solid rgba(249,115,22,.15);border-radius:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><p style="color:#3d3229;font-weight:700;font-size:.95rem;margin:0 0 4px">&#127939; &iquest;Buscas un plan para tu primera 10K o 21K?</p><p style="color:#5c4d3d;font-size:.85rem;margin:0">Coach Jos&eacute; IA te crea un plan personalizado en 60 segundos. Gratis en CorrerJuntos.</p></div><a href="/planes" class="cta" style="padding:10px 20px;font-size:.85rem;white-space:nowrap">Ver planes</a></div>
 
   <h2 id="calendario">Calendario mes a mes</h2>
-  <p>Las pruebas se concentran sobre todo en mayo, junio y los meses de oto&ntilde;o. En verano (julio y agosto) la actividad baja por el calor, salvo nocturnas. Aqu&iacute; tienes las pruebas m&aacute;s relevantes ordenadas por mes:</p>
+  <p>Las pruebas se concentran sobre todo en mayo, junio y los meses de oto&ntilde;o. En verano (julio y agosto) la actividad baja por el calor, salvo nocturnas. Aqu&iacute; tienes las pruebas m&aacute;s relevantes ordenadas por mes &mdash; usa los filtros para acotar:</p>
 
+  <div id="calendar-filters" style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:14px;background:#fffcf9;border:1px solid #efe6db;border-radius:12px">
+    <span style="font-weight:700;color:#3d3229;font-size:.85rem;align-self:center;margin-right:4px">Filtrar:</span>
+    <button class="cal-filter active" data-month="all" style="padding:6px 14px;border:1px solid rgba(249,115,22,.25);background:#f97316;color:#fff;border-radius:999px;font-size:.82rem;font-weight:700;cursor:pointer">Todo el a&ntilde;o</button>
+    <button class="cal-filter" data-month="mayo" style="padding:6px 14px;border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.06);color:#5c4d3d;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer">Mayo</button>
+    <button class="cal-filter" data-month="junio" style="padding:6px 14px;border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.06);color:#5c4d3d;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer">Junio</button>
+    <button class="cal-filter" data-month="verano" style="padding:6px 14px;border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.06);color:#5c4d3d;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer">Jul-Ago</button>
+    <button class="cal-filter" data-month="otono" style="padding:6px 14px;border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.06);color:#5c4d3d;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer">Sep-Oct</button>
+    <button class="cal-filter" data-month="finanio" style="padding:6px 14px;border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.06);color:#5c4d3d;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer">Nov-Dic</button>
+  </div>
+
+  <div class="calendar-block" data-month="mayo">
   <h3>Mayo 2026 &mdash; el mes m&aacute;s activo</h3>
   <p>Por volumen y nivel, mayo concentra m&aacute;s del 60% del calendario anual. Estas son las pruebas m&aacute;s destacadas:</p>
   <table class="race-table">
@@ -418,6 +430,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     </tbody>
   </table>
 
+  </div>
+  <div class="calendar-block" data-month="junio">
   <h3>Junio 2026</h3>
   <p>Junio sigue siendo intenso pero el calor empieza a desplazar las salidas a primera hora o nocturnas:</p>
   <table class="race-table">
@@ -435,6 +449,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     </tbody>
   </table>
 
+  </div>
+  <div class="calendar-block" data-month="verano">
   <h3>Julio y agosto 2026 &mdash; nocturnas y verano</h3>
   <p>Con el calor extremo, prevalecen las pruebas nocturnas y los trails de monta&ntilde;a (donde la altitud refresca):</p>
   <table class="race-table">
@@ -451,6 +467,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     </tbody>
   </table>
 
+  </div>
+  <div class="calendar-block" data-month="otono">
   <h3>Septiembre y octubre 2026 &mdash; vuelta a la actividad</h3>
   <p>El oto&ntilde;o devuelve la masa al calendario. Es el mejor momento para correr en Andaluc&iacute;a: temperaturas suaves y ambiente cargado tras las vacaciones:</p>
   <table class="race-table">
@@ -466,6 +484,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     </tbody>
   </table>
 
+  </div>
+  <div class="calendar-block" data-month="finanio">
   <h3>Noviembre y diciembre 2026</h3>
   <p>Cierran el a&ntilde;o las medias maratones grandes y las cl&aacute;sicas de San Silvestre:</p>
   <table class="race-table">
@@ -477,6 +497,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
       <tr><td class="fecha">30 dic</td><td><a href="https://www.google.com/search?q=San%20Silvestre%20Onupolis%202026%20inscripci%C3%B3n" target="_blank" rel="noopener nofollow" style="color:#f97316;text-decoration:none">San Silvestre Onupolis</a></td><td>Huelva (Plaza El Punto)</td><td>10K / 5K</td></tr>
     </tbody>
   </table>
+  </div>
 
   <div class="tip">
     <strong>Calor en mayo y junio:</strong> aunque el calendario est&aacute; cargado, las temperaturas pueden sorprender. En 2025 hubo medias maratones con 28 &deg;C a las 9 de la ma&ntilde;ana. Si vienes de fuera de Andaluc&iacute;a, llega 2-3 d&iacute;as antes para aclimatarte y bebe sales el d&iacute;a previo.
@@ -484,6 +505,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 
   <h2 id="huelva">Carreras en Huelva &mdash; Circuito Onupolis</h2>
   <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/29881471/pexels-photo-29881471.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Corredora junto al paseo mar&iacute;timo &mdash; Huelva ofrece marismas, playa y trail costero para correr en 2026" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">Las marismas onubenses y la costa de Punta Umbr&iacute;a son escenarios cl&aacute;sicos del calendario provincial</figcaption></figure>
+  <p><strong>En Huelva hay 14 carreras verificadas entre mayo y diciembre de 2026</strong>, con foco en el Circuito Onupolis (Ayuntamiento de Huelva, 6 pruebas) y la cita reina del a&ntilde;o: el <strong>10K Huelva Puerta del Descubrimiento</strong> (sede del Cto. de Andaluc&iacute;a 10K en Ruta).</p>
   <p>Huelva tiene el circuito de carreras populares m&aacute;s organizado de Andaluc&iacute;a: <strong>Onupolis</strong>, gestionado por el Ayuntamiento, que agrupa 6 pruebas oficiales con un sistema de puntuaci&oacute;n para corredores fijos. Los patrocinadores incluyen Toyota, Coca-Cola y la Universidad de Huelva, lo que da idea del nivel de organizaci&oacute;n.</p>
 
   <h3>Las 6 pruebas Onupolis 2026</h3>
@@ -513,6 +535,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 
   <h2 id="sevilla">Carreras en Sevilla y provincia</h2>
   <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/4803916/pexels-photo-4803916.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Runner corriendo junto a un parque urbano en Sevilla" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">El Parque de Mar&iacute;a Luisa, las riberas del Guadalquivir y los pueblos de la Campi&ntilde;a sevillana concentran m&aacute;s de 15 pruebas en mayo-junio</figcaption></figure>
+  <p><strong>En Sevilla hay 15 carreras verificadas entre mayo y junio de 2026</strong>, repartidas entre la capital (Parque Mar&iacute;a Luisa, Alamillo, Triatl&oacute;n de Sevilla) y los pueblos del Aljarafe, los Alcores y la Campi&ntilde;a, con dominio absoluto de las nocturnas en mayo.</p>
   <p>Sevilla concentra <strong>15 pruebas verificadas</strong> entre la capital y los pueblos del Aljarafe, los Alcores y la Campi&ntilde;a. El gran reclamo cl&aacute;sico es la <a href="/blog/maraton-sevilla-guia" style="color:#f97316">Marat&oacute;n de Sevilla</a> (febrero, fuera del rango de esta gu&iacute;a) y la <a href="/blog/media-maraton-sevilla-2026" style="color:#f97316">Media Marat&oacute;n</a>, pero en mayo-junio hay much&iacute;simo movimiento popular:</p>
 
   <h3>Capital y &aacute;rea metropolitana</h3>
@@ -539,6 +562,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 
   <h2 id="malaga">Carreras en M&aacute;laga y Costa del Sol</h2>
   <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/1056497/pexels-photo-1056497.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Corredores junto al mar en la costa malague&ntilde;a, rutas de running por la Costa del Sol 2026" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">La Costa del Sol y la Serran&iacute;a de Ronda combinan asfalto rapido en la costa con trails serios en el interior</figcaption></figure>
+  <p><strong>En M&aacute;laga hay 14 carreras verificadas entre mayo y junio de 2026</strong>, incluyendo la m&iacute;tica <strong>101 Km de La Legi&oacute;n</strong> en Ronda, la <strong>Media Marat&oacute;n V&eacute;lez-M&aacute;laga</strong> en la Costa del Sol y trails en la Serran&iacute;a de Ronda y Axarqu&iacute;a.</p>
   <p>M&aacute;laga combina <strong>asfalto urbano</strong> en la costa con <strong>trails serios</strong> en la Serran&iacute;a de Ronda y la Axarqu&iacute;a. Hay 14 pruebas verificadas para mayo-junio, incluyendo la m&iacute;tica 101 Km de La Legi&oacute;n.</p>
 
   <h3>Asfalto y popular</h3>
@@ -569,6 +593,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 
   <h2 id="cadiz">Carreras en C&aacute;diz, Jerez y Sierra Norte</h2>
   <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/5928322/pexels-photo-5928322.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Mujer corriendo por la playa &mdash; el litoral gaditano y los vi&ntilde;edos de Jerez son escenario de pruebas como la Sherry Marat&oacute;n" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">La provincia con m&aacute;s diversidad de Andaluc&iacute;a: vi&ntilde;edos de Jerez, sierras de Grazalema y el litoral gaditano</figcaption></figure>
+  <p><strong>En C&aacute;diz hay 15 carreras verificadas entre mayo y junio de 2026</strong>, con un perfil &uacute;nico en Andaluc&iacute;a: la <strong>Sherry Marat&oacute;n entre vi&ntilde;edos de Jerez</strong>, trails de la Sierra de Grazalema, la Media Marat&oacute;n El Puerto y populares costeras desde Conil hasta Algeciras.</p>
   <p>C&aacute;diz tiene <strong>15 pruebas verificadas</strong> y un perfil muy variado: trails serios en la sierra interior, asfalto en la costa y la jugada experiencia &uacute;nica de la Sherry Marat&oacute;n entre vi&ntilde;edos.</p>
 
   <h3>Las imprescindibles de C&aacute;diz</h3>
@@ -596,6 +621,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 
   <h2 id="granada">Carreras en Granada, Sierra Nevada y Alpujarra</h2>
   <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/2356045/pexels-photo-2356045.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Trail runner por sendero de monta&ntilde;a &mdash; la Alpujarra y Sierra Nevada concentran los trails verticales m&aacute;s exigentes" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">Granada es territorio trail puro: pueblos blancos de la Alpujarra, Sierra Nevada y la altitud que no encuentras en otras provincias</figcaption></figure>
+  <p><strong>En Granada hay 15 carreras verificadas entre mayo y septiembre de 2026</strong>, con foco absoluto en <strong>trail de monta&ntilde;a</strong> &mdash; la Alpujarra (&Oacute;rgiva, Lanjar&oacute;n, P&oacute;rtugos), Sierra Nevada y la altitud de los pueblos blancos definen el calendario.</p>
   <p>Granada es <strong>territorio trail</strong> por excelencia. La altitud y los pueblos blancos de la Alpujarra dan recorridos que no encuentras en ning&uacute;n otro sitio de Andaluc&iacute;a. 15 pruebas verificadas:</p>
 
   <ul>
@@ -617,7 +643,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   </ul>
 
   <h2 id="cordoba">Carreras en C&oacute;rdoba</h2>
-  <p>C&oacute;rdoba tiene un <strong>circuito provincial muy denso</strong> gestionado por la Diputaci&oacute;n (con 58 carreras totales en el calendario anual completo), aunque hemos seleccionado las 7 m&aacute;s relevantes:</p>
+  <p><strong>En C&oacute;rdoba hay 7 carreras destacadas entre mayo y noviembre de 2026</strong>, seleccionadas del <strong>Circuito Provincial Diputaci&oacute;n de C&oacute;rdoba</strong> (58 carreras totales en el calendario anual completo), con dominio absoluto del <strong>cross de pueblo</strong> en oto&ntilde;o.</p>
+  <p>C&oacute;rdoba tiene un <strong>circuito provincial muy denso</strong> gestionado por la Diputaci&oacute;n. Para acceder al calendario oficial completo con las 58 pruebas, visita la <a href="https://www.google.com/search?q=Circuito+Provincial+Carreras+Populares+Diputaci%C3%B3n+C%C3%B3rdoba+2026" target="_blank" rel="noopener nofollow" style="color:#f97316">web de la Diputaci&oacute;n de C&oacute;rdoba</a>. Aqu&iacute; hemos seleccionado las 7 m&aacute;s relevantes:</p>
 
   <ul>
     <li><strong><a href="https://www.google.com/search?q=44%C2%AA%20Carrera%20Popular%20Mar%C3%ADa%20Auxiliadora%20Memorial%20Kiko%20Pastor%202026%20inscripci%C3%B3n" target="_blank" rel="noopener nofollow" style="color:#f97316;text-decoration:none">44&ordf; Carrera Popular Mar&iacute;a Auxiliadora Memorial Kiko Pastor</a></strong> (10 mayo, C&oacute;rdoba capital) &mdash; cl&aacute;sica con 44 ediciones</li>
@@ -633,6 +660,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 
   <h2 id="jaen">Carreras en Ja&eacute;n &mdash; Sierra de Cazorla</h2>
   <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/35206081/pexels-photo-35206081.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Trail runner en bosque de monta&ntilde;a, escenario t&iacute;pico de la Sierra de Cazorla y Bosques del Sur en Ja&eacute;n" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">El Parque Natural de Cazorla, Segura y Las Villas &mdash; el espacio protegido m&aacute;s grande de Espa&ntilde;a &mdash; alberga la prueba reina del trail andaluz</figcaption></figure>
+  <p><strong>En Ja&eacute;n hay 15 carreras verificadas entre mayo y julio de 2026</strong>, lideradas por el <strong>Ultra Trail Bosques del Sur</strong> en la Sierra de Cazorla, Segura y Las Villas (el espacio protegido m&aacute;s grande de Espa&ntilde;a).</p>
   <p>Ja&eacute;n se convierte en epicentro nacional del trail con la <strong><a href="https://www.google.com/search?q=Ultra%20Trail%20Bosques%20del%20Sur%202026%20inscripci%C3%B3n" target="_blank" rel="noopener nofollow" style="color:#f97316;text-decoration:none">Ultra Trail Bosques del Sur</a></strong> y otras pruebas de monta&ntilde;a en la Sierra de Cazorla, Segura y Las Villas (el espacio protegido m&aacute;s grande de Espa&ntilde;a). 15 pruebas verificadas en total:</p>
 
   <h3>Las grandes pruebas de monta&ntilde;a</h3>
@@ -658,6 +686,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   </ul>
 
   <h2 id="almeria">Carreras en Almer&iacute;a y Cabo de Gata</h2>
+  <p><strong>En Almer&iacute;a hay 13 carreras verificadas entre mayo y septiembre de 2026</strong>, con un perfil &uacute;nico: trails costeros por <strong>Cabo de Gata</strong> (Playa de los Muertos), el desierto de Tabernas y nocturnas de verano (julio) por las altas temperaturas.</p>
   <p>Almer&iacute;a tiene <strong>13 pruebas verificadas</strong> con un perfil muy particular: tramos de Cabo de Gata, desierto de Tabernas y monta&ntilde;a interior. Las nocturnas se concentran en julio por las altas temperaturas.</p>
 
   <ul>
@@ -729,6 +758,22 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <div class="tip">
     <strong>D&oacute;nde se inscribe:</strong> la mayor&iacute;a de pruebas usan plataformas como Rockthesport, RaceChip o Sportmaniacs. Si la inscripci&oacute;n est&aacute; cerrada online, suele haber dorsales sueltos en la recogida del d&iacute;a anterior con un recargo de 2-5 &euro;. La excepci&oacute;n: <strong>los ultras y la Sherry Marat&oacute;n cuelgan el cartel de "completo" y no admiten inscripci&oacute;n d&iacute;a de la prueba</strong>.
   </div>
+
+  <h2 id="trail-vs-asfalto">&iquest;Trail o asfalto? Decide en 30 segundos</h2>
+  <p>Si dudas entre apuntarte a un trail o a un asfalto, esta tabla te lo resuelve r&aacute;pido seg&uacute;n 4 criterios:</p>
+  <table class="race-table">
+    <thead><tr><th>Criterio</th><th>Asfalto</th><th>Trail</th></tr></thead>
+    <tbody>
+      <tr><td>Si vienes de cero</td><td>S&iacute; (m&aacute;s predecible)</td><td>No (muchas variables)</td></tr>
+      <tr><td>Si te interesa la marca/tiempo</td><td>S&iacute; (recorridos certificados)</td><td>No (cada trail es distinto)</td></tr>
+      <tr><td>Si buscas paisaje y ambiente</td><td>Limitado</td><td>S&iacute; (sierra, costa, bosque)</td></tr>
+      <tr><td>Si tienes lesiones cr&oacute;nicas en rodilla/cadera</td><td>Asfalto suave o pista</td><td>Trail blando (pinaza, tierra)</td></tr>
+      <tr><td>Equipamiento extra necesario</td><td>Solo zapatillas + ropa</td><td>Mochila hidrataci&oacute;n + bastones opcional</td></tr>
+      <tr><td>Coste medio inscripci&oacute;n</td><td>10-25 &euro;</td><td>25-60 &euro;</td></tr>
+      <tr><td>Riesgo de lesi&oacute;n por terreno</td><td>Bajo (impacto repetitivo)</td><td>Medio-alto (tobillo, ca&iacute;das)</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Regla simple:</strong> si llevas menos de 6 meses corriendo, apunta a asfalto. Si ya tienes base y buscas variedad, prueba un trail medio (15-25 km). Para entender mejor las diferencias, lee nuestra <a href="/blog/carreras-trail-principiantes" style="color:#f97316">gu&iacute;a de trail para principiantes</a>.</p>
 
   <h2 id="por-tiempo">Tu carrera ideal seg&uacute;n el tiempo de preparaci&oacute;n</h2>
   <p>Si no sabes a qu&eacute; prueba apuntarte porque depende del tiempo que tienes para entrenar, esta tabla te lo deja claro. Asume que partes con una base m&iacute;nima (caminar 30 min sin parar):</p>
@@ -963,6 +1008,33 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   }
   window.addEventListener('scroll',check,{passive:true});
   setTimeout(check,800);
+})();
+</script>
+
+<!-- Filtros calendario interactivo -->
+<script>
+(function(){
+  var btns=document.querySelectorAll('.cal-filter');
+  if(!btns.length)return;
+  var blocks=document.querySelectorAll('.calendar-block');
+  function setActive(month){
+    btns.forEach(function(b){
+      var on=b.getAttribute('data-month')===month;
+      b.style.background=on?'#f97316':'rgba(249,115,22,.06)';
+      b.style.color=on?'#fff':'#5c4d3d';
+      b.style.fontWeight=on?'700':'600';
+      b.classList.toggle('active',on);
+    });
+    blocks.forEach(function(blk){
+      blk.style.display=(month==='all'||blk.getAttribute('data-month')===month)?'block':'none';
+    });
+    if(window.gtag&&typeof window.gtag==='function'){
+      window.gtag('event','calendar_filter_andalucia',{month:month});
+    }
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){setActive(b.getAttribute('data-month'));});
+  });
 })();
 </script>
 

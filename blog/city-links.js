@@ -37,7 +37,11 @@
     'best-running-routes-barcelona':['barcelona'],
     'best-running-routes-valencia':['valencia'],
     'best-running-routes-malaga':['malaga'],
-    'best-running-routes-sevilla':['sevilla']
+    'best-running-routes-sevilla':['sevilla'],
+    'mejores-carreras-running-andalucia-2026':['sevilla','malaga'],
+    'grupos-correr-sevilla':['sevilla'],
+    'encontrar-runners-malaga':['malaga'],
+    'correr-acompanado-cadiz':['malaga','sevilla']
   };
 
   /* ── Detect language & slug ── */

@@ -1014,30 +1014,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </div>
 </footer>
 
-<!-- Sticky CTA m&oacute;vil: aparece tras scroll del 30% -->
-<div id="sticky-cta" style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:14px 20px;display:none;align-items:center;justify-content:space-between;gap:12px;z-index:90;box-shadow:0 -4px 24px rgba(0,0,0,.18);transform:translateY(100%);transition:transform .3s ease">
-  <div style="flex:1;min-width:0">
-    <div style="font-weight:800;font-size:.95rem;line-height:1.2">&iquest;Quieres prepararte para una carrera?</div>
-    <div style="font-size:.78rem;opacity:.9;margin-top:2px">Plan personalizado gratis con Coach Jos&eacute; IA</div>
-  </div>
-  <a href="/planes" style="background:#fff;color:#ea580c;padding:10px 18px;border-radius:999px;font-weight:800;text-decoration:none;font-size:.85rem;white-space:nowrap;flex-shrink:0">Ver planes</a>
-  <button onclick="document.getElementById('sticky-cta').style.display='none';localStorage.setItem('cj_sticky_cta_dismissed','1')" aria-label="Cerrar" style="background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:1.1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center">&times;</button>
-</div>
-<script>
-(function(){
-  if(localStorage.getItem('cj_sticky_cta_dismissed')==='1')return;
-  var cta=document.getElementById('sticky-cta');if(!cta)return;
-  var shown=false;
-  function check(){
-    var scroll=window.scrollY||document.documentElement.scrollTop;
-    var height=document.documentElement.scrollHeight-window.innerHeight;
-    var pct=height>0?(scroll/height)*100:0;
-    if(pct>=30&&!shown){shown=true;cta.style.display='flex';requestAnimationFrame(function(){cta.style.transform='translateY(0)'});}
-  }
-  window.addEventListener('scroll',check,{passive:true});
-  setTimeout(check,800);
-})();
-</script>
+<!-- Sticky CTA del articulo eliminado: enhance.js (global) ya genera un sticky en mobile.
+     Tener dos elementos con id="sticky-cta" causaba colision y bloqueo de scroll. -->
 
 <!-- TOC smooth scroll (sin active link tracking — evita jank en mobile) -->
 <script>

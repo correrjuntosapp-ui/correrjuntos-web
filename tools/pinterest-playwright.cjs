@@ -34,9 +34,18 @@ const START_FROM = parseInt(getArg('--from') || '0', 10);
 const EMAIL = getArg('--email') || '';
 const PASS  = getArg('--pass')  || '';
 
-const waitForEnter = (msg) => new Promise(resolve => {
+const waitForEnter = (msg, timeoutMs = 120000) => new Promise(resolve => {
+  process.stdout.write(msg);
+  if (!process.stdin.isTTY) {
+    // Background mode: wait timeoutMs and continue automatically
+    console.log(`\n[bg-mode] Esperando ${timeoutMs/1000}s para login manual...`);
+    setTimeout(() => { console.log('[bg-mode] Continuando automáticamente.'); resolve(); }, timeoutMs);
+    return;
+  }
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-  rl.question(msg, () => { rl.close(); resolve(); });
+  let done = false;
+  const t = setTimeout(() => { if(!done){ done = true; rl.close(); console.log('\n[timeout] Continuando automáticamente.'); resolve(); } }, timeoutMs);
+  rl.question('', () => { if(!done){ done = true; clearTimeout(t); rl.close(); resolve(); } });
 });
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
@@ -317,6 +326,7 @@ const ARTICLES = [
   {s:"zapatillas-running-pronadores",t:"Zapatillas Running Pronadores: Las Mejores 2026",c:"Zapatillas Running",i:"https://images.pexels.com/photos/4065509/pexels-photo-4065509.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"},
   {s:"zapatillas-running-supinadores",t:"Zapatillas Running Supinadores: Guía y Modelos 2026",c:"Zapatillas Running",i:"https://m.media-amazon.com/images/I/712RAgdWszL._AC_SL1500_.jpg"},
   {s:"zona-2-running-quemar-grasa",t:"Zona 2 Running: Quemar Grasa Corriendo Lento 2026",c:"Entrenamiento Running",i:"https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"},
+  {s:"mejores-carreras-running-andalucia-2026",t:"Mejores Carreras Running Andalucía 2026: Calendario 105 Pruebas",c:"Carreras Running",i:"https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"},
 ];
 
 (async () => {

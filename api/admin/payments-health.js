@@ -24,40 +24,22 @@ export default async function handler(req, res) {
 
     try {
         const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+        const nowIso = new Date().toISOString();
 
-        // Health agregado
-        const healthQuery = `
-            SELECT
-              COUNT(*) FILTER (WHERE es_premium AND fecha_premium > NOW()) AS activos,
-              COUNT(*) FILTER (WHERE es_premium AND (fecha_premium IS NULL OR fecha_premium <= NOW())) AS zombies,
-              COUNT(*) FILTER (WHERE es_premium) AS total_premium,
-              COUNT(*) AS total_users
-            FROM profiles;
-        `;
-        const { data: healthRows, error: healthErr } = await supabase.rpc('exec_sql', { query: healthQuery }).catch(() => ({ data: null, error: 'rpc_exec_sql_unavailable' }));
-
-        // Si no existe la RPC exec_sql, hacemos las queries con .from()
-        let activos = 0, zombies = 0, total_premium = 0, total_users = 0;
-
-        if (healthRows && Array.isArray(healthRows) && healthRows[0]) {
-            ({ activos, zombies, total_premium, total_users } = healthRows[0]);
-        } else {
-            // Fallback con varias queries .from()
-            const nowIso = new Date().toISOString();
-            const [{ count: cActivos }, { count: cZombies }, { count: cPrem }, { count: cAll }] = await Promise.all([
-                supabase.from('profiles').select('id', { count: 'exact', head: true })
-                    .eq('es_premium', true).gt('fecha_premium', nowIso),
-                supabase.from('profiles').select('id', { count: 'exact', head: true })
-                    .eq('es_premium', true).or(`fecha_premium.is.null,fecha_premium.lte.${nowIso}`),
-                supabase.from('profiles').select('id', { count: 'exact', head: true })
-                    .eq('es_premium', true),
-                supabase.from('profiles').select('id', { count: 'exact', head: true }),
-            ]);
-            activos = cActivos || 0;
-            zombies = cZombies || 0;
-            total_premium = cPrem || 0;
-            total_users = cAll || 0;
-        }
+        // Health agregado — 4 queries paralelas con .from()
+        const [{ count: cActivos }, { count: cZombies }, { count: cPrem }, { count: cAll }] = await Promise.all([
+            supabase.from('profiles').select('id', { count: 'exact', head: true })
+                .eq('es_premium', true).gt('fecha_premium', nowIso),
+            supabase.from('profiles').select('id', { count: 'exact', head: true })
+                .eq('es_premium', true).or(`fecha_premium.is.null,fecha_premium.lte.${nowIso}`),
+            supabase.from('profiles').select('id', { count: 'exact', head: true })
+                .eq('es_premium', true),
+            supabase.from('profiles').select('id', { count: 'exact', head: true }),
+        ]);
+        const activos = cActivos || 0;
+        const zombies = cZombies || 0;
+        const total_premium = cPrem || 0;
+        const total_users = cAll || 0;
 
         // Premium activos (top 20 por más recientes)
         const { data: recentPremium } = await supabase
@@ -68,7 +50,6 @@ export default async function handler(req, res) {
             .limit(20);
 
         // Zombies — es_premium=true pero fecha caducada/null
-        const nowIso = new Date().toISOString();
         const { data: zombiesList } = await supabase
             .from('profiles')
             .select('id, email, nombre, fecha_premium')

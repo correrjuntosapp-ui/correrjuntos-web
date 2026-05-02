@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin Payments Health · CorrerJuntos</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#0b1220;color:#e2e8f0;line-height:1.5;min-height:100vh;padding:24px}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:1.6rem;font-weight:800;margin-bottom:6px;color:#fff}
+h1 .accent{color:#f97316}
+.subtitle{color:#94a3b8;font-size:.85rem;margin-bottom:24px}
+.gate{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:32px;max-width:420px;margin:60px auto}
+.gate h2{font-size:1.1rem;margin-bottom:14px}
+.gate input{width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:.95rem;outline:none;margin-bottom:14px;font-family:'JetBrains Mono',monospace}
+.gate input:focus{border-color:#f97316}
+.gate button{width:100%;padding:12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:.95rem}
+.gate .err{color:#ef4444;font-size:.8rem;margin-top:8px;text-align:center;display:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:32px}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px}
+.card .num{font-size:2rem;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.1}
+.card .lbl{font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-weight:600}
+.card.green .num{color:#22c55e}
+.card.amber .num{color:#f59e0b}
+.card.red .num{color:#ef4444}
+.card.blue .num{color:#3b82f6}
+section{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:20px;margin-bottom:20px}
+section h2{font-size:1rem;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+section .pill{font-size:.7rem;padding:2px 8px;border-radius:999px;font-weight:700}
+section .pill.ok{background:rgba(34,197,94,.15);color:#22c55e}
+section .pill.warn{background:rgba(245,158,11,.15);color:#f59e0b}
+section .pill.err{background:rgba(239,68,68,.15);color:#ef4444}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;padding:8px 10px;background:rgba(255,255,255,.04);color:#94a3b8;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:1px}
+th:first-child{border-radius:8px 0 0 8px}
+th:last-child{border-radius:0 8px 8px 0}
+td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+td.mono{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.78rem;color:#94a3b8}
+tr:last-child td{border-bottom:0}
+tr:hover td{background:rgba(255,255,255,.03)}
+.empty{text-align:center;padding:24px;color:#94a3b8;font-size:.85rem}
+.refresh{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,.1);color:#f97316;border:1px solid rgba(249,115,22,.3);padding:6px 14px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;margin-left:auto}
+.refresh:hover{background:rgba(249,115,22,.2)}
+.toolbar{display:flex;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.timestamp{color:#64748b;font-size:.78rem}
+.danger{color:#ef4444;font-weight:700}
+.warning{color:#f59e0b;font-weight:600}
+@media(max-width:640px){
+  body{padding:16px}
+  table{font-size:.75rem}
+  th,td{padding:6px 8px}
+  td.email{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="gate" class="gate">
+    <h2>🔒 Admin · Payments Health</h2>
+    <input type="password" id="key" placeholder="Admin secret" autofocus>
+    <button onclick="auth()">Entrar</button>
+    <div class="err" id="err">Secret incorrecto</div>
+  </div>
+
+  <div id="content" style="display:none">
+    <h1>💳 Payments <span class="accent">Health</span></h1>
+    <div class="subtitle">Estado de suscripciones premium · RevenueCat → Supabase</div>
+
+    <div class="toolbar">
+      <span class="timestamp" id="ts"></span>
+      <button class="refresh" onclick="load()">🔄 Refrescar</button>
+    </div>
+
+    <div class="cards">
+      <div class="card green"><div class="num" id="activos">—</div><div class="lbl">Premium activos</div></div>
+      <div class="card red"><div class="num" id="zombies">—</div><div class="lbl">Zombies (bug)</div></div>
+      <div class="card blue"><div class="num" id="total">—</div><div class="lbl">Premium totales</div></div>
+      <div class="card"><div class="num" id="users">—</div><div class="lbl">Usuarios totales</div></div>
+      <div class="card amber"><div class="num" id="conv">—%</div><div class="lbl">Conversión premium</div></div>
+    </div>
+
+    <section>
+      <h2>⚠️ Zombies <span class="pill err" id="zpill">0</span></h2>
+      <p style="font-size:.78rem;color:#94a3b8;margin-bottom:12px">Usuarios con <code>es_premium=true</code> pero <code>fecha_premium</code> caducada o null. Indica bug del webhook o flag manual sin caducidad. Revisar.</p>
+      <div id="zombieTbl"></div>
+    </section>
+
+    <section>
+      <h2>⏰ Caducan en próximos 7 días <span class="pill warn" id="epill">0</span></h2>
+      <p style="font-size:.78rem;color:#94a3b8;margin-bottom:12px">Si la suscripción se renueva, recibirás un evento <code>RENEWAL</code> y la fecha se extenderá. Si no, pasarán a inactivo.</p>
+      <div id="expiringTbl"></div>
+    </section>
+
+    <section>
+      <h2>✅ Últimos premium activos <span class="pill ok" id="rpill">0</span></h2>
+      <div id="recentTbl"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+const SECRET_KEY = 'cj_admin_secret';
+
+function auth(){
+  const v = document.getElementById('key').value.trim();
+  if(!v){return}
+  localStorage.setItem(SECRET_KEY, v);
+  load();
+}
+
+async function load(){
+  const secret = localStorage.getItem(SECRET_KEY);
+  if(!secret){show('gate');return}
+
+  try{
+    const res = await fetch('/api/admin/payments-health?key=' + encodeURIComponent(secret));
+    if(res.status === 401){
+      localStorage.removeItem(SECRET_KEY);
+      document.getElementById('err').style.display = 'block';
+      show('gate');
+      return;
+    }
+    const data = await res.json();
+    if(!data.ok){
+      alert('Error: ' + (data.error || 'desconocido'));
+      return;
+    }
+    render(data);
+    show('content');
+  }catch(e){
+    alert('Error de red: ' + e.message);
+  }
+}
+
+function show(which){
+  document.getElementById('gate').style.display = which==='gate' ? 'block' : 'none';
+  document.getElementById('content').style.display = which==='content' ? 'block' : 'none';
+}
+
+function fmtDate(iso){
+  if(!iso)return '—';
+  const d = new Date(iso);
+  if(isNaN(d))return iso;
+  const now = new Date();
+  const diffMs = d - now;
+  const diffH = Math.round(diffMs / 3600000);
+  const diffD = Math.round(diffMs / 86400000);
+  let rel = '';
+  if(Math.abs(diffH) < 24) rel = (diffH > 0 ? 'en ' : 'hace ') + Math.abs(diffH) + 'h';
+  else if(Math.abs(diffD) < 60) rel = (diffD > 0 ? 'en ' : 'hace ') + Math.abs(diffD) + 'd';
+  return d.toLocaleDateString('es-ES',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) + (rel ? ' (' + rel + ')' : '');
+}
+
+function rowsTable(rows, cols){
+  if(!rows || !rows.length){return '<div class="empty">Vacío</div>';}
+  const head = cols.map(c => '<th>' + c.label + '</th>').join('');
+  const body = rows.map(r => '<tr>' + cols.map(c => {
+    const v = r[c.key];
+    const klass = c.mono ? ' class="mono"' : (c.email ? ' class="email"' : '');
+    if(c.fmt) return '<td' + klass + '>' + c.fmt(v, r) + '</td>';
+    return '<td' + klass + '>' + (v ?? '—') + '</td>';
+  }).join('') + '</tr>').join('');
+  return '<table><thead><tr>' + head + '</tr></thead><tbody>' + body + '</tbody></table>';
+}
+
+function render(data){
+  const h = data.health;
+  document.getElementById('activos').textContent = h.activos;
+  document.getElementById('zombies').textContent = h.zombies;
+  document.getElementById('total').textContent = h.total_premium;
+  document.getElementById('users').textContent = h.total_users;
+  document.getElementById('conv').textContent = h.conversion_pct + '%';
+  document.getElementById('ts').textContent = '🕐 Generado ' + fmtDate(data.generated_at);
+
+  document.getElementById('zpill').textContent = (data.zombies_list || []).length;
+  document.getElementById('epill').textContent = (data.expiring_soon_7d || []).length;
+  document.getElementById('rpill').textContent = (data.recent_premium || []).length;
+
+  document.getElementById('zombieTbl').innerHTML = rowsTable(data.zombies_list, [
+    {key:'email',label:'Email',email:true},
+    {key:'nombre',label:'Nombre'},
+    {key:'fecha_premium',label:'Fecha premium',fmt:v => v ? fmtDate(v) : '<span class="danger">NULL</span>'},
+    {key:'id',label:'User ID',mono:true,fmt:v => v.slice(0,8) + '…'},
+  ]);
+
+  document.getElementById('expiringTbl').innerHTML = rowsTable(data.expiring_soon_7d, [
+    {key:'email',label:'Email',email:true},
+    {key:'nombre',label:'Nombre'},
+    {key:'fecha_premium',label:'Caduca',fmt:v => '<span class="warning">' + fmtDate(v) + '</span>'},
+  ]);
+
+  document.getElementById('recentTbl').innerHTML = rowsTable(data.recent_premium, [
+    {key:'email',label:'Email',email:true},
+    {key:'nombre',label:'Nombre'},
+    {key:'fecha_premium',label:'Caduca',fmt:v => fmtDate(v)},
+    {key:'created_at',label:'Registrado',fmt:v => fmtDate(v)},
+  ]);
+}
+
+if(localStorage.getItem(SECRET_KEY)){load();}
+document.getElementById('key').addEventListener('keydown', e => { if(e.key === 'Enter') auth(); });
+</script>
+</body>
+</html>

@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.correrjuntos.app",
       "sha256_cert_fingerprints": [
-        "50:FB:82:FE:21:7B:36:41:53:C8:97:93:36:32:A5:7C:6C:0D:19:53:30:02:86:34:40:18:9C:D8:F0:48:CE:B9"
+        "50:FB:82:FE:21:7B:36:41:53:C8:97:93:36:32:A5:7C:6C:0D:19:53:30:02:86:34:40:18:9C:D8:F0:48:CE:B9",
+        "25:CE:D6:68:B4:81:E8:C8:CA:8E:88:A1:50:BD:10:A1:89:39:18:19:78:6D:34:DA:CD:B1:78:85:FA:AE:90:56"
       ]
     }
   }

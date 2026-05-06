@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Conectando con Strava — CorrerJuntos</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
+      background:linear-gradient(135deg,#fef7ed,#fff);
+      color:#0b1220;
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      padding:20px;
+    }
+    .card{
+      max-width:420px;width:100%;
+      background:#fff;border-radius:20px;
+      padding:40px 28px;text-align:center;
+      box-shadow:0 12px 40px rgba(15,23,42,.10);
+      border:1px solid #fce4cc;
+    }
+    .logo{font-size:42px;margin-bottom:8px}
+    h1{font-size:20px;font-weight:800;color:#0b1220;margin-bottom:6px;letter-spacing:-.3px}
+    p{color:#475569;font-size:14px;line-height:1.5;margin-bottom:18px}
+    .spinner{
+      width:40px;height:40px;border:3px solid #fce4cc;border-top-color:#f97316;
+      border-radius:50%;animation:spin 1s linear infinite;margin:18px auto 8px;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .btn{
+      display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);
+      color:#fff;text-decoration:none;font-weight:700;font-size:14px;
+      padding:12px 22px;border-radius:12px;margin-top:12px;
+      box-shadow:0 6px 16px rgba(249,115,22,.25);
+    }
+    .error{color:#dc2626;font-weight:700;font-size:14px}
+    .small{font-size:11px;color:#94a3b8;margin-top:14px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">🔗</div>
+    <h1 id="title">Conectando con CorrerJuntos…</h1>
+    <p id="msg">Volviendo a la app en un momento.</p>
+    <div class="spinner" id="spinner"></div>
+    <a id="manualBtn" class="btn" style="display:none" href="#">Abrir CorrerJuntos</a>
+    <p class="small" id="hint">Si la app no se abre automáticamente, pulsa el botón.</p>
+  </div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var code = params.get('code');
+      var error = params.get('error');
+      var scope = params.get('scope') || '';
+
+      // Construir el deep link correrjuntos://strava-callback?...
+      var deepLink;
+      if (error) {
+        deepLink = 'correrjuntos://strava-callback?error=' + encodeURIComponent(error);
+        document.getElementById('title').textContent = 'No se pudo conectar';
+        document.getElementById('title').className = 'error';
+        document.getElementById('msg').textContent = 'Volviendo a la app…';
+        document.getElementById('spinner').style.display = 'none';
+      } else if (code) {
+        deepLink = 'correrjuntos://strava-callback?code=' + encodeURIComponent(code) + '&scope=' + encodeURIComponent(scope);
+      } else {
+        document.getElementById('title').textContent = 'Solicitud no válida';
+        document.getElementById('title').className = 'error';
+        document.getElementById('msg').textContent = 'Faltan parámetros de autorización.';
+        document.getElementById('spinner').style.display = 'none';
+        return;
+      }
+
+      // Mostrar botón manual como fallback
+      var btn = document.getElementById('manualBtn');
+      btn.href = deepLink;
+
+      // Intentar redirección automática
+      // (en algunos navegadores móviles requiere que sea inmediata, no setTimeout)
+      try {
+        window.location.href = deepLink;
+      } catch (e) {}
+
+      // Si tras 1.5s seguimos en la página, mostrar botón manual
+      setTimeout(function () {
+        btn.style.display = 'inline-block';
+        document.getElementById('hint').textContent =
+          '¿No se abrió la app? Pulsa el botón para volver manualmente.';
+      }, 1500);
+    })();
+  </script>
+</body>
+</html>

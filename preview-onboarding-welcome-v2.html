@@ -109,7 +109,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .a-card-arrow{color:rgba(246,241,232,.30);flex-shrink:0}
 .a-card.selected .a-card-arrow{color:#f97316}
 
+/* Outcome preview dinámico — muestra qué hay tras el goal seleccionado */
+.a-outcome{display:flex;align-items:center;gap:10px;padding:14px 16px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.20);border-radius:12px;margin-bottom:14px}
+.a-outcome-arrow{color:#f97316;font-size:18px;font-weight:900;line-height:1;flex-shrink:0}
+.a-outcome-text{font-size:13px;color:rgba(246,241,232,.85);line-height:1.4}
+.a-outcome-text strong{color:#fff;font-weight:700}
+
 .a-cta{background:linear-gradient(135deg,#f97316,#ea580c);padding:16px;border-radius:14px;text-align:center;color:#fff;font-size:16px;font-weight:800;letter-spacing:-.2px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 20px rgba(249,115,22,.30)}
+
+/* Micro-tranquilidad anti-fricción bajo CTA */
+.a-reassure{text-align:center;font-size:11px;color:#86efac;font-weight:600;margin-top:10px;letter-spacing:.2px}
 
 .notes{margin-top:16px;padding:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;font-size:11px;line-height:1.5}
 .notes ul{list-style:none;padding:0}
@@ -125,9 +134,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <body>
 
 <div class="legend">
-  <span class="tag">ONBOARDING WELCOME · PASO 3 DE 3</span><br>
+  <span class="tag">ONBOARDING WELCOME · v3 (con calor)</span><br>
   <strong>Antes:</strong> 15 elementos · scroll necesario · 4 decisiones<br>
-  <strong>Después:</strong> 6 elementos · una pantalla · 1 decisión
+  <strong>Después:</strong> 7 elementos · una pantalla · 1 decisión + outcome preview + tranquilidad
 </div>
 
 <div class="wrap">
@@ -255,8 +264,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="num">3/3</div>
       </div>
 
-      <!-- Greeting -->
-      <div class="a-greet">Hola,<br><span class="name">Prueba</span>.</div>
+      <!-- Greeting (cambio v3: "Hola" → "Listo" más activo) -->
+      <div class="a-greet">Listo,<br><span class="name">Prueba</span>?</div>
 
       <!-- Location + ONE social proof stat -->
       <div class="a-loc">
@@ -298,24 +307,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
 
+      <!-- Outcome preview dinámico (cambia según goal seleccionado) -->
+      <div class="a-outcome">
+        <div class="a-outcome-arrow">→</div>
+        <div class="a-outcome-text">
+          <strong>12 quedadas</strong> en tu zona · <strong>47 runners</strong> de tu nivel
+        </div>
+      </div>
+
       <!-- Single CTA (text adapts to selection) -->
       <div class="a-cta">
         Entrar
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
 
+      <!-- Micro-tranquilidad anti-fricción -->
+      <div class="a-reassure">Sin tarjeta · Cancela cuando quieras</div>
+
     </div></div>
 
     <div class="notes">
       <ul>
-        <li><strong>Step bar minimal</strong> — solo "3/3" + barra fina</li>
-        <li><strong>Greeting MÁS GRANDE</strong> — protagonismo personal</li>
+        <li><strong>"Listo, Prueba?"</strong> en lugar de "Hola" → call-to-action emocional desde el primer segundo</li>
         <li><strong>1 línea ubicación + social proof</strong> — "359 runners cerca" basta</li>
-        <li><strong>3 goal cards</strong> con más respiración (18px padding vs 12px)</li>
-        <li><strong>Cero metadata</strong> visible</li>
-        <li><strong>Cero stats redundantes</strong> (0% match fuera)</li>
-        <li><strong>1 CTA único</strong> que se adapta al goal seleccionado</li>
-        <li><strong>0 elementos para nosotros</strong> — todo es para el user</li>
+        <li><strong>3 goal cards</strong> con más respiración (18px padding)</li>
+        <li><strong>Outcome preview</strong> debajo de cards: "12 quedadas + 47 runners de tu nivel" (cambia según selección) → user sabe qué hay detrás antes de pulsar</li>
+        <li><strong>1 CTA único</strong> dinámico según goal</li>
+        <li><strong>"Sin tarjeta · Cancela cuando quieras"</strong> en verde bajo CTA → elimina miedo subconsciente al pago</li>
+        <li><strong>Cero metadata visible</strong> (CUENTA CREADA, MERIDIAN MOTION fuera)</li>
+        <li><strong>Cero stats deprimentes</strong> (0% match eliminado)</li>
         <li><strong>Encaja sin scroll</strong> en pantallas estándar</li>
       </ul>
     </div>

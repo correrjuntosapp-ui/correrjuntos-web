@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RacePlanCard v3 — CorrerJuntos</title>
+<link rel="preconnect" href="https://images.pexels.com" crossorigin>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#08080a;color:#fff;padding:20px 12px;min-height:100vh}
+.wrap{max-width:430px;margin:0 auto}
+.legend{text-align:center;margin-bottom:24px;padding:14px;background:rgba(255,255,255,.04);border-radius:12px;font-size:12px;line-height:1.5;color:#94a3b8}
+.legend strong{color:#f97316;font-weight:800}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(34,197,94,.15);color:#86efac;font-weight:800;letter-spacing:.5px;margin-bottom:8px}
+
+.card{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:#111114;margin-bottom:14px;position:relative}
+
+/* HERO BANNER cinematográfico — mayor altura, mejor foto */
+.banner{position:relative;min-height:240px;overflow:hidden;display:flex;align-items:flex-end;padding:18px}
+.banner-bg{position:absolute;inset:0;background-image:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=900&q=75');background-size:cover;background-position:center;filter:saturate(.85) contrast(1.1)}
+.banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,10,.20) 0%,rgba(8,8,10,.45) 50%,rgba(17,17,20,.96) 100%)}
+.banner-content{position:relative;z-index:1;flex:1;display:flex;align-items:flex-end;gap:10px}
+.banner-info{flex:1}
+
+.location-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.10);padding:5px 11px;border-radius:99px;font-size:10px;font-weight:700;margin-bottom:10px;color:#fff;letter-spacing:.3px}
+.location-pill svg{flex-shrink:0;color:#f97316}
+.location-pill .dist{opacity:.55;font-weight:500}
+
+/* Tipografía MÁS GRANDE estilo Nike Run Club */
+.race-name{color:#fff;font-size:30px;font-weight:900;line-height:30px;letter-spacing:-1px;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.race-meta{color:rgba(255,255,255,.85);font-size:12px;font-weight:600}
+
+.countdown{border-radius:14px;padding:10px 14px;text-align:center;align-self:flex-end;min-width:68px;background:rgba(59,130,246,.18);border:1px solid rgba(59,130,246,.40);backdrop-filter:blur(10px)}
+.countdown.urgent-medium{background:rgba(249,115,22,.20);border-color:rgba(249,115,22,.50)}
+.countdown.urgent-high{background:rgba(239,68,68,.25);border-color:rgba(239,68,68,.60)}
+.countdown .num{font-size:26px;font-weight:900;line-height:24px}
+.countdown .lbl{font-size:9px;font-weight:800;letter-spacing:.6px;opacity:.85;margin-top:3px;text-transform:uppercase}
+.countdown.urgent-low .num,.countdown.urgent-low .lbl{color:#93c5fd}
+.countdown.urgent-medium .num,.countdown.urgent-medium .lbl{color:#fdba74}
+.countdown.urgent-high .num,.countdown.urgent-high .lbl{color:#fca5a5}
+
+/* SOCIAL PROOF compacta */
+.social-proof{display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(255,255,255,.025);border-bottom:1px solid rgba(255,255,255,.05)}
+.avatars{display:flex;align-items:center}
+.avatar{width:22px;height:22px;border-radius:50%;border:2px solid #111114;margin-left:-7px;background-size:cover;background-position:center}
+.avatar:first-child{margin-left:0}
+.avatar.count{background:rgba(249,115,22,.18);color:#fdba74;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.social-text{font-size:11px;color:#cbd5e1;line-height:1.4;flex:1}
+.social-text strong{color:#fff;font-weight:700}
+
+/* PROGRESO — NUEVO bloque crítico */
+.progress-block{padding:14px 16px;background:rgba(34,197,94,.04);border-bottom:1px solid rgba(255,255,255,.05)}
+.progress-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-size:11px;font-weight:700}
+.progress-week{color:#fff;letter-spacing:.2px}
+.progress-week strong{color:#22c55e;font-weight:900}
+.progress-stats{color:#94a3b8;font-weight:600}
+.progress-bar{width:100%;height:5px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:99px;width:38%;box-shadow:0 0 8px rgba(34,197,94,.4)}
+
+/* HOY — Sesión del día — bloque protagonista */
+.today-block{padding:18px 16px;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(249,115,22,.02));border-bottom:1px solid rgba(255,255,255,.05);position:relative}
+.today-label{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:900;letter-spacing:1px;color:#f97316;margin-bottom:8px;text-transform:uppercase}
+.today-label::before{content:'';width:6px;height:6px;background:#f97316;border-radius:50%;display:inline-block;animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.today-type{font-size:18px;font-weight:900;color:#fff;letter-spacing:-.3px;margin-bottom:6px}
+.today-details{display:flex;gap:14px;margin-bottom:12px;font-size:12px;color:#cbd5e1}
+.today-details .item strong{color:#fff;font-weight:800;font-size:14px;display:block;margin-bottom:1px}
+.today-details .item span{font-size:10px;color:#94a3b8;letter-spacing:.4px;text-transform:uppercase;font-weight:700}
+.today-cta{background:#f97316;border-radius:10px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;color:#fff;font-size:13px;font-weight:700;letter-spacing:-.1px;box-shadow:0 4px 14px rgba(249,115,22,.30)}
+
+.plan-block{padding:16px}
+.plan-divider{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.plan-divider .badge-text{font-size:10px;font-weight:800;letter-spacing:.6px;color:#fdba74;background:rgba(249,115,22,.10);padding:4px 10px;border-radius:99px;border:1px solid rgba(249,115,22,.20);text-transform:uppercase}
+.plan-divider .completion{font-size:10px;color:#86efac;font-weight:700;margin-left:auto}
+.completion .pct{color:#22c55e;font-weight:900}
+
+.plan-name{font-size:18px;font-weight:800;line-height:22px;margin-bottom:3px;color:#fff;letter-spacing:-.2px}
+.coach-sig{font-size:11px;color:#94a3b8;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.coach-sig .coach-avatar{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:900}
+
+/* DATOS PERSONALIZADOS — NUEVO */
+.your-goals{margin-bottom:14px;padding:14px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:12px}
+.your-goals-title{font-size:10px;font-weight:800;letter-spacing:.6px;color:#94a3b8;text-transform:uppercase;margin-bottom:10px}
+.your-goals-row{display:flex;justify-content:space-between;gap:10px}
+.your-goal{flex:1;text-align:center}
+.your-goal .v{font-size:17px;font-weight:900;color:#fff;letter-spacing:-.3px}
+.your-goal .l{font-size:9px;font-weight:700;color:#94a3b8;letter-spacing:.5px;margin-top:3px;text-transform:uppercase}
+.your-goal .delta{font-size:9px;color:#22c55e;font-weight:800;margin-top:2px;letter-spacing:.2px}
+
+/* MINI MAPA RUTA — NUEVO */
+.route-block{margin-bottom:14px;padding:0;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.route-map{width:100%;height:90px;background:#0a0a0c;display:block;position:relative}
+.route-info{padding:8px 12px;background:rgba(255,255,255,.025);font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.4px;display:flex;justify-content:space-between;align-items:center}
+.route-info .label{text-transform:uppercase}
+.route-info .dist{color:#fdba74}
+
+.cta-trial{text-align:center;font-size:12px;font-weight:700;color:#86efac;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:8px 12px;border-radius:8px;margin-bottom:8px}
+
+.cta{background:linear-gradient(135deg,#f97316,#ea580c);padding:15px;border-radius:14px;text-align:center;color:#fff;font-size:15px;font-weight:700;box-shadow:0 6px 20px rgba(249,115,22,.30);letter-spacing:-.2px;display:flex;align-items:center;justify-content:center;gap:6px}
+.cta svg{flex-shrink:0}
+.cta-fine{text-align:center;font-size:10px;margin-top:8px;color:#64748b}
+.cta-fine strong{color:#94a3b8;font-weight:600}
+
+.section-title{font-size:13px;font-weight:700;color:#fff;margin:14px 0 10px;display:flex;align-items:center;gap:6px}
+.section-title .badge{font-size:11px;font-weight:800;color:#94a3b8;background:rgba(255,255,255,.06);padding:1px 7px;border-radius:6px}
+.minis{display:flex;gap:10px;overflow-x:auto;margin:0 -12px;padding:0 12px 6px}
+.minis::-webkit-scrollbar{display:none}
+.mini{min-width:170px;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;background:rgba(255,255,255,.02);flex-shrink:0}
+.mini-day{display:inline-block;color:#fdba74;background:rgba(249,115,22,.10);padding:3px 8px;border-radius:6px;font-size:10px;font-weight:800;border:1px solid rgba(249,115,22,.20);margin-bottom:8px}
+.mini-name{font-size:13px;font-weight:700;line-height:16px;margin-bottom:3px;color:#fff}
+.mini-loc{font-size:11px;color:#94a3b8}
+
+.annotations{margin-top:24px;padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px}
+.annotations h3{font-size:11px;font-weight:800;letter-spacing:.5px;color:#fdba74;margin-bottom:12px;text-transform:uppercase}
+.ann{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;line-height:1.5}
+.ann:last-child{border-bottom:0}
+.ann-num{width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,.15);color:#86efac;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;letter-spacing:-.5px}
+.ann-body{flex:1;color:#cbd5e1}
+.ann-body strong{color:#fff;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="legend">
+    <span class="tag">RACEPLANCARD V3 — RUNNA / NIKE LEVEL</span><br>
+    Hero cinematográfico + estado plan + sesión de hoy + datos personalizados + ruta.
+  </div>
+
+  <div class="card">
+
+    <!-- HERO cinematográfico -->
+    <div class="banner">
+      <div class="banner-bg"></div>
+      <div class="banner-overlay"></div>
+      <div class="banner-content">
+        <div class="banner-info">
+          <div class="location-pill">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Sevilla <span class="dist">· 92 km de Huelva</span>
+          </div>
+          <div class="race-name">Carrera de la Mujer Sevilla</div>
+          <div class="race-meta">15 nov · 10.000 runners</div>
+        </div>
+        <div class="countdown urgent-low">
+          <div class="num">27</div>
+          <div class="lbl">SEM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOCIAL PROOF -->
+    <div class="social-proof">
+      <div class="avatars">
+        <div class="avatar" style="background-image:url('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=80')"></div>
+        <div class="avatar" style="background-image:url('https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80')"></div>
+        <div class="avatar" style="background-image:url('https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=80')"></div>
+        <div class="avatar count">+47</div>
+      </div>
+      <div class="social-text"><strong>Ana, Carmen y 47 más</strong> ya están preparándose</div>
+    </div>
+
+    <!-- PROGRESS — estado del usuario en el plan -->
+    <div class="progress-block">
+      <div class="progress-row">
+        <div class="progress-week">Semana <strong>3</strong> de 8</div>
+        <div class="progress-stats">12 / 32 sesiones</div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- HOY — bloque protagonista -->
+    <div class="today-block">
+      <div class="today-label">HOY · TEMPO RUN</div>
+      <div class="today-type">5 km a ritmo controlado</div>
+      <div class="today-details">
+        <div class="item">
+          <strong>5,0 km</strong>
+          <span>Distancia</span>
+        </div>
+        <div class="item">
+          <strong>27 min</strong>
+          <span>Duración</span>
+        </div>
+        <div class="item">
+          <strong>5:30 /km</strong>
+          <span>Ritmo</span>
+        </div>
+      </div>
+      <div class="today-cta">
+        Empezar entreno
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+
+    <!-- PLAN INFO + DATOS PERSONALIZADOS + RUTA -->
+    <div class="plan-block">
+      <div class="plan-divider">
+        <div class="badge-text">PLAN RECOMENDADO</div>
+        <div class="completion"><span class="pct">87%</span> lo completan</div>
+      </div>
+
+      <div class="plan-name">Preparación 5K</div>
+      <div class="coach-sig">
+        <span class="coach-avatar">CJ</span>
+        Diseñado por Coach José · Validado por +800 runners
+      </div>
+
+      <!-- TUS OBJETIVOS — datos personalizados -->
+      <div class="your-goals">
+        <div class="your-goals-title">Tu objetivo en Sevilla</div>
+        <div class="your-goals-row">
+          <div class="your-goal">
+            <div class="v">27:00</div>
+            <div class="l">Tu PB</div>
+            <div class="delta">−2:30 mejora</div>
+          </div>
+          <div class="your-goal">
+            <div class="v">5:24 /km</div>
+            <div class="l">Ritmo objetivo</div>
+            <div class="delta">basado en tu pace actual</div>
+          </div>
+          <div class="your-goal">
+            <div class="v">156 km</div>
+            <div class="l">Volumen total</div>
+            <div class="delta">+34% vs últimas 8 sem</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MINI MAPA RUTA -->
+      <div class="route-block">
+        <svg class="route-map" viewBox="0 0 380 90" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#22c55e"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="380" height="90" fill="url(#grid)"/>
+          <path d="M 20 70 Q 60 30, 100 50 T 180 40 Q 220 25, 260 55 T 360 35"
+                stroke="url(#routeGrad)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="70" r="5" fill="#22c55e" stroke="#111114" stroke-width="2"/>
+          <circle cx="360" cy="35" r="5" fill="#f97316" stroke="#111114" stroke-width="2"/>
+          <text x="20" y="88" font-family="-apple-system,sans-serif" font-size="8" font-weight="700" fill="#22c55e" letter-spacing=".5">SALIDA</text>
+          <text x="332" y="88" font-family="-apple-system,sans-serif" font-size="8" font-weight="700" fill="#f97316" letter-spacing=".5">META</text>
+        </svg>
+        <div class="route-info">
+          <span class="label">Ruta oficial · centro Sevilla</span>
+          <span class="dist">5,0 km</span>
+        </div>
+      </div>
+
+      <!-- TRIAL + CTA -->
+      <div class="cta-trial">14 días gratis · Sin tarjeta</div>
+      <div class="cta">
+        Quiero estar lista para Sevilla
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="cta-fine">Después: <strong>Premium 4,99€/mes</strong> · Cancela cuando quieras</div>
+    </div>
+  </div>
+
+  <div class="section-title">Más carreras cerca de ti<span class="badge">3</span></div>
+  <div class="minis">
+    <div class="mini">
+      <div class="mini-day">6 JUN</div>
+      <div class="mini-name">10K Huelva Puerta del Descubrimiento</div>
+      <div class="mini-loc">10K · Tu ciudad</div>
+    </div>
+    <div class="mini">
+      <div class="mini-day">29 NOV</div>
+      <div class="mini-name">Maratón Internacional de Córdoba</div>
+      <div class="mini-loc">42K · 207 km</div>
+    </div>
+  </div>
+
+  <div class="annotations">
+    <h3>Lo nuevo del v3 vs v2</h3>
+    <div class="ann"><div class="ann-num">+1</div><div class="ann-body"><strong>Foto cinematográfica</strong> — silueta runner al amanecer (motion + atmósfera). No más turismo de Sevilla.</div></div>
+    <div class="ann"><div class="ann-num">+2</div><div class="ann-body"><strong>Tipografía Nike-level</strong> — nombre carrera 30px (era 22). Banner 240px (era 180).</div></div>
+    <div class="ann"><div class="ann-num">+3</div><div class="ann-body"><strong>Estado del plan</strong> — "Semana 3 de 8 · 12/32 sesiones" + barra verde. El usuario sabe dónde está.</div></div>
+    <div class="ann"><div class="ann-num">+4</div><div class="ann-body"><strong>HOY · TEMPO RUN</strong> — bloque protagonista con 5 km / 27 min / 5:30 ritmo + CTA propio para empezar entreno YA.</div></div>
+    <div class="ann"><div class="ann-num">+5</div><div class="ann-body"><strong>Tus objetivos</strong> — PB 27:00 (−2:30 mejora), ritmo 5:24, volumen +34%. Datos calculados de TI, no del plan genérico.</div></div>
+    <div class="ann"><div class="ann-num">+6</div><div class="ann-body"><strong>Mini mapa de ruta</strong> — visualización SVG estilo Strava. Salida → Meta · 5 km.</div></div>
+    <div class="ann"><div class="ann-num">+7</div><div class="ann-body"><strong>Punto pulsante</strong> en "HOY" — micro animación que indica acción inmediata. Estilo Apple Fitness.</div></div>
+  </div>
+
+  <div class="legend" style="margin-top:24px">
+    <strong>Resultado:</strong> de "preview de plan" a "tu cockpit de carrera".<br>
+    El usuario abre la app y ve: dónde está, qué hacer hoy, qué objetivo, qué ruta.<br>
+    Mismas reglas: cero emojis, naranja al 10%, SVG lineales solo si aportan función.
+  </div>
+
+</div>
+</body>
+</html>

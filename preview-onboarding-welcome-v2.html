@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OnboardingWelcome v2 — Antes vs Después</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#08080a;color:#fff;padding:20px 12px;min-height:100vh}
+.legend{text-align:center;margin-bottom:20px;padding:14px;background:rgba(255,255,255,.04);border-radius:12px;font-size:12px;line-height:1.5;color:#94a3b8;max-width:900px;margin:0 auto 24px}
+.legend strong{color:#f97316;font-weight:800}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(34,197,94,.15);color:#86efac;font-weight:800;letter-spacing:.5px;margin-bottom:8px}
+
+.wrap{max-width:880px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}}
+
+.col h2{font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.col h2 .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.col-before h2 .dot{background:#ef4444}
+.col-after h2 .dot{background:#22c55e}
+.col h2 .label{padding:2px 8px;border-radius:6px;font-size:10px;letter-spacing:.5px}
+.col-before h2 .label{background:rgba(239,68,68,.2);color:#fca5a5}
+.col-after h2 .label{background:rgba(34,197,94,.2);color:#86efac}
+
+.phone{background:#000;border-radius:36px;padding:8px;border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.screen{background:#0b1220;border-radius:30px;padding:24px 18px;min-height:660px;position:relative;overflow:hidden}
+
+/* ───────────── BEFORE ───────────── */
+
+.b-step{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.b-step .step-mark{color:#f97316;font-size:6px}
+.b-step .step-text{color:rgba(246,241,232,.52);font-size:9px;font-weight:600;letter-spacing:1.5px}
+.b-step .step-rail{flex:1;height:1px;background:rgba(246,241,232,.12);margin-left:4px;position:relative}
+.b-step .step-rail::after{content:'';position:absolute;left:0;top:0;bottom:0;width:100%;background:#f97316}
+
+.b-accent{width:6px;height:6px;background:#f97316;border-radius:50%;margin:14px 0 4px}
+.b-survey{font-size:9px;color:rgba(246,241,232,.52);letter-spacing:1.5px;font-weight:600;margin-bottom:4px}
+.b-survey .dot{color:#f97316;margin-right:4px}
+.b-welcome{color:#f97316;font-size:9px;letter-spacing:1.8px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.b-welcome::before{content:'';width:24px;height:1px;background:#f97316}
+
+.b-avatar{width:60px;height:60px;border-radius:50%;background:#f97316;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:900;margin-bottom:14px}
+
+.b-greet{font-size:32px;font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:4px}
+.b-greet .name{color:#f97316}
+.b-line{width:32px;height:3px;background:#f97316;margin:8px 0 14px}
+.b-sub{font-size:13px;color:rgba(246,241,232,.7);margin-bottom:6px}
+.b-loc{font-size:11px;color:rgba(246,241,232,.55);margin-bottom:18px;display:flex;align-items:center;gap:4px}
+
+.b-q{font-size:10px;color:rgba(246,241,232,.55);letter-spacing:1.2px;margin-bottom:10px;font-weight:600;text-transform:uppercase}
+
+.b-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.b-card{padding:12px 14px;border:1px solid rgba(246,241,232,.10);border-radius:12px;background:rgba(246,241,232,.03);display:flex;align-items:center;gap:10px}
+.b-card.selected{border-color:#f97316;background:rgba(249,115,22,.08)}
+.b-card-num{font-family:monospace;font-size:11px;color:#f97316;font-weight:700;min-width:18px}
+.b-card-content{flex:1}
+.b-card-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:1px}
+.b-card-sub{font-size:9px;color:#fdba74;letter-spacing:1px;font-weight:600;text-transform:uppercase}
+.b-card-arrow{color:rgba(246,241,232,.4);font-size:14px}
+
+.b-stats-header{font-size:9px;color:rgba(246,241,232,.55);letter-spacing:1.2px;font-weight:600;margin-bottom:10px;text-transform:uppercase}
+.b-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:18px}
+.b-stat{padding:12px 8px;border:1px solid rgba(246,241,232,.10);border-radius:10px;background:rgba(246,241,232,.03);text-align:center}
+.b-stat-num{font-family:monospace;font-size:9px;color:#f97316;font-weight:700;margin-bottom:2px}
+.b-stat-val{font-size:18px;font-weight:900;color:#fff;line-height:1}
+.b-stat-label{font-size:8px;color:rgba(246,241,232,.55);letter-spacing:1px;font-weight:600;margin-top:4px;text-transform:uppercase}
+
+.b-divider{height:1px;background:rgba(246,241,232,.10);margin:14px 0}
+
+.b-brand{text-align:center;margin-bottom:14px}
+.b-brand-name{font-size:18px;font-weight:900;letter-spacing:-.5px}
+.b-brand-em{color:#f97316}
+.b-brand-tag{font-size:9px;color:#f97316;letter-spacing:1.5px;font-weight:600;margin-top:3px;text-transform:uppercase}
+
+.b-cta{background:linear-gradient(135deg,#f97316,#ea580c);padding:13px;border-radius:12px;text-align:center;color:#fff;font-size:14px;font-weight:700;margin-bottom:8px}
+.b-cta-out{padding:12px;border:1px solid rgba(246,241,232,.20);border-radius:12px;text-align:center;color:#fff;font-size:13px;font-weight:600;margin-bottom:14px}
+
+.b-mm{text-align:center;font-size:8px;color:rgba(246,241,232,.40);letter-spacing:1.5px;font-weight:600}
+
+/* annotations */
+.cuts{position:absolute;left:-2px;right:-2px;border:1.5px dashed #ef4444;border-radius:8px;pointer-events:none}
+.cuts::before{content:attr(data-label);position:absolute;top:-9px;left:8px;background:#ef4444;color:#fff;padding:1px 6px;border-radius:4px;font-size:8px;font-weight:800;letter-spacing:.5px}
+
+/* ───────────── AFTER ───────────── */
+
+.a-step{display:flex;align-items:center;gap:8px;margin-bottom:32px}
+.a-step .rail{flex:1;height:2px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+.a-step .rail::after{content:'';display:block;height:100%;width:100%;background:#f97316}
+.a-step .num{font-family:monospace;font-size:10px;color:rgba(246,241,232,.6);font-weight:700}
+
+.a-greet{font-size:38px;font-weight:900;line-height:1;letter-spacing:-1.4px;margin-bottom:14px}
+.a-greet .name{color:#f97316}
+
+.a-loc{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(246,241,232,.85);font-weight:500;margin-bottom:32px}
+.a-loc svg{flex-shrink:0;color:#f97316}
+.a-loc strong{color:#fff;font-weight:700}
+
+.a-q{font-size:11px;color:rgba(246,241,232,.55);letter-spacing:1.5px;margin-bottom:12px;font-weight:700;text-transform:uppercase}
+
+.a-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.a-card{padding:18px 18px;border:1px solid rgba(246,241,232,.08);border-radius:14px;background:rgba(246,241,232,.03);display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s}
+.a-card.selected{border-color:#f97316;background:rgba(249,115,22,.08);box-shadow:0 0 0 1px rgba(249,115,22,.30)}
+.a-card-num{font-family:monospace;font-size:13px;color:rgba(246,241,232,.40);font-weight:700;min-width:22px}
+.a-card.selected .a-card-num{color:#f97316}
+.a-card-content{flex:1}
+.a-card-title{font-size:17px;font-weight:800;color:#fff;line-height:1.2;letter-spacing:-.3px;margin-bottom:3px}
+.a-card-sub{font-size:10px;color:rgba(246,241,232,.55);letter-spacing:1.2px;font-weight:600;text-transform:uppercase}
+.a-card.selected .a-card-sub{color:#fdba74}
+.a-card-arrow{color:rgba(246,241,232,.30);flex-shrink:0}
+.a-card.selected .a-card-arrow{color:#f97316}
+
+.a-cta{background:linear-gradient(135deg,#f97316,#ea580c);padding:16px;border-radius:14px;text-align:center;color:#fff;font-size:16px;font-weight:800;letter-spacing:-.2px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 20px rgba(249,115,22,.30)}
+
+.notes{margin-top:16px;padding:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;font-size:11px;line-height:1.5}
+.notes ul{list-style:none;padding:0}
+.notes li{padding:3px 0;display:flex;gap:8px}
+.col-before .notes li:before{content:'❌';flex-shrink:0;font-size:10px}
+.col-after .notes li:before{content:'✓';flex-shrink:0;color:#22c55e;font-weight:900}
+.notes strong{color:#fff}
+.col-before .notes{border-color:rgba(239,68,68,.2)}
+.col-after .notes{border-color:rgba(34,197,94,.2)}
+
+</style>
+</head>
+<body>
+
+<div class="legend">
+  <span class="tag">ONBOARDING WELCOME · PASO 3 DE 3</span><br>
+  <strong>Antes:</strong> 15 elementos · scroll necesario · 4 decisiones<br>
+  <strong>Después:</strong> 6 elementos · una pantalla · 1 decisión
+</div>
+
+<div class="wrap">
+
+  <!-- ============ ANTES ============ -->
+  <div class="col col-before">
+    <h2><span class="dot"></span> Antes <span class="label">15 ELEMENTOS · SCROLL</span></h2>
+    <div class="phone"><div class="screen">
+
+      <!-- Step bar -->
+      <div class="b-step">
+        <span class="step-mark">●</span>
+        <span class="step-text">PASO 3 DE 3 · LISTO</span>
+        <div class="step-rail"></div>
+      </div>
+
+      <!-- Accent + survey marker -->
+      <div class="b-accent"></div>
+      <div class="b-survey"><span class="dot">●</span>CUENTA CREADA · PRUEBA</div>
+
+      <!-- Welcome eyebrow -->
+      <div class="b-welcome">BIENVENIDO A BORDO</div>
+
+      <!-- Avatar -->
+      <div class="b-avatar">P</div>
+
+      <!-- Greeting -->
+      <div class="b-greet">Hola,<br><span class="name">Prueba</span>.</div>
+      <div class="b-line"></div>
+
+      <!-- Subtitle -->
+      <div class="b-sub">Una última decisión y entras en la comunidad.</div>
+      <div class="b-loc">📍 Punta Umbría · Avanzado</div>
+
+      <!-- Question -->
+      <div class="b-q">¿Qué buscas aquí?</div>
+
+      <!-- Goal cards -->
+      <div class="b-cards">
+        <div class="b-card selected">
+          <div class="b-card-num">01</div>
+          <div class="b-card-content">
+            <div class="b-card-title">Correr acompañado</div>
+            <div class="b-card-sub">Quedadas + Matching</div>
+          </div>
+          <div class="b-card-arrow">›</div>
+        </div>
+        <div class="b-card">
+          <div class="b-card-num">02</div>
+          <div class="b-card-content">
+            <div class="b-card-title">Empezar a correr</div>
+            <div class="b-card-sub">Gratis · 8 semanas</div>
+          </div>
+          <div class="b-card-arrow">›</div>
+        </div>
+        <div class="b-card">
+          <div class="b-card-num">03</div>
+          <div class="b-card-content">
+            <div class="b-card-title">Mejorar mi marca</div>
+            <div class="b-card-sub">5 planes · 5K a maratón</div>
+          </div>
+          <div class="b-card-arrow">›</div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="b-stats-header">TU ZONA AHORA · PUNTA UMBRÍA</div>
+      <div class="b-stats">
+        <div class="b-stat">
+          <div class="b-stat-num">01</div>
+          <div class="b-stat-val">359</div>
+          <div class="b-stat-label">RUNNERS<br>CERCA</div>
+        </div>
+        <div class="b-stat">
+          <div class="b-stat-num">02</div>
+          <div class="b-stat-val">2</div>
+          <div class="b-stat-label">QUEDADAS<br>HOY</div>
+        </div>
+        <div class="b-stat">
+          <div class="b-stat-num">03</div>
+          <div class="b-stat-val">0%</div>
+          <div class="b-stat-label">MATCH<br>MÁXIMO</div>
+        </div>
+      </div>
+
+      <!-- Brand -->
+      <div class="b-divider"></div>
+      <div class="b-brand">
+        <div class="b-brand-name">Correr<span class="b-brand-em">Juntos</span></div>
+        <div class="b-brand-tag">CORRE ACOMPAÑADO, NO SOLO</div>
+      </div>
+
+      <!-- Two CTAs -->
+      <div class="b-cta">Entrar a la comunidad &nbsp;→</div>
+      <div class="b-cta-out">Empezar a correr &nbsp;→</div>
+
+      <!-- Footer -->
+      <div class="b-mm">MERIDIAN MOTION · PASO 3 DE 3</div>
+
+    </div></div>
+
+    <div class="notes">
+      <ul>
+        <li><strong>Step bar</strong> redundante (PASO 3 DE 3)</li>
+        <li><strong>"CUENTA CREADA · PRUEBA"</strong> metadata para nosotros</li>
+        <li><strong>"BIENVENIDO A BORDO"</strong> redundante con greeting</li>
+        <li><strong>Avatar "P"</strong> ocupa 80px por una letra</li>
+        <li><strong>Subtítulo</strong> innecesario</li>
+        <li><strong>3 stats</strong> — el "0% match" deprime al user</li>
+        <li><strong>Brand al medio</strong> redundante</li>
+        <li><strong>2 CTAs separados</strong> = decisión doble</li>
+        <li><strong>"MERIDIAN MOTION"</strong> metadata</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ DESPUÉS ============ -->
+  <div class="col col-after">
+    <h2><span class="dot"></span> Después <span class="label">6 ELEMENTOS · 1 PANTALLA</span></h2>
+    <div class="phone"><div class="screen">
+
+      <!-- Minimal step bar -->
+      <div class="a-step">
+        <div class="rail"></div>
+        <div class="num">3/3</div>
+      </div>
+
+      <!-- Greeting -->
+      <div class="a-greet">Hola,<br><span class="name">Prueba</span>.</div>
+
+      <!-- Location + ONE social proof stat -->
+      <div class="a-loc">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        Punta Umbría · <strong>359 runners</strong> cerca
+      </div>
+
+      <!-- Question -->
+      <div class="a-q">¿Qué buscas?</div>
+
+      <!-- 3 cards (one selected) -->
+      <div class="a-cards">
+        <div class="a-card selected">
+          <div class="a-card-num">01</div>
+          <div class="a-card-content">
+            <div class="a-card-title">Correr acompañado</div>
+            <div class="a-card-sub">Quedadas + Matching</div>
+          </div>
+          <svg class="a-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="a-card">
+          <div class="a-card-num">02</div>
+          <div class="a-card-content">
+            <div class="a-card-title">Empezar a correr</div>
+            <div class="a-card-sub">Plan gratis · 8 semanas</div>
+          </div>
+          <svg class="a-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="a-card">
+          <div class="a-card-num">03</div>
+          <div class="a-card-content">
+            <div class="a-card-title">Mejorar mi marca</div>
+            <div class="a-card-sub">5K → maratón</div>
+          </div>
+          <svg class="a-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Single CTA (text adapts to selection) -->
+      <div class="a-cta">
+        Entrar
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+
+    </div></div>
+
+    <div class="notes">
+      <ul>
+        <li><strong>Step bar minimal</strong> — solo "3/3" + barra fina</li>
+        <li><strong>Greeting MÁS GRANDE</strong> — protagonismo personal</li>
+        <li><strong>1 línea ubicación + social proof</strong> — "359 runners cerca" basta</li>
+        <li><strong>3 goal cards</strong> con más respiración (18px padding vs 12px)</li>
+        <li><strong>Cero metadata</strong> visible</li>
+        <li><strong>Cero stats redundantes</strong> (0% match fuera)</li>
+        <li><strong>1 CTA único</strong> que se adapta al goal seleccionado</li>
+        <li><strong>0 elementos para nosotros</strong> — todo es para el user</li>
+        <li><strong>Encaja sin scroll</strong> en pantallas estándar</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="legend" style="margin-top:24px">
+  <strong>Resultado:</strong> de "última pantalla" a "selección rápida".<br>
+  El user ve TODO en una pantalla, decide en 3 segundos, entra a la app sin fricción.<br>
+  Reglas aplicadas: cero emojis, naranja al 10%, SVG lineales solo si aportan función.
+</div>
+
+</body>
+</html>

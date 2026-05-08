@@ -121,7 +121,7 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 ## Monetización
 
 - Premium mensual: 4,99€/mes via RevenueCat (ACTIVO)
-- Premium anual: 29,99€/año (preparado, activar abril 2026)
+- Premium anual: 29,99€/año via RevenueCat (ACTIVO desde v1.3.0 — selector visible, anual = default, badge "Ahorra 40%", trial 14 días)
 - Amazon afiliados: tag diezmejores21-21 (ACTIVO)
 
 ## Versión Actual
@@ -148,14 +148,14 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 - `correr-juntos-app/src/context/AuthContext.tsx` — initInstallDate
 - `correr-juntos-app/src/utils/analytics.ts` — 8 GA4 events for plans
 
-## Pending April 2026
+## Pending (status May 7, 2026)
 
-1. Activate training plans (badge NUEVO + enable click + add "Empieza a Moverte" to wizard)
-2. Activate annual plan 29,99€
-3. Show seed quedadas in app
-4. Commit all local changes + build + submit to stores
-5. Blog calendar days 7-30
-6. Implement Garmin/COROS/Apple Watch sync (when approved)
+1. ✅ Activate training plans — DONE April
+2. ✅ Activate annual plan 29,99€ — DONE in v1.3.0 (paywall visible, anual = default)
+3. Show seed quedadas in app — pending build (es_seed filter removed locally)
+4. Blog calendar days 7-30 — superseded by ~349 articles published Mar-May
+5. Implement Garmin/COROS/Apple Watch sync — pending API approval (COROS ticket #534211, Garmin direct email)
+6. Dogfood quedada 14K Sunday — requires user action in app
 
 ## Colores
 

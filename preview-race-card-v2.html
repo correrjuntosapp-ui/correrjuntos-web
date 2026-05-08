@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RacePlanCard v2 — Mockup completo</title>
+<title>RacePlanCard v2 — CorrerJuntos</title>
 <link rel="preconnect" href="https://images.pexels.com" crossorigin>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
@@ -13,362 +13,98 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .legend strong{color:#f97316;font-weight:800}
 .tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(34,197,94,.15);color:#86efac;font-weight:800;letter-spacing:.5px;margin-bottom:8px}
 
-/* ============ CARD ============ */
-.card{
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.06);
-  background:#111114;
-  margin-bottom:14px;
-  position:relative;
-}
+.card{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:#111114;margin-bottom:14px;position:relative}
 
-/* Hero banner con foto de fondo */
-.banner{
-  position:relative;
-  min-height:180px;
-  overflow:hidden;
-  display:flex;
-  align-items:flex-end;
-  padding:14px;
-}
-.banner-bg{
-  position:absolute;
-  inset:0;
-  background-image:url('https://images.pexels.com/photos/14541478/pexels-photo-14541478.jpeg?auto=compress&cs=tinysrgb&w=800&q=70');
-  background-size:cover;
-  background-position:center 40%;
-  filter:saturate(.8);
-}
-.banner-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(8,8,10,.30) 0%,rgba(8,8,10,.55) 60%,rgba(17,17,20,.95) 100%);
-}
-.banner-content{
-  position:relative;
-  z-index:1;
-  flex:1;
-  display:flex;
-  align-items:flex-end;
-  gap:10px;
-}
+.banner{position:relative;min-height:180px;overflow:hidden;display:flex;align-items:flex-end;padding:14px}
+.banner-bg{position:absolute;inset:0;background-image:url('https://images.pexels.com/photos/14541478/pexels-photo-14541478.jpeg?auto=compress&cs=tinysrgb&w=800&q=70');background-size:cover;background-position:center 40%;filter:saturate(.8)}
+.banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,10,.30) 0%,rgba(8,8,10,.55) 60%,rgba(17,17,20,.95) 100%)}
+.banner-content{position:relative;z-index:1;flex:1;display:flex;align-items:flex-end;gap:10px}
 .banner-info{flex:1}
 
-/* Pill localización con distancia */
-.location-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.10);
-  padding:5px 10px;
-  border-radius:99px;
-  font-size:10px;
-  font-weight:700;
-  margin-bottom:8px;
-  color:#fff;
-  letter-spacing:.3px;
-}
-.location-pill .pin{color:#f97316}
-.location-pill .dist{opacity:.65;font-weight:500}
+.location-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.10);padding:5px 10px;border-radius:99px;font-size:10px;font-weight:700;margin-bottom:8px;color:#fff;letter-spacing:.3px}
+.location-pill svg{flex-shrink:0;color:#f97316}
+.location-pill .dist{opacity:.55;font-weight:500}
 
-.race-name{
-  color:#fff;
-  font-size:22px;
-  font-weight:900;
-  line-height:24px;
-  letter-spacing:-.5px;
-  margin-bottom:4px;
-  text-shadow:0 1px 4px rgba(0,0,0,.4);
-}
+.race-name{color:#fff;font-size:22px;font-weight:900;line-height:24px;letter-spacing:-.5px;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.4)}
 .race-meta{color:rgba(255,255,255,.85);font-size:12px;font-weight:600}
 
-/* Countdown inteligente */
-.countdown{
-  border-radius:12px;
-  padding:8px 12px;
-  text-align:center;
-  align-self:flex-end;
-  min-width:62px;
-  /* default azul: muy lejos (16+ sem) */
-  background:rgba(59,130,246,.12);
-  border:1px solid rgba(59,130,246,.30);
-  backdrop-filter:blur(6px);
-}
-.countdown.urgent-medium{ /* 8-15 sem */
-  background:rgba(249,115,22,.15);
-  border-color:rgba(249,115,22,.45);
-}
-.countdown.urgent-high{ /* <8 sem */
-  background:rgba(239,68,68,.20);
-  border-color:rgba(239,68,68,.55);
-  animation:pulse 2s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.countdown{border-radius:12px;padding:8px 12px;text-align:center;align-self:flex-end;min-width:62px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.30);backdrop-filter:blur(6px)}
+.countdown.urgent-medium{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.45)}
+.countdown.urgent-high{background:rgba(239,68,68,.20);border-color:rgba(239,68,68,.55)}
 .countdown .num{font-size:22px;font-weight:900;line-height:22px}
 .countdown .lbl{font-size:9px;font-weight:800;letter-spacing:.6px;opacity:.85;margin-top:2px;text-transform:uppercase}
 .countdown.urgent-low .num,.countdown.urgent-low .lbl{color:#93c5fd}
 .countdown.urgent-medium .num,.countdown.urgent-medium .lbl{color:#fdba74}
 .countdown.urgent-high .num,.countdown.urgent-high .lbl{color:#fca5a5}
 
-/* Social proof */
-.social-proof{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 14px;
-  background:rgba(255,255,255,.03);
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
+.social-proof{display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05)}
 .avatars{display:flex;align-items:center}
-.avatar{
-  width:24px;
-  height:24px;
-  border-radius:50%;
-  border:2px solid #111114;
-  margin-left:-8px;
-  background-size:cover;
-  background-position:center;
-}
+.avatar{width:24px;height:24px;border-radius:50%;border:2px solid #111114;margin-left:-8px;background-size:cover;background-position:center}
 .avatar:first-child{margin-left:0}
-.avatar.count{
-  background:rgba(249,115,22,.15);
-  color:#fdba74;
-  font-size:9px;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-color:#111114;
-}
+.avatar.count{background:rgba(249,115,22,.15);color:#fdba74;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;border-color:#111114}
 .social-text{font-size:12px;color:#cbd5e1;line-height:1.4;flex:1}
 .social-text strong{color:#fff;font-weight:700}
 
-/* Plan section */
 .plan-block{padding:16px}
-.plan-divider{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:12px;
-}
-.plan-divider .badge-text{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.6px;
-  color:#fdba74;
-  background:rgba(249,115,22,.10);
-  padding:4px 10px;
-  border-radius:99px;
-  border:1px solid rgba(249,115,22,.20);
-  text-transform:uppercase;
-}
-.plan-divider .completion{
-  font-size:10px;
-  color:#86efac;
-  font-weight:700;
-  margin-left:auto;
-}
+.plan-divider{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.plan-divider .badge-text{font-size:10px;font-weight:800;letter-spacing:.6px;color:#fdba74;background:rgba(249,115,22,.10);padding:4px 10px;border-radius:99px;border:1px solid rgba(249,115,22,.20);text-transform:uppercase}
+.plan-divider .completion{font-size:10px;color:#86efac;font-weight:700;margin-left:auto}
 .completion .pct{color:#22c55e;font-weight:900}
 
-.plan-name{
-  font-size:18px;
-  font-weight:800;
-  line-height:22px;
-  margin-bottom:3px;
-  color:#fff;
-  letter-spacing:-.2px;
-}
-.coach-sig{
-  font-size:11px;
-  color:#94a3b8;
-  margin-bottom:10px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.coach-sig .coach-avatar{
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#f97316,#ea580c);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:8px;
-  font-weight:900;
-}
-.plan-desc{
-  font-size:13px;
-  line-height:18px;
-  margin-bottom:14px;
-  color:#94a3b8;
-}
+.plan-name{font-size:18px;font-weight:800;line-height:22px;margin-bottom:3px;color:#fff;letter-spacing:-.2px}
+.coach-sig{font-size:11px;color:#94a3b8;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.coach-sig .coach-avatar{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:900}
+.plan-desc{font-size:13px;line-height:18px;margin-bottom:14px;color:#94a3b8}
 
-/* Stats con iconos */
+/* Stats sin iconos — solo número + label */
 .stats-row{display:flex;gap:8px;margin-bottom:16px}
-.stat{
-  flex:1;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;
-  padding:10px 8px;
-  text-align:center;
-  background:rgba(255,255,255,.02);
-}
-.stat-icon{font-size:14px;margin-bottom:3px;opacity:.7}
-.stat-value{color:#fff;font-size:18px;font-weight:900;line-height:20px}
-.stat-label{font-size:9px;font-weight:700;margin-top:2px;letter-spacing:.5px;color:#f97316;text-transform:uppercase}
+.stat{flex:1;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px 8px;text-align:center;background:rgba(255,255,255,.02)}
+.stat-value{color:#fff;font-size:22px;font-weight:900;line-height:22px}
+.stat-label{font-size:9px;font-weight:700;margin-top:6px;letter-spacing:.6px;color:#f97316;text-transform:uppercase}
 
-/* CTA */
-.cta-trial{
-  text-align:center;
-  font-size:11px;
-  font-weight:700;
-  color:#86efac;
-  background:rgba(34,197,94,.08);
-  border:1px solid rgba(34,197,94,.18);
-  padding:6px 12px;
-  border-radius:8px;
-  margin-bottom:8px;
-  display:inline-block;
-  width:100%;
-}
-.cta-trial .badge-emoji{margin-right:4px}
-.cta{
-  background:linear-gradient(135deg,#f97316,#ea580c);
-  padding:14px;
-  border-radius:14px;
-  text-align:center;
-  color:#fff;
-  font-size:15px;
-  font-weight:700;
-  box-shadow:0 6px 20px rgba(249,115,22,.30);
-  letter-spacing:-.2px;
-}
-.cta .arrow{margin-left:4px}
-.cta-fine{
-  text-align:center;
-  font-size:10px;
-  margin-top:8px;
-  color:#64748b;
-}
+/* Trial sin emoji */
+.cta-trial{text-align:center;font-size:12px;font-weight:700;color:#86efac;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:8px 12px;border-radius:8px;margin-bottom:8px}
+
+.cta{background:linear-gradient(135deg,#f97316,#ea580c);padding:14px;border-radius:14px;text-align:center;color:#fff;font-size:15px;font-weight:700;box-shadow:0 6px 20px rgba(249,115,22,.30);letter-spacing:-.2px;display:flex;align-items:center;justify-content:center;gap:6px}
+.cta svg{flex-shrink:0}
+.cta-fine{text-align:center;font-size:10px;margin-top:8px;color:#64748b}
 .cta-fine strong{color:#94a3b8;font-weight:600}
 
-/* ============ Mini cards mejoradas ============ */
-.section-title{
-  font-size:13px;
-  font-weight:700;
-  color:#fff;
-  margin:14px 0 10px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.section-title .badge{
-  font-size:11px;
-  font-weight:800;
-  color:#94a3b8;
-  background:rgba(255,255,255,.06);
-  padding:1px 7px;
-  border-radius:6px;
-}
-.minis{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin:0 -12px;padding:0 12px 6px}
+.section-title{font-size:13px;font-weight:700;color:#fff;margin:14px 0 10px;display:flex;align-items:center;gap:6px}
+.section-title .badge{font-size:11px;font-weight:800;color:#94a3b8;background:rgba(255,255,255,.06);padding:1px 7px;border-radius:6px}
+.minis{display:flex;gap:10px;overflow-x:auto;margin:0 -12px;padding:0 12px 6px}
 .minis::-webkit-scrollbar{display:none}
-.mini{
-  min-width:170px;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;
-  padding:12px;
-  background:rgba(255,255,255,.02);
-}
-.mini-day{
-  display:inline-block;
-  color:#fdba74;
-  background:rgba(249,115,22,.10);
-  padding:3px 8px;
-  border-radius:6px;
-  font-size:10px;
-  font-weight:800;
-  border:1px solid rgba(249,115,22,.20);
-  margin-bottom:8px;
-}
-.mini-name{
-  font-size:13px;
-  font-weight:700;
-  line-height:16px;
-  margin-bottom:3px;
-  color:#fff;
-}
+.mini{min-width:170px;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;background:rgba(255,255,255,.02);flex-shrink:0}
+.mini-day{display:inline-block;color:#fdba74;background:rgba(249,115,22,.10);padding:3px 8px;border-radius:6px;font-size:10px;font-weight:800;border:1px solid rgba(249,115,22,.20);margin-bottom:8px}
+.mini-name{font-size:13px;font-weight:700;line-height:16px;margin-bottom:3px;color:#fff}
 .mini-loc{font-size:11px;color:#94a3b8}
 
-/* Annotations side panel */
-.annotations{
-  margin-top:24px;
-  padding:16px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:14px;
-}
-.annotations h3{
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.5px;
-  color:#fdba74;
-  margin-bottom:12px;
-  text-transform:uppercase;
-}
-.ann{
-  display:flex;
-  gap:10px;
-  padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);
-  font-size:12px;
-  line-height:1.5;
-}
+.annotations{margin-top:24px;padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px}
+.annotations h3{font-size:11px;font-weight:800;letter-spacing:.5px;color:#fdba74;margin-bottom:12px;text-transform:uppercase}
+.ann{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;line-height:1.5}
 .ann:last-child{border-bottom:0}
-.ann-num{
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  background:rgba(249,115,22,.15);
-  color:#fdba74;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:800;
-  flex-shrink:0;
-}
+.ann-num{width:22px;height:22px;border-radius:50%;background:rgba(249,115,22,.15);color:#fdba74;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
 .ann-body{flex:1;color:#cbd5e1}
 .ann-body strong{color:#fff;font-weight:700}
-
 </style>
 </head>
 <body>
-
 <div class="wrap">
 
   <div class="legend">
-    <span class="tag">RACEPLANCARD V2</span><br>
-    Las 5 mejoras + bonus aplicadas. Mira las anotaciones abajo.
+    <span class="tag">RACEPLANCARD V2 — SIN EMOJIS</span><br>
+    Estética seria estilo Strava / Nike Run Club. Cero iconografía decorativa.
   </div>
 
-  <!-- ===== CARD COMPLETA ===== -->
   <div class="card">
-    <!-- HERO con foto Sevilla difuminada -->
     <div class="banner">
       <div class="banner-bg"></div>
       <div class="banner-overlay"></div>
       <div class="banner-content">
         <div class="banner-info">
           <div class="location-pill">
-            <span class="pin">📍</span> Sevilla <span class="dist">· 92 km de Huelva</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Sevilla <span class="dist">· 92 km de Huelva</span>
           </div>
           <div class="race-name">Carrera de la Mujer Sevilla</div>
           <div class="race-meta">15 nov · 10.000 runners</div>
@@ -380,7 +116,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
     </div>
 
-    <!-- SOCIAL PROOF -->
     <div class="social-proof">
       <div class="avatars">
         <div class="avatar" style="background-image:url('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=80')"></div>
@@ -388,18 +123,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="avatar" style="background-image:url('https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=80')"></div>
         <div class="avatar count">+47</div>
       </div>
-      <div class="social-text">
-        <strong>Ana, Carmen y 47 más</strong> ya están preparándose
-      </div>
+      <div class="social-text"><strong>Ana, Carmen y 47 más</strong> ya están preparándose</div>
     </div>
 
-    <!-- PLAN BLOCK -->
     <div class="plan-block">
       <div class="plan-divider">
-        <div class="badge-text">⚡ Plan recomendado</div>
-        <div class="completion">
-          <span class="pct">87%</span> lo completan
-        </div>
+        <div class="badge-text">PLAN RECOMENDADO</div>
+        <div class="completion"><span class="pct">87%</span> lo completan</div>
       </div>
 
       <div class="plan-name">Preparación 5K</div>
@@ -407,42 +137,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <span class="coach-avatar">CJ</span>
         Diseñado por Coach José · Validado por +800 runners
       </div>
-      <div class="plan-desc">
-        8 semanas. Llegas con margen de sobra para entrenar bien.
-      </div>
+      <div class="plan-desc">8 semanas. Llegas con margen de sobra para entrenar bien.</div>
 
-      <!-- Stats con iconos -->
       <div class="stats-row">
-        <div class="stat">
-          <div class="stat-icon">📅</div>
-          <div class="stat-value">8</div>
-          <div class="stat-label">Semanas</div>
-        </div>
-        <div class="stat">
-          <div class="stat-icon">🏃</div>
-          <div class="stat-value">32</div>
-          <div class="stat-label">Sesiones</div>
-        </div>
-        <div class="stat">
-          <div class="stat-icon">🔁</div>
-          <div class="stat-value">4×</div>
-          <div class="stat-label">Por sem.</div>
-        </div>
+        <div class="stat"><div class="stat-value">8</div><div class="stat-label">Semanas</div></div>
+        <div class="stat"><div class="stat-value">32</div><div class="stat-label">Sesiones</div></div>
+        <div class="stat"><div class="stat-value">4×</div><div class="stat-label">Por sem.</div></div>
       </div>
 
-      <!-- Trial badge ANTES del CTA (anti-fricción) -->
-      <div class="cta-trial">
-        <span class="badge-emoji">✨</span> 14 días gratis · Sin tarjeta
+      <div class="cta-trial">14 días gratis · Sin tarjeta</div>
+      <div class="cta">
+        Quiero estar lista para Sevilla
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
-      <!-- CTA con personalidad -->
-      <div class="cta">Quiero estar lista para Sevilla<span class="arrow">→</span></div>
-      <div class="cta-fine">
-        Después: <strong>Premium 4,99€/mes</strong> · Cancela cuando quieras
-      </div>
+      <div class="cta-fine">Después: <strong>Premium 4,99€/mes</strong> · Cancela cuando quieras</div>
     </div>
   </div>
 
-  <!-- Mini cards (sin cambios mayores, solo limpieza) -->
   <div class="section-title">Más carreras cerca de ti<span class="badge">3</span></div>
   <div class="minis">
     <div class="mini">
@@ -457,78 +168,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
   </div>
 
-  <!-- ===== ANNOTATIONS ===== -->
   <div class="annotations">
-    <h3>📝 Las 5 mejoras + bonus aplicadas</h3>
-
-    <div class="ann">
-      <div class="ann-num">1</div>
-      <div class="ann-body">
-        <strong>Foto de Sevilla difuminada</strong> en el banner — da contexto emocional sin saturar.
-        Cada carrera tendría su propia imagen (Valencia → Ciutat de las Arts, Trail → montaña, etc).
-      </div>
-    </div>
-
-    <div class="ann">
-      <div class="ann-num">2</div>
-      <div class="ann-body">
-        <strong>Social proof real</strong> — 3 avatares + "Ana, Carmen y 47 más están preparándose".
-        Convierte un dato (10K runners) en señal social actionable.
-      </div>
-    </div>
-
-    <div class="ann">
-      <div class="ann-num">3</div>
-      <div class="ann-body">
-        <strong>Countdown inteligente</strong> — azul (16+ sem, calma) → naranja (8-15) → rojo pulsando (&lt;8 urgencia).
-        La app PIENSA por el usuario.
-      </div>
-    </div>
-
-    <div class="ann">
-      <div class="ann-num">4</div>
-      <div class="ann-body">
-        <strong>CTA con personalidad</strong> — "Quiero estar lista para Sevilla" en lugar de "Empezar plan 5K".
-        + Trial badge VERDE ANTES del CTA. Premium queda relegado a fineprint debajo.
-      </div>
-    </div>
-
-    <div class="ann">
-      <div class="ann-num">5</div>
-      <div class="ann-body">
-        <strong>Distancia local concreta</strong> — "Sevilla · 92 km de Huelva". El usuario sabe si es viable.
-        En "Más carreras" también: "Tu ciudad" / "207 km".
-      </div>
-    </div>
-
-    <div class="ann">
-      <div class="ann-num">+</div>
-      <div class="ann-body">
-        <strong>Bonus #1:</strong> "Diseñado por Coach José · Validado por +800 runners" → autoridad real.
-      </div>
-    </div>
-
-    <div class="ann">
-      <div class="ann-num">+</div>
-      <div class="ann-body">
-        <strong>Bonus #2:</strong> "87% lo completan" → credibilidad y FOMO sutil.
-      </div>
-    </div>
-
-    <div class="ann">
-      <div class="ann-num">+</div>
-      <div class="ann-body">
-        <strong>Bonus #3:</strong> Iconos sutiles en stats (📅 🏃 🔁) → escaneabilidad visual.
-      </div>
-    </div>
+    <h3>Cambios aplicados (sin emojis)</h3>
+    <div class="ann"><div class="ann-num">1</div><div class="ann-body"><strong>Foto de Sevilla difuminada</strong> en banner. Cada carrera tiene su imagen real.</div></div>
+    <div class="ann"><div class="ann-num">2</div><div class="ann-body"><strong>Social proof</strong> — 3 avatares + "+47" + "Ana, Carmen y 47 más están preparándose".</div></div>
+    <div class="ann"><div class="ann-num">3</div><div class="ann-body"><strong>Countdown inteligente</strong> con color por urgencia (azul lejos / naranja medio / rojo cerca).</div></div>
+    <div class="ann"><div class="ann-num">4</div><div class="ann-body"><strong>CTA con personalidad</strong> + bar verde de trial ANTES. Premium queda en fineprint.</div></div>
+    <div class="ann"><div class="ann-num">5</div><div class="ann-body"><strong>Distancia local concreta</strong> — "Sevilla · 92 km de Huelva". Mini cards: "Tu ciudad" / "207 km".</div></div>
+    <div class="ann"><div class="ann-num">+</div><div class="ann-body"><strong>Coach José firma plan</strong> + "Validado por +800 runners" → autoridad real.</div></div>
+    <div class="ann"><div class="ann-num">+</div><div class="ann-body"><strong>"87% lo completan"</strong> → credibilidad sin marketing barato.</div></div>
+    <div class="ann"><div class="ann-num">+</div><div class="ann-body"><strong>Stats sin iconos</strong> — solo números grandes + labels. Igual que Strava.</div></div>
+    <div class="ann"><div class="ann-num">+</div><div class="ann-body"><strong>SVG monocromos lineales</strong> donde necesario (pin, flecha CTA). Cero emojis.</div></div>
   </div>
 
   <div class="legend" style="margin-top:24px">
-    <strong>El resultado:</strong> de "una card más en una app de fitness" a "la card que me hace parar el scroll".<br>
-    Mismo contenido base + capas de contexto, social y autoridad. Naranja sigue al 10%.
+    <strong>Estética:</strong> Strava / Nike Run Club / Garmin Connect.<br>
+    Cero emojis. Tipografía pesada. Color funcional. SVG lineales solo si aportan.
   </div>
 
 </div>
-
 </body>
 </html>

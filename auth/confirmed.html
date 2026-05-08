@@ -147,6 +147,10 @@
 
     <a href="correrjuntos://login" class="cta" id="openAppBtn">Abrir CorrerJuntos &nbsp;→</a>
 
+    <p id="install-hint" style="display:none;font-size:12px;color:#fbbf24;margin-top:12px;">
+      Si no se ha abierto, descarga la app abajo.
+    </p>
+
     <div class="divider"></div>
 
     <p style="font-size:13px; margin-bottom:16px;">¿No tienes la app instalada?</p>
@@ -180,12 +184,60 @@
       }
     })();
 
-    // No auto-jump to the app scheme. We used to redirect to
-    // correrjuntos://login automatically after 600ms, but in Gmail's
-    // in-app webview (where Universal Links don't fire) that produced
-    // the "¿Permitir abrir app?" system prompt on page load without
-    // any user intent — felt broken. The tap on "Abrir CorrerJuntos →"
-    // is a deliberate gesture and justifies the prompt.
+    // [8 mayo 2026] Auto-redirect agresivo a la app con fallback visible.
+    //
+    // Reportado por Ángela: el flujo email → bridge → tap "Abrir CorrerJuntos"
+    // → iOS prompt → app eran 4-5 taps en Gmail iOS. Demasiada fricción
+    // para un confirmation flow.
+    //
+    // Approach: intentar abrir la app inmediatamente al cargar. Si el user
+    // está en Gmail webview (donde Universal Links no funcionan), iOS
+    // mostrará "¿Permitir abrir app?". Si acepta → app abre (1 tap menos).
+    // Si rechaza o no hay app instalada, el botón "Abrir CorrerJuntos"
+    // sigue siendo accesible debajo.
+    //
+    // El comentario antiguo decía que el prompt automático "felt broken"
+    // pero la realidad es que ahorra 1-2 taps en el flow más crítico
+    // (confirmación de cuenta nueva). Mejor 1 prompt automático que 4 taps
+    // manuales.
+    (function autoOpenApp() {
+      var h = window.location.hash || '';
+      // No auto-redirect en recovery flow (ya redirigió arriba).
+      if (h.indexOf('type=recovery') !== -1) return;
+
+      // No auto-redirect si Universal Links ya intentaron y fallaron
+      // (típicamente ocurre en Gmail iOS webview).
+      // Intenta abrir custom scheme tras un delay mínimo para no bloquear
+      // render del fallback visual.
+      var startTime = Date.now();
+      var triggered = false;
+
+      // Detectar si el browser pierde focus (= app se abrió)
+      var visibilityHandler = function () {
+        if (document.hidden) triggered = true;
+      };
+      document.addEventListener('visibilitychange', visibilityHandler);
+
+      setTimeout(function () {
+        // Solo intentar si la página sigue visible (no fue ya capturada
+        // por una Universal Link automática).
+        if (document.hidden) return;
+        try {
+          window.location.href = 'correrjuntos://login';
+        } catch (e) {
+          // Algunos browsers throw si el scheme no está registrado.
+        }
+      }, 250);
+
+      // Si tras 3s la página sigue visible y no se disparó nada, mostrar
+      // un mensaje sutil indicando que el app no está instalada.
+      setTimeout(function () {
+        if (!document.hidden && (Date.now() - startTime) > 2500 && !triggered) {
+          var hint = document.getElementById('install-hint');
+          if (hint) hint.style.display = 'block';
+        }
+      }, 3000);
+    })();
   </script>
 </body>
 </html>

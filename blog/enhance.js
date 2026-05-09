@@ -1081,7 +1081,7 @@
           },
           "author": {
             "@type": "Person",
-            "name": isEN ? "José Márquez" : "José Márquez"
+            "name": "Abraham Márquez Rodríguez"
           },
           "reviewBody": (document.querySelector('meta[name="description"]') || {}).content || docTitle
         },

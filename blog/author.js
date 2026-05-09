@@ -11,16 +11,6 @@
   'use strict';
 
   var AUTHORS = {
-    'jose marquez': {
-      initials: 'JM',
-      name: 'José Márquez',
-      role: 'Fundador de CorrerJuntos',
-      credentials: 'Maratón sub-3:30 · 8.000+ km · 12 carreras oficiales',
-      bio: 'Corredor desde 2012 y maratoniano sub-3:30. Fundó CorrerJuntos con una idea simple: que ningún runner tenga que entrenar solo. Escribe sobre entrenamiento, carreras y la comunidad runner.',
-      color: '#f97316',
-      photo: '/blog/autor/photos/jose-marquez.jpg',
-      url: '/blog/autor/jose-marquez'
-    },
     'carlos ruiz': {
       initials: 'CR',
       name: 'Carlos Ruiz',
@@ -53,10 +43,15 @@
       instagram: 'https://www.instagram.com/abraham_marquez_rodriguez/',
       linkedin: 'https://www.linkedin.com/in/abrahammarquezrodriguez/'
     },
-    /* Alias para "Abraham Márquez" sin Rodríguez */
-    'abraham marquez': null /* resolved at lookup time → maps to abraham marquez rodriguez */
+    /* Aliases — todas estas variantes resuelven a Abraham Márquez Rodríguez
+       (founder con foto + Instagram + LinkedIn). Antes Jose Marquez era una
+       entrada separada con iniciales JM; unificada 9 may 26 porque era el
+       mismo founder con pseudónimo viejo. */
+    'abraham marquez': null,
+    'jose marquez': null
   };
   AUTHORS['abraham marquez'] = AUTHORS['abraham marquez rodriguez'];
+  AUTHORS['jose marquez'] = AUTHORS['abraham marquez rodriguez'];
 
   /* ── Helpers ─────────────────────────────────────────── */
 

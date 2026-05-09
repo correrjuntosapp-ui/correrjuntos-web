@@ -63,6 +63,11 @@
   ],
   "redirects": [
     {
+      "source": "/blog/autor/jose-marquez",
+      "destination": "/blog/autor/abraham-marquez",
+      "permanent": true
+    },
+    {
       "source": "/blog/entrenamiento-de-fuerza-para-corredores",
       "destination": "/blog/entrenamiento-fuerza-corredores",
       "permanent": true

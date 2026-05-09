@@ -738,10 +738,19 @@
     // Create banner
     var banner = document.createElement('div');
     banner.className = 'cj-app-banner';
+    // [9 may 26] Antes usaba <img src="/icons/icon-96.png"> pero algunos
+    // navegadores/CSPs lo cargaban transparente o fallaban silenciosamente.
+    // Reemplazado por SVG inline 100% reliable + sin request HTTP extra.
     banner.innerHTML = [
       '<button class="cj-app-banner-close" aria-label="Cerrar">&times;</button>',
       '<div class="cj-app-banner-inner">',
-        '<img src="/icons/icon-96.png" alt="CorrerJuntos" class="cj-app-banner-icon" width="56" height="56" loading="lazy">',
+        '<span class="cj-app-banner-icon" aria-label="CorrerJuntos">' +
+          '<svg viewBox="0 0 512 512" width="56" height="56">' +
+            '<rect width="512" height="512" rx="96" fill="#0f1729"/>' +
+            '<text x="50%" y="51%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="208" fill="#fff" letter-spacing="-8">CJ</text>' +
+            '<rect x="166" y="380" width="180" height="20" rx="10" fill="#f97316"/>' +
+          '</svg>' +
+        '</span>',
         '<div class="cj-app-banner-text">',
           '<strong>' + (isEN ? 'Start your free plan!' : '\u00a1Empieza tu plan gratis!') + '</strong>',
           '<span>' + (isEN ? 'Your plan, your AI coach and GPS tracking &mdash; free' : 'Tu plan, tu coach IA y tracking GPS &mdash; gratis') + '</span>',

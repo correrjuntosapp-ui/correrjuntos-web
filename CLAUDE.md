@@ -195,6 +195,117 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 - Premium anual: 29,99€/año via RevenueCat (ACTIVO desde v1.3.0 — selector visible, anual = default, badge "Ahorra 40%", trial 14 días)
 - Amazon afiliados: tag diezmejores21-21 (ACTIVO)
 
+## 🚀 PROCESO DEPLOY APPS A TIENDAS (memorizado 9 may 26)
+
+### Tabla mental — quién hace qué
+
+| Paso | Quién | Cómo |
+|---|---|---|
+| 1. Bump version + buildNumber | Claude | `npm run ship:full` o edit app.json manual |
+| 2. Build IPA + AAB en cloud | EAS Build | `eas build --platform all --profile production` |
+| 3. Subir IPA a App Store Connect (TestFlight) | EAS Submit | `eas submit --platform ios --latest` — usa ASC API key remota |
+| 4. Subir AAB a Google Play **Internal track** | EAS Submit | `eas submit --platform android --latest` — usa service account `correrjuntos-8187a2854893.json` |
+| 5. Promover Android Internal → Production | Claude | `npm run ship:promote` (script `promote-android.js` + Google Play API) |
+| 6. **iOS Submit for Review** (crear version + asignar build + release notes + submit) | **Manualmente USER en ASC web** | https://appstoreconnect.apple.com/ → Apps → CorrerJuntos → iOS App → versión → Add for Review |
+| 7. Apple Review | Apple | 24-48h |
+| 8. Google Review | Google | 2-12h |
+| 9. Liberar a producción | Auto | Tras aprobar tienda |
+
+### ⚠️ Lección clave 9 may 26
+
+**`eas submit --platform android` con `track: "production"` FALLA** con error "You've already submitted this version of the app". Google Play rechaza re-upload del mismo versionCode. Para promover Internal → Production hay que usar el endpoint "promote release" del Google Play Developer API. Eso lo hace `correr-juntos-app/scripts/promote-android.js`.
+
+**iOS Submit for Review NO se puede automatizar sin .p8 key local** con scope App Manager. La key que usa EAS está en sus servidores y no es accesible. Las reglas de seguridad de Claude prohíben hacer login en cuentas con password.
+
+### 🔑 Cómo automatizar iOS también (TODO futuro)
+
+1. Generar API Key en https://appstoreconnect.apple.com/access/integrations/api
+   - Role: **App Manager**
+   - Descargar .p8 (solo se descarga UNA vez)
+   - Guardar en `correr-juntos-app/AuthKey_XXXXXX.p8` + añadir a `.gitignore`
+2. Anotar Issuer ID + Key ID
+3. Pedir a Claude crear `scripts/promote-ios.js`:
+   - JWT firmado con .p8 → bearer token ASC API
+   - POST `/v1/appStoreVersions` (crear version 1.3.6)
+   - PATCH attach build 84
+   - POST `/v1/appStoreVersionLocalizations` (release notes ES + EN)
+   - POST `/v1/appStoreVersionSubmissions` (Submit for Review)
+4. Integrar en `npm run ship:promote` para que haga ambas plataformas
+
+### 📝 Release notes template (tener siempre listo)
+
+**Spanish:**
+```
+v1.3.X — Lo nuevo:
+• [feature 1]
+• [feature 2]
+• [feature 3]
+• Múltiples mejoras de rendimiento y estabilidad
+```
+
+**English:**
+```
+v1.3.X — What's new:
+• [feature 1]
+• [feature 2]
+• [feature 3]
+• Multiple performance and stability improvements
+```
+
+### 🔍 Qué Claude PUEDE y NO PUEDE hacer
+
+✅ **PUEDE:**
+- Bump version, commits, push git
+- Triggear builds EAS (cloud)
+- Subir IPA / AAB vía EAS Submit
+- Promover Android via Google Play API + service account
+- Modificar app.json, eas.json, scripts
+- Publicar OTAs (`eas update`)
+- Verificar status (`eas build:list`, `eas update:list`)
+- IndexNow ping
+- Vercel deploy via git push
+
+❌ **NO PUEDE:**
+- Abrir URLs en el navegador del user
+- Login en cuentas con password (Apple ID, Google account)
+- Acción manual en ASC web (Submit for Review actual)
+- Acción manual en Play Console web
+- Aceptar 2FA codes del iPhone
+- Cualquier cosa que requiera browser interactivo + auth humana
+
+### ✅ Checklist pre-deploy v1.3.X
+
+- [ ] `npm run ship:status` → ver versión + último OTA + builds
+- [ ] Verificar Sentry sin issues críticos
+- [ ] App.tsx + componentes sin warnings nuevos
+- [ ] CLAUDE.md actualizado con cambios
+- [ ] Si SDK nativo cambió: verificar runtimeVersion bump
+- [ ] Si app.json (permisos, plugins): commit antes del build
+- [ ] Si quedadas/seed data SQL: aplicar migration en Supabase
+
+### 🎯 Procedimiento típico release v1.3.X
+
+```bash
+# 1. Cambios JS/TS → OTA (segundos)
+npm run ship:ota -- "fix bug X"
+
+# 2. Cambios nativos / nueva versión → full release (~30-40 min)
+npm run ship:full
+
+# 3. Cuando build termina y se sube a stores:
+npm run ship:promote   # Android internal → production via API
+                       # (iOS recordatorio: el user va a ASC y clica "Add for Review")
+```
+
+### 📞 IDs y credenciales clave
+
+- **iOS App Store Connect**: App ID `6758505910`, Apple Team `4AVU63B7Q4`
+- **Google Play Developer**: Account `6979904302857989185`, Service Account `eas-submit@correrjuntos.iam.gserviceaccount.com` (key: `correrjuntos-8187a2854893.json`)
+- **EAS Project**: `236bbb35-24f6-47d4-8f1e-f43d79dded3d`
+- **EAS API Key (iOS submit)**: `8NAQ3L94Z7` ([Expo] EAS Submit TtV7LNVfkP) — gestionada en EAS servers
+- **runtimeVersion policy**: `appVersion` en app.json → cada bump crea nuevo runtime (OTA target)
+- **Email cuenta dev**: correrjuntosapp@gmail.com (Apple) + cuenta Google Play
+
 ## Versión Actual
 
 - **App publicada en stores**: v1.3.5 (iOS build 83, Android versionCode 83)

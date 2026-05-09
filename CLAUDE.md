@@ -81,6 +81,52 @@ simples, sin foto producto, sin CTA app, sin nombre creador". Causa: olvidé
 los 5 scripts de auto-inject + las imágenes Amazon. **Si el founder lo
 detecta, ya es demasiado tarde — siempre seguir este checklist al pie.**
 
+### 11. Imágenes Amazon — protocolo anti-rotación
+
+⚠️ **Las URLs de Amazon CDN rotan sin previo aviso** cuando el seller actualiza
+la galería. Detectado el 9 may 26: 24 de 524 imágenes del blog rotas (4.6%).
+
+**3 tipos de roturas Amazon:**
+
+1. **HTTP 404 explícito** — fácil detectar
+2. **Placeholder silencioso** — devuelve 200 OK con archivo de 43 bytes (blank
+   image). Bug INVISIBLE si solo miras status code. Detectar con size <5KB.
+3. **Sponsored ad genérico** — la imagen del primer ASIN del search a veces
+   es de un producto chino sponsored, NO el producto real. Visual check
+   imprescindible (el size es OK pero el contenido es otro producto).
+
+**Antes de publicar cualquier article con afiliados Amazon:**
+- Usar `/images/I/{IMAGEID}` con hiRes URL de la página oficial del producto
+  (NO `/images/P/{ASIN}.01.LZZZZZZZ.jpg` — devuelve placeholder en muchos)
+- Verificar size con `curl -s -o /dev/null -w "%{size_download}"` (>10KB)
+- **Ver visualmente cada imagen** antes de commit (Read tool en Claude)
+- Para hiRes URL: scrape Amazon page con UA Safari, buscar `"hiRes":"..."`
+
+**Cron de auditoría mensual instalado** (9 may 26):
+- Script: `tools/audit-amazon-images.cjs`
+- npm scripts: `npm run audit:amazon`, `audit:amazon:json`, `audit:amazon:quiet`
+- GitHub Actions: `.github/workflows/audit-amazon-images.yml`
+  - Schedule: primer lunes del mes a las 09:00 UTC
+  - Trigger manual disponible
+  - Si hay imágenes rotas → crea GitHub Issue automático con lista
+  - Artifact JSON guardado 90 días
+
+**Fix manual cuando salta una rotura:**
+```bash
+# 1. Ver lista
+npm run audit:amazon
+
+# 2. Para cada ASIN afectado, obtener nueva hiRes URL
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+curl -s -A "$UA" "https://www.amazon.es/dp/{ASIN}" | grep -oE '"hiRes":"[^"]+"' | head -3
+
+# 3. Verificar size
+curl -s -o /dev/null -w "%{size_download}\n" "{NUEVA_URL}"
+
+# 4. Reemplazar con node script
+node -e "const fs=require('fs');let t=fs.readFileSync('blog/X.html','utf8');t=t.replace('OLD_URL','NEW_URL');fs.writeFileSync('blog/X.html',t)"
+```
+
 ## Estructura del Proyecto
 
 ```

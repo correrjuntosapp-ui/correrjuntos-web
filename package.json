@@ -15,7 +15,10 @@
     "build": "node tools/build-minify.cjs",
     "images:scan": "node tools/image-audit/scan-images.cjs",
     "images:verify": "node tools/image-audit/verify-image-usage.cjs",
-    "images:ci": "node tools/image-audit/ci-check.cjs"
+    "images:ci": "node tools/image-audit/ci-check.cjs",
+    "audit:amazon": "node tools/audit-amazon-images.cjs",
+    "audit:amazon:json": "node tools/audit-amazon-images.cjs --json",
+    "audit:amazon:quiet": "node tools/audit-amazon-images.cjs --quiet"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

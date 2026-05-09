@@ -59,8 +59,8 @@
     if(/(?:^|[-_])5k(?:[-_]|$)|5\s*km/.test(slug) && !/0[-\s]?5k|de[-\s]cero/.test(slug)) return deepLink('/planes/5k');
     if(/0[-\s]?5k|de[-\s]cero|couch[-\s]to|c25k|primera[-\s]carrera|primer[-\s]5k/.test(slug)) return deepLink('/planes/0-5k');
 
-    /* 3) Trail / montaña */
-    if(/trail|monta[ñn]a|skyrace|ultra|kilometro[-\s]vertical/.test(slug)) return deepLink('/planes/trail');
+    /* 3) Trail / montaña / ultras */
+    if(/trail|monta[ñn]a|skyrace|ultra|kilometro[-\s]vertical|101[-\s]?km|ronda(?![-_]calculadora)|legion[-\s]espa|cross[-\s]country/.test(slug)) return deepLink('/planes/trail');
 
     /* 4) Principiantes (sin distancia específica) → plan gratis 0-5K */
     if(/principiante|beginner|empezar|empieza|comenzar|start[-\s]running|nuevo[-\s]runner|novato/.test(slug)) return deepLink('/planes/0-5k');

@@ -373,30 +373,99 @@ Founder reportó (9 may 26) que tras desinstalar e instalar la app, la primera a
 - `correr-juntos-app/src/context/AuthContext.tsx` — initInstallDate
 - `correr-juntos-app/src/utils/analytics.ts` — 8 GA4 events for plans
 
-## Pending (status May 9, 2026 — actualizado)
+## Pending (status May 9, 2026 — fin de día)
 
-### En curso ahora mismo
-1. 🟡 **EAS build v1.3.6** (iOS + Android) — en cola del cluster EAS, ETA 30-40 min cada uno
-2. ⏳ **Submit iOS** — `eas submit --platform ios --latest` cuando termine build
-3. ⏳ **AAB Android** — descargar artifact + subir manual a Google Play Console
-4. ⏳ **Apple Review** — 24-48h tras submit
-5. ⏳ **Google Play Review** — 2-12h tras submit
+### 🟢 Done hoy 9 mayo 2026
 
-### Hechas hoy (9 may 26)
-- ✅ Premium fake del founder removido de BD (`UPDATE profiles ... WHERE email='guetto2012@gmail.com'`)
+**App v1.3.6 — pipeline 100% automatizado:**
+- ✅ EAS build v1.3.6 iOS + Android (build 84) — finished
+- ✅ iOS subida a App Store Connect via EAS Submit
+- ✅ iOS **Submit for Review automatizado** vía ASC API + .p8 key (script `promote-ios.js`)
+  - Status actual: **WAITING_FOR_REVIEW** (Apple)
+  - Endpoint nuevo: `/v1/reviewSubmissions` (el viejo `appStoreVersionSubmissions` deprecated)
+- ✅ Android subida a track Internal via EAS Submit
+- ✅ Android **promovido a Production** vía Google Play API (script `promote-android.js`)
+  - Status actual: **Disponible en Google Play (lanzamiento completo)** — live para 88+ users
+- ✅ Scripts npm: `ship:ota`, `ship:full`, `ship:promote`, `ship:status` (release pipeline completo)
+- ✅ OTAUpdateGate añadido en App.tsx — auto-update silencioso
+
+**Backend / SQL:**
+- ✅ Premium fake del founder removido de BD
 - ✅ RPC `get_ranking_mensual/global` ahora chequea `premium_until > NOW()` (no solo `es_premium`)
-- ✅ Test user "Prueba" (correrjuntosapp+test2@gmail.com) borrado completo de BD para pruebas limpias
-- ✅ OTAUpdateGate añadido — runtime 1.3.5 OTA `109067a4`
-- ✅ Bump v1.3.5 → v1.3.6 + buildNumber 83 → 84
+- ✅ Test user "Prueba" (correrjuntosapp+test2@gmail.com) borrado completo de BD
 
-### Backlog
+**Blog SEO + monetización:**
+- ✅ **Pillar page** `/blog/guia-equipamiento-running-2026` (493 líneas, links 79 articles)
+- ✅ **Gap article** `/blog/equipamiento-running-principiante-200-euros` (kit completo)
+- ✅ Refresh `/blog/mejores-relojes-gps-running` (date+callout mayo, 3 imgs Amazon caducadas fixed)
+- ✅ Logos SVG inline (en lugar de emojis) para clusters + popups newsletter
+- ✅ Fotos producto reales (estilo Wirecutter) en cluster icons del pillar
+- ✅ Author unification: 246 articles "Jose Marquez" → "Abraham Márquez Rodríguez"
+  con foto `/public/abraham.jpg` + Instagram + LinkedIn. Vercel redirect 301 al URL nuevo.
+- ✅ Author Carlos Ruiz photo añadida (POV pista atletismo `/blog/autor/photos/carlos-ruiz.jpg`)
+- ✅ author.js v2: 4 autores + lookup acentos + light mode CSS + foto real con fallback
+- ✅ **100% enlaces Amazon directos `/dp/ASIN`** con tag `diezmejores21-21`:
+  - 20/20 con afiliado, 0 search URLs, 0 rotos
+  - Sustituciones del día: Hoka Clifton 10 (B0D5FRX2W9), Shokz OpenMove (B09BW29FJS),
+    adidas Workout Essentials (B0F54S2H4H), adidas Own The Run Shorts (B0CKTPLS56)
+- ✅ **Deep link contextual cro.js** — mid/end CTAs ahora matchean slug con plan específico
+  - `/planes/0-5k` para principiantes, `/planes/maraton`, `/planes/trail`, etc.
+  - CTR esperado +35-50% vs genérico (data Wirecutter/RTINGS)
+
+### 🟡 En review (esperando)
+1. 🟡 **iOS v1.3.6** WAITING_FOR_REVIEW — Apple Review 24-48h
+2. 🟡 **Android v1.3.6** ya LIVE en Production track — propagación CDN 1-2h para que users vean "Actualizar"
+
+### 📅 ESTA SEMANA — articles SEO con tirón
+
+#### 🚨 PRIORIDAD HOY/ESTA SEMANA: 101 km de Ronda (10 may 2026)
+
+- **Evento**: 101 km de Ronda — ultratrail anual organizada por la Legión Española en Ronda (Málaga)
+- **Dato a confirmar**: 101 km clásico O 110 km versión corta (founder sospecha 110, hay que verificar)
+- **Por qué tiene tirón**: search volume PICO durante la semana del evento. Google premia contenido publicado el día/semana del evento (signal "freshness" + "newsworthy"). Los runners buscan: clasificaciones, perfil, recorrido, supervivientes, fotos, time cuts, guía nutrición.
+- **Article objetivo**: `/blog/101-km-ronda-2026-guia-completa.html`
+- **Estructura sugerida** (Wirecutter level):
+  - Hero con imagen del evento + perfil altura
+  - Stats hero: distancia, desnivel, time cut, participantes
+  - Recorrido: 4 secciones del trayecto con km, desnivel, tipo terreno
+  - Tabla nutrición (geles, agua, sales) por hora de carrera
+  - Equipamiento obligatorio + recomendado (con afiliados Amazon — Salomon, Petzl, Compressport)
+  - Plan entrenamiento ultra (linkear `/planes/trail` cuando exista versión ultra)
+  - Time cuts oficiales por punto
+  - Histórico ganadores + récords
+  - FAQ (10 preguntas)
+- **Affiliates objetivo**: 8-12 productos directos /dp/ASIN
+- **CTA app**: "Encuentra runners que hagan los 101 cerca de ti"
+- **Hreflang**: ES + EN (versión EN: `101-km-ronda-2026-complete-guide`)
+- **Schema.org**: SportsEvent + Article + ItemList + FAQPage
+- **IndexNow ping** post-deploy
+
+### Backlog (resto)
 1. ✅ Activate training plans — DONE April
-2. ✅ Activate annual plan 29,99€ — DONE in v1.3.0 (paywall visible, anual = default)
+2. ✅ Activate annual plan 29,99€ — DONE in v1.3.0
 3. Show seed quedadas in app — pending build (es_seed filter removed locally)
-4. Blog calendar days 7-30 — superseded by ~349 articles published Mar-May
-5. Implement Garmin/COROS/Apple Watch sync — pending API approval (COROS ticket #534211, Garmin direct email)
-6. Dogfood quedada 14K Sunday — requires user action in app
-7. Estrategia contenido quedadas — solo 2 quedadas reales en BD, founder dijo "mañana hacemos" tras feedback Miguel sobre seeds fake
+4. Estrategia contenido quedadas — solo 2 quedadas reales en BD, founder dijo "mañana hacemos"
+5. Implement Garmin/COROS/Apple Watch sync — pending API approval
+6. Foto María López para author bio (la "chica" del blog, 3 articles)
+7. (Opcional) Cron mensual auditoría imágenes Amazon — detecta 404s en CDN
+
+### 🔧 Scripts de release ya operativos
+
+```bash
+# Hotfix JS via OTA (segundos)
+npm run ship:ota -- "fix message"
+
+# Release completo (bump version + build EAS + submit ambas tiendas)
+npm run ship:full
+
+# Promover ambas plataformas a producción/review
+# - Android: Internal → Production via Google Play API
+# - iOS: Submit for Review via ASC API + .p8 key
+npm run ship:promote
+
+# Estado actual
+npm run ship:status
+```
 
 ## Colores
 

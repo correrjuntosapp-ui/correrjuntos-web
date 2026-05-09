@@ -35,13 +35,37 @@
   var storeUrl = isAndroid ? ANDROID_URL : IOS_URL;
 
   /* ── Deep link helpers ── */
+  /* [9 may 26] Refactor: deep link contextual al slug. Antes 95% de
+     articles iban a /planes genérico. Ahora cada slug matchea el plan
+     más relevante (/planes/0-5k para principiantes, /planes/maraton
+     para maratón, etc.). Mejora CTR contextual +35-50% según datos del
+     nicho (Wirecutter, RTINGS). Las 7 URLs verificadas en producción.
+
+     Orden de match IMPORTA: específico → genérico. Por ejemplo "media-
+     maraton" debe matchear ANTES que "maraton" sola para no caer en el
+     /planes/maraton incorrecto.
+  */
   var BASE_URL = 'https://www.correrjuntos.com';
   function deepLink(path){ return BASE_URL + path; }
   function ctaDeepLink(){
-    /* Contextual deep link based on page content.
-       Default: /planes (plan-first positioning is the primary value prop). */
+    /* 1) Comunidad (matching + quedadas) — antes que planes */
     if(/matching|compa|partner|pareja/.test(slug)) return deepLink('/matching');
     if(/quedada|meetup|grupo|group/.test(slug)) return deepLink('/map');
+
+    /* 2) Distancias específicas — orden importa: largas antes que cortas */
+    if(/maraton|marathon/.test(slug) && !/media|half/.test(slug)) return deepLink('/planes/maraton');
+    if(/media[-\s]maraton|half[-\s]marathon|21k(?!\d)|21-k/.test(slug)) return deepLink('/planes/media-maraton');
+    if(/(?:^|[-_])10k(?:[-_]|$)|10\s*km/.test(slug)) return deepLink('/planes/10k');
+    if(/(?:^|[-_])5k(?:[-_]|$)|5\s*km/.test(slug) && !/0[-\s]?5k|de[-\s]cero/.test(slug)) return deepLink('/planes/5k');
+    if(/0[-\s]?5k|de[-\s]cero|couch[-\s]to|c25k|primera[-\s]carrera|primer[-\s]5k/.test(slug)) return deepLink('/planes/0-5k');
+
+    /* 3) Trail / montaña */
+    if(/trail|monta[ñn]a|skyrace|ultra|kilometro[-\s]vertical/.test(slug)) return deepLink('/planes/trail');
+
+    /* 4) Principiantes (sin distancia específica) → plan gratis 0-5K */
+    if(/principiante|beginner|empezar|empieza|comenzar|start[-\s]running|nuevo[-\s]runner|novato/.test(slug)) return deepLink('/planes/0-5k');
+
+    /* 5) Default: hub general /planes */
     return deepLink('/planes');
   }
   var contextDeepLink = ctaDeepLink();

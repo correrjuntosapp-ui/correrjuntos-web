@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Adaptive plans — antes vs ahora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246, 241, 232, 0.55);
+    --soft: rgba(246, 241, 232, 0.12);
+    --bad: #ef4444;
+    --good: #22c55e;
+  }
+  html, body { background: var(--ink); font-family: 'Inter', sans-serif; color: var(--paper); }
+  body { padding: 60px; }
+  .stage { max-width: 1400px; margin: 0 auto; }
+
+  /* Header */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--ember);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 56px; font-weight: 200;
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  h1 strong { color: var(--ember); font-weight: 700; }
+  .lede {
+    font-size: 18px; color: var(--ash); font-weight: 300;
+    max-width: 720px; line-height: 1.5;
+    margin-bottom: 56px;
+  }
+
+  /* Side-by-side comparison */
+  .cmp {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 56px;
+  }
+  .card {
+    background: rgba(246, 241, 232, 0.04);
+    border: 1px solid var(--soft);
+    border-radius: 18px;
+    padding: 36px;
+  }
+  .card.before { border-color: rgba(239, 68, 68, 0.3); }
+  .card.after  { border-color: rgba(249, 115, 22, 0.45); background: rgba(249, 115, 22, 0.06); }
+  .card-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .before .card-head { color: var(--bad); }
+  .after  .card-head { color: var(--ember); }
+  .card-title {
+    font-size: 32px; font-weight: 700;
+    letter-spacing: -0.025em; line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .card-title em { font-style: normal; color: var(--ember); }
+
+  /* Timeline */
+  .tl {
+    margin: 24px 0 8px;
+    position: relative;
+    padding: 32px 8px 56px;
+  }
+  .tl-track {
+    height: 8px; border-radius: 4px;
+    background: var(--soft);
+    position: relative;
+  }
+  .tl-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+  }
+  .tl-segment {
+    position: absolute; top: 0; height: 100%;
+  }
+  .tl-base    { background: rgba(34, 197, 94, 0.6);  border-radius: 4px 0 0 4px; }
+  .tl-build   { background: rgba(96, 165, 250, 0.6); }
+  .tl-peak    { background: rgba(245, 158, 11, 0.7); }
+  .tl-taper   { background: rgba(249, 115, 22, 0.85); border-radius: 0 4px 4px 0; }
+
+  .tl-mark {
+    position: absolute; top: -28px;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--ash);
+    white-space: nowrap;
+  }
+  .tl-mark.race {
+    color: var(--ember);
+    font-weight: 600;
+  }
+  .tl-mark.race::after {
+    content: ""; display: block;
+    width: 2px; height: 20px;
+    background: var(--ember);
+    margin: 4px auto 0;
+  }
+  .tl-mark.start {
+    transform: translateX(0);
+  }
+  .tl-pin {
+    position: absolute; bottom: -32px;
+    transform: translateX(-50%);
+    font-size: 12px; color: var(--ash);
+    white-space: nowrap;
+  }
+  .tl-pin.race-day {
+    color: var(--ember); font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.05em;
+  }
+
+  /* Gap warning */
+  .tl-gap {
+    position: absolute;
+    top: 0; height: 8px;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(239, 68, 68, 0.5) 0 6px,
+      transparent 6px 12px
+    );
+    border-top: 1px dashed rgba(239, 68, 68, 0.6);
+    border-bottom: 1px dashed rgba(239, 68, 68, 0.6);
+  }
+  .gap-label {
+    position: absolute; top: -52px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--bad);
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  /* Stats row */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .stat {
+    border-top: 1px solid var(--soft);
+    padding-top: 14px;
+  }
+  .stat-num {
+    font-size: 30px; font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    font-variant-numeric: tabular-nums;
+  }
+  .after .stat-num { color: var(--ember); }
+  .stat-label {
+    font-size: 12px; color: var(--ash);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+  .stat-bad { color: var(--bad); }
+
+  /* Legend */
+  .legend {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-top: 40px; padding-top: 32px;
+    border-top: 1px solid var(--soft);
+    font-size: 13px; color: var(--ash);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; }
+  .sw-base   { background: rgba(34, 197, 94, 0.6); }
+  .sw-build  { background: rgba(96, 165, 250, 0.6); }
+  .sw-peak   { background: rgba(245, 158, 11, 0.7); }
+  .sw-taper  { background: rgba(249, 115, 22, 0.85); }
+
+  /* Error state preview */
+  .error-preview {
+    margin-top: 56px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 16px;
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .error-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: rgba(239, 68, 68, 0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--bad);
+  }
+  .error-content h3 {
+    font-size: 20px; font-weight: 600; color: var(--paper);
+    margin-bottom: 6px;
+  }
+  .error-content p {
+    font-size: 16px; color: var(--ash); line-height: 1.5;
+  }
+  .error-content em {
+    font-style: normal; color: var(--ember); font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="eyebrow">PLANES ADAPTATIVOS · v1.3.7</div>
+  <h1>El plan se adapta a <strong>tu fecha</strong> de carrera.</h1>
+  <p class="lede">
+    Antes el plan duraba lo que dijera el template (8 / 12 / 16 semanas fijas).
+    Ahora se ajusta exactamente a las semanas que faltan hasta tu carrera.
+    Mismo wizard, misma UX. La diferencia está en lo que el motor genera por dentro.
+  </p>
+
+  <!-- Caso 1: 5K en 11 semanas (extend +3 base) -->
+  <div class="cmp">
+    <!-- BEFORE -->
+    <div class="card before">
+      <div class="card-head">Antes — fijo 8 sem</div>
+      <div class="card-title">Plan de 5K, fecha de carrera <em>26 jul</em></div>
+
+      <div class="tl">
+        <!-- 8 weeks plan + 3 weeks gap -->
+        <div class="tl-mark start" style="left: 0%;">11 May</div>
+        <div class="tl-mark" style="left: 73%;">5 Jul (acaba el plan)</div>
+        <div class="tl-mark race" style="left: 100%;">26 Jul</div>
+        <div class="tl-track">
+          <div class="tl-segment tl-base"  style="left: 0%;  width: 27%;"></div>
+          <div class="tl-segment tl-build" style="left: 27%; width: 27%;"></div>
+          <div class="tl-segment tl-peak"  style="left: 54%; width: 13%;"></div>
+          <div class="tl-segment tl-taper" style="left: 67%; width: 6%;"></div>
+          <div class="tl-segment tl-gap"   style="left: 73%; width: 27%;"></div>
+        </div>
+        <div class="gap-label" style="left: 86%;">3 sem sin plan</div>
+        <div class="tl-pin" style="left: 0%;">inicio</div>
+        <div class="tl-pin" style="left: 73%;">taper</div>
+        <div class="tl-pin race-day" style="left: 100%;">CARRERA</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">8</div>
+          <div class="stat-label">semanas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">32</div>
+          <div class="stat-label">sesiones</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num stat-bad">−3</div>
+          <div class="stat-label">desconectado pre-carrera</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AFTER -->
+    <div class="card after">
+      <div class="card-head">Ahora — adaptativo</div>
+      <div class="card-title">Plan de 5K, fecha de carrera <em>26 jul</em></div>
+
+      <div class="tl">
+        <div class="tl-mark start" style="left: 0%;">11 May</div>
+        <div class="tl-mark race" style="left: 100%;">26 Jul</div>
+        <div class="tl-track">
+          <div class="tl-segment tl-base"  style="left: 0%;  width: 46%;"></div>
+          <div class="tl-segment tl-build" style="left: 46%; width: 27%;"></div>
+          <div class="tl-segment tl-peak"  style="left: 73%; width: 18%;"></div>
+          <div class="tl-segment tl-taper" style="left: 91%; width: 9%;"></div>
+        </div>
+        <div class="tl-pin" style="left: 0%;">inicio</div>
+        <div class="tl-pin" style="left: 91%;">taper</div>
+        <div class="tl-pin race-day" style="left: 100%;">CARRERA</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">11</div>
+          <div class="stat-label">semanas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">44</div>
+          <div class="stat-label">sesiones</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">0</div>
+          <div class="stat-label">desconectado pre-carrera</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <span><span class="swatch sw-base"></span>Base (volumen progresivo)</span>
+    <span><span class="swatch sw-build"></span>Build (intensidad)</span>
+    <span><span class="swatch sw-peak"></span>Peak (calidad race-specific)</span>
+    <span><span class="swatch sw-taper"></span>Taper (afilado pre-carrera)</span>
+  </div>
+
+  <!-- Error state -->
+  <div class="error-preview">
+    <div class="error-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12" y2="16"/>
+      </svg>
+    </div>
+    <div class="error-content">
+      <h3>Si la carrera está demasiado cerca, te aviso antes de generar nada</h3>
+      <p>Ejemplo real (validado en BD): <em>"Para Maratón necesitas mínimo 14 semanas. Tienes 8. Te recomendamos: 21K"</em>. Sugerencia automática de la siguiente distancia menor.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

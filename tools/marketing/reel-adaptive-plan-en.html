@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CorrerJuntos — Adaptive plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600;700;800;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246, 241, 232, 0.42);
+    --grid: rgba(249, 115, 22, 0.09);
+    --bad: #ef4444;
+    --good-base:  rgba(34, 197, 94, 0.7);
+    --good-build: rgba(96, 165, 250, 0.7);
+    --good-peak:  rgba(245, 158, 11, 0.85);
+    --good-taper: rgba(249, 115, 22, 0.95);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink); font-family: 'Inter', sans-serif;
+    color: var(--paper); overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stage {
+    width: 1080px; height: 1920px;
+    position: relative; background: var(--ink); overflow: hidden;
+  }
+  .stage::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+  .contour {
+    position: absolute; top: 50%; left: 50%;
+    width: 1800px; height: 1800px; opacity: 0.10;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    will-change: transform;
+  }
+  .pulse {
+    position: absolute; top: 50%; left: 50%;
+    width: 16px; height: 16px;
+    margin: -8px 0 0 -8px;
+    background: var(--ember); border-radius: 999px;
+    z-index: 1; will-change: box-shadow;
+  }
+  .plate {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 120px 80px;
+    opacity: 0; text-align: center; z-index: 2;
+    transform: translateY(36px);
+    filter: blur(6px);
+    will-change: opacity, transform, filter;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--ember);
+    margin-bottom: 44px;
+    display: inline-flex; align-items: center; gap: 18px;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: ""; display: inline-block;
+    width: 48px; height: 1px; background: var(--ember);
+  }
+  .eyebrow.bad { color: var(--bad); }
+  .eyebrow.bad::before, .eyebrow.bad::after { background: var(--bad); }
+
+  .huge {
+    font-size: 130px; line-height: 0.94;
+    letter-spacing: -0.05em; font-weight: 200;
+  }
+  .huge strong { font-weight: 700; color: var(--ember); font-style: normal; }
+  .huge em { font-style: normal; color: var(--ember); font-weight: 600; }
+
+  .sub {
+    margin-top: 36px;
+    font-size: 30px; line-height: 1.4;
+    color: var(--ash); font-weight: 300;
+    max-width: 880px; letter-spacing: 0.01em;
+  }
+
+  /* Timeline component */
+  .tl-block { width: 880px; margin-top: 8px; }
+  .tl-title {
+    font-size: 44px; font-weight: 600;
+    letter-spacing: -0.025em; margin-bottom: 56px;
+    line-height: 1.15;
+  }
+  .tl-title em { font-style: normal; color: var(--ember); font-weight: 700; }
+
+  .tl-row { position: relative; padding: 36px 0 70px; }
+  .tl-track {
+    height: 18px; border-radius: 9px;
+    background: rgba(246, 241, 232, 0.08);
+    position: relative;
+  }
+  .tl-seg { position: absolute; top: 0; height: 100%; }
+  .seg-base   { background: var(--good-base);  border-radius: 9px 0 0 9px; }
+  .seg-build  { background: var(--good-build); }
+  .seg-peak   { background: var(--good-peak); }
+  .seg-taper  { background: var(--good-taper); border-radius: 0 9px 9px 0; }
+  .seg-gap {
+    background: repeating-linear-gradient(
+      45deg, rgba(239, 68, 68, 0.55) 0 8px,
+      transparent 8px 16px
+    );
+    border-top: 2px dashed rgba(239, 68, 68, 0.7);
+    border-bottom: 2px dashed rgba(239, 68, 68, 0.7);
+  }
+  .tl-mark {
+    position: absolute;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; letter-spacing: 0.08em;
+    color: var(--ash); white-space: nowrap;
+  }
+  .tl-mark.race { color: var(--ember); font-weight: 600; }
+  .tl-mark.race-tag {
+    bottom: -52px;
+    color: var(--ember);
+    text-transform: uppercase;
+    font-weight: 700; letter-spacing: 0.12em;
+  }
+  .tl-mark.race-tag::before {
+    content: ""; display: block;
+    width: 2px; height: 22px;
+    background: var(--ember);
+    margin: 0 auto 6px;
+  }
+  .tl-mark.start { left: 0; transform: none; top: -38px; }
+  .tl-mark.race-top { right: 0; transform: none; top: -38px; }
+  .tl-mark.early-end { top: -38px; color: var(--bad); }
+  .tl-gap-label {
+    position: absolute; bottom: -52px;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; letter-spacing: 0.08em;
+    color: var(--bad); text-transform: uppercase;
+    font-weight: 600; white-space: nowrap;
+  }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 78px;
+  }
+  .stat-num {
+    font-size: 92px; font-weight: 700;
+    letter-spacing: -0.04em; color: var(--paper);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-num.ember { color: var(--ember); }
+  .stat-num.bad   { color: var(--bad); }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px; letter-spacing: 0.12em;
+    color: var(--ash); text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .quote {
+    font-size: 76px; line-height: 1.18;
+    letter-spacing: -0.025em; font-weight: 300;
+    max-width: 920px;
+  }
+  .quote em { font-style: normal; color: var(--ember); font-weight: 600; }
+  .quote .punch { color: var(--bad); font-weight: 600; }
+
+  .brand-big {
+    font-size: 140px; font-weight: 800;
+    letter-spacing: -0.04em; line-height: 0.95;
+  }
+  .brand-big em { font-style: normal; color: var(--ember); }
+  .url {
+    margin-top: 44px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px; letter-spacing: 0.08em;
+    color: var(--ember); font-weight: 500;
+  }
+  .stores {
+    margin-top: 36px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--ash);
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <svg class="contour" id="contour" viewBox="0 0 1800 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#f97316" stroke-width="1.5">
+      <circle cx="900" cy="900" r="180"/><circle cx="900" cy="900" r="320"/>
+      <circle cx="900" cy="900" r="480"/><circle cx="900" cy="900" r="640"/>
+      <circle cx="900" cy="900" r="800"/>
+    </g>
+    <g stroke="#f6f1e8" stroke-width="1" stroke-opacity="0.5">
+      <line x1="900" y1="60" x2="900" y2="1740"/>
+      <line x1="60" y1="900" x2="1740" y2="900"/>
+    </g>
+  </svg>
+  <span class="pulse" id="pulse"></span>
+
+  <!-- SCENE 1: HOOK -->
+  <div class="plate" id="p1">
+    <div class="eyebrow">NEW · v1.3.7</div>
+    <h1 class="huge">Your plan<br>now fits<br>your <strong>race</strong>.</h1>
+  </div>
+
+  <!-- SCENE 2: PROBLEM -->
+  <div class="plate" id="p2">
+    <div class="eyebrow bad">BEFORE · FIXED</div>
+    <div class="tl-block">
+      <div class="tl-title">5K · race day <em>Jul 26</em></div>
+      <div class="tl-row">
+        <div class="tl-mark start">May 11</div>
+        <div class="tl-mark early-end" style="left: 73%;">Jul 5 · plan ends</div>
+        <div class="tl-mark race-top">Jul 26</div>
+        <div class="tl-track">
+          <div class="tl-seg seg-base"  style="left: 0%;  width: 27%;"></div>
+          <div class="tl-seg seg-build" style="left: 27%; width: 27%;"></div>
+          <div class="tl-seg seg-peak"  style="left: 54%; width: 13%;"></div>
+          <div class="tl-seg seg-taper" style="left: 67%; width: 6%;"></div>
+          <div class="tl-seg seg-gap"   style="left: 73%; width: 27%;"></div>
+        </div>
+        <div class="tl-gap-label" style="left: 86%;">3 wks orphaned</div>
+        <div class="tl-mark race-tag" style="left: 100%; transform: none; right: 0;">RACE</div>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stat-num">8</div>
+          <div class="stat-label">weeks</div>
+        </div>
+        <div>
+          <div class="stat-num">32</div>
+          <div class="stat-label">sessions</div>
+        </div>
+        <div>
+          <div class="stat-num bad">−3</div>
+          <div class="stat-label">no plan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 3: SOLUTION -->
+  <div class="plate" id="p3">
+    <div class="eyebrow">NOW · ADAPTIVE</div>
+    <div class="tl-block">
+      <div class="tl-title">5K · race day <em>Jul 26</em></div>
+      <div class="tl-row">
+        <div class="tl-mark start">May 11</div>
+        <div class="tl-mark race-top">Jul 26</div>
+        <div class="tl-track">
+          <div class="tl-seg seg-base"  style="left: 0%;  width: 46%;"></div>
+          <div class="tl-seg seg-build" style="left: 46%; width: 27%;"></div>
+          <div class="tl-seg seg-peak"  style="left: 73%; width: 18%;"></div>
+          <div class="tl-seg seg-taper" style="left: 91%; width: 9%;"></div>
+        </div>
+        <div class="tl-mark race-tag" style="left: 100%; transform: none; right: 0;">RACE</div>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stat-num ember">11</div>
+          <div class="stat-label">weeks</div>
+        </div>
+        <div>
+          <div class="stat-num ember">44</div>
+          <div class="stat-label">sessions</div>
+        </div>
+        <div>
+          <div class="stat-num ember">0</div>
+          <div class="stat-label">no plan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4: SMART FALLBACK -->
+  <div class="plate" id="p4">
+    <div class="eyebrow">RACE TOO CLOSE?</div>
+    <p class="quote">
+      <span class="punch">"</span>For a <em>Marathon</em><br>
+      you need <em>14 weeks</em> min.<br>
+      You have 8.<br>
+      Try <em>Half Marathon</em>.<span class="punch">"</span>
+    </p>
+  </div>
+
+  <!-- SCENE 5: PROMISE -->
+  <div class="plate" id="p5">
+    <div class="eyebrow">ON RACE DAY</div>
+    <h1 class="huge">Plan <strong>complete</strong>.<br>Right on<br><strong>time</strong>.</h1>
+  </div>
+
+  <!-- SCENE 6: CTA -->
+  <div class="plate" id="p6">
+    <div class="eyebrow">FREE — DOWNLOAD</div>
+    <div class="brand-big">Correr<em>Juntos</em></div>
+    <div class="url">correrjuntos.com</div>
+    <div class="stores">APP STORE · GOOGLE PLAY</div>
+  </div>
+
+</div>
+
+<script>
+  const SCENES = [
+    { id: 'p1', in: 200,    out: 2500  },
+    { id: 'p2', in: 2700,   out: 6500  },
+    { id: 'p3', in: 6700,   out: 10700 },
+    { id: 'p4', in: 10900,  out: 14400 },
+    { id: 'p5', in: 14600,  out: 17200 },
+    { id: 'p6', in: 17400,  out: 19400 },
+  ];
+  const FADE_IN = 450, FADE_OUT = 350;
+  const TRANSLATE_IN = 36, TRANSLATE_OUT = -36;
+  const BLUR_IN = 6, BLUR_OUT = 6;
+  const TOTAL_MS = 19500;
+
+  const easeOut = p => 1 - Math.pow(1 - p, 3);
+  const easeIn  = p => p * p * p;
+
+  const plates = SCENES.map(s => ({ ...s, el: document.getElementById(s.id) }));
+  const contourEl = document.getElementById('contour');
+  const pulseEl   = document.getElementById('pulse');
+
+  function renderAtTime(t) {
+    for (const s of plates) {
+      let op = 0, ty = TRANSLATE_IN, bl = BLUR_IN;
+      if (t < s.in) {
+        op = 0; ty = TRANSLATE_IN; bl = BLUR_IN;
+      } else if (t < s.in + FADE_IN) {
+        const p = (t - s.in) / FADE_IN; const e = easeOut(p);
+        op = e; ty = TRANSLATE_IN * (1 - e); bl = BLUR_IN * (1 - e);
+      } else if (t < s.out) {
+        op = 1; ty = 0; bl = 0;
+      } else if (t < s.out + FADE_OUT) {
+        const p = (t - s.out) / FADE_OUT; const e = easeIn(p);
+        op = 1 - e; ty = TRANSLATE_OUT * e; bl = BLUR_OUT * e;
+      } else {
+        op = 0; ty = TRANSLATE_OUT; bl = BLUR_OUT;
+      }
+      s.el.style.opacity = op.toFixed(4);
+      s.el.style.transform = `translateY(${ty.toFixed(2)}px)`;
+      s.el.style.filter = `blur(${bl.toFixed(2)}px)`;
+    }
+    const deg = (t / 60000) * 360;
+    contourEl.style.transform = `translate(-50%, -50%) rotate(${deg.toFixed(3)}deg)`;
+    const cycle = 2400;
+    const phase = (t % cycle) / cycle;
+    const reach = phase < 0.7 ? phase / 0.7 : 1;
+    const rPx = 320 * reach;
+    const alpha = phase < 0.7 ? 0.6 * (1 - reach) : 0;
+    pulseEl.style.boxShadow = `0 0 0 ${rPx.toFixed(1)}px rgba(249, 115, 22, ${alpha.toFixed(3)})`;
+  }
+  window.renderAtTime = renderAtTime;
+  window.TOTAL_MS = TOTAL_MS;
+  if (!window.__capture) {
+    let t0 = null;
+    function tick(now) {
+      if (t0 === null) t0 = now;
+      const t = now - t0;
+      if (t > TOTAL_MS + 500) { t0 = now; }
+      renderAtTime(Math.min(t, TOTAL_MS));
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  } else {
+    renderAtTime(0);
+  }
+</script>
+
+</body>
+</html>

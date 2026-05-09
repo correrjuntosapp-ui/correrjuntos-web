@@ -10,6 +10,77 @@
 - **NUNCA** hacer push a main/master sin autorización
 - OneDrive causa conflictos con git index.lock — usar `sleep 2` antes de git si falla
 
+## ⚠️ CHECKLIST OBLIGATORIO Blog Articles (NUNCA SALTARSE)
+
+Cuando crees o actualices CUALQUIER artículo del blog, debe incluir:
+
+### 1. SEO + Meta (siempre)
+- [ ] `<title>` con keyword principal + 2026 + brand
+- [ ] `<meta name="description">` 150-160 chars con CTA
+- [ ] `<meta name="author" content="Carlos Ruiz">` (o Jose Marquez)
+- [ ] `<link rel="canonical">` URL absoluta
+- [ ] `<link rel="alternate" hreflang="es">` + `hreflang="en">` + `x-default`
+- [ ] OG tags + Twitter card + Apple/Android App Links
+- [ ] Schema.org JSON-LD: WebPage + Person + BlogPosting + BreadcrumbList + FAQPage + ItemList
+
+### 2. Enlaces afiliados Amazon (CRÍTICO — el founder lo monitoriza)
+- [ ] Tag siempre presente: `?tag=diezmejores21-21`
+- [ ] **PREFERIDO: `/dp/ASIN`** — NUNCA `/s?k=` salvo modelo descontinuado/saldo
+- [ ] ASINs verificados ya usados en otros blog files (grep para encontrarlos)
+- [ ] `target="_blank" rel="nofollow sponsored noopener"` en todos los buy buttons
+
+### 3. Visuales producto (CRÍTICO — pro look)
+- [ ] **TODA** product card o callout DEBE tener foto Amazon (`m.media-amazon.com/images/I/...`)
+- [ ] Imagen wrapped en `<a>` afiliado para que la imagen también convierta
+- [ ] `loading="lazy"` excepto hero image (que va con `fetchpriority="high"`)
+- [ ] Width + height explícitos para evitar CLS
+
+### 4. Iconos (CRÍTICO — pro look)
+- [ ] **NUNCA** emojis decorativos (👟⌚🎧💧👕🏔️🥤🧘🎯🆕📋✅❌)
+- [ ] Solo SVG inline estilo Lucide en badges naranja brand
+- [ ] Excepción: emojis de país de carreras 🇪🇸🇫🇷 (banderas son OK)
+
+### 5. Scripts auto-inject (CRÍTICO — author + CTAs app)
+TODO artículo debe cargar AL FINAL del `<body>` antes de `</body>`:
+```html
+<script src="/blog/toc.js" defer></script>
+<script src="/blog/author.js" defer></script>
+<script src="/blog/related.js" defer></script>
+<script src="/blog/enhance.js" defer></script>
+<script src="/blog/cro.js" defer></script>
+```
+Esto inyecta automáticamente:
+- **author.js**: bio card del autor con foto/credenciales
+- **cro.js**: CTAs app mid/end-article + scroll trigger
+- **related.js**: 4 artículos relacionados al final
+- **enhance.js**: FAQ accordion + scroll-to-top + newsletter slide-in
+- **toc.js**: tabla de contenido expandible
+
+### 6. CTAs CorrerJuntos app
+- [ ] Mínimo 1 CTA visible (descargar app) — cro.js inyecta más automáticamente
+- [ ] Link App Store iOS: `https://apps.apple.com/app/correr-juntos/id6758505910`
+- [ ] Link Google Play: `https://play.google.com/store/apps/details?id=com.correrjuntos.app`
+
+### 7. Privacy/Cookies + Analytics
+- [ ] Script `loadGA4()` + `loadMetaPixel()` con consent gating
+- [ ] Cookie banner respect (no cargar GA4/Pixel sin consent)
+
+### 8. Internal linking
+- [ ] Mínimo 3-5 enlaces a otros artículos blog/cluster
+- [ ] Enlace al pillar `/blog/guia-equipamiento-running-2026` si es affiliate
+- [ ] Enlace a planes relevantes `/planes/...` si aplica
+
+### 9. Post-deploy
+- [ ] IndexNow ping con la nueva URL
+- [ ] Verificar live en `https://www.correrjuntos.com/blog/{slug}`
+- [ ] Si refresh: bumpear `dateModified` en JSON-LD + visible "Actualizado X may 2026"
+
+### 10. Lección aprendida 9 may 2026
+Founder reportó que los 2 nuevos articles (pillar + kit 200€) parecían "muy
+simples, sin foto producto, sin CTA app, sin nombre creador". Causa: olvidé
+los 5 scripts de auto-inject + las imágenes Amazon. **Si el founder lo
+detecta, ya es demasiado tarde — siempre seguir este checklist al pie.**
+
 ## Estructura del Proyecto
 
 ```

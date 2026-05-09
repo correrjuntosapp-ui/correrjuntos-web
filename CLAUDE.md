@@ -1,4 +1,4 @@
-# CLAUDE.md — CorrerJuntos Web + Proyecto Global v1.3.0
+# CLAUDE.md — CorrerJuntos Web + Proyecto Global v1.3.6 (en build)
 
 ## Reglas Inamovibles
 
@@ -126,10 +126,20 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 
 ## Versión Actual
 
-- **App**: v1.3.0 (iOS build 66, Android build 41)
-- **iOS**: Publicada en App Store
-- **Android**: Publicada en Google Play (88 descargas)
+- **App publicada en stores**: v1.3.5 (iOS build 83, Android versionCode 83)
+- **App en build (9 may 26)**: **v1.3.6 (iOS build 84, Android versionCode 84)** — runtime 1.3.6
+- **iOS**: Publicada en App Store, build 84 en cola EAS para submit
+- **Android**: Publicada en Google Play (88+ descargas), build 84 en cola EAS para submit
 - **Web**: Desplegada en Vercel (correrjuntos.com)
+
+### Última OTA estable runtime 1.3.5 (alcanza users actuales)
+- Update Group: `109067a4-489e-4585-a5d3-4aa711ac23b2`
+- Mensaje: "feat(updates): OTAUpdateGate — auto-update silencioso (1f2c7fc)"
+- Push: 9 may 26
+- Acumula TODOS los fixes de mayo: welcome v4, race cards, mapa, push, feed scroll, premium gate, etc.
+
+### Por qué v1.3.6 — problema de bundle embebido
+Founder reportó (9 may 26) que tras desinstalar e instalar la app, la primera apertura mostraba el flujo viejo (welcome "568 runners cerca de ti", home Coach-Jose). Causa: el binario v1.3.5 lleva JS embebido del momento de build (abril); todos los OTAs de mayo se aplican en el SIGUIENTE cold-start. Solución v1.3.6 = nuevo binario con todo el JS de mayo embebido + componente OTAUpdateGate que bloquea render hasta aplicar OTA pendiente (parche para futuros OTAs sobre 1.3.6).
 
 ## 8 Seed Quedadas
 
@@ -148,14 +158,30 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 - `correr-juntos-app/src/context/AuthContext.tsx` — initInstallDate
 - `correr-juntos-app/src/utils/analytics.ts` — 8 GA4 events for plans
 
-## Pending (status May 7, 2026)
+## Pending (status May 9, 2026 — actualizado)
 
+### En curso ahora mismo
+1. 🟡 **EAS build v1.3.6** (iOS + Android) — en cola del cluster EAS, ETA 30-40 min cada uno
+2. ⏳ **Submit iOS** — `eas submit --platform ios --latest` cuando termine build
+3. ⏳ **AAB Android** — descargar artifact + subir manual a Google Play Console
+4. ⏳ **Apple Review** — 24-48h tras submit
+5. ⏳ **Google Play Review** — 2-12h tras submit
+
+### Hechas hoy (9 may 26)
+- ✅ Premium fake del founder removido de BD (`UPDATE profiles ... WHERE email='guetto2012@gmail.com'`)
+- ✅ RPC `get_ranking_mensual/global` ahora chequea `premium_until > NOW()` (no solo `es_premium`)
+- ✅ Test user "Prueba" (correrjuntosapp+test2@gmail.com) borrado completo de BD para pruebas limpias
+- ✅ OTAUpdateGate añadido — runtime 1.3.5 OTA `109067a4`
+- ✅ Bump v1.3.5 → v1.3.6 + buildNumber 83 → 84
+
+### Backlog
 1. ✅ Activate training plans — DONE April
 2. ✅ Activate annual plan 29,99€ — DONE in v1.3.0 (paywall visible, anual = default)
 3. Show seed quedadas in app — pending build (es_seed filter removed locally)
 4. Blog calendar days 7-30 — superseded by ~349 articles published Mar-May
 5. Implement Garmin/COROS/Apple Watch sync — pending API approval (COROS ticket #534211, Garmin direct email)
 6. Dogfood quedada 14K Sunday — requires user action in app
+7. Estrategia contenido quedadas — solo 2 quedadas reales en BD, founder dijo "mañana hacemos" tras feedback Miguel sobre seeds fake
 
 ## Colores
 

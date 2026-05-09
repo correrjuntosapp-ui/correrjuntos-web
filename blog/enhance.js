@@ -339,7 +339,8 @@
       '#nl-slidein .nl-inner{padding:22px 22px 20px}',
       '#nl-slidein .nl-close{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,.3);font-size:1.1rem;cursor:pointer;padding:4px;transition:color .2s;line-height:1}',
       '#nl-slidein .nl-close:hover{color:#f97316}',
-      '#nl-slidein .nl-icon{font-size:1.5rem;margin-bottom:8px;display:block}',
+      '#nl-slidein .nl-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;margin-bottom:8px;overflow:hidden}',
+      '#nl-slidein .nl-icon svg{width:100%;height:100%;display:block}',
       '#nl-slidein h4{margin:0 0 4px;color:#fff;font-size:1rem;font-weight:800;line-height:1.3}',
       '#nl-slidein p{margin:0 0 14px;color:rgba(255,255,255,.5);font-size:.8rem;line-height:1.5}',
       '#nl-slidein .nl-form{display:flex;gap:8px}',
@@ -360,7 +361,13 @@
     slidein.innerHTML =
       '<button class="nl-close" aria-label="'+(isEN ? 'Close' : 'Cerrar')+'">&times;</button>' +
       '<div class="nl-inner">' +
-        '<span class="nl-icon">\uD83C\uDFC3</span>' +
+        '<span class="nl-icon" aria-label="CorrerJuntos">' +
+          '<svg viewBox="0 0 512 512">' +
+            '<rect width="512" height="512" rx="96" fill="#0f1729"/>' +
+            '<text x="50%" y="51%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="208" fill="#fff" letter-spacing="-8">CJ</text>' +
+            '<rect x="166" y="380" width="180" height="20" rx="10" fill="#f97316"/>' +
+          '</svg>' +
+        '</span>' +
         '<h4>'+(isEN ? 'Train smarter every week' : 'Entrena mejor cada semana')+'</h4>' +
         '<p>'+(isEN ? 'Free tips on running, nutrition & gear. No spam, unsubscribe anytime.' : 'Consejos gratis de running, nutrici\u00f3n y equipamiento. Sin spam.')+'</p>' +
         '<div class="nl-form">' +
@@ -1209,7 +1216,9 @@
       '@keyframes exitPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}',
       '.exit-modal .exit-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.3rem;color:#94a3b8;cursor:pointer;line-height:1}',
       '.exit-modal .exit-close:hover{color:#f97316}',
-      '.exit-icon{font-size:2.5rem;margin-bottom:10px;display:block}',
+      '.exit-icon{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:14px;margin:0 auto 10px;overflow:hidden}',
+      '.exit-icon svg{width:100%;height:100%;display:block}',
+      '.exit-icon-emoji{font-size:2.5rem;width:auto;height:auto;border-radius:0;background:none;display:block}',
       '.exit-modal h3{font-size:1.2rem;font-weight:800;color:#1a1a2e;margin:0 0 8px;line-height:1.3}',
       '.exit-modal p{font-size:.88rem;color:#64748b;line-height:1.6;margin:0 0 20px}',
       '.exit-form{display:flex;gap:8px;margin-bottom:10px}',
@@ -1230,7 +1239,13 @@
     exitOverlay.innerHTML =
       '<div class="exit-modal">' +
         '<button class="exit-close">&times;</button>' +
-        '<span class="exit-icon">\uD83C\uDFC3</span>' +
+        '<span class="exit-icon" aria-label="CorrerJuntos">' +
+          '<svg viewBox="0 0 512 512">' +
+            '<rect width="512" height="512" rx="96" fill="#0f1729"/>' +
+            '<text x="50%" y="51%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="208" fill="#fff" letter-spacing="-8">CJ</text>' +
+            '<rect x="166" y="380" width="180" height="20" rx="10" fill="#f97316"/>' +
+          '</svg>' +
+        '</span>' +
         '<h3>'+(isEN?'Wait! Get our free running guide':'¡Espera! Llévate nuestra guía gratis')+'</h3>' +
         '<p>'+(isEN?'Join 2,400+ runners who get weekly tips on training, shoes & nutrition.':'Únete a 2.400+ runners que reciben cada semana consejos de entrenamiento, zapatillas y nutrición.')+'</p>' +
         '<div class="exit-form">' +
@@ -1254,7 +1269,7 @@
       if(!email || email.indexOf('@')<1) return;
       fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,lang:isEN?'en':'es',source:'exit-intent-'+slug})})
         .catch(function(){});
-      exitOverlay.querySelector('.exit-modal').innerHTML = '<span class="exit-icon">\uD83C\uDF89</span><h3 style="color:#16a34a">'+(isEN?'You\'re in!':'¡Ya estás dentro!')+'</h3><p>'+(isEN?'Check your inbox for a welcome email.':'Revisa tu email, te hemos enviado la bienvenida.')+'</p>';
+      exitOverlay.querySelector('.exit-modal').innerHTML = '<span class="exit-icon-emoji">\uD83C\uDF89</span><h3 style="color:#16a34a">'+(isEN?'You\'re in!':'¡Ya estás dentro!')+'</h3><p>'+(isEN?'Check your inbox for a welcome email.':'Revisa tu email, te hemos enviado la bienvenida.')+'</p>';
       setTimeout(function(){ closeExit(true); }, 2500);
       trackEvent('exit_intent_subscribe', {article_slug: slug});
     });

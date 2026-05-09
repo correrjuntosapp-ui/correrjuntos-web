@@ -217,20 +217,53 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 
 **iOS Submit for Review NO se puede automatizar sin .p8 key local** con scope App Manager. La key que usa EAS está en sus servidores y no es accesible. Las reglas de seguridad de Claude prohíben hacer login en cuentas con password.
 
-### 🔑 Cómo automatizar iOS también (TODO futuro)
+### ✅ iOS Submit for Review automatizado (HECHO 9 may 26)
 
-1. Generar API Key en https://appstoreconnect.apple.com/access/integrations/api
-   - Role: **App Manager**
-   - Descargar .p8 (solo se descarga UNA vez)
-   - Guardar en `correr-juntos-app/AuthKey_XXXXXX.p8` + añadir a `.gitignore`
-2. Anotar Issuer ID + Key ID
-3. Pedir a Claude crear `scripts/promote-ios.js`:
-   - JWT firmado con .p8 → bearer token ASC API
-   - POST `/v1/appStoreVersions` (crear version 1.3.6)
-   - PATCH attach build 84
-   - POST `/v1/appStoreVersionLocalizations` (release notes ES + EN)
-   - POST `/v1/appStoreVersionSubmissions` (Submit for Review)
-4. Integrar en `npm run ship:promote` para que haga ambas plataformas
+**Setup completo. `npm run ship:promote` ahora hace AMBAS plataformas.**
+
+Credenciales (en `correr-juntos-app/`):
+- Key ID: `VR6CJGD288`
+- Issuer ID: `82269ea5-bead-4381-b767-3687965efa4b`
+- File: `AuthKey_VR6CJGD288.p8` (en .gitignore — NUNCA commit)
+- Role: Administración (full access)
+
+Script: `scripts/promote-ios.js` hace:
+1. JWT ES256 firmado con .p8 → bearer token ASC API
+2. Find or create `appStoreVersion` (filter por versionString + platform)
+3. Find build (filter por app + version + preReleaseVersion)
+4. PATCH `/v1/appStoreVersions/{id}/relationships/build`
+5. PATCH localizations existentes (whatsNew) — solo locales que YA tiene la app
+6. PATCH `/v1/builds/{id}` con usesNonExemptEncryption=false
+7. POST `/v1/reviewSubmissions` + POST `reviewSubmissionItems` + PATCH submitted=true
+
+### ⚠️ LECCIONES CRÍTICAS iOS Submit (memorizadas)
+
+#### Lección 1: `appStoreVersionSubmissions` está deprecated
+Apple cambió el endpoint en 2022. Ya NO se usa `/v1/appStoreVersionSubmissions` — devuelve `403 FORBIDDEN_ERROR: does not allow CREATE, allowed: DELETE`.
+
+**Endpoint nuevo correcto** (Review Submissions, agrupa app + IAP):
+1. `POST /v1/reviewSubmissions` con platform + app
+2. `POST /v1/reviewSubmissionItems` (linkear appStoreVersion al submission)
+3. `PATCH /v1/reviewSubmissions/{id}` con `attributes.submitted = true`
+
+#### Lección 2: NO crear locales nuevos vía API sin poblar todos sus campos
+Si la app en ASC solo tiene `es-ES` configurada (description + keywords + screenshots), y al crear una version nueva intentas crear `en-US` con solo `whatsNew`, Apple bloquea el submit con:
+```
+STATE_ERROR.ENTITY_STATE_INVALID: This resource cannot be reviewed
+```
+
+El script ahora SOLO actualiza `whatsNew` en locales que YA existen en la version (auto-copiados de la version anterior). Para añadir un locale nuevo (ej: en-US para ir bilingüe), hay que:
+- Hacerlo via ASC web (auto-copia campos genéricos)
+- O setear vía API: description + keywords + marketingUrl + supportUrl + subir 6+ screenshots por device family
+
+#### Lección 3: Apple no auto-inherit screenshots de version anterior vía API
+Cuando creas un `appStoreVersion` via API (POST `/v1/appStoreVersions`), Apple SÍ auto-copia las localizations existentes (con description/keywords/screenshots de la version anterior), pero NO crea nuevas localizations para locales que no existían.
+
+#### Lección 4: `usesIdfa` se puede setear vía PATCH version
+Necesario antes de submit. `PATCH /v1/appStoreVersions/{id}` con `attributes.usesIdfa: false` (si no usas IDFA tracking).
+
+#### Lección 5: `usesNonExemptEncryption` ya viene del Info.plist
+Si `app.json` tiene `ITSAppUsesNonExemptEncryption: false`, el flag llega al binario y Apple lo lee automáticamente. Intentar PATCH-ear el build devuelve 409 (no es error — ya está seteado). Script ignora el 409.
 
 ### 📝 Release notes template (tener siempre listo)
 

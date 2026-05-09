@@ -369,7 +369,7 @@
         '<p style="color:#94a3b8">' + (isEN
           ? 'Ask Coach Jos\u00e9 any question about your training. He analyzes your pace, cadence and heart rate to give you personalized advice after every run.'
           : 'Preg\u00fantale a Coach Jos\u00e9 cualquier duda sobre tu entrenamiento. Analiza tu ritmo, cadencia y frecuencia card\u00edaca para darte feedback personalizado despu\u00e9s de cada carrera.') + '</p>' +
-        '<a href="' + deepLink('/feed') + '" class="cro-deep" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'mid_coach\',slug:\'' + slug + '\'})">' +
+        '<a href="' + deepLink('/') + '" class="cro-deep" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_click\',{location:\'mid_coach\',slug:\'' + slug + '\'})">' +
           '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>' +
           (isEN ? 'Try Coach Jos\u00e9 free' : 'Prueba Coach Jos\u00e9 gratis') + ' \u2192</a>' +
         '<div class="cro-or" style="color:#6b5c4d">' + (isEN ? 'Free post-run analysis included' : 'An\u00e1lisis post-carrera gratuito incluido') + '</div>' +

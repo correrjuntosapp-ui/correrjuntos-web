@@ -186,5 +186,11 @@
       "destination": "https://www.correrjuntos.com/:path",
       "permanent": true
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/lifecycle-trial",
+      "schedule": "0 9 * * *"
+    }
   ]
 }

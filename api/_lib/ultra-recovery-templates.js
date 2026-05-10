@@ -12,73 +12,42 @@
 // the conversion moment.
 // ============================================================
 
+// [10 may 2026] Visual style memorized from Brevo template #3
+// "CJ DOI Confirmation". Founder feedback: emails de hoy no coincidían
+// con el de bienvenida (dark mode + brand naranja). Ahora unificados:
+// mismo background, misma card, mismo CTA pill.
 const BRAND_ORANGE = '#f97316';
-const TEXT_DARK = '#0b1220';
-const TEXT_MUTED = '#6b7280';
-const BG_LIGHT = '#fef7ed';
-const BORDER = '#e5e7eb';
+const BRAND_ORANGE_DARK = '#ea580c';
+const BG_DARK = '#0b1220';
+const CARD_BG = 'rgba(255,255,255,0.03)';
+const CARD_BORDER = 'rgba(255,255,255,0.06)';
+const TEXT_BODY = '#cbd5e1';
+const TEXT_MUTED = '#64748b';
+const TEXT_FOOTER = '#475569';
+const FONT_STACK = "-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif";
 
 function shell(content, lang) {
-  const footer = lang === 'en'
-    ? `<p style="margin:0;font-size:12px;color:${TEXT_MUTED};text-align:center">
-         CorrerJuntos — Recovery for committed runners<br>
-         <a href="https://www.correrjuntos.com" style="color:${TEXT_MUTED}">correrjuntos.com</a> ·
-         <a href="https://www.correrjuntos.com/unsubscribe?email={{contact.EMAIL}}&list=ultra-recovery" style="color:${TEXT_MUTED}">Unsubscribe</a>
-       </p>`
-    : `<p style="margin:0;font-size:12px;color:${TEXT_MUTED};text-align:center">
-         CorrerJuntos — Recuperación para corredores comprometidos<br>
-         <a href="https://www.correrjuntos.com" style="color:${TEXT_MUTED}">correrjuntos.com</a> ·
-         <a href="https://www.correrjuntos.com/unsubscribe?email={{contact.EMAIL}}&list=ultra-recovery" style="color:${TEXT_MUTED}">Darme de baja</a>
-       </p>`;
+  const unsubHref = `https://www.correrjuntos.com/unsubscribe?email={{contact.EMAIL}}&list=ultra-recovery`;
+  const footerCopy = lang === 'en'
+    ? `© 2026 CorrerJuntos - The runner community · <a href="${unsubHref}" style="color:${TEXT_FOOTER};text-decoration:underline">Unsubscribe</a>`
+    : `© 2026 CorrerJuntos - La comunidad runner · <a href="${unsubHref}" style="color:${TEXT_FOOTER};text-decoration:underline">Darme de baja</a>`;
 
-  return `<!doctype html>
-<html lang="${lang}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CorrerJuntos · Recuperación Ultra</title>
-</head>
-<body style="margin:0;padding:0;background:${BG_LIGHT};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:${TEXT_DARK}">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BG_LIGHT};padding:32px 16px">
-    <tr><td align="center">
-      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid ${BORDER};border-radius:12px;max-width:560px">
-        <tr><td style="padding:32px 32px 24px 32px;border-bottom:1px solid ${BORDER}">
-          <a href="https://www.correrjuntos.com" style="text-decoration:none">
-            <span style="display:inline-block;font-size:22px;font-weight:800;color:${BRAND_ORANGE};letter-spacing:-0.5px">CorrerJuntos</span>
-          </a>
-        </td></tr>
-        <tr><td style="padding:32px">${content}</td></tr>
-        <tr><td style="padding:24px 32px;background:${BG_LIGHT};border-top:1px solid ${BORDER};border-radius:0 0 12px 12px">${footer}</td></tr>
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
+  return `<!DOCTYPE html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CorrerJuntos · Recovery</title></head><body style="margin:0;padding:0;background:${BG_DARK};font-family:${FONT_STACK}"><table width="100%" cellpadding="0" cellspacing="0" style="background:${BG_DARK};padding:40px 20px"><tr><td align="center"><table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%"><tr><td style="text-align:center;padding:24px 0"><a href="https://www.correrjuntos.com" style="color:${BRAND_ORANGE};font-size:1.4rem;font-weight:900;text-decoration:none;letter-spacing:-0.5px">CORRERJUNTOS</a></td></tr><tr><td style="background:${CARD_BG};border:1px solid ${CARD_BORDER};border-radius:24px;padding:40px 32px">${content}</td></tr><tr><td style="text-align:center;padding:24px 0;font-size:0.8rem;color:${TEXT_FOOTER}">${footerCopy}</td></tr></table></td></tr></table></body></html>`;
 }
 
 function ctaButton(url, label) {
-  return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0">
-    <tr><td>
-      <a href="${url}" style="display:inline-block;background:${BRAND_ORANGE};color:#ffffff;padding:14px 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none">${label}</a>
-    </td></tr>
-  </table>`;
+  return `<table width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0"><tr><td align="center"><a href="${url}" style="display:inline-block;background:linear-gradient(135deg,${BRAND_ORANGE},${BRAND_ORANGE_DARK});color:#ffffff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem">${label}</a></td></tr></table>`;
 }
 
 function dayBadge(n, total) {
-  return `<div style="display:inline-block;padding:4px 10px;background:#fef3e8;border-radius:6px;font-size:12px;font-weight:700;color:${BRAND_ORANGE};letter-spacing:0.5px;margin-bottom:14px">DÍA ${n} DE ${total}</div>`;
+  return `<div style="display:inline-block;padding:4px 12px;background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.35);border-radius:50px;font-size:11px;font-weight:700;color:${BRAND_ORANGE};letter-spacing:0.6px;margin:0 0 18px 0;text-transform:uppercase">DÍA ${n} DE ${total}</div>`;
 }
 
 // ─── Helpers ────────────────────────────────────────────────
-const h1 = (txt) => `<h1 style="margin:0 0 14px 0;font-size:24px;font-weight:800;line-height:1.3">${txt}</h1>`;
-const p  = (txt) => `<p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">${txt}</p>`;
-const bullets = (items) => `<ul style="margin:0 0 16px 0;padding-left:20px;font-size:15px;line-height:1.8;color:${TEXT_DARK}">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
-const callout = (label, body, color = BRAND_ORANGE) => `
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px 0;background:${BG_LIGHT};border-radius:10px;border-left:3px solid ${color}">
-    <tr><td style="padding:16px 20px">
-      <p style="margin:0 0 6px 0;font-size:12px;font-weight:700;color:${color};letter-spacing:0.5px;text-transform:uppercase">${label}</p>
-      <p style="margin:0;font-size:14px;line-height:1.6;color:${TEXT_DARK}">${body}</p>
-    </td></tr>
-  </table>`;
+const h1 = (txt) => `<h1 style="color:${BRAND_ORANGE};font-size:1.8rem;font-weight:900;margin:0 0 16px 0;line-height:1.25;text-align:center">${txt}</h1>`;
+const p  = (txt) => `<p style="color:${TEXT_BODY};font-size:1rem;line-height:1.7;margin:0 0 18px 0">${txt}</p>`;
+const bullets = (items) => `<ul style="margin:0 0 18px 0;padding-left:20px;color:${TEXT_BODY};font-size:0.95rem;line-height:1.8">${items.map(i => `<li style="margin-bottom:6px">${i}</li>`).join('')}</ul>`;
+const callout = (label, body, color = BRAND_ORANGE) => `<table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px 0"><tr><td style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.25);border-left:3px solid ${color};border-radius:10px;padding:16px 20px"><p style="margin:0 0 6px 0;font-size:11px;font-weight:700;color:${color};letter-spacing:0.6px;text-transform:uppercase">${label}</p><p style="margin:0;font-size:0.92rem;line-height:1.6;color:${TEXT_BODY}">${body}</p></td></tr></table>`;
 
 // ─────────────────────────────────────────────────────────────
 // DAYS ES (1-10)

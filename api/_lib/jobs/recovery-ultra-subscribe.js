@@ -109,14 +109,8 @@ function welcomeEmail(lang, name) {
     ? "— Abraham, founder CorrerJuntos"
     : "— Abraham, fundador CorrerJuntos";
 
-  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"></head>
-<body style="margin:0;padding:32px 16px;background:#fef7ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#0b1220">
-<div style="max-width:560px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:32px">
-<p style="margin:0 0 8px 0;font-size:22px;font-weight:800;color:#f97316;letter-spacing:-0.5px">CorrerJuntos</p>
-<h1 style="margin:24px 0 14px 0;font-size:22px;font-weight:800;line-height:1.3">${greet}</h1>
-<p style="margin:0 0 16px 0;font-size:16px;line-height:1.6">${body1}</p>
-<p style="margin:0 0 16px 0;font-size:16px;line-height:1.6">${body2}</p>
-<p style="margin:0 0 16px 0;font-size:16px;line-height:1.6">${body3}</p>
-<p style="margin:24px 0 0 0;font-size:14px;color:#6b7280">${sig}</p>
-</div></body></html>`;
+  // [10 may 2026] Visual style alineado con Brevo template #3 — dark bg
+  // + brand naranja + card subtle, mismo lookfeel que email de welcome.
+  const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif";
+  return `<!DOCTYPE html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CorrerJuntos</title></head><body style="margin:0;padding:0;background:#0b1220;font-family:${FONT}"><table width="100%" cellpadding="0" cellspacing="0" style="background:#0b1220;padding:40px 20px"><tr><td align="center"><table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%"><tr><td style="text-align:center;padding:24px 0"><a href="https://www.correrjuntos.com" style="color:#f97316;font-size:1.4rem;font-weight:900;text-decoration:none;letter-spacing:-0.5px">CORRERJUNTOS</a></td></tr><tr><td style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:40px 32px"><h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25;text-align:center">${greet}</h1><p style="color:#cbd5e1;font-size:1rem;line-height:1.7;margin:0 0 16px 0">${body1}</p><p style="color:#cbd5e1;font-size:1rem;line-height:1.7;margin:0 0 16px 0">${body2}</p><p style="color:#cbd5e1;font-size:1rem;line-height:1.7;margin:0 0 16px 0">${body3}</p><p style="color:#94a3b8;font-size:0.88rem;line-height:1.6;margin:24px 0 0 0">${sig}</p></td></tr><tr><td style="text-align:center;padding:24px 0;font-size:0.8rem;color:#475569">© 2026 CorrerJuntos - La comunidad runner</td></tr></table></td></tr></table></body></html>`;
 }

@@ -7,66 +7,38 @@
 // correrjuntos.com domain only).
 // ============================================================
 
+// [10 may 2026] Visual style memorized from Brevo template #3
+// "CJ DOI Confirmation". Dark mode + brand naranja, mismo lookfeel que
+// el welcome de Brevo. Las constantes TEXT_DARK / BG_LIGHT / BORDER
+// se mantienen con los nombres viejos (referenciadas inline en cada
+// day template) pero apuntan a tonos dark-friendly.
 const BRAND_ORANGE = '#f97316';
-const TEXT_DARK = '#0b1220';
-const TEXT_MUTED = '#6b7280';
-const BG_LIGHT = '#fef7ed';
-const BORDER = '#e5e7eb';
+const BRAND_ORANGE_DARK = '#ea580c';
+const BG_DARK = '#0b1220';
+const CARD_BG = 'rgba(255,255,255,0.03)';
+const CARD_BORDER = 'rgba(255,255,255,0.06)';
+const TEXT_BODY = '#cbd5e1';
+const TEXT_FOOTER = '#475569';
+const FONT_STACK = "-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif";
 
-// Wrapper: single column, max-width 560px, system fonts.
+// Aliases for inline styles in day templates (texto del cuerpo en dark)
+const TEXT_DARK = TEXT_BODY;
+const TEXT_MUTED = '#94a3b8';
+const BG_LIGHT = 'rgba(249,115,22,0.08)';   // for callouts / accent boxes
+const BORDER = CARD_BORDER;
+
+// Brevo-style dark shell — same lookfeel as DOI template #3.
 function shell(content, lang) {
-  const footer = lang === 'en'
-    ? `
-      <p style="margin:0;font-size:12px;color:${TEXT_MUTED};text-align:center">
-        CorrerJuntos · Train smarter, run faster<br>
-        <a href="https://www.correrjuntos.com" style="color:${TEXT_MUTED}">correrjuntos.com</a>
-        ·
-        <a href="https://www.correrjuntos.com/unsubscribe?email={{contact.EMAIL}}" style="color:${TEXT_MUTED}">Unsubscribe</a>
-      </p>`
-    : `
-      <p style="margin:0;font-size:12px;color:${TEXT_MUTED};text-align:center">
-        CorrerJuntos · Entrena mejor, corre más fuerte<br>
-        <a href="https://www.correrjuntos.com" style="color:${TEXT_MUTED}">correrjuntos.com</a>
-        ·
-        <a href="https://www.correrjuntos.com/unsubscribe?email={{contact.EMAIL}}" style="color:${TEXT_MUTED}">Darme de baja</a>
-      </p>`;
+  const unsubHref = `https://www.correrjuntos.com/unsubscribe?email={{contact.EMAIL}}&list=lifecycle-trial`;
+  const footerCopy = lang === 'en'
+    ? `© 2026 CorrerJuntos - The runner community · <a href="${unsubHref}" style="color:${TEXT_FOOTER};text-decoration:underline">Unsubscribe</a>`
+    : `© 2026 CorrerJuntos - La comunidad runner · <a href="${unsubHref}" style="color:${TEXT_FOOTER};text-decoration:underline">Darme de baja</a>`;
 
-  return `<!doctype html>
-<html lang="${lang}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CorrerJuntos</title>
-</head>
-<body style="margin:0;padding:0;background:${BG_LIGHT};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:${TEXT_DARK}">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BG_LIGHT};padding:32px 16px">
-    <tr><td align="center">
-      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid ${BORDER};border-radius:12px;max-width:560px">
-        <tr><td style="padding:32px 32px 24px 32px;border-bottom:1px solid ${BORDER}">
-          <a href="https://www.correrjuntos.com" style="text-decoration:none">
-            <span style="display:inline-block;font-size:22px;font-weight:800;color:${BRAND_ORANGE};letter-spacing:-0.5px">CorrerJuntos</span>
-          </a>
-        </td></tr>
-        <tr><td style="padding:32px">
-          ${content}
-        </td></tr>
-        <tr><td style="padding:24px 32px;background:${BG_LIGHT};border-top:1px solid ${BORDER};border-radius:0 0 12px 12px">
-          ${footer}
-        </td></tr>
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
+  return `<!DOCTYPE html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CorrerJuntos</title></head><body style="margin:0;padding:0;background:${BG_DARK};font-family:${FONT_STACK}"><table width="100%" cellpadding="0" cellspacing="0" style="background:${BG_DARK};padding:40px 20px"><tr><td align="center"><table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%"><tr><td style="text-align:center;padding:24px 0"><a href="https://www.correrjuntos.com" style="color:${BRAND_ORANGE};font-size:1.4rem;font-weight:900;text-decoration:none;letter-spacing:-0.5px">CORRERJUNTOS</a></td></tr><tr><td style="background:${CARD_BG};border:1px solid ${CARD_BORDER};border-radius:24px;padding:40px 32px">${content}</td></tr><tr><td style="text-align:center;padding:24px 0;font-size:0.8rem;color:${TEXT_FOOTER}">${footerCopy}</td></tr></table></td></tr></table></body></html>`;
 }
 
 function ctaButton(url, label) {
-  return `
-    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0">
-      <tr><td>
-        <a href="${url}" style="display:inline-block;background:${BRAND_ORANGE};color:#ffffff;padding:14px 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none">${label}</a>
-      </td></tr>
-    </table>`;
+  return `<table width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0"><tr><td align="center"><a href="${url}" style="display:inline-block;background:linear-gradient(135deg,${BRAND_ORANGE},${BRAND_ORANGE_DARK});color:#ffffff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem">${label}</a></td></tr></table>`;
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -75,7 +47,7 @@ function ctaButton(url, label) {
 // ─────────────────────────────────────────────────────────────
 function day1Es(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">¿Qué tal tu primera salida, ${name || 'corredor'}?</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">¿Qué tal tu primera salida, ${name || 'corredor'}?</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       Empezar es la parte más difícil. Si ayer saliste a correr — perfecto. Si no — hoy es el día.
     </p>
@@ -96,7 +68,7 @@ function day1Es(name) {
 
 function day1En(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">How was your first run, ${name || 'runner'}?</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">How was your first run, ${name || 'runner'}?</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       Starting is the hardest part. If you ran yesterday — perfect. If not — today's the day.
     </p>
@@ -121,7 +93,7 @@ function day1En(name) {
 // ─────────────────────────────────────────────────────────────
 function day3Es(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">Conecta Strava y olvídate del doble registro</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">Conecta Strava y olvídate del doble registro</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       Si ya usas Strava — es 1 clic. Tus carreras de CorrerJuntos pasan automáticamente a Strava, y al revés.
     </p>
@@ -142,7 +114,7 @@ function day3Es(name) {
 
 function day3En(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">Connect Strava — no more double-logging</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">Connect Strava — no more double-logging</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       If you already use Strava — it's 1 click. Your CorrerJuntos runs sync automatically to Strava, and vice versa.
     </p>
@@ -167,7 +139,7 @@ function day3En(name) {
 // ─────────────────────────────────────────────────────────────
 function day7Es(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">Tu semana en CorrerJuntos</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">Tu semana en CorrerJuntos</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       Una semana ya entrenando con plan personalizado. Esto es lo que estás construyendo:
     </p>
@@ -191,7 +163,7 @@ function day7Es(name) {
 
 function day7En(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">Your week on CorrerJuntos</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">Your week on CorrerJuntos</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       One week into your personalized plan. Here's what you're building:
     </p>
@@ -219,7 +191,7 @@ function day7En(name) {
 // ─────────────────────────────────────────────────────────────
 function day11Es(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">Tu trial Premium termina el domingo</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">Tu trial Premium termina el domingo</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       ${name || 'Hola'}, en 3 días termina tu prueba gratuita. Si decides seguir, tu plan continúa sin interrupción. Si no, vuelves al modo gratuito.
     </p>
@@ -247,7 +219,7 @@ function day11Es(name) {
 
 function day11En(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">Your Premium trial ends Sunday</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">Your Premium trial ends Sunday</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       ${name || 'Hi'}, in 3 days your free trial ends. If you keep Premium, your plan continues uninterrupted. If not, you go back to the free tier.
     </p>
@@ -281,7 +253,7 @@ function day11En(name) {
 // ─────────────────────────────────────────────────────────────
 function day14Es(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">Sigues entrenando — la app sigue contigo</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">Sigues entrenando — la app sigue contigo</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       ${name || 'Hola'}, tu trial Premium ha terminado. Pero tu progreso no — todas tus carreras siguen guardadas, tu nivel sigue ahí, y la versión gratuita es 100 % usable.
     </p>
@@ -300,7 +272,7 @@ function day14Es(name) {
 
 function day14En(name) {
   return shell(`
-    <h1 style="margin:0 0 16px 0;font-size:24px;font-weight:800;line-height:1.3">You keep running — the app stays with you</h1>
+    <h1 style="color:#f97316;font-size:1.6rem;font-weight:900;margin:0 0 18px 0;line-height:1.25">You keep running — the app stays with you</h1>
     <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;color:${TEXT_DARK}">
       ${name || 'Hi'}, your Premium trial has ended. But your progress hasn't — all your runs are saved, your level is intact, and the free tier is 100% usable.
     </p>

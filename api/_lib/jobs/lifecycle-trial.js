@@ -1,68 +1,26 @@
-// ============================================================
-// Cron: lifecycle-trial.js
-// Runs daily at 09:00 UTC. Sends day 1/3/7/11/14 emails to users
-// in their trial period.
-//
-// Idempotent: each (trial_id, day_n) pair has UNIQUE constraint in
-// trial_email_log so duplicate runs same day = no duplicate sends.
-//
-// Authentication:
-//   Vercel cron hits this endpoint with a secret header that we
-//   compare against CRON_SECRET. Manual triggers from outside Vercel
-//   require ?token=<CRON_SECRET>.
-//
-// What gets sent:
-//   For each trial_starts row where status='trial_active':
-//     - days_since_start = floor((NOW() - started_at) / 1 day)
-//     - if days_since_start ∈ {1,3,7,11,14} AND not already in
-//       trial_email_log → send + record
-//
-// Returns JSON summary { processed, sent, skipped, errors }.
-// ============================================================
+// Job: lifecycle-trial
+// Sends Day 1/3/7/11/14 emails to trial subscribers.
+// Was at api/cron/lifecycle-trial.js — moved here to dedupe under
+// the api/cron/run.js dispatcher (Vercel Hobby 12-function limit).
 
 const { createClient } = require('@supabase/supabase-js');
-const { getEmailForDay } = require('../_lib/trial-email-templates');
+const { getEmailForDay } = require('../trial-email-templates');
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const CRON_SECRET = process.env.CRON_SECRET || '';
-const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
-const SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos';
 
-// Days at which we send
 const SEND_DAYS = [1, 3, 7, 11, 14];
 
-module.exports = async function handler(req, res) {
-  // Auth: Vercel cron sends "x-vercel-cron-signature" or the cron URL
-  // contains a query token. Local/manual: ?token=<secret>.
-  const isVercelCron = req.headers['x-vercel-cron'] === '1' ||
-                       req.headers['user-agent']?.includes('vercel-cron');
-  const tokenMatch = (req.query?.token || '') === CRON_SECRET && CRON_SECRET.length > 0;
-  const authHeader = (req.headers['authorization'] || '').replace(/^Bearer\s+/i, '');
-  const headerMatch = authHeader === CRON_SECRET && CRON_SECRET.length > 0;
-
-  if (!isVercelCron && !tokenMatch && !headerMatch) {
-    return res.status(401).json({ error: 'unauthorized' });
-  }
-
-  if (!SUPABASE_SERVICE_KEY || !BREVO_API_KEY) {
-    return res.status(500).json({
-      error: 'misconfigured',
-      have_supabase: !!SUPABASE_SERVICE_KEY,
-      have_brevo: !!BREVO_API_KEY,
-    });
-  }
-
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+module.exports = async function runLifecycleTrial(_req, res, env) {
+  const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
+  const BREVO_API_KEY = env.BREVO_API_KEY;
+  const SENDER_EMAIL = env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
+  const SENDER_NAME = env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos';
 
   let processed = 0;
   let sent = 0;
   let skipped = 0;
   const errors = [];
 
-  // Fetch all active trials with started_at within the last 16 days
-  // (max send day is 14; +2 day buffer in case cron missed a day).
   const sixteenDaysAgo = new Date(Date.now() - 16 * 24 * 60 * 60 * 1000).toISOString();
 
   const { data: trials, error: trialsErr } = await supabase
@@ -75,7 +33,6 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'trials_query_failed', detail: trialsErr.message });
   }
 
-  // Pull existing log to avoid duplicates
   const trialIds = (trials || []).map((t) => t.id);
   let logsByTrial = {};
   if (trialIds.length > 0) {
@@ -94,28 +51,15 @@ module.exports = async function handler(req, res) {
 
   for (const trial of trials || []) {
     processed++;
-
     const startedAt = new Date(trial.started_at).getTime();
     const daysSince = Math.floor((Date.now() - startedAt) / (24 * 60 * 60 * 1000));
 
-    if (!SEND_DAYS.includes(daysSince)) {
-      skipped++;
-      continue;
-    }
-
-    const alreadySent = logsByTrial[trial.id]?.has(daysSince);
-    if (alreadySent) {
-      skipped++;
-      continue;
-    }
+    if (!SEND_DAYS.includes(daysSince)) { skipped++; continue; }
+    if (logsByTrial[trial.id]?.has(daysSince)) { skipped++; continue; }
 
     const tmpl = getEmailForDay(daysSince, trial.lang || 'es', trial.nombre || '');
-    if (!tmpl) {
-      skipped++;
-      continue;
-    }
+    if (!tmpl) { skipped++; continue; }
 
-    // Send via Brevo
     let brevoStatus = 0;
     let brevoMsgId = null;
     let errorMsg = null;
@@ -150,8 +94,6 @@ module.exports = async function handler(req, res) {
       errors.push({ trial_id: trial.id, day_n: daysSince, error: errorMsg });
     }
 
-    // Always log (success or failure) — failures with non-NULL error column
-    // so we can retry on next run if needed.
     await supabase.from('trial_email_log').insert({
       trial_id: trial.id,
       day_n: daysSince,
@@ -163,10 +105,9 @@ module.exports = async function handler(req, res) {
 
   return res.status(200).json({
     ok: true,
+    job: 'lifecycle-trial',
     timestamp: new Date().toISOString(),
-    processed,
-    sent,
-    skipped,
+    processed, sent, skipped,
     errors_count: errors.length,
     errors: errors.slice(0, 10),
   });

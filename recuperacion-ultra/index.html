@@ -301,7 +301,7 @@ footer a{color:var(--muted);margin:0 10px}
     };
 
     try {
-      var res = await fetch('/api/recovery-ultra-subscribe', {
+      var res = await fetch('/api/brevo-subscribe?type=ultra-recovery', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

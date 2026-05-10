@@ -1,5 +1,10 @@
 // API Route de Vercel para suscripción newsletter
 // Guarda en Supabase + crea contacto en Brevo + trigger DOI / welcome automation
+//
+// [10 may 2026] Multi-type endpoint to stay under Vercel Hobby 12-function
+// limit. Branches by `?type=...`:
+//   default          → newsletter signup (this file's original behavior)
+//   ultra-recovery   → 10-day post-ultra recovery drip (handler in _lib/jobs/)
 
 import { createClient } from '@supabase/supabase-js';
 
@@ -27,6 +32,19 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    // ── Dispatch by ?type=… ────────────────────────────────────────
+    const subType = (req.query?.type || '').toString();
+    if (subType === 'ultra-recovery') {
+        const handleUltraRecovery = require('./_lib/jobs/recovery-ultra-subscribe');
+        return handleUltraRecovery(req, res, {
+            SUPABASE_SERVICE_KEY,
+            BREVO_API_KEY,
+            BREVO_SENDER_EMAIL: process.env.BREVO_SENDER_EMAIL,
+            BREVO_SENDER_NAME: process.env.BREVO_SENDER_NAME,
+        });
+    }
+
+    // ── Default: newsletter signup ─────────────────────────────────
     const { email, lang, source, lead_magnet } = req.body || {};
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {

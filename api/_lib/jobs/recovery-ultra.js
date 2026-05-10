@@ -1,49 +1,18 @@
-// ============================================================
-// Cron: recovery-ultra.js
-// Runs daily at 09:00 UTC. Sends day 1-10 emails to subscribers
-// of the post-ultra recovery drip campaign.
-//
-// Subscribers come from /api/recovery-ultra-subscribe (lead magnet
-// /recuperacion-ultra/ landing or post-race CTA in blog articles).
-//
-// Idempotent: ultra_recovery_email_log has UNIQUE(subscriber_id, day_n)
-// so re-runs the same day = no duplicate sends.
-//
-// Marks subscriber as 'completed' after day 10 sent.
-// ============================================================
+// Job: recovery-ultra
+// Sends Day 1-10 post-ultra recovery emails to subscribers.
+// Was at api/cron/recovery-ultra.js — consolidated under api/cron/run.js.
 
 const { createClient } = require('@supabase/supabase-js');
-const { getEmailForDay } = require('../_lib/ultra-recovery-templates');
+const { getEmailForDay } = require('../ultra-recovery-templates');
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const CRON_SECRET = process.env.CRON_SECRET || '';
-const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
-const SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos';
-
 const SEND_DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-module.exports = async function handler(req, res) {
-  const isVercelCron = req.headers['x-vercel-cron'] === '1' ||
-                       req.headers['user-agent']?.includes('vercel-cron');
-  const tokenMatch = (req.query?.token || '') === CRON_SECRET && CRON_SECRET.length > 0;
-  const authHeader = (req.headers['authorization'] || '').replace(/^Bearer\s+/i, '');
-  const headerMatch = authHeader === CRON_SECRET && CRON_SECRET.length > 0;
-
-  if (!isVercelCron && !tokenMatch && !headerMatch) {
-    return res.status(401).json({ error: 'unauthorized' });
-  }
-
-  if (!SUPABASE_SERVICE_KEY || !BREVO_API_KEY) {
-    return res.status(500).json({
-      error: 'misconfigured',
-      have_supabase: !!SUPABASE_SERVICE_KEY,
-      have_brevo: !!BREVO_API_KEY,
-    });
-  }
-
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+module.exports = async function runRecoveryUltra(_req, res, env) {
+  const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
+  const BREVO_API_KEY = env.BREVO_API_KEY;
+  const SENDER_EMAIL = env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
+  const SENDER_NAME = env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos';
 
   let processed = 0;
   let sent = 0;
@@ -51,8 +20,6 @@ module.exports = async function handler(req, res) {
   let completed = 0;
   const errors = [];
 
-  // Fetch active subscribers whose started_at is within last 12 days
-  // (max send day is 10; +2 day buffer for cron retries).
   const twelveDaysAgo = new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString();
 
   const { data: subs, error: subsErr } = await supabase
@@ -65,7 +32,6 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'subs_query_failed', detail: subsErr.message });
   }
 
-  // Pull existing log to avoid duplicates
   const subIds = (subs || []).map((s) => s.id);
   let logsBySub = {};
   if (subIds.length > 0) {
@@ -84,15 +50,11 @@ module.exports = async function handler(req, res) {
 
   for (const sub of subs || []) {
     processed++;
-
     const startedAt = new Date(sub.started_at).getTime();
-    // dayN = 1 if they signed up YESTERDAY, 2 if 2 days ago, etc.
-    // Floor of diff in days + 1 because day 1 is the day after sign-up.
     const daysSince = Math.floor((Date.now() - startedAt) / (24 * 60 * 60 * 1000));
     const dayN = daysSince + 1;
 
     if (!SEND_DAYS.includes(dayN)) {
-      // Past day 10 → mark as completed if it has all 10 sent.
       const sentSet = logsBySub[sub.id] || new Set();
       if (sentSet.size >= 10) {
         await supabase.from('ultra_recovery_subscribers')
@@ -103,17 +65,10 @@ module.exports = async function handler(req, res) {
       skipped++;
       continue;
     }
-
-    if (logsBySub[sub.id]?.has(dayN)) {
-      skipped++;
-      continue;
-    }
+    if (logsBySub[sub.id]?.has(dayN)) { skipped++; continue; }
 
     const tmpl = getEmailForDay(dayN, sub.lang || 'es', sub.nombre || '');
-    if (!tmpl) {
-      skipped++;
-      continue;
-    }
+    if (!tmpl) { skipped++; continue; }
 
     let brevoStatus = 0;
     let brevoMsgId = null;
@@ -131,12 +86,7 @@ module.exports = async function handler(req, res) {
           to: [{ email: sub.email, name: sub.nombre || sub.email }],
           subject: tmpl.subject,
           htmlContent: tmpl.html,
-          tags: [
-            'ultra-recovery',
-            `day-${dayN}`,
-            sub.lang || 'es',
-            `source-${sub.race_source || 'generic'}`,
-          ],
+          tags: ['ultra-recovery', `day-${dayN}`, sub.lang || 'es', `source-${sub.race_source || 'generic'}`],
         }),
       });
       brevoStatus = resBrevo.status;
@@ -162,7 +112,6 @@ module.exports = async function handler(req, res) {
       error: errorMsg,
     });
 
-    // If this was day 10 successful, mark completed.
     if (dayN === 10 && !errorMsg) {
       await supabase.from('ultra_recovery_subscribers')
         .update({ status: 'completed' })
@@ -173,11 +122,9 @@ module.exports = async function handler(req, res) {
 
   return res.status(200).json({
     ok: true,
+    job: 'recovery-ultra',
     timestamp: new Date().toISOString(),
-    processed,
-    sent,
-    skipped,
-    completed,
+    processed, sent, skipped, completed,
     errors_count: errors.length,
     errors: errors.slice(0, 10),
   });

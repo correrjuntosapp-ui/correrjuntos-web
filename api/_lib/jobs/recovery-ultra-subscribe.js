@@ -1,25 +1,14 @@
-// API Route — POST /api/recovery-ultra-subscribe
-// Lead magnet capture for the post-ultra recovery 10-day drip.
-// Adds the email to ultra_recovery_subscribers + Brevo list (optional)
-// + sends an instant first email confirming + Day 0 welcome.
-//
-// Used by: /recuperacion-ultra/ landing form, blog article CTAs.
+// Job: recovery-ultra-subscribe
+// Lead capture for the post-ultra recovery 10-day drip.
+// Was at api/recovery-ultra-subscribe.js — consolidated into
+// brevo-subscribe.js with `?type=ultra-recovery` to stay under
+// Vercel Hobby 12-function limit.
 
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = require('@supabase/supabase-js');
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
-const SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos';
 
-export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-
+module.exports = async function handleUltraRecoverySubscribe(req, res, env) {
   const { email, nombre, lang, race_source } = req.body || {};
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -30,14 +19,12 @@ export default async function handler(req, res) {
   const safeRaceSource = (race_source || 'generic').toString().slice(0, 50);
   const safeName = (nombre || '').toString().slice(0, 100);
 
-  if (!SUPABASE_SERVICE_KEY) {
+  if (!env.SUPABASE_SERVICE_KEY) {
     return res.status(500).json({ error: 'misconfigured' });
   }
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+  const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
 
-  // Upsert subscriber (if exists, reset started_at + lang/source).
-  // started_at restarts so they can re-do the 10-day cycle if want.
   try {
     const { data: existing } = await supabase
       .from('ultra_recovery_subscribers')
@@ -66,16 +53,16 @@ export default async function handler(req, res) {
       });
     }
   } catch (e) {
-    console.error('[recovery-ultra-subscribe] supabase error:', e);
+    console.error('[ultra-recovery-subscribe] supabase error:', e);
     return res.status(500).json({ error: 'storage_failed' });
   }
 
-  // Send instant welcome email (this is the "day 0 / sign-up" email).
-  // The cron will pick up the regular Day 1 tomorrow.
-  if (BREVO_API_KEY) {
+  if (env.BREVO_API_KEY) {
+    const SENDER_EMAIL = env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
+    const SENDER_NAME = env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos';
     const welcomeHtml = welcomeEmail(safeLang, safeName);
     const subject = safeLang === 'en'
-      ? '✓ You\'re in — your 10-day recovery plan starts tomorrow'
+      ? "✓ You're in — your 10-day recovery plan starts tomorrow"
       : '✓ Confirmado — tu plan de recuperación 10 días empieza mañana';
     try {
       await fetch('https://api.brevo.com/v3/smtp/email', {
@@ -83,7 +70,7 @@ export default async function handler(req, res) {
         headers: {
           accept: 'application/json',
           'content-type': 'application/json',
-          'api-key': BREVO_API_KEY,
+          'api-key': env.BREVO_API_KEY,
         },
         body: JSON.stringify({
           sender: { email: SENDER_EMAIL, name: SENDER_NAME },
@@ -94,12 +81,12 @@ export default async function handler(req, res) {
         }),
       });
     } catch (e) {
-      console.warn('[recovery-ultra-subscribe] welcome send failed (non-blocking):', e?.message || e);
+      console.warn('[ultra-recovery-subscribe] welcome send failed (non-blocking):', e?.message || e);
     }
   }
 
   return res.status(201).json({ status: 'ok' });
-}
+};
 
 function welcomeEmail(lang, name) {
   const isEn = lang === 'en';

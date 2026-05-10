@@ -189,11 +189,11 @@
   ],
   "crons": [
     {
-      "path": "/api/cron/lifecycle-trial",
+      "path": "/api/cron/run?job=lifecycle-trial",
       "schedule": "0 9 * * *"
     },
     {
-      "path": "/api/cron/recovery-ultra",
+      "path": "/api/cron/run?job=recovery-ultra",
       "schedule": "5 9 * * *"
     }
   ]

@@ -536,11 +536,57 @@ Orden cronológico (la última se sirve a todos):
 Identificado el cuello de botella real: 612 users · 1 paid · $3 MRR = 0.16% conversion ratio (vs benchmark fitness 2-5%). Cuello NO es el paywall, ES que la gente no llega comprometida. **Phase A elegida: Trial Lifecycle Emails** (server-side, server-only, +20-40% conversión, ROI inmediato). Phase 2 (bulk-add 200 carreras, multi-race tab) y Push lifecycle aplazados al backlog.
 
 **📊 Estado producción al cerrar 10 mayo:**
-- iOS v1.3.6: WAITING_FOR_REVIEW (33h en cola, normal 24-48h)
+- iOS v1.3.6: WAITING_FOR_REVIEW (~37h en cola, dentro del rango normal 24-48h)
 - Android v1.3.6: LIVE Production al 100%
 - Sentry: 2 issues resueltos hoy (Pressable, KudosIcon — ambos del primer push de comments)
-- Web: 521 articles ES+EN, hreflang reciprocidad, blog Ronda card fixed
+- Web: 521 articles ES+EN, hreflang reciprocidad, blog Ronda card fixed, **landing /recuperacion-ultra LIVE**
 - TestFlight founder: dogfooding extensivo todo el día
+
+**🌙 Sesión nocturna 10 may — Funnel Recovery Ultra + Vercel rescue:**
+- 🚨 Vercel deploy del funnel recovery falló (commit `134b9ed`) — 14 functions vs 12 limit Hobby
+- ✅ Consolidación a 12 con dispatchers (commit `1edffa22`):
+  - 2 cron endpoints → 1 dispatcher `api/cron/run.js` que branchea por `?job=`
+  - 2 subscribe endpoints → `api/brevo-subscribe.js` que branchea por `?type=`
+  - Lógica de jobs movida a `api/_lib/jobs/` (no cuenta como function)
+- ✅ Cleanup 2 endpoints muertos (`referral-validate`, `error-report`) — 12→10 con margen
+- ✅ Fix ESM/CJS mismatch en `brevo-subscribe.js` (commit `b6ae031d`) — `import` ESM al top + `require()` en handler era incompatible. Convertido `_lib/jobs/recovery-ultra-subscribe.js` a ESM con `export default`
+- ✅ /recuperacion-ultra landing LIVE 200 OK + banner article Ronda con CTA
+- ✅ Migración Supabase `ultra_recovery_drip_v1` (subscribers + email_log)
+- ✅ 20 templates email (10 días × ES+EN) en `_lib/ultra-recovery-templates.js`
+- ✅ Cron en vercel.json daily 09:05 UTC (`/api/cron/run?job=recovery-ultra`)
+- ✅ IndexNow ping para article + landing
+- ⚠️ **ACCIÓN PENDIENTE founder**: añadir `CRON_SECRET` env var en Vercel + redeploy. Sin esto los crons devuelven 401 y no se envían los emails (ni lifecycle-trial ni recovery-ultra)
+
+### ⚠️ REGLA NUEVA — Vercel Hobby plan: max 12 serverless functions
+
+Cualquier endpoint nuevo bajo `api/*.js` cuenta como una function. Pasar de 12 = deploy fail (state=ERROR en "Deploying outputs..."). Patrón obligatorio para escalar sin pagar Pro:
+
+**Crons** → todos bajo `/api/cron/run?job=<nombre>`. Handler en `api/_lib/jobs/<nombre>.js`. Registrar en `JOBS` map de `run.js`:
+```js
+const JOBS = {
+  'lifecycle-trial': require('../_lib/jobs/lifecycle-trial'),
+  'recovery-ultra':  require('../_lib/jobs/recovery-ultra'),
+  // nuevo cron aquí, NO en api/cron/X.js
+};
+```
+
+**Subscribe / form endpoints** → todos bajo `/api/brevo-subscribe?type=<nombre>`. Handler en `_lib/jobs/<nombre>-subscribe.js`. Branchear en el dispatch del top de `brevo-subscribe.js`.
+
+**Otros tipos de endpoint** (admin, webhooks de terceros, OAuth callbacks) → si son ≤12 totales, OK. Si pasamos, agrupar bajo `/api/admin/run?action=` o similar.
+
+**Carpetas que NO cuentan como function**:
+- `api/_lib/` (cualquier subcarpeta) — son shared modules
+- Ficheros con extensión que NO sea `.js` o `.ts`
+
+**Triggers para upgrade a Pro ($20/mes)**:
+- MRR > $200/mes (Pro será <10% revenue → cómodo)
+- Bandwidth > 70GB/mes
+- Necesitas previews protegidos por password
+- Build time > 30s
+
+Hoy ninguno aplica → seguimos Hobby.
+
+**ESM ↔ CJS gotcha**: si un endpoint usa `import` al top (ESM), no metas `require()` dentro — Vercel falla con `FUNCTION_INVOCATION_FAILED`. Convertir el handler a `export default` y usar `import` estático al top del endpoint.
 
 ### ⚠️ REGLA NUEVA — Blog assets path
 

@@ -241,6 +241,64 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 - Premium anual: 29,99€/año via RevenueCat (ACTIVO desde v1.3.0 — selector visible, anual = default, badge "Ahorra 40%", trial 14 días)
 - Amazon afiliados: tag diezmejores21-21 (ACTIVO)
 
+## 📊 Estado Financiero (cierre 10 may 2026)
+
+**Snapshot real del día — primer mes con tracking completo de ambos canales.**
+
+### RevenueCat dashboard
+
+| Métrica | Valor | Qué significa |
+|---|---|---|
+| **MRR** | **$3** | Monthly Recurring Revenue — lo que se va a repetir cada mes con subs actuales |
+| **Revenue (28d)** | **$35** | Cash REAL recibido en los últimos 28 días (incluye one-time + annual paid upfront) |
+| Active Trials | 1 | Founder (premium 30d desde 10 may para testear plan Huelva — quitar al cerrar test) |
+| Active Subscriptions | 1 | Solo 1 sub mensual real |
+| New Customers (28d) | 268 | Nuevos accounts trackeados (mostly free tier) |
+| Active Customers | 306 | Total con actividad reciente |
+
+**Por qué el gap MRR ($3) ↔ Revenue ($35)**:
+- 1 sub mensual activa = ~$3 MRR
+- Resto = compras one-time (planes individuales prep-5k/10k/trail/21k/42k cada uno con su productId no-consumible) + posibles annual subs ($29,99 cuentan íntegros en el mes del pago, pero solo aportan ~$2,5 a MRR)
+
+**RevenueCat free tier**: hasta $2.500 MTR. Founder está en $35 — MUY lejos del límite, sin urgencia. ⚠️ Aviso: tarjeta de crédito hace falta añadir cuando puedas (en dashboard hay warning de "Add your credit card to avoid losing access" — preventivo, no bloqueante hoy).
+
+### Amazon Afiliados (StoreID `diezmejores21-21`)
+
+| Métrica | Valor |
+|---|---|
+| **Comisiones (10 abr - 9 may)** | **19,55€** |
+| Bonus | 0€ |
+| Total mes | 19,55€ |
+| Pago real | Llega ~2 meses después (típicamente julio para mayo) — Amazon espera anti-fraude |
+
+### TOTAL canal monetario (10 may 2026)
+
+| Fuente | EUR/mes aprox |
+|---|---|
+| RevenueCat (subs + one-time + annual) | ~32€ ($35) |
+| Amazon afiliados | 19,55€ |
+| **Total** | **~52€/mes** |
+
+### Lectura estratégica
+
+- **Amazon afiliados (19,55€) genera 6× lo que RevenueCat MRR ($3 ≈ 2,75€)** hoy. Es contraintuitivo pero importante: el blog SEO está pagando más que las subscripciones premium ahora mismo.
+- Cuando la base de subs crezca con lifecycle emails + push activations + más users post v1.3.6, el ratio se invertirá: RevenueCat será 5-10× Amazon.
+- Mientras tanto el blog mantiene **cash flow positivo predecible** y reduce dependencia del único motor.
+- **Lifecycle emails (Phase A) deberían mover el MRR significativamente en próximos 30-60 días** según se vayan disparando emails día 1/3/7/11/14 a los new customers que entran al trial.
+
+### Métricas a vigilar
+
+1. **Top 5 articles por comisión Amazon** — replicar patrón en clusters similares
+2. **% paywall views eligible vs no_trial** — leading indicator de cohort aging (GA4 events ya activos desde 10 may)
+3. **Trial → paid conversion rate** — semanal post-lifecycle activation
+4. **Bounce rate** del pillar `/guia-equipamiento-running-2026` — health del cluster
+5. **CTR del CTA app** dentro de articles afiliados — equilibrio Amazon vs Premium
+
+### Notas operacionales
+
+- Founder tiene premium activo en BD hasta 9 jun 2026 (manual SQL grant para test 10K Huelva). **Acción**: revertir cuando termine de validar plan Huelva (`UPDATE profiles SET es_premium=false, premium_until=NULL WHERE email='guetto2012@gmail.com'`).
+- Webhook `supabase/functions/revenucat-webhook/index.ts` existe pero no verificado si está escribiendo todas las purchase events. Pendiente: confirmar que captura plan_individual purchases para reconciliar revenue.
+
 ## 🚀 PROCESO DEPLOY APPS A TIENDAS (memorizado 9 may 26)
 
 ### Tabla mental — quién hace qué

@@ -480,6 +480,53 @@ Founder reportó (9 may 26) que tras desinstalar e instalar la app, la primera a
 
 ## Pending (status May 10, 2026 — fin de día)
 
+### 📋 Backlog próxima sesión (lunes 11 may 2026 o cuando vuelvas)
+
+**Acción urgente del founder (30 segundos)**:
+1. **Añadir `CRON_SECRET` env var en Vercel** → Production
+   - Vercel Dashboard → `correrjuntos` → Settings → Environment Variables
+   - Generar string random 32+ chars (ej `openssl rand -hex 32`)
+   - Sin esto los crons (`lifecycle-trial` + `recovery-ultra`) devuelven 401 → emails NO se envían
+
+**Verificación primera cosa al arrancar**:
+2. **Apple v1.3.6 status** — `cd correr-juntos-app && node scripts/check-store-status.js`
+   - Estado al cerrar 10 may: `WAITING_FOR_REVIEW` desde 9 may 07:46 UTC (~37h en cola)
+   - Ventana normal Apple: 24-48h. Probable aprobación 11 o 12 may.
+   - Si aprobada: los 88+ users iOS empiezan a actualizar a v1.3.6 + reciben todas las OTAs acumuladas.
+
+**Para acelerar canal Recovery Ultra (sin coste, ROI alto)**:
+3. **Email blast a 270 newsletter contacts** (5 min)
+   - Plantilla: "Si has hecho ultra recientemente — plan recuperación 10 días gratis 👇"
+   - Linkar a `/recuperacion-ultra?ref=newsletter-blast`
+   - Esperado: 15-30 nuevos signups en 24h
+4. **Banner recovery en pillar `/blog/guia-equipamiento-running-2026`** sección Trail (10 min)
+   - Mismo patrón que el banner del article Ronda
+   - Esperado: 5-10 signups/semana extra
+5. **Post Instagram + link bio** "Plan recuperación post-ultra gratis" (5 min)
+   - Foto Sierra de las Nieves (ya self-hosted)
+
+**Cuando `lalegion101.com` publique resultados oficiales 2026** → ejecutar **Opción B** del article Ronda:
+6. Tabla Top 10 General (M + F) con tiempos
+7. Stats hero: inscritos / finishers / % / tiempo medio / récord
+8. Galería 5-8 fotos del evento (CC BY o licencias)
+9. Sección "Lecciones de la edición" (errores típicos, condiciones, abandonos por km)
+10. Sección "Prepara la 2027" long-tail SEO (cuándo abren inscripciones, plan 12 meses, link `/planes/trail`)
+
+**Otros backlog medio plazo**:
+11. RevenueCat webhook → cerrar ciclo trial_starts (cuando sub convierte a paid o cancela, actualizar status automáticamente). Hoy queda `trial_active` indefinidamente.
+12. Brevo webhook → escribir a `trial_email_log.opened/clicked` para ver engagement por email.
+13. Coach dashboard básico (3 features: lista miembros · quedadas grupo · chat) — disparador para outreach a clubs.
+14. Affiliate / referral system para coaches micro-influencers.
+15. Bulk-add 200 carreras España + multi-race tab (Phase 2 carreras).
+16. Push lifecycle "after first run" (Phase A.2).
+
+**Datos del founder en BD que requieren reversión**:
+- Premium activo hasta 9 jun 2026 (manual SQL grant para test 10K Huelva). **Acción**: cuando termines de validar el plan, ejecutar:
+  ```sql
+  UPDATE profiles SET es_premium=false, premium_until=NULL, fecha_premium=NULL
+  WHERE email='guetto2012@gmail.com';
+  ```
+
 ### 🟢 Done hoy 10 mayo 2026
 
 **Día épico de dogfood. ~16 OTAs publicadas, 5 migraciones SQL, 1 Edge Function nueva, fix web blog. Founder ejerciendo de QA en TestFlight.**

@@ -701,6 +701,79 @@ npm run ship:status
 - Web: orange #f97316, dark bg #0b1220, warm cream #fef7ed
 - **Theme: Light mode ALWAYS default**
 
+## 🎨 Email Brand System (memorizado de Brevo template #3 "CJ DOI Confirmation")
+
+**Todos los emails self-built (drip ultra recovery, lifecycle trial, welcome, etc.) DEBEN seguir este sistema visual** para mantener identidad consistente con los emails Brevo (DOI, welcome newsletter).
+
+### Paleta
+
+| Token | Valor | Uso |
+|---|---|---|
+| `BG_DARK` | `#0b1220` | Outer body background fullscreen |
+| `BRAND_ORANGE` | `#f97316` | H1, brand header CORRERJUNTOS, CTA gradient start |
+| `BRAND_ORANGE_DARK` | `#ea580c` | CTA gradient end |
+| `CARD_BG` | `rgba(255,255,255,0.03)` | Card interna (subtle) |
+| `CARD_BORDER` | `rgba(255,255,255,0.06)` | Card border 1px |
+| `TEXT_BODY` | `#cbd5e1` | Cuerpo principal (gris azulado) |
+| `TEXT_MUTED` | `#94a3b8` o `#64748b` | Secondary text, captions |
+| `TEXT_FOOTER` | `#475569` | Footer copyright |
+| `FONT_STACK` | `-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif` | Todos los emails |
+
+### Estructura
+
+```html
+<!DOCTYPE html><html><body style="margin:0;background:#0b1220;font-family:[STACK]">
+  <table width="100%" style="background:#0b1220;padding:40px 20px">
+    <tr><td align="center">
+      <table width="600" style="max-width:600px">
+        <!-- 1. HEADER: brand uppercase orange -->
+        <tr><td style="text-align:center;padding:24px 0">
+          <a href="..." style="color:#f97316;font-size:1.4rem;font-weight:900;letter-spacing:-0.5px">CORRERJUNTOS</a>
+        </td></tr>
+        <!-- 2. CARD: contenido principal -->
+        <tr><td style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:40px 32px">
+          <h1 style="color:#f97316;font-size:1.8rem;font-weight:900;text-align:center">¡Heading!</h1>
+          <p style="color:#cbd5e1;font-size:1rem;line-height:1.7">Body text...</p>
+          <!-- CTA pill button -->
+          <table width="100%"><tr><td align="center">
+            <a href="..." style="display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700">CTA →</a>
+          </td></tr></table>
+        </td></tr>
+        <!-- 3. FOOTER: copyright + unsubscribe -->
+        <tr><td style="text-align:center;padding:24px 0;font-size:0.8rem;color:#475569">
+          © 2026 CorrerJuntos - La comunidad runner · <a href="...">Darme de baja</a>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>
+```
+
+### Reglas de copy
+
+- **Header**: `CORRERJUNTOS` uppercase, NUNCA `CorrerJuntos`
+- **H1**: máx 6-7 palabras, naranja, centrado, font-weight 900
+- **CTA**: máx 4 palabras + flecha (`→`). Verbos de acción ("Empezar", "Confirmar", "Activar")
+- **Footer**: una sola línea con copyright + unsub link. Sin redes sociales (saturación visual)
+- **Sign-off**: `— Abraham, fundador CorrerJuntos` cuando aplique tono personal
+
+### Helpers reutilizables (`api/_lib/*-templates.js`)
+
+- `shell(content, lang)` — wrap completo con header + card + footer
+- `ctaButton(url, label)` — pill gradient
+- `dayBadge(n, total)` — badge "DÍA N DE TOTAL" para drip campaigns
+- `h1(txt)`, `p(txt)`, `bullets([])`, `callout(label, body)` — building blocks
+- `sig(lang)` — firma estándar del founder
+
+### Templates en Brevo dashboard (NO tocar sin avisar)
+
+| ID | Nombre | Asunto | Estado |
+|---|---|---|---|
+| 1 | Bienvenida Newsletter | Welcome newsletter ES | Activa |
+| 3 | CJ DOI Confirmation | Confirma tu suscripción a CorrerJuntos | Activa — fuente del visual |
+| 4 | CJ Welcome EN | Welcome newsletter EN | Activa |
+| 13 | CJ Reactivation 555 - Meridian Motion | (test) | Inactiva |
+
 ## Comandos
 
 ```bash

@@ -387,10 +387,11 @@ npm run ship:promote   # Android internal → production via API
 
 ## Versión Actual
 
-- **App publicada en stores**: v1.3.5 (iOS build 83, Android versionCode 83)
-- **App en build (9 may 26)**: **v1.3.6 (iOS build 84, Android versionCode 84)** — runtime 1.3.6
-- **iOS**: Publicada en App Store, build 84 en cola EAS para submit
-- **Android**: Publicada en Google Play (88+ descargas), build 84 en cola EAS para submit
+- **App publicada en stores**: v1.3.5 (iOS build 83, Android versionCode 83) — **iOS** sigue así
+- **v1.3.6 (build 84)** — runtime 1.3.6
+- **iOS v1.3.6**: WAITING_FOR_REVIEW desde 9 may 07:46 UTC (33h en cola al cerrar 10 may)
+- **Android v1.3.6**: ✅ LIVE Producción 100% rollout
+- **Última OTA servida runtime 1.3.6** (10 may): `c8de278b-e017-44ee-9151-ad8ec6984dc5` — workout detail real pace per block. **Acumula los 16 fixes/features de 10 may** (ver sección "Done hoy 10 mayo 2026").
 - **Web**: Desplegada en Vercel (correrjuntos.com)
 
 ### Última OTA estable runtime 1.3.5 (alcanza users actuales)
@@ -419,7 +420,83 @@ Founder reportó (9 may 26) que tras desinstalar e instalar la app, la primera a
 - `correr-juntos-app/src/context/AuthContext.tsx` — initInstallDate
 - `correr-juntos-app/src/utils/analytics.ts` — 8 GA4 events for plans
 
-## Pending (status May 9, 2026 — fin de día)
+## Pending (status May 10, 2026 — fin de día)
+
+### 🟢 Done hoy 10 mayo 2026
+
+**Día épico de dogfood. ~16 OTAs publicadas, 5 migraciones SQL, 1 Edge Function nueva, fix web blog. Founder ejerciendo de QA en TestFlight.**
+
+**📱 App v1.3.6 — 16 OTAs encadenadas (runtime 1.3.6, 100% rollout)**
+
+Orden cronológico (la última se sirve a todos):
+1. `2acda1cb` — fix matching save button (TouchableOpacity propagation Android)
+2. `c5747249` — fix filter race-meetups SQL (excluir tipo='race_meetup' en getRecommendedQuedadas)
+3. `a5cca1ac` — fix heart/kudos optimistic UI (nested TouchableOpacity propagation)
+4. `b5b1d4d9` — feat comments Strava-style (likes per comment, edit, delete) + RPCs
+5. `c4b92836` — fix Pressable import en FeedScreen (crash modal comentarios)
+6. `a48ade3c` — fix KudosIcon undefined → SVG inline + commentEditInput style
+7. `aa21b88e` — feat race recommendation lat/lng haversine (geocoded 92 races)
+8. `40c2a45c` — feat paywall hides trial copy if user already consumed it
+9. `146ec159` — feat PlanWizard inherits race context (skip step "¿entrenas para evento?")
+10. `755429a7` — fix wizard summary uses real plan weeks (not template default)
+11. `2a8f4f64` — feat "Crear plan acelerado" button (force-override min_weeks)
+12. `98376878` — fix hide RacePlanCard once active plan exists
+13. `5fb69279` — fix timezone bug en change-training-days (toISOString shifted -1 day)
+14. `52c35531` — fix hide hero quedada card from home top
+15. `f6d5f87d` — fix home greeting respects when next workout actually is
+16. **`c8de278b`** ← actual servida — fix workout detail real pace per block (ZONE_OFFSETS_SEC + labels amigables)
+
+**🤖 Edge Function (server-side, instantáneo):**
+- `ai-coach v6` — Coach Jose v2 prompt humanizado: "como un colega que ha corrido contigo cien veces, no como un fisiólogo en consulta". 3 ejemplos few-shot de MAL→BIEN. max_tokens 600→350.
+- Founder validó: "Perfecto tío. Entonces a darte con confianza..." — fix funcionando
+
+**🗄️ Supabase migrations (5 nuevas):**
+1. `race_meetups_v1_system_user_and_tipo` — race-day meetups + system user
+2. `feed_likes_comments_rpcs` + `feed_comment_likes_edit_delete` — comentarios Strava
+3. `fix_get_feed_comments_ambiguous_user_id` — bug ambigüedad SQL `user_id`
+4. `trial_lifecycle_emails_v1` — tablas trial_starts + trial_email_log + RLS
+5. `plan_feasibility_force_override` — `p_force` boolean en validate + generate RPCs
+
+**📨 Trial Lifecycle Emails — Pipeline completo construido (esperando CRON_SECRET):**
+- `/api/cron/lifecycle-trial.js` daily 09:00 UTC (vercel.json crons configured)
+- `/api/_lib/trial-email-templates.js` con 10 templates (ES+EN × Day 1/3/7/11/14)
+- `iap.ts` graba `trial_starts` row cuando RC reporta `periodType === 'TRIAL'`
+- **ACCIÓN PENDIENTE founder**: añadir `CRON_SECRET` env var en Vercel + redeploy. Resto activo.
+- ROI esperado: +20-40% trial→paid conversion
+
+**🌐 Web blog fix:**
+- `blog/index.html` — Card "101 km de Ronda" usaba foto de Machu Picchu (Pexels 2356045). Sustituida por `/public/blog-images/ronda/puente-nuevo-ronda.jpg` (self-hosted, real)
+- ⚠️ Lección: el path correcto es `/public/blog-images/...` con prefijo `/public/` LITERAL (este proyecto NO es Next.js, sirve la jerarquía as-is). Mi primer intento usé `/blog-images/...` y dio 404.
+
+**🔧 Datos del founder corregidos en BD:**
+- `profiles.es_premium=true, premium_until=NOW()+30d` (para testear plan Huelva)
+- `user_plans.ritmo_base = 4.83` (4:50/km, basado en su run real 12.33km @ 4:57/km — antes era 3.83/3:50, irreal)
+- 12 user_workouts re-calculados con offsets pace_zones: easy 5:40, tempo 4:25, específico 4:50
+- Workouts re-asignados a [3,4,7] (Mié/Jue/Dom) tras el fix timezone
+
+**🎯 Decisión estratégica del día:**
+Identificado el cuello de botella real: 612 users · 1 paid · $3 MRR = 0.16% conversion ratio (vs benchmark fitness 2-5%). Cuello NO es el paywall, ES que la gente no llega comprometida. **Phase A elegida: Trial Lifecycle Emails** (server-side, server-only, +20-40% conversión, ROI inmediato). Phase 2 (bulk-add 200 carreras, multi-race tab) y Push lifecycle aplazados al backlog.
+
+**📊 Estado producción al cerrar 10 mayo:**
+- iOS v1.3.6: WAITING_FOR_REVIEW (33h en cola, normal 24-48h)
+- Android v1.3.6: LIVE Production al 100%
+- Sentry: 2 issues resueltos hoy (Pressable, KudosIcon — ambos del primer push de comments)
+- Web: 521 articles ES+EN, hreflang reciprocidad, blog Ronda card fixed
+- TestFlight founder: dogfooding extensivo todo el día
+
+### ⚠️ REGLA NUEVA — Blog assets path
+
+**Este proyecto NO es Next.js**. Vercel sirve la jerarquía as-is. **Todo asset estático bajo `/public/...` debe usarse con el prefijo `/public/` LITERAL en la URL**:
+
+```html
+<!-- BIEN: -->
+<img src="/public/blog-images/ronda/puente-nuevo-ronda.jpg">
+
+<!-- MAL (404): -->
+<img src="/blog-images/ronda/puente-nuevo-ronda.jpg">
+```
+
+Aplica a: blog/index.html, og:image, hero images, JSON-LD schema. El blog-generator script debería enforcearlo.
 
 ### 🟢 Done hoy 9 mayo 2026
 

@@ -3,12 +3,17 @@
 // Was at api/recovery-ultra-subscribe.js — consolidated into
 // brevo-subscribe.js with `?type=ultra-recovery` to stay under
 // Vercel Hobby 12-function limit.
+//
+// [10 may 2026] ESM-compatible: brevo-subscribe.js uses `import` at
+// top so Vercel treats it as ESM. Dynamic `require()` from an ESM
+// file throws 'require is not defined'. We export ESM here so the
+// caller can use static `import handleUltraRecoverySubscribe from`.
 
-const { createClient } = require('@supabase/supabase-js');
+import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 
-module.exports = async function handleUltraRecoverySubscribe(req, res, env) {
+export default async function handleUltraRecoverySubscribe(req, res, env) {
   const { email, nombre, lang, race_source } = req.body || {};
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -86,7 +91,7 @@ module.exports = async function handleUltraRecoverySubscribe(req, res, env) {
   }
 
   return res.status(201).json({ status: 'ok' });
-};
+}
 
 function welcomeEmail(lang, name) {
   const isEn = lang === 'en';

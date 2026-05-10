@@ -7,6 +7,7 @@
 //   ultra-recovery   → 10-day post-ultra recovery drip (handler in _lib/jobs/)
 
 import { createClient } from '@supabase/supabase-js';
+import handleUltraRecoverySubscribe from './_lib/jobs/recovery-ultra-subscribe.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -35,8 +36,7 @@ export default async function handler(req, res) {
     // ── Dispatch by ?type=… ────────────────────────────────────────
     const subType = (req.query?.type || '').toString();
     if (subType === 'ultra-recovery') {
-        const handleUltraRecovery = require('./_lib/jobs/recovery-ultra-subscribe');
-        return handleUltraRecovery(req, res, {
+        return handleUltraRecoverySubscribe(req, res, {
             SUPABASE_SERVICE_KEY,
             BREVO_API_KEY,
             BREVO_SENDER_EMAIL: process.env.BREVO_SENDER_EMAIL,

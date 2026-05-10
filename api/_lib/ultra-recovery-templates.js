@@ -1,359 +1,121 @@
 // ============================================================
 // Ultra Recovery Drip — 10-day email plan post-ultra
 //
-// Sequence designed by sport-science consensus + practical coaches:
-//   D1-2: full rest, hydration, anti-inflammatory food
-//   D3-4: gentle walk + sleep focus
-//   D5-7: very easy short jogs (optional, RPE ≤4)
-//   D8-9: gradual return to easy running
-//   D10:  trampoline to Premium → next ultra plan
+// [10 may 2026 v3] Visual extracted from Supabase Auth template
+// "Confirm signup" (Meridian Motion editorial system). Replaces the
+// previous Brevo DOI #3 approximation. Founder feedback:
+//   "ese tono visual era el ibamos a seguir en los correos"
 //
-// Each email: ONE focus, 1-2 actions, never overwhelming. Day 10 is
-// the conversion moment.
+// Design system (memorized in CLAUDE.md):
+//   • Background #0b1220 (dark navy)
+//   • Body text #f6f1e8 (warm cream)
+//   • Brand orange #f97316
+//   • Inter (body) + JetBrains Mono (eyebrows / metadata)
+//   • H1 weight 200 (ultra-thin) with <strong> weight 700 in orange
+//   • Eyebrow with orange dot bullet + uppercase tracked
+//   • Tagline divider with line + "CORRE ACOMPAÑADO"
+//   • CTA solid orange with DARK text (premium feel, no gradient)
+//   • Footer "Meridian Motion · correrjuntos.com" tracked mono micro
 // ============================================================
 
-// [10 may 2026] Visual style memorized from Brevo template #3
-// "CJ DOI Confirmation". Founder feedback: emails de hoy no coincidían
-// con el de bienvenida (dark mode + brand naranja). Ahora unificados:
-// mismo background, misma card, mismo CTA pill.
-const BRAND_ORANGE = '#f97316';
-const BRAND_ORANGE_DARK = '#ea580c';
-const BG_DARK = '#0b1220';
-const CARD_BG = 'rgba(255,255,255,0.03)';
-const CARD_BORDER = 'rgba(255,255,255,0.06)';
-const TEXT_BODY = '#cbd5e1';
-const TEXT_MUTED = '#64748b';
-const TEXT_FOOTER = '#475569';
-const FONT_STACK = "-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif";
+const ORANGE = '#f97316';
+const BG = '#0b1220';
+const TEXT = '#f6f1e8';
+const TEXT_72 = 'rgba(246,241,232,0.72)';
+const TEXT_42 = 'rgba(246,241,232,0.42)';
+const TEXT_28 = 'rgba(246,241,232,0.28)';
+const BORDER_08 = 'rgba(246,241,232,0.08)';
+const BORDER_12 = 'rgba(246,241,232,0.12)';
+const FONT_BODY = "'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+const FONT_MONO = "'JetBrains Mono',SFMono-Regular,Consolas,Menlo,monospace";
 
-function shell(content, lang) {
-  const unsubHref = `https://www.correrjuntos.com/unsubscribe?email={{contact.EMAIL}}&list=ultra-recovery`;
-  const footerCopy = lang === 'en'
-    ? `© 2026 CorrerJuntos - The runner community · <a href="${unsubHref}" style="color:${TEXT_FOOTER};text-decoration:underline">Unsubscribe</a>`
-    : `© 2026 CorrerJuntos - La comunidad runner · <a href="${unsubHref}" style="color:${TEXT_FOOTER};text-decoration:underline">Darme de baja</a>`;
+/**
+ * Meridian Motion editorial shell.
+ *
+ * @param {Object} opts
+ * @param {string} opts.eyebrow      — uppercase metadata, ej "Recuperación · Día 1"
+ * @param {string} opts.tagline      — "CORRE ACOMPAÑADO" or variant
+ * @param {string} opts.h1Pre        — first part of H1 (regular weight, cream)
+ * @param {string} opts.h1Strong     — highlighted word (weight 700, orange)
+ * @param {string} opts.h1Post       — trailing punctuation (default "."
+ * @param {string} opts.body         — main body HTML (paragraphs, lists)
+ * @param {string} [opts.ctaUrl]     — primary CTA (optional)
+ * @param {string} [opts.ctaLabel]   — primary CTA label (default "Continuar →")
+ * @param {string} [opts.preheader]  — hidden preview text in inbox
+ * @param {string} [opts.lang]       — 'es' | 'en'
+ */
+function shell({ eyebrow, tagline, h1Pre, h1Strong, h1Post = '.', body, ctaUrl, ctaLabel = 'Continuar →', preheader = '', lang = 'es' }) {
+  const taglineHtml = tagline
+    ? `<tr><td style="padding:30px 44px 0 44px;">
+         <div style="font-family:${FONT_MONO};font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:${ORANGE};font-weight:500;">
+           <span style="display:inline-block;width:36px;height:1px;background:${ORANGE};vertical-align:middle;margin-right:12px;"></span>${tagline}
+         </div>
+       </td></tr>`
+    : '';
 
-  return `<!DOCTYPE html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CorrerJuntos · Recovery</title></head><body style="margin:0;padding:0;background:${BG_DARK};font-family:${FONT_STACK}"><table width="100%" cellpadding="0" cellspacing="0" style="background:${BG_DARK};padding:40px 20px"><tr><td align="center"><table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%"><tr><td style="text-align:center;padding:24px 0"><a href="https://www.correrjuntos.com" style="color:${BRAND_ORANGE};font-size:1.4rem;font-weight:900;text-decoration:none;letter-spacing:-0.5px">CORRERJUNTOS</a></td></tr><tr><td style="background:${CARD_BG};border:1px solid ${CARD_BORDER};border-radius:24px;padding:40px 32px">${content}</td></tr><tr><td style="text-align:center;padding:24px 0;font-size:0.8rem;color:${TEXT_FOOTER}">${footerCopy}</td></tr></table></td></tr></table></body></html>`;
+  const ctaHtml = ctaUrl
+    ? `<tr><td style="padding:36px 44px 0 44px;">
+         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+           <tr><td bgcolor="${ORANGE}" style="border-radius:10px;">
+             <a href="${ctaUrl}" target="_blank" style="display:inline-block;padding:16px 32px;font-family:${FONT_BODY};font-size:15px;font-weight:600;color:${BG};text-decoration:none;border-radius:10px;letter-spacing:0.01em;">${ctaLabel}</a>
+           </td></tr>
+         </table>
+       </td></tr>`
+    : '';
+
+  return `<!DOCTYPE html><html lang="${lang}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"><title>CorrerJuntos</title></head><body style="margin:0;padding:0;background:${BG};font-family:${FONT_BODY};color:${TEXT};-webkit-font-smoothing:antialiased;">
+<div style="display:none;font-size:1px;color:${BG};line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">${preheader}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BG};padding:48px 16px;">
+<tr><td align="center">
+  <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;background:${BG};border:1px solid ${BORDER_08};border-radius:20px;overflow:hidden;">
+    <tr><td style="padding:36px 44px 0 44px;"><span style="display:inline-block;width:10px;height:10px;background:${ORANGE};border-radius:999px;"></span></td></tr>
+    <tr><td style="padding:14px 44px 0 44px;">
+      <div style="font-family:${FONT_MONO};font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:${TEXT_42};font-weight:500;">
+        <span style="color:${ORANGE};">&bull;</span>&nbsp;&nbsp;${eyebrow}
+      </div>
+    </td></tr>
+    ${taglineHtml}
+    <tr><td style="padding:30px 44px 0 44px;">
+      <h1 style="margin:0;font-family:${FONT_BODY};font-size:44px;line-height:0.96;letter-spacing:-0.035em;font-weight:200;color:${TEXT};">${h1Pre} <strong style="font-weight:700;color:${ORANGE};font-style:normal;">${h1Strong}</strong>${h1Post}</h1>
+    </td></tr>
+    <tr><td style="padding:28px 44px 0 44px;">${body}</td></tr>
+    ${ctaHtml}
+    <tr><td style="padding:30px 44px 34px 44px;">
+      <div style="border-top:1px solid ${BORDER_12};padding-top:26px;">
+        <div style="font-family:${FONT_BODY};font-size:26px;font-weight:800;letter-spacing:-0.03em;color:${TEXT};line-height:1;">Correr<em style="font-style:normal;color:${ORANGE};">Juntos</em></div>
+        <div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:hola@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">hola@correrjuntos.com</a></div>
+      </div>
+    </td></tr>
+  </table>
+  <div style="font-family:${FONT_MONO};font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:${TEXT_28};margin-top:26px;font-weight:500;">
+    Meridian Motion &middot; <a href="https://www.correrjuntos.com" style="color:${TEXT_42};text-decoration:none;">correrjuntos.com</a>
+  </div>
+</td></tr>
+</table>
+</body></html>`;
 }
 
-function ctaButton(url, label) {
-  return `<table width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0"><tr><td align="center"><a href="${url}" style="display:inline-block;background:linear-gradient(135deg,${BRAND_ORANGE},${BRAND_ORANGE_DARK});color:#ffffff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem">${label}</a></td></tr></table>`;
-}
+// ─── Body building blocks ──────────────────────────────────
+const para = (txt) => `<p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};font-weight:400;">${txt}</p>`;
+const paraLast = (txt) => `<p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};font-weight:400;">${txt}</p>`;
+const lead = (txt) => `<p style="margin:0 0 22px 0;font-size:15px;line-height:1.65;color:${TEXT_72};font-weight:400;">${txt}</p>`;
+const list = (items) => `<ul style="margin:0 0 22px 0;padding-left:18px;font-size:14.5px;line-height:1.85;color:${TEXT_72};font-weight:400;">${items.map(i => `<li style="margin-bottom:6px;">${i}</li>`).join('')}</ul>`;
+const callout = (label, body) => `<div style="margin:0 0 22px 0;padding:18px 20px;background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.16);border-radius:10px;">
+  <div style="font-family:${FONT_MONO};font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:${ORANGE};font-weight:500;margin-bottom:8px;">${label}</div>
+  <div style="font-size:14px;line-height:1.65;color:${TEXT_72};">${body}</div>
+</div>`;
+const warn = (label, body) => `<div style="margin:0 0 22px 0;padding:18px 20px;background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.18);border-radius:10px;">
+  <div style="font-family:${FONT_MONO};font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#f87171;font-weight:500;margin-bottom:8px;">${label}</div>
+  <div style="font-size:14px;line-height:1.65;color:${TEXT_72};">${body}</div>
+</div>`;
+const strongCream = (txt) => `<strong style="color:${TEXT};font-weight:600;">${txt}</strong>`;
 
-function dayBadge(n, total) {
-  return `<div style="display:inline-block;padding:4px 12px;background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.35);border-radius:50px;font-size:11px;font-weight:700;color:${BRAND_ORANGE};letter-spacing:0.6px;margin:0 0 18px 0;text-transform:uppercase">DÍA ${n} DE ${total}</div>`;
-}
-
-// ─── Helpers ────────────────────────────────────────────────
-const h1 = (txt) => `<h1 style="color:${BRAND_ORANGE};font-size:1.8rem;font-weight:900;margin:0 0 16px 0;line-height:1.25;text-align:center">${txt}</h1>`;
-const p  = (txt) => `<p style="color:${TEXT_BODY};font-size:1rem;line-height:1.7;margin:0 0 18px 0">${txt}</p>`;
-const bullets = (items) => `<ul style="margin:0 0 18px 0;padding-left:20px;color:${TEXT_BODY};font-size:0.95rem;line-height:1.8">${items.map(i => `<li style="margin-bottom:6px">${i}</li>`).join('')}</ul>`;
-const callout = (label, body, color = BRAND_ORANGE) => `<table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px 0"><tr><td style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.25);border-left:3px solid ${color};border-radius:10px;padding:16px 20px"><p style="margin:0 0 6px 0;font-size:11px;font-weight:700;color:${color};letter-spacing:0.6px;text-transform:uppercase">${label}</p><p style="margin:0;font-size:0.92rem;line-height:1.6;color:${TEXT_BODY}">${body}</p></td></tr></table>`;
-
-// ─────────────────────────────────────────────────────────────
-// DAYS ES (1-10)
-// ─────────────────────────────────────────────────────────────
-
-const day1Es = (name) => shell(`
-  ${dayBadge(1, 10)}
-  ${h1(`${name || 'Hola'}, hoy NO toca correr`)}
-  ${p(`Lo más importante hoy: <strong>descansar de verdad</strong>. Tu cuerpo terminó una de las pruebas más exigentes que existen. Las próximas 24-48h definen cómo recuperas.`)}
-  ${p(`Foco del día:`)}
-  ${bullets([
-    '<strong>Hidratación:</strong> 30-40 ml/kg de peso. Si pesas 70 kg → 2,1-2,8 L. Añade sales (electrolitos) en 1L.',
-    '<strong>Comida:</strong> proteína (1,5-2 g/kg) + carbohidratos cada 3h. Tu glucógeno está en suelo.',
-    '<strong>Sueño:</strong> 9-10h esta noche. La recuperación real ocurre durmiendo.',
-    '<strong>Movimiento:</strong> caminar 10-15 min después de comer. Nada más.',
-  ])}
-  ${callout('TIP DEL COACH', 'Hoy va a doler todo. Es normal. Si hay dolor punzante en una zona concreta (no muscular general), apúntalo y vigila los próximos días.')}
-  ${p(`Mañana en el email te toca el día 2. Sigue el plan, no te lo saltes — incluso descansar tiene técnica.`)}
-`, 'es');
-
-const day2Es = (name) => shell(`
-  ${dayBadge(2, 10)}
-  ${h1('Día 2: la inflamación gana el partido')}
-  ${p(`Hoy probablemente te encuentras peor que ayer. <strong>Es normal y esperado</strong> — la inflamación post-ultra suele picar en h36-48. No es retroceso.`)}
-  ${p(`Foco del día:`)}
-  ${bullets([
-    '<strong>Hidratación + sales:</strong> sigue. La orina debe estar clara/amarilla pálida.',
-    '<strong>Antiinflamatorio natural:</strong> cúrcuma, jengibre, omega-3 (sardinas, salmón), cerezas/granada.',
-    '<strong>Frío suave:</strong> 10 min agua fría en piernas (no hielo). Reduce inflamación residual.',
-    '<strong>Cero AINE rutinario:</strong> ibuprofeno enmascara dolor pero retrasa adaptación. Solo si tu médico lo indica.',
-  ])}
-  ${callout('SEÑAL DE ALARMA', 'Si tu orina sale color cola/oscura, o tienes dolor muscular extremo + debilidad → urgencias. Posible rabdomiólisis tras ultra. No es habitual pero existe.', '#dc2626')}
-  ${p(`Camina 20 min hoy a paso suave. Nada más. Mañana empezamos a movilizar.`)}
-`, 'es');
-
-const day3Es = (name) => shell(`
-  ${dayBadge(3, 10)}
-  ${h1('Día 3: caminar + estiramientos suaves')}
-  ${p(`A día 3 ya empiezas a notar mejora. Las agujetas más fuertes deberían ir cediendo. Hoy <strong>sí toca movimiento ligero</strong>.`)}
-  ${p(`Sesión del día (30 minutos total):`)}
-  ${bullets([
-    '<strong>Caminar 25 min</strong> a ritmo de paseo (no de marcha). Plano, sin desniveles fuertes.',
-    '<strong>Estiramientos suaves 5 min</strong>: gemelos, isquios, cuádriceps, glúteos, lumbar. <em>Sin rebotes</em>, mantén 30s cada zona.',
-    '<strong>Foam roller</strong> (si tienes): pasadas LENTAS por gemelos, cuádriceps, banda IT. 2 min cada zona.',
-  ])}
-  ${callout('OJO CON', 'Si una zona en concreto pincha al estirar, NO insistas. La recuperación pasa por respetar señales, no forzarlas.')}
-  ${p(`Mañana toca reflexión: ¿qué aprendiste de la carrera?`)}
-`, 'es');
-
-const day4Es = (name) => shell(`
-  ${dayBadge(4, 10)}
-  ${h1('Día 4: tu carrera, en frío')}
-  ${p(`Las primeras 72h fueron físicas. Hoy empezamos la parte mental: <strong>analiza la carrera</strong>.`)}
-  ${p(`Coge papel o notas en el móvil y responde:`)}
-  ${bullets([
-    '¿Qué funcionó mejor de lo esperado?',
-    '¿Qué se quebró antes de tiempo? (estómago, energía, mental, físico…)',
-    '¿En qué km/zona la pasé peor? ¿Por qué?',
-    '¿Qué nutrición/equipamiento NO repetiría?',
-    '¿Cuál es el aprendizaje más importante para mi próxima ultra?',
-  ])}
-  ${callout('POR QUÉ ESTO IMPORTA', 'Los runners que registran lecciones por escrito mejoran 30-40 % más rápido que los que solo "lo guardan en la cabeza". El detalle se borra en 1 semana.')}
-  ${p(`Físicamente: 30 min caminar + estiramientos otra vez. Sin presión.`)}
-`, 'es');
-
-const day5Es = (name) => shell(`
-  ${dayBadge(5, 10)}
-  ${h1('Día 5: primer rodaje cortito (opcional)')}
-  ${p(`Si te encuentras al 80 % o mejor, hoy puedes hacer <strong>tu primer rodaje muy suave</strong>. Si todavía hay molestias musculares fuertes, sigue caminando otro día más — sin culpa.`)}
-  ${p(`Sesión del día:`)}
-  ${bullets([
-    '<strong>Trote SUAVE 20-25 min</strong>. RPE 3-4/10. Si puedes hablar frases largas, perfecto.',
-    'Plano. Sin pendientes ni terreno técnico.',
-    '<strong>Si duele algo concreto al primer km, PARA</strong>. No es debilidad, es inteligencia.',
-    'Estiramientos 5 min al terminar.',
-  ])}
-  ${callout('REGLA DE ORO', 'En recuperación post-ultra, "menos es más" siempre. Forzar 1 sesión te puede costar 2 semanas extra de inactividad por lesión. La paciencia es performance.')}
-  ${p(`Si decides no salir hoy, no pasa nada. Caminar 30 min funciona igual.`)}
-`, 'es');
-
-const day6Es = (name) => shell(`
-  ${dayBadge(6, 10)}
-  ${h1('Día 6: descanso + sueño')}
-  ${p(`Hoy <strong>NO corras</strong>. Aunque te apetezca. Tu cuerpo está en plena reparación de microfibras musculares y necesita un día sin estímulo.`)}
-  ${p(`En su lugar, foco en sueño:`)}
-  ${bullets([
-    'Cena ligera y temprano (3h antes de dormir).',
-    'Sin pantallas 30 min antes.',
-    'Habitación fresca (18-20°C) y oscura.',
-    'Magnesio (300-400 mg) si tienes molestias en piernas para dormir.',
-    'Apunta tu hora de despertar y sensación. Quieres ir hacia "fresco al despertar".',
-  ])}
-  ${callout('DATO', 'En sueño profundo se libera la mayor parte de hormona de crecimiento (GH), responsable de la reparación muscular. Dormir 8h vs 6h post-ultra = 30 % más rápida recuperación medible en marcadores como CK.')}
-`, 'es');
-
-const day7Es = (name) => shell(`
-  ${dayBadge(7, 10)}
-  ${h1('Día 7: una semana después')}
-  ${p(`Una semana exacta desde la carrera. Hoy puedes salir <strong>30-40 min de trote suave</strong> si te apetece. Pero quiero que primero te observes.`)}
-  ${p(`Test rápido (de pie, descansado):`)}
-  ${bullets([
-    '<strong>Frecuencia cardíaca en reposo</strong>: ¿cerca de tu valor normal? Si está ≥10 lpm por encima, sigue cansado.',
-    '<strong>Energía general</strong>: ¿la del 1 al 10? Solo sales si estás ≥6.',
-    '<strong>Apetito</strong>: ¿normal? Si bajo, el cuerpo todavía pide reservas.',
-    '<strong>Motivación</strong>: ¿real o forzada? La forzada lleva a sesiones malas.',
-  ])}
-  ${p(`Si todo OK, sal a trotar 30-40 min muy suave. Si algo no, caminar y mañana otra vez.`)}
-  ${callout('UNA WEEK MARK', 'Esta es la primera evaluación honesta. La recuperación REAL puede tardar 2-3 semanas tras una ultra de 100+. No tengas prisa.')}
-`, 'es');
-
-const day8Es = (name) => shell(`
-  ${dayBadge(8, 10)}
-  ${h1('Día 8: vuelta gradual')}
-  ${p(`Si día 7 fue bien, hoy puedes subir un poco. <strong>Trote suave 40-50 min</strong>. Sigue siendo recuperación, no entrenamiento.`)}
-  ${p(`Sesión del día:`)}
-  ${bullets([
-    '40-50 min Z1-Z2 (RPE 3-4). Sin progresiones, sin sprints, sin tempo.',
-    'Si puedes, terreno blando (tierra, hierba) — más amable con tendones.',
-    'Hidratación + comida pre/post como cualquier sesión.',
-    '5 min de movilidad articular al volver: tobillos, caderas, hombros.',
-  ])}
-  ${callout('MIRA', 'A día 8 muchos runners cometen el error clásico: "ya estoy bien" → meten una sesión fuerte → reincidencia. La regla: 2 semanas mínimo de Z1-Z2 después de cualquier ultra.')}
-`, 'es');
-
-const day9Es = (name) => shell(`
-  ${dayBadge(9, 10)}
-  ${h1('Día 9: rodaje + reflexión')}
-  ${p(`Penúltimo día del plan. Hoy: <strong>40-60 min suaves</strong> + revisita lo que apuntaste el día 4.`)}
-  ${p(`Vuelve a tus notas y pregunta:`)}
-  ${bullets([
-    '¿Lo que aprendí ya está claro?',
-    '¿Qué cambiaría en mi próxima preparación? (volumen, intensidad, dieta, equipamiento)',
-    '¿Qué carrera viene después? (siguiente ultra, o un objetivo intermedio tipo 21K-42K)',
-    '¿Cuándo quiero estar listo y de qué?',
-  ])}
-  ${callout('SIGUIENTE NIVEL', 'La diferencia entre un runner que mejora y uno que se estanca: <em>el que mejora planifica el "siguiente reto" antes de que el actual se enfríe</em>. Mañana te ayudamos.')}
-`, 'es');
-
-const day10Es = (name) => shell(`
-  ${dayBadge(10, 10)}
-  ${h1('Día 10: lo has logrado · ¿la próxima?')}
-  ${p(`${name || 'Crack'}, has terminado 10 días de recuperación estructurada. Tu cuerpo está reseteado. Ahora viene lo importante: <strong>¿cuál es tu próxima ultra?</strong>`)}
-  ${p(`Si vas a por otra carrera grande (UTMB, Penyagolosa, Transgrancanaria, otra edición de Ronda…), tienes dos opciones:`)}
-  ${bullets([
-    '<strong>Improvisar</strong>: como muchos hicieron antes de su última ultra. Funcionó, pero pagaste el precio en zonas que ya conoces.',
-    '<strong>Plan estructurado</strong>: 16-20 semanas adaptadas a tu fecha objetivo, ritmo real, días disponibles, y nivel actual.',
-  ])}
-  ${callout('CORRERJUNTOS PREMIUM', 'Plan adaptativo para tu próxima ultra · Coach IA que ajusta semana a semana · Tracking GPS · Comunidad runners cerca de ti · 14 días gratis, después 4,99 €/mes', BRAND_ORANGE)}
-  ${ctaButton('https://www.correrjuntos.com/app', 'Empezar 14 días gratis →')}
-  ${p(`Y si solo quieres mantenerte sin objetivo concreto, también nos vale. La app es gratis para todo el mundo.`)}
-  ${p(`Lo que has hecho estos 10 días no lo hace casi nadie. <strong>Eso ya te diferencia.</strong>`)}
-  ${p(`A correr.<br>— Abraham, fundador CorrerJuntos`)}
-`, 'es');
-
-// ─────────────────────────────────────────────────────────────
-// DAYS EN — concise English versions
-// ─────────────────────────────────────────────────────────────
-
-const day1En = (name) => shell(`
-  ${dayBadge(1, 10)}
-  ${h1(`${name || 'Hi'}, today is NOT for running`)}
-  ${p('Most important today: <strong>real rest</strong>. Your body just finished one of the toughest events out there. The next 24-48h define how you recover.')}
-  ${p("Today's focus:")}
-  ${bullets([
-    '<strong>Hydration:</strong> 30-40 ml/kg of body weight. 70 kg → 2.1-2.8 L. Add electrolytes to 1L.',
-    '<strong>Food:</strong> protein (1.5-2 g/kg) + carbs every 3h. Your glycogen is at zero.',
-    '<strong>Sleep:</strong> 9-10h tonight. Real recovery happens sleeping.',
-    '<strong>Movement:</strong> 10-15 min walk after meals. Nothing more.',
-  ])}
-  ${callout('COACH TIP', "Today everything will hurt. That's normal. If there's sharp pain in a specific spot (not general muscle), note it and watch the next days.")}
-`, 'en');
-
-const day2En = (name) => shell(`
-  ${dayBadge(2, 10)}
-  ${h1('Day 2: inflammation peaks')}
-  ${p('Today you probably feel worse than yesterday. <strong>Normal and expected</strong> — post-ultra inflammation peaks at h36-48. Not a setback.')}
-  ${p("Today's focus:")}
-  ${bullets([
-    '<strong>Hydration + electrolytes:</strong> keep going. Urine should be clear/pale yellow.',
-    '<strong>Natural anti-inflammatory:</strong> turmeric, ginger, omega-3 (sardines, salmon), cherries.',
-    '<strong>Cool water:</strong> 10 min on legs (not ice). Reduces residual inflammation.',
-    '<strong>No routine NSAIDs:</strong> ibuprofen masks pain but delays adaptation. Doctor only.',
-  ])}
-  ${callout('WARNING SIGN', 'If urine is cola-colored/dark, or you have extreme muscle pain + weakness → ER. Possible rhabdomyolysis after ultra. Rare but real.', '#dc2626')}
-  ${p('Walk 20 min today at easy pace. Nothing more.')}
-`, 'en');
-
-const day3En = (name) => shell(`
-  ${dayBadge(3, 10)}
-  ${h1('Day 3: walk + gentle stretches')}
-  ${p('By day 3 you start feeling better. The worst soreness fades. Today <strong>gentle movement</strong>.')}
-  ${p('Session (30 min total):')}
-  ${bullets([
-    '<strong>Walk 25 min</strong> at easy pace. Flat ground.',
-    '<strong>Gentle stretches 5 min</strong>: calves, hamstrings, quads, glutes, lower back. <em>No bouncing</em>, hold 30s each.',
-    '<strong>Foam roller</strong> if you have one: SLOW passes on calves, quads, IT band. 2 min each.',
-  ])}
-  ${callout('WATCH', "If a specific spot hurts when stretching, DON'T push. Recovery means respecting signals.")}
-`, 'en');
-
-const day4En = (name) => shell(`
-  ${dayBadge(4, 10)}
-  ${h1('Day 4: your race, in cold')}
-  ${p('First 72h were physical. Today the mental part: <strong>analyze the race</strong>.')}
-  ${p('Grab paper or phone notes:')}
-  ${bullets([
-    'What worked better than expected?',
-    'What broke earlier than planned (stomach, energy, mental, physical)?',
-    'Which km/section was hardest? Why?',
-    'What nutrition/gear would NOT repeat?',
-    'Most important lesson for my next ultra?',
-  ])}
-  ${callout('WHY THIS MATTERS', 'Runners who write down lessons improve 30-40 % faster than those who just "remember". Detail fades in 1 week.')}
-`, 'en');
-
-const day5En = (name) => shell(`
-  ${dayBadge(5, 10)}
-  ${h1('Day 5: first short jog (optional)')}
-  ${p('If you feel 80 % or better, today you can do <strong>your first very easy jog</strong>. Still sore? Keep walking another day — no guilt.')}
-  ${bullets([
-    '<strong>EASY jog 20-25 min</strong>. RPE 3-4/10. Talk in full sentences.',
-    'Flat. No hills, no technical terrain.',
-    "<strong>If something specific hurts at km 1, STOP</strong>. Not weakness, intelligence.",
-    'Stretches 5 min after.',
-  ])}
-  ${callout('GOLDEN RULE', 'Post-ultra, "less is more" always. One forced session can cost you 2 extra weeks of injury layoff. Patience IS performance.')}
-`, 'en');
-
-const day6En = (name) => shell(`
-  ${dayBadge(6, 10)}
-  ${h1('Day 6: rest + sleep')}
-  ${p("Today <strong>don't run</strong>. Even if you want to. Your body is repairing micro-fibers and needs a day without stimulus.")}
-  ${p('Focus on sleep:')}
-  ${bullets([
-    'Light dinner, early (3h before bed).',
-    'No screens 30 min before.',
-    'Cool room (18-20°C), dark.',
-    'Magnesium (300-400 mg) if legs are restless.',
-    'Track wake-up time and feeling. Aim for "fresh on waking".',
-  ])}
-  ${callout('FACT', 'Most growth hormone (GH) — responsible for muscle repair — is released in deep sleep. 8h vs 6h post-ultra = 30 % faster recovery measurable in CK markers.')}
-`, 'en');
-
-const day7En = (name) => shell(`
-  ${dayBadge(7, 10)}
-  ${h1('Day 7: one week in')}
-  ${p('Exactly one week since the race. Today you can do <strong>30-40 min easy jog</strong> if you feel like it. But check yourself first.')}
-  ${p('Quick test (standing, rested):')}
-  ${bullets([
-    '<strong>Resting heart rate</strong>: near your normal? If ≥10 bpm above, still tired.',
-    '<strong>General energy</strong>: 1-10 scale? Only run if ≥6.',
-    '<strong>Appetite</strong>: normal? If low, body still asking reserves.',
-    '<strong>Motivation</strong>: real or forced? Forced leads to bad sessions.',
-  ])}
-  ${callout('ONE WEEK MARK', 'First honest assessment. REAL recovery may take 2-3 weeks after a 100+ ultra. No rush.')}
-`, 'en');
-
-const day8En = (name) => shell(`
-  ${dayBadge(8, 10)}
-  ${h1('Day 8: gradual return')}
-  ${p('If day 7 went well, you can step up. <strong>Easy jog 40-50 min</strong>. Still recovery, not training.')}
-  ${bullets([
-    '40-50 min Z1-Z2 (RPE 3-4). No progressions, no sprints, no tempo.',
-    'Soft terrain if possible (dirt, grass) — kinder to tendons.',
-    'Hydration + food pre/post like any session.',
-    '5 min joint mobility after: ankles, hips, shoulders.',
-  ])}
-  ${callout('LISTEN', "Day 8 is when many runners make the classic mistake: 'I'm fine' → hard session → relapse. Rule: 2 weeks minimum of Z1-Z2 after any ultra.")}
-`, 'en');
-
-const day9En = (name) => shell(`
-  ${dayBadge(9, 10)}
-  ${h1('Day 9: jog + reflection')}
-  ${p('Second-to-last day. Today: <strong>40-60 min easy</strong> + revisit your day-4 notes.')}
-  ${p('Back to your notes:')}
-  ${bullets([
-    'Are the lessons clear?',
-    'What would I change in my next prep? (volume, intensity, diet, gear)',
-    'What race comes next? (next ultra, or intermediate goal like half/marathon)',
-    'When do I want to be ready, and for what?',
-  ])}
-  ${callout('NEXT LEVEL', 'The difference between a runner who improves and one who stagnates: <em>the one who improves plans the "next challenge" before the current one cools down</em>.')}
-`, 'en');
-
-const day10En = (name) => shell(`
-  ${dayBadge(10, 10)}
-  ${h1("Day 10: you made it · what's next?")}
-  ${p(`${name || 'Crack'}, you finished 10 days of structured recovery. Body is reset. Now the important part: <strong>what's your next ultra?</strong>`)}
-  ${p('If you target another big race (UTMB, Penyagolosa, Transgrancanaria, another Ronda edition…), two options:')}
-  ${bullets([
-    '<strong>Improvise</strong>: like many did before their last ultra. Worked, but you paid the price in spots you already know.',
-    '<strong>Structured plan</strong>: 16-20 weeks adapted to your target date, real pace, available days, current level.',
-  ])}
-  ${callout('CORRERJUNTOS PREMIUM', 'Adaptive plan for your next ultra · AI Coach that adjusts week by week · GPS tracking · Runners community near you · 14 days free, then $4.99/mo', BRAND_ORANGE)}
-  ${ctaButton('https://www.correrjuntos.com/app', 'Start 14-day free trial →')}
-  ${p('And if you just want to keep going without a specific goal, that works too. The app is free for everyone.')}
-  ${p("What you did these 10 days, almost no one does. <strong>That already sets you apart.</strong>")}
-  ${p('Run on.<br>— Abraham, founder CorrerJuntos')}
-`, 'en');
-
-// ─── Public API ─────────────────────────────────────────────
+// Build subject + preheader pair
 const SUBJECTS = {
   es: {
     1: 'Día 1 · Hoy NO toca correr',
     2: 'Día 2 · La inflamación gana el partido',
-    3: 'Día 3 · Caminar + estiramientos suaves',
+    3: 'Día 3 · Caminar + estiramientos',
     4: 'Día 4 · Tu carrera, en frío',
     5: 'Día 5 · Primer rodaje cortito',
     6: 'Día 6 · Descanso + sueño',
@@ -376,6 +138,399 @@ const SUBJECTS = {
   },
 };
 
+// Common eyebrow + tagline for the drip
+const eyebrowFor = (n, lang) => `${lang === 'en' ? 'Recovery' : 'Recuperación'} · Día ${String(n).padStart(2, '0')}`;
+const TAGLINE = {
+  es: 'CORRE ACOMPAÑADO',
+  en: 'RUN TOGETHER',
+};
+
+// ─────────────────────────────────────────────────────────────
+// DAYS ES (1-10)
+// ─────────────────────────────────────────────────────────────
+
+const day1Es = (name) => shell({
+  eyebrow: eyebrowFor(1, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: `Hoy ${name ? name + ',' : ''} NO`,
+  h1Strong: 'corres',
+  h1Post: '.',
+  preheader: 'Lo más importante hoy es no hacer nada. Bienvenido al Día 1.',
+  body: lead(`Tu cuerpo terminó una de las pruebas más exigentes que existen. Las próximas 24-48h definen cómo recuperas.`)
+       + para(`Foco del día — ${strongCream('descanso real')}:`)
+       + list([
+           `${strongCream('Hidratación:')} 30-40 ml/kg de peso. Si pesas 70 kg → 2,1-2,8 L. Añade sales (electrolitos) en 1L.`,
+           `${strongCream('Comida:')} proteína (1,5-2 g/kg) + carbohidratos cada 3h. Tu glucógeno está en suelo.`,
+           `${strongCream('Sueño:')} 9-10h esta noche. La recuperación real ocurre durmiendo.`,
+           `${strongCream('Movimiento:')} caminar 10-15 min después de comer. Nada más.`,
+         ])
+       + callout('Tip del coach', `Hoy va a doler todo. Es normal. Si hay dolor punzante en una zona concreta (no muscular general), apúntalo y vigila los próximos días.`)
+       + paraLast(`Mañana toca el Día 2. Sigue el plan, no te lo saltes — incluso descansar tiene técnica.`),
+  lang: 'es',
+});
+
+const day2Es = (name) => shell({
+  eyebrow: eyebrowFor(2, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'La inflamación',
+  h1Strong: 'gana',
+  h1Post: ' el partido.',
+  preheader: 'Hoy probablemente te encuentras peor que ayer. Es normal.',
+  body: lead(`Es normal y esperado — la inflamación post-ultra suele picar en h36-48. No es retroceso.`)
+       + list([
+           `${strongCream('Hidratación + sales:')} sigue. La orina debe estar clara/amarilla pálida.`,
+           `${strongCream('Antiinflamatorio natural:')} cúrcuma, jengibre, omega-3, cerezas/granada.`,
+           `${strongCream('Frío suave:')} 10 min agua fría en piernas (no hielo).`,
+           `${strongCream('Cero AINE rutinario:')} ibuprofeno enmascara dolor pero retrasa adaptación.`,
+         ])
+       + warn('Señal de alarma', `Si tu orina sale color cola/oscura, o tienes dolor muscular extremo + debilidad → urgencias. Posible rabdomiólisis tras ultra.`)
+       + paraLast(`Camina 20 min hoy a paso suave. Nada más.`),
+  lang: 'es',
+});
+
+const day3Es = (name) => shell({
+  eyebrow: eyebrowFor(3, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Caminar y',
+  h1Strong: 'estirar',
+  h1Post: '.',
+  preheader: 'A día 3 ya empiezas a notar mejora. Hoy sí toca movimiento ligero.',
+  body: lead(`Las agujetas más fuertes deberían ir cediendo. Hoy ${strongCream('sí toca movimiento ligero')}.`)
+       + para(`Sesión del día (30 minutos total):`)
+       + list([
+           `${strongCream('Caminar 25 min')} a ritmo de paseo. Plano, sin desniveles fuertes.`,
+           `${strongCream('Estiramientos 5 min')} suaves: gemelos, isquios, cuádriceps, glúteos, lumbar. Sin rebotes, mantén 30s cada zona.`,
+           `${strongCream('Foam roller')} (si tienes): pasadas LENTAS por gemelos, cuádriceps, banda IT. 2 min cada zona.`,
+         ])
+       + callout('Ojo con', `Si una zona en concreto pincha al estirar, NO insistas. La recuperación pasa por respetar señales, no forzarlas.`)
+       + paraLast(`Mañana toca reflexión: ¿qué aprendiste de la carrera?`),
+  lang: 'es',
+});
+
+const day4Es = (name) => shell({
+  eyebrow: eyebrowFor(4, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Tu carrera,',
+  h1Strong: 'en frío',
+  h1Post: '.',
+  preheader: 'Las primeras 72h fueron físicas. Hoy empezamos la parte mental.',
+  body: lead(`Coge papel o notas en el móvil y responde:`)
+       + list([
+           `¿Qué funcionó mejor de lo esperado?`,
+           `¿Qué se quebró antes de tiempo? (estómago, energía, mental, físico…)`,
+           `¿En qué km/zona la pasé peor? ¿Por qué?`,
+           `¿Qué nutrición/equipamiento NO repetiría?`,
+           `¿Cuál es el aprendizaje más importante para mi próxima ultra?`,
+         ])
+       + callout('Por qué esto importa', `Los runners que registran lecciones por escrito mejoran 30-40% más rápido que los que solo "lo guardan en la cabeza". El detalle se borra en 1 semana.`)
+       + paraLast(`Físicamente: 30 min caminar + estiramientos otra vez. Sin presión.`),
+  lang: 'es',
+});
+
+const day5Es = (name) => shell({
+  eyebrow: eyebrowFor(5, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Primer rodaje',
+  h1Strong: 'cortito',
+  h1Post: '.',
+  preheader: 'Si te encuentras al 80% o mejor, hoy puedes salir.',
+  body: lead(`Si todavía hay molestias musculares fuertes, sigue caminando otro día más — sin culpa.`)
+       + list([
+           `${strongCream('Trote SUAVE 20-25 min.')} RPE 3-4/10. Si puedes hablar frases largas, perfecto.`,
+           `Plano. Sin pendientes ni terreno técnico.`,
+           `${strongCream('Si duele algo concreto al primer km, PARA.')} No es debilidad, es inteligencia.`,
+           `Estiramientos 5 min al terminar.`,
+         ])
+       + callout('Regla de oro', `En recuperación post-ultra, "menos es más" siempre. Forzar 1 sesión te puede costar 2 semanas extra de inactividad por lesión. La paciencia es performance.`)
+       + paraLast(`Si decides no salir hoy, no pasa nada. Caminar 30 min funciona igual.`),
+  lang: 'es',
+});
+
+const day6Es = (name) => shell({
+  eyebrow: eyebrowFor(6, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Hoy',
+  h1Strong: 'no corres',
+  h1Post: '.',
+  preheader: 'Aunque te apetezca. Tu cuerpo está reparando microfibras.',
+  body: lead(`En su lugar, foco en sueño:`)
+       + list([
+           `Cena ligera y temprano (3h antes de dormir).`,
+           `Sin pantallas 30 min antes.`,
+           `Habitación fresca (18-20°C) y oscura.`,
+           `Magnesio (300-400 mg) si tienes molestias en piernas para dormir.`,
+           `Apunta tu hora de despertar y sensación. Quieres ir hacia "fresco al despertar".`,
+         ])
+       + callout('Dato', `En sueño profundo se libera la mayor parte de hormona de crecimiento (GH), responsable de la reparación muscular. Dormir 8h vs 6h post-ultra = 30% más rápida recuperación medible en marcadores como CK.`),
+  lang: 'es',
+});
+
+const day7Es = (name) => shell({
+  eyebrow: eyebrowFor(7, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Una semana',
+  h1Strong: 'después',
+  h1Post: '.',
+  preheader: 'Test honesto antes de salir.',
+  body: lead(`Hoy puedes salir 30-40 min de trote suave si te apetece. Pero quiero que primero te observes.`)
+       + para(`Test rápido (de pie, descansado):`)
+       + list([
+           `${strongCream('Frecuencia cardíaca en reposo:')} ¿cerca de tu valor normal? Si está ≥10 lpm por encima, sigue cansado.`,
+           `${strongCream('Energía general:')} ¿la del 1 al 10? Solo sales si estás ≥6.`,
+           `${strongCream('Apetito:')} ¿normal? Si bajo, el cuerpo todavía pide reservas.`,
+           `${strongCream('Motivación:')} ¿real o forzada? La forzada lleva a sesiones malas.`,
+         ])
+       + paraLast(`Si todo OK, sal a trotar 30-40 min muy suave. Si algo no, caminar y mañana otra vez.`)
+       + callout('Una semana', `Esta es la primera evaluación honesta. La recuperación REAL puede tardar 2-3 semanas tras una ultra de 100+. No tengas prisa.`),
+  lang: 'es',
+});
+
+const day8Es = (name) => shell({
+  eyebrow: eyebrowFor(8, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Vuelta',
+  h1Strong: 'gradual',
+  h1Post: '.',
+  preheader: 'Si día 7 fue bien, hoy puedes subir un poco.',
+  body: lead(`Trote suave 40-50 min. Sigue siendo recuperación, no entrenamiento.`)
+       + list([
+           `40-50 min Z1-Z2 (RPE 3-4). Sin progresiones, sin sprints, sin tempo.`,
+           `Si puedes, terreno blando (tierra, hierba) — más amable con tendones.`,
+           `Hidratación + comida pre/post como cualquier sesión.`,
+           `5 min de movilidad articular al volver: tobillos, caderas, hombros.`,
+         ])
+       + callout('Mira', `A día 8 muchos runners cometen el error clásico: "ya estoy bien" → meten una sesión fuerte → reincidencia. La regla: 2 semanas mínimo de Z1-Z2 después de cualquier ultra.`),
+  lang: 'es',
+});
+
+const day9Es = (name) => shell({
+  eyebrow: eyebrowFor(9, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Rodaje y',
+  h1Strong: 'reflexión',
+  h1Post: '.',
+  preheader: 'Penúltimo día. Hoy: 40-60 min suaves + revisita lo que apuntaste.',
+  body: lead(`Vuelve a tus notas del día 4 y pregunta:`)
+       + list([
+           `¿Lo que aprendí ya está claro?`,
+           `¿Qué cambiaría en mi próxima preparación? (volumen, intensidad, dieta, equipamiento)`,
+           `¿Qué carrera viene después? (siguiente ultra, o un objetivo intermedio tipo 21K-42K)`,
+           `¿Cuándo quiero estar listo y de qué?`,
+         ])
+       + callout('Siguiente nivel', `La diferencia entre un runner que mejora y uno que se estanca: el que mejora planifica el "siguiente reto" antes de que el actual se enfríe. Mañana te ayudamos.`),
+  lang: 'es',
+});
+
+const day10Es = (name) => shell({
+  eyebrow: eyebrowFor(10, 'es'),
+  tagline: TAGLINE.es,
+  h1Pre: 'Lo has',
+  h1Strong: 'logrado',
+  h1Post: '.',
+  preheader: 'Cuerpo reseteado. ¿Cuál es tu próxima ultra?',
+  body: lead(`${name || 'Crack'}, has terminado 10 días de recuperación estructurada. Ahora viene lo importante: ¿cuál es tu próxima ultra?`)
+       + para(`Si vas a por otra carrera grande (UTMB, Penyagolosa, Transgrancanaria, otra Ronda…), tienes dos opciones:`)
+       + list([
+           `${strongCream('Improvisar:')} como muchos hicieron antes de su última ultra. Funcionó, pero pagaste el precio en zonas que ya conoces.`,
+           `${strongCream('Plan estructurado:')} 16-20 semanas adaptadas a tu fecha objetivo, ritmo real, días disponibles, y nivel actual.`,
+         ])
+       + callout('CorrerJuntos Premium', `Plan adaptativo para tu próxima ultra · Coach IA que ajusta semana a semana · Tracking GPS · Comunidad runners cerca de ti · 14 días gratis, después 4,99€/mes.`)
+       + paraLast(`Lo que has hecho estos 10 días no lo hace casi nadie. ${strongCream('Eso ya te diferencia.')}`),
+  ctaUrl: 'https://www.correrjuntos.com/app',
+  ctaLabel: 'Empezar 14 días gratis  →',
+  lang: 'es',
+});
+
+// ─────────────────────────────────────────────────────────────
+// DAYS EN (1-10) — concise English versions
+// ─────────────────────────────────────────────────────────────
+
+const day1En = (name) => shell({
+  eyebrow: eyebrowFor(1, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: `Today ${name ? name + ',' : ''} you don't`,
+  h1Strong: 'run',
+  h1Post: '.',
+  preheader: 'Most important today: real rest. Welcome to Day 1.',
+  body: lead(`Your body just finished one of the toughest events out there. The next 24-48h define how you recover.`)
+       + para(`Today's focus — ${strongCream('real rest')}:`)
+       + list([
+           `${strongCream('Hydration:')} 30-40 ml/kg of body weight. 70 kg → 2.1-2.8 L. Add electrolytes to 1L.`,
+           `${strongCream('Food:')} protein (1.5-2 g/kg) + carbs every 3h. Your glycogen is at zero.`,
+           `${strongCream('Sleep:')} 9-10h tonight. Real recovery happens sleeping.`,
+           `${strongCream('Movement:')} 10-15 min walk after meals. Nothing more.`,
+         ])
+       + callout('Coach tip', `Today everything will hurt. That's normal. If there's sharp pain in a specific spot, note it and watch the next days.`),
+  lang: 'en',
+});
+
+const day2En = (name) => shell({
+  eyebrow: eyebrowFor(2, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: 'Inflammation',
+  h1Strong: 'peaks',
+  h1Post: '.',
+  preheader: 'You probably feel worse than yesterday. Normal and expected.',
+  body: lead(`Post-ultra inflammation peaks at h36-48. Not a setback.`)
+       + list([
+           `${strongCream('Hydration + electrolytes:')} keep going. Urine should be clear/pale yellow.`,
+           `${strongCream('Natural anti-inflammatory:')} turmeric, ginger, omega-3, cherries.`,
+           `${strongCream('Cool water:')} 10 min on legs (not ice).`,
+           `${strongCream('No routine NSAIDs:')} ibuprofen masks pain but delays adaptation.`,
+         ])
+       + warn('Warning sign', `If urine is cola-colored/dark, or you have extreme muscle pain + weakness → ER. Possible rhabdomyolysis.`)
+       + paraLast(`Walk 20 min today at easy pace. Nothing more.`),
+  lang: 'en',
+});
+
+const day3En = (name) => shell({
+  eyebrow: eyebrowFor(3, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: 'Walk and',
+  h1Strong: 'stretch',
+  h1Post: '.',
+  preheader: 'By day 3 you start feeling better. Gentle movement.',
+  body: lead(`Session (30 min total):`)
+       + list([
+           `${strongCream('Walk 25 min')} at easy pace. Flat ground.`,
+           `${strongCream('Gentle stretches 5 min:')} calves, hamstrings, quads, glutes, lower back. No bouncing, hold 30s each.`,
+           `${strongCream('Foam roller')} if you have one: SLOW passes on calves, quads, IT band. 2 min each.`,
+         ])
+       + callout('Watch', `If a specific spot hurts when stretching, DON'T push. Recovery means respecting signals.`),
+  lang: 'en',
+});
+
+const day4En = (name) => shell({
+  eyebrow: eyebrowFor(4, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: 'Your race,',
+  h1Strong: 'in cold',
+  h1Post: '.',
+  preheader: 'First 72h were physical. Today the mental part.',
+  body: lead(`Grab paper or phone notes:`)
+       + list([
+           `What worked better than expected?`,
+           `What broke earlier than planned (stomach, energy, mental, physical)?`,
+           `Which km/section was hardest? Why?`,
+           `What nutrition/gear would NOT repeat?`,
+           `Most important lesson for my next ultra?`,
+         ])
+       + callout('Why this matters', `Runners who write down lessons improve 30-40% faster than those who just "remember". Detail fades in 1 week.`),
+  lang: 'en',
+});
+
+const day5En = (name) => shell({
+  eyebrow: eyebrowFor(5, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: 'First short',
+  h1Strong: 'jog',
+  h1Post: '.',
+  preheader: 'If you feel 80% or better, you can do your first easy jog.',
+  body: lead(`Still sore? Keep walking another day — no guilt.`)
+       + list([
+           `${strongCream('EASY jog 20-25 min.')} RPE 3-4/10. Talk in full sentences.`,
+           `Flat. No hills, no technical terrain.`,
+           `${strongCream('If something specific hurts at km 1, STOP.')} Not weakness, intelligence.`,
+           `Stretches 5 min after.`,
+         ])
+       + callout('Golden rule', `Post-ultra, "less is more" always. One forced session can cost you 2 extra weeks of injury layoff.`),
+  lang: 'en',
+});
+
+const day6En = (name) => shell({
+  eyebrow: eyebrowFor(6, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: "Today don't",
+  h1Strong: 'run',
+  h1Post: '.',
+  preheader: "Even if you want to. Body is repairing micro-fibers.",
+  body: lead(`Focus on sleep:`)
+       + list([
+           `Light dinner, early (3h before bed).`,
+           `No screens 30 min before.`,
+           `Cool room (18-20°C), dark.`,
+           `Magnesium (300-400 mg) if legs are restless.`,
+           `Track wake-up time and feeling.`,
+         ])
+       + callout('Fact', `Most growth hormone is released in deep sleep. 8h vs 6h post-ultra = 30% faster recovery measurable in CK markers.`),
+  lang: 'en',
+});
+
+const day7En = (name) => shell({
+  eyebrow: eyebrowFor(7, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: 'One week',
+  h1Strong: 'in',
+  h1Post: '.',
+  preheader: 'Honest test before going out.',
+  body: lead(`Quick test (standing, rested):`)
+       + list([
+           `${strongCream('Resting heart rate:')} near your normal? If ≥10 bpm above, still tired.`,
+           `${strongCream('General energy:')} 1-10 scale? Only run if ≥6.`,
+           `${strongCream('Appetite:')} normal? If low, body still asking reserves.`,
+           `${strongCream('Motivation:')} real or forced? Forced leads to bad sessions.`,
+         ])
+       + callout('One week mark', `REAL recovery may take 2-3 weeks after a 100+ ultra. No rush.`),
+  lang: 'en',
+});
+
+const day8En = (name) => shell({
+  eyebrow: eyebrowFor(8, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: 'Gradual',
+  h1Strong: 'return',
+  h1Post: '.',
+  preheader: 'If day 7 went well, you can step up.',
+  body: lead(`Easy jog 40-50 min. Still recovery, not training.`)
+       + list([
+           `40-50 min Z1-Z2 (RPE 3-4). No progressions, no sprints, no tempo.`,
+           `Soft terrain if possible (dirt, grass) — kinder to tendons.`,
+           `Hydration + food pre/post like any session.`,
+           `5 min joint mobility after: ankles, hips, shoulders.`,
+         ])
+       + callout('Listen', `Day 8 is when many runners make the classic mistake: 'I'm fine' → hard session → relapse. Rule: 2 weeks minimum of Z1-Z2 after any ultra.`),
+  lang: 'en',
+});
+
+const day9En = (name) => shell({
+  eyebrow: eyebrowFor(9, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: 'Jog and',
+  h1Strong: 'reflect',
+  h1Post: '.',
+  preheader: 'Second-to-last day. Revisit your day-4 notes.',
+  body: lead(`Back to your notes:`)
+       + list([
+           `Are the lessons clear?`,
+           `What would I change in my next prep? (volume, intensity, diet, gear)`,
+           `What race comes next?`,
+           `When do I want to be ready, and for what?`,
+         ])
+       + callout('Next level', `The runner who improves plans the "next challenge" before the current one cools down.`),
+  lang: 'en',
+});
+
+const day10En = (name) => shell({
+  eyebrow: eyebrowFor(10, 'en'),
+  tagline: TAGLINE.en,
+  h1Pre: "You made",
+  h1Strong: 'it',
+  h1Post: '.',
+  preheader: "Body is reset. What's your next ultra?",
+  body: lead(`${name || 'Crack'}, you finished 10 days of structured recovery. Now the important part.`)
+       + para(`If you target another big race, two options:`)
+       + list([
+           `${strongCream('Improvise:')} like many did before their last ultra. Worked, but you paid the price.`,
+           `${strongCream('Structured plan:')} 16-20 weeks adapted to your target date, real pace, available days.`,
+         ])
+       + callout('CorrerJuntos Premium', `Adaptive plan for your next ultra · AI Coach · GPS tracking · Runners community · 14 days free, then $4.99/mo.`)
+       + paraLast(`What you did these 10 days, almost no one does. ${strongCream('That sets you apart.')}`),
+  ctaUrl: 'https://www.correrjuntos.com/app',
+  ctaLabel: 'Start 14-day free trial  →',
+  lang: 'en',
+});
+
+// ─── Public API ─────────────────────────────────────────────
 const TEMPLATES = {
   es: { 1: day1Es, 2: day2Es, 3: day3Es, 4: day4Es, 5: day5Es, 6: day6Es, 7: day7Es, 8: day8Es, 9: day9Es, 10: day10Es },
   en: { 1: day1En, 2: day2En, 3: day3En, 4: day4En, 5: day5En, 6: day6En, 7: day7En, 8: day8En, 9: day9En, 10: day10En },

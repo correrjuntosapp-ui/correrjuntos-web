@@ -252,4 +252,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Adaptive plan hubs ES (6) — added 2026-05-10 -->
+  <url><loc>https://www.correrjuntos.com/planes/0-5k</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/5k</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/10k</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/media-maraton</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/maraton</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/trail</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Adaptive plan hubs EN (6) — added 2026-05-10 -->
+  <url><loc>https://www.correrjuntos.com/planes/en/0-5k</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/en/5k</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/en/10k</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/en/half-marathon</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/en/marathon</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.correrjuntos.com/planes/en/trail</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>

@@ -127,6 +127,146 @@ curl -s -o /dev/null -w "%{size_download}\n" "{NUEVA_URL}"
 node -e "const fs=require('fs');let t=fs.readFileSync('blog/X.html','utf8');t=t.replace('OLD_URL','NEW_URL');fs.writeFileSync('blog/X.html',t)"
 ```
 
+### 12. PLAYBOOK GOLD STANDARD — Article afiliado nuevo (memorizado 11 may 2026)
+
+**Aplicar a TODOS los articles tipo `mejores-X-2026` con productos Amazon.**
+
+El article `mejores-bicicletas-estaticas-runners` (11 may 2026) es el primer ejemplo siguiendo este playbook al pie de la letra. Resultado: el founder lo aprobó como "muy bien". Replicarlo para cualquier nuevo affiliate article.
+
+#### ❌ NUNCA hacer (lecciones aprendidas el 11 may 26)
+
+1. **NUNCA inventar ASINs** — varios productos premium "aspiracionales" (DKN AM-3i, Bowflex VeloCore, NordicTrack S22i, Schwinn IC4 exacto) NO existen en Amazon ES → si haces scrape de "primer resultado" Amazon devuelve productos COMPLETAMENTE distintos (bici eléctrica plegable, mancuernas, etc).
+2. **NUNCA inventar URLs de imagen Amazon CDN** (`m.media-amazon.com/images/I/61vK6XJ8FbL._AC_SL1500_.jpg` random) — devuelven 9 bytes blank placeholder.
+3. **NUNCA usar `/s?k=ProductName&tag=...`** (search URL) — conversion -30 a -50% vs `/dp/ASIN` directo. Amazon SiteStripe siempre recomienda `/dp/`.
+4. **NUNCA aceptar imagen del primer resultado de search** sin verificarla visualmente — puede ser sponsored ad de otro producto.
+5. **NUNCA proponer rango de precio premium €1000+** sin confirmar disponibilidad Amazon ES (suelen ser USA-only).
+
+#### ✅ SIEMPRE hacer (workflow obligatorio)
+
+**Paso 1 — Scrape Amazon ES con queries GENÉRICAS, NO específicas:**
+```bash
+# BIEN — query amplia, devuelve productos disponibles
+"bicicleta estatica" "indoor cycling" "bicicleta spinning"
+
+# MAL — query con marca/modelo específico que puede no existir en ES
+"DKN AM-3i bicicleta" "Bowflex VeloCore 22"
+```
+Con UA Safari + Accept-Language ES + headers Accept-Language:
+```bash
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+curl -s -A "$UA" -H "Accept-Language: es-ES,es;q=0.9" "https://www.amazon.es/s?k=..."
+```
+Si Amazon devuelve <100KB es un block — esperar 30-60s, rotar UA Chrome Windows.
+
+**Paso 2 — Extraer top 20-30 productos del HTML:**
+- ASINs: regex `data-asin="([A-Z0-9]{10})"`
+- Filtrar resultados sponsored si es posible (`data-component-type="s-search-result"`)
+- Capturar también precio y título para shortlist
+
+**Paso 3 — Obtener hiRes image de cada producto** (esto es crítico):
+```bash
+# Visit each /dp/ASIN page, extract "hiRes":"..." from HTML
+curl -s -A "$UA" "https://www.amazon.es/dp/{ASIN}" | grep -oE '"hiRes":"[^"]+"' | head -1
+```
+
+**Paso 4 — Descargar Y VERIFICAR VISUALMENTE cada imagen** (NO opcional):
+```bash
+curl -s -A "$UA" -o /tmp/bikes/{key}.jpg "{hiRes_url}"
+```
+Después con `Read tool` en Claude **mirar CADA imagen** y confirmar que es el producto correcto. Filtrar:
+- ❌ Bicicletas eléctricas urbanas / scooters (Bodywel, etc) cuando buscas bici estática
+- ❌ Mancuernas / pesas (Bowflex SelectTech) cuando buscas bici
+- ❌ Sponsored ad genérico de marca china
+- ❌ Imagen <10KB (placeholder)
+- ✅ Solo el producto exacto que el title promete
+
+**Paso 5 — Self-hostear en `/public/blog-images/{slug}/`** (recomendado):
+```bash
+mkdir -p public/blog-images/bicis-estaticas/
+cp /tmp/bikes/yosuda.jpg public/blog-images/bicis-estaticas/yosuda.jpg
+```
+Razones:
+- Inmune a rotación CDN Amazon
+- Path en HTML: `src="/public/blog-images/bicis-estaticas/yosuda.jpg"` (prefijo `/public/` literal, ver regla "Blog assets path")
+- Más rápido (Vercel CDN edge vs Amazon CDN)
+- Si el producto desaparece de Amazon, la imagen sigue válida
+
+**Paso 6 — Formato OBLIGATORIO de los botones "Ver en Amazon":**
+```html
+<a href="https://www.amazon.es/dp/{ASIN}?tag=diezmejores21-21&linkCode=ll1"
+   target="_blank"
+   rel="nofollow sponsored noopener"
+   style="background:#f97316;color:#fff;padding:8px 16px;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none">
+   Ver en Amazon
+</a>
+```
+- `?tag=diezmejores21-21` SIEMPRE presente (es el tag Amazon Associates España)
+- `&linkCode=ll1` (Site Stripe Link 1) — mejora tracking analytics
+- `target="_blank"` para no perder el visitor
+- `rel="nofollow sponsored noopener"` 3 valores obligatorios (SEO + seguridad + Google policy)
+
+**Paso 7 — Verificar técnicamente que los links funcionan:**
+```bash
+curl -s -A "$UA" -L "https://www.amazon.es/dp/{ASIN}?tag=diezmejores21-21&linkCode=ll1" | grep -oE '<title>[^<]+'
+# Confirmar título coincide con el producto que el HTML del article promete
+```
+
+**Paso 8 — Rango de precio realista € €99-€500** sweet spot Amazon ES. Productos premium USA-only (€1500+) suelen no estar en Amazon ES. Si hay alguno premium, confirmar que el ASIN responde realmente. Mix recomendado:
+- 2 entry-level (€80-€150)
+- 4-5 mid (€150-€250)
+- 2-3 premium (€250-€500)
+
+**Paso 9 — Schema.org JSON-LD `ItemList` con `/dp/ASIN` URLs:**
+```json
+{"@type": "ItemList","itemListElement": [
+  {"@type": "ListItem","position": 1,"name": "YOSUDA YB001","url": "https://www.amazon.es/dp/B0FFB43N5L?tag=diezmejores21-21&linkCode=ll1"},
+  ...
+]}
+```
+**NO** poner URLs `/s?k=` aquí — el itemList debe match exactamente lo que está en cada product card.
+
+**Paso 10 — Body copy honesto basado en specs reales** (no aspirational):
+- ❌ "Volante de 38 kg, Lean Mode único, pantalla 22" iFit Studio" (inventado)
+- ✅ "Volante 6-13 kg, resistencia magnética con 16 niveles, app MERACH compatible Zwift, capacidad 150 kg" (real)
+
+#### Aplicación rápida — bash one-liner para verificar article live
+
+Después de publicar, verificar live:
+```bash
+# 1. Status code 200
+curl -s -o /dev/null -w "%{http_code}" "https://www.correrjuntos.com/blog/{slug}"
+
+# 2. Todas las imágenes self-hosted cargan >10KB
+for img in $(ls public/blog-images/{slug}/*.jpg); do
+  size=$(curl -s -o /dev/null -w "%{size_download}" "https://www.correrjuntos.com/$img")
+  echo "$((size/1024))KB  $img"
+done
+
+# 3. Random check 3 links afiliado llevan al producto correcto
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15"
+for asin in B0FFB43N5L B0DZ1SKZGJ B0BWNCLDXC; do
+  curl -s -A "$UA" -L "https://www.amazon.es/dp/$asin?tag=diezmejores21-21" | grep -oE '<title>[^<]+' | head -1
+done
+```
+
+#### Resumen de tiempo y output esperado
+
+| Tarea | Tiempo |
+|---|---|
+| Scrape Amazon ES con 3 queries | 5-10 min (incluye delays anti-rate-limit) |
+| Verificar 12-15 imágenes visualmente con Read | 10-15 min |
+| Self-host las 10 elegidas | 1 min |
+| Reescribir HTML con script `tmp/rewrite-X-articles.cjs` | 15-20 min |
+| Commit + push + IndexNow ping | 5 min |
+| **Total: article afiliado bullet-proof** | **40-60 min** |
+
+#### Casos exitosos siguiendo este playbook
+
+- ✅ `mejores-bicicletas-estaticas-runners` (ES + EN) — 11 may 2026, founder aprobó "muy bien"
+  - 10 productos €99-€269 verificados visualmente
+  - Imágenes self-hosted `/public/blog-images/bicis-estaticas/*.jpg`
+  - Tag `diezmejores21-21` confirmado funcionando 3/3 ASINs random sample
+
 ## Estructura del Proyecto
 
 ```

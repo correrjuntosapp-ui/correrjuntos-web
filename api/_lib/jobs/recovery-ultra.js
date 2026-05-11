@@ -2,13 +2,13 @@
 // Sends Day 1-10 post-ultra recovery emails to subscribers.
 // Was at api/cron/recovery-ultra.js — consolidated under api/cron/run.js.
 
-const { createClient } = require('@supabase/supabase-js');
-const { getEmailForDay } = require('../ultra-recovery-templates');
+import { createClient } from '@supabase/supabase-js';
+import { getEmailForDay } from '../ultra-recovery-templates.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const SEND_DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-module.exports = async function runRecoveryUltra(_req, res, env) {
+export default async function runRecoveryUltra(_req, res, env) {
   const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
   const BREVO_API_KEY = env.BREVO_API_KEY;
   const SENDER_EMAIL = env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
@@ -128,4 +128,4 @@ module.exports = async function runRecoveryUltra(_req, res, env) {
     errors_count: errors.length,
     errors: errors.slice(0, 10),
   });
-};
+}

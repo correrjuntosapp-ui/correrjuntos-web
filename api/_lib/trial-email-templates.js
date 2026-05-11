@@ -312,4 +312,4 @@ function getEmailForDay(dayN, lang, name) {
   };
 }
 
-module.exports = { getEmailForDay };
+export { getEmailForDay };

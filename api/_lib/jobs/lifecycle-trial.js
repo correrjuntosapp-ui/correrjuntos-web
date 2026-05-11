@@ -3,14 +3,14 @@
 // Was at api/cron/lifecycle-trial.js — moved here to dedupe under
 // the api/cron/run.js dispatcher (Vercel Hobby 12-function limit).
 
-const { createClient } = require('@supabase/supabase-js');
-const { getEmailForDay } = require('../trial-email-templates');
+import { createClient } from '@supabase/supabase-js';
+import { getEmailForDay } from '../trial-email-templates.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 
 const SEND_DAYS = [1, 3, 7, 11, 14];
 
-module.exports = async function runLifecycleTrial(_req, res, env) {
+export default async function runLifecycleTrial(_req, res, env) {
   const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
   const BREVO_API_KEY = env.BREVO_API_KEY;
   const SENDER_EMAIL = env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
@@ -111,4 +111,4 @@ module.exports = async function runLifecycleTrial(_req, res, env) {
     errors_count: errors.length,
     errors: errors.slice(0, 10),
   });
-};
+}

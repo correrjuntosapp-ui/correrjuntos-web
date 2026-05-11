@@ -10,10 +10,13 @@
 //
 // Auth: Vercel cron sends `x-vercel-cron` header, or pass ?token=
 // matching CRON_SECRET env var, or `Authorization: Bearer <secret>`.
+//
+// [11 may 2026] Converted to ESM (package.json has "type":"module").
+// Top-level `require` was crashing with ReferenceError.
 // ============================================================
 
-const runLifecycleTrial = require('../_lib/jobs/lifecycle-trial');
-const runRecoveryUltra = require('../_lib/jobs/recovery-ultra');
+import runLifecycleTrial from '../_lib/jobs/lifecycle-trial.js';
+import runRecoveryUltra from '../_lib/jobs/recovery-ultra.js';
 
 const env = {
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
@@ -28,7 +31,7 @@ const JOBS = {
   'recovery-ultra': runRecoveryUltra,
 };
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   const isVercelCron = req.headers['x-vercel-cron'] === '1' ||
                        req.headers['user-agent']?.includes('vercel-cron');
   const tokenMatch = (req.query?.token || '') === CRON_SECRET && CRON_SECRET.length > 0;
@@ -63,4 +66,4 @@ module.exports = async function handler(req, res) {
     console.error(`[cron/run] ${job} failed:`, e?.message || e);
     return res.status(500).json({ error: 'job_threw', job, message: (e?.message || '').slice(0, 500) });
   }
-};
+}

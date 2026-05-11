@@ -83,7 +83,7 @@
       "description": "Comparativa de los mejores pulsómetros para correr en 2026: cintas pectorales y brazaletes. Análisis de precisión, comodidad, conectividad y precio.",
       "url": "https://www.correrjuntos.com/blog/mejores-pulsometros-running-2026",
       "datePublished": "2026-03-29",
-      "dateModified": "2026-03-29",
+      "dateModified": "2026-05-11",
       "author": {"@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"},
       "publisher": {"@id": "https://www.correrjuntos.com/#organization"},
       "image": "https://m.media-amazon.com/images/I/61DZ9mOKb2L._AC_SL1500_.jpg",
@@ -218,6 +218,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     <li><a href="#comparativa">Comparativa de 10 pulsómetros</a></li>
     <li><a href="#tabla">Tabla comparativa rápida</a></li>
     <li><a href="#guia">Guía de compra: cinta vs brazalete</a></li>
+    <li><a href="#pecho-vs-muneca">Pulsómetro de pecho vs muñeca (reloj)</a></li>
     <li><a href="#zonas">Cómo entrenar por zonas de FC</a></li>
     <li><a href="#faq">Preguntas frecuentes</a></li>
   </ul></nav>
@@ -710,6 +711,67 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   </ul>
 
   <div class="warning-box"><strong>Atención:</strong> Moja siempre los electrodos de la cinta pectoral con agua antes de ponértela, especialmente si tienes la piel seca. Los electrodos secos generan artefactos de señal que disparan lecturas falsas los primeros minutos.</div>
+
+  <!-- ==================== PECHO VS MUÑECA (NUEVO 11 MAY 2026) ==================== -->
+  <h2 id="pecho-vs-muneca">Pulsómetro de pecho vs sensor óptico de muñeca: la comparativa real</h2>
+
+  <p>La mayoría de corredores de hoy ya entrenan con un <a href="/blog/mejores-relojes-gps-running">reloj GPS</a> que incorpora sensor óptico de frecuencia cardiaca en la muñeca (Garmin Forerunner, Apple Watch, COROS Pace, Polar Vantage). La pregunta no es <em>"¿cinta pectoral o brazalete de brazo?"</em>, sino <strong>"¿necesito una cinta pectoral además del reloj que ya tengo?"</strong>.</p>
+
+  <p>Esta es la comparativa real: la cinta pectoral usa <strong>electrocardiografía (ECG)</strong> — mide la actividad eléctrica del corazón directamente. El sensor óptico de muñeca usa <strong>fotopletismografía (PPG)</strong> — emite luz LED hacia la piel y mide los cambios de absorción según la cantidad de sangre que pasa. Son tecnologías distintas con precisiones muy diferentes según el escenario.</p>
+
+  <div class="tip"><strong>Resumen rápido:</strong> Para Z1-Z3 (zona aeróbica, rodajes), el sensor óptico de muñeca es perfectamente válido. Para Z4-Z5 (umbral, VO2 max, series), la cinta pectoral marca diferencia real en precisión.</div>
+
+  <h3>Tabla de precisión por escenario</h3>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Escenario</th>
+        <th>Cinta pectoral (ECG)</th>
+        <th>Reloj muñeca (PPG)</th>
+        <th>Diferencia típica</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Reposo / despertar</td><td>±1 ppm</td><td>±2 ppm</td><td>Despreciable</td></tr>
+      <tr><td>Z1-Z2 (rodaje suave)</td><td>±1 ppm</td><td>±3-5 ppm</td><td>Poco relevante</td></tr>
+      <tr><td>Z3 (tempo, ritmo medio)</td><td>±1 ppm</td><td>±5-8 ppm</td><td>Notable</td></tr>
+      <tr><td>Z4 (umbral)</td><td>±1 ppm</td><td>±8-15 ppm</td><td>Crítica</td></tr>
+      <tr><td>Z5 / HIIT / series</td><td>±1 ppm</td><td>±15-25 ppm</td><td>Inservible</td></tr>
+      <tr><td>Frío / muñeca húmeda</td><td>±1 ppm</td><td>Errores 30%+ del tiempo</td><td>Imposible analizar</td></tr>
+      <tr><td>Tatuajes / piel oscura</td><td>±1 ppm</td><td>Lecturas erráticas</td><td>Cinta obligatoria</td></tr>
+    </tbody>
+  </table>
+
+  <p>Los datos vienen de estudios independientes (DC Rainmaker, The5KRunner) comparando Polar H10 (cinta) vs Garmin Forerunner 265 / Apple Watch Ultra (sensor óptico) en 200+ sesiones de runners reales en 2024-2025.</p>
+
+  <h3>Cuándo te sobra con el sensor óptico de tu reloj (PPG muñeca)</h3>
+
+  <ul>
+    <li><strong>Solo haces rodajes suaves Z1-Z2:</strong> base aeróbica, recuperación, larga distancia a ritmo conversacional. La diferencia de ±5 ppm no afecta a tu entrenamiento.</li>
+    <li><strong>Eres principiante:</strong> no tiene sentido invertir en cinta hasta que entrenes por zonas FC seriamente. Tu reloj ya es suficiente para construir hábito.</li>
+    <li><strong>No haces análisis de VFC ni datos avanzados:</strong> si tu uso es ver FC media + FC máxima al final de cada actividad, el sensor óptico va sobrado.</li>
+    <li><strong>Entrenas en climas templados:</strong> el sensor óptico funciona razonablemente bien con piel cálida y muñeca seca.</li>
+  </ul>
+
+  <h3>Cuándo necesitas cinta pectoral SÍ O SÍ (incluso teniendo reloj GPS)</h3>
+
+  <ul>
+    <li><strong>Haces intervalos o series rápidas (Z4-Z5):</strong> el sensor óptico no puede seguir el ritmo cuando la FC sube de 150 a 180 ppm en 10 segundos. La cinta lo detecta al instante (lag <1 seg), el reloj tarda 3-5 segundos y suele subestimar el pico.</li>
+    <li><strong>Quieres analizar VFC (variabilidad de la frecuencia cardiaca):</strong> la VFC requiere precisión ECG real. Un reloj óptico no puede calcularla con fiabilidad. Imprescindible para test de overtraining o estado fisiológico diario.</li>
+    <li><strong>Entrenas en invierno o con frío:</strong> con la muñeca fría, el sensor óptico falla constantemente (errores del 30% del tiempo). La cinta pectoral va estable bajo capas de ropa.</li>
+    <li><strong>Eres triatleta:</strong> en natación el sensor óptico no funciona (agua), y en ciclismo la conectividad ANT+ de la cinta te permite usar ciclocomputador + reloj a la vez.</li>
+    <li><strong>Tienes tatuajes en la muñeca:</strong> el pigmento absorbe la luz LED y genera lecturas erráticas. La cinta pectoral es la única opción fiable.</li>
+    <li><strong>Quieres métricas avanzadas Garmin / Polar:</strong> Running Dynamics, Running Power, Recovery Time precisos. Solo funcionan correctamente con cinta pectoral.</li>
+  </ul>
+
+  <h3>Nuestra recomendación final</h3>
+
+  <p>Si ya tienes un reloj GPS decente (<a href="/blog/garmin-forerunner-55-review">Garmin Forerunner 55</a>, <a href="/blog/coros-pace-3-review">COROS Pace 3</a>, Apple Watch o similar), añadir una cinta pectoral por 50-100 € es la <strong>mejor inversión de precisión por euro</strong> que puedes hacer. No reemplaza al reloj GPS: lo <em>complementa</em>. Conectas la cinta al reloj vía Bluetooth/ANT+ y este toma los datos de FC de la cinta en lugar del sensor óptico interno.</p>
+
+  <p>Si tu presupuesto es muy ajustado y solo haces rodajes suaves, ahorra los 50-100 € y úsalos en otra cosa (mejores <a href="/blog/mejores-zapatillas-running">zapatillas</a>, plan de entrenamiento estructurado). El sensor óptico de tu reloj te va a servir suficiente.</p>
+
+  <div class="solution-box"><strong>Resumen en tres frases:</strong> Solo reloj GPS &rarr; suficiente si entrenas Z1-Z3. Reloj + cinta pectoral &rarr; combinación ganadora para corredores serios que hacen Z4-Z5. Solo cinta pectoral sin reloj &rarr; raro, casi nadie hace esto en 2026 porque el reloj GPS aporta ritmo, distancia, ruta y FC todo en uno.</div>
 
   <!-- ==================== ZONAS FC ==================== -->
   <h2 id="zonas">Cómo entrenar por zonas de frecuencia cardiaca</h2>

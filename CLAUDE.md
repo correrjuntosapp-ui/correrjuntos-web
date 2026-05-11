@@ -761,6 +761,117 @@ npm run ship:status
 - Web: orange #f97316, dark bg #0b1220, warm cream #fef7ed
 - **Theme: Light mode ALWAYS default**
 
+## 📱 Recovery Ultra Reels — Social Playbook (memorizado 11 may 2026)
+
+**Reels producidos** (en `tools/marketing/`, kinetic typography + fotos Ronda con Ken Burns):
+- `reel-recuperacion-ultra.mp4` — 🇪🇸 ES (4.55 MB, 19.5s, 6 escenas, 3 con foto Puente Nuevo/Sierra)
+- `reel-ultra-recovery-en.mp4` — 🇬🇧 EN (4.43 MB, 19.5s, mismas escenas traducidas)
+
+**Fotos Ronda usadas**: `tools/marketing/ronda-photos/` (`puente-nuevo-ronda.jpg`, `ronda-desde-sierra-blanquilla.jpg`, `sierra-las-nieves-pinares.jpg`). Origen: `/public/blog-images/ronda/`.
+
+### 📋 Copy & paste para subir
+
+#### TikTok caption (190 chars, SEO-first)
+```
+Cómo recuperarse después de una ultra trail · Plan gratis 10 días post-Ronda 101km. Sin login, sin pagar.
+
+📍 Link en bio → recuperación ultra
+
+¿Hiciste Ronda este sábado? Cuéntame qué tal 👇
+
+#ultratrail #101kmronda #recuperacion #trailrunning #fyp
+```
+**5 hashtags TikTok**: `#ultratrail #101kmronda #recuperacion #trailrunning #fyp`
+
+#### Instagram Reels caption (storytelling, no keyword-stuff)
+```
+Hiciste la ultra. Lo difícil ahora son los siguientes 10 días.
+
+La mayoría se sienta en el sofá pensando que es descanso. Y se lesiona 6 semanas después.
+
+Hemos diseñado el plan que nos hubiera gustado tener: 10 emails, 1 al día, qué hacer + qué evitar + cuándo es normal sentir mierda.
+
+Sin login. Sin spam. Gratis.
+
+📍 Link en bio → recuperación ultra
+
+¿Hiciste Ronda este sábado? Contadme el peor km 👇
+
+#ultratrail #101kmronda #recuperacion #trailrunning
+```
+**4 hashtags IG** (NO `#fyp`, ese es TikTok-only): `#ultratrail #101kmronda #recuperacion #trailrunning`
+
+#### Primer comentario (auto-comment, SAME para IG + TikTok)
+```
+Por si alguien duda: NO es la app, son emails. Sin login, sin pagar, sin spam. Lo creamos porque nosotros también la lesionamos por saltarnos la recuperación 😅
+
+¿Cuál es vuestra peor lesión post-ultra?
+```
+**Por qué funciona doble**: objection killer (no es app) + humaniza (nosotros también la lesionamos) + pregunta abierta (invita historias) + algoritmo TikTok/IG cuenta comentarios primeros 60min como señal de calidad.
+
+### Reglas SEO-platform diferenciadas
+
+| Aspecto | TikTok | Instagram |
+|---|---|---|
+| Primer 100 chars | Keywords search-friendly | Hook emocional (storytelling) |
+| Hashtags | 5 (3 nicho + 1 evento + 1 broad/fyp) | 4 (3 nicho + 1 broad, **sin** fyp) |
+| Caption length | <200 chars (peak retention) | 4 párrafos cortos OK (premia retención) |
+| `#fyp` | ✅ amplificador | ❌ penaliza (IG no lo entiende) |
+| Search behavior | Plataforma usada como buscador | Discovery vía Explore/Reels |
+| Indexa keywords del caption | SÍ fuertemente | Débilmente desde 2024 |
+
+### Tracking attribution
+
+Cada signup que llegue via `/recuperacion-ultra` se attributiona via `?ref=`:
+- `?ref=tiktok` — desde TikTok bio
+- `?ref=instagram` — desde IG bio
+- `?ref=ronda-101` — desde artículo Ronda + comentarios FB grupo
+- `?ref=newsletter-blast` — desde email Brevo
+- `?ref=pillar-trail` — desde pillar Trail
+
+BD: `ultra_recovery_subscribers.race_source` guarda el valor → consulta:
+```sql
+SELECT race_source, COUNT(*) FROM ultra_recovery_subscribers GROUP BY race_source;
+```
+
+### Comentario en grupo FB "101Km 24h de La Legión. Ronda" (memorizado)
+Postear DESPUÉS de compartir el artículo Ronda en el grupo. Empuja el algoritmo + atrae directamente a finishers.
+```
+PD: para los que aún tenéis las piernas destrozadas hoy, hemos hecho también un plan recuperación 10 días gratis — un email al día con qué hacer y qué evitar tras la ultra. Sin login, sin spam.
+
+👉 correrjuntos.com/recuperacion-ultra
+
+¿Cómo os ha ido el sábado? Contadme el peor km que recordáis 👇
+```
+
+### Orden de publicación recomendado
+1. **AHORA** (post-Ronda hot window 24-48h) — TikTok ES primero (algoritmo aprende ES audience)
+2. **+10 min** — IG Reels ES
+3. **+10 min** — YouTube Shorts ES
+4. **+ 30-60 min** — Mismo reel a otros grupos FB running ES
+5. **Esta noche / mañana** — Versión EN (TikTok + IG)
+
+NUNCA subir EN primero — el algoritmo asigna audience EN y la siguiente publicación ES tiene menos reach.
+
+### Pipeline reels (referencia técnica)
+Ver `tools/marketing/REELS_PIPELINE.md`. Comandos:
+```bash
+# Validar diseño antes de render
+node tools/marketing/preview-reel-recuperacion.cjs
+node tools/marketing/preview-reel-recovery-en.cjs
+
+# Render MP4 final
+node tools/marketing/record-tiktok.cjs reel-recuperacion-ultra
+node tools/marketing/record-tiktok.cjs reel-ultra-recovery-en
+```
+
+Para nuevo reel sobre otro tema (ej: Madrid Maratón, UTMB):
+1. `cp reel-recuperacion-ultra.html reel-{nuevo}.html`
+2. Editar texto + foto path en `.photo-bg` style
+3. Crear preview script + render
+
+---
+
 ## 🎨 Email Brand System — "Meridian Motion" (memorizado de Supabase Auth template "Confirm signup")
 
 **FUENTE DE VERDAD**: Supabase Dashboard → Authentication → Email Templates → "Confirm sign up" (asunto "Confirma tu cuenta en CorrerJuntos"). **NO** es el Brevo template #3 (esa fue una mala asunción en una sesión anterior — corregida 10 may pm).

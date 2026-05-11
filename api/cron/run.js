@@ -17,6 +17,7 @@
 
 import runLifecycleTrial from '../_lib/jobs/lifecycle-trial.js';
 import runRecoveryUltra from '../_lib/jobs/recovery-ultra.js';
+import runTrialPush from '../_lib/jobs/trial-push.js';
 
 const env = {
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
@@ -29,6 +30,7 @@ const CRON_SECRET = process.env.CRON_SECRET || '';
 const JOBS = {
   'lifecycle-trial': runLifecycleTrial,
   'recovery-ultra': runRecoveryUltra,
+  'trial-push': runTrialPush,
 };
 
 export default async function handler(req, res) {

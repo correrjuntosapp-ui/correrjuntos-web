@@ -5,5 +5,7 @@ nul
 correr-juntos-app/
 C*UsersguettOneDrive*
 C*Usersguetttemp*
+.env
+.env.*
 .env*.local
 tools/security/

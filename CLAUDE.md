@@ -445,12 +445,12 @@ npm run ship:promote   # Android internal → production via API
 
 ## Versión Actual
 
-- **App publicada en stores**: v1.3.5 (iOS build 83, Android versionCode 83) — **iOS** sigue así
-- **v1.3.6 (build 84)** — runtime 1.3.6
-- **iOS v1.3.6**: WAITING_FOR_REVIEW desde 9 may 07:46 UTC (33h en cola al cerrar 10 may)
+- **App publicada en stores**: **v1.3.6 (build 84)** en iOS + Android — runtime 1.3.6
+- **iOS v1.3.6**: ✅ APROBADO por Apple (10 may noche). Disponible en App Store. Los 88+ users iOS recibirán notificación "Actualizar" según vayan abriendo la app
 - **Android v1.3.6**: ✅ LIVE Producción 100% rollout
-- **Última OTA servida runtime 1.3.6** (10 may): `c8de278b-e017-44ee-9151-ad8ec6984dc5` — workout detail real pace per block. **Acumula los 16 fixes/features de 10 may** (ver sección "Done hoy 10 mayo 2026").
+- **Última OTA servida runtime 1.3.6** (10 may): `c8de278b-e017-44ee-9151-ad8ec6984dc5` — workout detail real pace per block. **Acumula los 17 fixes/features de 10 may** (ver sección "Done hoy 10 mayo 2026").
 - **Web**: Desplegada en Vercel (correrjuntos.com)
+- **⚠️ ASC API .p8 key** (`AuthKey_VR6CJGD288.p8`): expirada o revocada — `check-store-status.js` devuelve 401. **Acción pendiente**: regenerar key en App Store Connect → Users and Access → Integrations → App Store Connect API. Sin esto `ship:promote` iOS y `check-store-status` no funcionan.
 
 ### Última OTA estable runtime 1.3.5 (alcanza users actuales)
 - Update Group: `109067a4-489e-4585-a5d3-4aa711ac23b2`

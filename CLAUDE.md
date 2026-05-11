@@ -482,14 +482,16 @@ Founder reportó (9 may 26) que tras desinstalar e instalar la app, la primera a
 
 ### 📋 Backlog próxima sesión (lunes 11 may 2026 o cuando vuelvas)
 
-**Acción urgente del founder (30 segundos)**:
-1. **Añadir `CRON_SECRET` env var en Vercel** → Production
-   - Vercel Dashboard → `correrjuntos` → Settings → Environment Variables
-   - Generar string random 32+ chars (ej `openssl rand -hex 32`)
-   - Sin esto los crons (`lifecycle-trial` + `recovery-ultra`) devuelven 401 → emails NO se envían
+**✅ Resuelto el 11 may am (sesión actual)**:
+1. ~~Añadir `CRON_SECRET` env var en Vercel~~ → **DONE**. Configurado en Vercel Production + Preview (Sensitive). Secret guardado en `.env.local` (gitignored).
+2. Bonus fix: cron dispatcher tenía bug ESM/CJS — `package.json "type":"module"` hacía que `require()` crasheara con `ReferenceError`. Convertido a ESM en commit `45940e78`. Pipeline ahora 200 OK.
+3. **Estado pipeline (11 may 07:49 UTC)**:
+   - `lifecycle-trial`: 200 OK, processed=0, sent=0 (no trials en ventana 16d aún)
+   - `recovery-ultra`: 200 OK, processed=0, sent=0 (landing acaba de salir live 10 may noche)
+   - Vercel cron daily 09:00/09:05 UTC ya con auth — se ejecuta solo a partir de mañana.
 
 **Verificación primera cosa al arrancar**:
-2. **Apple v1.3.6 status** — `cd correr-juntos-app && node scripts/check-store-status.js`
+1. **Apple v1.3.6 status** — `cd correr-juntos-app && node scripts/check-store-status.js`
    - Estado al cerrar 10 may: `WAITING_FOR_REVIEW` desde 9 may 07:46 UTC (~37h en cola)
    - Ventana normal Apple: 24-48h. Probable aprobación 11 o 12 may.
    - Si aprobada: los 88+ users iOS empiezan a actualizar a v1.3.6 + reciben todas las OTAs acumuladas.
@@ -562,11 +564,11 @@ Orden cronológico (la última se sirve a todos):
 4. `trial_lifecycle_emails_v1` — tablas trial_starts + trial_email_log + RLS
 5. `plan_feasibility_force_override` — `p_force` boolean en validate + generate RPCs
 
-**📨 Trial Lifecycle Emails — Pipeline completo construido (esperando CRON_SECRET):**
-- `/api/cron/lifecycle-trial.js` daily 09:00 UTC (vercel.json crons configured)
+**📨 Trial Lifecycle Emails — Pipeline completo construido (LIVE desde 11 may am):**
+- `/api/cron/run?job=lifecycle-trial` daily 09:00 UTC (vercel.json crons configured)
 - `/api/_lib/trial-email-templates.js` con 10 templates (ES+EN × Day 1/3/7/11/14)
 - `iap.ts` graba `trial_starts` row cuando RC reporta `periodType === 'TRIAL'`
-- **ACCIÓN PENDIENTE founder**: añadir `CRON_SECRET` env var en Vercel + redeploy. Resto activo.
+- ✅ `CRON_SECRET` configurado en Vercel 11 may am — pipeline 200 OK smoke-tested.
 - ROI esperado: +20-40% trial→paid conversion
 
 **🌐 Web blog fix:**
@@ -602,7 +604,7 @@ Identificado el cuello de botella real: 612 users · 1 paid · $3 MRR = 0.16% co
 - ✅ 20 templates email (10 días × ES+EN) en `_lib/ultra-recovery-templates.js`
 - ✅ Cron en vercel.json daily 09:05 UTC (`/api/cron/run?job=recovery-ultra`)
 - ✅ IndexNow ping para article + landing
-- ⚠️ **ACCIÓN PENDIENTE founder**: añadir `CRON_SECRET` env var en Vercel + redeploy. Sin esto los crons devuelven 401 y no se envían los emails (ni lifecycle-trial ni recovery-ultra)
+- ✅ **CRON_SECRET configurado 11 may am** + cron dispatcher convertido a ESM (commit `45940e78` — `package.json "type":"module"` hacía crashear `require()`). Smoke test: ambos crons devuelven `{"ok":true, processed:0, ...}` con auth válida. Pipeline LIVE.
 
 ### ⚠️ REGLA NUEVA — Vercel Hobby plan: max 12 serverless functions
 
@@ -633,7 +635,16 @@ const JOBS = {
 
 Hoy ninguno aplica → seguimos Hobby.
 
-**ESM ↔ CJS gotcha**: si un endpoint usa `import` al top (ESM), no metas `require()` dentro — Vercel falla con `FUNCTION_INVOCATION_FAILED`. Convertir el handler a `export default` y usar `import` estático al top del endpoint.
+**ESM ↔ CJS gotcha** (memo crítico, ya nos ha picado 2 veces):
+- `package.json` tiene `"type": "module"` → **TODO `.js` es ESM por defecto**.
+- En ESM, `require()` y `module.exports` NO existen → al cargar el módulo da `ReferenceError: require is not defined` y Vercel responde 500 `FUNCTION_INVOCATION_FAILED`.
+- **Regla**: cualquier archivo nuevo en `api/**/*.js` o `api/_lib/**/*.js` DEBE usar:
+  - `import X from '...'` al top (no `require`)
+  - `export default async function handler(req, res) {...}` (no `module.exports = ...`)
+  - Imports relativos con extensión `.js` (`'./templates.js'` NO `'./templates'`)
+- Si un módulo importa otro `_lib/`, el otro también debe ser ESM (`export {...}`).
+- **Cómo se descubre**: smoke test cron devuelve 401 (con auth wrong) pero 500 con auth correcta. Ver `get_runtime_logs` con `statusCode:500` para ver `ReferenceError: require is not defined`.
+- **Histórico**: nos ha picado en `brevo-subscribe.js` (10 may → commit `b6ae031d`) y de nuevo en `api/cron/run.js` + jobs + templates (11 may → commit `45940e78`).
 
 ### ⚠️ REGLA NUEVA — Blog assets path
 

@@ -87,12 +87,35 @@ Deno.serve(async (req) => {
         ? new Date(event.expiration_at_ms).toISOString()
         : null
 
+      // Trial detection — RC sends period_type = "TRIAL" | "INTRO" | "NORMAL"
+      // Powers trial-reminder-cron edge function.
+      const periodType: string = event.period_type || 'NORMAL'
+      const isTrial = periodType === 'TRIAL'
+      const purchasedDate = event.purchased_at_ms
+        ? new Date(event.purchased_at_ms).toISOString()
+        : new Date().toISOString()
+
+      const updates: Record<string, unknown> = {
+        es_premium: true,
+        fecha_premium: expiresDate,
+        premium_until: expiresDate,
+        subscription_period: periodType,
+      }
+
+      // Stamp trial fields only when the user enters a trial for the first time
+      // (INITIAL_PURCHASE with period_type=TRIAL). RENEWAL keeps existing values.
+      if (isTrial && event.type === 'INITIAL_PURCHASE') {
+        updates.trial_started_at = purchasedDate
+        updates.trial_ends_at = expiresDate
+        updates.trial_used = true
+        // Reset reminder stamps in case this is a re-trial after a previous one
+        updates.trial_reminder_d12_at = null
+        updates.trial_reminder_d14_at = null
+      }
+
       const { error } = await supabase
         .from('profiles')
-        .update({
-          es_premium: true,
-          fecha_premium: expiresDate,
-        })
+        .update(updates)
         .eq('id', userId)
 
       if (error) {
@@ -103,7 +126,33 @@ Deno.serve(async (req) => {
         )
       }
 
-      console.log(`Premium GRANTED for ${userId} until ${expiresDate}`)
+      console.log(`Premium GRANTED for ${userId} (${periodType}) until ${expiresDate}`)
+
+      // [11 may 2026] Close trial_starts lifecycle row when trial converts to paid.
+      // INITIAL_PURCHASE with TRIAL is recorded by iap.ts client-side.
+      // The first RENEWAL after that with period_type=NORMAL = Apple/Google
+      // charged the first paid period → trial successfully converted.
+      // PRODUCT_CHANGE (upgrade) also counts as conversion.
+      if (
+        !isTrial &&
+        (event.type === 'RENEWAL' || event.type === 'PRODUCT_CHANGE' || event.type === 'UNCANCELLATION')
+      ) {
+        try {
+          const { data: updated, error: tsErr } = await supabase
+            .from('trial_starts')
+            .update({ status: 'paid', completed_at: new Date().toISOString() })
+            .eq('user_id', userId)
+            .eq('status', 'trial_active')
+            .select('id')
+          if (tsErr) {
+            console.warn(`trial_starts close (paid) failed for ${userId}:`, tsErr.message)
+          } else if (updated && updated.length > 0) {
+            console.log(`trial_starts CLOSED as paid for ${userId} (${updated.length} row)`)
+          }
+        } catch (e) {
+          console.warn(`trial_starts close (paid) exception:`, e)
+        }
+      }
 
       // Also update subscriptions table if it exists
       try {
@@ -136,6 +185,26 @@ Deno.serve(async (req) => {
       }
 
       console.log(`Premium REVOKED for ${userId} — event: ${event.type}`)
+
+      // [11 may 2026] Close trial_starts as 'expired' (trial reached
+      // its natural end without converting to paid) or 'cancelled' if
+      // BILLING_ISSUE during the trial period.
+      try {
+        const newStatus = event.type === 'EXPIRATION' ? 'expired' : 'cancelled'
+        const { data: updated, error: tsErr } = await supabase
+          .from('trial_starts')
+          .update({ status: newStatus, completed_at: new Date().toISOString() })
+          .eq('user_id', userId)
+          .eq('status', 'trial_active')
+          .select('id')
+        if (tsErr) {
+          console.warn(`trial_starts close (${newStatus}) failed for ${userId}:`, tsErr.message)
+        } else if (updated && updated.length > 0) {
+          console.log(`trial_starts CLOSED as ${newStatus} for ${userId}`)
+        }
+      } catch (e) {
+        console.warn(`trial_starts close (revoke) exception:`, e)
+      }
 
       // Update subscriptions table
       try {
@@ -170,6 +239,30 @@ Deno.serve(async (req) => {
           .eq('id', userId)
 
         console.log(`Premium REVOKED for ${userId} — already expired`)
+      }
+
+      // [11 may 2026] Close trial_starts as 'cancelled' if user cancels
+      // DURING the trial (period_type=TRIAL and they hit "Cancel" in
+      // App Store / Google Play). Their access continues to trial end,
+      // but the lifecycle email pipeline should stop firing (don't
+      // pressure someone who already opted out). Match status='trial_active'
+      // so we only close trials that haven't converted yet.
+      if (event.period_type === 'TRIAL') {
+        try {
+          const { data: updated, error: tsErr } = await supabase
+            .from('trial_starts')
+            .update({ status: 'cancelled', completed_at: new Date().toISOString() })
+            .eq('user_id', userId)
+            .eq('status', 'trial_active')
+            .select('id')
+          if (tsErr) {
+            console.warn(`trial_starts close (cancelled) failed for ${userId}:`, tsErr.message)
+          } else if (updated && updated.length > 0) {
+            console.log(`trial_starts CLOSED as cancelled (during trial) for ${userId}`)
+          }
+        } catch (e) {
+          console.warn(`trial_starts close (cancelled) exception:`, e)
+        }
       }
 
       // Update subscriptions table

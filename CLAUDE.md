@@ -264,24 +264,26 @@ correrjuntosV2/                        # Repo padre (correrjuntos-web)
 
 ### Amazon Afiliados (StoreID `diezmejores21-21`)
 
-| Métrica | Valor |
-|---|---|
-| **Comisiones (10 abr - 9 may)** | **19,55€** |
-| Bonus | 0€ |
-| Total mes | 19,55€ |
-| Pago real | Llega ~2 meses después (típicamente julio para mayo) — Amazon espera anti-fraude |
+| Métrica | 9 may close | **11 may am** | Δ 48h |
+|---|---:|---:|---:|
+| **Comisiones 30d rolling** | 19,55€ | **25,11€** | **+5,56€ (+28%)** |
+| Bonus | 0€ | 0€ | — |
+| Total mes Amazon | 19,55€ | **25,11€** | — |
+| Pago real | Llega ~2 meses después (julio para mayo) — Amazon espera anti-fraude | | |
 
-### TOTAL canal monetario (10 may 2026)
+**Spike +4,3× ritmo diario** (2,78€/día vs media 0,65€/día). Coincide con publicación 9 may del pillar Trail + article kit 200€ + refresh relojes GPS + author unification + deep link contextual cro.js. Si mantiene ritmo 48h actuales → cierre mayo proyectado **45-55€** Amazon solo.
 
-| Fuente | EUR/mes aprox |
-|---|---|
-| RevenueCat (subs + one-time + annual) | ~32€ ($35) |
-| Amazon afiliados | 19,55€ |
-| **Total** | **~52€/mes** |
+### TOTAL canal monetario (11 may am)
+
+| Fuente | EUR/mes aprox | Δ vs 10 may |
+|---|---:|---:|
+| RevenueCat (subs + one-time + annual) | ~32€ ($35) | — |
+| Amazon afiliados | **25,11€** | **+5,56€** |
+| **Total** | **~57€/mes** | **+5,56€** |
 
 ### Lectura estratégica
 
-- **Amazon afiliados (19,55€) genera 6× lo que RevenueCat MRR ($3 ≈ 2,75€)** hoy. Es contraintuitivo pero importante: el blog SEO está pagando más que las subscripciones premium ahora mismo.
+- **Amazon afiliados (25,11€) ahora genera 9× lo que RevenueCat MRR ($3 ≈ 2,75€)** hoy. Subió de 6× a 9× en 48h. El blog SEO está pagando 9× lo que las subscripciones premium.
 - Cuando la base de subs crezca con lifecycle emails + push activations + más users post v1.3.6, el ratio se invertirá: RevenueCat será 5-10× Amazon.
 - Mientras tanto el blog mantiene **cash flow positivo predecible** y reduce dependencia del único motor.
 - **Lifecycle emails (Phase A) deberían mover el MRR significativamente en próximos 30-60 días** según se vayan disparando emails día 1/3/7/11/14 a los new customers que entran al trial.

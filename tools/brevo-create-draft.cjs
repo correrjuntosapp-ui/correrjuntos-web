@@ -5,7 +5,12 @@
  */
 const https = require('https');
 
-const API_KEY = 'REDACTED_BREVO_KEY_ROTATED';
+// Read from .env file (gitignored) — never hardcode keys
+const API_KEY = process.env.BREVO_API_KEY || require('fs').readFileSync(require('path').join(__dirname, '..', '.env'), 'utf8').match(/BREVO_API_KEY=(.+)/)?.[1]?.trim();
+if (!API_KEY) {
+  console.error('Missing BREVO_API_KEY in env or .env file');
+  process.exit(1);
+}
 
 const html = `<!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8"><title>Nueva version 1.3.2</title></head>

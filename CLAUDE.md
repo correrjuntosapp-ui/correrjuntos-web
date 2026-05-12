@@ -1187,6 +1187,172 @@ Vercel Hobby plan **no permite rotar/editar Shared Variables** (`SUPABASE_SERVIC
 - `backup-before-env-scrub-20260511-190926` (antes del primer scrub)
 - `backup-before-env-final-scrub-20260512-073935` (antes del scrub final + replace-text)
 
+## 🚨 Emergencia GitGuardian — 12 may 2026 (sesión 2)
+
+**Origen**: Tras hacer público el repo, GitGuardian detectó leak en **6 segundos**. 2 emails: Stripe Webhook Secret + Supabase Service Role JWT expuestos.
+
+### Vector real del leak
+
+Auditoría inicial pre-public solo cubrió `.env*`. **NO auditó `tools/*.cjs` con fallbacks hardcoded**:
+
+```js
+// PATRÓN PELIGROSO — en tools/create-quedadas.cjs
+const SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || 'eyJhbGci...';
+//                                                    ^^^^^^^^^^^^^^
+//                                  Fallback con JWT real hardcoded
+```
+
+El leaked JWT era el **legacy service_role JWT** (`role:service_role`, iat:1768554060, exp:2036). God-mode DB access. Estuvo público **~8 minutos** antes del scrub.
+
+### Cómo se neutralizó (Path C surgical, no nuclear)
+
+Supabase ofrece 2 caminos:
+- **Nuclear**: Reset JWT signing secret (mata todo, **loguea fuera a todos los users**)
+- **Quirúrgico**: "Disable JWT-based API keys" (mata legacy anon + service_role, **preserva sesiones de usuarios** porque solo invalida uso como `apikey` header, no como Bearer token de sesión)
+
+Se eligió quirúrgico. Pero requiere migrar previamente todo lo que usa los keys legacy.
+
+### Workflow exacto aplicado
+
+#### 1. Scrub git history (replace-text)
+```bash
+# Crear replacement file
+cat > /tmp/replacements.txt <<EOF
+LEAKED_LEGACY_JWT_FULL_STRING==>REDACTED_SUPABASE_SERVICE_JWT_LEGACY
+whsec_LEAKED_STRIPE==>REDACTED_STRIPE_WEBHOOK_DEAD
+LEAKED_STRAVA_SECRET==>REDACTED_STRAVA_CLIENT_SECRET_OLD
+EOF
+
+git filter-repo --replace-text /tmp/replacements.txt --force
+git remote add origin <URL>  # filter-repo lo borra
+git push --force origin master
+```
+
+#### 2. Migrar web frontend (anon JWT → publishable key)
+```bash
+OLD_ANON="eyJhbGci...iat:1768554060..."
+NEW_PUB="sb_publishable_JjURpz9jAqM4S9r4ofknAg_GW4Es97N"
+
+# Files (master): auth/reset.html, js/app.js, js/app.min.js,
+# js/modules/quedadas.js + .min.js, stats/index.html,
+# tools/create-real-quedadas.cjs, index-pwa-backup.html
+# Use node script with split/join to handle long strings safely
+```
+
+#### 3. Migrar React Native app
+- `correr-juntos-app/.env`: `EXPO_PUBLIC_SUPABASE_ANON_KEY` → publishable
+- EAS production env var: `eas env:update --environment production --variable-name EXPO_PUBLIC_SUPABASE_ANON_KEY --value sb_publishable_... --visibility plaintext --non-interactive`
+- OTA push: `eas update --branch production --message "..."`
+- v1.3.6 con OTAUpdateGate aplica auto al next launch
+
+#### 4. Migrar Edge Functions (lo más complejo)
+
+Supabase **NO permite custom secrets con prefix `SUPABASE_`** (error "Name must not start with the SUPABASE_"). Solución:
+
+```ts
+// Pattern: leer custom secret PRIMERO, fallback a built-in legacy
+const supabaseKey = (Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'))!;
+```
+
+Bulk script:
+```bash
+for f in supabase/functions/*/index.ts; do
+  if grep -q "SUPABASE_SERVICE_ROLE_KEY" "$f"; then
+    node -e "let s=require('fs').readFileSync('$f','utf8');
+      s=s.replace(/Deno\.env\.get\(['\"\']SUPABASE_SERVICE_ROLE_KEY['\"\']\)/g,
+        \"(Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'))\");
+      require('fs').writeFileSync('$f',s);"
+  fi
+done
+
+# Deploy ALL functions at once
+supabase functions deploy --project-ref waihiwdbtcbdazmaxdor
+```
+
+**⚠️ Pull orphan functions primero** (functions deployed en Supabase pero NO en git):
+```bash
+for fn in hyper-action delete-account notify-new-quedada ai-coach; do
+  supabase functions download $fn --project-ref waihiwdbtcbdazmaxdor
+done
+```
+
+#### 5. Crear custom secrets en Supabase
+
+- `SERVICE_ROLE_KEY` (existente, value updated) — usado por `notify-new-quedada`, `delete-account`
+- `SERVICE_ROLE_KEY_NEW` (nuevo) — usado por las 14 funciones migradas
+- Ambos contienen el mismo `sb_secret_TZEBm...` value (el nuevo sb_secret_ key del 11 may)
+
+#### 6. Click final
+Supabase Dashboard → Settings → API → Legacy anon, service_role API keys → **"Disable JWT-based API keys"** → typing "disable" → Confirm
+
+#### 7. Smoke tests verifican
+
+```bash
+# Leaked JWT debe retornar 401:
+curl -H "apikey: $LEAKED_JWT" \
+  "https://waihiwdbtcbdazmaxdor.supabase.co/rest/v1/profiles?select=id&limit=1"
+# → HTTP 401 ✅
+
+# New publishable key debe retornar 200:
+curl -H "apikey: $NEW_PUB" "..."
+# → HTTP 200 ✅
+
+# Production web sigue OK:
+curl "https://www.correrjuntos.com"
+# → HTTP 200 ✅
+```
+
+### Estado final post-emergencia
+
+| Asset | Estado |
+|---|---|
+| Legacy anon JWT | 💀 disabled |
+| Legacy service_role JWT (LEAKED) | 💀 disabled — was alive ~8 min, now HTTP 401 |
+| New `sb_publishable_*` | 🟢 active in web + app |
+| New `sb_secret_TZEBm...` | 🟢 active in Supabase Edge Functions |
+| User sessions | 🟢 preserved (JWT as Bearer still valid) |
+| GitGuardian detection time | 6 seconds post-push 💥 |
+| Total exposure window | ~8 minutes |
+
+### Reglas grabadas a fuego post-emergencia
+
+1. **NUNCA fallback hardcoded de secrets** — el patrón `process.env.X || 'literal'` es bomba de relojería. Usar:
+   ```js
+   const X = process.env.X || readFromDotEnv('X');
+   if (!X) { console.error('Missing X'); process.exit(1); }
+   ```
+
+2. **Pre-public-flip checklist EXHAUSTIVO**:
+   ```bash
+   # Secret patterns (no solo .env*)
+   git grep -nE "(sk_(live|test)_[A-Za-z0-9]{20,}|whsec_[A-Za-z0-9]{20,}|xkeysib-[a-f0-9]{20,}|sb_secret_[A-Za-z0-9]{20,})" HEAD
+
+   # JWTs (decode payload to check role)
+   git grep -nE "eyJ[A-Za-z0-9_-]{20,}\.eyJ[A-Za-z0-9_-]{50,}\.[A-Za-z0-9_-]{20,}" HEAD
+
+   # Hardcoded fallbacks (el patrón peligroso)
+   git grep -nE "process\.env\.[A-Z_]+\s*\|\|\s*['\"\']" HEAD
+   git grep -nE "Deno\.env\.get\([^)]+\)\s*\|\|\s*['\"\']" HEAD
+   ```
+
+3. **Supabase custom secrets reservan prefix `SUPABASE_`** — usar nombres custom (ej: `SERVICE_ROLE_KEY_NEW`) y actualizar código a leer de ahí con fallback.
+
+4. **Edge Functions orphan**: pueden estar deployed en Supabase pero NO en git. SIEMPRE auditar con `supabase functions list --project-ref X` antes de operaciones de seguridad. Pull con `supabase functions download $fn`.
+
+5. **Supabase Disable JWT-based API keys NO loguea fuera a users** — solo invalida uso como `apikey` header. Sesiones (Bearer auth) sobreviven.
+
+### Backup tags emergencia
+- `emergency-backup-20260512-064207` (antes del scrub emergency)
+- 3 force pushes en sesión 12 may
+
+### Pendientes derivados (próxima sesión)
+
+1. **Monitor Sentry 24-48h** — users con app v1.3.5 o anterior podrían fallar auth (legacy anon JWT en bundle viejo). Si hay errores → considerar push prompt para update.
+2. **Limpiar dead Stripe code** — sigue siendo housekeeping del día anterior.
+3. **Tests E2E Playwright obsoletos** — reescribir cuando volvamos a tener tiempo.
+4. **`.p8` Apple key expirada** — pendiente desde 11 may.
+5. **Re-enable legacy keys NO** — quedan disabled permanentemente. Si necesitas activity, todos los new tools usan new format ya.
+
 ## Comandos
 
 ```bash

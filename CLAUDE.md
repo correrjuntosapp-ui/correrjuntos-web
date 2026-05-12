@@ -1222,3 +1222,4 @@ node tools/blog-generator/generate-affiliate-article.cjs configs/ARTICLE.json --
 | Meta Pixel | 1466415711868158 |
 | IndexNow Key | c4f7e2a9b3d1 |
 | RevenueCat Project | 7c0240d9 |
+<!-- CI check 2026-05-12T05:50:34Z -->

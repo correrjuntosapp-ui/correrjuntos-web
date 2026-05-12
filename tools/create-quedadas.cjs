@@ -15,7 +15,20 @@
 const { createClient } = require('@supabase/supabase-js');
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
-const SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || 'REDACTED_SUPABASE_SERVICE_JWT_LEGACY';
+// Read from env only — NEVER hardcode service_role keys (they bypass RLS)
+const SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY ||
+  (() => {
+    try {
+      return require('fs').readFileSync(require('path').join(__dirname, '..', '.env'), 'utf8')
+        .match(/SUPABASE_SERVICE_KEY=(.+)/)?.[1]?.trim();
+    } catch { return null; }
+  })();
+
+if (!SERVICE_KEY) {
+  console.error('Missing SUPABASE_SERVICE_KEY in env or .env file');
+  console.error('This script needs a service_role key to bypass RLS.');
+  process.exit(1);
+}
 
 const supabase = createClient(SUPABASE_URL, SERVICE_KEY);
 

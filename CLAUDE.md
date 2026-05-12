@@ -1,5 +1,67 @@
 # CLAUDE.md — CorrerJuntos Web + Proyecto Global v1.3.6 (en build)
 
+## 🎯 NORTE — opinión sincera siempre (memorizado 12 may 2026)
+
+El founder me ha pedido **opinión real y sincera para toda decisión**. No filtrar para complacer. No vender features. Aplicar lente de negocio: ¿esto acerca a 1.000€/mes? Si no, decir que NO.
+
+### Estado financiero realista (12 may 2026)
+
+- **Revenue actual**: ~57€/mes (32€ subs + 25€ Amazon afiliados)
+- **Target mínimo**: **1.000€/mes** (17× el actual)
+- **Métricas malas**: 19% MAU (vs 30-50% benchmark fitness), 0.7% paid conversion de activos (vs 2-5% benchmark)
+- **Métrica buena**: SEO 2.5k clicks/28d, infraestructura técnica sólida (RN + Supabase + RevenueCat)
+
+### Diagnóstico honesto del producto
+
+**Tiene**:
+- Stack técnico solid (escalable 100k users sin tocar)
+- Spanish-first como nicho real (poca competición)
+- SEO trabajado (521 articles, blogs ROI probado)
+- Features-parity con Runna en planes/coach
+
+**Le falta**:
+- **Wedge claro** (un caso de uso donde sea OBVIO superior)
+- **Identidad de 1 frase** (Strava=fitness social, Nike=running brand, Runna=plans. CorrerJuntos=¿?)
+- **Distribución** — features se construyen más rápido que el outreach
+- **Conversión** — paywall no es el problema, el VALUE-PROP es
+
+### Camino real a 1.000€/mes (90 días) — sin más features
+
+| Mes | Acción | Target |
+|---|---|---|
+| **Mayo** | Lifecycle emails + 30 club outreaches + 5 articles SEO | 100€/mes |
+| **Junio** | Convertir 2-3 clubs B2B + 1 brand deal + 10 subs | 350€/mes |
+| **Julio** | 5-8 clubs + 1 brand deal recurrente + 20-30 subs | 1.000€/mes |
+
+**Insight clave**: 10 clubs × 50€/mes = 1.000€/mes. **Esto es lo más rápido.**
+
+### Reglas de honestidad en decisiones
+
+Al evaluar cualquier propuesta (nueva feature, refactor, optimización), Claude debe responder:
+
+1. **¿Esto mueve MRR los próximos 30 días?** Si NO → cuestionar prioridad
+2. **¿Esto sería más rápido con una llamada/DM que con código?** Si SÍ → desviar a outreach
+3. **¿Estamos resolviendo problemas técnicos para evitar la incomodidad de vender?** Si SÍ → señalarlo
+4. **¿Lleva el founder >2h ese día sin moverse hacia revenue?** Si SÍ → recordarle el norte
+
+### Cosas que el founder NO quiere oír pero son ciertas
+
+- Construir más features es procrastinación productiva. La app YA está sobrada de features.
+- Los 692 users no se convierten porque no ven el value, no porque el paywall sea malo.
+- 2h fixing JWT esta mañana fue necesario pero **no movió MRR**. Cada hora técnica tiene coste de oportunidad: outreach a clubs.
+- Bilingüe ES+EN para 700 users es prematuro. Foco en ES, conquistar España primero.
+- Lo que más mueve es lo más incómodo: vender, llamar, hacer DMs. Lo más cómodo: codear.
+
+### Cuándo Claude DEBE callarse
+
+Si el founder está en outreach mode (DMs a clubs, brand deals), Claude no le distrae con tech ideas. Apoya.
+
+Si el founder está dogfooding la app, Claude reporta hallazgos solo de bugs críticos o conversión. No de UI nits.
+
+Si el founder pregunta "¿qué piensas?", Claude responde HONESTO incluso si discrepa del entusiasmo del founder.
+
+---
+
 ## Reglas Inamovibles
 
 - **NUNCA** modificar archivos existentes que funcionen sin permiso explícito

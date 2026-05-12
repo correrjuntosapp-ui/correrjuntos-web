@@ -1112,6 +1112,81 @@ URL: `https://supabase.com/dashboard/project/waihiwdbtcbdazmaxdor/auth/templates
 
 **Si vas a editar uno** → modifica TODOS los demás simultáneamente para mantener identidad. La identidad solo funciona si es consistente.
 
+## 🔒 Auditoría de seguridad — 11-12 mayo 2026
+
+**Origen**: CI fallaba desde 26 abril → billing GitHub Actions bloqueado (agotado 2.000 min/mes Hobby plan). Decisión: hacer el repo público (Actions gratis ilimitado en públicos = $0/forever vs $20/mes Pro). Pero antes había que limpiar secrets leaked.
+
+### Estado final secrets (TODOS muertos)
+
+| Secret | Estado | Acción aplicada |
+|---|---|---|
+| Buffer API key (`...jJ5N`) | 💀 | Revocada en buffer.com (0 uso 30d) |
+| Make webhook (`...y70bz`) | 💀 | Eliminada en make.com (0 uso 50d) |
+| Supabase service key (`sb_secret_FbZDb...`) | 💀 | Reemplazada por `sb_secret_TZEBm...` + leaked DELETED |
+| Stripe secret key + webhook | 💀 | **Cuenta Stripe cerrada entera** (era legacy, 0 usuarios activos pagando) |
+| Brevo API key (`xkeysib-ad79201...`) | 💀 | Ya estaba dead (HTTP 401) — rotada hace meses |
+| INDEXNOW_SECRET (`cj_indexnow_s3cr3t_2026`) | 💀 | Rotado a 64-char hex aleatorio |
+| Vercel OIDC token | 💀 | Expired mar 19 (8 semanas pre-leak) |
+
+### Git history scrubbing aplicado
+
+- `.env` scrubeado con `git filter-repo --invert-paths --path .env` (942 commits)
+- `.env.brevo` + `.env.vercel` scrubeados con mismo método
+- Brevo key hardcoded en `tools/brevo-create-draft.cjs` redactada con `git filter-repo --replace-text` en TODO el history
+- 2 force-pushes a master (única persona usando el repo, sin riesgo)
+- `tools/brevo-create-draft.cjs` ahora lee `BREVO_API_KEY` de `.env` o env vars
+
+### `.gitignore` final (post-cleanup)
+
+```
+.env
+.env.*
+.env*.local
+```
+
+### Estado producción tras cleanup
+
+- ✅ Vercel deployment `A5M31R5QQ` con nuevo SUPABASE_SERVICE_KEY (Project-scoped var, overrides Shared)
+- ✅ Smoke tests post-rotación: 200/401/405/404 (todos esperados, ningún 500)
+- ✅ Edge Functions usan `SERVICE_ROLE_KEY` legacy JWT (sin tocar — diferente del rotado)
+- ✅ Brevo 2 active keys (correrjuntos-web-prod, Supabase Edge Functions) sin tocar
+
+### ⚠️ Trick clave: workaround Vercel Pro paywall
+
+Vercel Hobby plan **no permite rotar/editar Shared Variables** (`SUPABASE_SERVICE_KEY`, `STRIPE_*` antes de cerrarse, etc.). Intenta cobrar $20/mes Pro al clicar Rotate.
+
+**Solución**: añadir la misma key como **Project-scoped variable** (gratis). Project sobreescribe Shared. Pasos:
+1. Vercel env vars → tab "Project"
+2. "Add Environment Variable"
+3. Mismo nombre que la Shared
+4. Nuevo valor
+5. Environments: Production + Preview (Development queda bloqueado por Pro pero no importa)
+6. Save → trigger redeploy
+
+### Pendientes housekeeping (no urgente)
+
+1. **Limpiar código dead de Stripe** (account closed):
+   - `api/stripe-webhook.js`
+   - `supabase/functions/stripe-webhook/`, `create-checkout/`, `create-portal-session/`
+   - STRIPE_* env vars en Vercel (los valores están dead pero quedan como ruido)
+   - STRIPE_SECRET_KEY + STRIPE_WEBHOOK_SECRET secrets en Supabase Edge Functions
+   - PremiumContext.tsx — limpiar branch `premiumSource === 'stripe'` (solo 2 users legacy con `expired`/`canceled` status)
+
+2. **Tests E2E Playwright obsoletos** (40/40 fallan — testean arquitectura SPA con modales que ya no existe post-refactor 25 abril `aea2dcb9`)
+
+3. **`.p8` Apple key expirada** — bloquea `ship:promote` iOS y `check-store-status.js`. Regenerar en ASC → Users and Access → Integrations → App Store Connect API.
+
+### Memorizar para futuro
+
+- **NUNCA hardcodear secrets** en código. Usar `process.env.X` o leer de `.env` (gitignored).
+- **Sospechar siempre** de archivos `.env.brevo` / `.env.vercel` / `.env.local` — Vercel CLI los genera al hacer `vercel env pull` y se cuelan en commits si no están en `.gitignore` desde el inicio.
+- **Antes de hacer repo público**: `git grep -nE "(sk_(live|test)_[A-Za-z0-9]{20,}|whsec_[A-Za-z0-9]{20,}|xkeysib-[a-f0-9]{20,}|sb_secret_[A-Za-z0-9]{20,})" HEAD` para detectar secret patterns en código tracked.
+
+### Backup tags creados
+
+- `backup-before-env-scrub-20260511-190926` (antes del primer scrub)
+- `backup-before-env-final-scrub-20260512-073935` (antes del scrub final + replace-text)
+
 ## Comandos
 
 ```bash

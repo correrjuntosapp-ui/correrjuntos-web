@@ -1745,7 +1745,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                 try {
                     const todayStr = new Date().toISOString().split('T')[0];
                     const resp = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/rest/v1/quedadas?select=lat,lng,titulo,ciudad,hora,nivel,fecha&lat=not.is.null&lng=not.is.null&fecha=gte.' + todayStr + '&order=fecha.asc&limit=30', {
-                        headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhaWhpd2RidGNiZGF6bWF4ZG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1NTQwNjAsImV4cCI6MjA4NDEzMDA2MH0.C1Zus9DOIDJOGkdPWmMd_ZaSfG0ARVYobv66POrT-QU' }
+                        headers: { 'apikey': 'sb_publishable_JjURpz9jAqM4S9r4ofknAg_GW4Es97N' }
                     });
                     const data = await resp.json();
                     if (data && data.length) {
@@ -1869,7 +1869,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
             try {
                 const todayStr = new Date().toISOString().split('T')[0];
                 const resp = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/rest/v1/quedadas?select=id,titulo,ciudad,fecha,hora,nivel,lat,lng,organizador_nombre,ubicacion&fecha=gte.' + todayStr + '&order=fecha.asc&limit=6', {
-                    headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhaWhpd2RidGNiZGF6bWF4ZG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1NTQwNjAsImV4cCI6MjA4NDEzMDA2MH0.C1Zus9DOIDJOGkdPWmMd_ZaSfG0ARVYobv66POrT-QU' }
+                    headers: { 'apikey': 'sb_publishable_JjURpz9jAqM4S9r4ofknAg_GW4Es97N' }
                 });
                 const data = await resp.json();
 
@@ -3228,7 +3228,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
                     return;
                 }
 
-                const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhaWhpd2RidGNiZGF6bWF4ZG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1NTQwNjAsImV4cCI6MjA4NDEzMDA2MH0.C1Zus9DOIDJOGkdPWmMd_ZaSfG0ARVYobv66POrT-QU';
+                const SUPABASE_ANON = 'sb_publishable_JjURpz9jAqM4S9r4ofknAg_GW4Es97N';
                 const response = await fetch('https://waihiwdbtcbdazmaxdor.supabase.co/functions/v1/create-checkout', {
                     method: 'POST',
                     headers: {
@@ -3947,7 +3947,7 @@ function countryName(code){ return code==='PT' ? 'Portugal' : 'España'; }
 (function(){
   // Config (proyecto Supabase)
   const SUPABASE_URL = "https://waihiwdbtcbdazmaxdor.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhaWhpd2RidGNiZGF6bWF4ZG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1NTQwNjAsImV4cCI6MjA4NDEzMDA2MH0.C1Zus9DOIDJOGkdPWmMd_ZaSfG0ARVYobv66POrT-QU";
+  const SUPABASE_ANON_KEY = "sb_publishable_JjURpz9jAqM4S9r4ofknAg_GW4Es97N";
 
   // Boot promise (otros módulos esperan esto)
   if(!window.__CJ_SUPABASE_READY__){

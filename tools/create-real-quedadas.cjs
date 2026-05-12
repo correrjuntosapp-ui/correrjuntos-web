@@ -1,7 +1,7 @@
 const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(
   'https://waihiwdbtcbdazmaxdor.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhaWhpd2RidGNiZGF6bWF4ZG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg1NTQwNjAsImV4cCI6MjA4NDEzMDA2MH0.C1Zus9DOIDJOGkdPWmMd_ZaSfG0ARVYobv66POrT-QU'
+  'sb_publishable_JjURpz9jAqM4S9r4ofknAg_GW4Es97N'
 );
 
 async function main() {

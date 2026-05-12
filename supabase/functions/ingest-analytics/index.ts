@@ -42,7 +42,7 @@ Deno.serve(async (req: Request) => {
 
   const token = authHeader.replace('Bearer ', '')
   const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+  const serviceRoleKey = (Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'))!
 
   // Verify the JWT to get user_id
   const authClient = createClient(supabaseUrl, serviceRoleKey)

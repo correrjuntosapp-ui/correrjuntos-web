@@ -28,14 +28,14 @@ async function verifyAuth(req: Request): Promise<{ authorized: boolean; userId?:
   const token = authHeader.replace('Bearer ', '')
 
   // Check if it's the service role key (server-to-server calls)
-  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+  const serviceRoleKey = (Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'))
   if (token === serviceRoleKey) {
     return { authorized: true, userId: 'service' }
   }
 
   // Otherwise verify as user JWT
   const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-  const supabaseAnon = Deno.env.get('SUPABASE_ANON_KEY') || Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+  const supabaseAnon = Deno.env.get('SUPABASE_ANON_KEY') || (Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'))!
   const supabase = createClient(supabaseUrl, supabaseAnon)
   const { data: { user }, error } = await supabase.auth.getUser(token)
 
@@ -375,7 +375,7 @@ Deno.serve(async (req) => {
 
   try {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    const supabaseKey = (Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'))!
     const supabase = createClient(supabaseUrl, supabaseKey)
 
     const body = await req.json()

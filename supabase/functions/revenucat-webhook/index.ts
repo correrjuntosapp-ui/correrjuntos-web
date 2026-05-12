@@ -47,7 +47,7 @@ Deno.serve(async (req) => {
     console.log('RevenueCat event:', event.type, 'app_user_id:', event.app_user_id)
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    const supabaseKey = (Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'))!
     const supabase = createClient(supabaseUrl, supabaseKey)
 
     // The app_user_id should be the Supabase user UUID

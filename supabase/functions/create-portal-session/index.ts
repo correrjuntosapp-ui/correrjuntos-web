@@ -7,7 +7,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const stripeKey = Deno.env.get('STRIPE_SECRET_KEY') || ''
 const supabaseUrl = Deno.env.get('SUPABASE_URL') || ''
-const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || ''
+const supabaseServiceKey = (Deno.env.get('SERVICE_ROLE_KEY_NEW') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')) || ''
 const rawAllowlist = Deno.env.get('PAYMENT_URL_ALLOWLIST') || ''
 
 const stripe = stripeKey

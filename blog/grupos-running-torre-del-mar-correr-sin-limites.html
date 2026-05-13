@@ -134,6 +134,30 @@ ul,ol{margin:0 0 24px 22px}
 li{margin-bottom:8px;color:#3d3229}
 li strong{color:#1f1b16}
 
+/* ───── Article + sidebar layout (desktop) ───── */
+.article-layout{display:block}
+@media(min-width:1100px){
+  .article-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:56px;align-items:start;max-width:1100px;margin:0 auto;padding:0 24px}
+  .article-layout > .content{grid-column:1;padding:0;margin:0;max-width:none}
+  .article-sidebar{grid-column:2;position:sticky;top:96px;align-self:start;max-height:calc(100vh - 120px);overflow-y:auto;padding-right:4px}
+  .article-sidebar .toc{margin:0 0 24px;background:#fff;border:1px solid #efe6db}
+  .toc-mobile{display:none}
+  /* TOC active link highlight via JS class */
+  .article-sidebar .toc-list a.active{background:rgba(249,115,22,.08);color:#f97316}
+  .article-sidebar .toc-list a.active::before{background:#f97316;color:#fff}
+}
+@media(max-width:1099px){
+  .article-sidebar{display:none}
+}
+
+/* ───── Floating share sidebar (desktop only) ───── */
+.float-share{display:none}
+@media(min-width:1280px){
+  .float-share{position:fixed;left:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:50;background:#fff;padding:14px 10px;border-radius:14px;border:1px solid #efe6db;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+  .float-share .share-btn{width:38px;height:38px}
+  .float-share .float-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#94886e;font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);margin:6px auto;line-height:1}
+}
+
 /* ───── TOC numbered ───── */
 .toc{background:#fffcf9;border:1px solid #efe6db;border-radius:18px;padding:24px 28px;margin:0 0 32px}
 .toc-title{font-size:.74rem;color:#94886e;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:16px}
@@ -358,13 +382,40 @@ li strong{color:#1f1b16}
   </div>
 </div>
 
+<!-- Floating share sidebar (desktop only, left margin) -->
+<aside class="float-share" aria-label="Compartir artículo">
+  <span class="float-label">Compartir</span>
+  <a href="https://wa.me/?text=Correr%20Sin%20L%C3%ADmites%20Torre%20del%20Mar%20%E2%80%94%20el%20club%20social%20de%20running%20de%20la%20Axarqu%C3%ADa.%20Cu%C3%A9ntalo%3A%20https%3A%2F%2Fwww.correrjuntos.com%2Fblog%2Fgrupos-running-torre-del-mar-correr-sin-limites" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.523 5.273l-.999 3.648 3.965-.62zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+  </a>
+  <a href="https://twitter.com/intent/tweet?text=Correr%20Sin%20L%C3%ADmites%20Torre%20del%20Mar%20%E2%80%94%20el%20club%20social%20de%20running%20del%20paseo%20mar%C3%ADtimo.&amp;url=https%3A%2F%2Fwww.correrjuntos.com%2Fblog%2Fgrupos-running-torre-del-mar-correr-sin-limites" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir en X">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.correrjuntos.com%2Fblog%2Fgrupos-running-torre-del-mar-correr-sin-limites" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir en Facebook">
+    <svg viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02c0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"/></svg>
+  </a>
+</aside>
+
 <!-- White content card wrapper -->
 <div class="content-wrap">
-<div class="container">
+<div class="article-layout">
+  <aside class="article-sidebar" aria-label="Índice del artículo">
+    <nav class="toc">
+      <div class="toc-title">Contenido</div>
+      <ol class="toc-list">
+        <li><a href="#que-es">Cómo es Correr Sin Límites</a></li>
+        <li><a href="#por-que">Por qué nace en Torre del Mar</a></li>
+        <li><a href="#quedada">La quedada semanal: día, hora y ruta</a></li>
+        <li><a href="#para-quien">A quién va dirigido</a></li>
+        <li><a href="#como-unirse">Cómo unirse</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+      </ol>
+    </nav>
+  </aside>
   <div class="content">
 
-    <!-- TOC -->
-    <nav class="toc">
+    <!-- TOC mobile (hidden on desktop — desktop uses sidebar) -->
+    <nav class="toc toc-mobile">
       <div class="toc-title">Contenido</div>
       <ol class="toc-list">
         <li><a href="#que-es">Cómo es Correr Sin Límites</a></li>
@@ -518,16 +569,18 @@ li strong{color:#1f1b16}
       <h2>Tu primera quedada está a un jueves</h2>
       <p>Descarga CorrerJuntos, apúntate a la próxima de Correr Sin Límites Torre del Mar y nos vemos en el Club Náutico a las 20:00.</p>
       <div class="store-badges">
-        <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener" class="store-badge" aria-label="Descargar en App Store">
-          <svg width="162" height="54" viewBox="0 0 162 54" xmlns="http://www.w3.org/2000/svg">
+        <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener" class="store-badge" aria-label="Descargar CorrerJuntos en App Store">
+          <svg width="162" height="54" viewBox="0 0 162 54" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ios-badge-title">
+            <title id="ios-badge-title">Descargar CorrerJuntos en App Store</title>
             <rect width="162" height="54" rx="9" fill="#000"/>
             <path d="M30.83,28.36 C30.81,26.18 31.95,24.5 34.25,23.27 C33.04,21.5 31.18,20.55 28.79,20.36 C26.51,20.19 24.02,21.7 23.13,21.7 C22.18,21.7 19.97,20.43 18.24,20.43 C14.6,20.49 10.78,23.32 10.78,29.06 C10.78,30.75 11.09,32.5 11.71,34.31 C12.53,36.65 15.51,42.43 18.61,42.33 C20.27,42.29 21.44,41.16 23.6,41.16 C25.69,41.16 26.78,42.33 28.62,42.33 C31.76,42.29 34.45,37.04 35.23,34.69 C30.94,32.69 30.83,28.49 30.83,28.36 Z M27.5,18.16 C29.01,16.37 28.88,14.74 28.83,14.16 C27.45,14.24 25.86,15.1 24.95,16.16 C23.95,17.3 23.36,18.71 23.49,20.33 C24.98,20.45 26.35,19.68 27.5,18.16 Z" fill="#fff"/>
             <text x="46" y="22" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="10" font-weight="400">Descárgalo en</text>
             <text x="46" y="40" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing=".5">App Store</text>
           </svg>
         </a>
-        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="store-badge" aria-label="Disponible en Google Play">
-          <svg width="180" height="54" viewBox="0 0 180 54" xmlns="http://www.w3.org/2000/svg">
+        <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="store-badge" aria-label="Descargar CorrerJuntos en Google Play">
+          <svg width="180" height="54" viewBox="0 0 180 54" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="android-badge-title">
+            <title id="android-badge-title">Descargar CorrerJuntos en Google Play</title>
             <rect width="180" height="54" rx="9" fill="#000"/>
             <g transform="translate(12, 10)">
               <path d="M.27,1.36 C.1,1.56 0,1.86 0,2.27 L0,31.72 C0,32.13 .1,32.43 .27,32.62 L17.04,16.99 L.27,1.36 Z" fill="#4285F4"/>
@@ -753,6 +806,29 @@ async function submitFooterNewsletter(e){
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update, { passive: true });
   update();
+})();
+
+/* Sticky TOC active section highlight via IntersectionObserver */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  var links = document.querySelectorAll('.article-sidebar .toc-list a[href^="#"]');
+  if(!links.length) return;
+  var byId = {};
+  links.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    byId[id] = a;
+  });
+  var sections = Object.keys(byId).map(function(id){return document.getElementById(id);}).filter(Boolean);
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        var link = byId[entry.target.id];
+        if(link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(function(s){ observer.observe(s); });
 })();
 </script>
 </body>

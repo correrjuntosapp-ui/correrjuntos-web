@@ -1,5 +1,76 @@
 # CLAUDE.md — CorrerJuntos Web + Proyecto Global v1.3.6 (en build)
 
+## 🍻 Partner Clubs B2B — sistema completo (memorizado 13 may 2026)
+
+**HITO**: primer club partner B2B operativo después del primer SÍ tras outreach
+del 11-12 may. Beer Runners Málaga aceptó compartir sus quedadas en la app.
+
+### Stack técnico del sistema "partner clubs"
+
+| Pieza | Detalle |
+|---|---|
+| Tabla nueva | `partner_quedada_recurrences` (1 fila por patrón recurrente) |
+| Función Postgres | `rotate_partner_quedadas()` — idempotente, timezone-aware. Crea próxima quedada si club no tiene futura |
+| Cron Vercel | `/api/cron/run?job=partner-quedadas` daily 04:30 UTC (06:30 Madrid) |
+| Endpoint dispatcher | `api/_lib/jobs/partner-quedadas.js` (ESM, thin wrapper sobre RPC) |
+| Tool onboarding | `tools/add-beer-runners-malaga.cjs` (template para futuros clubs — adaptar) |
+| App handling | MapScreen + CardQuedadaCompacta detectan `max_participantes=NULL` → "Grupo abierto · todos bienvenidos" |
+
+### Beer Runners Málaga — IDs y datos
+
+- **Partner profile ID**: `5e99da62-332e-4e3d-8f27-b377591d7cff`
+- **Email partner técnico**: `beerrunners-malaga@partners.correrjuntos.app`
+- **Logo URL**: `https://www.correrjuntos.com/public/quedadas/beer-runners-malaga/logo.png`
+- **Carpeta logo**: `public/quedadas/beer-runners-malaga/logo.png`
+- **Recurrencia**: martes 20:30 Madrid TZ, en Las Letras de la Playa de la Malagueta (lat 36.7186, lng -4.4117)
+- **Distancia**: NULL (Entrenos diversos)
+- **Ritmo**: "Cómodo"
+- **Plazas/max**: NULL (grupo abierto, sin límite)
+- **Auto-join del organizer**: el partner profile se añade como 1º participante de cada quedada (no es fake, ES quien organiza — patrón Meetup/Strava)
+- **Instagram**: https://instagram.com/beerrunnersmalaga
+- **Contacto humano**: el "chico" que respondió al DM inicial (12 may pm) — pendiente llamada/charla 13 may pm
+
+### Playbook para añadir nuevo club partner (replicar Beer Runners)
+
+Cuando otro club acepte el outreach:
+
+1. **Logo**: pedirles PNG con fondo transparente. Guardar en `public/quedadas/{slug}/logo.png`.
+2. **Crear partner profile** (vía MCP SQL o adaptando script):
+   - INSERT en `auth.users` (trigger crea profile mínimo)
+   - UPDATE profile con nombre + apellidos + ciudad + bio + photo_url
+   - UUID en auth.users con `raw_user_meta_data` flag `is_partner_club: true`
+3. **INSERT en `partner_quedada_recurrences`** con: partner_profile_id, day_of_week (Postgres DOW: 0=Sun..6=Sat), hora, timezone, titulo, descripcion, ciudad, ubicacion, direccion, lat, lng, nivel, distancia (NULL si variable), ritmo, plazas (NULL si grupo abierto), pais, tipo='user', recurrence_label='weekly_X', active=true
+4. **Crear primera quedada manualmente** (para no esperar al cron de las 04:30):
+   ```sql
+   SELECT public.rotate_partner_quedadas();
+   ```
+   o INSERT directo en quedadas + INSERT en participantes del organizador.
+5. **Push + verificar** logo en CDN antes de mandar respuesta al club.
+6. **Cron se encarga del resto** — cada día verifica si club tiene futura, si no la crea.
+
+### Reglas críticas — no romper esto
+
+⚠️ **`fecha_hora` NUNCA puede ser NULL** al INSERT manual de quedadas. El filtro de la app (`fecha_hora >= now()`) excluye NULL. Si insertas con SQL crudo, calcular: `((fecha + hora) AT TIME ZONE 'Europe/Madrid')`. La función `rotate_partner_quedadas()` lo hace bien — si añades nuevas quedadas a mano, hacerlo igual.
+
+⚠️ **`plazas`/`max_participantes` = NULL** significa "grupo abierto". Hasta el OTA del 13 may, la app hacía `|| 10` y mostraba "9 plazas libres" falsamente. Ya arreglado en MapScreen.tsx + CardQuedadaCompacta.tsx (commit `c96142d` + OTA `f8c69a8b-471f-43bc-9431-bb2fd6b17bf3`).
+
+⚠️ **NUNCA crear participantes fake (`es_seed=true`)** para inflar contador. Miguel ya nos avisó hace meses ("cantan mucho los perfiles falsos"). Lo único OK: auto-join del organizer profile, porque ES quien organiza (Meetup/Strava pattern). La descripción aclara "grupo de 15-25 runners habituales" para contexto.
+
+### UTM tracking system (memorizado 13 may 2026)
+
+Sistema short-link en `vercel.json` redirects + JS capture en `index.html`:
+
+- `correrjuntos.com/tk` → `?utm_source=tiktok&utm_medium=bio` para bio TikTok
+- `correrjuntos.com/ig` → `?utm_source=instagram&utm_medium=bio` para bio Instagram
+- `correrjuntos.com/yt` → `?utm_source=youtube&utm_medium=bio` para bio YouTube
+- `correrjuntos.com/r/{reel-slug}` → `?utm_source={slug}&utm_medium=reel` para attribution per-reel
+
+JS snippet en `index.html` (commit `fb32e9e0`):
+- Captura UTM en localStorage 30 días
+- Append a `referrer=` (Google Play) o `ct=` (App Store) en links de tienda → attribution sobrevive al handoff a la store
+
+**GA4**: dispara event `utm_landing` con source/medium/campaign. Reports → Acquisition → Traffic acquisition.
+
 ## 🎯 NORTE — opinión sincera siempre (memorizado 12 may 2026)
 
 El founder me ha pedido **opinión real y sincera para toda decisión**. No filtrar para complacer. No vender features. Aplicar lente de negocio: ¿esto acerca a 1.000€/mes? Si no, decir que NO.

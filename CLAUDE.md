@@ -111,6 +111,125 @@ Cuando otro club acepte el outreach:
 5. **Push + verificar** logo en CDN antes de mandar respuesta al club.
 6. **Cron se encarga del resto** — cada día verifica si club tiene futura, si no la crea.
 
+### 📰 Playbook: artículo de blog de un club partner (memorizado 13 may 2026)
+
+**Template de referencia**: `blog/grupos-running-torre-del-mar-correr-sin-limites.html` (versión v9, ~50KB, tras 5 auditorías profesionales de diseño aplicadas).
+
+#### URL + slug
+- Pattern: `/blog/grupos-running-{ciudad-slug}-{club-slug}` (sin .html en la URL final)
+- Slug nunca cambiar después de publicar (rompe el sitemap + redirects)
+- Sitemap: añadir entrada en `sitemap-blog-es.xml` con `<lastmod>` actual
+
+#### Estructura visual (en este orden)
+1. **Reading progress bar** (3px gradient naranja, fixed top, JS document-level scroll)
+2. **Sticky header** con sombra al hacer scroll (JS añade `.scrolled` con scrollY > 8)
+3. **Breadcrumb**: Inicio › Blog › Grupos de Running › {Nombre del Club}
+4. **Hero FULL-BLEED** (`width:100vw; margin-left:calc(-50vw + 50%)`): foto cover + gradient overlay + eyebrow pill + H1 (gradient naranja en última palabra) + dek. **NUNCA con bordes redondeados grandes** — es magazine, no card de app.
+5. **Caption italic** debajo de la foto con crédito
+6. **Byline strip** con foto real de Abraham (`/public/abraham.jpg`) + nombre + rol + fecha + reading time
+7. **Stats banner** (4 KPIs: día / hora / distancia / precio) con gradient orange + border + shadow
+8. **TOC numbered** — mobile inline arriba, desktop ≥1100px sticky sidebar derecho (con highlight de sección activa vía IntersectionObserver)
+9. **Floating share sidebar** izquierdo, position:fixed, breakpoint ≥1100px
+10. **Intro 2 párrafos** (problema + propuesta)
+11. **Big quote** estilo dark con el slogan REAL del club (cita literal de su bio/redes)
+12. **H2 sections** (5-6 secciones) con barra naranja 5px + glow ::before
+13. **Values grid** 3x2 con counter pseudo + shadow elevation (si el club tiene 6 valores/principios)
+14. **Route card** con timeline vertical + KMs (si el club publica recorrido oficial)
+15. **Leaflet map** inline (NUNCA Google Maps iframe — endpoint deprecated 2024)
+16. **Tip box** con icon circular (NO emoji — usar "i" Georgia italic)
+17. **Split YES/NO lists** ("para ti si / no es para ti si") — honesto, transparente
+18. **Social cards** (Instagram + WhatsApp del club) con iconos brand
+19. **CTA box gradient orange** con badges SVG oficiales App Store + Google Play
+20. **FAQ items** (6 preguntas, sin acordeón — schema FAQPage)
+21. **Share bar al FINAL** (no al inicio), botones gris uniformes (NO colores brand verde/azul/negro)
+22. **Related links** pills con border + hover invertido
+23. **Footer 4 columnas** con newsletter form funcional + iconos sociales
+
+#### Reglas CSS críticas
+- **Body font**: Inter Google Fonts con preconnect + display:swap. NO confiar en font-system fallback.
+- **Page bg**: `#fef7ed` (cream brand) — solo en zona fuera del article body.
+- **Article body bg**: `#fff` blanco puro via `.content-wrap`.
+- **Reading width**: max-width `65ch` en `p`, `ul`, `ol`, `h2`, `h3` dentro de `.content`. NO en el container padre (rompería cards y bloques anchos).
+- **Body links**: gris oscuro `#1f1b16` + underline naranja `rgba(249,115,22,.5)` con 1.5px + offset 3px. **NUNCA color naranja sólido en links del cuerpo** — produce "texto moteado".
+- Naranja sólido SOLO en: H2 (la barra), CTAs, headings de sección, brand accents.
+
+#### JS components inline (no librerías externas excepto Leaflet)
+- Reading progress bar (15 líneas)
+- Sticky TOC IntersectionObserver (15 líneas)
+- Cookie banner + newsletter submit
+- Leaflet inline para el mapa (CDN unpkg.com, ~50KB)
+
+#### Schemas JSON-LD obligatorios
+- Organization (reusable, el del sitio)
+- WebSite
+- WebPage
+- Person (autor)
+- BlogPosting
+- BreadcrumbList
+- FAQPage
+- **SportsActivityLocation** (con lat/lng del punto de quedada)
+- **Event** (recurring weekly, con eventSchedule + offers free + organizer)
+
+#### A11y
+- SVG badges App Store / Google Play: `<title id="...">` inside SVG + `role="img"` + `aria-labelledby`
+- Share buttons: cada uno con `aria-label` específico
+- Map iframe equiv: aside con `aria-label`
+
+#### Scripts globales que NO se cargan en artículos partner
+- `cro.js` ← inyecta CTAs "Coach Jose" duplicadas mid-article + floating banner que tapan el CTA nativo
+- `author.js`, `related.js`, `toc.js`, `enhance.js` ← no necesarios, el HTML ya tiene todo inline
+
+#### Imágenes — protocolo
+- **Hero**: landscape mínimo 1600×800px, NO portrait estirado. Si no hay buena, pedirla al club como ÚLTIMO punto antes de publicar.
+- **Logos del club**: si llegan con fondo blanco/cream → procesar con sharp para hacer transparente + cropar a 400×400 centrado.
+- **Fotos del grupo con caras visibles**: NO publicar sin consent explícito del club. Mejor: planos generales, espaldas al sol, sombras.
+- **Cache-bust** en BD: append `?v=2` en photo_url cuando se actualiza un logo (Vercel cachea agresivo).
+
+#### Tono editorial (lente Wirecutter / The Verge longread)
+- **Honestidad radical**: mencionar puntos débiles del club si los hay (ej: "se apunta poca gente algunas semanas"). Construye confianza.
+- **Cita literal de bio**: usar palabras exactas del club (slogan, valores) entre comillas.
+- **Citación periodística**: external authoritative links (Ayuntamiento Vélez-Málaga, federaciones, etc.) cuando aplique.
+- **NUNCA inventar testimonios**. Si no tenemos quotes reales → omitir sección de testimonios.
+- **NUNCA inventar fechas/datos**: si el club no nos confirma fecha fundación, no la inventamos.
+- **Internal links**: mínimo 6 a otros artículos del blog para mantener al user en el sitio.
+
+#### Workflow de publicación (orden correcto)
+1. Copiar `tmp/blog-draft-{slug}.html` desde el template TDM
+2. Edit: meta tags, JSON-LD, contenido específico del club, fotos paths, lat/lng
+3. Render preview local con `node tmp/render-blog-preview.cjs` para validación visual
+4. Abrir en browser local para revisar
+5. `cp tmp/blog-draft-{slug}.html blog/{slug}.html`
+6. Añadir entrada a `sitemap-blog-es.xml`
+7. Git add + commit + push
+8. Esperar Vercel deploy (~30s) y verificar 200 OK
+9. IndexNow ping: `POST https://api.indexnow.org/indexnow` con la URL
+10. Pasar el link al club por DM con copy estándar (ver "Mensaje para enviar al club tras publicar")
+
+#### Mensaje para enviar al club tras publicar
+Plantilla cercana (en su Instagram DM):
+```
+Hola! He hecho el artículo del club, mira a ver qué te parece 🙌
+👉 correrjuntos.com/blog/{slug}
+
+Si os mola lo dejo así. Si hay algo que cambiar o incluso quitar, me dices y se hace al momento.
+
+Una cosa importante: la foto de portada la cogí de vuestro Instagram y en alta resolución se ve un poco regular. ¿Tenéis fotos buenas del grupo (horizontales si puede ser) que pueda usar?
+
+Cuando me las mandéis las cambio y os paso captura. Sin prisa 🤙
+```
+
+#### Hallucinations frecuentes de auditores AI a IGNORAR
+Cuando llegue una auditoría de la página, ANTES de aceptar y reescribir, verificar contra mi HTML real. Estos puntos suelen ser fantasma:
+- "Sección Coach José en medio del article" → no existe en artículos partner (era de cro.js, ya removido)
+- "Share buttons en colores brand WhatsApp verde / X negro / Facebook azul" → ya unificados gris desde v5
+- "Cards de valores en 1 columna" → siempre grid 3x2 desktop, 1col mobile
+- "Filenames PNG 25566.png alt vacío" → esos PNGs no existen en el HTML
+- "Pista de sticky sidebar layout 3 columnas faltante" → ya añadido en v8
+- "4 CTAs duplicados a app" → real máximo: 1 navbar + 1 CTA box con 2 badges = 3 puntos de contacto necesarios
+
+#### Score esperado por audit profesional siguiendo este playbook
+**8.5-9.5/10**. El 0.5-1.5 restante requiere SIEMPRE foto landscape real del club (1600×800+px) que solo el club puede proveer. Sin foto landscape pro, el techo es 9/10. Con foto landscape pro → 10/10.
+
 ### Reglas críticas — no romper esto
 
 ⚠️ **`fecha_hora` NUNCA puede ser NULL** al INSERT manual de quedadas. El filtro de la app (`fecha_hora >= now()`) excluye NULL. Si insertas con SQL crudo, calcular: `((fecha + hora) AT TIME ZONE 'Europe/Madrid')`. La función `rotate_partner_quedadas()` lo hace bien — si añades nuevas quedadas a mano, hacerlo igual.

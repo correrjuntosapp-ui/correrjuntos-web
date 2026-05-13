@@ -152,8 +152,8 @@ li strong{color:#1f1b16}
 
 /* ───── Floating share sidebar (desktop only) ───── */
 .float-share{display:none}
-@media(min-width:1280px){
-  .float-share{position:fixed;left:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:50;background:#fff;padding:14px 10px;border-radius:14px;border:1px solid #efe6db;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+@media(min-width:1100px){
+  .float-share{position:fixed;left:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:50;background:#fff;padding:14px 10px;border-radius:14px;border:1px solid #efe6db;box-shadow:0 4px 24px rgba(0,0,0,.06)}
   .float-share .share-btn{width:38px;height:38px}
   .float-share .float-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#94886e;font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);margin:6px auto;line-height:1}
 }
@@ -789,23 +789,26 @@ async function submitFooterNewsletter(e){
 <script>
 /* Reading progress bar + nav scroll shadow */
 (function(){
-  var bar = document.getElementById('reading-progress');
-  var nav = document.getElementById('site-header');
-  if(!bar || !nav) return;
-  var article = document.querySelector('.content-wrap') || document.body;
-  function update(){
-    var rect = article.getBoundingClientRect();
-    var winH = window.innerHeight;
-    var docH = article.offsetHeight;
-    var scrolled = Math.max(0, -rect.top);
-    var pct = Math.min(100, (scrolled / Math.max(1, docH - winH)) * 100);
-    bar.style.width = pct + '%';
-    if(window.scrollY > 8){ nav.classList.add('scrolled'); }
-    else { nav.classList.remove('scrolled'); }
+  function init(){
+    var bar = document.getElementById('reading-progress');
+    var nav = document.getElementById('site-header');
+    if(!bar) return;
+    function update(){
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var docH = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+      var pct = docH > 0 ? Math.min(100, Math.max(0, (scrollTop / docH) * 100)) : 0;
+      bar.style.width = pct.toFixed(2) + '%';
+      if(nav){
+        if(scrollTop > 8){ nav.classList.add('scrolled'); }
+        else { nav.classList.remove('scrolled'); }
+      }
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
   }
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-  update();
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 
 /* Sticky TOC active section highlight via IntersectionObserver */

@@ -35,6 +35,12 @@
 <meta property="al:android:app_name" content="Correr Juntos">
 <meta property="al:android:url" content="https://www.correrjuntos.com/blog/grupos-running-torre-del-mar-correr-sin-limites">
 <meta property="al:web:url" content="https://www.correrjuntos.com/blog/grupos-running-torre-del-mar-correr-sin-limites">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -68,6 +74,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fef7ed;color:#1f1b16;line-height:1.75;-webkit-font-smoothing:antialiased;font-size:17px}
+/* Reading progress bar (fixed top) */
+.reading-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#f97316,#ea580c);z-index:200;transition:width .08s linear;box-shadow:0 0 8px rgba(249,115,22,.5)}
+/* Sticky navbar shadow on scroll */
+.site-header.scrolled{box-shadow:0 2px 16px rgba(0,0,0,.08)}
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 .article-wrap{background:#fff;border-radius:0;margin:0;padding:0;box-shadow:none}
 .article-inner{max-width:760px;margin:0 auto;padding:0 24px 80px;background:#fff}
@@ -110,6 +120,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 /* ───── CONTENT (white card) ───── */
 .content-wrap{background:#fff;padding:40px 0 64px;margin:0;box-shadow:0 -8px 32px rgba(0,0,0,.04)}
 .content{max-width:720px;margin:0 auto;padding:0 24px;font-size:1.05rem;line-height:1.75;color:#1f1b16}
+/* Body paragraphs: ~65ch optimal line length */
+.content p,.content ul,.content ol,.content > h2,.content > h3{max-width:65ch}
+/* Body links: subtle dark with underline, not orange (orange reserved for CTAs/headings) */
+.content p a[href]:not(.cta):not(.store-badge):not(.social-card):not(.related-links a){color:#1f1b16;text-decoration:underline;text-decoration-color:rgba(249,115,22,.5);text-decoration-thickness:1.5px;text-underline-offset:3px;transition:color .15s,text-decoration-color .15s;font-weight:600}
+.content p a[href]:not(.cta):not(.store-badge):not(.social-card):not(.related-links a):hover{color:#f97316;text-decoration-color:#f97316}
 h2{font-size:1.85rem;font-weight:900;margin:64px 0 20px;color:#1f1b16;letter-spacing:-.02em;position:relative;padding-left:24px}
 h2::before{content:'';position:absolute;left:0;top:.32em;bottom:.32em;width:5px;background:linear-gradient(180deg,#f97316 0%,#ea580c 100%);border-radius:3px;box-shadow:0 0 12px rgba(249,115,22,.3)}
 h3{font-size:1.18rem;font-weight:800;margin:28px 0 10px;color:#ea580c;letter-spacing:-.01em}
@@ -145,9 +160,9 @@ li strong{color:#1f1b16}
 
 /* ───── VALUES grid ───── */
 .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
-.value-card{background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:20px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
-.value-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.1)}
-.value-card::before{content:counter(val,decimal-leading-zero);counter-increment:val;position:absolute;top:14px;right:16px;font-size:.7rem;color:rgba(249,115,22,.4);font-weight:800;letter-spacing:.05em;font-variant-numeric:tabular-nums}
+.value-card{background:#fff;border:1px solid #efe6db;border-radius:16px;padding:24px 22px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:0 1px 3px rgba(31,27,22,.04),0 2px 8px rgba(31,27,22,.06)}
+.value-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.12)}
+.value-card::before{content:counter(val,decimal-leading-zero);counter-increment:val;position:absolute;top:14px;right:16px;font-size:.8rem;color:rgba(249,115,22,.65);font-weight:800;letter-spacing:.05em;font-variant-numeric:tabular-nums}
 .value-card strong{display:block;color:#f97316;font-size:1.05rem;margin-bottom:4px;font-weight:800;letter-spacing:-.01em}
 .value-card span{font-size:.88rem;color:#5c4d3d;line-height:1.5}
 .values-grid{counter-reset:val}
@@ -166,7 +181,7 @@ li strong{color:#1f1b16}
 
 /* ───── TIP boxes ───── */
 .tip{background:linear-gradient(135deg,rgba(249,115,22,.08) 0%,rgba(249,115,22,.04) 100%);border-left:4px solid #f97316;padding:18px 22px;border-radius:0 14px 14px 0;margin:28px 0;display:flex;gap:14px;align-items:flex-start}
-.tip-icon{width:28px;height:28px;background:#f97316;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;flex-shrink:0;margin-top:2px}
+.tip-icon{width:28px;height:28px;background:#f97316;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:900;flex-shrink:0;margin-top:2px;font-family:Georgia,serif;font-style:italic;line-height:1}
 .tip strong{color:#ea580c;display:block;margin-bottom:4px;font-size:.95rem}
 .tip p{margin:0;font-size:.95rem;color:#3d3229}
 
@@ -272,7 +287,10 @@ li strong{color:#1f1b16}
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 
-<header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
+<!-- Reading progress bar -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<header class="site-header" id="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .2s">
 <nav style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px">
   <a href="/" style="text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em"><span style="color:#1f1b16">CORRER</span><span style="color:#f97316">JUNTOS</span></a>
   <div style="display:flex;gap:24px;align-items:center;font-size:.9rem;font-weight:600">
@@ -293,7 +311,7 @@ li strong{color:#1f1b16}
   <article class="hero">
     <div class="hero-bg"><img src="/public/quedadas/correr-sin-limites-torre-del-mar/05-grupo-atardecer-HERO.jpg" alt="Grupo del club de running Correr Sin Límites corriendo por el paseo marítimo de Torre del Mar al atardecer — quedada semanal de running en la Axarquía, Málaga" loading="eager" fetchpriority="high" width="1200" height="750"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">🌅 Grupos de Running · Andalucía</div>
+      <div class="hero-eyebrow">Grupos de Running · Andalucía</div>
       <h1>El club abierto del paseo marítimo de <em>Torre del Mar</em></h1>
       <p class="hero-dek">Correr Sin Límites no prepara maratones, no fija ritmos, no cobra cuota. Quedan los jueves a las 20:00 desde el Club Náutico y corren juntos hasta el atardecer.</p>
     </div>
@@ -434,7 +452,7 @@ li strong{color:#1f1b16}
     <div class="map-card">
       <div id="osm-map" aria-label="Mapa del punto de quedada del club: Club Náutico Torre del Mar"></div>
       <div class="map-meta">
-        <span class="addr">📍 Club Náutico Torre del Mar · Paseo Marítimo, 29740 Vélez-Málaga</span>
+        <span class="addr">Club Náutico Torre del Mar · Paseo Marítimo, 29740 Vélez-Málaga</span>
         <a href="https://www.google.com/maps/dir/?api=1&amp;destination=36.7450172,-4.0845459" target="_blank" rel="noopener" class="open">Cómo llegar →</a>
       </div>
     </div>
@@ -453,7 +471,7 @@ li strong{color:#1f1b16}
     </script>
 
     <div class="tip">
-      <div class="tip-icon">💡</div>
+      <div class="tip-icon">i</div>
       <div>
         <strong>Tip de novato</strong>
         <p>La primera vez no intentes correr los 6 km seguidos. Alterna 2 min caminando y 1 min trotando. Casi nadie del grupo empezó corriendo sin parar — y si lo hicieron, no se acuerdan.</p>
@@ -689,7 +707,7 @@ function rejectCookies(){localStorage.setItem('cj_cookie_consent','rejected');do
 </div>
 <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.78rem;color:#7a6e5c">
   <span>&copy; 2026 CorrerJuntos. Todos los derechos reservados.</span>
-  <span>Hecho en Huelva con 🧡 para runners de toda España.</span>
+  <span>Hecho en Huelva para runners de toda España.</span>
 </div>
 </footer>
 
@@ -715,5 +733,27 @@ async function submitFooterNewsletter(e){
      cro.js was injecting duplicate "Coach Jose" mid-article CTAs + floating
      banner that competed with the native CTA box.
      enhance.js is also skipped — the page handles its own cookie + newsletter. -->
+<script>
+/* Reading progress bar + nav scroll shadow */
+(function(){
+  var bar = document.getElementById('reading-progress');
+  var nav = document.getElementById('site-header');
+  if(!bar || !nav) return;
+  var article = document.querySelector('.content-wrap') || document.body;
+  function update(){
+    var rect = article.getBoundingClientRect();
+    var winH = window.innerHeight;
+    var docH = article.offsetHeight;
+    var scrolled = Math.max(0, -rect.top);
+    var pct = Math.min(100, (scrolled / Math.max(1, docH - winH)) * 100);
+    bar.style.width = pct + '%';
+    if(window.scrollY > 8){ nav.classList.add('scrolled'); }
+    else { nav.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+</script>
 </body>
 </html>

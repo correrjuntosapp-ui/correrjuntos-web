@@ -695,10 +695,10 @@ async function submitFooterNewsletter(e){
 }
 </script>
 
-<script src="/blog/toc.js" defer></script>
-<script src="/blog/author.js" defer></script>
-<script src="/blog/related.js" defer></script>
-<script src="/blog/enhance.js" defer></script>
-<script src="/blog/cro.js" defer></script>
+<!-- toc.js, author.js, cro.js, related.js NOT loaded:
+     partner club articles use a native strong CTA + curated related links.
+     cro.js was injecting duplicate "Coach Jose" mid-article CTAs + floating
+     banner that competed with the native CTA box.
+     enhance.js is also skipped — the page handles its own cookie + newsletter. -->
 </body>
 </html>

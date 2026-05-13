@@ -175,6 +175,11 @@
     { "source": "/10", "destination": "/", "permanent": true },
     { "source": "/mês", "destination": "/", "permanent": true },
 
+    { "source": "/tk", "destination": "/?utm_source=tiktok&utm_medium=bio&utm_campaign=organic_es", "permanent": false },
+    { "source": "/ig", "destination": "/?utm_source=instagram&utm_medium=bio&utm_campaign=organic_es", "permanent": false },
+    { "source": "/yt", "destination": "/?utm_source=youtube&utm_medium=bio&utm_campaign=organic_es", "permanent": false },
+    { "source": "/r/:reel", "destination": "/?utm_source=:reel&utm_medium=reel&utm_campaign=organic_es", "permanent": false },
+
     {
       "source": "/:path(.*)",
       "has": [

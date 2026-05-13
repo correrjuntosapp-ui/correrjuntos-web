@@ -130,6 +130,59 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1466415711868158');fbq('track','PageView');}
 if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </script>
+<script>
+/* UTM capture — persist source attribution across sessions and into App Store links */
+(function(){
+  try{
+    var qs=new URLSearchParams(window.location.search);
+    var src=qs.get('utm_source');
+    if(src){
+      var utm={
+        source:src,
+        medium:qs.get('utm_medium')||'',
+        campaign:qs.get('utm_campaign')||'',
+        content:qs.get('utm_content')||'',
+        term:qs.get('utm_term')||'',
+        t:Date.now(),
+        landing:window.location.pathname
+      };
+      localStorage.setItem('cj_utm',JSON.stringify(utm));
+      /* Send to GA4 as event (in addition to native UTM auto-capture) */
+      if(typeof gtag==='function'){
+        gtag('event','utm_landing',{utm_source:utm.source,utm_medium:utm.medium,utm_campaign:utm.campaign,landing:utm.landing});
+      }
+    }
+    /* Append stored UTM to App Store / Google Play links after DOM ready */
+    function appendUtmToStoreLinks(){
+      var stored=localStorage.getItem('cj_utm');
+      if(!stored)return;
+      var u;try{u=JSON.parse(stored);}catch(e){return;}
+      var maxAge=30*24*60*60*1000;/* 30 days */
+      if(!u.t||Date.now()-u.t>maxAge)return;
+      var links=document.querySelectorAll('a[href*="apps.apple.com"], a[href*="play.google.com"]');
+      links.forEach(function(a){
+        try{
+          var url=new URL(a.href);
+          /* Google Play uses &referrer= for install attribution */
+          if(url.hostname.indexOf('play.google.com')>-1){
+            var ref='utm_source='+encodeURIComponent(u.source)+'&utm_medium='+encodeURIComponent(u.medium||'')+'&utm_campaign='+encodeURIComponent(u.campaign||'');
+            url.searchParams.set('referrer',ref);
+          }else{
+            /* App Store uses pt/ct/mt params */
+            url.searchParams.set('ct',u.campaign||u.source);
+          }
+          a.href=url.toString();
+        }catch(e){}
+      });
+    }
+    if(document.readyState==='loading'){
+      document.addEventListener('DOMContentLoaded',appendUtmToStoreLinks);
+    }else{
+      appendUtmToStoreLinks();
+    }
+  }catch(e){}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.pexels.com">

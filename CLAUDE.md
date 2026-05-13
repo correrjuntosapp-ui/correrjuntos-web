@@ -30,6 +30,30 @@ del 11-12 may. Beer Runners Málaga aceptó compartir sus quedadas en la app.
 - **Instagram**: https://instagram.com/beerrunnersmalaga
 - **Contacto humano**: el "chico" que respondió al DM inicial (12 may pm) — pendiente llamada/charla 13 may pm
 
+### 📝 Plantilla outreach a clubs — 4 ingredientes obligatorios (memorizado 13 may 2026)
+
+Founder validó el 13 may los ingredientes que separan un DM frío de uno que sí se contesta. **Cualquier outreach a clubs debe incluir los 4**:
+
+1. **Historia personal — "nace de una necesidad propia"**
+   - "Quería correr, no quería hacerlo solo, me costaba encontrar gente con mi ritmo. Lo que era un problema mío al final lo tenía mucha gente."
+   - Humaniza vs marketing — el club entiende que hablan con persona, no empresa.
+
+2. **Social proof real (los clubs ya dentro)**
+   - "Esta semana ya están dentro [Beer Runners Málaga + Sevilla Running Club + …]"
+   - NUNCA inventar clubs. Solo citar los que ya dijeron sí.
+
+3. **Reciprocidad blog (gratis, sin obligación)**
+   - "Llevo también el blog de CorrerJuntos. Si os apetece os hago un artículo contando vuestra historia y filosofía — otra vía gratis para que llegue gente nueva al grupo."
+   - Ofrece un activo SEO + tráfico para ELLOS. No pide nada a cambio.
+
+4. **Cierre cercano + puerta abierta**
+   - "Y para lo que necesitéis, aquí estoy. [Ángulo local si aplica: 'Somos de Huelva, hay que apoyarse'] 🍻"
+   - Posiciona como "compi local" no como vendor.
+
+**Ángulo local (si aplica)**: si el club está en Huelva o ciudad cercana al founder, mencionarlo SIEMPRE. "Soy de Huelva también" rompe el hielo en 4 palabras.
+
+**Cita literal de su bio/slogan**: leer su perfil IG/web 2 minutos antes y citar su slogan o frase exacta dentro del mensaje. Demuestra que NO es plantilla copy/paste, y aumenta CTR de respuesta significativamente.
+
 ### Playbook para añadir nuevo club partner (replicar Beer Runners)
 
 Cuando otro club acepte el outreach:

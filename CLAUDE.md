@@ -16,19 +16,58 @@ del 11-12 may. Beer Runners Málaga aceptó compartir sus quedadas en la app.
 | Tool onboarding | `tools/add-beer-runners-malaga.cjs` (template para futuros clubs — adaptar) |
 | App handling | MapScreen + CardQuedadaCompacta detectan `max_participantes=NULL` → "Grupo abierto · todos bienvenidos" |
 
-### Beer Runners Málaga — IDs y datos
+### Partner clubs activos en BD — al cierre del 13 may pm
 
+**4 clubs partner reales en 2 días de outreach. Cobertura Andalucía completa.**
+
+#### 1️⃣ Beer Runners Málaga
 - **Partner profile ID**: `5e99da62-332e-4e3d-8f27-b377591d7cff`
-- **Email partner técnico**: `beerrunners-malaga@partners.correrjuntos.app`
-- **Logo URL**: `https://www.correrjuntos.com/public/quedadas/beer-runners-malaga/logo.png`
-- **Carpeta logo**: `public/quedadas/beer-runners-malaga/logo.png`
-- **Recurrencia**: martes 20:30 Madrid TZ, en Las Letras de la Playa de la Malagueta (lat 36.7186, lng -4.4117)
-- **Distancia**: NULL (Entrenos diversos)
-- **Ritmo**: "Cómodo"
-- **Plazas/max**: NULL (grupo abierto, sin límite)
-- **Auto-join del organizer**: el partner profile se añade como 1º participante de cada quedada (no es fake, ES quien organiza — patrón Meetup/Strava)
-- **Instagram**: https://instagram.com/beerrunnersmalaga
-- **Contacto humano**: el "chico" que respondió al DM inicial (12 may pm) — pendiente llamada/charla 13 may pm
+- **Email técnico**: `beerrunners-malaga@partners.correrjuntos.app`
+- **Logo**: `/public/quedadas/beer-runners-malaga/logo.png` (con `?v=2` cache-bust)
+- **Recurrencia**: martes 20:30 · Las Letras de la Playa de la Malagueta (36.7186, -4.4117)
+- **Plazas**: NULL (grupo abierto)
+- **Instagram**: @beerrunnersmalaga
+- **Status**: cerrado primer día (12 may). El "chico" del DM atento, founder ofreció visita en persona.
+
+#### 2️⃣ Sevilla Running Club
+- **Partner profile ID**: `f50f179c-bd4f-4bf5-80e0-4c4558228c12`
+- **Email técnico**: `sevilla-running-club@partners.correrjuntos.app`
+- **Logo**: `/public/quedadas/sevilla-running-club/logo.png?v=2` (Torre del Oro coral · transparente)
+- **Recurrencia DUAL**: martes 20:30 + jueves 20:30 · Torre del Oro · paseo Guadalquivir (37.3826, -5.9962)
+- **Plazas**: NULL · Distancia variable · Comunidad internacional ES+EN
+- **Status**: cerrado 13 may. Logo trim+centered 400×400.
+
+#### 3️⃣ Soul Run Club Huelva
+- **Partner profile ID**: `2aefeb9f-a864-484f-9327-b4614e0be519`
+- **Email técnico**: `soul-runclub-huelva@partners.correrjuntos.app`
+- **Logo**: `/public/quedadas/soul-runclub-huelva/logo.png?v=2` (gris circular, 400×400 trim)
+- **Recurrencia**: miércoles 18:30 · Soul Box Huelva (C/ Coscoja 1, 21001 · 37.2411, -6.9532)
+- **Distancia**: 5km · Ritmo a tu ritmo
+- **Head Coach**: Rafa García (`@rafasoul.coach` IG handle)
+- **Status**: cerrado 13 may. Founder vive en Punta Umbría — quedaron en encontrarse próxima quedada.
+
+#### 4️⃣ Correr Sin Límites Torre del Mar
+- **Partner profile ID**: ver query — `SELECT id FROM profiles WHERE nombre='Correr Sin Límites' AND apellidos='Torre del Mar'`
+- **Email técnico**: `correr-sin-limites-tdm@partners.correrjuntos.app`
+- **Logo**: `/public/quedadas/correr-sin-limites-torre-del-mar/logo.png` (cream + sol naranja, 400×400)
+- **Recurrencia**: jueves 20:00 · Parking Club Náutico Torre del Mar · Paseo Marítimo (36.7450, -4.0845)
+- **Founders IG**: @andriufreyre + @susaaanitaa
+- **Status**: 13 may pm — pain admitido ("se apunta poca gente"). Conversación caliente, founder cerró sin esperar pin explícito (geocode oficial Club Náutico). Founder hace triatlón Torre del Mar, mencionarlo siguiente mensaje.
+
+### Outreach pending response (al cierre del 13 may pm)
+
+| Club | Canal | Status |
+|---|---|---|
+| Beer Runners España (umbrella) | IG @beerrunners_es | DM enviado · social proof Málaga · esperando |
+| Beer Runners Madrid | IG @beerrunnersmadrid | DM enviado · esperando |
+| Beer Runners Barcelona | IG @beerrunners_bcn | DM enviado · esperando |
+| Club Running La Gavia | IG @club_running_la_gavia | **DM redactado pero NO enviado** — pendiente founder mañana |
+| Correr Sin Límites TDM | IG @corrersinlimitestdm | Sí tácito, BD live, esperando pin exacto opcional |
+
+### Incidentes del día
+
+- **GitGuardian alert 13 may 07:55**: "Company Email Password exposed" → resultó ser hardcoded password en `tools/add-beer-runners-malaga.cjs` y `tools/create-quedadas.cjs`. **Falsa alarma de severidad real**: el password nunca se usó (BD muestra `pwd_status: no_password` para el partner). Arreglado en commit `55221a65` — passwords ahora random `crypto.randomBytes()` en runtime.
+- **Logo Soul Run Club descentrado**: trim+resize 400×400 con `?v=2` cache-bust en URLs de BD.
 
 ### 📝 Plantilla outreach a clubs — 4 ingredientes obligatorios (memorizado 13 may 2026)
 

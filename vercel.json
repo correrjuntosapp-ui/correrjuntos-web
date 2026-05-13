@@ -204,6 +204,10 @@
     {
       "path": "/api/cron/run?job=trial-push",
       "schedule": "0 10 * * *"
+    },
+    {
+      "path": "/api/cron/run?job=partner-quedadas",
+      "schedule": "30 4 * * *"
     }
   ]
 }

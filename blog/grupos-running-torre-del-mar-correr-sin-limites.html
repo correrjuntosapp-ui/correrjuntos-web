@@ -193,14 +193,15 @@ li strong{color:#1f1b16}
 .store-badge svg{display:block;height:54px;width:auto}
 @media(max-width:480px){.store-badge svg{height:48px}}
 
-/* ───── Map embed ───── */
-.map-card{margin:32px 0;border-radius:20px;overflow:hidden;border:1px solid #efe6db;background:#fffcf9;box-shadow:0 4px 24px rgba(0,0,0,.05)}
-.map-card iframe{display:block;width:100%;height:340px;border:0}
+/* ───── Map embed (Leaflet) ───── */
+.map-card{margin:32px 0;border-radius:14px;overflow:hidden;border:1px solid #efe6db;background:#fff;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.map-card #osm-map{height:340px;width:100%;background:#e6e2db}
+.map-card .leaflet-container{font-family:'Inter',-apple-system,sans-serif}
 .map-meta{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-top:1px solid #efe6db;font-size:.88rem;flex-wrap:wrap;gap:8px}
 .map-meta .addr{color:#5c4d3d;font-weight:600}
 .map-meta .open{color:#f97316;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .map-meta .open:hover{text-decoration:underline}
-@media(max-width:480px){.map-card iframe{height:260px}}
+@media(max-width:480px){.map-card #osm-map{height:260px}}
 
 /* ───── Share buttons (unified) ───── */
 .share-bar{display:flex;align-items:center;gap:8px;margin:48px 0 24px;padding:16px 20px;background:#fafafa;border:1px solid #ececec;border-radius:12px;flex-wrap:wrap}
@@ -429,13 +430,27 @@ li strong{color:#1f1b16}
     <h3>Cómo llegar al punto de quedada</h3>
     <p>El parking del Club Náutico está en pleno paseo marítimo de Torre del Mar. Si vienes desde Málaga capital son ~35 min por la A-7. Hay parking gratuito alrededor del club:</p>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <div class="map-card">
-      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-4.090%2C36.742%2C-4.079%2C36.748&amp;layer=mapnik&amp;marker=36.7450172%2C-4.0845459" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Club Náutico Torre del Mar — punto de quedada Correr Sin Límites"></iframe>
+      <div id="osm-map" aria-label="Mapa del punto de quedada del club: Club Náutico Torre del Mar"></div>
       <div class="map-meta">
         <span class="addr">📍 Club Náutico Torre del Mar · Paseo Marítimo, 29740 Vélez-Málaga</span>
-        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=36.7450172,-4.0845459&amp;destination_place_id=ChIJ_-tdYbBChQ0RsLAYrYUv1Mo" target="_blank" rel="noopener" class="open">Cómo llegar →</a>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=36.7450172,-4.0845459" target="_blank" rel="noopener" class="open">Cómo llegar →</a>
       </div>
     </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      (function(){
+        if(typeof L==='undefined')return;
+        var map = L.map('osm-map', { scrollWheelZoom:false, dragging: !L.Browser.mobile, tap:false }).setView([36.7450172, -4.0845459], 16);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 19
+        }).addTo(map);
+        L.marker([36.7450172, -4.0845459]).addTo(map)
+          .bindPopup('<b>Club Náutico Torre del Mar</b><br>Punto de quedada<br>Jueves 20:00').openPopup();
+      })();
+    </script>
 
     <div class="tip">
       <div class="tip-icon">💡</div>

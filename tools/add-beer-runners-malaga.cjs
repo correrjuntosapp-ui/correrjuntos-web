@@ -68,7 +68,9 @@ const WEEKS = weeksIdx >= 0 ? parseInt(args[weeksIdx + 1], 10) : 8;
 const CLUB = {
   // Email único para crear el auth.user. Marcado como partner.
   email: 'beerrunners-malaga@partners.correrjuntos.app',
-  password: 'PartnerClub_CJ_2026_BeerRunnersMalaga!',
+  // Random password generated each run — this account never logs in,
+  // it only exists as a foreign key target for partner quedadas.
+  password: require('crypto').randomBytes(32).toString('base64url') + '_PartnerSysOnly!',
   // Datos del profile
   nombre: 'Beer Runners',
   apellidos: 'Málaga',
@@ -219,9 +221,29 @@ async function publishQuedadas(creadorId) {
       continue;
     }
 
+    // Compute fecha_hora in UTC from local Europe/Madrid (UTC+2 summer).
+    // The app filters with `fecha_hora >= now` — leaving it NULL hides the quedada.
+    const [hh, mm, ss] = QUEDADA_TEMPLATE.hora.split(':').map(Number);
+    const [y, mo, d] = fecha.split('-').map(Number);
+    // Madrid is UTC+2 May-Oct (CEST), UTC+1 Nov-Apr (CET). Compute correctly using Intl.
+    const localDate = new Date(Date.UTC(y, mo - 1, d, hh, mm, ss || 0));
+    const offsetHours = (() => {
+      // Get the offset string for Europe/Madrid at this date
+      const f = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Europe/Madrid',
+        timeZoneName: 'shortOffset',
+      });
+      const parts = f.formatToParts(localDate);
+      const tz = parts.find(p => p.type === 'timeZoneName')?.value || 'GMT+2';
+      const m = tz.match(/GMT([+-]\d+)/);
+      return m ? parseInt(m[1], 10) : 2;
+    })();
+    const fechaHoraUtc = new Date(localDate.getTime() - offsetHours * 3600 * 1000).toISOString();
+
     const quedada = {
       ...QUEDADA_TEMPLATE,
       fecha,
+      fecha_hora: fechaHoraUtc,
       creador_id: creadorId,
       organizador_nombre: `${CLUB.nombre} ${CLUB.apellidos}`,
       organizador_foto: CLUB.photo,

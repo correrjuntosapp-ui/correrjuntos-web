@@ -167,10 +167,11 @@ async function getOrCreateProfile(perfil) {
     return existing[0].id;
   }
 
-  // Create auth user
+  // Create auth user — random password (seed accounts never log in,
+  // they're only foreign key targets for seed quedadas)
   const { data: authData, error: authErr } = await supabase.auth.admin.createUser({
     email: perfil.email,
-    password: 'CJseed2026!',
+    password: require('crypto').randomBytes(32).toString('base64url') + '_SeedOnly!',
     email_confirm: true,
     user_metadata: { full_name: `${perfil.nombre} ${perfil.apellidos}` }
   });

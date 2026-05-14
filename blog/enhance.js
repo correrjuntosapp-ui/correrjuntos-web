@@ -774,24 +774,25 @@
     // Inject CSS
     var bannerCSS = document.createElement('style');
     bannerCSS.textContent = [
-      '.cj-app-banner{position:relative;margin:28px 0;padding:20px 24px;border-radius:16px;background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1px solid #fed7aa;box-shadow:0 2px 12px rgba(249,115,22,.08)}',
-      '.cj-app-banner-close{position:absolute;top:8px;right:12px;background:none;border:none;font-size:1.4rem;color:#9a8478;cursor:pointer;padding:4px;line-height:1}',
-      '.cj-app-banner-close:hover{color:#f97316}',
-      '.cj-app-banner-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap}',
-      '.cj-app-banner-icon{border-radius:14px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.1)}',
-      '.cj-app-banner-text{flex:1;min-width:180px}',
-      '.cj-app-banner-text strong{display:block;font-size:1.05rem;color:#3d3229;margin-bottom:2px}',
-      '.cj-app-banner-text span{font-size:.88rem;color:#6b5c4d;line-height:1.4}',
-      '.cj-app-banner-badges{display:flex;gap:8px;flex-shrink:0}',
-      '.cj-app-badge{display:inline-flex;align-items:center;text-decoration:none;transition:all .2s;border-radius:6px;overflow:hidden}',
+      '.cj-app-banner{position:relative;margin:32px auto;padding:28px 24px 24px;border-radius:18px;background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1px solid #fed7aa;box-shadow:0 4px 24px rgba(249,115,22,.10),0 1px 3px rgba(31,27,22,.06);max-width:520px;text-align:center}',
+      '.cj-app-banner-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.4rem;color:#9a8478;cursor:pointer;padding:4px 8px;line-height:1;border-radius:6px;transition:color .15s,background .15s}',
+      '.cj-app-banner-close:hover{color:#f97316;background:rgba(249,115,22,.08)}',
+      '.cj-app-banner-inner{display:flex;flex-direction:column;align-items:center;gap:14px}',
+      '.cj-app-banner-icon{display:inline-flex;border-radius:14px;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.12);line-height:0}',
+      '.cj-app-banner-icon svg{display:block}',
+      '.cj-app-banner-text{text-align:center;max-width:340px}',
+      '.cj-app-banner-text strong{display:block;font-size:1.1rem;color:#3d3229;margin-bottom:4px;font-weight:800;letter-spacing:-.005em}',
+      '.cj-app-banner-text span{display:block;font-size:.88rem;color:#6b5c4d;line-height:1.45}',
+      '.cj-app-banner-badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:4px}',
+      '.cj-app-badge{display:inline-flex;align-items:center;text-decoration:none;transition:transform .15s,box-shadow .15s;border-radius:6px;overflow:hidden;line-height:0}',
       '.cj-app-badge svg{display:block}',
-      '.cj-app-badge:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2);opacity:.9}',
+      '.cj-app-badge:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.18)}',
       '/* Dark mode */',
       'body.dark-mode .cj-app-banner,.dark-mode .cj-app-banner{background:linear-gradient(135deg,#1e1b18,#292117);border-color:rgba(249,115,22,.2)}',
       'body.dark-mode .cj-app-banner-text strong,.dark-mode .cj-app-banner-text strong{color:#fef3c7}',
       'body.dark-mode .cj-app-banner-text span,.dark-mode .cj-app-banner-text span{color:#a89480}',
       'body.dark-mode .cj-app-banner-close,.dark-mode .cj-app-banner-close{color:#6b5c4d}',
-      '@media(max-width:520px){.cj-app-banner-inner{flex-direction:column;text-align:center;align-items:center}.cj-app-banner-badges{justify-content:center}.cj-app-banner{padding:12px 48px 16px 16px}.cj-app-banner-close{font-size:1.8rem;padding:10px;top:2px;right:4px}}'
+      '@media(max-width:420px){.cj-app-banner{padding:24px 20px 20px;margin:24px 0}.cj-app-banner-text strong{font-size:1rem}.cj-app-banner-text span{font-size:.82rem}.cj-app-banner-close{font-size:1.5rem}}'
     ].join('\n');
     document.head.appendChild(bannerCSS);
 

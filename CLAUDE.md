@@ -238,6 +238,67 @@ Cuando llegue una auditoría de la página, ANTES de aceptar y reescribir, verif
 
 ⚠️ **NUNCA crear participantes fake (`es_seed=true`)** para inflar contador. Miguel ya nos avisó hace meses ("cantan mucho los perfiles falsos"). Lo único OK: auto-join del organizer profile, porque ES quien organiza (Meetup/Strava pattern). La descripción aclara "grupo de 15-25 runners habituales" para contexto.
 
+### 🎯 Playbook: artículo comparativo bottom-of-funnel (memorizado 14 may 2026)
+
+**Template de referencia**: `blog/mejor-app-running-gratuita-2026.html` — primer comparativo de la serie, validado por auditor profesional con score 9/10.
+
+#### Patrón "honest ranking" (Wirecutter-style)
+
+- **NUNCA poner CorrerJuntos en #1 forzado** — Google penaliza el contenido autopromocionado sin balance
+- **Posición honesta**: dejar que CJ caiga donde realmente cae (en este caso #3 entre 5)
+- **Auto-admisión explícita** de pérdidas en el card del propio CJ → genera confianza algorítmica + lectores
+- **Bullets de contras de CJ en orden de gravedad** (el más grave primero, no al final)
+- **Frase mágica del balance**: en lugar de "aunque..." (disculpa implícita), usar **"Gana en X. Pierde en Y. Dicho esto, arrancamos."** Neutral declarativo.
+
+#### Estructura validada (replicar para próximos "vs")
+
+1. Hero full-bleed con foto Pexels temática + título "X vs Y" o "Mejor app de running"
+2. Stats banner (apps testadas / meses de uso / 0€ patrocinio / año)
+3. Intro 2 párrafos admitiendo el sesgo del autor por adelantado
+4. Tabla comparativa al inicio (fila CJ resaltada naranja)
+5. Metodología transparente (6 criterios ponderados)
+6. App card individual por cada competidor (rank badge, pros/cons split, "para quién es")
+7. Matriz de decisión por perfil de usuario (6 perfiles)
+8. **Soft CTA de 1 línea, no bloque**: "Si no es para ti, X y Y siguen ahí" (sin "te quedas con NRC sin haber gastado nada" — eso introduce pensamiento de salida antes de decidir)
+9. FAQ con 6-7 preguntas (la última cierra la objeción de "¿puedo usar CJ + competidor a la vez?")
+10. Related links a top articles
+
+#### Schema.org obligatorio
+
+- BlogPosting + WebPage + Person + BreadcrumbList + FAQPage (estándar)
+- **ItemList con apps en orden honesto** (rich snippet ranking)
+- Author `rel="author"` link a `/blog/autor/...` aunque la página no exista todavía — Google la conecta cuando se cree
+
+#### Internal linking sistemático tras publicar (CRÍTICO)
+
+Esto es lo que comprime el ranking timeline de meses a semanas:
+
+| Source article | Anchor con keyword variation |
+|---|---|
+| Top traffic article 1 | "5 mejores apps de running gratuitas en 2026" |
+| Top traffic article 2 | "ranking de apps de running 2026" |
+| Top traffic article 3 | "5 mejores apps de running gratuitas comparadas" |
+| Top traffic article 4 | "comparativa de apps de running gratuitas" |
+| Top traffic article 5 | "mejores apps de running gratis en 2026" |
+
+**Regla**: el anchor debe contener la **keyword principal o variación semántica**, NO genérico tipo "mira aquí". La keyword en el anchor es lo que transfiere autoridad — no solo el link.
+
+#### IndexNow ping de los 6 URLs (artículo nuevo + 5 sources)
+
+Tras inyectar internal links, ping a IndexNow con TODOS los URLs (no solo el nuevo) para forzar recrawl de los sources y descubrir el link al instante.
+
+#### Próximos articles comparativos (orden recomendado)
+
+Tras validar el genérico ranking con tráfico real (esperar 30-45 días):
+
+1. ✅ `mejor-app-running-gratuita-2026` (publicado 14 may)
+2. ⏳ `correrjuntos-vs-strava` (próximo — competidor #1 mencionado)
+3. ⏳ `correrjuntos-vs-runna` (competidor directo adaptive coach)
+4. ⏳ `correrjuntos-vs-nike-run-club` (alto search volume)
+5. ⏳ `correrjuntos-vs-garmin-coach` (user con reloj Garmin)
+
+**Regla**: NO ejecutar los 4 "vs" hasta tener datos del genérico ranking. Si rankea bien en 30-45 días → replicar formato. Si no rankea → ajustar antes de invertir en los 4 siguientes.
+
 ### 📩 Sistema Newsletter Capture en Blog (memorizado 13 may 2026)
 
 **Hito**: 4 puntos de captura de email en TODO el blog. Reutiliza `/api/brevo-subscribe`. Sin librerías externas.

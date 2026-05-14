@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Features App</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 30%,rgba(249,115,22,0.10) 0%,transparent 65%);pointer-events:none}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:80px 70px}
+
+/* Top eyebrow */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+
+.title{font-size:78px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:14px}
+.title .accent{color:#f97316}
+.subtitle{font-size:22px;font-weight:500;color:rgba(246,241,232,0.70);line-height:1.5;max-width:780px;margin-bottom:60px}
+
+/* Features grid 2x2 */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1}
+.feat{background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f97316,transparent)}
+.feat-num{font-family:'JetBrains Mono',monospace;font-size:14px;color:#f97316;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.feat-icon{width:60px;height:60px;border-radius:14px;background:rgba(249,115,22,0.10);border:1px solid rgba(249,115,22,0.28);display:flex;align-items:center;justify-content:center;color:#f97316;font-size:28px;font-weight:900}
+.feat-title{font-size:24px;font-weight:800;color:#f6f1e8;letter-spacing:-0.4px;line-height:1.15}
+.feat-desc{font-size:15px;color:rgba(246,241,232,0.70);font-weight:500;line-height:1.45;flex:1}
+.feat-desc strong{color:#f6f1e8;font-weight:700}
+
+/* Bottom bar */
+.bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(246,241,232,0.10);padding-top:24px;margin-top:30px}
+.brand-block{display:flex;flex-direction:column;gap:4px}
+.brand{font-size:28px;font-weight:800;color:#f97316;letter-spacing:0.3px}
+.brand-tag{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(246,241,232,0.55);font-weight:500;letter-spacing:1.5px;text-transform:uppercase}
+.stores{display:flex;gap:10px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.65);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.stores .sep{color:rgba(246,241,232,0.20)}
+.stores .free{color:#22c55e;font-weight:800}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="eyebrow">Así funciona</div>
+  <div class="title">Tu compañero<br>de running, en <span class="accent">4 pasos</span></div>
+  <div class="subtitle">Lo que necesitas para no correr solo nunca más. Gratis. iOS y Android.</div>
+
+  <div class="features">
+    <div class="feat">
+      <div class="feat-num">━━ 01</div>
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">Matching<br>inteligente</div>
+      <div class="feat-desc">Te conectamos con runners de <strong>tu nivel, ritmo y zona</strong>. Algoritmo IA: 30% pace, 25% horario, 25% nivel.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-num">━━ 02</div>
+      <div class="feat-icon">📍</div>
+      <div class="feat-title">Quedadas<br>en tu ciudad</div>
+      <div class="feat-desc">Únete o crea quedadas reales. Filtro por <strong>distancia, ritmo, día y nivel</strong>.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-num">━━ 03</div>
+      <div class="feat-icon">🤖</div>
+      <div class="feat-title">Coach<br>José IA</div>
+      <div class="feat-desc">Plan personalizado en 60s. <strong>7 planes</strong> (5K → 42K). Te ajusta cada semana según tu progreso.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-num">━━ 04</div>
+      <div class="feat-icon">📊</div>
+      <div class="feat-title">Tracking<br>GPS pro</div>
+      <div class="feat-desc">Distancia, ritmo, FC, splits, mapa. <strong>Compatible con Garmin, Apple Watch, Polar, Coros</strong>.</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="brand-block">
+      <div class="brand">CorrerJuntos</div>
+      <div class="brand-tag">No corras solo</div>
+    </div>
+    <div class="stores">
+      <span>iOS</span><span class="sep">·</span><span>Android</span><span class="sep">·</span><span class="free">Gratis</span>
+    </div>
+  </div>
+</div>
+</body></html>

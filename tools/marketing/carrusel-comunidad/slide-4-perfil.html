@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Perfil Tipo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:78px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:80px}
+.title .accent{color:#f97316}
+
+/* Stats grid */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1}
+.stat{padding:36px 32px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:16px;display:flex;flex-direction:column;justify-content:space-between;min-height:240px}
+.stat.feat{background:linear-gradient(135deg,rgba(249,115,22,0.10),rgba(249,115,22,0.04));border-color:rgba(249,115,22,0.30)}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.stat-num{font-size:90px;font-weight:900;color:#f97316;line-height:0.92;letter-spacing:-3px;font-family:'Inter',sans-serif}
+.stat-num.gray{color:#f6f1e8}
+.stat-desc{font-size:16px;color:rgba(246,241,232,0.70);font-weight:500;line-height:1.4;margin-top:10px}
+.stat-unit{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:rgba(246,241,232,0.65);margin-top:6px;letter-spacing:0.5px}
+
+.note{margin-top:30px;padding:22px 28px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.25);border-radius:12px;display:flex;align-items:center;gap:18px}
+.note-icon{font-size:30px;color:#22c55e}
+.note-text{font-size:18px;color:rgba(246,241,232,0.90);font-weight:500;line-height:1.4}
+.note-text strong{color:#22c55e;font-weight:800}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">04 / 05</div>
+  <div class="eyebrow">Perfil tipo</div>
+  <div class="coords">¿QUIÉN SE APUNTA? · DATA REAL · ABRIL 2026</div>
+  <div class="title">Quién corre en<br><span class="accent">CorrerJuntos</span></div>
+
+  <div class="stats">
+    <div class="stat feat">
+      <div>
+        <div class="stat-label">Edad media</div>
+        <div class="stat-num">34</div>
+        <div class="stat-unit">AÑOS</div>
+      </div>
+      <div class="stat-desc">Mayoría 25–45. Profesionales que quieren ponerse en forma.</div>
+    </div>
+    <div class="stat">
+      <div>
+        <div class="stat-label">Mujeres</div>
+        <div class="stat-num gray">52%</div>
+        <div class="stat-unit">/ 48% HOMBRES</div>
+      </div>
+      <div class="stat-desc">Comunidad equilibrada. Sin rollo gimbro.</div>
+    </div>
+    <div class="stat">
+      <div>
+        <div class="stat-label">Nivel principiante</div>
+        <div class="stat-num gray">68%</div>
+        <div class="stat-unit">+ 32% INTERMEDIO</div>
+      </div>
+      <div class="stat-desc">App pensada para empezar desde cero.</div>
+    </div>
+    <div class="stat feat">
+      <div>
+        <div class="stat-label">Objetivo top</div>
+        <div class="stat-num">5K</div>
+        <div class="stat-unit">PRIMERA CARRERA</div>
+      </div>
+      <div class="stat-desc">2/3 quieren completar su primera 5K en 2025.</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <div class="note-icon">→</div>
+    <div class="note-text">Si nunca has corrido, <strong>encajas perfecto</strong>. Aquí casi nadie había corrido antes.</div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 04 · PERFIL</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

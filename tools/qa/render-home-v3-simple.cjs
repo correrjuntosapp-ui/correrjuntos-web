@@ -1,0 +1,64 @@
+const path = require('path');
+const fs = require('fs');
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch();
+  try {
+    const html = `
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f0f14;
+    font-family: -apple-system, 'Inter', sans-serif;
+    padding: 40px 40px 60px;
+    color: #fff;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .sub { font-size: 12px; color: #888; margin-bottom: 30px; letter-spacing: 0.8px; text-transform: uppercase; }
+  .phone-frame {
+    background: #222;
+    padding: 12px;
+    border-radius: 46px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+  }
+  .phone-screen {
+    width: 680px;
+    height: auto;
+    border-radius: 36px;
+    overflow: hidden;
+    display: block;
+  }
+  img { display: block; width: 680px; height: auto; }
+</style>
+</head><body>
+  <div class="title">Home v3 — CorrerJuntos</div>
+  <div class="sub">◆ Hero + Streak + Feed Strava-style + Quedadas</div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <img src="home-v3-preview.png">
+    </div>
+  </div>
+</body></html>`;
+
+    const wrapHtmlPath = path.resolve(__dirname, '_home-v3-simple.html');
+    fs.writeFileSync(wrapHtmlPath, html);
+
+    const ctx = await browser.newContext({
+      viewport: { width: 900, height: 2200 },
+      deviceScaleFactor: 2,
+    });
+    const page = await ctx.newPage();
+    await page.goto('file:///' + wrapHtmlPath.replace(/\\/g, '/'), { waitUntil: 'networkidle' });
+    await page.waitForTimeout(800);
+    const out = path.resolve(__dirname, 'home-v3-framed.png');
+    await page.screenshot({ path: out, fullPage: true });
+    console.log('✓ home-v3-framed.png');
+    await ctx.close();
+  } finally {
+    await browser.close();
+  }
+})();

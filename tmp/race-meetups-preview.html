@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Preview: Race-day meetups</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0f0e0c;
+    --ink-2: #18181b;
+    --ash: #57534e;
+    --ash-soft: #78716c;
+    --paper: #fafaf7;
+    --line: rgba(15,14,12,0.10);
+    --ember: #ea580c;
+    --ember-soft: rgba(249,115,22,0.10);
+    --good: #16a34a;
+    --bad: #dc2626;
+  }
+  html, body {
+    background: #f1ece1;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  body { padding: 32px 16px; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .title {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.025em;
+    margin-bottom: 6px;
+  }
+  .lede {
+    font-size: 14px; color: var(--ash); margin-bottom: 28px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .col-title {
+    font-family: 'Inter', monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ember);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .col-sub {
+    font-size: 12px; color: var(--ash); line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  /* Phone shell */
+  .phone {
+    background: #18181b;
+    border-radius: 36px;
+    padding: 10px;
+    box-shadow: 0 16px 40px rgba(15,14,12,0.18);
+  }
+  .phone-screen {
+    background: #0b0b0d;
+    border-radius: 28px;
+    overflow: hidden;
+    color: #fafaf7;
+  }
+  .status-bar {
+    height: 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 22px 4px;
+    font-size: 11px; font-weight: 700;
+    color: #fafaf7;
+  }
+
+  /* === SCREEN 1: MAP === */
+  .map-canvas {
+    height: 480px;
+    background:
+      linear-gradient(180deg, rgba(11,11,13,0.0) 0%, rgba(11,11,13,0.8) 100%),
+      radial-gradient(ellipse at 50% 30%, rgba(249,115,22,0.08) 0%, transparent 60%),
+      #1a1c1f;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-tiles {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(0deg, transparent 99%, rgba(255,255,255,0.03) 100%) 0 0/40px 40px,
+      linear-gradient(90deg, transparent 99%, rgba(255,255,255,0.03) 100%) 0 0/40px 40px;
+  }
+  /* Roads */
+  .road {
+    position: absolute;
+    background: rgba(255,255,255,0.06);
+    height: 2px;
+  }
+  .road.h1 { top: 30%; left: 0; right: 0; }
+  .road.h2 { top: 56%; left: 8%; right: 12%; }
+  .road.h3 { top: 78%; left: 0; right: 0; }
+  .road.v1 { width: 2px; height: 100%; left: 25%; }
+  .road.v2 { width: 2px; height: 100%; left: 62%; }
+
+  .pin {
+    position: absolute;
+    width: 32px; height: 32px;
+    border-radius: 999px;
+    border: 3px solid #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    transform: translate(-50%, -50%);
+  }
+  /* User-created quedada (regular) */
+  .pin.user {
+    background: var(--ember);
+    color: #fff;
+  }
+  /* Race-day meetup (NEW — different color) */
+  .pin.race {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-color: #fff;
+    color: #0f0e0c;
+    width: 38px; height: 38px;
+  }
+  .pin.race::after {
+    content: "RACE";
+    position: absolute;
+    bottom: -16px;
+    left: 50%; transform: translateX(-50%);
+    font-size: 8px; font-weight: 800; letter-spacing: 0.1em;
+    background: rgba(15,14,12,0.85);
+    color: #fbbf24;
+    padding: 1px 6px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pin .badge-num {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: #18181b;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 18px; height: 18px;
+    border-radius: 999px;
+    font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+  }
+
+  /* Bottom map sheet */
+  .map-sheet {
+    background: #18181b;
+    padding: 14px 18px 18px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .filter-pills {
+    display: flex; gap: 6px; margin-bottom: 14px;
+    overflow-x: auto;
+  }
+  .pill {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px; font-weight: 600;
+    background: rgba(255,255,255,0.06);
+    color: #d4d4d8;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .pill.active {
+    background: var(--ember);
+    color: #fff;
+    border-color: var(--ember);
+  }
+  .pill.race {
+    background: rgba(245,158,11,0.18);
+    color: #fbbf24;
+    border-color: rgba(245,158,11,0.35);
+  }
+  .pill.race.active {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0f0e0c;
+  }
+
+  .quedada-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  .quedada-card.race-day {
+    background: linear-gradient(180deg, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0.02) 100%);
+    border-color: rgba(245,158,11,0.30);
+  }
+  .qc-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 3px 7px; border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .qc-tag.race {
+    background: rgba(245,158,11,0.20);
+    color: #fbbf24;
+  }
+  .qc-tag.user {
+    background: rgba(249,115,22,0.20);
+    color: var(--ember);
+  }
+  .qc-title {
+    font-size: 14px; font-weight: 700; color: #fafaf7;
+    margin-bottom: 4px;
+  }
+  .qc-meta {
+    font-size: 11px; color: #a1a1aa;
+  }
+
+  /* === SCREEN 2: FEED with race meetup CTA === */
+  .feed-canvas {
+    height: 480px;
+    background: #0b0b0d;
+    padding: 18px;
+    overflow: hidden;
+  }
+  .feed-section-title {
+    font-family: 'Inter', monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #a1a1aa;
+    font-weight: 700;
+    margin: 14px 0 8px;
+  }
+  .race-card-feed {
+    background: #1a1c1f;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .race-card-feed-img {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(11,11,13,0.95) 65%, rgba(11,11,13,1) 100%),
+      url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=600') center/cover;
+  }
+  .race-card-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+  }
+  .race-eyebrow {
+    font-family: 'Inter', monospace;
+    font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ember);
+    font-weight: 700; margin-bottom: 4px;
+  }
+  .race-title {
+    font-size: 18px; font-weight: 800; letter-spacing: -0.025em;
+    color: #fafaf7; line-height: 1.15;
+    margin-bottom: 4px;
+  }
+  .race-meta {
+    font-size: 11px; color: #a1a1aa;
+    margin-bottom: 12px;
+  }
+  .race-cta-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .race-cta {
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 12px; font-weight: 700;
+    text-align: center;
+    background: var(--ember);
+    color: #fff;
+    border: none;
+  }
+  .race-cta.outline {
+    background: rgba(245,158,11,0.12);
+    color: #fbbf24;
+    border: 1px solid rgba(245,158,11,0.30);
+  }
+  .race-cta-row .race-cta {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .race-cta-row .race-cta .count {
+    background: rgba(255,255,255,0.20);
+    padding: 1px 6px; border-radius: 999px;
+    font-size: 10px;
+  }
+  .race-cta.outline .count {
+    background: rgba(245,158,11,0.20);
+    color: #fbbf24;
+  }
+
+  /* === SCREEN 3: Social/Quedadas list === */
+  .social-canvas {
+    height: 480px;
+    background: #0b0b0d;
+    padding: 18px;
+    overflow: hidden;
+  }
+  .filter-tabs {
+    display: flex; gap: 4px; margin-bottom: 14px;
+    background: rgba(255,255,255,0.04);
+    padding: 4px;
+    border-radius: 10px;
+  }
+  .filter-tab {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 11px; font-weight: 600;
+    text-align: center;
+    color: #a1a1aa;
+    background: transparent;
+    border: none;
+  }
+  .filter-tab.active {
+    background: rgba(255,255,255,0.06);
+    color: #fafaf7;
+  }
+
+  .social-quedada {
+    display: flex; gap: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 8px;
+  }
+  .social-quedada.race-day {
+    background: linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(249,115,22,0.04) 100%);
+    border-color: rgba(245,158,11,0.30);
+  }
+  .sq-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(249,115,22,0.15);
+    color: var(--ember);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .social-quedada.race-day .sq-icon {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0f0e0c;
+  }
+  .sq-content { flex: 1; min-width: 0; }
+  .sq-tag {
+    display: inline-block;
+    font-size: 8px; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 6px; border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .sq-tag.race {
+    background: rgba(245,158,11,0.20);
+    color: #fbbf24;
+  }
+  .sq-tag.user {
+    background: rgba(249,115,22,0.18);
+    color: var(--ember);
+  }
+  .sq-title {
+    font-size: 14px; font-weight: 700; color: #fafaf7;
+    line-height: 1.2; margin-bottom: 2px;
+  }
+  .sq-meta {
+    font-size: 11px; color: #a1a1aa;
+    margin-bottom: 4px;
+  }
+  .sq-counters {
+    display: flex; gap: 12px;
+    font-size: 10px; color: #71717a;
+  }
+
+  /* Bottom annotations */
+  .annotations {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .annotations h2 {
+    font-size: 17px; margin-bottom: 12px; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .annotations p {
+    font-size: 13px; line-height: 1.6; color: var(--ash);
+    margin-bottom: 10px;
+  }
+  .annotations strong { color: var(--ink); }
+
+  .legend {
+    display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap;
+    font-size: 12px; color: var(--ash);
+  }
+  .legend-item {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .legend-pin {
+    width: 14px; height: 14px;
+    border-radius: 999px;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.20);
+  }
+  .legend-pin.user { background: var(--ember); }
+  .legend-pin.race { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1 class="title">Race-day meetups · cómo se vería</h1>
+  <p class="lede">3 pantallas donde aparecerían las quedadas auto-generadas a partir de las 92 carreras del calendario. Distintas visualmente para que el user las identifique como "oficiales" sin parecer fakes.</p>
+
+  <div class="grid">
+
+    <!-- ========= COL 1: MAP ========= -->
+    <div>
+      <div class="col-title">Pantalla 1 · Mapa</div>
+      <p class="col-sub">Pin dorado distinto al naranja de quedadas user-created. Filtro arriba para ver solo las race-day si quieren.</p>
+
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>12:34</span>
+            <span>5G ●●●● 73%</span>
+          </div>
+          <div class="map-canvas">
+            <div class="map-tiles"></div>
+            <div class="road h1"></div>
+            <div class="road h2"></div>
+            <div class="road h3"></div>
+            <div class="road v1"></div>
+            <div class="road v2"></div>
+
+            <!-- Race pins (gold) -->
+            <div class="pin race" style="top: 38%; left: 42%;">
+              R
+              <span class="badge-num">12</span>
+            </div>
+            <div class="pin race" style="top: 64%; left: 70%;">
+              R
+              <span class="badge-num">7</span>
+            </div>
+            <div class="pin race" style="top: 22%; left: 78%;">
+              R
+              <span class="badge-num">3</span>
+            </div>
+
+            <!-- User-created pins (orange) -->
+            <div class="pin user" style="top: 50%; left: 22%;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/></svg>
+            </div>
+            <div class="pin user" style="top: 75%; left: 35%;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/></svg>
+            </div>
+          </div>
+
+          <div class="map-sheet">
+            <div class="filter-pills">
+              <div class="pill active">Todas</div>
+              <div class="pill">Cerca</div>
+              <div class="pill race">Race-day</div>
+              <div class="pill">Esta semana</div>
+              <div class="pill">Trail</div>
+            </div>
+
+            <div class="quedada-card race-day">
+              <span class="qc-tag race">★ RACE-DAY · OFICIAL</span>
+              <div class="qc-title">Vamos juntos · 10K Huelva</div>
+              <div class="qc-meta">6 jun · 8:00 · Pl. de las Monjas · 12 inscritos</div>
+            </div>
+            <div class="quedada-card">
+              <span class="qc-tag user">QUEDADA</span>
+              <div class="qc-title">Tu 14 km · Punta Umbría</div>
+              <div class="qc-meta">Hoy · 10:00 · 1 apuntado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span class="legend-item"><span class="legend-pin user"></span>Quedada user</span>
+        <span class="legend-item"><span class="legend-pin race"></span>Race-day oficial</span>
+      </div>
+    </div>
+
+    <!-- ========= COL 2: FEED — Race card upgraded ========= -->
+    <div>
+      <div class="col-title">Pantalla 2 · Inicio</div>
+      <p class="col-sub">El RacePlanCard que ya funciona se enriquece con un 2º CTA "Únete a la quedada" cuando existe race-day meetup.</p>
+
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>12:34</span>
+            <span>5G ●●●● 73%</span>
+          </div>
+
+          <div class="feed-canvas">
+            <div class="feed-section-title">Próxima carrera</div>
+
+            <div class="race-card-feed">
+              <div class="race-card-feed-img"></div>
+              <div class="race-card-content">
+                <div class="race-eyebrow">★ Local · 3 sem</div>
+                <div class="race-title">10K Huelva Puerta del Descubrimiento</div>
+                <div class="race-meta">6 jun · 3 800 corredores · Plan prep-10k</div>
+                <div class="race-cta-row">
+                  <button class="race-cta">Activar plan →</button>
+                  <button class="race-cta outline">
+                    Únete a la quedada
+                    <span class="count">12</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="feed-section-title">Otras carreras en Andalucía</div>
+            <div class="quedada-card" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06);">
+              <div class="qc-title" style="font-size:13px">Nocturna del Guadalquivir Sevilla</div>
+              <div class="qc-meta">13 jun · 21:00 · 8 inscritos en quedada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:11px; color: var(--ash); margin-top:8px;">
+        El 2º CTA "Únete a la quedada · 12" aparece solo si existe race-day meetup para esa carrera. Si no, solo "Activar plan →" como ahora.
+      </p>
+    </div>
+
+    <!-- ========= COL 3: SOCIAL/QUEDADAS list ========= -->
+    <div>
+      <div class="col-title">Pantalla 3 · Quedadas</div>
+      <p class="col-sub">Tab "Race-day" aparte de "Cerca de mí" y "Mías". Lista cronológica de race-day meetups.</p>
+
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>12:34</span>
+            <span>5G ●●●● 73%</span>
+          </div>
+
+          <div class="social-canvas">
+            <div class="filter-tabs">
+              <button class="filter-tab">Cerca de mí</button>
+              <button class="filter-tab active">Race-day ★</button>
+              <button class="filter-tab">Mías</button>
+            </div>
+
+            <div class="social-quedada race-day">
+              <div class="sq-icon">10K</div>
+              <div class="sq-content">
+                <span class="sq-tag race">RACE-DAY · 3 SEM</span>
+                <div class="sq-title">10K Huelva Puerta del Descubrimiento</div>
+                <div class="sq-meta">6 jun · 8:00 · Pl. de las Monjas</div>
+                <div class="sq-counters">
+                  <span>12 inscritos</span>
+                  <span>· 8 plazas libres</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="social-quedada race-day">
+              <div class="sq-icon">10K</div>
+              <div class="sq-content">
+                <span class="sq-tag race">RACE-DAY · 5 SEM</span>
+                <div class="sq-title">Nocturna del Guadalquivir Sevilla</div>
+                <div class="sq-meta">13 jun · 21:00 · Río Guadalquivir</div>
+                <div class="sq-counters">
+                  <span>8 inscritos</span>
+                  <span>· 12 plazas libres</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="social-quedada race-day">
+              <div class="sq-icon">42K</div>
+              <div class="sq-content">
+                <span class="sq-tag race">RACE-DAY · 24 SEM</span>
+                <div class="sq-title">Maratón Madrid Rock'n'Roll</div>
+                <div class="sq-meta">26 oct · 8:30 · Plaza de Cibeles</div>
+                <div class="sq-counters">
+                  <span>47 inscritos</span>
+                  <span>· 53 plazas libres</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom analysis -->
+  <div class="annotations">
+    <h2>Cómo se distinguen visualmente las race-day quedadas</h2>
+    <p><strong>Color dorado/ámbar</strong> en lugar del naranja usuario. Inmediatamente sabe que NO es una quedada de un runner anónimo, es algo "oficial" del calendario.</p>
+    <p><strong>Tag "RACE-DAY · OFICIAL"</strong> arriba en cada card. Cero ambigüedad.</p>
+    <p><strong>Pin más grande en el mapa</strong> (38px vs 32px) con etiqueta inferior "RACE" para que destaque incluso sin tap.</p>
+    <p><strong>Filtro / tab dedicado</strong> en Mapa y Quedadas list. Si el user no le interesan, las puede ocultar; si le interesan mucho, puede ver solo esas.</p>
+    <p><strong>2º CTA en el RacePlanCard del feed</strong> ("Únete a la quedada · 12"). El user que ya está mirando su carrera tiene 1 tap directo a unirse.</p>
+
+    <h2 style="margin-top:24px;">Implementación técnica</h2>
+    <p>1) <strong>User system</strong> "Comunidad CorrerJuntos" con foto de logo (no es persona real, no aparece tu cara).</p>
+    <p>2) <strong>Cron edge function</strong> que cada noche revisa el JSON de 92 carreras, crea quedada por cada una en próximos 60 días si no existe ya. Al pasar la fecha, auto-prune.</p>
+    <p>3) <strong>Flag `tipo: 'race_meetup'`</strong> en la tabla quedadas (campo nuevo) para filtrar y estilar diferente sin afectar las quedadas user-created existentes.</p>
+    <p>4) <strong>~30-50 quedadas inicializadas</strong> de un golpe (carreras próximos 60 días). El mapa y la lista se llenan automáticamente.</p>
+  </div>
+</div>
+
+</body>
+</html>

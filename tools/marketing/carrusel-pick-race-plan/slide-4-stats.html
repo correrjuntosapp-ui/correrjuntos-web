@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Stats</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px}
+.plan{padding:24px 24px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:14px;position:relative}
+.plan.free{background:linear-gradient(135deg,rgba(34,197,94,0.10),rgba(34,197,94,0.04));border-color:rgba(34,197,94,0.30)}
+.plan.featured{background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(249,115,22,0.04));border-color:rgba(249,115,22,0.30)}
+
+.plan-tag{position:absolute;top:14px;right:18px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1.2px;color:rgba(246,241,232,0.55);text-transform:uppercase}
+.plan.free .plan-tag{color:#86efac}
+.plan-name{font-size:26px;font-weight:800;color:#f6f1e8;letter-spacing:-0.5px;line-height:1.05;margin-bottom:6px}
+.plan-name .accent{color:#f97316}
+.plan-meta{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:1px}
+
+.bottom-stats{display:flex;justify-content:space-between;gap:24px;padding:24px 0;border-top:1px solid rgba(246,241,232,0.10);border-bottom:1px solid rgba(246,241,232,0.10);margin-bottom:30px}
+.bs-item{flex:1;text-align:center}
+.bs-num{font-size:54px;font-weight:900;color:#f97316;line-height:1;letter-spacing:-2px}
+.bs-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(246,241,232,0.55);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:20px;margin-top:auto}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">04 / 05</div>
+  <div class="eyebrow">Cobertura</div>
+  <div class="coords">7 PLANES · 322 SESIONES · 1.025 ENTRENOS</div>
+  <div class="title">Hay un plan<br>para cada <span class="accent">carrera</span></div>
+
+  <div class="plans">
+    <div class="plan free">
+      <div class="plan-tag">Gratis</div>
+      <div class="plan-name">Empieza a Moverte</div>
+      <div class="plan-meta">6 SEM · 18 SESIONES</div>
+    </div>
+    <div class="plan free">
+      <div class="plan-tag">Gratis</div>
+      <div class="plan-name">0 → 5K</div>
+      <div class="plan-meta">8 SEM · 24 SESIONES</div>
+    </div>
+    <div class="plan featured">
+      <div class="plan-tag">Premium</div>
+      <div class="plan-name">Prep <span class="accent">5K</span></div>
+      <div class="plan-meta">8 SEM · 32 SESIONES</div>
+    </div>
+    <div class="plan featured">
+      <div class="plan-tag">Premium</div>
+      <div class="plan-name">Prep <span class="accent">10K</span></div>
+      <div class="plan-meta">12 SEM · 48 SESIONES</div>
+    </div>
+    <div class="plan featured">
+      <div class="plan-tag">Premium</div>
+      <div class="plan-name">Prep <span class="accent">21K</span></div>
+      <div class="plan-meta">16 SEM · 70 SESIONES</div>
+    </div>
+    <div class="plan featured">
+      <div class="plan-tag">Premium</div>
+      <div class="plan-name">Prep <span class="accent">42K</span></div>
+      <div class="plan-meta">18 SEM · 90 SESIONES</div>
+    </div>
+  </div>
+
+  <div class="bottom-stats">
+    <div class="bs-item">
+      <div class="bs-num">68</div>
+      <div class="bs-label">Carreras 2026</div>
+    </div>
+    <div class="bs-item">
+      <div class="bs-num">7</div>
+      <div class="bs-label">Planes</div>
+    </div>
+    <div class="bs-item">
+      <div class="bs-num">2</div>
+      <div class="bs-label">Gratis</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 04 · COBERTURA</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

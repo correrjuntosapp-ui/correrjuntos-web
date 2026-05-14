@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.07;pointer-events:none}
+
+/* Logo */
+.logo{position:absolute;top:60px;left:0;right:0;text-align:center;font-weight:900;font-size:28px;letter-spacing:-.5px;z-index:10}
+.logo-c{color:#fff}
+.logo-j{color:#f97316}
+
+.top-gradient{position:absolute;top:0;left:0;right:0;height:140px;background:linear-gradient(to bottom,rgba(11,18,32,.9),transparent);pointer-events:none;z-index:5}
+
+/* Badge — below logo */
+.badge{position:absolute;top:120px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.12);border:1.5px solid rgba(249,115,22,.35);padding:8px 20px;border-radius:100px;font-size:13px;font-weight:700;color:#f97316;letter-spacing:1px;text-transform:uppercase;z-index:6}
+.badge::before{content:'';width:7px;height:7px;background:#f97316;border-radius:50%}
+
+/* Headline — CLEAR zone top:180px to top:370px */
+.main-headline{position:absolute;top:190px;left:60px;right:60px;text-align:center;z-index:6}
+.main-headline h1{font-size:52px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-2px}
+.main-headline h1 .highlight{color:#f97316}
+.main-headline p{font-size:20px;color:#94a3b8;margin-top:14px;font-weight:500}
+
+/* Phone — CLEAR zone top:480px to top:1180px */
+.phone{position:absolute;top:480px;left:50%;transform:translateX(-50%);width:340px;height:680px;background:#000;border-radius:40px;padding:7px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);z-index:3}
+.phone img{width:100%;height:100%;border-radius:33px;display:block;object-fit:cover}
+
+.phone-glow{position:absolute;top:600px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(249,115,22,.12) 0%,transparent 70%);pointer-events:none;z-index:1}
+
+/* Stats — CLEAR zone top:1220px */
+.stats{position:absolute;top:1220px;left:80px;right:80px;display:flex;gap:16px;justify-content:center;z-index:4}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px 28px;text-align:center;flex:1}
+.stat-num{font-size:26px;font-weight:800;color:#f97316}
+.stat-label{font-size:12px;color:#64748b;margin-top:4px;font-weight:500}
+
+/* CTA */
+.cta{position:absolute;top:1360px;left:50%;transform:translateX(-50%);z-index:4;text-align:center}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:22px 80px;border-radius:16px;font-size:22px;font-weight:800;letter-spacing:-.3px;box-shadow:0 8px 30px rgba(249,115,22,.35)}
+
+/* Store badges */
+.stores{position:absolute;top:1460px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:4}
+.store{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:12px 20px;border-radius:12px;color:#fff;font-size:14px;font-weight:600}
+
+/* Swipe up */
+.swipe{position:absolute;top:1560px;left:0;right:0;text-align:center;z-index:4}
+.swipe span{color:#64748b;font-size:15px;font-weight:500;letter-spacing:.5px}
+.swipe-arrow{display:block;margin:8px auto 0;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #64748b;transform:rotate(180deg)}
+
+/* Bottom */
+.bottom-bar{position:absolute;bottom:50px;left:0;right:0;text-align:center;z-index:4}
+.bottom-bar span{color:#475569;font-size:14px;font-weight:600}
+
+/* Decorative */
+.line-left{position:absolute;top:480px;left:40px;width:1px;height:600px;background:linear-gradient(to bottom,transparent,rgba(249,115,22,.15),transparent);z-index:1}
+.line-right{position:absolute;top:480px;right:40px;width:1px;height:600px;background:linear-gradient(to bottom,transparent,rgba(249,115,22,.15),transparent);z-index:1}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-gradient"></div>
+<div class="line-left"></div>
+<div class="line-right"></div>
+<div class="phone-glow"></div>
+
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+
+<div class="badge">Running Social + Coach IA</div>
+
+<!-- Headline ABOVE phone with 100px+ gap -->
+<div class="main-headline">
+<h1>Tu entrenador de<br>running con <span class="highlight">IA</span></h1>
+<p>Coach Jose analiza cada carrera</p>
+</div>
+
+<!-- Phone with clear separation -->
+<div class="phone">
+<img src="public/screenshot-feed.webp" alt="CorrerJuntos Feed">
+</div>
+
+<!-- Stats below phone -->
+<div class="stats">
+<div class="stat">
+<div class="stat-num">568+</div>
+<div class="stat-label">Runners</div>
+</div>
+<div class="stat">
+<div class="stat-num">4.8</div>
+<div class="stat-label">App Store</div>
+</div>
+<div class="stat">
+<div class="stat-num">7</div>
+<div class="stat-label">Planes</div>
+</div>
+</div>
+
+<div class="cta">
+<div class="cta-btn">Descarga gratis</div>
+</div>
+
+<div class="stores">
+<div class="store">App Store</div>
+<div class="store">Google Play</div>
+</div>
+
+<div class="swipe">
+<div class="swipe-arrow"></div>
+<span>Desliza hacia arriba</span>
+</div>
+
+<div class="bottom-bar"><span>@correrjuntosapp</span></div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.06;pointer-events:none}
+.content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 60px;text-align:center}
+h2{font-size:64px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-2px;margin-bottom:20px}
+h2 span{color:#f97316}
+.desc{font-size:22px;color:#94a3b8;line-height:1.6;max-width:700px;margin-bottom:50px}
+.match-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:32px;width:100%;max-width:700px}
+.match-header{display:flex;align-items:center;gap:20px;margin-bottom:24px}
+.match-avatar{width:72px;height:72px;border-radius:36px;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#fff;border:3px solid rgba(249,115,22,.4)}
+.match-info{text-align:left}
+.match-name{font-size:24px;font-weight:700;color:#fff}
+.match-city{font-size:16px;color:#94a3b8;margin-top:4px}
+.match-score{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:14px;padding:12px 20px;text-align:center;margin-left:auto}
+.match-score-num{font-size:28px;font-weight:800;color:#22c55e}
+.match-score-label{font-size:11px;color:#94a3b8}
+.reasons{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.reason{background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);border-radius:100px;padding:8px 16px;font-size:14px;font-weight:600;color:#f97316}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,.06);border-radius:8px;padding:8px 14px;font-size:14px;color:rgba(255,255,255,.6)}
+.slide-num{position:absolute;top:50px;right:60px;font-size:18px;font-weight:700;color:rgba(255,255,255,.3)}
+.logo{position:absolute;top:50px;left:60px;font-weight:900;font-size:22px}
+.logo-c{color:#fff}.logo-j{color:#f97316}
+.swipe{position:absolute;bottom:50px;left:0;right:0;text-align:center;color:rgba(255,255,255,.3);font-size:16px;font-weight:500}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+  <h2>Encuentra runners<br>de tu <span>nivel</span></h2>
+  <p class="desc">Matching inteligente por ritmo, horario y zona. Conecta con tu companero ideal.</p>
+  <div class="match-card">
+    <div class="match-header">
+      <div class="match-avatar">CR</div>
+      <div class="match-info">
+        <div class="match-name">Carlos R.</div>
+        <div class="match-city">Madrid · Intermedio</div>
+      </div>
+      <div class="match-score">
+        <div class="match-score-num">92%</div>
+        <div class="match-score-label">match</div>
+      </div>
+    </div>
+    <div class="reasons">
+      <div class="reason">Mismo ritmo</div>
+      <div class="reason">Misma zona</div>
+      <div class="reason">Mismo horario</div>
+    </div>
+    <div class="tags">
+      <div class="tag">5:15-5:30 /km</div>
+      <div class="tag">Manana</div>
+      <div class="tag">3-4 dias/sem</div>
+    </div>
+  </div>
+</div>
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+<div class="slide-num">3/5</div>
+<div class="swipe">Desliza →</div>
+</body>
+</html>

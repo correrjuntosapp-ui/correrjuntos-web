@@ -1,0 +1,578 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Ir al contenido principal" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e5]:
+        - link "CORRERJUNTOS" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Planes" [ref=e8] [cursor=pointer]:
+            - /url: /planes
+          - link "Coach IA" [ref=e9] [cursor=pointer]:
+            - /url: /planes/#coaches
+          - link "Blog" [ref=e10] [cursor=pointer]:
+            - /url: /blog
+          - link "Carreras" [ref=e11] [cursor=pointer]:
+            - /url: /carreras
+          - link "Descargar App" [ref=e12] [cursor=pointer]:
+            - /url: /app
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - img [ref=e18]
+            - text: Coach IA + Tu Plan
+          - heading "Tu plan, tu coach IA, tu progreso." [level=1] [ref=e22]
+          - paragraph [ref=e23]: 7 planes desde 0-5K hasta maratón sub-3h. Coach José analiza cada carrera. GPS preciso + audio alertas km. 100% gratis.
+          - link "Empieza tu plan gratis →" [ref=e24] [cursor=pointer]:
+            - /url: /abrir-app
+          - generic [ref=e25]: o descarga la app
+          - generic [ref=e26]:
+            - link "App Store" [ref=e27] [cursor=pointer]:
+              - /url: https://apps.apple.com/app/correr-juntos/id6758505910
+              - img [ref=e28]
+              - text: App Store
+            - link "Google Play" [ref=e31] [cursor=pointer]:
+              - /url: https://play.google.com/store/apps/details?id=com.correrjuntos.app
+              - img [ref=e32]
+              - text: Google Play
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - generic [ref=e36]: M
+              - generic [ref=e37]: C
+              - generic [ref=e38]: L
+              - generic [ref=e39]: A
+              - generic [ref=e40]: J
+            - text: 7 planes · 322 sesiones · Coach IA
+          - link "Ver cómo funciona →" [ref=e41] [cursor=pointer]:
+            - /url: "#demo"
+        - generic [ref=e42]:
+          - img "Mapa de quedadas de running en CorrerJuntos" [ref=e44]
+          - img "Feed de actividad en CorrerJuntos" [ref=e46]
+          - img "GPS tracker de running en CorrerJuntos" [ref=e48]
+      - generic [ref=e49]: Prueba 14 días gratis — Sin compromiso, cancela cuando quieras
+    - generic [ref=e51]:
+      - generic [ref=e52]: Compatible con
+      - generic [ref=e53]: Apple Health
+      - generic [ref=e54]: Bluetooth LE
+      - generic [ref=e55]: iOS
+      - generic [ref=e56]: Android
+      - generic [ref=e57]: Garmin (pronto)
+      - generic [ref=e58]: Strava (pronto)
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]: Exclusivo CorrerJuntos
+        - heading "Encuentra tu compañero de carrera ideal" [level=2] [ref=e64]:
+          - text: Encuentra tu compañero
+          - text: de carrera ideal
+        - paragraph [ref=e65]:
+          - text: Nuestro algoritmo analiza
+          - strong [ref=e66]: ritmo, nivel, horario y zona
+          - text: para conectarte con runners compatibles. No es un grupo de WhatsApp ni un foro — es matching inteligente que funciona.
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]: 92%
+            - generic [ref=e70]: precisión del matching
+          - generic [ref=e71]:
+            - generic [ref=e72]: 568+
+            - generic [ref=e73]: runners activos
+          - generic [ref=e74]:
+            - generic [ref=e75]: "8"
+            - generic [ref=e76]: ciudades
+          - generic [ref=e77]:
+            - generic [ref=e78]: "3"
+            - generic [ref=e79]: matches gratis/mes
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - img [ref=e82]
+            - generic [ref=e84]:
+              - text: Match por
+              - strong [ref=e85]: ritmo
+              - text: — encuentra runners con tu mismo pace
+          - generic [ref=e86]:
+            - img [ref=e87]
+            - generic [ref=e89]:
+              - text: Match por
+              - strong [ref=e90]: horario
+              - text: — misma franja horaria para correr
+          - generic [ref=e91]:
+            - img [ref=e92]
+            - generic [ref=e94]:
+              - text: Match por
+              - strong [ref=e95]: zona
+              - text: — runners cerca de ti, no al otro lado de la ciudad
+          - generic [ref=e96]:
+            - img [ref=e97]
+            - generic [ref=e99]: Chat integrado — habla antes de quedar
+        - generic [ref=e100]:
+          - link "Buscar runners cerca de ti" [ref=e101] [cursor=pointer]:
+            - /url: https://apps.apple.com/app/correr-juntos/id6758505910
+          - 'link "Premium: matches ilimitados" [ref=e102] [cursor=pointer]':
+            - /url: "#pricing"
+      - img "Runner matching en CorrerJuntos — encuentra runners compatibles" [ref=e105]
+    - generic [ref=e108]:
+      - heading "Encuentra tu compañero ideal en 30 segundos" [level=2] [ref=e109]
+      - paragraph [ref=e110]: Responde 4 preguntas y te mostramos tu mejor match
+      - generic [ref=e113]:
+        - heading "Cuál es tu ritmo medio?" [level=3] [ref=e114]
+        - generic [ref=e115]:
+          - button "Más de 7 min/km" [ref=e116] [cursor=pointer]
+          - button "6-7 min/km" [ref=e117] [cursor=pointer]
+          - button "5-6 min/km" [ref=e118] [cursor=pointer]
+          - button "Menos de 5 min/km" [ref=e119] [cursor=pointer]
+    - generic [ref=e121]:
+      - heading "Cómo funciona" [level=2] [ref=e122]
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - generic [ref=e125]: "1"
+          - heading "Descarga gratis" [level=3] [ref=e126]
+          - paragraph [ref=e127]: Crea tu perfil en 30 segundos. Plan 0-5K incluido gratis.
+        - generic [ref=e128]:
+          - generic [ref=e129]: "2"
+          - heading "Activa tu plan" [level=3] [ref=e130]
+          - paragraph [ref=e131]: El matching te conecta con runners de tu ritmo, horario y zona.
+        - generic [ref=e132]:
+          - generic [ref=e133]: "3"
+          - heading "Entrena con IA" [level=3] [ref=e134]
+          - paragraph [ref=e135]: Coach José analiza cada carrera, ajusta tu plan y te habla mientras corres.
+    - generic [ref=e137]:
+      - generic [ref=e138]: Por qué CorrerJuntos
+      - heading "¿Por qué elegir CorrerJuntos?" [level=2] [ref=e139]
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - generic [ref=e142]: "1"
+          - heading "Coach IA que piensa por ti" [level=3] [ref=e143]
+          - paragraph [ref=e144]: Coach José y Coach Ana no repiten métricas. Analizan tu cadencia, ritmo cardíaco, RPE y splits para darte feedback accionable después de cada carrera. Si algo falla, ajustan tu plan automáticamente.
+        - img "Coach José analiza tu carrera" [ref=e147]
+      - generic [ref=e148]:
+        - generic [ref=e149]:
+          - generic [ref=e150]: "2"
+          - heading "Planes de 0 a maratón" [level=3] [ref=e151]
+          - paragraph [ref=e152]: 7 planes de entrenamiento, 322 sesiones y 1.025 pasos estructurados. Desde caminar-correr hasta preparar un maratón sub-4. Tu plan se adapta a tu progreso real, no a una tabla estática.
+        - img "Planes de entrenamiento personalizados" [ref=e155]
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e158]: "3"
+          - heading "Corre acompañado, nunca solo" [level=3] [ref=e159]
+          - paragraph [ref=e160]: Quedadas de running en Madrid, Barcelona, Valencia, Sevilla, Londres, París, Ciudad de México y Buenos Aires. Conoce runners de tu nivel, corre en grupo y construye hábito.
+        - img "Mapa de quedadas de running" [ref=e163]
+      - generic [ref=e164]:
+        - generic [ref=e165]:
+          - generic [ref=e166]: "4"
+          - heading "Registra cada kilómetro" [level=3] [ref=e167]
+          - paragraph [ref=e168]: GPS de alta precisión, audio coaching en carrera, VO2max estimado, 33 logros desbloqueables y gráficas de progreso semanal. Cada carrera cuenta para algo.
+        - img "GPS tracker con mapa de Madrid" [ref=e171]
+    - generic [ref=e173]:
+      - heading "Conoce a tus entrenadores IA" [level=2] [ref=e174]
+      - paragraph [ref=e175]: Potenciados por inteligencia artificial. Transparentes sobre lo que son.
+      - generic [ref=e176]:
+        - generic [ref=e177]:
+          - generic [ref=e178]:
+            - img "Coach José - Entrenador IA de CorrerJuntos" [ref=e179]
+            - generic [ref=e180]: Entrenador IA
+          - generic [ref=e181]:
+            - heading "Coach José" [level=3] [ref=e182]
+            - generic [ref=e183]: Entrenador IA
+            - paragraph [ref=e184]: Entrenador IA potenciado por inteligencia artificial avanzada. Analiza tu ritmo, cadencia, frecuencia cardíaca y RPE en cada carrera. Ajusta tu plan automáticamente según tu progreso real. Basado en metodología de periodización y datos de miles de sesiones.
+            - generic [ref=e185]:
+              - generic [ref=e186]: Rendimiento
+              - generic [ref=e187]: Series
+              - generic [ref=e188]: Ritmo
+              - generic [ref=e189]: VO2max
+        - generic [ref=e190]:
+          - generic [ref=e191]:
+            - img "Coach Ana - Entrenadora IA de CorrerJuntos" [ref=e192]
+            - generic [ref=e193]: Entrenadora IA
+          - generic [ref=e194]:
+            - heading "Coach Ana" [level=3] [ref=e195]
+            - generic [ref=e196]: Entrenadora IA
+            - paragraph [ref=e197]: Especialista IA en runners principiantes. Te guía desde el primer kilómetro con feedback personalizado sobre técnica, nutrición y prevención de lesiones. Adapta cada sesión a tu nivel real para que progreses sin riesgo.
+            - generic [ref=e198]:
+              - generic [ref=e199]: Principiantes
+              - generic [ref=e200]: Salud
+              - generic [ref=e201]: Nutrición
+              - generic [ref=e202]: Técnica
+    - generic [ref=e204]:
+      - heading "Coach José no repite métricas. Piensa." [level=2] [ref=e205]
+      - generic [ref=e206]:
+        - generic [ref=e207]:
+          - generic [ref=e208]:
+            - img "Coach José" [ref=e210]
+            - generic [ref=e211]:
+              - generic [ref=e212]: Coach José
+              - generic [ref=e213]: Entrenador IA
+          - generic [ref=e214]: He corrido 5K en 28 minutos. Me dolía la rodilla en el km 4.
+          - generic [ref=e215]:
+            - generic [ref=e216]: Coach José
+            - text: Tu cadencia bajó a 158 ppm en el km 4, un 6% por debajo de tu media. Esto suele provocar sobrecarga en la rodilla por impacto excesivo.
+          - generic [ref=e217]:
+            - generic [ref=e218]: Coach José
+            - text: En tus últimas 3 carreras, el ritmo cae consistentemente a partir del km 3.5. Creo que estás saliendo demasiado rápido.
+          - generic [ref=e219]:
+            - generic [ref=e220]: Coach José
+            - text: "Propuesta: mañana hacemos 30 min a ritmo 6:30/km forzando cadencia 170+. Sin series hasta que la rodilla esté bien. ¿Aceptas el ajuste?"
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - img [ref=e224]
+            - generic [ref=e227]:
+              - heading "Contexto histórico" [level=4] [ref=e228]
+              - paragraph [ref=e229]: Analiza tus últimas carreras para encontrar patrones, no solo números sueltos.
+          - generic [ref=e230]:
+            - img [ref=e232]
+            - generic [ref=e234]:
+              - heading "Correlación inteligente" [level=4] [ref=e235]
+              - paragraph [ref=e236]: Conecta cadencia con dolor, ritmo con fatiga. Ve lo que tú no ves.
+          - generic [ref=e237]:
+            - img [ref=e239]
+            - generic [ref=e242]:
+              - heading "Acción proactiva" [level=4] [ref=e243]
+              - paragraph [ref=e244]: No espera a que preguntes. Propone ajustes antes de que te lesiones.
+      - link "Prueba Coach José gratis →" [ref=e246] [cursor=pointer]:
+        - /url: https://apps.apple.com/app/correr-juntos/id6758505910
+    - generic [ref=e248]:
+      - heading "Encuentra tu plan de entrenamiento" [level=2] [ref=e249]
+      - paragraph [ref=e250]: Tu primera semana es gratis.
+      - generic [ref=e251]:
+        - generic [ref=e252]:
+          - generic [ref=e253]: 5K
+          - heading "De 0 a 5K" [level=3] [ref=e254]
+          - generic [ref=e255]: 8 semanas · 24 sesiones
+          - generic [ref=e256]: GRATIS
+        - generic [ref=e257]:
+          - generic [ref=e258]: 10K
+          - heading "Prep 10K" [level=3] [ref=e259]
+          - generic [ref=e260]: 12 semanas · 48 sesiones
+          - generic [ref=e261]: 4,99€/mes
+        - generic [ref=e262]:
+          - generic [ref=e263]: Popular
+          - generic [ref=e264]: 21K
+          - heading "Media Maratón" [level=3] [ref=e265]
+          - generic [ref=e266]: 16 semanas · 70 sesiones
+          - generic [ref=e267]: 4,99€/mes
+        - generic [ref=e268]:
+          - generic [ref=e269]: 42K
+          - heading "Maratón" [level=3] [ref=e270]
+          - generic [ref=e271]: 18 semanas · 90 sesiones
+          - generic [ref=e272]: 4,99€/mes
+      - link "Explorar todos los planes →" [ref=e274] [cursor=pointer]:
+        - /url: /planes
+    - generic [ref=e276]:
+      - heading "Precios claros, sin sorpresas" [level=2] [ref=e277]
+      - paragraph [ref=e278]: Hasta 4 veces menos que otras apps de entrenamiento.
+      - generic [ref=e279]:
+        - generic [ref=e280]:
+          - heading "Gratis" [level=3] [ref=e281]
+          - generic [ref=e282]: 0€
+          - list [ref=e284]:
+            - listitem [ref=e285]:
+              - img [ref=e286]
+              - text: Plan 0 a 5K completo
+            - listitem [ref=e288]:
+              - img [ref=e289]
+              - text: GPS y seguimiento de carreras
+            - listitem [ref=e291]:
+              - img [ref=e292]
+              - text: Quedadas de running
+            - listitem [ref=e294]:
+              - img [ref=e295]
+              - text: Coach IA (3 mensajes/día)
+            - listitem [ref=e297]:
+              - img [ref=e298]
+              - generic [ref=e300]: Planes 5K a Maratón
+            - listitem [ref=e301]:
+              - img [ref=e302]
+              - generic [ref=e304]: Audio coaching en carrera
+            - listitem [ref=e305]:
+              - img [ref=e306]
+              - generic [ref=e308]: Gráficas y VO2max
+          - generic [ref=e309]:
+            - link "App Store" [ref=e310] [cursor=pointer]:
+              - /url: https://apps.apple.com/app/correr-juntos/id6758505910
+              - img [ref=e311]
+              - text: App Store
+            - link "Google Play" [ref=e313] [cursor=pointer]:
+              - /url: https://play.google.com/store/apps/details?id=com.correrjuntos.app
+              - img [ref=e314]
+              - text: Google Play
+        - generic [ref=e316]:
+          - generic [ref=e317]: Popular
+          - heading "Premium" [level=3] [ref=e318]
+          - generic [ref=e319]: 4,99€/mes
+          - generic [ref=e320]: 29,99€/año (ahorra 50%)
+          - list [ref=e321]:
+            - listitem [ref=e322]:
+              - img [ref=e323]
+              - text: Todos los planes (5K a 42K)
+            - listitem [ref=e325]:
+              - img [ref=e326]
+              - text: Coach José y Ana ilimitado
+            - listitem [ref=e328]:
+              - img [ref=e329]
+              - text: Audio coaching en carrera
+            - listitem [ref=e331]:
+              - img [ref=e332]
+              - text: Gráficas de progreso
+            - listitem [ref=e334]:
+              - img [ref=e335]
+              - text: VO2max estimado
+            - listitem [ref=e337]:
+              - img [ref=e338]
+              - text: 33 logros desbloqueables
+            - listitem [ref=e340]:
+              - img [ref=e341]
+              - text: GPS + quedadas + comunidad
+          - generic [ref=e343]: Empezar prueba gratis — 7 días
+          - generic [ref=e344]:
+            - link "App Store" [ref=e345] [cursor=pointer]:
+              - /url: https://apps.apple.com/app/correr-juntos/id6758505910
+              - img [ref=e346]
+              - text: App Store
+            - link "Google Play" [ref=e348] [cursor=pointer]:
+              - /url: https://play.google.com/store/apps/details?id=com.correrjuntos.app
+              - img [ref=e349]
+              - text: Google Play
+      - paragraph [ref=e351]: Primera semana gratis. Cancela cuando quieras. Sin permanencia.
+    - generic [ref=e353]:
+      - heading "Lo que dicen nuestros runners" [level=2] [ref=e354]
+      - generic [ref=e355]:
+        - generic [ref=e356]:
+          - generic [ref=e357]: ★★★★★
+          - paragraph [ref=e358]: Coach José me cambió las series del jueves porque vio que mi ritmo del martes estaba bajo. Bajé de 25 minutos en 5K.
+          - generic [ref=e359]:
+            - generic [ref=e360]: M
+            - generic [ref=e361]:
+              - generic [ref=e362]: María L.
+              - generic [ref=e363]: Madrid, España
+        - generic [ref=e364]:
+          - generic [ref=e365]: ★★★★★
+          - paragraph [ref=e366]: Después de mi 10K, José me dijo que mi cadencia bajaba a partir del km 7. Ningún entrenador humano me había dado ese detalle por 5 euros al mes.
+          - generic [ref=e367]:
+            - generic [ref=e368]: C
+            - generic [ref=e369]:
+              - generic [ref=e370]: Carlos R.
+              - generic [ref=e371]: Barcelona, España
+        - generic [ref=e372]:
+          - generic [ref=e373]: ★★★★★
+          - paragraph [ref=e374]: Le pregunté si debía correr con agujetas. Me explicó la diferencia entre dolor muscular y lesión. Es como tener un entrenador en el bolsillo.
+          - generic [ref=e375]:
+            - generic [ref=e376]: L
+            - generic [ref=e377]:
+              - generic [ref=e378]: Laura P.
+              - generic [ref=e379]: Valencia, España
+      - generic [ref=e380]:
+        - generic [ref=e381]:
+          - generic [ref=e382]: "4.8"
+          - generic [ref=e383]: App Store
+        - generic [ref=e384]:
+          - generic [ref=e385]: 568+
+          - generic [ref=e386]: Runners
+        - generic [ref=e387]:
+          - generic [ref=e388]: "8"
+          - generic [ref=e389]: Ciudades
+        - generic [ref=e390]:
+          - generic [ref=e391]: "322"
+          - generic [ref=e392]: Sesiones de entrenamiento
+    - generic [ref=e394]:
+      - generic [ref=e395]: 📚 REGALO · PDF 8 PÁGINAS
+      - heading "Descarga GRATIS el Plan 10K" [level=2] [ref=e396]
+      - paragraph [ref=e397]:
+        - text: Las
+        - strong [ref=e398]: primeras 2 semanas
+        - text: del plan que usan 568 runners en CorrerJuntos. 8 sesiones estructuradas + tips del coach + guía de nutrición pre-10K.
+      - generic [ref=e399]:
+        - generic [ref=e400]: Email
+        - textbox "Email" [ref=e401]:
+          - /placeholder: tu@email.com
+        - button "Quiero mi plan →" [ref=e402] [cursor=pointer]
+      - generic [ref=e403]: Te enviamos el PDF por email tras confirmar. Cancela cuando quieras.
+    - generic [ref=e405]:
+      - heading "Apoyo en tu camino runner" [level=2] [ref=e406]
+      - generic [ref=e407]:
+        - link "Guía para empezar a correr Principiantes Guía completa para empezar a correr desde cero en 2026 Todo lo que necesitas saber para dar tus primeros pasos como runner." [ref=e408] [cursor=pointer]:
+          - /url: /blog/empezar-a-correr-guia-principiantes
+          - img "Guía para empezar a correr" [ref=e409]
+          - generic [ref=e410]:
+            - generic [ref=e411]: Principiantes
+            - generic [ref=e412]: Guía completa para empezar a correr desde cero en 2026
+            - generic [ref=e413]: Todo lo que necesitas saber para dar tus primeros pasos como runner.
+        - 'link "Cómo mejorar el VO2max Entrenamiento VO2max en running: qué es y cómo mejorar tu capacidad aeróbica La métrica más importante del rendimiento y cómo entrenarla." [ref=e414] [cursor=pointer]':
+          - /url: /blog/vo2-max-running-como-mejorar
+          - img "Cómo mejorar el VO2max" [ref=e415]
+          - generic [ref=e416]:
+            - generic [ref=e417]: Entrenamiento
+            - generic [ref=e418]: "VO2max en running: qué es y cómo mejorar tu capacidad aeróbica"
+            - generic [ref=e419]: La métrica más importante del rendimiento y cómo entrenarla.
+        - 'link "Mejores zapatillas On Running Zapatillas Las 8 mejores zapatillas On Running en 2026: análisis completo Review detallado de Cloudmonster, Cloudstratus y Cloudsurfer." [ref=e420] [cursor=pointer]':
+          - /url: /blog/mejores-zapatillas-on-running
+          - img "Mejores zapatillas On Running" [ref=e421]
+          - generic [ref=e422]:
+            - generic [ref=e423]: Zapatillas
+            - generic [ref=e424]: "Las 8 mejores zapatillas On Running en 2026: análisis completo"
+            - generic [ref=e425]: Review detallado de Cloudmonster, Cloudstratus y Cloudsurfer.
+        - 'link "Correr durante la menopausia Salud Correr durante la menopausia: guía para mujeres runners Beneficios del running, adaptaciones y nutrición específica." [ref=e426] [cursor=pointer]':
+          - /url: /blog/correr-durante-menopausia
+          - img "Correr durante la menopausia" [ref=e427]
+          - generic [ref=e428]:
+            - generic [ref=e429]: Salud
+            - generic [ref=e430]: "Correr durante la menopausia: guía para mujeres runners"
+            - generic [ref=e431]: Beneficios del running, adaptaciones y nutrición específica.
+      - link "Ver todos los artículos →" [ref=e433] [cursor=pointer]:
+        - /url: /blog
+    - generic [ref=e435]:
+      - heading "Preguntas frecuentes" [level=2] [ref=e436]
+      - generic [ref=e437]:
+        - generic [ref=e438]:
+          - button "¿Es gratis la app CorrerJuntos?" [ref=e439] [cursor=pointer]:
+            - text: ¿Es gratis la app CorrerJuntos?
+            - img [ref=e440]
+          - paragraph [ref=e442]: Sí, la app es gratuita con un plan de entrenamiento 0 a 5K incluido. El plan premium cuesta 4,99€/mes e incluye Coach José IA ilimitado, planes avanzados, audio coaching y gráficas de progreso.
+        - generic [ref=e443]:
+          - button "¿En qué ciudades hay quedadas de running?" [ref=e444] [cursor=pointer]:
+            - text: ¿En qué ciudades hay quedadas de running?
+            - img [ref=e445]
+          - paragraph [ref=e447]: Actualmente hay quedadas activas en Madrid, Barcelona, Valencia, Sevilla, Londres, París, Ciudad de México y Buenos Aires. Cualquier usuario puede crear quedadas en su ciudad.
+        - generic [ref=e448]:
+          - button "¿Cómo funciona Coach José?" [ref=e449] [cursor=pointer]:
+            - text: ¿Cómo funciona Coach José?
+            - img [ref=e450]
+          - paragraph [ref=e452]: Coach José es tu entrenador personal con inteligencia artificial. Analiza cada carrera, te da feedback personalizado sobre ritmo, RPE y splits, y te habla durante la carrera con coaching de audio contextual.
+        - generic [ref=e453]:
+          - button "¿Necesito un reloj GPS para usar CorrerJuntos?" [ref=e454] [cursor=pointer]:
+            - text: ¿Necesito un reloj GPS para usar CorrerJuntos?
+            - img [ref=e455]
+          - paragraph [ref=e457]: No, tu móvil es suficiente para registrar tus carreras con GPS. La app es compatible con pulsómetros Bluetooth LE para monitorizar tu frecuencia cardíaca.
+        - generic [ref=e458]:
+          - button "¿Puedo correr solo o siempre tengo que ir en grupo?" [ref=e459] [cursor=pointer]:
+            - text: ¿Puedo correr solo o siempre tengo que ir en grupo?
+            - img [ref=e460]
+          - paragraph [ref=e462]: Ambas opciones. Puedes registrar tus carreras en solitario con GPS y Coach José, o unirte a quedadas con otros runners de tu ciudad.
+        - generic [ref=e463]:
+          - button "¿En qué idiomas está disponible CorrerJuntos?" [ref=e464] [cursor=pointer]:
+            - text: ¿En qué idiomas está disponible CorrerJuntos?
+            - img [ref=e465]
+          - paragraph [ref=e467]: CorrerJuntos está disponible en español e inglés, tanto la app como el blog y la web.
+        - generic [ref=e468]:
+          - button "¿Funciona CorrerJuntos sin internet?" [ref=e469] [cursor=pointer]:
+            - text: ¿Funciona CorrerJuntos sin internet?
+            - img [ref=e470]
+          - paragraph [ref=e472]: Sí, el GPS funciona sin conexión a internet. Los datos de tu carrera se sincronizan automáticamente cuando recuperas la conexión.
+        - generic [ref=e473]:
+          - button "¿Cómo cancelo la suscripción premium?" [ref=e474] [cursor=pointer]:
+            - text: ¿Cómo cancelo la suscripción premium?
+            - img [ref=e475]
+          - paragraph [ref=e477]: Puedes cancelar en cualquier momento desde tu App Store o Google Play. No hay permanencia ni penalización por cancelar.
+    - generic [ref=e479]:
+      - heading "Empieza a correr con Coach José y Coach Ana hoy" [level=2] [ref=e480]
+      - paragraph [ref=e481]: Descarga gratis. Tu primer plan incluido.
+      - generic [ref=e482]:
+        - link "Descargar en App Store" [ref=e483] [cursor=pointer]:
+          - /url: https://apps.apple.com/app/correr-juntos/id6758505910
+          - img [ref=e484]
+          - text: Descargar en App Store
+        - link "Descargar en Google Play" [ref=e487] [cursor=pointer]:
+          - /url: https://play.google.com/store/apps/details?id=com.correrjuntos.app
+          - img [ref=e488]
+          - text: Descargar en Google Play
+      - paragraph [ref=e490]: hola@correrjuntos.com
+  - contentinfo [ref=e491]:
+    - generic [ref=e492]:
+      - generic [ref=e493]:
+        - generic [ref=e494]:
+          - generic [ref=e495]: CORRERJUNTOS
+          - paragraph [ref=e496]: Tu entrenador personal de running con inteligencia artificial. Planes, quedadas y coaching en tiempo real.
+          - generic [ref=e497]:
+            - link "Instagram" [ref=e498] [cursor=pointer]:
+              - /url: https://www.instagram.com/correrjuntosapp/
+              - img [ref=e499]
+            - link "TikTok" [ref=e501] [cursor=pointer]:
+              - /url: https://www.tiktok.com/@correrjuntosapp
+              - img [ref=e502]
+            - link "Pinterest" [ref=e504] [cursor=pointer]:
+              - /url: https://es.pinterest.com/correrjuntos/
+              - img [ref=e505]
+        - generic [ref=e507]:
+          - heading "Producto" [level=4] [ref=e508]
+          - list [ref=e509]:
+            - listitem [ref=e510]:
+              - link "Planes de entrenamiento" [ref=e511] [cursor=pointer]:
+                - /url: /planes
+            - listitem [ref=e512]:
+              - link "Blog" [ref=e513] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e514]:
+              - link "Carreras" [ref=e515] [cursor=pointer]:
+                - /url: /carreras
+            - listitem [ref=e516]:
+              - link "Runner Matching" [ref=e517] [cursor=pointer]:
+                - /url: /matching
+            - listitem [ref=e518]:
+              - link "Ciudades" [ref=e519] [cursor=pointer]:
+                - /url: /cities
+            - listitem [ref=e520]:
+              - link "Calculadora" [ref=e521] [cursor=pointer]:
+                - /url: /calculadora
+            - listitem [ref=e522]:
+              - link "Equipamiento" [ref=e523] [cursor=pointer]:
+                - /url: /equipamiento
+            - listitem [ref=e524]:
+              - link "Places" [ref=e525] [cursor=pointer]:
+                - /url: /places
+            - listitem [ref=e526]:
+              - link "Events" [ref=e527] [cursor=pointer]:
+                - /url: /events
+            - listitem [ref=e528]:
+              - link "Sobre Nosotros" [ref=e529] [cursor=pointer]:
+                - /url: /sobre-nosotros
+        - generic [ref=e530]:
+          - heading "Recursos" [level=4] [ref=e531]
+          - list [ref=e532]:
+            - listitem [ref=e533]:
+              - link "App iOS" [ref=e534] [cursor=pointer]:
+                - /url: https://apps.apple.com/app/correr-juntos/id6758505910
+            - listitem [ref=e535]:
+              - link "App Android" [ref=e536] [cursor=pointer]:
+                - /url: https://play.google.com/store/apps/details?id=com.correrjuntos.app
+            - listitem [ref=e537]:
+              - link "Plan 0-5K gratis" [ref=e538] [cursor=pointer]:
+                - /url: /recursos/plan-0-5k
+        - generic [ref=e539]:
+          - heading "Legal" [level=4] [ref=e540]
+          - list [ref=e541]:
+            - listitem [ref=e542]:
+              - link "Política de privacidad" [ref=e543] [cursor=pointer]:
+                - /url: /legal/privacidad
+            - listitem [ref=e544]:
+              - link "Términos de uso" [ref=e545] [cursor=pointer]:
+                - /url: /legal/terminos
+            - listitem [ref=e546]:
+              - link "Política de cookies" [ref=e547] [cursor=pointer]:
+                - /url: /legal/cookies
+            - listitem [ref=e548]:
+              - link "Contacto" [ref=e549] [cursor=pointer]:
+                - /url: mailto:hola@correrjuntos.com
+        - generic [ref=e550]:
+          - heading "Social" [level=4] [ref=e551]
+          - list [ref=e552]:
+            - listitem [ref=e553]:
+              - link "Instagram" [ref=e554] [cursor=pointer]:
+                - /url: https://www.instagram.com/correrjuntosapp/
+            - listitem [ref=e555]:
+              - link "TikTok" [ref=e556] [cursor=pointer]:
+                - /url: https://www.tiktok.com/@correrjuntosapp
+            - listitem [ref=e557]:
+              - link "Pinterest" [ref=e558] [cursor=pointer]:
+                - /url: https://es.pinterest.com/correrjuntos/
+      - generic [ref=e559]: © 2026 CorrerJuntos. Todos los derechos reservados.
+  - button "Volver arriba": ↑
+  - generic [ref=e560]:
+    - paragraph [ref=e561]: Usamos cookies para mejorar tu experiencia y analizar el tráfico.
+    - button "Aceptar" [ref=e562] [cursor=pointer]
+    - link "Personalizar" [ref=e563] [cursor=pointer]:
+      - /url: /legal/cookies
+    - button "Rechazar" [ref=e564] [cursor=pointer]
+```

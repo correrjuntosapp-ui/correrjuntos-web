@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+.title{font-size:60px;font-weight:800;line-height:0.95;letter-spacing:-2px;color:#f6f1e8;margin-bottom:60px}
+.title .accent{color:#f97316}
+
+.razones{display:flex;flex-direction:column;gap:32px;flex:1}
+.razon{padding-bottom:32px;border-bottom:1px solid rgba(246,241,232,0.10)}
+.razon:last-child{border-bottom:none}
+.razon-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px}
+.razon-num{font-family:'JetBrains Mono',monospace;font-size:64px;font-weight:900;color:#f97316;line-height:0.85;letter-spacing:-2px}
+.razon-title{font-size:34px;font-weight:800;color:#f6f1e8;letter-spacing:-0.5px;line-height:1.05;flex:1}
+.razon-data{margin:14px 0 14px 90px;display:inline-flex;align-items:center;gap:10px;background:rgba(34,197,94,0.10);border:1px solid rgba(34,197,94,0.30);border-radius:8px;padding:6px 14px}
+.razon-data-num{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;color:#22c55e;letter-spacing:0.5px}
+.razon-data-label{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(34,197,94,0.85);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.razon-desc{font-size:20px;color:rgba(246,241,232,0.80);font-weight:500;line-height:1.5;margin-left:90px}
+.razon-desc strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">03 / 04</div>
+  <div class="eyebrow">Razones 4 a 6</div>
+  <div class="coords">SOCIAL · MENTAL · SEGURIDAD</div>
+  <div class="title">Las que <span class="accent">no</span><br>te esperabas</div>
+
+  <div class="razones">
+    <div class="razon">
+      <div class="razon-head">
+        <div class="razon-num">04</div>
+        <div class="razon-title">Salud mental medible</div>
+      </div>
+      <div class="razon-data">
+        <div class="razon-data-num">-32%</div>
+        <div class="razon-data-label">Síntomas ansiedad</div>
+      </div>
+      <div class="razon-desc">Correr en grupo libera <strong>oxitocina + endorfinas</strong>. Solo, principalmente endorfinas. La conexión social potencia el efecto.</div>
+    </div>
+
+    <div class="razon">
+      <div class="razon-head">
+        <div class="razon-num">05</div>
+        <div class="razon-title">Más amistades de verdad</div>
+      </div>
+      <div class="razon-data">
+        <div class="razon-data-num">3-5</div>
+        <div class="razon-data-label">Amigos nuevos / 6 meses</div>
+      </div>
+      <div class="razon-desc">Compartes <strong>120-180 min/semana</strong> con la misma gente. Las amistades adultas se construyen así, no en bares.</div>
+    </div>
+
+    <div class="razon">
+      <div class="razon-head">
+        <div class="razon-num">06</div>
+        <div class="razon-title">Más seguridad en zonas mixtas</div>
+      </div>
+      <div class="razon-data">
+        <div class="razon-data-num">−5×</div>
+        <div class="razon-data-label">Riesgo de incidente</div>
+      </div>
+      <div class="razon-desc">Importa especialmente para <strong>mujeres corriendo de noche o en zonas poco transitadas</strong>. Grupo = 5x menos riesgo.</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 03 · RAZONES 4-6</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

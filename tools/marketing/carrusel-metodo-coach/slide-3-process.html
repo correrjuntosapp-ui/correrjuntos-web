@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:60px}
+.title .accent{color:#f97316}
+
+.process{display:flex;flex-direction:column;gap:28px;flex:1}
+.step{display:grid;grid-template-columns:90px 1fr;gap:24px;align-items:flex-start}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:80px;font-weight:900;color:#f97316;line-height:0.85;letter-spacing:-3px;text-align:center;padding-top:8px}
+.step-line{width:90px;display:flex;flex-direction:column;align-items:center}
+.step-line-num{font-family:'JetBrains Mono',monospace;font-size:80px;font-weight:900;color:#f97316;line-height:0.85;letter-spacing:-3px}
+.step-line-bar{width:2px;height:80px;background:rgba(249,115,22,0.30);margin-top:8px}
+.step-content{display:flex;flex-direction:column;gap:8px;padding-bottom:24px}
+.step-title{font-size:28px;font-weight:800;color:#f6f1e8;letter-spacing:-0.4px;line-height:1.15}
+.step-desc{font-size:18px;color:rgba(246,241,232,0.75);font-weight:500;line-height:1.4}
+.step-desc strong{color:#f6f1e8;font-weight:700}
+.step-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,0.10);border:1px solid rgba(249,115,22,0.30);border-radius:6px;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#f97316;letter-spacing:0.8px;text-transform:uppercase;margin-top:6px;width:fit-content}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">03 / 06</div>
+  <div class="eyebrow">Paso 2 · ANÁLISIS</div>
+  <div class="coords">PROCESS · 4 PASOS · BACKEND IA</div>
+  <div class="title">Lo que <span class="accent">hace</span><br>antes de mostrarte nada</div>
+
+  <div class="process">
+    <div class="step">
+      <div class="step-line">
+        <div class="step-line-num">01</div>
+        <div class="step-line-bar"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Calcula tu ritmo objetivo</div>
+        <div class="step-desc">Usando <strong>fórmula Jack Daniels VDOT</strong>, estima tu rendimiento real basado en tu última carrera.</div>
+        <div class="step-tag">VDOT · ZONAS Z1-Z5</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-line">
+        <div class="step-line-num">02</div>
+        <div class="step-line-bar"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Diseña periodización completa</div>
+        <div class="step-desc">Reparte volumen e intensidad en <strong>bloques de 4 semanas</strong> (3 carga + 1 descarga).</div>
+        <div class="step-tag">PERIODIZACIÓN · DELOAD</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-line">
+        <div class="step-line-num">03</div>
+        <div class="step-line-bar"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Personaliza cada sesión</div>
+        <div class="step-desc">Calentamiento + parte principal + enfriamiento. <strong>Ritmos exactos para ti</strong>, no genéricos.</div>
+        <div class="step-tag">CADA RUN ÚNICO</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-line">
+        <div class="step-line-num">04</div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Ajusta semana a semana</div>
+        <div class="step-desc">Si vas más rápido o más lento de lo previsto, <strong>recalcula la siguiente semana</strong>.</div>
+        <div class="step-tag">ADAPTATIVO</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 03 · MÉTODO</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

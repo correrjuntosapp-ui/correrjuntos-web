@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Slide 1 — Hook 0→5K</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',-apple-system,sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 35%,rgba(249,115,22,0.06) 0%,transparent 60%);pointer-events:none}
+
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+
+/* Top eyebrow */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:140px}
+
+/* Monumental scale */
+.hero{flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:-100px}
+.km-stack{display:flex;flex-direction:column;gap:0;align-items:flex-start}
+.km-row{display:flex;align-items:baseline;gap:30px}
+.km-num{font-size:340px;font-weight:900;line-height:0.85;letter-spacing:-15px;color:#f6f1e8;font-family:'Inter',sans-serif}
+.km-num.accent{color:#f97316}
+.km-unit{font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:600;color:rgba(246,241,232,0.50);letter-spacing:-1px;padding-bottom:28px}
+.arrow-row{display:flex;align-items:center;gap:24px;margin:18px 0;padding-left:14px}
+.arrow-line{width:140px;height:2px;background:#f97316;position:relative}
+.arrow-line::after{content:'';position:absolute;right:-2px;top:-6px;width:0;height:0;border-left:14px solid #f97316;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.arrow-label{font-family:'JetBrains Mono',monospace;font-size:20px;color:#f97316;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+
+/* Bottom band */
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px}
+.bottom-left{display:flex;flex-direction:column;gap:8px}
+.bottom-label{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.bottom-val{font-size:28px;font-weight:700;color:#f6f1e8;letter-spacing:-0.5px}
+.bottom-right{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px;font-family:'Inter',sans-serif}
+.brand-tag{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;text-transform:uppercase}
+
+/* Page indicator */
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">01 / 05</div>
+
+  <div class="eyebrow">Plan estructurado</div>
+  <div class="coords">METHOD: 0→5K · LATITUDE: PRINCIPIANTE</div>
+
+  <div class="hero">
+    <div class="km-stack">
+      <div class="km-row">
+        <div class="km-num">0</div>
+        <div class="km-unit">KM</div>
+      </div>
+
+      <div class="arrow-row">
+        <div class="arrow-line"></div>
+        <div class="arrow-label">EN 6 SEMANAS</div>
+      </div>
+
+      <div class="km-row">
+        <div class="km-num accent">5</div>
+        <div class="km-unit">KM</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">
+      <div class="bottom-label">Diseñado por</div>
+      <div class="bottom-val">Coach José IA</div>
+    </div>
+    <div class="bottom-right">
+      <div class="brand">CorrerJuntos</div>
+      <div class="brand-tag">No corras solo</div>
+    </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Planes card · 3 variantes</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #1a1a1a;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .main-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--paper);
+    font-weight: 600;
+    text-align: center;
+  }
+  .main-sub {
+    color: #aaa;
+    font-size: 14px;
+    text-align: center;
+    max-width: 540px;
+    line-height: 1.55;
+    margin-top: -20px;
+  }
+  .main-sub strong { color: var(--ember); font-weight: 700; }
+
+  /* Card mockup holder (simulates Home screen width) */
+  .holder {
+    width: 340px;
+    background: var(--ink);
+    border-radius: 30px;
+    padding: 16px 20px 20px;
+    box-shadow: 0 0 0 8px #222, 0 0 0 10px #111, 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .variant-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .variant-caption {
+    color: #aaa;
+    font-size: 12px;
+    text-align: center;
+    max-width: 320px;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+  .variant-caption strong { color: #fff; }
+
+  /* Common Planes card elements */
+  .planes-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+  }
+  .planes-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.4px;
+    color: var(--ember);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .planes-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 3px;
+  }
+  .planes-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.2px;
+  }
+  .planes-badge-gratis {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.3);
+    background: rgba(34,197,94,0.08);
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .planes-desc {
+    font-size: 11px;
+    color: var(--ash-soft);
+    letter-spacing: 0.2px;
+  }
+  .planes-chips {
+    display: flex;
+    gap: 5px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    color: var(--ash-soft);
+    border: 1px solid var(--ash-fade);
+    padding: 3px 7px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .chip-ember {
+    color: var(--ember);
+    border-color: rgba(249,115,22,0.3);
+  }
+  .arrow {
+    color: var(--ember);
+    font-size: 16px;
+    margin-left: auto;
+  }
+
+  /* ════════════════════════════════════════════ */
+  /* Variant 1 — Discreet (actual propuesta)     */
+  /* ════════════════════════════════════════════ */
+  .v1-card {
+    padding: 14px;
+    background: rgba(246,241,232,0.04);
+    border: 1px solid rgba(246,241,232,0.12);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .v1-card::before {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--ember);
+  }
+  .v1-icon { background: rgba(249,115,22,0.1); color: var(--ember); }
+  .v1-body { flex: 1; min-width: 0; }
+
+  /* ════════════════════════════════════════════ */
+  /* Variant 2 — Middle ground (my rec)          */
+  /* ════════════════════════════════════════════ */
+  .v2-card {
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(11,18,32,0) 70%);
+    border: 1px solid rgba(249,115,22,0.35);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(249,115,22,0.1);
+  }
+  .v2-icon {
+    background: linear-gradient(135deg, rgba(249,115,22,0.25), rgba(249,115,22,0.1));
+    color: var(--ember);
+    border: 1px solid rgba(249,115,22,0.4);
+  }
+  .v2-body { flex: 1; min-width: 0; }
+  .v2-title { font-size: 15px; }
+
+  /* ════════════════════════════════════════════ */
+  /* Variant 3 — Premium (with ember glow)       */
+  /* ════════════════════════════════════════════ */
+  .v3-card {
+    padding: 18px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.12) 0%, rgba(11,18,32,0.4) 60%, rgba(11,18,32,0) 100%);
+    border: 1px solid rgba(249,115,22,0.5);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(249,115,22,0.15), inset 0 1px 0 rgba(249,115,22,0.2);
+  }
+  .v3-card::before {
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, rgba(249,115,22,0) 60%);
+    pointer-events: none;
+  }
+  .v3-icon {
+    background: linear-gradient(135deg, var(--ember), var(--ember-deep));
+    color: #fff;
+    width: 48px; height: 48px;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.4);
+  }
+  .v3-body { flex: 1; min-width: 0; position: relative; z-index: 1; }
+  .v3-title { font-size: 16px; }
+
+</style>
+</head>
+<body>
+
+  <div class="main-label">Card "Planes de entrenamiento" · 3 niveles de tono ember</div>
+  <div class="main-sub">Mismo contenido, tres niveles de presencia visual. Elige el que mejor equilibra <strong>visible pero no saturado</strong>.</div>
+
+  <!-- ═══ Variant 1 · Discreet ═══ -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+    <div class="variant-label">Variante 1 · Discreta (la que tenías)</div>
+    <div class="holder">
+      <div class="v1-card">
+        <div class="planes-icon v1-icon">🏃</div>
+        <div class="v1-body">
+          <div class="planes-num">01</div>
+          <div class="planes-title-row">
+            <div class="planes-title">Planes de entrenamiento</div>
+            <div class="planes-badge-gratis">GRATIS</div>
+          </div>
+          <div class="planes-desc">5K · 10K · 21K · Trail · Maratón</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+    </div>
+    <div class="variant-caption">Accent stripe ember izquierda · fondo surface · border ash-fade. <strong>Muy discreta.</strong> Quizás se pierde.</div>
+  </div>
+
+  <!-- ═══ Variant 2 · Middle ground ═══ -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+    <div class="variant-label">Variante 2 · Media ★ mi recomendación</div>
+    <div class="holder">
+      <div class="v2-card">
+        <div class="planes-icon v2-icon">🏃</div>
+        <div class="v2-body">
+          <div class="planes-num">01</div>
+          <div class="planes-title-row">
+            <div class="planes-title v2-title">Planes de entrenamiento</div>
+            <div class="planes-badge-gratis">GRATIS</div>
+          </div>
+          <div class="planes-desc">5K · 10K · 21K · Trail · Maratón</div>
+          <div class="planes-chips">
+            <span class="chip chip-ember">5K</span>
+            <span class="chip chip-ember">10K</span>
+            <span class="chip chip-ember">21K</span>
+            <span class="chip chip-ember">TRAIL</span>
+            <span class="chip chip-ember">42K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="variant-caption">Gradient <strong>sutil</strong> ember→ink al 8% · border ember al 35% · icono ember tinted con border · shadow ember soft. <strong>Visible sin gritar.</strong></div>
+  </div>
+
+  <!-- ═══ Variant 3 · Premium ═══ -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+    <div class="variant-label">Variante 3 · Premium glow</div>
+    <div class="holder">
+      <div class="v3-card">
+        <div class="planes-icon v3-icon">🏃</div>
+        <div class="v3-body">
+          <div class="planes-num">01 · DESTACADO</div>
+          <div class="planes-title-row">
+            <div class="planes-title v3-title">Planes de entrenamiento</div>
+            <div class="planes-badge-gratis">GRATIS</div>
+          </div>
+          <div class="planes-desc">5K · 10K · 21K · Trail · Maratón</div>
+          <div class="planes-chips">
+            <span class="chip chip-ember">5K</span>
+            <span class="chip chip-ember">10K</span>
+            <span class="chip chip-ember">21K</span>
+            <span class="chip chip-ember">TRAIL</span>
+            <span class="chip chip-ember">42K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="variant-caption">Gradient ember al 12% con radial glow · border ember al 50% · icono gradient sólido ember con sombra · inset highlight. <strong>Feels premium · aspiracional.</strong> Máxima presencia sin ser banner saturado.</div>
+  </div>
+
+  <div style="max-width:620px;width:100%;padding:22px 26px;background:#111;border:1px solid #333;border-radius:16px;color:#ddd;margin-top:20px;">
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px;color:#fff;">Comparativa técnica</h3>
+    <table style="width:100%;font-size:12px;line-height:1.6;">
+      <thead>
+        <tr style="border-bottom:1px solid #2a2a2a;">
+          <th style="text-align:left;padding:8px 4px;font-weight:600;color:#aaa;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Prop.</th>
+          <th style="text-align:left;padding:8px 4px;font-weight:600;color:#aaa;font-size:10px;letter-spacing:1px;text-transform:uppercase;">V1 Discreta</th>
+          <th style="text-align:left;padding:8px 4px;font-weight:600;color:#aaa;font-size:10px;letter-spacing:1px;text-transform:uppercase;">V2 Media ★</th>
+          <th style="text-align:left;padding:8px 4px;font-weight:600;color:#aaa;font-size:10px;letter-spacing:1px;text-transform:uppercase;">V3 Premium</th>
+        </tr>
+      </thead>
+      <tbody style="color:#ccc;">
+        <tr style="border-bottom:1px solid #2a2a2a;"><td style="padding:6px 4px;">Ember opacidad fondo</td><td style="padding:6px 4px;">0%</td><td style="padding:6px 4px;color:#86efac;">8% gradient</td><td style="padding:6px 4px;">12% + glow</td></tr>
+        <tr style="border-bottom:1px solid #2a2a2a;"><td style="padding:6px 4px;">Border ember</td><td style="padding:6px 4px;">Solo stripe 2px izq</td><td style="padding:6px 4px;color:#86efac;">35% · 1px</td><td style="padding:6px 4px;">50% · 1px</td></tr>
+        <tr style="border-bottom:1px solid #2a2a2a;"><td style="padding:6px 4px;">Icono</td><td style="padding:6px 4px;">Tinted 10%</td><td style="padding:6px 4px;color:#86efac;">Tinted gradient + border</td><td style="padding:6px 4px;">Gradient sólido + shadow</td></tr>
+        <tr style="border-bottom:1px solid #2a2a2a;"><td style="padding:6px 4px;">Chips (5K, 10K, ...)</td><td style="padding:6px 4px;">No</td><td style="padding:6px 4px;color:#86efac;">Sí ember</td><td style="padding:6px 4px;">Sí ember</td></tr>
+        <tr style="border-bottom:1px solid #2a2a2a;"><td style="padding:6px 4px;">Shadow / glow</td><td style="padding:6px 4px;">No</td><td style="padding:6px 4px;color:#86efac;">Soft</td><td style="padding:6px 4px;">Glow + inset</td></tr>
+        <tr><td style="padding:6px 4px;">Sensación</td><td style="padding:6px 4px;">Minimal</td><td style="padding:6px 4px;color:#86efac;"><strong>Equilibrado</strong></td><td style="padding:6px 4px;">Aspiracional</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

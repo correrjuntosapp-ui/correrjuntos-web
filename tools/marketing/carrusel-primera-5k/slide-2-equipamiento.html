@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:30px}
+.title .accent{color:#f97316}
+.subtitle{font-size:22px;color:rgba(246,241,232,0.70);font-weight:500;line-height:1.5;max-width:760px;margin-bottom:50px}
+.subtitle strong{color:#f6f1e8;font-weight:700}
+
+.essential{display:flex;flex-direction:column;gap:14px;flex:1}
+.item{display:grid;grid-template-columns:80px 1fr;gap:20px;padding:22px 24px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:12px;align-items:center}
+.item.essential-tag{background:linear-gradient(90deg,rgba(34,197,94,0.10),rgba(34,197,94,0.04));border-color:rgba(34,197,94,0.30)}
+.item.optional-tag{background:linear-gradient(90deg,rgba(246,241,232,0.06),transparent);border-color:rgba(246,241,232,0.10);opacity:0.85}
+.item.skip-tag{background:linear-gradient(90deg,rgba(239,68,68,0.06),transparent);border-color:rgba(239,68,68,0.20);opacity:0.85}
+.item-tag{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;text-align:center;padding:6px 0;border-radius:6px;width:80px;line-height:1.1}
+.tag-yes{background:rgba(34,197,94,0.20);color:#22c55e;border:1px solid rgba(34,197,94,0.40)}
+.tag-meh{background:rgba(246,241,232,0.10);color:rgba(246,241,232,0.65);border:1px solid rgba(246,241,232,0.20)}
+.tag-no{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.30)}
+.item-content{display:flex;flex-direction:column;gap:3px}
+.item-title{font-size:21px;font-weight:800;color:#f6f1e8;letter-spacing:-0.3px;line-height:1.2}
+.item-desc{font-size:15px;color:rgba(246,241,232,0.65);font-weight:500;line-height:1.4}
+.item-desc strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">02 / 06</div>
+  <div class="eyebrow">Paso 1 · Equipamiento</div>
+  <div class="coords">¿QUÉ NECESITAS REALMENTE?</div>
+  <div class="title">Equipamiento <span class="accent">real</span></div>
+  <div class="subtitle">Spoiler: <strong>casi nada</strong>. La industria te quiere vender de todo.</div>
+
+  <div class="essential">
+    <div class="item essential-tag">
+      <div class="item-tag tag-yes">SÍ</div>
+      <div class="item-content">
+        <div class="item-title">Zapatillas neutras nivel principiante</div>
+        <div class="item-desc"><strong>50-100€</strong> bastan. Asics Cumulus · Nike Pegasus · Adidas Supernova</div>
+      </div>
+    </div>
+    <div class="item essential-tag">
+      <div class="item-tag tag-yes">SÍ</div>
+      <div class="item-content">
+        <div class="item-title">Calcetines técnicos</div>
+        <div class="item-desc">Antiampollas. <strong>10€ pack 3 pares</strong>. Decathlon o similar.</div>
+      </div>
+    </div>
+    <div class="item essential-tag">
+      <div class="item-tag tag-yes">SÍ</div>
+      <div class="item-content">
+        <div class="item-title">Camiseta + short transpirables</div>
+        <div class="item-desc">Cualquier ropa deportiva sirve. <strong>No el algodón</strong> (te chiripa).</div>
+      </div>
+    </div>
+    <div class="item optional-tag">
+      <div class="item-tag tag-meh">OPCIONAL</div>
+      <div class="item-content">
+        <div class="item-title">Reloj GPS</div>
+        <div class="item-desc">Tu móvil hace lo mismo. <strong>Compra solo si pasas a 10K+</strong>.</div>
+      </div>
+    </div>
+    <div class="item skip-tag">
+      <div class="item-tag tag-no">NO</div>
+      <div class="item-content">
+        <div class="item-title">Zapatillas de carbono</div>
+        <div class="item-desc">Para tu nivel <strong>te lesionan</strong>. Espera a 5K rodando.</div>
+      </div>
+    </div>
+    <div class="item skip-tag">
+      <div class="item-tag tag-no">NO</div>
+      <div class="item-content">
+        <div class="item-title">Geles, BCAA, suplementos</div>
+        <div class="item-desc">A tu nivel <strong>no aportan nada</strong>. Marketing puro.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 02 · EQUIPAMIENTO</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

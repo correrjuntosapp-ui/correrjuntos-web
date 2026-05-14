@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.06;pointer-events:none}
+
+/* Logo */
+.logo{position:absolute;top:45px;left:50px;font-weight:900;font-size:22px;letter-spacing:-.5px;z-index:10}
+
+/* Badge */
+.badge{position:absolute;top:45px;right:50px;display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.15);border:1.5px solid rgba(249,115,22,.4);padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;color:#f97316;letter-spacing:.5px;text-transform:uppercase}
+.badge::before{content:'';width:6px;height:6px;background:#f97316;border-radius:50%}
+
+/* TEXT — top zone (45px to 420px) */
+.text-section{position:absolute;top:110px;left:50px;right:50px;z-index:5}
+.headline{font-size:58px;font-weight:900;color:#fff;line-height:1.08;letter-spacing:-2.5px;margin-bottom:16px}
+.headline span{color:#f97316}
+.subtitle{font-size:18px;color:#94a3b8;line-height:1.6;max-width:580px}
+
+/* PHONES — middle zone (450px to 1000px) */
+.phones{position:absolute;top:440px;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:14px;z-index:3}
+.phone{background:#000;border-radius:30px;padding:5px;box-shadow:0 16px 50px rgba(0,0,0,.5)}
+.phone img{border-radius:25px;display:block;object-fit:cover;width:100%;height:100%}
+.phone-left{width:190px;height:380px;transform:rotate(-5deg)}
+.phone-center{width:240px;height:480px;z-index:2}
+.phone-right{width:190px;height:380px;transform:rotate(5deg)}
+
+/* STATS — bottom zone (1050px to 1150px) */
+.stats{position:absolute;bottom:180px;left:50px;right:50px;display:flex;gap:16px;z-index:5}
+.stat{flex:1;text-align:center;padding:14px 0}
+.stat-num{font-size:26px;font-weight:800;color:#f97316}
+.stat-label{font-size:11px;color:#64748b;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+.stat-sep{width:1px;background:rgba(255,255,255,.08);margin:4px 0}
+
+/* Bottom bar */
+.bottom{position:absolute;bottom:50px;left:50px;right:50px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.bottom-cta{background:#f97316;color:#fff;padding:12px 28px;border-radius:12px;font-size:15px;font-weight:700}
+.bottom-sub{color:#64748b;font-size:13px}
+.bottom-handle{color:#64748b;font-size:14px;font-weight:500}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="logo"><span style="color:#fff">CORRER</span><span style="color:#f97316">JUNTOS</span></div>
+<div class="badge">Running Social + Coach IA</div>
+
+<div class="text-section">
+  <div class="headline">Encuentra runners<br>de tu nivel.<br>Entrena con <span>IA.</span></div>
+  <div class="subtitle">Coach Jose analiza cada carrera y te conecta con runners compatibles por ritmo, horario y zona.</div>
+</div>
+
+<div class="phones">
+  <div class="phone phone-left"><img src="public/screenshot-map.webp" alt="Mapa"></div>
+  <div class="phone phone-center"><img src="public/screenshot-feed.webp" alt="Feed"></div>
+  <div class="phone phone-right"><img src="public/screenshot-run.webp" alt="Run"></div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">568+</div><div class="stat-label">Runners</div></div>
+  <div class="stat-sep"></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Ciudades</div></div>
+  <div class="stat-sep"></div>
+  <div class="stat"><div class="stat-num">4.8</div><div class="stat-label">App Store</div></div>
+  <div class="stat-sep"></div>
+  <div class="stat"><div class="stat-num">4,99&euro;</div><div class="stat-label">Al mes</div></div>
+</div>
+
+<div class="bottom">
+  <div style="display:flex;align-items:center;gap:16px">
+    <div class="bottom-cta">Descarga gratis</div>
+    <div class="bottom-sub">Prueba 7 d&iacute;as gratis</div>
+  </div>
+  <div class="bottom-handle">@correrjuntosapp</div>
+</div>
+
+</body>
+</html>

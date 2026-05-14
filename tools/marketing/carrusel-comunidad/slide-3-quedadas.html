@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Quedadas Reales</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+/* City grid */
+.cities{display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1}
+.city{padding:28px 26px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:14px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.city.featured{background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(249,115,22,0.04));border-color:rgba(249,115,22,0.30)}
+.city-num{position:absolute;top:14px;right:18px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:700;letter-spacing:0.5px}
+.city-name{font-size:32px;font-weight:800;color:#f6f1e8;letter-spacing:-0.5px;line-height:1.05}
+.city-name .accent{color:#f97316}
+.city-country{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:1.2px;text-transform:uppercase;margin-top:6px}
+.city-flag{font-size:24px}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">03 / 05</div>
+  <div class="eyebrow">Comunidad real</div>
+  <div class="coords">693 RUNNERS · 14 CIUDADES · 2 CONTINENTES</div>
+  <div class="title">Dónde están los<br><span class="accent">runners</span> ahora</div>
+
+  <div class="cities">
+    <div class="city featured">
+      <div class="city-num">01</div>
+      <div class="city-name">Madrid</div>
+      <div class="city-country">63 RUNNERS · ES</div>
+    </div>
+    <div class="city featured">
+      <div class="city-num">02</div>
+      <div class="city-name">Sevilla</div>
+      <div class="city-country">31 RUNNERS · ES</div>
+    </div>
+    <div class="city">
+      <div class="city-num">03</div>
+      <div class="city-name">Barcelona</div>
+      <div class="city-country">29 RUNNERS · ES</div>
+    </div>
+    <div class="city">
+      <div class="city-num">04</div>
+      <div class="city-name">Valencia</div>
+      <div class="city-country">21 RUNNERS · ES</div>
+    </div>
+    <div class="city">
+      <div class="city-num">05</div>
+      <div class="city-name">Málaga</div>
+      <div class="city-country">11 RUNNERS · ES</div>
+    </div>
+    <div class="city">
+      <div class="city-num">06</div>
+      <div class="city-name">Lima</div>
+      <div class="city-country">10 RUNNERS · PE</div>
+    </div>
+    <div class="city">
+      <div class="city-num">07</div>
+      <div class="city-name">Bilbao</div>
+      <div class="city-country">9 RUNNERS · ES</div>
+    </div>
+    <div class="city">
+      <div class="city-num">08</div>
+      <div class="city-name">Bogotá</div>
+      <div class="city-country">9 RUNNERS · CO</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 03 · CIUDADES</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

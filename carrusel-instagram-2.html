@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.06;pointer-events:none}
+.content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 60px;text-align:center}
+.icon{width:80px;height:80px;border-radius:20px;background:rgba(249,115,22,.15);border:1.5px solid rgba(249,115,22,.3);display:flex;align-items:center;justify-content:center;margin-bottom:30px;font-size:36px}
+h2{font-size:64px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-2px;margin-bottom:20px}
+h2 span{color:#f97316}
+.desc{font-size:22px;color:#94a3b8;line-height:1.6;max-width:700px;margin-bottom:50px}
+.features{display:flex;flex-direction:column;gap:16px;width:100%;max-width:700px}
+.feature{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 24px;text-align:left}
+.feature-dot{width:8px;height:8px;border-radius:4px;background:#f97316;flex-shrink:0}
+.feature-text{font-size:20px;color:rgba(255,255,255,.85);font-weight:500}
+.slide-num{position:absolute;top:50px;right:60px;font-size:18px;font-weight:700;color:rgba(255,255,255,.3)}
+.logo{position:absolute;top:50px;left:60px;font-weight:900;font-size:22px}
+.logo-c{color:#fff}.logo-j{color:#f97316}
+.swipe{position:absolute;bottom:50px;left:0;right:0;text-align:center;color:rgba(255,255,255,.3);font-size:16px;font-weight:500}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+  <div class="icon">🧠</div>
+  <h2>Coach <span>Jose</span><br>analiza cada carrera</h2>
+  <p class="desc">Inteligencia artificial que entiende tu ritmo, tu cuerpo y tus objetivos.</p>
+  <div class="features">
+    <div class="feature"><div class="feature-dot"></div><div class="feature-text">Analisis post-carrera automatico</div></div>
+    <div class="feature"><div class="feature-dot"></div><div class="feature-text">7 planes: de 0-5K a maraton</div></div>
+    <div class="feature"><div class="feature-dot"></div><div class="feature-text">Coaching por voz durante la carrera</div></div>
+    <div class="feature"><div class="feature-dot"></div><div class="feature-text">Consejos personalizados con IA</div></div>
+  </div>
+</div>
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+<div class="slide-num">2/5</div>
+<div class="swipe">Desliza →</div>
+</body>
+</html>

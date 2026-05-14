@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>EventDetails Tier 1 — preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  html, body {
+    width: 390px;
+    background: #000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro', sans-serif;
+    color: #fff;
+  }
+  body { width: 390px; padding-bottom: 0; }
+
+  /* ── COLORES ─────────────────────────────── */
+  :root {
+    --bg: #0A0A0A;
+    --card: #141414;
+    --card-border: rgba(255,255,255,0.06);
+    --separator: rgba(255,255,255,0.05);
+    --text: #FFFFFF;
+    --text2: #C9C9CE;
+    --muted: #8E8E93;
+    --label: #6E6E73;
+    --accent: #FF6B35;
+    --accent-soft: rgba(255,107,53,0.12);
+    --green: #34D399;
+    --green-bg: rgba(52,211,153,0.12);
+    --warn: #F59E0B;
+    --warn-bg: rgba(245,158,11,0.10);
+  }
+
+  body { background: var(--bg); }
+
+  /* ── STATUS BAR ──────────────────────────── */
+  .status-bar {
+    height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px 0 32px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .status-icons { display: flex; align-items: center; gap: 5px; font-size: 14px; }
+
+  /* ── HEADER ──────────────────────────────── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px 12px;
+    border-bottom: 1px solid var(--separator);
+  }
+  .header-btn {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  .header-btn svg { width: 22px; height: 22px; }
+  .header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+
+  /* ── HERO INFO ───────────────────────────── */
+  .hero {
+    padding: 18px 16px 16px;
+  }
+  .hero-countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(255,107,53,0.25);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .hero-date {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    line-height: 28px;
+  }
+  .hero-distance {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.2px;
+    margin-top: 4px;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 14px;
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .meta-chip.weather { background: var(--green-bg); border-color: rgba(52,211,153,0.3); color: var(--green); }
+  .meta-chip.nivel { background: var(--warn-bg); border-color: rgba(245,158,11,0.3); color: var(--warn); }
+  .meta-text { font-size: 13px; color: var(--text2); font-weight: 500; }
+  .hero-nivel-desc {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 10px;
+    color: var(--warn);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .hero-nivel-desc svg { width: 12px; height: 12px; }
+
+  /* ── CARDS de sección ────────────────────── */
+  .section-card {
+    margin: 12px 16px 0;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .section-label {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--label);
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .section-label svg { width: 12px; height: 12px; }
+
+  /* PUNTO DE ENCUENTRO */
+  .meeting-point-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 21px;
+    margin-bottom: 12px;
+  }
+  .map-thumb {
+    height: 130px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2c5e8e 0%, #4a7ba6 50%, #79a1c2 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .map-thumb::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 50% 50% 50% 0;
+    transform: translate(-50%, -100%) rotate(-45deg);
+    box-shadow: 0 4px 12px rgba(255,107,53,0.5);
+  }
+  .map-btns {
+    display: flex; gap: 8px; margin-top: 10px;
+  }
+  .map-btn {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #3b82f6;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .map-btn.outline {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text);
+  }
+
+  /* ORGANIZADOR */
+  .organizer-row {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B35, #f59e0b);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .organizer-info { flex: 1; min-width: 0; }
+  .organizer-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .organizer-stats {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 2px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .organizer-stats .dot { color: var(--label); }
+
+  /* PARTICIPANTES */
+  .participants-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .participants-label {
+    font-size: 11px; font-weight: 700; color: var(--label);
+    letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  .participants-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .participants-count .total { color: var(--muted); font-weight: 500; }
+  .progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 10%; /* 1/10 */
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .participants-avatars {
+    display: flex; align-items: center;
+  }
+  .stacked-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--card);
+    background: linear-gradient(135deg, #FF6B35, #f59e0b);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    margin-left: -8px;
+  }
+  .stacked-avatar:first-child { margin-left: 0; }
+  .stacked-avatar.empty {
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    border: 2px dashed rgba(255,255,255,0.1);
+    font-size: 18px;
+  }
+  .participants-text {
+    margin-left: 12px;
+    font-size: 13px;
+    color: var(--text2);
+    font-weight: 500;
+  }
+  .participants-text strong { color: var(--text); font-weight: 700; }
+
+  /* COMENTARIOS */
+  .comment-row {
+    display: flex; gap: 10px;
+    padding: 10px 0;
+  }
+  .comment-row:not(:last-child) {
+    border-bottom: 1px solid var(--separator);
+  }
+  .comment-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B35, #f59e0b);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .comment-content { flex: 1; min-width: 0; }
+  .comment-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 2px;
+  }
+  .comment-author { font-size: 14px; font-weight: 600; }
+  .comment-time { font-size: 11px; color: var(--muted); }
+  .comment-text { font-size: 14px; color: var(--text2); line-height: 19px; }
+
+  .comment-input {
+    margin-top: 12px;
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 24px;
+    border: 1px solid var(--card-border);
+    padding: 8px 8px 8px 16px;
+  }
+  .comment-input input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+  }
+  .send-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.4;
+  }
+
+  /* ── FOOTER STICKY ───────────────────────── */
+  .footer {
+    background: var(--bg);
+    padding: 12px 16px 28px;
+    border-top: 1px solid var(--separator);
+    margin-top: 16px;
+  }
+  .cta-btn {
+    width: 100%;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px;
+  }
+  .cta-btn.outline {
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+  }
+  .footer-share {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Status bar -->
+<div class="status-bar">
+  <span>14:42</span>
+  <div class="status-icons">
+    <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="6" width="3" height="6" rx="1"/><rect x="5" y="3" width="3" height="9" rx="1"/><rect x="10" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5C9.1 9.5 10 8.6 10 7.5S9.1 5.5 8 5.5 6 6.4 6 7.5 6.9 9.5 8 9.5"/></svg>
+    <svg width="26" height="12" viewBox="0 0 26 12"><rect x="0.5" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1"/><rect x="2" y="2.5" width="17" height="7" rx="1" fill="currentColor"/></svg>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-btn">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="header-title">12 km progresivos</div>
+  <div class="header-btn">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#555" stroke-width="2" stroke-linecap="round"/></svg>
+  </div>
+</div>
+
+<!-- HERO INFO -->
+<div class="hero">
+  <div class="hero-countdown">⏱ Quedan 1 día</div>
+  <div class="hero-date">MAR 28 ABR · 10:00</div>
+  <div class="hero-distance">12 km · 4:30 min/km</div>
+  <div class="hero-meta">
+    <div class="meta-chip weather">☁ 21°</div>
+    <span class="meta-text">Punta Umbría</span>
+    <div class="meta-chip nivel">Intermedio</div>
+  </div>
+  <div class="hero-nivel-desc">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7v8l10-12h-7V2z"/></svg>
+    <span>Ritmo moderado, runners con experiencia</span>
+  </div>
+</div>
+
+<!-- PUNTO DE ENCUENTRO -->
+<div class="section-card">
+  <div class="section-label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    PUNTO DE ENCUENTRO
+  </div>
+  <div class="meeting-point-text">Avenida de la Ciudad de Huelva 2, Punta Umbría</div>
+  <div class="map-thumb"></div>
+  <div class="map-btns">
+    <div class="map-btn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg>
+      Google Maps
+    </div>
+    <div class="map-btn outline">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg>
+      Apple Maps
+    </div>
+  </div>
+</div>
+
+<!-- ORGANIZADOR -->
+<div class="section-card">
+  <div class="section-label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+    ORGANIZADOR
+  </div>
+  <div class="organizer-row">
+    <div class="avatar">JM</div>
+    <div class="organizer-info">
+      <div class="organizer-name">Javi m.</div>
+      <div class="organizer-stats">
+        <span>3 quedadas organizadas</span>
+        <span class="dot">·</span>
+        <span style="color: var(--green);">⚡ Activo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTICIPANTES -->
+<div class="section-card">
+  <div class="participants-header">
+    <span class="participants-label">PARTICIPANTES</span>
+    <span class="participants-count">1 <span class="total">/ 10 plazas</span></span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill"></div>
+  </div>
+  <div class="participants-avatars">
+    <div class="stacked-avatar">JM</div>
+    <div class="stacked-avatar empty">+</div>
+    <div class="participants-text"><strong>Javi</strong> es el primero · Únete tú</div>
+  </div>
+</div>
+
+<!-- COMENTARIOS -->
+<div class="section-card">
+  <div class="section-label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    COMENTARIOS
+  </div>
+  <div class="comment-row">
+    <div class="comment-avatar">JM</div>
+    <div class="comment-content">
+      <div class="comment-header">
+        <span class="comment-author">Javi</span>
+        <span class="comment-time">hace 14 min</span>
+      </div>
+      <div class="comment-text">Ahora sí</div>
+    </div>
+  </div>
+  <div class="comment-row">
+    <div class="comment-avatar">JM</div>
+    <div class="comment-content">
+      <div class="comment-header">
+        <span class="comment-author">Javi</span>
+        <span class="comment-time">hace 16 min</span>
+      </div>
+      <div class="comment-text">Hola</div>
+    </div>
+  </div>
+  <div class="comment-input">
+    <input value="" placeholder="Añadir un comentario..." />
+    <div class="send-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER STICKY -->
+<div class="footer">
+  <div class="cta-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    Compartir esta quedada
+  </div>
+</div>
+
+</body>
+</html>

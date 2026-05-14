@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Tabla Comparativa</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:60px}
+.title .accent{color:#f97316}
+
+.table{width:100%;flex:1;display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:0;padding:22px 0;border-bottom:1px solid rgba(246,241,232,0.10);align-items:center}
+.row.head{padding:18px 0;border-bottom:2px solid rgba(246,241,232,0.20);background:transparent}
+.cell-feat{font-size:21px;font-weight:600;color:#f6f1e8;letter-spacing:-0.2px}
+.cell-head{text-align:center;font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.cell-head.strava{color:rgba(252,82,0,0.95)}
+.cell-head.cj{color:#f97316}
+.cell-val{text-align:center;font-size:18px;font-weight:600;color:rgba(246,241,232,0.85)}
+.cell-val .check{display:inline-block;width:30px;height:30px;border-radius:6px;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.35);color:#22c55e;font-weight:900;line-height:28px}
+.cell-val .x{display:inline-block;width:30px;height:30px;border-radius:6px;background:rgba(239,68,68,0.10);border:1px solid rgba(239,68,68,0.30);color:#ef4444;font-weight:900;line-height:28px}
+.cell-val.txt{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.5px;text-transform:uppercase;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:auto}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">04 / 05</div>
+  <div class="eyebrow">Cara a cara</div>
+  <div class="coords">SIDE BY SIDE · DECIDE TÚ</div>
+  <div class="title">Strava <span class="accent">vs</span> CJ<br>en una <span class="accent">tabla</span></div>
+
+  <div class="table">
+    <div class="row head">
+      <div class="cell-feat" style="color:rgba(246,241,232,0.55);font-size:14px;letter-spacing:1.5px;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Feature</div>
+      <div class="cell-head strava">Strava</div>
+      <div class="cell-head cj">CJ</div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Tracking GPS</div>
+      <div class="cell-val"><span class="check">✓</span></div>
+      <div class="cell-val"><span class="check">✓</span></div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Análisis post-run</div>
+      <div class="cell-val"><span class="check">✓</span></div>
+      <div class="cell-val"><span class="check">✓</span></div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Encontrar compañeros</div>
+      <div class="cell-val"><span class="x">✕</span></div>
+      <div class="cell-val"><span class="check">✓</span></div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Quedadas en tu ciudad</div>
+      <div class="cell-val"><span class="x">✕</span></div>
+      <div class="cell-val"><span class="check">✓</span></div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Coach IA</div>
+      <div class="cell-val"><span class="x">✕</span></div>
+      <div class="cell-val"><span class="check">✓</span></div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Plan personalizado</div>
+      <div class="cell-val"><span class="x">✕</span></div>
+      <div class="cell-val"><span class="check">✓</span></div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Idioma español</div>
+      <div class="cell-val txt" style="color:rgba(246,241,232,0.55)">PARCIAL</div>
+      <div class="cell-val txt" style="color:#22c55e">100%</div>
+    </div>
+    <div class="row">
+      <div class="cell-feat">Precio</div>
+      <div class="cell-val txt" style="color:rgba(246,241,232,0.85)">9,99€/mes</div>
+      <div class="cell-val txt" style="color:#22c55e">GRATIS</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 04 · TABLA COMPARATIVA</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

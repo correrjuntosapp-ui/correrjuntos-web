@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Carrusel — 5 errores al empezar a correr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #fef7ed;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ember-glow: rgba(249, 115, 22, 0.14);
+    --paper-dim: rgba(254, 247, 237, 0.55);
+    --paper-faint: rgba(254, 247, 237, 0.12);
+    --grid: rgba(249, 115, 22, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #111;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px;
+    align-items: center;
+  }
+
+  /* ── Canvas 1080x1350 (Instagram carousel portrait 4:5) ── */
+  .canvas {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 1 — COVER (hook)
+     ═══════════════════════════════════════════════════════ */
+  .slide-cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 90px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .slide-cover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.42;
+    pointer-events: none;
+  }
+  /* Orange glow bottom-left */
+  .slide-cover::after {
+    content: "";
+    position: absolute;
+    bottom: -260px;
+    left: -180px;
+    width: 640px;
+    height: 640px;
+    background: radial-gradient(circle, var(--ember-glow) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+  .brand-mark {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+  .brand-mark .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ember);
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .category {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--paper-dim);
+    text-transform: uppercase;
+  }
+
+  .cover-body {
+    position: relative;
+    z-index: 2;
+  }
+  .cover-five {
+    font-size: 480px;
+    font-weight: 900;
+    color: var(--ember);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+    text-shadow: 0 0 80px rgba(249, 115, 22, 0.32);
+  }
+  .cover-headline {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    max-width: 800px;
+  }
+  .cover-headline em {
+    color: var(--ember);
+    font-style: normal;
+    font-weight: 900;
+  }
+  .cover-sub {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--paper-dim);
+    margin-top: 30px;
+    line-height: 1.4;
+    max-width: 640px;
+  }
+
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+  .slide-number {
+    font-family: 'Inter', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--paper-faint);
+    letter-spacing: 2px;
+  }
+  .swipe-prompt {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--paper);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .swipe-arrow {
+    width: 48px;
+    height: 2px;
+    background: var(--ember);
+    position: relative;
+  }
+  .swipe-arrow::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -6px;
+    border: 2px solid var(--ember);
+    border-left: 0;
+    border-bottom: 0;
+    width: 14px;
+    height: 14px;
+    transform: rotate(45deg);
+    transform-origin: right center;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDES 2, 3, 4, 5 — ERROR SLIDES
+     ═══════════════════════════════════════════════════════ */
+  .slide-error {
+    padding: 80px 80px 70px;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide-error::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* Dark variant */
+  .slide-error.dark {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Light variant — alternating for visual rhythm */
+  .slide-error.light {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .slide-error.light::before {
+    background-image:
+      linear-gradient(to right, rgba(11, 18, 32, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 18, 32, 0.05) 1px, transparent 1px);
+  }
+
+  .error-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 60px;
+  }
+  .error-category {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ember);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .error-category::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ember);
+  }
+  .error-pagination {
+    font-family: 'Inter', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--paper-faint);
+  }
+  .slide-error.light .error-pagination {
+    color: rgba(11, 18, 32, 0.35);
+  }
+
+  .error-number {
+    font-size: 320px;
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+    color: var(--ember);
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  .slide-error.dark .error-number {
+    color: var(--ember);
+    text-shadow: 0 0 60px rgba(249, 115, 22, 0.28);
+  }
+  .slide-error.light .error-number {
+    -webkit-text-stroke: 4px var(--ember);
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .error-title {
+    font-size: 68px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-top: 24px;
+    margin-bottom: 38px;
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .error-body {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 50px;
+    max-width: 860px;
+    color: var(--paper-dim);
+    position: relative;
+    z-index: 2;
+  }
+  .slide-error.light .error-body {
+    color: rgba(11, 18, 32, 0.72);
+  }
+
+  .error-fix {
+    margin-top: auto;
+    padding: 34px 40px;
+    background: var(--ember);
+    border-radius: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .error-fix-label {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .error-fix-label::before {
+    content: "↗";
+    font-size: 22px;
+    font-weight: 900;
+  }
+  .error-fix-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.32;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 6 (CTA) — CorrerJuntos pitch
+     ═══════════════════════════════════════════════════════ */
+  .slide-cta {
+    background: linear-gradient(160deg, var(--ember) 0%, var(--ember-deep) 100%);
+    color: var(--ink);
+    padding: 90px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .slide-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(11, 18, 32, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 18, 32, 0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .cta-top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cta-brand {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .cta-counter {
+    font-family: 'Inter', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgba(11, 18, 32, 0.55);
+  }
+
+  .cta-center {
+    position: relative;
+    z-index: 2;
+  }
+  .cta-number6 {
+    font-size: 220px;
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    margin-bottom: 30px;
+    -webkit-text-stroke: 3px var(--ink);
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-headline {
+    font-size: 92px;
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+  .cta-sub {
+    font-size: 30px;
+    font-weight: 600;
+    color: rgba(11, 18, 32, 0.78);
+    line-height: 1.38;
+    max-width: 780px;
+  }
+
+  .cta-bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cta-download-btn {
+    background: var(--ink);
+    color: var(--ember);
+    padding: 26px 50px;
+    border-radius: 999px;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 40px rgba(11, 18, 32, 0.32);
+  }
+  .cta-download-btn::after {
+    content: "↓";
+    font-size: 28px;
+  }
+  .cta-url {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 1px;
+  }
+
+  /* Running icon decoration on CTA */
+  .runner-silhouette {
+    position: absolute;
+    right: -120px;
+    bottom: 180px;
+    width: 620px;
+    height: 620px;
+    opacity: 0.07;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Debug labels for development */
+  .slide-label {
+    color: #888;
+    font-size: 14px;
+    font-family: monospace;
+    margin-top: -30px;
+    margin-bottom: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 1 — COVER
+     ═══════════════════════════════════════════════ -->
+<div class="canvas slide-cover" id="slide1">
+  <header class="cover-header">
+    <div class="brand-mark"><span class="dot"></span>CorrerJuntos</div>
+    <div class="category">GUÍA · RUNNING 101</div>
+  </header>
+
+  <div class="cover-body">
+    <div class="cover-five">5</div>
+    <h1 class="cover-headline">
+      errores que <em>todos</em><br>cometemos al<br>empezar a correr
+    </h1>
+    <p class="cover-sub">Evítalos y te ahorras meses de frustración en tus primeras carreras.</p>
+  </div>
+
+  <footer class="cover-footer">
+    <span class="slide-number">01 / 06</span>
+    <div class="swipe-prompt">
+      Desliza<span class="swipe-arrow"></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 2 — ERROR 01 (dark)
+     ═══════════════════════════════════════════════ -->
+<div class="canvas slide-error dark" id="slide2">
+  <header class="error-header">
+    <div class="error-category">Error común</div>
+    <div class="error-pagination">02 / 06</div>
+  </header>
+
+  <div class="error-number">01</div>
+  <h2 class="error-title">Correr<br>demasiado rápido</h2>
+  <p class="error-body">
+    Empiezas con toda la energía y a los 5 minutos estás fundido.
+    Tu corazón no te sigue, respiras como puedes y terminas odiando salir.
+  </p>
+
+  <div class="error-fix">
+    <div class="error-fix-label">El fix</div>
+    <p class="error-fix-text">
+      Primera semana: corre al ritmo al que puedas <strong>hablar en frases completas</strong>.
+      Si no puedes hablar, vas demasiado rápido.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 3 — ERROR 02 (light)
+     ═══════════════════════════════════════════════ -->
+<div class="canvas slide-error light" id="slide3">
+  <header class="error-header">
+    <div class="error-category">Error común</div>
+    <div class="error-pagination">03 / 06</div>
+  </header>
+
+  <div class="error-number">02</div>
+  <h2 class="error-title">Saltarte<br>los descansos</h2>
+  <p class="error-body">
+    Más no es mejor. Tu cuerpo no construye músculo corriendo:
+    lo construye <strong>descansando</strong>. Sin días libres no hay progreso, solo lesiones.
+  </p>
+
+  <div class="error-fix">
+    <div class="error-fix-label">El fix</div>
+    <p class="error-fix-text">
+      <strong>3-4 días por semana</strong> es suficiente para empezar.
+      Tus mejores sesiones salen después de un día de descanso total.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 4 — ERROR 03 (dark)
+     ═══════════════════════════════════════════════ -->
+<div class="canvas slide-error dark" id="slide4">
+  <header class="error-header">
+    <div class="error-category">Error común</div>
+    <div class="error-pagination">04 / 06</div>
+  </header>
+
+  <div class="error-number">03</div>
+  <h2 class="error-title">Zapatillas<br>de cualquier cosa</h2>
+  <p class="error-body">
+    Las casual no amortiguan. Las de crossfit son planas.
+    Las viejas del gimnasio ya están muertas. Correr con zapatillas
+    inadecuadas es la vía rápida a la <strong>tendinitis y dolor de rodilla</strong>.
+  </p>
+
+  <div class="error-fix">
+    <div class="error-fix-label">El fix</div>
+    <p class="error-fix-text">
+      Zapatillas <strong>específicas de running</strong>. No hace falta las caras.
+      Desde 50 € tienes opciones que hacen su trabajo.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 5 — ERROR 04 (light)
+     ═══════════════════════════════════════════════ -->
+<div class="canvas slide-error light" id="slide5">
+  <header class="error-header">
+    <div class="error-category">Error común</div>
+    <div class="error-pagination">05 / 06</div>
+  </header>
+
+  <div class="error-number">04</div>
+  <h2 class="error-title">Compararte<br>con Strava</h2>
+  <p class="error-body">
+    Abres la app y ves a tu colega corriendo a 4:30/km. Tú vas a 6:30.
+    Te frustras. Abandonas. <strong>No es tu progreso, es el de otro</strong>.
+  </p>
+
+  <div class="error-fix">
+    <div class="error-fix-label">El fix</div>
+    <p class="error-fix-text">
+      Compite solo contra <strong>tu yo de hace 2 semanas</strong>.
+      Anota cada sesión y mira tu progreso, no el de los demás.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 6 — CTA (orange gradient)
+     ═══════════════════════════════════════════════ -->
+<div class="canvas slide-cta" id="slide6">
+  <header class="cta-top">
+    <div class="cta-brand">CorrerJuntos</div>
+    <div class="cta-counter">06 / 06</div>
+  </header>
+
+  <svg class="runner-silhouette" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/>
+  </svg>
+
+  <div class="cta-center">
+    <div class="cta-number6">+1</div>
+    <h2 class="cta-headline">¿Corres solo?<br>Ese es el<br>error #6.</h2>
+    <p class="cta-sub">
+      Únete a la comunidad de runners de tu ciudad.
+      Ritmo, zona y nivel compatibles.
+      Gratis, para siempre.
+    </p>
+  </div>
+
+  <footer class="cta-bottom">
+    <div class="cta-download-btn">Descarga gratis</div>
+    <div class="cta-url">correrjuntos.com</div>
+  </footer>
+</div>
+
+</body>
+</html>

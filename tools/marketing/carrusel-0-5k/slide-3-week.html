@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Slide 3 — Semana tipo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:60px}
+.title .accent{color:#f97316}
+
+.week{display:flex;flex-direction:column;gap:0;flex:1}
+.day{display:grid;grid-template-columns:80px 1fr 130px;align-items:center;gap:30px;padding:24px 0;border-bottom:1px solid rgba(246,241,232,0.10)}
+.day:first-child{border-top:1px solid rgba(246,241,232,0.10)}
+.day-label{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#f97316;letter-spacing:1.5px;text-transform:uppercase}
+.day-rest{color:rgba(246,241,232,0.30)}
+.day-content{display:flex;flex-direction:column;gap:5px}
+.day-title{font-size:24px;font-weight:700;color:#f6f1e8;letter-spacing:-0.4px}
+.day-desc{font-size:15px;color:rgba(246,241,232,0.55);font-weight:500}
+.day-meta{text-align:right;font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:#f6f1e8;letter-spacing:0}
+.day-meta-rest{color:rgba(246,241,232,0.30)}
+
+.note{margin-top:40px;padding:20px 26px;background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.20);border-radius:10px;display:flex;align-items:center;gap:16px}
+.note-icon{font-size:24px;color:#f97316}
+.note-text{font-size:16px;color:rgba(246,241,232,0.80);font-weight:500;line-height:1.4}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">03 / 05</div>
+
+  <div class="eyebrow">Tu semana 1</div>
+  <div class="coords">PROGRESSION: ADAPTATIVA · CADENCE: 170 PPM</div>
+
+  <div class="title">
+    Una <span class="accent">semana</span><br>
+    cualquiera
+  </div>
+
+  <div class="week">
+    <div class="day">
+      <div class="day-label">LUN</div>
+      <div class="day-content">
+        <div class="day-title">Caminar + trotar suave</div>
+        <div class="day-desc">5 series · 1 min trote / 1 min caminar</div>
+      </div>
+      <div class="day-meta">30 min</div>
+    </div>
+    <div class="day">
+      <div class="day-label day-rest">MAR</div>
+      <div class="day-content">
+        <div class="day-title" style="color:rgba(246,241,232,0.45)">Descanso activo</div>
+        <div class="day-desc">Estiramiento o paseo ligero</div>
+      </div>
+      <div class="day-meta day-meta-rest">REST</div>
+    </div>
+    <div class="day">
+      <div class="day-label">MIE</div>
+      <div class="day-content">
+        <div class="day-title">Trote constante + intervalos</div>
+        <div class="day-desc">8 min trote · 4 × 30s rápido · 8 min trote</div>
+      </div>
+      <div class="day-meta">30 min</div>
+    </div>
+    <div class="day">
+      <div class="day-label day-rest">JUE</div>
+      <div class="day-content">
+        <div class="day-title" style="color:rgba(246,241,232,0.45)">Descanso completo</div>
+        <div class="day-desc">Hidratación · sueño · paciencia</div>
+      </div>
+      <div class="day-meta day-meta-rest">REST</div>
+    </div>
+    <div class="day">
+      <div class="day-label">VIE</div>
+      <div class="day-content">
+        <div class="day-title">Trote progresivo</div>
+        <div class="day-desc">15 min suave + 15 min ritmo objetivo</div>
+      </div>
+      <div class="day-meta">35 min</div>
+    </div>
+    <div class="day">
+      <div class="day-label day-rest">SAB</div>
+      <div class="day-content">
+        <div class="day-title" style="color:rgba(246,241,232,0.45)">Descanso o cross</div>
+        <div class="day-desc">Bici, natación o nada</div>
+      </div>
+      <div class="day-meta day-meta-rest">REST</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <div class="note-icon">→</div>
+    <div class="note-text">El plan se ajusta solo según tu ritmo y FC. Cada semana sube +10%.</div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 03 · CALENDARIO</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

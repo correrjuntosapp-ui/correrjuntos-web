@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feed Empty State — Mockup CorrerJuntos</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;display:flex;justify-content:center;padding:20px;gap:30px;flex-wrap:wrap;min-height:100vh}
+.phone{width:380px;background:#0f0f0f;border-radius:42px;border:8px solid #2a2a2a;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
+.phone::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:24px;background:#000;border-radius:0 0 16px 16px;z-index:10}
+.label{position:absolute;top:-32px;left:0;right:0;text-align:center;color:#f97316;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.status-bar{height:44px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 4px;background:#0f0f0f;color:#fff;font-size:13px;font-weight:600}
+.header{padding:14px 16px 12px;background:#0f0f0f;border-bottom:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center}
+.header h1{color:#fff;font-size:22px;font-weight:800;letter-spacing:-.5px}
+.header-icons{display:flex;gap:14px;color:#9a9aa6}
+.header-icons div{width:28px;height:28px;background:#1a1a1e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.feed{padding:20px 16px}
+
+/* HERO VACÍO — versión 1: HONESTA + LOCAL */
+.hero-empty{background:linear-gradient(135deg,rgba(249,115,22,.10),rgba(249,115,22,.03));border:1px solid rgba(249,115,22,.20);border-radius:16px;padding:24px 20px;margin-bottom:16px}
+.hero-stat{font-size:36px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1}
+.hero-stat .accent{color:#f97316}
+.hero-sub{color:#9a9aa6;font-size:14px;margin-top:6px;line-height:1.5}
+.hero-sub strong{color:#fff;font-weight:700}
+.hero-cta{display:block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:700;font-size:15px;margin-top:18px;text-decoration:none;box-shadow:0 4px 16px rgba(249,115,22,.3)}
+.hero-cta-sub{display:block;color:#f97316;text-align:center;font-size:13px;margin-top:10px;font-weight:600;text-decoration:none}
+
+/* RUNNERS SECTION */
+.section-title{color:#fff;font-size:15px;font-weight:700;margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.section-title .badge{background:#f97316;color:#fff;font-size:11px;padding:3px 8px;border-radius:99px;font-weight:800}
+.runners-row{display:flex;gap:10px;overflow-x:auto;margin:0 -16px;padding:0 16px 4px}
+.runner-card{flex:0 0 130px;background:#1a1a1e;border:1px solid #2a2a30;border-radius:14px;padding:14px 10px;text-align:center}
+.runner-avatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;border:2px solid #2a2a30}
+.runner-name{color:#fff;font-size:13px;font-weight:700;line-height:1.2}
+.runner-info{color:#9a9aa6;font-size:11px;margin-top:3px}
+.runner-pace{color:#f97316;font-size:11px;font-weight:600;margin-top:6px}
+.runner-btn{display:block;background:rgba(249,115,22,.10);border:1px solid rgba(249,115,22,.3);color:#f97316;font-size:11px;font-weight:700;padding:6px;border-radius:8px;margin-top:8px;text-decoration:none}
+
+/* CTA SECONDARY */
+.cta-secondary{background:#1a1a1e;border:1px solid #2a2a30;border-radius:14px;padding:18px 16px;margin-top:20px;display:flex;align-items:center;gap:14px}
+.cta-secondary-icon{width:40px;height:40px;background:rgba(249,115,22,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cta-secondary-text{flex:1}
+.cta-secondary-text .t{color:#fff;font-size:14px;font-weight:700}
+.cta-secondary-text .s{color:#9a9aa6;font-size:12px;margin-top:2px;line-height:1.4}
+
+/* Tab bar */
+.tabs{position:absolute;bottom:0;left:0;right:0;background:#0f0f0f;border-top:1px solid #1f1f1f;height:80px;display:flex;justify-content:space-around;padding-top:10px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;color:#666;font-size:10px;font-weight:600}
+.tab.active{color:#f97316}
+.tab-icon{width:28px;height:28px;background:#1a1a1e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px}
+.tab.active .tab-icon{background:#f97316;color:#fff}
+
+/* OLD VERSION */
+.old-empty{background:#1a1a1e;border:1px solid #2a2a30;border-radius:16px;padding:30px 20px;text-align:center;margin-top:16px}
+.old-icon{width:50px;height:50px;background:rgba(255,255,255,.05);border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:#666;font-size:22px}
+.old-title{color:#fff;font-size:15px;font-weight:600;margin-bottom:6px}
+.old-sub{color:#666;font-size:13px;margin-bottom:18px}
+.old-btn{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;display:inline-block;padding:11px 24px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}
+.old-btn-secondary{display:block;color:#f97316;font-size:13px;font-weight:600;margin-top:14px;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="label">ANTES (actual)</div>
+  <div class="status-bar"><span>9:41</span><span>📶 100%</span></div>
+  <div class="header"><h1>Inicio</h1><div class="header-icons"><div>🔍</div><div>🔔</div></div></div>
+  <div class="feed">
+    <div class="section-title">Quedadas cerca</div>
+    <div class="old-empty">
+      <div class="old-icon">📍</div>
+      <div class="old-title">No hay quedadas cerca</div>
+      <div class="old-sub">Sé el primero en crear una</div>
+      <a href="#" class="old-btn">+ Crear quedada</a>
+      <a href="#" class="old-btn-secondary">Ver mapa</a>
+    </div>
+    <div style="margin-top:30px;color:#444;font-size:13px;text-align:center">— sin nada más —</div>
+  </div>
+  <div class="tabs">
+    <div class="tab active"><div class="tab-icon">🏠</div>Inicio</div>
+    <div class="tab"><div class="tab-icon">🗺</div>Mapa</div>
+    <div class="tab"><div class="tab-icon">▶</div>Correr</div>
+    <div class="tab"><div class="tab-icon">👥</div>Social</div>
+    <div class="tab"><div class="tab-icon">👤</div>Perfil</div>
+  </div>
+</div>
+
+<div class="phone">
+  <div class="label">DESPUÉS (propuesto)</div>
+  <div class="status-bar"><span>9:41</span><span>📶 100%</span></div>
+  <div class="header"><h1>Inicio</h1><div class="header-icons"><div>🔍</div><div>🔔</div></div></div>
+  <div class="feed" style="padding-bottom:90px">
+
+    <!-- HERO empty state honesto -->
+    <div class="hero-empty">
+      <div class="hero-stat"><span class="accent">678</span> runners</div>
+      <div class="hero-sub">en CorrerJuntos · <strong>30 en Sevilla</strong></div>
+      <div class="hero-sub" style="margin-top:14px;color:#fff;font-size:15px;font-weight:600;line-height:1.4">Aún no hay quedadas en tu zona.<br>Tu vecino corre. Crea la primera.</div>
+      <a href="#" class="hero-cta">+ Crear mi quedada en Sevilla</a>
+      <a href="#" class="hero-cta-sub">⏱ Solo te lleva 30 segundos</a>
+    </div>
+
+    <!-- Runners en la zona -->
+    <div class="section-title">
+      Conoce runners de Sevilla
+      <span class="badge">30</span>
+    </div>
+    <div class="runners-row">
+      <div class="runner-card">
+        <div class="runner-avatar">JM</div>
+        <div class="runner-name">Juan M.</div>
+        <div class="runner-info">Sevilla · 32 años</div>
+        <div class="runner-pace">5:15 min/km</div>
+        <a href="#" class="runner-btn">+ Seguir</a>
+      </div>
+      <div class="runner-card">
+        <div class="runner-avatar" style="background:linear-gradient(135deg,#3b82f6,#1e40af)">CR</div>
+        <div class="runner-name">Cristina R.</div>
+        <div class="runner-info">Sevilla · 29 años</div>
+        <div class="runner-pace">5:40 min/km</div>
+        <a href="#" class="runner-btn">+ Seguir</a>
+      </div>
+      <div class="runner-card">
+        <div class="runner-avatar" style="background:linear-gradient(135deg,#22c55e,#15803d)">AL</div>
+        <div class="runner-name">Alberto L.</div>
+        <div class="runner-info">Sevilla · 41 años</div>
+        <div class="runner-pace">4:55 min/km</div>
+        <a href="#" class="runner-btn">+ Seguir</a>
+      </div>
+      <div class="runner-card">
+        <div class="runner-avatar" style="background:linear-gradient(135deg,#a855f7,#6b21a8)">ME</div>
+        <div class="runner-name">María E.</div>
+        <div class="runner-info">Sevilla · 28 años</div>
+        <div class="runner-pace">6:00 min/km</div>
+        <a href="#" class="runner-btn">+ Seguir</a>
+      </div>
+    </div>
+
+    <!-- CTA secundario: matching -->
+    <div class="cta-secondary">
+      <div class="cta-secondary-icon">⚡</div>
+      <div class="cta-secondary-text">
+        <div class="t">¿Buscas con quién entrenar?</div>
+        <div class="s">Te conectamos con 3 runners de tu nivel y horario</div>
+      </div>
+      <div style="color:#f97316;font-size:18px">→</div>
+    </div>
+
+    <!-- CTA quedada futuras grandes -->
+    <div class="section-title" style="margin-top:24px">Carreras populares en Andalucía</div>
+    <div style="background:#1a1a1e;border:1px solid #2a2a30;border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center">
+      <div style="width:50px;height:50px;background:linear-gradient(135deg,#f97316,#ea580c);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;text-align:center;line-height:1.1">10<br>MAY</div>
+      <div style="flex:1">
+        <div style="color:#fff;font-size:14px;font-weight:700">Carrera Parque María Luisa</div>
+        <div style="color:#9a9aa6;font-size:12px;margin-top:2px">Sevilla · 5K</div>
+      </div>
+      <a href="#" style="color:#f97316;font-weight:700;font-size:13px;text-decoration:none">Ver →</a>
+    </div>
+
+  </div>
+  <div class="tabs">
+    <div class="tab active"><div class="tab-icon">🏠</div>Inicio</div>
+    <div class="tab"><div class="tab-icon">🗺</div>Mapa</div>
+    <div class="tab"><div class="tab-icon">▶</div>Correr</div>
+    <div class="tab"><div class="tab-icon">👥</div>Social</div>
+    <div class="tab"><div class="tab-icon">👤</div>Perfil</div>
+  </div>
+</div>
+
+</body>
+</html>

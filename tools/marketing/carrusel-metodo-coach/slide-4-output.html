@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+/* Plan card mock */
+.plan-mock{background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:16px;padding:32px;flex:1;display:flex;flex-direction:column}
+.plan-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(246,241,232,0.10)}
+.plan-title-block{display:flex;flex-direction:column;gap:4px}
+.plan-name{font-size:28px;font-weight:800;color:#f6f1e8;letter-spacing:-0.4px}
+.plan-meta{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.plan-week{text-align:right}
+.plan-week-num{font-size:42px;font-weight:900;color:#f97316;line-height:1;letter-spacing:-1px}
+.plan-week-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(246,241,232,0.55);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+
+.workouts{display:flex;flex-direction:column;gap:14px}
+.workout{display:grid;grid-template-columns:60px 1fr 80px;gap:18px;padding:18px 20px;background:rgba(246,241,232,0.03);border-left:3px solid #f97316;border-radius:10px;align-items:center}
+.workout.green{border-left-color:#22c55e}
+.workout.red{border-left-color:#ef4444}
+.workout.gray{border-left-color:#6b7280;opacity:0.55}
+.workout-day{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;color:#f97316;letter-spacing:1px;text-transform:uppercase}
+.workout.green .workout-day{color:#22c55e}
+.workout.red .workout-day{color:#ef4444}
+.workout.gray .workout-day{color:#6b7280}
+.workout-info{display:flex;flex-direction:column;gap:2px}
+.workout-title{font-size:18px;font-weight:700;color:#f6f1e8;letter-spacing:-0.2px}
+.workout-desc{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+.workout-stat{text-align:right;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#f6f1e8;letter-spacing:0.3px}
+
+.note{margin-top:24px;padding:18px 22px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.25);border-radius:10px;display:flex;align-items:center;gap:14px}
+.note-icon{font-size:20px;color:#22c55e}
+.note-text{font-size:14px;color:rgba(246,241,232,0.85);font-weight:500;line-height:1.4}
+.note-text strong{color:#22c55e;font-weight:800}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">04 / 06</div>
+  <div class="eyebrow">Paso 3 · OUTPUT</div>
+  <div class="coords">YOUR PLAN · ESTRUCTURADO · DÍA A DÍA</div>
+  <div class="title">Lo que <span class="accent">recibes</span></div>
+
+  <div class="plan-mock">
+    <div class="plan-header">
+      <div class="plan-title-block">
+        <div class="plan-name">Plan 0→5K</div>
+        <div class="plan-meta">DURACIÓN · 6 SEMANAS · 18 SESIONES</div>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-num">1/6</div>
+        <div class="plan-week-label">Semana</div>
+      </div>
+    </div>
+
+    <div class="workouts">
+      <div class="workout green">
+        <div class="workout-day">LUN</div>
+        <div class="workout-info">
+          <div class="workout-title">Rodaje suave introducción</div>
+          <div class="workout-desc">5x (1 min trote · 1 min camina)</div>
+        </div>
+        <div class="workout-stat">10 min</div>
+      </div>
+      <div class="workout gray">
+        <div class="workout-day">MAR</div>
+        <div class="workout-info">
+          <div class="workout-title">Descanso activo</div>
+          <div class="workout-desc">Estiramiento o paseo</div>
+        </div>
+        <div class="workout-stat">REST</div>
+      </div>
+      <div class="workout">
+        <div class="workout-day">MIÉ</div>
+        <div class="workout-info">
+          <div class="workout-title">Trote constante + cadencia</div>
+          <div class="workout-desc">8 min trote 7:30/km · cadencia 170</div>
+        </div>
+        <div class="workout-stat">12 min</div>
+      </div>
+      <div class="workout gray">
+        <div class="workout-day">JUE</div>
+        <div class="workout-info">
+          <div class="workout-title">Descanso completo</div>
+          <div class="workout-desc">Sueño · hidratación</div>
+        </div>
+        <div class="workout-stat">REST</div>
+      </div>
+      <div class="workout green">
+        <div class="workout-day">VIE</div>
+        <div class="workout-info">
+          <div class="workout-title">Trote progresivo</div>
+          <div class="workout-desc">5 min suave + 5 min ritmo objetivo</div>
+        </div>
+        <div class="workout-stat">15 min</div>
+      </div>
+      <div class="workout gray">
+        <div class="workout-day">SAB</div>
+        <div class="workout-info">
+          <div class="workout-title">Cross training opcional</div>
+          <div class="workout-desc">Bici · natación · nada</div>
+        </div>
+        <div class="workout-stat">OPT</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-icon">→</div>
+      <div class="note-text"><strong>Cada sesión</strong> con ritmo, FC, splits y consejos. Coach José te avisa si vas mal.</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 04 · OUTPUT</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

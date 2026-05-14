@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Meridian Motion — Correr Juntos (feed)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ash: rgba(246, 241, 232, 0.42);
+    --ash-fade: rgba(246, 241, 232, 0.12);
+    --grid: rgba(249, 115, 22, 0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--paper);
+    font-feature-settings: "ss01", "cv01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  .canvas {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .canvas::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    opacity: 0.35;
+  }
+
+  .contour {
+    position: absolute;
+    top: -160px;
+    right: -220px;
+    width: 620px;
+    height: 620px;
+    pointer-events: none;
+    opacity: 0.38;
+  }
+
+  .topbar {
+    position: absolute;
+    top: 48px; left: 56px; right: 56px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+  .topbar .mark { color: var(--ember); }
+
+  .hero {
+    position: absolute;
+    top: 130px;
+    left: 56px;
+    right: 56px;
+  }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero .eyebrow::before {
+    content: "";
+    width: 48px;
+    height: 1px;
+    background: var(--ember);
+  }
+  .hero h1 {
+    font-size: 86px;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    font-weight: 200;
+  }
+  .hero h1 strong {
+    font-weight: 700;
+    color: var(--ember);
+  }
+
+  .cities {
+    position: absolute;
+    top: 470px;
+    left: 56px;
+    right: 56px;
+    display: flex;
+    flex-direction: column;
+  }
+  .city {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 14px 0;
+    border-top: 1px solid var(--ash-fade);
+  }
+  .city:last-child { border-bottom: 1px solid var(--ash-fade); }
+  .city .name {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    font-variant: small-caps;
+  }
+  .city .name em {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--ember);
+  }
+  .city .coord {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ash);
+    text-align: right;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .monument {
+    position: absolute;
+    top: 750px;
+    left: 56px;
+    right: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--ash-fade);
+  }
+  .stat {
+    background: var(--ink);
+    padding: 24px 16px 22px;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    color: var(--ember);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .num .plus { font-size: 32px; font-weight: 300; }
+  .stat .num .star { font-size: 28px; font-weight: 400; margin-left: 2px; }
+  .stat .label {
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  .foot {
+    position: absolute;
+    bottom: 48px;
+    left: 56px;
+    right: 56px;
+  }
+  .foot .divider {
+    height: 1px;
+    background: var(--ash-fade);
+    margin-bottom: 22px;
+  }
+  .foot .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+  }
+  .foot .brand .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 6px;
+  }
+  .foot .brand .name {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .foot .brand .name em {
+    font-style: normal;
+    color: var(--ember);
+  }
+  .foot .brand .url {
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--ember);
+  }
+  .foot .stores {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .foot .stores .caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+  .foot .stores .badges {
+    display: flex;
+    gap: 8px;
+  }
+  .foot .stores .badge {
+    border: 1px solid var(--ash-fade);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--paper);
+  }
+  .foot .stores .badge svg { width: 18px; height: 18px; }
+  .foot .stores .badge .meta { display: flex; flex-direction: column; line-height: 1.1; }
+  .foot .stores .badge .meta .s1 {
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+  .foot .stores .badge .meta .s2 {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .accent-dot {
+    position: absolute;
+    top: 96px;
+    left: 56px;
+    width: 10px;
+    height: 10px;
+    background: var(--ember);
+    border-radius: 999px;
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+
+  <svg class="contour" viewBox="0 0 620 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#f97316" stroke-width="1" stroke-opacity="0.5">
+      <circle cx="310" cy="310" r="55"/><circle cx="310" cy="310" r="110"/>
+      <circle cx="310" cy="310" r="165"/><circle cx="310" cy="310" r="220"/>
+      <circle cx="310" cy="310" r="275"/>
+    </g>
+    <g stroke="#f6f1e8" stroke-width="0.6" stroke-opacity="0.22">
+      <line x1="310" y1="30" x2="310" y2="590"/>
+      <line x1="30" y1="310" x2="590" y2="310"/>
+      <line x1="108" y1="108" x2="512" y2="512"/>
+      <line x1="512" y1="108" x2="108" y2="512"/>
+    </g>
+    <circle cx="310" cy="310" r="4" fill="#f97316"/>
+  </svg>
+
+  <span class="accent-dot"></span>
+
+  <div class="topbar">
+    <div><span class="mark">● MERIDIAN MOTION</span> · LATAM · 2026</div>
+    <div>SURVEY № 1.3.2</div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">CORRE ACOMPAÑADO</div>
+    <h1>No corras<br>solo en <strong>tu<br>ciudad</strong>.</h1>
+  </div>
+
+  <div class="cities">
+    <div class="city"><div class="name">Ciudad de <em>México</em></div><div class="coord">19.43° N · 99.13° W</div></div>
+    <div class="city"><div class="name">Buenos <em>Aires</em></div><div class="coord">34.61° S · 58.38° W</div></div>
+    <div class="city"><div class="name"><em>Santiago</em></div><div class="coord">33.46° S · 70.65° W</div></div>
+    <div class="city"><div class="name"><em>Bogotá</em> · <em>Lima</em></div><div class="coord">4.71° N · 12.05° S</div></div>
+  </div>
+
+  <div class="monument">
+    <div class="stat">
+      <div class="num">579<span class="plus">+</span></div>
+      <div class="label">Corredores</div>
+    </div>
+    <div class="stat">
+      <div class="num">7</div>
+      <div class="label">Planes</div>
+    </div>
+    <div class="stat">
+      <div class="num">4<span class="star">★</span></div>
+      <div class="label">Valoración</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="divider"></div>
+    <div class="row">
+      <div class="brand">
+        <div class="label">DESCARGA — GRATIS</div>
+        <div class="name">Correr<em>Juntos</em></div>
+        <div class="url">correrjuntos.com</div>
+      </div>
+      <div class="stores">
+        <div class="caption">DISPONIBLE EN</div>
+        <div class="badges">
+          <div class="badge">
+            <svg viewBox="0 0 24 24" fill="#f6f1e8"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <div class="meta"><span class="s1">App Store</span><span class="s2">iOS</span></div>
+          </div>
+          <div class="badge">
+            <svg viewBox="0 0 24 24"><path fill="#34A853" d="M3.6 1.8 13.8 12 3.6 22.2a1 1 0 0 1-.6-.9V2.7c0-.4.2-.7.6-.9z"/><path fill="#FBBC04" d="M16.3 15.5 13.8 12l2.5-3.5 4.7 2.7c.9.5.9 1 0 1.5l-4.7 2.7z"/><path fill="#4285F4" d="m3.6 1.8 10.2 10.2 2.5-3.5L5.4.4C5-.3 3.9-.2 3.6.8v1z"/><path fill="#EA4335" d="M13.8 12 3.6 22.2c.7.6 1.3.7 1.8.5l10.9-6.2L13.8 12z"/></svg>
+            <div class="meta"><span class="s1">Google Play</span><span class="s2">Android</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

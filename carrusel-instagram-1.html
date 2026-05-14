@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.08;pointer-events:none}
+.content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 60px;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.15);border:1.5px solid rgba(249,115,22,.4);padding:10px 22px;border-radius:100px;font-size:16px;font-weight:700;color:#f97316;letter-spacing:1px;text-transform:uppercase;margin-bottom:40px}
+.badge::before{content:'';width:8px;height:8px;background:#f97316;border-radius:50%}
+h1{font-size:82px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-3px;margin-bottom:30px}
+h1 span{color:#f97316}
+.sub{font-size:24px;color:#94a3b8;line-height:1.5;max-width:700px;margin-bottom:50px}
+.phone{width:320px;height:640px;background:#000;border-radius:40px;padding:6px;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08);overflow:hidden}
+.phone img{width:100%;height:100%;border-radius:34px;object-fit:cover}
+.slide-num{position:absolute;top:50px;right:60px;font-size:18px;font-weight:700;color:rgba(255,255,255,.3)}
+.logo{position:absolute;top:50px;left:60px;font-weight:900;font-size:22px}
+.logo-c{color:#fff}
+.logo-j{color:#f97316}
+.swipe{position:absolute;bottom:50px;left:0;right:0;text-align:center;color:rgba(255,255,255,.3);font-size:16px;font-weight:500}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+  <div class="badge">Running Social + Coach IA</div>
+  <h1>¿Corres <span>solo?</span></h1>
+  <p class="sub">Encuentra runners de tu nivel. Entrena con inteligencia artificial. Corre acompañado.</p>
+  <div class="phone"><img src="public/screenshot-feed.webp" alt="CorrerJuntos"></div>
+</div>
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+<div class="slide-num">1/5</div>
+<div class="swipe">Desliza →</div>
+</body>
+</html>

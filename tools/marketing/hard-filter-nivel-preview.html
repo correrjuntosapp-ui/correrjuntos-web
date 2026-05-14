@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Hard filter por nivel — preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .scenario {
+    text-align: center;
+    background: rgba(255,107,0,0.08);
+    border-left: 2px solid #FF6B00;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #ddd;
+    max-width: 560px;
+    margin: 0 auto 28px;
+    line-height: 1.5;
+  }
+  .scenario b { color: #FF6B00; }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) {
+    .columns { grid-template-columns: 1fr; max-width: 360px; }
+  }
+  .col-label { text-align: center; margin-bottom: 12px; }
+  .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .desc { margin-top: 8px; font-size: 12px; color: #aaa; line-height: 1.5; padding: 0 10px; min-height: 50px; }
+  .tag-before { background: #ef4444; color: #fff; }
+  .tag-after { background: #22C55E; color: #052e16; }
+
+  .phone {
+    width: 320px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 36px;
+    padding: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .phone-screen {
+    background: #000;
+    border-radius: 28px;
+    padding-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .header {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .header-pre {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .header-title {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .section { padding: 14px 16px; }
+  .section-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .section-title { font-size: 16px; font-weight: 800; }
+
+  .q-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+  }
+  .q-card.problem {
+    border-color: rgba(239,68,68,0.4);
+    background: linear-gradient(0deg, rgba(239,68,68,0.04), rgba(239,68,68,0.04)), #1a1a1a;
+  }
+  .q-card.dropped {
+    opacity: 0.35;
+    position: relative;
+  }
+  .q-card.dropped::after {
+    content: 'FILTRADO';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+    font-size: 14px;
+    font-weight: 800;
+    color: #ef4444;
+    background: rgba(0,0,0,0.85);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1.5px solid #ef4444;
+    letter-spacing: 0.1em;
+  }
+  .q-date { background: rgba(255,107,0,0.12); border-radius: 8px; padding: 8px 6px; text-align: center; min-width: 50px; }
+  .q-day { font-size: 18px; font-weight: 800; color: #FF6B00; line-height: 1; }
+  .q-month { font-size: 9px; color: #FF6B00; font-weight: 700; letter-spacing: 0.1em; margin-top: 2px; }
+  .q-info { flex: 1; min-width: 0; }
+  .q-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .q-meta { font-size: 11px; color: #888; margin-bottom: 6px; }
+  .q-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .q-tag {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: #2a2a2a;
+    color: #ccc;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .q-tag.principiante { background: rgba(34,197,94,0.15); color: #22C55E; }
+  .q-tag.intermedio   { background: rgba(255,107,0,0.15); color: #FF6B00; }
+  .q-tag.avanzado     { background: rgba(239,68,68,0.18); color: #ef4444; }
+  .q-tag.elite        { background: rgba(168,85,247,0.18); color: #a855f7; }
+  .q-tag.distance     { background: #2a2a2a; color: #888; }
+  .q-participants { font-size: 11px; color: #888; margin-top: 5px; }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    background: #0d0d0d;
+    border: 1px dashed #2a2a2a;
+    border-radius: 12px;
+    margin: 0 16px;
+  }
+  .empty-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .empty-sub { font-size: 12px; color: #888; line-height: 1.45; }
+
+  .summary {
+    max-width: 760px;
+    margin: 36px auto 0;
+    padding: 22px;
+    background: #222;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .summary h2 { font-size: 15px; font-weight: 800; margin-bottom: 12px; }
+  .code-block {
+    background: #000;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    color: #e5e5e5;
+    overflow-x: auto;
+  }
+  .code-block .added { color: #22C55E; }
+  .code-block .removed { color: #ef4444; text-decoration: line-through; opacity: 0.7; }
+  .code-block .comment { color: #6a737d; }
+  .code-block .keyword { color: #f97583; }
+  .code-block .string { color: #9ecbff; }
+
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+  .pros, .cons { padding: 14px; border-radius: 8px; }
+  .pros { background: rgba(34,197,94,0.08); border-left: 2px solid #22C55E; }
+  .cons { background: rgba(239,68,68,0.08); border-left: 2px solid #ef4444; }
+  .pros h3, .cons h3 { font-size: 12px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .pros h3 { color: #22C55E; }
+  .cons h3 { color: #ef4444; }
+  .pros ul, .cons ul { padding-left: 18px; font-size: 12px; }
+  .pros li, .cons li { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<h1>Hard filter por nivel — preview</h1>
+<p class="subtitle">
+  Cambio quirúrgico en <code>getRecommendedQuedadas</code>: descartar quedadas avanzado/elite para usuarios principiantes
+  <strong>antes</strong> del scoring, no como soft signal.
+</p>
+
+<div class="scenario">
+  <b>Escenario</b>: Javi · 0 runs · nivel <b>principiante</b> · ubicación Huelva (50 km radius). 5 quedadas locales en BBDD.
+</div>
+
+<div class="columns">
+
+  <!-- ========== ANTES ========== -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-before">Antes (código actual)</span>
+      <div class="desc">Soft scoring: el nivel pesa 30%, pero quedadas avanzado/elite siguen apareciendo si el resto de factores compensan. Resultado: mezcla intimidante.</div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="header">
+          <div class="header-pre">RPC · getRecommendedQuedadas</div>
+          <div class="header-title">5 resultados · ranked by score</div>
+        </div>
+
+        <div class="section">
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">30</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">Rodaje suave por la marisma</div>
+              <div class="q-meta">Huelva · 6 km · 18:30</div>
+              <div class="q-tags">
+                <span class="q-tag principiante">Principiante</span>
+                <span class="q-tag distance">2 km</span>
+              </div>
+              <div class="q-participants">4 participantes</div>
+            </div>
+          </div>
+
+          <div class="q-card problem">
+            <div class="q-date"><div class="q-day">02</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Series 8x400 · Test sub-19'</div>
+              <div class="q-meta">Huelva · 19:00</div>
+              <div class="q-tags">
+                <span class="q-tag avanzado">Avanzado</span>
+                <span class="q-tag distance">3 km</span>
+              </div>
+              <div class="q-participants">6 participantes</div>
+            </div>
+          </div>
+
+          <div class="q-card problem">
+            <div class="q-date"><div class="q-day">04</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Tirada larga 28 km · ritmo M</div>
+              <div class="q-meta">La Rábida · 08:00</div>
+              <div class="q-tags">
+                <span class="q-tag elite">Elite</span>
+                <span class="q-tag distance">12 km</span>
+              </div>
+              <div class="q-participants">3 participantes</div>
+            </div>
+          </div>
+
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">05</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Trote suave 5 km</div>
+              <div class="q-meta">Aljaraque · 09:30</div>
+              <div class="q-tags">
+                <span class="q-tag principiante">Principiante</span>
+                <span class="q-tag distance">8 km</span>
+              </div>
+              <div class="q-participants">2 participantes</div>
+            </div>
+          </div>
+
+          <div class="q-card problem">
+            <div class="q-date"><div class="q-day">06</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Cuestas Punta Umbría · 12x200</div>
+              <div class="q-meta">Punta Umbría · 19:00</div>
+              <div class="q-tags">
+                <span class="q-tag intermedio">Intermedio</span>
+                <span class="q-tag distance">14 km</span>
+              </div>
+              <div class="q-participants">5 participantes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DESPUÉS ========== -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-after">Después (hard filter)</span>
+      <div class="desc">Pre-filtro duro por nivel: si user es principiante, descartar avanzado/elite antes de scoring. Solo entran principiante + intermedio adyacente.</div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="header">
+          <div class="header-pre">RPC · getRecommendedQuedadas</div>
+          <div class="header-title">3 resultados · ranked by score</div>
+        </div>
+
+        <div class="section">
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">30</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">Rodaje suave por la marisma</div>
+              <div class="q-meta">Huelva · 6 km · 18:30</div>
+              <div class="q-tags">
+                <span class="q-tag principiante">Principiante</span>
+                <span class="q-tag distance">2 km</span>
+              </div>
+              <div class="q-participants">4 participantes</div>
+            </div>
+          </div>
+
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">05</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Trote suave 5 km</div>
+              <div class="q-meta">Aljaraque · 09:30</div>
+              <div class="q-tags">
+                <span class="q-tag principiante">Principiante</span>
+                <span class="q-tag distance">8 km</span>
+              </div>
+              <div class="q-participants">2 participantes</div>
+            </div>
+          </div>
+
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">06</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Cuestas Punta Umbría · 12x200</div>
+              <div class="q-meta">Punta Umbría · 19:00</div>
+              <div class="q-tags">
+                <span class="q-tag intermedio">Intermedio</span>
+                <span class="q-tag distance">14 km</span>
+              </div>
+              <div class="q-participants">5 participantes</div>
+            </div>
+          </div>
+
+          <!-- Mostrando lo que se filtra para que el usuario vea el efecto -->
+          <div class="q-card dropped">
+            <div class="q-date"><div class="q-day">02</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Series 8x400 · Test sub-19'</div>
+              <div class="q-meta">Huelva · 19:00</div>
+              <div class="q-tags"><span class="q-tag avanzado">Avanzado</span></div>
+            </div>
+          </div>
+          <div class="q-card dropped">
+            <div class="q-date"><div class="q-day">04</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Tirada larga 28 km · ritmo M</div>
+              <div class="q-meta">La Rábida · 08:00</div>
+              <div class="q-tags"><span class="q-tag elite">Elite</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="summary">
+  <h2>Diff de código en <code>api.ts</code></h2>
+  <div class="code-block">
+<span class="comment">// api.ts:1540 — dentro de getRecommendedQuedadas, justo antes del scoring</span>
+
+<span class="keyword">const</span> nearby = data.filter((q: any) =&gt; { <span class="comment">/* haversine ≤ 50km */</span> });
+
+<span class="added">+ // Hard filter por nivel: principiante no debería ver avanzado/elite.
++ // Soft scoring (30/15/5 pts) no era suficiente — quedadas elite con
++ // alta densidad de participantes superaban a principiantes en score
++ // y aparecían arriba, generando intimidación al usuario nuevo.
++ const userLevelIdx = niveles.indexOf(userNivel?.toLowerCase() || <span class="string">'principiante'</span>);
++ const filtered = nearby.filter((q: any) =&gt; {
++   const qLevelIdx = niveles.indexOf(q.nivel?.toLowerCase() || <span class="string">'principiante'</span>);
++   <span class="comment">// Permitir mismo nivel + 1 paso (hacia arriba o abajo)</span>
++   return Math.abs(qLevelIdx - userLevelIdx) &lt;= 1;
++ });</span>
+
+<span class="keyword">const</span> scored = <span class="removed">nearby</span><span class="added">filtered</span>.map((q: any) =&gt; { <span class="comment">/* scoring */</span> });
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h3>✓ Pros</h3>
+      <ul>
+        <li>Cero quedadas intimidantes para principiantes</li>
+        <li>Coherencia: si scoring funciona, el filter ya sobra; si no funciona, el filter te cubre</li>
+        <li>Reversible — diff de 8 líneas</li>
+        <li>Mejora inmediata para los 6 runners reales sin tocar arquitectura</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h3>✗ Trade-offs</h3>
+      <ul>
+        <li>Si tu zona solo tiene quedadas avanzadas, te quedas con 0 cards</li>
+        <li>Pero esto enlaza con la decisión del 25 abril: "better than fake matches" → empty state "Sé el primero en {ciudad}"</li>
+        <li>Usuario avanzado no afectado (todos los niveles dentro del rango ±1)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

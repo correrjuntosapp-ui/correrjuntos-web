@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:60px}
+.title .accent{color:#f97316}
+
+.timeline{flex:1;display:flex;flex-direction:column;gap:0}
+.tl-item{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:flex-start;padding:28px 0;border-bottom:1px solid rgba(246,241,232,0.10);position:relative}
+.tl-item:first-child{border-top:1px solid rgba(246,241,232,0.10)}
+.tl-time{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:800;color:#f97316;letter-spacing:0;line-height:1.1;padding-top:6px}
+.tl-time-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:4px;line-height:1}
+.tl-content{display:flex;flex-direction:column;gap:6px}
+.tl-title{font-size:24px;font-weight:800;color:#f6f1e8;letter-spacing:-0.4px}
+.tl-desc{font-size:18px;color:rgba(246,241,232,0.80);font-weight:500;line-height:1.45}
+.tl-desc strong{color:#f6f1e8;font-weight:700}
+.tl-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.10);border:1px solid rgba(34,197,94,0.30);border-radius:6px;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#22c55e;letter-spacing:0.8px;text-transform:uppercase;margin-top:6px;width:fit-content}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">04 / 06</div>
+  <div class="eyebrow">Paso 3 · Nutrición</div>
+  <div class="coords">QUÉ COMER ANTES Y DESPUÉS · DATOS REALES</div>
+  <div class="title">Nutrición <span class="accent">simple</span><br>(no complicado)</div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div>
+        <div class="tl-time">−2h</div>
+        <div class="tl-time-label">Antes correr</div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Comida principal</div>
+        <div class="tl-desc"><strong>40-60g hidratos</strong>. Avena con plátano · tostada con miel · arroz con pollo. <strong>Cero grasa</strong>.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-time">−15min</div>
+        <div class="tl-time-label">Activación</div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Snack rápido + agua</div>
+        <div class="tl-desc"><strong>Medio plátano</strong> + 250 ml agua. Si toleras café, una taza pequeña.</div>
+        <div class="tl-tag">+3% rendimiento</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-time">DURANTE</div>
+        <div class="tl-time-label">5K</div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Nada</div>
+        <div class="tl-desc">5K son <strong>menos de 45 min</strong>. Tu cuerpo tiene reservas. Geles solo a partir de 90 min de carrera.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-time">+30min</div>
+        <div class="tl-time-label">Recovery</div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Ventana proteína + hidratos</div>
+        <div class="tl-desc">Ratio <strong>3:1 hidratos/proteína</strong>. Yogur con avena · batido leche+plátano · tortilla de patata.</div>
+        <div class="tl-tag">Crítico</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-time">RESTO</div>
+        <div class="tl-time-label">Día normal</div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Hidratación constante</div>
+        <div class="tl-desc"><strong>2-3 L agua/día</strong> los días que corres. Sales muy salobre = pérdida sodio. Pizca de sal en el agua.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 04 · NUTRICIÓN</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

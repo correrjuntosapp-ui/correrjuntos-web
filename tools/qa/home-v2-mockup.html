@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Home v2 — Correr Juntos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b0b0d;
+    --ink-2: #14141a;
+    --paper: #f6f1e8;
+    --mute: rgba(246, 241, 232, 0.62);
+    --mute-2: rgba(246, 241, 232, 0.38);
+    --line: rgba(246, 241, 232, 0.10);
+    --surface: rgba(246, 241, 232, 0.04);
+    --surface-2: rgba(246, 241, 232, 0.07);
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --green: #22c55e;
+    --gold: #fbbf24;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+  .canvas {
+    width: 1080px;
+    min-height: 2400px;
+    padding: 48px 48px 180px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  .avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    border: 2px solid var(--ember);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .greet {
+    flex: 1;
+    margin-left: 14px;
+  }
+  .greet-hello { font-size: 11px; color: var(--mute-2); letter-spacing: 1.2px; font-weight: 600; text-transform: uppercase; }
+  .greet-name { font-size: 22px; font-weight: 800; color: var(--paper); letter-spacing: -0.5px; margin-top: 2px; }
+  .bell {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .bell .badge {
+    position: absolute;
+    top: -2px; right: -2px;
+    width: 16px; height: 16px;
+    border-radius: 8px;
+    background: var(--red);
+    border: 2px solid var(--ink);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Hero: Next quedada ── */
+  .hero-card {
+    background: linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.05) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px;
+    background: rgba(34, 197, 94, 0.18);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  .hero-live .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero-live-text {
+    font-size: 11px; font-weight: 700; color: var(--green);
+    letter-spacing: 0.6px; text-transform: uppercase;
+  }
+  .hero-title {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    line-height: 32px;
+    color: var(--paper);
+    margin-bottom: 10px;
+  }
+  .hero-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--mute);
+    font-weight: 500;
+  }
+  .hero-meta svg { color: var(--mute); }
+  .hero-meta b { color: var(--paper); font-weight: 700; }
+  .hero-avatars-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .hero-avatars { display: flex; }
+  .hero-avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .hero-avatar + .hero-avatar { margin-left: -8px; }
+  .hero-avatars-text { font-size: 12px; color: var(--mute); font-weight: 500; }
+  .hero-avatars-text b { color: var(--paper); }
+  .hero-cta {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(90deg, var(--ember) 0%, var(--ember-deep) 100%);
+    border: none;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.28);
+  }
+  .hero-urgency {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+    margin-top: 32px;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: var(--paper);
+  }
+  .section-action {
+    font-size: 13px;
+    color: var(--ember);
+    font-weight: 600;
+  }
+
+  /* ── Week progress ── */
+  .week-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .week-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .week-day {
+    font-size: 12px;
+    color: var(--mute-2);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .week-streak {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--ember);
+    font-weight: 700;
+  }
+  .week-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+  .week-stat {
+    flex: 1;
+  }
+  .week-stat-val {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--paper);
+    letter-spacing: -0.6px;
+    line-height: 30px;
+    font-variant-numeric: tabular-nums;
+  }
+  .week-stat-val .unit { font-size: 14px; color: var(--mute); font-weight: 600; }
+  .week-stat-label {
+    font-size: 11px;
+    color: var(--mute-2);
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .week-progress-bar {
+    height: 6px;
+    background: rgba(246,241,232,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .week-progress-fill {
+    height: 100%;
+    width: 18%;
+    background: linear-gradient(90deg, var(--ember), var(--ember-deep));
+    border-radius: 3px;
+  }
+  .week-progress-text {
+    font-size: 11px;
+    color: var(--mute-2);
+    font-weight: 500;
+  }
+  .week-progress-text b { color: var(--paper); font-weight: 700; }
+
+  /* ── Runners for you ── */
+  .runners-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+  }
+  .runner-card {
+    width: 200px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .runner-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .runner-avatar.a2 { background: linear-gradient(135deg, #10b981, #047857); }
+  .runner-avatar.a3 { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+  .match-badge {
+    position: absolute;
+    bottom: -4px; right: -4px;
+    background: var(--ember);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 6px;
+    border-radius: 100px;
+    border: 2px solid var(--ink);
+  }
+  .runner-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.2px;
+  }
+  .runner-meta {
+    font-size: 11px;
+    color: var(--mute);
+    margin-top: 2px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .runner-cta {
+    padding: 10px;
+    background: rgba(249, 115, 22, 0.12);
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    border-radius: 12px;
+    color: var(--ember);
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* ── Quedada card list ── */
+  .quedadas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .qcard {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .qcard-date {
+    width: 54px;
+    flex-shrink: 0;
+    text-align: center;
+    border-right: 1px solid var(--line);
+    padding-right: 14px;
+  }
+  .qcard-day { font-size: 22px; font-weight: 800; color: var(--ember); letter-spacing: -0.5px; }
+  .qcard-month { font-size: 10px; color: var(--mute-2); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .qcard-info { flex: 1; }
+  .qcard-title { font-size: 14px; font-weight: 700; color: var(--paper); letter-spacing: -0.2px; margin-bottom: 4px; }
+  .qcard-meta { display: flex; gap: 10px; font-size: 11px; color: var(--mute); font-weight: 500; }
+  .qcard-meta .level {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--green);
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 700;
+  }
+  .qcard-meta .level.int { background: rgba(249, 115, 22, 0.15); color: var(--ember); }
+
+  /* ── Plan CTA ── */
+  .plan-card {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .plan-icon {
+    width: 56px; height: 56px;
+    background: rgba(168, 85, 247, 0.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .plan-text { flex: 1; }
+  .plan-eyebrow {
+    font-size: 10px;
+    color: #c084fc;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .plan-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--paper);
+    letter-spacing: -0.3px;
+    margin-bottom: 3px;
+  }
+  .plan-desc { font-size: 12px; color: var(--mute); font-weight: 500; line-height: 16px; }
+  .plan-arrow { color: #c084fc; }
+
+  /* ── Tab bar (bottom faux) ── */
+  .tab-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--ink-2);
+    border-top: 1px solid var(--line);
+    display: flex;
+    padding: 14px 20px 30px;
+    gap: 10px;
+    justify-content: space-around;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="avatar">JO</div>
+    <div class="greet">
+      <div class="greet-hello">Buenas tardes</div>
+      <div class="greet-name">Joe</div>
+    </div>
+    <div class="bell">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <div class="badge">2</div>
+    </div>
+  </div>
+
+  <!-- HERO: Próxima quedada -->
+  <div class="hero-card">
+    <div class="hero-live">
+      <div class="dot"></div>
+      <span class="hero-live-text">Esta semana · Punta Umbría</span>
+    </div>
+    <div class="hero-title">Rodaje suave por el Paseo Marítimo</div>
+    <div class="hero-meta-row">
+      <div class="hero-meta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        <span><b>Mañana</b> · 7:30</span>
+      </div>
+      <div class="hero-meta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span><b>1.2 km</b> de ti</span>
+      </div>
+      <div class="hero-meta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.3 15.3L8.7 2.7"/>
+          <path d="M7 10l2 2M10 7l2 2M13 10l2 2M16 7l2 2"/>
+        </svg>
+        <span><b>8 km</b> · Principiante</span>
+      </div>
+    </div>
+    <div class="hero-avatars-row">
+      <div class="hero-avatars">
+        <div class="hero-avatar" style="background:#f97316">L</div>
+        <div class="hero-avatar" style="background:#3b82f6">A</div>
+        <div class="hero-avatar" style="background:#10b981">M</div>
+      </div>
+      <div class="hero-avatars-text"><b>3 apuntados</b>. Queda <b>1 plaza libre</b>.</div>
+    </div>
+    <button class="hero-cta">Apúntate ahora →</button>
+    <div class="hero-urgency">★ Última plaza. 4 runners la están mirando.</div>
+  </div>
+
+  <!-- Week progress -->
+  <div class="section-label">
+    <div class="section-title">Tu semana</div>
+    <div class="section-action">Ver estadísticas →</div>
+  </div>
+  <div class="week-card">
+    <div class="week-top">
+      <span class="week-day">Lunes · Día 1 de 7</span>
+      <span class="week-streak">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#f97316" stroke="#f97316" stroke-width="1">
+          <path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/>
+        </svg>
+        Día 1 de racha
+      </span>
+    </div>
+    <div class="week-stats">
+      <div class="week-stat">
+        <div class="week-stat-val">0<span class="unit">/25 km</span></div>
+        <div class="week-stat-label">Objetivo semanal</div>
+      </div>
+      <div class="week-stat">
+        <div class="week-stat-val">0<span class="unit">h 0m</span></div>
+        <div class="week-stat-label">Tiempo corrido</div>
+      </div>
+    </div>
+    <div class="week-progress-bar">
+      <div class="week-progress-fill" style="width: 0%;"></div>
+    </div>
+    <div class="week-progress-text">
+      <b>Empiezas esta semana</b> · Corre 25 km en 7 días para desbloquear tu primer logro
+    </div>
+  </div>
+
+  <!-- Runners for you -->
+  <div class="section-label">
+    <div class="section-title">3 runners compatibles contigo</div>
+    <div class="section-action">Ver todos →</div>
+  </div>
+  <div class="runners-row">
+    <div class="runner-card">
+      <div class="runner-avatar">
+        A
+        <div class="match-badge">92%</div>
+      </div>
+      <div class="runner-name">Ana M.</div>
+      <div class="runner-meta">Principiante · 7:00/km · 0.8 km</div>
+      <div class="runner-cta">Pedir correr</div>
+    </div>
+    <div class="runner-card">
+      <div class="runner-avatar a2">
+        L
+        <div class="match-badge">87%</div>
+      </div>
+      <div class="runner-name">Luis F.</div>
+      <div class="runner-meta">Principiante · 6:45/km · 1.5 km</div>
+      <div class="runner-cta">Pedir correr</div>
+    </div>
+    <div class="runner-card">
+      <div class="runner-avatar a3">
+        C
+        <div class="match-badge">81%</div>
+      </div>
+      <div class="runner-name">Carmen L.</div>
+      <div class="runner-meta">Intermedio · 6:30/km · 2.1 km</div>
+      <div class="runner-cta">Pedir correr</div>
+    </div>
+  </div>
+
+  <!-- Quedadas esta semana -->
+  <div class="section-label">
+    <div class="section-title">Quedadas cerca esta semana</div>
+    <div class="section-action">Mapa →</div>
+  </div>
+  <div class="quedadas-list">
+    <div class="qcard">
+      <div class="qcard-date">
+        <div class="qcard-day">26</div>
+        <div class="qcard-month">Abr · Sáb</div>
+      </div>
+      <div class="qcard-info">
+        <div class="qcard-title">Rodaje nocturno Guadalquivir</div>
+        <div class="qcard-meta">
+          <span>Sevilla · 8 km · 20:00</span>
+          <span class="level">Principiante</span>
+        </div>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qcard-date">
+        <div class="qcard-day">24</div>
+        <div class="qcard-month">Abr · Jue</div>
+      </div>
+      <div class="qcard-info">
+        <div class="qcard-title">Tirada larga Jardín del Turia</div>
+        <div class="qcard-meta">
+          <span>Valencia · 15 km · 07:30</span>
+          <span class="level int">Intermedio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plan personalizado -->
+  <div class="section-label">
+    <div class="section-title">Plan para ti</div>
+  </div>
+  <div class="plan-card">
+    <div class="plan-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M7 10h10M7 14h6"/>
+      </svg>
+    </div>
+    <div class="plan-text">
+      <div class="plan-eyebrow">Recomendado · Gratis</div>
+      <div class="plan-title">Plan 0 → 5K en 8 semanas</div>
+      <div class="plan-desc">Perfecto para tu nivel Principiante. Corre tu primer 5K en 60 días.</div>
+    </div>
+    <div class="plan-arrow">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

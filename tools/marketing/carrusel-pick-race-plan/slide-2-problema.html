@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Problema</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+.compare{display:flex;flex-direction:column;gap:24px;flex:1}
+.row{padding:32px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:18px;display:flex;flex-direction:column;gap:14px}
+.row.bad{border-color:rgba(239,68,68,0.30);background:rgba(239,68,68,0.06)}
+.row.good{border-color:rgba(34,197,94,0.30);background:rgba(34,197,94,0.06)}
+
+.tag{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(246,241,232,0.55)}
+.tag.bad{color:#fca5a5}
+.tag.good{color:#86efac}
+.headline{font-size:38px;font-weight:800;color:#f6f1e8;line-height:1.1;letter-spacing:-0.8px}
+.detail{font-size:20px;color:rgba(246,241,232,0.75);line-height:1.45;font-weight:500}
+.detail strong{color:#f6f1e8;font-weight:700}
+
+.arrow{align-self:center;margin:6px 0;color:rgba(246,241,232,0.40);font-size:32px;font-weight:300;letter-spacing:0;line-height:1}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">02 / 05</div>
+  <div class="eyebrow">El problema</div>
+  <div class="coords">PLAN GENÉRICO VS REALIDAD</div>
+  <div class="title">Plan <span class="accent">cualquiera</span><br>para una carrera<br>concreta</div>
+
+  <div class="compare">
+    <div class="row bad">
+      <div class="tag bad">Otras apps</div>
+      <div class="headline">"Plan 21K · 12 semanas"</div>
+      <div class="detail">Ritmo genérico. Sin saber dónde corres ni cuándo. Igual para todos.</div>
+    </div>
+
+    <div class="row good">
+      <div class="tag good">CorrerJuntos</div>
+      <div class="headline">Tu próxima carrera + plan adaptado</div>
+      <div class="detail"><strong>Detecta tu ciudad</strong> y muestra carrera local.<br>Si tiene varias distancias, <strong>tú eliges</strong> cuál vas a correr.<br>Plan ajustado al km y a la fecha.</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 02 · PROBLEMA</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

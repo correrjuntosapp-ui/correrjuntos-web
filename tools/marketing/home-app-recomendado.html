@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Home App — Recomendado</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 28px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .columns { grid-template-columns: 1fr; max-width: 360px; }
+  }
+  .col-label {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .desc {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.5;
+    padding: 0 12px;
+    min-height: 50px;
+  }
+  .tag-current { background: #333; color: #ccc; }
+  .tag-new     { background: #22C55E; color: #0a3d1f; }
+  .tag-active  { background: #FF6B00; color: #fff; }
+
+  /* iPhone frame */
+  .phone {
+    width: 290px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 36px;
+    padding: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .phone-screen {
+    background: #000;
+    border-radius: 28px;
+    overflow: hidden;
+    height: 660px;
+    overflow-y: auto;
+  }
+  .phone-screen::-webkit-scrollbar { width: 0; }
+
+  .status-bar { display: flex; justify-content: space-between; padding: 12px 20px 6px; font-size: 12px; font-weight: 600; }
+  .status-icons { display: flex; gap: 5px; align-items: center; font-size: 11px; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px 14px; }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #FF6B00, #ff9500); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
+  .greeting { font-size: 10px; color: #888; }
+  .user-name { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+  .bell { color: #888; }
+  .bell svg { width: 22px; height: 22px; stroke-width: 1.8; display: block; }
+  .icon-inline { width: 11px; height: 11px; stroke-width: 2; display: inline-block; vertical-align: -1px; margin-right: 3px; opacity: 0.8; }
+  .tab-svg { width: 20px; height: 20px; stroke-width: 1.8; display: block; margin: 0 auto 3px; }
+  .tab.active .tab-svg { stroke: #FF6B00; }
+  .tab-svg-run { width: 20px; height: 20px; stroke-width: 2.2; }
+
+  /* ====== HERO ADAPTATIVO ====== */
+  .hero {
+    margin: 0 14px 18px;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-new {
+    background: #22C55E;
+    padding: 22px 18px 20px;
+    box-shadow: 0 6px 22px rgba(34, 197, 94, 0.35);
+  }
+  .hero-active {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border: 1px solid #2a2a2a;
+    padding: 18px 16px;
+  }
+
+  .hero-pre {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .hero-new .hero-pre { color: #052e16; }
+  .hero-active .hero-pre { color: #FF6B00; }
+
+  .hero-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .hero-sub {
+    font-size: 12px;
+    opacity: 0.85;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+
+  .hero-cta-primary {
+    display: block;
+    background: #1a2e05;
+    color: #fff;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .hero-active .hero-cta-primary {
+    background: #FF6B00;
+    color: #fff;
+  }
+  .hero-cta-link {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(5,46,22,0.85);
+    text-decoration: none;
+    padding: 6px;
+    font-weight: 600;
+  }
+
+  /* Hero sesión hoy (active) */
+  .session-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .session-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,107,0,0.15);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .session-info { flex: 1; }
+  .session-name { font-size: 14px; font-weight: 800; margin-bottom: 2px; }
+  .session-meta { font-size: 11px; color: #888; }
+  .session-stats {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0 4px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .session-stat-item { font-size: 11px; color: #aaa; }
+  .session-stat-item b { color: #fff; font-weight: 700; margin-right: 4px; font-size: 13px; }
+
+  /* Stats compactos (active) */
+  .stats-mini {
+    margin: 0 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .stats-mini-item { text-align: center; flex: 1; }
+  .stats-mini-value { font-size: 17px; font-weight: 800; }
+  .stats-mini-label { font-size: 9px; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+  .stats-mini-divider { width: 1px; background: #2a2a2a; margin: 4px 0; }
+
+  /* Section */
+  .section { padding: 0 14px; margin-bottom: 18px; }
+  .section-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+  .create-btn {
+    background: #fff;
+    color: #000;
+    padding: 7px 13px 7px 10px;
+    border: none;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1;
+  }
+  .create-btn svg { width: 13px; height: 13px; stroke-width: 2.5; }
+  .see-all { color: #FF6B00; font-size: 11px; font-weight: 600; }
+
+  /* Quedada card */
+  .q-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 11px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 11px;
+  }
+  .q-date { background: rgba(255,107,0,0.12); border-radius: 8px; padding: 7px 5px; text-align: center; min-width: 46px; }
+  .q-day { font-size: 17px; font-weight: 800; color: #FF6B00; line-height: 1; }
+  .q-month { font-size: 9px; color: #FF6B00; font-weight: 700; letter-spacing: 0.1em; margin-top: 2px; }
+  .q-info { flex: 1; min-width: 0; }
+  .q-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .q-meta { font-size: 10px; color: #888; margin-bottom: 5px; }
+  .q-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .q-tag { font-size: 9px; padding: 2px 6px; border-radius: 4px; background: #2a2a2a; color: #ccc; font-weight: 600; }
+  .q-tag.joined { background: rgba(34,197,94,0.15); color: #22C55E; }
+  .q-tag.lejos { background: rgba(255,107,0,0.12); color: #FF6B00; }
+  .q-participants { font-size: 10px; color: #888; margin-top: 5px; }
+
+  .subhead {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.08em;
+    margin: 12px 4px 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* Plans card — VERDE atractivo */
+  .plans-card {
+    margin: 0 14px 18px;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    border-radius: 14px;
+    padding: 14px 16px;
+    color: #fff;
+  }
+  .plans-card .plans-pre {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    opacity: 0.85;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .plans-card .plans-title {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 3px;
+  }
+  .plans-card .plans-sub {
+    font-size: 11px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+  }
+  .plans-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .plans-tag { font-size: 9px; background: rgba(0,0,0,0.18); padding: 3px 7px; border-radius: 4px; font-weight: 600; }
+  .plans-tag.free { background: rgba(255,255,255,0.25); }
+
+  /* Feed card */
+  .feed-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 12px; margin-bottom: 8px; }
+  .feed-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .feed-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg, #888, #555);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px;
+  }
+  .feed-name { font-size: 12px; font-weight: 700; }
+  .feed-time { font-size: 10px; color: #888; }
+  .feed-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .feed-stats { display: flex; gap: 12px; padding-top: 8px; border-top: 1px solid #2a2a2a; }
+  .feed-stat { font-size: 11px; color: #aaa; }
+  .feed-stat b { color: #fff; font-weight: 700; }
+
+  /* Stats card AHORA (current — full) */
+  .stats-card-now {
+    margin: 0 16px 12px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 14px 16px;
+    border-left: 3px solid #FF6B00;
+  }
+  .stats-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .stats-label { font-size: 10px; color: #888; letter-spacing: 0.1em; font-weight: 700; }
+  .stats-tease { font-size: 10px; color: #FF6B00; font-weight: 600; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat-item { text-align: center; }
+  .stat-value { font-size: 20px; font-weight: 800; }
+  .stat-name { font-size: 9px; color: #888; letter-spacing: 0.08em; margin-top: 2px; text-transform: uppercase; }
+
+  .pro-card {
+    margin: 0 16px 16px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 12px 14px;
+    opacity: 0.6;
+  }
+  .pro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+  .pro-stat { text-align: center; }
+  .pro-stat-name { font-size: 9px; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .pro-stat-value { font-size: 16px; font-weight: 800; color: #888; filter: blur(2px); }
+  .pro-unlock { text-align: center; color: #FF6B00; font-size: 11px; font-weight: 600; padding-top: 6px; border-top: 1px solid #2a2a2a; }
+
+  .empty-feed { text-align: center; padding: 28px 20px; margin: 0 16px; }
+  .empty-icon { font-size: 26px; color: #555; margin-bottom: 8px; }
+  .empty-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .empty-sub { font-size: 11px; color: #888; margin-bottom: 14px; }
+  .empty-btn { display: inline-block; background: #FF6B00; color: #fff; padding: 10px 22px; border-radius: 22px; font-size: 12px; font-weight: 700; }
+
+  .plans-card-now {
+    margin: 8px 16px 16px;
+    background: linear-gradient(135deg, #FF6B00, #ff9500);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .plans-icon-now { width: 38px; height: 38px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .plans-info-now { flex: 1; }
+  .plans-title-now { font-size: 13px; font-weight: 800; margin-bottom: 2px; }
+  .plans-sub-now { font-size: 10px; opacity: 0.9; margin-bottom: 4px; }
+
+  .tag-free { background: rgba(255,255,255,0.25); padding: 1px 5px; border-radius: 3px; font-size: 8px; margin-left: 4px; vertical-align: middle; }
+
+  .tabs { position: sticky; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); background: rgba(0,0,0,0.95); border-top: 1px solid #2a2a2a; padding: 8px 0 14px; }
+  .tab { text-align: center; color: #666; font-size: 9px; }
+  .tab.active { color: #FF6B00; }
+  .tab-icon { font-size: 17px; margin-bottom: 2px; }
+  .tab-run { width: 40px; height: 40px; border-radius: 50%; background: #FF6B00; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 17px; margin: -16px auto 2px; box-shadow: 0 4px 12px rgba(255,107,0,0.4); }
+
+  .summary {
+    max-width: 880px;
+    margin: 48px auto 0;
+    padding: 24px;
+    background: #222;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .summary h2 { font-size: 16px; font-weight: 800; margin-bottom: 12px; }
+  .summary ul { padding-left: 20px; }
+  .summary li { margin-bottom: 6px; }
+  .summary code { background: #000; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+  .green { color: #22C55E; }
+  .orange { color: #FF6B00; }
+</style>
+</head>
+<body>
+
+<h1>Home App — Versión recomendada</h1>
+<p class="subtitle">
+  Tesis: el home no debe enseñar lo mismo a todo el mundo. Hoy Javi (0 runs) ve "0/0/0" — un cartel de
+  "no estás haciendo nada". Lo que falta es <b>propósito</b>: una pregunta clara — "¿qué hago ahora?" — que se responde sola según tu estado.
+</p>
+
+<div class="columns">
+
+  <!-- ───────── COLUMNA 1: AHORA ───────── -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-current">Ahora · cualquier usuario</span>
+      <div class="desc">Mismo home para todo el mundo. Stats "0/0/0" demoraliza al usuario nuevo y ocupa el primer pliegue.</div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%🔋</span></div></div>
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar">J</div>
+            <div><div class="greeting">Buenas tardes</div><div class="user-name">Javi</div></div>
+          </div>
+          <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        </div>
+
+        <div class="stats-card-now">
+          <div class="stats-row"><span class="stats-label">ESTA SEMANA</span><span class="stats-tease">Tu primera te espera</span></div>
+          <div class="stats-grid">
+            <div class="stat-item"><div class="stat-value">0</div><div class="stat-name">Carreras</div></div>
+            <div class="stat-item"><div class="stat-value">0.0</div><div class="stat-name">KM</div></div>
+            <div class="stat-item"><div class="stat-value">0m</div><div class="stat-name">Tiempo</div></div>
+          </div>
+        </div>
+
+        <div class="pro-card">
+          <div class="pro-grid">
+            <div class="pro-stat"><div class="pro-stat-name">Ritmo Med.</div><div class="pro-stat-value">5:42</div></div>
+            <div class="pro-stat"><div class="pro-stat-name">Zona FC</div><div class="pro-stat-value">Z3</div></div>
+            <div class="pro-stat"><div class="pro-stat-name">Progreso</div><div class="pro-stat-value">+18%</div></div>
+          </div>
+          <div class="pro-unlock">🔒 Desbloquear análisis PRO</div>
+        </div>
+
+        <div class="section">
+          <div class="section-row">
+            <div class="section-title">Próximas quedadas</div>
+            <button class="create-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+          </div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">28</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">12 km progresivos</div>
+              <div class="q-meta"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Punta Umbría · 12 km · 10:00</div>
+              <div class="q-tags"><span class="q-tag">Intermedio</span><span class="q-tag joined">✓ Unido</span></div>
+              <div class="q-participants"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>1 participante</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plans-card-now">
+          <div class="plans-icon-now">🏃</div>
+          <div class="plans-info-now">
+            <div class="plans-title-now">Planes de Entrenamiento <span class="tag-free">GRATIS</span></div>
+            <div class="plans-sub-now">6 planes · Desde principiante a maratón</div>
+          </div>
+        </div>
+
+        <div class="empty-feed">
+          <div class="empty-icon">🏃</div>
+          <div class="empty-title">Tu feed está vacío</div>
+          <div class="empty-sub">Sigue a otros runners para ver su actividad</div>
+          <a class="empty-btn">Registra tu primera carrera →</a>
+        </div>
+
+        <div style="height: 60px"></div>
+
+        <div class="tabs">
+          <div class="tab active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+          <div class="tab"><div class="tab-run"><svg class="tab-svg-run" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────── COLUMNA 2: USUARIO NUEVO ───────── -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-new">Recomendado · usuario nuevo (0 runs)</span>
+      <div class="desc">Hero verde con UNA pregunta clara: "¿Empezamos?". Plan gratis es la entrada de mínima fricción. Stats invisibles hasta tener algo que enseñar.</div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%🔋</span></div></div>
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar">J</div>
+            <div><div class="greeting">Buenas tardes</div><div class="user-name">Javi</div></div>
+          </div>
+          <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        </div>
+
+        <!-- HERO ADAPTATIVO — usuario nuevo -->
+        <div class="hero hero-new">
+          <div class="hero-pre">Empieza tu primera semana</div>
+          <div class="hero-title" style="color:#052e1a">¿Empezamos?</div>
+          <div class="hero-sub" style="color:#064e3b;opacity:0.95">Empieza a Moverte: 6 semanas, 18 sesiones, 100% gratis. Tu primera carrera en 7 días.</div>
+          <a class="hero-cta-primary">Activar mi plan →</a>
+          <a class="hero-cta-link">o salir a correr libre</a>
+        </div>
+
+        <div class="section">
+          <div class="section-row">
+            <div class="section-title">Próximas quedadas</div>
+            <button class="create-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+          </div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">28</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">12 km progresivos</div>
+              <div class="q-meta"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Punta Umbría · 12 km · 10:00</div>
+              <div class="q-tags"><span class="q-tag">Intermedio</span><span class="q-tag joined">✓ Unido</span></div>
+              <div class="q-participants"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>1 participante</div>
+            </div>
+          </div>
+
+          <div class="subhead">De tus seguidos</div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">30</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">Rodaje suave por la marisma</div>
+              <div class="q-meta"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Huelva · 6 km · 18:30</div>
+              <div class="q-tags"><span class="q-tag">Principiante</span><span class="q-tag" style="background:rgba(132,204,22,0.18);color:#84cc16">Miguel R.</span></div>
+              <div class="q-participants"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>4 participantes</div>
+            </div>
+          </div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">03</div><div class="q-month">MAY</div></div>
+            <div class="q-info">
+              <div class="q-title">Series 6x400 pista municipal</div>
+              <div class="q-meta"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Huelva · 19:00</div>
+              <div class="q-tags"><span class="q-tag">Intermedio</span><span class="q-tag" style="background:rgba(132,204,22,0.18);color:#84cc16">Ana S.</span></div>
+              <div class="q-participants"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>6 participantes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feed condicional: vacío → ocultar la sección entera -->
+
+        <div style="height: 60px"></div>
+
+        <div class="tabs">
+          <div class="tab active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+          <div class="tab"><div class="tab-run"><svg class="tab-svg-run" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────── COLUMNA 3: USUARIO ACTIVADO ───────── -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-active">Recomendado · usuario activado</span>
+      <div class="desc">Mismo home, otro estado. Plan ya activo → hero "tu sesión hoy". Stats compactos arriba. Feed con datos. Quedadas siguen en su sitio.</div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%🔋</span></div></div>
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar">J</div>
+            <div><div class="greeting">Buenas tardes</div><div class="user-name">Javi</div></div>
+          </div>
+          <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        </div>
+
+        <!-- HERO ADAPTATIVO — usuario activado -->
+        <div class="hero hero-active">
+          <div class="hero-pre">Tu sesión de hoy</div>
+          <div class="session-row">
+            <div class="session-icon">🏃</div>
+            <div class="session-info">
+              <div class="session-name">Rodaje fácil Z2</div>
+              <div class="session-meta">Empieza a Moverte · Semana 3 · Día 2</div>
+            </div>
+          </div>
+          <a class="hero-cta-primary">Empezar sesión →</a>
+          <div class="session-stats">
+            <div class="session-stat-item"><b>30</b>min</div>
+            <div class="session-stat-item"><b>4-5</b>km est.</div>
+            <div class="session-stat-item"><b>140-155</b>ppm</div>
+          </div>
+        </div>
+
+        <!-- Stats compactos arriba (active) -->
+        <div class="stats-mini">
+          <div class="stats-mini-item"><div class="stats-mini-value">3</div><div class="stats-mini-label">Carreras</div></div>
+          <div class="stats-mini-divider"></div>
+          <div class="stats-mini-item"><div class="stats-mini-value">14,2</div><div class="stats-mini-label">KM</div></div>
+          <div class="stats-mini-divider"></div>
+          <div class="stats-mini-item"><div class="stats-mini-value">1h 38m</div><div class="stats-mini-label">Tiempo</div></div>
+        </div>
+
+        <div class="section">
+          <div class="section-row">
+            <div class="section-title">Próximas quedadas</div>
+            <button class="create-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+          </div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">28</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">12 km progresivos</div>
+              <div class="q-meta"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Punta Umbría · 12 km · 10:00</div>
+              <div class="q-tags"><span class="q-tag">Intermedio</span><span class="q-tag joined">✓ Unido</span></div>
+              <div class="q-participants"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>1 participante</div>
+            </div>
+          </div>
+          <div class="subhead">De tus seguidos</div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">30</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">Rodaje suave por la marisma</div>
+              <div class="q-meta"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Huelva · 6 km · 18:30</div>
+              <div class="q-tags"><span class="q-tag">Principiante</span><span class="q-tag" style="background:rgba(132,204,22,0.18);color:#84cc16">Miguel R.</span></div>
+              <div class="q-participants"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>4 participantes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-row">
+            <div class="section-title">Actividad de tus seguidos</div>
+          </div>
+          <div class="feed-card">
+            <div class="feed-head">
+              <div class="feed-avatar">M</div>
+              <div style="flex:1">
+                <div class="feed-name">Miguel R.</div>
+                <div class="feed-time">hace 2h</div>
+              </div>
+            </div>
+            <div class="feed-title">Carrera matutina · Dos Hermanas</div>
+            <div class="feed-stats">
+              <div class="feed-stat"><b>8,1</b> km</div>
+              <div class="feed-stat"><b>5:24</b> min/km</div>
+              <div class="feed-stat"><b>43:48</b></div>
+            </div>
+          </div>
+          <div class="feed-card">
+            <div class="feed-head">
+              <div class="feed-avatar">A</div>
+              <div style="flex:1">
+                <div class="feed-name">Ana S.</div>
+                <div class="feed-time">ayer</div>
+              </div>
+            </div>
+            <div class="feed-title">Series 5x800 · Pista Chapín</div>
+            <div class="feed-stats">
+              <div class="feed-stat"><b>6,4</b> km</div>
+              <div class="feed-stat"><b>4:51</b> min/km</div>
+              <div class="feed-stat"><b>31:02</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 60px"></div>
+
+        <div class="tabs">
+          <div class="tab active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+          <div class="tab"><div class="tab-run"><svg class="tab-svg-run" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="summary">
+  <h2>Por qué este diseño (en términos de ROI)</h2>
+  <ul>
+    <li><b class="green">Hero adaptativo verde para usuario nuevo</b> — responde "¿qué hago ahora?" sin que el usuario tenga que decidir entre 4 CTAs. Verde porque: gratis, "go", diferencia visual del naranja (que queda libre para quedadas/premium).</li>
+    <li><b class="green">"Empieza a Moverte" como entry point único</b> — es plan gratis, 6 semanas, mínima fricción. La data manda: 1% de tus users hace una run, 0,15% una quedada. La rampa empieza por planes, no por quedadas.</li>
+    <li><b class="orange">Stats "0/0/0" eliminados para nuevo</b> — dato negativo en primer pliegue = mensaje "esta app no es para mí". Los stats vuelven cuando hay <code>runs > 0</code>.</li>
+    <li><b class="orange">Feed condicional</b> — si <code>follows = 0</code> ocultar la sección entera (no enseñar empty state). Para usuario activado vuelve y ocupa pantalla.</li>
+    <li><b>Quedadas con fallback de radio</b> — Punta Umbría → Andalucía → España. Cap subido de 2 a 4. Badge "120 km" honesto.</li>
+    <li><b>PRO card blurred eliminado del primer pliegue</b> — paywall prematuro al usuario que aún no ha registrado nada = friction sin razón. Vuelve cuando hay datos que desbloquear.</li>
+  </ul>
+  <h2 style="margin-top:18px">Cambios de código en HomeScreen.tsx</h2>
+  <ul>
+    <li>Nuevo componente <code>HeroAdaptativo</code> condicional por estado: <code>userPlan ? sessionToday : noRuns ? newUserHero : welcomeBack</code></li>
+    <li>Stats card movido a componente <code>StatsMini</code> + render condicional <code>{runs.length > 0 && ...}</code></li>
+    <li><code>combined.slice(0, 2)</code> → <code>slice(0, 4)</code> + fallback de radio en <code>getRecommendedQuedadas</code></li>
+    <li>Feed section: render solo si <code>followingCount > 0 || feed.length > 0</code></li>
+    <li>Plans card → verde <code>#10B981</code>, sin icono, copy "Empieza a Moverte · 6 semanas · Gratis" cuando no hay plan activo</li>
+  </ul>
+</div>
+
+</body>
+</html>

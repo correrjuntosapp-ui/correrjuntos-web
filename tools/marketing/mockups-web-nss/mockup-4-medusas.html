@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>NSS Mockup 4 — Alertas medusas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0a1628;font-family:'Inter',-apple-system,sans-serif;overflow:hidden;position:relative;color:#f0f9ff}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 18%,rgba(239,68,68,0.10) 0%,transparent 50%),radial-gradient(circle at 75% 85%,rgba(0,119,182,0.18) 0%,transparent 55%);pointer-events:none}
+.phone-screen{position:relative;z-index:2;height:100%;display:flex;flex-direction:column}
+
+/* Status & nav */
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:32px 56px 12px;font-size:28px;font-weight:600;color:#f0f9ff;font-family:'JetBrains Mono',monospace}
+.status-icons{display:flex;gap:16px;align-items:center;font-size:24px}
+.nav-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 48px 18px}
+.back-btn{width:60px;height:60px;display:flex;align-items:center;justify-content:center;background:rgba(240,249,255,0.08);border-radius:18px}
+.back-btn svg{width:28px;height:28px;stroke:#f0f9ff;stroke-width:2.4;fill:none}
+.nav-title{font-size:32px;font-weight:900;color:#f0f9ff;letter-spacing:-0.8px;display:flex;align-items:center;gap:12px}
+.nav-title-emoji{font-size:34px}
+.nav-spacer{width:60px}
+
+/* Eyebrow */
+.eyebrow-row{padding:0 48px 18px;display:flex;align-items:center;justify-content:space-between}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:16px;color:#ef4444;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.eyebrow .pulse{width:10px;height:10px;background:#ef4444;border-radius:50%;box-shadow:0 0 0 4px rgba(239,68,68,0.30);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(239,68,68,0.30)}50%{box-shadow:0 0 0 10px rgba(239,68,68,0.05)}}
+.last-update{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(240,249,255,0.45);font-weight:600}
+
+/* Stats banner */
+.stats-banner{margin:0 48px 22px;background:linear-gradient(135deg,rgba(239,68,68,0.16),rgba(239,68,68,0.04));border:1px solid rgba(239,68,68,0.32);border-radius:24px;padding:26px 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.stat{text-align:center;position:relative}
+.stat:not(:last-child)::after{content:'';position:absolute;right:-7px;top:18%;height:64%;width:1px;background:rgba(239,68,68,0.25)}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:800;color:#ef4444;letter-spacing:-1.5px;line-height:1}
+.stat-lbl{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(240,249,255,0.62);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:8px}
+
+/* Mapa España */
+.map{margin:0 48px 22px;height:400px;background:linear-gradient(180deg,#0e2647 0%,#0a1628 100%);border-radius:24px;border:1px solid rgba(0,180,216,0.18);position:relative;overflow:hidden}
+.map-iberia{position:absolute;left:14%;top:18%;width:62%;height:64%;background:rgba(13,49,78,0.85);border-radius:48% 60% 38% 52%/52% 38% 60% 38%;border:1px solid rgba(0,180,216,0.20);transform:rotate(-4deg)}
+.map-balear{position:absolute;right:10%;top:48%;width:7%;height:6%;background:rgba(13,49,78,0.85);border-radius:50%;border:1px solid rgba(0,180,216,0.20)}
+.alert-pin{position:absolute;display:flex;flex-direction:column;align-items:center}
+.alert-pin .alert-dot{width:28px;height:28px;background:#ef4444;border-radius:50%;border:3px solid #0a1628;box-shadow:0 0 0 8px rgba(239,68,68,0.22)}
+.alert-pin.high .alert-dot{width:36px;height:36px;box-shadow:0 0 0 10px rgba(239,68,68,0.30),0 0 24px rgba(239,68,68,0.6)}
+.alert-pin.med .alert-dot{background:#f59e0b;box-shadow:0 0 0 8px rgba(245,158,11,0.22)}
+.alert-pin .alert-lbl{margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;background:rgba(10,22,40,0.92);padding:3px 8px;border-radius:6px;font-weight:700;border:1px solid rgba(239,68,68,0.30)}
+.legend{position:absolute;bottom:16px;left:16px;background:rgba(10,22,40,0.85);backdrop-filter:blur(8px);padding:12px 14px;border-radius:14px;border:1px solid rgba(240,249,255,0.10)}
+.legend-item{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#f0f9ff;font-weight:600;margin-bottom:4px}
+.legend-item:last-child{margin-bottom:0}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.legend-dot.high{background:#ef4444;box-shadow:0 0 6px #ef4444}
+.legend-dot.med{background:#f59e0b}
+.legend-dot.low{background:#22c55e}
+
+/* Reportes recientes */
+.section-head{padding:0 48px 16px;display:flex;justify-content:space-between;align-items:flex-end}
+.section-h2{font-size:28px;font-weight:800;color:#f0f9ff;letter-spacing:-0.6px}
+.section-cta{font-family:'JetBrains Mono',monospace;font-size:16px;color:#00B4D8;font-weight:700}
+
+.reports{padding:0 48px;display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.report-card{background:#1e293b;border:1px solid rgba(240,249,255,0.08);border-radius:20px;padding:22px;display:flex;gap:18px;align-items:center}
+.report-icon{width:64px;height:64px;border-radius:16px;background:rgba(239,68,68,0.18);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;border:1px solid rgba(239,68,68,0.32)}
+.report-icon.med{background:rgba(245,158,11,0.18);border-color:rgba(245,158,11,0.32)}
+.report-info{flex:1;min-width:0}
+.report-loc{font-size:21px;font-weight:800;color:#f0f9ff;letter-spacing:-0.3px;margin-bottom:4px}
+.report-meta{font-size:15px;color:rgba(240,249,255,0.62);font-weight:500}
+.report-stat{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.report-time{font-family:'JetBrains Mono',monospace;font-size:14px;color:#ef4444;font-weight:700;letter-spacing:0.5px}
+.report-confirm{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(240,249,255,0.55);font-weight:600}
+
+/* Reportar CTA */
+.report-cta{margin:0 48px 28px;background:linear-gradient(135deg,#0077B6,#00B4D8);border-radius:24px;padding:24px;display:flex;align-items:center;justify-content:center;gap:14px;box-shadow:0 12px 40px rgba(0,180,216,0.35)}
+.report-cta-icon{font-size:30px}
+.report-cta-text{font-size:23px;font-weight:800;color:#fff;letter-spacing:-0.3px}
+
+/* Tabs */
+.tabs{margin-top:auto;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(10,22,40,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(240,249,255,0.10);padding:20px 0 36px}
+.tab{text-align:center;color:rgba(240,249,255,0.45);font-size:18px;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;font-weight:600;text-transform:uppercase}
+.tab.active{color:#00B4D8}
+.tab-svg{width:36px;height:36px;stroke:rgba(240,249,255,0.45);stroke-width:1.8;fill:none;display:block;margin:0 auto 6px}
+.tab.active .tab-svg{stroke:#00B4D8}
+.tab-create-btn{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#00B4D8,#0077B6);display:flex;align-items:center;justify-content:center;margin:-30px auto 8px;box-shadow:0 8px 24px rgba(0,180,216,0.45),inset 0 1px 0 rgba(255,255,255,0.25)}
+</style>
+</head>
+<body>
+<div class="phone-screen">
+
+  <div class="status-bar">
+    <span>09:42</span>
+    <div class="status-icons"><span>📶</span><span>69%</span></div>
+  </div>
+
+  <div class="nav-bar">
+    <div class="back-btn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></div>
+    <div class="nav-title"><span class="nav-title-emoji">🪼</span>Alertas medusas</div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <div class="eyebrow-row">
+    <div class="eyebrow"><span class="pulse"></span>EN VIVO · ESPAÑA</div>
+    <div class="last-update">Actualizado 09:38</div>
+  </div>
+
+  <div class="stats-banner">
+    <div class="stat">
+      <div class="stat-num">47</div>
+      <div class="stat-lbl">Reportes hoy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12</div>
+      <div class="stat-lbl">Zonas alerta</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3.2k</div>
+      <div class="stat-lbl">Comunidad</div>
+    </div>
+  </div>
+
+  <div class="map">
+    <div class="map-iberia"></div>
+    <div class="map-balear"></div>
+    <div class="alert-pin high" style="left:18%;top:62%"><div class="alert-dot"></div><div class="alert-lbl">Cádiz · 12</div></div>
+    <div class="alert-pin med" style="left:32%;top:72%"><div class="alert-dot"></div><div class="alert-lbl">Málaga · 6</div></div>
+    <div class="alert-pin high" style="left:48%;top:75%"><div class="alert-dot"></div><div class="alert-lbl">Almería · 9</div></div>
+    <div class="alert-pin" style="left:68%;top:54%"><div class="alert-dot"></div><div class="alert-lbl">Valencia · 5</div></div>
+    <div class="alert-pin med" style="left:78%;top:42%"><div class="alert-dot"></div><div class="alert-lbl">Tarragona · 4</div></div>
+    <div class="alert-pin" style="left:82%;top:55%"><div class="alert-dot"></div><div class="alert-lbl">Mallorca · 7</div></div>
+    <div class="alert-pin" style="left:14%;top:36%"><div class="alert-dot"></div><div class="alert-lbl">A Coruña · 2</div></div>
+    <div class="alert-pin med" style="left:60%;top:36%"><div class="alert-dot"></div><div class="alert-lbl">Bcn · 2</div></div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot high"></div>Alta · 8+ reportes</div>
+      <div class="legend-item"><div class="legend-dot med"></div>Media · 3-7</div>
+      <div class="legend-item"><div class="legend-dot low"></div>Sin reportes</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div class="section-h2">Reportes recientes</div>
+    <div class="section-cta">Ver todos →</div>
+  </div>
+
+  <div class="reports">
+    <div class="report-card">
+      <div class="report-icon">🪼</div>
+      <div class="report-info">
+        <div class="report-loc">Playa de la Caleta, Cádiz</div>
+        <div class="report-meta">Pelagia noctiluca · banco grande</div>
+      </div>
+      <div class="report-stat">
+        <div class="report-time">HACE 14 MIN</div>
+        <div class="report-confirm">✓ 8 confirmaron</div>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="report-icon med">🪼</div>
+      <div class="report-info">
+        <div class="report-loc">Cala Bassa, Ibiza</div>
+        <div class="report-meta">Carabela portuguesa · 2 ejemplares</div>
+      </div>
+      <div class="report-stat">
+        <div class="report-time" style="color:#f59e0b">HACE 42 MIN</div>
+        <div class="report-confirm">✓ 3 confirmaron</div>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="report-icon">🪼</div>
+      <div class="report-info">
+        <div class="report-loc">Playa de Mónsul, Almería</div>
+        <div class="report-meta">Aguamala · zona costa norte</div>
+      </div>
+      <div class="report-stat">
+        <div class="report-time">HACE 1H</div>
+        <div class="report-confirm">✓ 12 confirmaron</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-cta">
+    <span class="report-cta-icon">📸</span>
+    <div class="report-cta-text">Reportar avistamiento</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active"><svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+    <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+    <div class="tab">
+      <div class="tab-create-btn">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>Crear
+    </div>
+    <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Eventos</div>
+    <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+  </div>
+
+</div>
+</body></html>

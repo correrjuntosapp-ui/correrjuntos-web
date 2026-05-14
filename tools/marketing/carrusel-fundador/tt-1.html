@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>TT Slide 1 — Hook</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',-apple-system,sans-serif;overflow:hidden;position:relative;color:#fff}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(249,115,22,0.10) 0%,transparent 55%);pointer-events:none}
+.content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:140px 80px}
+.eyebrow{font-size:20px;font-weight:700;color:#f97316;letter-spacing:3px;text-transform:uppercase;margin-bottom:48px;display:inline-block;border-left:4px solid #f97316;padding-left:18px}
+h1{font-size:148px;font-weight:900;line-height:0.93;letter-spacing:-6px;margin-bottom:40px}
+h1 span{color:#f97316;display:block;margin-top:12px}
+.sub{font-size:32px;color:#94a3b8;line-height:1.4;font-weight:500;max-width:900px}
+.logo{position:absolute;top:80px;left:80px;font-weight:900;font-size:28px;letter-spacing:-1px}
+.logo-c{color:#fff}.logo-j{color:#f97316}
+.slide-num{position:absolute;top:80px;right:80px;font-size:20px;font-weight:700;color:rgba(255,255,255,.3);font-family:'JetBrains Mono',monospace}
+.swipe{position:absolute;bottom:100px;left:0;right:0;text-align:center;color:rgba(255,255,255,.4);font-size:18px;font-weight:600;letter-spacing:3px;text-transform:uppercase}
+.swipe::after{content:' →';color:#f97316}
+</style></head>
+<body>
+<div class="content">
+  <div class="eyebrow">Una historia honesta</div>
+  <h1>Empecé a correr solo.<br><span>Y lo sigo haciendo solo.</span></h1>
+  <p class="sub">Llevo años buscando con quién entrenar. Y todo lo que he probado para encontrarlo, ha fallado.</p>
+</div>
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+<div class="slide-num">01 / 08</div>
+<div class="swipe">Sigue leyendo</div>
+</body></html>

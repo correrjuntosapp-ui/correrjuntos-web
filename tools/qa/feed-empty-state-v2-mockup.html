@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feed Empty v2 — CorrerJuntos · 100% honesto</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;display:flex;justify-content:center;padding:20px;gap:30px;flex-wrap:wrap;min-height:100vh}
+.phone{width:380px;background:#0f0f0f;border-radius:42px;border:8px solid #2a2a2a;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
+.phone::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:24px;background:#000;border-radius:0 0 16px 16px;z-index:10}
+.label{position:absolute;top:-32px;left:0;right:0;text-align:center;color:#f97316;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.label.bad{color:#ef4444}
+.label.good{color:#22c55e}
+.status-bar{height:44px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 4px;background:#0f0f0f;color:#fff;font-size:13px;font-weight:600}
+.header{padding:14px 16px 12px;background:#0f0f0f;border-bottom:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center}
+.header h1{color:#fff;font-size:22px;font-weight:800;letter-spacing:-.5px}
+.header-icons{display:flex;gap:14px;color:#9a9aa6}
+.header-icons div{width:28px;height:28px;background:#1a1a1e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.feed{padding:20px 16px}
+
+/* Hero */
+.hero-empty{background:linear-gradient(135deg,rgba(249,115,22,.10),rgba(249,115,22,.03));border:1px solid rgba(249,115,22,.20);border-radius:16px;padding:24px 20px;margin-bottom:16px}
+.hero-stat{font-size:32px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.05}
+.hero-stat .accent{color:#f97316}
+.hero-stat-sm{font-size:14px;color:#9a9aa6;margin-top:8px;font-weight:500}
+.hero-stat-sm strong{color:#fff;font-weight:700}
+.hero-msg{color:#fff;font-size:15px;margin-top:18px;line-height:1.5;font-weight:500}
+.hero-msg strong{color:#f97316}
+.hero-cta{display:block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:700;font-size:15px;margin-top:18px;text-decoration:none;box-shadow:0 4px 16px rgba(249,115,22,.3)}
+.hero-cta-sub{display:block;color:#f97316;text-align:center;font-size:13px;margin-top:10px;font-weight:600;text-decoration:none;opacity:.85}
+
+/* Carreras populares card */
+.section-title{color:#fff;font-size:15px;font-weight:700;margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.section-title .badge{background:#f97316;color:#fff;font-size:11px;padding:3px 8px;border-radius:99px;font-weight:800}
+
+.race-card{background:#1a1a1e;border:1px solid #2a2a30;border-radius:14px;overflow:hidden;margin-bottom:1px}
+.race-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #2a2a30}
+.race-row:last-child{border-bottom:0}
+.race-date{flex-shrink:0;width:54px;background:linear-gradient(135deg,#f97316,#ea580c);border-radius:10px;padding:7px 0;text-align:center;color:#fff}
+.race-date .day{font-weight:900;font-size:18px;line-height:1}
+.race-date .month{font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-top:2px;opacity:.95}
+.race-info{flex:1;min-width:0}
+.race-name{color:#fff;font-size:14px;font-weight:700;line-height:1.3}
+.race-name .star{color:#fbbf24;margin-left:4px}
+.race-detail{color:#9a9aa6;font-size:12px;margin-top:3px}
+.race-arrow{color:#f97316;font-size:18px;font-weight:700}
+.race-tag{display:inline-block;background:rgba(34,197,94,.12);color:#22c55e;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;margin-left:6px;text-transform:uppercase;letter-spacing:.5px}
+
+.see-all{display:block;color:#f97316;font-size:13px;font-weight:700;text-align:center;padding:12px;text-decoration:none;background:#1a1a1e;border:1px solid #2a2a30;border-top:none;border-radius:0 0 14px 14px;margin-top:-1px}
+
+/* Matching CTA */
+.cta-secondary{background:#1a1a1e;border:1px solid #2a2a30;border-radius:14px;padding:18px 16px;margin-top:24px;display:flex;align-items:center;gap:14px}
+.cta-secondary-icon{width:42px;height:42px;background:linear-gradient(135deg,rgba(249,115,22,.15),rgba(249,115,22,.05));border:1px solid rgba(249,115,22,.3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cta-secondary-text{flex:1}
+.cta-secondary-text .t{color:#fff;font-size:14px;font-weight:700;line-height:1.3}
+.cta-secondary-text .s{color:#9a9aa6;font-size:12px;margin-top:3px;line-height:1.4}
+.cta-arrow{color:#f97316;font-size:18px}
+
+/* Stats footer */
+.stats-footer{margin-top:28px;padding:16px;background:#0f0f0f;border:1px dashed #2a2a30;border-radius:12px;text-align:center}
+.stats-footer .num{color:#9a9aa6;font-size:12px;font-weight:600}
+
+/* Tab bar */
+.tabs{position:absolute;bottom:0;left:0;right:0;background:#0f0f0f;border-top:1px solid #1f1f1f;height:80px;display:flex;justify-content:space-around;padding-top:10px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;color:#666;font-size:10px;font-weight:600}
+.tab.active{color:#f97316}
+.tab-icon{width:28px;height:28px;background:#1a1a1e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px}
+.tab.active .tab-icon{background:#f97316;color:#fff}
+
+/* Old version */
+.old-empty{background:#1a1a1e;border:1px solid #2a2a30;border-radius:16px;padding:30px 20px;text-align:center}
+.old-icon{width:50px;height:50px;background:rgba(255,255,255,.05);border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:#666;font-size:22px}
+.old-title{color:#fff;font-size:15px;font-weight:600;margin-bottom:6px}
+.old-sub{color:#666;font-size:13px;margin-bottom:18px}
+.old-btn{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;display:inline-block;padding:11px 24px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}
+.old-btn-secondary{display:block;color:#f97316;font-size:13px;font-weight:600;margin-top:14px;text-decoration:none}
+
+/* V1 (rejected) version preview */
+.runner-row{display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:0 16px}
+.runner-card-v1{flex:0 0 110px;background:#1a1a1e;border:1px solid #2a2a30;border-radius:12px;padding:12px 8px;text-align:center;opacity:.5}
+.runner-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#666,#444);margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px}
+</style>
+</head>
+<body>
+
+<!-- ANTES -->
+<div class="phone">
+  <div class="label bad">❌ ANTES</div>
+  <div class="status-bar"><span>9:41</span><span>📶 100%</span></div>
+  <div class="header"><h1>Inicio</h1><div class="header-icons"><div>🔍</div><div>🔔</div></div></div>
+  <div class="feed">
+    <div class="section-title">Quedadas cerca</div>
+    <div class="old-empty">
+      <div class="old-icon">📍</div>
+      <div class="old-title">No hay quedadas cerca</div>
+      <div class="old-sub">Sé el primero en crear una</div>
+      <a href="#" class="old-btn">+ Crear quedada</a>
+      <a href="#" class="old-btn-secondary">Ver mapa</a>
+    </div>
+    <div style="margin-top:30px;color:#444;font-size:13px;text-align:center">— vacío —</div>
+  </div>
+  <div class="tabs">
+    <div class="tab active"><div class="tab-icon">🏠</div>Inicio</div>
+    <div class="tab"><div class="tab-icon">🗺</div>Mapa</div>
+    <div class="tab"><div class="tab-icon">▶</div>Correr</div>
+    <div class="tab"><div class="tab-icon">👥</div>Social</div>
+    <div class="tab"><div class="tab-icon">👤</div>Perfil</div>
+  </div>
+</div>
+
+<!-- V1 RECHAZADO -->
+<div class="phone">
+  <div class="label bad">⚠️ V1 (rechazado)</div>
+  <div class="status-bar"><span>9:41</span><span>📶 100%</span></div>
+  <div class="header"><h1>Inicio</h1><div class="header-icons"><div>🔍</div><div>🔔</div></div></div>
+  <div class="feed" style="padding-bottom:90px">
+    <div class="hero-empty">
+      <div class="hero-stat"><span class="accent">678</span> runners</div>
+      <div class="hero-stat-sm">en CorrerJuntos · <strong>30 en Sevilla</strong></div>
+      <a href="#" class="hero-cta">+ Crear mi quedada</a>
+    </div>
+    <div class="section-title">Conoce runners de Sevilla <span class="badge">30</span></div>
+    <div class="runner-row">
+      <div class="runner-card-v1"><div class="runner-avatar">JM</div><div style="color:#fff;font-size:12px;font-weight:700">Juan M.</div><div style="color:#9a9aa6;font-size:10px">5:15/km</div></div>
+      <div class="runner-card-v1"><div class="runner-avatar">CR</div><div style="color:#fff;font-size:12px;font-weight:700">Cristina</div><div style="color:#9a9aa6;font-size:10px">5:40/km</div></div>
+      <div class="runner-card-v1"><div class="runner-avatar">AL</div><div style="color:#fff;font-size:12px;font-weight:700">Alberto</div><div style="color:#9a9aa6;font-size:10px">4:55/km</div></div>
+    </div>
+    <div style="margin-top:14px;padding:12px;background:#1a0f0f;border:1px solid #ef4444;border-radius:8px;color:#ef4444;font-size:11px;text-align:center;line-height:1.4">
+      <strong>Problema:</strong> "Cristina, Juan, Alberto" sin actividad reciente.<br>Tu user dijo: <em>"parecen bots"</em>. No tirar.
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab active"><div class="tab-icon">🏠</div>Inicio</div>
+    <div class="tab"><div class="tab-icon">🗺</div>Mapa</div>
+    <div class="tab"><div class="tab-icon">▶</div>Correr</div>
+    <div class="tab"><div class="tab-icon">👥</div>Social</div>
+    <div class="tab"><div class="tab-icon">👤</div>Perfil</div>
+  </div>
+</div>
+
+<!-- V2 PROPUESTO HONESTO -->
+<div class="phone">
+  <div class="label good">✅ V2 PROPUESTO</div>
+  <div class="status-bar"><span>9:41</span><span>📶 100%</span></div>
+  <div class="header"><h1>Inicio</h1><div class="header-icons"><div>🔍</div><div>🔔</div></div></div>
+  <div class="feed" style="padding-bottom:90px">
+
+    <!-- Hero stats honesto -->
+    <div class="hero-empty">
+      <div class="hero-stat"><span class="accent">678</span> runners</div>
+      <div class="hero-stat-sm">en CorrerJuntos · <strong>20 en Huelva</strong></div>
+      <div class="hero-msg">
+        Aún somos pocos. <br>
+        <strong>Sé el primero en organizar una quedada en tu zona.</strong>
+      </div>
+      <a href="#" class="hero-cta">+ Crear quedada en Huelva</a>
+      <a href="#" class="hero-cta-sub">⏱ Solo 30 segundos</a>
+    </div>
+
+    <!-- Próximas carreras populares -->
+    <div class="section-title">Próximas carreras Huelva <span class="badge">14</span></div>
+    <div class="race-card">
+      <div class="race-row">
+        <div class="race-date"><div class="day">16</div><div class="month">MAY</div></div>
+        <div class="race-info">
+          <div class="race-name">Carrera de la Mujer Onupolis</div>
+          <div class="race-detail">Huelva · 10K / 5K / 2K</div>
+        </div>
+        <div class="race-arrow">›</div>
+      </div>
+      <div class="race-row">
+        <div class="race-date"><div class="day">30</div><div class="month">MAY</div></div>
+        <div class="race-info">
+          <div class="race-name">Trail Puntademo<span class="race-tag">Tu pueblo</span></div>
+          <div class="race-detail">Punta Umbría · Trail</div>
+        </div>
+        <div class="race-arrow">›</div>
+      </div>
+      <div class="race-row">
+        <div class="race-date"><div class="day">06</div><div class="month">JUN</div></div>
+        <div class="race-info">
+          <div class="race-name">10K Puerta Descubrimiento <span class="star">⭐</span></div>
+          <div class="race-detail">Huelva · Cto. Andalucía</div>
+        </div>
+        <div class="race-arrow">›</div>
+      </div>
+    </div>
+    <a href="#" class="see-all">Ver las 14 carreras de Huelva →</a>
+
+    <!-- Matching CTA — sin exponer perfiles -->
+    <div class="cta-secondary">
+      <div class="cta-secondary-icon">⚡</div>
+      <div class="cta-secondary-text">
+        <div class="t">¿No quieres correr solo?</div>
+        <div class="s">Te buscamos 3 runners de tu nivel y horario</div>
+      </div>
+      <div class="cta-arrow">›</div>
+    </div>
+
+    <!-- Footer transparency -->
+    <div class="stats-footer">
+      <div class="num">📊 678 runners · 20 en tu zona · 0 quedadas activas</div>
+    </div>
+
+  </div>
+  <div class="tabs">
+    <div class="tab active"><div class="tab-icon">🏠</div>Inicio</div>
+    <div class="tab"><div class="tab-icon">🗺</div>Mapa</div>
+    <div class="tab"><div class="tab-icon">▶</div>Correr</div>
+    <div class="tab"><div class="tab-icon">👥</div>Social</div>
+    <div class="tab"><div class="tab-icon">👤</div>Perfil</div>
+  </div>
+</div>
+
+</body>
+</html>

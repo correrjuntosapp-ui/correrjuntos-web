@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Errores 4 y 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#ef4444;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#ef4444}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+
+/* Error block - compact for 2 errors per slide */
+.err{margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(246,241,232,0.10)}
+.err:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.err-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px}
+.err-num{font-size:140px;font-weight:900;line-height:0.85;letter-spacing:-7px;color:#ef4444;font-family:'Inter',sans-serif}
+.err-of{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:rgba(246,241,232,0.35);padding-bottom:18px}
+.err-title{font-size:50px;font-weight:800;line-height:0.95;letter-spacing:-1.5px;color:#f6f1e8;margin-bottom:24px}
+
+.row{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.row-icon{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0;margin-top:2px}
+.row-icon.bad{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.35)}
+.row-icon.good{background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.35)}
+.row-text{font-size:21px;font-weight:500;color:rgba(246,241,232,0.85);line-height:1.45;flex:1}
+.row-text strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:auto}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">05 / 06</div>
+  <div class="eyebrow">Errores finales</div>
+  <div class="coords">LOS 2 ÚLTIMOS · LOS QUE TE HACEN ABANDONAR</div>
+
+  <div class="err">
+    <div class="err-head">
+      <div class="err-num">04</div>
+      <div class="err-of">DE 05</div>
+    </div>
+    <div class="err-title">Comparte tus tiempos<br>con elites en Strava</div>
+    <div class="row">
+      <div class="row-icon bad">✕</div>
+      <div class="row-text">Te frustras viendo que <strong>todos van más rápido</strong>.</div>
+    </div>
+    <div class="row">
+      <div class="row-icon good">✓</div>
+      <div class="row-text">Compárate <strong>contigo mismo</strong>. Tu mejor tiempo del mes pasado vs hoy.</div>
+    </div>
+  </div>
+
+  <div class="err">
+    <div class="err-head">
+      <div class="err-num">05</div>
+      <div class="err-of">DE 05</div>
+    </div>
+    <div class="err-title">Correr siempre solo</div>
+    <div class="row">
+      <div class="row-icon bad">✕</div>
+      <div class="row-text">Sin nadie esperándote, <strong>el día que llueve no sales</strong>. Dos meses después: ya no corres.</div>
+    </div>
+    <div class="row">
+      <div class="row-icon good">✓</div>
+      <div class="row-text">Encuentra <strong>1 compañero de tu nivel</strong>. La constancia sube +60% según estudios.</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 05 · ERRORES 4 Y 5</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

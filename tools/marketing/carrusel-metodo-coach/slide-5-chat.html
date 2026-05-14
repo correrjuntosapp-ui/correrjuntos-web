@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+/* Chat mockup */
+.chat{flex:1;display:flex;flex-direction:column;gap:18px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:16px;padding:30px}
+.chat-header{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid rgba(246,241,232,0.10);margin-bottom:8px}
+.chat-avatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#f97316,#FF8C38);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:#0b1220}
+.chat-name-block{display:flex;flex-direction:column;gap:2px}
+.chat-name{font-size:22px;font-weight:800;color:#f6f1e8;letter-spacing:-0.3px}
+.chat-status{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+.chat-status::before{content:'';width:8px;height:8px;background:#22c55e;border-radius:50%}
+
+.message{display:flex;gap:12px;align-items:flex-start;max-width:85%}
+.message.user{align-self:flex-end;flex-direction:row-reverse}
+.msg-bubble{padding:18px 22px;border-radius:18px;font-size:18px;line-height:1.5;font-weight:500}
+.msg-bubble.assistant{background:rgba(246,241,232,0.06);color:#f6f1e8;border:1px solid rgba(246,241,232,0.10);border-bottom-left-radius:6px}
+.msg-bubble.user{background:#f97316;color:#0b1220;border-bottom-right-radius:6px;font-weight:600}
+.msg-bubble strong{font-weight:800}
+.msg-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:0.5px;margin-top:4px}
+
+.chat-input{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:50px;margin-top:auto}
+.chat-input-text{flex:1;color:rgba(246,241,232,0.40);font-size:16px;font-weight:500}
+.chat-input-send{width:40px;height:40px;background:#f97316;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0b1220;font-weight:900;font-size:20px}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">05 / 06</div>
+  <div class="eyebrow">Paso 4 · CHAT</div>
+  <div class="coords">CONVERSATION · 24/7 · NO LIMITS</div>
+  <div class="title">Y le puedes<br><span class="accent">preguntar</span> de todo</div>
+
+  <div class="chat">
+    <div class="chat-header">
+      <div class="chat-avatar">J</div>
+      <div class="chat-name-block">
+        <div class="chat-name">Coach José</div>
+        <div class="chat-status">Online · responde 2-4s</div>
+      </div>
+    </div>
+
+    <div class="message user">
+      <div>
+        <div class="msg-bubble user">¿Qué como antes de un 5K?</div>
+        <div class="msg-time" style="text-align:right">19:42</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div>
+        <div class="msg-bubble assistant">
+          90 min antes: <strong>40-60g hidratos</strong> (avena con plátano, tostada con miel, dátiles). Cero grasa, cero proteína pesada.<br><br>
+          15 min antes: <strong>medio plátano + sorbo de café</strong> si lo toleras. Sube rendimiento un 3% según estudios.<br><br>
+          Hidratación: 500 ml agua + 300 mg sodio en la hora previa.
+        </div>
+        <div class="msg-time">19:42</div>
+      </div>
+    </div>
+
+    <div class="message user">
+      <div>
+        <div class="msg-bubble user">Tengo dolor en el sóleo, ¿paro?</div>
+        <div class="msg-time" style="text-align:right">19:43</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div>
+        <div class="msg-bubble assistant">
+          Si <strong>el dolor es 4+/10</strong> o cambia tu forma de correr → <strong>para hoy</strong> y ve al fisio si persiste 3 días.<br><br>
+          Mientras tanto: hielo 15 min × 3 al día, evita escaleras.
+        </div>
+        <div class="msg-time">19:43</div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <div class="chat-input-text">Escribe tu pregunta...</div>
+      <div class="chat-input-send">→</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 05 · CHAT IA</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Planes ROI + Quick Actions fix</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+    --surface: rgba(246,241,232,0.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a1a1a; font-family: 'Inter', -apple-system, sans-serif; color: var(--paper); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  body { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 36px; }
+
+  .main-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--paper); font-weight: 600; text-align: center; }
+  .main-sub { color: #aaa; font-size: 14px; text-align: center; max-width: 620px; line-height: 1.55; margin-top: -14px; }
+  .main-sub strong { color: var(--ember); font-weight: 700; }
+
+  .section-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: -4px;
+  }
+
+  .holder {
+    width: 340px;
+    background: var(--ink);
+    border-radius: 26px;
+    padding: 16px 20px 20px;
+    box-shadow: 0 0 0 8px #222, 0 0 0 10px #111, 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .holder-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ash-soft); font-weight: 600; text-align: center; margin-bottom: 10px; }
+  .caption { color: #ccc; font-size: 12px; text-align: center; max-width: 320px; line-height: 1.5; margin-top: 10px; }
+  .caption strong { color: #fff; }
+
+  /* ═════════════════════════════════════════ */
+  /* PROPUESTA PLANES · Hero single */
+  /* ═════════════════════════════════════════ */
+  .planes-hero {
+    padding: 18px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.14) 0%, rgba(11,18,32,0.6) 60%, rgba(11,18,32,0) 100%);
+    border: 1px solid rgba(249,115,22,0.4);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(249,115,22,0.12);
+  }
+  .planes-hero::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(249,115,22,0.25) 0%, rgba(249,115,22,0) 65%);
+    pointer-events: none;
+  }
+  .planes-hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--ember);
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .planes-hero-eyebrow::before { content: ""; width: 18px; height: 1px; background: var(--ember); }
+  .planes-hero-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--paper);
+    line-height: 1.15;
+    letter-spacing: -0.35px;
+    margin-bottom: 6px;
+  }
+  .planes-hero-title strong { color: var(--ember); }
+  .planes-hero-desc {
+    font-size: 12px;
+    color: var(--ash);
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+  .planes-benefits {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .planes-benefit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ember);
+    border: 1px solid rgba(249,115,22,0.3);
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .planes-social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--ash-soft);
+    margin-bottom: 14px;
+  }
+  .planes-social-dot {
+    width: 6px; height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+  }
+  .planes-social strong { color: var(--paper); font-weight: 700; }
+  .planes-cta-row { display: flex; align-items: center; gap: 10px; }
+  .planes-cta {
+    flex: 1;
+    background: var(--ember);
+    color: #0b1220;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 11px 14px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.2px;
+  }
+  .planes-free-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.4);
+    background: rgba(34,197,94,0.12);
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+
+  /* ═════════════════════════════════════════ */
+  /* PROPUESTA PLANES · Split gratis + premium */
+  /* ═════════════════════════════════════════ */
+  .planes-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .plan-mini {
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .plan-mini.free {
+    background: linear-gradient(135deg, rgba(34,197,94,0.12) 0%, rgba(11,18,32,0) 70%);
+    border-color: rgba(34,197,94,0.35);
+  }
+  .plan-mini.pro {
+    background: linear-gradient(135deg, rgba(249,115,22,0.1) 0%, rgba(11,18,32,0) 70%);
+    border-color: rgba(249,115,22,0.35);
+  }
+  .plan-mini-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .plan-mini.free .plan-mini-badge {
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.4);
+    background: rgba(34,197,94,0.1);
+  }
+  .plan-mini.pro .plan-mini-badge {
+    color: var(--ember);
+    border: 1px solid rgba(249,115,22,0.4);
+    background: rgba(249,115,22,0.1);
+  }
+  .plan-mini-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.15px;
+    margin-bottom: 3px;
+  }
+  .plan-mini-desc {
+    font-size: 10px;
+    color: var(--ash-soft);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .plan-mini-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    color: var(--ash-soft);
+    font-weight: 600;
+  }
+
+  /* ═════════════════════════════════════════ */
+  /* FIX "Primeros pasos" — cambiar título */
+  /* ═════════════════════════════════════════ */
+  .actions-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ash-soft);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .action-card {
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .action-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(249,115,22,0.12);
+    border: 1px solid rgba(249,115,22,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ember);
+    flex-shrink: 0;
+  }
+  .action-body { flex: 1; }
+  .action-title { font-size: 13px; font-weight: 700; color: var(--paper); letter-spacing: -0.1px; margin-bottom: 2px; }
+  .action-desc { font-size: 11px; color: var(--ash-soft); line-height: 1.4; }
+
+  /* Info */
+  .info { max-width: 760px; width: 100%; padding: 22px 26px; background: #111; border: 1px solid #333; border-radius: 16px; color: #ddd; }
+  .info h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 14px; color: #fff; }
+  .info ul { list-style: none; }
+  .info li { padding: 8px 0; border-bottom: 1px solid #2a2a2a; font-size: 13px; line-height: 1.55; display: flex; gap: 12px; }
+  .info li:last-child { border-bottom: none; }
+  .info li::before { content: "●"; color: var(--ember); margin-top: 2px; font-size: 9px; }
+</style>
+</head>
+<body>
+
+  <!-- ═══════ PLANES ═══════ -->
+  <div class="section-head">Planes · 2 propuestas ROI</div>
+  <div class="main-sub" style="margin-top:0;">Ninguna es la actual. Elige la que te convence.</div>
+
+  <!-- Propuesta A · Hero -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px;">
+    <div class="holder">
+      <div class="holder-label">🅐 · Hero con beneficio</div>
+      <div class="planes-hero">
+        <div class="planes-hero-eyebrow">CON PLAN · PROGRESAS 3× MÁS</div>
+        <div class="planes-hero-title">Baja tu <strong>10K</strong><br>en 8 semanas.</div>
+        <div class="planes-hero-desc">Planes estructurados con audio coach, adaptados a tu ritmo actual. Empieza hoy, nota resultados.</div>
+        <div class="planes-benefits">
+          <span class="planes-benefit">● PROGRESIÓN</span>
+          <span class="planes-benefit">● COACH AUDIO</span>
+          <span class="planes-benefit">● 5K → 42K</span>
+        </div>
+        <div class="planes-social">
+          <span class="planes-social-dot"></span>
+          <strong>3.200+</strong> runners entrenando con un plan
+        </div>
+        <div class="planes-cta-row">
+          <div class="planes-cta">
+            Empezar gratis
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="planes-free-tag">1º PLAN GRATIS</div>
+        </div>
+      </div>
+    </div>
+    <div class="caption">Beneficio concreto en el título · prueba social real · CTA claro · gratis destacado. <strong>Vende, no describe.</strong></div>
+  </div>
+
+  <!-- Propuesta B · Split -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+    <div class="holder">
+      <div class="holder-label">🅑 · Split gratis + premium</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ash-soft);font-weight:600;margin-bottom:10px;">PLANES DE ENTRENAMIENTO</div>
+      <div class="planes-split">
+        <div class="plan-mini free">
+          <div class="plan-mini-badge">GRATIS</div>
+          <div class="plan-mini-title">Empieza a moverte</div>
+          <div class="plan-mini-desc">De 0 a 5K en 8 semanas</div>
+          <div class="plan-mini-meta">● PRINCIPIANTE</div>
+        </div>
+        <div class="plan-mini pro">
+          <div class="plan-mini-badge">PREMIUM</div>
+          <div class="plan-mini-title">Baja tu 10K</div>
+          <div class="plan-mini-desc">Plan 12 semanas para sub-50min</div>
+          <div class="plan-mini-meta">● INTERMEDIO</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.4px;color:var(--ember);font-weight:600;">
+        + 4 PLANES MÁS ›
+      </div>
+    </div>
+    <div class="caption">Anclaje visual gratis vs premium. El GRATIS atrae, el PREMIUM sube el valor percibido. <strong>El user entiende en 2 segundos qué hay.</strong></div>
+  </div>
+
+  <!-- ═══════ Quick actions fix ═══════ -->
+  <div class="section-head" style="margin-top:20px;">"Primeros pasos 1 de 3" · fix</div>
+  <div class="main-sub" style="margin-top:0;">Tienes razón — "1 de 3" confunde. Son rutas paralelas, no pasos secuenciales.</div>
+
+  <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
+
+    <!-- Antes -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div class="holder">
+        <div class="holder-label" style="color:#fca5a5;">ANTES · confunde</div>
+        <div class="actions-head">PRIMEROS PASOS · 1 DE 3</div>
+        <div class="action-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ember);letter-spacing:1.2px;width:18px;">01</div>
+          <div class="action-body">
+            <div class="action-title">Registra tu primera carrera</div>
+            <div class="action-desc">30 minutos basta para empezar</div>
+          </div>
+        </div>
+        <div class="action-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ember);letter-spacing:1.2px;width:18px;">02</div>
+          <div class="action-body">
+            <div class="action-title">Explora runners cerca</div>
+            <div class="action-desc">Encuentra gente con tu ritmo</div>
+          </div>
+        </div>
+        <div class="action-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ember);letter-spacing:1.2px;width:18px;">03</div>
+          <div class="action-body">
+            <div class="action-title">Activa un plan gratis</div>
+            <div class="action-desc">Empieza a Moverte · 0→5K</div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">"1 de 3" sugiere secuencia → user piensa "hago esto antes que los demás" → confusión</div>
+    </div>
+
+    <!-- Después -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div class="holder">
+        <div class="holder-label" style="color:#86efac;">DESPUÉS · 3 rutas paralelas</div>
+        <div class="actions-head">¿POR DÓNDE EMPIEZO?</div>
+
+        <div class="action-card">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="action-body">
+            <div class="action-title">Registra tu primera carrera</div>
+            <div class="action-desc">30 min basta · GPS activo</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(246,241,232,0.4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+
+        <div class="action-card">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          </div>
+          <div class="action-body">
+            <div class="action-title">Encuentra runners cerca</div>
+            <div class="action-desc">Matching por ritmo y zona</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(246,241,232,0.4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+
+        <div class="action-card">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div class="action-body">
+            <div class="action-title">Activa un plan gratis</div>
+            <div class="action-desc">0→5K en 8 semanas</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(246,241,232,0.4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+      <div class="caption">"¿Por dónde empiezo?" + icon distintivo por ruta · <strong>sin secuencia numerada</strong>. Cada card una puerta de entrada clara</div>
+    </div>
+
+  </div>
+
+  <!-- Análisis -->
+  <div class="info">
+    <h3>ROI · por qué la propuesta de Planes vende más</h3>
+    <ul>
+      <li><strong>"Baja tu 10K en 8 semanas"</strong> > "6 planes · Principiante a maratón" → beneficio concreto vs feature genérica</li>
+      <li><strong>"3.200+ runners entrenando con un plan"</strong> → prueba social real (ajustable según número que tengas)</li>
+      <li><strong>CTA "Empezar gratis →"</strong> → acción clara + gratuidad destacada</li>
+      <li><strong>Badge "1º PLAN GRATIS"</strong> separado del CTA → double reinforcement del hook</li>
+      <li><strong>Progresión visual ember</strong> → radial glow + gradient crean sensación aspiracional sin saturar</li>
+      <li><strong>Beneficios en chips mono</strong>: "PROGRESIÓN · COACH AUDIO · 5K→42K" → legibles en 1 segundo</li>
+    </ul>
+  </div>
+
+  <div class="info">
+    <h3>Por qué "PRIMEROS PASOS · 1 DE 3" estaba mal</h3>
+    <ul>
+      <li><strong>"1 de 3" implica orden</strong> → user asume que debe completar los 3 en secuencia</li>
+      <li><strong>Los 3 son independientes</strong> → registrar carrera, explorar runners, activar plan son <strong>rutas distintas</strong>, no pasos de un proceso</li>
+      <li><strong>"¿POR DÓNDE EMPIEZO?"</strong> → pregunta al user, sugiere libertad de elección</li>
+      <li><strong>Icon distintivo por card</strong> → Activity (carrera) · Users (runners) · Target (plan). Cada ruta tiene identidad visual propia</li>
+      <li><strong>Sin numeración 01/02/03</strong> → elimina la lectura errónea de "paso 1, paso 2, paso 3"</li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1}
+.card{padding:30px 28px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:14px;display:flex;flex-direction:column;gap:14px}
+.card.do{background:linear-gradient(135deg,rgba(34,197,94,0.10),rgba(34,197,94,0.04));border-color:rgba(34,197,94,0.30)}
+.card.dont{background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(239,68,68,0.03));border-color:rgba(239,68,68,0.25)}
+.card-head{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(246,241,232,0.10)}
+.card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
+.card-icon.do{background:rgba(34,197,94,0.20);color:#22c55e;border:1px solid rgba(34,197,94,0.40)}
+.card-icon.dont{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.35)}
+.card-title{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.card-title.do{color:#22c55e}
+.card-title.dont{color:#ef4444}
+.card-list{display:flex;flex-direction:column;gap:14px}
+.card-li{font-size:17px;color:rgba(246,241,232,0.85);font-weight:500;line-height:1.4;padding-left:20px;position:relative}
+.card-li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;background:rgba(246,241,232,0.60);border-radius:50%}
+.card.do .card-li::before{background:#22c55e}
+.card.dont .card-li::before{background:#ef4444}
+.card-li strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">05 / 06</div>
+  <div class="eyebrow">Paso 4 · Día D</div>
+  <div class="coords">RACE DAY · MENTAL · TÁCTICA</div>
+  <div class="title">El día <span class="accent">D</span><br>(tu primera 5K)</div>
+
+  <div class="cards">
+    <div class="card do">
+      <div class="card-head">
+        <div class="card-icon do">✓</div>
+        <div class="card-title do">SÍ haz</div>
+      </div>
+      <div class="card-list">
+        <div class="card-li">Llega <strong>30 min antes</strong> al punto de salida</div>
+        <div class="card-li">Calienta <strong>10 min</strong> caminando + 2 min trote</div>
+        <div class="card-li">Sal <strong>al final del pelotón</strong>. Empezar tranquilo</div>
+        <div class="card-li">Sigue tu plan: ritmo del que <strong>puedas hablar</strong></div>
+        <div class="card-li">En el km 4 acelera <strong>solo si te queda</strong></div>
+        <div class="card-li">Cruza la meta <strong>con sonrisa</strong>. Foto tuya</div>
+      </div>
+    </div>
+    <div class="card dont">
+      <div class="card-head">
+        <div class="card-icon dont">✕</div>
+        <div class="card-title dont">NO hagas</div>
+      </div>
+      <div class="card-list">
+        <div class="card-li">Estrenar <strong>zapatillas o calcetines</strong> ese día</div>
+        <div class="card-li">Probar <strong>nutrición nueva</strong> (geles, marcas)</div>
+        <div class="card-li">Salir disparado con la adrenalina</div>
+        <div class="card-li">Mirar el reloj cada 200m</div>
+        <div class="card-li">Compararte con los de delante</div>
+        <div class="card-li">Volver a casa <strong>solo</strong>. Quédate y celébralo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 05 · DÍA D</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

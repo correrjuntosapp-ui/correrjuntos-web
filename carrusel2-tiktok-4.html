@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/3621183/pexels-photo-3621183.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.06;pointer-events:none}
+.content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 60px;text-align:center}
+h2{font-size:56px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-2px;margin-bottom:20px}
+h2 span{color:#f97316}
+.desc{font-size:22px;color:#94a3b8;line-height:1.6;max-width:700px;margin-bottom:50px}
+.factors{display:flex;flex-direction:column;gap:16px;width:100%;max-width:700px}
+.factor{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 24px}
+.factor-bar-bg{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.06);overflow:hidden}
+.factor-bar{height:100%;border-radius:4px}
+.factor-label{font-size:18px;font-weight:600;color:#fff;width:140px;text-align:left}
+.factor-pct{font-size:18px;font-weight:800;width:50px;text-align:right}
+.slide-num{position:absolute;top:50px;right:60px;font-size:18px;font-weight:700;color:rgba(255,255,255,.3)}
+.logo{position:absolute;top:50px;left:60px;font-weight:900;font-size:22px}
+.logo-c{color:#fff}.logo-j{color:#f97316}
+.swipe{position:absolute;bottom:50px;left:0;right:0;text-align:center;color:rgba(255,255,255,.3);font-size:16px;font-weight:500}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+  <h2>Que mide el<br><span>algoritmo</span></h2>
+  <p class="desc">5 factores que determinan tu compatibilidad con otros runners</p>
+  <div class="factors">
+    <div class="factor">
+      <div class="factor-label">Ritmo</div>
+      <div class="factor-bar-bg"><div class="factor-bar" style="width:100%;background:#f97316"></div></div>
+      <div class="factor-pct" style="color:#f97316">30%</div>
+    </div>
+    <div class="factor">
+      <div class="factor-label">Horario</div>
+      <div class="factor-bar-bg"><div class="factor-bar" style="width:83%;background:#3b82f6"></div></div>
+      <div class="factor-pct" style="color:#3b82f6">25%</div>
+    </div>
+    <div class="factor">
+      <div class="factor-label">Objetivos</div>
+      <div class="factor-bar-bg"><div class="factor-bar" style="width:67%;background:#22c55e"></div></div>
+      <div class="factor-pct" style="color:#22c55e">20%</div>
+    </div>
+    <div class="factor">
+      <div class="factor-label">Zona</div>
+      <div class="factor-bar-bg"><div class="factor-bar" style="width:57%;background:#eab308"></div></div>
+      <div class="factor-pct" style="color:#eab308">17%</div>
+    </div>
+    <div class="factor">
+      <div class="factor-label">Dias</div>
+      <div class="factor-bar-bg"><div class="factor-bar" style="width:27%;background:#8b5cf6"></div></div>
+      <div class="factor-pct" style="color:#8b5cf6">8%</div>
+    </div>
+  </div>
+</div>
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+<div class="slide-num">4/5</div>
+<div class="swipe">Desliza →</div>
+</body>
+</html>

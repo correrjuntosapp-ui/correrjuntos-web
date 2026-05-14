@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Strava en Profile V2 — Sin emojis</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;display:flex;justify-content:center;padding:30px;gap:30px;flex-wrap:wrap;min-height:100vh}
+.phone{width:380px;background:#0a0a0a;border-radius:42px;border:8px solid #2a2a2a;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
+.phone::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:24px;background:#000;border-radius:0 0 16px 16px;z-index:10}
+.label{position:absolute;top:-32px;left:0;right:0;text-align:center;color:#f97316;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.status-bar{height:44px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 4px;background:#0a0a0a;color:#fff;font-size:13px;font-weight:600}
+.scroll{padding:14px 16px 90px;background:#0a0a0a}
+
+/* Header */
+.ph{display:flex;gap:14px;align-items:center;margin-bottom:18px;padding:8px 4px}
+.ph-avatar{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;color:#fff;border:2px solid #2a2a30}
+.ph-info{flex:1}
+.ph-name{color:#fff;font-size:18px;font-weight:800;letter-spacing:-.3px}
+.ph-meta{color:#9a9aa6;font-size:12px;margin-top:3px}
+.ph-badge{display:inline-block;background:rgba(34,197,94,.12);color:#22c55e;font-size:10px;font-weight:700;padding:3px 7px;border-radius:99px;margin-top:4px;border:1px solid rgba(34,197,94,.25);letter-spacing:.3px}
+.ph-edit{color:#f97316;font-size:13px;font-weight:600}
+
+/* Stats */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.sg-card{background:#1a1a1e;border:1px solid #2a2a30;border-radius:12px;padding:12px 10px;text-align:center}
+.sg-val{color:#fff;font-size:18px;font-weight:800}
+.sg-lbl{color:#9a9aa6;font-size:10px;font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.3px}
+
+/* Achievements (sin emoji medal) */
+.ach{background:#1a1a1e;border:1px solid #2a2a30;border-radius:14px;padding:14px;margin-bottom:14px}
+.ach-title{color:#fff;font-size:14px;font-weight:700;margin-bottom:10px}
+.ach-row{display:flex;gap:12px;align-items:center}
+.ach-medal{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,rgba(249,115,22,.18),rgba(249,115,22,.06));border:1px solid rgba(249,115,22,.3);display:flex;align-items:center;justify-content:center}
+.ach-text{flex:1}
+.ach-name{color:#fff;font-size:13px;font-weight:700}
+.ach-date{color:#9a9aa6;font-size:11px;margin-top:2px}
+
+/* ===== STRAVA SECTION CLEAN ===== */
+.strava-card{background:#1a1a1e;border:1px solid #2a2a30;border-radius:14px;padding:14px;margin-bottom:14px}
+.strava-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #25252a}
+.strava-logo-box{width:38px;height:38px;border-radius:10px;background:#FC4C02;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.strava-info{flex:1;min-width:0}
+.strava-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.strava-title{color:#fff;font-size:14px;font-weight:700;letter-spacing:-.2px}
+.strava-conn-pill{background:rgba(34,197,94,.12);color:#22c55e;font-size:9px;font-weight:800;padding:2px 7px;border-radius:99px;border:1px solid rgba(34,197,94,.25);text-transform:uppercase;letter-spacing:.5px}
+.strava-user{color:#9a9aa6;font-size:11px;margin-top:3px}
+.strava-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.ss-card{background:#0a0a0a;border:1px solid #25252a;border-radius:10px;padding:10px 8px;text-align:center}
+.ss-val{color:#FC4C02;font-size:16px;font-weight:800}
+.ss-lbl{color:#9a9aa6;font-size:9px;font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.3px}
+.strava-footer{display:flex;align-items:center;justify-content:space-between;padding-top:4px}
+.strava-sync{color:#9a9aa6;font-size:11px;display:flex;align-items:center;gap:6px}
+.strava-manage{color:#FC4C02;font-size:12px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:4px}
+
+/* CTA Conectar */
+.strava-cta{background:#1a1a1e;border:1px solid rgba(252,76,2,.30);border-radius:14px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.strava-cta-text{flex:1}
+.strava-cta-title{color:#fff;font-size:14px;font-weight:700}
+.strava-cta-sub{color:#9a9aa6;font-size:12px;margin-top:3px;line-height:1.4}
+.strava-cta-arrow{color:#FC4C02;font-size:18px;font-weight:700}
+
+/* Tabs */
+.tabs{position:absolute;bottom:0;left:0;right:0;background:#0a0a0a;border-top:1px solid #1f1f1f;height:80px;display:flex;justify-content:space-around;padding-top:10px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;color:#666;font-size:10px;font-weight:600}
+.tab.active{color:#f97316}
+.tab-icon{width:28px;height:28px;background:#1a1a1e;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tab.active .tab-icon{background:#f97316}
+
+/* SVG icon helpers */
+.icon-svg{display:block;width:100%;height:100%}
+
+/* Note */
+.note{max-width:380px;color:#bbb;font-size:13px;line-height:1.6;padding:18px;background:#0f0f0f;border-radius:12px;border:1px solid #1f1f1f}
+.note h3{color:#f97316;font-size:13px;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.note strong{color:#fff}
+.note ul{padding-left:18px;margin:8px 0}
+.note li{margin-bottom:5px}
+.note .mono{font-family:'SF Mono',Monaco,monospace;background:#1a1a1e;padding:2px 6px;border-radius:4px;font-size:11px;color:#f97316}
+</style>
+</head>
+<body>
+
+<!-- ANTES (limpio sin emoji) -->
+<div class="phone">
+  <div class="label">ANTES</div>
+  <div class="status-bar"><span>15:21</span><span>100%</span></div>
+  <div class="scroll">
+    <div class="ph">
+      <div class="ph-avatar">A</div>
+      <div class="ph-info">
+        <div class="ph-name">Abraham A.</div>
+        <div class="ph-meta">Huelva · Andalucía</div>
+        <div class="ph-badge">VERIFICADO</div>
+      </div>
+      <div class="ph-edit">Editar</div>
+    </div>
+    <div class="sg">
+      <div class="sg-card"><div class="sg-val">12</div><div class="sg-lbl">Carreras</div></div>
+      <div class="sg-card"><div class="sg-val">87.4</div><div class="sg-lbl">km</div></div>
+      <div class="sg-card"><div class="sg-val">5:12</div><div class="sg-lbl">min/km</div></div>
+    </div>
+    <div class="ach">
+      <div class="ach-title">Logros recientes</div>
+      <div class="ach-row">
+        <div class="ach-medal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <circle cx="12" cy="13" r="7" stroke="#f97316" stroke-width="1.8"/>
+            <path d="M9 6.5L7 1h10L15 6.5" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 10v3l2 1" stroke="#f97316" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ach-text">
+          <div class="ach-name">Primera 10K completada</div>
+          <div class="ach-date">Hace 3 días</div>
+        </div>
+      </div>
+    </div>
+    <div style="color:#666;font-size:12px;text-align:center;margin-top:30px;padding:14px;background:#1a1a1e;border-radius:10px;border:1px dashed #333">
+      Strava conectado pero <strong style="color:#aaa">invisible aquí</strong>.<br>
+      Solo se ve en Ajustes → Apps Conectadas.
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab"><div class="tab-icon"></div>Inicio</div>
+    <div class="tab"><div class="tab-icon"></div>Mapa</div>
+    <div class="tab"><div class="tab-icon"></div>Correr</div>
+    <div class="tab"><div class="tab-icon"></div>Social</div>
+    <div class="tab active"><div class="tab-icon"></div>Perfil</div>
+  </div>
+</div>
+
+<!-- DESPUÉS limpio -->
+<div class="phone">
+  <div class="label">DESPUÉS</div>
+  <div class="status-bar"><span>15:21</span><span>100%</span></div>
+  <div class="scroll">
+    <div class="ph">
+      <div class="ph-avatar">A</div>
+      <div class="ph-info">
+        <div class="ph-name">Abraham A.</div>
+        <div class="ph-meta">Huelva · Andalucía</div>
+        <div class="ph-badge">VERIFICADO</div>
+      </div>
+      <div class="ph-edit">Editar</div>
+    </div>
+    <div class="sg">
+      <div class="sg-card"><div class="sg-val">12</div><div class="sg-lbl">Carreras</div></div>
+      <div class="sg-card"><div class="sg-val">87.4</div><div class="sg-lbl">km</div></div>
+      <div class="sg-card"><div class="sg-val">5:12</div><div class="sg-lbl">min/km</div></div>
+    </div>
+    <div class="ach">
+      <div class="ach-title">Logros recientes</div>
+      <div class="ach-row">
+        <div class="ach-medal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <circle cx="12" cy="13" r="7" stroke="#f97316" stroke-width="1.8"/>
+            <path d="M9 6.5L7 1h10L15 6.5" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 10v3l2 1" stroke="#f97316" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ach-text">
+          <div class="ach-name">Primera 10K completada</div>
+          <div class="ach-date">Hace 3 días</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ STRAVA limpio sin emoji ▼ -->
+    <div class="strava-card">
+      <div class="strava-header">
+        <div class="strava-logo-box">
+          <!-- Logo Strava oficial: chevrón blanco sobre naranja -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="strava-info">
+          <div class="strava-name-row">
+            <span class="strava-title">Strava</span>
+            <span class="strava-conn-pill">CONECTADO</span>
+          </div>
+          <div class="strava-user">@abraham_runner</div>
+        </div>
+      </div>
+      <div class="strava-stats">
+        <div class="ss-card"><div class="ss-val">42</div><div class="ss-lbl">Carreras</div></div>
+        <div class="ss-card"><div class="ss-val">312</div><div class="ss-lbl">km totales</div></div>
+        <div class="ss-card"><div class="ss-val">4:55</div><div class="ss-lbl">min/km</div></div>
+      </div>
+      <div class="strava-footer">
+        <div class="strava-sync">Sync hace 2h</div>
+        <a href="#" class="strava-manage">Gestionar</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="tabs">
+    <div class="tab"><div class="tab-icon"></div>Inicio</div>
+    <div class="tab"><div class="tab-icon"></div>Mapa</div>
+    <div class="tab"><div class="tab-icon"></div>Correr</div>
+    <div class="tab"><div class="tab-icon"></div>Social</div>
+    <div class="tab active"><div class="tab-icon"></div>Perfil</div>
+  </div>
+</div>
+
+<!-- CTA sin conectar -->
+<div class="phone">
+  <div class="label">SIN CONECTAR</div>
+  <div class="status-bar"><span>15:21</span><span>100%</span></div>
+  <div class="scroll">
+    <div class="ph">
+      <div class="ph-avatar" style="background:linear-gradient(135deg,#3b82f6,#1e40af)">M</div>
+      <div class="ph-info">
+        <div class="ph-name">María R.</div>
+        <div class="ph-meta">Madrid · Madrid</div>
+        <div class="ph-badge">VERIFICADO</div>
+      </div>
+      <div class="ph-edit">Editar</div>
+    </div>
+    <div class="sg">
+      <div class="sg-card"><div class="sg-val">3</div><div class="sg-lbl">Carreras</div></div>
+      <div class="sg-card"><div class="sg-val">15.2</div><div class="sg-lbl">km</div></div>
+      <div class="sg-card"><div class="sg-val">6:30</div><div class="sg-lbl">min/km</div></div>
+    </div>
+    <div class="ach">
+      <div class="ach-title">Logros recientes</div>
+      <div class="ach-row">
+        <div class="ach-medal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path d="M12 2L3 9.5V20a2 2 0 002 2h14a2 2 0 002-2V9.5L12 2z" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 22V12h6v10" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ach-text">
+          <div class="ach-name">Primera quedada hecha</div>
+          <div class="ach-date">Hace 1 semana</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA conectar -->
+    <div class="strava-cta">
+      <div class="strava-logo-box" style="width:38px;height:38px;border-radius:10px;background:#FC4C02;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="icon-svg">
+          <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="strava-cta-text">
+        <div class="strava-cta-title">Conecta tu Strava</div>
+        <div class="strava-cta-sub">Importa tus carreras y suma tu histórico</div>
+      </div>
+      <div class="strava-cta-arrow">›</div>
+    </div>
+
+  </div>
+  <div class="tabs">
+    <div class="tab"><div class="tab-icon"></div>Inicio</div>
+    <div class="tab"><div class="tab-icon"></div>Mapa</div>
+    <div class="tab"><div class="tab-icon"></div>Correr</div>
+    <div class="tab"><div class="tab-icon"></div>Social</div>
+    <div class="tab active"><div class="tab-icon"></div>Perfil</div>
+  </div>
+</div>
+
+<!-- Note -->
+<div class="note">
+  <h3>Cambios respecto V1</h3>
+  <ul>
+    <li><strong>Cero emojis</strong> — todo SVG inline o texto plano</li>
+    <li>Logo <strong>Strava oficial</strong> (chevrón blanco sobre cuadrado naranja #FC4C02)</li>
+    <li>Medal "Logros" → SVG outline en naranja CorrerJuntos (consistencia)</li>
+    <li>Quitado "↻" en sync → solo texto "Sync hace 2h"</li>
+    <li>Quitado "→" arrows → solo texto "Gestionar" / chevron "›"</li>
+    <li>Pill "CONECTADO" más sobrio (uppercase letterspaced)</li>
+  </ul>
+
+  <h3 style="margin-top:14px">Sobre saturación del Inicio</h3>
+  <p>Strava va <strong>SOLO en Profile</strong>, NO toca Inicio.</p>
+  <p style="margin-top:8px">Profile está minimalista (Header + Stats + Logros + Tabs). Añadir Strava ahí no satura — encaja entre Logros y Tabs como <em>"y además de tus stats internos, esto es lo que importas de Strava"</em>.</p>
+
+  <h3 style="margin-top:14px">Implementación</h3>
+  <p>Crear <span class="mono">src/components/profile/StravaProfileBadge.tsx</span> usando los iconos del sistema actual (<span class="mono">react-native-svg</span>). En <span class="mono">ProfileScreen.tsx</span> insertar entre AchievementsSection y ProfileTabBar (línea ~321).</p>
+
+  <p style="margin-top:8px">Coste: ~1.5h. <strong>Cero impacto</strong> en Inicio, Mapa, Run, Social.</p>
+</div>
+
+</body>
+</html>

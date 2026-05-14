@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Paywall v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b0b0d;
+    --ink-2: #14141a;
+    --paper: #f6f1e8;
+    --mute: rgba(246, 241, 232, 0.62);
+    --mute-2: rgba(246, 241, 232, 0.38);
+    --line: rgba(246, 241, 232, 0.10);
+    --surface: rgba(246, 241, 232, 0.04);
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --gold: #fbbf24;
+    --green: #22c55e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+  .canvas {
+    width: 1080px;
+    min-height: 3200px;
+    padding: 40px 48px 120px;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Radial glow top */
+  .glow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 700px;
+    background: radial-gradient(ellipse, rgba(249,115,22,0.2) 0%, rgba(249,115,22,0.06) 45%, transparent 75%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  /* Top bar */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 28px;
+    position: relative; z-index: 2;
+  }
+  .close-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .restore-btn {
+    padding: 8px 14px; font-size: 12px; font-weight: 600;
+    color: var(--mute); letter-spacing: -0.1px;
+  }
+
+  /* Crown */
+  .crown-wrap {
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 28px;
+    position: relative; z-index: 2;
+  }
+  .crown {
+    width: 92px; height: 92px; border-radius: 24px;
+    background: linear-gradient(135deg, rgba(251,191,36,0.2) 0%, rgba(249,115,22,0.15) 100%);
+    border: 1px solid rgba(251,191,36,0.35);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative; z-index: 2;
+  }
+  .hero-title {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    line-height: 58px;
+    color: var(--paper);
+    margin-bottom: 18px;
+  }
+  .hero-title .accent { color: var(--ember); }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--mute);
+    font-weight: 400;
+    line-height: 26px;
+    max-width: 800px;
+    margin: 0 auto;
+    letter-spacing: -0.1px;
+  }
+
+  /* Social proof strip */
+  .proof-strip {
+    display: flex; justify-content: center; align-items: center; gap: 20px;
+    margin-bottom: 48px;
+    position: relative; z-index: 2;
+  }
+  .proof-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--mute); font-weight: 500;
+  }
+  .proof-item b { color: var(--paper); font-weight: 700; }
+  .proof-stars { color: var(--gold); font-size: 13px; letter-spacing: -1px; }
+  .proof-sep { color: var(--mute-2); }
+
+  /* Comparison grid */
+  .comparison {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    position: relative; z-index: 2;
+  }
+  .comp-head {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .comp-head-label { font-size: 13px; font-weight: 700; color: var(--mute); text-transform: uppercase; letter-spacing: 1.2px; }
+  .comp-head-plan { font-size: 14px; font-weight: 800; text-align: center; letter-spacing: -0.2px; }
+  .comp-head-plan.pro {
+    color: var(--ember);
+    position: relative;
+  }
+  .comp-head-plan.pro::after {
+    content: "";
+    position: absolute;
+    top: 100%; left: 10%; right: 10%;
+    height: 3px;
+    background: var(--ember);
+    border-radius: 2px;
+    margin-top: 6px;
+  }
+
+  .comp-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-feature { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+  .comp-feature small { display: block; font-size: 12px; color: var(--mute); font-weight: 400; margin-top: 2px; }
+  .comp-cell { text-align: center; font-size: 13px; font-weight: 700; }
+  .comp-cell.yes { color: var(--green); }
+  .comp-cell.no { color: var(--mute-2); }
+  .comp-cell.num { color: var(--paper); }
+  .comp-cell.unlim { color: var(--ember); font-weight: 800; }
+
+  /* Pricing cards */
+  .pricing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+    position: relative; z-index: 2;
+  }
+  .price-card {
+    padding: 26px 24px;
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: 20px;
+    position: relative;
+  }
+  .price-card.featured {
+    border-color: var(--ember);
+    background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(249,115,22,0.02) 100%);
+  }
+  .price-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    padding: 5px 14px;
+    background: var(--ember);
+    border-radius: 100px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .price-period { font-size: 12px; color: var(--mute); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+  .price-value {
+    display: flex; align-items: baseline; gap: 4px;
+    margin-bottom: 10px;
+  }
+  .price-value .amount { font-size: 44px; font-weight: 800; color: var(--paper); letter-spacing: -1.5px; line-height: 44px; }
+  .price-value .per { font-size: 14px; color: var(--mute); font-weight: 600; }
+  .price-equiv { font-size: 12px; color: var(--mute-2); font-weight: 500; margin-bottom: 12px; }
+  .price-equiv b { color: var(--green); font-weight: 700; }
+  .price-strike { font-size: 12px; color: var(--mute-2); text-decoration: line-through; margin-right: 6px; }
+
+  /* CTA */
+  .cta-main {
+    display: block;
+    width: 100%;
+    padding: 22px;
+    background: linear-gradient(90deg, var(--ember) 0%, var(--ember-deep) 100%);
+    border: none;
+    border-radius: 18px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    text-align: center;
+    box-shadow: 0 14px 42px rgba(249, 115, 22, 0.35);
+    margin-bottom: 14px;
+    position: relative; z-index: 2;
+  }
+  .trial-fine {
+    text-align: center;
+    font-size: 12px;
+    color: var(--mute);
+    margin-bottom: 40px;
+    font-weight: 500;
+  }
+  .trial-fine b { color: var(--paper); font-weight: 700; }
+
+  /* Testimonial */
+  .testimonial {
+    padding: 26px 28px;
+    background: var(--surface);
+    border-left: 3px solid var(--ember);
+    border-radius: 6px 20px 20px 6px;
+    margin-bottom: 40px;
+    position: relative; z-index: 2;
+  }
+  .test-stars { color: var(--gold); font-size: 14px; letter-spacing: -1px; margin-bottom: 12px; }
+  .test-quote {
+    font-size: 17px; font-weight: 500; letter-spacing: -0.2px;
+    line-height: 24px; margin-bottom: 16px; color: var(--paper);
+  }
+  .test-author {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .test-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #047857);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px; font-weight: 700;
+  }
+  .test-name { font-size: 13px; font-weight: 700; }
+  .test-meta { font-size: 11px; color: var(--mute); margin-top: 2px; }
+
+  /* FAQ */
+  .faq-title {
+    font-size: 18px; font-weight: 800; letter-spacing: -0.4px;
+    margin-bottom: 16px; position: relative; z-index: 2;
+  }
+  .faq {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 32px;
+    position: relative; z-index: 2;
+  }
+  .faq-item {
+    padding: 18px 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14px; font-weight: 700; letter-spacing: -0.2px;
+  }
+  .faq-a { font-size: 13px; color: var(--mute); margin-top: 8px; line-height: 18px; }
+
+  /* Footer small */
+  .foot-small {
+    text-align: center;
+    font-size: 11px;
+    color: var(--mute-2);
+    line-height: 16px;
+    padding: 20px 20px;
+    letter-spacing: 0.2px;
+    position: relative; z-index: 2;
+  }
+  .foot-small a { color: var(--mute); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <div class="glow"></div>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="close-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </div>
+    <div class="restore-btn">Restaurar compra</div>
+  </div>
+
+  <!-- Crown icon -->
+  <div class="crown-wrap">
+    <div class="crown">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 20h20M4 20l2-12 4 4 2-6 2 6 4-4 2 12"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1 class="hero-title">
+      Corre con todos los<br>que quieras. <span class="accent">Sin límites.</span>
+    </h1>
+    <p class="hero-sub">
+      Premium desbloquea matches ilimitados, estadísticas avanzadas, integración con Strava/Garmin/COROS y 7 planes de entrenamiento estructurados.
+    </p>
+  </div>
+
+  <!-- Social proof -->
+  <div class="proof-strip">
+    <div class="proof-item">
+      <span class="proof-stars">★★★★★</span>
+      <b>4.6</b>
+    </div>
+    <div class="proof-sep">·</div>
+    <div class="proof-item">
+      <b>180+</b> suscritos
+    </div>
+    <div class="proof-sep">·</div>
+    <div class="proof-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+      Cancela cuando quieras
+    </div>
+  </div>
+
+  <!-- Comparison grid -->
+  <div class="comparison">
+    <div class="comp-head">
+      <div class="comp-head-label">Qué incluye</div>
+      <div class="comp-head-plan">Free</div>
+      <div class="comp-head-plan pro">Premium</div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-feature">
+        Matches con runners
+        <small>Pedir correr con otros runners</small>
+      </div>
+      <div class="comp-cell num">3 / mes</div>
+      <div class="comp-cell unlim">Ilimitados</div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-feature">
+        Quedadas
+        <small>Apuntarte y crear quedadas</small>
+      </div>
+      <div class="comp-cell num">2 / mes</div>
+      <div class="comp-cell unlim">Ilimitadas</div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-feature">
+        Planes de entrenamiento
+        <small>De 0-5K a maratón</small>
+      </div>
+      <div class="comp-cell num">1 (0-5K)</div>
+      <div class="comp-cell unlim">Los 7</div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-feature">
+        Estadísticas avanzadas
+        <small>Zonas, VO2 max, evolución</small>
+      </div>
+      <div class="comp-cell no">—</div>
+      <div class="comp-cell yes">✓</div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-feature">
+        Integración Strava / Garmin / COROS
+        <small>Sync bidireccional automático</small>
+      </div>
+      <div class="comp-cell no">—</div>
+      <div class="comp-cell yes">✓</div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-feature">
+        Coach IA José
+        <small>Plan personalizado adaptativo</small>
+      </div>
+      <div class="comp-cell no">—</div>
+      <div class="comp-cell yes">✓</div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-feature">
+        Feed completo
+        <small>Ver todas las actividades, no solo una</small>
+      </div>
+      <div class="comp-cell no">Limitado</div>
+      <div class="comp-cell yes">✓</div>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div class="pricing">
+    <div class="price-card">
+      <div class="price-period">Mensual</div>
+      <div class="price-value">
+        <span class="amount">4,99€</span>
+        <span class="per">/ mes</span>
+      </div>
+      <div class="price-equiv">Facturado mensualmente</div>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-badge">Ahorra 50%</div>
+      <div class="price-period">Anual</div>
+      <div class="price-value">
+        <span class="amount">29,99€</span>
+        <span class="per">/ año</span>
+      </div>
+      <div class="price-equiv">
+        <span class="price-strike">59,88€</span>
+        <b>Equivale a 2,49€/mes</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <button class="cta-main">Empezar prueba gratis de 7 días</button>
+
+  <!-- Trial fine print -->
+  <div class="trial-fine">
+    <b>Gratis 7 días.</b> Después 29,99€/año. <b>Cancela cuando quieras</b> desde tu cuenta iOS.
+  </div>
+
+  <!-- Testimonial -->
+  <div class="testimonial">
+    <div class="test-stars">★★★★★</div>
+    <div class="test-quote">
+      "Desde que pago Premium he corrido mi primer 10K, tengo 3 quedadas fijas a la semana y pulverizo mis récords gracias a los análisis de ritmo. Vale cada céntimo."
+    </div>
+    <div class="test-author">
+      <div class="test-avatar">M</div>
+      <div>
+        <div class="test-name">María García</div>
+        <div class="test-meta">Madrid · Premium desde hace 4 meses</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-title">Preguntas frecuentes</div>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">
+        ¿Puedo cancelar en cualquier momento?
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+      <div class="faq-a">Sí. Cancela desde tu cuenta iOS/Google Play con 1 click. Si cancelas durante el trial, no pagas nada.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        ¿Qué pasa con mis datos si cancelo?
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+      <div class="faq-a">Todos tus datos se mantienen. Simplemente vuelves al plan gratis con los límites estándar.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        ¿Se renueva automáticamente?
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+      <div class="faq-a">Sí, como toda suscripción. Te avisamos 7 días antes del cobro anual. Cancela en cualquier momento sin penalización.</div>
+    </div>
+  </div>
+
+  <!-- Foot small -->
+  <div class="foot-small">
+    Al suscribirte aceptas los <a>Términos</a> y la <a>Política de privacidad</a>.<br>
+    La suscripción se renueva automáticamente salvo cancelación 24h antes del fin del periodo.
+  </div>
+
+</div>
+
+</body>
+</html>

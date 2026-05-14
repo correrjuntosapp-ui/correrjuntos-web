@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Brand alignment Meridian — antes vs después</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+  h1 { text-align: center; font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -1px; }
+  .subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 32px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) { .columns { grid-template-columns: 1fr; max-width: 360px; } }
+
+  .col-label { text-align: center; margin-bottom: 14px; }
+  .tag { display: inline-block; padding: 5px 14px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+  .tag-old { background: #444; color: #ccc; }
+  .tag-new { background: #f97316; color: #0b1220; }
+  .desc { margin-top: 8px; font-size: 12px; color: #aaa; line-height: 1.5; padding: 0 12px; min-height: 50px; }
+  .palette { display: flex; gap: 6px; justify-content: center; margin-top: 8px; }
+  .swatch { width: 24px; height: 24px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); }
+
+  .phone {
+    width: 320px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 36px;
+    padding: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .phone-screen-old {
+    background: #0D0D0D;
+    border-radius: 28px;
+    overflow: hidden;
+    height: 720px;
+    overflow-y: auto;
+  }
+  .phone-screen-new {
+    background: #0b1220;
+    border-radius: 28px;
+    overflow: hidden;
+    height: 720px;
+    overflow-y: auto;
+  }
+  .phone-screen-old::-webkit-scrollbar, .phone-screen-new::-webkit-scrollbar { width: 0; }
+
+  /* COMMON */
+  .status-bar { display: flex; justify-content: space-between; padding: 14px 22px 6px; font-size: 13px; font-weight: 600; color: #fff; }
+  .status-icons { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px 18px; }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff; }
+  .avatar-old { background: linear-gradient(135deg, #FF6B00, #ff9500); }
+  .avatar-new { background: linear-gradient(135deg, #f97316, #ea580c); }
+
+  .greeting-old { font-size: 11px; color: #888; }
+  .user-name-old { font-size: 18px; font-weight: 800; color: #fff; }
+
+  .greeting-new { font-size: 11px; color: rgba(246,241,232,0.42); font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
+  .user-name-new { font-size: 22px; font-weight: 200; color: #f6f1e8; letter-spacing: -0.5px; }
+  .user-name-new b { font-weight: 800; color: #f97316; }
+
+  .bell-old { color: #888; }
+  .bell-new { color: rgba(246,241,232,0.42); }
+  .bell svg { width: 22px; height: 22px; stroke-width: 1.8; display: block; }
+
+  /* HERO VERDE — same in both, brand decision */
+  .hero {
+    margin: 0 14px 18px;
+    background: #22C55E;
+    border-radius: 18px;
+    padding: 22px 18px 20px;
+    box-shadow: 0 6px 22px rgba(34, 197, 94, 0.35);
+  }
+  .hero-pre { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: #052e16; margin-bottom: 6px; }
+  .hero-title { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; color: #052e16; }
+  .hero-sub { font-size: 12.5px; color: #064e26; opacity: 0.95; line-height: 1.45; margin-bottom: 16px; }
+  .hero-cta { display: block; background: #052e16; color: #fff; padding: 13px 16px; border-radius: 12px; font-size: 13px; font-weight: 800; text-align: center; margin-bottom: 8px; }
+  .hero-link { display: block; text-align: center; font-size: 11px; color: rgba(5,46,22,0.85); padding: 6px; font-weight: 600; }
+
+  /* SECTIONS */
+  .section { padding: 0 14px; margin-bottom: 18px; }
+  .section-row-old, .section-row-new { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .section-title-old { font-size: 17px; font-weight: 800; color: #fff; }
+
+  /* NEW: Meridian editorial pattern */
+  .section-title-new { font-size: 11px; font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #f97316; letter-spacing: 2px; text-transform: uppercase; }
+  .section-title-new::before { content: '━━ '; }
+
+  /* CREATE BTN */
+  .create-btn-old { background: #FF6B00; color: #fff; padding: 7px 13px 7px 11px; border: none; border-radius: 999px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; line-height: 1; box-shadow: 0 2px 8px rgba(255, 107, 0, 0.3); }
+  .create-btn-new { background: #f97316; color: #0b1220; padding: 7px 13px 7px 11px; border: none; border-radius: 999px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; line-height: 1; box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3); }
+  .create-btn svg { width: 13px; height: 13px; stroke-width: 2.5; }
+
+  /* QUEDADA */
+  .q-card-old { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 14px; margin-bottom: 10px; display: flex; gap: 12px; }
+  .q-card-new { background: rgba(246,241,232,0.04); border: 1px solid rgba(246,241,232,0.12); border-radius: 12px; padding: 14px; margin-bottom: 10px; display: flex; gap: 12px; }
+
+  .q-date-old { background: rgba(255,107,0,0.12); border-radius: 8px; padding: 8px 6px; text-align: center; min-width: 50px; }
+  .q-date-new { background: rgba(249,115,22,0.12); border-radius: 8px; padding: 8px 6px; text-align: center; min-width: 50px; font-family: 'JetBrains Mono', monospace; }
+
+  .q-day-old { font-size: 18px; font-weight: 800; color: #FF6B00; line-height: 1; }
+  .q-day-new { font-size: 18px; font-weight: 800; color: #f97316; line-height: 1; font-family: 'JetBrains Mono', monospace; }
+  .q-month-old { font-size: 9px; color: #FF6B00; font-weight: 700; letter-spacing: 0.1em; margin-top: 2px; }
+  .q-month-new { font-size: 9px; color: #f97316; font-weight: 600; letter-spacing: 0.15em; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+
+  .q-info { flex: 1; min-width: 0; }
+  .q-title-old { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .q-title-new { font-size: 14px; font-weight: 600; color: #f6f1e8; margin-bottom: 4px; letter-spacing: -0.2px; }
+  .q-meta-old { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .q-meta-new { font-size: 12px; color: rgba(246,241,232,0.62); margin-bottom: 8px; }
+  .q-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .q-tag-old { font-size: 10px; padding: 3px 8px; border-radius: 4px; background: #2a2a2a; color: #ccc; font-weight: 600; }
+  .q-tag-old.intermedio { background: rgba(255,107,0,0.15); color: #FF6B00; }
+  .q-tag-old.joined { background: rgba(34,197,94,0.18); color: #22C55E; }
+  .q-tag-new { font-size: 10px; padding: 3px 8px; border-radius: 3px; background: rgba(246,241,232,0.06); color: rgba(246,241,232,0.72); font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; text-transform: uppercase; }
+  .q-tag-new.intermedio { background: rgba(249,115,22,0.12); color: #f97316; }
+  .q-tag-new.joined { background: rgba(34,197,94,0.18); color: #22C55E; }
+  .q-participants-old { font-size: 12px; color: #888; margin-top: 8px; }
+  .q-participants-new { font-size: 11px; color: rgba(246,241,232,0.42); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+
+  .limit-old, .limit-new { display: flex; justify-content: space-between; font-size: 11px; padding: 4px 4px 0; }
+  .limit-old span:first-child { color: #888; }
+  .limit-old span:last-child { color: #FF6B00; font-weight: 600; }
+  .limit-new span:first-child { color: rgba(246,241,232,0.42); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+  .limit-new span:last-child { color: #f97316; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+
+  /* PLANES CARD */
+  .plans-old { margin: 8px 14px 18px; background: linear-gradient(135deg, #FF6B00, #ff9500); border-radius: 14px; padding: 16px; color: #fff; }
+  .plans-new { margin: 8px 14px 18px; background: linear-gradient(135deg, #f97316, #ea580c); border-radius: 14px; padding: 16px; color: #0b1220; }
+  .plans-pre-old { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; opacity: 0.85; margin-bottom: 4px; }
+  .plans-pre-new { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; opacity: 0.85; margin-bottom: 4px; font-family: 'JetBrains Mono', monospace; }
+  .plans-title-old { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+  .plans-title-new { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: #0b1220; }
+  .plans-title .free-old { background: rgba(255,255,255,0.25); padding: 2px 6px; border-radius: 4px; font-size: 9px; margin-left: 5px; vertical-align: middle; font-weight: 700; }
+  .plans-title .free-new { background: rgba(11,18,32,0.25); padding: 2px 6px; border-radius: 4px; font-size: 9px; margin-left: 5px; vertical-align: middle; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+  .plans-sub-old { font-size: 11.5px; opacity: 0.9; margin-bottom: 10px; }
+  .plans-sub-new { font-size: 11.5px; opacity: 0.85; margin-bottom: 10px; color: #0b1220; }
+  .plans-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .plans-tag-old { font-size: 9px; background: rgba(0,0,0,0.18); padding: 3px 7px; border-radius: 4px; font-weight: 600; }
+  .plans-tag-new { font-size: 9px; background: rgba(11,18,32,0.18); padding: 3px 7px; border-radius: 3px; font-weight: 600; color: #0b1220; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* TABS */
+  .tabs-old, .tabs-new { position: sticky; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); padding: 8px 0 14px; }
+  .tabs-old { background: rgba(0,0,0,0.95); border-top: 1px solid #2a2a2a; }
+  .tabs-new { background: rgba(11,18,32,0.95); border-top: 1px solid rgba(246,241,232,0.08); }
+  .tab { text-align: center; font-size: 9px; }
+  .tab-old { color: #666; }
+  .tab-old.active { color: #FF6B00; }
+  .tab-new { color: rgba(246,241,232,0.42); font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
+  .tab-new.active { color: #f97316; }
+  .tab-svg { width: 20px; height: 20px; stroke-width: 1.8; display: block; margin: 0 auto 3px; }
+  .tab-old.active .tab-svg { stroke: #FF6B00; }
+  .tab-new.active .tab-svg { stroke: #f97316; }
+  .tab-run-old { width: 42px; height: 42px; border-radius: 50%; background: #FF6B00; display: flex; align-items: center; justify-content: center; margin: -16px auto 2px; box-shadow: 0 4px 12px rgba(255,107,0,0.4); }
+  .tab-run-new { width: 42px; height: 42px; border-radius: 50%; background: #f97316; display: flex; align-items: center; justify-content: center; margin: -16px auto 2px; box-shadow: 0 4px 12px rgba(249,115,22,0.4); }
+
+  .summary { max-width: 760px; margin: 36px auto 0; padding: 22px; background: #222; border-radius: 12px; font-size: 13px; line-height: 1.6; }
+  .summary h2 { font-size: 16px; font-weight: 800; margin-bottom: 12px; }
+  .summary table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .summary td { padding: 8px 12px; border-bottom: 1px solid #333; vertical-align: top; }
+  .summary td:first-child { font-weight: 700; width: 25%; }
+  .ink { color: #6b7280; }
+  .target { color: #f97316; }
+</style>
+</head>
+<body>
+
+<h1>Brand alignment Meridian — Nivel 1</h1>
+<p class="subtitle">
+  Solo cambian colores y tipografía mono en datos. Layout idéntico al actual. La derecha alinea la app al sistema visual del email Meridian Motion que ya tienes en producción.
+</p>
+
+<div class="columns">
+
+  <!-- ════════════════════════════════════ -->
+  <!-- AHORA -->
+  <!-- ════════════════════════════════════ -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-old">Ahora · producción</span>
+      <div class="desc">Sistema gris-negro #0D0D0D + naranja rojizo #FF6B00. Sin tipografía mono. Inconsistente con email/web.</div>
+      <div class="palette">
+        <div class="swatch" style="background:#0D0D0D" title="#0D0D0D"></div>
+        <div class="swatch" style="background:#FF6B00" title="#FF6B00"></div>
+        <div class="swatch" style="background:#FFFFFF" title="#FFFFFF"></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen-old">
+        <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%🔋</span></div></div>
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar avatar-old">J</div>
+            <div><div class="greeting-old">Buenas tardes</div><div class="user-name-old">Javi</div></div>
+          </div>
+          <div class="bell bell-old"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        </div>
+
+        <div class="hero">
+          <div class="hero-pre">Empieza tu primera semana</div>
+          <div class="hero-title">¿Empezamos?</div>
+          <div class="hero-sub">Empieza a Moverte: 6 semanas, 18 sesiones, gratis. Tu primera carrera en 7 días.</div>
+          <a class="hero-cta">Empezar mi plan →</a>
+          <a class="hero-link">o salir a correr libre</a>
+        </div>
+
+        <div class="section">
+          <div class="section-row-old">
+            <div class="section-title-old">Próximas quedadas</div>
+            <button class="create-btn-old"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+          </div>
+          <div class="q-card-old">
+            <div class="q-date-old"><div class="q-day-old">28</div><div class="q-month-old">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title-old">12 km progresivos</div>
+              <div class="q-meta-old">Punta Umbría · 12 km · 10:00</div>
+              <div class="q-tags"><span class="q-tag-old intermedio">Intermedio</span><span class="q-tag-old joined">✓ Unido</span></div>
+              <div class="q-participants-old">1 participante</div>
+            </div>
+          </div>
+          <div class="limit-old"><span>1 de 2 quedadas gratis este mes</span><span>Ilimitadas con PRO</span></div>
+        </div>
+
+        <div class="plans-old">
+          <div class="plans-pre-old">Planes de entrenamiento</div>
+          <div class="plans-title-old">6 planes <span class="free-old">GRATIS</span></div>
+          <div class="plans-sub-old">Desde principiante a maratón</div>
+          <div class="plans-tags">
+            <span class="plans-tag-old">5K</span><span class="plans-tag-old">10K</span>
+            <span class="plans-tag-old">21K</span><span class="plans-tag-old">Trail</span>
+          </div>
+        </div>
+
+        <div style="height:60px"></div>
+
+        <div class="tabs-old">
+          <div class="tab tab-old active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="tab tab-old"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+          <div class="tab tab-old"><div class="tab-run-old"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+          <div class="tab tab-old"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+          <div class="tab tab-old"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- MERIDIAN ALIGNED -->
+  <!-- ════════════════════════════════════ -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-new">Meridian aligned</span>
+      <div class="desc">Sistema ink #0b1220 + ember #f97316 + paper #f6f1e8. JetBrains Mono en datos/labels. Editorial. Coherente con email/web.</div>
+      <div class="palette">
+        <div class="swatch" style="background:#0b1220" title="#0b1220 ink"></div>
+        <div class="swatch" style="background:#f97316" title="#f97316 ember"></div>
+        <div class="swatch" style="background:#f6f1e8" title="#f6f1e8 paper"></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen-new">
+        <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%🔋</span></div></div>
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar avatar-new">J</div>
+            <div><div class="greeting-new">● Buenas tardes</div><div class="user-name-new">Hola, <b>Javi</b></div></div>
+          </div>
+          <div class="bell bell-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        </div>
+
+        <div class="hero">
+          <div class="hero-pre">Empieza tu primera semana</div>
+          <div class="hero-title">¿Empezamos?</div>
+          <div class="hero-sub">Empieza a Moverte: 6 semanas, 18 sesiones, gratis. Tu primera carrera en 7 días.</div>
+          <a class="hero-cta">Empezar mi plan →</a>
+          <a class="hero-link">o salir a correr libre</a>
+        </div>
+
+        <div class="section">
+          <div class="section-row-new">
+            <div class="section-title-new">Próximas quedadas</div>
+            <button class="create-btn-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+          </div>
+          <div class="q-card-new">
+            <div class="q-date-new"><div class="q-day-new">28</div><div class="q-month-new">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title-new">12 km progresivos</div>
+              <div class="q-meta-new">Punta Umbría · 12 km · 10:00</div>
+              <div class="q-tags"><span class="q-tag-new intermedio">Intermedio</span><span class="q-tag-new joined">✓ Unido</span></div>
+              <div class="q-participants-new">1 participante</div>
+            </div>
+          </div>
+          <div class="limit-new"><span>1 de 2 quedadas gratis · mes</span><span>Ilimitadas · PRO</span></div>
+        </div>
+
+        <div class="plans-new">
+          <div class="plans-pre-new">━━ Planes de entrenamiento</div>
+          <div class="plans-title-new">6 planes <span class="free-new">GRATIS</span></div>
+          <div class="plans-sub-new">Desde principiante a maratón</div>
+          <div class="plans-tags">
+            <span class="plans-tag-new">5K</span><span class="plans-tag-new">10K</span>
+            <span class="plans-tag-new">21K</span><span class="plans-tag-new">Trail</span>
+          </div>
+        </div>
+
+        <div style="height:60px"></div>
+
+        <div class="tabs-new">
+          <div class="tab tab-new active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="tab tab-new"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+          <div class="tab tab-new"><div class="tab-run-new"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+          <div class="tab tab-new"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+          <div class="tab tab-new"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="summary">
+  <h2>Cambios exactos</h2>
+  <table>
+    <tr><td>Background</td><td><span class="ink">#0D0D0D</span> → <span class="target">#0b1220</span> (ink Meridian, mismo del email)</td></tr>
+    <tr><td>Brand orange</td><td><span class="ink">#FF6B00</span> → <span class="target">#f97316</span> (ember, más cálido, mismo del email/web)</td></tr>
+    <tr><td>Paper text</td><td><span class="ink">#FFFFFF</span> → <span class="target">#f6f1e8</span> (crema sutil, menos clínico)</td></tr>
+    <tr><td>Tipografía mono</td><td>Añadir <span class="target">JetBrains Mono</span> en: número del día, mes (ABR), tabs, tags, eyebrows, contadores. Inter sigue para titulares/body.</td></tr>
+    <tr><td>Eyebrows</td><td>Section titles cambian a "<span class="target">━━ TÍTULO</span>" en mono ember (estilo Meridian) en lugar de bold blanco</td></tr>
+    <tr><td>Greeting</td><td>"Buenas tardes / Javi" → "● Buenas tardes / Hola, <strong>Javi</strong>" (Inter 200 thin con palabra en bold ember — pattern Meridian)</td></tr>
+    <tr><td>Tags / chips</td><td>Mono uppercase con letter-spacing — se ven editoriales no infantiles</td></tr>
+    <tr><td>Tabs labels</td><td>"Inicio · Mapa · Correr · Social · Perfil" en mono uppercase</td></tr>
+  </table>
+  <p style="margin-top:14px;color:#aaa;font-size:12px">
+    <strong>Cero cambios de layout o componentes.</strong> Solo paleta + tipografía. Riesgo bajo. La app se siente parte del mismo sistema visual que el email Meridian que tus users ya reciben al confirmar cuenta.
+  </p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.06;pointer-events:none}
+.content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 60px;text-align:center}
+h2{font-size:64px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-2px;margin-bottom:50px}
+h2 span{color:#f97316}
+.stats{display:flex;gap:24px;margin-bottom:60px}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px 40px;text-align:center;flex:1}
+.stat-num{font-size:48px;font-weight:900;color:#f97316;margin-bottom:4px}
+.stat-label{font-size:16px;color:#64748b;font-weight:500}
+.cities{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:700px}
+.city{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:10px 20px;font-size:16px;color:rgba(255,255,255,.7);font-weight:500}
+.slide-num{position:absolute;top:50px;right:60px;font-size:18px;font-weight:700;color:rgba(255,255,255,.3)}
+.logo{position:absolute;top:50px;left:60px;font-weight:900;font-size:22px}
+.logo-c{color:#fff}.logo-j{color:#f97316}
+.swipe{position:absolute;bottom:50px;left:0;right:0;text-align:center;color:rgba(255,255,255,.3);font-size:16px;font-weight:500}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+  <h2>568+ runners<br>en <span>8 ciudades</span></h2>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">568+</div><div class="stat-label">Runners</div></div>
+    <div class="stat"><div class="stat-num">4.8</div><div class="stat-label">App Store</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Planes IA</div></div>
+  </div>
+  <div class="cities">
+    <div class="city">Madrid</div>
+    <div class="city">Barcelona</div>
+    <div class="city">Valencia</div>
+    <div class="city">Sevilla</div>
+    <div class="city">Londres</div>
+    <div class="city">Paris</div>
+    <div class="city">CDMX</div>
+    <div class="city">Buenos Aires</div>
+  </div>
+</div>
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+<div class="slide-num">4/5</div>
+<div class="swipe">Desliza →</div>
+</body>
+</html>

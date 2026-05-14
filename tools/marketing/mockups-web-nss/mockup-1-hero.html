@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>NSS Mockup 1 — Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* Brand NSS Ocean: #0077B6 primary · #0a1628 ink · #1e293b surface · #f0f9ff paper · #00B4D8 cyan accent */
+
+body{width:1080px;height:1920px;background:#0a1628;font-family:'Inter',-apple-system,sans-serif;overflow:hidden;position:relative;color:#f0f9ff}
+
+/* gradient ocean atmosphere */
+body::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 30% 15%,rgba(0,180,216,0.15) 0%,transparent 50%),
+  radial-gradient(circle at 75% 85%,rgba(0,119,182,0.20) 0%,transparent 55%);
+  pointer-events:none}
+
+.phone-screen{position:relative;z-index:2;height:100%;display:flex;flex-direction:column}
+
+/* ─── STATUS BAR ─── */
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:32px 56px 12px;font-size:28px;font-weight:600;color:#f0f9ff;font-family:'JetBrains Mono',monospace}
+.status-icons{display:flex;gap:16px;align-items:center;font-size:24px}
+
+/* ─── HEADER ─── */
+.header{display:flex;align-items:center;justify-content:space-between;padding:20px 48px 32px}
+.header-left{display:flex;align-items:center;gap:20px}
+.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#0077B6,#005f8a);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:32px;color:#fff;border:3px solid rgba(0,180,216,0.4)}
+.greeting{font-size:24px;color:rgba(240,249,255,0.55);font-weight:500;letter-spacing:1px;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.user-name{font-size:42px;font-weight:800;color:#f0f9ff;letter-spacing:-0.5px;margin-top:4px}
+.bell{position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+.bell svg{width:48px;height:48px;stroke:rgba(240,249,255,0.65);stroke-width:1.8;fill:none}
+.bell-dot{position:absolute;top:14px;right:14px;width:14px;height:14px;background:#ef4444;border-radius:50%;border:3px solid #0a1628}
+
+/* ─── HERO QUEDADA CARD ─── */
+.hero-card{margin:0 32px 28px;background:linear-gradient(135deg,#0077B6 0%,#023E8A 100%);border-radius:36px;padding:36px;box-shadow:0 12px 40px rgba(0,119,182,0.35),inset 0 1px 0 rgba(255,255,255,0.15);position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:-30%;right:-15%;width:300px;height:300px;background:radial-gradient(circle,rgba(0,180,216,0.35) 0%,transparent 60%);pointer-events:none}
+.hero-pre{font-size:20px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:rgba(240,249,255,0.85);margin-bottom:16px;font-family:'JetBrains Mono',monospace}
+.hero-pre-dot{display:inline-block;width:14px;height:14px;background:#00B4D8;border-radius:50%;margin-right:12px;vertical-align:middle;box-shadow:0 0 0 6px rgba(0,180,216,0.3)}
+.hero-title{font-size:52px;font-weight:800;letter-spacing:-1.2px;line-height:1.05;margin-bottom:20px;color:#f0f9ff;position:relative;z-index:2}
+.hero-meta{font-family:'JetBrains Mono',monospace;font-size:22px;color:rgba(240,249,255,0.85);font-weight:600;margin-bottom:24px;letter-spacing:0.5px;position:relative;z-index:2}
+.hero-meta-divider{margin:0 14px;color:rgba(240,249,255,0.4)}
+.hero-stats{display:flex;gap:0;border-top:1px solid rgba(240,249,255,0.18);border-bottom:1px solid rgba(240,249,255,0.18);padding:24px 0;margin-bottom:24px;position:relative;z-index:2}
+.hero-stat{flex:1;text-align:center}
+.hero-stat-value{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:800;color:#f0f9ff;letter-spacing:-0.5px}
+.hero-stat-value .unit{font-size:18px;font-weight:600;color:rgba(240,249,255,0.65);margin-left:4px}
+.hero-stat-label{font-size:14px;color:rgba(240,249,255,0.65);font-family:'JetBrains Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;font-weight:600}
+.hero-stat-divider{width:1px;background:rgba(240,249,255,0.18)}
+.hero-participants{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.avatars-row{display:flex;align-items:center}
+.av{width:56px;height:56px;border-radius:50%;border:3px solid #0077B6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#fff;margin-left:-14px}
+.av:first-child{margin-left:0}
+.av-1{background:linear-gradient(135deg,#00B4D8,#0096C7)}
+.av-2{background:linear-gradient(135deg,#48CAE4,#00B4D8)}
+.av-3{background:linear-gradient(135deg,#90E0EF,#48CAE4)}
+.av-extra{background:rgba(255,255,255,0.18);color:#f0f9ff;font-size:16px;font-family:'JetBrains Mono',monospace}
+.participants-text{font-size:18px;color:rgba(240,249,255,0.85);font-weight:600}
+
+/* ─── SECTION TITLE ─── */
+.section-title{padding:0 48px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.section-title-text{font-size:28px;font-weight:800;color:#f0f9ff;letter-spacing:-0.5px}
+.section-title-link{font-size:20px;color:#00B4D8;font-weight:600;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px}
+
+/* ─── MAP CARD ─── */
+.map-card{margin:0 32px 28px;background:#1e293b;border:1px solid rgba(240,249,255,0.10);border-radius:32px;overflow:hidden}
+.map-visual{height:280px;position:relative;background:linear-gradient(135deg,#0a1628 0%,#1e293b 50%,#0a1628 100%);overflow:hidden}
+.map-visual::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 25% 60%,rgba(0,180,216,0.15) 0%,transparent 25%),
+  radial-gradient(circle at 70% 35%,rgba(0,180,216,0.18) 0%,transparent 25%),
+  radial-gradient(circle at 55% 75%,rgba(0,180,216,0.12) 0%,transparent 25%)}
+.map-pin{position:absolute;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;width:56px;height:56px;background:linear-gradient(135deg,#0077B6,#00B4D8);border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 6px 16px rgba(0,180,216,0.45)}
+.map-pin span{transform:rotate(45deg);font-family:'JetBrains Mono',monospace;font-weight:800;font-size:20px}
+.pin-1{top:30%;left:25%}
+.pin-2{top:25%;left:60%;background:linear-gradient(135deg,#00B4D8,#48CAE4)}
+.pin-3{top:60%;left:50%;background:linear-gradient(135deg,#48CAE4,#90E0EF)}
+.pin-4{top:55%;left:75%}
+.pin-5{top:70%;left:30%;background:linear-gradient(135deg,#0077B6,#005f8a)}
+.map-overlay{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(10,22,40,0.92);backdrop-filter:blur(8px);padding:20px 24px;border-radius:18px;display:flex;align-items:center;gap:16px}
+.map-overlay-dot{width:14px;height:14px;background:#00B4D8;border-radius:50%;box-shadow:0 0 0 5px rgba(0,180,216,0.3);animation:pulse 2s infinite}
+.map-overlay-text{flex:1;font-size:22px;font-weight:700;color:#f0f9ff}
+.map-overlay-text strong{color:#00B4D8}
+.map-overlay-arrow{color:#00B4D8;font-size:24px;font-weight:800}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 5px rgba(0,180,216,0.3)}50%{box-shadow:0 0 0 10px rgba(0,180,216,0.1)}}
+
+/* ─── SAFETY CARD ─── */
+.safety-card{margin:0 32px 28px;background:rgba(34,197,94,0.10);border:1px solid rgba(34,197,94,0.35);border-radius:24px;padding:28px 32px;display:flex;align-items:center;gap:24px}
+.safety-icon{width:72px;height:72px;background:rgba(34,197,94,0.18);border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.safety-icon svg{width:42px;height:42px;stroke:#22c55e;stroke-width:2.5;fill:none}
+.safety-content{flex:1}
+.safety-title{font-size:24px;font-weight:800;color:#f0f9ff;margin-bottom:6px;letter-spacing:-0.3px}
+.safety-meta{font-size:18px;color:rgba(240,249,255,0.72);font-family:'JetBrains Mono',monospace;letter-spacing:0.3px}
+.safety-meta strong{color:#22c55e;font-weight:700}
+.safety-status{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#22c55e;letter-spacing:1px;text-transform:uppercase;background:rgba(34,197,94,0.18);padding:8px 14px;border-radius:8px}
+
+/* ─── STATS CARD ─── */
+.stats-card{margin:0 32px 24px;background:#1e293b;border:1px solid rgba(240,249,255,0.10);border-radius:24px;padding:28px 32px}
+.stats-pre{font-size:14px;letter-spacing:2px;color:rgba(240,249,255,0.55);font-weight:700;margin-bottom:14px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.stats-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:6px}
+.stats-title{font-size:24px;font-weight:800;color:#f0f9ff;letter-spacing:-0.3px}
+.stats-where{font-family:'JetBrains Mono',monospace;font-size:16px;color:rgba(240,249,255,0.55);letter-spacing:0.3px}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;padding-top:20px;border-top:1px solid rgba(240,249,255,0.10)}
+.stat-item{text-align:center}
+.stat-value{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:800;color:#f0f9ff;letter-spacing:-0.5px;line-height:1}
+.stat-label{font-size:13px;color:rgba(240,249,255,0.55);font-family:'JetBrains Mono',monospace;letter-spacing:1.2px;text-transform:uppercase;margin-top:6px;font-weight:600}
+
+/* ─── TABS ─── */
+.tabs{margin-top:auto;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(10,22,40,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(240,249,255,0.10);padding:20px 0 36px}
+.tab{text-align:center;color:rgba(240,249,255,0.45);font-size:18px;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;font-weight:600;text-transform:uppercase}
+.tab.active{color:#00B4D8}
+.tab-svg{width:36px;height:36px;stroke:rgba(240,249,255,0.45);stroke-width:1.8;fill:none;display:block;margin:0 auto 6px}
+.tab.active .tab-svg{stroke:#00B4D8}
+.tab-swim-btn{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#00B4D8,#0077B6);display:flex;align-items:center;justify-content:center;margin:-30px auto 8px;box-shadow:0 8px 24px rgba(0,180,216,0.45),inset 0 1px 0 rgba(255,255,255,0.25)}
+
+/* Logo overlay */
+.logo{position:absolute;top:32px;left:48px;font-size:0;display:none}
+</style>
+</head>
+<body>
+<div class="phone-screen">
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <span>09:42</span>
+    <div class="status-icons"><span>📶</span><span>69%</span></div>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="avatar">M</div>
+      <div>
+        <div class="greeting">● Buenos días</div>
+        <div class="user-name">María</div>
+      </div>
+    </div>
+    <div class="bell">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      <div class="bell-dot"></div>
+    </div>
+  </div>
+
+  <!-- Hero quedada card -->
+  <div class="hero-card">
+    <div class="hero-pre"><span class="hero-pre-dot"></span>Próxima quedada</div>
+    <h2 class="hero-title">Travesía Cabo de Gata</h2>
+    <div class="hero-meta">Sábado · 09:00<span class="hero-meta-divider">·</span>Almería</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">1.5<span class="unit">km</span></div>
+        <div class="hero-stat-label">Distancia</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">18<span class="unit">°C</span></div>
+        <div class="hero-stat-label">Agua</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">Inter</div>
+        <div class="hero-stat-label">Nivel</div>
+      </div>
+    </div>
+    <div class="hero-participants">
+      <div class="avatars-row">
+        <div class="av av-1">L</div>
+        <div class="av av-2">R</div>
+        <div class="av av-3">D</div>
+        <div class="av av-extra">+5</div>
+      </div>
+      <div class="participants-text">8 nadadores van</div>
+    </div>
+  </div>
+
+  <!-- Section: Spots cerca -->
+  <div class="section-title">
+    <span class="section-title-text">Spots cerca de ti</span>
+    <span class="section-title-link">VER MAPA →</span>
+  </div>
+
+  <!-- Map preview card -->
+  <div class="map-card">
+    <div class="map-visual">
+      <div class="map-pin pin-1"><span>5°</span></div>
+      <div class="map-pin pin-2"><span>3</span></div>
+      <div class="map-pin pin-3"><span>8</span></div>
+      <div class="map-pin pin-4"><span>2</span></div>
+      <div class="map-pin pin-5"><span>4</span></div>
+      <div class="map-overlay">
+        <div class="map-overlay-dot"></div>
+        <div class="map-overlay-text"><strong>6 nadadores</strong> activos cerca de ti</div>
+        <div class="map-overlay-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Safety card -->
+  <div class="safety-card">
+    <div class="safety-icon">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><polyline points="9 12 11 14 15 10"/></svg>
+    </div>
+    <div class="safety-content">
+      <div class="safety-title">Sistema buddy activo</div>
+      <div class="safety-meta"><strong>2</strong> contactos SOS · tracking en vivo</div>
+    </div>
+    <div class="safety-status">ON</div>
+  </div>
+
+  <!-- Stats card -->
+  <div class="stats-card">
+    <div class="stats-pre">━━ Última travesía</div>
+    <div class="stats-row">
+      <div class="stats-title">Playa de los Genoveses</div>
+      <div class="stats-where">26 ABR · 11:32</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-value">1.2</div>
+        <div class="stat-label">km</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">28:45</div>
+        <div class="stat-label">tiempo</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">2:24</div>
+        <div class="stat-label">/100m</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs bottom -->
+  <div class="tabs">
+    <div class="tab active">
+      <svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </div>
+    <div class="tab">
+      <svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Mapa
+    </div>
+    <div class="tab">
+      <div class="tab-swim-btn">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </div>
+      Crear
+    </div>
+    <div class="tab">
+      <svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Social
+    </div>
+    <div class="tab">
+      <svg class="tab-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Perfil
+    </div>
+  </div>
+
+</div>
+</body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Slide 2 — Método</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(249,115,22,0.05) 0%,transparent 60%);pointer-events:none}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+
+.title{font-size:78px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:80px}
+.title .accent{color:#f97316}
+
+/* Stats trio monumental */
+.stats{display:flex;flex-direction:column;gap:50px;flex:1}
+.stat{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid rgba(246,241,232,0.10);padding-bottom:30px}
+.stat-num{font-size:200px;font-weight:900;line-height:0.85;letter-spacing:-9px;color:#f6f1e8;font-family:'Inter',sans-serif}
+.stat-info{text-align:right;display:flex;flex-direction:column;gap:8px;padding-bottom:24px}
+.stat-unit{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:600;color:#f97316;letter-spacing:-0.5px;text-transform:uppercase}
+.stat-desc{font-size:18px;color:rgba(246,241,232,0.55);font-weight:500;line-height:1.3;max-width:320px}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">02 / 05</div>
+
+  <div class="eyebrow">El método</div>
+  <div class="coords">DURATION: 6 SEMANAS · COMMITMENT: MÍNIMO VIABLE</div>
+
+  <div class="title">
+    Lo que <span class="accent">cuesta</span><br>
+    completarlo
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">30</div>
+      <div class="stat-info">
+        <div class="stat-unit">MIN/DÍA</div>
+        <div class="stat-desc">Cabe en cualquier rutina. Antes del desayuno o después del trabajo.</div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-info">
+        <div class="stat-unit">DÍAS/SEMANA</div>
+        <div class="stat-desc">Lunes, miércoles, viernes. Fines de semana descansas.</div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0€</div>
+      <div class="stat-info">
+        <div class="stat-unit">COSTE TOTAL</div>
+        <div class="stat-desc">Plan completo gratis. Sin tarjeta. Sin trial. Sin letra pequeña.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 02 · MÉTODO</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

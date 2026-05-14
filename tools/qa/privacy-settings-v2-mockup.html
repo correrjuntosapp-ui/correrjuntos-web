@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Privacidad v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b0b0d;
+    --ink-2: #14141a;
+    --paper: #f6f1e8;
+    --mute: rgba(246, 241, 232, 0.62);
+    --mute-2: rgba(246, 241, 232, 0.38);
+    --line: rgba(246, 241, 232, 0.10);
+    --surface: rgba(246, 241, 232, 0.04);
+    --ember: #f97316;
+    --green: #22c55e;
+    --red: #ef4444;
+    --blue: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+  .canvas {
+    width: 1080px;
+    min-height: 2600px;
+    padding: 48px 48px 80px;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top bar */
+  .topbar {
+    display: flex; align-items: center; gap: 18px;
+    margin-bottom: 14px;
+  }
+  .back-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .topbar-title { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
+
+  .title-block { margin-bottom: 40px; }
+  .h1 {
+    font-size: 46px; font-weight: 800; letter-spacing: -1.2px;
+    line-height: 50px; margin-bottom: 12px;
+  }
+  .title-accent {
+    width: 42px; height: 3px; background: var(--ember);
+    border-radius: 2px; margin-bottom: 14px;
+  }
+  .h1-sub {
+    font-size: 15px; color: var(--mute); font-weight: 400;
+    line-height: 22px; max-width: 720px; letter-spacing: -0.1px;
+  }
+
+  /* Section */
+  .section-label {
+    font-size: 11px; color: var(--mute-2);
+    letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700;
+    margin-top: 32px; margin-bottom: 14px; padding-left: 6px;
+  }
+  .section-desc {
+    font-size: 13px; color: var(--mute);
+    margin-bottom: 14px; padding: 0 6px; line-height: 18px;
+  }
+
+  /* Privacy row (radio style) */
+  .priv-group {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .priv-group-title {
+    padding: 18px 20px 12px;
+    font-size: 15px; font-weight: 700; letter-spacing: -0.2px;
+  }
+  .priv-options {
+    display: flex;
+    padding: 0 14px 14px;
+    gap: 10px;
+  }
+  .priv-option {
+    flex: 1;
+    padding: 14px 12px;
+    border-radius: 12px;
+    background: rgba(246, 241, 232, 0.04);
+    border: 1px solid var(--line);
+    text-align: center;
+    position: relative;
+  }
+  .priv-option.selected {
+    background: rgba(249, 115, 22, 0.12);
+    border-color: var(--ember);
+    border-width: 2px;
+    padding: 13px 11px;
+  }
+  .priv-option-icon {
+    margin-bottom: 8px;
+    color: var(--mute);
+  }
+  .priv-option.selected .priv-option-icon { color: var(--ember); }
+  .priv-option-label {
+    font-size: 12px; font-weight: 700;
+    color: var(--paper); letter-spacing: -0.1px;
+  }
+  .priv-option.selected .priv-option-label { color: var(--ember); }
+  .priv-option-desc {
+    font-size: 10px; color: var(--mute-2); font-weight: 500;
+    margin-top: 3px; line-height: 13px;
+  }
+
+  /* Toggle row */
+  .row {
+    display: flex; align-items: center;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    margin-bottom: 10px;
+  }
+  .row-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(246, 241, 232, 0.06);
+    display: flex; align-items: center; justify-content: center;
+    margin-right: 14px;
+    flex-shrink: 0;
+  }
+  .row-body { flex: 1; }
+  .row-title { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 2px; }
+  .row-desc { font-size: 12px; color: var(--mute); font-weight: 400; line-height: 16px; }
+
+  .toggle {
+    width: 52px; height: 30px; border-radius: 15px;
+    background: var(--ember);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .toggle.off { background: rgba(246, 241, 232, 0.14); }
+  .toggle-dot {
+    position: absolute; top: 3px; right: 3px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #fff;
+  }
+  .toggle.off .toggle-dot { right: auto; left: 3px; }
+
+  /* Segmented chip inline (for who can) */
+  .segmented {
+    display: flex;
+    background: rgba(246, 241, 232, 0.05);
+    border-radius: 10px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+  .seg-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mute);
+    letter-spacing: -0.1px;
+  }
+  .seg-btn.active {
+    background: rgba(249, 115, 22, 0.18);
+    color: var(--ember);
+  }
+
+  /* Link row (for exports) */
+  .link-row {
+    display: flex; align-items: center;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    margin-bottom: 10px;
+  }
+  .link-chevron { color: var(--mute-2); }
+
+  .danger-row {
+    display: flex; align-items: center;
+    padding: 18px 20px;
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 16px;
+  }
+  .danger-row .row-title { color: var(--red); }
+
+  .footer-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--mute-2);
+    padding: 30px 40px;
+    line-height: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="back-btn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </div>
+    <div class="topbar-title">Ajustes</div>
+  </div>
+
+  <!-- Title -->
+  <div class="title-block">
+    <h1 class="h1">Privacidad</h1>
+    <div class="title-accent"></div>
+    <p class="h1-sub">Controla qué datos se muestran en tus actividades y quién puede verlos.</p>
+  </div>
+
+  <!-- Section: Default visibility -->
+  <div class="section-label">◆ Visibilidad por defecto</div>
+  <div class="section-desc">
+    Quién puede ver tus nuevas actividades. Puedes cambiarla por cada actividad al guardarla.
+  </div>
+
+  <div class="priv-group">
+    <div class="priv-group-title">Tus actividades</div>
+    <div class="priv-options">
+      <div class="priv-option">
+        <div class="priv-option-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </div>
+        <div class="priv-option-label">Público</div>
+        <div class="priv-option-desc">Todos pueden verla</div>
+      </div>
+      <div class="priv-option selected">
+        <div class="priv-option-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="priv-option-label">Seguidores</div>
+        <div class="priv-option-desc">Solo quien me sigue</div>
+      </div>
+      <div class="priv-option">
+        <div class="priv-option-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
+        </div>
+        <div class="priv-option-label">Privado</div>
+        <div class="priv-option-desc">Solo yo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Data granularity -->
+  <div class="section-label">◆ Qué datos mostrar</div>
+  <div class="section-desc">
+    Para actividades visibles, controla qué detalles específicos se muestran.
+  </div>
+
+  <div class="row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Mapa y ruta</div>
+      <div class="row-desc">Polyline del recorrido con inicio/fin</div>
+    </div>
+    <div class="segmented">
+      <div class="seg-btn">Todos</div>
+      <div class="seg-btn active">Seguidores</div>
+      <div class="seg-btn">Nadie</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="1.5">
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Frecuencia cardíaca</div>
+      <div class="row-desc">Pulso medio, máximo, zonas</div>
+    </div>
+    <div class="segmented">
+      <div class="seg-btn">Todos</div>
+      <div class="seg-btn active">Seguidores</div>
+      <div class="seg-btn">Nadie</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 3l4 8 5-5 5 5v10H2V9z"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Elevación</div>
+      <div class="row-desc">Desnivel positivo y negativo</div>
+    </div>
+    <div class="segmented">
+      <div class="seg-btn active">Todos</div>
+      <div class="seg-btn">Seguidores</div>
+      <div class="seg-btn">Nadie</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/>
+        <path d="M21 15l-5-5L5 21"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Fotos adjuntas</div>
+      <div class="row-desc">Imágenes que subas a la actividad</div>
+    </div>
+    <div class="segmented">
+      <div class="seg-btn">Todos</div>
+      <div class="seg-btn active">Seguidores</div>
+      <div class="seg-btn">Nadie</div>
+    </div>
+  </div>
+
+  <!-- Section: Privacy zones -->
+  <div class="section-label">◆ Zonas de privacidad</div>
+  <div class="section-desc">
+    Oculta los primeros y últimos metros del mapa (útil si sales de tu casa o trabajo).
+  </div>
+
+  <div class="row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <path d="M9 22V12h6v10"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Ocultar inicio y fin</div>
+      <div class="row-desc">Borra los primeros y últimos 500 m del mapa</div>
+    </div>
+    <div class="toggle">
+      <div class="toggle-dot"></div>
+    </div>
+  </div>
+
+  <!-- Section: Discovery -->
+  <div class="section-label">◆ Descubrimiento</div>
+  <div class="section-desc">
+    Cómo apareces a otros runners en CorrerJuntos.
+  </div>
+
+  <div class="row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="M21 21l-4.35-4.35"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Aparecer en feed de compatibles</div>
+      <div class="row-desc">Runners con tu ritmo/zona verán tu actividad pública</div>
+    </div>
+    <div class="toggle">
+      <div class="toggle-dot"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Seguidores automáticos</div>
+      <div class="row-desc">Aprobar manualmente a cada nuevo seguidor</div>
+    </div>
+    <div class="toggle off">
+      <div class="toggle-dot"></div>
+    </div>
+  </div>
+
+  <!-- Section: Data & account -->
+  <div class="section-label">◆ Datos y cuenta</div>
+
+  <div class="link-row">
+    <div class="row-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+    </div>
+    <div class="row-body">
+      <div class="row-title">Descargar mis datos</div>
+      <div class="row-desc">Exporta todo en GPX/JSON (GDPR)</div>
+    </div>
+    <svg class="link-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </div>
+
+</div>
+
+</body>
+</html>

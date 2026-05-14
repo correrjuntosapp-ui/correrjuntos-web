@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Home v3 — Correr Juntos (Strava-style feed)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b0b0d;
+    --ink-2: #14141a;
+    --paper: #f6f1e8;
+    --mute: rgba(246, 241, 232, 0.62);
+    --mute-2: rgba(246, 241, 232, 0.38);
+    --line: rgba(246, 241, 232, 0.10);
+    --surface: rgba(246, 241, 232, 0.04);
+    --surface-2: rgba(246, 241, 232, 0.07);
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --green: #22c55e;
+    --gold: #fbbf24;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+  .canvas {
+    width: 1080px;
+    min-height: 2800px;
+    padding: 48px 48px 180px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    border: 2px solid var(--ember);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 800; color: #fff;
+  }
+  .greet { flex: 1; margin-left: 14px; }
+  .greet-hello { font-size: 11px; color: var(--mute-2); letter-spacing: 1.2px; font-weight: 600; text-transform: uppercase; }
+  .greet-name { font-size: 22px; font-weight: 800; color: var(--paper); letter-spacing: -0.5px; margin-top: 2px; }
+  .bell {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .bell .badge {
+    position: absolute; top: -2px; right: -2px;
+    width: 16px; height: 16px; border-radius: 8px;
+    background: var(--red); border: 2px solid var(--ink);
+    color: #fff; font-size: 9px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Hero Quedada ── */
+  .hero-card {
+    background: linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.05) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    border-radius: 24px;
+    padding: 22px;
+    margin-bottom: 28px;
+  }
+  .hero-live {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 12px;
+    background: rgba(34, 197, 94, 0.18);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+  .hero-live .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+  }
+  .hero-live-text { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 0.6px; text-transform: uppercase; }
+  .hero-title { font-size: 24px; font-weight: 800; letter-spacing: -0.6px; line-height: 30px; margin-bottom: 10px; }
+  .hero-meta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; }
+  .hero-meta { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--mute); font-weight: 500; }
+  .hero-meta b { color: var(--paper); font-weight: 700; }
+  .hero-bottom { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .hero-avatars { display: flex; }
+  .hero-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: #fff;
+  }
+  .hero-avatar + .hero-avatar { margin-left: -6px; }
+  .hero-attend-text { font-size: 12px; color: var(--mute); }
+  .hero-attend-text b { color: var(--paper); }
+  .hero-cta {
+    display: block; width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, var(--ember), var(--ember-deep));
+    border: none; border-radius: 12px;
+    color: #fff; font-size: 14px; font-weight: 700;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.25);
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 28px; margin-bottom: 14px;
+  }
+  .section-title { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; color: var(--paper); }
+  .section-action { font-size: 12px; color: var(--ember); font-weight: 600; }
+
+  /* ── Week progress (compact) ── */
+  .week-card-inline {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+  .streak-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(249, 115, 22, 0.14);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .week-info { flex: 1; }
+  .week-day-text { font-size: 10px; color: var(--mute-2); letter-spacing: 0.8px; text-transform: uppercase; font-weight: 700; }
+  .week-stat-line { font-size: 14px; font-weight: 600; color: var(--paper); margin-top: 2px; letter-spacing: -0.1px; }
+  .week-stat-line .km { color: var(--ember); font-weight: 800; }
+  .week-bar-wrap { width: 80px; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+  .week-bar { width: 100%; height: 4px; background: rgba(246,241,232,0.08); border-radius: 2px; overflow: hidden; }
+  .week-bar-fill { height: 100%; background: var(--ember); border-radius: 2px; }
+  .week-bar-text { font-size: 10px; color: var(--mute-2); font-weight: 600; letter-spacing: 0.3px; }
+
+  /* ── Activity card (Strava-style) ── */
+  .activity-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .activity-head {
+    display: flex; align-items: center;
+    padding: 16px 18px;
+  }
+  .activity-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .activity-avatar.a1 { background: linear-gradient(135deg, #10b981, #047857); }
+  .activity-avatar.a2 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+  .activity-avatar.a3 { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+  .activity-who { flex: 1; margin-left: 12px; }
+  .activity-name { font-size: 15px; font-weight: 700; color: var(--paper); letter-spacing: -0.2px; }
+  .activity-sub {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--mute); margin-top: 2px; font-weight: 500;
+  }
+  .activity-sub .tag {
+    padding: 2px 7px; border-radius: 100px; font-size: 10px; font-weight: 700;
+  }
+  .activity-sub .tag.compat { background: rgba(249, 115, 22, 0.14); color: var(--ember); }
+  .activity-sub .tag.follow { background: rgba(34, 197, 94, 0.14); color: var(--green); }
+  .activity-sub .tag.known { background: rgba(59, 130, 246, 0.14); color: var(--blue); }
+  .activity-time { font-size: 11px; color: var(--mute-2); font-weight: 500; }
+
+  .activity-body {
+    padding: 0 18px 16px;
+  }
+  .activity-title {
+    font-size: 17px; font-weight: 800; color: var(--paper);
+    letter-spacing: -0.3px; margin-bottom: 10px;
+  }
+  .activity-stats {
+    display: flex; gap: 24px;
+    padding: 12px 0; margin-bottom: 14px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stat { flex: 1; }
+  .stat-label { font-size: 10px; color: var(--mute-2); letter-spacing: 0.6px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+  .stat-val { font-size: 20px; font-weight: 800; color: var(--paper); letter-spacing: -0.4px; font-variant-numeric: tabular-nums; }
+  .stat-val .unit { font-size: 12px; color: var(--mute); font-weight: 600; }
+
+  .activity-map {
+    height: 120px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.04) 100%);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+
+  .activity-actions {
+    display: flex;
+    padding: 12px 18px;
+    border-top: 1px solid var(--line);
+    gap: 8px;
+    align-items: center;
+  }
+  .action-btn {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 8px; background: transparent;
+    border: none; color: var(--mute);
+    font-size: 12px; font-weight: 600;
+  }
+  .action-btn.kudoed { color: var(--ember); }
+  .action-btn.kudoed svg { fill: var(--ember); }
+  .action-count { color: var(--paper); font-weight: 700; }
+
+  /* Quedadas list */
+  .qlist { display: flex; flex-direction: column; gap: 10px; }
+  .qcard {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 16px;
+  }
+  .qcard-date { width: 54px; text-align: center; border-right: 1px solid var(--line); padding-right: 14px; flex-shrink: 0; }
+  .qcard-day { font-size: 22px; font-weight: 800; color: var(--ember); letter-spacing: -0.5px; }
+  .qcard-month { font-size: 10px; color: var(--mute-2); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .qcard-info { flex: 1; }
+  .qcard-title { font-size: 14px; font-weight: 700; color: var(--paper); letter-spacing: -0.2px; margin-bottom: 4px; }
+  .qcard-meta { display: flex; gap: 10px; font-size: 11px; color: var(--mute); font-weight: 500; }
+  .qcard-meta .level { padding: 2px 8px; border-radius: 100px; font-weight: 700; }
+  .qcard-meta .level.beg { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+  .qcard-meta .level.int { background: rgba(249, 115, 22, 0.15); color: var(--ember); }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="avatar">JO</div>
+    <div class="greet">
+      <div class="greet-hello">Buenas tardes</div>
+      <div class="greet-name">Joe</div>
+    </div>
+    <div class="bell">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <div class="badge">2</div>
+    </div>
+  </div>
+
+  <!-- Hero: Next quedada -->
+  <div class="hero-card">
+    <div class="hero-live">
+      <div class="dot"></div>
+      <span class="hero-live-text">Mañana · 1.2 km de ti</span>
+    </div>
+    <div class="hero-title">Rodaje suave por el Paseo Marítimo</div>
+    <div class="hero-meta-row">
+      <div class="hero-meta">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/><path d="M12 6v6l4 2"/></svg>
+        <span><b>7:30</b></span>
+      </div>
+      <div class="hero-meta">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3L8.7 2.7"/></svg>
+        <span><b>8 km</b></span>
+      </div>
+      <div class="hero-meta">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Principiante</span>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-avatars">
+        <div class="hero-avatar" style="background:#f97316">L</div>
+        <div class="hero-avatar" style="background:#3b82f6">A</div>
+        <div class="hero-avatar" style="background:#10b981">M</div>
+      </div>
+      <div class="hero-attend-text"><b>3 apuntados</b> · Última plaza · 4 viéndola</div>
+    </div>
+    <button class="hero-cta">Apúntate ahora →</button>
+  </div>
+
+  <!-- Week progress compact -->
+  <div class="week-card-inline">
+    <div class="streak-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#f97316" stroke="#f97316" stroke-width="1">
+        <path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/>
+      </svg>
+    </div>
+    <div class="week-info">
+      <div class="week-day-text">Lunes · Día 1 · Racha 1</div>
+      <div class="week-stat-line"><span class="km">0</span> de 25 km · Corre 25 para desbloquear logro</div>
+    </div>
+    <div class="week-bar-wrap">
+      <div class="week-bar"><div class="week-bar-fill" style="width:0%"></div></div>
+      <span class="week-bar-text">0%</span>
+    </div>
+  </div>
+
+  <!-- Section: Feed -->
+  <div class="section-label">
+    <div class="section-title">Actividad reciente</div>
+    <div class="section-action">Ver todo →</div>
+  </div>
+
+  <!-- Activity 1: Compatible runner run -->
+  <div class="activity-card">
+    <div class="activity-head">
+      <div class="activity-avatar a1">A</div>
+      <div class="activity-who">
+        <div class="activity-name">Ana Martín</div>
+        <div class="activity-sub">
+          <span class="tag compat">◆ Compatible 92%</span>
+          <span>·</span>
+          <span>0.8 km de ti</span>
+        </div>
+      </div>
+      <div class="activity-time">hace 1h</div>
+    </div>
+    <div class="activity-body">
+      <div class="activity-title">Rodaje matinal</div>
+      <div class="activity-stats">
+        <div class="stat">
+          <div class="stat-label">Distancia</div>
+          <div class="stat-val">5.20<span class="unit"> km</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Ritmo</div>
+          <div class="stat-val">6:48<span class="unit">/km</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Tiempo</div>
+          <div class="stat-val">35:21</div>
+        </div>
+      </div>
+      <div class="activity-map">
+        <svg width="100%" height="120" viewBox="0 0 500 120" fill="none" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="routeGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f97316" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#ea580c" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <path d="M20,80 Q60,30 120,50 T220,70 Q280,40 340,60 T460,45" stroke="url(#routeGrad1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="20" cy="80" r="5" fill="#22c55e"/>
+          <circle cx="460" cy="45" r="5" fill="#ef4444"/>
+        </svg>
+      </div>
+    </div>
+    <div class="activity-actions">
+      <button class="action-btn kudoed">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316"><path d="M8 14v8H2v-8h6zm14-4c0-.55-.22-1.05-.59-1.41L21 8.29c-.37-.36-.58-.85-.58-1.41V5c0-1.1-.9-2-2-2h-3c-.83 0-1.54.5-1.84 1.22l-.52 2.09c-.08.33-.36.69-.69.69h-.5c-.55 0-1 .45-1 1v.17L10 14h9c1.66 0 3-1.34 3-3v-1z"/></svg>
+        <span class="action-count">12</span>
+      </button>
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="action-count">3</span>
+      </button>
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>
+        <span>Ver perfil</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Activity 2: Followed user -->
+  <div class="activity-card">
+    <div class="activity-head">
+      <div class="activity-avatar a2">L</div>
+      <div class="activity-who">
+        <div class="activity-name">Luis Fernández</div>
+        <div class="activity-sub">
+          <span class="tag follow">◆ Sigues</span>
+          <span>·</span>
+          <span>Huelva</span>
+        </div>
+      </div>
+      <div class="activity-time">hace 4h</div>
+    </div>
+    <div class="activity-body">
+      <div class="activity-title">Completó quedada "Ritmo largo sábado"</div>
+      <div class="activity-stats">
+        <div class="stat">
+          <div class="stat-label">Distancia</div>
+          <div class="stat-val">12.4<span class="unit"> km</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Ritmo</div>
+          <div class="stat-val">5:20<span class="unit">/km</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Con</div>
+          <div class="stat-val">6<span class="unit"> runners</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="activity-actions">
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14v8H2v-8h6zm14-4c0-.55-.22-1.05-.59-1.41L21 8.29c-.37-.36-.58-.85-.58-1.41V5c0-1.1-.9-2-2-2h-3c-.83 0-1.54.5-1.84 1.22l-.52 2.09c-.08.33-.36.69-.69.69h-.5c-.55 0-1 .45-1 1v.17L10 14h9c1.66 0 3-1.34 3-3v-1z"/></svg>
+        <span class="action-count">24</span>
+      </button>
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="action-count">8</span>
+      </button>
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>
+        <span>Ver perfil</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Activity 3: Known from quedada -->
+  <div class="activity-card">
+    <div class="activity-head">
+      <div class="activity-avatar a3">C</div>
+      <div class="activity-who">
+        <div class="activity-name">Carmen López</div>
+        <div class="activity-sub">
+          <span class="tag known">◆ Corriste con ella</span>
+          <span>·</span>
+          <span>2.1 km de ti</span>
+        </div>
+      </div>
+      <div class="activity-time">hace 6h</div>
+    </div>
+    <div class="activity-body">
+      <div class="activity-title">Empezó plan "10K en 12 semanas"</div>
+      <div class="activity-stats">
+        <div class="stat">
+          <div class="stat-label">Plan</div>
+          <div class="stat-val">10K</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Semana</div>
+          <div class="stat-val">1<span class="unit">/12</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Sesiones</div>
+          <div class="stat-val">48</div>
+        </div>
+      </div>
+    </div>
+    <div class="activity-actions">
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14v8H2v-8h6zm14-4c0-.55-.22-1.05-.59-1.41L21 8.29c-.37-.36-.58-.85-.58-1.41V5c0-1.1-.9-2-2-2h-3c-.83 0-1.54.5-1.84 1.22l-.52 2.09c-.08.33-.36.69-.69.69h-.5c-.55 0-1 .45-1 1v.17L10 14h9c1.66 0 3-1.34 3-3v-1z"/></svg>
+        <span class="action-count">5</span>
+      </button>
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="action-count">1</span>
+      </button>
+      <button class="action-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg>
+        <span>Ver perfil</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Quedadas cerca abajo -->
+  <div class="section-label">
+    <div class="section-title">Quedadas cerca esta semana</div>
+    <div class="section-action">Mapa →</div>
+  </div>
+  <div class="qlist">
+    <div class="qcard">
+      <div class="qcard-date">
+        <div class="qcard-day">26</div>
+        <div class="qcard-month">Abr · Sáb</div>
+      </div>
+      <div class="qcard-info">
+        <div class="qcard-title">Rodaje nocturno Guadalquivir</div>
+        <div class="qcard-meta">
+          <span>Sevilla · 8 km · 20:00</span>
+          <span class="level beg">Principiante</span>
+        </div>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qcard-date">
+        <div class="qcard-day">24</div>
+        <div class="qcard-month">Abr · Jue</div>
+      </div>
+      <div class="qcard-info">
+        <div class="qcard-title">Tirada larga Jardín del Turia</div>
+        <div class="qcard-meta">
+          <span>Valencia · 15 km · 07:30</span>
+          <span class="level int">Intermedio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

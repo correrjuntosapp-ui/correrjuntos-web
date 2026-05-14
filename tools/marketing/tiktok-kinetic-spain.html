@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Correr Juntos — Kinetic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600;700;800;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246, 241, 232, 0.42);
+    --grid: rgba(249, 115, 22, 0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', sans-serif;
+    color: var(--paper);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    width: 1080px;
+    height: 1920px;
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+  }
+
+  /* Static cartographic substrate */
+  .stage::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  /* Ambient contour rings — always visible, rotated by JS */
+  .contour {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1800px; height: 1800px;
+    opacity: 0.12;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  /* Center dot + pulse halo (halo drawn via box-shadow, driven by JS) */
+  .pulse {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 16px; height: 16px;
+    margin: -8px 0 0 -8px;
+    background: var(--ember);
+    border-radius: 999px;
+    z-index: 1;
+    will-change: box-shadow;
+  }
+
+  /* ── SCENE PLATES — driven entirely by JS via window.renderAtTime ── */
+  .plate {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 80px;
+    opacity: 0;
+    text-align: center;
+    z-index: 2;
+    transform: translateY(36px);
+    filter: blur(6px);
+    will-change: opacity, transform, filter;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: "";
+    display: inline-block;
+    width: 48px; height: 1px;
+    background: var(--ember);
+  }
+
+  .huge {
+    font-size: 150px;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    font-weight: 200;
+  }
+  .huge strong { font-weight: 700; color: var(--ember); font-style: normal; }
+
+  .massive {
+    font-size: 360px;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+    font-weight: 700;
+    color: var(--ember);
+    font-variant-numeric: tabular-nums;
+  }
+  .massive .plus { font-size: 180px; font-weight: 300; }
+
+  .sub {
+    margin-top: 40px;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--ash);
+    font-weight: 300;
+    max-width: 860px;
+    letter-spacing: 0.01em;
+  }
+
+  .city-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .city-list .row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 32px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(246, 241, 232, 0.12);
+    min-width: 800px;
+  }
+  .city-list .row:last-child { border-bottom: 1px solid rgba(246, 241, 232, 0.12); }
+  .city-list .row .name {
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    text-align: left;
+    font-variant: small-caps;
+  }
+  .city-list .row .name em { font-style: normal; color: var(--ember); font-weight: 600; }
+  .city-list .row .coord {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    color: var(--ash);
+    text-align: right;
+  }
+
+  .brand-big {
+    font-size: 140px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+  .brand-big em { font-style: normal; color: var(--ember); }
+  .url {
+    margin-top: 44px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    letter-spacing: 0.08em;
+    color: var(--ember);
+    font-weight: 500;
+  }
+  .stores {
+    margin-top: 36px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ambient layers (always visible) -->
+  <svg class="contour" id="contour" viewBox="0 0 1800 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#f97316" stroke-width="1.5">
+      <circle cx="900" cy="900" r="180"/><circle cx="900" cy="900" r="320"/>
+      <circle cx="900" cy="900" r="480"/><circle cx="900" cy="900" r="640"/>
+      <circle cx="900" cy="900" r="800"/>
+    </g>
+    <g stroke="#f6f1e8" stroke-width="1" stroke-opacity="0.5">
+      <line x1="900" y1="60" x2="900" y2="1740"/>
+      <line x1="60" y1="900" x2="1740" y2="900"/>
+      <line x1="280" y1="280" x2="1520" y2="1520"/>
+      <line x1="1520" y1="280" x2="280" y2="1520"/>
+    </g>
+  </svg>
+
+  <span class="pulse" id="pulse"></span>
+
+  <!-- SCENE 1: Hook (0-2.5s) -->
+  <div class="plate" id="p1">
+    <div class="eyebrow">CORRE ACOMPAÑADO</div>
+    <h1 class="huge">No corras<br>solo en <strong>tu ciudad</strong>.</h1>
+  </div>
+
+  <!-- SCENE 2: Cities (2.5-7s) -->
+  <div class="plate" id="p2">
+    <div class="eyebrow">ESTA SEMANA · ESPAÑA</div>
+    <div class="city-list">
+      <div class="row"><span class="name"><em>Madrid</em></span><span class="coord">40.42° N</span></div>
+      <div class="row"><span class="name"><em>Barcelona</em></span><span class="coord">41.39° N</span></div>
+      <div class="row"><span class="name"><em>Valencia</em></span><span class="coord">39.47° N</span></div>
+      <div class="row"><span class="name"><em>Sevilla</em></span><span class="coord">37.39° N</span></div>
+      <div class="row"><span class="name"><em>Bilbao</em></span><span class="coord">43.26° N</span></div>
+    </div>
+  </div>
+
+  <!-- SCENE 3: Stat 568+ (7-10s) -->
+  <div class="plate" id="p3">
+    <div class="eyebrow">YA SOMOS</div>
+    <div class="massive">568<span class="plus">+</span></div>
+    <div class="sub">corredores encontrando ritmo<br>en 5 ciudades de España</div>
+  </div>
+
+  <!-- SCENE 4: Features (10-14s) -->
+  <div class="plate" id="p4">
+    <div class="eyebrow">LO QUE INCLUYE</div>
+    <h1 class="huge" style="font-size:96px;">
+      Coach IA<br>
+      Matching por ritmo<br>
+      7 planes gratis<br>
+      Audio cada km
+    </h1>
+  </div>
+
+  <!-- SCENE 5: CTA (14-17s) -->
+  <div class="plate" id="p5">
+    <div class="eyebrow">DESCARGA — GRATIS</div>
+    <div class="brand-big">Correr<em>Juntos</em></div>
+    <div class="url">correrjuntos.com</div>
+    <div class="stores">APP STORE · GOOGLE PLAY</div>
+  </div>
+
+</div>
+
+<script>
+  /**
+   * Timeline is defined here in ms. Rendering is a pure function of time t
+   * (window.renderAtTime) — no CSS @keyframes, no setTimeout. This lets the
+   * recorder step through frames deterministically regardless of wall-clock
+   * screenshot cost.
+   */
+  const SCENES = [
+    { id: 'p1', in: 200,   out: 2800  },
+    { id: 'p2', in: 3000,  out: 7200  },
+    { id: 'p3', in: 7400,  out: 10400 },
+    { id: 'p4', in: 10600, out: 14200 },
+    { id: 'p5', in: 14400, out: 16900 },
+  ];
+  const FADE_IN  = 450;   // plate-in duration (ms)
+  const FADE_OUT = 350;   // plate-out duration (ms)
+  const TRANSLATE_IN  = 36;  // px — plate enters rising
+  const TRANSLATE_OUT = -36; // px — plate exits lifting
+  const BLUR_IN  = 6;        // px
+  const BLUR_OUT = 6;        // px
+  const TOTAL_MS = 17000;
+
+  // Cubic-bezier approximations: ease-out for in, ease-in for out
+  const easeOut = p => 1 - Math.pow(1 - p, 3);
+  const easeIn  = p => p * p * p;
+
+  const plates = SCENES.map(s => ({ ...s, el: document.getElementById(s.id) }));
+  const contourEl = document.getElementById('contour');
+  const pulseEl   = document.getElementById('pulse');
+
+  function renderAtTime(t) {
+    // Plates — compute opacity + translate + blur per scene.
+    for (const s of plates) {
+      let op = 0, ty = TRANSLATE_IN, bl = BLUR_IN;
+
+      if (t < s.in) {
+        op = 0; ty = TRANSLATE_IN; bl = BLUR_IN;
+      } else if (t < s.in + FADE_IN) {
+        const p = (t - s.in) / FADE_IN;
+        const e = easeOut(p);
+        op = e;
+        ty = TRANSLATE_IN * (1 - e);
+        bl = BLUR_IN * (1 - e);
+      } else if (t < s.out) {
+        op = 1; ty = 0; bl = 0;
+      } else if (t < s.out + FADE_OUT) {
+        const p = (t - s.out) / FADE_OUT;
+        const e = easeIn(p);
+        op = 1 - e;
+        ty = TRANSLATE_OUT * e;
+        bl = BLUR_OUT * e;
+      } else {
+        op = 0; ty = TRANSLATE_OUT; bl = BLUR_OUT;
+      }
+
+      s.el.style.opacity = op.toFixed(4);
+      s.el.style.transform = `translateY(${ty.toFixed(2)}px)`;
+      s.el.style.filter = `blur(${bl.toFixed(2)}px)`;
+    }
+
+    // Contour rings — slow rotation (1 full turn per 60s)
+    const deg = (t / 60000) * 360;
+    contourEl.style.transform = `translate(-50%, -50%) rotate(${deg.toFixed(3)}deg)`;
+
+    // Pulse halo — one cycle every 2.4s, halo expands 0→320px, fades 0.6→0
+    const cycle = 2400;
+    const phase = (t % cycle) / cycle;            // 0..1
+    const reach = phase < 0.7 ? phase / 0.7 : 1;  // 0..1 over 70% of cycle
+    const rPx   = 320 * reach;
+    const alpha = phase < 0.7 ? 0.6 * (1 - reach) : 0;
+    pulseEl.style.boxShadow = `0 0 0 ${rPx.toFixed(1)}px rgba(249, 115, 22, ${alpha.toFixed(3)})`;
+  }
+
+  window.renderAtTime = renderAtTime;
+  window.TOTAL_MS = TOTAL_MS;
+
+  // Preview mode: smooth real-time playback via rAF.
+  // Capture mode (window.__capture): recorder drives renderAtTime directly.
+  if (!window.__capture) {
+    let t0 = null;
+    function tick(now) {
+      if (t0 === null) t0 = now;
+      const t = now - t0;
+      if (t > TOTAL_MS + 500) { t0 = now; } // loop for preview convenience
+      renderAtTime(Math.min(t, TOTAL_MS));
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  } else {
+    // In capture mode, render frame 0 immediately so the recorder's first
+    // screenshot isn't blank if it fires before its first advance call.
+    renderAtTime(0);
+  }
+</script>
+
+</body>
+</html>

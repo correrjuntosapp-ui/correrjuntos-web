@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Errores Hook</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 35%,rgba(239,68,68,0.08) 0%,transparent 60%);pointer-events:none}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#ef4444;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#ef4444}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:140px}
+
+.hero{flex:1;display:flex;flex-direction:column;justify-content:center}
+.huge-num{font-size:520px;font-weight:900;line-height:0.85;letter-spacing:-25px;color:#ef4444;font-family:'Inter',sans-serif;margin-bottom:20px}
+.title{font-size:72px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:30px}
+.title .accent{color:#ef4444}
+.subtitle{font-size:24px;font-weight:500;color:rgba(246,241,232,0.65);line-height:1.4;max-width:780px}
+.subtitle strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:60px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">01 / 06</div>
+  <div class="eyebrow">Lectura crítica</div>
+  <div class="coords">RISK: ALTO · LECTORES: PRINCIPIANTES</div>
+  <div class="hero">
+    <div class="huge-num">5</div>
+    <div class="title">errores que te <span class="accent">lesionan</span><br>en tu primer mes</div>
+    <div class="subtitle">El <strong>80% de los runners</strong> nuevos los cometen.<br>Y se rinden a las 3 semanas.<br><br>Te ahorro las visitas al fisio.</div>
+  </div>
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 01 · LECTURA 2 MIN</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

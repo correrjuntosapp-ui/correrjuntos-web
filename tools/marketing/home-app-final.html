@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Home App — Final (tu estado real)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+  h1 { text-align: center; font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 32px; max-width: 680px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) { .columns { grid-template-columns: 1fr; max-width: 360px; } }
+
+  .col-label { text-align: center; margin-bottom: 14px; }
+  .tag {
+    display: inline-block; padding: 5px 14px;
+    border-radius: 6px; font-size: 11px;
+    font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .tag-now { background: #ef4444; color: #fff; }
+  .tag-after { background: #22C55E; color: #052e16; }
+  .desc { margin-top: 8px; font-size: 12px; color: #aaa; line-height: 1.5; padding: 0 12px; }
+
+  .phone {
+    width: 320px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 36px;
+    padding: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .phone-screen {
+    background: #000;
+    border-radius: 28px;
+    overflow: hidden;
+    height: 720px;
+    overflow-y: auto;
+  }
+  .phone-screen::-webkit-scrollbar { width: 0; }
+
+  .status-bar { display: flex; justify-content: space-between; padding: 14px 22px 6px; font-size: 13px; font-weight: 600; }
+  .status-icons { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px 18px; }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #FF6B00, #ff9500); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+  .greeting { font-size: 11px; color: #888; }
+  .user-name { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+  .bell { color: #888; }
+  .bell svg { width: 22px; height: 22px; stroke-width: 1.8; display: block; }
+
+  /* Stats card (only after first run) */
+  .stats-card {
+    margin: 0 16px 12px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 14px 16px;
+    border-left: 3px solid #FF6B00;
+  }
+  .stats-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .stats-label { font-size: 10px; color: #888; letter-spacing: 0.1em; font-weight: 700; }
+  .stats-tease { font-size: 10px; color: #FF6B00; font-weight: 600; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat-item { text-align: center; }
+  .stat-value { font-size: 20px; font-weight: 800; }
+  .stat-name { font-size: 9px; color: #888; letter-spacing: 0.08em; margin-top: 2px; text-transform: uppercase; }
+
+  /* PRO card */
+  .pro-card {
+    margin: 0 16px 16px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 12px 14px;
+    opacity: 0.65;
+  }
+  .pro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+  .pro-stat { text-align: center; }
+  .pro-stat-name { font-size: 9px; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .pro-stat-value { font-size: 16px; font-weight: 800; color: #888; filter: blur(2px); }
+  .pro-unlock { text-align: center; color: #FF6B00; font-size: 11px; font-weight: 600; padding-top: 6px; border-top: 1px solid #2a2a2a; }
+
+  /* Hero verde adaptativo */
+  .hero-new {
+    margin: 0 14px 18px;
+    background: #22C55E;
+    border-radius: 18px;
+    padding: 22px 18px 18px;
+    box-shadow: 0 6px 22px rgba(34, 197, 94, 0.35);
+  }
+  .hero-pre { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: #052e16; margin-bottom: 6px; }
+  .hero-title { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; color: #052e16; }
+  .hero-sub { font-size: 12.5px; color: #064e26; opacity: 0.95; line-height: 1.45; margin-bottom: 16px; }
+  .hero-cta-primary {
+    display: block; background: #052e16; color: #fff;
+    padding: 13px 16px; border-radius: 12px;
+    font-size: 13px; font-weight: 800;
+    text-align: center; text-decoration: none;
+    margin-bottom: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .hero-cta-link {
+    display: block; text-align: center; font-size: 11px;
+    color: rgba(5,46,22,0.85); text-decoration: none;
+    padding: 6px; font-weight: 600;
+  }
+
+  /* Sections */
+  .section { padding: 0 14px; margin-bottom: 18px; }
+  .section-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .section-title { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+
+  .create-btn {
+    background: #FF6B00; color: #fff;
+    padding: 7px 13px 7px 11px; border: none;
+    border-radius: 999px;
+    font-size: 12px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 5px;
+    line-height: 1; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.3);
+  }
+  .create-btn svg { width: 13px; height: 13px; stroke-width: 2.5; }
+
+  /* Quedada cards */
+  .q-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex; gap: 12px;
+  }
+  .q-date { background: rgba(255,107,0,0.12); border-radius: 8px; padding: 8px 6px; text-align: center; min-width: 50px; }
+  .q-day { font-size: 18px; font-weight: 800; color: #FF6B00; line-height: 1; }
+  .q-month { font-size: 9px; color: #FF6B00; font-weight: 700; letter-spacing: 0.1em; margin-top: 2px; }
+  .q-info { flex: 1; min-width: 0; }
+  .q-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .q-meta { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .q-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .q-tag { font-size: 10px; padding: 3px 8px; border-radius: 4px; background: #2a2a2a; color: #ccc; font-weight: 600; }
+  .q-tag.intermedio { background: rgba(255,107,0,0.15); color: #FF6B00; }
+  .q-tag.principiante { background: rgba(34,197,94,0.18); color: #22C55E; }
+  .q-tag.joined { background: rgba(34,197,94,0.18); color: #22C55E; }
+  .q-participants { font-size: 12px; color: #888; margin-top: 8px; }
+
+  .limit {
+    display: flex; justify-content: space-between;
+    font-size: 11px; padding: 4px 4px 0;
+  }
+  .limit-text { color: #888; }
+  .limit-pro { color: #FF6B00; font-weight: 600; }
+
+  /* Plans card */
+  .plans-card {
+    margin: 8px 14px 18px;
+    background: linear-gradient(135deg, #FF6B00, #ff9500);
+    border-radius: 14px;
+    padding: 16px;
+    color: #fff;
+  }
+  .plans-pre { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; opacity: 0.85; margin-bottom: 4px; }
+  .plans-title { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+  .plans-title .free-tag { background: rgba(255,255,255,0.25); padding: 2px 6px; border-radius: 4px; font-size: 9px; margin-left: 5px; vertical-align: middle; font-weight: 700; }
+  .plans-sub { font-size: 11.5px; opacity: 0.9; margin-bottom: 10px; }
+  .plans-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .plans-tag { font-size: 9px; background: rgba(0,0,0,0.18); padding: 3px 7px; border-radius: 4px; font-weight: 600; }
+
+  /* Tabs */
+  .tabs {
+    position: sticky; bottom: 0;
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    background: rgba(0,0,0,0.95);
+    border-top: 1px solid #2a2a2a;
+    padding: 8px 0 14px;
+  }
+  .tab { text-align: center; color: #666; font-size: 9px; }
+  .tab.active { color: #FF6B00; }
+  .tab-svg { width: 20px; height: 20px; stroke-width: 1.8; display: block; margin: 0 auto 3px; }
+  .tab.active .tab-svg { stroke: #FF6B00; }
+  .tab-run-btn { width: 42px; height: 42px; border-radius: 50%; background: #FF6B00; display: flex; align-items: center; justify-content: center; margin: -16px auto 2px; box-shadow: 0 4px 12px rgba(255,107,0,0.4); }
+
+  /* Strikethrough for "removed" */
+  .removed-element {
+    position: relative;
+    opacity: 0.45;
+    margin: 0 16px 12px;
+    background: #1a1a1a;
+    border: 1px dashed #ef4444;
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .removed-element::after {
+    content: 'OCULTO si runs = 0';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-2deg);
+    font-size: 11px;
+    font-weight: 800;
+    color: #ef4444;
+    background: rgba(0,0,0,0.9);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1.5px solid #ef4444;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .summary {
+    max-width: 760px;
+    margin: 36px auto 0;
+    padding: 22px;
+    background: #222;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .summary h2 { font-size: 16px; font-weight: 800; margin-bottom: 12px; }
+  .summary table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .summary td { padding: 9px 12px; border-bottom: 1px solid #333; vertical-align: top; }
+  .summary td:first-child { font-weight: 700; width: 30%; }
+  .green { color: #22C55E; }
+  .red { color: #ef4444; }
+  .orange { color: #FF6B00; }
+</style>
+</head>
+<body>
+
+<h1>Home App — versión final hoy</h1>
+<p class="subtitle">
+  Tu vista real (Javi · 1 quedada en Punta Umbría · 0 runs · 0 follows · sin plan).
+  Izquierda: lo que ves AHORA en producción. Derecha: lo que verás tras el OTA.
+</p>
+
+<div class="columns">
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- COLUMNA 1 — AHORA -->
+  <!-- ═══════════════════════════════════ -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-now">Ahora · producción</span>
+      <div class="desc">Stats "0/0/0" + PRO blurred + empty feed = 3 mensajes negativos en el primer pliegue. Demoraliza al usuario nuevo.</div>
+    </div>
+
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%🔋</span></div></div>
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar">J</div>
+            <div><div class="greeting">Buenas tardes</div><div class="user-name">Javi</div></div>
+          </div>
+          <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        </div>
+
+        <div class="stats-card">
+          <div class="stats-row">
+            <span class="stats-label">ESTA SEMANA</span>
+            <span class="stats-tease">Tu primera te espera</span>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-item"><div class="stat-value">0</div><div class="stat-name">Carreras</div></div>
+            <div class="stat-item"><div class="stat-value">0.0</div><div class="stat-name">KM</div></div>
+            <div class="stat-item"><div class="stat-value">0m</div><div class="stat-name">Tiempo</div></div>
+          </div>
+        </div>
+
+        <div class="pro-card">
+          <div class="pro-grid">
+            <div class="pro-stat"><div class="pro-stat-name">Ritmo Med.</div><div class="pro-stat-value">5:42</div></div>
+            <div class="pro-stat"><div class="pro-stat-name">Zona FC</div><div class="pro-stat-value">Z3</div></div>
+            <div class="pro-stat"><div class="pro-stat-name">Progreso</div><div class="pro-stat-value">+18%</div></div>
+          </div>
+          <div class="pro-unlock">Desbloquear análisis PRO</div>
+        </div>
+
+        <div class="section">
+          <div class="section-row">
+            <div class="section-title">Próximas quedadas</div>
+            <button class="create-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+          </div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">28</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">12 km progresivos</div>
+              <div class="q-meta">Punta Umbría · 12 km · 10:00</div>
+              <div class="q-tags">
+                <span class="q-tag intermedio">Intermedio</span>
+                <span class="q-tag joined">✓ Unido</span>
+              </div>
+              <div class="q-participants">1 participante</div>
+            </div>
+          </div>
+          <div class="limit">
+            <span class="limit-text">1 de 2 quedadas gratis este mes</span>
+            <span class="limit-pro">Ilimitadas con PRO</span>
+          </div>
+        </div>
+
+        <div class="plans-card">
+          <div class="plans-pre">Planes de entrenamiento</div>
+          <div class="plans-title">6 planes <span class="free-tag">GRATIS</span></div>
+          <div class="plans-sub">Desde principiante a maratón</div>
+          <div class="plans-tags">
+            <span class="plans-tag">5K</span><span class="plans-tag">10K</span>
+            <span class="plans-tag">21K</span><span class="plans-tag">Trail</span>
+          </div>
+        </div>
+
+        <div style="text-align:center;padding:30px 20px;margin:0 16px">
+          <div style="font-size:14px;font-weight:700;margin-bottom:6px">Tu feed está vacío</div>
+          <div style="font-size:12px;color:#888;margin-bottom:14px">Sigue a otros runners para ver su actividad</div>
+          <a style="display:inline-block;background:#FF6B00;color:#fff;padding:12px 22px;border-radius:24px;font-size:13px;font-weight:700">Registra tu primera carrera →</a>
+        </div>
+
+        <div style="height:60px"></div>
+
+        <div class="tabs">
+          <div class="tab active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+          <div class="tab"><div class="tab-run-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- COLUMNA 2 — TRAS OTA -->
+  <!-- ═══════════════════════════════════ -->
+  <div>
+    <div class="col-label">
+      <span class="tag tag-after">Tras el OTA</span>
+      <div class="desc">Hero verde adaptativo en el primer pliegue + stats/PRO/feed condicionales (no aparecen si runs=0/follows=0). Lo demás se mantiene.</div>
+    </div>
+
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%🔋</span></div></div>
+        <div class="header">
+          <div class="header-left">
+            <div class="avatar">J</div>
+            <div><div class="greeting">Buenas tardes</div><div class="user-name">Javi</div></div>
+          </div>
+          <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        </div>
+
+        <!-- HERO VERDE ADAPTATIVO -->
+        <div class="hero-new">
+          <div class="hero-pre">Empieza tu primera semana</div>
+          <div class="hero-title">¿Empezamos?</div>
+          <div class="hero-sub">Empieza a Moverte: 6 semanas, 18 sesiones, gratis. Tu primera carrera en 7 días.</div>
+          <a class="hero-cta-primary">Empezar mi plan →</a>
+          <a class="hero-cta-link">o salir a correr libre</a>
+        </div>
+
+        <!-- Stats card OCULTA cuando runs=0 -->
+        <!-- PRO card OCULTA cuando runs=0 -->
+
+        <div class="section">
+          <div class="section-row">
+            <div class="section-title">Próximas quedadas</div>
+            <button class="create-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+          </div>
+          <div class="q-card">
+            <div class="q-date"><div class="q-day">28</div><div class="q-month">ABR</div></div>
+            <div class="q-info">
+              <div class="q-title">12 km progresivos</div>
+              <div class="q-meta">Punta Umbría · 12 km · 10:00</div>
+              <div class="q-tags">
+                <span class="q-tag intermedio">Intermedio</span>
+                <span class="q-tag joined">✓ Unido</span>
+              </div>
+              <div class="q-participants">1 participante</div>
+            </div>
+          </div>
+          <div class="limit">
+            <span class="limit-text">1 de 2 quedadas gratis este mes</span>
+            <span class="limit-pro">Ilimitadas con PRO</span>
+          </div>
+        </div>
+
+        <div class="plans-card">
+          <div class="plans-pre">Planes de entrenamiento</div>
+          <div class="plans-title">6 planes <span class="free-tag">GRATIS</span></div>
+          <div class="plans-sub">Desde principiante a maratón</div>
+          <div class="plans-tags">
+            <span class="plans-tag">5K</span><span class="plans-tag">10K</span>
+            <span class="plans-tag">21K</span><span class="plans-tag">Trail</span>
+          </div>
+        </div>
+
+        <!-- Empty feed OCULTO cuando follows=0 -->
+
+        <div style="height:60px"></div>
+
+        <div class="tabs">
+          <div class="tab active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+          <div class="tab"><div class="tab-run-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+          <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="summary">
+  <h2>Cambios exactos en FeedScreen.tsx</h2>
+  <table>
+    <tr>
+      <td class="green">+ NUEVO: Hero verde adaptativo</td>
+      <td>Renderiza solo si <code>runs.length === 0</code>. Bloque de ~80 líneas (componente nuevo + condicional). CTA "Empezar mi plan →" navega a Plans. Verde brand <code>#22C55E</code>.</td>
+    </tr>
+    <tr>
+      <td class="red">− OCULTO: Stats card</td>
+      <td>Wrap en <code>{runs.length > 0 && (&lt;StatsCard /&gt;)}</code>. Vuelve solo cuando hay datos reales. Cero líneas borradas, solo condicional.</td>
+    </tr>
+    <tr>
+      <td class="red">− OCULTO: PRO card</td>
+      <td>Mismo patrón: <code>{runs.length > 0 && !isPremium && (&lt;ProTeaseCard /&gt;)}</code>. Paywall prematuro cuando aún no hay nada que desbloquear.</td>
+    </tr>
+    <tr>
+      <td class="red">− OCULTO: "Tu feed está vacío"</td>
+      <td><code>{(followingCount > 0 || feed.length > 0) && (&lt;FeedSection /&gt;)}</code>. Sin follows = no enseñar empty state.</td>
+    </tr>
+    <tr>
+      <td class="orange">≈ MISMO: Próximas quedadas</td>
+      <td>Sin cambios — ya está bien resuelto.</td>
+    </tr>
+    <tr>
+      <td class="orange">≈ MISMO: Planes card</td>
+      <td>Sin cambios — el verde hero ya es el push primario, planes queda como secundario.</td>
+    </tr>
+    <tr>
+      <td class="orange">≈ MISMO: Tabs + header</td>
+      <td>No tocar.</td>
+    </tr>
+  </table>
+  <p style="margin-top:14px;color:#aaa;font-size:12px">
+    <b>Estimación:</b> ~150-200 líneas modificadas en FeedScreen.tsx (mayoría nuevas, pocas borradas). Sin nuevas dependencias.
+    Riesgo: bajo a medio — toda la lógica nueva es condicional, los users con datos siguen viendo lo de siempre.
+  </p>
+</div>
+
+</body>
+</html>

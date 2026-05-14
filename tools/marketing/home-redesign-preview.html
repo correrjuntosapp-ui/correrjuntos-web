@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Home — Meridian Motion redesign</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --ash: rgba(246,241,232,0.58);
+    --ash-soft: rgba(246,241,232,0.52);
+    --ash-fade: rgba(246,241,232,0.12);
+    --ash-fade-2: rgba(246,241,232,0.08);
+    --surface: rgba(246,241,232,0.04);
+    --surface-strong: rgba(246,241,232,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a1a1a; font-family: 'Inter', -apple-system, sans-serif; color: var(--paper); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  body { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+
+  .main-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #aaa; font-weight: 500; text-align: center; }
+  .main-sub { color: #888; font-size: 14px; text-align: center; max-width: 620px; line-height: 1.55; margin-top: -10px; }
+  .main-sub strong { color: var(--ember); font-weight: 700; }
+
+  .comparison { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+  .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  .tag.before { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .tag.after { background: rgba(34,197,94,0.15); color: #86efac; }
+
+  .phone { width: 340px; height: 720px; background: var(--ink); border-radius: 42px; overflow: hidden; position: relative; box-shadow: 0 0 0 9px #222, 0 0 0 11px #111, 0 24px 50px rgba(0,0,0,0.5); }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 115px; height: 28px; background: #000; border-radius: 20px; z-index: 10; }
+  .screen { width: 100%; height: 100%; padding-top: 50px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+  .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px 0 24px; font-size: 12px; font-weight: 600; color: var(--paper); z-index: 5; }
+  .scroll { flex: 1; overflow-y: auto; padding-bottom: 80px; }
+  .scroll::-webkit-scrollbar { display: none; }
+
+  /* ═══════════════════════════════════════════ */
+  /* BEFORE — saturated orange */
+  /* ═══════════════════════════════════════════ */
+  .pre-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px 16px;
+  }
+  .pre-header-left { display: flex; align-items: center; gap: 12px; }
+  .pre-avatar {
+    width: 44px; height: 44px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--ember), var(--ember-deep));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 18px;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.4);
+  }
+  .pre-greet-hi { font-size: 12px; color: var(--ash-soft); }
+  .pre-greet-name { font-size: 18px; font-weight: 800; color: var(--paper); }
+  .pre-bell {
+    width: 36px; height: 36px; border-radius: 18px;
+    border: 1px solid var(--ash-fade);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    color: var(--ash);
+  }
+  .pre-bell::after {
+    content: "2";
+    position: absolute;
+    top: -3px; right: -3px;
+    width: 17px; height: 17px;
+    background: #ef4444; color: #fff;
+    border-radius: 50%;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--ink);
+  }
+
+  .pre-stats {
+    margin: 0 18px 22px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 14px;
+    position: relative;
+  }
+  .pre-stats::before {
+    content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; background: var(--ember); border-radius: 0 2px 2px 0;
+  }
+  .pre-stats-top { display: flex; justify-content: space-between; margin-bottom: 12px; padding-left: 6px; }
+  .pre-stats-label { font-size: 10px; letter-spacing: 1.6px; font-weight: 700; color: var(--ash-soft); text-transform: uppercase; }
+  .pre-stats-status { font-size: 11px; color: #22c55e; font-weight: 600; }
+  .pre-stats-values { display: flex; gap: 0; padding-left: 6px; }
+  .pre-stats-val { flex: 1; }
+  .pre-stats-num { font-size: 26px; font-weight: 800; color: var(--ember); line-height: 1; letter-spacing: -0.8px; }
+  .pre-stats-cap { font-size: 9px; letter-spacing: 1.4px; color: var(--ash-soft); margin-top: 5px; font-weight: 700; }
+
+  .pre-section {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 18px 12px;
+  }
+  .pre-section-title { font-size: 17px; font-weight: 800; color: var(--paper); }
+  .pre-crear-btn {
+    background: var(--ember);
+    color: #fff; font-weight: 700; font-size: 12px;
+    padding: 8px 14px; border-radius: 999px;
+  }
+
+  .pre-quedada {
+    margin: 0 18px 10px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 14px;
+    padding: 12px 14px 12px 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .pre-quedada-date {
+    width: 40px; text-align: center;
+    background: rgba(249,115,22,0.1);
+    border-radius: 10px;
+    padding: 6px 2px;
+  }
+  .pre-quedada-day { font-size: 15px; font-weight: 800; color: var(--ember); }
+  .pre-quedada-mon { font-size: 9px; color: var(--ember); letter-spacing: 1px; font-weight: 700; }
+  .pre-quedada-body { flex: 1; }
+  .pre-quedada-title { font-size: 13px; font-weight: 700; color: var(--paper); }
+  .pre-quedada-meta { font-size: 11px; color: var(--ash-soft); margin-top: 2px; }
+  .pre-nivel {
+    font-size: 9px; font-weight: 700;
+    padding: 3px 8px; border-radius: 4px;
+    background: var(--ember); color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .pre-nivel.principi { background: #22c55e; }
+
+  .pre-paywall {
+    margin: 16px 18px 22px;
+    font-size: 11px;
+    color: var(--ash-soft);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pre-paywall-pro { color: var(--ember); font-weight: 700; }
+
+  .pre-planes-banner {
+    margin: 0 18px 22px;
+    background: linear-gradient(135deg, var(--ember) 0%, var(--ember-deep) 100%);
+    border-radius: 16px;
+    padding: 16px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 6px 20px rgba(249,115,22,0.4);
+  }
+  .pre-planes-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .pre-planes-body { flex: 1; }
+  .pre-planes-title { font-size: 14px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+  .pre-planes-badge { font-size: 9px; background: #fff; color: var(--ember); padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 0.5px; }
+  .pre-planes-desc { font-size: 11px; opacity: 0.9; margin-top: 2px; }
+  .pre-planes-chips { display: flex; gap: 4px; margin-top: 6px; }
+  .pre-planes-chip { font-size: 9px; background: rgba(0,0,0,0.25); padding: 2px 7px; border-radius: 10px; font-weight: 700; }
+
+  .pre-empty {
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .pre-empty-icon { font-size: 44px; margin-bottom: 14px; opacity: 0.4; }
+  .pre-empty-title { font-size: 16px; font-weight: 800; color: var(--paper); margin-bottom: 6px; }
+  .pre-empty-sub { font-size: 12px; color: var(--ash-soft); line-height: 1.5; margin-bottom: 18px; }
+  .pre-empty-cta {
+    display: inline-block;
+    background: var(--ember);
+    color: #fff; font-weight: 700; font-size: 14px;
+    padding: 12px 22px; border-radius: 999px;
+  }
+
+  /* ═══════════════════════════════════════════ */
+  /* AFTER — Meridian Motion consistency */
+  /* ═══════════════════════════════════════════ */
+  .aft-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 20px;
+  }
+  .aft-header-left { display: flex; align-items: center; gap: 10px; }
+  .aft-avatar {
+    width: 36px; height: 36px;
+    border-radius: 18px;
+    background: rgba(249,115,22,0.15);
+    border: 1px solid rgba(249,115,22,0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ember); font-weight: 700; font-size: 15px;
+  }
+  .aft-greet-hi { font-size: 10px; letter-spacing: 1.4px; color: var(--ash-soft); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
+  .aft-greet-name { font-size: 17px; font-weight: 800; color: var(--paper); letter-spacing: -0.3px; line-height: 1.15; }
+  .aft-bell {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ash);
+  }
+
+  /* Weekly stats — mono labels, no thick accent */
+  .aft-stats {
+    margin: 0 20px 24px;
+  }
+  .aft-stats-head {
+    display: flex; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .aft-stats-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--ash-soft);
+    font-weight: 600;
+  }
+  .aft-stats-status {
+    font-size: 11px;
+    color: var(--ember);
+    font-weight: 600;
+  }
+  .aft-stats-row {
+    display: flex;
+    gap: 8px;
+  }
+  .aft-stat-card {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 12px;
+    padding: 12px 10px;
+  }
+  .aft-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--ember); letter-spacing: 1px; font-weight: 700; margin-bottom: 4px; }
+  .aft-stat-val { font-size: 20px; font-weight: 800; color: var(--paper); line-height: 1; letter-spacing: -0.5px; }
+  .aft-stat-cap { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1.2px; color: var(--ash-soft); margin-top: 6px; font-weight: 700; }
+
+  /* Section headers (mono like email sections) */
+  .aft-section-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 20px 10px;
+  }
+  .aft-section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ash-soft);
+    font-weight: 600;
+  }
+  .aft-section-cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    color: var(--ember);
+    font-weight: 700;
+    border: 1px solid rgba(249,115,22,0.3);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  /* Empty state for quedadas (when 0 nearby) */
+  .aft-empty-quedadas {
+    margin: 0 20px 24px;
+    padding: 18px;
+    border: 1px dashed rgba(249,115,22,0.25);
+    border-radius: 14px;
+    background: rgba(249,115,22,0.03);
+    text-align: center;
+  }
+  .aft-empty-quedadas-marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.8px;
+    color: var(--ember);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .aft-empty-quedadas-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.2px;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .aft-empty-quedadas-title strong {
+    color: var(--ember);
+    font-weight: 700;
+  }
+  .aft-empty-quedadas-desc {
+    font-size: 12px;
+    color: var(--ash-soft);
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .aft-empty-quedadas-cta {
+    display: inline-block;
+    background: var(--ember);
+    color: #0b1220;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 9px 16px;
+    border-radius: 10px;
+    letter-spacing: 0.2px;
+  }
+
+  /* Planes — discreet card, NOT huge saturated banner */
+  .aft-planes {
+    margin: 0 20px 24px;
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .aft-planes::before {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--ember);
+  }
+  .aft-planes-icon {
+    width: 38px; height: 38px;
+    background: rgba(249,115,22,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: var(--ember);
+  }
+  .aft-planes-body { flex: 1; min-width: 0; }
+  .aft-planes-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    color: var(--ember);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .aft-planes-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .aft-planes-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.3);
+    background: rgba(34,197,94,0.08);
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .aft-planes-desc {
+    font-size: 11px;
+    color: var(--ash-soft);
+    margin-top: 2px;
+  }
+  .aft-planes-arrow { color: var(--ash-fade); font-size: 16px; }
+
+  /* Primeros pasos (replaces "Tu feed está vacío" negative message) */
+  .aft-steps {
+    margin: 0 20px 20px;
+  }
+  .aft-step-card {
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--ash-fade);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .aft-step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ember);
+    letter-spacing: 1.2px;
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .aft-step-body { flex: 1; }
+  .aft-step-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.1px;
+    margin-bottom: 2px;
+  }
+  .aft-step-desc {
+    font-size: 11px;
+    color: var(--ash-soft);
+    line-height: 1.4;
+  }
+  .aft-step-arrow {
+    color: var(--ash);
+    font-size: 14px;
+  }
+
+  /* Bottom tabs — consistent for both */
+  .tabs {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    background: rgba(11,18,32,0.95);
+    border-top: 1px solid var(--ash-fade-2);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding-top: 10px;
+    backdrop-filter: blur(12px);
+  }
+  .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--ash-soft);
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .tab.active { color: var(--paper); }
+  .tab-ico-box {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: currentColor;
+  }
+  .tab-ico-main {
+    width: 44px; height: 44px;
+    background: var(--ember);
+    border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.35);
+    margin-top: -8px;
+  }
+  .aft-tab-ico-main {
+    width: 40px; height: 40px;
+    background: rgba(249,115,22,0.15);
+    border: 1px solid var(--ember);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ember);
+    font-size: 18px;
+    margin-top: -6px;
+  }
+
+  /* Info box */
+  .info-box {
+    max-width: 900px;
+    width: 100%;
+    padding: 22px 26px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 16px;
+    color: #ddd;
+  }
+  .info-box h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .info-box ul { list-style: none; }
+  .info-box li {
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 13px;
+    line-height: 1.55;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .info-box li:last-child { border-bottom: none; }
+  .info-box li::before { content: "●"; color: var(--ember); margin-top: 2px; font-size: 9px; }
+
+  @media (max-width: 760px) { .comparison { flex-direction: column; } }
+</style>
+</head>
+<body>
+
+  <div class="main-label">Home Inicio · Rediseño Meridian Motion consistency</div>
+  <div class="main-sub">
+    De <strong>8 bloques naranjas saturados</strong> a <strong>3 acentos puntuales</strong>.
+    Paywall prematuro fuera. Copy honesto. Estado "0 quedadas cerca" en vez de
+    Madrid/Sevilla random. 3 "primeros pasos" en lugar de "tu feed está vacío".
+  </div>
+
+  <div class="comparison">
+
+    <!-- ═══ BEFORE ═══ -->
+    <div class="phone-wrap">
+      <span class="tag before">Actual · saturado</span>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>13:49</span><span>🔋</span></div>
+        <div class="screen">
+          <div class="scroll">
+            <div class="pre-header">
+              <div class="pre-header-left">
+                <div class="pre-avatar">P</div>
+                <div>
+                  <div class="pre-greet-hi">Buenas tardes</div>
+                  <div class="pre-greet-name">Prueba</div>
+                </div>
+              </div>
+              <div class="pre-bell">🔔</div>
+            </div>
+
+            <div class="pre-stats">
+              <div class="pre-stats-top">
+                <span class="pre-stats-label">ESTA SEMANA</span>
+                <span class="pre-stats-status">Vas bien — 0 de 3</span>
+              </div>
+              <div class="pre-stats-values">
+                <div class="pre-stats-val">
+                  <div class="pre-stats-num">0</div>
+                  <div class="pre-stats-cap">CARRERAS</div>
+                </div>
+                <div class="pre-stats-val">
+                  <div class="pre-stats-num">0.0</div>
+                  <div class="pre-stats-cap">KM</div>
+                </div>
+                <div class="pre-stats-val">
+                  <div class="pre-stats-num">0m</div>
+                  <div class="pre-stats-cap">TIEMPO</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pre-section">
+              <div class="pre-section-title">Próximas quedadas</div>
+              <div class="pre-crear-btn">Crear Quedada</div>
+            </div>
+
+            <div class="pre-quedada">
+              <div class="pre-quedada-date">
+                <div class="pre-quedada-day">27</div>
+                <div class="pre-quedada-mon">ABR</div>
+              </div>
+              <div class="pre-quedada-body">
+                <div class="pre-quedada-title">Fartlek Casa de Campo</div>
+                <div class="pre-quedada-meta">📍 Madrid · 10 km · 08:30</div>
+              </div>
+              <div class="pre-nivel">Avanzado</div>
+            </div>
+
+            <div class="pre-quedada">
+              <div class="pre-quedada-date">
+                <div class="pre-quedada-day">26</div>
+                <div class="pre-quedada-mon">ABR</div>
+              </div>
+              <div class="pre-quedada-body">
+                <div class="pre-quedada-title">Rodaje nocturno Guadalquivir</div>
+                <div class="pre-quedada-meta">📍 Sevilla · 8 km · 20:00</div>
+              </div>
+              <div class="pre-nivel principi">Principiante</div>
+            </div>
+
+            <div class="pre-paywall">
+              ⏱ 0 de 2 quedadas gratis este mes · <span class="pre-paywall-pro">Ilimitadas con PRO</span>
+            </div>
+
+            <div class="pre-planes-banner">
+              <div class="pre-planes-icon">🏃</div>
+              <div class="pre-planes-body">
+                <div class="pre-planes-title">Planes de Entrenamiento <span class="pre-planes-badge">GRATIS</span></div>
+                <div class="pre-planes-desc">6 planes · Desde principiante a maratón</div>
+                <div class="pre-planes-chips">
+                  <span class="pre-planes-chip">5K</span>
+                  <span class="pre-planes-chip">10K</span>
+                  <span class="pre-planes-chip">21K</span>
+                  <span class="pre-planes-chip">Trail</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pre-empty">
+              <div class="pre-empty-icon">🏃</div>
+              <div class="pre-empty-title">Tu feed está vacío</div>
+              <div class="pre-empty-sub">Sigue a otros runners para ver su actividad</div>
+              <div class="pre-empty-cta">Registra tu primera carrera  →</div>
+            </div>
+          </div>
+
+          <div class="tabs">
+            <div class="tab active"><div class="tab-ico-box">🏠</div>Inicio</div>
+            <div class="tab"><div class="tab-ico-box">📍</div>Mapa</div>
+            <div class="tab"><div class="tab-ico-main">▶</div>Correr</div>
+            <div class="tab"><div class="tab-ico-box">👥</div>Social</div>
+            <div class="tab"><div class="tab-ico-box">👤</div>Perfil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AFTER ═══ -->
+    <div class="phone-wrap">
+      <span class="tag after">Propuesta · Meridian Motion</span>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="statusbar"><span>13:49</span><span>🔋</span></div>
+        <div class="screen">
+          <div class="scroll">
+
+            <!-- Header: avatar más pequeño, bell sin badge inventado -->
+            <div class="aft-header">
+              <div class="aft-header-left">
+                <div class="aft-avatar">P</div>
+                <div>
+                  <div class="aft-greet-hi">BUENAS TARDES</div>
+                  <div class="aft-greet-name">Prueba</div>
+                </div>
+              </div>
+              <div class="aft-bell">🔔</div>
+            </div>
+
+            <!-- Stats con 3 cards Meridian (01/02/03 mono) en vez de bloque con acento grueso -->
+            <div class="aft-stats">
+              <div class="aft-stats-head">
+                <span class="aft-stats-label">ESTA SEMANA · PUNTA UMBRÍA</span>
+                <span class="aft-stats-status">Tu primera te espera</span>
+              </div>
+              <div class="aft-stats-row">
+                <div class="aft-stat-card">
+                  <div class="aft-stat-num">01</div>
+                  <div class="aft-stat-val">0</div>
+                  <div class="aft-stat-cap">CARRERAS</div>
+                </div>
+                <div class="aft-stat-card">
+                  <div class="aft-stat-num">02</div>
+                  <div class="aft-stat-val">0</div>
+                  <div class="aft-stat-cap">KM</div>
+                </div>
+                <div class="aft-stat-card">
+                  <div class="aft-stat-num">03</div>
+                  <div class="aft-stat-val">0m</div>
+                  <div class="aft-stat-cap">TIEMPO</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Próximas quedadas section -->
+            <div class="aft-section-head">
+              <span class="aft-section-title">QUEDADAS CERCA DE TI</span>
+              <span class="aft-section-cta">+ CREAR</span>
+            </div>
+
+            <!-- Estado "0 cerca" en lugar de Madrid/Sevilla random -->
+            <div class="aft-empty-quedadas">
+              <div class="aft-empty-quedadas-marker">● 0 A &lt; 50 KM</div>
+              <div class="aft-empty-quedadas-title">Sé el primero en <strong>Huelva</strong>.</div>
+              <div class="aft-empty-quedadas-desc">Crea la primera quedada de tu zona. Llegan al feed de todos los runners locales.</div>
+              <div class="aft-empty-quedadas-cta">Crear quedada  →</div>
+            </div>
+
+            <!-- Planes de entrenamiento: CARD discreta, no banner naranja masivo -->
+            <div class="aft-planes">
+              <div class="aft-planes-icon">🏃</div>
+              <div class="aft-planes-body">
+                <div class="aft-planes-num">01</div>
+                <div class="aft-planes-title">Planes de entrenamiento <span class="aft-planes-badge">GRATIS</span></div>
+                <div class="aft-planes-desc">5K · 10K · 21K · Trail · Maratón</div>
+              </div>
+              <div class="aft-planes-arrow">›</div>
+            </div>
+
+            <!-- Primeros pasos (reemplaza "Tu feed está vacío") -->
+            <div class="aft-section-head" style="padding-top:8px;">
+              <span class="aft-section-title">PRIMEROS PASOS · 1 DE 3</span>
+            </div>
+            <div class="aft-steps">
+              <div class="aft-step-card">
+                <div class="aft-step-num">01</div>
+                <div class="aft-step-body">
+                  <div class="aft-step-title">Registra tu primera carrera</div>
+                  <div class="aft-step-desc">30 minutos basta para empezar</div>
+                </div>
+                <div class="aft-step-arrow">›</div>
+              </div>
+              <div class="aft-step-card">
+                <div class="aft-step-num">02</div>
+                <div class="aft-step-body">
+                  <div class="aft-step-title">Explora runners cerca</div>
+                  <div class="aft-step-desc">Encuentra gente con tu ritmo</div>
+                </div>
+                <div class="aft-step-arrow">›</div>
+              </div>
+              <div class="aft-step-card">
+                <div class="aft-step-num">03</div>
+                <div class="aft-step-body">
+                  <div class="aft-step-title">Activa un plan gratis</div>
+                  <div class="aft-step-desc">Empieza a Moverte · 0→5K</div>
+                </div>
+                <div class="aft-step-arrow">›</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="tabs">
+            <div class="tab active"><div class="tab-ico-box">🏠</div>Inicio</div>
+            <div class="tab"><div class="tab-ico-box">📍</div>Mapa</div>
+            <div class="tab"><div class="aft-tab-ico-main">▶</div>Correr</div>
+            <div class="tab"><div class="tab-ico-box">👥</div>Social</div>
+            <div class="tab"><div class="tab-ico-box">👤</div>Perfil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="info-box">
+    <h3>8 problemas del "muy naranja" · antes → después</h3>
+    <ul>
+      <li><strong>Avatar gigante 44×44 con gradient glow</strong> → 36×36, ember border + fondo tinted (ember como acento, no relleno)</li>
+      <li><strong>Bell con badge rojo "2" (notifs inventadas)</strong> → bell limpio sin badge fake</li>
+      <li><strong>"Esta semana" como bloque con barra ember gruesa</strong> → 3 stat cards numeradas 01/02/03 mono (consistency con onboarding y Welcome)</li>
+      <li><strong>"Vas bien · 0 de 3"</strong> (gaslighting) → <strong>"Tu primera te espera"</strong> (honesto y motivador)</li>
+      <li><strong>Quedadas de Madrid/Sevilla (700 km)</strong> → <strong>Estado "0 a &lt; 50 km · Sé el primero en Huelva"</strong> con CTA concreto. Si hay reales, se muestran; si no, mensaje constructivo local</li>
+      <li><strong>"0 de 2 quedadas gratis · Ilimitadas con PRO"</strong> (paywall prematuro) → <strong>eliminado</strong>. Solo sale tras el 1er mes activo del user</li>
+      <li><strong>Banner Planes enorme gradient naranja</strong> (el 60% del "muy naranja") → <strong>Card discreta con acento ember izquierdo</strong>. Info igual, visual 10× más pro</li>
+      <li><strong>"Tu feed está vacío"</strong> (mensaje desmoralizador) → <strong>"PRIMEROS PASOS · 1 DE 3"</strong> con 3 cards accionables (Registrar carrera · Explorar runners · Activar plan gratis)</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Filosofía aplicada (Meridian Motion)</h3>
+    <ul>
+      <li><strong>Naranja como ACENTO, no como fondo</strong>: bordes, dots, texto destacado, un solo CTA principal</li>
+      <li><strong>Mono labels JetBrains para secciones</strong>: "ESTA SEMANA", "QUEDADAS CERCA DE TI", "PRIMEROS PASOS · 1 DE 3"</li>
+      <li><strong>Numeración 01/02/03</strong> en stat cards y primeros pasos (consistency con Hook pillars, Profile ritmos, Notifications benefits, Welcome goals)</li>
+      <li><strong>Cards con borde + fondo surface transparente</strong>: mismo patrón que en todo el onboarding rediseñado</li>
+      <li><strong>Estado vacío = oportunidad</strong>: en vez de "no hay nada", "sé el primero / empieza por aquí"</li>
+      <li><strong>Copy honesto</strong>: 0 carreras no es "vas bien". Es "tu primera te espera"</li>
+    </ul>
+  </div>
+
+</body>
+</html>

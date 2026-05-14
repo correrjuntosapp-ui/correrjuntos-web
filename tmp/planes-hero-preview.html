@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Preview /planes/* hero update — adaptativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f1ece1;
+    padding: 40px 20px;
+    color: #3d3229;
+  }
+  h1.page-title { font-size: 28px; margin-bottom: 6px; }
+  .page-sub { color: #5c4d3d; margin-bottom: 32px; font-size: 15px; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1500px;
+    margin: 0 auto 48px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.06);
+  }
+  .card-head {
+    padding: 12px 22px;
+    font-family: 'Inter', monospace;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .card.before .card-head {
+    background: rgba(239, 68, 68, 0.08);
+    color: #b91c1c;
+    border-bottom: 1px solid rgba(239, 68, 68, 0.18);
+  }
+  .card.after .card-head {
+    background: rgba(249, 115, 22, 0.10);
+    color: #c2410c;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.25);
+  }
+
+  /* Mock landing — replicates exactly /planes/10k design tokens */
+  .plan-hero {
+    text-align: center;
+    padding: 48px 28px 36px;
+    background: linear-gradient(135deg, rgba(249,115,22,.06), rgba(249,115,22,.02));
+  }
+  .breadcrumb {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 22px;
+    text-align: left;
+    padding: 12px 22px 0;
+  }
+  .breadcrumb a { color: #f97316; text-decoration: none; }
+  .breadcrumb span { margin: 0 8px; color: #cbd5e1; }
+  .badge-new {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    background: rgba(249,115,22,.12);
+    color: #c2410c;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    border: 1px solid rgba(249,115,22,.22);
+  }
+  .plan-hero h1 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #3d3229;
+    margin-bottom: 12px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .plan-hero h1 em {
+    font-style: normal;
+    color: #f97316;
+  }
+  .plan-hero .subtitle {
+    font-size: 15px;
+    color: #5c4d3d;
+    max-width: 520px;
+    margin: 0 auto 22px;
+    line-height: 1.5;
+  }
+  .plan-stats {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  .plan-stat {
+    background: rgba(249,115,22,.08);
+    border: 1px solid rgba(249,115,22,.15);
+    border-radius: 12px;
+    padding: 12px 18px;
+    min-width: 90px;
+  }
+  .plan-stat-number {
+    font-size: 22px;
+    font-weight: 900;
+    color: #f97316;
+    line-height: 1;
+  }
+  .plan-stat-label {
+    font-size: 10px;
+    color: #5c4d3d;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .cta-plan {
+    display: inline-block;
+    background: #f97316;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .cta-small {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .info {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 1500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,.04);
+  }
+  .info h2 {
+    font-size: 17px;
+    margin-bottom: 14px;
+    color: #3d3229;
+    letter-spacing: -0.01em;
+  }
+  .info table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .info th, .info td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(60,50,41,.08);
+    vertical-align: top;
+  }
+  .info th {
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .12em;
+    font-weight: 700;
+  }
+  .info td.field { color: #94a3b8; font-family: monospace; font-size: 12px; }
+  .info td.before { color: #b91c1c; }
+  .info td.after  { color: #c2410c; font-weight: 600; }
+
+  .page-banner {
+    background: #f97316;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 14px;
+    max-width: 1500px;
+    margin: 0 auto 32px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+  }
+  .page-banner span { opacity: 0.85; font-weight: 400; }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">Update web copy — /planes/10k/ (mismo patrón aplicará a /5k, /21k, /42k, /trail, /0-5k)</h1>
+<p class="page-sub">Mismo CSS, mismas stats. Solo cambia el copy del hero para reflejar la lógica adaptativa.</p>
+
+<div class="page-banner">
+  Hero comparison · /planes/10k/index.html (líneas 107-117)
+  <span>· lo único que cambia es el copy del h1, subtitle y stats labels</span>
+</div>
+
+<div class="row">
+
+  <!-- BEFORE -->
+  <div class="card before">
+    <div class="card-head">ANTES (live ahora)</div>
+    <div class="breadcrumb"><a href="#">Inicio</a><span>/</span><a href="#">Planes</a><span>/</span>Plan 10K</div>
+    <div class="plan-hero">
+      <h1>Plan de Entrenamiento 10K — 12 Semanas</h1>
+      <p class="subtitle">Lleva tu 10K al siguiente nivel con series, tempo y específico. Un plan completo para corredores intermedios.</p>
+      <div class="plan-stats">
+        <div class="plan-stat"><div class="plan-stat-number">12</div><div class="plan-stat-label">Semanas</div></div>
+        <div class="plan-stat"><div class="plan-stat-number">48</div><div class="plan-stat-label">Sesiones</div></div>
+        <div class="plan-stat"><div class="plan-stat-number">328</div><div class="plan-stat-label">Kilómetros</div></div>
+      </div>
+      <a href="#" class="cta-plan">Descarga la app gratis</a>
+      <p class="cta-small">El plan se activa dentro de la app</p>
+    </div>
+  </div>
+
+  <!-- AFTER -->
+  <div class="card after">
+    <div class="card-head">DESPUÉS (propuesto)</div>
+    <div class="breadcrumb"><a href="#">Inicio</a><span>/</span><a href="#">Planes</a><span>/</span>Plan 10K</div>
+    <div class="plan-hero">
+      <span class="badge-new">Adaptativo — Nuevo</span>
+      <h1>Plan 10K que termina<br>el <em>día de tu carrera</em></h1>
+      <p class="subtitle">Pones la fecha. Generamos un plan de <strong>6 a 18 semanas</strong> que acaba exactamente el día de la salida — con la última semana en taper. Sin huecos. Sin improvisar.</p>
+      <div class="plan-stats">
+        <div class="plan-stat"><div class="plan-stat-number">6-18</div><div class="plan-stat-label">Semanas adaptadas</div></div>
+        <div class="plan-stat"><div class="plan-stat-number">4×</div><div class="plan-stat-label">Sesiones / sem</div></div>
+        <div class="plan-stat"><div class="plan-stat-number">∙</div><div class="plan-stat-label">Termina en tu fecha</div></div>
+      </div>
+      <a href="#" class="cta-plan">Descarga la app gratis</a>
+      <p class="cta-small">Eliges tu fecha de carrera dentro de la app</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="info">
+  <h2>Cambios exactos a aplicar (1 archivo por distancia)</h2>
+  <table>
+    <thead>
+      <tr><th>Campo</th><th>Antes</th><th>Después</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="field">&lt;title&gt;</td>
+        <td class="before">Plan Entrenamiento 10K — 12 Semanas para tu Mejor Marca</td>
+        <td class="after">Plan 10K Adaptativo — Termina el Día de tu Carrera</td>
+      </tr>
+      <tr>
+        <td class="field">&lt;meta description&gt;</td>
+        <td class="before">Plan 10K de 12 semanas. 48 sesiones, 328km. Series, tempo y tirada larga.</td>
+        <td class="after">Plan 10K que se ajusta a tu fecha de carrera. 6-18 semanas según tu calendario, última en taper. Series, tempo y tirada larga.</td>
+      </tr>
+      <tr>
+        <td class="field">&lt;h1&gt;</td>
+        <td class="before">Plan de Entrenamiento 10K — 12 Semanas</td>
+        <td class="after">Plan 10K que termina el día de tu carrera</td>
+      </tr>
+      <tr>
+        <td class="field">.subtitle</td>
+        <td class="before">Lleva tu 10K al siguiente nivel con series, tempo y específico. Un plan completo para corredores intermedios.</td>
+        <td class="after">Pones la fecha. Generamos un plan de 6 a 18 semanas que acaba exactamente el día de la salida — con la última semana en taper. Sin huecos. Sin improvisar.</td>
+      </tr>
+      <tr>
+        <td class="field">.plan-stat (1)</td>
+        <td class="before">12 Semanas</td>
+        <td class="after">6-18 Semanas adaptadas</td>
+      </tr>
+      <tr>
+        <td class="field">.plan-stat (2)</td>
+        <td class="before">48 Sesiones</td>
+        <td class="after">4× Sesiones / sem</td>
+      </tr>
+      <tr>
+        <td class="field">.plan-stat (3)</td>
+        <td class="before">328 Kilómetros</td>
+        <td class="after">∙ Termina en tu fecha</td>
+      </tr>
+      <tr>
+        <td class="field">.cta-small</td>
+        <td class="before">El plan se activa dentro de la app</td>
+        <td class="after">Eliges tu fecha de carrera dentro de la app</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: 28px;">Mismo patrón aplica a las otras 5 landings</h2>
+  <table>
+    <thead>
+      <tr><th>Archivo</th><th>Distancia</th><th>Rango semanas</th><th>Sesiones / sem</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="field">/planes/0-5k/</td><td>0→5K (principiantes)</td><td>4-12</td><td>3×</td></tr>
+      <tr><td class="field">/planes/5k/</td><td>5K</td><td>4-14</td><td>4×</td></tr>
+      <tr><td class="field">/planes/10k/</td><td>10K</td><td>6-18</td><td>4×</td></tr>
+      <tr><td class="field">/planes/media-maraton/</td><td>21K</td><td>10-24</td><td>4×</td></tr>
+      <tr><td class="field">/planes/maraton/</td><td>42K</td><td>14-26</td><td>4×</td></tr>
+      <tr><td class="field">/planes/trail/</td><td>Trail</td><td>8-16</td><td>4×</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

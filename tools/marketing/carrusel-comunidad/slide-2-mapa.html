@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Mapa Comunidad</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+/* Region grid */
+.regions{display:flex;flex-direction:column;gap:28px;flex:1}
+.region{display:flex;flex-direction:column;gap:14px;padding-bottom:28px;border-bottom:1px solid rgba(246,241,232,0.10)}
+.region:last-child{border-bottom:none}
+.region-head{display:flex;justify-content:space-between;align-items:baseline}
+.region-name{font-size:32px;font-weight:800;color:#f6f1e8;letter-spacing:-0.5px;display:flex;align-items:center;gap:14px}
+.region-flag{font-size:36px}
+.region-stats{display:flex;align-items:baseline;gap:14px}
+.region-num{font-size:54px;font-weight:900;color:#f97316;line-height:1;letter-spacing:-2px;font-family:'Inter',sans-serif}
+.region-pct{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:rgba(246,241,232,0.55);letter-spacing:0.5px}
+.region-bar{width:100%;height:8px;background:rgba(246,241,232,0.06);border-radius:4px;overflow:hidden}
+.region-fill{height:100%;background:#f97316;border-radius:4px}
+.region-countries{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:0.5px;margin-top:4px}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">02 / 05</div>
+  <div class="eyebrow">Distribución global</div>
+  <div class="coords">SOURCE: SUPABASE LIVE · TOTAL: 663 USERS</div>
+  <div class="title">Dónde están los<br><span class="accent">corredores</span></div>
+
+  <div class="regions">
+    <div class="region">
+      <div class="region-head">
+        <div class="region-name"><span class="region-flag">🇪🇸</span>España</div>
+        <div class="region-stats">
+          <div class="region-num">459</div>
+          <div class="region-pct">70%</div>
+        </div>
+      </div>
+      <div class="region-bar"><div class="region-fill" style="width:70%"></div></div>
+      <div class="region-countries">MADRID · BARCELONA · VALENCIA · SEVILLA · HUELVA</div>
+    </div>
+    <div class="region">
+      <div class="region-head">
+        <div class="region-name"><span class="region-flag">🌎</span>LATAM</div>
+        <div class="region-stats">
+          <div class="region-num">134</div>
+          <div class="region-pct">20%</div>
+        </div>
+      </div>
+      <div class="region-bar"><div class="region-fill" style="width:20%"></div></div>
+      <div class="region-countries">MX · PE · CO · CL · AR · EC · UY · BR · BO · CR · VE · PA</div>
+    </div>
+    <div class="region">
+      <div class="region-head">
+        <div class="region-name"><span class="region-flag">🇪🇺</span>Europa</div>
+        <div class="region-stats">
+          <div class="region-num">38</div>
+          <div class="region-pct">6%</div>
+        </div>
+      </div>
+      <div class="region-bar"><div class="region-fill" style="width:6%"></div></div>
+      <div class="region-countries">FR · PT · NL · DE · IT · IE · FI · AT · BE · CH · GB · HU</div>
+    </div>
+    <div class="region">
+      <div class="region-head">
+        <div class="region-name"><span class="region-flag">🌐</span>Resto del mundo</div>
+        <div class="region-stats">
+          <div class="region-num">32</div>
+          <div class="region-pct">4%</div>
+        </div>
+      </div>
+      <div class="region-bar"><div class="region-fill" style="width:4%"></div></div>
+      <div class="region-countries">USA · CANADÁ · AUSTRALIA · EMIRATOS</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 02 · MAPA</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

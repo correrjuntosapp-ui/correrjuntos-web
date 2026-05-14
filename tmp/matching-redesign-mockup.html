@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Matching · CorrerJuntos Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e16;
+    --bg-warm: #0d1119;
+    --paper: #ffffff;
+    --paper-90: rgba(255, 255, 255, 0.90);
+    --paper-72: rgba(255, 255, 255, 0.72);
+    --paper-50: rgba(255, 255, 255, 0.50);
+    --paper-32: rgba(255, 255, 255, 0.32);
+    --paper-12: rgba(255, 255, 255, 0.12);
+    --paper-06: rgba(255, 255, 255, 0.06);
+    --ember: #FF6B00;
+    --ember-bright: #FF8533;
+    --ember-deep: #E55A00;
+    --surface: rgba(255, 255, 255, 0.05);
+    --surface-2: rgba(255, 255, 255, 0.08);
+    --shadow-ember: 0 12px 32px -8px rgba(255, 107, 0, 0.45);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  html, body {
+    background: #131418;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--paper);
+    min-height: 100vh;
+    padding: 60px 20px 80px 20px;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    display: flex; justify-content: center; align-items: flex-start;
+    gap: 40px; flex-wrap: wrap;
+  }
+
+  .phone-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+  .phone-label {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 700;
+  }
+
+  .phone {
+    width: 393px;
+    height: 852px;
+    background: var(--bg);
+    border-radius: 56px;
+    border: 10px solid #1a1a1a;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 32px 96px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.03);
+  }
+
+  .phone-screen {
+    background: var(--bg);
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Warm gradient backdrop (subtle) */
+  .phone-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 280px;
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 0%, rgba(255, 107, 0, 0.10), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 10%, rgba(255, 107, 0, 0.06), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* iOS status bar */
+  .statusbar {
+    position: relative;
+    z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 30px 0 30px;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+  }
+  .statusbar .icons { display: flex; gap: 6px; align-items: center; opacity: 0.95; font-size: 13px; }
+
+  /* Notch (visual fluff) */
+  .notch {
+    position: absolute;
+    top: 12px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 32px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 3;
+  }
+
+  /* Header */
+  .header {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px 14px 22px;
+    flex-shrink: 0;
+  }
+  .header .nav-btn {
+    font-size: 16px; font-weight: 600;
+    background: none; border: none; cursor: pointer;
+    padding: 4px 0;
+    color: var(--paper-90);
+    letter-spacing: -0.01em;
+  }
+  .header .nav-btn.primary { color: var(--ember-bright); font-weight: 700; }
+  .header .title {
+    font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--paper);
+  }
+
+  /* Body — fits in one screen, no scroll */
+  .body {
+    position: relative; z-index: 1;
+    flex: 1;
+    padding: 4px 22px 0 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    overflow: hidden;
+  }
+
+  /* 1. Hero — Visible toggle (big card with personality) */
+  .hero-card {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.16), rgba(255, 107, 0, 0.04));
+    border: 1px solid rgba(255, 107, 0, 0.22);
+    border-radius: 18px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    backdrop-filter: blur(20px);
+  }
+  .hero-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ember), var(--ember-deep));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(255, 107, 0, 0.40);
+    border: 2px solid rgba(255, 255, 255, 0.10);
+  }
+  .hero-info { flex: 1; min-width: 0; }
+  .hero-info .title {
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .hero-info .meta {
+    font-size: 12.5px; color: var(--paper-72); font-weight: 500;
+    line-height: 1.35;
+  }
+  .hero-info .meta b { color: var(--ember-bright); font-weight: 700; }
+
+  /* Switch — iOS native style */
+  .switch {
+    width: 48px; height: 30px;
+    background: var(--ember);
+    border-radius: 30px;
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    box-shadow:
+      0 0 0 1px rgba(255, 107, 0, 0.3),
+      inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s;
+  }
+  .switch::after {
+    content: '';
+    position: absolute; top: 2px; right: 2px;
+    width: 26px; height: 26px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: right 0.2s;
+  }
+
+  /* Section — clean, no dividers */
+  .section { display: flex; flex-direction: column; gap: 10px; }
+  .section h2 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--paper);
+  }
+  .section .hint {
+    font-size: 13px;
+    color: var(--paper-50);
+    font-weight: 500;
+  }
+
+  /* 2. PACE — big inputs + horizontal chips */
+  .pace-stack { display: flex; flex-direction: column; gap: 10px; }
+  .pace-row {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pace-field {
+    flex: 1;
+    position: relative;
+  }
+  .pace-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid transparent;
+    border-radius: 14px;
+    padding: 14px 16px 14px 56px;
+    color: var(--paper);
+    font-size: 22px;
+    font-weight: 800;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .pace-input:focus {
+    border-color: var(--ember);
+    background: rgba(255, 107, 0, 0.06);
+  }
+  .pace-prefix {
+    position: absolute;
+    top: 50%; left: 16px;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: var(--paper-50);
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    pointer-events: none;
+    line-height: 1.1;
+  }
+  .pace-arrow {
+    font-size: 18px;
+    color: var(--paper-32);
+    flex-shrink: 0;
+  }
+  .pace-chips {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0 -22px;
+    padding: 2px 22px;
+  }
+  .pace-chips::-webkit-scrollbar { display: none; }
+  .pace-chips .chip {
+    background: var(--surface);
+    border: 1px solid var(--paper-06);
+    color: var(--paper-72);
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-variant-numeric: tabular-nums;
+    transition: all 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: -0.01em;
+  }
+  .pace-chips .chip.active {
+    background: var(--ember);
+    border-color: var(--ember);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.35);
+  }
+
+  /* 3. DAYS — 7 chips in 1 row, 3-letter labels */
+  .days-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+  .day-chip {
+    height: 44px;
+    background: var(--surface);
+    border: 1px solid var(--paper-06);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--paper-72);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: -0.01em;
+  }
+  .day-chip.selected {
+    background: var(--ember);
+    color: #fff;
+    border-color: var(--ember);
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.32);
+    transform: translateY(-1px);
+  }
+
+  /* 4 + 5. SCHEDULE + OBJECTIVE — 4 chips row, larger filled icons */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+  .icon-card {
+    background: var(--surface);
+    border: 1px solid var(--paper-06);
+    border-radius: 14px;
+    padding: 11px 4px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .icon-card.selected {
+    background: var(--ember);
+    border-color: var(--ember);
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.32);
+  }
+  .icon-card svg {
+    width: 22px; height: 22px;
+    fill: var(--paper-72);
+    transition: fill 0.15s;
+  }
+  .icon-card.selected svg { fill: #fff; }
+  .icon-card .lbl {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--paper-72);
+    text-align: center;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .icon-card.selected .lbl { color: #fff; }
+
+  /* 6. BIO */
+  .bio-wrap { position: relative; }
+  .bio-textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid transparent;
+    border-radius: 14px;
+    padding: 12px 14px 24px 14px;
+    color: var(--paper);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.45;
+    outline: none;
+    resize: none;
+    height: 70px;
+    font-family: inherit;
+    transition: border-color 0.15s, background 0.15s;
+    letter-spacing: -0.005em;
+  }
+  .bio-textarea::placeholder {
+    color: var(--paper-32);
+    font-weight: 500;
+  }
+  .bio-textarea:focus {
+    border-color: var(--ember);
+    background: rgba(255, 107, 0, 0.04);
+  }
+  .bio-counter {
+    position: absolute;
+    bottom: 8px; right: 12px;
+    font-size: 10px;
+    color: var(--paper-32);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+
+  /* Save — sticky bottom, solid brand orange */
+  .save-region {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    padding: 16px 22px 28px 22px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(10, 14, 22, 0.7) 25%,
+      var(--bg) 60%
+    );
+  }
+  .save-btn {
+    width: 100%;
+    background: var(--ember);
+    border: none;
+    color: #fff;
+    padding: 17px;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 16px;
+    cursor: pointer;
+    box-shadow:
+      0 12px 32px -8px rgba(255, 107, 0, 0.55),
+      0 0 0 1px rgba(255, 107, 0, 0.3) inset;
+    transition: transform 0.1s, box-shadow 0.15s;
+    letter-spacing: -0.01em;
+    font-family: inherit;
+  }
+  .save-btn:hover {
+    background: var(--ember-bright);
+    transform: translateY(-1px);
+    box-shadow:
+      0 16px 40px -8px rgba(255, 107, 0, 0.65),
+      0 0 0 1px rgba(255, 107, 0, 0.3) inset;
+  }
+  .save-btn:active {
+    transform: translateY(0);
+    background: var(--ember-deep);
+  }
+
+  /* Pull indicator (drag bar at top, iOS sheet style) */
+  .pull-indicator {
+    position: absolute;
+    top: 8px; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 5px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+    z-index: 4;
+    display: none; /* hidden — would show in modal mode */
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-wrap">
+  <div class="phone-label">— 10/10 · Fitness consumer polish —</div>
+
+  <div class="phone">
+    <div class="phone-screen">
+      <div class="notch"></div>
+
+      <!-- Status bar -->
+      <div class="statusbar">
+        <span>9:24</span>
+        <span class="icons">📶 📞 🔋</span>
+      </div>
+
+      <!-- Header -->
+      <div class="header">
+        <button class="nav-btn">Cancelar</button>
+        <div class="title">Tu perfil</div>
+        <button class="nav-btn primary">Guardar</button>
+      </div>
+
+      <!-- Body -->
+      <div class="body">
+
+        <!-- HERO: Visible toggle -->
+        <div class="hero-card">
+          <div class="hero-avatar">A</div>
+          <div class="hero-info">
+            <div class="title">Visible en Matching</div>
+            <div class="meta">Otros runners <b>cerca de Punta Umbría</b> podrán encontrarte</div>
+          </div>
+          <div class="switch"></div>
+        </div>
+
+        <!-- 2. PACE -->
+        <div class="section">
+          <h2>Tu ritmo</h2>
+          <div class="pace-stack">
+            <div class="pace-row">
+              <div class="pace-field">
+                <span class="pace-prefix">MIN</span>
+                <input class="pace-input" value="5:00">
+              </div>
+              <span class="pace-arrow">→</span>
+              <div class="pace-field">
+                <span class="pace-prefix">MAX</span>
+                <input class="pace-input" value="6:30">
+              </div>
+            </div>
+            <div class="pace-chips">
+              <span class="chip">4:30</span>
+              <span class="chip active">5:00</span>
+              <span class="chip">5:30</span>
+              <span class="chip">6:00</span>
+              <span class="chip active">6:30</span>
+              <span class="chip">7:00</span>
+              <span class="chip">7:30</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. DAYS -->
+        <div class="section">
+          <h2>Días que sueles correr</h2>
+          <div class="days-row">
+            <div class="day-chip selected">Lun</div>
+            <div class="day-chip selected">Mar</div>
+            <div class="day-chip selected">Mié</div>
+            <div class="day-chip">Jue</div>
+            <div class="day-chip">Vie</div>
+            <div class="day-chip selected">Sáb</div>
+            <div class="day-chip">Dom</div>
+          </div>
+        </div>
+
+        <!-- 4. SCHEDULE -->
+        <div class="section">
+          <h2>Horario preferido</h2>
+          <div class="icon-grid">
+            <div class="icon-card selected">
+              <svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 100 16 8 8 0 000-16zM3 12a1 1 0 011-1h2a1 1 0 010 2H4a1 1 0 01-1-1zm15-1h2a1 1 0 010 2h-2a1 1 0 010-2zM11 4V2a1 1 0 012 0v2a1 1 0 01-2 0zm0 18v-2a1 1 0 012 0v2a1 1 0 01-2 0zM5.6 4.2a1 1 0 011.4 0l1.4 1.4a1 1 0 11-1.4 1.4L5.6 5.6a1 1 0 010-1.4zm12.8 14.2a1 1 0 010 1.4l-1.4 1.4a1 1 0 11-1.4-1.4l1.4-1.4a1 1 0 011.4 0zm0-12.8a1 1 0 01-1.4 0l-1.4-1.4a1 1 0 111.4-1.4l1.4 1.4a1 1 0 010 1.4zM5.6 18.4a1 1 0 011.4 0l1.4 1.4a1 1 0 11-1.4 1.4l-1.4-1.4a1 1 0 010-1.4z"/></svg>
+              <span class="lbl">Mañana</span>
+            </div>
+            <div class="icon-card">
+              <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm0 18a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM2 13a1 1 0 110-2h1a1 1 0 110 2H2zm19 0a1 1 0 110-2h1a1 1 0 110 2h-1z"/></svg>
+              <span class="lbl">Mediodía</span>
+            </div>
+            <div class="icon-card">
+              <svg viewBox="0 0 24 24"><path d="M3 18a9 9 0 0118 0v1a1 1 0 01-1 1H4a1 1 0 01-1-1v-1zm9-15a1 1 0 011 1v6a1 1 0 11-2 0V4a1 1 0 011-1z"/></svg>
+              <span class="lbl">Tarde</span>
+            </div>
+            <div class="icon-card">
+              <svg viewBox="0 0 24 24"><path d="M21 13.4a1 1 0 00-1.1-.6 7 7 0 01-8.7-8.7 1 1 0 00-1.4-1.1A9 9 0 1021.6 14.5a1 1 0 00-.6-1.1z"/></svg>
+              <span class="lbl">Noche</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. OBJECTIVE -->
+        <div class="section">
+          <h2>Tu objetivo</h2>
+          <div class="icon-grid">
+            <div class="icon-card selected">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 7.3a5.5 5.5 0 019.5 4.7C19 16.5 12 21 12 21z"/></svg>
+              <span class="lbl">Salud</span>
+            </div>
+            <div class="icon-card">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h8l-2 8 12-14h-8l2-6h-2z"/></svg>
+              <span class="lbl">Velocidad</span>
+            </div>
+            <div class="icon-card">
+              <svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 100-8 4 4 0 000 8zm6 0a3 3 0 100-6 3 3 0 000 6zm-6 2c-3 0-9 1.5-9 4.5V20h18v-2.5c0-3-6-4.5-9-4.5zm10.5 0c-.6 0-1.3 0-2 .1 1.7 1 2.5 2.4 2.5 4.4V20h5v-2.5c0-3-3.4-4.5-5.5-4.5z"/></svg>
+              <span class="lbl">Social</span>
+            </div>
+            <div class="icon-card">
+              <svg viewBox="0 0 24 24"><path d="M7 4h10v2h2a3 3 0 01-3 3h-.4A5 5 0 0113 12.7V15h4v2H7v-2h4v-2.3A5 5 0 017.4 9H7a3 3 0 01-3-3h2V4h1zm10 3h1a1 1 0 001-1h-2v1zM6 6H5a1 1 0 001 1V6zM6 18h12v2H6v-2z"/></svg>
+              <span class="lbl">Competición</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. BIO -->
+        <div class="section">
+          <h2>Cuéntate <span class="hint" style="font-weight:500;font-size:13px">(opcional)</span></h2>
+          <div class="bio-wrap">
+            <textarea class="bio-textarea" placeholder="2 años corriendo · me gusta entrenar mañanas · busco grupo para mi primer 10K..."></textarea>
+            <span class="bio-counter">0 / 200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save sticky bottom -->
+      <div class="save-region">
+        <button class="save-btn">Guardar perfil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

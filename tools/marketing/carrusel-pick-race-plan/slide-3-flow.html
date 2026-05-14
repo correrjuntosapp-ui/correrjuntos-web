@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 50%,rgba(249,115,22,0.06) 0%,transparent 65%);pointer-events:none}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+.title{font-size:78px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+.steps{display:flex;flex-direction:column;gap:18px;flex:1}
+.step{padding:30px 32px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:18px;display:flex;align-items:center;gap:24px}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:60px;font-weight:800;color:#f97316;line-height:1;letter-spacing:-2px;min-width:90px}
+.step-content{flex:1}
+.step-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(246,241,232,0.50);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.step-headline{font-size:32px;font-weight:800;color:#f6f1e8;line-height:1.1;letter-spacing:-0.5px;margin-bottom:6px}
+.step-detail{font-size:18px;color:rgba(246,241,232,0.75);line-height:1.4;font-weight:500}
+.step-detail strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">03 / 05</div>
+  <div class="eyebrow">Cómo funciona</div>
+  <div class="coords">3 PASOS · CERO FRICCIÓN</div>
+  <div class="title">Tu carrera +<br>tu <span class="accent">plan</span> en 30s</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <div class="step-tag">Detección automática</div>
+        <div class="step-headline">Próxima carrera en tu ciudad</div>
+        <div class="step-detail">La app detecta tu ubicación y te muestra la <strong>carrera popular más cercana</strong>.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <div class="step-tag">Tú decides</div>
+        <div class="step-headline">Elige la distancia</div>
+        <div class="step-detail">¿Rock 'n' Roll Madrid? Eliges entre <strong>42K · 21K · 10K</strong>. Sin imposiciones.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <div class="step-tag">Plan adaptado</div>
+        <div class="step-headline">Recibes tu plan</div>
+        <div class="step-detail">Adaptado a la <strong>distancia + fecha + tu nivel</strong>. Listo para empezar mañana.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 03 · FLOW</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

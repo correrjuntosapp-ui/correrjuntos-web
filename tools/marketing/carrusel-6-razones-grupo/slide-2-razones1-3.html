@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+.title{font-size:60px;font-weight:800;line-height:0.95;letter-spacing:-2px;color:#f6f1e8;margin-bottom:60px}
+.title .accent{color:#f97316}
+
+.razones{display:flex;flex-direction:column;gap:32px;flex:1}
+.razon{padding-bottom:32px;border-bottom:1px solid rgba(246,241,232,0.10)}
+.razon:last-child{border-bottom:none}
+.razon-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px}
+.razon-num{font-family:'JetBrains Mono',monospace;font-size:64px;font-weight:900;color:#f97316;line-height:0.85;letter-spacing:-2px}
+.razon-title{font-size:34px;font-weight:800;color:#f6f1e8;letter-spacing:-0.5px;line-height:1.05;flex:1}
+.razon-data{margin:14px 0 14px 90px;display:inline-flex;align-items:center;gap:10px;background:rgba(34,197,94,0.10);border:1px solid rgba(34,197,94,0.30);border-radius:8px;padding:6px 14px}
+.razon-data-num{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;color:#22c55e;letter-spacing:0.5px}
+.razon-data-label{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(34,197,94,0.85);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.razon-desc{font-size:20px;color:rgba(246,241,232,0.80);font-weight:500;line-height:1.5;margin-left:90px}
+.razon-desc strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">02 / 04</div>
+  <div class="eyebrow">Razones 1 a 3</div>
+  <div class="coords">CONSTANCIA · RENDIMIENTO · MOTIVACIÓN</div>
+  <div class="title">Las primeras <span class="accent">3</span></div>
+
+  <div class="razones">
+    <div class="razon">
+      <div class="razon-head">
+        <div class="razon-num">01</div>
+        <div class="razon-title">No te saltas las sesiones</div>
+      </div>
+      <div class="razon-data">
+        <div class="razon-data-num">+60%</div>
+        <div class="razon-data-label">Adherencia 6 meses</div>
+      </div>
+      <div class="razon-desc">Si has quedado con alguien, <strong>aunque llueva sales</strong>. Solo, te quedas en la cama.</div>
+    </div>
+
+    <div class="razon">
+      <div class="razon-head">
+        <div class="razon-num">02</div>
+        <div class="razon-title">Corres más rápido sin notarlo</div>
+      </div>
+      <div class="razon-data">
+        <div class="razon-data-num">+8%</div>
+        <div class="razon-data-label">Pace medio en grupo</div>
+      </div>
+      <div class="razon-desc">Hablar mientras corres = <strong>distrae del esfuerzo</strong>. Tu cuerpo acepta más sin que te enteres.</div>
+    </div>
+
+    <div class="razon">
+      <div class="razon-head">
+        <div class="razon-num">03</div>
+        <div class="razon-title">El tiempo pasa volando</div>
+      </div>
+      <div class="razon-data">
+        <div class="razon-data-num">-30%</div>
+        <div class="razon-data-label">Percepción del esfuerzo</div>
+      </div>
+      <div class="razon-desc">45 min se hacen como 25. <strong>Conversación + cadencia compartida</strong>. Magia neurológica.</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 02 · RAZONES 1-3</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

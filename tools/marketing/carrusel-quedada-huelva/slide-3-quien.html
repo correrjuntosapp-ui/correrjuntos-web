@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:60px}
+.title{font-size:78px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:80px}
+.title .accent{color:#f97316}
+
+.profiles{display:flex;flex-direction:column;gap:24px;flex:1}
+.profile{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:28px 30px;background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:14px;align-items:center}
+.profile-num{font-family:'JetBrains Mono',monospace;font-size:54px;font-weight:900;color:#f97316;line-height:1;letter-spacing:-1px;text-align:center}
+.profile-content{display:flex;flex-direction:column;gap:6px}
+.profile-title{font-size:26px;font-weight:800;color:#f6f1e8;letter-spacing:-0.4px}
+.profile-desc{font-size:17px;color:rgba(246,241,232,0.70);font-weight:500;line-height:1.4}
+.profile-desc strong{color:#f6f1e8;font-weight:700}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">03 / 05</div>
+  <div class="eyebrow">¿Para quién?</div>
+  <div class="coords">PERFILES · TODOS BIENVENIDOS · SIN JUZGAR</div>
+  <div class="title">Vente si <span class="accent">eres</span><br>cualquiera de estos</div>
+
+  <div class="profiles">
+    <div class="profile">
+      <div class="profile-num">01</div>
+      <div class="profile-content">
+        <div class="profile-title">Nunca has corrido</div>
+        <div class="profile-desc">Caminamos 5 km y los que quieran trotan. <strong>El ritmo lo marcas tú.</strong></div>
+      </div>
+    </div>
+    <div class="profile">
+      <div class="profile-num">02</div>
+      <div class="profile-content">
+        <div class="profile-title">Quieres empezar pero te da palo</div>
+        <div class="profile-desc">El primer día solo es ridículo. <strong>Aquí ya no estás solo.</strong></div>
+      </div>
+    </div>
+    <div class="profile">
+      <div class="profile-num">03</div>
+      <div class="profile-content">
+        <div class="profile-title">Corres pero siempre solo</div>
+        <div class="profile-desc">Ven a probar cómo cambia correr en grupo. <strong>Spoiler: se hace eterno menos.</strong></div>
+      </div>
+    </div>
+    <div class="profile">
+      <div class="profile-num">04</div>
+      <div class="profile-content">
+        <div class="profile-title">Te preparas para Onupolis</div>
+        <div class="profile-desc">7 días antes de la 1ª prueba (Carrera Mujer 16/05). <strong>Test social previo.</strong></div>
+      </div>
+    </div>
+    <div class="profile">
+      <div class="profile-num">05</div>
+      <div class="profile-content">
+        <div class="profile-title">Solo te apetece pasear</div>
+        <div class="profile-desc">También vale. <strong>Lo importante es venir y conocernos.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 03 · PERFILES</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

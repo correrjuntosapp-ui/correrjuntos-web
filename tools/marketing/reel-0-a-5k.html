@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CorrerJuntos — De 0 a 5K en 8 semanas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600;700;800;900&family=JetBrains+Mono:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --ember: #f97316;
+    --ash: rgba(246, 241, 232, 0.42);
+    --grid: rgba(249, 115, 22, 0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink); font-family: 'Inter', sans-serif;
+    color: var(--paper); overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    width: 1080px; height: 1920px;
+    position: relative; background: var(--ink); overflow: hidden;
+  }
+
+  .stage::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none; z-index: 1;
+  }
+
+  .contour {
+    position: absolute; top: 50%; left: 50%;
+    width: 1800px; height: 1800px; opacity: 0.07;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    will-change: transform; z-index: 1;
+  }
+  .pulse {
+    position: absolute; top: 50%; left: 50%;
+    width: 16px; height: 16px;
+    margin: -8px 0 0 -8px;
+    background: var(--ember); border-radius: 999px;
+    z-index: 1; will-change: box-shadow;
+  }
+
+  .plate {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 120px 80px;
+    opacity: 0; text-align: center; z-index: 3;
+    transform: translateY(36px);
+    filter: blur(6px);
+    will-change: opacity, transform, filter;
+  }
+
+  .photo-bg {
+    position: absolute; inset: 0;
+    background-position: center; background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+    filter: brightness(0.42) contrast(1.10) saturate(0.88);
+    will-change: transform;
+  }
+  .photo-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(to bottom, rgba(11,18,32,0.45) 0%, rgba(11,18,32,0.10) 30%, rgba(11,18,32,0.95) 100%),
+      radial-gradient(ellipse at center, transparent 0%, rgba(11,18,32,0.55) 100%);
+    pointer-events: none;
+  }
+  .plate.has-photo {
+    z-index: 2;
+  }
+  .plate.has-photo .content {
+    position: relative; z-index: 4;
+    margin-top: auto;
+    padding-bottom: 8%;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--ember);
+    margin-bottom: 44px;
+    display: inline-flex; align-items: center; gap: 18px;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: ""; display: inline-block;
+    width: 48px; height: 1px; background: var(--ember);
+  }
+
+  .huge {
+    font-size: 140px; line-height: 0.94;
+    letter-spacing: -0.05em; font-weight: 200;
+    text-shadow: 0 2px 24px rgba(11, 18, 32, 0.78);
+  }
+  .huge strong { font-weight: 800; color: var(--ember); font-style: normal; }
+
+  /* Week marker */
+  .week-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 180px; font-weight: 700;
+    color: var(--ember); line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 32px rgba(11, 18, 32, 0.85);
+    opacity: 0.95;
+  }
+  .week-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--ash);
+    font-weight: 500;
+    margin-bottom: 48px;
+  }
+  .week-text {
+    font-size: 84px; font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    max-width: 880px;
+  }
+  .week-text strong { color: var(--ember); font-weight: 800; }
+
+  /* CTA */
+  .brand-big {
+    font-size: 140px; font-weight: 800;
+    letter-spacing: -0.04em; line-height: 0.95;
+    text-shadow: 0 2px 24px rgba(11, 18, 32, 0.8);
+  }
+  .brand-big em { font-style: normal; color: var(--ember); }
+  .url {
+    margin-top: 44px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; letter-spacing: 0.06em;
+    color: var(--ember); font-weight: 500;
+  }
+  .stores {
+    margin-top: 36px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--ash);
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <svg class="contour" id="contour" viewBox="0 0 1800 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#f97316" stroke-width="1.5">
+      <circle cx="900" cy="900" r="180"/><circle cx="900" cy="900" r="320"/>
+      <circle cx="900" cy="900" r="480"/><circle cx="900" cy="900" r="640"/>
+      <circle cx="900" cy="900" r="800"/>
+    </g>
+  </svg>
+  <span class="pulse" id="pulse"></span>
+
+  <!-- SCENE 1: HOOK -->
+  <div class="plate has-photo" id="p1">
+    <div class="photo-bg" id="bg1" style="background-image:url('./grupo-runners/11-woman-jogging-park.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="content" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="eyebrow">EN 8 SEMANAS</div>
+      <h1 class="huge">De cero<br>a tu primera<br><strong>5K</strong>.</h1>
+    </div>
+  </div>
+
+  <!-- SCENE 2: WEEK 1 -->
+  <div class="plate has-photo" id="p2">
+    <div class="photo-bg" id="bg2" style="background-image:url('./grupo-runners/11-woman-jogging-park.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="content" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="week-num">01</div>
+      <div class="week-label">SEMANA 1</div>
+      <p class="week-text">Caminas <strong>2 min</strong>.<br>Corres <strong>30 seg</strong>.<br>Sin morir.</p>
+    </div>
+  </div>
+
+  <!-- SCENE 3: WEEK 4 -->
+  <div class="plate has-photo" id="p3">
+    <div class="photo-bg" id="bg3" style="background-image:url('./grupo-runners/07-morning-dawn.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="content" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="week-num">04</div>
+      <div class="week-label">SEMANA 4</div>
+      <p class="week-text"><strong>15 minutos</strong><br>seguidos.<br>Sin parar.</p>
+    </div>
+  </div>
+
+  <!-- SCENE 4: WEEK 8 -->
+  <div class="plate has-photo" id="p4">
+    <div class="photo-bg" id="bg4" style="background-image:url('./grupo-runners/14-finish-woman-smile.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="content" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="week-num">08</div>
+      <div class="week-label">SEMANA 8</div>
+      <p class="week-text">Tu primera<br><strong>5K</strong>.<br>Hecha.</p>
+    </div>
+  </div>
+
+  <!-- SCENE 5: CTA -->
+  <div class="plate has-photo" id="p5">
+    <div class="photo-bg" id="bg5" style="background-image:url('./grupo-runners/06-friends-urban.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="content" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="eyebrow">PLAN GRATIS · COACH IA</div>
+      <div class="brand-big">Correr<em>Juntos</em></div>
+      <div class="url">correrjuntos.com</div>
+      <div class="stores">APP STORE · GOOGLE PLAY</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const SCENES = [
+    { id: 'p1', in: 200,    out: 3000,  bg: 'bg1' },
+    { id: 'p2', in: 3200,   out: 6800,  bg: 'bg2' },
+    { id: 'p3', in: 7000,   out: 10600, bg: 'bg3' },
+    { id: 'p4', in: 10800,  out: 14600, bg: 'bg4' },
+    { id: 'p5', in: 14800,  out: 17400, bg: 'bg5' },
+  ];
+  const FADE_IN  = 450;
+  const FADE_OUT = 350;
+  const TRANSLATE_IN  = 36;
+  const TRANSLATE_OUT = -36;
+  const BLUR_IN  = 6;
+  const BLUR_OUT = 6;
+  const TOTAL_MS = 17500;
+
+  const easeOut = p => 1 - Math.pow(1 - p, 3);
+  const easeIn  = p => p * p * p;
+
+  const plates = SCENES.map(s => ({
+    ...s,
+    el: document.getElementById(s.id),
+    bgEl: s.bg ? document.getElementById(s.bg) : null,
+  }));
+  const contourEl = document.getElementById('contour');
+  const pulseEl   = document.getElementById('pulse');
+
+  function renderAtTime(t) {
+    for (const s of plates) {
+      let op = 0, ty = TRANSLATE_IN, bl = BLUR_IN;
+      if (t < s.in) {
+        op = 0; ty = TRANSLATE_IN; bl = BLUR_IN;
+      } else if (t < s.in + FADE_IN) {
+        const p = (t - s.in) / FADE_IN;
+        const e = easeOut(p);
+        op = e; ty = TRANSLATE_IN * (1 - e); bl = BLUR_IN * (1 - e);
+      } else if (t < s.out) {
+        op = 1; ty = 0; bl = 0;
+      } else if (t < s.out + FADE_OUT) {
+        const p = (t - s.out) / FADE_OUT;
+        const e = easeIn(p);
+        op = 1 - e; ty = TRANSLATE_OUT * e; bl = BLUR_OUT * e;
+      } else {
+        op = 0; ty = TRANSLATE_OUT; bl = BLUR_OUT;
+      }
+      s.el.style.opacity = op.toFixed(4);
+      s.el.style.transform = `translateY(${ty.toFixed(2)}px)`;
+      s.el.style.filter = `blur(${bl.toFixed(2)}px)`;
+
+      if (s.bgEl) {
+        const sceneDur = (s.out - s.in) + FADE_OUT;
+        const localT = Math.max(0, Math.min(1, (t - s.in) / sceneDur));
+        const scale = 1.03 + 0.06 * localT;
+        s.bgEl.style.transform = `scale(${scale.toFixed(4)})`;
+      }
+    }
+
+    const deg = (t / 60000) * 360;
+    contourEl.style.transform = `translate(-50%, -50%) rotate(${deg.toFixed(3)}deg)`;
+
+    const cycle = 2400;
+    const phase = (t % cycle) / cycle;
+    const reach = phase < 0.7 ? phase / 0.7 : 1;
+    const rPx   = 320 * reach;
+    const alpha = phase < 0.7 ? 0.6 * (1 - reach) : 0;
+    pulseEl.style.boxShadow = `0 0 0 ${rPx.toFixed(1)}px rgba(249, 115, 22, ${alpha.toFixed(3)})`;
+  }
+
+  window.renderAtTime = renderAtTime;
+  window.TOTAL_MS = TOTAL_MS;
+
+  if (!window.__capture) {
+    let t0 = null;
+    function tick(now) {
+      if (t0 === null) t0 = now;
+      const t = now - t0;
+      if (t > TOTAL_MS + 500) { t0 = now; }
+      renderAtTime(Math.min(t, TOTAL_MS));
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  } else {
+    renderAtTime(0);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:'Inter',sans-serif;color:#f6f1e8;overflow:hidden;position:relative}
+.frame{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:#f97316;font-weight:600;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:50px;height:1px;background:#f97316}
+.coords{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:500;letter-spacing:1.5px;margin-bottom:50px}
+.title{font-size:74px;font-weight:800;line-height:0.95;letter-spacing:-3px;color:#f6f1e8;margin-bottom:50px}
+.title .accent{color:#f97316}
+
+/* Mapa estilizado */
+.map-card{flex:1;background:linear-gradient(180deg,#0e2647 0%,#0a1628 100%);border:1px solid rgba(249,115,22,0.20);border-radius:24px;padding:40px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.map-coast{position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(180deg,#0a1628 0%,#13314e 100%);clip-path:polygon(0 30%,8% 18%,18% 28%,30% 14%,42% 22%,58% 10%,72% 24%,86% 16%,100% 28%,100% 100%,0 100%)}
+
+.map-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:30px;position:relative;z-index:2}
+.map-title-block{display:flex;flex-direction:column;gap:4px}
+.map-route-name{font-size:32px;font-weight:800;color:#f6f1e8;letter-spacing:-0.3px}
+.map-route-meta{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.map-distance{text-align:right}
+.map-distance-num{font-size:56px;font-weight:900;color:#f97316;line-height:1;letter-spacing:-2px}
+.map-distance-unit{font-family:'JetBrains Mono',monospace;font-size:16px;color:rgba(246,241,232,0.65);font-weight:700;letter-spacing:0.5px}
+
+.map-route{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center}
+.route-line{position:absolute;top:50%;left:5%;right:5%;height:3px;background:#f97316;border-radius:2px;transform:translateY(-50%)}
+.route-line::before{content:'';position:absolute;top:-20px;left:0;width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:14px solid #f97316;display:none}
+.route-pin{position:absolute;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:3}
+.route-pin .pin-dot{width:32px;height:32px;background:#f97316;border-radius:50%;border:3px solid #0b1220;box-shadow:0 0 0 4px rgba(249,115,22,0.30)}
+.route-pin .pin-dot.start{background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.30)}
+.route-pin .pin-dot.end{background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.30)}
+.route-pin .pin-label{font-family:'JetBrains Mono',monospace;font-size:13px;color:#f6f1e8;background:rgba(11,18,32,0.85);padding:6px 12px;border-radius:6px;font-weight:700;letter-spacing:0.5px;border:1px solid rgba(249,115,22,0.30);white-space:nowrap}
+.pin-start{left:8%;top:50%;transform:translateY(-50%)}
+.pin-mid{left:50%;top:50%;transform:translate(-50%,-50%)}
+.pin-end{right:8%;top:50%;transform:translateY(-50%)}
+
+.map-footer{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding-top:24px;border-top:1px solid rgba(246,241,232,0.10)}
+.map-stat{display:flex;flex-direction:column;gap:4px}
+.map-stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(246,241,232,0.55);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.map-stat-val{font-size:20px;font-weight:800;color:#f6f1e8;letter-spacing:-0.3px}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(246,241,232,0.10);padding-top:30px;margin-top:30px}
+.bottom-left{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.45);font-weight:600;letter-spacing:1.5px}
+.brand{font-size:22px;font-weight:800;color:#f97316;letter-spacing:0.5px}
+.page-ind{position:absolute;top:60px;right:60px;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(246,241,232,0.40);font-weight:600;letter-spacing:1.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="page-ind">04 / 05</div>
+  <div class="eyebrow">El recorrido</div>
+  <div class="coords">RUTA · PASEO MARÍTIMO · LLANO</div>
+  <div class="title">Ruta del<br><span class="accent">paseo</span> marítimo</div>
+
+  <div class="map-card">
+    <div class="map-coast"></div>
+
+    <div class="map-header">
+      <div class="map-title-block">
+        <div class="map-route-name">Punta Umbría → Faro Espigón</div>
+        <div class="map-route-meta">IDA Y VUELTA · DESNIVEL +12M</div>
+      </div>
+      <div class="map-distance">
+        <div class="map-distance-num">5</div>
+        <div class="map-distance-unit">KM</div>
+      </div>
+    </div>
+
+    <div class="map-route">
+      <div class="route-line"></div>
+      <div class="route-pin pin-start">
+        <div class="pin-dot start"></div>
+        <div class="pin-label">SALIDA · 09:00</div>
+      </div>
+      <div class="route-pin pin-mid">
+        <div class="pin-dot"></div>
+        <div class="pin-label">2.5 KM · GIRO</div>
+      </div>
+      <div class="route-pin pin-end">
+        <div class="pin-dot end"></div>
+        <div class="pin-label">META · ~10:00</div>
+      </div>
+    </div>
+
+    <div class="map-footer">
+      <div class="map-stat">
+        <div class="map-stat-label">Terreno</div>
+        <div class="map-stat-val">Asfalto</div>
+      </div>
+      <div class="map-stat">
+        <div class="map-stat-label">Desnivel</div>
+        <div class="map-stat-val">+12 m</div>
+      </div>
+      <div class="map-stat">
+        <div class="map-stat-label">Sombra</div>
+        <div class="map-stat-val">Parcial</div>
+      </div>
+      <div class="map-stat">
+        <div class="map-stat-label">Tiempo est.</div>
+        <div class="map-stat-val">45-60 min</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">SLIDE 04 · RUTA</div>
+    <div class="brand">CorrerJuntos</div>
+  </div>
+</div>
+</body></html>

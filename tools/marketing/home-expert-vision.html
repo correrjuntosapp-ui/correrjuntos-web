@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Home — Vision experta · Meridian + Plans converter</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,sans-serif;background:#1a1a1a;color:#fff;min-height:100vh;padding:32px 16px}
+  h1{text-align:center;font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-1px}
+  .subtitle{text-align:center;color:#888;font-size:13px;margin-bottom:32px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5}
+
+  .layout{display:grid;grid-template-columns:380px 1fr;gap:32px;max-width:1100px;margin:0 auto;align-items:start}
+  @media(max-width:900px){.layout{grid-template-columns:1fr;max-width:380px}}
+
+  .phone{background:#000;border-radius:36px;padding:8px;box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+  .phone-screen{background:#0b1220;border-radius:28px;overflow:hidden;height:780px;overflow-y:auto;position:relative}
+  .phone-screen::-webkit-scrollbar{width:0}
+
+  .annotations{display:flex;flex-direction:column;gap:16px;padding-top:8px}
+  .anno{padding:14px 16px;background:#1c1c1c;border-radius:10px;border-left:3px solid #f97316}
+  .anno-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:#f97316;letter-spacing:1.5px;font-weight:700;margin-bottom:6px;text-transform:uppercase}
+  .anno-body{font-size:13px;color:#d4d4d4;line-height:1.5}
+  .anno-body b{color:#fff;font-weight:700}
+
+  /* ========== STATUS + HEADER ========== */
+  .status-bar{display:flex;justify-content:space-between;padding:14px 22px 6px;font-size:13px;font-weight:600;color:#f6f1e8;font-family:'JetBrains Mono',monospace}
+  .status-icons{display:flex;gap:6px;align-items:center;font-size:12px}
+
+  .header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px 18px}
+  .header-left{display:flex;align-items:center;gap:10px}
+  .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff}
+  .greeting{font-size:11px;color:rgba(246,241,232,0.55);font-weight:500}
+  .user-name{font-size:18px;font-weight:800;color:#f6f1e8;letter-spacing:-0.3px}
+  .bell{color:rgba(246,241,232,0.55)}
+  .bell svg{width:22px;height:22px;stroke-width:1.8;display:block}
+
+  /* ========== HERO VERDE ========== */
+  .hero-verde{margin:0 14px 18px;background:#22C55E;border-radius:18px;padding:22px 18px 18px;box-shadow:0 6px 22px rgba(34,197,94,0.35)}
+  .hero-verde-pre{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:#052e16;margin-bottom:6px}
+  .hero-verde-title{font-size:26px;font-weight:800;letter-spacing:-0.6px;line-height:1.05;margin-bottom:8px;color:#052e16}
+  .hero-verde-sub{font-size:12.5px;color:#064e26;opacity:0.95;line-height:1.45;margin-bottom:14px}
+  .hero-verde-cta{display:block;background:#052e16;color:#fff;padding:13px 16px;border-radius:12px;font-size:13px;font-weight:800;text-align:center;margin-bottom:6px}
+  .hero-verde-link{display:block;text-align:center;font-size:11px;color:rgba(5,46,22,0.85);padding:6px;font-weight:600}
+
+  /* ========== SECTIONS ========== */
+  .section{padding:0 14px;margin-bottom:18px}
+  .section-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .section-title{font-size:17px;font-weight:800;letter-spacing:-0.3px;color:#f6f1e8}
+  .create-btn{background:#f97316;color:#0b1220;padding:7px 13px 7px 11px;border:none;border-radius:999px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:5px;line-height:1;box-shadow:0 2px 8px rgba(249,115,22,0.3)}
+  .create-btn svg{width:13px;height:13px;stroke-width:2.5}
+
+  /* ========== QUEDADAS ========== */
+  .q-card{background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.10);border-radius:14px;padding:14px;margin-bottom:10px;display:flex;gap:12px}
+  .q-date{background:rgba(249,115,22,0.12);border-radius:10px;padding:8px 6px;text-align:center;min-width:54px;font-family:'JetBrains Mono',monospace}
+  .q-day{font-size:20px;font-weight:700;color:#f97316;line-height:1;letter-spacing:-1px}
+  .q-month{font-size:9px;color:#f97316;font-weight:600;letter-spacing:0.15em;margin-top:3px}
+  .q-info{flex:1;min-width:0}
+  .q-title{font-size:14px;font-weight:700;color:#f6f1e8;margin-bottom:4px;letter-spacing:-0.2px}
+  .q-meta{font-size:12px;color:rgba(246,241,232,0.62);margin-bottom:8px;font-family:'JetBrains Mono',monospace;letter-spacing:0.2px}
+  .q-tags{display:flex;gap:6px;flex-wrap:wrap}
+  .q-tag{font-size:10px;padding:3px 9px;border-radius:5px;background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.72);font-weight:600}
+  .q-tag.intermedio{background:rgba(249,115,22,0.12);color:#f97316}
+  .q-tag.joined{background:rgba(34,197,94,0.18);color:#22C55E;font-weight:700}
+  .q-participants{font-size:11px;color:rgba(246,241,232,0.50);margin-top:8px;font-family:'JetBrains Mono',monospace}
+  .limit{display:flex;justify-content:space-between;font-size:11px;padding:4px 4px 0;font-family:'JetBrains Mono',monospace;letter-spacing:0.3px}
+  .limit-text{color:rgba(246,241,232,0.50)}
+  .limit-pro{color:#f97316;font-weight:600}
+
+  /* ========== ONBOARDING CHECKLIST ========== */
+  .onb-card{margin:0 14px 14px;background:rgba(246,241,232,0.03);border:1px solid rgba(246,241,232,0.10);border-radius:14px;padding:14px 16px}
+  .onb-row1{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .onb-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;color:#f97316;letter-spacing:1.5px;font-weight:700;text-transform:uppercase}
+  .onb-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(246,241,232,0.50);font-weight:600}
+  .onb-counter b{color:#22C55E;font-weight:700}
+  .onb-progress{display:flex;gap:4px;margin-bottom:10px}
+  .onb-bar{flex:1;height:4px;border-radius:2px}
+  .onb-bar.done{background:#22C55E}
+  .onb-bar.todo{background:rgba(246,241,232,0.10)}
+  .onb-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(246,241,232,0.06)}
+  .onb-item:last-child{border-bottom:none}
+  .onb-check{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+  .onb-check.done{background:#22C55E;color:#052e16}
+  .onb-check.todo{background:transparent;border:1.5px solid rgba(246,241,232,0.30)}
+  .onb-text{flex:1;font-size:13.5px;color:#f6f1e8;font-weight:600;letter-spacing:-0.1px}
+  .onb-text.done{color:rgba(246,241,232,0.45);text-decoration:line-through;font-weight:500}
+  .onb-arrow{color:#f97316;font-size:16px;font-weight:800}
+
+  /* ========== PLAN HERO CARD (la pieza estrella) ========== */
+  .plan-hero{margin:0 14px 12px;background:linear-gradient(155deg,#1f2a44 0%,#0f1729 100%);border:1px solid rgba(249,115,22,0.25);border-radius:18px;padding:18px;position:relative;overflow:hidden}
+  .plan-hero::before{content:'';position:absolute;top:-30%;right:-15%;width:200px;height:200px;background:radial-gradient(circle,rgba(249,115,22,0.18) 0%,transparent 60%);pointer-events:none}
+  .plan-hero-row1{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;position:relative;z-index:2}
+  .plan-coach{display:flex;align-items:center;gap:8px}
+  .plan-coach-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+  .plan-coach-name{font-size:12px;color:rgba(246,241,232,0.72);font-weight:600}
+  .plan-coach-name b{color:#f6f1e8;font-weight:700}
+  .plan-free-badge{background:#22C55E;color:#052e16;padding:4px 9px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+  .plan-hero-title{font-size:22px;font-weight:800;color:#f6f1e8;line-height:1.1;letter-spacing:-0.5px;margin-bottom:6px;position:relative;z-index:2}
+  .plan-hero-title b{color:#f97316}
+  .plan-hero-sub{font-size:13px;color:rgba(246,241,232,0.62);font-weight:500;line-height:1.45;margin-bottom:14px;position:relative;z-index:2}
+  .plan-hero-stats{display:flex;gap:14px;padding:12px 0;border-top:1px solid rgba(246,241,232,0.10);border-bottom:1px solid rgba(246,241,232,0.10);margin-bottom:14px;position:relative;z-index:2}
+  .plan-stat{flex:1}
+  .plan-stat-label{font-size:9px;color:rgba(246,241,232,0.48);letter-spacing:1.2px;text-transform:uppercase;font-weight:700;font-family:'JetBrains Mono',monospace;margin-bottom:3px}
+  .plan-stat-value{font-size:16px;font-weight:800;color:#f6f1e8;font-family:'JetBrains Mono',monospace;letter-spacing:-0.5px}
+  .plan-progress{display:flex;gap:3px;margin-bottom:14px;position:relative;z-index:2}
+  .plan-progress-bar{flex:1;height:5px;background:rgba(246,241,232,0.10);border-radius:3px;position:relative;overflow:hidden}
+  .plan-progress-bar.active{background:#f97316}
+  .plan-progress-bar.done{background:rgba(34,197,94,0.5)}
+  .plan-cta{display:flex;align-items:center;justify-content:space-between;background:#f97316;color:#0b1220;padding:14px 18px;border-radius:12px;font-size:14px;font-weight:800;letter-spacing:-0.2px;position:relative;z-index:2;box-shadow:0 4px 14px rgba(249,115,22,0.30)}
+  .plan-cta-arrow{font-size:18px;font-weight:900}
+  .plan-social{font-size:11px;color:rgba(246,241,232,0.55);margin-top:10px;text-align:center;font-family:'JetBrains Mono',monospace;letter-spacing:0.3px}
+  .plan-social b{color:#22C55E;font-weight:700}
+
+  .plan-secondary-link{display:block;text-align:center;padding:8px 0 6px;font-size:12px;color:rgba(246,241,232,0.55);font-weight:600;margin-bottom:14px}
+  .plan-secondary-link b{color:#f97316}
+
+  /* ========== TABS ========== */
+  .tabs{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(11,18,32,0.95);border-top:1px solid rgba(246,241,232,0.10);padding:8px 0 14px;backdrop-filter:blur(10px)}
+  .tab{text-align:center;color:rgba(246,241,232,0.45);font-size:9px;font-weight:600}
+  .tab.active{color:#f97316}
+  .tab-svg{width:20px;height:20px;stroke-width:1.8;display:block;margin:0 auto 3px}
+  .tab.active .tab-svg{stroke:#f97316}
+  .tab-run-btn{width:42px;height:42px;border-radius:50%;background:#f97316;display:flex;align-items:center;justify-content:center;margin:-16px auto 2px;box-shadow:0 4px 14px rgba(249,115,22,0.45)}
+</style>
+</head>
+<body>
+
+<h1>Mi vision experta · Meridian + Plans que convierten</h1>
+<p class="subtitle">
+  Nivel 1.0 (colores Meridian + JetBrains Mono solo en datos) · plan card rediseñado para conversión real · resto del home idéntico al actual.
+</p>
+
+<div class="layout">
+
+  <!-- ════════════════════════════════════ -->
+  <!-- IPHONE -->
+  <!-- ════════════════════════════════════ -->
+  <div class="phone">
+    <div class="phone-screen">
+      <div class="status-bar"><span>18:17</span><div class="status-icons"><span>📶</span><span>69%</span></div></div>
+      <div class="header">
+        <div class="header-left">
+          <div class="avatar">J</div>
+          <div><div class="greeting">Buenas tardes</div><div class="user-name">Javi</div></div>
+        </div>
+        <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+      </div>
+
+      <!-- HERO VERDE -->
+      <div class="hero-verde">
+        <div class="hero-verde-pre">Empieza tu primera semana</div>
+        <div class="hero-verde-title">¿Empezamos?</div>
+        <div class="hero-verde-sub">Tu primera carrera en 7 días. Coach José te guía.</div>
+        <a class="hero-verde-cta">Empezar mi plan →</a>
+        <a class="hero-verde-link">o salir a correr libre</a>
+      </div>
+
+      <!-- ✅ ONBOARDING CHECKLIST — fills the sparsity gap, drives activation -->
+      <div class="onb-card">
+        <div class="onb-row1">
+          <div class="onb-eyebrow">━━ Completa tu setup</div>
+          <div class="onb-counter"><b>1</b> / 3</div>
+        </div>
+        <div class="onb-progress">
+          <div class="onb-bar done"></div>
+          <div class="onb-bar todo"></div>
+          <div class="onb-bar todo"></div>
+        </div>
+        <div class="onb-item">
+          <div class="onb-check done">✓</div>
+          <div class="onb-text done">Cuenta confirmada</div>
+        </div>
+        <div class="onb-item">
+          <div class="onb-check todo"></div>
+          <div class="onb-text">Sigue a 3 runners de tu zona</div>
+          <div class="onb-arrow">→</div>
+        </div>
+        <div class="onb-item">
+          <div class="onb-check todo"></div>
+          <div class="onb-text">Únete a tu primera quedada</div>
+          <div class="onb-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- ⭐ PLAN HERO CARD — la pieza convertidora -->
+      <div class="plan-hero">
+        <div class="plan-hero-row1">
+          <div class="plan-coach">
+            <div class="plan-coach-av">J</div>
+            <div class="plan-coach-name">Por <b>Coach José</b></div>
+          </div>
+          <div class="plan-free-badge">Gratis</div>
+        </div>
+        <div class="plan-hero-title">Tu primera carrera<br>en <b>6 semanas</b></div>
+        <div class="plan-hero-sub">Plan adaptado a tu ritmo. Sin equipamiento. 30 min al día, 3 días por semana.</div>
+        <div class="plan-hero-stats">
+          <div class="plan-stat"><div class="plan-stat-label">Duración</div><div class="plan-stat-value">6 sem</div></div>
+          <div class="plan-stat"><div class="plan-stat-label">Sesiones</div><div class="plan-stat-value">18</div></div>
+          <div class="plan-stat"><div class="plan-stat-label">Por sesión</div><div class="plan-stat-value">30 min</div></div>
+        </div>
+        <div class="plan-progress">
+          <div class="plan-progress-bar active"></div>
+          <div class="plan-progress-bar"></div>
+          <div class="plan-progress-bar"></div>
+          <div class="plan-progress-bar"></div>
+          <div class="plan-progress-bar"></div>
+          <div class="plan-progress-bar"></div>
+        </div>
+        <div class="plan-cta">
+          <span>Activar plan gratis</span>
+          <span class="plan-cta-arrow">→</span>
+        </div>
+        <div class="plan-social"><b>+ 200 runners</b> empezaron este plan en abril</div>
+      </div>
+
+      <a class="plan-secondary-link">Ver los <b>otros 5 planes</b> · 5K, 10K, 21K, 42K, Trail →</a>
+
+      <!-- PRÓXIMAS QUEDADAS -->
+      <div class="section">
+        <div class="section-row">
+          <div class="section-title">Próximas quedadas</div>
+          <button class="create-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Crear quedada</button>
+        </div>
+        <div class="q-card">
+          <div class="q-date"><div class="q-day">28</div><div class="q-month">ABR</div></div>
+          <div class="q-info">
+            <div class="q-title">12 km progresivos</div>
+            <div class="q-meta">Punta Umbría · 12 km · 10:00</div>
+            <div class="q-tags"><span class="q-tag intermedio">Intermedio</span><span class="q-tag joined">✓ Unido</span></div>
+            <div class="q-participants">1 participante</div>
+          </div>
+        </div>
+        <div class="limit">
+          <span class="limit-text">1 / 2 quedadas gratis · mes</span>
+          <span class="limit-pro">Ilimitadas · PRO</span>
+        </div>
+      </div>
+
+      <div style="height:60px"></div>
+
+      <div class="tabs">
+        <div class="tab active"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+        <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mapa</div>
+        <div class="tab"><div class="tab-run-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Correr</div>
+        <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Social</div>
+        <div class="tab"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Perfil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- ANNOTATIONS -->
+  <!-- ════════════════════════════════════ -->
+  <div class="annotations">
+
+    <div class="anno">
+      <div class="anno-title">▌Brand alignment Nivel 1.0</div>
+      <div class="anno-body">Fondo <b>#0b1220</b>, ember <b>#f97316</b>, paper <b>#f6f1e8</b>. JetBrains Mono solo en <b>datos numéricos</b>: hora del status bar, fecha quedada, contadores, plan stats. Lo demás Inter normal — escaneable, no editorial.</div>
+    </div>
+
+    <div class="anno">
+      <div class="anno-title">▌Hero verde · sin cambios</div>
+      <div class="anno-body">Mantengo el verde <b>#22C55E</b> que shipeamos hoy. Sub más corto: "Tu primera carrera en 7 días. Coach José te guía." — sustituye al genérico de antes y conecta directo con la card de abajo.</div>
+    </div>
+
+    <div class="anno">
+      <div class="anno-title">▌✅ Onboarding checklist · fills the sparsity gap</div>
+      <div class="anno-body">La pieza que tú detectaste que faltaba. <b>3 tareas concretas</b>, 1 ya completa (cuenta confirmada). Drives action en lugar de scroll vacío.
+      <br><br>
+      • <b>Eyebrow editorial aquí SÍ</b>: "━━ COMPLETA TU SETUP" funciona porque es widget meta (info sobre el progreso del user), no section content
+      <br>
+      • <b>Counter "1 / 3" en mono ember</b> + barras progreso (1 verde, 2 grises): Zeigarnik effect, el cerebro quiere completar
+      <br>
+      • <b>3 items tappables</b>: cada uno → acción concreta (Social tab para seguir runners, Mapa para quedadas)
+      <br>
+      • <b>Pattern probado</b>: Notion, Slack, Linear, Headspace — todos lo hacen. <b>+30-50% retention día 1-7</b> según datos públicos
+      <br>
+      • <b>Resuelve tu cuello real</b>: 415/618 users abandonan en &lt;5min post-confirmación. Esto les da 3 cosas que hacer ANTES de salir
+      <br><br>
+      Cuando completen los 3, la card desaparece y se reemplaza por la siguiente capa de engagement (sigue siendo nuevo: "haz tu primera carrera").</div>
+    </div>
+
+    <div class="anno">
+      <div class="anno-title">▌⭐ Plan hero · la pieza convertidora</div>
+      <div class="anno-body">Reemplaza "6 planes · GRATIS · Desde principiante a maratón" (genérico) por <b>UN plan recomendado al user</b>:
+      <br><br>
+      • <b>Outcome-driven</b>: "Tu primera carrera en 6 semanas" (transformación) > "Empieza a Moverte" (feature). Vender el RESULTADO, no el producto.
+      <br>
+      • <b>Coach José personalizado</b>: avatar + "Por Coach José" — humaniza, te diferencia (Strava no tiene coach).
+      <br>
+      • <b>Stats concretos</b>: 6 sem · 18 sesiones · 30 min. Antes <b>de</b> empezar el user ya sabe el compromiso. Reduce fricción.
+      <br>
+      • <b>Progress bars vacíos</b>: visualizan el viaje. Psicológicamente "ya tengo el camino dibujado".
+      <br>
+      • <b>CTA "Activar plan gratis"</b> con flecha — botón ember sólido sobre dark, contraste máximo.
+      <br>
+      • <b>Social proof real</b>: "+200 runners empezaron en abril" — número defensible.
+      <br>
+      • <b>Free badge verde</b> esquina superior derecha — la palabra "Gratis" sin ser anzuelo.</div>
+    </div>
+
+    <div class="anno">
+      <div class="anno-title">▌Plan secondary link</div>
+      <div class="anno-body">"Ver los otros 5 planes" pequeño debajo. El user que no es principiante hace tap aquí y va al index. <b>El que sí es principiante (99% de tus signups)</b> ve el hero plan que SÍ le encaja y convierte. Personalización por defecto, no por config.</div>
+    </div>
+
+    <div class="anno">
+      <div class="anno-title">▌Próximas quedadas · Meridian aligned</div>
+      <div class="anno-body">Mismo layout. Cambios: fecha "28 ABR" en mono, meta "Punta Umbría · 12 km · 10:00" en mono (datos), "✓ Unido" en verde sólido (no transparente). El "1 / 2 quedadas gratis · mes" se siente más technical que el "1 de 2".</div>
+    </div>
+
+    <div class="anno">
+      <div class="anno-title">▌Lo que dejé fuera (a propósito)</div>
+      <div class="anno-body">
+      ❌ <b>Eyebrows "━━ PRÓXIMAS QUEDADAS"</b> — demasiado editorial para app
+      <br>
+      ❌ <b>Greeting thin "Hola, Javi" Inter 200</b> — frío para hello cotidiano
+      <br>
+      ❌ <b>Tags uppercase "INTERMEDIO"</b> — más difícil escanear
+      <br><br>
+      Mantengo lo cálido y escaneable. Solo subo el nivel premium en <b>colores</b>, <b>fuente mono en datos</b>, y <b>la card de planes</b>.</div>
+    </div>
+
+    <div class="anno">
+      <div class="anno-title">▌Trabajo estimado para shippar</div>
+      <div class="anno-body">
+      • Sweep colores <code>#0D0D0D → #0b1220</code>, <code>#FF6B00 → #f97316</code>, <code>#FFFFFF → #f6f1e8</code> en archivos de estilo del app: <b>~30 min</b>
+      <br>
+      • Cargar JetBrains Mono via expo-font + aplicar en componentes de datos: <b>~30 min</b>
+      <br>
+      • Rediseñar plan card en FeedScreen (renderTrainingTeaser) con la nueva estructura: <b>~1h 30min</b>
+      <br><br>
+      <b>Total ~2h 30min</b>. OTA #5 mañana antes del desayuno si te encaja. Hoy descansas.</div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

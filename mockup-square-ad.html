@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1080px;background:#0b1220;font-family:'Inter',-apple-system,system-ui,sans-serif;overflow:hidden;position:relative}
+
+body::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:.06;pointer-events:none}
+
+/* Top badge */
+.badge{position:absolute;top:40px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.12);border:1.5px solid rgba(249,115,22,.35);padding:8px 20px;border-radius:100px;font-size:13px;font-weight:700;color:#f97316;letter-spacing:1px;text-transform:uppercase;z-index:4}
+.badge::before{content:'';width:7px;height:7px;background:#f97316;border-radius:50%}
+
+/* Headline — compact */
+.headline{position:absolute;top:100px;left:0;right:0;text-align:center;z-index:4}
+.headline h1{font-size:54px;font-weight:900;color:#fff;line-height:1.08;letter-spacing:-2.5px}
+.headline h1 span{color:#f97316}
+.headline p{font-size:17px;color:#94a3b8;margin-top:10px;font-weight:500}
+
+/* Phones — smaller to fit square */
+.phones{position:absolute;top:310px;left:50%;transform:translateX(-50%);display:flex;gap:20px;align-items:flex-start;z-index:3}
+.phone{background:#000;border-radius:28px;padding:4px;box-shadow:0 16px 50px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08);overflow:hidden}
+.phone img{border-radius:24px;display:block;object-fit:cover}
+.phone-1{width:200px;height:380px;transform:rotate(-3deg)}
+.phone-1 img{width:100%;height:100%}
+.phone-2{width:200px;height:380px;transform:rotate(3deg);margin-top:16px}
+.phone-2 img{width:100%;height:100%}
+
+.phone-glow{position:absolute;top:380px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,rgba(249,115,22,.1) 0%,transparent 70%);pointer-events:none;z-index:1}
+
+/* Stats — inline pills below phones */
+.stats{position:absolute;bottom:150px;left:60px;right:60px;display:flex;gap:12px;justify-content:center;z-index:4}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 20px;text-align:center;flex:1}
+.stat-num{font-size:22px;font-weight:800;color:#f97316}
+.stat-label{font-size:11px;color:#64748b;margin-top:2px;font-weight:500}
+
+/* CTA */
+.cta-area{position:absolute;bottom:80px;left:0;right:0;text-align:center;z-index:4}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:16px 44px;border-radius:14px;font-size:18px;font-weight:800;letter-spacing:-.3px;box-shadow:0 8px 30px rgba(249,115,22,.3)}
+.cta-sub{display:inline-block;color:#64748b;font-size:14px;font-weight:500;margin-left:14px;vertical-align:middle}
+
+/* Bottom */
+.bottom{position:absolute;bottom:30px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;z-index:4}
+.logo{font-weight:900;font-size:18px;letter-spacing:-.5px}
+.logo-c{color:#fff}
+.logo-j{color:#f97316}
+.social{color:#475569;font-size:13px;font-weight:500}
+
+/* Decorative corners */
+.corner-tl{position:absolute;top:16px;left:16px;width:36px;height:36px;border-top:2px solid rgba(249,115,22,.15);border-left:2px solid rgba(249,115,22,.15);z-index:1}
+.corner-br{position:absolute;bottom:16px;right:16px;width:36px;height:36px;border-bottom:2px solid rgba(249,115,22,.15);border-right:2px solid rgba(249,115,22,.15);z-index:1}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="phone-glow"></div>
+<div class="corner-tl"></div>
+<div class="corner-br"></div>
+
+<div class="badge">Running Social + Coach IA</div>
+
+<div class="headline">
+<h1>Entrena con <span>IA.</span><br>Corre acompanado.</h1>
+<p>Coach Jose + matching por ritmo y zona</p>
+</div>
+
+<div class="phones">
+<div class="phone phone-1">
+<img src="public/screenshot-feed.webp" alt="Feed">
+</div>
+<div class="phone phone-2">
+<img src="public/screenshot-social.webp" alt="Matching">
+</div>
+</div>
+
+<div class="stats">
+<div class="stat">
+<div class="stat-num">568+</div>
+<div class="stat-label">Runners</div>
+</div>
+<div class="stat">
+<div class="stat-num">8</div>
+<div class="stat-label">Ciudades</div>
+</div>
+<div class="stat">
+<div class="stat-num">4.8</div>
+<div class="stat-label">App Store</div>
+</div>
+</div>
+
+<div class="cta-area">
+<span class="cta-btn">Descarga gratis</span>
+<span class="cta-sub">Prueba 7 dias</span>
+</div>
+
+<div class="bottom">
+<div class="logo"><span class="logo-c">CORRER</span><span class="logo-j">JUNTOS</span></div>
+<div class="social">@correrjuntosapp</div>
+</div>
+
+</body>
+</html>

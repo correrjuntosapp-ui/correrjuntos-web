@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Landing v2 — Correr Juntos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b0b0d;
+    --ink-2: #14141a;
+    --paper: #f6f1e8;
+    --mute: rgba(246, 241, 232, 0.62);
+    --mute-2: rgba(246, 241, 232, 0.38);
+    --line: rgba(246, 241, 232, 0.08);
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --gold: #fbbf24;
+    --green: #22c55e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+
+  .canvas {
+    width: 1080px;
+    height: 1920px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  /* Very subtle orange glow top-right (no more cheap radial) */
+  .glow {
+    position: absolute;
+    top: -400px;
+    right: -300px;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(249,115,22,0.28) 0%, rgba(249,115,22,0.08) 35%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: absolute;
+    top: 64px; left: 64px; right: 64px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--paper);
+  }
+  .logo span { color: var(--ember); }
+  .login-btn {
+    padding: 14px 28px;
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    border-radius: 100px;
+    color: var(--ember);
+    font-size: 15px;
+    font-weight: 700;
+    background: rgba(249, 115, 22, 0.08);
+    letter-spacing: -0.1px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: absolute;
+    top: 200px;
+    left: 64px;
+    right: 64px;
+  }
+  .rating-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(246, 241, 232, 0.06);
+    border: 1px solid rgba(246, 241, 232, 0.12);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--paper);
+    margin-bottom: 36px;
+  }
+  .rating-chip .stars { color: var(--gold); letter-spacing: -1px; font-size: 14px; }
+  .rating-chip .dot { color: var(--mute-2); }
+
+  .h1 {
+    font-size: 98px;
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+    font-weight: 800;
+    color: var(--paper);
+    margin-bottom: 30px;
+  }
+  .h1 .dim { color: var(--mute); font-weight: 300; }
+
+  .sub {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--mute);
+    max-width: 780px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+  }
+
+  /* ── CTA ── */
+  .cta-wrap {
+    position: absolute;
+    top: 760px;
+    left: 64px;
+    right: 64px;
+  }
+  .cta {
+    display: block;
+    width: 100%;
+    padding: 24px 32px;
+    background: linear-gradient(90deg, var(--ember) 0%, var(--ember-deep) 100%);
+    border-radius: 18px;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(249, 115, 22, 0.28);
+  }
+  .steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--mute-2);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .steps .num {
+    display: inline-flex;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(249, 115, 22, 0.15);
+    color: var(--ember);
+    font-size: 11px;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+  }
+  .steps .sep { color: var(--mute-2); }
+
+  /* ── SOCIAL PROOF ── */
+  .social {
+    position: absolute;
+    top: 960px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .avatars {
+    display: flex;
+  }
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 3px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-left: -10px;
+  }
+  .avatar:first-child { margin-left: 0; }
+  .avatar.a1 { background: linear-gradient(135deg, #f97316, #ea580c); }
+  .avatar.a2 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+  .avatar.a3 { background: linear-gradient(135deg, #10b981, #047857); }
+  .social-text {
+    font-size: 14px;
+    color: var(--mute);
+    font-weight: 500;
+  }
+  .social-text b { color: var(--paper); font-weight: 600; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial {
+    position: absolute;
+    top: 1070px;
+    left: 64px;
+    right: 64px;
+    padding: 28px 30px;
+    border-left: 3px solid var(--ember);
+    background: linear-gradient(90deg, rgba(249,115,22,0.04) 0%, transparent 100%);
+    border-radius: 4px 14px 14px 4px;
+  }
+  .testimonial .quote {
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--paper);
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    margin-bottom: 16px;
+  }
+  .testimonial .author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testimonial .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .testimonial .author-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .testimonial .author-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .testimonial .author-city {
+    font-size: 12px;
+    color: var(--mute);
+  }
+
+  /* ── TRUST BAR ── */
+  .trust {
+    position: absolute;
+    top: 1310px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--mute);
+    font-weight: 500;
+  }
+  .trust-item .check {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #0b0b0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+  }
+
+  /* ── DIFFERENTIATOR ── */
+  .diff {
+    position: absolute;
+    top: 1410px;
+    left: 64px;
+    right: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .diff-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .diff-text {
+    font-size: 26px;
+    line-height: 1.3;
+    color: var(--paper);
+    font-weight: 500;
+    letter-spacing: -0.3px;
+  }
+  .diff-text .strong { color: var(--ember); font-weight: 700; }
+
+  /* ── FEATURES INLINE (3 not 4) ── */
+  .features {
+    position: absolute;
+    top: 1620px;
+    left: 64px;
+    right: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+  }
+  .feat {
+    padding: 22px 20px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(246, 241, 232, 0.02);
+  }
+  .feat-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(249, 115, 22, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .feat-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 4px;
+    letter-spacing: -0.1px;
+  }
+  .feat-desc {
+    font-size: 12px;
+    color: var(--mute);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ── FOOTNOTE ── */
+  .foot {
+    position: absolute;
+    bottom: 48px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--mute-2);
+    letter-spacing: 0.3px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <div class="glow"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">CORRER<span>JUNTOS</span></div>
+    <button class="login-btn">Entrar</button>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="rating-chip">
+      <span class="stars">★★★★★</span>
+      <span>4.6</span>
+      <span class="dot">·</span>
+      <span>38 reseñas</span>
+      <span class="dot">·</span>
+      <span>App Store</span>
+    </div>
+    <h1 class="h1">
+      Encuentra tu gente.<br>
+      <span class="dim">Corre más lejos.</span>
+    </h1>
+    <p class="sub">
+      La red de runners por ritmo, zona y horario. Quedadas reales en más de 12 ciudades — Madrid, Barcelona, CDMX, Buenos Aires y más.
+    </p>
+  </div>
+
+  <!-- CTA + 3 steps proof -->
+  <div class="cta-wrap">
+    <button class="cta">Empezar gratis</button>
+    <div class="steps">
+      <span><span class="num">1</span>Email</span>
+      <span class="sep">·</span>
+      <span><span class="num">2</span>Nivel</span>
+      <span class="sep">·</span>
+      <span><span class="num">3</span>Listo</span>
+    </div>
+  </div>
+
+  <!-- Social proof avatars + count -->
+  <div class="social">
+    <div class="avatars">
+      <div class="avatar a1">M</div>
+      <div class="avatar a2">J</div>
+      <div class="avatar a3">C</div>
+    </div>
+    <div class="social-text">
+      <b>María, Juan, Carlos</b> y <b>586+ runners</b> ya entrenan juntos
+    </div>
+  </div>
+
+  <!-- Testimonial -->
+  <div class="testimonial">
+    <div class="quote">
+      "En 2 días tenía un grupo fijo de martes y jueves. Ya no me salto un entreno. La mejor app de running que he probado."
+    </div>
+    <div class="author">
+      <div class="author-avatar">M</div>
+      <div class="author-meta">
+        <span class="author-name">María G.</span>
+        <span class="author-city">Madrid · Corre 3x/semana</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust bar -->
+  <div class="trust">
+    <div class="trust-item"><span class="check">✓</span> 100% gratis</div>
+    <div class="trust-item"><span class="check">✓</span> Sin tarjeta</div>
+    <div class="trust-item"><span class="check">✓</span> Registro en 30 seg</div>
+  </div>
+
+  <!-- Differentiator -->
+  <div class="diff">
+    <div class="diff-eyebrow">◆ ¿POR QUÉ CORRERJUNTOS?</div>
+    <div class="diff-text">
+      Strava registra tu ritmo.<br>
+      <span class="strong">Nosotros te buscamos con quién correr.</span>
+    </div>
+  </div>
+
+  <!-- Features (3 inline, not 4 tiles) -->
+  <div class="features">
+    <div class="feat">
+      <div class="feat-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2" fill="#f97316"/>
+        </svg>
+      </div>
+      <div class="feat-title">Matching por ritmo</div>
+      <div class="feat-desc">Algoritmo que te empareja con runners de tu nivel y zona.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div class="feat-title">Quedadas cerca</div>
+      <div class="feat-desc">Mapa en vivo con todas las quedadas de tu ciudad.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="M7 10h10M7 14h6"/>
+        </svg>
+      </div>
+      <div class="feat-title">7 planes gratis</div>
+      <div class="feat-desc">De 0-5K hasta maratón, estructurados por expertos.</div>
+    </div>
+  </div>
+
+  <!-- Foot -->
+  <div class="foot">
+    <div>correrjuntos.com</div>
+    <div>v1.3.3 — 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>

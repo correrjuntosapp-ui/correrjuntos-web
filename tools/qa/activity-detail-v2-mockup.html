@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Activity Detail v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b0b0d;
+    --ink-2: #14141a;
+    --paper: #f6f1e8;
+    --mute: rgba(246, 241, 232, 0.62);
+    --mute-2: rgba(246, 241, 232, 0.38);
+    --line: rgba(246, 241, 232, 0.10);
+    --surface: rgba(246, 241, 232, 0.04);
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+    --green: #22c55e;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --gold: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+  .canvas {
+    width: 1080px;
+    min-height: 2800px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .btn-circle {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .topbar-actions { display: flex; gap: 10px; }
+
+  /* ── Owner header ── */
+  .owner-row {
+    display: flex; align-items: center;
+    padding: 20px 28px 16px;
+  }
+  .owner-avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #047857);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 20px; font-weight: 800;
+    margin-right: 14px;
+    flex-shrink: 0;
+  }
+  .owner-info { flex: 1; }
+  .owner-name { font-size: 17px; font-weight: 800; letter-spacing: -0.3px; }
+  .owner-meta {
+    display: flex; align-items: center; gap: 8px; margin-top: 3px;
+    font-size: 12px; color: var(--mute); font-weight: 500;
+  }
+  .owner-tag {
+    padding: 3px 8px; border-radius: 100px;
+    background: rgba(249, 115, 22, 0.14);
+    color: var(--ember); font-size: 10px; font-weight: 700;
+  }
+  .follow-btn {
+    padding: 10px 18px;
+    background: var(--ember);
+    border: none; border-radius: 100px;
+    color: #fff; font-size: 13px; font-weight: 700;
+    letter-spacing: -0.1px;
+  }
+
+  /* ── Title ── */
+  .activity-title-block { padding: 8px 28px 20px; }
+  .activity-title {
+    font-size: 30px; font-weight: 800; letter-spacing: -0.8px;
+    line-height: 36px; margin-bottom: 10px;
+  }
+  .activity-timestamp {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--mute); font-weight: 500;
+  }
+  .activity-timestamp svg { color: var(--mute); }
+
+  /* ── Map hero ── */
+  .map-hero {
+    height: 360px;
+    background: linear-gradient(180deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.04) 60%, var(--ink) 100%);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .map-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(246,241,232,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(246,241,232,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .map-controls {
+    position: absolute; top: 16px; right: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .map-btn {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(20, 20, 26, 0.85);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .map-distance-overlay {
+    position: absolute; bottom: 18px; left: 18px;
+    padding: 10px 14px;
+    background: rgba(20, 20, 26, 0.85);
+    border-radius: 12px;
+    font-size: 13px; font-weight: 700;
+  }
+  .map-distance-overlay .num { color: var(--ember); font-size: 15px; }
+
+  /* ── Stats grid ── */
+  .stats-section { padding: 0 28px; margin-bottom: 32px; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .stat-card {
+    padding: 18px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    text-align: left;
+  }
+  .stat-label {
+    font-size: 10px; color: var(--mute-2);
+    letter-spacing: 0.8px; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .stat-val {
+    font-size: 26px; font-weight: 800;
+    color: var(--paper); letter-spacing: -0.6px;
+    font-variant-numeric: tabular-nums;
+    line-height: 28px;
+  }
+  .stat-val .unit { font-size: 13px; color: var(--mute); font-weight: 600; }
+  .stat-delta {
+    margin-top: 6px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+  }
+  .stat-delta.down { color: var(--red); }
+
+  /* ── Section title ── */
+  .sec-title {
+    padding: 0 28px; margin-bottom: 14px;
+    font-size: 17px; font-weight: 800; letter-spacing: -0.4px;
+  }
+
+  /* ── Splits ── */
+  .splits { padding: 0 28px; margin-bottom: 36px; }
+  .split-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    margin-bottom: 8px;
+  }
+  .split-row.best { background: rgba(249, 115, 22, 0.08); border-color: rgba(249, 115, 22, 0.3); }
+  .split-km { font-size: 13px; font-weight: 700; color: var(--mute); width: 28px; }
+  .split-bar-wrap { flex: 1; height: 8px; background: rgba(246,241,232,0.08); border-radius: 4px; overflow: hidden; }
+  .split-bar {
+    height: 100%; background: linear-gradient(90deg, var(--ember), var(--ember-deep));
+    border-radius: 4px;
+  }
+  .split-pace { font-size: 15px; font-weight: 700; width: 80px; text-align: right; letter-spacing: -0.2px; font-variant-numeric: tabular-nums; }
+  .split-best-tag { font-size: 9px; color: var(--ember); font-weight: 800; letter-spacing: 0.5px; margin-left: 8px; }
+
+  /* ── Chart ── */
+  .chart-card {
+    margin: 0 28px 28px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+  }
+  .chart-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 16px;
+  }
+  .chart-title { font-size: 14px; font-weight: 700; letter-spacing: -0.2px; }
+  .chart-avg { font-size: 12px; color: var(--mute); font-weight: 500; }
+  .chart-avg b { color: var(--paper); font-weight: 700; }
+
+  /* ── Locked section ── */
+  .locked-section {
+    margin: 0 28px 28px;
+    padding: 30px 24px;
+    background: rgba(246, 241, 232, 0.03);
+    border: 1px dashed rgba(246, 241, 232, 0.2);
+    border-radius: 18px;
+    text-align: center;
+  }
+  .locked-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(246, 241, 232, 0.06);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .locked-title { font-size: 15px; font-weight: 700; color: var(--paper); margin-bottom: 6px; letter-spacing: -0.2px; }
+  .locked-desc { font-size: 13px; color: var(--mute); font-weight: 400; line-height: 18px; margin-bottom: 16px; }
+  .locked-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: rgba(249, 115, 22, 0.12);
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    border-radius: 100px;
+    color: var(--ember); font-size: 13px; font-weight: 700;
+  }
+
+  /* ── Kudos row ── */
+  .kudos-section { padding: 0 28px; margin-bottom: 28px; }
+  .kudos-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .kudos-avatars { display: flex; }
+  .kudos-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff;
+  }
+  .kudos-avatar + .kudos-avatar { margin-left: -8px; }
+  .kudos-text { flex: 1; font-size: 13px; color: var(--mute); }
+  .kudos-text b { color: var(--paper); font-weight: 700; }
+  .kudos-cta {
+    padding: 10px 16px;
+    background: var(--ember);
+    border-radius: 100px;
+    color: #fff; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ── Comments ── */
+  .comments { padding: 0 28px 40px; }
+  .comment {
+    display: flex; gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .comment:last-child { border-bottom: none; }
+  .comment-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .comment-body { flex: 1; }
+  .comment-author {
+    font-size: 13px; font-weight: 700; color: var(--paper);
+  }
+  .comment-time { font-size: 11px; color: var(--mute-2); font-weight: 500; }
+  .comment-text { font-size: 13px; color: var(--mute); line-height: 18px; margin-top: 2px; }
+  .comment-input {
+    display: flex; gap: 10px; margin-top: 16px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+  }
+  .comment-input .ph { flex: 1; font-size: 13px; color: var(--mute-2); padding: 2px 0; }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="btn-circle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </div>
+    <div class="topbar-actions">
+      <div class="btn-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      </div>
+      <div class="btn-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Owner header -->
+  <div class="owner-row">
+    <div class="owner-avatar">A</div>
+    <div class="owner-info">
+      <div class="owner-name">Ana Martín</div>
+      <div class="owner-meta">
+        <span class="owner-tag">◆ Compatible 92%</span>
+        <span>·</span>
+        <span>Principiante · 0.8 km de ti</span>
+      </div>
+    </div>
+    <button class="follow-btn">+ Seguir</button>
+  </div>
+
+  <!-- Title -->
+  <div class="activity-title-block">
+    <div class="activity-title">Rodaje matinal</div>
+    <div class="activity-timestamp">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/><path d="M12 6v6l4 2"/>
+      </svg>
+      <span>Hoy · 7:15 AM · Punta Umbría, Huelva</span>
+    </div>
+  </div>
+
+  <!-- Map hero -->
+  <div class="map-hero">
+    <div class="map-grid-bg"></div>
+    <svg width="100%" height="100%" viewBox="0 0 1080 360" fill="none" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0;">
+      <defs>
+        <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#f97316" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#ea580c" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <path d="M 80 260 Q 200 140 320 180 Q 440 220 540 160 Q 640 100 760 140 Q 860 180 980 120"
+            stroke="url(#routeGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="260" r="12" fill="#22c55e"/>
+      <circle cx="80" cy="260" r="5" fill="#0b0b0d"/>
+      <circle cx="980" cy="120" r="12" fill="#ef4444"/>
+      <circle cx="980" cy="120" r="5" fill="#0b0b0d"/>
+    </svg>
+    <div class="map-controls">
+      <div class="map-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+        </svg>
+      </div>
+      <div class="map-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f6f1e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+        </svg>
+      </div>
+    </div>
+    <div class="map-distance-overlay">
+      <span class="num">5.20 km</span> · Paseo Marítimo → Faro
+    </div>
+  </div>
+
+  <!-- Stats grid -->
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Distancia</div>
+        <div class="stat-val">5.20<span class="unit"> km</span></div>
+        <div class="stat-delta">+0.8 km vs último</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Tiempo</div>
+        <div class="stat-val">35:21</div>
+        <div class="stat-delta">−45s vs último</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Ritmo</div>
+        <div class="stat-val">6:48<span class="unit">/km</span></div>
+        <div class="stat-delta">−9s/km</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Elevación</div>
+        <div class="stat-val">18<span class="unit"> m</span></div>
+        <div class="stat-delta">Llano</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splits -->
+  <div class="sec-title">Parciales por km</div>
+  <div class="splits">
+    <div class="split-row">
+      <div class="split-km">1</div>
+      <div class="split-bar-wrap"><div class="split-bar" style="width: 70%"></div></div>
+      <div class="split-pace">7:12</div>
+    </div>
+    <div class="split-row best">
+      <div class="split-km">2</div>
+      <div class="split-bar-wrap"><div class="split-bar" style="width: 92%"></div></div>
+      <div class="split-pace">6:28</div>
+      <div class="split-best-tag">PR</div>
+    </div>
+    <div class="split-row">
+      <div class="split-km">3</div>
+      <div class="split-bar-wrap"><div class="split-bar" style="width: 85%"></div></div>
+      <div class="split-pace">6:44</div>
+    </div>
+    <div class="split-row">
+      <div class="split-km">4</div>
+      <div class="split-bar-wrap"><div class="split-bar" style="width: 78%"></div></div>
+      <div class="split-pace">6:58</div>
+    </div>
+    <div class="split-row">
+      <div class="split-km">5</div>
+      <div class="split-bar-wrap"><div class="split-bar" style="width: 74%"></div></div>
+      <div class="split-pace">7:06</div>
+    </div>
+  </div>
+
+  <!-- Pace chart -->
+  <div class="chart-card">
+    <div class="chart-head">
+      <div class="chart-title">Gráfico de ritmo</div>
+      <div class="chart-avg">Promedio <b>6:48/km</b></div>
+    </div>
+    <svg width="100%" height="120" viewBox="0 0 500 120" fill="none" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="paceArea" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#f97316" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <line x1="0" y1="60" x2="500" y2="60" stroke="rgba(246,241,232,0.08)" stroke-dasharray="4 4"/>
+      <path d="M 0 85 L 100 35 L 200 60 L 300 70 L 400 80 L 500 90 L 500 120 L 0 120 Z"
+            fill="url(#paceArea)"/>
+      <path d="M 0 85 L 100 35 L 200 60 L 300 70 L 400 80 L 500 90"
+            stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Locked: HR (privacy example) -->
+  <div class="locked-section">
+    <div class="locked-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="11" width="14" height="10" rx="2"/>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      </svg>
+    </div>
+    <div class="locked-title">Frecuencia cardíaca privada</div>
+    <div class="locked-desc">
+      Ana comparte sus datos de pulso solo con sus seguidores.<br>
+      Sigue a Ana para ver esta información.
+    </div>
+    <div class="locked-btn">+ Seguir a Ana</div>
+  </div>
+
+  <!-- Kudos row -->
+  <div class="sec-title">Kudos</div>
+  <div class="kudos-section">
+    <div class="kudos-card">
+      <div class="kudos-avatars">
+        <div class="kudos-avatar" style="background:#f97316">L</div>
+        <div class="kudos-avatar" style="background:#3b82f6">M</div>
+        <div class="kudos-avatar" style="background:#a855f7">C</div>
+        <div class="kudos-avatar" style="background:#10b981">+9</div>
+      </div>
+      <div class="kudos-text">
+        <b>Luis, María, Carmen</b> y <b>9 más</b> dieron kudos
+      </div>
+      <div class="kudos-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 14v8H2v-8h6zm14-4c0-.55-.22-1.05-.59-1.41L21 8.29c-.37-.36-.58-.85-.58-1.41V5c0-1.1-.9-2-2-2h-3c-.83 0-1.54.5-1.84 1.22l-.52 2.09c-.08.33-.36.69-.69.69h-.5c-.55 0-1 .45-1 1v.17L10 14h9c1.66 0 3-1.34 3-3v-1z"/></svg>
+        Dar kudos
+      </div>
+    </div>
+  </div>
+
+  <!-- Comments -->
+  <div class="sec-title">Comentarios (3)</div>
+  <div class="comments">
+    <div class="comment">
+      <div class="comment-avatar" style="background:#3b82f6">L</div>
+      <div class="comment-body">
+        <div class="comment-author">Luis Fernández <span class="comment-time">hace 45min</span></div>
+        <div class="comment-text">¡Qué ritmo Ana! Ese km 2 a 6:28 es brutal para principio de semana 👏</div>
+      </div>
+    </div>
+    <div class="comment">
+      <div class="comment-avatar" style="background:#a855f7">C</div>
+      <div class="comment-body">
+        <div class="comment-author">Carmen López <span class="comment-time">hace 1h</span></div>
+        <div class="comment-text">¿El paseo marítimo estaba lleno a esa hora? Me apunto mañana si repites.</div>
+      </div>
+    </div>
+    <div class="comment">
+      <div class="comment-avatar" style="background:#f97316">M</div>
+      <div class="comment-body">
+        <div class="comment-author">María García <span class="comment-time">hace 2h</span></div>
+        <div class="comment-text">Salgo yo también desde el Paseo. ¿Quedamos el jueves?</div>
+      </div>
+    </div>
+    <div class="comment-input">
+      <div class="ph">Añade un comentario…</div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

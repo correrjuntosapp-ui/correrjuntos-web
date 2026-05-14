@@ -1,0 +1,152 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e16;
+    --paper: #fff;
+    --paper-72: rgba(255,255,255,.72);
+    --paper-50: rgba(255,255,255,.50);
+    --paper-32: rgba(255,255,255,.32);
+    --paper-06: rgba(255,255,255,.06);
+    --paper-12: rgba(255,255,255,.12);
+    --ember: #FF6B00;
+    --surface: rgba(255,255,255,.05);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  body {
+    background: var(--bg);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--paper);
+    padding: 30px;
+    display: flex; justify-content: center;
+  }
+  .feed-card {
+    width: 400px;
+    background: var(--surface);
+    border: 1px solid var(--paper-06);
+    border-radius: 22px; padding: 0; overflow: hidden;
+  }
+  .feed-user {
+    padding: 16px 16px 12px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    color: #fff; font-weight: 800; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .info { flex: 1; min-width: 0; }
+  .name-row { display: flex; align-items: baseline; gap: 8px; }
+  .name { font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+  .tag {
+    font-size: 10px; color: var(--ember); font-weight: 800;
+    background: rgba(255,107,0,.15);
+    padding: 3px 8px; border-radius: 6px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .time { font-size: 12.5px; color: var(--paper-50); font-weight: 500; margin-top: 2px; }
+  .more { color: var(--paper-50); font-size: 20px; font-weight: 700; }
+
+  .map-wrap {
+    position: relative; height: 200px; background: #1a2030; overflow: hidden;
+  }
+  .badge-tl {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+    padding: 5px 11px; border-radius: 8px;
+    font-size: 12px; font-weight: 800; color: #fff; letter-spacing: -.01em;
+  }
+  .badge-bl {
+    position: absolute; bottom: 12px; left: 12px;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+    padding: 5px 11px; border-radius: 8px;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 14px 16px 6px; }
+  .stat { background: rgba(255,255,255,.03); border-radius: 12px; padding: 12px 6px; text-align: center; }
+  .stat .v { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 10px; color: var(--paper-50); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-top: 3px; }
+
+  .actions {
+    display: flex; align-items: center; gap: 18px;
+    padding: 10px 16px 16px;
+    font-size: 13px; font-weight: 700; color: var(--paper-72);
+  }
+  .actions .heart { color: #FF6B00; font-size: 16px; }
+  .actions .right { margin-left: auto; color: var(--paper-50); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="feed-card">
+  <div class="feed-user">
+    <div class="avatar">M</div>
+    <div class="info">
+      <div class="name-row">
+        <span class="name">María L.</span>
+        <span class="tag">Punta Umbría</span>
+      </div>
+      <div class="time">Hace 12 min · Rodaje matutino</div>
+    </div>
+    <div class="more">⋯</div>
+  </div>
+
+  <!-- MAP -->
+  <div class="map-wrap">
+    <svg viewBox="0 0 400 200" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+      <!-- Street grid (subtle) -->
+      <g stroke="rgba(255,255,255,0.045)" stroke-width="1">
+        <line x1="0" y1="25" x2="400" y2="25"/>
+        <line x1="0" y1="60" x2="400" y2="60"/>
+        <line x1="0" y1="100" x2="400" y2="100"/>
+        <line x1="0" y1="140" x2="400" y2="140"/>
+        <line x1="0" y1="175" x2="400" y2="175"/>
+        <line x1="40" y1="0" x2="40" y2="200"/>
+        <line x1="100" y1="0" x2="100" y2="200"/>
+        <line x1="160" y1="0" x2="160" y2="200"/>
+        <line x1="220" y1="0" x2="220" y2="200"/>
+        <line x1="280" y1="0" x2="280" y2="200"/>
+        <line x1="340" y1="0" x2="340" y2="200"/>
+      </g>
+      <!-- Thicker main streets -->
+      <g stroke="rgba(255,255,255,0.11)" stroke-width="2.5" fill="none">
+        <path d="M 0 100 L 400 100"/>
+        <path d="M 160 0 L 160 200"/>
+      </g>
+      <!-- Water area (coastal — Punta Umbría) -->
+      <path d="M 0 160 Q 100 152 200 158 T 400 165 L 400 200 L 0 200 Z"
+        fill="rgba(59,130,246,0.20)" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
+      <!-- Green park area -->
+      <path d="M 40 0 Q 60 30 80 50 L 100 40 L 105 0 Z" fill="rgba(34,197,94,0.18)"/>
+      <path d="M 290 130 Q 310 120 340 130 L 345 155 Q 320 160 290 158 Z" fill="rgba(34,197,94,0.14)"/>
+      <!-- GPS Route (orange) -->
+      <path d="M 30 75 Q 65 50 95 65 T 155 85 Q 185 100 225 88 T 295 70 Q 325 55 355 78 L 375 115"
+        fill="none" stroke="#FF6B00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+        filter="drop-shadow(0 0 8px rgba(255,107,0,0.55))"/>
+      <!-- Start point -->
+      <circle cx="30" cy="75" r="7" fill="#22c55e" stroke="#fff" stroke-width="2.5"/>
+      <!-- End point -->
+      <circle cx="375" cy="115" r="7" fill="#FF6B00" stroke="#fff" stroke-width="2.5"/>
+    </svg>
+    <div class="badge-tl">📍 8,2 km</div>
+    <div class="badge-bl">▲ 12 m</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="v">8,2</div><div class="l">km</div></div>
+    <div class="stat"><div class="v">42:18</div><div class="l">tiempo</div></div>
+    <div class="stat"><div class="v">5:09</div><div class="l">ritmo</div></div>
+  </div>
+
+  <div class="actions">
+    <span><span class="heart">❤️</span> 12</span>
+    <span>💬 3</span>
+    <span class="right">↗ Compartir</span>
+  </div>
+</div>
+
+</body>
+</html>

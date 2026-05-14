@@ -238,6 +238,91 @@ Cuando llegue una auditoría de la página, ANTES de aceptar y reescribir, verif
 
 ⚠️ **NUNCA crear participantes fake (`es_seed=true`)** para inflar contador. Miguel ya nos avisó hace meses ("cantan mucho los perfiles falsos"). Lo único OK: auto-join del organizer profile, porque ES quien organiza (Meetup/Strava pattern). La descripción aclara "grupo de 15-25 runners habituales" para contexto.
 
+### 📩 Sistema Newsletter Capture en Blog (memorizado 13 may 2026)
+
+**Hito**: 4 puntos de captura de email en TODO el blog. Reutiliza `/api/brevo-subscribe`. Sin librerías externas.
+
+#### Archivo único: `/blog/newsletter.js` (~16KB, vanilla JS)
+
+Carga: `<script src="/blog/newsletter.js" defer></script>` antes de `</body>` en `blog/index.html` y todos los articles.
+
+Detecta `if(location.pathname.indexOf('/blog') === 0)` → solo carga en blog, no en homepage.
+
+#### 4 componentes que inyecta automáticamente
+
+1. **Sticky bar superior** (top 0, z-index 150, fondo dark)
+   - Aparece a los 800ms
+   - "📩 Plan 0→5K gratis + 1 artículo cada lunes en tu email"
+   - Dismiss 7 días via `localStorage cj_nl_sticky_until`
+   - Source tag Brevo: `blog-newsletter-sticky`
+
+2. **Exit-intent popup** (overlay modal)
+   - Trigger: desktop mouseleave-top OR mobile 75% scroll
+   - "ANTES DE IRTE · ¿Tu plan 0→5K en 8 semanas?"
+   - 3 benefits con check verde · email input · "Quiero el plan gratis"
+   - Dismiss 30 días + máx 1 por sesión
+   - Source tag: `blog-newsletter-exit`
+
+3. **Inline mid-article** (cream con borde naranja)
+   - Insertado tras 3er `<p>` del `.content` o `<article>`
+   - Source tag: `blog-newsletter-inline`
+
+4. **End-of-article CTA** (dark con gradient radial naranja)
+   - Insertado antes de `.related`
+   - "Newsletter · ¿Te sirvió este artículo?"
+   - Source tag: `blog-newsletter-end`
+
+#### Anti-spam rules (en localStorage)
+
+```
+cj_nl_subscribed = '1'           → oculta TODO si suscrito
+cj_nl_sticky_until = timestamp   → sticky dismiss 7 días
+cj_nl_exit_until = timestamp     → exit dismiss 30 días
+cj_nl_exit_session (sessionSt.)  → exit máx 1 por sesión
+```
+
+#### GA4 events disparados
+
+- `newsletter_view` { source }
+- `newsletter_submit` { source }
+- `newsletter_success` { source }
+- `newsletter_dismiss` { source }
+
+#### Brevo source tags por componente
+
+`blog-newsletter-sticky` · `blog-newsletter-exit` · `blog-newsletter-inline` · `blog-newsletter-end` — útiles para ver en analytics cuál capta más.
+
+#### Para añadir el script en TODOS los blog articles bulk
+
+```bash
+node -e "
+const fs = require('fs');
+const path = require('path');
+const blogDir = 'blog';
+fs.readdirSync(blogDir).filter(f => f.endsWith('.html') && f !== 'index.html').forEach(f => {
+  const fp = path.join(blogDir, f);
+  let h = fs.readFileSync(fp, 'utf8');
+  if (h.includes('newsletter.js')) return;
+  h = h.replace('</body>', '<script src=\"/blog/newsletter.js\" defer></script>\n</body>');
+  fs.writeFileSync(fp, h);
+  console.log('+ ' + f);
+});
+"
+```
+
+#### ⚠️ Fix banner CTA `cj-app-banner` (enhance.js, 13 may 2026)
+
+El banner que `enhance.js` inyecta automáticamente después del primer H2 de cada article (la card naranja con "¡Empieza tu plan gratis!" + badges App Store/Google Play) estaba descuadrado en viewport medio (icon top-left + text left + badges left). 
+
+Refactorizado a layout column centered:
+- max-width 520px + margin auto
+- flex-direction:column + align-items:center
+- icon top → text centered → badges centered
+- Shadow más fuerte (24px y, 80px blur)
+- Mobile breakpoint a 420px (no 520) para que el desktop layout aguante mejor
+
+Si vuelves a verlo descuadrado, mira `blog/enhance.js` línea ~777 (CSS de `.cj-app-banner`).
+
 ### UTM tracking system (memorizado 13 may 2026)
 
 Sistema short-link en `vercel.json` redirects + JS capture en `index.html`:

@@ -143,20 +143,14 @@ Solo añadir si hay personas con rol formal en la empresa. Si Carlos Ruiz solo c
 
 ## Add organization wizard — Sección 7: Identifiers / Social
 
+> ⚠️ **Verificado 15 may 2026**: Crunchbase solo expone 4 campos de social/URL en su edit form gratuito: **Website**, **Facebook**, **LinkedIn** y **Twitter**. Instagram, App Store y Google Play NO existen como campos. Se eliminaron del doc.
+
 | Campo | Valor |
 |---|---|
 | Facebook | [PLACEHOLDER — URL página FB si existe] |
 | Twitter | https://twitter.com/CorrerJuntos |
 | LinkedIn (Company) | [PLACEHOLDER — URL tras crear la página LinkedIn, ver `docs/linkedin-company-page.md`] |
-| Instagram | https://www.instagram.com/correrjuntosapp |
 | YouTube | [PLACEHOLDER — si existe canal] |
-
-### App Store / Play Store
-
-| Field | Value |
-|---|---|
-| iOS App Store URL | https://apps.apple.com/app/correr-juntos/id6758505910 |
-| Google Play URL | https://play.google.com/store/apps/details?id=com.correrjuntos.app |
 
 ---
 

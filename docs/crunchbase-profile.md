@@ -21,10 +21,10 @@
 | Campo | Valor |
 |---|---|
 | Organization name | CorrerJuntos |
-| Legal name | [PLACEHOLDER — nombre legal de la empresa si está constituida; si es autónomo dejar igual: CorrerJuntos] |
+| Legal name | CorrerJuntos |
 | URL on Crunchbase (slug) | `correrjuntos` |
 | Website | https://www.correrjuntos.com |
-| Phone number | [PLACEHOLDER — opcional] |
+| Phone number | (vacío — decisión: no exponer) |
 | Email | hola@correrjuntos.com |
 | Organization type | For Profit |
 | Operating status | Active |
@@ -41,7 +41,7 @@ Spanish running app with AI coach, adaptive training plans and local group runs.
 ### Long description (EN, ~1500-2000 chars recommended)
 
 ```
-CorrerJuntos is a Spanish running app founded in 2024 in Huelva, Andalusia, by Abraham Márquez Rodríguez — a sub-3:30 marathoner with 8,000+ km in his legs.
+CorrerJuntos is a Spanish running app founded in November 2025 in Huelva, Andalusia, by Abraham Márquez Rodríguez — a sub-3:30 marathoner with 8,000+ km in his legs.
 
 WHAT THE APP DOES
 
@@ -104,10 +104,10 @@ Crunchbase pide categorías de su lista predefinida. Seleccionar **3-5 máximo**
 | Campo | Valor |
 |---|---|
 | Headquarters region | Spain |
-| Headquarters location | Málaga, Andalusia, Spain |
+| Headquarters location | Huelva, Andalusia, Spain |
 | Address | [PLACEHOLDER — dirección física; si es autónomo desde casa, dejar solo ciudad] |
 
-> 📝 **Nota sobre HQ location**: el founder vive en Huelva (según CLAUDE.md), pero el usuario solicitó Málaga en este briefing. Si el HQ legal está en Huelva, cambiar a `Huelva, Andalusia, Spain`. Verificar con founder cuál usar.
+> 📝 **HQ confirmado**: Huelva, Andalusia, Spain — sede del founder y de la empresa.
 
 ---
 
@@ -119,7 +119,7 @@ Crunchbase pide categorías de su lista predefinida. Seleccionar **3-5 máximo**
 |---|---|
 | Name | Abraham Márquez Rodríguez |
 | Title | Founder & CEO |
-| LinkedIn | [PLACEHOLDER — URL completa al perfil LinkedIn personal del founder] |
+| LinkedIn | https://www.linkedin.com/in/abrahammarquezrodriguez/ |
 | Twitter | [PLACEHOLDER — handle si lo hace público] |
 | Email | hola@correrjuntos.com |
 
@@ -136,7 +136,7 @@ Solo añadir si hay personas con rol formal en la empresa. Si Carlos Ruiz solo c
 | Funding status | Bootstrapped (no external funding) |
 | Total funding amount | 0 |
 | Last funding type | N/A — Bootstrapped |
-| Revenue range | [PLACEHOLDER — opcional; al cierre mayo 2026 ~57 €/mes así que dejar vacío hasta superar 1.000 €/mes] |
+| Revenue range | (vacío — decisión: no exponer hasta superar 12.000 €/año) |
 | Employees count | 1-10 |
 
 ---
@@ -164,7 +164,7 @@ Solo añadir si hay personas con rol formal en la empresa. Si Carlos Ruiz solo c
 
 | Campo | Valor |
 |---|---|
-| Founded date | 2024-05 *(mes de fundación si conocido; si no, solo 2024)* |
+| Founded date | 2025-11 (November 2025) |
 | Number of founders | 1 |
 | Number of employees (current) | 1-10 |
 

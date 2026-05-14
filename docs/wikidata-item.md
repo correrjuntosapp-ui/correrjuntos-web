@@ -92,7 +92,7 @@ Antes de crear el item de la app, hace falta el item de Abraham Márquez Rodríg
 |---|---|---|---|
 | instance of (P31) | mobile app | Q1969448 | El user pidió este Q-code; Wikidata también admite Q620615 (mobile application) — usar Q1969448 si está disponible, si no Q620615 |
 | country of origin (P495) | Spain | Q29 | |
-| inception (P571) | 2024 | *(formato: 2024-00-00 — solo año)* | |
+| inception (P571) | 2025-11 | *(formato: precision month, 2025-11-00)* | |
 | founded by (P112) | Abraham Márquez Rodríguez | *(item creado en Paso 1)* | |
 | official website (P856) | https://www.correrjuntos.com | URL completa | |
 | operating system (P306) | Android | Q94 | Statement 1 |
@@ -101,7 +101,7 @@ Antes de crear el item de la app, hace falta el item de Abraham Márquez Rodríg
 | language of work or name (P407) | English | Q1860 | Statement 2 — opcional pero refuerza |
 | genre (P136) | physical fitness | Q309252 | Wikidata genre puede no aplicar bien a apps — alternativa: skip y dejar que `instance of mobile app` lo defina |
 | developer (P178) | CorrerJuntos | *(self-reference si no tienes empresa separada; o crear item de la empresa)* | [PLACEHOLDER — decidir] |
-| publication date (P577) | 2024 | *(formato: 2024-05-00 si quieres ser preciso)* | |
+| publication date (P577) | 2025-11 | *(formato: precision month, 2025-11-00)* | |
 | copyright holder (P3931) | Abraham Márquez Rodríguez | *(linkear al item Paso 1)* | |
 
 ### Identifiers (sección inferior)
@@ -130,7 +130,7 @@ Para cada statement clave, clic en "+ add reference" y rellenar:
 
 | Statement | Reference URL | Title |
 |---|---|---|
-| inception 2024 | https://www.correrjuntos.com/about | About — CorrerJuntos |
+| inception 2025-11 | https://www.correrjuntos.com/about | About — CorrerJuntos |
 | founded by Abraham Márquez | https://www.correrjuntos.com/about | About — CorrerJuntos |
 | country of origin Spain | https://www.correrjuntos.com/about | About — CorrerJuntos |
 | App Store ID | https://apps.apple.com/app/correr-juntos/id6758505910 | App Store — CorrerJuntos |

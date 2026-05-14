@@ -105,7 +105,7 @@ CONTACTO
 Web: https://www.correrjuntos.com
 Email: hola@correrjuntos.com
 
-CorrerJuntos. App de running española fundada en 2024.
+CorrerJuntos. App de running española fundada en noviembre de 2025.
 ```
 *(Aprox. 2.450 chars — dentro del límite de 4.000.)*
 
@@ -174,7 +174,7 @@ CONTACT
 Web: https://www.correrjuntos.com
 Email: hola@correrjuntos.com
 
-CorrerJuntos. A Spanish running app founded in 2024.
+CorrerJuntos. A Spanish running app founded in November 2025.
 ```
 *(Aprox. 2.350 chars — dentro del límite de 4.000.)*
 
@@ -304,7 +304,7 @@ CONTACTO
 Web: https://www.correrjuntos.com
 Email: hola@correrjuntos.com
 
-CorrerJuntos. App española fundada en 2024 en Huelva.
+CorrerJuntos. App española fundada en noviembre de 2025 en Huelva.
 ```
 *(Aprox. 1.700 chars — dentro del límite de 4.000.)*
 
@@ -366,7 +366,7 @@ CONTACT
 Web: https://www.correrjuntos.com
 Email: hola@correrjuntos.com
 
-CorrerJuntos. Spanish app founded in 2024 in Huelva.
+CorrerJuntos. Spanish app founded in November 2025 in Huelva.
 ```
 *(Aprox. 1.650 chars — dentro del límite de 4.000.)*
 

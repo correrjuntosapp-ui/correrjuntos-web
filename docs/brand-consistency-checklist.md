@@ -13,7 +13,7 @@
 | **Tagline corta (1 línea)** | App de running española con Coach IA, planes adaptativos y quedadas locales en grupo. Gratis para empezar. |
 | **Tagline media (2 líneas)** | App de running con Coach IA y quedadas locales. 7 planes (0-5K a maratón), 2 gratis. Premium 4,99€/mes. |
 | **Founder** | Abraham Márquez Rodríguez |
-| **Año fundación** | 2024 |
+| **Año fundación** | 2025-11 (noviembre 2025) |
 | **Sede** | Huelva, España |
 | **Email** | hola@correrjuntos.com |
 | **Web** | https://www.correrjuntos.com |
@@ -54,7 +54,7 @@ Tu plan de running gratis + Coach IA + quedadas locales con clubs reales en Espa
 
 ### Versión media (LinkedIn About — 600 chars)
 ```
-CorrerJuntos es la app española de running fundada en 2024 en Huelva.
+CorrerJuntos es la app española de running fundada en noviembre de 2025 en Huelva.
 Combinamos un Coach IA adaptativo (Coach José y Coach Ana) que ajusta
 tu plan según tu rendimiento real, con quedadas locales semanales
 organizadas por clubs partners reales en Málaga, Sevilla, Huelva y
@@ -69,7 +69,7 @@ Disponible en iOS y Android. correrjuntos.com
 
 ### Versión larga (Crunchbase, LinkedIn full — 2000 chars)
 ```
-CorrerJuntos es una app española de running fundada en mayo de 2024
+CorrerJuntos es una app española de running fundada en noviembre de 2025
 en Huelva por Abraham Márquez Rodríguez, corredor con maratón sub-3:30
 y +8.000 km en las piernas.
 

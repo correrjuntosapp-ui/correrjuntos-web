@@ -17,7 +17,7 @@
 | Sector / Industry | Software de aplicaciones *(Application Software)* |
 | Tamaño empresa | 1-10 empleados |
 | Tipo de empresa | Empresa privada *(Privately Held)* |
-| Año fundación | 2024 |
+| Año fundación | 2025 |
 | Tipo de página | Empresa *(Company)* — NO "Showcase" ni "Educational" |
 | Logo | Subir `/icons/icon-512.png` (512×512 PNG) |
 | Banner/cover | [PLACEHOLDER] — generar 1584×396 px con foto running + brand colors `#f97316` |
@@ -40,7 +40,7 @@ App de running española con Coach IA, planes adaptativos y quedadas en grupo. G
 ## Descripción "Acerca de" — ESPAÑOL (2000 chars max)
 
 ```
-CorrerJuntos es una app de running española fundada en 2024 en Huelva por Abraham Márquez Rodríguez, corredor con maratón en 3h28 y más de 8.000 km a las piernas.
+CorrerJuntos es una app de running española fundada en noviembre de 2025 en Huelva por Abraham Márquez Rodríguez, corredor con maratón en 3h28 y más de 8.000 km a las piernas.
 
 QUÉ HACEMOS
 
@@ -75,7 +75,7 @@ Contacto: hola@correrjuntos.com
 ## Descripción "About" — INGLÉS (2000 chars max)
 
 ```
-CorrerJuntos is a Spanish running app founded in 2024 in Huelva by Abraham Márquez Rodríguez, a sub-3:30 marathoner with 8,000+ km in his legs.
+CorrerJuntos is a Spanish running app founded in November 2025 in Huelva by Abraham Márquez Rodríguez, a sub-3:30 marathoner with 8,000+ km in his legs.
 
 WHAT WE BUILD
 
@@ -112,7 +112,7 @@ Contact: hola@correrjuntos.com
 Para activar la página inmediatamente con un post fundacional:
 
 ```
-Lanzamos CorrerJuntos hace dos años con una idea simple: la mayoría de
+Lanzamos CorrerJuntos en noviembre con una idea simple: la mayoría de
 runners no entrena solo porque quiere, lo hace porque no encuentra a nadie
 de su nivel cerca.
 

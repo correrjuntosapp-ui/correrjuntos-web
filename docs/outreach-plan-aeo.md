@@ -12,7 +12,7 @@
 
 | # | Target | Tipo | Acción | Estimación tiempo |
 |---|---|---|---|---|
-| 1 | **Wikidata** (no Wikipedia todavía) | Knowledge graph | Crear item "CorrerJuntos (app)" con properties: instance of=mobile application, country=Spain, inception=2024, founder=Abraham Márquez | 30 min |
+| 1 | **Wikidata** (no Wikipedia todavía) | Knowledge graph | Crear item "CorrerJuntos (app)" con properties: instance of=mobile application, country=Spain, inception=2025-11, founder=Abraham Márquez | 30 min |
 | 2 | **Crunchbase** | Empresa database | Crear perfil organización con descripción canónica + founder + categoría "Health Tech / Mobile Apps" | 20 min |
 | 3 | **LinkedIn Company Page** | Social authority | Crear si no existe. Posts mensuales con noticias del producto | 30 min setup |
 | 4 | **Google Business Profile** | Local SEO + AEO | 1 por ciudad con club partner activo (Málaga, Sevilla, Huelva, TDM) | 1h × 4 |
@@ -66,7 +66,7 @@ que CorrerJuntos encajaría bien como mención de "app española de running"
 o "alternativa a Strava".
 
 Datos rápidos por si te sirve:
-- Fundada 2024 en Huelva, founder corredor con maratón sub-3:30
+- Fundada noviembre 2025 en Huelva, founder corredor con maratón sub-3:30
 - 612 corredores activos en 8 ciudades españolas
 - 4 clubs partners reales con quedadas semanales
 - Blog 243 artículos en español + 238 en inglés

@@ -1,5 +1,21 @@
 # CLAUDE.md — CorrerJuntos Web + Proyecto Global v1.3.6 (en build)
 
+## 📅 Datos canónicos (memorizado 15 may 2026 — CORRECCIÓN)
+
+- **Año fundación**: **noviembre 2025** (NO 2024 como decían materiales previos por error)
+- **Founded date canónico**: `2025-11` (formato Crunchbase/Wikidata)
+- **Sede**: Huelva, Andalusia, España
+- **Founder**: Abraham Márquez Rodríguez
+- **Legal name**: CorrerJuntos (empresa no constituida formalmente — autónomo)
+- **LinkedIn founder personal**: https://www.linkedin.com/in/abrahammarquezrodriguez/
+- **Edad real del proyecto al cierre may 2026**: ~6 meses
+
+⚠️ **Regla crítica**: si encuentras en cualquier doc/HTML/blog la frase "fundada en 2024" / "founded in 2024" / "Año fundación 2024" referida a CorrerJuntos, **es INCORRECTO** — corregir a "noviembre 2025" / "November 2025" / "2025". Excepción: textos que digan "en 2024 el ecosistema..." son contexto temporal de mercado, no fundación, NO tocar.
+
+⚠️ Cualquier frase tipo "hace dos años empecé/lanzamos" referida a CJ es también incorrecta — el proyecto tiene ~6 meses al cierre may 2026.
+
+---
+
 ## 🍻 Partner Clubs B2B — sistema completo (memorizado 13 may 2026)
 
 **HITO**: primer club partner B2B operativo después del primer SÍ tras outreach

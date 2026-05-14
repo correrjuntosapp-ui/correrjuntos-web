@@ -209,7 +209,7 @@ Abraham · hola@correrjuntos.com
 ```
 Hola gente. Me llamo Abraham Márquez, vivo en Huelva, llevo corriendo desde 2017 (maratón en 3h28).
 
-Hace dos años empecé un proyecto que se llama CorrerJuntos — una app española de running con coach IA en español natural, planes adaptativos y quedadas locales con clubs reales. En Andalucía tenemos partners en Málaga (Beer Runners), Sevilla (SRC), Huelva (Soul Run) y Torre del Mar (Correr Sin Límites).
+En noviembre lancé un proyecto que se llama CorrerJuntos — una app española de running con coach IA en español natural, planes adaptativos y quedadas locales con clubs reales. En Andalucía tenemos partners en Málaga (Beer Runners), Sevilla (SRC), Huelva (Soul Run) y Torre del Mar (Correr Sin Límites).
 
 Si os tira probarla está en correrjuntos.com — 2 planes gratis (0→5K y Empieza a Moverte). El premium es 4,99 €/mes.
 

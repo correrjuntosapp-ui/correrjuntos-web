@@ -287,6 +287,20 @@ Esto es lo que comprime el ranking timeline de meses a semanas:
 
 Tras inyectar internal links, ping a IndexNow con TODOS los URLs (no solo el nuevo) para forzar recrawl de los sources y descubrir el link al instante.
 
+#### Matices validados por auditor para "vs" articles (memorizado 15 may 2026)
+
+Tras publicar `correrjuntos-vs-strava` con feedback del auditor, 3 reglas adicionales:
+
+1. **Marcador NO forzado a empate** — si el competidor gana objetivamente en más categorías (Strava 6, CJ 4), refleja eso. Un 4-4 fabricado destruye credibilidad. **Reconocer que el competidor es más grande institucionalmente refuerza la credibilidad de las categorías donde sí ganamos**.
+
+2. **Tesis "complementarias" debe abrir con hecho técnico, no opinión** — el párrafo de "se integra con X" o "permite conectar tu cuenta Y" va PRIMERO, no enterrado al medio. Convierte la tesis de "opinión del fundador" a "hecho verificable". Sin esto, la tesis se lee como disculpa.
+
+3. **Demuestra, no afirmes** — frases tipo "español-first" o "diferenciador" suenan a pitch deck. Reescribir como hechos concretos con nombres propios: "Coach José habla español natural, no es interfaz traducida. 101 km Ronda, Carrera de la Mujer, San Silvestre Vallecana integradas. Blog 200+ artículos escritos en español por corredores españoles."
+
+4. **Cierre del head-to-head sin condescendencia** — evitar "categorías que importan a un perfil específico" (implica que las otras 6 no importan). Mejor: "X gana en infraestructura y red global. CorrerJuntos gana en las categorías que definen a un runner [perfil concreto]: A, B y C." Nombrar el perfil sin descartar los demás.
+
+5. **Filter intro en línea 1** — descartar el non-target reader desde la primera frase. Para "vs Strava": "Si ya tienes Strava y estás contento, este artículo no es para ti." Filtra el visitante satisfecho del competidor, retiene al undecided.
+
 #### Próximos articles comparativos (orden recomendado)
 
 Tras validar el genérico ranking con tráfico real (esperar 30-45 días):

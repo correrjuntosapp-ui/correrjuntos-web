@@ -16,6 +16,18 @@
 
 ---
 
+## 📡 Canales institucionales (15 may 2026)
+
+- **LinkedIn Company Page**: https://www.linkedin.com/company/correrjuntos/
+  Page ID: 113236447 — completa con logo, descripción ES+EN, Huelva
+- **Crunchbase**: https://www.crunchbase.com/organization/correrjuntos
+  UUID: 51a31963-e408-44b8-8d85-cde9a2bb12ae — en moderación 2-7 días
+- **/about**: LIVE con founding date noviembre 2025 + 16 schemas
+- **Wikidata**: pendiente (requiere 5-10 ediciones previas en cuenta)
+- **GBP (clubs)**: pendiente coordinación con 4 club founders
+
+---
+
 ## 🍻 Partner Clubs B2B — sistema completo (memorizado 13 may 2026)
 
 **HITO**: primer club partner B2B operativo después del primer SÍ tras outreach

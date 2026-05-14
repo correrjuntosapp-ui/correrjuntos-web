@@ -36,8 +36,8 @@
 | **TikTok** @correrjuntosapp | ✅ | CorrerJuntos | Bio mínima | Mejorar bio |
 | **X/Twitter** @CorrerJuntos | ✅ | CorrerJuntos | Bio mínima | Mejorar bio + pin tweet con tagline |
 | **Pinterest** /correrjuntos | ✅ | CorrerJuntos | OK | — |
-| **LinkedIn Company** | ❌ | — | — | **CREAR** |
-| **Crunchbase** | ❌ | — | — | **CREAR perfil** |
+| **LinkedIn Company** | ✅ | CorrerJuntos · https://www.linkedin.com/company/correrjuntos/ | ✓ (Page ID 113236447) | Banner 1584×396 px + posts mensuales |
+| **Crunchbase** | ✅ | CorrerJuntos · https://www.crunchbase.com/organization/correrjuntos | ✓ (UUID 51a31963-e408-44b8-8d85-cde9a2bb12ae) | En moderación 2-7 días |
 | **Wikidata** | ❌ | — | — | **CREAR item** |
 | **Google Business Profile** | ❌ | — | — | **CREAR uno por ciudad partner** (4) |
 | **AngelList/Wellfound** | ❌ | — | — | Crear (opcional, baja prioridad) |

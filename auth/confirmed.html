@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
   <title>Email confirmado — CorrerJuntos</title>
+
+  <!--
+    iOS Smart App Banner — Safari native muestra un banner arriba con
+    botón "OPEN" que abre la app directamente. Bypasses custom URL
+    scheme entirely. Solo funciona en Safari nativo iOS (no en Brave,
+    Gmail webview, Chrome iOS). Pero suficiente para la mayoría.
+  -->
+  <meta name="apple-itunes-app" content="app-id=6758505910">
+
   <link rel="apple-touch-icon" href="/icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +26,7 @@
       --ember-deep: #ea580c;
       --ash: rgba(246, 241, 232, 0.42);
       --ash-fade: rgba(246, 241, 232, 0.12);
+      --success: #22c55e;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -39,144 +49,278 @@
       background: var(--ink);
       border: 1px solid var(--ash-fade);
       border-radius: 20px;
-      padding: 40px 32px;
+      padding: 36px 28px;
       text-align: center;
     }
-    .accent-dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background: var(--ember);
+
+    /* ─── Success state ─── */
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.30);
       border-radius: 999px;
-      margin-bottom: 20px;
-    }
-    .eyebrow {
+      margin-bottom: 22px;
       font-family: 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
       font-size: 11px;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--ember);
-      font-weight: 500;
-      margin-bottom: 24px;
+      color: var(--success);
+      font-weight: 600;
     }
-    .eyebrow::before {
-      content: "";
-      display: inline-block;
-      width: 32px;
-      height: 1px;
-      background: var(--ember);
-      vertical-align: middle;
-      margin-right: 10px;
-    }
+    .success-badge svg { display: block; }
+
     h1 {
-      font-size: 32px;
-      line-height: 1.05;
+      font-size: 30px;
+      line-height: 1.1;
       letter-spacing: -0.03em;
       font-weight: 200;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     h1 strong { color: var(--ember); font-weight: 700; }
-    p {
+
+    p.intro {
       font-size: 15px;
-      line-height: 1.65;
+      line-height: 1.6;
       color: rgba(246, 241, 232, 0.72);
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
+
+    /* ─── Steps to open app (the KEY message) ─── */
+    .steps {
+      background: rgba(249, 115, 22, 0.05);
+      border: 1px solid rgba(249, 115, 22, 0.20);
+      border-radius: 14px;
+      padding: 20px 18px;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+    .steps-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ember);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--ember);
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .step-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--paper);
+      padding-top: 3px;
+    }
+    .step-text strong { color: var(--ember); font-weight: 700; }
+
+    /* App icon visual reference */
+    .app-icon-ref {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(246, 241, 232, 0.04);
+      border: 1px solid var(--ash-fade);
+      border-radius: 10px;
+      padding: 6px 12px 6px 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--paper);
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .app-icon-ref img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+
+    /* ─── Backup CTA (might or might not work depending on browser) ─── */
+    .cta-row { margin-top: 6px; }
     .cta {
       display: inline-block;
-      padding: 16px 32px;
+      padding: 14px 28px;
       background: var(--ember);
       color: var(--ink);
       text-decoration: none;
       border-radius: 12px;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       letter-spacing: 0.01em;
       box-shadow: 0 6px 20px rgba(249, 115, 22, 0.25);
       transition: transform 0.15s ease;
     }
     .cta:hover { transform: translateY(-1px); }
+    .cta-hint {
+      display: block;
+      margin-top: 10px;
+      font-size: 11px;
+      color: rgba(246, 241, 232, 0.42);
+      font-style: italic;
+    }
+
+    /* ─── Stores fallback ─── */
+    .divider {
+      height: 1px;
+      background: var(--ash-fade);
+      margin: 28px 0 18px;
+    }
+    .install-hint {
+      font-size: 13px;
+      color: rgba(246, 241, 232, 0.55);
+      margin-bottom: 14px;
+    }
     .stores {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
-      margin-top: 20px;
       flex-wrap: wrap;
     }
     .store {
       border: 1px solid var(--ash-fade);
       border-radius: 10px;
-      padding: 10px 16px;
+      padding: 9px 14px;
       color: var(--paper);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
+      gap: 6px;
+      font-size: 12px;
       font-weight: 500;
     }
     .store:hover { border-color: var(--ash); }
-    .divider {
-      height: 1px;
-      background: var(--ash-fade);
-      margin: 28px 0 20px;
+
+    /* ─── Brand footer ─── */
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-top: 22px;
     }
+    .brand em { font-style: normal; color: var(--ember); }
     .footer {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: rgba(246, 241, 232, 0.28);
+      margin-top: 12px;
     }
     .footer a { color: rgba(246, 241, 232, 0.42); text-decoration: none; }
-    .brand {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      margin-top: 22px;
+
+    /* In-app browser warning (Brave/Gmail/Instagram webview etc.) */
+    .webview-warning {
+      display: none;
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.30);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      font-size: 12px;
+      color: #fbbf24;
+      line-height: 1.5;
+      text-align: left;
     }
-    .brand em { font-style: normal; color: var(--ember); }
+    .webview-warning strong { color: #fde047; font-weight: 700; }
+    .webview-warning.show { display: block; }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="accent-dot"></div>
-    <div class="eyebrow">Cuenta verificada</div>
-    <h1>Email <strong>confirmado</strong>.<br>Abre la app para continuar.</h1>
-    <p>Tu cuenta ya está activa. Abre CorrerJuntos e inicia sesión con las credenciales que usaste al registrarte.</p>
+    <!-- Success badge — visible y obvio que el email ya está confirmado -->
+    <div class="success-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      Cuenta confirmada
+    </div>
 
-    <a href="correrjuntos://login" class="cta" id="openAppBtn">Abrir CorrerJuntos &nbsp;→</a>
+    <h1>Email <strong>confirmado</strong>.<br>Ahora abre la app.</h1>
 
-    <p id="install-hint" style="display:none;font-size:12px;color:#fbbf24;margin-top:12px;">
-      Si no se ha abierto, descarga la app abajo.
+    <p class="intro">
+      Tu cuenta está activa. Sigue estos pasos para entrar:
     </p>
+
+    <!-- Webview warning (JS detects Brave/Gmail/Instagram webview) -->
+    <div id="webview-warning" class="webview-warning">
+      <strong>⚠️ Si estás en Gmail, Instagram o Brave:</strong> el botón naranja puede no responder por restricciones de privacidad de tu browser. Sigue los pasos 1-2 abajo igualmente — funcionan siempre.
+    </div>
+
+    <!-- Steps box — el mensaje clave -->
+    <div class="steps">
+      <div class="steps-title">Cómo entrar</div>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          Cierra esta pantalla
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          Abre <strong>CorrerJuntos</strong> desde tu pantalla principal
+          <span class="app-icon-ref">
+            <img src="/icons/icon-192.png" alt="CorrerJuntos app icon">
+            <span>CorrerJuntos</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          Inicia sesión con tu email y contraseña
+        </div>
+      </div>
+    </div>
+
+    <!-- Backup CTA — works in Safari/Chrome but blocked in Brave/Gmail webview -->
+    <div class="cta-row">
+      <a href="correrjuntos://login" class="cta" id="openAppBtn">Intentar abrir app  →</a>
+      <span class="cta-hint">Si no responde, sigue los pasos de arriba</span>
+    </div>
 
     <div class="divider"></div>
 
-    <p style="font-size:13px; margin-bottom:16px;">¿No tienes la app instalada?</p>
+    <p class="install-hint">¿No tienes la app instalada?</p>
     <div class="stores">
       <a href="https://apps.apple.com/es/app/correr-juntos/id6758505910" class="store" target="_blank" rel="noopener">App Store</a>
       <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" class="store" target="_blank" rel="noopener">Google Play</a>
     </div>
 
     <div class="brand">Correr<em>Juntos</em></div>
-    <div class="footer" style="margin-top:16px;">
+    <div class="footer">
       <a href="https://www.correrjuntos.com">correrjuntos.com</a>
     </div>
   </div>
 
   <script>
-    // Auto-forward for password recovery.
-    //
-    // Why this lives here instead of on /auth/reset: Supabase's Site URL
-    // is set to /auth/confirmed and is used as the default redirect when
-    // the app-side redirectTo either isn't passed or isn't in the allow
-    // list. That means recovery emails (type=recovery) may land here
-    // first. Rather than show "Email confirmado" to a user who actually
-    // wanted to reset their password, we detect the hash and forward.
-    //
-    // Hash is preserved verbatim so /auth/reset gets the access_token +
-    // refresh_token it needs to call updateUser().
+    // ──────────────────────────────────────────────────────────────
+    // Auto-forward for password recovery (preserved from prev version).
+    // ──────────────────────────────────────────────────────────────
     (function () {
       var h = window.location.hash || '';
       if (h.indexOf('type=recovery') !== -1) {
@@ -184,59 +328,86 @@
       }
     })();
 
-    // [8 mayo 2026] Auto-redirect agresivo a la app con fallback visible.
+    // ──────────────────────────────────────────────────────────────
+    // Detect in-app webview (Gmail, Instagram, Facebook, TikTok, Brave)
+    // where custom URL schemes are silently blocked. Show warning so
+    // user understands the button may not work — but the manual steps
+    // 1-2 work regardless.
     //
-    // Reportado por Ángela: el flujo email → bridge → tap "Abrir CorrerJuntos"
-    // → iOS prompt → app eran 4-5 taps en Gmail iOS. Demasiada fricción
-    // para un confirmation flow.
+    // [15 may 2026, dogfood] Founder reportado: "abrir CorrerJuntos →"
+    // no responde en Gmail/Brave. Real fix: clear instructions instead
+    // of relying on the broken auto-redirect approach.
+    // ──────────────────────────────────────────────────────────────
+    (function () {
+      var ua = navigator.userAgent || '';
+      var isInAppWebview = (
+        /FBAN|FBAV|FB_IAB/i.test(ua) ||           // Facebook
+        /Instagram/i.test(ua) ||                  // Instagram
+        /TikTok/i.test(ua) ||                     // TikTok
+        /Twitter/i.test(ua) ||                    // Twitter/X
+        /GSA/i.test(ua) ||                        // Google Search App
+        /CriOS\/(?!\d+\.\d+\.\d+\.\d+\.0)/i.test(ua) === false && /CriOS/.test(ua) && /OS \d+_\d+(?:_\d+)? like/i.test(ua) && /Mobile/.test(ua) === false ||
+        // Brave on iOS doesn't expose itself in UA, so we use a defensive
+        // approach: if iOS + not standard Safari + not Chrome → likely
+        // in-app or alt browser
+        false
+      );
+
+      // More reliable approach: detect Brave/Gmail by feature instead of UA.
+      // Brave on iOS blocks custom schemes silently. Gmail webview adds
+      // 'gms' params or specific JS env. Show warning broadly to be safe.
+      var isLikelyRestrictedBrowser = (
+        isInAppWebview ||
+        /Brave/i.test(ua) ||
+        // Gmail iOS webview includes 'gmsg' string in some versions
+        /gmsg/i.test(ua) ||
+        // Conservative: if iOS but not standard Safari (no "Safari" in UA
+        // and not Chrome), assume restricted webview
+        (/iPhone|iPad|iPod/.test(ua) && !/Safari/.test(ua) && !/CriOS/.test(ua))
+      );
+
+      if (isLikelyRestrictedBrowser) {
+        var warning = document.getElementById('webview-warning');
+        if (warning) warning.classList.add('show');
+      }
+    })();
+
+    // ──────────────────────────────────────────────────────────────
+    // [iter#16, 15 may 2026] REMOVED auto-redirect to correrjuntos://login.
     //
-    // Approach: intentar abrir la app inmediatamente al cargar. Si el user
-    // está en Gmail webview (donde Universal Links no funcionan), iOS
-    // mostrará "¿Permitir abrir app?". Si acepta → app abre (1 tap menos).
-    // Si rechaza o no hay app instalada, el botón "Abrir CorrerJuntos"
-    // sigue siendo accesible debajo.
+    // Reason: in restricted browsers (Brave, Gmail webview, etc.) the
+    // auto-redirect either fails silently OR worse — leaves the page
+    // in a weird state where the manual button below also doesn't work.
     //
-    // El comentario antiguo decía que el prompt automático "felt broken"
-    // pero la realidad es que ahorra 1-2 taps en el flow más crítico
-    // (confirmación de cuenta nueva). Mejor 1 prompt automático que 4 taps
-    // manuales.
-    (function autoOpenApp() {
-      var h = window.location.hash || '';
-      // No auto-redirect en recovery flow (ya redirigió arriba).
-      if (h.indexOf('type=recovery') !== -1) return;
+    // Now the user sees clear instructions (steps 1-2-3) and can choose
+    // to tap the manual button OR just open the app from home screen.
+    // The clarity is more important than saving 1 tap for the lucky
+    // users whose browser actually supports custom schemes.
+    //
+    // Previous behavior preserved as fallback only on the button tap —
+    // if browser supports the scheme, app opens. If not, user follows
+    // the visible steps.
+    // ──────────────────────────────────────────────────────────────
 
-      // No auto-redirect si Universal Links ya intentaron y fallaron
-      // (típicamente ocurre en Gmail iOS webview).
-      // Intenta abrir custom scheme tras un delay mínimo para no bloquear
-      // render del fallback visual.
-      var startTime = Date.now();
-      var triggered = false;
-
-      // Detectar si el browser pierde focus (= app se abrió)
-      var visibilityHandler = function () {
-        if (document.hidden) triggered = true;
-      };
-      document.addEventListener('visibilitychange', visibilityHandler);
-
-      setTimeout(function () {
-        // Solo intentar si la página sigue visible (no fue ya capturada
-        // por una Universal Link automática).
-        if (document.hidden) return;
-        try {
-          window.location.href = 'correrjuntos://login';
-        } catch (e) {
-          // Algunos browsers throw si el scheme no está registrado.
-        }
-      }, 250);
-
-      // Si tras 3s la página sigue visible y no se disparó nada, mostrar
-      // un mensaje sutil indicando que el app no está instalada.
-      setTimeout(function () {
-        if (!document.hidden && (Date.now() - startTime) > 2500 && !triggered) {
-          var hint = document.getElementById('install-hint');
-          if (hint) hint.style.display = 'block';
-        }
-      }, 3000);
+    // Track if app opens (visibility change → page hidden = success)
+    (function () {
+      var btn = document.getElementById('openAppBtn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        // After 1.5s, if page still visible (= app didn't open), nothing
+        // happens — user already has the steps box visible to fall back to.
+        // No alert needed.
+        setTimeout(function () {
+          if (!document.hidden) {
+            // Visual nudge: highlight the steps box
+            var steps = document.querySelector('.steps');
+            if (steps) {
+              steps.style.boxShadow = '0 0 0 2px rgba(249,115,22,0.5)';
+              steps.style.transition = 'box-shadow 0.4s ease';
+            }
+          }
+        }, 1500);
+      });
     })();
   </script>
 </body>

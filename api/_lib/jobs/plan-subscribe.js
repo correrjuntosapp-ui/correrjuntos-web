@@ -183,9 +183,18 @@ function welcomeEmail({ lang, name, carreraNombre, carreraFecha, carreraCiudad, 
     ? `Plan for ${carreraNombre}. Download the app to start.`
     : `Plan para ${carreraNombre}. Descarga la app para empezar.`;
 
-  const intro = isEn
-    ? `You picked <strong style="color:${TEXT};font-weight:600;">${carreraNombre}</strong>${fechaFmt ? ` on ${fechaFmt}` : ''}${carreraCiudad ? ` in ${carreraCiudad}` : ''}. We've put together a <strong style="color:${TEXT};font-weight:600;">${planName}</strong>${weeksUntil ? ` covering the ${weeksUntil} weeks until race day` : ''}.`
-    : `Has elegido <strong style="color:${TEXT};font-weight:600;">${carreraNombre}</strong>${fechaFmt ? ` el ${fechaFmt}` : ''}${carreraCiudad ? ` en ${carreraCiudad}` : ''}. Hemos preparado un <strong style="color:${TEXT};font-weight:600;">${planName}</strong>${weeksUntil ? ` adaptado a las ${weeksUntil} semanas hasta la carrera` : ''}.`;
+  // iter#24 fix: copy natural si no hay carrera específica (founder hizo
+  // signup sin seleccionar carrera y el email decía "Has elegido tu carrera"
+  // en negrita como si fuera el nombre — feo). Cuando no hay carrera real
+  // usamos copy general que se siente custom.
+  const hasRace = carreraNombre && carreraNombre !== 'Mi carrera (no listada)' && carreraNombre !== 'your race' && carreraNombre !== 'tu carrera';
+  const intro = hasRace
+    ? (isEn
+      ? `You picked <strong style="color:${TEXT};font-weight:600;">${carreraNombre}</strong>${fechaFmt ? ` on ${fechaFmt}` : ''}${carreraCiudad ? ` in ${carreraCiudad}` : ''}. We've put together a <strong style="color:${TEXT};font-weight:600;">${planName}</strong>${weeksUntil ? ` covering the ${weeksUntil} weeks until race day` : ''}.`
+      : `Has elegido <strong style="color:${TEXT};font-weight:600;">${carreraNombre}</strong>${fechaFmt ? ` el ${fechaFmt}` : ''}${carreraCiudad ? ` en ${carreraCiudad}` : ''}. Hemos preparado un <strong style="color:${TEXT};font-weight:600;">${planName}</strong>${weeksUntil ? ` adaptado a las ${weeksUntil} semanas hasta la carrera` : ''}.`)
+    : (isEn
+      ? `Here's <strong style="color:${TEXT};font-weight:600;">${planName}</strong> — our most popular plan to get race-ready. Once you tell us which race you're aiming for, we adapt the volume and intensity automatically.`
+      : `Aquí tienes <strong style="color:${TEXT};font-weight:600;">${planName}</strong> — el plan más usado para llegar a una carrera en forma. En cuanto nos digas qué carrera tienes en mente, ajustamos volumen e intensidad automáticamente.`);
 
   const body1 = isEn
     ? `The plan adapts each week to how you're rinding. Coach Jose (AI) is there 24/7 — ask anything: "what if I slept badly?", "can I swap a session?", "is this pace right?".`

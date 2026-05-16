@@ -985,6 +985,26 @@
       return;
     }
 
+    // iter#24 fix: validar que se eligió carrera antes de submit.
+    // Antes: founder submiteó sin elegir → email decía "Has elegido tu carrera"
+    // en negrita como si fuera el nombre. Ahora forzamos elección.
+    if (!selectedRace) {
+      errorState.style.display = 'block';
+      errorState.className = 'error-state';
+      errorState.textContent = 'Elige primero una carrera arriba (o "No veo mi carrera" si la tuya no está).';
+      // Scroll al selector + flash highlight
+      document.getElementById('raceGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const grid = document.getElementById('raceGrid');
+      grid.style.outline = '2px solid #f97316';
+      grid.style.borderRadius = '12px';
+      grid.style.padding = '10px';
+      setTimeout(() => {
+        grid.style.outline = '';
+        grid.style.padding = '';
+      }, 2000);
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando…';
     errorState.style.display = 'none';

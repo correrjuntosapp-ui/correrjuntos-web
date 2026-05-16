@@ -859,10 +859,11 @@
 
 <script>
   // ── Featured races — sincronizado con carreras-2026.json (app) ──
-  // 47 carreras españolas futuras · 13 CCAA · actualizado 2026-05-16
+  // 60 carreras españolas futuras · 16 CCAA · actualizado 2026-05-16
   const RACES = [
     { id: 'media-toledo-2026', nombre: 'Medio Maratón Ciudad de Toledo', fecha: '2026-05-17', ciudad: 'Toledo', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
     { id: 'carrera-bomberos-madrid-2026', nombre: 'Carrera de los Bomberos de Madrid', fecha: '2026-05-17', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'media-uva-valladolid-2026', nombre: 'XLV Media Maratón Universidad de Valladolid', fecha: '2026-05-17', ciudad: 'Valladolid', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
     { id: 'cursa-diputacio-barcelona-2026', nombre: 'Cursa Diputació Barcelona', fecha: '2026-05-24', ciudad: 'Barcelona', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'carrera-mujer-vitoria-2026', nombre: 'Carrera de la Mujer Vitoria-Gasteiz', fecha: '2026-05-31', ciudad: 'Vitoria-Gasteiz', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
     { id: '10k-vallecas-madrid-2026', nombre: '10K Vallecas Madrid', fecha: '2026-05-31', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
@@ -876,6 +877,8 @@
     { id: 'carrera-mujer-gijon-2026', nombre: 'Carrera de la Mujer Gijón', fecha: '2026-06-21', ciudad: 'Gijón', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
     { id: 'cursa-corte-ingles-barcelona-otono-2026', nombre: 'Cursa de Sant Antoni Barcelona', fecha: '2026-06-21', ciudad: 'Barcelona', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: '10k-bilbao-2026', nombre: '10K Bilbao', fecha: '2026-06-21', ciudad: 'Bilbao', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'media-san-fermin-pamplona-2026', nombre: 'XII La Media San Fermín', fecha: '2026-06-21', ciudad: 'Pamplona', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'trail-heroica-sacra-2026', nombre: 'Trail Heroica Sacra', fecha: '2026-06-27', ciudad: 'Ribeira Sacra', distancia: 'Trail', plan_slug: 'prep-trail', km: 42 },
     { id: 'nocturna-marbella-2026', nombre: 'Nocturna del Mediterráneo Málaga', fecha: '2026-07-04', ciudad: 'Málaga', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'carrera-nocturna-sevilla-2026', nombre: 'Carrera Popular Nocturna Sevilla', fecha: '2026-07-12', ciudad: 'Sevilla', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'carrera-popular-cadiz-2026', nombre: 'Carrera Popular del Carmen Cádiz', fecha: '2026-07-19', ciudad: 'Cádiz', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
@@ -889,25 +892,35 @@
     { id: 'ultra-pirineu-2026', nombre: 'Salomon Ultra Pirineu', fecha: '2026-09-26', ciudad: 'Bagà', distancia: 'Trail', plan_slug: 'prep-trail', km: 110 },
     { id: 'carrera-mujer-coruna-2026', nombre: 'Carrera de la Mujer A Coruña', fecha: '2026-09-27', ciudad: 'A Coruña', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
     { id: 'mitja-marato-sant-cugat-2026', nombre: 'Mitja Marató de Sant Cugat', fecha: '2026-09-27', ciudad: 'Sant Cugat del Vallès', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'media-valladolid-2026', nombre: 'XXXVII Media Maratón Ciudad de Valladolid', fecha: '2026-09-27', ciudad: 'Valladolid', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
     { id: 'media-madrid-rio-2026', nombre: 'Medio Maratón de la Latina (Madrid)', fecha: '2026-10-04', ciudad: 'Madrid', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'maraton-logrono-2026', nombre: 'XII Maratón Internacional Ciudad de Logroño', fecha: '2026-10-04', ciudad: 'Logroño', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: '10k-cuarto-mitad-madrid-2026', nombre: '10K Cuarto y Mitad Madrid', fecha: '2026-10-04', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'media-albacete-2026', nombre: 'XXIX Medio Maratón Internacional Ciudad de Albacete', fecha: '2026-10-04', ciudad: 'Albacete', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
     { id: '10k-zaragoza-pilar-2026', nombre: '10K del Pilar Zaragoza', fecha: '2026-10-11', ciudad: 'Zaragoza', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'trail-ribeira-sacra-2026', nombre: 'Trail Ribeira Sacra (TRS)', fecha: '2026-10-11', ciudad: 'Luintra', distancia: 'Trail', plan_slug: 'prep-trail', km: 42 },
     { id: 'bilbao-night-marathon-2026', nombre: 'EDP Bilbao Night Marathon', fecha: '2026-10-17', ciudad: 'Bilbao', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'edp-bilbao-half-2026', nombre: 'EDP Bilbao Night Half Marathon', fecha: '2026-10-17', ciudad: 'Bilbao', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
     { id: 'tui-palma-marathon-2026', nombre: 'TUI Palma Marathon Mallorca', fecha: '2026-10-18', ciudad: 'Palma', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'carrera-pavones-madrid-2026', nombre: 'Carrera Popular de Pavones', fecha: '2026-10-25', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'marbella-trail-2026', nombre: 'Marbella Trail Sierra Blanca', fecha: '2026-10-25', ciudad: 'Marbella', distancia: 'Trail', plan_slug: 'prep-trail', km: 25 },
+    { id: 'burgos-21k-cid-2026', nombre: 'Burgos 21K Tras las Huellas del Cid', fecha: '2026-10-25', ciudad: 'Burgos', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
     { id: 'behobia-san-sebastian-2026', nombre: 'Behobia-San Sebastián', fecha: '2026-11-08', ciudad: 'San Sebastián', distancia: '21K', plan_slug: 'prep-21k', km: 20 },
     { id: 'carrera-mujer-zaragoza-2026', nombre: 'Carrera de la Mujer Zaragoza', fecha: '2026-11-08', ciudad: 'Zaragoza', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
     { id: 'maraton-costa-calida-murcia-2026', nombre: 'Maratón Costa Cálida Murcia', fecha: '2026-11-08', ciudad: 'Murcia', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'carrera-mujer-sevilla-2026', nombre: 'Carrera de la Mujer Sevilla', fecha: '2026-11-15', ciudad: 'Sevilla', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
     { id: 'half-tenerife-2026', nombre: 'Medio Maratón Tenerife', fecha: '2026-11-15', ciudad: 'Santa Cruz de Tenerife', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'la21-media-vigo-2026', nombre: 'LA21 Media Maratón de Vigo', fecha: '2026-11-15', ciudad: 'Vigo', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'maraton-toledo-2026', nombre: 'I Maratón Imperial de Toledo', fecha: '2026-11-15', ciudad: 'Toledo', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'carrera-mujer-bcn-2026', nombre: 'Carrera de la Mujer Barcelona', fecha: '2026-11-22', ciudad: 'Barcelona', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
+    { id: 'cross-atapuerca-2026', nombre: 'XXI Cross Internacional de Atapuerca', fecha: '2026-11-22', ciudad: 'Atapuerca', distancia: '5K', plan_slug: 'prep-5k', km: 5 },
     { id: 'maraton-cordoba-2026', nombre: 'Maratón Internacional de Córdoba', fecha: '2026-11-29', ciudad: 'Córdoba', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'maraton-san-sebastian-2026', nombre: 'Maratón Donostia / San Sebastián', fecha: '2026-11-29', ciudad: 'San Sebastián', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'maraton-valencia-2026', nombre: 'Maratón Valencia Trinidad Alfonso', fecha: '2026-12-06', ciudad: 'Valencia', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'maraton-malaga-2026', nombre: 'Generali Maratón Málaga', fecha: '2026-12-13', ciudad: 'Málaga', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'san-silvestre-vallecana-2026', nombre: 'San Silvestre Vallecana', fecha: '2026-12-31', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'san-silvestre-vigo-2026', nombre: 'San Silvestre Vigo', fecha: '2026-12-31', ciudad: 'Vigo', distancia: '5K', plan_slug: 'prep-5k', km: 5 },
+    { id: 'san-silvestre-coruna-2026', nombre: 'San Silvestre A Coruña', fecha: '2026-12-31', ciudad: 'A Coruña', distancia: '10K', plan_slug: 'prep-10k', km: 7 },
   ];
 
   // ── State ──

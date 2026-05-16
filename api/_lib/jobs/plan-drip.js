@@ -260,7 +260,7 @@ function htmlFor(lang, idx, sub) {
     ctaLabel = isEn ? 'Activate 14 days free →' : 'Activar 14 días gratis →';
   }
 
-  const ctaUrl = `https://www.correrjuntos.com/?utm_source=plan_drip&utm_medium=email&utm_campaign=day_${DRIP_DELAYS_DAYS[idx]}&plan=${planSlug}`;
+  const ctaUrl = `https://www.correrjuntos.com/install?utm_source=plan_drip&utm_medium=email&utm_campaign=day_${DRIP_DELAYS_DAYS[idx]}&plan=${planSlug}`;
   const unsubUrl = `https://www.correrjuntos.com/plan?action=unsubscribe&email=${encodeURIComponent(sub.email)}`;
   const tagline = isEn ? 'RUN TOGETHER' : 'CORRE ACOMPAÑADO';
 

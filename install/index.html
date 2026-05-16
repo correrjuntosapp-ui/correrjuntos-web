@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Descarga CorrerJuntos · iOS + Android</title>
+<meta name="description" content="Descarga CorrerJuntos en tu teléfono. Disponible en App Store y Google Play. Gratis.">
+<meta name="theme-color" content="#0b1220">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://www.correrjuntos.com/install">
+
+<!-- Smart App Banner iOS (deep link nativo si la app está instalada) -->
+<meta name="apple-itunes-app" content="app-id=6758505910">
+<!-- Android intent (deep link nativo si la app está instalada) -->
+<link rel="alternate" href="android-app://com.correrjuntos.app/correrjuntos/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0b1220;
+    --paper: #f6f1e8;
+    --paper-dim: rgba(246,241,232,0.72);
+    --paper-mute: rgba(246,241,232,0.50);
+    --ember: #f97316;
+    --ember-deep: #ea580c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body {
+    background:
+      radial-gradient(circle at 50% 30%, rgba(249,115,22,0.16) 0%, transparent 40%),
+      linear-gradient(180deg, #0d1424 0%, #0b1220 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .container {
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Loader (default — mobile auto-redirects) */
+  .redirect-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .redirect-loader .pulse {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--ember);
+    animation: pulse 1.2s infinite ease-out;
+  }
+  @keyframes pulse {
+    0%   { transform: scale(0.85); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+  .redirect-loader p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--paper-mute);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .redirect-loader p em { color: var(--ember); font-style: normal; font-weight: 800; }
+
+  /* Desktop / fallback fall-through view */
+  .desktop-view { display: none; }
+  .show-desktop .redirect-loader { display: none; }
+  .show-desktop .desktop-view { display: block; }
+
+  .brand-mark {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--paper);
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .brand-mark em { font-style: normal; color: var(--ember); }
+  .brand-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--ember);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .h1 em { font-style: normal; color: var(--ember); }
+  .sub {
+    color: var(--paper-dim);
+    font-size: 16px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+  .stores {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .store-btn {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 16px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: -0.2px;
+    transition: transform 0.12s;
+  }
+  .store-btn:hover { transform: translateY(-1px); }
+  .store-btn .icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+  .help {
+    margin-top: 26px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--paper-mute);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .help a { color: var(--ember); text-decoration: none; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="container" id="root">
+
+  <!-- DEFAULT view: redirect loader (mobile only) -->
+  <div class="redirect-loader">
+    <div class="pulse"></div>
+    <p>Llevándote a la <em>app store</em></p>
+  </div>
+
+  <!-- DESKTOP fallback view -->
+  <div class="desktop-view">
+    <div class="brand-mark">Correr<em>Juntos</em></div>
+    <div class="brand-tag">CORRE ACOMPAÑADO</div>
+    <h1 class="h1">Descarga en <em>tu teléfono</em></h1>
+    <p class="sub">CorrerJuntos solo está disponible en móvil. Abre el link en tu iPhone o Android, o escanea el QR si lo tienes.</p>
+    <div class="stores">
+      <a class="store-btn" href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener">
+        <span class="icon">▲</span> App Store · iOS
+      </a>
+      <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener">
+        <span class="icon">▶</span> Google Play · Android
+      </a>
+    </div>
+    <p class="help">o ve a <a href="/">correrjuntos.com</a> en tu móvil</p>
+  </div>
+
+</div>
+
+<script>
+  // ─── Smart deep link: detect OS + UTM passthrough ───
+  (function() {
+    const APP_STORE_URL = 'https://apps.apple.com/app/correr-juntos/id6758505910';
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';
+
+    const ua = navigator.userAgent || '';
+    const isIOS = /iPhone|iPad|iPod/.test(ua);
+    const isAndroid = /Android/.test(ua);
+    const isMobile = isIOS || isAndroid;
+
+    // Pass UTM params to store URL (for attribution analytics later)
+    const params = new URLSearchParams(location.search);
+    const referrer = encodeURIComponent(
+      Array.from(params.entries())
+        .map(([k, v]) => `${k}=${v}`)
+        .join('&')
+    );
+
+    // Track redirect event (GA4 if loaded)
+    if (typeof gtag === 'function') {
+      gtag('event', 'install_redirect', {
+        os: isIOS ? 'ios' : isAndroid ? 'android' : 'desktop',
+        utm_source: params.get('utm_source') || 'direct',
+        utm_campaign: params.get('utm_campaign') || 'none',
+      });
+    }
+
+    if (isMobile) {
+      // Redirect with small delay (visual feedback that we're doing something)
+      let url;
+      if (isIOS) {
+        url = APP_STORE_URL;
+      } else {
+        // Android: append referrer param for attribution (Play Store soporta install_referrer)
+        url = referrer ? `${PLAY_STORE_URL}&referrer=${referrer}` : PLAY_STORE_URL;
+      }
+      setTimeout(() => {
+        location.href = url;
+      }, 400);
+    } else {
+      // Desktop: show fallback view with both buttons
+      document.getElementById('root').classList.add('show-desktop');
+    }
+  })();
+</script>
+
+</body>
+</html>

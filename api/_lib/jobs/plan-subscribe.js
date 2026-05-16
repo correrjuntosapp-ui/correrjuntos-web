@@ -244,7 +244,7 @@ function welcomeEmail({ lang, name, carreraNombre, carreraFecha, carreraCiudad, 
       <p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};font-weight:400;">${body2}</p>
     </td></tr>
     <tr><td style="padding:32px 44px 0 44px;">
-      <a href="https://www.correrjuntos.com/?utm_source=email&utm_medium=plan_welcome&utm_campaign=${planSlug}"
+      <a href="https://www.correrjuntos.com/install?utm_source=email&utm_medium=plan_welcome&utm_campaign=${planSlug}"
          style="display:inline-block;background:${ORANGE};color:#0b1220;font-family:${FONT_BODY};font-size:15px;font-weight:600;text-decoration:none;padding:14px 26px;border-radius:10px;letter-spacing:0.01em;">${ctaLabel}</a>
     </td></tr>
     <tr><td style="padding:30px 44px 34px 44px;">

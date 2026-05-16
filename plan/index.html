@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Elige tu carrera, yo preparo el plan · CorrerJuntos</title>
-<meta name="description" content="Elige tu carrera entre 92 carreras populares de 2026. Te preparamos un plan adaptado en 60 segundos. Gratis. Sin tarjeta. iOS + Android.">
+<meta name="description" content="Elige tu carrera entre las carreras populares 2026 cargadas en toda España. Te preparamos un plan adaptado en 60 segundos. Gratis. Sin tarjeta. iOS + Android.">
 <meta name="theme-color" content="#0b1220">
 <link rel="canonical" href="https://www.correrjuntos.com/plan">
 <meta property="og:title" content="Elige tu carrera, yo preparo el plan · CorrerJuntos">
-<meta property="og:description" content="92 carreras 2026 ya cargadas. Plan adaptativo a tu nivel. Gratis. Sin tarjeta.">
+<meta property="og:description" content="Carreras populares 2026 en toda España cargadas. Plan adaptativo a tu nivel. Gratis. Sin tarjeta.">
 <meta property="og:url" content="https://www.correrjuntos.com/plan">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.correrjuntos.com/icons/icon-512.png">
@@ -712,10 +712,10 @@
     <div class="hero-eyebrow">Tu carrera 2026</div>
     <h1 class="hero-h"><span class="hero-h-light">Tú eliges la carrera.</span><br>Yo <em>preparo el plan.</em></h1>
     <p class="hero-sub">
-      Elige entre <strong>92 carreras populares 2026</strong> ya cargadas. Te preparamos un plan adaptado a tu nivel y al tiempo que queda.<br><strong>Gratis. Sin tarjeta.</strong>
+      Elige entre las <strong>carreras populares 2026 ya cargadas</strong> en toda España. Te preparamos un plan adaptado a tu nivel y al tiempo que queda.<br><strong>Gratis. Sin tarjeta.</strong>
     </p>
     <div class="hero-trust">
-      <span><em>92</em> carreras 2026</span>
+      <span>Carreras 2026 <em>toda España</em></span>
       <span><em>7</em> planes adaptativos</span>
       <span>Coach IA <em>24/7</em></span>
     </div>
@@ -773,7 +773,7 @@
       <div class="how-step">
         <div class="how-step-num">1</div>
         <div class="how-step-h">Eliges tu carrera</div>
-        <div class="how-step-p">92 populares de España + Latam. O dile cuál sin que aparezca en la lista — te lo adaptamos igual.</div>
+        <div class="how-step-p">Populares de toda España ya cargadas. O dile cuál si no aparece en la lista — te lo adaptamos igual.</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">2</div>
@@ -858,26 +858,56 @@
 </div>
 
 <script>
-  // ── Featured races (top 18 más populares futuras, embedded inline) ──
+  // ── Featured races — sincronizado con carreras-2026.json (app) ──
+  // 47 carreras españolas futuras · 13 CCAA · actualizado 2026-05-16
   const RACES = [
-    { id: 'carrera-bomberos-madrid-2026', nombre: 'Carrera de los Bomberos Madrid', fecha: '2026-05-17', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'media-toledo-2026', nombre: 'Medio Maratón Ciudad de Toledo', fecha: '2026-05-17', ciudad: 'Toledo', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'carrera-bomberos-madrid-2026', nombre: 'Carrera de los Bomberos de Madrid', fecha: '2026-05-17', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'cursa-diputacio-barcelona-2026', nombre: 'Cursa Diputació Barcelona', fecha: '2026-05-24', ciudad: 'Barcelona', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'carrera-mujer-vitoria-2026', nombre: 'Carrera de la Mujer Vitoria-Gasteiz', fecha: '2026-05-31', ciudad: 'Vitoria-Gasteiz', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
     { id: '10k-vallecas-madrid-2026', nombre: '10K Vallecas Madrid', fecha: '2026-05-31', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: '10k-huelva-puerta-descubrimiento-2026', nombre: '10K Huelva Puerta del Descubrimiento', fecha: '2026-06-06', ciudad: 'Huelva', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'carrera-mujer-valencia-2026', nombre: 'Carrera de la Mujer Valencia', fecha: '2026-06-07', ciudad: 'Valencia', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
     { id: 'carrera-empresas-madrid-2026', nombre: 'Carrera de las Empresas Madrid', fecha: '2026-06-07', ciudad: 'Madrid', distancia: '5K', plan_slug: 'prep-5k', km: 5 },
-    { id: '15k-nocturna-valencia-2026', nombre: '15K Nocturna Valencia', fecha: '2026-06-13', ciudad: 'Valencia', distancia: '10K', plan_slug: 'prep-10k', km: 15 },
+    { id: '15k-nocturna-valencia-2026', nombre: '15K Nocturna Valencia Banco Mediolanum', fecha: '2026-06-13', ciudad: 'Valencia', distancia: '10K', plan_slug: 'prep-10k', km: 15 },
     { id: 'nocturna-guadalquivir-sevilla-2026', nombre: 'Nocturna del Guadalquivir Sevilla', fecha: '2026-06-13', ciudad: 'Sevilla', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: '10k-liberty-seguros-madrid-2026', nombre: '10K Liberty Seguros Madrid', fecha: '2026-06-14', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'carrera-nocturna-bilbao-2026', nombre: 'Carrera Nocturna del Guggenheim', fecha: '2026-06-20', ciudad: 'Bilbao', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'carrera-mujer-gijon-2026', nombre: 'Carrera de la Mujer Gijón', fecha: '2026-06-21', ciudad: 'Gijón', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
+    { id: 'cursa-corte-ingles-barcelona-otono-2026', nombre: 'Cursa de Sant Antoni Barcelona', fecha: '2026-06-21', ciudad: 'Barcelona', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: '10k-bilbao-2026', nombre: '10K Bilbao', fecha: '2026-06-21', ciudad: 'Bilbao', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
-    { id: 'nocturna-mediterraneo-malaga-2026', nombre: 'Nocturna del Mediterráneo Málaga', fecha: '2026-07-04', ciudad: 'Málaga', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'nocturna-marbella-2026', nombre: 'Nocturna del Mediterráneo Málaga', fecha: '2026-07-04', ciudad: 'Málaga', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'carrera-nocturna-sevilla-2026', nombre: 'Carrera Popular Nocturna Sevilla', fecha: '2026-07-12', ciudad: 'Sevilla', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'carrera-popular-cadiz-2026', nombre: 'Carrera Popular del Carmen Cádiz', fecha: '2026-07-19', ciudad: 'Cádiz', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'media-cartagena-2026', nombre: 'Medio Maratón Cartagena', fecha: '2026-09-13', ciudad: 'Cartagena', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'movistar-madrid-half-2026', nombre: 'Movistar Madrid Medio Maratón', fecha: '2026-09-13', ciudad: 'Madrid', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: '10k-vigo-coruna-2026', nombre: '10K Vigo', fecha: '2026-09-13', ciudad: 'Vigo', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'cursa-merce-2026', nombre: 'Cursa de la Mercè', fecha: '2026-09-20', ciudad: 'Barcelona', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
-    { id: 'ultra-pirineu-2026', nombre: 'Salomon Ultra Pirineu', fecha: '2026-09-26', ciudad: 'Bagà', distancia: 'Trail', plan_slug: 'prep-trail', km: 75 },
+    { id: 'media-santander-2026', nombre: 'Medio Maratón de Santander', fecha: '2026-09-20', ciudad: 'Santander', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: '10k-valencia-running-2026', nombre: '10K Valencia Ibercaja', fecha: '2026-09-20', ciudad: 'Valencia', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'behobia-corta-2026', nombre: '10K Donostia Cross', fecha: '2026-09-20', ciudad: 'Donostia-San Sebastián', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'ultra-pirineu-2026', nombre: 'Salomon Ultra Pirineu', fecha: '2026-09-26', ciudad: 'Bagà', distancia: 'Trail', plan_slug: 'prep-trail', km: 110 },
+    { id: 'carrera-mujer-coruna-2026', nombre: 'Carrera de la Mujer A Coruña', fecha: '2026-09-27', ciudad: 'A Coruña', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
+    { id: 'mitja-marato-sant-cugat-2026', nombre: 'Mitja Marató de Sant Cugat', fecha: '2026-09-27', ciudad: 'Sant Cugat del Vallès', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
     { id: 'media-madrid-rio-2026', nombre: 'Medio Maratón de la Latina (Madrid)', fecha: '2026-10-04', ciudad: 'Madrid', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: '10k-cuarto-mitad-madrid-2026', nombre: '10K Cuarto y Mitad Madrid', fecha: '2026-10-04', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: '10k-zaragoza-pilar-2026', nombre: '10K del Pilar Zaragoza', fecha: '2026-10-11', ciudad: 'Zaragoza', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
     { id: 'bilbao-night-marathon-2026', nombre: 'EDP Bilbao Night Marathon', fecha: '2026-10-17', ciudad: 'Bilbao', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
-    { id: 'behobia-san-sebastian-2026', nombre: 'Behobia-San Sebastián', fecha: '2026-11-08', ciudad: 'San Sebastián', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'edp-bilbao-half-2026', nombre: 'EDP Bilbao Night Half Marathon', fecha: '2026-10-17', ciudad: 'Bilbao', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'tui-palma-marathon-2026', nombre: 'TUI Palma Marathon Mallorca', fecha: '2026-10-18', ciudad: 'Palma', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
+    { id: 'carrera-pavones-madrid-2026', nombre: 'Carrera Popular de Pavones', fecha: '2026-10-25', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
+    { id: 'marbella-trail-2026', nombre: 'Marbella Trail Sierra Blanca', fecha: '2026-10-25', ciudad: 'Marbella', distancia: 'Trail', plan_slug: 'prep-trail', km: 25 },
+    { id: 'behobia-san-sebastian-2026', nombre: 'Behobia-San Sebastián', fecha: '2026-11-08', ciudad: 'San Sebastián', distancia: '21K', plan_slug: 'prep-21k', km: 20 },
+    { id: 'carrera-mujer-zaragoza-2026', nombre: 'Carrera de la Mujer Zaragoza', fecha: '2026-11-08', ciudad: 'Zaragoza', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
+    { id: 'maraton-costa-calida-murcia-2026', nombre: 'Maratón Costa Cálida Murcia', fecha: '2026-11-08', ciudad: 'Murcia', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
+    { id: 'carrera-mujer-sevilla-2026', nombre: 'Carrera de la Mujer Sevilla', fecha: '2026-11-15', ciudad: 'Sevilla', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
+    { id: 'half-tenerife-2026', nombre: 'Medio Maratón Tenerife', fecha: '2026-11-15', ciudad: 'Santa Cruz de Tenerife', distancia: '21K', plan_slug: 'prep-21k', km: 21.097 },
+    { id: 'carrera-mujer-bcn-2026', nombre: 'Carrera de la Mujer Barcelona', fecha: '2026-11-22', ciudad: 'Barcelona', distancia: '5K', plan_slug: 'prep-5k', km: 6.3 },
+    { id: 'maraton-cordoba-2026', nombre: 'Maratón Internacional de Córdoba', fecha: '2026-11-29', ciudad: 'Córdoba', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
+    { id: 'maraton-san-sebastian-2026', nombre: 'Maratón Donostia / San Sebastián', fecha: '2026-11-29', ciudad: 'San Sebastián', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
     { id: 'maraton-valencia-2026', nombre: 'Maratón Valencia Trinidad Alfonso', fecha: '2026-12-06', ciudad: 'Valencia', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
+    { id: 'maraton-malaga-2026', nombre: 'Generali Maratón Málaga', fecha: '2026-12-13', ciudad: 'Málaga', distancia: '42K', plan_slug: 'prep-42k', km: 42.195 },
+    { id: 'san-silvestre-vallecana-2026', nombre: 'San Silvestre Vallecana', fecha: '2026-12-31', ciudad: 'Madrid', distancia: '10K', plan_slug: 'prep-10k', km: 10 },
   ];
 
   // ── State ──

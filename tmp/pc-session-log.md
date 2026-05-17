@@ -11,6 +11,388 @@
 
 ---
 
+## 2026-05-17 (domingo tarde-noche · 14:30-21:00) — Día épico: funnel /plan auditado + Reel V5 publicado + B2B Primal Pump + 5 mockups crear-quedada
+
+**El día más denso de marketing/producto en semanas. Resumen entrada/salida**:
+
+Founder llegó a casa después de mañana de producción (2 reels v4 + plan day). Sesión tarde dedicada a:
+1. **Auditar funnel /plan** tras 1 solo signup (Jessica) en 24h pese a 4 publis Strava ayer + 2 reels publicados hoy mañana
+2. **Iterar diseño "crear quedada"** (5 versiones HTML, llegando finalmente a v1.5 = v1 actual perfilado)
+3. **Oportunidad B2B real**: email de Jordi (cofundador Primal Pump) malentendiendo que organizamos la Cursa de la Mercè → pivot a propuesta sostenible
+4. **Reel V5 nuevo estilo Runna** producido y publicado en TikTok + YouTube Shorts via Chrome MCP
+
+### 🔴 HALLAZGOS CRÍTICOS del día
+
+#### A. El landing /plan NO tenía NINGÚN analytics cargado
+
+**Causa raíz del "0 signups Strava"** descubierta tras auditar:
+- Las llamadas a `gtag('event', 'plan_landing_signup', ...)` eran **no-ops** (window.gtag undefined)
+- No había Meta Pixel cargado
+- Clarity tag SOLO en `index-pwa-backup.html` (archivo backup, no servido)
+- **Estábamos volando ciegos** todo el tiempo desde que se creó el landing (ayer noche 16 may)
+
+**FIX desplegado (commits `00057bed` + `b59fe7fc`)**:
+- GA4 inline (`G-RQYYGNC12T`) con `anonymize_ip:true` (GDPR-friendlier)
+- Meta Pixel inline (`1466415711868158`) + PageView automático
+- Microsoft Clarity (`vmfje4g86b`) session recordings + heatmaps
+- Form submit ahora dispara: GA4 `plan_landing_signup` + Meta `fbq('track','Lead')` con content_category
+
+**Verificado**: 3 trackers disparando (3 GA + 4 Pixel + 2 Clarity requests) en sesión Playwright simulada. Filtrada como bot por Clarity (esperado, requiere humano real).
+
+#### B. Funnel técnico /plan FUNCIONA, problema = atribución sin UTMs
+
+Test funcional completo con email `guetto2012+plantest@gmail.com`:
+- ✅ POST `/api/brevo-subscribe?type=plan` retorna 201
+- ✅ Fila grabada en `plan_subscribers` correctamente
+- ✅ Welcome email llega (founder confirmó)
+- ✅ Brevo API key activa
+
+**Bug descubierto**: el dispatcher `api/brevo-subscribe.js` matchea `?type=plan` (correcto del landing). Mi primer test mal-tipado `?type=plan-subscribe` cayó al handler default newsletter → contaminó `newsletter_subscribers` (limpiado después).
+
+**El problema real**: las 4 publis Strava de ayer linkaban a `correrjuntos.com/plan` SIN UTMs. No podemos saber si Jessica vino de Strava o de SEO orgánico o de otra parte. Para futuro: TODO link en posts externos DEBE llevar UTMs.
+
+#### C. Único signup orgánico = Jessica (jgc_1985@outlook.es)
+
+- Carrera: EDP Bilbao Night Half Marathon (17 oct 2026)
+- Plan: prep-21k
+- Fecha signup: 2026-05-17 08:01:37 UTC (10:01 España)
+- `converted_to_app_at`: NULL → **NO descargó app** (solo lead)
+- Email manual personal enviado por founder desde Gmail con línea "¿dónde nos viste?" para research atribución
+
+### 🎬 Reel V5 "Corremos Juntos" — nuevo estilo Casual Group Run
+
+Founder feedback: los reels existentes V4 (Brand Live) están todos igual ("es lo mismo de ayer"). Necesita estilo distinto, **referencia Runna**. Mostró 2 shorts Runna como ejemplo (canal @Runna):
+- `1tg5VLWa8xQ` — Educational "4 ways to improve form with Coach Andre"
+- `Mye9YFvsmGc` — Social casual "Would you?😆 #heatwave #london"
+
+**Estilo elegido**: similar al short #2 (casual, real, con grupos diversos), NO kinetic typography.
+
+**Producción**:
+- 6 clips Pexels HD descargados (people running together, friends having fun, marathon front view, close-up feet, talking jogging, elderly beach) → 82 MB total en `tools/marketing/footage/v5/`
+- Producer `tools/marketing/produce-corremos-juntos-v5.cjs` — ffmpeg portrait conversion (blur background fill) + xfades 0.4s + drawtext minimal con fade in/out
+- Storyboard 17.6s · 1080×1920 · 8.69 MB silent / 9.2 MB con audio
+
+**Diferencias clave vs V4 Brand Live**:
+- ❌ NO kinetic typography pesada
+- ❌ NO phone reveal app
+- ❌ NO laptop reveal web
+- ❌ NO closing card formal con URL pill grande
+- ✅ B-roll PURO de grupos diversos
+- ✅ Solo 3 frases minimal ("¿Te apuntarías a esto?" / "Cada sábado · gratis" / "Sin importar tu edad")
+- ✅ Closing simple "correrjuntos.com / @correrjuntosapp"
+
+**Publicación**:
+- TikTok ES → subido manual founder (sin audio, música nativa TikTok)
+- YouTube Shorts → **subido vía Chrome MCP auto** (con audio motivational.mp3)
+  - URL: https://youtube.com/shorts/LFAzyL6GeYs
+  - Title: "Quedadas de running gratis cada sábado en España · CorrerJuntos"
+  - 5 hashtags: #Shorts #Running #Correr #RunnersEspaña #CorrerJuntos
+  - Visibilidad pública, "no es contenido para niños"
+- Primer comentario fijado pendiente founder
+- Instagram Reels pendiente founder
+
+### 🛠️ Chrome MCP file_upload trick funcionó perfecto en YouTube Studio
+
+Sin necesidad de inyectar interceptor JS — el input file YA existe en DOM al abrir el modal "Subir vídeos". El tool `find` lo detectó como `ref_289`, `file_upload` cargó el .mp4 con path absoluto Windows, YouTube procesó. Esto es replicable para futuros uploads automáticos.
+
+### 🔥 Oportunidad B2B real — Email Primal Pump
+
+Llegó email de **Jordi** (cofundador Primal Pump, marca top de gominolas creatina en España, 70k+ unidades vendidas, founders: Jordi + Alex). Pedían patrocinar "la Cursa de la Mercè Barcelona" pensando que la organizábamos.
+
+**Aclaración honesta + pivot estratégico**:
+- NO organizamos la Mercè (Ayuntamiento de Barcelona)
+- PERO: somos su puerta al mercado running ES (ellos están posicionados gym/strength, intentando entrar en running)
+- **First mover en afiliados** (no tienen programa todavía)
+
+**Email redactado** (founder pendiente envío) con 3 frentes Andalucía:
+1. **APP** — código descuento exclusivo banner permanente + comisión
+2. **BLOG SEO** — integración 2-3 articles/mes con afiliado
+3. **CARRERAS Andalucía** — brand presence en eventos reales (Maratón Málaga dic, Nocturna Guadalquivir Sevilla jun, 10K Huelva jun, Maratón Córdoba nov, Trail Marbella oct)
+
+Números a negociar (no en email, en call): 12-15% comisión (first mover) + 200-400€ flat blog mensual + 200-500€/evento. **Potencial: 500-1000€/mes recurrente** = +15-30% MRR de un solo deal.
+
+### 🎨 Iteraciones HTML crear-quedada (5 versiones, llegando a v1.5)
+
+Founder validó la pantalla actual de "Crear Quedada" en la app y la consideró 7/10. Para llevarla a 10/10:
+
+| Versión | Estado | Por qué |
+|---|---|---|
+| v2 — 10/10 con todo | ❌ Rechazado | "Muchos datos" — añadía progress bar + preview organizador + más options |
+| v3 — Smart auto-rellenado | ❌ Rechazado | Para usuarios habituales, no para principiantes |
+| v4 — Principiantes (sin ritmo/km, intensidad por sensación) | ❌ Rechazado | Sigue siendo "muchos datos" |
+| v5 — Minimal (3 preguntas, 1 pantalla) | ✅ Aprobado base | OK pero faltan calendario real + hora libre + mapa |
+| v5.1 — v5 + 3 mejoras (microcopy franjas + barras 5p + "podrás editarla") | ✅ Aprobado refinement | |
+| v5.2 — calendario grid + hora libre + Leaflet mapa + 0 emojis | ✅ Pro tone | |
+| **v1.5 — v1 actual + 5 mejoras quirúrgicas** | ✅ **WINNER** | No reinventa, perfila el v1 ya familiar |
+
+**v1.5 mejoras a implementar** (~2h código, OTA mañana lunes):
+
+1. **Mapa auto-centrado en GPS user** (1h) — `expo-location.getCurrentPositionAsync` al abrir + indicador verde "Mapa centrado en tu ubicación · arrastra el pin para ajustar" + dot azul pulsante usuario + pin naranja arrastrable
+2. **Default fecha = próximo sábado 9:00** (5 min) — calcular `nextSaturday at 09:00` en lugar de `now()`
+3. **Distancia dropdown presets** (20 min) — "5K · 5 km" / "10K · 10 km" / "15K · 15 km" / "21K · 21 km" / "42K · 42 km" / "Variable" en lugar de input numérico
+4. **Bloque Plazas nuevo** (20 min) — toggle "Grupo abierto" (default ON) + slider 1-50 si se desactiva
+5. **SVG icons sutiles** (15 min) — quitar emojis 🗓️ 🏃 al lado de títulos, dejar SVG outline naranja
+
+**Mockup HTML final**: `tmp/crear-quedada-v1-5-perfilado.html` (con Leaflet embebido + Pin GPS animado + plazas toggle funcional + dummy data Sevilla).
+
+⚠️ **CRÍTICO**: implementar v1.5 NO mueve MRR a 30 días (solo 5-8 organizadores activos hoy). Founder lo entiende. Decisión: implementar **el mapa GPS + default fecha + plazas** (lo más rápido) cuando haya hueco, no urgente.
+
+### 📩 Brevo campaña #14 — ENVIADA con éxito
+
+- **Nombre**: "App captación · Mayo 2026 (271 subs)"
+- **Subject**: "Tu plan de running para esta semana — ..."
+- **Body preview**: "Plan, coach y grupo — para que esta vez lo acabes"
+- **Status**: ✅ Enviada 17 may 2026 20:00
+- **Entregados**: 254 / 271 (98.45% deliverability — excelente)
+- **Aperturas inicio**: 3 (1.18%) — esperar 24-48h para métrica final (benchmark fitness 18-25%)
+- **Clics**: 0 inicio — esperar
+- **Bajas**: 0
+
+### 📋 Estado producción al cerrar 17 may
+
+| Asset | Estado |
+|---|---|
+| App v1.3.6 iOS+Android | LIVE |
+| OTA actual runtime 1.3.6 | `80b2dc2e` (ANR fix iter#25, 24h+ activo) |
+| Sentry REACT-NATIVE-1F (Background ANR) | esperando data confirmación drop a 0 |
+| Landing `/plan` | LIVE con GA4 + Meta Pixel + Clarity (vmfje4g86b) |
+| Carreras 2026 | 60 españolas en 16 CCAA (Fase 2 cargada ayer) |
+| Brevo campaña #14 | ✅ Enviada 254/271 |
+| TikTok Reel V5 | ✅ Subido (founder) |
+| YouTube Short Reel V5 | ✅ Subido (Chrome MCP auto) · `youtube.com/shorts/LFAzyL6GeYs` |
+| Instagram Reel V5 | ⏳ Pendiente founder |
+| Email Jordi Primal Pump | ⏳ Pendiente envío founder |
+| Email Jessica (1er lead orgánico) | ✅ Enviado founder desde Gmail |
+| Primer comentario fijado YouTube Short | ⏳ Pendiente founder (1 min) |
+
+### 📁 Archivos clave creados hoy
+
+- `tools/marketing/footage/v5/clip-*.mp4` (6 clips Pexels HD, 82 MB)
+- `tools/marketing/reel-corremos-juntos-v5.mp4` (8.69 MB silent)
+- `tools/marketing/reel-corremos-juntos-v5-audio.mp4` (9.2 MB con music)
+- `tools/marketing/produce-corremos-juntos-v5.cjs` (producer reusable)
+- `tmp/crear-quedada-v2-preview.html` → v3 → v4 → v5 → v5.1 → v5.2 → **v1-5-perfilado.html** (winner)
+- `tmp/test-clarity-session.cjs` (Playwright test para validar 3 trackers — filtrado como bot por Clarity)
+
+### 🎯 Backlog priorizado para mañana lunes (orden ROI)
+
+1. **Verificar signups** noche y mañana (`node tools/admin/plan-snapshot.cjs`) → si >5 nuevos = Reels funcionan
+2. **Verificar Sentry ANR REACT-NATIVE-1F** → si en 0 = fix iter#25 confirmed
+3. **Implementar crear-quedada v1.5** mejoras (2h código) → OTA mañana noche si los datos del paso 1 lo justifican
+4. **Email Jordi seguimiento** si respondió
+5. **Apple v1.3.6 status** → `cd correr-juntos-app && node scripts/check-store-status.js` (⚠️ `.p8` key puede estar expirada)
+6. **Clarity Recordings** primer análisis sesiones reales (incluye founder iPhone sesión)
+7. **GA4 acquisition últimas 24h** → confirmar/descartar hipótesis "Strava no convierte"
+
+### 💡 Lecciones del día (memorizar)
+
+1. **NUNCA crear landing sin verificar analytics cargados** — el primer test que debí hacer ayer noche fue `curl /plan | grep -E "(gtag|fbq|clarity)"`. No hacerlo costó 1 día completo de tráfico no medido.
+
+2. **Chrome MCP file_upload SÍ funciona en YouTube Studio** sin interceptor — el input file existe en DOM al abrir modal "Subir vídeos". Usable para automatizar Shorts en el futuro.
+
+3. **Reels: cuando hay que cambiar estilo, cambiar TODOS los elementos** (kinetic→cinematic NO es solo cambiar texto — es cambiar B-roll, ritmo edit, música, closing). V5 vs V4 fue casi diseño desde cero, no iteración.
+
+4. **Founder valida "perfilar v1" > "rediseñar"** consistentemente. La estructura actual está bien, las mejoras son quirúrgicas. Mockups completos rediseñados se rechazan por "muchos datos".
+
+5. **Oportunidades B2B aparecen por error** — Primal Pump escribió pensando que organizamos la Mercè. La respuesta correcta no fue "no, gracias" sino "no organizamos eso PERO te propongo X, Y, Z". Patrón replicable.
+
+6. **Pexels search requiere slug completo** (no solo ID) — `pexels.com/video/{slug}-{id}/` da 200, `pexels.com/video/{id}/` da 403. Para automatización futura: primero search en Pexels, extraer slugs, luego descargar.
+
+---
+
+## 2026-05-17 (domingo mañana · 08:30-09:30) — 2 reels nuevos producidos para subir esta tarde
+
+**Estado entrada/salida**:
+- Founder estaba revisando el plan del día y pidió 2 reels nuevos con objetivos distintos (awareness + acquisition) para subir esta tarde
+- Ambos producidos con pipeline V4 Brand Live, validados visualmente, captions redactados, archivos listos
+- Founder los abrirá tranquilo en casa — quería todo guardado para continuar luego
+
+### 🚦 Estado producción al cierre PC (08:30 dom)
+
+| Asset | Estado | Notas |
+|---|---|---|
+| App v1.3.6 iOS+Android | LIVE | sin novedades |
+| OTA actual runtime 1.3.6 | `80b2dc2e` (16 may noche, fix ANR iter#25) | monitor Sentry 24-48h |
+| Brevo campaña #14 | programada Dom 17 may 20:00 · 257 destinatarios | auto |
+| YouTube Short `0-a-5k` | programado Dom 17 may 19:00 | auto |
+| **Signups landing /plan** | **3 desde ayer (sáb), 0 hoy hasta 08:30** | sangrado tras 4 posts Strava ayer |
+
+### 📊 Snapshot signups (consulta directa Supabase 08:30)
+
+```sql
+SELECT COUNT(*) FROM auth.users WHERE created_at >= '2026-05-16 00:00:00+02';
+-- Resultado: 3 (los 3 fueron ayer sábado, cero hoy aún)
+```
+
+⚠️ **Bajo conversión vs los 4 publish Strava** (Sevilla, Madrid R&R, BCN Adidas, Galicia). Si esta tarde sigue 0-2 hoy → revisar GA4 si hubo tráfico al landing y dónde se cayeron.
+
+### 🎬 2 reels nuevos producidos (V4 Brand Live, 13.4s cada uno)
+
+#### Reel A — **El runner invisible** (brand awareness)
+
+| Asset | Path |
+|---|---|
+| Overlay HTML | `tools/marketing/reel-runner-invisible-v4-overlay.html` |
+| Producer | `tools/marketing/produce-runner-invisible-v4.cjs` |
+| MP4 silent (TikTok+IG) | `tools/marketing/reel-runner-invisible-v4.mp4` · **14.06 MB** |
+| MP4 audio (YouTube+X) | `tools/marketing/reel-runner-invisible-v4-audio.mp4` · 14.38 MB |
+| Frames overlay | `.frames-reel-runner-invisible-v4-overlay/` (405 PNG) |
+| Footage usado | `solo-runner.mp4` (cool grade) + `group-runners.mp4` (warm grade) |
+
+**Narrativa**: "Hay un runner como tú a 800m de tu casa. Y no os habéis visto nunca."
+- Phone reveal: mapa con runners cercanos (María 5:20, Carlos 4:55, Lucía 5:10, Javi 4:40) + "12 runners a menos de 1km"
+- Laptop reveal: correrjuntos.com homepage "Descubre quién corre cerca de ti"
+- Closing: "— HAY GENTE COMO TÚ — / CorrerJuntos / DESCÚBRELOS / 🔒 correrjuntos.com / iOS · Android · gratis"
+
+#### Reel B — **Empieza el sábado** (acquisition CTA)
+
+| Asset | Path |
+|---|---|
+| Overlay HTML | `tools/marketing/reel-sabado-9am-v4-overlay.html` |
+| Producer | `tools/marketing/produce-sabado-9am-v4.cjs` |
+| MP4 silent | `tools/marketing/reel-sabado-9am-v4.mp4` · **11.49 MB** |
+| MP4 audio | `tools/marketing/reel-sabado-9am-v4-audio.mp4` · 11.81 MB |
+| Frames overlay | `.frames-reel-sabado-9am-v4-overlay/` (405 PNG) |
+| Footage usado | `solo-deciding.mp4` (perfecto match — chico mirando móvil dudoso) + `group-track.mp4` (pista atletismo) |
+
+**Narrativa**: "3 lunes diciendo 'la semana que viene empiezo'. Te falta la gente, no el plan. EL SÁBADO 9am en tu ciudad."
+- Phone reveal: lista de quedadas con SÁB 23 destacada (rodaje suave 5km · 12 confirmados · 9:00 parque)
+- Laptop reveal: correrjuntos.com/quedadas
+- Closing: "— ESTE SÁBADO, NO EL LUNES — / CorrerJuntos / SÁBADO · 9AM / 🔒 correrjuntos.com/quedadas / GRATIS · SIN REGISTRO"
+
+### 📝 Captions copy-paste (validados, listos para subir)
+
+**Reel A — Instagram Reels**
+```
+A 800 metros de tu casa hay alguien que sale a correr
+a la misma hora que tú.
+
+Va al mismo parque. Hace tu mismo ritmo.
+
+Nunca os habéis visto.
+
+Hicimos CorrerJuntos para arreglar eso. Una app que
+te enseña quién corre cerca, qué ritmo lleva, y a qué
+hora sale. Si te apetece, salís juntos.
+
+Si no, sigues a lo tuyo. Sin presión.
+
+📍 correrjuntos.com → ver quién corre cerca
+
+¿Cuántos km tienes hechos esta semana? 👇
+
+#correrjuntos #runnersespaña #correr #running #correrjuntosapp
+```
+
+**Reel A — TikTok** (190 chars)
+```
+Hay un runner a 800m de tu casa con tu mismo ritmo.
+Nunca os habéis visto.
+
+CorrerJuntos te enseña quién corre cerca · gratis
+
+📍 Link en bio
+
+#correrespaña #running #fyp #runner #correr
+```
+
+**Reel A — Primer comentario fijado**
+```
+Es una app española, hecha por un corredor desde Huelva.
+Sin spam, sin tarjeta. Si te encaja, te quedas. Si no, la
+borras y todos contentos 🤙
+```
+
+**Reel B — Instagram Reels**
+```
+3 lunes diciendo "la semana que viene empiezo".
+3 lunes empezando con pereza y abandonando el jueves.
+
+El problema no es tu plan. Es que no tienes a nadie
+esperándote.
+
+Este sábado, a las 9 de la mañana, en cada ciudad de
+España hay un grupo de runners quedando para hacer
+5km suaves. Sin federación, sin chip, sin pagar.
+
+Tú apareces, corres, te tomas un café y a casa.
+
+📍 Link en bio → quedadas cerca de ti
+
+¿En qué ciudad estás? Te digo si hay grupo el sábado 👇
+
+#correrjuntos #empezaracorrer #correresvida #runner #running
+```
+
+**Reel B — TikTok** (190 chars)
+```
+Este sábado 9am hay un grupo de runners en tu ciudad
+quedando para 5km suaves. Gratis. Sin registro.
+
+📍 Link en bio → ver tu ciudad
+
+#correrjuntos #empezaracorrer #fyp #running #correr
+```
+
+**Reel B — Primer comentario fijado**
+```
+Dime ciudad y miro si hay quedada este sábado. Y si no,
+podemos hacer una — solo necesitamos a 3-4 personas
+que digan "vamos" 🤙
+```
+
+### 🔗 UTM links bio sugeridos
+
+| Reel | UTM bio link |
+|---|---|
+| A (awareness) | `correrjuntos.com?utm_source=tiktok&utm_medium=bio&utm_campaign=runner-invisible` (cambiar `tiktok→instagram` en IG) |
+| B (acquisition) | `correrjuntos.com/app?utm_source=tiktok&utm_medium=bio&utm_campaign=sabado-9am` |
+
+### ⏰ Orden de publicación recomendado para esta tarde
+
+1. **14:00-15:00** — Reel A (TikTok ES → IG ES, en este orden, 10 min de gap). Cambiar bio a `runner-invisible` antes.
+2. **17:00-18:00** — Reel B (TikTok ES → IG ES). Cambiar bio a `sabado-9am` antes.
+3. **18:55** — Cambiar bio a `finde-0a5k` (POST 5 del weekend checklist).
+4. **19:00** — Reel `0-a-5k.mp4` (ya programado en checklist) + YouTube Short auto.
+5. **20:00** — Brevo campaña #14 auto.
+
+⚠️ Regla del playbook: NUNCA subir EN primero. Solo ES hoy. EN mañana si funcionó.
+
+### ✅ Tareas que YA hice (no repetir)
+
+- Verificado footage existe (solo-runner, solo-deciding, group-runners, group-track) y dimensiones
+- Producidos overlays HTML + frames PNG + composite ffmpeg + audio merge
+- Validados 4 frames clave de cada reel (hero + phone + laptop + closing)
+- Captions ES redactados con voz de marca consistente
+- Tasks `#1` y `#2` marcadas completadas
+
+### 🔍 Quick checks pendientes hoy (cualquier momento)
+
+- [ ] Sentry `REACT-NATIVE-1F` — fix iter#25 lleva ~14h, monitorear si bajan ANRs
+- [ ] Apple v1.3.6 status — `node correr-juntos-app/scripts/check-store-status.js` (ojo: `.p8` puede estar expirada del 10 may)
+- [ ] Signups landing /plan a mediodía — `node tools/admin/plan-snapshot.cjs` para ver si suben hoy
+
+### 📁 Files clave del día
+
+- `tools/marketing/reel-runner-invisible-v4.mp4` (Reel A silent)
+- `tools/marketing/reel-runner-invisible-v4-audio.mp4` (Reel A con música)
+- `tools/marketing/reel-sabado-9am-v4.mp4` (Reel B silent)
+- `tools/marketing/reel-sabado-9am-v4-audio.mp4` (Reel B con música)
+- `tools/marketing/weekend-publishing-checklist.md` (checklist finde original)
+- `tools/marketing/REELS_PIPELINE_V4_BRAND_LIVE.md` (doc canónica del pipeline)
+
+### 🌙 Mensaje para próxima sesión (PC o móvil)
+
+Founder dijo: "en casa lo miro, guarda todo para que sepamos en casa por dónde vamos".
+
+**Cuando arranque la próxima sesión**:
+1. Confirmarle que ambos reels están listos en `tools/marketing/reel-runner-invisible-v4.mp4` y `tools/marketing/reel-sabado-9am-v4.mp4`
+2. Si ya los vio y le gustan → recordarle el orden de publicación de esta tarde (Reel A 14:00, Reel B 17:00)
+3. Si quiere cambios → re-editar overlay HTML + re-grabar frames (~5 min) + re-producir MP4 (~30s ffmpeg)
+4. Si arranca en móvil → los MP4 están en `OneDrive\Escritorio\correrjuntosV2\tools\marketing\` (OneDrive sync auto, debería verlos también en móvil)
+
+---
+
 ## 2026-05-16 (sábado noche tarde · ~21:30-22:30) — Fix ANR Background (iter#25) + Sincronización landing /plan (Fase 1 + Fase 2)
 
 **3 hitos del cierre del día, en orden cronológico**:

@@ -6,6 +6,150 @@ Puente entre Claude móvil ↔ Claude PC. Cada entrada resume una tarea signific
 
 ---
 
+## 2026-05-17 (domingo noche ~21:00) — Cierre día épico · qué hacer lunes mañana
+
+**Hola Claude móvil 👋** — soy el Claude PC. Día denso (4-5h marketing+producto). Resumen + instrucciones priorizadas.
+
+### 🚦 Estado producción al cierre
+
+| Asset | Status |
+|---|---|
+| **App v1.3.6 iOS+Android** | LIVE |
+| **OTA actual runtime 1.3.6** | `80b2dc2e` (ANR fix iter#25, lleva ~24h) |
+| **Sentry REACT-NATIVE-1F (ANR)** | pendiente verificar drop a 0 |
+| **Landing `/plan`** | LIVE con **GA4 + Meta Pixel + Clarity** (descubrimos hoy que NO los tenía cargados ← culpable real del "0 signups Strava") |
+| **Brevo campaña #14** | ✅ Enviada 254/271 (98.45% delivery) |
+| **TikTok Reel V5** | ✅ Subido (founder) |
+| **YouTube Short Reel V5** | ✅ Subido via Chrome MCP · `youtube.com/shorts/LFAzyL6GeYs` |
+| **Instagram Reel V5** | ⏳ pendiente founder subir |
+| **Email Jordi Primal Pump (B2B)** | ⏳ redactado, pendiente envío founder |
+| **Email Jessica (1er lead orgánico)** | ✅ enviado founder |
+| **Primer comentario fijado YouTube Short** | ⏳ pendiente founder (1 min) |
+
+### 🎯 Qué hacer cuando arranques (orden estricto ROI)
+
+**1️⃣ PRIMERA COSA — Plan snapshot (1 min)**
+
+```bash
+node tools/admin/plan-snapshot.cjs
+```
+
+Mira signups últimas 24h. Antes del cierre 17 may: 1 (Jessica). Si subieron a:
+- **3-5 más** → Brevo + TikTok + Shorts están funcionando como esperado
+- **0-1** → tracking activo pero conversión muy baja → diagnóstico via Clarity Recordings
+- **>10** → escalar (publicar más clubs, más reels)
+
+**2️⃣ Verificar Sentry ANR REACT-NATIVE-1F**
+
+Fix iter#25 lleva ~36h activo. Debería estar en 0 ANRs nuevos. Si sigue apareciendo:
+- Captura stack traces y guárdalos en este log
+- Considerar escalar a Worker dedicado (no creo que haga falta)
+
+**3️⃣ Clarity dashboard — primer análisis sesiones reales**
+
+```
+https://clarity.microsoft.com/projects/view/vmfje4g86b/dashboard?date=Today
+```
+
+Founder está logueado en su Chrome (`correrjuntosapp@gmail.com`). Si entras via Chrome MCP, navega directo. Mira:
+- ¿Cuántas sesiones reales hay? (mi sesión Playwright fue filtrada como bot — esperado)
+- ¿La sesión iPhone del founder (cuando entró ayer 16 may) aparece?
+- Sesiones de TikTok/YouTube viewers ¿hay?
+
+**4️⃣ GA4 acquisition (si tienes acceso)**
+
+```
+analytics.google.com → propiedad G-RQYYGNC12T
+Reports → Acquisition → Traffic acquisition últimas 24h
+Filter Page = /plan
+```
+
+Confirmar/descartar hipótesis: ¿strava.com aparece como referrer? Si NO aparece tras 4 publis en clubs gigantes → confirma que **Strava clubs no traen tráfico**.
+
+**5️⃣ Verificar emails respondidos**
+
+- **Jessica** (`jgc_1985@outlook.es`) → si respondió al "¿dónde nos viste?" del founder, **esa respuesta es ORO** (atribución real del único lead)
+- **Jordi** (Primal Pump) → si respondió, B2B deal puede materializarse esta semana
+
+**6️⃣ Apple v1.3.6 status**
+
+```bash
+cd correr-juntos-app && node scripts/check-store-status.js
+```
+
+⚠️ La `.p8` key (`AuthKey_VR6CJGD288.p8`) **puede estar expirada** desde 10 may. Si el script falla con 401, regenerar en ASC → Users and Access → Integrations → App Store Connect API.
+
+### 📦 Backlog para lunes (priorizado)
+
+Si los datos del paso 1 lo justifican (≥5 signups nuevos = Reels convierten):
+
+**A. Implementar crear-quedada v1.5** (~2h código · OTA esta noche)
+
+5 mejoras quirúrgicas al flow actual. Mockup: `tmp/crear-quedada-v1-5-perfilado.html`.
+
+1. **Mapa auto-centrado GPS user** (1h) — `expo-location.getCurrentPositionAsync` al abrir + indicator verde "Mapa centrado en tu ubicación · arrastra el pin" + dot azul pulsante + pin naranja arrastrable. Fallback a centro de su `profile.ciudad` si rechaza permisos.
+
+2. **Default fecha = próximo sábado 9:00** (5 min) — en `correr-juntos-app/src/screens/CrearQuedadaScreen.tsx`, cambiar `useState(new Date())` por:
+```ts
+const nextSaturday = () => {
+  const d = new Date();
+  d.setDate(d.getDate() + ((6 - d.getDay() + 7) % 7 || 7));
+  d.setHours(9, 0, 0, 0);
+  return d;
+};
+const [fecha, setFecha] = useState(nextSaturday());
+```
+
+3. **Distancia dropdown presets** (20 min) — reemplazar TextInput numérico por Picker con options: "5K · 5 km" / "10K · 10 km" / "15K · 15 km" / "21K · 21 km" / "42K · 42 km" / "Variable"
+
+4. **Bloque Plazas nuevo** (20 min) — añadir Switch "Grupo abierto" (default ON). Si OFF → render slider 1-50 con `@react-native-community/slider`. State: `plazas` (number | null).
+
+5. **SVG icons sutiles** (15 min) — quitar emojis decorativos junto a títulos sección, usar SVG outline en color ember.
+
+**B. Reels** (si A se ha hecho ya, o si datos no justifican A):
+
+- Subir Reel V5 a Instagram Reels (founder manual)
+- Producir Reel V6 si V5 funciona (mismo estilo Casual Group Run, otro tema)
+
+### ⚠️ NO HACER sin coordinar
+
+- **NO toques `backgroundLocation.ts`** (fix ANR delicado)
+- **NO crear más mockups crear-quedada** (5 versiones ya, founder validó v1.5)
+- **NO contestar Jordi tú mismo** (founder debe enviar desde su Gmail)
+- **NO modificar landing /plan** sin probar via Playwright test después
+- **NO publicar más Strava posts** hasta tener atribución confirmada (no sabemos si el canal trae tráfico)
+
+### 🔧 Cosas técnicas importantes a recordar
+
+- **Chrome MCP file_upload funciona en YouTube Studio** sin interceptor (input file existe en DOM al abrir modal Subir vídeos). Replicable.
+- **Pexels search** requiere slug completo `/video/{slug}-{id}/` no solo ID
+- **Reels V5 Casual Group Run** = nuevo pipeline distinto a V4 Brand Live (ver `tools/marketing/produce-corremos-juntos-v5.cjs`)
+- **`?type=plan` (NO `plan-subscribe`)** es el query correcto del landing al endpoint Brevo
+- **Vercel Hobby 12 functions max** — dispatchers para escalar
+- **ESM/CJS gotcha**: `package.json "type":"module"` → todo `.js` en `api/` debe usar `import/export`
+
+### 📁 Archivos clave del día (consulta si necesitas detalle)
+
+- `tmp/pc-session-log.md` entry "17 may tarde-noche" — todo el detalle técnico
+- `tmp/crear-quedada-v1-5-perfilado.html` — mockup winner para implementar lunes
+- `tools/marketing/reel-corremos-juntos-v5-audio.mp4` — Reel V5 con música (ya en YouTube)
+- `tools/marketing/footage/v5/clip-*.mp4` — 6 clips Pexels HD reusables
+- `tools/marketing/produce-corremos-juntos-v5.cjs` — producer ffmpeg reusable
+
+### 🌙 Mensaje del founder al cerrar el día
+
+> "guarda y memoriza todo para mañana"
+
+✅ **Hecho**. Logs prepended. Buenas noches.
+
+---
+
+## 2026-05-17 (domingo mañana · 08:30-09:30) — 2 reels nuevos producidos para subir esta tarde
+
+(entrada anterior — ver más abajo en este archivo)
+
+---
+
 ## 2026-05-16 (sábado noche · ~22:30) — Estado al cierre del PC · qué hacer cuando arranques móvil
 
 **Hola Claude móvil 👋** — soy el Claude PC. Resumen del estado y qué tocar primero.

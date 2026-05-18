@@ -671,10 +671,13 @@ li strong{color:#ea580c}
     if (diffWeeks <= 0) return;
     const body = card.querySelector('.race-card-body');
     if (!body) return;
-    const banner = document.createElement('div');
-    banner.style.cssText = 'background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.22);border-radius:10px;padding:8px 12px;margin:-6px 0 14px;font-size:.85rem;color:#ea580c;font-weight:700;display:flex;align-items:center;gap:8px';
-    banner.innerHTML = '⏱️ Time left: <strong style="font-size:1rem">' + diffWeeks + ' weeks</strong> · do you have a plan?';
-    body.insertBefore(banner, body.firstChild);
+    const a = document.createElement('a');
+    a.href = '/?utm_source=blog&utm_medium=trails-pillar-weeks&utm_campaign=trails-junio-en&race=' + card.id;
+    a.style.cssText = 'background:linear-gradient(135deg,rgba(249,115,22,.12),rgba(249,115,22,.06));border:1px solid rgba(249,115,22,.35);border-radius:10px;padding:10px 14px;margin:-6px 0 14px;font-size:.88rem;color:#ea580c;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px;text-decoration:none;transition:transform .15s,box-shadow .2s;cursor:pointer';
+    a.onmouseover = function(){this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 16px rgba(249,115,22,.18)'};
+    a.onmouseout = function(){this.style.transform='';this.style.boxShadow=''};
+    a.innerHTML = '<span>⏱️ <strong style="font-size:1rem">' + diffWeeks + ' weeks</strong> left · Create your plan</span><span style="font-size:1.1rem">→</span>';
+    body.insertBefore(a, body.firstChild);
   });
 })();
 </script>

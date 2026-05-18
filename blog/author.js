@@ -34,9 +34,9 @@
     'abraham marquez rodriguez': {
       initials: 'AM',
       name: 'Abraham Márquez Rodríguez',
-      role: 'CEO y Fundador de CorrerJuntos',
-      credentials: 'Founder · Maratoniano · Empresario tech',
-      bio: 'CEO de CorrerJuntos y fundador del proyecto. Maratoniano y empresario tecnológico, comparte la visión del producto, los aprendizajes del crecimiento y la cultura del running. Su misión: que ningún corredor entrene solo.',
+      role: 'Fundador de CorrerJuntos',
+      credentials: 'Founder · Triatleta · Corredor popular',
+      bio: 'Fundador de CorrerJuntos. Triatleta y corredor popular, combina la pasión por el running con la construcción del producto. Su misión: que ningún corredor entrene solo.',
       color: '#10b981',
       photo: '/public/abraham.jpg',
       url: '/blog/autor/abraham-marquez',

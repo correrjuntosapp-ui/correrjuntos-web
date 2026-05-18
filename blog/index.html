@@ -3615,15 +3615,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // === 3. ADD AUTHOR AVATAR to all author spans ===
+  // === 3. ADD AUTHOR AVATAR (foto real con fallback a iniciales) ===
   document.querySelectorAll('.author').forEach(function(el) {
     if (el.querySelector('.author-avatar')) return;
     var isCR = el.textContent.indexOf('Carlos') !== -1;
-    var init = document.createElement('span');
-    init.className = 'author-avatar';
-    init.style.cssText = 'width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,' + (isCR ? '#3b82f6,#2563eb' : '#f97316,#ea580c') + ');display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700;flex-shrink:0';
-    init.textContent = isCR ? 'CR' : 'AM';
-    el.insertBefore(init, el.firstChild);
+    var img = document.createElement('img');
+    img.className = 'author-avatar';
+    img.src = isCR ? '/blog/autor/photos/carlos-ruiz.jpg' : '/public/abraham.jpg';
+    img.alt = isCR ? 'Carlos Ruiz' : 'Abraham Márquez Rodríguez';
+    img.width = 20;
+    img.height = 20;
+    img.loading = 'lazy';
+    img.style.cssText = 'width:20px;height:20px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(' + (isCR ? '59,130,246' : '249,115,22') + ',.3);margin-right:6px;vertical-align:middle';
+    // Fallback a iniciales si la foto no carga
+    img.onerror = function() {
+      var span = document.createElement('span');
+      span.className = 'author-avatar';
+      span.style.cssText = 'width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,' + (isCR ? '#3b82f6,#2563eb' : '#f97316,#ea580c') + ');display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700;flex-shrink:0;margin-right:6px;vertical-align:middle';
+      span.textContent = isCR ? 'CR' : 'AM';
+      img.replaceWith(span);
+    };
+    el.insertBefore(img, el.firstChild);
   });
 
   // === allCards reference ===

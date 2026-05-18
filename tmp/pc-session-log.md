@@ -11,6 +11,179 @@
 
 ---
 
+## 2026-05-18 (lunes 11:00 AM) — Reel V6 v2 "Empieza Tu 5K" — footage NUEVO con narrativa
+
+**Founder rejected v1**: "este es el mismo que subimos, cada reel tiene que ser diferente". V6 v1 usaba los mismos 6 clips Pexels que V5 — solo cambian overlays = visualmente idéntico al ojo.
+
+**Lección grabada**: cada reel publicado debe usar footage VISUALMENTE diferente a los previos. No basta con cambiar texto.
+
+### V6 v2 — solución: footage legacy V4 unused
+
+Tenía 4 clips downloaded de sesiones anteriores que NUNCA se usaron en V5/V6:
+- `solo-deciding.mp4` (10s) — chico africano en parque mirando móvil (DUDA interna)
+- `group-runners.mp4` (11s) — pareja interracial urbana jogging (COMPAÑÍA)
+- `group-track.mp4` (10s) — 2 mujeres en pista roja con sol (ENTRENAMIENTO)
+- `solo-runner.mp4` (26s) — runner hacia sunset dorado (LIBERTAD payoff)
+
+Total: 4 clips, 4 vibes, 4 momentos narrativos. Storyboard arco completo en 16s.
+
+### Producer
+
+`tools/marketing/produce-empieza-tu-5k-v6.cjs` — output `reel-empieza-tu-5k-v6.mp4` (13.58 MB, 16s).
+
+Diff técnica vs V5/V6.v1: en lugar de `force_original_aspect_ratio=decrease` (letterbox) para el fg, ahora `force_original_aspect_ratio=increase + crop=1080:1920` (full bleed). El blur del bg sigue compositado pero el fg llena toda la pantalla → más punch visual.
+
+### Storyboard 16s
+| t | Footage | Texto |
+|---|---|---|
+| 0–3s | solo-deciding (silent hook) | — |
+| 3–6s | solo-deciding cont | **¿Quieres empezar a correr?** (top) |
+| 6–9s | group-runners | No tienes que hacerlo solo (bottom) |
+| 9–12s | group-track | Plan gratis · 8 semanas (bottom) |
+| 12–15.5s | solo-runner sunset | **Empieza este lunes** (top) |
+| 15.5–18s | Closing card | APÚNTATE / correrjuntos.com |
+
+### Pexels download bloqueado
+
+WebFetch + curl ambos hit Cloudflare 403 challenge. Para downloads futuros vamos a necesitar:
+- (a) Pexels API key oficial (gratis, requiere registro)
+- (b) o reusar Pipeline V4 que ya tiene los clips downloaded
+- (c) o copy/paste manual URLs desde el browser del founder
+
+Memorizar: la primera vez que necesitemos NEW footage que no esté en `footage/`, hay que sortear el bloqueo. No 1 hora delante de curl sin éxito.
+
+### Memorizar regla "cada reel diferente"
+
+Antes de producir cada nuevo reel:
+1. Inventariar TODOS los reels publicados (V4 brand live, V5 casual, V6, etc.) y QUÉ clips usaron
+2. Si el nuevo reel comparte >50% del footage con un reel publicado → DESCARTAR y buscar footage nuevo
+3. Si necesitas footage nuevo y los clips downloaded no funcionan → Pexels API key + descargar 4-6 clips frescos
+
+---
+
+## 2026-05-18 (lunes 10:30 AM) — Reel V6 v1 "Apúntate al Plan 5K" (DESCARTADO — mismo footage que V5)
+
+**Founder pidió**: reels como `youtube.com/shorts/stCmlbW9564` (Runna's "Sign up to our First to Fast 5k!" event signup ad) — en español para TikTok + Instagram Reels.
+
+**Producido**: `tools/marketing/reel-apuntate-5k-v6.mp4` · 8.77 MB · 17.6s · 1080×1920 portrait silent.
+
+### Estilo V6 (NUEVO — distinto de V5 Casual Group Run)
+- Pipeline: adapta V5 (footage cinematic grupos) + textos **event-promo punzantes**
+- Producer: `tools/marketing/produce-apuntate-5k-v6.cjs`
+- Reusa footage `tools/marketing/footage/v5/` (6 clips Pexels — no descargué nada nuevo)
+- Closing card propio: eyebrow "PLAN 0 A 5K GRATIS" + CTA grande "APÚNTATE" + URL + handle
+
+### Storyboard 17.6s
+| t | Footage | Overlay |
+|---|---|---|
+| 0–3s | Group running | (silencio visual) |
+| 3–5.5s | Feet close-up | "¿TU PRIMER 5K?" (top, 96pt) |
+| 5.5–8.5s | Friends jogging | "Plan gratis · 8 semanas" |
+| 8.5–11.5s | Marathon front view | "Sin gym · Sin gadgets" |
+| 11.5–14.5s | Talking jogging | "Empieza este lunes" |
+| 14.5–17.5s | Elderly beach | "Para todos · todas las edades" |
+| 17.5–20s | Closing card | APÚNTATE / correrjuntos.com / @correrjuntosapp |
+
+### Gotchas técnicas grabadas
+1. ffmpeg `drawbox` NO soporta `text_w`/`text_h` (solo drawtext). Para pill background usar dimensiones fijas o reforzar shadow + borderw + double-shadow stack.
+2. Encoding Windows: el Write tool puede meter chars 0x92 (Windows-1252 smart quote) si el JSON-escaped string tiene `\\` raros. **Solución**: usar `lines[N] = "..."` directo via Node fs en lugar de Edit/Write para textos críticos del filter ffmpeg.
+
+### Captions sugeridos para subir
+
+**TikTok** (max ~190 chars, keywords-first):
+```
+Apúntate al Plan 0→5K · Gratis · 8 semanas. Sin gym, sin gadgets. Empieza el lunes 👇
+
+📍 correrjuntos.com
+
+#correr #plan5k #empezaracorrer #running #fyp
+```
+
+**Instagram Reels** (storytelling, 4 hashtags sin #fyp):
+```
+¿Tu primer 5K en 2026?
+
+Hemos preparado el Plan 0→5K que nos hubiera gustado tener cuando empezamos. 8 semanas. 3 días a la semana. Gratis.
+
+Sin gimnasio. Sin gadgets caros. Sin pagar nada.
+
+📍 correrjuntos.com — descarga la app y empieza este lunes.
+
+#correr #plan5k #empezaracorrer #running
+```
+
+**Primer comentario auto-pin** (TikTok + IG idéntico):
+```
+Por si dudáis: NO es la app, es solo el plan dentro. Sin login, sin pagar, sin tarjeta. Lo creamos porque queríamos algo gratis que no te metiera ads ni te suscribiera. ¿Cuál fue vuestro primer objetivo running?
+```
+
+### Subir SIN audio
+Algoritmo TikTok/Reels orgánico prefiere audio nativo. Founder elige música trending dentro de la app cuando suba. Si quiere música pre-mezclada para X (Twitter, YouTube Shorts), pasar por `produce-add-audio.cjs` o similar (no urgente).
+
+### Próximos reels candidatos
+- "Tu primer trail" (Plan Trail · footage trail · CTA `correrjuntos.com/planes/trail`)
+- "Carrera del lunes" (Plan 10K · footage urbano · evento Madrid/Sevilla próximo)
+- "Coach IA 24/7" (capturas app · "Pregunta lo que necesites" · CTA app)
+
+---
+
+## 2026-05-17/18 (domingo noche → lunes madrugada · 21:00+) — Email Jordi enviado · Sprint 1 conversión + refresh articles SEO en marcha
+
+**Decisión estratégica clave**: founder vio dashboard RevenueCat (282 new customers / 1 active sub = 0.35% conversion = 10× under benchmark). **Pivot a Sprint 1 conversión** (fix bottom funnel) en lugar de seguir solo Sprint distribución (top funnel).
+
+### ✅ Email Primal Pump ENVIADO
+
+Founder envió desde su Gmail el email refinado a Jordi (cofundador Primal Pump) con 3 frentes Andalucía + invitación a call 15 min esta semana. Update de número en email: "316 usuarios activos (282 nuevos en 4 semanas)" en lugar del "700 usuarios" del draft inicial — refleja dashboard real RevenueCat.
+
+**Follow-up planeado**: si Jordi no responde en 48h (mar 19 noche), founder envía recordatorio cortés.
+
+### 🎯 Sprint 1 conversión + Articles SEO arrancan en paralelo
+
+**Tracks distintos sin colisión**:
+
+| Track | Quién | Tiempo | ROI esperado |
+|---|---|---|---|
+| **Trial Recovery flow** (push d12/14/15 + email + descuento 24h) | Claude (código) | 2 días | +20-40% trial→paid conversion |
+| **Refresh articles SEO carreras** (Valencia, Madrid, Sevilla, BCN, Bilbao) | Claude escribe / founder revisa | 30-45 min × 5 | +200-2000 clicks orgánicos/mes durante peak pre-evento |
+
+### 📝 Estrategia article SEO — REFRESH > NUEVO
+
+Insight clave: TENEMOS ya articles guía para maratones grandes (Valencia, Madrid, Sevilla, BCN) pero el dateModified es de 2-3 meses atrás. Google premia "fresh content" → refresh quirúrgico es más eficiente que escribir nuevo:
+
+- 30-45 min vs 1.5-2h por article
+- Hereda autoridad SEO acumulada (no empieza de 0)
+- Tiempo a primera impresión Google: 3-24h (re-crawl) vs 3-10 días (nuevo)
+- Risk duplicate content = 0
+
+**Refresh template** (replicar en 4-5 articles):
+1. Bump `dateModified` a fecha actual
+2. Añadir banner CTA prominente "Crea tu plan en 60s" → `/plan?carrera={id}` arriba del article
+3. Nueva sección "Plan según semanas que te queden" con 3 escenarios (16+/12/8 semanas) → links al landing
+4. Schema.org SportsEvent actualizado con fecha exacta + coords
+5. Internal links a articles complementarios (sub-3-30, sub-4-horas, carga-hidratos)
+6. IndexNow ping post-deploy para re-crawl rápido
+
+### 📋 Pendientes founder (manual)
+
+- ⏳ Subir Reel V5 a Instagram Reels (5 min — `tools/marketing/reel-corremos-juntos-v5.mp4` sin audio + caption ya en mobile-session-log)
+- ⏳ Primer comentario fijado YouTube Short `youtube.com/shorts/LFAzyL6GeYs` (1 min)
+- ⏳ Mañana follow-up Jessica si responde al email + Jordi a 48h
+
+### 🚨 Métricas dashboard RevenueCat (cierre 17 may noche)
+
+| Métrica | Valor | Lectura |
+|---|---|---|
+| New Customers 28d | **282** | Top of funnel decente (~10/día) |
+| Active Customers | **316** | Engagement OK |
+| Active Trials | **0** | Trial expirado, no convertido |
+| Active Subscriptions | **1** | Solo sub vieja |
+| **MRR** | **$3** | Stuck mes a mes |
+| Revenue 28d | $35 | Sub mensual + ~$3 one-time |
+
+**0.35% conversion rate** install→paid (benchmark fitness 2-5%). Sprint 1 attacks esto. Articles SEO amplifican top funnel para que las mejoras de bottom tengan más material sobre el que operar.
+
+---
+
 ## 2026-05-17 (domingo tarde-noche · 14:30-21:00) — Día épico: funnel /plan auditado + Reel V5 publicado + B2B Primal Pump + 5 mockups crear-quedada
 
 **El día más denso de marketing/producto en semanas. Resumen entrada/salida**:

@@ -6,6 +6,162 @@ Puente entre Claude móvil ↔ Claude PC. Cada entrada resume una tarea signific
 
 ---
 
+## 2026-05-21 (miércoles cierre noche · día ÉPICO)
+
+**Hola Claude mañana 👋** — yo soy Claude PC del miércoles 21 may. Founder se va a descansar. Mañana jueves 22 retomamos sprint mobile v1.3.7. Aquí el estado COMPLETO al cierre.
+
+### 🎯 LO MÁS IMPORTANTE · LO QUE HAY QUE SABER MAÑANA
+
+**Backend v1.3.7 está 100% LIVE en producción Supabase**. Producción v1.3.6 intacta (cero impacto users actuales). Mañana se construye mobile.
+
+### ✅ HECHO HOY (miércoles 21 may)
+
+#### 🟢 1. Email Medifé ENVIADO (madrugada)
+- Hilo: `Re: Partnership Medifé` a `LauraGonzalez@medife.com.ar`
+- 3 ventanas call: jue 22 · vie 23 · lun 26 may · 11h o 14h Argentina
+- Esperando respuesta jue/vie probable
+- Deal potencial Pilot 5K€/90d · Standard 22K€/12m
+
+#### 🟢 2. 30 GIFs ejercicios profesionales · solución FINAL
+- Source: `yuhonas/free-exercise-db` (Public Domain · Unlicense)
+- Técnica: GIFs 2-frame loop start↔end con ffmpeg
+- 5.8 MB total (vs 123 MB de intento previo Pexels)
+- 14 perfect match · 8 good · 8 substitute (con notas para grabar mejor en futuro)
+- Carpeta: `public/exercises/*.gif`
+- Manifest: `public/exercises/manifest.json`
+- Scripts: `tools/exercises/free-db-fetch.cjs` + `fix-3-failed.cjs`
+- ⚠ **Lección aprendida HOY · MEMORIZAR**:
+  - ❌ NO usar Pexels Videos para "ejercicio X específico" (devuelve perros literales en "bird dog")
+  - ❌ NO usar ExerciseDB RapidAPI (devuelve mayoría barbell forzado por orden alfabético)
+  - ✅ SÍ usar free-exercise-db o wger.de (Public Domain · gratis)
+
+#### 🟢 3. María IA legal refactor
+- Eliminado claim falso "nutricionista colegiada CV-2847" (era delito intrusismo art. 403 CP)
+- Ahora identifica como "asistente IA de info nutricional educativa"
+- Auto-escalation a profesional sanitario para 9 condiciones clínicas
+- Disclaimer educativo automático en respuestas con cifras
+- Mantuvo tono cálido + bullets + ejemplos
+- File: `supabase/functions/ai-coach-maria/index.ts` (commit `bb540535`)
+
+#### 🟢 4. Backend v1.3.7 deployed (Supabase MCP + CLI)
+**4 SQL migrations aplicadas**:
+- maria_chat_v1 (chat María + profile cols)
+- strength_module_v1 (6 tablas + RPC `get_variant_for_user`)
+- strength_seed_data (30 exercises + 9 sessions + 45 items)
+- adaptive_engine_v1 (workout_feedback · pace_zones_history · plan_rebuilds_history + 3 RPCs)
+
+**4 Edge Functions deployed**:
+- `ai-coach-maria` v1 ACTIVE
+- `strength-engine` v1 ACTIVE
+- `ai-coach-v3` v1 ACTIVE (Coach Jose + race predictor VDOT)
+- `adaptive-engine` v1 ACTIVE
+
+Verified: 30 ejercicios · 9 sesiones · 45 items populated en BD.
+
+### ❌ NO HECHO (pendiente)
+
+- Mobile pantallas v1.3.7 (8 nuevas + refactor RunScreen) → empezamos mañana
+- DMs clubs Madrid (cero hechos · backlog comercial)
+- Follow back Strava 130 kudos
+- Subir reels A/B TikTok+IG
+- Update T&C web/app con cláusula AI assistant (1h trabajo · pendiente)
+
+### 🎨 ESTADO PRODUCCIÓN AL CIERRE
+
+| Asset | Status |
+|---|---|
+| **v1.3.6 LIVE iOS+Android** | ✅ funcionando · 0 crashes |
+| **Paywall iter#9 OTA** | ✅ aplicado · monitoreando 3 días post-deploy |
+| **Backend v1.3.7** | ✅ LIVE Supabase · esperando mobile |
+| **v1.3.7 mobile** | ⏳ 0% construido · 5 días dev pendientes |
+
+### 📊 MRR + métricas (al cierre)
+
+- Users totales: ~712
+- MAU: ~84 (11.7%)
+- Paying subs: 1
+- MRR: $3 (RC) + 25€ (Amazon afiliados) = ~57€/mes total
+- Pendiente Medifé respuesta → si firma Pilot 5K€ = +60€/mes adicional inmediato
+
+### 🚦 PLAN MAÑANA JUE 22 MAY (cuando founder vuelva)
+
+**Si Laura ha respondido Medifé** (alta probabilidad jue/vie):
+1. Leer su respuesta
+2. Confirmar ventana call
+3. Preparar 5 preguntas discovery + 3 tiers propuesta
+4. Si call es ese día → ayuda script · si no → seguir sprint
+
+**Si Laura aún no responde**:
+1. Empezar sprint mobile v1.3.7 directamente
+2. Día 1: `WorkoutLibraryScreen.tsx` (8 tipos workout corriendo)
+3. Esa pantalla NO toca navegación principal · cero riesgo
+4. Consume `strength-engine` Edge Function (ya LIVE)
+
+### 📂 ARCHIVOS CLAVE PARA MAÑANA
+
+| Archivo | Para qué |
+|---|---|
+| `tmp/runna-benchmark-2026-05-19.md` | Plan sprint v1.3.7 completo (5 días dev) |
+| `tmp/app-structure-v137-2026-05-20.html` | Mockup 4 tabs arquitectura |
+| `tmp/strength-catalog-2026-05-20.html` | Mockup catalog con 30 GIFs reales |
+| `tmp/strength-module-mockup-2026-05-20.html` | Mockup módulo fuerza UI |
+| `tmp/maria-chat-mockup-2026-05-20.html` | Mockup chat María |
+| `correr-juntos-app/src/services/{joseCoachV3,maria,strength,adaptive}Service.ts` | Service clients TS · listos para usar (untracked) |
+| `tools/ai/maria-knowledge-base.md` | KB María (322 líneas) |
+| `tools/ai/jose-knowledge-base-v3.md` | KB Coach Jose v3 |
+
+### 🛠 SERVICE CLIENTS UNTRACKED (commit pendiente)
+
+Estos 4 archivos están en disco sin trackear:
+- `correr-juntos-app/src/services/joseCoachV3Service.ts`
+- `correr-juntos-app/src/services/mariaCoachService.ts`
+- `correr-juntos-app/src/services/strengthEngineService.ts`
+- `correr-juntos-app/src/services/adaptiveEngineService.ts`
+
+Mañana al empezar mobile sprint → commit con primera pantalla nueva.
+
+### 📨 BORRADOR RESPUESTA MEDIFÉ (cuando Laura responda)
+
+Cuando Laura responda · necesitamos preparar:
+1. 5 preguntas discovery (qué iniciativas · presupuesto · KPIs · timeline · qué hicieron antes)
+2. Pricing tiers (Pilot 5K€ · Standard 22K€ · NO ofrecer Premium 45K€ primera call)
+3. NO comprometer en la call · escuchar primero · propuesta 48h post-call
+
+### 💡 FACTOR CLAVE PARA RECORDAR AL FOUNDER
+
+**Hoy ha sido el día con MÁS progreso técnico del mes** (4 migrations · 4 Edge Functions · 30 GIFs · refactor legal María · email Medifé). Pero **MRR sigue $3**. Lo que mueve MRR ahora:
+
+1. **Laura responde** (probable jue/vie · pasivo)
+2. **5 DMs clubs Madrid** (activo · 30 min trabajo founder)
+3. **Sprint mobile v1.3.7 LIVE** (~26-27 may target)
+
+Las 3 cosas en paralelo. **El backend LIVE no sirve sin la mobile UI que lo consume**.
+
+### 🚦 RECOMENDACIÓN AL CLAUDE MAÑANA
+
+1. Saludo cálido al founder (vino de fábrica + trabajo mucho ayer)
+2. Pregunta si Laura ha respondido (revisar Gmail)
+3. Si NO Laura · arrancar mobile sprint: WorkoutLibraryScreen.tsx primero
+4. Si SÍ Laura · preparar discovery primero
+5. Ofrecer micro-acción comercial al lado (5 DMs clubs) sin presionar
+
+### 🎬 ESTADO REELS (pendiente subir)
+
+- `tools/marketing/reel-da-el-paso-A.mp4` (A · emocional · APÚNTATE)
+- `tools/marketing/reel-tu-plan-B.mp4` (B · tactical · DESCARGA)
+- Footage Pexels fresh 100% original (no se ha usado antes)
+- Plan A/B test: subir A martes 19h · B miércoles 19h · medir UTM
+- **NO se ha subido ninguno todavía** · backlog founder
+
+### 🍻 CIERRE EMOCIONAL
+
+Founder ha cerrado un día muy productivo y va a descansar. Cero presión mañana primera hora. Si vuelve de buen humor → sprint mobile. Si vuelve cansado → micro-tareas low-impact. Cualquiera vale · respeta su ritmo.
+
+---
+
+
+---
+
 ## 2026-05-20 (martes noche · cierre del día épico)
 
 **Hola Claude móvil 👋** — el Claude PC. Día largo, founder estuvo turno mañana fábrica + tarde-noche revisando desde el móvil. Aquí el cierre consolidado.

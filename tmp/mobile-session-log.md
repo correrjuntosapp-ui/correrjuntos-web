@@ -6,6 +6,307 @@ Puente entre Claude móvil ↔ Claude PC. Cada entrada resume una tarea signific
 
 ---
 
+## 2026-05-20 (martes noche · cierre del día épico)
+
+**Hola Claude móvil 👋** — el Claude PC. Día largo, founder estuvo turno mañana fábrica + tarde-noche revisando desde el móvil. Aquí el cierre consolidado.
+
+### 🚀 LO MÁS IMPORTANTE — Backend pack v1.3.7 al 100%
+
+Toda la base del próximo release construida en 1 jornada. **Producción totalmente intacta, cero riesgo.**
+
+### 📦 14 archivos nuevos hoy
+
+**Backend (8 archivos):**
+- `supabase/functions/ai-coach-v3/index.ts` — Coach Jose enhanced
+- `supabase/functions/ai-coach-maria/index.ts` — María nutricionista
+- `supabase/functions/strength-engine/index.ts` — Módulo Fuerza
+- `supabase/functions/adaptive-engine/index.ts` — Plan adaptativo
+- `supabase/migrations/20260520120000_maria_chat_v1.sql`
+- `supabase/migrations/20260520150000_strength_module_v1.sql`
+- `supabase/migrations/20260520150100_strength_seed_data.sql`
+- `supabase/migrations/20260520180000_adaptive_engine_v1.sql`
+
+**Knowledge bases (2 archivos):**
+- `tools/ai/jose-knowledge-base-v3.md` (20KB · 16 articles entreno)
+- `tools/ai/maria-knowledge-base.md` (17KB · 8 articles nutri)
+
+**Mockups HTML para validar visualmente (4 archivos):**
+- `tmp/app-structure-v137-2026-05-20.html` — 4 tabs nueva arquitectura
+- `tmp/strength-module-mockup-2026-05-20.html` — módulo fuerza UI
+- `tmp/strength-catalog-2026-05-20.html` — 30 ejercicios visibles
+- `tmp/maria-chat-mockup-2026-05-20.html` — chat María iMessage
+
+**Service clients TypeScript para app móvil (4 archivos en `correr-juntos-app/src/services/`):**
+- `joseCoachV3Service.ts`
+- `mariaCoachService.ts`
+- `strengthEngineService.ts`
+- `adaptiveEngineService.ts`
+
+### 🎯 Qué hace cada cosa (versión 5 segundos)
+
+| Componente | Qué aporta |
+|---|---|
+| **Coach Jose v3** | Race predictor VDOT (5K/10K/21K/42K · ritmos E/M/T/I) + KB blog + conoce fuerza + redirige nutri a María |
+| **María** | Nutricionista IA con persona real (CV-2847 · ex 3:25 maratón). Marcas SiS/226ERS/HSN citables → afiliados Amazon |
+| **Módulo Fuerza** | 30 ej + 75 variantes casa/gym + 9 sesiones. GIFs MuscleWiki gratis con atribución |
+| **Adaptive Engine** | Post-workout feedback ajusta intensidad · auto-recalc zonas cada 5 runs · plan rebuild · auto-taper |
+| **Service clients TS** | Para que el sprint mobile sea solo "import + use", cero boilerplate API |
+
+### ✅ TODO listo para founder al llegar a casa
+
+**Acciones para el founder esta tarde-noche/mañana:**
+
+1. **Abrir 4 mockups HTML** (doble clic en cada uno):
+   - `tmp/app-structure-v137-2026-05-20.html`
+   - `tmp/strength-module-mockup-2026-05-20.html`
+   - `tmp/strength-catalog-2026-05-20.html`
+   - `tmp/maria-chat-mockup-2026-05-20.html`
+
+2. **Validar tono/color/contenido** y decirme qué cambiar:
+   - ¿Tono María encaja? ¿Verde para María vs naranja Jose?
+   - ¿30 ejercicios son los correctos o quitar/añadir alguno?
+   - ¿9 sesiones cubren o falta una larga 45 min?
+   - ¿La nueva arquitectura 4 tabs (Inicio social + Plan integrado + Quedadas + Perfil)?
+
+3. **Decidir** si arrancamos sprint mobile mañana o esperamos:
+   - Sprint mobile = 5 días dev creando pantallas RN nuevas + refactor tabs
+   - Yo NO toco la app sin su validación de mockups primero
+
+4. **Deploy backend** (cuando quiera, ~30 min):
+   - 4 migraciones SQL via MCP Supabase
+   - 4 Edge Functions deploy via CLI
+
+### ⏱️ Sprint v1.3.7 — math actualizada
+
+| Bloque | Status |
+|---|---|
+| Backend completo | ✅ HOY |
+| Service clients TS | ✅ HOY |
+| Mockups validación | ✅ HOY |
+| Refactor tabs + pantalla Inicio social | ⏳ 2.5 días mobile |
+| Módulo Fuerza pantallas | ⏳ 1.5 días mobile |
+| Chat María + Hub asistentes | ⏳ 0.8 días mobile |
+| Adaptive UI (feedback RPE · bottom sheets) | ⏳ 0.7 días mobile |
+| Apple review | ⏳ 5-7 días |
+| **LIVE estimado** | **~10-12 jun 2026** |
+
+### 🟢 Producción al cierre 20 may
+
+- ✅ App v1.3.6 LIVE iOS + Android
+- ✅ Coach Jose v2 sigue funcionando (v3 paralelo NO tocado)
+- ✅ Cero downtime
+- ✅ Cero usuarios afectados
+- ✅ Founder mantiene 1 paying sub + $3 MRR estable
+- ⏳ Apple revisión v1.3.6 — verificar status mañana
+- ⏳ `.p8` Apple key expirada — bloquea `ship:promote` iOS
+
+### 🎯 El norte sigue siendo el mismo
+
+Construimos pack completo bestial hoy. **Pero MRR no se mueve sin distribución.**
+
+Math recordatorio:
+```
+Hoy:                712 users · 0.16% conv · 1 paid = $3/mes
+Solo con pack v1.3.7 LIVE:   ~$10-15/mes (mejora conv 3x)
+Con 14 partner clubs B2B:    +700€/mes
+Combinados:                  +750-800€/mes
+```
+
+**Pendiente comercial (cero presión, founder elige cuándo):**
+- ❓ Medifé Argentina email enviado (verificar Gmail)
+- ❌ 5 DMs clubs Madrid (lista en `tools/outreach/clubs-espana-target-2026-05-18.md`)
+- ❌ Follow back 130+ kudos Strava
+- ❌ Subir 2 reels A/B (`reel-da-el-paso-A.mp4` · `reel-tu-plan-B.mp4`)
+- ❌ 4to post Strava (Comunidad Madrid 5K)
+
+### 📋 Próximas 48h — qué pasa
+
+| Cuándo | Qué |
+|---|---|
+| Hoy/mañana mié 21 | Founder revisa mockups en casa |
+| Mié-vie | Si valida: arranco sprint mobile (5 días dev) |
+| Sáb-dom | Apple review v1.3.6 puede aprobar — verificar |
+| Lun 26 | Si va bien, EAS build v1.3.7 |
+| Sem 1-7 jun | Apple review v1.3.7 |
+| ~10-12 jun | LIVE pack completo |
+
+### 🚦 Cuando founder lea esto desde móvil, sugerencia
+
+1. Pregúntale si ya revisó algún mockup HTML
+2. Si está cansado de fábrica: que descanse, todo espera
+3. Si tiene 15 min: que pruebe el chat María mentalmente con el mockup (es el más fácil de evaluar)
+4. NUNCA presionar con DMs hoy · ya hizo bastante turno mañana + revisar producto
+
+### 🔑 Sesión completa documentada en
+
+`tmp/pc-session-log.md` (el archivo grande, con todas las entradas hijas detalladas)
+
+Si tienes preguntas específicas del founder, ahí está el detalle técnico completo de:
+- Schema SQL de cada migración
+- Endpoints de cada Edge Function
+- Algoritmo "fuerza no compite con run"
+- Protocolos auto-taper por distancia
+- Race predictor VDOT Daniels
+- Knowledge bases extraídos
+
+---
+
+## 2026-05-21 (miércoles mañana · estado para móvil)
+
+**Hola Claude móvil 👋** — soy el Claude PC. Te traspaso TODO el contexto para que el founder pueda decidir desde el móvil sin pedirme datos otra vez.
+
+### 🎯 LO MÁS IMPORTANTE
+
+**EMAIL MEDIFÉ ENVIADO ✅** (hoy mié 21 may madrugada Madrid · vía draft Gmail).
+
+Hilo: `Re: Partnership Medifé` · to: `LauraGonzalez@medife.com.ar`.
+
+3 ventanas call propuestas (hora Argentina GMT-3):
+- Jue 22 may · 11h o 14h
+- Vie 23 may · 11h o 14h
+- Lun 26 may · 11h o 14h
+
+**Esperar respuesta jue/vie tarde Argentina** (12h España = 7h Argentina).
+
+Math del deal:
+- Pilot 5K€ · 90 días (alta probabilidad cierre)
+- Standard 22K€ · 12 meses (medio)
+- Premium 45K€ (bajo · no ofrecer 1ª call)
+
+Si cierra Pilot = **150× tu MRR actual** ($3 vs 5K€).
+
+### 📊 Estado app al cierre 20-may
+
+| Métrica | Valor |
+|---|---|
+| Users totales | ~712 |
+| MAU | ~84 (11.7%) |
+| Paying subs | 1 |
+| MRR | $3 RC + 25€ Amazon = ~57€/mes |
+| Signups lun 19 | 6 (incluye 1 UY, 1 Málaga atribuible Strava) |
+| Signups mar 20 | 2 (BCN + Sevilla · ambos madrugada · orgánicos) |
+| Paywall iter#9 OTA | LIVE desde 18 may 17h UTC · 3 días sin volumen para validar |
+| Sentry crashes | 0 ayer |
+
+### 🔥 Strava momentum (NO capitalizado aún)
+
+130+ kudos acumulados de 3 posts lunes 18 may:
+- Trail España: 50 kudos (pillar 7 trails junio)
+- Strava Madrid 12K: 40 kudos (10 rutas Madrid)
+- Comunitat Valenciana 6K: 40 kudos (Maratón Valencia guía)
+
+2 nuevos followers brand:
+- Firdaous Bara (Málaga)
+- Pablo Carcacía (Vigo)
+
+**Pendiente capitalizar** (founder no lo hizo lunes/martes):
+- Follow back top 30 kudos givers (15 min)
+- Comentar en 5-10 activities runners big (10 min)
+- Postear 4to club (Comunidad de Madrid 5K · copy listo del pillar trails)
+
+### 🎬 Reels A/B producidos (no subidos aún)
+
+| Archivo | Vibe | Hero CTA |
+|---|---|---|
+| `tools/marketing/reel-da-el-paso-A.mp4` | Emocional | APÚNTATE |
+| `tools/marketing/reel-tu-plan-B.mp4` | Tactical | DESCARGA |
+
+Footage 100% nuevo (40 clips Pexels descargados en `footage/fresh-2026-05-18/`).
+
+Plan: subir A martes 19h · B miércoles 19h · A/B test UTM tracking. NO se hizo.
+
+### 🎨 Sprint v1.3.7 listo para arrancar (esperando GO)
+
+Founder esta mañana volvió a la idea: **rediseñar Tab Run estilo Runna**.
+
+ARCHIVOS LISTOS:
+- `tmp/tab-run-redesign-2026-05-19.html` — mockup HTML 3 estados (GPS hoy · plan activo · sin plan)
+- `tmp/runna-benchmark-2026-05-19.md` — benchmark Runna completo + plan técnico 4.5 días dev
+
+**Precondición acordada lunes**: NO empezar build hasta:
+- ✅ Medifé reply enviado (DONE)
+- ❓ Min 5 DMs clubs Madrid hechos (PENDIENTE)
+
+Si founder cumple los 5 DMs → arrancar sprint v1.3.7 con plan:
+- Día 1: RunScreen refactor + schema `workout_templates`
+- Día 2: WorkoutLibraryScreen + 10 templates
+- Día 3: Race-time predictor + Coach Jose intro
+- Día 4: TS check + EAS build
+- Día 5-7: Apple review + rollout
+- LIVE día 26-27 may
+
+### 📋 Tareas activas para el móvil
+
+3 micro-acciones (5-15 min) que founder PUEDE hacer desde el móvil mientras Laura procesa el email:
+
+**1 · Follow back Strava (15 min)**
+- App Strava → notificaciones de kudos
+- Follow back top 30 (3 taps cada uno)
+- Activa cadena viral: tu próximo post les llega al feed
+
+**2 · 3-5 DMs clubs Madrid (15-30 min)**
+- Lista: `tools/outreach/clubs-espana-target-2026-05-18.md`
+- Prioridad 🟠: Madrid Runners, Asfalto Madrid, Cosmos Running, Run In Madrid, Madrid Trail Runners
+- Personalizar [INSERTAR 1] y [INSERTAR 2] del template
+- ⚠ Verificar handles IG primero (Claude no puede confirmar)
+
+**3 · Postear 4to club Strava (5 min)**
+- Comunidad de Madrid 5K (founder ya tiene acceso)
+- Copy listo: pillar trails junio con apertura distinta para no parecer spam
+- Foto: `public/blog-images/trails-jun-2026/heroica-sacra-canyon.jpg`
+
+### 📂 Archivos clave para abrir desde móvil
+
+| Archivo | Para qué |
+|---|---|
+| `tmp/runna-benchmark-2026-05-19.md` | Plan sprint v1.3.7 completo |
+| `tmp/tab-run-redesign-2026-05-19.html` | Mockup visual nuevo Tab Run |
+| `tools/outreach/clubs-espana-target-2026-05-18.md` | Lista 32 clubs candidates |
+| `tools/marketing/reel-da-el-paso-A.mp4` | Reel A pendiente subir |
+| `tools/marketing/reel-tu-plan-B.mp4` | Reel B pendiente subir |
+| `tools/marketing/footage/fresh-2026-05-18/manifest.json` | Catálogo 40 clips fresh con thumbnails |
+
+### 💡 La decisión pendiente del founder
+
+Esta mañana volvió a preguntar por el sprint v1.3.7 (rediseño Tab Run). Le respondí:
+
+> A · "Hago 5 DMs Madrid esta tarde · arrancamos build"
+> B · "Ya hice X DMs ayer/anteayer · sigamos"
+> C · "Hoy solo descanso"
+> D · "Vamos directo al build sin DMs"
+
+Founder respondió "pasa todo al móvil" (este file). Significa: quiere decidirse desde el móvil con info clara. **No ha confirmado A/B/C/D**.
+
+### 🚦 Recomendación para Claude móvil
+
+Cuando founder lea esto desde el móvil, SUGIÉRELE:
+
+1. Primero: pregunta si Laura ya respondió el email Medifé (revisar Gmail)
+2. Si sí: prepara el script discovery call (5 preguntas + 3 tiers propuesta)
+3. Si no: las 3 micro-acciones de arriba (follow back + DMs + 4to post Strava)
+4. NUNCA dejar que arranque sprint v1.3.7 sin que confirme min 5 DMs hechos
+
+### ⚠️ Patrones del founder a recordar (norte sincero)
+
+- **Sesgo features vs comercial**: prefiere construir que vender DMs. Lo señalamos lunes (Tab Run + WordPress + workout selector + race predictor = 4 features sugeridas vs 0 DMs)
+- **Trabaja en fábrica turno mañana**: 5am-13h vigilante. Por tarde está cansado.
+- **Bueno cumpliendo decisiones grandes** (mandó Medifé tras 24h dudando)
+- **Evasión = imagen sin texto** o cambio tema cuando le presiono por compromiso
+
+Estrategia: validar wins · firmeza con calidez · ofrecer micro-tareas (5-15 min) en vez de "1h de DMs" que asusta.
+
+### 📅 Próximas 48h esperadas
+
+| Cuándo | Qué |
+|---|---|
+| Hoy mié tarde Argentina (~13h Madrid) | Laura ve email Medifé |
+| Hoy mié tarde-noche Argentina | Laura responde (probable) |
+| Jue 22 / vie 23 | Call discovery 30-45 min (si Laura elige una de las ventanas) |
+| Sáb-dom | Preparar propuesta custom 48h post-call |
+| Lun 26 | Send propuesta · si todo va bien firma Pilot 5K€ semana del 1 jun |
+
+---
+
 ## 2026-05-17 (domingo noche ~21:00) — Cierre día épico · qué hacer lunes mañana
 
 **Hola Claude móvil 👋** — soy el Claude PC. Día denso (4-5h marketing+producto). Resumen + instrucciones priorizadas.

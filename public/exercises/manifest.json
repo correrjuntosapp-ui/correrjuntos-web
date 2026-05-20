@@ -1,0 +1,265 @@
+{
+  "generated_at": "2026-05-20T16:47:21.005Z",
+  "source": "free-exercise-db (yuhonas/free-exercise-db · Unlicense)",
+  "technique": "2-frame loop GIF (start↔end position)",
+  "total": 27,
+  "exercises": [
+    {
+      "cj_slug": "sentadilla",
+      "source": "free-exercise-db",
+      "free_db_id": "Bodyweight_Squat",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/sentadilla.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "zancadas-caminando",
+      "source": "free-exercise-db",
+      "free_db_id": "Bodyweight_Walking_Lunge",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/zancadas-caminando.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "peso-muerto-unilateral",
+      "source": "free-exercise-db",
+      "free_db_id": "Single_Leg_Glute_Bridge",
+      "quality": "substitute",
+      "note": "no exact single-leg deadlift bodyweight in DB",
+      "gif_path": "public/exercises/peso-muerto-unilateral.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "sentadilla-bulgara",
+      "source": "free-exercise-db",
+      "free_db_id": "Split_Squats",
+      "quality": "good",
+      "note": null,
+      "gif_path": "public/exercises/sentadilla-bulgara.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "step-ups",
+      "source": "free-exercise-db",
+      "free_db_id": "Step-up_with_Knee_Raise",
+      "quality": "good",
+      "note": null,
+      "gif_path": "public/exercises/step-ups.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "calf-raises",
+      "source": "free-exercise-db",
+      "free_db_id": "Calf_Press",
+      "quality": "substitute",
+      "note": "closest bodyweight calf in DB",
+      "gif_path": "public/exercises/calf-raises.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "plancha-frontal",
+      "source": "free-exercise-db",
+      "free_db_id": "Plank",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/plancha-frontal.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "plancha-lateral",
+      "source": "free-exercise-db",
+      "free_db_id": "Side_Bridge",
+      "quality": "good",
+      "note": null,
+      "gif_path": "public/exercises/plancha-lateral.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "dead-bug",
+      "source": "free-exercise-db",
+      "free_db_id": "Dead_Bug",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/dead-bug.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "bird-dog",
+      "source": "free-exercise-db",
+      "free_db_id": "Superman",
+      "quality": "substitute",
+      "note": "superman is similar back-stab exercise",
+      "gif_path": "public/exercises/bird-dog.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "mountain-climbers",
+      "source": "free-exercise-db",
+      "free_db_id": "Mountain_Climbers",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/mountain-climbers.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "hollow-hold",
+      "source": "free-exercise-db",
+      "free_db_id": "Jackknife_Sit-Up",
+      "quality": "substitute",
+      "note": "similar core hold/movement",
+      "gif_path": "public/exercises/hollow-hold.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "russian-twist",
+      "source": "free-exercise-db",
+      "free_db_id": "Russian_Twist",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/russian-twist.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "clamshells",
+      "source": "free-exercise-db",
+      "free_db_id": "Side_Lying_Groin_Stretch",
+      "quality": "substitute",
+      "note": "similar side-lying glute",
+      "gif_path": "public/exercises/clamshells.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "monster-walks",
+      "source": "free-exercise-db",
+      "free_db_id": "Monster_Walk",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/monster-walks.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "donkey-kicks",
+      "source": "free-exercise-db",
+      "free_db_id": "Glute_Kickback",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/donkey-kicks.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "single-leg-glute-bridge",
+      "source": "free-exercise-db",
+      "free_db_id": "Single_Leg_Glute_Bridge",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/single-leg-glute-bridge.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "fire-hydrants",
+      "source": "free-exercise-db",
+      "free_db_id": "Side_Leg_Raises",
+      "quality": "substitute",
+      "note": null,
+      "gif_path": "public/exercises/fire-hydrants.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "worlds-greatest-stretch",
+      "source": "free-exercise-db",
+      "free_db_id": "Worlds_Greatest_Stretch",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/worlds-greatest-stretch.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "hip-mobility-90-90",
+      "source": "free-exercise-db",
+      "free_db_id": "90_90_Hamstring",
+      "quality": "good",
+      "note": null,
+      "gif_path": "public/exercises/hip-mobility-90-90.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "cat-cow",
+      "source": "free-exercise-db",
+      "free_db_id": "Cat_Stretch",
+      "quality": "good",
+      "note": null,
+      "gif_path": "public/exercises/cat-cow.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "pigeon-pose",
+      "source": "free-exercise-db",
+      "free_db_id": "Ankle_On_The_Knee",
+      "quality": "good",
+      "note": "figure-4 piriformis stretch",
+      "gif_path": "public/exercises/pigeon-pose.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "hip-flexor-stretch",
+      "source": "free-exercise-db",
+      "free_db_id": "Kneeling_Hip_Flexor",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/hip-flexor-stretch.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "push-ups",
+      "source": "free-exercise-db",
+      "free_db_id": "Pushups",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/push-ups.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "inverted-row",
+      "source": "free-exercise-db",
+      "free_db_id": "Inverted_Row",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/inverted-row.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "pike-push-ups",
+      "source": "free-exercise-db",
+      "free_db_id": "Pullups",
+      "quality": "substitute",
+      "note": "no pike push-up in DB; pullups closest body upper",
+      "gif_path": "public/exercises/pike-push-ups.gif",
+      "license": "Unlicense (Public Domain)"
+    },
+    {
+      "cj_slug": "band-pull-apart",
+      "source": "free-exercise-db",
+      "free_db_id": "Band_Pull_Apart",
+      "quality": "perfect",
+      "note": null,
+      "gif_path": "public/exercises/band-pull-apart.gif",
+      "license": "Unlicense (Public Domain)"
+    }
+  ],
+  "failed": [
+    {
+      "cj": "puente-gluteo",
+      "error": "HTTP 404 for https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg"
+    },
+    {
+      "cj": "hip-thrust",
+      "error": "HTTP 404 for https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg"
+    },
+    {
+      "cj": "calf-stretch",
+      "error": "Command failed: C:\\Users\\guett\\OneDrive\\Escritorio\\correrjuntosV2\\node_modules\\ffmpeg-static\\ffmpeg.exe -y -f concat -safe 0 -i public\\exercises\\calf-stretch.gif.list.txt -i public\\exercises\\calf-stretch.gif.palette.png -lavfi scale=360:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer -loop 0 public\\exercises\\calf-stretch.gif\nffmpeg version 6.1.1-essentials_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers\r\n  built with gcc 12.2.0 (Rev10, Built by MSYS2 project)\r\n  configuration: --enable-gpl --enable-version3 --enable-static --pkg-config=pkgconf --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-dxva2 --enable-d3d11va --enable-libvpl --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\r\n  libavutil      58. 29.100 / 58. 29.100\r\n  libavcodec     60. 31.102 / 60. 31.102\r\n  libavformat    60. 16.100 / 60. 16.100\r\n  libavdevice    60.  3.100 / 60.  3.100\r\n  libavfilter     9. 12.100 /  9. 12.100\r\n  libswscale      7.  5.100 /  7.  5.100\r\n  libswresample   4. 12.100 /  4. 12.100\r\n  libpostproc    57.  3.100 / 57.  3.100\r\nInput #0, concat, from 'public\\exercises\\calf-stretch.gif.list.txt':\r\n  Duration: N/A, start: 0.000000, bitrate: N/A\r\n  Stream #0:0: Video: mjpeg (Progressive), yuvj444p(pc, bt470bg/unknown/unknown), 850x569 [SAR 300:300 DAR 850:569], 25 fps, 25 tbr, 25 tbn\r\nInput #1, png_pipe, from 'public\\exercises\\calf-stretch.gif.palette.png':\r\n  Duration: N/A, bitrate: N/A\r\n  Stream #1:0: Video: png, rgba(pc, gbr/unknown/unknown), 16x16 [SAR 1:1 DAR 1:1], 25 fps, 25 tbr, 25 tbn\r\nStream mapping:\r\n  Stream #0:0 (mjpeg) -> scale:default\r\n  Stream #1:0 (png) -> paletteuse\r\n  paletteuse:default -> Stream #0:0 (gif)\r\nPress [q] to stop, [?] for help\r\n[swscaler @ 000001cdc08faa40] deprecated pixel format used, make sure you did set range correctly\r\n[swscaler @ 000001cdc102b040] deprecated pixel format used, make sure you did set range correctly\r\n[swscaler @ 000001cdc0db80c0] deprecated pixel format used, make sure you did set range correctly\r\n[swscaler @ 000001cdc0f6b380] deprecated pixel format used, make sure you did set range correctly\r\nOutput #0, gif, to 'public\\exercises\\calf-stretch.gif':\r\n  Metadata:\r\n    encoder         : Lavf60.16.100\r\n  Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 360x241 [SAR 20485:20484 DAR 850:569], q=2-31, 200 kb/s, 25 fps, 100 tbn\r\n    Metadata:\r\n      encoder         : Lavc60.31.102 gif\r\nframe=    0 fps=0.0 q=-0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    \r[swscaler @ 000001cdc0907a00] deprecated pixel format used, make sure you did set range correctly\r\n[swscaler @ 000001cdc0f151c0] deprecated pixel format used, make sure you did set range correctly\r\n[swscaler @ 000001cdc1030c80] deprecated pixel format used, make sure you did set range correctly\r\n    Last message repeated 1 times\r\n[fc#0 @ 000001cdc05bc3c0] Error while filtering: Internal bug, should not have happened\r\nFailed to inject frame into filter network: Internal bug, should not have happened\r\nError while filtering: Internal bug, should not have happened\r\n[out#0/gif @ 000001cdc062d480] video:50kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.038925%\r\nframe=    1 fps=0.0 q=-0.0 Lsize=      50kB time=00:00:00.00 bitrate=N/A speed=   0x    \r\nConversion failed!\r\n"
+    }
+  ]
+}

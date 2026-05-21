@@ -19,9 +19,10 @@ function jsonResponse(data: unknown, status = 200) {
 }
 
 // ─────────────────────────────────────────────────────────────────────
-//  MARÍA — Nutricionista Deportiva CorrerJuntos
+//  ANA — Asistente Nutricional Deportiva CorrerJuntos
+//  (URL endpoint mantiene /ai-coach-maria por estabilidad deployed)
 // ─────────────────────────────────────────────────────────────────────
-//  v1 · 20 may 2026
+//  v2 · 22 may 2026 — renombrado María→Ana (decisión emocional founder)
 //
 //  Persona dedicada nutrición + suplementación. Diferente de Coach Jose
 //  (que cubre entrenamiento). Conoce el blog CorrerJuntos y cita articles
@@ -32,11 +33,11 @@ function jsonResponse(data: unknown, status = 200) {
 //  Premium gate: igual que Jose, solo es_premium=true puede chatear.
 // ─────────────────────────────────────────────────────────────────────
 
-const MARIA_PERSONA_ES = `Eres María, asistente IA de información nutricional deportiva de la app CorrerJuntos. Has sido entrenada con conocimiento basado en literatura científica abierta (ACSM Position Stand, IOC Consensus Nutrition, ISSN, estudios PubMed) y artículos del blog de CorrerJuntos.
+const ANA_PERSONA_ES = `Eres Ana, asistente IA de información nutricional deportiva de la app CorrerJuntos. Has sido entrenada con conocimiento basado en literatura científica abierta (ACSM Position Stand, IOC Consensus Nutrition, ISSN, estudios PubMed) y artículos del blog de CorrerJuntos.
 
 ⚠ MARCO LEGAL (CRÍTICO · NUNCA romper)
 - Eres una IA, NO una nutricionista colegiada · NO una profesional sanitaria
-- Si el user pregunta DIRECTAMENTE "¿eres real?" / "¿eres IA?" / "¿eres una persona?": responde honestamente "Soy una IA, María, asistente nutricional educativa de CorrerJuntos"
+- Si el user pregunta DIRECTAMENTE "¿eres real?" / "¿eres IA?" / "¿eres una persona?": responde honestamente "Soy una IA, Ana, asistente nutricional educativa de CorrerJuntos"
 - NUNCA digas "soy nutricionista colegiada", "soy profesional sanitaria", "tengo licencia X"
 - NUNCA te identifiques con nombre completo + número de colegiado (sería intrusismo profesional · delito art. 403 CP España)
 - Tu información es EDUCATIVA y ORIENTATIVA · no es prescripción individualizada
@@ -294,11 +295,11 @@ NO en cada respuesta · solo cuando das prescripciones tipo "3g/día" o "8g/kg".
 
 Responde SIEMPRE en español.`;
 
-const MARIA_PERSONA_EN = `You are María, AI nutrition information assistant for the CorrerJuntos app. Trained on open scientific literature (ACSM Position Stand, IOC Consensus Nutrition, ISSN, PubMed studies) and the CorrerJuntos blog.
+const ANA_PERSONA_EN = `You are Ana, AI nutrition information assistant for the CorrerJuntos app. Trained on open scientific literature (ACSM Position Stand, IOC Consensus Nutrition, ISSN, PubMed studies) and the CorrerJuntos blog.
 
 ⚠ LEGAL FRAMEWORK (CRITICAL · NEVER break)
 - You are an AI, NOT a registered dietitian / not a healthcare professional
-- If user asks DIRECTLY "are you real?" / "are you AI?" / "are you a person?": answer honestly "I'm an AI, María, an educational nutrition assistant from CorrerJuntos"
+- If user asks DIRECTLY "are you real?" / "are you AI?" / "are you a person?": answer honestly "I'm an AI, Ana, an educational nutrition assistant from CorrerJuntos"
 - NEVER say "I'm a registered dietitian", "I'm a healthcare professional", "I have license X"
 - NEVER identify yourself with full name + license number (would be professional intrusion · criminal offense in Spain)
 - Your information is EDUCATIONAL and ORIENTATIVE · not individualized prescription
@@ -346,7 +347,7 @@ If you have runner data (weight, race goal, active plan, declared allergies, veg
 ALWAYS respond in English.`;
 
 function getSystemPrompt(lang: string) {
-  return lang === 'en' ? MARIA_PERSONA_EN : MARIA_PERSONA_ES;
+  return lang === 'en' ? ANA_PERSONA_EN : ANA_PERSONA_ES;
 }
 
 // Modelo: Claude Sonnet 4.5 para chat premium (igual que Coach Jose)
@@ -357,7 +358,7 @@ async function handleChat(payload: any, userId: string, supabase: any) {
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('es_premium, peso_kg, objetivo_carrera, dieta_restricciones')
+    .select('es_premium, peso_kg, altura_cm, objetivo_carrera, dieta_restricciones')
     .eq('id', userId)
     .single();
 
@@ -398,8 +399,11 @@ async function handleChat(payload: any, userId: string, supabase: any) {
   const context: any = {};
 
   if (profile.peso_kg) context.peso_kg = profile.peso_kg;
+  if (profile.altura_cm) context.altura_cm = profile.altura_cm;
   if (profile.objetivo_carrera) context.objetivo = profile.objetivo_carrera;
-  if (profile.dieta_restricciones) context.dieta = profile.dieta_restricciones;
+  if (profile.dieta_restricciones && profile.dieta_restricciones.length > 0) {
+    context.dieta = profile.dieta_restricciones;
+  }
 
   if (activePlan) {
     context.plan = {
@@ -443,7 +447,7 @@ async function handleChat(payload: any, userId: string, supabase: any) {
     },
     body: JSON.stringify({
       model: MODEL_CHAT,
-      // María da respuestas más estructuradas (bullets + bold) que Jose,
+      // Ana da respuestas más estructuradas (bullets + bold) que Jose,
       // por lo que necesita un poco más de tokens. 500 vs 350 de Jose.
       max_tokens: 500,
       system: getSystemPrompt(lang),
@@ -519,7 +523,7 @@ Deno.serve(async (req: Request) => {
           result = await handleChat(payload, user.id, supabase);
         } catch (e: any) {
           if (e.message === 'PREMIUM_REQUIRED') {
-            return jsonResponse({ error: 'premium_required', message: 'Upgrade to Premium for María nutrition chat' }, 403);
+            return jsonResponse({ error: 'premium_required', message: 'Upgrade to Premium for Ana nutrition chat' }, 403);
           }
           throw e;
         }

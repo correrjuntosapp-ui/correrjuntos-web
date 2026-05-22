@@ -734,10 +734,14 @@
     var dismissed = localStorage.getItem(BANNER_KEY);
     if(dismissed && (Date.now() - Number(dismissed)) < BANNER_DAYS * 86400000) return;
 
-    // Find first h2 in article (or anywhere in page)
-    var article = document.querySelector('article') || document.querySelector('.article-body') || document.querySelector('main') || document.body;
+    // Only inject on real article pages (must have <article> or .article-body).
+    // Skip blog index/listing pages where h2s are card titles inside .article-card grid.
+    var article = document.querySelector('article') || document.querySelector('.article-body');
+    if(!article) return;
     var firstH2 = article.querySelector('h2');
     if(!firstH2) return;
+    // Extra guard: never inject inside a card grid item
+    if(firstH2.closest('.article-card,.articles,.most-read-grid')) return;
 
     var isEN = document.documentElement.lang === 'en' || window.location.pathname.indexOf('/en/') !== -1;
     var slug = window.location.pathname.split('/').filter(Boolean).pop() || 'home';

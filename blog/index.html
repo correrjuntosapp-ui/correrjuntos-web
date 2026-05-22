@@ -134,7 +134,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 @media(max-width:640px){.search-kbd{display:none}}
 
 /* ── Navega por categoría ── */
-.filter-bar-wrap{padding:24px 0 8px;position:relative;z-index:20}
+/* Filter bar STICKY scroll · revisión 22 may post-audit · founder spec */
+.filter-bar-wrap{padding:14px 0 10px;position:sticky;top:64px;z-index:20;background:rgba(254,247,237,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:0 -24px;padding-left:24px;padding-right:24px;border-bottom:1px solid rgba(0,0,0,.04)}
 .filter-section-head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
 .filter-section-label{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
 .filter-section-rule{flex:1;height:1px;background:#e8ddd1}
@@ -504,23 +505,59 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 </nav>
 </header>
 
-<div class="hero">
-  <div class="breadcrumb">
-    <a href="/">Inicio</a>
-    <span class="sep">›</span>
-    <span class="current">Blog</span>
+<!-- v1 Hero · refactored 22 may 2026 · featured article hero + trust pill
+     (vs hero genérico anterior con texto "Blog de Running" stat counters) -->
+<div class="hero-featured" style="position:relative;overflow:hidden;background:#0b1220;min-height:540px">
+  <!-- Background image full-bleed -->
+  <picture style="position:absolute;inset:0;z-index:0">
+    <img src="/public/blog-images/ronda/puente-nuevo-ronda.jpg" alt="Puente Nuevo de Ronda — escenario de los 101 km" style="width:100%;height:100%;object-fit:cover;opacity:.42" fetchpriority="high" loading="eager" width="1600" height="900">
+  </picture>
+  <!-- Gradient overlay legibilidad -->
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.55) 0%,rgba(11,18,32,.85) 60%,rgba(254,247,237,1) 100%),radial-gradient(ellipse 70% 50% at 30% 40%,rgba(249,115,22,.16),transparent 60%);z-index:1"></div>
+  <!-- Content -->
+  <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:48px 24px 36px;display:grid;grid-template-columns:1fr;gap:32px">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" style="color:rgba(255,255,255,.55);font-size:.85rem">
+      <a href="/" style="color:rgba(255,255,255,.7);text-decoration:none">Inicio</a>
+      <span class="sep" style="color:rgba(255,255,255,.35);margin:0 8px">›</span>
+      <span class="current" style="color:#f97316;font-weight:600">Blog</span>
+    </div>
+    <!-- Featured article hero -->
+    <a href="/blog/101-km-ronda-2026-guia-completa" style="display:grid;grid-template-columns:1fr;gap:14px;text-decoration:none;color:#fff;max-width:780px">
+      <span style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f97316">
+        <span style="display:inline-block;width:24px;height:1px;background:#f97316"></span>
+        Destacado · Esta semana
+        <span style="display:inline-block;width:24px;height:1px;background:#f97316"></span>
+      </span>
+      <h1 style="font-size:2.6rem;font-weight:900;line-height:1.08;letter-spacing:-.025em;color:#fff;margin:0">101 km de Ronda 2026 — <span style="background:linear-gradient(135deg,#f97316,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Guía completa</span></h1>
+      <p style="font-size:1.05rem;color:#e2e8f0;line-height:1.5;font-weight:400;margin:0;max-width:680px">Recorrido por secciones, time cuts, equipamiento obligatorio, plan 16 semanas y nutrición para terminar el ultra más mítico de España.</p>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:6px;flex-wrap:wrap">
+        <div style="display:inline-flex;align-items:center;gap:8px">
+          <img src="/public/abraham.jpg" alt="Abraham Márquez" style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(249,115,22,.45);object-fit:cover">
+          <span style="color:rgba(255,255,255,.85);font-size:.88rem;font-weight:600">Abraham Márquez</span>
+        </div>
+        <span style="color:rgba(255,255,255,.35);font-size:.7rem">●</span>
+        <span style="color:rgba(255,255,255,.7);font-size:.85rem;font-family:'JetBrains Mono',monospace;letter-spacing:.04em">18 min · 9 may 2026</span>
+      </div>
+      <span style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:.92rem;color:#f97316;font-weight:700;border-bottom:1px solid rgba(249,115,22,.3);padding-bottom:4px;width:fit-content">Leer guía completa <span style="display:inline-block;transition:transform .2s">→</span></span>
+    </a>
+    <!-- Stats bar abajo -->
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:18px;font-size:.78rem;color:rgba(255,255,255,.55);font-family:'JetBrains Mono','SF Mono',monospace;letter-spacing:.04em;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;margin-top:8px">
+      <span style="display:flex;align-items:center;gap:8px">200+ artículos<span style="width:3px;height:3px;border-radius:50%;background:rgba(249,115,22,.6)"></span>4 autores españoles<span style="width:3px;height:3px;border-radius:50%;background:rgba(249,115,22,.6)"></span>Actualizado 22 may 2026</span>
+      <a href="/planes/0-5k" style="color:#f97316;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(249,115,22,.3);padding-bottom:2px">Empieza con plan gratis →</a>
+    </div>
   </div>
-  <span class="hero-eyebrow">Blog · CorrerJuntos</span>
-  <h1>Blog de <span>Running</span></h1>
-  <p>Métodos de entrenamiento, equipamiento, nutrición y rutas. Para cada distancia: desde tu primer 5K hasta sub-3h en maratón.</p>
-  <div class="hero-stats">
-    <span>243 artículos</span>
-    <span><span class="dot"></span></span>
-    <span>11 categorías</span>
-    <span><span class="dot"></span></span>
-    <span>Actualizado abr 2026</span>
+</div>
+
+<!-- Trust pill · Why trust us · combate ad-bloated señal Core Update May 2026 -->
+<div style="background:#fffcf9;border-bottom:1px solid #efe6db;padding:14px 24px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;font-size:.82rem;color:#5c4d3d;font-weight:500">
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin ads</span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin patrocinios</span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin AI generado</span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Probado por runners reales</span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Autores verificables</span>
   </div>
-  <a href="/planes/0-5k" class="hero-cta-link">Empieza con un plan gratis <span class="arrow">→</span></a>
 </div>
 
 <div class="container">

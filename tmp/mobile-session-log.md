@@ -14,24 +14,39 @@ Puente entre Claude móvil ↔ Claude PC. Cada entrada resume una tarea signific
 
 Founder pidió generar dinero YA con la web · plan brand deals (no AdSense porque rompe trust post Core Update).
 
-**ARCHIVO PRINCIPAL**: `tmp/brand-outreach-EMAILS-LISTOS.md`
-- 9 emails YA listos copy/paste (NO templates · personalizados por brand)
-- 1 email/día durante 2 semanas
-- Empezar **LUNES con 226ERS** (Primal Pump skipped · no respondió follow-up)
-- Tiempo founder: 3 min/día · cero edición
+⭐ **7 DRAFTS GMAIL YA CREADOS** (founder no tiene sesión remota móvil · solución vía drafts):
 
-**ARCHIVO CONTEXTO**: `tmp/brand-outreach-week-may2026.md`
-- Pricing tiers detallados
-- Disclosure pattern legal
-- Math expected revenue
+| Día | Brand | Destinatario | Acción founder móvil |
+|---|---|---|---|
+| LUN 26 | 226ERS | hola@226ers.com + cc marketing | Abre Gmail · borradores · enviar |
+| MAR 27 | HSN | partners@hsnstore.com + cc marketing | Same |
+| MIÉ 28 | Compressport | spain@compressport.com | Same |
+| JUE 29 | MERACH | merach@gmail.com (PLACEHOLDER · cambiar email real o usar texto para LinkedIn DM) | Editar destinatario antes de enviar |
+| VIE 30 | Polar España | marketing.es@polar.com + cc info | Same |
+| LUN 2 jun | Joma | marketing@joma-sport.com + cc comunicacion | Same |
+| MAR 3 jun | SiS | spain@scienceinsport.com + cc customerservice | Same |
 
-**Si founder pregunta "qué hago hoy en el trabajo"**:
-1. Abrir Gmail desde móvil
-2. Compose new email
-3. Abrir `tmp/brand-outreach-EMAILS-LISTOS.md` desde OneDrive
-4. Copy email del día (lunes = 226ERS)
-5. Subject + body paste · enviar
-6. Listo · 3 minutos
+**Cómo accede el founder a los drafts desde el móvil**:
+1. Abrir app Gmail
+2. Menú lateral · "Borradores" (drafts)
+3. Buscar subject del día (ej. "226ERS" o "HSN")
+4. Tap · verificar destinatario · Send
+
+**MERACH ojo**: el destinatario es placeholder `merach@gmail.com` (no es el real). Founder tiene que cambiarlo por email real cuando lo encuentre, O usar el texto del draft para enviar via LinkedIn DM al marketing manager MERACH ES. Hay nota visible al inicio del email body explicándolo.
+
+**ARCHIVO BACKUP (si Gmail drafts no carga)**: `tmp/brand-outreach-EMAILS-LISTOS.md` en OneDrive · mismos textos.
+
+**2 IG DMs (sin draft posible · founder copy/paste desde OneDrive en IG app)**:
+
+| Día | Brand | Plataforma | Acción founder |
+|---|---|---|---|
+| JUE 5 jun | Bia Trail | Instagram DM `@biatrail.es` | Abrir OneDrive móvil · `tmp/brand-outreach-EMAILS-LISTOS.md` · buscar "EMAIL 9 · BIA TRAIL" · copy texto · abrir IG · pegar |
+| VIE 6 jun | Beer Runners ES | Instagram DM (hilo abierto desde 13 may) | Same proceso con texto del email 10 del archivo |
+
+**Si una brand responde positivo durante semana**:
+- Founder activa Claude móvil con "[brand] respondió"
+- Claude móvil lee `tmp/mobile-session-log.md` para contexto
+- Prepara: 5 preguntas discovery + tier negotiation + sample materials + contract básico
 
 **Si una brand responde positivo** (durante semana):
 - Founder me activa con "[brand] respondió"

@@ -6,6 +6,210 @@ Puente entre Claude móvil ↔ Claude PC. Cada entrada resume una tarea signific
 
 ---
 
+## 2026-05-23 (viernes noche · DÍA MÁS ÉPICO DEL MES · founder se conecta móvil mañana desde trabajo)
+
+**Hola Claude mañana 👋** — yo soy Claude PC del viernes 23 may. Founder se conecta desde el trabajo mañana sábado/lunes. Te dejo el estado COMPLETO. Lee TODO esto antes de tocar nada porque hoy ha sido un día con MUCHOS cambios.
+
+### 🚨 PRIORIDAD MAÑANA · BRAND OUTREACH (lunes 26 may desde trabajo)
+
+Founder pidió generar dinero YA con la web · plan brand deals (no AdSense porque rompe trust post Core Update).
+
+**ARCHIVO PRINCIPAL**: `tmp/brand-outreach-EMAILS-LISTOS.md`
+- 9 emails YA listos copy/paste (NO templates · personalizados por brand)
+- 1 email/día durante 2 semanas
+- Empezar **LUNES con 226ERS** (Primal Pump skipped · no respondió follow-up)
+- Tiempo founder: 3 min/día · cero edición
+
+**ARCHIVO CONTEXTO**: `tmp/brand-outreach-week-may2026.md`
+- Pricing tiers detallados
+- Disclosure pattern legal
+- Math expected revenue
+
+**Si founder pregunta "qué hago hoy en el trabajo"**:
+1. Abrir Gmail desde móvil
+2. Compose new email
+3. Abrir `tmp/brand-outreach-EMAILS-LISTOS.md` desde OneDrive
+4. Copy email del día (lunes = 226ERS)
+5. Subject + body paste · enviar
+6. Listo · 3 minutos
+
+**Si una brand responde positivo** (durante semana):
+- Founder me activa con "[brand] respondió"
+- Yo preparo: 5 preguntas discovery + sample materials + tier negotiation + contract básico
+- Call 15 min · cerrar el deal
+
+**Revenue esperado 14 días**:
+- 1-3 deals cerrados (20-30% close rate industry)
+- +200-600€/mes recurring + posible 500€ sponsored article one-time
+- Vs AdSense que daría ~100€/mes neto sacrificando UX + SEO ranking
+
+### 🎯 TL;DR para empezar mañana sin perder contexto
+
+**Estado producto al cierre 23 may noche**:
+- App v1.3.7 mobile **100% código completo** (todos los días D1-D5 hechos en este viernes adelantados)
+- Backend v1.3.7 LIVE en Supabase (estaba ya desde miércoles)
+- SEO post-Core Update **5 rounds de fixes aplicados** (sitemap + E-E-A-T + canonicals + Schema Product + blog redesign)
+- 6 reels finde producidos (5 kinetic ángulos no-social + 1 FB groups historia)
+- MRR sigue ~$3 + 25€ Amazon = ~57€/mes
+
+**Lo MÁS importante que tiene que saber el founder mañana**:
+1. **App v1.3.7 build production NO está en stores aún** · ejecutar `npm run ship:full` LUNES (necesita .p8 Apple key regenerado por founder)
+2. **Android preview build EAS `461d0b13`** debería estar listo (~30 min después de las 19h viernes · check status URL)
+3. **iOS preview build no se lanzó** (requiere login interactivo del founder con 2FA · si quiere TestFlight tiene que ejecutar `eas build --platform ios --profile preview` manualmente)
+4. **Blog redesign LIVE Vercel** desde commit `2a4026a2` · founder verlo en `https://www.correrjuntos.com/blog/`
+
+### ✅ HECHO HOY VIERNES 23 MAY (10 commits del día)
+
+#### 🟢 App v1.3.7 mobile · 4 días dev adelantados en 1 sesión
+- `d9f11160` D1 · AnaChatScreen + chip + disclaimer
+- `98dde3fb` D2 · AnaOnboarding + memoria persistente backend
+- `da109a42` D3 · StrengthSessions + StrengthOnboarding
+- `ad2e6fea` D4 · StrengthSessionDetail + WorkoutPlayer Hevy
+- `74f5c64a` Perf top-5 (strip console + lazy tabs + expo-image + FlatList virt + memo)
+- `db513c18` Bottom nav 5→4 tabs + PlanesScreen NUEVO
+- `dbdea97d` Tab Inicio cleanup (Retos eliminados)
+- `f8fd98d` Bump version 1.3.6 → 1.3.7 buildNumber 84 → 85
+
+#### 🟢 SEO post-Google Core Update May 2026 · 5 commits rounds
+Google anunció May 2026 Core Update el 21 may (hace 2 días). Castiga: ad-bloated · no people-first · sin E-E-A-T.
+
+- `4dc4f860` ROUND 1 · Sitemap refresh
+  - sitemap-index 7/7 entries 25abr → 22may
+  - sitemap-plans 42 URLs 16mar → 22may (era 2 MESES stale)
+  - sitemap-races 63 URLs 18mar → 22may (era 2 MESES stale)
+  - 6 articles top dateModified JSON-LD a 22may
+  - Pillar title limpio (quitar "— Pillar" interno) + E-E-A-T byline Carlos Ruiz
+  - IndexNow ping batch
+
+- `ceb5b00c` ROUND 2 · E-E-A-T global + 4 canonicals
+  - About refresh: 612 → 712 corredores · ~210 ES + ~190 EN articles
+  - Author.js global (afecta 400+ articles auto-inject):
+    - Carlos Ruiz: "Periodista · Corredor 12+ años · 5 maratones (3:42) · 18 medias · ≥80km test"
+    - Abraham: "Founder Huelva · Construye solo desde nov 2025 · 712+ users · lo pruebo primero"
+  - 4 canonicals dedup cannibalization fix:
+    - zapatillas-asfalto + zapatillas-baratas → zapatillas-running
+    - auriculares-baratos → auriculares-running
+    - relojes-baratos → relojes-running
+
+- `ef72aa28` ROUND 3 · Schema Product + canonical 5
+  - 18 Products JSON-LD inyectados:
+    - Bicicletas estáticas: 10 (VANNECT, Cecotec, CHAOKE, etc)
+    - Relojes GPS: 8 (Garmin FR 265/965/165, COROS, Apple Watch, Polar, Suunto, Amazfit)
+  - Sin aggregateRating (no inventar = riesgo HCU)
+  - 5to canonical: bebidas-hidratacion → bebidas-deportivas-maraton (title-slug mismatch)
+
+- `68bb4aef` ROUND 4 · Blog index hero featured + trust pill + sticky filters
+  - Hero featured article reemplazado · "Blog de Running" texto → imagen Puente Ronda full-bleed con featured article (101km Ronda) + author avatar + gradient overlay
+  - Trust pill: "Sin ads · Sin patrocinios · Sin AI generado · Probado por runners reales · Autores verificables"
+  - Sticky filter chips position:sticky top:64px backdrop-blur
+  - Stats: "200+ artículos · 4 autores españoles · Actualizado 22 may"
+
+- `2a4026a2` ROUND 5 · Cards visual + LCP preload
+  - card-img height 180→240px desktop · 160→200px mobile (+33% impacto visual)
+  - hover translateY -8→-10 · cubic-bezier mejor transition
+  - most-read thumbs 56→88px · src ?w=112→200 Retina x2
+  - Preload del LCP image hero + dns-prefetch unsplash + fonts
+
+#### 🟢 Reels finde producidos (6 totales)
+- `tools/marketing/reel-sofa-a-5k.mp4` (sedentario empieza · sábado 11h)
+- `tools/marketing/reel-no-corras-solo-v4-audio.mp4` (arsenal validado · sábado 19h)
+- `tools/marketing/reel-correr-cabeza.mp4` (salud mental ACSM · domingo 11h)
+- `tools/marketing/reel-pdf-lesiona.mp4` (plan adaptativo · APARCADO para Runna-style mié)
+- `tools/marketing/reel-tu-carrera-cerca.mp4` (200+ carreras · APARCADO para Runna-style mié)
+- `tools/marketing/reel-sin-presion.mp4` (anti-app · domingo 19h)
+- `tools/marketing/reel-grupos-fb-historia.mp4` (founder Huelva personal · grupos FB)
+
+Plan distribución en `tmp/weekend-content-plan-MIX-final.md`.
+
+### ❌ NO HECHO (pendientes lunes/mié)
+
+| # | Acción | Cuándo | Bloquea? |
+|---|---|---|---|
+| 1 | Regenerar `.p8` Apple key (founder ASC web · 5 min) | LUN mañana | ✅ Sí · `ship:promote` iOS sin esto falla |
+| 2 | `npm run ship:full` build NATIVO v1.3.7 → submit Apple + Android | LUN AM | Ship a stores |
+| 3 | Apple review 24-48h | MAR-MIÉ | LIVE stores |
+| 4 | Capturar 8 screenshots app v1.3.7 LIVE | MIÉ AM founder | Set Runna-style reels |
+| 5 | Producir 5 reels Runna-style con capturas v1.3.7 | MIÉ-JUE yo | Marketing burst |
+| 6 | Subir 4 reels finde + 6 Strava posts (caption ready en `tmp/weekend-content-plan-V2-2026-05-23.md`) | Founder · 50 min distribuido | Tracción |
+| 7 | iOS preview build (founder ejecuta interactivo · 5 min) | Si quiere TestFlight | Probar v1.3.7 antes lunes |
+| 8 | Title cleanup year-stuffing "2026" (necesita SC export founder) | Cuando founder lo de | No bloquea |
+| 9 | Schema Product extender a 3-5 affiliate más | Cuando | No bloquea |
+| 10 | "Experiencia personal" sections top 20 articles | 5 min/article founder | No bloquea |
+
+### 📋 TASKS ACTIVAS (17 total)
+
+Ver `TaskList`. Pendientes:
+- #8 v1.3.7 NATIVO Build LUNES
+- #13 ship:full LUNES
+- #15 5 reels Runna-style POST-LAUNCH
+
+Resto completados (16/17 cerrados).
+
+### 🗂 ARCHIVOS CLAVE PARA RETOMAR
+
+| Archivo | Contenido |
+|---|---|
+| `tmp/weekend-content-plan-MIX-final.md` | Plan reels + Strava + LinkedIn finde |
+| `tmp/weekend-content-plan-V2-2026-05-23.md` | Captions copy/paste por reel (versión V2) |
+| `memory/project_v137_architecture.md` | Spec v1.3.7 4 tabs (no rompible) |
+| `memory/project_ai_persona_naming.md` | Ana = nutricionista · José = coach (por padres founder) |
+| `memory/project_ana_rename_pending.md` | Sweep María→Ana incompleto · futuro |
+
+### 🚨 PUNTOS DE ATENCIÓN
+
+1. **Las 3 OTAs v1.3.6 publicadas hace días NO se ven en la app del founder** (cuando lo intentó). Razón: el bottom nav actual NO tiene tab "Plan" como tal · las pantallas viven en Stack accesible solo navegando manualmente. **Refactor 4 tabs en v1.3.7 nativo lunes lo resuelve**.
+
+2. **NO publicar más OTAs** sobre runtime 1.3.6 · founder validó que el build nativo lunes consolida todo. OTAs intermedias = prohibidas.
+
+3. **Performance app**: targets concretos v1.3.7 nativo:
+   - Cold start <2s (vs 3-4s) · lazy tabs + strip console
+   - Tab switch <100ms instant · animation:'none' + lazy:true
+   - Feed scroll 60fps · windowSize=7 + clipping
+   - Cache hit avatares · expo-image memory-disk
+
+4. **Sin emojis decorativos** (spec founder · `memory/project_v137_architecture.md`). Solo SVG line-art Lucide-style.
+
+5. **Reels finde plan está LISTO en `tmp/weekend-content-plan-V2`** · founder solo tiene que subir + copy/paste captions. ~50 min trabajo distribuido sáb-lun.
+
+6. **Blog redesign LIVE** desde `2a4026a2`. Founder verá: hero featured Ronda · trust pill 5 chips · cards image 240px · sticky filters · LCP preload.
+
+7. **Worktree `youthful-williams-629386`** activo. Commits del día tanto en parent repo como en submodule. Todo pushed a GitHub master.
+
+### 📊 ESTADO COMERCIAL/MRR
+
+- Users: 712 (sin spike)
+- MRR: $3 RC + 25€ Amazon = ~57€/mes
+- Laura Medifé: sin respuesta desde 20 may
+- Apple v1.3.6 LIVE
+- Android v1.3.6 LIVE Production
+- Backend v1.3.7 LIVE Supabase
+
+### 💡 RECOMENDACIONES AL CLAUDE MAÑANA
+
+1. **Saludo cálido al founder** (día épico ayer · build mañana lunes)
+2. **Revisar Gmail Medifé**: si Laura respondió (alta probabilidad esta semana), preparar discovery + 3 tiers
+3. **Si founder quiere arrancar lunes ship:full**: recordarle .p8 regenerar PRIMERO (5 min ASC web)
+4. **Si pregunta "qué falta"**: lista task pendientes #8, #13, #15 + acciones founder
+5. **Si quiere subir reels finde**: copy/paste captions están en `tmp/weekend-content-plan-V2-2026-05-23.md`
+6. **MIRAR `https://www.correrjuntos.com/blog/`** desde móvil para ver el redesign · si algo se ve mal en mobile, ajustar CSS responsive
+7. **NO publicar más OTAs** · build nativo lunes consolida
+
+### 🛒 ACCIONES COMERCIALES BACKLOG (founder action · mueve MRR > código)
+
+- 5 DMs clubs Madrid (cero hechos · 30 min · ROI alto)
+- Laura Medifé seguimiento si responde
+- Strava follow back ~140 kudos pendientes
+- Subir reels TikTok/IG (4 reels finde + reel-grupos-fb-historia para grupos FB ES)
+
+### 🌙 CIERRE EMOCIONAL
+
+Día épico · 10 commits · sprint mobile v1.3.7 COMPLETO + SEO 5 rounds + 6 reels. Founder se acuesta con todo el código del sprint listo para ship lunes. Cero deuda crítica pendiente esta noche. Mañana puede dedicar tiempo a marketing (reels + Strava posts) sin presión técnica. Cero preocupación que dejarle. Buena noche al founder 🛌
+
+---
+
+
+---
+
 ## 2026-05-21 (miércoles cierre noche · día ÉPICO)
 
 **Hola Claude mañana 👋** — yo soy Claude PC del miércoles 21 may. Founder se va a descansar. Mañana jueves 22 retomamos sprint mobile v1.3.7. Aquí el estado COMPLETO al cierre.

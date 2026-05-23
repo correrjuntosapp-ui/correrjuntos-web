@@ -42,60 +42,182 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/en/core-exercises-runners#webpage","url":"https://www.correrjuntos.com/blog/en/core-exercises-runners","name":"Core Exercises for Runners: 10 Moves + 15-Min Routine (2026)","description":"The 10 best core exercises for runners with a guided 15-minute routine.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/4498606/pexels-photo-4498606.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Founder of CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/en/core-exercises-runners#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/en/core-exercises-runners#webpage"},"headline":"Core Exercises for Runners: 10 Moves + 15-Min Routine","description":"The 10 best core exercises for runners with a guided 15-minute routine to improve posture and performance.","url":"https://www.correrjuntos.com/blog/en/core-exercises-runners","datePublished":"2026-03-15","dateModified":"2026-03-15","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/4498606/pexels-photo-4498606.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"en"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/en/"},{"@type":"ListItem","position":3,"name":"Core Exercises for Runners"}],"@id":"https://www.correrjuntos.com/blog/en/core-exercises-runners#breadcrumbs"},
-          {
-            "@type": "HowTo",
-            "name": "Core Exercises for Runners: 10 Moves in 15 min",
-            "totalTime": "PT15M",
-            "step": [
-                  {
-                        "@type": "HowToStep",
-                        "position": 1,
-                        "name": "Why Core Strength Is Vital for Running"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 2,
-                        "name": "The 10 Best Core Exercises for Runners"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 3,
-                        "name": "15-Minute Core Routine for Runners"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 4,
-                        "name": "Frequency and Progression"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 5,
-                        "name": "Recommended Gear"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 6,
-                        "name": "Common Mistakes"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 7,
-                        "name": "More strength &amp; flexibility guides"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 8,
-                        "name": "Train together, progress faster"
-                  }
-            ]
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
       },
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How often should runners train core?","acceptedAnswer":{"@type":"Answer","text":"Most runners benefit from 3 core sessions per week, each lasting 10-20 minutes. You can do them after easy runs or on rest days. Consistency matters more than duration: 15 minutes three times a week beats one 45-minute session."}},{"@type":"Question","name":"Can core training make you run faster?","acceptedAnswer":{"@type":"Answer","text":"Yes. A stronger core improves running economy by reducing energy wasted on trunk rotation and lateral sway. Studies show that 6-8 weeks of consistent core training can improve 5K times by reducing postural breakdown in the final kilometres."}},{"@type":"Question","name":"Should I do core before or after running?","acceptedAnswer":{"@type":"Answer","text":"After running is generally best, especially after easy or recovery runs. Doing intense core work before a hard run can pre-fatigue your stabilisers and compromise form. A light activation routine (30 seconds of glute bridges and bird dogs) before running is fine."}}],"@id":"https://www.correrjuntos.com/blog/en/core-exercises-runners#faq"}
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/core-exercises-runners#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/core-exercises-runners",
+      "name": "Core Exercises for Runners: 10 Moves + 15-Min Routine (2026)",
+      "description": "The 10 best core exercises for runners with a guided 15-minute routine.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/4498606/pexels-photo-4498606.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/core-exercises-runners#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/core-exercises-runners#webpage"
+      },
+      "headline": "Core Exercises for Runners: 10 Moves + 15-Min Routine",
+      "description": "The 10 best core exercises for runners with a guided 15-minute routine to improve posture and performance.",
+      "url": "https://www.correrjuntos.com/blog/en/core-exercises-runners",
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-15",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/4498606/pexels-photo-4498606.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Core Exercises for Runners",
+          "item": "https://www.correrjuntos.com/blog/en/core-exercises-runners"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/core-exercises-runners#breadcrumbs"
+    },
+    {
+      "@type": "HowTo",
+      "name": "Core Exercises for Runners: 10 Moves in 15 min",
+      "totalTime": "PT15M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Why Core Strength Is Vital for Running"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "The 10 Best Core Exercises for Runners"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "15-Minute Core Routine for Runners"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Frequency and Progression"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Recommended Gear"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Common Mistakes"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "More strength &amp; flexibility guides"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 8,
+          "name": "Train together, progress faster"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How often should runners train core?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most runners benefit from 3 core sessions per week, each lasting 10-20 minutes. You can do them after easy runs or on rest days. Consistency matters more than duration: 15 minutes three times a week beats one 45-minute session."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can core training make you run faster?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. A stronger core improves running economy by reducing energy wasted on trunk rotation and lateral sway. Studies show that 6-8 weeks of consistent core training can improve 5K times by reducing postural breakdown in the final kilometres."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I do core before or after running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After running is generally best, especially after easy or recovery runs. Doing intense core work before a hard run can pre-fatigue your stabilisers and compromise form. A light activation routine (30 seconds of glute bridges and bird dogs) before running is fine."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/core-exercises-runners#faq"
+    }
   ]
 }
 </script>

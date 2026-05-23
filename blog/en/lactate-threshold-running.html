@@ -41,22 +41,175 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/en/lactate-threshold-running#webpage","url":"https://www.correrjuntos.com/blog/en/lactate-threshold-running","name":"Lactate Threshold Running: The Most Efficient Session for Improvement 2026","description":"What lactate threshold is, how to calculate it, inline plan and common mistakes.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/30476469/pexels-photo-30476469.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Running Coach","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/en/lactate-threshold-running#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/en/lactate-threshold-running#webpage"},"headline":"Lactate Threshold Running: The Most Efficient Session for Improvement 2026","description":"How to calculate threshold pace, table by goal, inline plan and common mistakes.","url":"https://www.correrjuntos.com/blog/en/lactate-threshold-running","datePublished":"2026-04-25","dateModified":"2026-04-25","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/30476469/pexels-photo-30476469.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"en"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/en/"},{"@type":"ListItem","position":3,"name":"Lactate Threshold Running"}],"@id":"https://www.correrjuntos.com/blog/en/lactate-threshold-running#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[
-      {"@type":"Question","name":"What exactly is lactate threshold?","acceptedAnswer":{"@type":"Answer","text":"It's the fastest pace you can sustain for 60 minutes without accumulating lactate faster than your body can clear it. Below it, you run aerobically; above it, you enter anaerobic zone and lactate accumulates. Training it raises that point, so you can run faster without fatiguing."}},
-      {"@type":"Question","name":"Is it the same as tempo run pace?","acceptedAnswer":{"@type":"Answer","text":"Almost. Tempo run is run at threshold pace or slightly below (5-10 sec/km slower). Pure threshold is the absolute ceiling for 60 min; tempo is the 'comfortably hard' zone just below."}},
-      {"@type":"Question","name":"How do I find my threshold pace?","acceptedAnswer":{"@type":"Answer","text":"4 methods: 1) 30-min field test at max sustained — last 20 min is threshold. 2) Your 10K race time + 10-15 sec/km. 3) HR at 85-90% of max HR. 4) Talk test: short sentences, not conversation."}},
-      {"@type":"Question","name":"How long should a threshold session be?","acceptedAnswer":{"@type":"Answer","text":"Continuous: 20-40 min at threshold pace. By intervals: 4-6 x 6-8 min at threshold with 90-120 sec jog recovery. Total of 30-40 min effective in threshold zone per session."}},
-      {"@type":"Question","name":"How often per week?","acceptedAnswer":{"@type":"Answer","text":"For beginners and intermediates: 1 threshold session per week, separated 72h from intervals. For advanced: 1-2 sessions in specific plan phases. More is counterproductive — threshold is demanding."}},
-      {"@type":"Question","name":"Why am I so tired in threshold sessions?","acceptedAnswer":{"@type":"Answer","text":"Probably running too fast. Threshold should feel comfortably hard — not sprint. If you finish exhausted or can't complete the session, slow down 10-15 sec/km next time."}},
-      {"@type":"Question","name":"Continuous or intervals?","acceptedAnswer":{"@type":"Answer","text":"For beginners: intervals (mentally easier). For intermediate/advanced: alternate continuous (mental endurance) and intervals (more effective volume in threshold). Ideal: alternate week to week."}},
-      {"@type":"Question","name":"Can I do threshold without aerobic base?","acceptedAnswer":{"@type":"Answer","text":"No. Before threshold you need 4-8 weeks minimum of aerobic base (easy runs + long run). Without base, threshold injures or burns you out. Build the engine first, then sharpen with threshold."}}
-    ],"@id":"https://www.correrjuntos.com/blog/en/lactate-threshold-running#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/lactate-threshold-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/lactate-threshold-running",
+      "name": "Lactate Threshold Running: The Most Efficient Session for Improvement 2026",
+      "description": "What lactate threshold is, how to calculate it, inline plan and common mistakes.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/30476469/pexels-photo-30476469.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Running Coach",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/lactate-threshold-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/lactate-threshold-running#webpage"
+      },
+      "headline": "Lactate Threshold Running: The Most Efficient Session for Improvement 2026",
+      "description": "How to calculate threshold pace, table by goal, inline plan and common mistakes.",
+      "url": "https://www.correrjuntos.com/blog/en/lactate-threshold-running",
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/30476469/pexels-photo-30476469.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Lactate Threshold Running",
+          "item": "https://www.correrjuntos.com/blog/en/lactate-threshold-running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/lactate-threshold-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What exactly is lactate threshold?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's the fastest pace you can sustain for 60 minutes without accumulating lactate faster than your body can clear it. Below it, you run aerobically; above it, you enter anaerobic zone and lactate accumulates. Training it raises that point, so you can run faster without fatiguing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it the same as tempo run pace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Almost. Tempo run is run at threshold pace or slightly below (5-10 sec/km slower). Pure threshold is the absolute ceiling for 60 min; tempo is the 'comfortably hard' zone just below."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find my threshold pace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "4 methods: 1) 30-min field test at max sustained — last 20 min is threshold. 2) Your 10K race time + 10-15 sec/km. 3) HR at 85-90% of max HR. 4) Talk test: short sentences, not conversation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should a threshold session be?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Continuous: 20-40 min at threshold pace. By intervals: 4-6 x 6-8 min at threshold with 90-120 sec jog recovery. Total of 30-40 min effective in threshold zone per session."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often per week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For beginners and intermediates: 1 threshold session per week, separated 72h from intervals. For advanced: 1-2 sessions in specific plan phases. More is counterproductive — threshold is demanding."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why am I so tired in threshold sessions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Probably running too fast. Threshold should feel comfortably hard — not sprint. If you finish exhausted or can't complete the session, slow down 10-15 sec/km next time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Continuous or intervals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For beginners: intervals (mentally easier). For intermediate/advanced: alternate continuous (mental endurance) and intervals (more effective volume in threshold). Ideal: alternate week to week."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I do threshold without aerobic base?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Before threshold you need 4-8 weeks minimum of aerobic base (easy runs + long run). Without base, threshold injures or burns you out. Build the engine first, then sharpen with threshold."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/lactate-threshold-running#faq"
+    }
   ]
 }
 </script>

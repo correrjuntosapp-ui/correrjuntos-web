@@ -43,29 +43,182 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://www.correrjuntos.com/#organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com/", "logo": { "@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png" } },
-    { "@type": "WebSite", "@id": "https://www.correrjuntos.com/#website", "url": "https://www.correrjuntos.com/", "name": "CorrerJuntos", "publisher": { "@id": "https://www.correrjuntos.com/#organization" }, "inLanguage": "es" },
-    { "@type": "WebPage", "@id": "https://www.correrjuntos.com/planes/trail#webpage", "url": "https://www.correrjuntos.com/planes/trail", "name": "Plan Trail Running 10 Semanas \u2014 Tu Primera Carrera | CorrerJuntos", "description": "Plan trail running de 10 semanas y 258km. Cuestas, t\u00e9cnica bajada y fuerza.", "isPartOf": { "@id": "https://www.correrjuntos.com/#website" }, "inLanguage": "es-ES" },
-    { "@type": "BreadcrumbList", "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Planes", "item": "https://www.correrjuntos.com/planes/" },
-      { "@type": "ListItem", "position": 3, "name": "Plan Trail Running" }
-    ]},
-    { "@type": "HowTo", "name": "Plan de entrenamiento trail running en 10 semanas", "description": "Plan de 10 semanas para preparar tu primera carrera de trail running con cuestas, t\u00e9cnica y tiradas largas.", "totalTime": "PT70D", "step": [
-      { "@type": "HowToStep", "position": 1, "name": "Semanas 1\u20132: Adaptaci\u00f3n al terreno", "text": "Transici\u00f3n del asfalto al trail. Rodajes suaves por caminos, senderos y pistas forestales para adaptar tobillos y musculatura." },
-      { "@type": "HowToStep", "position": 2, "name": "Semanas 3\u20134: Trabajo de cuestas", "text": "Series en cuesta de 200-500m. T\u00e9cnica de subida eficiente y fortalecimiento de gemelos y cu\u00e1driceps." },
-      { "@type": "HowToStep", "position": 3, "name": "Semanas 5\u20137: Tiradas trail largas", "text": "Tiradas de 15-22km por monta\u00f1a. Se introduce t\u00e9cnica de bajada y uso de bastones." },
-      { "@type": "HowToStep", "position": 4, "name": "Semanas 8\u20139: Simulaci\u00f3n", "text": "Entrenos que replican las condiciones de carrera: desnivel, avituallamientos y gesti\u00f3n de esfuerzo." },
-      { "@type": "HowToStep", "position": 5, "name": "Semana 10: Tapering", "text": "Reducci\u00f3n de volumen para llegar descansado a tu primera carrera de trail." }
-    ]},
-    { "@type": "FAQPage", "mainEntity": [
-      { "@type": "Question", "name": "\u00bfQu\u00e9 zapatillas necesito para trail running?", "acceptedAnswer": { "@type": "Answer", "text": "Necesitas zapatillas espec\u00edficas de trail con suela de taco (tacos de 4-6mm), protecci\u00f3n en la puntera y buen agarre. No uses zapatillas de asfalto en monta\u00f1a: la suela lisa resbala en terreno t\u00e9cnico y el riesgo de lesi\u00f3n es alto." }},
-      { "@type": "Question", "name": "\u00bfCu\u00e1l es la diferencia entre trail y asfalto?", "acceptedAnswer": { "@type": "Answer", "text": "El trail se corre por caminos, senderos y monta\u00f1a con desnivel positivo y negativo. Requiere m\u00e1s fuerza, equilibrio y t\u00e9cnica que el asfalto. El ritmo por kil\u00f3metro es m\u00e1s lento pero el esfuerzo card\u00edaco es similar o mayor." }},
-      { "@type": "Question", "name": "\u00bfPuedo entrenar trail sin monta\u00f1a cerca?", "acceptedAnswer": { "@type": "Answer", "text": "S\u00ed. Puedes adaptar el plan usando parques con desnivel, escaleras, caminos de tierra o cuestas urbanas. Lo importante es acumular desnivel y correr por superficies irregulares. Complementa con fuerza en gimnasio." }},
-      { "@type": "Question", "name": "\u00bfQu\u00e9 material necesito llevar en trail?", "acceptedAnswer": { "@type": "Answer", "text": "Para entrenar: zapatillas de trail, chaleco o ri\u00f1onera con agua (soft flask), gorra y protecci\u00f3n solar. Para carreras: revisa el material obligatorio (manta t\u00e9rmica, silbato, m\u00f3vil cargado, agua m\u00ednima). La app te ayuda a planificar cada sesi\u00f3n." }},
-      { "@type": "Question", "name": "\u00bfD\u00f3nde accedo al plan de entrenamiento?", "acceptedAnswer": { "@type": "Answer", "text": "El plan est\u00e1 disponible dentro de la app CorrerJuntos. Desc\u00e1rgala gratis en App Store o Google Play, crea tu perfil y accede a la secci\u00f3n Planes de Entrenamiento para activar el plan Trail Running." }}
-    ]}
-  ,{"@type":"Course","@id":"https://www.correrjuntos.com/planes/trail#course","name":"Plan Trail Running — 10 Semanas","description":"Plan especializado de 10 semanas con 40 sesiones. Adapta tu cuerpo a desnivel, técnica de bajada y trail técnico.","provider":{"@type":"Organization","name":"CorrerJuntos","@id":"https://www.correrjuntos.com/#organization"},"url":"https://www.correrjuntos.com/planes/trail","educationalLevel":"Intermediate","inLanguage":"es-ES","isAccessibleForFree":false,"hasCourseInstance":{"@type":"CourseInstance","courseMode":"Online","courseWorkload":"PT4H","instructor":{"@type":"Person","name":"Coach José IA","description":"Coach IA especializado en planificación de running personalizada"}},"teaches":["Construcción de base aeróbica","Progresión gradual de volumen","Pacing y ritmo objetivo","Recuperación y prevención de lesiones"],"offers":{"@type":"Offer","price":"5.99","priceCurrency":"EUR","category":"OneTime","availability":"https://schema.org/InStock"}}]
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/planes/trail#webpage",
+      "url": "https://www.correrjuntos.com/planes/trail",
+      "name": "Plan Trail Running 10 Semanas — Tu Primera Carrera | CorrerJuntos",
+      "description": "Plan trail running de 10 semanas y 258km. Cuestas, técnica bajada y fuerza.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Planes",
+          "item": "https://www.correrjuntos.com/planes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Plan Trail Running",
+          "item": "https://www.correrjuntos.com/planes/trail"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "Plan de entrenamiento trail running en 10 semanas",
+      "description": "Plan de 10 semanas para preparar tu primera carrera de trail running con cuestas, técnica y tiradas largas.",
+      "totalTime": "PT70D",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Semanas 1–2: Adaptación al terreno",
+          "text": "Transición del asfalto al trail. Rodajes suaves por caminos, senderos y pistas forestales para adaptar tobillos y musculatura."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Semanas 3–4: Trabajo de cuestas",
+          "text": "Series en cuesta de 200-500m. Técnica de subida eficiente y fortalecimiento de gemelos y cuádriceps."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Semanas 5–7: Tiradas trail largas",
+          "text": "Tiradas de 15-22km por montaña. Se introduce técnica de bajada y uso de bastones."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Semanas 8–9: Simulación",
+          "text": "Entrenos que replican las condiciones de carrera: desnivel, avituallamientos y gestión de esfuerzo."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Semana 10: Tapering",
+          "text": "Reducción de volumen para llegar descansado a tu primera carrera de trail."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué zapatillas necesito para trail running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Necesitas zapatillas específicas de trail con suela de taco (tacos de 4-6mm), protección en la puntera y buen agarre. No uses zapatillas de asfalto en montaña: la suela lisa resbala en terreno técnico y el riesgo de lesión es alto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la diferencia entre trail y asfalto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El trail se corre por caminos, senderos y montaña con desnivel positivo y negativo. Requiere más fuerza, equilibrio y técnica que el asfalto. El ritmo por kilómetro es más lento pero el esfuerzo cardíaco es similar o mayor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo entrenar trail sin montaña cerca?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Puedes adaptar el plan usando parques con desnivel, escaleras, caminos de tierra o cuestas urbanas. Lo importante es acumular desnivel y correr por superficies irregulares. Complementa con fuerza en gimnasio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué material necesito llevar en trail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para entrenar: zapatillas de trail, chaleco o riñonera con agua (soft flask), gorra y protección solar. Para carreras: revisa el material obligatorio (manta térmica, silbato, móvil cargado, agua mínima). La app te ayuda a planificar cada sesión."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde accedo al plan de entrenamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El plan está disponible dentro de la app CorrerJuntos. Descárgala gratis en App Store o Google Play, crea tu perfil y accede a la sección Planes de Entrenamiento para activar el plan Trail Running."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://www.correrjuntos.com/planes/trail#course",
+      "name": "Plan Trail Running — 10 Semanas",
+      "description": "Plan especializado de 10 semanas con 40 sesiones. Adapta tu cuerpo a desnivel, técnica de bajada y trail técnico.",
+      "provider": {
+        "@type": "Organization",
+        "name": "CorrerJuntos",
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "url": "https://www.correrjuntos.com/planes/trail",
+      "educationalLevel": "Intermediate",
+      "inLanguage": "es-ES",
+      "isAccessibleForFree": false,
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "Online",
+        "courseWorkload": "PT4H",
+        "instructor": {
+          "@type": "Person",
+          "name": "Coach José IA",
+          "description": "Coach IA especializado en planificación de running personalizada"
+        }
+      },
+      "teaches": [
+        "Construcción de base aeróbica",
+        "Progresión gradual de volumen",
+        "Pacing y ritmo objetivo",
+        "Recuperación y prevención de lesiones"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "5.99",
+        "priceCurrency": "EUR",
+        "category": "OneTime",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
 }
 </script>
 <style>

@@ -42,13 +42,135 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/psicologia-del-corredor#webpage","url":"https://www.correrjuntos.com/blog/psicologia-del-corredor","name":"Psicolog&#237;a del Corredor: Motivaci&#243;n, Disciplina y Muro Mental (2026)","description":"Gu&#237;a completa de psicolog&#237;a deportiva para runners: motivaci&#243;n, disciplina, muro mental y visualizaci&#243;n.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es-ES","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/3771074/pexels-photo-3771074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Fundador de CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/psicologia-del-corredor#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/psicologia-del-corredor#webpage"},"headline":"Psicolog&#237;a del Corredor: Motivaci&#243;n, Disciplina y Muro Mental","description":"Gu&#237;a completa de psicolog&#237;a deportiva para runners: motivaci&#243;n intr&#237;nseca, disciplina, superar el muro mental y t&#233;cnicas de visualizaci&#243;n.","url":"https://www.correrjuntos.com/blog/psicologia-del-corredor","datePublished":"2026-03-15","dateModified":"2026-03-15","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/3771074/pexels-photo-3771074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"es-ES"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/"},{"@type":"ListItem","position":3,"name":"Psicolog&#237;a del Corredor"}],"@id":"https://www.correrjuntos.com/blog/psicologia-del-corredor#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"&#191;C&#243;mo superar el muro mental en un marat&#243;n?","acceptedAnswer":{"@type":"Answer","text":"El muro mental aparece normalmente entre el km 30 y 35 del marat&#243;n, cuando el gluc&#243;geno muscular se agota. Para superarlo: divide la carrera en tramos peque&#241;os (km a km), usa mantras cortos y positivos, conc&#233;ntrate en tu t&#233;cnica de carrera y recuerda tu motivaci&#243;n original. Entrenar tiradas largas a ritmo de marat&#243;n prepara tanto tu cuerpo como tu mente."}},{"@type":"Question","name":"&#191;Qu&#233; es la motivaci&#243;n intr&#237;nseca en el running?","acceptedAnswer":{"@type":"Answer","text":"La motivaci&#243;n intr&#237;nseca es la que nace de dentro: el placer de correr, la satisfacci&#243;n de superarte, la sensaci&#243;n de libertad o el bienestar mental post-carrera. A diferencia de la motivaci&#243;n extr&#237;nseca (medallas, likes, tiempos), la intr&#237;nseca es m&#225;s duradera y resistente a la frustraci&#243;n."}},{"@type":"Question","name":"&#191;La visualizaci&#243;n deportiva realmente funciona para corredores?","acceptedAnswer":{"@type":"Answer","text":"S&#237;. Estudios de neurociencia demuestran que visualizar un recorrido activa las mismas &#225;reas cerebrales que correrlo. Los corredores de &#233;lite usan la visualizaci&#243;n para reducir ansiedad pre-carrera, mejorar la t&#233;cnica y preparar respuestas mentales ante momentos dif&#237;ciles. Basta con 5-10 minutos diarios de pr&#225;ctica."}}],"@id":"https://www.correrjuntos.com/blog/psicologia-del-corredor#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/psicologia-del-corredor#webpage",
+      "url": "https://www.correrjuntos.com/blog/psicologia-del-corredor",
+      "name": "Psicolog&#237;a del Corredor: Motivaci&#243;n, Disciplina y Muro Mental (2026)",
+      "description": "Gu&#237;a completa de psicolog&#237;a deportiva para runners: motivaci&#243;n, disciplina, muro mental y visualizaci&#243;n.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3771074/pexels-photo-3771074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/psicologia-del-corredor#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/psicologia-del-corredor#webpage"
+      },
+      "headline": "Psicolog&#237;a del Corredor: Motivaci&#243;n, Disciplina y Muro Mental",
+      "description": "Gu&#237;a completa de psicolog&#237;a deportiva para runners: motivaci&#243;n intr&#237;nseca, disciplina, superar el muro mental y t&#233;cnicas de visualizaci&#243;n.",
+      "url": "https://www.correrjuntos.com/blog/psicologia-del-corredor",
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-15",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3771074/pexels-photo-3771074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Psicolog&#237;a del Corredor",
+          "item": "https://www.correrjuntos.com/blog/psicologia-del-corredor"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/psicologia-del-corredor#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "&#191;C&#243;mo superar el muro mental en un marat&#243;n?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El muro mental aparece normalmente entre el km 30 y 35 del marat&#243;n, cuando el gluc&#243;geno muscular se agota. Para superarlo: divide la carrera en tramos peque&#241;os (km a km), usa mantras cortos y positivos, conc&#233;ntrate en tu t&#233;cnica de carrera y recuerda tu motivaci&#243;n original. Entrenar tiradas largas a ritmo de marat&#243;n prepara tanto tu cuerpo como tu mente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "&#191;Qu&#233; es la motivaci&#243;n intr&#237;nseca en el running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La motivaci&#243;n intr&#237;nseca es la que nace de dentro: el placer de correr, la satisfacci&#243;n de superarte, la sensaci&#243;n de libertad o el bienestar mental post-carrera. A diferencia de la motivaci&#243;n extr&#237;nseca (medallas, likes, tiempos), la intr&#237;nseca es m&#225;s duradera y resistente a la frustraci&#243;n."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "&#191;La visualizaci&#243;n deportiva realmente funciona para corredores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "S&#237;. Estudios de neurociencia demuestran que visualizar un recorrido activa las mismas &#225;reas cerebrales que correrlo. Los corredores de &#233;lite usan la visualizaci&#243;n para reducir ansiedad pre-carrera, mejorar la t&#233;cnica y preparar respuestas mentales ante momentos dif&#237;ciles. Basta con 5-10 minutos diarios de pr&#225;ctica."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/psicologia-del-corredor#faq"
+    }
   ]
 }
 </script>

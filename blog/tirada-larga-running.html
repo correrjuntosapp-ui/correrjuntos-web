@@ -41,22 +41,175 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/tirada-larga-running#webpage","url":"https://www.correrjuntos.com/blog/tirada-larga-running","name":"Tirada Larga: La Sesión Más Importante de tu Plan de Running 2026","description":"Por qué la tirada larga es la sesión clave de cualquier plan, cuánto debe durar y a qué ritmo correrla.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es-ES","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/35102677/pexels-photo-35102677.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Running Coach","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/tirada-larga-running#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/tirada-larga-running#webpage"},"headline":"Tirada Larga: La Sesión Más Importante de tu Plan de Running 2026","description":"Cuánto debe durar según tu objetivo, a qué ritmo correrla, cómo hidratarte y los 5 errores que la arruinan.","url":"https://www.correrjuntos.com/blog/tirada-larga-running","datePublished":"2026-04-25","dateModified":"2026-05-22","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://www.correrjuntos.com/public/blog-images/tirada-larga-running/hero.jpg","inLanguage":"es-ES"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/"},{"@type":"ListItem","position":3,"name":"Tirada Larga Running"}],"@id":"https://www.correrjuntos.com/blog/tirada-larga-running#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[
-      {"@type":"Question","name":"¿Qué es exactamente una tirada larga?","acceptedAnswer":{"@type":"Answer","text":"Una tirada larga es la sesión más larga de tu semana, normalmente representando entre el 25% y el 35% de tu volumen semanal total. Se corre a ritmo conversacional (deberías poder hablar) y construye la base aeróbica, mejora la economía de carrera y prepara músculos, articulaciones y mente para distancias mayores."}},
-      {"@type":"Question","name":"¿Cuánto debe durar una tirada larga?","acceptedAnswer":{"@type":"Answer","text":"Depende de tu objetivo: 6-10 km para un 5K, 10-14 km para un 10K, 14-20 km para media maratón, 24-32 km para maratón. Como regla general, debe ser el 25-35% de tu volumen semanal total, nunca más para evitar fatiga acumulada."}},
-      {"@type":"Question","name":"¿A qué ritmo se debe correr la tirada larga?","acceptedAnswer":{"@type":"Answer","text":"Conversacional: deberías poder hablar en frases completas sin ahogarte. Esto suele ser 60-90 segundos por km más lento que tu ritmo de carrera objetivo. La regla 80/20 dice que el 80% de tu kilometraje debe ser a este ritmo suave."}},
-      {"@type":"Question","name":"¿Puedo hacer la tirada larga el domingo si entrené el sábado?","acceptedAnswer":{"@type":"Answer","text":"Sí, pero el sábado debe ser una sesión MUY suave (rodaje regenerativo) o descanso. La tirada larga necesita piernas frescas. Si el sábado hiciste series o tempo, espera al lunes o haz la tirada larga otro día."}},
-      {"@type":"Question","name":"¿Qué hacer si me canso a la mitad?","acceptedAnswer":{"@type":"Answer","text":"Reduce el ritmo o intercala caminata. La tirada larga es construir resistencia, no romper récords. Si llegas a la mitad y estás muy cansado, probablemente saliste demasiado rápido o el volumen es excesivo. Ajusta para la próxima semana."}},
-      {"@type":"Question","name":"¿Necesito comer durante la tirada larga?","acceptedAnswer":{"@type":"Answer","text":"Por debajo de 75-90 minutos no es necesario. A partir de ahí, 30-60g de carbohidratos por hora (gel energético cada 30-40 min). Para tiradas de 2h+, considera mezclar gel con bebida isotónica. Hidrátate cada 15-20 min."}},
-      {"@type":"Question","name":"¿Es mejor tirada larga lenta o tempo run progresivo?","acceptedAnswer":{"@type":"Answer","text":"Para principiantes y volumen base, tirada larga lenta a ritmo conversacional. Para corredores avanzados con carrera próxima, alterna: 1 tirada larga lenta cada 2 semanas + 1 tirada con últimos km a ritmo de carrera."}},
-      {"@type":"Question","name":"¿Cuánto descanso necesito después de una tirada larga?","acceptedAnswer":{"@type":"Answer","text":"24-48h sin sesión de calidad. El día siguiente: descanso completo o rodaje regenerativo muy suave (30-40 min). La tirada larga genera microlesiones musculares que tardan 24-72h en reparar."}}
-    ],"@id":"https://www.correrjuntos.com/blog/tirada-larga-running#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/tirada-larga-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/tirada-larga-running",
+      "name": "Tirada Larga: La Sesión Más Importante de tu Plan de Running 2026",
+      "description": "Por qué la tirada larga es la sesión clave de cualquier plan, cuánto debe durar y a qué ritmo correrla.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/35102677/pexels-photo-35102677.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Running Coach",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/tirada-larga-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/tirada-larga-running#webpage"
+      },
+      "headline": "Tirada Larga: La Sesión Más Importante de tu Plan de Running 2026",
+      "description": "Cuánto debe durar según tu objetivo, a qué ritmo correrla, cómo hidratarte y los 5 errores que la arruinan.",
+      "url": "https://www.correrjuntos.com/blog/tirada-larga-running",
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-05-22",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://www.correrjuntos.com/public/blog-images/tirada-larga-running/hero.jpg",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Tirada Larga Running",
+          "item": "https://www.correrjuntos.com/blog/tirada-larga-running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/tirada-larga-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es exactamente una tirada larga?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una tirada larga es la sesión más larga de tu semana, normalmente representando entre el 25% y el 35% de tu volumen semanal total. Se corre a ritmo conversacional (deberías poder hablar) y construye la base aeróbica, mejora la economía de carrera y prepara músculos, articulaciones y mente para distancias mayores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto debe durar una tirada larga?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de tu objetivo: 6-10 km para un 5K, 10-14 km para un 10K, 14-20 km para media maratón, 24-32 km para maratón. Como regla general, debe ser el 25-35% de tu volumen semanal total, nunca más para evitar fatiga acumulada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿A qué ritmo se debe correr la tirada larga?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Conversacional: deberías poder hablar en frases completas sin ahogarte. Esto suele ser 60-90 segundos por km más lento que tu ritmo de carrera objetivo. La regla 80/20 dice que el 80% de tu kilometraje debe ser a este ritmo suave."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo hacer la tirada larga el domingo si entrené el sábado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, pero el sábado debe ser una sesión MUY suave (rodaje regenerativo) o descanso. La tirada larga necesita piernas frescas. Si el sábado hiciste series o tempo, espera al lunes o haz la tirada larga otro día."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué hacer si me canso a la mitad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reduce el ritmo o intercala caminata. La tirada larga es construir resistencia, no romper récords. Si llegas a la mitad y estás muy cansado, probablemente saliste demasiado rápido o el volumen es excesivo. Ajusta para la próxima semana."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito comer durante la tirada larga?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Por debajo de 75-90 minutos no es necesario. A partir de ahí, 30-60g de carbohidratos por hora (gel energético cada 30-40 min). Para tiradas de 2h+, considera mezclar gel con bebida isotónica. Hidrátate cada 15-20 min."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es mejor tirada larga lenta o tempo run progresivo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para principiantes y volumen base, tirada larga lenta a ritmo conversacional. Para corredores avanzados con carrera próxima, alterna: 1 tirada larga lenta cada 2 semanas + 1 tirada con últimos km a ritmo de carrera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto descanso necesito después de una tirada larga?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "24-48h sin sesión de calidad. El día siguiente: descanso completo o rodaje regenerativo muy suave (30-40 min). La tirada larga genera microlesiones musculares que tardan 24-72h en reparar."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/tirada-larga-running#faq"
+    }
   ]
 }
 </script>

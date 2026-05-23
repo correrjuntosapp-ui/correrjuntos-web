@@ -42,13 +42,151 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/en/what-to-eat-after-running#webpage","url":"https://www.correrjuntos.com/blog/en/what-to-eat-after-running","name":"What to Eat After Running: Recovery in 30 Minutes | CorrerJuntos","description":"What to eat after running for fast recovery. Ideal carb/protein ratio, 10 quick snacks and a plan based on the distance you ran.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/2662875/pexels-photo-2662875.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/carlos-ruiz#author","name":"Carlos Ruiz","url":"https://www.correrjuntos.com/blog/autor/carlos-ruiz","jobTitle":"Founder of CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/correrjuntosapp"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/en/what-to-eat-after-running#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/en/what-to-eat-after-running#webpage"},"headline":"What to Eat After Running: Recovery in 30 Minutes","description":"What to eat after running for fast recovery. Ideal carb/protein ratio, 10 quick snacks and a plan based on the distance you ran.","url":"https://www.correrjuntos.com/blog/en/what-to-eat-after-running","datePublished":"2026-03-16","dateModified":"2026-03-16","author":{"@id":"https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/2662875/pexels-photo-2662875.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"en"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/en/"},{"@type":"ListItem","position":3,"name":"What to Eat After Running: Recovery in 30 Minutes"}],"@id":"https://www.correrjuntos.com/blog/en/what-to-eat-after-running#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How soon after running should I eat?","acceptedAnswer":{"@type":"Answer","text":"Ideally eat something within the first 30-60 minutes after finishing your run. During that window your muscles are especially receptive to absorbing nutrients and replenishing glycogen. You do not need a full meal immediately: a snack with carbs and protein is enough. The main meal can wait 1-2 hours."}},{"@type":"Question","name":"What is the ideal carb-to-protein ratio after running?","acceptedAnswer":{"@type":"Answer","text":"The recommended ratio is 3:1 or 4:1 (carbs to protein). For example, if you take 60 g of carbs, add 15-20 g of protein. This ratio maximizes muscle glycogen replenishment and stimulates tissue repair. After combined strength and running sessions you can slightly increase the protein."}},{"@type":"Question","name":"Do I need protein powder after running?","acceptedAnswer":{"@type":"Answer","text":"It is not essential. Protein powder is a convenient tool, but you can perfectly cover your needs with real food: Greek yogurt, eggs, chicken, tuna, milk. Supplements are useful when you do not have access to food or after very demanding workouts where you need immediate nutrients."}},{"@type":"Question","name":"What happens if I do not eat anything after running?","acceptedAnswer":{"@type":"Answer","text":"If you do not eat in the hours after running, muscle recovery slows down, glycogen replenishment is less efficient and you may experience more fatigue and soreness the next day. For easy short runs the impact is smaller, but after intense or long sessions skipping post-run nutrition has a real cost on recovery."}},{"@type":"Question","name":"Can I drink beer after running as a recovery drink?","acceptedAnswer":{"@type":"Answer","text":"Although non-alcoholic beer has some carbs and electrolytes, it is not a good recovery drink. Alcohol dehydrates, interferes with muscle protein synthesis and worsens sleep quality. If you want one, make it non-alcoholic and always pair it with water and real food. It does not replace a proper recovery snack."}}],"@id":"https://www.correrjuntos.com/blog/en/what-to-eat-after-running#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running",
+      "name": "What to Eat After Running: Recovery in 30 Minutes | CorrerJuntos",
+      "description": "What to eat after running for fast recovery. Ideal carb/protein ratio, 10 quick snacks and a plan based on the distance you ran.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2662875/pexels-photo-2662875.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author",
+      "name": "Carlos Ruiz",
+      "url": "https://www.correrjuntos.com/blog/autor/carlos-ruiz",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running#webpage"
+      },
+      "headline": "What to Eat After Running: Recovery in 30 Minutes",
+      "description": "What to eat after running for fast recovery. Ideal carb/protein ratio, 10 quick snacks and a plan based on the distance you ran.",
+      "url": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running",
+      "datePublished": "2026-03-16",
+      "dateModified": "2026-03-16",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/carlos-ruiz#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2662875/pexels-photo-2662875.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What to Eat After Running: Recovery in 30 Minutes",
+          "item": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How soon after running should I eat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ideally eat something within the first 30-60 minutes after finishing your run. During that window your muscles are especially receptive to absorbing nutrients and replenishing glycogen. You do not need a full meal immediately: a snack with carbs and protein is enough. The main meal can wait 1-2 hours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the ideal carb-to-protein ratio after running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The recommended ratio is 3:1 or 4:1 (carbs to protein). For example, if you take 60 g of carbs, add 15-20 g of protein. This ratio maximizes muscle glycogen replenishment and stimulates tissue repair. After combined strength and running sessions you can slightly increase the protein."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need protein powder after running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is not essential. Protein powder is a convenient tool, but you can perfectly cover your needs with real food: Greek yogurt, eggs, chicken, tuna, milk. Supplements are useful when you do not have access to food or after very demanding workouts where you need immediate nutrients."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I do not eat anything after running?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you do not eat in the hours after running, muscle recovery slows down, glycogen replenishment is less efficient and you may experience more fatigue and soreness the next day. For easy short runs the impact is smaller, but after intense or long sessions skipping post-run nutrition has a real cost on recovery."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I drink beer after running as a recovery drink?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Although non-alcoholic beer has some carbs and electrolytes, it is not a good recovery drink. Alcohol dehydrates, interferes with muscle protein synthesis and worsens sleep quality. If you want one, make it non-alcoholic and always pair it with water and real food. It does not replace a proper recovery snack."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/what-to-eat-after-running#faq"
+    }
   ]
 }
 </script>

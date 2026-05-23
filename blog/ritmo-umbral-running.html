@@ -41,22 +41,175 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/ritmo-umbral-running#webpage","url":"https://www.correrjuntos.com/blog/ritmo-umbral-running","name":"Ritmo Umbral Running: La Sesión Más Eficiente para Mejorar 2026","description":"Qué es el ritmo umbral, cómo calcularlo, plan inline y errores comunes.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es-ES","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/7188065/pexels-photo-7188065.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Running Coach","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/ritmo-umbral-running#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/ritmo-umbral-running#webpage"},"headline":"Ritmo Umbral Running: La Sesión Más Eficiente para Mejorar 2026","description":"Cómo calcular tu ritmo umbral, tabla por objetivo, plan inline 4 semanas y errores comunes.","url":"https://www.correrjuntos.com/blog/ritmo-umbral-running","datePublished":"2026-04-25","dateModified":"2026-05-22","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://www.correrjuntos.com/public/blog-images/ritmo-umbral-running/hero.jpg","inLanguage":"es-ES"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/"},{"@type":"ListItem","position":3,"name":"Ritmo Umbral Running"}],"@id":"https://www.correrjuntos.com/blog/ritmo-umbral-running#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[
-      {"@type":"Question","name":"¿Qué es exactamente el ritmo umbral?","acceptedAnswer":{"@type":"Answer","text":"Es el ritmo más rápido que puedes mantener durante 60 minutos sin acumular lactato más rápido de lo que tu cuerpo puede eliminar. Por debajo, corres aeróbicamente; por encima, entras en zona anaeróbica y el lactato se acumula. Entrenarlo eleva ese punto, así corres más rápido sin fatigarte."}},
-      {"@type":"Question","name":"¿Es lo mismo que ritmo de tempo run?","acceptedAnswer":{"@type":"Answer","text":"Casi. El tempo run se corre justo en tu ritmo umbral o ligeramente por debajo (5-10 segundos más lento por km). El umbral puro es el techo absoluto durante 60 min; el tempo es la zona de trabajo cómoda-dura justo debajo."}},
-      {"@type":"Question","name":"¿Cómo sé cuál es mi ritmo umbral?","acceptedAnswer":{"@type":"Answer","text":"4 métodos: 1) Test de campo de 30 min al máximo, los últimos 20 min son tu ritmo umbral. 2) Tu ritmo de carrera de 10K + 10-15 segundos por km. 3) FC al 85-90% de tu FC máxima. 4) Sensación: ritmo cómodamente duro, frases cortas al hablar."}},
-      {"@type":"Question","name":"¿Cuánto debe durar una sesión de umbral?","acceptedAnswer":{"@type":"Answer","text":"Continuo: 20-40 minutos a ritmo umbral. Por intervalos: 4-6 x 6-8 minutos a umbral con 90-120 segundos de recuperación trotando. Total efectivo de 30-40 minutos en zona umbral por sesión."}},
-      {"@type":"Question","name":"¿Cuántas veces a la semana?","acceptedAnswer":{"@type":"Answer","text":"Para principiantes e intermedios: 1 sesión de umbral a la semana, separada 72h de las series. Para avanzados: 1-2 sesiones a la semana en fases específicas del plan. Más es contraproducente — el umbral es exigente."}},
-      {"@type":"Question","name":"¿Por qué me canso tanto en sesiones de umbral?","acceptedAnswer":{"@type":"Answer","text":"Probablemente vas demasiado rápido. El umbral debería sentirse cómodamente duro — no sprint. Si terminas reventado o no completas la sesión, baja el ritmo 10-15 segundos por km la próxima vez."}},
-      {"@type":"Question","name":"¿Es mejor umbral continuo o por intervalos?","acceptedAnswer":{"@type":"Answer","text":"Para principiantes: por intervalos (más fácil de tolerar mentalmente). Para intermedios y avanzados: alternar entre continuo (resistencia mental) e intervalos (más volumen efectivo en umbral). Ideal: alternar semana a semana."}},
-      {"@type":"Question","name":"¿Puedo hacer umbral si tengo poca base aeróbica?","acceptedAnswer":{"@type":"Answer","text":"No. Antes del umbral necesitas mínimo 4-8 semanas de base aeróbica (rodajes suaves + tirada larga). Sin base, el umbral te lesiona o te quema. Consolida primero el motor aeróbico, después afila con umbral."}}
-    ],"@id":"https://www.correrjuntos.com/blog/ritmo-umbral-running#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/ritmo-umbral-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/ritmo-umbral-running",
+      "name": "Ritmo Umbral Running: La Sesión Más Eficiente para Mejorar 2026",
+      "description": "Qué es el ritmo umbral, cómo calcularlo, plan inline y errores comunes.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/7188065/pexels-photo-7188065.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Running Coach",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/ritmo-umbral-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/ritmo-umbral-running#webpage"
+      },
+      "headline": "Ritmo Umbral Running: La Sesión Más Eficiente para Mejorar 2026",
+      "description": "Cómo calcular tu ritmo umbral, tabla por objetivo, plan inline 4 semanas y errores comunes.",
+      "url": "https://www.correrjuntos.com/blog/ritmo-umbral-running",
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-05-22",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://www.correrjuntos.com/public/blog-images/ritmo-umbral-running/hero.jpg",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ritmo Umbral Running",
+          "item": "https://www.correrjuntos.com/blog/ritmo-umbral-running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ritmo-umbral-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es exactamente el ritmo umbral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es el ritmo más rápido que puedes mantener durante 60 minutos sin acumular lactato más rápido de lo que tu cuerpo puede eliminar. Por debajo, corres aeróbicamente; por encima, entras en zona anaeróbica y el lactato se acumula. Entrenarlo eleva ese punto, así corres más rápido sin fatigarte."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es lo mismo que ritmo de tempo run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Casi. El tempo run se corre justo en tu ritmo umbral o ligeramente por debajo (5-10 segundos más lento por km). El umbral puro es el techo absoluto durante 60 min; el tempo es la zona de trabajo cómoda-dura justo debajo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo sé cuál es mi ritmo umbral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "4 métodos: 1) Test de campo de 30 min al máximo, los últimos 20 min son tu ritmo umbral. 2) Tu ritmo de carrera de 10K + 10-15 segundos por km. 3) FC al 85-90% de tu FC máxima. 4) Sensación: ritmo cómodamente duro, frases cortas al hablar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto debe durar una sesión de umbral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Continuo: 20-40 minutos a ritmo umbral. Por intervalos: 4-6 x 6-8 minutos a umbral con 90-120 segundos de recuperación trotando. Total efectivo de 30-40 minutos en zona umbral por sesión."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántas veces a la semana?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para principiantes e intermedios: 1 sesión de umbral a la semana, separada 72h de las series. Para avanzados: 1-2 sesiones a la semana en fases específicas del plan. Más es contraproducente — el umbral es exigente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué me canso tanto en sesiones de umbral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Probablemente vas demasiado rápido. El umbral debería sentirse cómodamente duro — no sprint. Si terminas reventado o no completas la sesión, baja el ritmo 10-15 segundos por km la próxima vez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es mejor umbral continuo o por intervalos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para principiantes: por intervalos (más fácil de tolerar mentalmente). Para intermedios y avanzados: alternar entre continuo (resistencia mental) e intervalos (más volumen efectivo en umbral). Ideal: alternar semana a semana."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo hacer umbral si tengo poca base aeróbica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Antes del umbral necesitas mínimo 4-8 semanas de base aeróbica (rodajes suaves + tirada larga). Sin base, el umbral te lesiona o te quema. Consolida primero el motor aeróbico, después afila con umbral."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/ritmo-umbral-running#faq"
+    }
   ]
 }
 </script>

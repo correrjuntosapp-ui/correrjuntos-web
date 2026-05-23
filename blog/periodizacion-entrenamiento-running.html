@@ -42,13 +42,135 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#webpage","url":"https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running","name":"Periodizaci\u00f3n del Entrenamiento Running: Gu\u00eda Completa (2026)","description":"Gu\u00eda completa de periodizaci\u00f3n para corredores. Aprende a estructurar macrociclos, mesociclos y microciclos.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es-ES","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Fundador de CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#webpage"},"headline":"Periodizaci\u00f3n del Entrenamiento Running: Gu\u00eda Completa","description":"Aprende a estructurar macrociclos, mesociclos y microciclos para llegar en forma a tu carrera objetivo.","url":"https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running","datePublished":"2026-03-15","dateModified":"2026-03-15","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"es-ES"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/"},{"@type":"ListItem","position":3,"name":"Periodizaci\u00f3n Entrenamiento Running"}],"@id":"https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"\u00bfCu\u00e1ntas semanas necesito para periodizar un marat\u00f3n?","acceptedAnswer":{"@type":"Answer","text":"Lo habitual son entre 16 y 24 semanas de preparaci\u00f3n total, repartidas en las cuatro fases: base aer\u00f3bica (8-10 semanas), desarrollo (4-6 semanas), espec\u00edfica (3-4 semanas) y tapering (2-3 semanas). Si tu base es s\u00f3lida, 16 semanas pueden ser suficientes; si partes de cero, mejor 20-24."}},{"@type":"Question","name":"\u00bfPuedo competir durante la fase base?","acceptedAnswer":{"@type":"Answer","text":"S\u00ed, pero trat\u00e1ndolo como entrenamiento, no como competici\u00f3n prioritaria. Puedes correr un 5K o 10K a ritmo controlado para evaluar tu forma. Lo importante es que la carrera no interrumpa la acumulaci\u00f3n de volumen aer\u00f3bico de la fase base."}},{"@type":"Question","name":"\u00bfLa periodizaci\u00f3n sirve para principiantes?","acceptedAnswer":{"@type":"Answer","text":"S\u00ed, en una versi\u00f3n simplificada. Un principiante puede usar dos fases: base aer\u00f3bica larga (10-12 semanas de rodajes suaves y volumen progresivo) y una fase espec\u00edfica corta (4-6 semanas con algo de ritmo y una semana de descarga). Lo esencial es respetar la progresi\u00f3n gradual."}}],"@id":"https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running",
+      "name": "Periodización del Entrenamiento Running: Guía Completa (2026)",
+      "description": "Guía completa de periodización para corredores. Aprende a estructurar macrociclos, mesociclos y microciclos.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#webpage"
+      },
+      "headline": "Periodización del Entrenamiento Running: Guía Completa",
+      "description": "Aprende a estructurar macrociclos, mesociclos y microciclos para llegar en forma a tu carrera objetivo.",
+      "url": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running",
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-15",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Periodización Entrenamiento Running",
+          "item": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántas semanas necesito para periodizar un maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lo habitual son entre 16 y 24 semanas de preparación total, repartidas en las cuatro fases: base aeróbica (8-10 semanas), desarrollo (4-6 semanas), específica (3-4 semanas) y tapering (2-3 semanas). Si tu base es sólida, 16 semanas pueden ser suficientes; si partes de cero, mejor 20-24."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo competir durante la fase base?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, pero tratándolo como entrenamiento, no como competición prioritaria. Puedes correr un 5K o 10K a ritmo controlado para evaluar tu forma. Lo importante es que la carrera no interrumpa la acumulación de volumen aeróbico de la fase base."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La periodización sirve para principiantes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, en una versión simplificada. Un principiante puede usar dos fases: base aeróbica larga (10-12 semanas de rodajes suaves y volumen progresivo) y una fase específica corta (4-6 semanas con algo de ritmo y una semana de descarga). Lo esencial es respetar la progresión gradual."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/periodizacion-entrenamiento-running#faq"
+    }
   ]
 }
 </script>

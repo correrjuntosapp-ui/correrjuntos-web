@@ -41,22 +41,175 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "Organization", "@id": "https://www.correrjuntos.com/#organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com/", "logo": {"@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png"}, "sameAs": ["https://www.instagram.com/correrjuntosapp/", "https://x.com/CorrerJuntos", "https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type": "WebSite", "@id": "https://www.correrjuntos.com/#website", "url": "https://www.correrjuntos.com/", "name": "CorrerJuntos", "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en"},
-    {"@type": "WebPage", "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#webpage", "url": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running", "name": "How Many KM Per Week Should You Run: Guide by Level and Goal 2026", "description": "Weekly mileage tables by level and goal + inline 4-week plan + common mistakes.", "isPartOf": {"@id": "https://www.correrjuntos.com/#website"}, "about": {"@id": "https://www.correrjuntos.com/#organization"}, "inLanguage": "en", "primaryImageOfPage": {"@type": "ImageObject", "url": "https://images.pexels.com/photos/20657581/pexels-photo-20657581.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type": "Person", "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author", "name": "Abraham Márquez Rodríguez", "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez", "jobTitle": "Running Coach", "sameAs": ["https://www.strava.com/athletes/correrjuntos", "https://www.instagram.com/correrjuntosapp/", "https://x.com/CorrerJuntos"]},
-    {"@type": "BlogPosting", "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#article", "mainEntityOfPage": {"@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#webpage"}, "headline": "How Many KM Per Week Should You Run: Guide by Level and Goal 2026", "description": "Weekly running mileage by level and goal. Exact tables, inline plan, and common mistakes.", "url": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running", "datePublished": "2026-04-25", "dateModified": "2026-04-25", "author": {"@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"}, "publisher": {"@id": "https://www.correrjuntos.com/#organization"}, "image": "https://images.pexels.com/photos/20657581/pexels-photo-20657581.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70", "inLanguage": "en"},
-    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.correrjuntos.com/blog/en/"}, {"@type": "ListItem", "position": 3, "name": "How Many KM Per Week Running"}], "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#breadcrumbs"},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "What is the minimum km per week to improve?", "acceptedAnswer": {"@type": "Answer", "text": "To improve sustainably you need at least 15-20 km per week split across at least 3 sessions. Below that volume, your body doesn't get enough stimulus to adapt and improve."}},
-      {"@type": "Question", "name": "Can I run 50 km per week as a beginner?", "acceptedAnswer": {"@type": "Answer", "text": "No. If you've been running for less than 6 months, 50 km/week is excessive and almost guarantees injury. The 10% rule says don't increase your weekly volume more than 10% over the previous week."}},
-      {"@type": "Question", "name": "How many km per week to train for a 10K?", "acceptedAnswer": {"@type": "Answer", "text": "Between 25 and 40 km per week split across 3-4 sessions. If it's your first 10K, 25-30 km is enough. To break 50 minutes, 35-40 km. Consistency matters more than total volume."}},
-      {"@type": "Question", "name": "How many km per week to train for a marathon?", "acceptedAnswer": {"@type": "Answer", "text": "Between 50 and 80 km/week for beginner marathon (sub-4h or finish). For sub-3:30, 65-85 km/week. For sub-3h, 80-100 km/week. Your weekly long run should be around 25-30% of total volume."}},
-      {"@type": "Question", "name": "Should I run every day or rest?", "acceptedAnswer": {"@type": "Answer", "text": "For beginners and intermediates, 3-4 days per week with 2-3 days of full rest or cross-training is optimal. Only advanced runners (60+ km/week) benefit from 5-6 days, always with at least 1 full rest day."}},
-      {"@type": "Question", "name": "Why do I get injured when I increase volume?", "acceptedAnswer": {"@type": "Answer", "text": "80% of running injuries come from increasing volume too fast. Muscle adaptation takes 2-3 weeks, but bone and tendon adaptation takes 4-8 weeks. If you increase 15-20% per week instead of 10%, you'll feel it as plantar fasciitis, shin splints, or tendinitis."}},
-      {"@type": "Question", "name": "What is the ideal long run per week?", "acceptedAnswer": {"@type": "Answer", "text": "Between 25% and 35% of your total weekly volume. If you run 30 km/week, your long run should be 8-10 km. If you run 60 km/week, 16-20 km. Never more than 35% to avoid accumulated fatigue."}},
-      {"@type": "Question", "name": "Can I train just as well with only 3 days a week?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but with clear priorities: 1) long run (40-50% of volume), 2) quality session (intervals or tempo), 3) easy recovery run. With those 3 well-structured days you can prepare 5K and 10K perfectly."}}
-    ], "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running",
+      "name": "How Many KM Per Week Should You Run: Guide by Level and Goal 2026",
+      "description": "Weekly mileage tables by level and goal + inline 4-week plan + common mistakes.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/20657581/pexels-photo-20657581.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Running Coach",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#webpage"
+      },
+      "headline": "How Many KM Per Week Should You Run: Guide by Level and Goal 2026",
+      "description": "Weekly running mileage by level and goal. Exact tables, inline plan, and common mistakes.",
+      "url": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running",
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/20657581/pexels-photo-20657581.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How Many KM Per Week Running",
+          "item": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the minimum km per week to improve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To improve sustainably you need at least 15-20 km per week split across at least 3 sessions. Below that volume, your body doesn't get enough stimulus to adapt and improve."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run 50 km per week as a beginner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. If you've been running for less than 6 months, 50 km/week is excessive and almost guarantees injury. The 10% rule says don't increase your weekly volume more than 10% over the previous week."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many km per week to train for a 10K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Between 25 and 40 km per week split across 3-4 sessions. If it's your first 10K, 25-30 km is enough. To break 50 minutes, 35-40 km. Consistency matters more than total volume."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many km per week to train for a marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Between 50 and 80 km/week for beginner marathon (sub-4h or finish). For sub-3:30, 65-85 km/week. For sub-3h, 80-100 km/week. Your weekly long run should be around 25-30% of total volume."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I run every day or rest?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For beginners and intermediates, 3-4 days per week with 2-3 days of full rest or cross-training is optimal. Only advanced runners (60+ km/week) benefit from 5-6 days, always with at least 1 full rest day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do I get injured when I increase volume?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "80% of running injuries come from increasing volume too fast. Muscle adaptation takes 2-3 weeks, but bone and tendon adaptation takes 4-8 weeks. If you increase 15-20% per week instead of 10%, you'll feel it as plantar fasciitis, shin splints, or tendinitis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the ideal long run per week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Between 25% and 35% of your total weekly volume. If you run 30 km/week, your long run should be 8-10 km. If you run 60 km/week, 16-20 km. Never more than 35% to avoid accumulated fatigue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I train just as well with only 3 days a week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but with clear priorities: 1) long run (40-50% of volume), 2) quality session (intervals or tempo), 3) easy recovery run. With those 3 well-structured days you can prepare 5K and 10K perfectly."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/how-many-km-per-week-running#faq"
+    }
   ]
 }
 </script>

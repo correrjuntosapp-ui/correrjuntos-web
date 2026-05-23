@@ -44,21 +44,171 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/correrjuntos-vs-strava#webpage","url":"https://www.correrjuntos.com/blog/correrjuntos-vs-strava","name":"CorrerJuntos vs Strava 2026","description":"Comparativa honesta entre CorrerJuntos y Strava: qué hace mejor cada una, dónde pierde, y para quién es cada una.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"inLanguage":"es-ES","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop&q=80"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Fundador de CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/correrjuntos-vs-strava#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/correrjuntos-vs-strava#webpage"},"headline":"CorrerJuntos vs Strava 2026: Comparativa Honesta — Cuál Usar Según Tu Caso","description":"Análisis directo entre CorrerJuntos y Strava. Dónde gana Strava (comunidad, segments, sync relojes), dónde gana CorrerJuntos (plan IA, quedadas locales, precio), y la tesis final: son complementarias.","url":"https://www.correrjuntos.com/blog/correrjuntos-vs-strava","datePublished":"2026-05-15","dateModified": "2026-05-22","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop&q=80","articleSection":"Apps de Running","keywords":"correrjuntos vs strava, comparativa apps running 2026, strava o correrjuntos","inLanguage":"es-ES"},
-    {"@type":"BreadcrumbList","@id":"https://www.correrjuntos.com/blog/correrjuntos-vs-strava#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/"},{"@type":"ListItem","position":3,"name":"Apps de Running"},{"@type":"ListItem","position":4,"name":"CorrerJuntos vs Strava 2026"}]},
-    {"@type":"FAQPage","@id":"https://www.correrjuntos.com/blog/correrjuntos-vs-strava#faq","mainEntity":[
-      {"@type":"Question","name":"¿Es mejor CorrerJuntos o Strava?","acceptedAnswer":{"@type":"Answer","text":"Ninguna es mejor — depende del uso. Strava es mejor si buscas comunidad masiva, segments y feed social. CorrerJuntos es mejor si buscas plan de entrenamiento adaptativo IA, quedadas locales en grupo y contenido en español. La mayoría de corredores que prueban ambas acaban usándolas a la vez: CorrerJuntos para entrenar, Strava para compartir."}},
-      {"@type":"Question","name":"¿Puedo usar CorrerJuntos y Strava a la vez?","acceptedAnswer":{"@type":"Answer","text":"Sí, son complementarias. CorrerJuntos cubre lo que Strava no hace bien (plan adaptativo, quedadas locales) y Strava cubre lo que CorrerJuntos no cubre todavía (network social masivo, segments). Funcionan en paralelo sin conflicto."}},
-      {"@type":"Question","name":"¿CorrerJuntos tiene segments como Strava?","acceptedAnswer":{"@type":"Answer","text":"No. Los segments son el activo único de Strava — 15 años de tramos competitivos creados por la comunidad. Es prácticamente imposible que otra app los iguale. Si los segments te importan, Strava es indispensable."}},
-      {"@type":"Question","name":"¿Qué app es mejor para principiantes: CorrerJuntos o Strava?","acceptedAnswer":{"@type":"Answer","text":"CorrerJuntos. Strava asume que ya sabes correr y registras tus carreras. No tiene plan de entrenamiento estructurado ni guía para empezar. CorrerJuntos tiene Plan 0→5K gratis (8 semanas) con Coach José adaptando el ritmo según tu rendimiento real."}},
-      {"@type":"Question","name":"¿CorrerJuntos sincroniza con Strava?","acceptedAnswer":{"@type":"Answer","text":"Sí, CorrerJuntos permite conectar tu cuenta Strava para que las carreras que registres en CorrerJuntos se publiquen automáticamente en tu feed Strava. Lo mejor de las dos: entrenas con plan IA + tus amigos te ven en Strava."}},
-      {"@type":"Question","name":"¿Strava Premium vale la pena si tengo CorrerJuntos?","acceptedAnswer":{"@type":"Answer","text":"Depende. Si usas segments competitivos o quieres análisis avanzados de tus splits, Strava Premium (7,99€/mes) sigue valiendo. Si CorrerJuntos te cubre el plan + quedadas, puedes quedarte con Strava gratis para el feed social y ahorrar."}},
-      {"@type":"Question","name":"¿Strava tiene planes de entrenamiento adaptativos?","acceptedAnswer":{"@type":"Answer","text":"No de forma nativa. Strava tiene la opción de subir planes desde otras plataformas (TrainingPeaks, Final Surge, etc.) pero no tiene coach IA propio que ajuste tu próximo entreno según rendimiento. Para eso necesitas otra app — CorrerJuntos, Runna o Garmin Coach."}}
-    ]}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava#webpage",
+      "url": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava",
+      "name": "CorrerJuntos vs Strava 2026",
+      "description": "Comparativa honesta entre CorrerJuntos y Strava: qué hace mejor cada una, dónde pierde, y para quién es cada una.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop&q=80"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava#webpage"
+      },
+      "headline": "CorrerJuntos vs Strava 2026: Comparativa Honesta — Cuál Usar Según Tu Caso",
+      "description": "Análisis directo entre CorrerJuntos y Strava. Dónde gana Strava (comunidad, segments, sync relojes), dónde gana CorrerJuntos (plan IA, quedadas locales, precio), y la tesis final: son complementarias.",
+      "url": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava",
+      "datePublished": "2026-05-15",
+      "dateModified": "2026-05-22",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop&q=80",
+      "articleSection": "Apps de Running",
+      "keywords": "correrjuntos vs strava, comparativa apps running 2026, strava o correrjuntos",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Apps de Running",
+          "item": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "CorrerJuntos vs Strava 2026",
+          "item": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.correrjuntos.com/blog/correrjuntos-vs-strava#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Es mejor CorrerJuntos o Strava?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ninguna es mejor — depende del uso. Strava es mejor si buscas comunidad masiva, segments y feed social. CorrerJuntos es mejor si buscas plan de entrenamiento adaptativo IA, quedadas locales en grupo y contenido en español. La mayoría de corredores que prueban ambas acaban usándolas a la vez: CorrerJuntos para entrenar, Strava para compartir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo usar CorrerJuntos y Strava a la vez?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, son complementarias. CorrerJuntos cubre lo que Strava no hace bien (plan adaptativo, quedadas locales) y Strava cubre lo que CorrerJuntos no cubre todavía (network social masivo, segments). Funcionan en paralelo sin conflicto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿CorrerJuntos tiene segments como Strava?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Los segments son el activo único de Strava — 15 años de tramos competitivos creados por la comunidad. Es prácticamente imposible que otra app los iguale. Si los segments te importan, Strava es indispensable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué app es mejor para principiantes: CorrerJuntos o Strava?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CorrerJuntos. Strava asume que ya sabes correr y registras tus carreras. No tiene plan de entrenamiento estructurado ni guía para empezar. CorrerJuntos tiene Plan 0→5K gratis (8 semanas) con Coach José adaptando el ritmo según tu rendimiento real."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿CorrerJuntos sincroniza con Strava?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, CorrerJuntos permite conectar tu cuenta Strava para que las carreras que registres en CorrerJuntos se publiquen automáticamente en tu feed Strava. Lo mejor de las dos: entrenas con plan IA + tus amigos te ven en Strava."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Strava Premium vale la pena si tengo CorrerJuntos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende. Si usas segments competitivos o quieres análisis avanzados de tus splits, Strava Premium (7,99€/mes) sigue valiendo. Si CorrerJuntos te cubre el plan + quedadas, puedes quedarte con Strava gratis para el feed social y ahorrar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Strava tiene planes de entrenamiento adaptativos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No de forma nativa. Strava tiene la opción de subir planes desde otras plataformas (TrainingPeaks, Final Surge, etc.) pero no tiene coach IA propio que ajuste tu próximo entreno según rendimiento. Para eso necesitas otra app — CorrerJuntos, Runna o Garmin Coach."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>

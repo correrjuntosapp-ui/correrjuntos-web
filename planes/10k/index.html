@@ -43,29 +43,182 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://www.correrjuntos.com/#organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com/", "logo": { "@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png" } },
-    { "@type": "WebSite", "@id": "https://www.correrjuntos.com/#website", "url": "https://www.correrjuntos.com/", "name": "CorrerJuntos", "publisher": { "@id": "https://www.correrjuntos.com/#organization" }, "inLanguage": "es" },
-    { "@type": "WebPage", "@id": "https://www.correrjuntos.com/planes/10k#webpage", "url": "https://www.correrjuntos.com/planes/10k", "name": "Plan Entrenamiento 10K \u2014 12 Semanas para tu Mejor Marca | CorrerJuntos", "description": "Plan 10K de 12 semanas. 48 sesiones, 328km. Series, tempo y tirada larga.", "isPartOf": { "@id": "https://www.correrjuntos.com/#website" }, "inLanguage": "es-ES" },
-    { "@type": "BreadcrumbList", "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Planes", "item": "https://www.correrjuntos.com/planes/" },
-      { "@type": "ListItem", "position": 3, "name": "Plan 10K" }
-    ]},
-    { "@type": "HowTo", "name": "Plan de entrenamiento 10K en 12 semanas", "description": "Plan de 12 semanas para mejorar tu marca en 10K con base, series, tempo y espec\u00edfico.", "totalTime": "PT84D", "step": [
-      { "@type": "HowToStep", "position": 1, "name": "Semanas 1\u20133: Base aer\u00f3bica", "text": "Rodajes de 40-50 min a ritmo suave. Construir una base s\u00f3lida de kil\u00f3metros y resistencia aer\u00f3bica." },
-      { "@type": "HowToStep", "position": 2, "name": "Semanas 4\u20136: Series y tempo", "text": "Series de 400-1000m y sesiones de tempo de 20-30 min. Mejora de VO2max y umbral." },
-      { "@type": "HowToStep", "position": 3, "name": "Semanas 7\u20139: Espec\u00edfico 10K", "text": "Bloques a ritmo objetivo de 10K. Simulaciones parciales de carrera. Tiradas largas de 14-16km." },
-      { "@type": "HowToStep", "position": 4, "name": "Semanas 10\u201311: Choque", "text": "Semanas de mayor carga para provocar supercompensaci\u00f3n. Mayor volumen e intensidad." },
-      { "@type": "HowToStep", "position": 5, "name": "Semana 12: Tapering", "text": "Reducci\u00f3n del 40% del volumen. Sesiones cortas de activaci\u00f3n. Piernas frescas para la carrera." }
-    ]},
-    { "@type": "FAQPage", "mainEntity": [
-      { "@type": "Question", "name": "\u00bfCu\u00e1nto puedo mejorar mi marca en 10K?", "acceptedAnswer": { "@type": "Answer", "text": "Con un plan estructurado de 12 semanas, la mayor\u00eda de corredores intermedios mejoran entre 2 y 5 minutos su marca personal en 10K. La mejora depende de tu nivel inicial, constancia y adherencia al plan. Corredores con menos experiencia suelen ver mejoras m\u00e1s grandes." }},
-      { "@type": "Question", "name": "\u00bfCu\u00e1l es un buen ritmo para 10K?", "acceptedAnswer": { "@type": "Answer", "text": "Depende de tu nivel. Un corredor recreativo suele correr el 10K entre 50-60 minutos (5:00-6:00 min/km). Intermedios apuntan a 45-50 minutos (4:30-5:00 min/km). Avanzados buscan bajar de 40 minutos (sub 4:00 min/km). Lo ideal es partir de tu marca actual y buscar una mejora gradual." }},
-      { "@type": "Question", "name": "\u00bfCu\u00e1ntos d\u00edas a la semana entreno?", "acceptedAnswer": { "@type": "Answer", "text": "Este plan requiere 4 d\u00edas de running por semana, con opci\u00f3n de a\u00f1adir 1 d\u00eda de fuerza o cross-training. Los d\u00edas de descanso son fundamentales para la recuperaci\u00f3n y asimilaci\u00f3n de la carga." }},
-      { "@type": "Question", "name": "\u00bfPuedo combinar este plan con gimnasio?", "acceptedAnswer": { "@type": "Answer", "text": "S\u00ed, y es recomendable. A\u00f1ade 1-2 sesiones de fuerza por semana, preferiblemente despu\u00e9s de un rodaje suave o en d\u00edas de descanso. Prioriza ejercicios de piernas (sentadillas, zancadas, gemelos) y core. Evita hacerlo antes de las sesiones de calidad." }},
-      { "@type": "Question", "name": "\u00bfD\u00f3nde accedo al plan de entrenamiento?", "acceptedAnswer": { "@type": "Answer", "text": "El plan est\u00e1 disponible dentro de la app CorrerJuntos. Desc\u00e1rgala gratis en App Store o Google Play, crea tu perfil y accede a la secci\u00f3n Planes de Entrenamiento para activar el plan 10K." }}
-    ]}
-  ,{"@type":"Course","@id":"https://www.correrjuntos.com/planes/10k#course","name":"Plan 10K — Prep Completa en 12 Semanas","description":"Plan de 12 semanas con 48 sesiones. Prepárate para tu primer 10K o mejora tu marca actual.","provider":{"@type":"Organization","name":"CorrerJuntos","@id":"https://www.correrjuntos.com/#organization"},"url":"https://www.correrjuntos.com/planes/10k","educationalLevel":"Intermediate","inLanguage":"es-ES","isAccessibleForFree":false,"hasCourseInstance":{"@type":"CourseInstance","courseMode":"Online","courseWorkload":"PT4H30M","instructor":{"@type":"Person","name":"Coach José IA","description":"Coach IA especializado en planificación de running personalizada"}},"teaches":["Construcción de base aeróbica","Progresión gradual de volumen","Pacing y ritmo objetivo","Recuperación y prevención de lesiones"],"offers":{"@type":"Offer","price":"5.99","priceCurrency":"EUR","category":"OneTime","availability":"https://schema.org/InStock"}}]
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/planes/10k#webpage",
+      "url": "https://www.correrjuntos.com/planes/10k",
+      "name": "Plan Entrenamiento 10K — 12 Semanas para tu Mejor Marca | CorrerJuntos",
+      "description": "Plan 10K de 12 semanas. 48 sesiones, 328km. Series, tempo y tirada larga.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Planes",
+          "item": "https://www.correrjuntos.com/planes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Plan 10K",
+          "item": "https://www.correrjuntos.com/planes/10k"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "Plan de entrenamiento 10K en 12 semanas",
+      "description": "Plan de 12 semanas para mejorar tu marca en 10K con base, series, tempo y específico.",
+      "totalTime": "PT84D",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Semanas 1–3: Base aeróbica",
+          "text": "Rodajes de 40-50 min a ritmo suave. Construir una base sólida de kilómetros y resistencia aeróbica."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Semanas 4–6: Series y tempo",
+          "text": "Series de 400-1000m y sesiones de tempo de 20-30 min. Mejora de VO2max y umbral."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Semanas 7–9: Específico 10K",
+          "text": "Bloques a ritmo objetivo de 10K. Simulaciones parciales de carrera. Tiradas largas de 14-16km."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Semanas 10–11: Choque",
+          "text": "Semanas de mayor carga para provocar supercompensación. Mayor volumen e intensidad."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Semana 12: Tapering",
+          "text": "Reducción del 40% del volumen. Sesiones cortas de activación. Piernas frescas para la carrera."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto puedo mejorar mi marca en 10K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con un plan estructurado de 12 semanas, la mayoría de corredores intermedios mejoran entre 2 y 5 minutos su marca personal en 10K. La mejora depende de tu nivel inicial, constancia y adherencia al plan. Corredores con menos experiencia suelen ver mejoras más grandes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es un buen ritmo para 10K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de tu nivel. Un corredor recreativo suele correr el 10K entre 50-60 minutos (5:00-6:00 min/km). Intermedios apuntan a 45-50 minutos (4:30-5:00 min/km). Avanzados buscan bajar de 40 minutos (sub 4:00 min/km). Lo ideal es partir de tu marca actual y buscar una mejora gradual."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos días a la semana entreno?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Este plan requiere 4 días de running por semana, con opción de añadir 1 día de fuerza o cross-training. Los días de descanso son fundamentales para la recuperación y asimilación de la carga."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo combinar este plan con gimnasio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, y es recomendable. Añade 1-2 sesiones de fuerza por semana, preferiblemente después de un rodaje suave o en días de descanso. Prioriza ejercicios de piernas (sentadillas, zancadas, gemelos) y core. Evita hacerlo antes de las sesiones de calidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde accedo al plan de entrenamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El plan está disponible dentro de la app CorrerJuntos. Descárgala gratis en App Store o Google Play, crea tu perfil y accede a la sección Planes de Entrenamiento para activar el plan 10K."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://www.correrjuntos.com/planes/10k#course",
+      "name": "Plan 10K — Prep Completa en 12 Semanas",
+      "description": "Plan de 12 semanas con 48 sesiones. Prepárate para tu primer 10K o mejora tu marca actual.",
+      "provider": {
+        "@type": "Organization",
+        "name": "CorrerJuntos",
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "url": "https://www.correrjuntos.com/planes/10k",
+      "educationalLevel": "Intermediate",
+      "inLanguage": "es-ES",
+      "isAccessibleForFree": false,
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "Online",
+        "courseWorkload": "PT4H30M",
+        "instructor": {
+          "@type": "Person",
+          "name": "Coach José IA",
+          "description": "Coach IA especializado en planificación de running personalizada"
+        }
+      },
+      "teaches": [
+        "Construcción de base aeróbica",
+        "Progresión gradual de volumen",
+        "Pacing y ritmo objetivo",
+        "Recuperación y prevención de lesiones"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "5.99",
+        "priceCurrency": "EUR",
+        "category": "OneTime",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
 }
 </script>
 <style>

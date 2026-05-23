@@ -43,29 +43,181 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://www.correrjuntos.com/#organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com/", "logo": { "@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png" } },
-    { "@type": "WebSite", "@id": "https://www.correrjuntos.com/#website", "url": "https://www.correrjuntos.com/", "name": "CorrerJuntos", "publisher": { "@id": "https://www.correrjuntos.com/#organization" }, "inLanguage": "en" },
-    { "@type": "WebPage", "@id": "https://www.correrjuntos.com/planes/en/marathon#webpage", "url": "https://www.correrjuntos.com/planes/en/marathon", "name": "Adaptive Marathon Plan (14-26 Weeks) — Ends on Race Day | CorrerJuntos", "description": "A marathon plan that fits your race date. 14 to 26 weeks based on your calendar, last week tapered. Base, build, peak, taper. Free download.", "isPartOf": { "@id": "https://www.correrjuntos.com/#website" }, "inLanguage": "en" },
-    { "@type": "BreadcrumbList", "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.correrjuntos.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Plans", "item": "https://www.correrjuntos.com/planes/en/" },
-      { "@type": "ListItem", "position": 3, "name": "Marathon Plan" }
-    ]},
-    { "@type": "HowTo", "name": "Adaptive 10K training plan", "description": "Adaptive 10K plan that scales 6-18 weeks to end exactly on your race day with base, build, peak and taper phases.", "step": [
-      { "@type": "HowToStep", "position": 1, "name": "Pick your race date", "text": "Set the date of your 10K race. The plan is built backwards from race day." },
-      { "@type": "HowToStep", "position": 2, "name": "Aerobic base", "text": "Easy 40-50 min runs at conversational pace. Build mileage and aerobic capacity." },
-      { "@type": "HowToStep", "position": 3, "name": "Intervals and tempo", "text": "400-1000m intervals and 20-30 min tempo runs. Improve VO2max and lactate threshold." },
-      { "@type": "HowToStep", "position": 4, "name": "Race-specific block", "text": "Workouts at 10K race pace. Partial race simulations. Long runs of 14-16 km." },
-      { "@type": "HowToStep", "position": 5, "name": "Taper and race", "text": "40% volume reduction the final week. Short activations. Fresh legs for race day." }
-    ]},
-    { "@type": "FAQPage", "mainEntity": [
-      { "@type": "Question", "name": "How much can I improve my Marathon (42K) time?", "acceptedAnswer": { "@type": "Answer", "text": "With a structured plan, most runners improve their Marathon (42K) time meaningfully. The exact gain depends on your starting fitness, consistency, and adherence to the plan. Less experienced runners often see bigger gains." }},
-      { "@type": "Question", "name": "How does the adaptive duration work?", "acceptedAnswer": { "@type": "Answer", "text": "You set your race date and the plan generates between 6 and 18 weeks of training, ending exactly on race day with the last week tapered. If your race is too close (under 14 weeks for a Marathon (42K)), the app suggests a shorter distance instead." }},
-      { "@type": "Question", "name": "How many days per week?", "acceptedAnswer": { "@type": "Answer", "text": "The plan is built around 4 running days per week, with optional strength or cross-training. Rest days are essential for recovery and adaptation." }},
-      { "@type": "Question", "name": "Can I combine this with strength training?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, and we recommend it. Add 1-2 strength sessions per week, ideally after an easy run or on rest days. Focus on legs (squats, lunges, calf raises) and core. Avoid lifting before quality sessions." }},
-      { "@type": "Question", "name": "Where do I access the plan?", "acceptedAnswer": { "@type": "Answer", "text": "The plan lives inside the CorrerJuntos app. Download it free on App Store or Google Play, create your profile and go to Training Plans to activate the Marathon (42K) plan." }}
-    ]},
-    {"@type":"Course","@id":"https://www.correrjuntos.com/planes/en/marathon#course","name":"Adaptive 10K Plan — 6 to 18 Weeks","description":"Adaptive 10K plan that scales to your race date. Up to 72 sessions. Train for your first 10K or beat your PR.","provider":{"@type":"Organization","name":"CorrerJuntos","@id":"https://www.correrjuntos.com/#organization"},"url":"https://www.correrjuntos.com/planes/en/marathon","educationalLevel":"Intermediate","inLanguage":"en","isAccessibleForFree":false,"hasCourseInstance":{"@type":"CourseInstance","courseMode":"Online","courseWorkload":"PT4H30M","instructor":{"@type":"Person","name":"Coach Jose AI","description":"AI coach specialized in personalized running plans"}},"teaches":["Aerobic base building","Progressive volume","Race-day pacing","Recovery and injury prevention"],"offers":{"@type":"Offer","price":"5.99","priceCurrency":"EUR","category":"OneTime","availability":"https://schema.org/InStock"}}]
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/planes/en/marathon#webpage",
+      "url": "https://www.correrjuntos.com/planes/en/marathon",
+      "name": "Adaptive Marathon Plan (14-26 Weeks) — Ends on Race Day | CorrerJuntos",
+      "description": "A marathon plan that fits your race date. 14 to 26 weeks based on your calendar, last week tapered. Base, build, peak, taper. Free download.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Plans",
+          "item": "https://www.correrjuntos.com/planes/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Marathon Plan",
+          "item": "https://www.correrjuntos.com/planes/en/marathon"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "Adaptive 10K training plan",
+      "description": "Adaptive 10K plan that scales 6-18 weeks to end exactly on your race day with base, build, peak and taper phases.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Pick your race date",
+          "text": "Set the date of your 10K race. The plan is built backwards from race day."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Aerobic base",
+          "text": "Easy 40-50 min runs at conversational pace. Build mileage and aerobic capacity."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Intervals and tempo",
+          "text": "400-1000m intervals and 20-30 min tempo runs. Improve VO2max and lactate threshold."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Race-specific block",
+          "text": "Workouts at 10K race pace. Partial race simulations. Long runs of 14-16 km."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Taper and race",
+          "text": "40% volume reduction the final week. Short activations. Fresh legs for race day."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much can I improve my Marathon (42K) time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With a structured plan, most runners improve their Marathon (42K) time meaningfully. The exact gain depends on your starting fitness, consistency, and adherence to the plan. Less experienced runners often see bigger gains."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the adaptive duration work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You set your race date and the plan generates between 6 and 18 weeks of training, ending exactly on race day with the last week tapered. If your race is too close (under 14 weeks for a Marathon (42K)), the app suggests a shorter distance instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many days per week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The plan is built around 4 running days per week, with optional strength or cross-training. Rest days are essential for recovery and adaptation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I combine this with strength training?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and we recommend it. Add 1-2 strength sessions per week, ideally after an easy run or on rest days. Focus on legs (squats, lunges, calf raises) and core. Avoid lifting before quality sessions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do I access the plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The plan lives inside the CorrerJuntos app. Download it free on App Store or Google Play, create your profile and go to Training Plans to activate the Marathon (42K) plan."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://www.correrjuntos.com/planes/en/marathon#course",
+      "name": "Adaptive 10K Plan — 6 to 18 Weeks",
+      "description": "Adaptive 10K plan that scales to your race date. Up to 72 sessions. Train for your first 10K or beat your PR.",
+      "provider": {
+        "@type": "Organization",
+        "name": "CorrerJuntos",
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "url": "https://www.correrjuntos.com/planes/en/marathon",
+      "educationalLevel": "Intermediate",
+      "inLanguage": "en",
+      "isAccessibleForFree": false,
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "Online",
+        "courseWorkload": "PT4H30M",
+        "instructor": {
+          "@type": "Person",
+          "name": "Coach Jose AI",
+          "description": "AI coach specialized in personalized running plans"
+        }
+      },
+      "teaches": [
+        "Aerobic base building",
+        "Progressive volume",
+        "Race-day pacing",
+        "Recovery and injury prevention"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "5.99",
+        "priceCurrency": "EUR",
+        "category": "OneTime",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
 }
 </script>
 <style>

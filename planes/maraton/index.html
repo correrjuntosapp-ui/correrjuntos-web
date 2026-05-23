@@ -43,29 +43,182 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://www.correrjuntos.com/#organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com/", "logo": { "@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png" } },
-    { "@type": "WebSite", "@id": "https://www.correrjuntos.com/#website", "url": "https://www.correrjuntos.com/", "name": "CorrerJuntos", "publisher": { "@id": "https://www.correrjuntos.com/#organization" }, "inLanguage": "es" },
-    { "@type": "WebPage", "@id": "https://www.correrjuntos.com/planes/maraton#webpage", "url": "https://www.correrjuntos.com/planes/maraton", "name": "Plan Marat\u00f3n 18 Semanas \u2014 Cruza la Meta de 42K | CorrerJuntos", "description": "Plan marat\u00f3n de 18 semanas, 90 sesiones y 813km. El m\u00e1s completo para tus 42K.", "isPartOf": { "@id": "https://www.correrjuntos.com/#website" }, "inLanguage": "es-ES" },
-    { "@type": "BreadcrumbList", "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Planes", "item": "https://www.correrjuntos.com/planes/" },
-      { "@type": "ListItem", "position": 3, "name": "Plan Marat\u00f3n" }
-    ]},
-    { "@type": "HowTo", "name": "Plan de entrenamiento marat\u00f3n en 18 semanas", "description": "Plan de 18 semanas para preparar tu marat\u00f3n de 42K con base profunda, volumen, espec\u00edfico y tapering.", "totalTime": "PT126D", "step": [
-      { "@type": "HowToStep", "position": 1, "name": "Semanas 1\u20134: Base profunda", "text": "Construir una base aer\u00f3bica s\u00f3lida con rodajes de 50-70 min. Tirada larga hasta 22 km. 50-60 km semanales." },
-      { "@type": "HowToStep", "position": 2, "name": "Semanas 5\u20138: Volumen", "text": "Aumentar a 65-75 km/semana. Tirada larga hasta 28 km. Tempo de 30-40 min. Series largas." },
-      { "@type": "HowToStep", "position": 3, "name": "Semanas 9\u201312: Espec\u00edfico marat\u00f3n", "text": "Bloques a ritmo marat\u00f3n. Tiradas de 30-35 km. Pr\u00e1ctica de nutrici\u00f3n e hidrataci\u00f3n en carrera." },
-      { "@type": "HowToStep", "position": 4, "name": "Semanas 13\u201315: Choque y pico", "text": "Pico de volumen: 75-85 km semanales. \u00daltimas tiradas largas de 32-35 km. M\u00e1xima carga de entrenamiento." },
-      { "@type": "HowToStep", "position": 5, "name": "Semanas 16\u201318: Tapering y carrera", "text": "Reducci\u00f3n progresiva. Semana 16: -20%. Semana 17: -40%. Semana 18: activaci\u00f3n y d\u00eda de carrera." }
-    ]},
-    { "@type": "FAQPage", "mainEntity": [
-      { "@type": "Question", "name": "\u00bfCu\u00e1nto tiempo necesito para preparar un marat\u00f3n?", "acceptedAnswer": { "@type": "Answer", "text": "M\u00ednimo 18 semanas (4-5 meses) si ya tienes una base s\u00f3lida de 50+ km semanales y experiencia en medias maratones. Si vienes de menos volumen, necesitar\u00e1s 6-8 meses con una fase previa de construcci\u00f3n. No te precipites: el marat\u00f3n es una distancia que requiere respeto y paciencia." }},
-      { "@type": "Question", "name": "\u00bfQu\u00e9 pasa si me lesiono durante la preparaci\u00f3n?", "acceptedAnswer": { "@type": "Answer", "text": "Escucha a tu cuerpo. Si la molestia es leve, reduce volumen e intensidad durante 3-5 d\u00edas. Si es una lesi\u00f3n real, para y consulta a un fisioterapeuta. Es mejor aplazar el marat\u00f3n que correrlo lesionado. El plan permite reincorporarse ajustando las semanas restantes." }},
-      { "@type": "Question", "name": "\u00bfCu\u00e1l debe ser mi tirada larga m\u00e1xima?", "acceptedAnswer": { "@type": "Answer", "text": "La tirada larga m\u00e1xima suele ser de 32-35 km, realizada 3-4 semanas antes del marat\u00f3n. No hace falta correr los 42 km en entrenamiento. Tu cuerpo se prepara con la acumulaci\u00f3n de kil\u00f3metros semanales y las tiradas progresivas de 28, 30, 32 y 35 km." }},
-      { "@type": "Question", "name": "\u00bfC\u00f3mo gestiono la nutrici\u00f3n durante el marat\u00f3n?", "acceptedAnswer": { "@type": "Answer", "text": "Toma un gel cada 30-45 minutos a partir del km 5-8. Alterna con bebida deportiva en los avituallamientos. Practica tu estrategia de nutrici\u00f3n en las tiradas largas de entrenamiento. La regla de oro: nunca pruebes nada nuevo el d\u00eda de la carrera." }},
-      { "@type": "Question", "name": "\u00bfD\u00f3nde accedo al plan de entrenamiento?", "acceptedAnswer": { "@type": "Answer", "text": "El plan est\u00e1 disponible dentro de la app CorrerJuntos. Desc\u00e1rgala gratis en App Store o Google Play, crea tu perfil y accede a la secci\u00f3n Planes de Entrenamiento para activar el plan Marat\u00f3n." }}
-    ]}
-  ,{"@type":"Course","@id":"https://www.correrjuntos.com/planes/maraton#course","name":"Plan Maratón — 18 Semanas Sub-3:30 / Sub-4","description":"Plan avanzado de 18 semanas con 90 sesiones. Construye los 42K con periodización, tirada larga progresiva y semana de descarga.","provider":{"@type":"Organization","name":"CorrerJuntos","@id":"https://www.correrjuntos.com/#organization"},"url":"https://www.correrjuntos.com/planes/maraton","educationalLevel":"Advanced","inLanguage":"es-ES","isAccessibleForFree":false,"hasCourseInstance":{"@type":"CourseInstance","courseMode":"Online","courseWorkload":"PT6H","instructor":{"@type":"Person","name":"Coach José IA","description":"Coach IA especializado en planificación de running personalizada"}},"teaches":["Construcción de base aeróbica","Progresión gradual de volumen","Pacing y ritmo objetivo","Recuperación y prevención de lesiones"],"offers":{"@type":"Offer","price":"9.99","priceCurrency":"EUR","category":"OneTime","availability":"https://schema.org/InStock"}}]
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/planes/maraton#webpage",
+      "url": "https://www.correrjuntos.com/planes/maraton",
+      "name": "Plan Maratón 18 Semanas — Cruza la Meta de 42K | CorrerJuntos",
+      "description": "Plan maratón de 18 semanas, 90 sesiones y 813km. El más completo para tus 42K.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Planes",
+          "item": "https://www.correrjuntos.com/planes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Plan Maratón",
+          "item": "https://www.correrjuntos.com/planes/maraton"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "Plan de entrenamiento maratón en 18 semanas",
+      "description": "Plan de 18 semanas para preparar tu maratón de 42K con base profunda, volumen, específico y tapering.",
+      "totalTime": "PT126D",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Semanas 1–4: Base profunda",
+          "text": "Construir una base aeróbica sólida con rodajes de 50-70 min. Tirada larga hasta 22 km. 50-60 km semanales."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Semanas 5–8: Volumen",
+          "text": "Aumentar a 65-75 km/semana. Tirada larga hasta 28 km. Tempo de 30-40 min. Series largas."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Semanas 9–12: Específico maratón",
+          "text": "Bloques a ritmo maratón. Tiradas de 30-35 km. Práctica de nutrición e hidratación en carrera."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Semanas 13–15: Choque y pico",
+          "text": "Pico de volumen: 75-85 km semanales. Últimas tiradas largas de 32-35 km. Máxima carga de entrenamiento."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Semanas 16–18: Tapering y carrera",
+          "text": "Reducción progresiva. Semana 16: -20%. Semana 17: -40%. Semana 18: activación y día de carrera."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo necesito para preparar un maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mínimo 18 semanas (4-5 meses) si ya tienes una base sólida de 50+ km semanales y experiencia en medias maratones. Si vienes de menos volumen, necesitarás 6-8 meses con una fase previa de construcción. No te precipites: el maratón es una distancia que requiere respeto y paciencia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si me lesiono durante la preparación?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Escucha a tu cuerpo. Si la molestia es leve, reduce volumen e intensidad durante 3-5 días. Si es una lesión real, para y consulta a un fisioterapeuta. Es mejor aplazar el maratón que correrlo lesionado. El plan permite reincorporarse ajustando las semanas restantes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál debe ser mi tirada larga máxima?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La tirada larga máxima suele ser de 32-35 km, realizada 3-4 semanas antes del maratón. No hace falta correr los 42 km en entrenamiento. Tu cuerpo se prepara con la acumulación de kilómetros semanales y las tiradas progresivas de 28, 30, 32 y 35 km."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo gestiono la nutrición durante el maratón?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Toma un gel cada 30-45 minutos a partir del km 5-8. Alterna con bebida deportiva en los avituallamientos. Practica tu estrategia de nutrición en las tiradas largas de entrenamiento. La regla de oro: nunca pruebes nada nuevo el día de la carrera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde accedo al plan de entrenamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El plan está disponible dentro de la app CorrerJuntos. Descárgala gratis en App Store o Google Play, crea tu perfil y accede a la sección Planes de Entrenamiento para activar el plan Maratón."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://www.correrjuntos.com/planes/maraton#course",
+      "name": "Plan Maratón — 18 Semanas Sub-3:30 / Sub-4",
+      "description": "Plan avanzado de 18 semanas con 90 sesiones. Construye los 42K con periodización, tirada larga progresiva y semana de descarga.",
+      "provider": {
+        "@type": "Organization",
+        "name": "CorrerJuntos",
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "url": "https://www.correrjuntos.com/planes/maraton",
+      "educationalLevel": "Advanced",
+      "inLanguage": "es-ES",
+      "isAccessibleForFree": false,
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "Online",
+        "courseWorkload": "PT6H",
+        "instructor": {
+          "@type": "Person",
+          "name": "Coach José IA",
+          "description": "Coach IA especializado en planificación de running personalizada"
+        }
+      },
+      "teaches": [
+        "Construcción de base aeróbica",
+        "Progresión gradual de volumen",
+        "Pacing y ritmo objetivo",
+        "Recuperación y prevención de lesiones"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "9.99",
+        "priceCurrency": "EUR",
+        "category": "OneTime",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
 }
 </script>
 <style>

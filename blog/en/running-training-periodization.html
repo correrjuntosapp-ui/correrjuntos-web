@@ -42,13 +42,135 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/en/running-training-periodization#webpage","url":"https://www.correrjuntos.com/blog/en/running-training-periodization","name":"Running Training Periodization: Complete Guide (2026)","description":"Complete guide to running periodization. Learn to structure macrocycles, mesocycles and microcycles to peak for your goal race.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Founder of CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/en/running-training-periodization#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/en/running-training-periodization#webpage"},"headline":"Running Training Periodization: Complete Guide to Peaking on Race Day","description":"Complete guide to running periodization. Learn to structure macrocycles, mesocycles and microcycles to peak for your goal race.","url":"https://www.correrjuntos.com/blog/en/running-training-periodization","datePublished":"2026-03-15","dateModified":"2026-03-15","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"en"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/en/"},{"@type":"ListItem","position":3,"name":"Running Training Periodization"}],"@id":"https://www.correrjuntos.com/blog/en/running-training-periodization#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many weeks do I need to periodize for a marathon?","acceptedAnswer":{"@type":"Answer","text":"Most marathon periodization plans span 16-24 weeks. A 20-week plan is the most common, giving you enough time for a solid base phase (8 weeks), build phase (6 weeks), specific phase (4 weeks) and taper (2 weeks). First-time marathoners benefit from longer plans closer to 24 weeks."}},{"@type":"Question","name":"Can I race during the base phase?","acceptedAnswer":{"@type":"Answer","text":"Yes, but treat races as training efforts, not all-out performances. A 5K or 10K during the base phase can serve as a fitness benchmark and a mental break from easy mileage. Just don't taper for it or try to set a PR — save that energy for your goal race."}},{"@type":"Question","name":"Does periodization work for beginners?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Beginners benefit from a simplified version: a longer base phase focused on building consistent mileage, a shorter build phase introducing faster work, and a brief taper. The key principle — progressive overload followed by recovery — applies to every level."}}],"@id":"https://www.correrjuntos.com/blog/en/running-training-periodization#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/running-training-periodization#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/running-training-periodization",
+      "name": "Running Training Periodization: Complete Guide (2026)",
+      "description": "Complete guide to running periodization. Learn to structure macrocycles, mesocycles and microcycles to peak for your goal race.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/running-training-periodization#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/running-training-periodization#webpage"
+      },
+      "headline": "Running Training Periodization: Complete Guide to Peaking on Race Day",
+      "description": "Complete guide to running periodization. Learn to structure macrocycles, mesocycles and microcycles to peak for your goal race.",
+      "url": "https://www.correrjuntos.com/blog/en/running-training-periodization",
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-15",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running Training Periodization",
+          "item": "https://www.correrjuntos.com/blog/en/running-training-periodization"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-training-periodization#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many weeks do I need to periodize for a marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most marathon periodization plans span 16-24 weeks. A 20-week plan is the most common, giving you enough time for a solid base phase (8 weeks), build phase (6 weeks), specific phase (4 weeks) and taper (2 weeks). First-time marathoners benefit from longer plans closer to 24 weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I race during the base phase?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but treat races as training efforts, not all-out performances. A 5K or 10K during the base phase can serve as a fitness benchmark and a mental break from easy mileage. Just don't taper for it or try to set a PR — save that energy for your goal race."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does periodization work for beginners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Beginners benefit from a simplified version: a longer base phase focused on building consistent mileage, a shorter build phase introducing faster work, and a brief taper. The key principle — progressive overload followed by recovery — applies to every level."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/running-training-periodization#faq"
+    }
   ]
 }
 </script>

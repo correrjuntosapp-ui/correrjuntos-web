@@ -42,70 +42,192 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#webpage","url":"https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga","name":"Volver a Correr Tras una Pausa Larga: Plan Progresivo (2026)","description":"Gu&iacute;a para retomar el running despu&eacute;s de meses parado: plan progresivo de 8 semanas.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"es-ES","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/3771036/pexels-photo-3771036.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Fundador de CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#webpage"},"headline":"Volver a Correr Tras una Pausa Larga: Plan Progresivo","description":"Gu&iacute;a para retomar el running despu&eacute;s de meses parado con plan de 8 semanas.","url":"https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga","datePublished":"2026-03-15","dateModified":"2026-03-15","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/3771036/pexels-photo-3771036.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"es-ES"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/"},{"@type":"ListItem","position":3,"name":"Volver a Correr Tras Pausa"}],"@id":"https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#breadcrumbs"},
-          {
-            "@type": "HowTo",
-            "name": "Cómo Volver a Correr Tras una Pausa Larga",
-            "totalTime": "PT6W",
-            "step": [
-                  {
-                        "@type": "HowToStep",
-                        "position": 1,
-                        "name": "&iquest;Cu&aacute;nta Forma Se Pierde al Dejar de Correr?"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 2,
-                        "name": "Evaluaci&oacute;n Inicial Antes de Volver"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 3,
-                        "name": "Plan de 8 Semanas para Volver a Correr"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 4,
-                        "name": "Reglas de Oro del Comeback"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 5,
-                        "name": "Nutrici&oacute;n para la Vuelta"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 6,
-                        "name": "El Papel del Grupo en tu Comeback"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 7,
-                        "name": "Equipamiento para tu Vuelta"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 8,
-                        "name": "Errores Comunes al Retomar"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 9,
-                        "name": "&#128203; M&aacute;s gu&iacute;as de mentalidad runner"
-                  },
-                  {
-                        "@type": "HowToStep",
-                        "position": 10,
-                        "name": "Vuelve a correr, pero no solo"
-                  }
-            ]
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
       },
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"&iquest;Cu&aacute;nto tiempo se tarda en recuperar la forma tras meses sin correr?","acceptedAnswer":{"@type":"Answer","text":"Depende de cu&aacute;nto tiempo estuviste parado y tu nivel previo. Como regla general, se necesita aproximadamente el doble del tiempo de inactividad para volver al nivel anterior. Tras 3 meses parado, calcula unas 8-12 semanas de entrenamiento progresivo para recuperar el 90% de tu forma."}},{"@type":"Question","name":"&iquest;Puedo empezar corriendo directamente o debo caminar primero?","acceptedAnswer":{"@type":"Answer","text":"Si llevas m&aacute;s de 2-3 meses sin correr, lo m&aacute;s seguro es empezar con intervalos de caminar/correr. Las primeras 2 semanas deber&iacute;an incluir m&aacute;s tiempo caminando que corriendo para readaptar tendones, ligamentos y articulaciones."}},{"@type":"Question","name":"&iquest;Debo usar las mismas zapatillas que ten&iacute;a antes de parar?","acceptedAnswer":{"@type":"Answer","text":"Si tus zapatillas tienen m&aacute;s de 600-800 km o m&aacute;s de 1 a&ntilde;o de antig&uuml;edad, es recomendable renovarlas. La mediasuela pierde amortiguaci&oacute;n con el tiempo aunque no se usen, y volver a correr con zapatillas degradadas aumenta el riesgo de lesi&oacute;n."}}],"@id":"https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#faq"}
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#webpage",
+      "url": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga",
+      "name": "Volver a Correr Tras una Pausa Larga: Plan Progresivo (2026)",
+      "description": "Gu&iacute;a para retomar el running despu&eacute;s de meses parado: plan progresivo de 8 semanas.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "es-ES",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/3771036/pexels-photo-3771036.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Fundador de CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#webpage"
+      },
+      "headline": "Volver a Correr Tras una Pausa Larga: Plan Progresivo",
+      "description": "Gu&iacute;a para retomar el running despu&eacute;s de meses parado con plan de 8 semanas.",
+      "url": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga",
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-15",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/3771036/pexels-photo-3771036.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Volver a Correr Tras Pausa",
+          "item": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#breadcrumbs"
+    },
+    {
+      "@type": "HowTo",
+      "name": "Cómo Volver a Correr Tras una Pausa Larga",
+      "totalTime": "PT6W",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "&iquest;Cu&aacute;nta Forma Se Pierde al Dejar de Correr?"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Evaluaci&oacute;n Inicial Antes de Volver"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Plan de 8 Semanas para Volver a Correr"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Reglas de Oro del Comeback"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Nutrici&oacute;n para la Vuelta"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "El Papel del Grupo en tu Comeback"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Equipamiento para tu Vuelta"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 8,
+          "name": "Errores Comunes al Retomar"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 9,
+          "name": "&#128203; M&aacute;s gu&iacute;as de mentalidad runner"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 10,
+          "name": "Vuelve a correr, pero no solo"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "&iquest;Cu&aacute;nto tiempo se tarda en recuperar la forma tras meses sin correr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende de cu&aacute;nto tiempo estuviste parado y tu nivel previo. Como regla general, se necesita aproximadamente el doble del tiempo de inactividad para volver al nivel anterior. Tras 3 meses parado, calcula unas 8-12 semanas de entrenamiento progresivo para recuperar el 90% de tu forma."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "&iquest;Puedo empezar corriendo directamente o debo caminar primero?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si llevas m&aacute;s de 2-3 meses sin correr, lo m&aacute;s seguro es empezar con intervalos de caminar/correr. Las primeras 2 semanas deber&iacute;an incluir m&aacute;s tiempo caminando que corriendo para readaptar tendones, ligamentos y articulaciones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "&iquest;Debo usar las mismas zapatillas que ten&iacute;a antes de parar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si tus zapatillas tienen m&aacute;s de 600-800 km o m&aacute;s de 1 a&ntilde;o de antig&uuml;edad, es recomendable renovarlas. La mediasuela pierde amortiguaci&oacute;n con el tiempo aunque no se usen, y volver a correr con zapatillas degradadas aumenta el riesgo de lesi&oacute;n."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/volver-a-correr-tras-pausa-larga#faq"
+    }
   ]
 }
 </script>

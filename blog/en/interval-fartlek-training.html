@@ -42,13 +42,135 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":{"@type":"ImageObject","url":"https://www.correrjuntos.com/icons/icon-512.png"},"sameAs":["https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos","https://www.tiktok.com/@correrjuntosapp"]},
-    {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en"},
-    {"@type":"WebPage","@id":"https://www.correrjuntos.com/blog/en/interval-fartlek-training#webpage","url":"https://www.correrjuntos.com/blog/en/interval-fartlek-training","name":"Intervals & Fartlek: Complete Running Speed Guide (2026)","description":"Complete guide to interval training for runners.","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"}},
-    {"@type":"Person","@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author","name":"Abraham Márquez Rodríguez","url":"https://www.correrjuntos.com/blog/autor/abraham-marquez","jobTitle":"Founder of CorrerJuntos","sameAs":["https://www.strava.com/athletes/correrjuntos","https://www.instagram.com/correrjuntosapp/","https://x.com/CorrerJuntos"]},
-    {"@type":"BlogPosting","@id":"https://www.correrjuntos.com/blog/en/interval-fartlek-training#article","mainEntityOfPage":{"@id":"https://www.correrjuntos.com/blog/en/interval-fartlek-training#webpage"},"headline":"Intervals & Fartlek: Complete Guide to Running Speed Training","description":"Everything about track intervals, fartlek and interval training for runners.","url":"https://www.correrjuntos.com/blog/en/interval-fartlek-training","datePublished":"2026-03-15","dateModified":"2026-03-15","author":{"@id":"https://www.correrjuntos.com/blog/autor/abraham-marquez#author"},"publisher":{"@id":"https://www.correrjuntos.com/#organization"},"image":"https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70","inLanguage":"en"},
-    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.correrjuntos.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.correrjuntos.com/blog/en/"},{"@type":"ListItem","position":3,"name":"Intervals & Fartlek"}],"@id":"https://www.correrjuntos.com/blog/en/interval-fartlek-training#breadcrumbs"},
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the difference between intervals and fartlek?","acceptedAnswer":{"@type":"Answer","text":"Intervals are structured workouts with fixed distances and recovery times (e.g., 6x1000m with 2 min rec), usually on a track. Fartlek is a freer speed play where you alternate fast and easy efforts based on feel or terrain landmarks, without rigid structure."}},{"@type":"Question","name":"How many times per week should I do intervals?","acceptedAnswer":{"@type":"Answer","text":"For most runners, 1-2 quality sessions per week is enough. Beginners should start with 1 session per week. Advanced runners can do 2 (one track intervals and one fartlek or tempo)."}},{"@type":"Question","name":"What pace should I run intervals at?","acceptedAnswer":{"@type":"Answer","text":"It depends on the type. Short intervals (200-400m) at 5K pace or faster. Medium (800-1000m) at 5K-10K pace. Long (1600-2000m) at 10K pace. The key is being able to complete all reps at the same pace."}}],"@id":"https://www.correrjuntos.com/blog/en/interval-fartlek-training#faq"}
+    {
+      "@type": "Organization",
+      "@id": "https://www.correrjuntos.com/#organization",
+      "name": "CorrerJuntos",
+      "url": "https://www.correrjuntos.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.correrjuntos.com/icons/icon-512.png"
+      },
+      "sameAs": [
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos",
+        "https://www.tiktok.com/@correrjuntosapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.correrjuntos.com/blog/en/interval-fartlek-training#webpage",
+      "url": "https://www.correrjuntos.com/blog/en/interval-fartlek-training",
+      "name": "Intervals & Fartlek: Complete Running Speed Guide (2026)",
+      "description": "Complete guide to interval training for runners.",
+      "isPartOf": {
+        "@id": "https://www.correrjuntos.com/#website"
+      },
+      "about": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author",
+      "name": "Abraham Márquez Rodríguez",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "jobTitle": "Founder of CorrerJuntos",
+      "sameAs": [
+        "https://www.strava.com/athletes/correrjuntos",
+        "https://www.instagram.com/correrjuntosapp/",
+        "https://x.com/CorrerJuntos"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.correrjuntos.com/blog/en/interval-fartlek-training#article",
+      "mainEntityOfPage": {
+        "@id": "https://www.correrjuntos.com/blog/en/interval-fartlek-training#webpage"
+      },
+      "headline": "Intervals & Fartlek: Complete Guide to Running Speed Training",
+      "description": "Everything about track intervals, fartlek and interval training for runners.",
+      "url": "https://www.correrjuntos.com/blog/en/interval-fartlek-training",
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-15",
+      "author": {
+        "@id": "https://www.correrjuntos.com/blog/autor/abraham-marquez#author"
+      },
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "image": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.correrjuntos.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.correrjuntos.com/blog/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Intervals & Fartlek",
+          "item": "https://www.correrjuntos.com/blog/en/interval-fartlek-training"
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/interval-fartlek-training#breadcrumbs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's the difference between intervals and fartlek?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Intervals are structured workouts with fixed distances and recovery times (e.g., 6x1000m with 2 min rec), usually on a track. Fartlek is a freer speed play where you alternate fast and easy efforts based on feel or terrain landmarks, without rigid structure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many times per week should I do intervals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most runners, 1-2 quality sessions per week is enough. Beginners should start with 1 session per week. Advanced runners can do 2 (one track intervals and one fartlek or tempo)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What pace should I run intervals at?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the type. Short intervals (200-400m) at 5K pace or faster. Medium (800-1000m) at 5K-10K pace. Long (1600-2000m) at 10K pace. The key is being able to complete all reps at the same pace."
+          }
+        }
+      ],
+      "@id": "https://www.correrjuntos.com/blog/en/interval-fartlek-training#faq"
+    }
   ]
 }
 </script>

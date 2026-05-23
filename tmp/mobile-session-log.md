@@ -10,6 +10,15 @@ Puente entre Claude móvil ↔ Claude PC. Cada entrada resume una tarea signific
 
 **Hola Claude del trabajo 👋** — el founder se va a trabajar AHORA (domingo am). Sesión densa sábado tarde-noche con MUCHOS frentes a la vez. Lee TODO antes de actuar.
 
+### 🚨 ALARMA 19H SÁBADO 23 MAY · SUBIR REELS
+
+El founder pidió **recordatorio a las 19h hoy** para subir los reels al móvil/social.
+- Cron job session-only programado (id `521ffe44` · dispara 18:55 con push notif)
+- Task #22 visible en la lista como backup
+- Sweet spot social sábado 18-21h
+- Reels candidatos: 4 en móvil del founder esperando distribución (mencionados antes)
+- **Si la sesión Claude muere antes de las 19h** → este es el único recordatorio
+
 ### 🟢 ONUPOLIS · 1er INBOUND brand request (HITO)
 
 Juan Luis (director Onupolis · circuito carreras Huelva) escribió por **Instagram DM** el 23 may. Founder respondió (también IG) con propuesta de **colaboración no-cash + teléfono `610 20 29 31`** :

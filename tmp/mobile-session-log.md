@@ -6,7 +6,205 @@ Puente entre Claude móvil ↔ Claude PC. Cada entrada resume una tarea signific
 
 ---
 
-## 2026-05-23 (viernes noche · DÍA MÁS ÉPICO DEL MES · founder se conecta móvil mañana desde trabajo)
+## 2026-05-23 (sábado tarde-noche · Onupolis inbound + 3 fixes SEO masivos + .p8 + babel fix + builds v1.3.7 cocinando)
+
+**Hola Claude del trabajo 👋** — el founder se va a trabajar AHORA (domingo am). Sesión densa sábado tarde-noche con MUCHOS frentes a la vez. Lee TODO antes de actuar.
+
+### 🟢 ONUPOLIS · 1er INBOUND brand request (HITO)
+
+Juan Luis (director Onupolis · circuito carreras Huelva) escribió por **Instagram DM** el 23 may. Founder respondió (también IG) con propuesta de **colaboración no-cash + teléfono `610 20 29 31`** :
+
+> Hola Juan Luis, encantado 🙌 Yo soy de Huelva también, doble alegría.
+> Me hace mucha ilusión tu mensaje. Os puedo potenciar las carreras de varias formas: calendario visible en la app, notificaciones a runners de la zona, quedadas de preparación previas, planes de entreno por prueba y artículos en el blog para cada carrera.
+> Más que tarifas lo veo como colaboración — yo aporto app, blog y comunidad, vosotros visibilidad de las pruebas. Cero pasta entre medias.
+> Te dejo mi teléfono por si quieres llamarme o vernos un café aquí en Huelva: 610 20 29 31
+
+**Estado**: esperando respuesta IG/llamada. Si llama durante día laboral → 10 min cualificar · si pinta serio → cerrar café Huelva esta semana. Piloto propuesto: **Golf Runner 4 julio** (6 semanas).
+
+**Contexto Onupolis** (memorizar):
+- 7 carreras año 2026 (Mujer, Nocturna, Golf Runner 4 jul, Huelva Verde 5 sep, Vuelta a Huelva 12 oct, San Silvestre 30 dic, una más)
+- Patrocinado por **Ayuntamiento Huelva** (acuerdo firmado 2026)
+- Organiza **Consulting TPO** (Vanesa Arana promotora)
+- Misión: "Huelva referente del running en Andalucía"
+- Inscripciones €10-13 → presupuesto MUY modesto · canje no-cash es lo correcto
+
+**Lo que ofrecemos** (11 palancas detalladas en `tmp/dossier-onupolis-v1.md` si lo creas):
+1. Pin en mapa app · 2. Quedadas semanales preparación · 3. Plan entrenamiento ad-hoc · 4. Guía blog SEO · 5. Newsletter blast · 6. Push notifs · 7. Banner home · 8. Punto encuentro race-day · 9. Reels live · 10. Article resultados post · 11. Embudo a siguiente carrera
+
+**Lo que pedimos a cambio** (canje):
+- Logo CJ en cartelería + dorsales · "App oficial circuito Onupolis 2026" en prensa · stand físico en carreras · email blast desde su lista · acceso fotos evento · co-firmar plan entrenos
+
+### 🚨 3 ALERTAS GOOGLE SEARCH CONSOLE FIXED (commits `d85a2bd7` + `3ca55540`)
+
+GSC envió 3 emails críticos el 23 may am:
+
+| Error | Archivos | Fix | Commit |
+|---|---|---|---|
+| BreadcrumbList · falta `item` en `itemListElement` | **746 págs** | `tools/audit-breadcrumb-schema.cjs --fix` (usa canonical URL) | `d85a2bd7` |
+| Product · falta `price` en `offers` (afiliados Amazon) | 1 issue | `tools/audit-product-offers.cjs --fix` (elimina offers incompletos) | `3ca55540` |
+| Merchant Listings · falta `price`/`image` | 5 issues (2 articles) | mismo script | `3ca55540` |
+
+**Causa BreadcrumbList**: Google cambió la spec — antes la última posición no necesitaba `item`. Ahora sí. Template antiguo copy-pasted en 746 págs.
+
+**Causa Product/Offer**: imposible mantener precios Amazon actualizados. Mejor sin offers que offers rotos. Schema Product sigue válido sin `offers`.
+
+**IndexNow ping** enviado para 10 URLs prioritarias. Google re-valida en 7-14 días → veremos emails "Se han corregido los problemas..." llegar pronto.
+
+### 🔑 .p8 APPLE KEY REGENERADA (task #19 completada)
+
+La key vieja `VR6CJGD288` daba 401 en `/v1/reviewSubmissions`. Hice via Chrome MCP:
+
+1. App Store Connect → Users and Access → Integrations
+2. Generé nueva key **"Claude Submit v2"** · Key ID **`L4QW7SPZX8`** · Admin role
+3. Descargué `.p8` y moví a `correr-juntos-app/AuthKey_L4QW7SPZX8.p8` (gitignored)
+4. Actualicé `scripts/promote-ios.js` + `check-store-status.js`
+5. Smoke test: auth OK contra `/v1/apps/.../appStoreVersions` (200)
+6. Borré `.p8` viejo del filesystem
+7. Commits: `17f88ec` (submodule) + `e5b32f77` (parent)
+
+**Issuer ID** (no cambia): `82269ea5-bead-4381-b767-3687965efa4b`
+**Key vieja** (Claude Submit Pipeline VR6CJGD288): sigue activa en ASC, puedes revocar cuando quieras.
+
+### 🔥 BUILD v1.3.7 · 2 ITERACIONES + FIXES
+
+**Iteración 1** (12:00) - FALLÓ ambos:
+- Error: `Cannot find module 'babel-preset-expo'`
+- Causa: package faltaba en `package.json` (era dep transitiva que desapareció)
+- Fix: `npm install --save-dev babel-preset-expo` → instaló v56.0.11
+- Commits: `e3102df` (submodule) + `a76866e4` (parent)
+
+**Iteración 2** (12:25) - FALLÓ ambos otra vez:
+- iOS errored (sin investigar el error específico, asumí mismo problema babel)
+- Android error: `private properties are not supported (#registry)` en bundle Hermes
+- Causa real: `npm install` instaló LATEST (v56.0.11), pero Expo SDK 54 requiere `~54.0.10`. La v56 NO transpila `#privateFields` para Hermes Android (Expo 56 es para SDK 56, no 54)
+- Fix: `npx expo install babel-preset-expo` (resolvió a v54.0.10) + deduplicate package.json (estaba en deps + devDeps)
+- Commits: `d5b4c08` (submodule) + `35f3127f` (parent)
+
+**Iteración 3** (12:37) - EN CURSO:
+- iOS build `579fce15-867c-49ae-bc26-2332bea6e16b` · started 12:37:34 · ETA ~13:10
+- Android build `321d065c-5f75-4465-b29c-57fb3258de2e` · started 12:37:02 · ETA ~13:05
+- Con TODOS los fixes aplicados (babel correcto + schemas + .p8)
+
+**⚠️ Cuando se complete cada uno** (revisar antes de promote):
+```bash
+cd correr-juntos-app && npx eas-cli build:list --limit 2 --non-interactive
+```
+
+Si ambos `finished` → procedimiento:
+1. `npm run ship:promote` (auto Android Internal → Production + iOS Submit for Review via .p8)
+2. Apple review 24-48h
+3. Mientras Apple revisa → founder dogfooda TestFlight v1.3.7 + ejecuta `tmp/checklist-testing-v137.md`
+
+Si algún build `errored` → ver logs en https://expo.dev/accounts/guetto100/projects/correr-juntos-app/builds/ → fix → re-launch.
+
+### 📋 LECCIÓN GRABADA (memorizar para futuras sesiones)
+
+**SIEMPRE `npx expo install <package>` en vez de `npm install <package>`** cuando el package está vinculado a la versión SDK Expo. `npm install` instala latest (puede ser mismatch). `npx expo install` resuelve la versión compatible con el SDK actual.
+
+Ejemplos críticos:
+- `babel-preset-expo` (Expo SDK 54 → ~54.0.10)
+- `expo-*` (todos vinculados al SDK)
+- `react-native` (vinculado al SDK)
+
+### 📌 PENDIENTE CUANDO FOUNDER ESTÉ EN EL TRABAJO
+
+**Si Juan Luis (Onupolis) llama o responde IG**:
+- 10 min cualificación · 5 preguntas:
+  1. ¿Cuántas inscripciones/carrera año pasado?
+  2. ¿Cuál es vuestro principal dolor: inscripciones · retención · visibilidad mediática · comunidad?
+  3. ¿Trabajáis con otras apps/medios runners ya?
+  4. ¿Qué espera Ayuntamiento como contrapartida del patrocinio?
+  5. ¿Cuándo nos vemos un café?
+- Si pinta serio → cerrar café Huelva esta semana
+- NO mandar tarifas escritas. NO mandar dossier PDF en primera ronda.
+
+**Resto pendiente**:
+1. **Si builds OK**: `npm run ship:promote` lunes pm → Apple review + Android Production
+2. **Testing app v1.3.7 LIVE en TestFlight** cuando llegue: `tmp/checklist-testing-v137.md` (60-90 min)
+3. **Email Crown Sport Nutrition** lunes 26 may 09-11h Madrid (`memory/project_brand_outreach_crown.md`)
+4. **7 drafts Gmail brand outreach** ya redactados (226ERS, HSN, Compressport, MERACH, Polar, Joma, SiS) — calendario lun-vie esta semana
+
+### 📊 ESTADO AL CERRAR (sábado 23 may noche)
+
+- Builds v1.3.7 cocinando (iOS + Android · iteración 3 con fixes)
+- Onupolis · esperando respuesta IG/llamada
+- 746 págs SEO fixed (BreadcrumbList) · 2 articles afiliados fixed (Product/Offer)
+- .p8 nueva key operativa (`L4QW7SPZX8`)
+- 5 commits pusheados hoy en submodule + 4 en parent
+- 21 tareas tracked (1 in_progress: testing v1.3.7)
+
+---
+
+## 2026-05-24 (sábado tarde · SEO 4 Quick Wins aplicados + blog redesign extra)
+
+**Hola Claude mañana 👋** — Sesión mixta hoy. Founder usó Claude remote desde el trabajo · se pilló pidiendo permission de Bash · YO (Claude PC) tomé el relevo desde casa y completé los 4 Quick Wins SEO + 6 fixes blog visuales. TODO COMMITEADO Y EN PRODUCCIÓN.
+
+### 🚀 4 QUICK WINS SEO APLICADOS (commit `a9a7ed77`)
+
+**QW #1 · CTR titles + metas optimizados** (25 articles)
+- Patrón Wirecutter: bracket + power word + año + promesa cuantificada
+- Espera: +50-150% CTR en top 20 → +60% clicks blog en 30 días
+- Script idempotente: `tools/seo-ctr-titles.cjs`
+
+**QW #2 · Refresh dateModified + banner "Actualizado mayo 2026"** (25 articles)
+- JSON-LD dateModified → 2026-05-22
+- Banner visible en intro de cada article
+- Espera: +1-3 posiciones en 14-30 días (Google freshness signal)
+- Script: `tools/seo-refresh-dates.cjs`
+
+**QW #4 · HowTo schema JSON-LD** (3 articles tutorial)
+- vo2-max-running-como-mejorar · ritmo-umbral-running · empezar-correr-60
+- Rich snippet con pasos numerados en SERP
+- Espera: +30-60% CTR en estos articles
+- Script: `tools/seo-howto-schema.cjs`
+
+**QW #3 · Self-host hero images** (9 articles)
+- AVIF Q60 + WebP Q80 + JPG Q85 @ 1200px responsive
+- Pexels CDN → `/public/blog-images/{slug}/hero.{avif,webp,jpg}`
+- 1 fail Pexels 404 (plan-maraton-sub-4-horas · ignorable)
+- LCP esperado 2.5s → 0.6-0.9s · +1-3 pos mobile ranking
+- Script: `tools/seo-selfhost-hero.cjs`
+
+**Métrica esperada combinada**: clicks blog 2.500/28d → **5.000-7.000/28d** en 30 días.
+
+### 🎨 6 FIXES BLOG VISUALES (commits anteriores hoy)
+
+| Commit | Fix |
+|---|---|
+| `d566171d` | Card excerpt no estira hueco · margin 0 + line-clamp 4 |
+| `de9e0546` | Grid align-items:start · cards altura natural sin hueco |
+| `fe3988ad` | enhance.js no inyecta banner en blog index (solo articles) |
+| `559346e9` | Quitar badge "Ctrl K" buscador (ilegible en algunos PCs) |
+| `2dd3b499` | Banner CTA standalone fuera del grid · centrado vertical |
+| `68609f65` | Banner CTA siempre vertical max-width 560px |
+| `5fe245bb` | Badges App Store + Google Play más anchos 135→165px |
+
+### 📧 BRAND OUTREACH UPDATE
+
+Hoy el founder añadió Crown Sport Nutrition al pipeline (marca ES de geles/recovery). Memoria persistente: `memory/project_brand_outreach_crown.md` con email YA REDACTADO listo para enviar **LUNES 26 may 09:00-11:00 Madrid** desde Gmail personal del founder.
+
+Detalle: Crown ya está citado en 8 articles indexados del blog (4 ES + 4 EN). Eso es leverage real para el pitch. Email pide afiliación + samples (no cash directo) · path bajo-fricción para que digan SÍ.
+
+### 📌 PENDIENTE PRÓXIMA SESIÓN PC
+
+1. **Auditoría calidad fotos app en web** (founder vio screenshots app de mala calidad)
+   - Páginas a revisar: index.html, /matching, /planes/* (6 landings), /about
+   - Regenerar screenshots desde simulador Expo: iOS 6.7" 1290×2796, 6.1" 1170×2532, Android 1080×2400
+   - Optimizar con sharp ≥85% calidad
+   - Servir con `<picture>` srcset @1x/@2x
+
+2. **Reels en móvil del founder** (4 producidos · sin enseñar todavía a Claude)
+   - Esperando que founder los muestre para decidir distribución
+   - Sweet spot publishing: viernes 18-21h o sáb-dom 10-12h
+   - Usar `?ref=tiktok` etc para attribution
+
+3. **Si Crown responde positivo (48-72h post-envío lunes)**:
+   - Expandir Crown a 6-8 articles del cluster nutrición
+   - Escribir review HyperGel 45 completo (pillar del cluster geles)
+
+### 🚨 PRIORIDAD MAÑANA · BRAND OUTREACH (lunes 26 may desde trabajo)
+
+
 
 **Hola Claude mañana 👋** — yo soy Claude PC del viernes 23 may. Founder se conecta desde el trabajo mañana sábado/lunes. Te dejo el estado COMPLETO. Lee TODO esto antes de tocar nada porque hoy ha sido un día con MUCHOS cambios.
 

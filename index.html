@@ -80,7 +80,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         {"@type": "Question", "name": "\u00bfEs gratis la app CorrerJuntos?", "acceptedAnswer": {"@type": "Answer", "text": "S\u00ed, la app es gratuita con un plan de entrenamiento 0 a 5K incluido. El plan premium cuesta 4,99 euros al mes e incluye Coach Jos\u00e9 IA ilimitado, planes avanzados, audio coaching y gr\u00e1ficas de progreso."}},
-        {"@type": "Question", "name": "\u00bfEn qu\u00e9 ciudades hay quedadas de running?", "acceptedAnswer": {"@type": "Answer", "text": "Actualmente hay quedadas activas en Madrid, Barcelona, Valencia, Sevilla, Londres, Par\u00eds, Ciudad de M\u00e9xico y Buenos Aires. Cualquier usuario puede crear quedadas en su ciudad."}},
+        {"@type": "Question", "name": "\u00bfEn qu\u00e9 ciudades hay quedadas de running?", "acceptedAnswer": {"@type": "Answer", "text": "La comunidad m\u00e1s densa est\u00e1 en Espa\u00f1a, con 4 clubs partner organizando quedadas recurrentes en Huelva (Soul Run Club), Sevilla (Sevilla Running Club), M\u00e1laga (Beer Runners) y Torre del Mar (Correr Sin L\u00edmites). Tambi\u00e9n hay quedadas creadas por usuarios en Madrid, Barcelona y Valencia. La app funciona globalmente, pero fuera de Espa\u00f1a la densidad es menor por ahora."}},
         {"@type": "Question", "name": "\u00bfC\u00f3mo funciona Coach Jos\u00e9?", "acceptedAnswer": {"@type": "Answer", "text": "Coach Jos\u00e9 es tu entrenador personal con inteligencia artificial. Analiza cada carrera, te da feedback personalizado sobre ritmo, RPE y splits, y te habla durante la carrera con coaching de audio contextual."}},
         {"@type": "Question", "name": "\u00bfNecesito un reloj GPS para usar CorrerJuntos?", "acceptedAnswer": {"@type": "Answer", "text": "No, tu m\u00f3vil es suficiente para registrar tus carreras con GPS. La app es compatible con puls\u00f3metros Bluetooth LE para monitorizar tu frecuencia card\u00edaca."}},
         {"@type": "Question", "name": "\u00bfPuedo correr solo o siempre tengo que ir en grupo?", "acceptedAnswer": {"@type": "Answer", "text": "Ambas opciones. Puedes registrar tus carreras en solitario con GPS y Coach Jos\u00e9, o unirte a quedadas con otros runners de tu ciudad."}},
@@ -412,7 +412,11 @@ a{color:inherit;text-decoration:none}
 .blog-card-body{padding:20px}
 .blog-card-cat{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
 .blog-card-title{font-size:16px;font-weight:700;line-height:1.4;margin-bottom:8px}
-.blog-card-excerpt{font-size:13px;color:var(--text-sec);line-height:1.5}
+.blog-card-excerpt{font-size:13px;color:var(--text-sec);line-height:1.5;margin-bottom:12px}
+.blog-card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b7280;padding-top:10px;border-top:1px solid #f3f4f6;margin-top:auto}
+.blog-card-meta svg{width:13px;height:13px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2}
+.blog-card-meta-sep{opacity:.4}
+.blog-card-body{display:flex;flex-direction:column;min-height:180px}
 .blog-cta{text-align:center}
 .blog-cta a{display:inline-flex;align-items:center;gap:6px;color:var(--orange);font-weight:700;font-size:15px;transition:gap .2s}
 .blog-cta a:hover{gap:10px}
@@ -724,7 +728,7 @@ Google Play
 <div class="feature-text">
 <div class="feature-num">3</div>
 <h3>Corre acompa&ntilde;ado, nunca solo</h3>
-<p>Quedadas de running en Madrid, Barcelona, Valencia, Sevilla, Londres, Par&iacute;s, Ciudad de M&eacute;xico y Buenos Aires. Conoce runners de tu nivel, corre en grupo y construye h&aacute;bito.</p>
+<p>4 clubs partner en Espa&ntilde;a con quedadas semanales: Soul Run Club (Huelva), Sevilla Running Club, Beer Runners (M&aacute;laga) y Correr Sin L&iacute;mites (Torre del Mar). Quedadas creadas por usuarios tambi&eacute;n en Madrid, Barcelona y Valencia. La app funciona globalmente &mdash; fuera de Espa&ntilde;a la densidad es menor.</p>
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
@@ -782,6 +786,84 @@ Google Play
 </div>
 </div>
 </div>
+</div>
+</div>
+</section>
+
+<!-- COMPARATIVA -->
+<section class="compare" id="compare" style="background:#fef7ed;padding:100px 0">
+<div class="container">
+<div style="text-align:center;max-width:720px;margin:0 auto 48px">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#f97316;margin-bottom:16px">&bull; Comparativa &middot; honesta</div>
+<h2 class="reveal" style="margin-bottom:16px">&iquest;Y si ya uso <strong style="color:#f97316">Strava</strong>, <strong style="color:#f97316">Nike Run Club</strong> o <strong style="color:#f97316">Runna</strong>?</h2>
+<p class="section-sub reveal" style="margin-bottom:0">Buena pregunta. Esto es lo que somos y lo que no. Cada app gana en lo suyo &mdash; eliges la combinaci&oacute;n que te encaje.</p>
+</div>
+<div class="compare-wrap reveal" style="overflow-x:auto;border-radius:16px;border:1px solid #f97316;background:#fff;box-shadow:0 8px 32px rgba(0,0,0,.06)">
+<table class="compare-table" style="width:100%;border-collapse:collapse;font-size:14px;min-width:720px">
+<thead>
+<tr style="background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%)">
+<th style="padding:18px 16px;text-align:left;font-weight:700;color:#0b1220;width:32%;border-bottom:2px solid #f97316">Caracter&iacute;stica</th>
+<th style="padding:18px 16px;text-align:center;font-weight:800;color:#f97316;background:#fff;border-bottom:2px solid #f97316">CorrerJuntos</th>
+<th style="padding:18px 16px;text-align:center;font-weight:600;color:#666;border-bottom:2px solid #e5e7eb">Strava</th>
+<th style="padding:18px 16px;text-align:center;font-weight:600;color:#666;border-bottom:2px solid #e5e7eb">Nike Run Club</th>
+<th style="padding:18px 16px;text-align:center;font-weight:600;color:#666;border-bottom:2px solid #e5e7eb">Runna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:16px;border-bottom:1px solid #f3f4f6;font-weight:600">Quedadas locales con clubs reales</td>
+<td style="padding:16px;text-align:center;background:#fffbf6;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+</tr>
+<tr>
+<td style="padding:16px;border-bottom:1px solid #f3f4f6;font-weight:600">Plan adaptativo IA personalizado</td>
+<td style="padding:16px;text-align:center;background:#fffbf6;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#f59e0b;font-weight:600">Gen&eacute;rico</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+</tr>
+<tr>
+<td style="padding:16px;border-bottom:1px solid #f3f4f6;font-weight:600">Coach IA conversacional en espa&ntilde;ol</td>
+<td style="padding:16px;text-align:center;background:#fffbf6;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#f59e0b;font-weight:600">Solo ingl&eacute;s</td>
+</tr>
+<tr>
+<td style="padding:16px;border-bottom:1px solid #f3f4f6;font-weight:600">Comunidad espa&ntilde;ola activa</td>
+<td style="padding:16px;text-align:center;background:#fffbf6;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#f59e0b;font-weight:600">Global</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#f59e0b;font-weight:600">Global</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+</tr>
+<tr>
+<td style="padding:16px;border-bottom:1px solid #f3f4f6;font-weight:600">M&eacute;tricas avanzadas (segments, kudos, fotos)</td>
+<td style="padding:16px;text-align:center;background:#fffbf6;border-bottom:1px solid #f3f4f6;color:#f59e0b;font-weight:600">B&aacute;sicas</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#9ca3af">&mdash;</td>
+</tr>
+<tr>
+<td style="padding:16px;border-bottom:1px solid #f3f4f6;font-weight:600">Precio mensual base</td>
+<td style="padding:16px;text-align:center;background:#fffbf6;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700">Gratis &middot; Premium 4,99&euro;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#666">Gratis &middot; Premium ~7&euro;</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#16a34a;font-weight:700">Gratis</td>
+<td style="padding:16px;text-align:center;border-bottom:1px solid #f3f4f6;color:#dc2626;font-weight:700">19,99&euro;</td>
+</tr>
+<tr>
+<td style="padding:16px;font-weight:600">Integraci&oacute;n Strava / Garmin / Apple Health</td>
+<td style="padding:16px;text-align:center;background:#fffbf6;color:#f59e0b;font-weight:600">Pr&oacute;ximamente</td>
+<td style="padding:16px;text-align:center;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+<td style="padding:16px;text-align:center;color:#f59e0b;font-weight:600">Parcial</td>
+<td style="padding:16px;text-align:center;color:#16a34a;font-weight:700;font-size:18px">&#10003;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="reveal" style="max-width:720px;margin:32px auto 0;text-align:center;padding:24px;background:#fff;border-radius:12px;border-left:4px solid #f97316">
+<p style="margin:0;font-size:15px;line-height:1.6;color:#0b1220"><strong style="color:#f97316">Honestidad:</strong> CorrerJuntos no compite con Strava en m&eacute;tricas. Si ya tienes Strava y est&aacute;s contento, sigue con Strava &mdash; lo nuestro es que tengas con qui&eacute;n correrlas (quedadas) y c&oacute;mo entrenarlas (plan + coach). Las dos cosas se complementan.</p>
 </div>
 </div>
 </section>
@@ -988,6 +1070,13 @@ Google Play
 <div class="blog-card-cat">Principiantes</div>
 <div class="blog-card-title">Gu&iacute;a completa para empezar a correr desde cero en 2026</div>
 <div class="blog-card-excerpt">Todo lo que necesitas saber para dar tus primeros pasos como runner.</div>
+<div class="blog-card-meta">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<span>14 feb 2026</span>
+<span class="blog-card-meta-sep">&middot;</span>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+<span>Abraham M&aacute;rquez</span>
+</div>
 </div>
 </a>
 <a href="/blog/vo2-max-running-como-mejorar" class="blog-card">
@@ -996,6 +1085,13 @@ Google Play
 <div class="blog-card-cat">Entrenamiento</div>
 <div class="blog-card-title">VO2max en running: qu&eacute; es y c&oacute;mo mejorar tu capacidad aer&oacute;bica</div>
 <div class="blog-card-excerpt">La m&eacute;trica m&aacute;s importante del rendimiento y c&oacute;mo entrenarla.</div>
+<div class="blog-card-meta">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<span>23 mar 2026</span>
+<span class="blog-card-meta-sep">&middot;</span>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+<span>Abraham M&aacute;rquez</span>
+</div>
 </div>
 </a>
 <a href="/blog/mejores-zapatillas-on-running" class="blog-card">
@@ -1004,6 +1100,13 @@ Google Play
 <div class="blog-card-cat">Zapatillas</div>
 <div class="blog-card-title">Las 8 mejores zapatillas On Running en 2026: an&aacute;lisis completo</div>
 <div class="blog-card-excerpt">Review detallado de Cloudmonster, Cloudstratus y Cloudsurfer.</div>
+<div class="blog-card-meta">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<span>Actualizado 22 may 2026</span>
+<span class="blog-card-meta-sep">&middot;</span>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+<span>Abraham M&aacute;rquez</span>
+</div>
 </div>
 </a>
 <a href="/blog/correr-durante-menopausia" class="blog-card">
@@ -1012,6 +1115,13 @@ Google Play
 <div class="blog-card-cat">Salud</div>
 <div class="blog-card-title">Correr durante la menopausia: gu&iacute;a para mujeres runners</div>
 <div class="blog-card-excerpt">Beneficios del running, adaptaciones y nutrici&oacute;n espec&iacute;fica.</div>
+<div class="blog-card-meta">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<span>23 mar 2026</span>
+<span class="blog-card-meta-sep">&middot;</span>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+<span>Abraham M&aacute;rquez</span>
+</div>
 </div>
 </a>
 </div>
@@ -1032,7 +1142,7 @@ Google Play
 </div>
 <div class="faq-item">
 <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-2">&iquest;En qu&eacute; ciudades hay quedadas de running?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-<div class="faq-a" id="faq-a-2"><p>Actualmente hay quedadas activas en Madrid, Barcelona, Valencia, Sevilla, Londres, Par&iacute;s, Ciudad de M&eacute;xico y Buenos Aires. Cualquier usuario puede crear quedadas en su ciudad.</p></div>
+<div class="faq-a" id="faq-a-2"><p>La comunidad m&aacute;s densa est&aacute; en Espa&ntilde;a, con 4 clubs partner organizando quedadas recurrentes en Huelva (Soul Run Club), Sevilla (Sevilla Running Club), M&aacute;laga (Beer Runners) y Torre del Mar (Correr Sin L&iacute;mites). Tambi&eacute;n hay quedadas creadas por usuarios en Madrid, Barcelona y Valencia. La app funciona globalmente, pero fuera de Espa&ntilde;a la densidad es menor por ahora.</p></div>
 </div>
 <div class="faq-item">
 <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-3">&iquest;C&oacute;mo funciona Coach Jos&eacute;?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>

@@ -512,10 +512,15 @@ a{color:inherit;text-decoration:none}
 @media(max-width:768px){
 .nav-links{display:none}
 .nav-toggle{display:flex}
-.hero{padding:48px 0 0}
-.hero h1{font-size:32px;letter-spacing:-1.5px}
-.hero-stores{flex-direction:column;align-items:center}
-.hero-phones{max-width:100%;overflow:hidden}
+.hero{padding:24px 0 0}
+.hero-inner{gap:24px}
+.hero h1{font-size:30px;letter-spacing:-1.5px;margin-bottom:14px}
+.hero-sub{font-size:15px;margin-bottom:20px}
+.hero-badge{margin-bottom:18px;font-size:12px;padding:6px 14px}
+.hero-cta-primary{padding:14px 28px;font-size:16px;margin-bottom:12px}
+.hero-stores{flex-direction:column;align-items:center;margin-bottom:18px}
+.hero-phones{max-width:100%;overflow:hidden;margin-top:16px;padding:0}
+.hero-phone--center{width:200px;height:400px}
 .coach-grid{grid-template-columns:1fr}
 .plan-grid{grid-template-columns:1fr}
 .testimonial-grid{grid-template-columns:1fr}
@@ -719,7 +724,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-social.webp" alt="Planes de entrenamiento personalizados" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-run.webp" alt="PlanesScreen con Coach Jos&eacute; - planes de entrenamiento personalizados" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -732,7 +737,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-map.webp" alt="Mapa de quedadas de running" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-social.webp" alt="Detalle de quedada con foto del grupo y participantes" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -740,12 +745,12 @@ Google Play
 <div class="feature-row reverse reveal">
 <div class="feature-text">
 <div class="feature-num">4</div>
-<h3>Registra cada kil&oacute;metro</h3>
-<p>GPS de alta precisi&oacute;n, audio coaching en carrera, VO2max estimado, 33 logros desbloqueables y gr&aacute;ficas de progreso semanal. Cada carrera cuenta para algo.</p>
+<h3>Mapa global de quedadas y carreras</h3>
+<p>Mapa interactivo con todas las quedadas semanales de los clubs partner y las carreras populares de Espa&ntilde;a 2026 (Madrid, Barcelona, Sevilla, Valencia, Onupolis Huelva y m&aacute;s). GPS de alta precisi&oacute;n durante tu carrera, audio coaching contextual, VO2max estimado y gr&aacute;ficas de progreso semanal.</p>
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-run.webp" alt="GPS tracker con mapa de Madrid" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-map.webp" alt="Mapa de quedadas y carreras en la app" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -981,7 +986,7 @@ Google Play
 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path class="check-icon" d="M20 6L9 17l-5-5"/></svg>33 logros desbloqueables</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path class="check-icon" d="M20 6L9 17l-5-5"/></svg>GPS + quedadas + comunidad</li>
 </ul>
-<div style="text-align:center;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px">Empezar prueba gratis — 7 d&iacute;as</div>
+<div style="text-align:center;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px">Empezar prueba gratis &mdash; 14 d&iacute;as</div>
 <div style="display:flex;gap:10px;justify-content:center">
 <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#f97316;color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:600;text-decoration:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
 <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#f97316;color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:600;text-decoration:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 12l2.302-3.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/></svg>Google Play</a>
@@ -1025,7 +1030,7 @@ Google Play
 <div class="trust-row reveal">
 <div class="trust-item">
 <div class="trust-num" data-target="4.8" data-decimals="1">4.8</div>
-<div class="trust-label">App Store</div>
+<div class="trust-label">App Store <span style="opacity:.6;font-weight:400">&middot; 12 valoraciones</span></div>
 </div>
 <div class="trust-item">
 <div class="trust-num" data-target="568" data-suffix="+">568+</div>

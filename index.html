@@ -458,10 +458,6 @@ a{color:inherit;text-decoration:none}
 .footer li a:hover{color:var(--orange)}
 .footer-copy{text-align:center;font-size:12px;padding-top:32px;border-top:1px solid rgba(255,255,255,.06)}
 
-/* QUIZ SPINNER */
-@keyframes quizSpin{to{transform:rotate(360deg)}}
-.quiz-step button:hover{border-color:rgba(249,115,22,.5)!important;background:rgba(249,115,22,.06)!important}
-
 /* COOKIE */
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--white);border-top:1px solid var(--border);padding:16px 24px;display:none;align-items:center;justify-content:center;gap:16px;box-shadow:0 -4px 24px rgba(0,0,0,.06)}
 .cookie-banner.show{display:flex}
@@ -500,8 +496,6 @@ a{color:inherit;text-decoration:none}
 .hero-phones{margin-top:32px}
 .hero-phone--left,.hero-phone--right{display:none}
 .hero-phone--center{width:240px;height:480px}
-#matching>div>div{grid-template-columns:1fr!important;text-align:center}
-#matching>div>div>div:last-child{margin-top:24px}
 .feature-row{grid-template-columns:1fr;text-align:center;gap:32px}
 .feature-row.reverse .feature-text{order:1}
 .feature-row.reverse .feature-visual{order:2}
@@ -1107,7 +1101,6 @@ Descargar en Google Play
 <li><a href="/planes">Planes de entrenamiento</a></li>
 <li><a href="/blog">Blog</a></li>
 <li><a href="/carreras">Carreras</a></li>
-<li><a href="/matching">Runner Matching</a></li>
 <li><a href="/cities">Ciudades</a></li>
 <li><a href="/calculadora">Calculadora</a></li>
 <li><a href="/equipamiento">Equipamiento</a></li>
@@ -1272,50 +1265,6 @@ window.addEventListener('scroll',function(){
 btn.classList.toggle('show',window.scrollY>500);
 },{passive:true});
 btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-})();
-
-/* Matching Quiz */
-(function(){
-var answers=[];
-var currentStep=0;
-var paceMap={'7+ min/km':'7:20 min/km','6-7 min/km':'6:30 min/km','5-6 min/km':'5:25 min/km','<5 min/km':'4:40 min/km'};
-window.quizSelect=function(step,value){
-answers[step]=value;
-/* Highlight selected button */
-var stepEl=document.getElementById('quizStep'+step);
-var btns=stepEl.querySelectorAll('button');
-btns.forEach(function(b){b.style.borderColor='rgba(255,255,255,.12)';b.style.background='rgba(255,255,255,.04)'});
-event.target.style.borderColor='#f97316';event.target.style.background='rgba(249,115,22,.1)';
-if(step<3){
-setTimeout(function(){
-document.getElementById('quizStep'+step).style.display='none';
-currentStep=step+1;
-document.getElementById('quizStep'+currentStep).style.display='block';
-document.getElementById('quizProgressBar').style.width=((currentStep+1)*25)+'%';
-},300);
-}else{
-/* Last step — show loading then result */
-setTimeout(function(){
-document.getElementById('quizStep3').style.display='none';
-document.getElementById('quizProgress').style.display='none';
-document.getElementById('quizLoading').style.display='block';
-setTimeout(function(){
-document.getElementById('quizLoading').style.display='none';
-/* Set result data based on answers */
-var city=answers[2]||'Madrid';
-if(city==='Otra ciudad')city='Tu ciudad';
-document.getElementById('quizMatchCity').textContent=city;
-var pace=paceMap[answers[0]]||'6:15 min/km';
-document.getElementById('quizMatchPace').textContent=pace;
-var matchPct=Math.floor(Math.random()*10)+87;
-document.getElementById('quizMatchBadge').textContent=matchPct+'% compatible contigo';
-document.getElementById('quizResult').style.display='block';
-/* GA4 event */
-if(typeof gtag==='function'){gtag('event','quiz_completed',{quiz_pace:answers[0],quiz_time:answers[1],quiz_city:answers[2],quiz_goal:answers[3],match_pct:matchPct});}
-},1500);
-},300);
-}
-};
 })();
 
 /* Lead Magnet Plan 10K — Newsletter Form */

@@ -68,8 +68,10 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 /* Dark mode */
 html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{background:rgba(11,18,32,.97);border-bottom-color:rgba(255,255,255,.06)}html.dark .breadcrumb{color:#64748b}html.dark .hero-bg::after{background:linear-gradient(to bottom,rgba(11,18,32,.5) 0%,rgba(11,18,32,.8) 60%,#0b1220 100%)}html.dark h2{color:#e2e8f0}html.dark h3{color:#f97316}html.dark p{color:#cbd5e1}html.dark li{color:#cbd5e1}html.dark a{color:#f97316}html.dark .tip{background:rgba(249,115,22,.08)}html.dark .faq-item{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}html.dark .faq-item summary{color:#e2e8f0}html.dark .faq-item .faq-answer{color:#cbd5e1}html.dark .related{border-top-color:rgba(255,255,255,.06)}html.dark .related-links a{color:#f97316;border-color:rgba(249,115,22,.2)}html.dark .related-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}html.dark .related-card:hover{border-color:rgba(249,115,22,.3)}html.dark .related-card-body h3{color:#e2e8f0}html.dark .related-card-meta{color:#64748b}html.dark .cta-app-final{background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(249,115,22,.12));border-color:rgba(249,115,22,.2)}html.dark .cta-app-final h2{color:#e2e8f0}html.dark .cta-app-final p{color:#94a3b8}html.dark .race-hub-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}html.dark .race-hub-card:hover{border-color:rgba(249,115,22,.3)}html.dark .race-hub-card-body h3{color:#e2e8f0}html.dark .race-hub-card-body p{color:#94a3b8}html.dark .race-hub-card-meta{color:#64748b}html.dark .race-hub-card-meta span{background:rgba(255,255,255,.06)}html.dark .race-kpis{background:rgba(249,115,22,.08);border-color:rgba(249,115,22,.2)}html.dark .race-kpi{border-right-color:rgba(249,115,22,.15)}html.dark .race-kpi-label{color:#64748b}html.dark .race-kpi-value{color:#e2e8f0}html.dark .calendar-table th{background:#f97316}html.dark .calendar-table td{background:rgba(255,255,255,.04);border-bottom-color:rgba(255,255,255,.06);color:#cbd5e1}html.dark .calendar-table tr:hover td{background:rgba(249,115,22,.08)}html.dark .calendar-table .race-past td{background:rgba(255,255,255,.02);opacity:.5}html.dark .calendar-table .race-next td{background:rgba(249,115,22,.08)}html.dark .price-table th{background:#1e2535}html.dark .price-table td{background:rgba(255,255,255,.04);border-bottom-color:rgba(255,255,255,.06);color:#cbd5e1}html.dark .price-table .highlight td{background:rgba(249,115,22,.1)}html.dark .partnership-box{background:rgba(249,115,22,.06);border-color:rgba(249,115,22,.2)}html.dark .partnership-body h3{color:#e2e8f0}html.dark .partnership-body p{color:#94a3b8}html.dark .map-container{border-color:rgba(255,255,255,.08)}html.dark .footer{background:rgba(255,255,255,.03);border-top-color:rgba(255,255,255,.06)}html.dark .footer-brand{color:#f97316}html.dark .footer-desc{color:#64748b}html.dark .footer-heading{color:#e2e8f0}html.dark .footer-link{color:#94a3b8}html.dark .footer-social a{color:#94a3b8;background:rgba(255,255,255,.06)}html.dark .footer-bottom{border-top-color:rgba(255,255,255,.06)}html.dark .footer-bottom p{color:#64748b}html.dark .author-byline{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}html.dark .author-name,html.dark .author-name a{color:#e2e8f0}html.dark .author-role{color:#64748b}html.dark .author-extra{color:#64748b}html.dark .author-extra time{color:#cbd5e1}html.dark .urgency-bar{background:linear-gradient(135deg,rgba(249,115,22,.12),rgba(249,115,22,.18));border-color:rgba(249,115,22,.35)}html.dark .urgency-title,html.dark .urgency-sub{color:#fed7aa}html.dark .urgency-cta a{background:#fed7aa;color:#9a3412}html.dark .share-strip{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}html.dark .share-strip-title{color:#e2e8f0}html.dark .share-btn{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#cbd5e1}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-/* Author byline */
-.author-byline{display:flex;align-items:center;gap:14px;padding:18px 20px;background:#fffcf9;border:1px solid #efe6db;border-radius:14px;margin:24px 0 0}.author-avatar{flex-shrink:0;width:48px;height:48px;border-radius:50%;overflow:hidden;background:#f97316}.author-avatar img{width:100%;height:100%;object-fit:cover}.author-meta{flex:1;min-width:0}.author-name{display:block;font-size:.92rem;font-weight:800;color:#3d3229;line-height:1.2}.author-name a{color:#3d3229;text-decoration:none}.author-name a:hover{color:#f97316}.author-role{display:block;font-size:.78rem;color:#8b7355;margin-top:2px}.author-extra{flex-shrink:0;text-align:right;font-size:.78rem;color:#8b7355;line-height:1.4}.author-extra time{display:block;font-weight:600;color:#5c4d3d}
+/* Author byline ribbon (slim, preserva E-E-A-T sin interrumpir flow) */
+.author-ribbon{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;font-size:.85rem;color:#5c4d3d;flex-wrap:wrap}.author-ribbon .avatar-mini{width:28px;height:28px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#f97316}.author-ribbon .avatar-mini img{width:100%;height:100%;object-fit:cover}.author-ribbon a{color:#3d3229;font-weight:700;text-decoration:none}.author-ribbon a:hover{color:#f97316}.author-ribbon .sep{color:#cbb89a}.author-ribbon time{color:#5c4d3d}
+/* Author bio full (al final del article) */
+.author-bio{display:flex;align-items:center;gap:18px;padding:24px;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;margin:32px 0}.author-bio .avatar-lg{flex-shrink:0;width:64px;height:64px;border-radius:50%;overflow:hidden;background:#f97316}.author-bio .avatar-lg img{width:100%;height:100%;object-fit:cover}.author-bio .bio-body{flex:1;min-width:0}.author-bio .bio-name{font-size:1rem;font-weight:800;color:#3d3229;margin:0 0 4px}.author-bio .bio-name a{color:inherit;text-decoration:none}.author-bio .bio-name a:hover{color:#f97316}.author-bio .bio-text{font-size:.88rem;color:#5c4d3d;margin:0;line-height:1.55}.author-bio .bio-text a{color:#f97316;text-decoration:none}.author-bio .bio-text a:hover{text-decoration:underline}
 /* Urgency banner — foto + multi-CTA */
 .urgency-bar{margin:24px 0;padding:16px 18px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid rgba(249,115,22,.3);border-left:4px solid #f97316;border-radius:0 14px 14px 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.urgency-thumb{flex-shrink:0;width:72px;height:72px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(249,115,22,.25);position:relative;background:#0b1220}.urgency-thumb img{width:100%;height:100%;object-fit:cover;display:block}.urgency-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,115,22,0) 60%,rgba(249,115,22,.2))}.urgency-body{flex:1;min-width:220px}.urgency-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#9a3412;background:rgba(249,115,22,.18);padding:3px 10px;border-radius:999px;margin-bottom:6px}.urgency-eyebrow svg{flex-shrink:0}.urgency-title{font-size:1.02rem;font-weight:900;color:#9a3412;line-height:1.25;margin-bottom:3px}.urgency-sub{font-size:.82rem;color:#9a3412;opacity:.78;line-height:1.4}.urgency-ctas{flex-shrink:0;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:180px}.urgency-cta-main{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:11px 20px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;transition:transform .2s,box-shadow .2s;text-align:center;box-shadow:0 4px 14px rgba(249,115,22,.35);white-space:nowrap}.urgency-cta-main:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(249,115,22,.45);color:#fff}.urgency-cta-bono{display:inline-block;background:#fff;color:#9a3412;padding:9px 18px;border-radius:999px;font-weight:700;font-size:.78rem;text-decoration:none;transition:all .2s;text-align:center;border:1.5px solid rgba(154,52,18,.3);white-space:nowrap}.urgency-cta-bono:hover{background:#9a3412;color:#fff;border-color:#9a3412;transform:translateY(-1px)}.urgency-cta-bono strong{font-weight:900}
 /* Bono circuito hero CTA */
@@ -360,19 +362,14 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
 
 <main class="container content">
 
-  <!-- Author byline -->
-  <div class="author-byline">
-    <a href="/about" class="author-avatar" aria-label="Abraham Márquez Rodríguez · founder CorrerJuntos">
-      <img src="/public/abraham.jpg" alt="Abraham Márquez Rodríguez, founder de CorrerJuntos" loading="lazy" decoding="async" width="48" height="48">
-    </a>
-    <div class="author-meta">
-      <span class="author-name"><a href="/about" rel="author">Abraham M&aacute;rquez Rodr&iacute;guez</a></span>
-      <span class="author-role">Founder de CorrerJuntos &middot; Huelva</span>
-    </div>
-    <div class="author-extra">
-      <time datetime="2026-05-26">26 may 2026</time>
-      <span>Lectura 8 min</span>
-    </div>
+  <!-- Author ribbon (slim · E-E-A-T preserved sin interrumpir flow) -->
+  <div class="author-ribbon">
+    <span class="avatar-mini"><img src="/public/abraham.jpg" alt="" loading="lazy" decoding="async" width="28" height="28"></span>
+    <span>Por <a href="/about" rel="author">Abraham M&aacute;rquez</a></span>
+    <span class="sep">&middot;</span>
+    <time datetime="2026-05-26">26 may 2026</time>
+    <span class="sep">&middot;</span>
+    <span>Lectura 8 min</span>
   </div>
 
   <!-- Urgency banner — foto + multi-CTA (auto-update via JS según próxima carrera) -->
@@ -487,80 +484,6 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
     <div class="tip">
       <span class="tip-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>
       <div><strong>Pr&oacute;xima carrera:</strong> Nocturna Onupolis el 13 de junio en La Placeta (salida 21:30). Hoy tienes tiempo suficiente para preparar el 10K. El dorsal personalizado cierra 9 d&iacute;as antes del evento &mdash; no esperes al &uacute;ltimo momento.</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Precios de inscripci&oacute;n 2026</h2>
-    <p>Todos los precios son los publicados en el <a href="https://www.onupolis.es/reglamento/" target="_blank" rel="noopener noreferrer">reglamento oficial de Onupolis</a>. Los bonos de circuito completo son m&aacute;s econ&oacute;micos que inscribirse carrera a carrera.</p>
-
-    <table class="price-table">
-      <thead>
-        <tr>
-          <th>Modalidad</th>
-          <th>2K</th>
-          <th>5K</th>
-          <th>10K</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Inscripci&oacute;n individual (por carrera)</td>
-          <td class="price-value">3&euro;</td>
-          <td class="price-value">10&euro;</td>
-          <td class="price-value">13&euro;</td>
-        </tr>
-        <tr class="highlight">
-          <td><strong>Bono circuito completo (6 carreras)</strong></td>
-          <td class="price-value">15&euro;</td>
-          <td class="price-value">50&euro;</td>
-          <td class="price-value">70&euro;</td>
-        </tr>
-        <tr>
-          <td>Menores 5K circuito con camiseta</td>
-          <td>&mdash;</td>
-          <td class="price-value">50&euro;</td>
-          <td>&mdash;</td>
-        </tr>
-        <tr>
-          <td>Menores 5K circuito sin camiseta</td>
-          <td>&mdash;</td>
-          <td class="price-value">30&euro;</td>
-          <td>&mdash;</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="tip">
-      <span class="tip-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
-      <div><strong>Ahorro bono 10K:</strong> 6 carreras individuales a 13&euro; = 78&euro;. El bono circuito completo 10K cuesta 70&euro; &mdash; 8&euro; menos, y viene con camiseta incluida. Las inscripciones abren el 15 de enero de 2026 y cierran el 28 de diciembre o al llenarse el aforo.</div>
-    </div>
-
-    <!-- Bono Circuito Completo — CTA jerárquico destacado -->
-    <div class="bono-cta">
-      <div class="bono-cta-body">
-        <div class="bono-cta-eyebrow">M&aacute;s ahorro &middot; M&aacute;s motivaci&oacute;n</div>
-        <div class="bono-cta-title">Bono Circuito Completo 10K</div>
-        <div class="bono-cta-sub">Las 6 carreras del a&ntilde;o + camiseta t&eacute;cnica. La forma m&aacute;s ec&oacute;nomica de hacer el circuito entero.</div>
-      </div>
-      <div class="bono-cta-price">
-        <strong>70&euro;</strong>
-        <small>78&euro; por separado</small>
-      </div>
-      <div class="bono-cta-btn">
-        <a href="https://www.onupolis.es/inscripciones-carreras/" target="_blank" rel="noopener noreferrer">Comprar bono &rarr;</a>
-      </div>
-    </div>
-
-    <!-- Email capture — avisar nuevas carreras -->
-    <div class="nl-onupolis">
-      <h3>Av&iacute;sanos cuando abran inscripciones</h3>
-      <p>Te enviamos un email cuando se abra una nueva carrera del circuito o salga el plan de entrenamiento espec&iacute;fico para ella. Sin spam, baja cuando quieras.</p>
-      <form id="nl-onupolis-form" novalidate>
-        <input type="email" name="email" required placeholder="tu@email.com" aria-label="Email">
-        <button type="submit">Av&iacute;same</button>
-      </form>
-      <div class="nl-status" id="nl-onupolis-status" role="status"></div>
     </div>
   </section>
 
@@ -747,6 +670,106 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
     </script>
   </section>
 
+  <!-- Compartir circuito en redes -->
+  <div class="share-strip">
+    <span class="share-strip-title">&iquest;Te apuntas? Comparte y arrastra a tu grupo:</span>
+    <a class="share-btn wa" href="https://wa.me/?text=Circuito%20Popular%20Onupolis%20Huelva%202026%20%E2%80%94%206%20carreras%20de%20mayo%20a%20diciembre%20en%20Huelva.%20%C2%BFTe%20apuntas%3F%20https%3A%2F%2Fwww.correrjuntos.com%2Fcarreras%2Fcircuito-onupolis-huelva-2026" target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=Circuito%20Popular%20Onupolis%20Huelva%202026%20%E2%80%94%206%20carreras%20populares%20de%20mayo%20a%20diciembre.%20Calendario%2C%20precios%20e%20inscripciones%3A&url=https%3A%2F%2Fwww.correrjuntos.com%2Fcarreras%2Fcircuito-onupolis-huelva-2026&hashtags=running,Huelva,Onupolis" target="_blank" rel="noopener noreferrer" aria-label="Compartir en X (Twitter)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X (Twitter)
+    </a>
+    <a class="share-btn tg" href="https://t.me/share/url?url=https%3A%2F%2Fwww.correrjuntos.com%2Fcarreras%2Fcircuito-onupolis-huelva-2026&text=Circuito%20Popular%20Onupolis%20Huelva%202026%20%E2%80%94%206%20carreras%20de%20mayo%20a%20diciembre" target="_blank" rel="noopener noreferrer" aria-label="Compartir en Telegram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+    <button class="share-btn copy" id="share-copy" type="button" aria-label="Copiar URL del circuito">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      <span id="share-copy-label">Copiar URL</span>
+    </button>
+  </div>
+
+  <section>
+    <h2>Precios de inscripci&oacute;n 2026</h2>
+    <p>Todos los precios son los publicados en el <a href="https://www.onupolis.es/reglamento/" target="_blank" rel="noopener noreferrer">reglamento oficial de Onupolis</a>. Los bonos de circuito completo son m&aacute;s econ&oacute;micos que inscribirse carrera a carrera.</p>
+
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>Modalidad</th>
+          <th>2K</th>
+          <th>5K</th>
+          <th>10K</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Inscripci&oacute;n individual (por carrera)</td>
+          <td class="price-value">3&euro;</td>
+          <td class="price-value">10&euro;</td>
+          <td class="price-value">13&euro;</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Bono circuito completo (6 carreras)</strong></td>
+          <td class="price-value">15&euro;</td>
+          <td class="price-value">50&euro;</td>
+          <td class="price-value">70&euro;</td>
+        </tr>
+        <tr>
+          <td>Menores 5K circuito con camiseta</td>
+          <td>&mdash;</td>
+          <td class="price-value">50&euro;</td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Menores 5K circuito sin camiseta</td>
+          <td>&mdash;</td>
+          <td class="price-value">30&euro;</td>
+          <td>&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <span class="tip-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+      <div><strong>Ahorro bono 10K:</strong> 6 carreras individuales a 13&euro; = 78&euro;. El bono circuito completo 10K cuesta 70&euro; &mdash; 8&euro; menos, y viene con camiseta incluida. Las inscripciones abren el 15 de enero de 2026 y cierran el 28 de diciembre o al llenarse el aforo.</div>
+    </div>
+
+    <!-- Bono Circuito Completo — CTA jerárquico destacado -->
+    <div class="bono-cta">
+      <div class="bono-cta-body">
+        <div class="bono-cta-eyebrow">M&aacute;s ahorro &middot; M&aacute;s motivaci&oacute;n</div>
+        <div class="bono-cta-title">Bono Circuito Completo 10K</div>
+        <div class="bono-cta-sub">Las 6 carreras del a&ntilde;o + camiseta t&eacute;cnica. La forma m&aacute;s ec&oacute;nomica de hacer el circuito entero.</div>
+      </div>
+      <div class="bono-cta-price">
+        <strong>70&euro;</strong>
+        <small>78&euro; por separado</small>
+      </div>
+      <div class="bono-cta-btn">
+        <a href="https://www.onupolis.es/inscripciones-carreras/" target="_blank" rel="noopener noreferrer">Comprar bono &rarr;</a>
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+  <section>    <!-- Email capture — avisar nuevas carreras -->
+    <div class="nl-onupolis">
+      <h3>Av&iacute;sanos cuando abran inscripciones</h3>
+      <p>Te enviamos un email cuando se abra una nueva carrera del circuito o salga el plan de entrenamiento espec&iacute;fico para ella. Sin spam, baja cuando quieras.</p>
+      <form id="nl-onupolis-form" novalidate>
+        <input type="email" name="email" required placeholder="tu@email.com" aria-label="Email">
+        <button type="submit">Av&iacute;same</button>
+      </form>
+      <div class="nl-status" id="nl-onupolis-status" role="status"></div>
+    </div>
+  </section>
+
   <section>
     <h2>Entrena para el circuito completo</h2>
     <p>Las 6 carreras del Circuito Onupolis tienen distancias de hasta 10K. Entre carrera y carrera hay entre 6 y 12 semanas de margen. Ese tiempo no es descanso &mdash; es el bloque de entrenamiento que decide si llegas a la siguiente carrera mejor o en las mismas condiciones.</p>
@@ -766,6 +789,18 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
       <a href="https://www.onupolis.es" target="_blank" rel="noopener noreferrer">Visitar onupolis.es &rarr;</a>
     </div>
   </div>
+
+
+  <!-- Author bio full (E-E-A-T at end of article) -->
+  <aside class="author-bio">
+    <a href="/about" class="avatar-lg" aria-label="Sobre Abraham Márquez Rodríguez">
+      <img src="/public/abraham.jpg" alt="Abraham Márquez Rodríguez, founder de CorrerJuntos" loading="lazy" decoding="async" width="64" height="64">
+    </a>
+    <div class="bio-body">
+      <h3 class="bio-name"><a href="/about" rel="author">Abraham M&aacute;rquez Rodr&iacute;guez</a></h3>
+      <p class="bio-text">Founder de CorrerJuntos en Huelva. Construyo la app que conecta runners cerca de ti y cuento por aqu&iacute; las carreras y clubs que merecen la pena en Andaluc&iacute;a. <a href="https://www.linkedin.com/in/abrahammarquezrodriguez/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &middot; <a href="/about">Sobre CorrerJuntos</a></p>
+    </div>
+  </aside>
 
   <section class="faq-section">
     <h2>Preguntas frecuentes</h2>
@@ -816,63 +851,7 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
 
   </section>
 
-  <section class="related">
-    <h2>Carreras populares en Andaluc&iacute;a</h2>
-    <div class="related-grid">
-      <a href="/carreras/media-maraton-sevilla" class="related-card">
-        <div class="related-card-img"><img src="https://images.pexels.com/photos/12200742/pexels-photo-12200742.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop&q=70" alt="Medio Maratón de Sevilla" loading="lazy" width="600" height="300"></div>
-        <div class="related-card-body">
-          <h3>Medio Marat&oacute;n de Sevilla</h3>
-          <div class="related-card-meta">21K &middot; Sevilla &middot; Andaluc&iacute;a</div>
-        </div>
-      </a>
-      <a href="/carreras/nocturna-guadalquivir-sevilla" class="related-card">
-        <div class="related-card-img"><img src="https://images.pexels.com/photos/2741701/pexels-photo-2741701.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop&q=70" alt="Nocturna Guadalquivir Sevilla" loading="lazy" width="600" height="300"></div>
-        <div class="related-card-body">
-          <h3>Nocturna Guadalquivir Sevilla</h3>
-          <div class="related-card-meta">10K &middot; Sevilla &middot; Andaluc&iacute;a</div>
-        </div>
-      </a>
-      <a href="/carreras/10k-salida-del-sol-malaga" class="related-card">
-        <div class="related-card-img"><img src="https://images.pexels.com/photos/2741701/pexels-photo-2741701.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop&q=70" alt="10K Salida del Sol Málaga" loading="lazy" width="600" height="300"></div>
-        <div class="related-card-body">
-          <h3>10K Salida del Sol M&aacute;laga</h3>
-          <div class="related-card-meta">10K &middot; M&aacute;laga &middot; Andaluc&iacute;a</div>
-        </div>
-      </a>
-    </div>
 
-    <h2 style="margin-top:8px">Art&iacute;culos relacionados</h2>
-    <div class="related-links">
-      <a href="/planes/10k">Plan entrenamiento 10K gratuito</a>
-      <a href="/planes/0-5k">Plan 0 a 5K para principiantes</a>
-      <a href="/blog/guia-equipamiento-running-2026">Gu&iacute;a equipamiento running 2026</a>
-      <a href="/blog/grupos-running-huelva">Soul Run Club Huelva &mdash; entrenamiento grupal</a>
-      <a href="/blog/carreras-populares-andalucia-2026">Carreras populares Andaluc&iacute;a 2026</a>
-      <a href="/blog/correr-por-huelva-rutas">Rutas para correr por Huelva</a>
-    </div>
-  </section>
-
-  <!-- Compartir circuito en redes -->
-  <div class="share-strip">
-    <span class="share-strip-title">&iquest;Te apuntas? Comparte y arrastra a tu grupo:</span>
-    <a class="share-btn wa" href="https://wa.me/?text=Circuito%20Popular%20Onupolis%20Huelva%202026%20%E2%80%94%206%20carreras%20de%20mayo%20a%20diciembre%20en%20Huelva.%20%C2%BFTe%20apuntas%3F%20https%3A%2F%2Fwww.correrjuntos.com%2Fcarreras%2Fcircuito-onupolis-huelva-2026" target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      WhatsApp
-    </a>
-    <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=Circuito%20Popular%20Onupolis%20Huelva%202026%20%E2%80%94%206%20carreras%20populares%20de%20mayo%20a%20diciembre.%20Calendario%2C%20precios%20e%20inscripciones%3A&url=https%3A%2F%2Fwww.correrjuntos.com%2Fcarreras%2Fcircuito-onupolis-huelva-2026&hashtags=running,Huelva,Onupolis" target="_blank" rel="noopener noreferrer" aria-label="Compartir en X (Twitter)">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      X (Twitter)
-    </a>
-    <a class="share-btn tg" href="https://t.me/share/url?url=https%3A%2F%2Fwww.correrjuntos.com%2Fcarreras%2Fcircuito-onupolis-huelva-2026&text=Circuito%20Popular%20Onupolis%20Huelva%202026%20%E2%80%94%206%20carreras%20de%20mayo%20a%20diciembre" target="_blank" rel="noopener noreferrer" aria-label="Compartir en Telegram">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      Telegram
-    </a>
-    <button class="share-btn copy" id="share-copy" type="button" aria-label="Copiar URL del circuito">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      <span id="share-copy-label">Copiar URL</span>
-    </button>
-  </div>
 
   <!-- CTA app — solo al final, subordinado -->
   <div class="cta-app-final">
@@ -889,6 +868,27 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
       </a>
     </div>
   </div>
+
+
+  <section class="related-subord">
+    <h2 style="font-size:1.05rem;color:#5c4d3d;margin-bottom:12px">Tambi&eacute;n te puede interesar</h2>
+    <div class="related-links">
+      <a href="/carreras/media-maraton-sevilla">Media Marat&oacute;n Sevilla</a>
+      <a href="/carreras/nocturna-guadalquivir-sevilla">Nocturna Guadalquivir Sevilla</a>
+      <a href="/carreras/10k-salida-del-sol-malaga">10K Salida del Sol M&aacute;laga</a>
+      <a href="/carreras/maraton-sevilla">Marat&oacute;n Sevilla</a>
+      <a href="/carreras/media-maraton-malaga">Media Marat&oacute;n M&aacute;laga</a>
+    </div>
+
+    <h2 style="font-size:1.05rem;color:#5c4d3d;margin:24px 0 12px">Art&iacute;culos relacionados</h2>
+    <div class="related-links">
+      <a href="/planes/10k">Plan entrenamiento 10K gratuito</a>
+      <a href="/planes/0-5k">Plan 0 a 5K para principiantes</a>
+      <a href="/blog/guia-equipamiento-running-2026">Gu&iacute;a equipamiento running 2026</a>
+      <a href="/blog/grupos-running-huelva">Soul Run Club Huelva</a>
+      <a href="/blog/correr-por-huelva-rutas">Rutas para correr por Huelva</a>
+    </div>
+  </section>
 
 </main>
 

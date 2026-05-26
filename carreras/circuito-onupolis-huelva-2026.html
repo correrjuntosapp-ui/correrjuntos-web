@@ -389,7 +389,7 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
       <div class="urgency-sub" id="urgency-sub">&mdash;</div>
     </div>
     <div class="urgency-ctas">
-      <a class="urgency-cta-main" id="urgency-cta-main" href="https://www.onupolis.es/nocturna-onupolis/" target="_blank" rel="noopener noreferrer" data-track="urgency-inscribirse">Inscribirse 13&euro; &rarr;</a>
+      <a class="urgency-cta-main" id="urgency-cta-main" href="https://www.onupolis.es/inscripciones-carreras/#nocturna" target="_blank" rel="noopener noreferrer" data-track="urgency-inscribirse">Inscribirse 13&euro; &rarr;</a>
       <a class="urgency-cta-bono" href="https://www.onupolis.es/inscripciones-carreras/" target="_blank" rel="noopener noreferrer" data-track="urgency-bono">Bono 6 carreras <strong>70&euro;</strong></a>
     </div>
   </div>
@@ -940,12 +940,16 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .nav-wrapper{backgroun
 <script>
 (function(){
   // ── 1) Urgency countdown a la próxima carrera (foto + multi-CTA dinámico) ──
+  // url: SIEMPRE /inscripciones-carreras/ (hub real de inscripción con widget sportmaniacs).
+  // Las URLs /nocturna-onupolis/ etc son páginas info (recorrido + fotos), NO de inscripción
+  // — el CTA "Inscribirse" del banner debe llevar directo al formulario, no a la info.
+  var INSCR_URL = 'https://www.onupolis.es/inscripciones-carreras/';
   var races = [
-    {name:'Nocturna Onupolis', shortName:'Nocturna', date:new Date('2026-06-13T21:30:00+02:00'), time:'21:30', place:'La Placeta, Huelva', url:'https://www.onupolis.es/nocturna-onupolis/', img:'/public/carreras/nocturna-onupolis/cover-jun13.jpg', dorsalCloseDays:9, price:'13€'},
-    {name:'Golf Runner Onupolis', shortName:'Golf Runner', date:new Date('2026-07-04T20:00:00+02:00'), time:'20:00', place:'Club Bellavista, Aljaraque', url:'https://www.onupolis.es/golf-runner-onupolis/', img:'/public/carreras/golf-runner-onupolis-2026/cover-jul4.jpg', dorsalCloseDays:9, price:'13€'},
-    {name:'Huelva Verde Onupolis', shortName:'Huelva Verde', date:new Date('2026-09-05T10:00:00+02:00'), time:'10:00', place:'Parque Moret, Huelva', url:'https://www.onupolis.es/huelva-verde-onupolis/', img:'/public/carreras/huelva-verde-onupolis-2026/cover.jpg', dorsalCloseDays:9, price:'13€'},
-    {name:'39ª Vuelta a Huelva', shortName:'Vuelta a Huelva', date:new Date('2026-10-12T10:00:00+02:00'), time:'10:00', place:'Estadio Andrés Estrada', url:'https://www.onupolis.es/vuelta-a-huelva-onupolis/', img:'/public/carreras/vuelta-a-huelva-onupolis-2026/cover.jpg', dorsalCloseDays:9, price:'13€'},
-    {name:'San Silvestre Onupolis', shortName:'San Silvestre', date:new Date('2026-12-30T19:00:00+01:00'), time:'19:00', place:'Plaza el Punto, Huelva', url:'https://www.onupolis.es/san-silvestre-onupolis/', img:'/public/carreras/san-silvestre-onupolis-2026/cover.jpg', dorsalCloseDays:9, price:'13€'}
+    {name:'Nocturna Onupolis', shortName:'Nocturna', date:new Date('2026-06-13T21:30:00+02:00'), time:'21:30', place:'La Placeta, Huelva', url:INSCR_URL+'#nocturna', img:'/public/carreras/nocturna-onupolis/cover-jun13.jpg', dorsalCloseDays:9, price:'13€'},
+    {name:'Golf Runner Onupolis', shortName:'Golf Runner', date:new Date('2026-07-04T20:00:00+02:00'), time:'20:00', place:'Club Bellavista, Aljaraque', url:INSCR_URL+'#golf-runner', img:'/public/carreras/golf-runner-onupolis-2026/cover-jul4.jpg', dorsalCloseDays:9, price:'13€'},
+    {name:'Huelva Verde Onupolis', shortName:'Huelva Verde', date:new Date('2026-09-05T10:00:00+02:00'), time:'10:00', place:'Parque Moret, Huelva', url:INSCR_URL+'#huelva-verde', img:'/public/carreras/huelva-verde-onupolis-2026/cover.jpg', dorsalCloseDays:9, price:'13€'},
+    {name:'39ª Vuelta a Huelva', shortName:'Vuelta a Huelva', date:new Date('2026-10-12T10:00:00+02:00'), time:'10:00', place:'Estadio Andrés Estrada', url:INSCR_URL+'#vuelta-a-huelva', img:'/public/carreras/vuelta-a-huelva-onupolis-2026/cover.jpg', dorsalCloseDays:9, price:'13€'},
+    {name:'San Silvestre Onupolis', shortName:'San Silvestre', date:new Date('2026-12-30T19:00:00+01:00'), time:'19:00', place:'Plaza el Punto, Huelva', url:INSCR_URL+'#san-silvestre', img:'/public/carreras/san-silvestre-onupolis-2026/cover.jpg', dorsalCloseDays:9, price:'13€'}
   ];
   var now = new Date();
   var next = races.find(function(r){return r.date > now;});

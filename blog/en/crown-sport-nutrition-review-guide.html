@@ -185,10 +185,6 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();loadMetaPix
 body{margin:0;font-family:'Inter',system-ui,sans-serif;background:#fef7ed;color:#1f1b16;line-height:1.65}
 a{color:#1f1b16;text-decoration:underline;text-decoration-color:rgba(249,115,22,.5);text-underline-offset:3px;text-decoration-thickness:1.5px}
 a:hover{color:#f97316}
-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.nav-logo{font-weight:800;font-size:1.1rem;color:#0b1220;text-decoration:none}
-.nav-logo span{color:#f97316;font-style:italic}
-.nav-cta{background:#f97316;color:#fff!important;padding:8px 16px;border-radius:8px;font-weight:600;font-size:.85rem;text-decoration:none!important}
 .hero{position:relative;width:100vw;margin-left:calc(-50vw + 50%);min-height:440px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#241c15 0%,#0a0a0a 72%)}
 .hero-overlay{position:absolute;inset:0;background:radial-gradient(circle at 50% 28%,rgba(249,115,22,.12),transparent 62%);pointer-events:none}
 .hero-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;max-width:840px;margin:0 auto}
@@ -267,10 +263,19 @@ footer a:hover{color:#f97316}
 </head>
 <body>
 
-<nav>
-  <a href="/" class="nav-logo">Correr<span>Juntos</span></a>
-  <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener" class="nav-cta">Download app</a>
+<header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
+<nav style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px">
+  <a href="/" style="text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em"><span style="color:#3d3229">CORRER</span><span style="color:#f97316">JUNTOS</span></a>
+  <div style="display:flex;gap:24px;align-items:center;font-size:.9rem;font-weight:600">
+    <a href="/planes" style="color:#3d3229;text-decoration:none">Planes</a>
+    <a href="/blog" style="color:#f97316;text-decoration:none">Blog</a>
+    <a href="/carreras" style="color:#3d3229;text-decoration:none">Carreras</a>
+    <a href="/#pricing" style="color:#3d3229;text-decoration:none">Precios</a>
+    <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" style="background:#f97316;color:#fff;padding:8px 20px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none">Descargar App</a>
+  </div>
+  <div class="nav-auth" style="display:none"></div>
 </nav>
+</header>
 
 <div class="hero">
   <div class="hero-overlay"></div>

@@ -87,6 +87,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip;max-width:100%}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#fef7ed;color:#3d3229;line-height:1.7}
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
@@ -3817,7 +3818,7 @@ document.addEventListener('DOMContentLoaded', function() {
       filterTrigger.classList.remove('open');
       history.pushState({}, '', location.pathname + '?cat=' + cat);
       filterCards();
-      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToTopOfResults();
     });
   });
 
@@ -3862,7 +3863,7 @@ document.addEventListener('DOMContentLoaded', function() {
       history.pushState({}, '', location.pathname + '?cat=' + cat);
       filterCards();
       // Scroll to top of grid
-      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToTopOfResults();
     });
   });
 
@@ -3894,6 +3895,29 @@ document.addEventListener('DOMContentLoaded', function() {
   loadMoreWrap.innerHTML = '<button class="load-more-btn" id="loadMoreBtn">Cargar mas articulos</button>';
   grid.parentNode.insertBefore(loadMoreWrap, grid.nextSibling);
   var loadMoreBtn = document.getElementById('loadMoreBtn');
+
+  // Sube de forma FIABLE al inicio de los filtros/resultados tras elegir
+  // categoria. Bug (movil): grid.scrollIntoView('smooth') corria a la vez que
+  // filterCards() cambiaba la altura del grid -> el scroll quedaba a media
+  // pagina. Ademas .filter-bar-wrap es position:sticky (top:64): tanto
+  // getBoundingClientRect() como offsetTop devuelven la posicion PEGADA (no la
+  // natural) cuando estas scrolleado -> el calculo daba ~el scroll actual y "se
+  // quedaba en la mitad". Fix: diferimos un frame (rAF) y neutralizamos el
+  // sticky un instante (sincrono, sin parpadeo) para leer la posicion natural
+  // real, medimos y restauramos.
+  function scrollToTopOfResults() {
+    requestAnimationFrame(function() {
+      var el = (typeof filterBarWrap !== 'undefined' && filterBarWrap) ? filterBarWrap : (filterBar || grid);
+      if (!el) return;
+      var prev = el.style.position;
+      el.style.position = 'static';
+      var y = el.getBoundingClientRect().top + window.pageYOffset;
+      el.style.position = prev;
+      var headerOffset = 72; // alto del nav superior sticky + holgura
+      var target = y - headerOffset;
+      window.scrollTo({ top: target > 0 ? target : 0, behavior: 'smooth' });
+    });
+  }
 
   function filterCards() {
     var query = searchInput.value.trim().toLowerCase();

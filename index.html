@@ -129,9 +129,6 @@ function loadGA4(){if(document.getElementById('ga4-script'))return;var s=documen
 if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1466415711868158');fbq('track','PageView');}
 if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
-function loadMetricool(){if(window.__mcLoaded)return;window.__mcLoaded=true;var b=document.getElementsByTagName('head')[0],c=document.createElement('script');c.type='text/javascript';c.src='https://tracker.metricool.com/resources/be.js';var fire=function(){try{beTracker.t({hash:'cbe2f20c7d2f12aa451f095f70e48b8d'});}catch(e){}};c.onreadystatechange=fire;c.onload=fire;b.appendChild(c);}
-/* Metricool: carga directa (sin gating) para que la verificacion reciba el hit en cualquier visita. Se puede re-gatear tras verificar. */
-loadMetricool();
 </script>
 <script>
 /* UTM capture — persist source attribution across sessions and into App Store links */
@@ -1293,7 +1290,7 @@ document.getElementById('cookieBanner').classList.add('show');
 function acceptCookies(){
 localStorage.setItem('cj_cookie_consent','accepted');
 document.getElementById('cookieBanner').classList.remove('show');
-loadGA4();loadMetaPixel();loadMetricool();
+loadGA4();loadMetaPixel();
 }
 function rejectCookies(){
 localStorage.setItem('cj_cookie_consent','rejected');

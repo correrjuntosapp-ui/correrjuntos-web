@@ -1,0 +1,109 @@
+{
+  "finished_at": "2026-05-31T11:06:14.989Z",
+  "total_seconds": 263,
+  "catalog_before": 155,
+  "catalog_after": 269,
+  "by_ccaa": [
+    {
+      "ccaa": "Cataluña",
+      "scraped": 15,
+      "merged": 15,
+      "carteles_copied": 15,
+      "elapsed_s": 36
+    },
+    {
+      "ccaa": "Valencia",
+      "scraped": 0,
+      "merged": 0,
+      "carteles_copied": 0,
+      "elapsed_s": 1
+    },
+    {
+      "ccaa": "Galicia",
+      "scraped": 15,
+      "merged": 15,
+      "carteles_copied": 15,
+      "elapsed_s": 37
+    },
+    {
+      "ccaa": "Aragón",
+      "scraped": 15,
+      "merged": 15,
+      "carteles_copied": 15,
+      "elapsed_s": 32
+    },
+    {
+      "ccaa": "Asturias",
+      "scraped": 14,
+      "merged": 14,
+      "carteles_copied": 14,
+      "elapsed_s": 30
+    },
+    {
+      "ccaa": "Murcia",
+      "scraped": 13,
+      "merged": 13,
+      "carteles_copied": 13,
+      "elapsed_s": 29
+    },
+    {
+      "ccaa": "Canarias",
+      "scraped": 13,
+      "merged": 13,
+      "carteles_copied": 13,
+      "elapsed_s": 29
+    },
+    {
+      "ccaa": "Baleares",
+      "scraped": 0,
+      "merged": 0,
+      "carteles_copied": 0,
+      "elapsed_s": 1
+    },
+    {
+      "ccaa": "Cantabria",
+      "scraped": 15,
+      "merged": 15,
+      "carteles_copied": 15,
+      "elapsed_s": 36
+    },
+    {
+      "ccaa": "Navarra",
+      "scraped": 14,
+      "merged": 14,
+      "carteles_copied": 14,
+      "elapsed_s": 32
+    }
+  ],
+  "errors": [
+    {
+      "ccaa": "Castilla y León",
+      "error": "scraper exit !=0"
+    },
+    {
+      "ccaa": "Castilla-La Mancha",
+      "error": "scraper exit !=0"
+    },
+    {
+      "ccaa": "País Vasco",
+      "error": "scraper exit !=0"
+    },
+    {
+      "ccaa": "La Rioja",
+      "error": "scraper exit !=0"
+    }
+  ],
+  "distribution": {
+    "Andalucía": 86,
+    "Madrid": 55,
+    "Extremadura": 14,
+    "Cataluña": 15,
+    "Galicia": 15,
+    "Aragón": 15,
+    "Asturias": 14,
+    "Murcia": 13,
+    "Canarias": 13,
+    "Cantabria": 15,
+    "Navarra": 14
+  }
+}

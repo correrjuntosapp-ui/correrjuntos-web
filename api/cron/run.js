@@ -21,6 +21,7 @@ import runTrialPush from '../_lib/jobs/trial-push.js';
 import runPartnerQuedadas from '../_lib/jobs/partner-quedadas.js';
 import runPlanDrip from '../_lib/jobs/plan-drip.js';
 import runRecoveryFinde from '../_lib/jobs/recovery-finde.js';
+import runUpdateBlast from '../_lib/jobs/update-blast.js';
 
 const env = {
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
@@ -37,6 +38,7 @@ const JOBS = {
   'partner-quedadas': runPartnerQuedadas,
   'plan-drip': runPlanDrip,
   'recovery-finde': runRecoveryFinde,
+  'update-blast': runUpdateBlast,
 };
 
 export default async function handler(req, res) {

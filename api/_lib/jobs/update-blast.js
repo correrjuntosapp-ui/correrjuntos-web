@@ -142,34 +142,14 @@ export default async function runUpdateBlast(_req, res, env) {
     }
   }
 
-  // ─── 2) EMAIL BLAST via Brevo to all confirmed auth.users ──────
-  // We hit /api/cron/run?job=update-blast (not paginated for one-off).
-  // Limit: take 300 most recent registered to stay within Brevo daily quota.
-  const { data: emailUsers } = await supabase
-    .from('profiles')
-    .select('id, nombre')
-    .order('created_at', { ascending: false })
-    .limit(300);
-
-  // Join with auth.users to get email + email_confirmed_at + locale hint
-  const userIds = (emailUsers || []).map(u => u.id);
-  let authData = { users: [] };
-  if (userIds.length > 0) {
-    // Single-shot fetch via admin API (service role)
-    const { data: adminPage } = await supabase.auth.admin.listUsers({ perPage: 500 });
-    authData = adminPage || { users: [] };
+  // ─── 2) EMAIL BLAST via Brevo to confirmed auth.users ──────────
+  // Uses Postgres RPC `get_blast_recipients` (SECURITY DEFINER) which
+  // joins auth.users + profiles + filters test/seed/partner accounts.
+  // auth schema isn't exposed via PostgREST → RPC is the clean path.
+  const { data: recipients = [], error: recError } = await supabase.rpc('get_blast_recipients', { p_limit: 300 });
+  if (recError) {
+    return res.status(500).json({ error: 'recipients_rpc_failed', detail: recError.message, push: results.push });
   }
-  const authMap = new Map((authData.users || []).map(u => [u.id, u]));
-
-  const recipients = (emailUsers || [])
-    .map(p => {
-      const a = authMap.get(p.id);
-      if (!a || !a.email || !a.email_confirmed_at) return null;
-      const lang = (a.user_metadata?.locale || a.user_metadata?.lang || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
-      const nombre = (p.nombre || a.user_metadata?.full_name || a.email.split('@')[0] || '').split(' ')[0];
-      return { email: a.email, nombre, lang };
-    })
-    .filter(Boolean);
 
   for (const r of recipients) {
     const html = emailHtml(r.nombre, r.lang);

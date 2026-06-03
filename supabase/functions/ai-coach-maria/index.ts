@@ -18,6 +18,10 @@ function jsonResponse(data: unknown, status = 200) {
   });
 }
 
+// [3 jun 2026] Freemium: no-premium pueden chatear FREE_DAILY_LIMIT mensajes
+// al día (reset UTC 00:00). Premium = ilimitado. Dejar CATAR el value.
+const FREE_DAILY_LIMIT = 5;
+
 // ─────────────────────────────────────────────────────────────────────
 //  ANA — Asistente Nutricional Deportiva CorrerJuntos
 //  (URL endpoint mantiene /ai-coach-maria por estabilidad deployed)
@@ -362,8 +366,19 @@ async function handleChat(payload: any, userId: string, supabase: any) {
     .eq('id', userId)
     .single();
 
+  // Freemium: premium = ilimitado. No-premium = FREE_DAILY_LIMIT msgs/día (UTC).
   if (!profile?.es_premium) {
-    throw new Error('PREMIUM_REQUIRED');
+    const startOfDay = new Date();
+    startOfDay.setUTCHours(0, 0, 0, 0);
+    const { count } = await supabase
+      .from('maria_chat_messages')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', userId)
+      .eq('role', 'user')
+      .gte('created_at', startOfDay.toISOString());
+    if ((count ?? 0) >= FREE_DAILY_LIMIT) {
+      throw new Error('DAILY_LIMIT_REACHED');
+    }
   }
 
   // Save user message
@@ -522,6 +537,9 @@ Deno.serve(async (req: Request) => {
         try {
           result = await handleChat(payload, user.id, supabase);
         } catch (e: any) {
+          if (e.message === 'DAILY_LIMIT_REACHED') {
+            return jsonResponse({ error: 'daily_limit_reached', limit: FREE_DAILY_LIMIT }, 200);
+          }
           if (e.message === 'PREMIUM_REQUIRED') {
             return jsonResponse({ error: 'premium_required', message: 'Upgrade to Premium for Ana nutrition chat' }, 403);
           }

@@ -122,16 +122,21 @@
       '.cj-nl-modal .cj-msg-err{padding:10px;background:rgba(239,68,68,.08);color:#dc2626;border-radius:10px;font-size:.85rem;text-align:center}',
 
       /* Inline mid-article form */
-      '.cj-nl-inline{background:linear-gradient(135deg,#fff7ed 0%,#fffcf9 100%);border:1.5px solid #fed7aa;border-radius:16px;padding:24px;margin:32px 0;font-family:Inter,sans-serif}',
-      '.cj-nl-inline h4{margin:0 0 6px;font-size:1rem;color:#1f1b16;font-weight:800;letter-spacing:-.005em}',
-      '.cj-nl-inline p{margin:0 0 14px;font-size:.85rem;color:#5c4d3d;line-height:1.5}',
-      '.cj-nl-inline form{display:flex;gap:8px;flex-wrap:wrap}',
-      '.cj-nl-inline input{flex:1;min-width:200px;background:#fff;border:1px solid #efe6db;padding:10px 14px;border-radius:10px;font-size:.9rem;outline:none;font-family:inherit;transition:border-color .2s}',
+      '.cj-nl-inline{position:relative;background:#fff;border:1px solid #f0e6d8;border-left:4px solid #f97316;border-radius:16px;padding:26px 28px;margin:36px 0;font-family:Inter,sans-serif;box-shadow:0 8px 30px rgba(249,115,22,.08)}',
+      '.cj-nl-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}',
+      '.cj-nl-ic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#fb923c,#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(234,88,12,.3)}',
+      '.cj-nl-ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2}',
+      '.cj-nl-eyebrow{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#ea580c;margin-bottom:3px}',
+      '.cj-nl-inline h4{margin:0;font-size:1.18rem;color:#1f1b16;font-weight:800;letter-spacing:-.02em;line-height:1.15}',
+      '.cj-nl-inline p{margin:0 0 16px;font-size:.9rem;color:#5c4d3d;line-height:1.55}',
+      '.cj-nl-inline form{display:flex;gap:9px;flex-wrap:wrap}',
+      '.cj-nl-inline input{flex:1;min-width:200px;background:#fff;border:1.5px solid #e7dccd;padding:12px 16px;border-radius:11px;font-size:.92rem;outline:none;font-family:inherit;transition:border-color .2s}',
       '.cj-nl-inline input:focus{border-color:#f97316}',
-      '.cj-nl-inline button{background:#1f1b16;color:#fff;border:none;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;transition:background .2s;font-family:inherit;white-space:nowrap}',
-      '.cj-nl-inline button:hover{background:#3d3229}',
-      '.cj-nl-inline .cj-note{font-size:.74rem;color:#94886e;margin-top:10px}',
-      '.cj-nl-inline .cj-msg-ok{color:#059669;font-weight:600;font-size:.88rem;padding:8px 0}',
+      '.cj-nl-inline button{background:#f97316;color:#fff;border:none;padding:12px 24px;border-radius:11px;font-weight:700;font-size:.9rem;cursor:pointer;transition:transform .15s,background .2s;font-family:inherit;white-space:nowrap;box-shadow:0 4px 14px rgba(249,115,22,.3)}',
+      '.cj-nl-inline button:hover{background:#ea6c10;transform:translateY(-1px)}',
+      '.cj-nl-inline .cj-note{display:flex;align-items:center;gap:6px;font-size:.76rem;color:#94886e;margin-top:12px}',
+      '.cj-nl-inline .cj-note svg{width:13px;height:13px;stroke:#22c55e;fill:none;stroke-width:2.5;flex:0 0 auto}',
+      '.cj-nl-inline .cj-msg-ok{color:#059669;font-weight:600;font-size:.9rem;padding:8px 0}',
 
       /* End-of-article CTA */
       '.cj-nl-end{background:#1f1b16;color:#fef7ed;border-radius:20px;padding:36px 32px;margin:48px 0;text-align:center;font-family:Inter,sans-serif;position:relative;overflow:hidden}',
@@ -264,7 +269,7 @@
           '<button type="submit">Quiero el plan gratis</button>' +
           '<button type="button" class="cj-modal-skip">No me interesa</button>' +
         '</form>' +
-        '<div class="cj-modal-foot">+1.000 runners ya lo reciben</div>' +
+        '<div class="cj-modal-foot">Gratis · sin spam · baja en 1 clic</div>' +
       '</div>';
 
     document.body.appendChild(overlay);
@@ -351,13 +356,17 @@
     var box = document.createElement('div');
     box.className = 'cj-nl-inline';
     box.innerHTML =
-      '<h4>📩 1 nuevo artículo cada lunes en tu email</h4>' +
-      '<p>Plan 0→5K gratis al suscribirte. Sin spam, baja en 1 click.</p>' +
+      '<div class="cj-nl-head">' +
+        '<span class="cj-nl-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>' +
+        '<div><div class="cj-nl-eyebrow">Newsletter · gratis</div>' +
+        '<h4>Un artículo de running cada lunes</h4></div>' +
+      '</div>' +
+      '<p>Suscríbete y te llevas el <strong>Plan 0→5K gratis</strong>. Un email a la semana con consejos de entrenamiento. Sin spam, baja en 1 clic.</p>' +
       '<form>' +
         '<input type="email" required placeholder="tu@email.com" aria-label="Email">' +
-        '<button type="submit">Suscribirme</button>' +
+        '<button type="submit">Quiero el plan gratis</button>' +
       '</form>' +
-      '<div class="cj-note">+1.000 runners ya lo reciben.</div>';
+      '<div class="cj-note"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Gratis para siempre · cancela cuando quieras</div>';
 
     paras[2].parentNode.insertBefore(box, paras[2].nextSibling);
     track('newsletter_view', { source: 'inline_mid' });
@@ -394,7 +403,7 @@
         '<input type="email" required placeholder="tu@email.com" aria-label="Email">' +
         '<button type="submit">Quiero el plan gratis</button>' +
       '</form>' +
-      '<div class="cj-foot">+1.000 runners ya lo reciben. Baja en 1 click.</div>';
+      '<div class="cj-foot">Gratis para siempre · baja en 1 clic</div>';
 
     related.parentNode.insertBefore(box, related);
     track('newsletter_view', { source: 'end_article' });

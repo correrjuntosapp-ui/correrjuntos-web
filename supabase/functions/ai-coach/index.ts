@@ -126,7 +126,7 @@ function getSystemPrompt(lang: string) {
 }
 
 // Modelo: Claude Sonnet 4.5 para conversacion premium (mejor que Haiku para coach)
-const MODEL_CHAT = 'claude-sonnet-4-5-20250929';
+const MODEL_CHAT = 'claude-sonnet-4-6';
 // Para post-run analysis y weekly summary, mantener Haiku (mas rapido y barato)
 const MODEL_BATCH = 'claude-haiku-4-5-20251001';
 

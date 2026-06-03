@@ -355,7 +355,7 @@ function getSystemPrompt(lang: string) {
 }
 
 // Modelo: Claude Sonnet 4.5 para chat premium (igual que Coach Jose)
-const MODEL_CHAT = 'claude-sonnet-4-5-20250929';
+const MODEL_CHAT = 'claude-sonnet-4-6';
 
 async function handleChat(payload: any, userId: string, supabase: any) {
   const { message, lang = 'es' } = payload;

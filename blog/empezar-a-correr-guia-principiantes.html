@@ -358,7 +358,11 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .plan-cta-card .cta-btn:hover{background:#ea6c10;transform:translateY(-1px)}
 @media (max-width:560px){.plan-cta-card{flex-direction:column;align-items:flex-start;gap:14px}}
 .app-cta-box{background:linear-gradient(165deg,#26211b 0%,#1a1611 100%);border:1px solid rgba(251,146,60,.18);border-radius:18px;padding:38px 28px;margin:40px 0;text-align:center;color:#fff;box-shadow:0 14px 44px rgba(0,0,0,.20)}
-.app-cta-icon{width:62px;height:62px;border-radius:15px;display:block;margin:0 auto 14px;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+.app-cta-avatars{display:flex;justify-content:center;align-items:center;margin:0 auto 8px}
+.app-cta-av{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid #f97316;box-shadow:0 12px 28px rgba(0,0,0,.5);background:#26211b}
+.app-cta-av.ax2{margin-left:-18px;z-index:1}
+.app-cta-names{font-size:.78rem;color:rgba(255,255,255,.55);margin-bottom:14px;letter-spacing:.02em}
+.app-cta-names b{color:#fff;font-weight:700}
 .app-cta-eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#fb923c;font-weight:800;margin-bottom:12px}
 .app-cta-box h2{font-size:1.45rem;font-weight:800;color:#fff;margin-bottom:10px;padding-left:0;letter-spacing:-.02em}
 .app-cta-box h2::before{display:none}
@@ -625,7 +629,11 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </div>
 
 <div class="app-cta-box">
-      <img class="app-cta-icon" src="/icons/icon-512.png" alt="CorrerJuntos" width="62" height="62" loading="lazy">
+      <div class="app-cta-avatars">
+        <img class="app-cta-av" src="/public/coach-jose.jpg" alt="Coach José, entrenador IA de CorrerJuntos" width="76" height="76" loading="lazy">
+        <img class="app-cta-av ax2" src="/public/coach-ana.jpg" alt="Ana, nutricionista IA de CorrerJuntos" width="76" height="76" loading="lazy">
+      </div>
+      <div class="app-cta-names"><b>Coach José</b> entrenador &middot; <b>Ana</b> nutrición</div>
       <div class="app-cta-eyebrow">CorrerJuntos &middot; App gratis</div>
       <h2>¿Dudas? Preg&uacute;ntale a Coach Jos&eacute; y Ana</h2>
       <p>Tu entrenador y tu nutricionista con IA, en espa&ntilde;ol. Preg&uacute;ntales qu&eacute; hacer hoy, c&oacute;mo mejorar tu ritmo o qu&eacute; comer antes de correr &mdash; y te responden al momento, como un colega. <strong style="color:#fff">5 mensajes gratis al d&iacute;a, sin tarjeta.</strong></p>

@@ -252,7 +252,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     <a href="/blog" style="color:#f97316;text-decoration:none">Blog</a>
     <a href="/carreras" style="color:#3d3229;text-decoration:none">Carreras</a>
     <a href="/#pricing" style="color:#3d3229;text-decoration:none">Precios</a>
-    <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" style="background:#f97316;color:#fff;padding:8px 20px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none">Descargar App</a>
+    <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" style="background:#f97316;color:#fff;padding:8px 20px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none" onclick="if(/android/i.test(navigator.userAgent))this.href='https://play.google.com/store/apps/details?id=com.correrjuntos.app'">Descargar App</a>
   </div>
   <div class="nav-auth" style="display:none"></div>
 </nav>

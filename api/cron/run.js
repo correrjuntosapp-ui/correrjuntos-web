@@ -23,6 +23,7 @@ import runPlanDrip from '../_lib/jobs/plan-drip.js';
 import runRecoveryFinde from '../_lib/jobs/recovery-finde.js';
 import runUpdateBlast from '../_lib/jobs/update-blast.js';
 import runWeeklyNewsletter from '../_lib/jobs/weekly-newsletter.js';
+import runFounderBlast from '../_lib/jobs/founder-blast.js';
 
 const env = {
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
@@ -41,6 +42,7 @@ const JOBS = {
   'recovery-finde': runRecoveryFinde,
   'update-blast': runUpdateBlast,
   'weekly-newsletter': runWeeklyNewsletter,
+  'founder-blast': runFounderBlast,
 };
 
 export default async function handler(req, res) {

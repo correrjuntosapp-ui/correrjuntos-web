@@ -1,11 +1,19 @@
 name: Audit Amazon CDN Images
 
-# Cron mensual — primer lunes del mes a las 09:00 UTC
+# Cron mensual — día 1 de cada mes a las 09:00 UTC
+# (antes '0 9 1-7 * 1' corría a DIARIO los días 1-7 por la lógica OR de GitHub)
 # + manual trigger via Actions UI
 on:
   schedule:
-    - cron: '0 9 1-7 * 1'
+    - cron: '0 9 1 * *'
   workflow_dispatch:
+
+# El token necesita issues:write para crear el issue de imágenes rotas.
+# Sin esto: "Resource not accessible by integration" (default solo-lectura
+# tras hacer el repo público).
+permissions:
+  contents: read
+  issues: write
 
 jobs:
   audit:

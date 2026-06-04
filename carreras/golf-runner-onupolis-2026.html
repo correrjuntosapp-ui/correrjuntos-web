@@ -216,6 +216,13 @@ body{padding-bottom:66px}
 .sticky-inscribe .si-name b{color:#fb923c}
 .sticky-inscribe .si-btn{background:#f97316;color:#15110d;padding:9px 20px;border-radius:999px;font-weight:800;font-size:.9rem;white-space:nowrap}
 @media(max-width:560px){.sticky-inscribe{justify-content:space-between;gap:10px}.sticky-inscribe .si-name{font-size:.82rem}}
+/* José + Ana avatares dentro del recuadro app */
+.app-coaches{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:4px 0 26px}
+.app-coach{display:flex;align-items:center;gap:11px}
+.app-coach img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #f97316;flex-shrink:0}
+.app-coach.ana img{border-color:#ec4899}
+.app-coach .ac-name{display:block;color:#fff;font-weight:700;font-size:.92rem;text-align:left;line-height:1.15}
+.app-coach .ac-role{display:block;color:rgba(255,255,255,.55);font-size:.76rem;text-align:left;margin-top:2px}
 </style>
 </head>
 <body>
@@ -386,7 +393,17 @@ body{padding-bottom:66px}
     <img class="app-cta-icon" src="/icons/icon-512.png" alt="CorrerJuntos" width="62" height="62" loading="lazy">
     <div class="app-cta-eyebrow">CorrerJuntos &middot; App gratis</div>
     <h2>Encuentra tu grupo en Huelva para la Golf Runner</h2>
-    <p>Corredores de Huelva que entrenan para la misma carrera, quedadas semanales organizadas por runners reales, y Coach Jos&eacute; y Ana (IA) que te preparan el plan y la nutrici&oacute;n. Gratis para empezar.</p>
+    <p>Corredores de Huelva que entrenan para la misma carrera y quedadas semanales organizadas por runners reales. Y dentro, dos entrenadores IA que te acompa&ntilde;an gratis:</p>
+    <div class="app-coaches">
+      <div class="app-coach">
+        <img src="/public/coach-jose.jpg" alt="Coach Jos&eacute;, entrenador IA de CorrerJuntos" loading="lazy" width="50" height="50">
+        <div><span class="ac-name">Coach Jos&eacute;</span><span class="ac-role">Tu entrenador IA</span></div>
+      </div>
+      <div class="app-coach ana">
+        <img src="/public/coach-ana.jpg" alt="Ana, nutricionista IA de CorrerJuntos" loading="lazy" width="50" height="50">
+        <div><span class="ac-name">Ana</span><span class="ac-role">Nutrici&oacute;n IA</span></div>
+      </div>
+    </div>
     <div class="app-badges">
       <a href="https://apps.apple.com/app/correr-juntos/id6758505910" class="store-badge" target="_blank" rel="noopener" aria-label="Descargar en App Store">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>

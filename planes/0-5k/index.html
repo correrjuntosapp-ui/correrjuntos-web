@@ -363,6 +363,21 @@ html.dark .btn-reject{background:rgba(255,255,255,.06);border-color:rgba(255,255
 .app-cta-pro .sbadge .st{text-align:left;line-height:1}
 .app-cta-pro .sbadge .ss{display:block;font-size:.62rem;opacity:.8;margin-bottom:3px}
 .app-cta-pro .sbadge .sb{display:block;font-size:1rem;font-weight:700}
+/* Fases del plan (timeline tipo Runna) */
+.plan-phases{display:flex;flex-direction:column;gap:12px;margin:8px 0 16px}
+.phase-card{display:flex;gap:16px;align-items:flex-start;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;padding:18px 20px;transition:transform .15s,box-shadow .15s,border-color .15s}
+.phase-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.06);border-color:rgba(249,115,22,.3)}
+.phase-num{flex:0 0 auto;width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-weight:800;font-size:1.15rem;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(249,115,22,.3)}
+.phase-body{flex:1;min-width:0}
+.phase-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px}
+.phase-name{font-weight:800;color:#3d3229;font-size:1.05rem}
+.phase-weeks{background:rgba(249,115,22,.1);color:#c2410c;font-size:.7rem;font-weight:800;padding:3px 11px;border-radius:999px;text-transform:uppercase;letter-spacing:.03em}
+.phase-desc{color:#5c4d3d;font-size:.92rem;line-height:1.55;margin:0}
+.phase-note{display:flex;gap:11px;align-items:center;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.15);border-radius:12px;padding:14px 16px;color:#5c4d3d;font-size:.9rem;line-height:1.5}
+.phase-note svg{flex-shrink:0;color:#f97316}
+html.dark .phase-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+html.dark .phase-name{color:#e2e8f0}
+html.dark .phase-desc,html.dark .phase-note{color:#cbd5e1}
 </style>
 </head>
 <body>
@@ -427,16 +442,40 @@ html.dark .btn-reject{background:rgba(255,255,255,.06);border-color:rgba(255,255
 <!-- QUE INCLUYE -->
 <div class="section">
   <h2>Qu&eacute; incluye el plan</h2>
-  <table class="phase-table">
-    <thead><tr><th>Fase</th><th>Semanas</th><th>Contenido</th></tr></thead>
-    <tbody>
-      <tr><td>Adaptaci&oacute;n</td><td>1-2</td><td>Caminar 2 min / correr 1 min. Sesiones de 25 min. Foco en disfrutar y crear h&aacute;bito.</td></tr>
-      <tr><td>Progresi&oacute;n</td><td>3-4</td><td>Aumentar intervalos: correr 2-3 min / caminar 1 min. Se introduce trote continuo breve.</td></tr>
-      <tr><td>Resistencia</td><td>5-6</td><td>Correr continuo 15-20 min. Los intervalos de caminata se reducen a recuperaci&oacute;n activa.</td></tr>
-      <tr><td>Objetivo 5K</td><td>7-8</td><td>Correr 25-30 min seguidos. Llegar a completar 5 kil&oacute;metros sin parar.</td></tr>
-    </tbody>
-  </table>
-  <p>Cada sesi&oacute;n incluye calentamiento de 5 min caminando y vuelta a la calma con estiramientos.</p>
+  <div class="plan-phases">
+    <div class="phase-card">
+      <div class="phase-num">1</div>
+      <div class="phase-body">
+        <div class="phase-head"><span class="phase-name">Adaptaci&oacute;n</span><span class="phase-weeks">Semanas 1-2</span></div>
+        <p class="phase-desc">Caminar 2 min / correr 1 min. Sesiones de 25 min. Foco en disfrutar y crear h&aacute;bito.</p>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">2</div>
+      <div class="phase-body">
+        <div class="phase-head"><span class="phase-name">Progresi&oacute;n</span><span class="phase-weeks">Semanas 3-4</span></div>
+        <p class="phase-desc">Aumentar intervalos: correr 2-3 min / caminar 1 min. Se introduce trote continuo breve.</p>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">3</div>
+      <div class="phase-body">
+        <div class="phase-head"><span class="phase-name">Resistencia</span><span class="phase-weeks">Semanas 5-6</span></div>
+        <p class="phase-desc">Correr continuo 15-20 min. Los intervalos de caminata se reducen a recuperaci&oacute;n activa.</p>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">4</div>
+      <div class="phase-body">
+        <div class="phase-head"><span class="phase-name">Objetivo 5K</span><span class="phase-weeks">Semanas 7-8</span></div>
+        <p class="phase-desc">Correr 25-30 min seguidos. Llegar a completar 5 kil&oacute;metros sin parar.</p>
+      </div>
+    </div>
+  </div>
+  <div class="phase-note">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span>Cada sesi&oacute;n incluye calentamiento de 5 min caminando y vuelta a la calma con estiramientos.</span>
+  </div>
 </div>
 
 <!-- SEMANA TIPO -->

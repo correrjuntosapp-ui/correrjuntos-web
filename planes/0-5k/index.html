@@ -395,6 +395,30 @@ html.dark .phase-desc,html.dark .phase-note{color:#cbd5e1}
 .phi-cta:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(249,115,22,.55);color:#fff}
 .phi-trust{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.72);font-weight:500}
 @media(max-width:640px){.phi-title{font-size:1.95rem}.phi-content{padding:46px 18px}.phi-stat{padding:10px 14px}.phi-stat b{font-size:1.3rem}}
+/* Para quién — tarjetas con check */
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+.who-card{display:flex;gap:13px;align-items:flex-start;background:#fffcf9;border:1px solid #efe6db;border-radius:14px;padding:16px 18px}
+.who-ic{flex:0 0 auto;width:36px;height:36px;border-radius:10px;background:rgba(249,115,22,.12);display:flex;align-items:center;justify-content:center;color:#f97316}
+.who-ic svg{width:19px;height:19px}
+.who-card b{display:block;color:#3d3229;font-size:.95rem;margin-bottom:3px}
+.who-card span{color:#5c4d3d;font-size:.86rem;line-height:1.45}
+html.dark .who-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+html.dark .who-card b{color:#e2e8f0}html.dark .who-card span{color:#cbd5e1}
+@media(max-width:560px){.who-grid{grid-template-columns:1fr}}
+/* Semana tipo — filas estilizadas */
+.week-strip{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.week-row{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:12px;background:#fffcf9;border:1px solid #efe6db}
+.week-row.run{border-left:4px solid #f97316}
+.week-row.rest{background:rgba(0,0,0,.015)}
+.wr-day{flex:0 0 84px;font-weight:800;color:#3d3229;font-size:.88rem}
+.wr-act{flex:1;color:#5c4d3d;font-size:.9rem;line-height:1.4}
+.wr-tag{flex:0 0 auto;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:999px}
+.wr-tag.t-run{background:rgba(249,115,22,.12);color:#c2410c}
+.wr-tag.t-rest{background:rgba(0,0,0,.05);color:#8b7355}
+html.dark .week-row{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+html.dark .week-row.rest{background:rgba(255,255,255,.02)}
+html.dark .wr-day{color:#e2e8f0}html.dark .wr-act{color:#cbd5e1}
+html.dark .wr-tag.t-rest{background:rgba(255,255,255,.08);color:#94a3b8}
 </style>
 </head>
 <body>
@@ -448,12 +472,24 @@ html.dark .phase-desc,html.dark .phase-note{color:#cbd5e1}
 <!-- PARA QUIEN -->
 <div class="section">
   <h2>Para qui&eacute;n es este plan</h2>
-  <ul>
-    <li><strong>Principiante absoluto:</strong> nunca has corrido o llevas a&ntilde;os sin hacer ejercicio</li>
-    <li><strong>Cualquier edad y condici&oacute;n f&iacute;sica:</strong> el plan arranca con intervalos de caminar y correr</li>
-    <li><strong>Disponibilidad m&iacute;nima:</strong> solo necesitas 3 d&iacute;as a la semana, 25-30 minutos por sesi&oacute;n</li>
-    <li><strong>Tu objetivo:</strong> correr 5K (o 30 minutos seguidos) sin parar</li>
-  </ul>
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M9 22l2-6 3 2 1 4M11 16l-1.5-5 4-1 2 3 2 1"/></svg></div>
+      <div><b>Principiante absoluto</b><span>Nunca has corrido o llevas a&ntilde;os sin hacer ejercicio.</span></div>
+    </div>
+    <div class="who-card">
+      <div class="who-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 000-7.8z"/></svg></div>
+      <div><b>Cualquier edad y condici&oacute;n</b><span>Arranca con intervalos suaves de caminar y correr.</span></div>
+    </div>
+    <div class="who-card">
+      <div class="who-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <div><b>Con poco tiempo</b><span>Solo 3 d&iacute;as a la semana, 25-30 min por sesi&oacute;n.</span></div>
+    </div>
+    <div class="who-card">
+      <div class="who-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div>
+      <div><b>Tu objetivo: 5K</b><span>Correr 5 km (o 30 min seguidos) sin parar.</span></div>
+    </div>
+  </div>
 </div>
 
 <!-- QUE INCLUYE -->
@@ -498,14 +534,14 @@ html.dark .phase-desc,html.dark .phase-note{color:#cbd5e1}
 <!-- SEMANA TIPO -->
 <div class="section">
   <h2>Semana tipo (ejemplo semana 3)</h2>
-  <div class="week-example">
-    <div class="week-day"><span class="day">Lunes</span><span class="activity">Descanso</span></div>
-    <div class="week-day"><span class="day">Martes</span><span class="activity">25 min: caminar 1 min / correr 2 min (x8)</span></div>
-    <div class="week-day"><span class="day">Mi&eacute;rcoles</span><span class="activity">Descanso</span></div>
-    <div class="week-day"><span class="day">Jueves</span><span class="activity">25 min: caminar 1 min / correr 2 min (x8)</span></div>
-    <div class="week-day"><span class="day">Viernes</span><span class="activity">Descanso</span></div>
-    <div class="week-day"><span class="day">S&aacute;bado</span><span class="activity">30 min: caminar 1 min / correr 3 min (x6)</span></div>
-    <div class="week-day"><span class="day">Domingo</span><span class="activity">Descanso (paseo suave opcional)</span></div>
+  <div class="week-strip">
+    <div class="week-row rest"><span class="wr-day">Lunes</span><span class="wr-act">Descanso</span><span class="wr-tag t-rest">Descanso</span></div>
+    <div class="week-row run"><span class="wr-day">Martes</span><span class="wr-act">25 min &mdash; caminar 1 min / correr 2 min (x8)</span><span class="wr-tag t-run">Correr</span></div>
+    <div class="week-row rest"><span class="wr-day">Mi&eacute;rcoles</span><span class="wr-act">Descanso</span><span class="wr-tag t-rest">Descanso</span></div>
+    <div class="week-row run"><span class="wr-day">Jueves</span><span class="wr-act">25 min &mdash; caminar 1 min / correr 2 min (x8)</span><span class="wr-tag t-run">Correr</span></div>
+    <div class="week-row rest"><span class="wr-day">Viernes</span><span class="wr-act">Descanso</span><span class="wr-tag t-rest">Descanso</span></div>
+    <div class="week-row run"><span class="wr-day">S&aacute;bado</span><span class="wr-act">30 min &mdash; caminar 1 min / correr 3 min (x6)</span><span class="wr-tag t-run">Correr</span></div>
+    <div class="week-row rest"><span class="wr-day">Domingo</span><span class="wr-act">Descanso &middot; paseo suave opcional</span><span class="wr-tag t-rest">Descanso</span></div>
   </div>
 </div>
 

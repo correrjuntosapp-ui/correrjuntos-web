@@ -98,18 +98,22 @@ const subjectFor = (name, lang) =>
 const SENDER = { email: 'contacto@correrjuntos.com', name: 'Abraham · CorrerJuntos' };
 const REPLY_TO = { email: 'contacto@correrjuntos.com', name: 'Abraham' };
 
-async function sendBrevoBatch(apiKey, lang, versions) {
+async function sendBrevoBatch(apiKey, lang, versions, scheduledAt) {
+  const body = {
+    sender: SENDER,
+    replyTo: REPLY_TO,
+    subject: subjectFor('Hola', lang), // default; cada version lo sobreescribe
+    htmlContent: emailHtml(lang),
+    tags: ['founder-blast-1000', `lang-${lang}`],
+    messageVersions: versions,
+  };
+  // Brevo entrega a la hora indicada (ISO 8601, hasta 72h). Server-side: no
+  // depende de que el PC esté encendido. Ej: 2026-06-04T19:30:00+02:00
+  if (scheduledAt) body.scheduledAt = scheduledAt;
   const resp = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: { accept: 'application/json', 'content-type': 'application/json', 'api-key': apiKey },
-    body: JSON.stringify({
-      sender: SENDER,
-      replyTo: REPLY_TO,
-      subject: subjectFor('Hola', lang), // default; cada version lo sobreescribe
-      htmlContent: emailHtml(lang),
-      tags: ['founder-blast-1000', `lang-${lang}`],
-      messageVersions: versions,
-    }),
+    body: JSON.stringify(body),
   });
   return resp;
 }
@@ -118,16 +122,19 @@ export default async function runFounderBlast(req, res, env) {
   const BREVO_API_KEY = env.BREVO_API_KEY;
   if (!BREVO_API_KEY) return res.status(500).json({ error: 'missing_brevo' });
 
-  // test mode: ?test=email → 1 solo envío ES de muestra
-  const testEmail = req?.query?.test || (() => {
-    try { return new URL(req.url, 'http://x').searchParams.get('test'); } catch { return null; }
-  })();
+  // params: ?test=email (envío de prueba) · ?at=ISO (programar entrega Brevo)
+  const qp = (k) => {
+    if (req?.query?.[k]) return req.query[k];
+    try { return new URL(req.url, 'http://x').searchParams.get(k); } catch { return null; }
+  };
+  const testEmail = qp('test');
+  const scheduledAt = qp('at') || null; // ej: 2026-06-04T19:30:00+02:00
 
   if (testEmail) {
     const versions = [{ to: [{ email: testEmail, name: 'Abraham' }], subject: subjectFor('Abraham', 'es') }];
-    const r = await sendBrevoBatch(BREVO_API_KEY, 'es', versions);
+    const r = await sendBrevoBatch(BREVO_API_KEY, 'es', versions, scheduledAt);
     const ok = r.ok; const detail = ok ? null : (await r.text()).slice(0, 200);
-    return res.status(ok ? 200 : 500).json({ ok, mode: 'test', sent_to: testEmail, status: r.status, detail });
+    return res.status(ok ? 200 : 500).json({ ok, mode: 'test', sent_to: testEmail, scheduledAt, status: r.status, detail });
   }
 
   const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
@@ -150,7 +157,7 @@ export default async function runFounderBlast(req, res, env) {
       const batch = versions.slice(i, i + 500);
       if (batch.length === 0) continue;
       try {
-        const r = await sendBrevoBatch(BREVO_API_KEY, lang, batch);
+        const r = await sendBrevoBatch(BREVO_API_KEY, lang, batch, scheduledAt);
         if (r.ok) results.sent += batch.length;
         else { results.failed += batch.length; if (results.errors.length < 5) results.errors.push(`${r.status}: ${(await r.text()).slice(0,150)}`); }
       } catch (e) {
@@ -160,5 +167,5 @@ export default async function runFounderBlast(req, res, env) {
     }
   }
 
-  return res.status(200).json({ ok: true, total_recipients: recipients.length, ...results });
+  return res.status(200).json({ ok: true, total_recipients: recipients.length, scheduledAt, ...results });
 }

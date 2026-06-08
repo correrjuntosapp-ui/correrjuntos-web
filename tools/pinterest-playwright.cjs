@@ -31,6 +31,7 @@ const downloadImage = (url) => new Promise((resolve, reject) => {
 const args = process.argv.slice(2);
 const getArg = (f) => { const i = args.indexOf(f); return i !== -1 ? args[i+1] : null; };
 const START_FROM = parseInt(getArg('--from') || '0', 10);
+const COUNT = parseInt(getArg('--count') || '0', 10); // 0 = sin límite (todos)
 const EMAIL = getArg('--email') || '';
 const PASS  = getArg('--pass')  || '';
 
@@ -332,9 +333,16 @@ const ARTICLES = [
 (async () => {
   console.log(`🚀 CorrerJuntos Pinterest Bot — ${ARTICLES.length} artículos | desde #${START_FROM}\n`);
 
-  const browser = await chromium.launch({ headless: false, slowMo: 50 });
-  const ctx = await browser.newContext({ locale: 'es-ES', viewport: { width: 1280, height: 900 } });
-  const page = await ctx.newPage();
+  const browser = await chromium.launch({
+    headless: false,
+    slowMo: 50,
+    channel: 'chrome',
+    args: ['--disable-blink-features=AutomationControlled', '--start-maximized'],
+    ignoreDefaultArgs: ['--enable-automation'],
+  });
+  const ctx = await browser.newContext({ locale: 'es-ES', viewport: null });
+  await ctx.addInitScript(() => { Object.defineProperty(navigator, 'webdriver', { get: () => undefined }); });
+  let page = await ctx.newPage();
 
   // ── Login ──────────────────────────────────────────────────────────────────
   await page.goto('https://es.pinterest.com/login/');
@@ -342,22 +350,54 @@ const ARTICLES = [
   await sleep(2000);
 
   const emailEl = page.locator('#email');
-  if (await emailEl.isVisible({ timeout: 4000 }).catch(() => false)) {
+  if (EMAIL && await emailEl.isVisible({ timeout: 4000 }).catch(() => false)) {
     await emailEl.fill(EMAIL);
     await page.locator('#password').fill(PASS);
     await page.locator('button[type="submit"]').click();
     await sleep(4000);
   }
 
-  const onPinterest = await page.locator('input[placeholder*="Buscar"]').isVisible({ timeout: 6000 }).catch(() => false);
-  if (!onPinterest) {
-    await waitForEnter('\n👉 Inicia sesión con Google en el navegador y pulsa ENTER cuando estés en Pinterest...\n');
-    await sleep(2000);
+  // Esperar a que el founder haga login manual (Google). 5 min de margen.
+  // Detección ROBUSTA: revisa TODAS las pestañas del contexto y varios selectores.
+  const LOGGED_SEL = 'input[placeholder*="Buscar"], input[placeholder*="buscar"], [data-test-id="header-profile"], [data-test-id="searchBoxInput"], div[aria-label*="perfil"]';
+  async function detectLoggedPage() {
+    for (const p of ctx.pages()) {
+      try {
+        const u = p.url() || '';
+        if (u.includes('/login') || u.includes('accounts.google') || u.includes('signup')) continue;
+        if (!u.includes('pinterest.')) continue;
+        const ok = await p.locator(LOGGED_SEL).first().isVisible({ timeout: 1500 }).catch(() => false);
+        if (ok) return p;
+      } catch {}
+    }
+    return null;
   }
+  let logged = await detectLoggedPage();
+  for (let w = 0; w < 35 && !logged; w++) {
+    if (w === 0) console.log('\n👉 LOGUÉATE con Google en la ventana del navegador. Espero hasta 5 min...\n');
+    await sleep(8000);
+    logged = await detectLoggedPage();
+    if (logged) break;
+    // a partir de 24s: si la pestaña sigue en pinterest pero no en /login, fuerza home y recomprueba
+    if (w >= 3) {
+      try {
+        const u = page.url() || '';
+        if (u.includes('pinterest.') && !u.includes('/login')) {
+          await page.goto('https://es.pinterest.com/', { waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
+          await sleep(2500);
+          logged = await detectLoggedPage();
+        }
+      } catch {}
+    }
+  }
+  if (!logged) { console.log('⚠️ No detecté login tras 5 min. Abortando para no fallar pins.'); await browser.close(); process.exit(1); }
+  page = logged; // usar la pestaña donde está la sesión
   console.log('✅ Sesión iniciada\n');
 
   // ── Pins via pin-creation-tool con screenshot en error ─────────────────────
-  for (let i = START_FROM; i < ARTICLES.length; i++) {
+  const END_AT = COUNT > 0 ? Math.min(START_FROM + COUNT, ARTICLES.length) : ARTICLES.length;
+  console.log(`📌 Pinando del ${START_FROM} al ${END_AT - 1} (${END_AT - START_FROM} pins)`);
+  for (let i = START_FROM; i < END_AT; i++) {
     const art = ARTICLES[i];
     const link = `${BASE}/blog/${art.s}`;
     const desc = `${art.t} — Guía para runners. #running #correr #correrjuntos`;

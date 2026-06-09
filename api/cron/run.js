@@ -24,6 +24,7 @@ import runRecoveryFinde from '../_lib/jobs/recovery-finde.js';
 import runUpdateBlast from '../_lib/jobs/update-blast.js';
 import runWeeklyNewsletter from '../_lib/jobs/weekly-newsletter.js';
 import runFounderBlast from '../_lib/jobs/founder-blast.js';
+import runActivationPush from '../_lib/jobs/activation-push.js';
 
 const env = {
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
@@ -43,6 +44,7 @@ const JOBS = {
   'update-blast': runUpdateBlast,
   'weekly-newsletter': runWeeklyNewsletter,
   'founder-blast': runFounderBlast,
+  'activation-push': runActivationPush,
 };
 
 export default async function handler(req, res) {

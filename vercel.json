@@ -218,6 +218,10 @@
     {
       "path": "/api/cron/run?job=weekly-newsletter",
       "schedule": "0 8 * * 1"
+    },
+    {
+      "path": "/api/cron/run?job=activation-push",
+      "schedule": "30 9 * * *"
     }
   ]
 }

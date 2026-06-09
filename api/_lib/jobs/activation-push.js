@@ -106,7 +106,7 @@ export default async function runActivationPush(_req, res, env) {
 
   const { data: candidates, error: candErr } = await supabase
     .from('profiles')
-    .select('id, push_token, idioma, created_at, notifications_enabled')
+    .select('id, push_token, created_at, notifications_enabled')
     .gte('created_at', eightDaysAgo)
     .not('push_token', 'is', null);
 
@@ -171,7 +171,10 @@ export default async function runActivationPush(_req, res, env) {
     // Already sent this day's push?
     if (sentByUser[p.id]?.has(daysSince)) { skipped++; continue; }
 
-    const lang = p.idioma === 'en' ? 'en' : 'es';
+    // profiles no tiene columna de idioma (la app lo guarda en cliente).
+    // CorrerJuntos es ES-first → default español. EN templates quedan listos
+    // por si añadimos detección de idioma más adelante.
+    const lang = 'es';
     const hasPlan = hasPlanSet.has(p.id);
     const tmpl = TEMPLATES[lang][daysSince][hasPlan ? 'plan' : 'noplan'];
 

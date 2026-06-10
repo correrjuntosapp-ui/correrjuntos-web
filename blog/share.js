@@ -37,19 +37,34 @@
   }
 
   function createBar() {
-    var anchor =
-      document.querySelector('.related') ||
-      document.querySelector('article .content > :last-child') ||
-      document.querySelector('main') ||
-      document.body;
-    if (!anchor || !anchor.parentNode) return null;
     var div = document.createElement('div');
     div.className = 'share-article';
     div.setAttribute(
       'style',
-      'display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:32px 0;padding:20px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.15);border-radius:16px'
+      'display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:32px auto 24px;padding:20px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.15);border-radius:16px;max-width:1000px;width:calc(100% - 48px);box-sizing:border-box'
     );
-    anchor.parentNode.insertBefore(div, anchor);
+    // Insertion order — always at BOTTOM of the article, never at the top:
+    //  1. before .related (if article has related section)
+    //  2. before the last .cj-app-banner injected by cro.js
+    //  3. before <footer>
+    //  4. as last child of body (NEVER insertBefore body)
+    var related = document.querySelector('.related');
+    if (related && related.parentNode) {
+      related.parentNode.insertBefore(div, related);
+      return div;
+    }
+    var banners = document.querySelectorAll('.cj-app-banner');
+    var lastBanner = banners.length ? banners[banners.length - 1] : null;
+    if (lastBanner && lastBanner.parentNode) {
+      lastBanner.parentNode.insertBefore(div, lastBanner.nextSibling);
+      return div;
+    }
+    var footer = document.querySelector('footer');
+    if (footer && footer.parentNode) {
+      footer.parentNode.insertBefore(div, footer);
+      return div;
+    }
+    document.body.appendChild(div);
     return div;
   }
 

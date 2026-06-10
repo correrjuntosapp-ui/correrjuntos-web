@@ -743,5 +743,6 @@ window.addEventListener('DOMContentLoaded',function(){var c=localStorage.getItem
 function handleNewsletterSubmit(e,form){e.preventDefault();var email=form.querySelector('input[type="email"]').value;if(!email)return;fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,source:'blog-cursa-merce-2026',listIds:[7]})}).then(function(){form.innerHTML='<p style="color:#16a34a;font-weight:600">✅ ¡Apuntado! Te avisaremos cuando abra la inscripción.</p>'}).catch(function(){form.innerHTML='<p style="color:#16a34a;font-weight:600">✅ ¡Apuntado!</p>';});}
 </script>
 <script src="/blog/newsletter.js" defer></script>
+<script src="/blog/share.js" defer></script>
 </body>
 </html>

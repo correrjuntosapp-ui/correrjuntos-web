@@ -266,45 +266,61 @@
     var orig = btn.textContent;
     btn.disabled = true;
     btn.textContent = 'Generando…';
+
     generateStoryImage()
       .then(function (blob) {
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        var slug = location.pathname.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'correrjuntos';
-        a.href = url;
-        a.download = slug + '-story.jpg';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
-
-        // Copy URL to clipboard so user can paste in Link Sticker
+        // Pre-copy URL to clipboard so user can paste it on the Link Sticker inside IG
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(location.href).catch(function () {});
         }
-        showStoryToast();
-        track('story');
 
-        // Restore button
-        btn.disabled = false;
-        btn.textContent = orig;
+        var slug = location.pathname.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'correrjuntos';
+        var fileName = slug.replace(/^blog-/, '') + '-story.jpg';
+        var file = new File([blob], fileName, { type: 'image/jpeg', lastModified: Date.now() });
 
-        // Redirect to IG after small delay (gives user time to see toast)
-        setTimeout(function () {
-          // Try IG Stories camera deep link; fallback to IG app, then to website
-          var iframe = document.createElement('iframe');
-          iframe.style.display = 'none';
-          iframe.src = 'instagram-stories://share';
-          document.body.appendChild(iframe);
-          setTimeout(function () {
-            window.location.href = 'instagram://camera';
-          }, 600);
-        }, 1500);
+        var canShareFile = false;
+        try {
+          canShareFile = typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
+        } catch (e) { canShareFile = false; }
+
+        if (canShareFile) {
+          // PRO PATH: native share sheet with the image as attachment.
+          // User picks Instagram → IG opens with image preloaded → tap Story
+          // → add Link Sticker (URL already in clipboard) → publish.
+          navigator
+            .share({
+              files: [file],
+              text: document.title.replace(/\s+\|\s+CorrerJuntos.*$/, '').trim(),
+            })
+            .then(function () { track('story-share'); })
+            .catch(function () { /* user cancelled */ });
+          btn.disabled = false;
+          btn.textContent = orig;
+        } else {
+          // FALLBACK (older browsers / desktop): open image in new tab so user
+          // can long-press → Save Image. Then they upload to IG manually.
+          var url = URL.createObjectURL(blob);
+          var win = window.open(url, '_blank');
+          if (!win) {
+            // Popup blocked → trigger download as last resort
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
+          setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
+          showStoryToast();
+          track('story-download');
+          btn.disabled = false;
+          btn.textContent = orig;
+        }
       })
       .catch(function (err) {
         btn.disabled = false;
         btn.textContent = orig;
-        alert('No se pudo generar la imagen. Probá de nuevo o copia el link.');
+        alert('No se pudo generar la imagen. Prueba de nuevo o copia el link.');
         console.error('Story generation failed:', err);
       });
   }

@@ -222,6 +222,10 @@
     {
       "path": "/api/cron/run?job=activation-push",
       "schedule": "30 9 * * *"
+    },
+    {
+      "path": "/api/cron/run?job=premium-expiry",
+      "schedule": "15 9 * * *"
     }
   ]
 }

@@ -11,6 +11,18 @@
   if (window.__cjShareV1) return;
   window.__cjShareV1 = true;
 
+  // FIX: prevent horizontal scroll wobble on mobile.
+  // overflow-x:clip works with position:sticky (unlike :hidden) and stops
+  // any wide element (table, code, image) from making the page sway.
+  // Applied here because only blog/index.html had it; 537 articles didn't.
+  (function injectScrollFix() {
+    var s = document.createElement('style');
+    s.textContent =
+      'html,body{overflow-x:clip;max-width:100vw}' +
+      '@supports not (overflow:clip){html,body{overflow-x:hidden}}';
+    document.head.appendChild(s);
+  })();
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

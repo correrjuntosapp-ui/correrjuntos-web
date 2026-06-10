@@ -63,6 +63,11 @@
   ],
   "redirects": [
     {
+      "source": "/last",
+      "destination": "/blog/crown-sport-nutrition-opiniones-guia",
+      "permanent": false
+    },
+    {
       "source": "/blog/autor/jose-marquez",
       "destination": "/blog/autor/abraham-marquez",
       "permanent": true

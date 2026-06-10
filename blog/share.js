@@ -326,6 +326,42 @@
   }
 
   function generateStoryImage() {
+    // Try to load the article's hero (og:image) first — same-origin so CORS is fine
+    return loadHeroImage().then(function (heroImg) {
+      return drawStory(heroImg);
+    });
+  }
+
+  function loadHeroImage() {
+    return new Promise(function (resolve) {
+      var meta =
+        document.querySelector('meta[property="og:image"]') ||
+        document.querySelector('meta[name="twitter:image"]');
+      if (!meta) return resolve(null);
+      var src = meta.getAttribute('content');
+      if (!src) return resolve(null);
+      // Prefer absolute URL
+      try { src = new URL(src, location.href).href; } catch (e) {}
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      var done = false;
+      img.onload = function () { if (!done) { done = true; resolve(img); } };
+      img.onerror = function () {
+        if (done) return;
+        done = true;
+        // Retry without CORS as plain image (may taint canvas though)
+        var img2 = new Image();
+        img2.onload = function () { resolve(img2); };
+        img2.onerror = function () { resolve(null); };
+        img2.src = src;
+      };
+      // Safety timeout (5s)
+      setTimeout(function () { if (!done) { done = true; resolve(null); } }, 5000);
+      img.src = src;
+    });
+  }
+
+  function drawStory(heroImg) {
     return new Promise(function (resolve, reject) {
       try {
         var canvas = document.createElement('canvas');
@@ -333,79 +369,121 @@
         canvas.height = 1920;
         var ctx = canvas.getContext('2d');
 
-        // === BACKGROUND: dark gradient with brand accents ===
+        // === BACKGROUND: dark Meridian Motion ===
         var bg = ctx.createLinearGradient(0, 0, 0, 1920);
         bg.addColorStop(0, '#11192a');
         bg.addColorStop(1, '#0b1220');
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, 1080, 1920);
 
-        // Radial orange accent top-right
         var radial = ctx.createRadialGradient(900, 300, 0, 900, 300, 900);
-        radial.addColorStop(0, 'rgba(249,115,22,0.35)');
+        radial.addColorStop(0, 'rgba(249,115,22,0.30)');
         radial.addColorStop(1, 'rgba(249,115,22,0)');
         ctx.fillStyle = radial;
         ctx.fillRect(0, 0, 1080, 1920);
-
-        // Radial accent bottom-left (subtle)
         var radial2 = ctx.createRadialGradient(180, 1700, 0, 180, 1700, 700);
-        radial2.addColorStop(0, 'rgba(249,115,22,0.15)');
+        radial2.addColorStop(0, 'rgba(249,115,22,0.12)');
         radial2.addColorStop(1, 'rgba(249,115,22,0)');
         ctx.fillStyle = radial2;
         ctx.fillRect(0, 0, 1080, 1920);
 
-        // === HEADER: eyebrow + brand ===
         var fontStack = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif';
         var monoStack = '"SF Mono", "JetBrains Mono", Menlo, monospace';
 
-        // Eyebrow pill
+        // === HEADER: eyebrow + brand (compact) ===
         ctx.fillStyle = 'rgba(251,146,60,0.18)';
-        roundRect(ctx, 80, 140, 380, 60, 30);
+        roundRect(ctx, 80, 130, 380, 56, 28);
         ctx.fill();
         ctx.fillStyle = '#fb923c';
-        ctx.font = '700 22px ' + monoStack;
+        ctx.font = '700 20px ' + monoStack;
         ctx.textAlign = 'center';
-        ctx.fillText('• ARTÍCULO · BLOG', 270, 180);
+        ctx.fillText('• ARTÍCULO · BLOG', 270, 167);
 
-        // Brand
         ctx.textAlign = 'left';
         ctx.fillStyle = '#f6f1e8';
-        ctx.font = '800 56px ' + fontStack;
-        ctx.fillText('CORRER', 80, 320);
+        ctx.font = '800 48px ' + fontStack;
+        ctx.fillText('CORRER', 80, 270);
         ctx.fillStyle = '#f97316';
-        ctx.fillText('JUNTOS', 380, 320);
+        ctx.fillText('JUNTOS', 340, 270);
 
-        // === TITLE ===
+        // === HERO IMAGE CARD (if loaded) ===
+        var heroBottom = 320; // default if no hero
+        if (heroImg && heroImg.width && heroImg.height) {
+          var maxW = 920;
+          var maxH = 720;
+          var cardX = 80;
+          var cardY = 340;
+          var iw = heroImg.width, ih = heroImg.height;
+          var ratio = Math.min(maxW / iw, maxH / ih);
+          var dw = iw * ratio;
+          var dh = ih * ratio;
+          var dx = cardX + (maxW - dw) / 2;
+          var dy = cardY + (maxH - dh) / 2;
+
+          // Card background (in case image has transparency or is small)
+          ctx.save();
+          ctx.shadowColor = 'rgba(0,0,0,0.5)';
+          ctx.shadowBlur = 40;
+          ctx.shadowOffsetY = 16;
+          ctx.fillStyle = '#1a1f2e';
+          roundRect(ctx, cardX, cardY, maxW, maxH, 32);
+          ctx.fill();
+          ctx.restore();
+
+          // Clip to rounded card and draw image
+          ctx.save();
+          roundRect(ctx, cardX, cardY, maxW, maxH, 32);
+          ctx.clip();
+          // Cover-fit the image (fill the card, crop overflow)
+          var coverRatio = Math.max(maxW / iw, maxH / ih);
+          var cdw = iw * coverRatio;
+          var cdh = ih * coverRatio;
+          var cdx = cardX + (maxW - cdw) / 2;
+          var cdy = cardY + (maxH - cdh) / 2;
+          try {
+            ctx.drawImage(heroImg, cdx, cdy, cdw, cdh);
+          } catch (drawErr) {
+            // Canvas was tainted (CORS) — fall back to centered + contain
+            ctx.drawImage(heroImg, dx, dy, dw, dh);
+          }
+          ctx.restore();
+          heroBottom = cardY + maxH; // 1060
+        }
+
+        // === TITLE (below hero) ===
         var title = (document.querySelector('h1') ? document.querySelector('h1').textContent : document.title) || '';
         title = title.replace(/\s+\|\s+CorrerJuntos.*$/, '').trim();
         ctx.fillStyle = '#f6f1e8';
-        ctx.font = '800 78px ' + fontStack;
+        ctx.font = '800 64px ' + fontStack;
         ctx.textAlign = 'left';
+        var titleStartY = heroBottom + 90;
         var titleLines = wrapText(ctx, title, 920);
-        var titleStartY = 720;
-        var lineH = 96;
-        // Truncate to 6 lines max
-        if (titleLines.length > 6) {
-          titleLines = titleLines.slice(0, 5);
-          titleLines.push(titleLines.pop().replace(/.{0,30}$/, '…'));
+        var lineH = 78;
+        if (titleLines.length > 4) {
+          titleLines = titleLines.slice(0, 3);
+          titleLines.push(titleLines.pop().replace(/.{0,20}$/, '…'));
         }
         for (var i = 0; i < titleLines.length; i++) {
           ctx.fillText(titleLines[i], 80, titleStartY + i * lineH);
         }
+        var afterTitleY = titleStartY + titleLines.length * lineH;
 
-        // === DEK / DESCRIPTION ===
+        // === DEK (optional, if room) ===
         var dek = getMetaDescription();
-        if (dek) {
-          var dekY = titleStartY + titleLines.length * lineH + 30;
-          ctx.fillStyle = 'rgba(246,241,232,0.72)';
-          ctx.font = '400 36px ' + fontStack;
+        if (dek && afterTitleY < 1500) {
+          var dekY = afterTitleY + 24;
+          ctx.fillStyle = 'rgba(246,241,232,0.65)';
+          ctx.font = '400 32px ' + fontStack;
           var dekLines = wrapText(ctx, dek, 920);
-          if (dekLines.length > 3) {
-            dekLines = dekLines.slice(0, 2);
-            dekLines.push(dekLines.pop().replace(/.{0,30}$/, '…'));
+          var maxDekLines = Math.min(2, Math.max(0, Math.floor((1620 - dekY) / 44)));
+          if (dekLines.length > maxDekLines) {
+            dekLines = dekLines.slice(0, maxDekLines);
+            if (maxDekLines > 0) {
+              dekLines[maxDekLines - 1] = dekLines[maxDekLines - 1].replace(/.{0,20}$/, '…');
+            }
           }
           for (var j = 0; j < dekLines.length; j++) {
-            ctx.fillText(dekLines[j], 80, dekY + j * 50);
+            ctx.fillText(dekLines[j], 80, dekY + j * 44);
           }
         }
 
@@ -413,25 +491,22 @@
         ctx.strokeStyle = 'rgba(246,241,232,0.12)';
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.moveTo(80, 1660);
-        ctx.lineTo(1000, 1660);
+        ctx.moveTo(80, 1680);
+        ctx.lineTo(1000, 1680);
         ctx.stroke();
 
-        // CTA tagline
         ctx.fillStyle = '#f97316';
-        ctx.font = '700 28px ' + monoStack;
+        ctx.font = '700 26px ' + monoStack;
         ctx.textAlign = 'left';
-        ctx.fillText('── CORRE ACOMPAÑADO', 80, 1720);
+        ctx.fillText('── CORRE ACOMPAÑADO', 80, 1740);
 
-        // URL
         ctx.fillStyle = '#f6f1e8';
-        ctx.font = '700 44px ' + fontStack;
-        ctx.fillText('correrjuntos.com', 80, 1810);
+        ctx.font = '800 44px ' + fontStack;
+        ctx.fillText('correrjuntos.com', 80, 1820);
 
-        // "Lee el artículo" hint
         ctx.fillStyle = 'rgba(246,241,232,0.42)';
-        ctx.font = '500 24px ' + monoStack;
-        ctx.fillText('Lee el artículo completo →', 80, 1860);
+        ctx.font = '500 22px ' + monoStack;
+        ctx.fillText('Lee el artículo completo →', 80, 1870);
 
         canvas.toBlob(
           function (blob) {

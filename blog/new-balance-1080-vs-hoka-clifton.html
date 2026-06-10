@@ -452,7 +452,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 async function submitNL(e){e.preventDefault();var m=document.getElementById('nl-email').value.trim(),b=document.getElementById('nl-btn'),f=document.getElementById('nl-form'),o=document.getElementById('nl-ok'),r=document.getElementById('nl-err');if(!m)return;b.disabled=true;b.textContent='...';o.style.display='none';r.style.display='none';try{var s=await fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:m,lang:'es',source:'blog-article'})});if(s.ok||s.status===201){f.style.display='none';o.style.display='block'}else if(s.status===409){o.querySelector('p').textContent='Ya estás suscrito/a. ¡Gracias!';f.style.display='none';o.style.display='block'}else throw new Error('HTTP '+s.status)}catch(x){r.style.display='block';console.error('NL error:',x)}finally{b.disabled=false;b.textContent='Suscribirme'}}
 </script>
 
-  <div class="related">
+  <div style="margin:24px 0;padding:16px;background:rgba(249,115,22,.06);border-left:3px solid #f97316;border-radius:0 12px 12px 0"><strong style="color:#f97316">Todas las Hoka 2026</strong> en nuestro <a href="/blog/mejores-zapatillas-hoka-running" style="color:#f97316;font-weight:600">ranking completo Hoka</a>: 7 modelos comparados.</div><div class="related">
     <div class="related-title text-xl font-bold" role="heading" aria-level="3">Artículos relacionados</div>
     <div class="related-links">
       <a href="/blog/mejores-zapatillas-running-asfalto">Zapatillas Asfalto</a>

@@ -84,7 +84,7 @@
     var hasNativeShare = typeof navigator.share === 'function';
 
     if (isMobile && hasNativeShare) {
-      // PRIMARY: native share sheet (includes IG, Stories, WhatsApp, Mail, etc)
+      // PRIMARY: native share sheet (includes IG DM, WhatsApp, Mail, etc)
       bar.appendChild(
         button(
           'Compartir',
@@ -103,6 +103,16 @@
           true
         )
       );
+
+      // STORY: generate branded 1080x1920 image + redirect IG (mobile only)
+      var storyBtn = button(
+        '📸 Story',
+        'linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888)',
+        '#fff',
+        function () { generateAndShareStory(storyBtn); }
+      );
+      storyBtn.style.background = 'linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888)';
+      bar.appendChild(storyBtn);
 
       // SECONDARY: copy link with feedback
       var copyM = button(
@@ -245,5 +255,243 @@
         source: location.pathname,
       });
     }
+  }
+
+  // === STORY IMAGE GENERATION ===
+  // Creates a 1080x1920 branded image (CJ orange gradient + title + URL)
+  // downloads it to user's photos, then opens IG so they can pick the
+  // freshly-saved image and add a Link Sticker.
+  function generateAndShareStory(btn) {
+    if (!btn) return;
+    var orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Generando…';
+    generateStoryImage()
+      .then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        var slug = location.pathname.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'correrjuntos';
+        a.href = url;
+        a.download = slug + '-story.jpg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+
+        // Copy URL to clipboard so user can paste in Link Sticker
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(location.href).catch(function () {});
+        }
+        showStoryToast();
+        track('story');
+
+        // Restore button
+        btn.disabled = false;
+        btn.textContent = orig;
+
+        // Redirect to IG after small delay (gives user time to see toast)
+        setTimeout(function () {
+          // Try IG Stories camera deep link; fallback to IG app, then to website
+          var iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.src = 'instagram-stories://share';
+          document.body.appendChild(iframe);
+          setTimeout(function () {
+            window.location.href = 'instagram://camera';
+          }, 600);
+        }, 1500);
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        btn.textContent = orig;
+        alert('No se pudo generar la imagen. Probá de nuevo o copia el link.');
+        console.error('Story generation failed:', err);
+      });
+  }
+
+  function generateStoryImage() {
+    return new Promise(function (resolve, reject) {
+      try {
+        var canvas = document.createElement('canvas');
+        canvas.width = 1080;
+        canvas.height = 1920;
+        var ctx = canvas.getContext('2d');
+
+        // === BACKGROUND: dark gradient with brand accents ===
+        var bg = ctx.createLinearGradient(0, 0, 0, 1920);
+        bg.addColorStop(0, '#11192a');
+        bg.addColorStop(1, '#0b1220');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Radial orange accent top-right
+        var radial = ctx.createRadialGradient(900, 300, 0, 900, 300, 900);
+        radial.addColorStop(0, 'rgba(249,115,22,0.35)');
+        radial.addColorStop(1, 'rgba(249,115,22,0)');
+        ctx.fillStyle = radial;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Radial accent bottom-left (subtle)
+        var radial2 = ctx.createRadialGradient(180, 1700, 0, 180, 1700, 700);
+        radial2.addColorStop(0, 'rgba(249,115,22,0.15)');
+        radial2.addColorStop(1, 'rgba(249,115,22,0)');
+        ctx.fillStyle = radial2;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // === HEADER: eyebrow + brand ===
+        var fontStack = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif';
+        var monoStack = '"SF Mono", "JetBrains Mono", Menlo, monospace';
+
+        // Eyebrow pill
+        ctx.fillStyle = 'rgba(251,146,60,0.18)';
+        roundRect(ctx, 80, 140, 380, 60, 30);
+        ctx.fill();
+        ctx.fillStyle = '#fb923c';
+        ctx.font = '700 22px ' + monoStack;
+        ctx.textAlign = 'center';
+        ctx.fillText('• ARTÍCULO · BLOG', 270, 180);
+
+        // Brand
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#f6f1e8';
+        ctx.font = '800 56px ' + fontStack;
+        ctx.fillText('CORRER', 80, 320);
+        ctx.fillStyle = '#f97316';
+        ctx.fillText('JUNTOS', 380, 320);
+
+        // === TITLE ===
+        var title = (document.querySelector('h1') ? document.querySelector('h1').textContent : document.title) || '';
+        title = title.replace(/\s+\|\s+CorrerJuntos.*$/, '').trim();
+        ctx.fillStyle = '#f6f1e8';
+        ctx.font = '800 78px ' + fontStack;
+        ctx.textAlign = 'left';
+        var titleLines = wrapText(ctx, title, 920);
+        var titleStartY = 720;
+        var lineH = 96;
+        // Truncate to 6 lines max
+        if (titleLines.length > 6) {
+          titleLines = titleLines.slice(0, 5);
+          titleLines.push(titleLines.pop().replace(/.{0,30}$/, '…'));
+        }
+        for (var i = 0; i < titleLines.length; i++) {
+          ctx.fillText(titleLines[i], 80, titleStartY + i * lineH);
+        }
+
+        // === DEK / DESCRIPTION ===
+        var dek = getMetaDescription();
+        if (dek) {
+          var dekY = titleStartY + titleLines.length * lineH + 30;
+          ctx.fillStyle = 'rgba(246,241,232,0.72)';
+          ctx.font = '400 36px ' + fontStack;
+          var dekLines = wrapText(ctx, dek, 920);
+          if (dekLines.length > 3) {
+            dekLines = dekLines.slice(0, 2);
+            dekLines.push(dekLines.pop().replace(/.{0,30}$/, '…'));
+          }
+          for (var j = 0; j < dekLines.length; j++) {
+            ctx.fillText(dekLines[j], 80, dekY + j * 50);
+          }
+        }
+
+        // === BOTTOM: divider + CTA + URL ===
+        ctx.strokeStyle = 'rgba(246,241,232,0.12)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(80, 1660);
+        ctx.lineTo(1000, 1660);
+        ctx.stroke();
+
+        // CTA tagline
+        ctx.fillStyle = '#f97316';
+        ctx.font = '700 28px ' + monoStack;
+        ctx.textAlign = 'left';
+        ctx.fillText('── CORRE ACOMPAÑADO', 80, 1720);
+
+        // URL
+        ctx.fillStyle = '#f6f1e8';
+        ctx.font = '700 44px ' + fontStack;
+        ctx.fillText('correrjuntos.com', 80, 1810);
+
+        // "Lee el artículo" hint
+        ctx.fillStyle = 'rgba(246,241,232,0.42)';
+        ctx.font = '500 24px ' + monoStack;
+        ctx.fillText('Lee el artículo completo →', 80, 1860);
+
+        canvas.toBlob(
+          function (blob) {
+            if (blob) resolve(blob);
+            else reject(new Error('toBlob returned null'));
+          },
+          'image/jpeg',
+          0.92
+        );
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  function wrapText(ctx, text, maxWidth) {
+    var words = text.split(/\s+/);
+    var lines = [];
+    var line = '';
+    for (var i = 0; i < words.length; i++) {
+      var test = line ? line + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > maxWidth && line) {
+        lines.push(line);
+        line = words[i];
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function getMetaDescription() {
+    var m = document.querySelector('meta[name="description"]') ||
+            document.querySelector('meta[property="og:description"]');
+    return m ? m.getAttribute('content') : '';
+  }
+
+  function showStoryToast() {
+    var existing = document.getElementById('cj-story-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'cj-story-toast';
+    toast.style.cssText = 'position:fixed;bottom:24px;left:16px;right:16px;background:#0b1220;color:#fff;padding:18px 22px;border-radius:16px;font-size:.92rem;font-weight:600;z-index:99999;box-shadow:0 18px 60px rgba(0,0,0,.5);line-height:1.45;border:1px solid rgba(249,115,22,.3);transform:translateY(120%);transition:transform .35s cubic-bezier(.2,.9,.3,1.2)';
+    toast.innerHTML =
+      '<div style="display:flex;align-items:flex-start;gap:12px">' +
+        '<div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:#10b981;display:flex;align-items:center;justify-content:center;font-size:18px">✓</div>' +
+        '<div style="flex:1">' +
+          '<div style="color:#fff;font-weight:700;margin-bottom:4px">Imagen guardada · Link copiado</div>' +
+          '<div style="color:rgba(246,241,232,.7);font-weight:500;font-size:.82rem">Instagram se abrirá. Toca Story → galería → elige la imagen → añade Link Sticker (pega el link).</div>' +
+        '</div>' +
+        '<button onclick="this.parentNode.parentNode.remove()" style="background:transparent;border:none;color:rgba(246,241,232,.4);font-size:24px;line-height:1;padding:0 4px;cursor:pointer">×</button>' +
+      '</div>';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function () {
+      toast.style.transform = 'translateY(0)';
+    });
+    setTimeout(function () {
+      if (toast.parentNode) {
+        toast.style.transform = 'translateY(120%)';
+        setTimeout(function () { toast.remove(); }, 400);
+      }
+    }, 8000);
   }
 })();

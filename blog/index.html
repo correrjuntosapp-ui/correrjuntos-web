@@ -4105,7 +4105,7 @@ async function submitNewsletter(e) {
             form.style.display = 'none';
             successDiv.querySelector('p').innerHTML = '✓ Ya estabas suscrito/a';
             successDiv.querySelectorAll('p')[1].innerHTML =
-                '<a href="/blog/descarga-plan-10k" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#f97316;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.85rem">Descargar Plan 10K (PDF) →</a>';
+                '<a href="/planes/10k" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#f97316;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.85rem">Descargar Plan 10K (PDF) →</a>';
             successDiv.style.display = 'block';
         } else if (res.ok || res.status === 201) {
             // New subscription — brief confirmation, then hard-redirect to deliver the PDF

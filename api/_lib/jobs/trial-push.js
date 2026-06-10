@@ -35,8 +35,12 @@ const TEMPLATES = {
       body: 'Última oportunidad · sigue con Premium sin perder tu plan',
     },
     15: {
-      title: 'Trial terminó · 50% descuento',
-      body: '¿Vuelves? Recupera Premium con 50% off el primer mes',
+      // [10 jun 2026] Copy honesto: prometía "50% descuento" pero NO existe
+      // esa promotional offer en RevenueCat → el user llegaba al paywall a
+      // precio normal (engaño involuntario). Cuando la oferta esté creada
+      // en RC/ASC/Play, restaurar el copy del descuento.
+      title: 'Tu trial terminó · tu plan sigue aquí',
+      body: 'Todo tu progreso está guardado. Reactiva Premium en 1 toque',
     },
   },
   en: {
@@ -49,8 +53,8 @@ const TEMPLATES = {
       body: 'Last chance · keep Premium without losing your plan',
     },
     15: {
-      title: 'Trial ended · 50% off',
-      body: 'Coming back? Recover Premium with 50% off first month',
+      title: 'Trial ended · your plan is still here',
+      body: 'All your progress is saved. Reactivate Premium in one tap',
     },
   },
 };

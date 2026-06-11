@@ -207,8 +207,10 @@ a{color:inherit;text-decoration:none}
 .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
 .nav-logo{font-weight:900;font-size:20px;letter-spacing:-.5px}
 .nav-logo span{color:var(--orange)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:15px;font-weight:500;color:var(--text-sec);transition:color .2s}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-links a:not(.nav-cta){padding:8px 14px;border-radius:10px}
+.nav-links a:not(.nav-cta):hover{background:rgba(249,115,22,.08);color:var(--orange)}
+.nav-links a{font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--text-sec);transition:color .2s,background .2s}
 .nav-links a:hover{color:var(--text)}
 .nav-cta{background:var(--orange);color:#fff!important;padding:10px 22px;border-radius:100px;font-size:14px;font-weight:700;transition:transform .15s,box-shadow .15s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.3)}

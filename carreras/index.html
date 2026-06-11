@@ -1117,11 +1117,12 @@ function filterRaces(cat){
   });
 }
 
-/* [11 jun 2026] Orden por fecha + degradación de celebradas — AUTO-MANTENIDO.
-   Dentro de cada sección: futuras primero (la más próxima arriba), las ya
-   celebradas se van al final con badge "Celebrada" y opacidad reducida.
-   No se borran (conservan SEO/enlaces) y el orden se recalcula solo según
-   pasa el año, sin tocar el HTML. Si JS falla, el hub queda como está. */
+/* [11 jun 2026] Orden por fecha + celebradas OCULTAS en desplegable — AUTO-MANTENIDO.
+   Futuras ordenadas por fecha (la más próxima arriba). Las ya celebradas
+   se MUEVEN a un <details> cerrado al final ("Carreras ya celebradas") —
+   invisibles a la vista pero presentes en el DOM (Google sigue rastreando
+   los enlaces → no perdemos el SEO de esas páginas). Se recalcula solo
+   según pasa el año. Si JS falla, el hub queda como estaba. */
 (function(){
   var MES={enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,octubre:9,noviembre:10,diciembre:11};
   function fechaDe(card){
@@ -1133,30 +1134,54 @@ function filterRaces(cat){
     return null;
   }
   var hoy=new Date();hoy.setHours(0,0,0,0);
-  document.querySelectorAll('.race-grid').forEach(function(grid){
+  var pasadas=[];
+  var grids=document.querySelectorAll('.race-grid');
+  grids.forEach(function(grid){
     var cards=Array.prototype.slice.call(grid.querySelectorAll('.race-card'));
     if(!cards.length)return;
-    cards.sort(function(a,b){
-      var fa=fechaDe(a),fb=fechaDe(b);
-      if(!fa||!fb)return 0;
-      var pa=fa<hoy?1:0,pb=fb<hoy?1:0;
-      if(pa!==pb)return pa-pb;
-      return pa===1?(fb-fa):(fa-fb);
-    });
+    var futuras=[];
     cards.forEach(function(c){
       var f=fechaDe(c);
-      if(f&&f<hoy&&!c.getAttribute('data-celebrada')){
-        c.setAttribute('data-celebrada','1');
-        c.style.opacity='0.6';
-        var meta=c.querySelector('.card-meta');
+      if(f&&f<hoy){pasadas.push({c:c,f:f});}else{futuras.push({c:c,f:f});}
+    });
+    futuras.sort(function(a,b){return (a.f&&b.f)?(a.f-b.f):0;});
+    futuras.forEach(function(x){grid.appendChild(x.c);});
+  });
+  if(pasadas.length){
+    pasadas.sort(function(a,b){return b.f-a.f;});
+    var det=document.createElement('details');
+    det.style.cssText='margin:48px 0 24px;border:1px solid #efe6db;border-radius:16px;background:#fffcf9;overflow:hidden';
+    var sum=document.createElement('summary');
+    sum.style.cssText='padding:16px 20px;font-weight:700;color:#8b7355;cursor:pointer;list-style:none;font-size:.95rem';
+    sum.innerHTML='Carreras ya celebradas en 2026 ('+pasadas.length+') &mdash; toca para ver &darr;';
+    det.appendChild(sum);
+    var grid=document.createElement('div');
+    grid.className='race-grid';
+    grid.style.cssText='padding:0 16px 16px';
+    pasadas.forEach(function(x){
+      x.c.style.opacity='0.65';
+      if(!x.c.getAttribute('data-celebrada')){
+        x.c.setAttribute('data-celebrada','1');
+        var meta=x.c.querySelector('.card-meta');
         if(meta){
           var w=document.createElement('span');
           w.innerHTML='<span class="badge" style="background:rgba(0,0,0,.07);color:#8b7355;border:1px solid rgba(0,0,0,.08)">Celebrada &middot; vuelve en 2027</span>';
           meta.appendChild(w);
         }
       }
-      grid.appendChild(c);
+      grid.appendChild(x.c);
     });
+    det.appendChild(grid);
+    var last=grids[grids.length-1];
+    if(last&&last.parentNode){last.parentNode.insertBefore(det,last.nextSibling);}
+  }
+  // Si una sección se queda sin carreras futuras, ocultar grid + su H2
+  grids.forEach(function(grid){
+    if(grid.querySelectorAll('.race-card').length===0){
+      grid.style.display='none';
+      var prev=grid.previousElementSibling;
+      if(prev&&prev.tagName==='H2'){prev.style.display='none';}
+    }
   });
 })();
 </script>

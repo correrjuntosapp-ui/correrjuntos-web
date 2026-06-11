@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-48.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
+<title>Calculadora de Ritmo Running: Predice tu Marca de 5K a Marat&oacute;n | CorrerJuntos</title>
+<meta name="description" content="Calculadora de ritmos de running gratis: mete tu última marca y descubre tu predicción de 5K, 10K, media y maratón + tus ritmos de entrenamiento por zonas. Sin registro.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.correrjuntos.com/calculadora-ritmo-running">
+<meta property="og:title" content="Calculadora de Ritmo Running: Predice tu Marca de 5K a Maratón">
+<meta property="og:description" content="Mete tu última marca y descubre tu predicción de 5K, 10K, media y maratón + tus ritmos de entrenamiento por zonas. Gratis, sin registro.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.correrjuntos.com/calculadora-ritmo-running">
+<meta property="og:image" content="https://www.correrjuntos.com/public/carreras/sevilla-noche-guadalquivir.jpg">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de Ritmo Running — predice tu marca">
+<meta name="twitter:description" content="Tu predicción de 5K a maratón + ritmos de entrenamiento por zonas. Gratis.">
+<script>(function(){var t=localStorage.getItem('blog_theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})()</script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+function loadGA4(){if(document.getElementById('ga4-script'))return;var s=document.createElement('script');s.id='ga4-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-Z21L8G8FJC';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-Z21L8G8FJC');}
+if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;background:#fef7ed;color:#3d3229;line-height:1.7}
+.container{max-width:880px;margin:0 auto;padding:0 20px}
+a{color:#f97316}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)}
+.site-header nav{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em}
+.logo .a{color:#3d3229}.logo .b{color:#f97316}
+.nav-r{display:flex;gap:20px;align-items:center;font-size:.9rem;font-weight:600}
+.nav-r a{color:#3d3229;text-decoration:none}
+.nav-cta{background:#f97316;color:#fff!important;padding:8px 20px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none}
+.hero{ text-align:center;padding:48px 20px 8px}
+.hero h1{font-size:clamp(1.7rem,4.5vw,2.4rem);font-weight:900;line-height:1.15;margin-bottom:10px}
+.hero h1 span{color:#f97316}
+.hero p{color:#5c4d3d;max-width:560px;margin:0 auto;font-size:1.02rem}
+.calc{background:#fffcf9;border:1px solid #efe6db;border-radius:20px;padding:28px 24px;margin:28px auto;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.calc label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8b7355;margin-bottom:8px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+select,input[type=number]{width:100%;padding:13px 14px;border:1.5px solid #e7dccd;border-radius:12px;background:#fff;font-size:1.05rem;font-weight:600;color:#3d3229;outline:none;-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+select:focus,input:focus{border-color:#f97316}
+.time-row{display:flex;gap:8px;align-items:center}
+.time-row input{text-align:center}
+.time-row span{color:#8b7355;font-weight:700}
+.btn{display:block;width:100%;margin-top:18px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;padding:15px;border-radius:14px;font-size:1.05rem;font-weight:800;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 20px rgba(249,115,22,.25)}
+.btn:hover{transform:translateY(-2px)}
+.results{display:none;margin-top:8px}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 6px}
+.res-card{background:#fff;border:1px solid #efe6db;border-radius:16px;padding:16px;text-align:center}
+.res-card.current{border-color:#f97316;background:rgba(249,115,22,.05)}
+.res-dist{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8b7355}
+.res-time{font-size:1.5rem;font-weight:900;color:#3d3229;margin:2px 0}
+.res-pace{font-size:.82rem;color:#f97316;font-weight:700}
+h2{font-size:1.3rem;font-weight:800;margin:34px 0 12px}
+.zones{width:100%;border-collapse:collapse;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;overflow:hidden;font-size:.92rem}
+.zones th{background:rgba(249,115,22,.07);padding:10px 14px;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b7355}
+.zones td{padding:11px 14px;border-top:1px solid #f3ece1}
+.zones .z-pace{font-weight:800;color:#f97316;white-space:nowrap}
+.cta-box{margin:34px 0;padding:30px 24px;text-align:center;background:linear-gradient(135deg,rgba(249,115,22,.05),rgba(249,115,22,.1));border:1px solid rgba(249,115,22,.18);border-radius:20px}
+.cta-box h2{margin:0 0 6px}
+.cta-box p{color:#5c4d3d;margin-bottom:18px;font-size:.95rem}
+.cta{display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:13px 30px;border-radius:50px;font-weight:700;text-decoration:none}
+.nl{margin:30px 0;padding:24px;background:#fffcf9;border:1px solid #efe6db;border-radius:18px;text-align:center}
+.nl h3{font-size:1.05rem;margin-bottom:4px}
+.nl p{font-size:.85rem;color:#8b7355;margin-bottom:12px}
+.nl form{display:flex;gap:8px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.nl input[type=email]{flex:1;min-width:200px;padding:12px 18px;border:1px solid #e7dccd;border-radius:999px;font-size:.9rem;outline:none}
+.nl button{background:#f97316;color:#fff;border:none;padding:12px 22px;border-radius:999px;font-weight:700;cursor:pointer}
+.nl .ok{color:#16a34a;font-weight:700;font-size:.9rem;display:none}
+.faq{margin:30px 0 50px}
+.faq details{border:1px solid #efe6db;border-radius:12px;margin-bottom:10px;background:#fffcf9;padding:0}
+.faq summary{padding:14px 18px;font-weight:700;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq .a{padding:0 18px 16px;color:#5c4d3d;font-size:.94rem}
+.note{font-size:.8rem;color:#8b7355;margin-top:10px}
+.footer{background:#fffcf9;border-top:1px solid #efe6db;padding:32px 20px;text-align:center;margin-top:40px}
+.footer p{color:#8b7355;font-size:.8rem}
+html.dark body{background:#0b1220;color:#e2e8f0}
+html.dark .site-header{background:rgba(11,18,32,.97);border-bottom-color:rgba(255,255,255,.06)}
+html.dark .logo .a{color:#e2e8f0}
+html.dark .nav-r a{color:#cbd5e1}
+html.dark .hero p{color:#94a3b8}
+html.dark .calc,html.dark .res-card,html.dark .zones,html.dark .nl,html.dark .faq details{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+html.dark .res-time,html.dark h2,html.dark .nl h3,html.dark .faq summary{color:#e2e8f0}
+html.dark select,html.dark input{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#e2e8f0}
+html.dark .zones td{border-top-color:rgba(255,255,255,.06)}
+html.dark .zones th{background:rgba(249,115,22,.1)}
+html.dark .cta-box{background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(249,115,22,.14));border-color:rgba(249,115,22,.25)}
+html.dark .cta-box p,html.dark .faq .a,html.dark .nl p{color:#94a3b8}
+html.dark .footer{background:rgba(255,255,255,.03);border-top-color:rgba(255,255,255,.06)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://www.correrjuntos.com/calculadora-ritmo-running#app",
+      "name": "Calculadora de Ritmo Running CorrerJuntos",
+      "url": "https://www.correrjuntos.com/calculadora-ritmo-running",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "description": "Calculadora gratuita de ritmos de running: predicción de marcas de 5K a maratón (fórmula de Riegel) y ritmos de entrenamiento por zonas.",
+      "publisher": { "@type": "Organization", "name": "CorrerJuntos", "url": "https://www.correrjuntos.com/" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo se calculan las predicciones de marca?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Usamos la fórmula de Riegel (t2 = t1 × (d2/d1)^1.06), el estándar de la industria para proyectar marcas entre distancias. Asume que estás entrenado para la distancia objetivo: tu 5K predice tu maratón solo si entrenas el volumen del maratón." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué son los ritmos de entrenamiento por zonas?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Son los ritmos a los que deberías hacer cada tipo de sesión: rodaje suave, tirada larga, tempo, umbral, intervalos y recuperación. Entrenar cada zona a su ritmo correcto es lo que hace mejorar — la mayoría de corredores populares entrena los días suaves demasiado rápido." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La calculadora es gratis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sí, totalmente gratis y sin registro. Si quieres un plan de entrenamiento que use estos ritmos y los ajuste automáticamente según progresas, eso es lo que hace la app de CorrerJuntos." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué mi predicción de maratón parece optimista?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Riegel asume que llegas igual de preparado a la distancia larga. Si tu volumen semanal es bajo (<50 km/sem para maratón), añade entre 10 y 20 minutos a la predicción. La preparación específica importa más que la fórmula." }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.correrjuntos.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Calculadora de Ritmo" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+<nav>
+  <a href="/" class="logo"><span class="a">CORRER</span><span class="b">JUNTOS</span></a>
+  <div class="nav-r">
+    <a href="/planes">Planes</a>
+    <a href="/blog">Blog</a>
+    <a href="/carreras">Carreras</a>
+    <a href="/app" class="nav-cta">Descargar App</a>
+  </div>
+</nav>
+</header>
+
+<div class="hero">
+  <h1>Calculadora de Ritmo Running:<br>predice tu marca de <span>5K a marat&oacute;n</span></h1>
+  <p>Mete tu &uacute;ltima marca y descubre qu&eacute; puedes correr en cada distancia — y a qu&eacute; ritmo deber&iacute;as entrenar cada sesi&oacute;n. Gratis, sin registro.</p>
+</div>
+
+<main class="container">
+
+  <div class="calc">
+    <div class="row">
+      <div>
+        <label for="dist">Tu &uacute;ltima carrera</label>
+        <select id="dist">
+          <option value="5">5K</option>
+          <option value="10" selected>10K</option>
+          <option value="21.0975">Media marat&oacute;n</option>
+          <option value="42.195">Marat&oacute;n</option>
+        </select>
+      </div>
+      <div>
+        <label>Tu tiempo</label>
+        <div class="time-row">
+          <input type="number" id="h" min="0" max="9" placeholder="h" inputmode="numeric" aria-label="horas">
+          <span>:</span>
+          <input type="number" id="m" min="0" max="59" placeholder="min" inputmode="numeric" aria-label="minutos">
+          <span>:</span>
+          <input type="number" id="s" min="0" max="59" placeholder="seg" inputmode="numeric" aria-label="segundos">
+        </div>
+      </div>
+    </div>
+    <button class="btn" onclick="calcular()">Calcular mis ritmos &rarr;</button>
+    <p class="note">F&oacute;rmula de Riegel — el est&aacute;ndar usado por entrenadores de todo el mundo.</p>
+  </div>
+
+  <div class="results" id="results">
+    <h2>Tus marcas estimadas</h2>
+    <div class="res-grid" id="resGrid"></div>
+    <p class="note">La predicci&oacute;n asume que entrenas para esa distancia. Para marat&oacute;n con poco volumen, suma 10-20 min.</p>
+
+    <h2>Tus ritmos de entrenamiento</h2>
+    <table class="zones">
+      <thead><tr><th>Sesi&oacute;n</th><th>Para qu&eacute; sirve</th><th>Ritmo</th></tr></thead>
+      <tbody id="zonesBody"></tbody>
+    </table>
+    <p class="note">El error n&ordm;1 del corredor popular: hacer los rodajes suaves demasiado r&aacute;pido. Resp&eacute;talos y mejorar&aacute;s m&aacute;s.</p>
+
+    <div class="cta-box">
+      <h2>&iquest;Quieres BAJAR esa marca?</h2>
+      <p>La app de CorrerJuntos convierte estos ritmos en un plan semana a semana que se ajusta solo seg&uacute;n progresas — con Coach Jos&eacute; para las dudas y gente de tu zona para no entrenar solo.</p>
+      <a class="cta" href="/app" onclick="if(typeof gtag==='function')gtag('event','calc_app_click',{page:location.pathname})">Empezar mi plan gratis &rarr;</a>
+    </div>
+
+    <div class="nl">
+      <h3>Gu&aacute;rdate tus ritmos</h3>
+      <p>Te enviamos esta tabla a tu email + 1 consejo de entrenamiento cada lunes. Sin spam.</p>
+      <form id="nlForm" onsubmit="return nlSubmit(event)">
+        <input type="email" id="nlEmail" placeholder="tu@email.com" required>
+        <button type="submit">Enviar</button>
+      </form>
+      <p class="ok" id="nlOk">&iexcl;Hecho! Revisa tu bandeja de entrada para confirmar.</p>
+    </div>
+  </div>
+
+  <section class="faq">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>&iquest;C&oacute;mo se calculan las predicciones?</summary><div class="a">Con la f&oacute;rmula de Riegel (t2 = t1 &times; (d2/d1)^1.06), el est&aacute;ndar para proyectar marcas entre distancias. Cuanto m&aacute;s cercana la distancia de origen, m&aacute;s precisa la predicci&oacute;n.</div></details>
+    <details><summary>&iquest;Qu&eacute; son las zonas de entrenamiento?</summary><div class="a">Los ritmos correctos para cada tipo de sesi&oacute;n: suave, tirada larga, tempo, umbral, intervalos y recuperaci&oacute;n. Entrenar cada zona a su ritmo es lo que hace mejorar — correr todo "a tope" estanca y lesiona.</div></details>
+    <details><summary>&iquest;Mi predicci&oacute;n de marat&oacute;n es realista?</summary><div class="a">Solo si entrenas el volumen del marat&oacute;n (50+ km/semana). Si no, suma 10-20 minutos. La preparaci&oacute;n espec&iacute;fica pesa m&aacute;s que cualquier f&oacute;rmula.</div></details>
+    <details><summary>&iquest;Cu&aacute;nto puedo mejorar con un plan?</summary><div class="a">Un corredor popular constante con un plan estructurado de 8-16 semanas suele recortar entre un 3% y un 8% de su marca. <a href="/planes">Mira los planes de CorrerJuntos</a> — el 0&rarr;5K y el de iniciaci&oacute;n son gratis.</div></details>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 CorrerJuntos &middot; <a href="/blog">Blog</a> &middot; <a href="/carreras">Carreras</a> &middot; <a href="/planes">Planes</a></p>
+</footer>
+
+<script>
+function fmt(sec){
+  sec = Math.round(sec);
+  var h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60), s = sec%60;
+  return (h>0? h+':'+String(m).padStart(2,'0') : m) + ':' + String(s).padStart(2,'0');
+}
+function paceStr(secPerKm){
+  var m = Math.floor(secPerKm/60), s = Math.round(secPerKm%60);
+  if(s===60){m++;s=0;}
+  return m + ':' + String(s).padStart(2,'0') + '/km';
+}
+var lastCalc = null;
+function calcular(){
+  var d1 = parseFloat(document.getElementById('dist').value);
+  var h = parseInt(document.getElementById('h').value||'0',10);
+  var m = parseInt(document.getElementById('m').value||'0',10);
+  var s = parseInt(document.getElementById('s').value||'0',10);
+  var t1 = h*3600 + m*60 + s;
+  if(t1 < 360){ alert('Introduce un tiempo válido (mínimo 6 minutos).'); return; }
+  var paceSec = t1/d1;
+  if(paceSec < 150 || paceSec > 720){ alert('Ese ritmo no parece realista — revisa distancia y tiempo.'); return; }
+
+  var dists = [{n:'5K',km:5},{n:'10K',km:10},{n:'Media',km:21.0975},{n:'Maratón',km:42.195}];
+  var grid = '';
+  dists.forEach(function(d){
+    var t2 = t1 * Math.pow(d.km/d1, 1.06);
+    var cur = Math.abs(d.km-d1) < 0.2;
+    grid += '<div class="res-card'+(cur?' current':'')+'"><div class="res-dist">'+d.n+(cur?' · tu marca':'')+'</div><div class="res-time">'+fmt(t2)+'</div><div class="res-pace">'+paceStr(t2/d.km)+'</div></div>';
+  });
+  document.getElementById('resGrid').innerHTML = grid;
+
+  /* Zonas: base = ritmo 10K estimado (misma filosofía de offsets que la app) */
+  var t10k = t1 * Math.pow(10/d1, 1.06);
+  var p10 = t10k/10;
+  var zonas = [
+    ['Rodaje suave','La base: conversación cómoda, 60-70% de tus sesiones', p10+50],
+    ['Tirada larga','Resistencia: el día largo de la semana', p10+65],
+    ['Tempo','Ritmo "cómodamente duro" sostenido 20-40 min', p10-25],
+    ['Umbral','Justo donde empieza a quemar: bloques de 8-15 min', p10-10],
+    ['Intervalos','Series cortas rápidas (400-1000m) con recuperación', p10-45],
+    ['Recuperación','Trote regenerativo el día después de apretar', p10+90]
+  ];
+  var tb = '';
+  zonas.forEach(function(z){ tb += '<tr><td><strong>'+z[0]+'</strong></td><td>'+z[1]+'</td><td class="z-pace">'+paceStr(z[2])+'</td></tr>'; });
+  document.getElementById('zonesBody').innerHTML = tb;
+
+  lastCalc = { dist:d1, time:fmt(t1), pace10k:paceStr(p10) };
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
+  if(typeof gtag==='function')gtag('event','calc_ritmos_used',{dist:d1,time_sec:t1});
+}
+function nlSubmit(e){
+  e.preventDefault();
+  var email = document.getElementById('nlEmail').value;
+  fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,source:'calculadora-ritmos'})})
+    .then(function(){ document.getElementById('nlForm').style.display='none'; document.getElementById('nlOk').style.display='block'; if(typeof gtag==='function')gtag('event','newsletter_success',{source:'calculadora-ritmos'}); })
+    .catch(function(){ alert('No se pudo enviar — inténtalo de nuevo.'); });
+  return false;
+}
+</script>
+</body>
+</html>

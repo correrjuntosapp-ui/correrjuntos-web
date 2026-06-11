@@ -836,16 +836,16 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
           <div class="card-city">&#128205; Barcelona</div>
         </div>
       </a>
-      <a href="/carreras/nocturna-guadalquivir-sevilla" class="race-card" data-category="popular" data-month="6">
-        <div class="race-card-img"><img src="/public/carreras/sevilla-noche-guadalquivir.jpg" alt="Nocturna del Guadalquivir" loading="lazy" width="600" height="320"></div>
+      <a href="/carreras/nocturna-guadalquivir-sevilla" class="race-card" data-category="popular" data-month="9">
+        <div class="race-card-img"><img src="/public/carreras/sevilla-noche-guadalquivir.jpg" alt="Nocturna del Guadalquivir KH-7 2026" loading="lazy" width="600" height="320"></div>
         <div class="race-card-body">
-          <h3>Nocturna del Guadalquivir</h3>
+          <h3>Nocturna del Guadalquivir KH-7</h3>
           <div class="card-meta">
-            <span>10K</span>
-            <span>20 de junio de 2026</span>
+            <span>8,5K</span>
+            <span>25 de septiembre de 2026</span>
             <span><span class="badge badge-popular">Popular</span></span>
           </div>
-          <div class="card-city">&#128205; Sevilla</div>
+          <div class="card-city">&#128205; Sevilla &middot; 25.000 corredores</div>
         </div>
       </a>
       <a href="/carreras/15k-nocturna-valencia" class="race-card" data-category="popular" data-month="6">
@@ -1116,6 +1116,49 @@ function filterRaces(cat){
     else{c.style.display='none'}
   });
 }
+
+/* [11 jun 2026] Orden por fecha + degradación de celebradas — AUTO-MANTENIDO.
+   Dentro de cada sección: futuras primero (la más próxima arriba), las ya
+   celebradas se van al final con badge "Celebrada" y opacidad reducida.
+   No se borran (conservan SEO/enlaces) y el orden se recalcula solo según
+   pasa el año, sin tocar el HTML. Si JS falla, el hub queda como está. */
+(function(){
+  var MES={enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,octubre:9,noviembre:10,diciembre:11};
+  function fechaDe(card){
+    var spans=card.querySelectorAll('.card-meta span');
+    for(var i=0;i<spans.length;i++){
+      var m=spans[i].textContent.match(/(\d{1,2}) de ([a-zA-Záéíóú]+) de (\d{4})/);
+      if(m){var mes=MES[m[2].toLowerCase()];if(mes!==undefined){return new Date(+m[3],mes,+m[1]);}}
+    }
+    return null;
+  }
+  var hoy=new Date();hoy.setHours(0,0,0,0);
+  document.querySelectorAll('.race-grid').forEach(function(grid){
+    var cards=Array.prototype.slice.call(grid.querySelectorAll('.race-card'));
+    if(!cards.length)return;
+    cards.sort(function(a,b){
+      var fa=fechaDe(a),fb=fechaDe(b);
+      if(!fa||!fb)return 0;
+      var pa=fa<hoy?1:0,pb=fb<hoy?1:0;
+      if(pa!==pb)return pa-pb;
+      return pa===1?(fb-fa):(fa-fb);
+    });
+    cards.forEach(function(c){
+      var f=fechaDe(c);
+      if(f&&f<hoy&&!c.getAttribute('data-celebrada')){
+        c.setAttribute('data-celebrada','1');
+        c.style.opacity='0.6';
+        var meta=c.querySelector('.card-meta');
+        if(meta){
+          var w=document.createElement('span');
+          w.innerHTML='<span class="badge" style="background:rgba(0,0,0,.07);color:#8b7355;border:1px solid rgba(0,0,0,.08)">Celebrada &middot; vuelve en 2027</span>';
+          meta.appendChild(w);
+        }
+      }
+      grid.appendChild(c);
+    });
+  });
+})();
 </script>
 <script src="/blog/enhance.js" defer></script>
 </body>

@@ -415,10 +415,20 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
   </div>
 </div>
 
-<div class="hub-hero">
-  <h1>Carreras Populares de Espa&ntilde;a</h1>
-  <p>Las carreras populares m&aacute;s buscadas de Espa&ntilde;a. Encuentra tu pr&oacute;ximo reto, desde 10K locales hasta maratones legendarios y ultra-trails.</p>
-</div>
+<header class="hero" style="min-height:380px">
+  <div class="hero-bg"><img src="https://images.pexels.com/photos/2402777/pexels-photo-2402777.jpeg?auto=compress&cs=tinysrgb&w=1600&h=700&fit=crop&q=75" alt="Corredores en una carrera popular — calendario de carreras de España 2026" loading="eager" fetchpriority="high" width="1600" height="700"></div>
+  <div class="hero-content">
+    <h1>Carreras Populares de Espa&ntilde;a <span style="color:#f97316">2026</span></h1>
+    <p class="hero-subtitle">El calendario running de Espa&ntilde;a, siempre al d&iacute;a</p>
+    <p>Encuentra tu pr&oacute;ximo reto: desde 10K locales hasta maratones legendarios y ultra-trails.</p>
+    <div class="hero-badges">
+      <span class="hero-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <span id="hub-stat-count">Calendario</span></span>
+      <span class="hero-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Pr&oacute;ximas primero</span>
+      <span class="hero-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Toda Espa&ntilde;a</span>
+    </div>
+    <div id="hub-next-races" class="hero-badges" style="margin-top:6px"></div>
+  </div>
+</header>
 
 <div class="container">
 
@@ -1183,6 +1193,31 @@ function filterRaces(cat){
       if(prev&&prev.tagName==='H2'){prev.style.display='none';}
     }
   });
+  // Hero vivo: contador de futuras + chips con las 3 próximas carreras
+  try{
+    var futuras=[];
+    document.querySelectorAll('.race-grid .race-card').forEach(function(c){
+      if(c.getAttribute('data-celebrada'))return;
+      var f=fechaDe(c);
+      if(f&&f>=hoy)futuras.push({c:c,f:f});
+    });
+    var cnt=document.getElementById('hub-stat-count');
+    if(cnt&&futuras.length)cnt.textContent=futuras.length+' carreras por venir';
+    var box=document.getElementById('hub-next-races');
+    if(box&&futuras.length){
+      futuras.sort(function(a,b){return a.f-b.f});
+      var MESES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+      futuras.slice(0,3).forEach(function(x){
+        var h3=x.c.querySelector('h3');
+        var a=document.createElement('a');
+        a.href=x.c.getAttribute('href');
+        a.className='hero-badge';
+        a.style.cssText='text-decoration:none;background:rgba(249,115,22,.3);border-color:rgba(249,115,22,.55)';
+        a.innerHTML='&rarr; '+x.f.getDate()+' '+MESES[x.f.getMonth()]+' &middot; '+(h3?h3.textContent.trim():'');
+        box.appendChild(a);
+      });
+    }
+  }catch(_){}
 })();
 </script>
 <script src="/blog/enhance.js" defer></script>

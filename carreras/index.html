@@ -720,18 +720,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
           <div class="card-city">&#128205; Madrid</div>
         </div>
       </a>
-      <a href="/carreras/10k-divina-pastora-valencia" class="race-card" data-category="10k" data-month="11">
-        <div class="race-card-img"><img src="https://images.pexels.com/photos/34605186/pexels-photo-34605186.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop&q=70" alt="15K Valencia" loading="lazy" width="600" height="320"></div>
-        <div class="race-card-body">
-          <h3>15K Valencia</h3>
-          <div class="card-meta">
-            <span>15K</span>
-            <span>15 de noviembre de 2026</span>
-            <span><span class="badge badge-10k">10K</span></span>
-          </div>
-          <div class="card-city">&#128205; Valencia</div>
-        </div>
-      </a>
+
       <a href="/carreras/carrera-corte-ingles" class="race-card" data-category="10k" data-month="4">
         <div class="race-card-img"><img src="https://images.pexels.com/photos/2526885/pexels-photo-2526885.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop&q=70" alt="Carrera El Corte Inglés" loading="lazy" width="600" height="320"></div>
         <div class="race-card-body">
@@ -759,6 +748,20 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
     </div>
     <h2>Populares y Cl&aacute;sicas</h2>
     <div class="race-grid">
+
+      <a href="/carreras/10k-divina-pastora-valencia" class="race-card" data-category="popular" data-month="11">
+        <div class="race-card-img"><img src="https://images.pexels.com/photos/34605186/pexels-photo-34605186.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop&q=70" alt="15K Valencia" loading="lazy" width="600" height="320"></div>
+        <div class="race-card-body">
+          <h3>15K Valencia</h3>
+          <div class="card-meta">
+            <span>15K</span>
+            <span>15 de noviembre de 2026</span>
+            <span><span class="badge badge-10k">10K</span></span>
+          </div>
+          <div class="card-city">&#128205; Valencia</div>
+        </div>
+      </a>
+
 
       <a href="/carreras/golf-runner-onupolis-2026" class="race-card" data-category="popular" data-month="7">
         <div class="race-card-img"><img src="/public/carreras/golf-runner-onupolis-2026/cover-jul4.jpg" alt="Golf Runner Onúpolis 2026 — Club de Golf Bellavista, Huelva" loading="lazy" width="600" height="320"></div>
@@ -1259,7 +1262,7 @@ function filterRaces(cat){
     det.style.cssText='margin:48px 0 24px;border:1px solid #efe6db;border-radius:16px;background:#fffcf9;overflow:hidden';
     var sum=document.createElement('summary');
     sum.style.cssText='padding:16px 20px;font-weight:700;color:#8b7355;cursor:pointer;list-style:none;font-size:.95rem';
-    sum.innerHTML='Carreras ya celebradas en 2026 ('+pasadas.length+') &mdash; toca para ver &darr;';
+    sum.innerHTML='Toca para ver las '+pasadas.length+' carreras ya celebradas &darr;';
     det.appendChild(sum);
     var grid=document.createElement('div');
     grid.className='race-grid';
@@ -1279,7 +1282,11 @@ function filterRaces(cat){
     });
     det.appendChild(grid);
     var last=grids[grids.length-1];
-    if(last&&last.parentNode){last.parentNode.insertBefore(det,last.nextSibling);}
+    if(last&&last.parentNode){
+      var ph=document.createElement('h2');ph.textContent='Carreras ya celebradas en 2026';ph.style.cssText='margin-top:48px';
+      last.parentNode.insertBefore(ph,last.nextSibling);
+      last.parentNode.insertBefore(det,ph.nextSibling);
+    }
   }
   // Si una sección se queda sin carreras futuras, ocultar grid + su H2
   grids.forEach(function(grid){

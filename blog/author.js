@@ -26,8 +26,8 @@
       ? 'Triathlete · Running since 2014'
       : 'Triatleta · Corre desde 2014',
     bio: IS_EN
-      ? 'Founder of CorrerJuntos, a running community with 800+ runners. Everything I write I test first in my own training — if it doesn’t work for me, it doesn’t make the blog.'
-      : 'Fundador de CorrerJuntos, comunidad de running con más de 800 corredores. Lo que escribo lo pruebo primero yo en mi propio entreno — si no me sirve a mí, no llega al blog.',
+      ? 'Founder of CorrerJuntos, a running community with 1,000+ runners. Everything I write I test first in my own training — if it doesn’t work for me, it doesn’t make the blog.'
+      : 'Fundador de CorrerJuntos, comunidad de running con más de 1.000 corredores. Lo que escribo lo pruebo primero yo en mi propio entreno — si no me sirve a mí, no llega al blog.',
     color: '#f97316',
     photo: '/public/abraham.jpg',
     url: '/blog/autor/abraham-marquez',

@@ -73,6 +73,16 @@
       "permanent": true
     },
     {
+      "source": "/blog/autor/carlos-ruiz",
+      "destination": "/blog/autor/abraham-marquez",
+      "permanent": true
+    },
+    {
+      "source": "/blog/autor/maria-lopez",
+      "destination": "/blog/autor/abraham-marquez",
+      "permanent": true
+    },
+    {
       "source": "/blog/lamparas-frontales-running",
       "destination": "/blog/mejores-frontales-running",
       "permanent": true

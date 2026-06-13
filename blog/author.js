@@ -10,48 +10,37 @@
 (function(){
   'use strict';
 
-  var AUTHORS = {
-    'carlos ruiz': {
-      initials: 'CR',
-      name: 'Carlos Ruiz',
-      role: 'Editor de Running y Equipamiento',
-      credentials: 'Periodista deportivo · Corredor 12+ años · 5 maratones · 30+ zapatillas testadas en pista',
-      bio: 'Periodista deportivo especializado en running y equipamiento. Corredor popular con más de 12 años de experiencia, 5 maratones (mejor marca 3:42), 18 medias maratones y participación regular en carreras populares de Andalucía. Cada producto que reseño lo he probado al menos 80km antes de escribir. Mi criterio: si no lo recomendaría a un compañero del grupo, no aparece aquí.',
-      color: '#3b82f6',
-      photo: '/blog/autor/photos/carlos-ruiz.jpg',
-      url: '/blog/autor/carlos-ruiz'
-    },
-    'maria lopez': {
-      initials: 'ML',
-      name: 'María López',
-      role: 'Especialista en Running Femenino y Salud',
-      credentials: 'Nutricionista deportiva · Coach de mujeres runners · 21K sub-1:50',
-      bio: 'Nutricionista deportiva y coach especializada en running femenino. Escribe sobre menstruación, embarazo, menopausia y todo lo que afecta al rendimiento de las mujeres runners. Apasionada de la divulgación científica con base en evidencia.',
-      color: '#ec4899',
-      photo: '/blog/autor/photos/maria-lopez.jpg',
-      url: '/blog/autor/maria-lopez'
-    },
-    'abraham marquez rodriguez': {
-      initials: 'AM',
-      name: 'Abraham Márquez Rodríguez',
-      role: 'Fundador de CorrerJuntos',
-      credentials: 'Founder Huelva · Triatleta · Corre desde 2014 · Construye CorrerJuntos solo desde nov 2025',
-      bio: 'Fundador de CorrerJuntos, app española de running con 712+ runners activos. Vivo en Huelva, corro desde 2014 y compito en triatlón regular (Torre del Mar, Huelva). Construyo el producto en solitario como autónomo desde noviembre 2025. Lo que escribo aquí lo pruebo primero yo en mi propio entreno — si no me sirve a mí, no llega al blog. Perfil público: LinkedIn (verificable abajo) e Instagram.',
-      color: '#10b981',
-      photo: '/public/abraham.jpg',
-      url: '/blog/autor/abraham-marquez',
-      instagram: 'https://www.instagram.com/abraham_marquez_rodriguez/',
-      linkedin: 'https://www.linkedin.com/in/abrahammarquezrodriguez/'
-    },
-    /* Aliases — todas estas variantes resuelven a Abraham Márquez Rodríguez
-       (founder con foto + Instagram + LinkedIn). Antes Jose Marquez era una
-       entrada separada con iniciales JM; unificada 9 may 26 porque era el
-       mismo founder con pseudónimo viejo. */
-    'abraham marquez': null,
-    'jose marquez': null
+  /* ── Detección de idioma (ES por defecto, EN si la URL es /blog/en/) ── */
+  var IS_EN = /\/blog\/en\//.test(location.pathname) ||
+    ((document.documentElement.getAttribute('lang') || '').toLowerCase().indexOf('en') === 0);
+
+  /* ÚNICO autor real y verificable: Abraham Márquez Rodríguez (founder).
+     Las firmas ficticias antiguas (Carlos Ruiz, María López) y el pseudónimo
+     viejo (Jose/José Márquez) se unificaron a Abraham el 13 jun 26 — todas
+     resuelven a la misma entrada para mantener una única entidad E-E-A-T. */
+  var ABRAHAM = {
+    initials: 'AM',
+    name: 'Abraham Márquez Rodríguez',
+    role: IS_EN ? 'Founder of CorrerJuntos' : 'Fundador de CorrerJuntos',
+    credentials: IS_EN
+      ? 'Founder in Huelva · Triathlete · Running since 2014 · Building CorrerJuntos solo since Nov 2025'
+      : 'Founder Huelva · Triatleta · Corre desde 2014 · Construye CorrerJuntos solo desde nov 2025',
+    bio: IS_EN
+      ? 'Founder of CorrerJuntos, a Spanish running app with 712+ active runners. I live in Huelva, have been running since 2014 and race triathlon regularly (Torre del Mar, Huelva). I build the product solo as a freelancer since November 2025. Everything I write here I test first in my own training — if it does not work for me, it does not make the blog. Public profile: LinkedIn (verifiable below) and Instagram.'
+      : 'Fundador de CorrerJuntos, app española de running con 712+ runners activos. Vivo en Huelva, corro desde 2014 y compito en triatlón regular (Torre del Mar, Huelva). Construyo el producto en solitario como autónomo desde noviembre 2025. Lo que escribo aquí lo pruebo primero yo en mi propio entreno — si no me sirve a mí, no llega al blog. Perfil público: LinkedIn (verificable abajo) e Instagram.',
+    color: '#f97316',
+    photo: '/public/abraham.jpg',
+    url: '/blog/autor/abraham-marquez',
+    instagram: 'https://www.instagram.com/abraham_marquez_rodriguez/',
+    linkedin: 'https://www.linkedin.com/in/abrahammarquezrodriguez/'
   };
-  AUTHORS['abraham marquez'] = AUTHORS['abraham marquez rodriguez'];
-  AUTHORS['jose marquez'] = AUTHORS['abraham marquez rodriguez'];
+  var AUTHORS = {
+    'abraham marquez rodriguez': ABRAHAM,
+    'abraham marquez': ABRAHAM,
+    'jose marquez': ABRAHAM,
+    'carlos ruiz': ABRAHAM,
+    'maria lopez': ABRAHAM
+  };
 
   /* ── Helpers ─────────────────────────────────────────── */
 
@@ -150,12 +139,12 @@
   card.innerHTML =
     avatarHtml +
     '<div class="author-info">' +
-      '<div class="author-label">Escrito por</div>' +
+      '<div class="author-label">' + (IS_EN ? 'Written by' : 'Escrito por') + '</div>' +
       '<p class="author-name">' + author.name + '</p>' +
       '<p class="author-role">' + author.role + '</p>' +
       (author.credentials ? '<div class="author-credentials">' + author.credentials + '</div>' : '') +
       '<p class="author-bio">' + author.bio + '</p>' +
-      '<a href="' + author.url + '" class="author-link">Ver todos los artículos de ' + author.name + ' →</a>' +
+      '<a href="' + author.url + '" class="author-link">' + (IS_EN ? 'See all articles by ' : 'Ver todos los artículos de ') + author.name + ' →</a>' +
       socialsHtml +
     '</div>';
 

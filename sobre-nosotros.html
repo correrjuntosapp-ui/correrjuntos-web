@@ -81,29 +81,17 @@
   "mainEntity": {
     "@type": "Organization",
     "name": "CorrerJuntos",
-    "member": [
-      {
-        "@type": "Person",
-        "name": "Carlos Ruiz",
-        "jobTitle": "CEO & Fundador",
-        "description": "Ingeniero de software y maratoniano. Fundador de CorrerJuntos.",
-        "worksFor": {"@type": "Organization", "name": "CorrerJuntos"}
-      },
-      {
-        "@type": "Person",
-        "name": "Marina García",
-        "jobTitle": "Head of Growth & Marketing",
-        "description": "Especialista en growth marketing con 6 años de experiencia. Corredora de trail y media maratón.",
-        "worksFor": {"@type": "Organization", "name": "CorrerJuntos"}
-      },
-      {
-        "@type": "Person",
-        "name": "David López",
-        "jobTitle": "Content & SEO Lead",
-        "description": "Periodista deportivo y content strategist. Corredor de 10K y medio fondo.",
-        "worksFor": {"@type": "Organization", "name": "CorrerJuntos"}
-      }
-    ]
+    "founder": {
+      "@type": "Person",
+      "name": "Abraham Márquez Rodríguez",
+      "jobTitle": "Fundador",
+      "description": "Fundador de CorrerJuntos. Vive en Huelva, corre desde 2014 y compite en triatlón. Construye el producto en solitario desde noviembre 2025.",
+      "url": "https://www.correrjuntos.com/blog/autor/abraham-marquez",
+      "sameAs": [
+        "https://www.linkedin.com/in/abrahammarquezrodriguez/",
+        "https://www.instagram.com/abraham_marquez_rodriguez/"
+      ]
+    }
   }
 }
 </script>
@@ -245,7 +233,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 <!-- Hero -->
 <div class="hero">
   <h1>Nacimos para que <span>Nadie Corra Solo</span></h1>
-  <p>Somos un equipo de runners que cree en una cosa: correr es mejor cuando lo compartes. CorrerJuntos nació de esa convicción y hoy conecta a miles de corredores en España y Latinoamérica.</p>
+  <p>CorrerJuntos cree en una cosa: correr es mejor cuando lo compartes. Nació de esa convicción —de un corredor que no encontraba grupo— y hoy conecta a miles de corredores en España y Latinoamérica.</p>
 </div>
 
 <div class="container">
@@ -347,35 +335,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   <!-- El Equipo -->
   <div class="section">
     <h2 class="section-title">Quién Está <span>Detrás</span></h2>
-    <p class="section-subtitle">CorrerJuntos nace de un equipo pequeño con una obsesión grande: que nadie corra solo.</p>
+    <p class="section-subtitle">CorrerJuntos lo construye una sola persona, desde Huelva y desde cero. Sin equipo inventado: un founder técnico que escribe, programa y prueba todo en su propio entreno.</p>
 
-    <div class="team-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="team-grid" style="grid-template-columns:1fr;max-width:560px;margin:0 auto">
 
-      <!-- Carlos Ruiz — CEO & Fundador -->
+      <!-- Abraham Márquez Rodríguez — Fundador (founder en solitario, real) -->
       <div class="team-card">
-        <div class="team-avatar" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.5rem;margin:0 auto 12px">CR</div>
-        <div class="team-name">Carlos Ruiz</div>
-        <div class="team-role">CEO & Fundador</div>
-        <div class="team-bio">Ingeniero de software y maratoniano. Empezó a correr solo buscando grupos sin encontrar ninguna solución que funcionara, y decidió construir CorrerJuntos desde cero. Lidera producto, tecnología y visión estratégica.</div>
-        <div class="team-quote">"Empecé corriendo solo a las 6am. Ahora nunca corro solo."</div>
-      </div>
-
-      <!-- Marina García — Head of Growth & Marketing -->
-      <div class="team-card">
-        <div class="team-avatar" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#7c3aed);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.5rem;margin:0 auto 12px">MG</div>
-        <div class="team-name">Marina García</div>
-        <div class="team-role">Head of Growth & Marketing</div>
-        <div class="team-bio">Ex-agencia digital con 6 años de experiencia en growth marketing. Corredora de trail y media maratón. Lidera la estrategia de adquisición, partnerships con marcas deportivas y la expansión a Latinoamérica.</div>
-        <div class="team-quote">"El running es el deporte más democrático del mundo. Solo necesitas zapatillas y ganas."</div>
-      </div>
-
-      <!-- David López — Content & SEO Lead -->
-      <div class="team-card">
-        <div class="team-avatar" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#0891b2);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.5rem;margin:0 auto 12px">DL</div>
-        <div class="team-name">David López</div>
-        <div class="team-role">Content & SEO Lead</div>
-        <div class="team-bio">Periodista deportivo reconvertido en content strategist. Corredor de 10K y medio fondo. Escribe y coordina todas las reseñas de equipamiento, artículos del blog y guías de ciudades con un enfoque 100% honesto.</div>
-        <div class="team-quote">"Si reseñamos unas zapatillas, las hemos corrido. Nunca copiamos fichas técnicas."</div>
+        <img src="/public/abraham.jpg" alt="Abraham Márquez Rodríguez" width="96" height="96" loading="lazy" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:block;border:2px solid rgba(249,115,22,.35)">
+        <div class="team-name">Abraham Márquez Rodríguez</div>
+        <div class="team-role">Fundador</div>
+        <div class="team-bio">Vivo en Huelva, corro desde 2014 y compito en triatlón. Construyo CorrerJuntos en solitario como autónomo desde noviembre 2025 — producto, tecnología, contenido y comunidad. Cada reseña y cada plan los pruebo yo primero en mi propio entreno: si no me sirve a mí, no llega aquí.</div>
+        <div class="team-quote">"Empecé corriendo solo a las 6am buscando grupo y sin encontrarlo. Por eso construí CorrerJuntos."</div>
+        <div style="display:flex;gap:14px;justify-content:center;margin-top:14px">
+          <a href="https://www.linkedin.com/in/abrahammarquezrodriguez/" target="_blank" rel="noopener" style="color:#f97316;font-size:.85rem;font-weight:700;text-decoration:none">LinkedIn</a>
+          <a href="https://www.instagram.com/abraham_marquez_rodriguez/" target="_blank" rel="noopener" style="color:#f97316;font-size:.85rem;font-weight:700;text-decoration:none">Instagram</a>
+        </div>
       </div>
 
     </div>
@@ -385,7 +359,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
       <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;text-align:center">
         <div style="font-size:1.5rem;margin-bottom:8px">💻</div>
         <div style="color:#fff;font-weight:700;font-size:.9rem">Tecnología</div>
-        <div style="color:#64748b;font-size:.8rem;margin-top:4px">App iOS nativa, plataforma web y API desarrolladas in-house por nuestro equipo</div>
+        <div style="color:#64748b;font-size:.8rem;margin-top:4px">App iOS nativa, plataforma web y API desarrolladas in-house por el fundador</div>
       </div>
       <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;text-align:center">
         <div style="font-size:1.5rem;margin-bottom:8px">✍️</div>

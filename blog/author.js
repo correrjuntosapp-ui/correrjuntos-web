@@ -23,11 +23,11 @@
     name: 'Abraham Márquez Rodríguez',
     role: IS_EN ? 'Founder of CorrerJuntos' : 'Fundador de CorrerJuntos',
     credentials: IS_EN
-      ? 'Founder in Huelva · Triathlete · Running since 2014 · Building CorrerJuntos solo since Nov 2025'
-      : 'Founder Huelva · Triatleta · Corre desde 2014 · Construye CorrerJuntos solo desde nov 2025',
+      ? 'Triathlete · Running since 2014'
+      : 'Triatleta · Corre desde 2014',
     bio: IS_EN
-      ? 'Founder of CorrerJuntos, a Spanish running app with 712+ active runners. I live in Huelva, have been running since 2014 and race triathlon regularly (Torre del Mar, Huelva). I build the product solo as a freelancer since November 2025. Everything I write here I test first in my own training — if it does not work for me, it does not make the blog. Public profile: LinkedIn (verifiable below) and Instagram.'
-      : 'Fundador de CorrerJuntos, app española de running con 712+ runners activos. Vivo en Huelva, corro desde 2014 y compito en triatlón regular (Torre del Mar, Huelva). Construyo el producto en solitario como autónomo desde noviembre 2025. Lo que escribo aquí lo pruebo primero yo en mi propio entreno — si no me sirve a mí, no llega al blog. Perfil público: LinkedIn (verificable abajo) e Instagram.',
+      ? 'Founder of CorrerJuntos, a running community with 800+ runners. Everything I write I test first in my own training — if it doesn’t work for me, it doesn’t make the blog.'
+      : 'Fundador de CorrerJuntos, comunidad de running con más de 800 corredores. Lo que escribo lo pruebo primero yo en mi propio entreno — si no me sirve a mí, no llega al blog.',
     color: '#f97316',
     photo: '/public/abraham.jpg',
     url: '/blog/autor/abraham-marquez',

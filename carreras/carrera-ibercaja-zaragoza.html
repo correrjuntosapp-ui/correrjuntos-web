@@ -200,6 +200,45 @@ html.dark .race-byline>div>div:last-child{color:#94a3b8!important}
 html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
 @media(max-width:560px){.race-byline{flex-wrap:wrap}.rb-guide{width:100%;justify-content:center;margin-top:4px}}
 </style>
+<style>/* patrón conversión (Onúpolis) */
+.plan-cta-card{background:linear-gradient(135deg,#fffaf4,#fef0e3);border:1px solid #fcd9b6;border-radius:18px;padding:24px;margin:36px 0;display:flex;gap:20px;align-items:center;box-shadow:0 6px 26px rgba(249,115,22,.09)}
+.plan-phone{flex:0 0 auto;width:142px;border-radius:26px;overflow:hidden;border:5px solid #15110d;box-shadow:0 16px 38px rgba(0,0,0,.28);line-height:0;background:#15110d}
+.plan-phone img{width:100%;height:auto;display:block}
+.plan-cta-body{flex:1;min-width:0}
+.plan-eyebrow{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#ea580c;font-weight:800;margin-bottom:8px}
+.plan-cta-card h3{font-size:1.15rem;font-weight:800;color:#1f1b16;margin:0 0 9px}
+.plan-stats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.plan-stats span{background:#fff;border:1px solid #fcd9b6;color:#c2410c;font-size:.72rem;font-weight:700;padding:3px 11px;border-radius:999px}
+.plan-cta-card p{color:#4a3728;font-size:.9rem;margin:0 0 14px;max-width:none;line-height:1.55}
+.plan-cta-card .cta-btn{display:inline-flex;align-items:center;gap:7px;background:#f97316;color:#fff;padding:10px 22px;border-radius:10px;font-weight:700;font-size:.9rem;text-decoration:none;box-shadow:0 4px 14px rgba(249,115,22,.3)}
+.plan-cta-card .cta-btn:hover{background:#ea6c10}
+@media(max-width:560px){.plan-cta-card{flex-direction:column;align-items:flex-start;gap:14px}}
+.app-cta-box{background:linear-gradient(165deg,#26211b 0%,#1a1611 100%);border:1px solid rgba(251,146,60,.18);border-radius:18px;padding:38px 28px;margin:40px 0;text-align:center;color:#fff;box-shadow:0 14px 44px rgba(0,0,0,.20)}
+.app-cta-icon{width:62px;height:62px;border-radius:15px;display:block;margin:0 auto 14px;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+.app-cta-eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#fb923c;font-weight:800;margin-bottom:12px}
+.app-cta-box h2{font-size:1.45rem;font-weight:800;color:#fff;margin:0 0 10px;letter-spacing:-.02em}
+.app-cta-box p{color:rgba(255,255,255,.70);font-size:.93rem;max-width:460px;margin:0 auto 24px;line-height:1.6}
+.app-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.store-badge{display:inline-flex;align-items:center;gap:11px;background:#000;color:#fff;padding:9px 18px;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,.22)}
+.store-badge:hover{border-color:rgba(255,255,255,.55)}
+.store-badge svg{width:24px;height:24px;flex-shrink:0}
+.app-cta-box a.store-badge,.app-cta-box .store-badge span{text-decoration:none!important}
+.store-badge .sb-text{text-align:left;line-height:1}
+.store-badge .sb-small{display:block;font-size:.62rem;opacity:.8;letter-spacing:.03em;margin-bottom:3px}
+.store-badge .sb-big{display:block;font-size:1rem;font-weight:700;letter-spacing:-.01em}
+.app-coaches{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:4px 0 26px}
+.app-coach{display:flex;align-items:center;gap:11px}
+.app-coach img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #f97316;flex-shrink:0}
+.app-coach.ana img{border-color:#ec4899}
+.app-coach .ac-name{display:block;color:#fff;font-weight:700;font-size:.92rem;text-align:left;line-height:1.15}
+.app-coach .ac-role{display:block;color:rgba(255,255,255,.55);font-size:.76rem;text-align:left;margin-top:2px}
+body{padding-bottom:66px}
+.sticky-inscribe{position:fixed;left:0;right:0;bottom:0;z-index:200;display:flex;align-items:center;justify-content:center;gap:14px;background:#15110d;color:#fff;padding:11px 18px;text-decoration:none;box-shadow:0 -6px 24px rgba(0,0,0,.28);border-top:1px solid rgba(249,115,22,.35)}
+.sticky-inscribe .si-name{font-weight:700;font-size:.9rem;color:#fff}
+.sticky-inscribe .si-name b{color:#fb923c}
+.sticky-inscribe .si-btn{background:#f97316;color:#15110d;padding:9px 20px;border-radius:999px;font-weight:800;font-size:.9rem;white-space:nowrap}
+@media(max-width:560px){.sticky-inscribe{justify-content:space-between;gap:10px}.sticky-inscribe .si-name{font-size:.82rem}}
+</style>
 </head>
 <body>
 <header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
@@ -244,10 +283,10 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
 
 <main class="container content">
   <div class="race-byline" style="display:flex;align-items:center;gap:14px;margin:0 0 28px;padding:14px 0;border-bottom:1px solid #efe6db">
-    <img src="/public/abraham.jpg" alt="Abraham Márquez Rodríguez" width="44" height="44" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0">
+    <a href="/blog/autor/abraham-marquez" style="flex-shrink:0"><img src="/public/abraham.jpg" alt="Abraham Márquez Rodríguez" width="44" height="44" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;display:block"></a>
     <div style="flex:1;min-width:0">
-      <div style="font-weight:700;color:#3d3229;font-size:.92rem">Abraham Márquez Rodríguez</div>
-      <div style="font-size:.8rem;color:#8b7355">Fundador de CorrerJuntos &middot; Gu&iacute;a verificada &middot; junio de 2026</div>
+      <div style="font-weight:700;color:#3d3229;font-size:.92rem"><a href="/blog/autor/abraham-marquez" rel="author" style="color:inherit;text-decoration:none">Abraham Márquez Rodríguez</a></div>
+      <div style="font-size:.8rem;color:#8b7355">Fundador de CorrerJuntos &middot; Huelva &middot; Actualizado 13 jun 2026</div>
     </div>
     
   </div>
@@ -314,6 +353,18 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
   </section>
 
   
+
+  <div class="plan-cta-card">
+    <div class="plan-phone"><img src="/public/screenshot-feed.png" alt="Plan de entrenamiento en la app CorrerJuntos" loading="lazy" width="1290" height="2796"></div>
+    <div class="plan-cta-body">
+      <div class="plan-eyebrow">Plan 10K &middot; Coach Jos&eacute;</div>
+      <h3>Prep&aacute;rate para tu 10K con el plan guiado</h3>
+      <div class="plan-stats"><span>12 semanas</span><span>48 sesiones</span><span>Coach Jos&eacute; IA</span><span>Prueba 14 d&iacute;as gratis</span></div>
+      <p>Mejora tu ritmo en 10K con un plan estructurado de series y rodajes, guiado por Coach Jos&eacute;, adaptado a tu nivel.</p>
+      <a href="/planes/10k" class="cta-btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="10 15 15 12 10 9 10 15"/></svg> Ver el plan</a>
+    </div>
+  </div>
+
   <section class="faq-section">
     <h2>Preguntas Frecuentes</h2>
     
@@ -429,21 +480,20 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
     </div>
   </section>
 
-  <section class="cta-race">
-    <h2>&iquest;Vas a correr Carrera Popular Ibercaja Zaragoza?</h2>
-    <p>Prep&aacute;rala con tu plan personalizado y Coach Jos&eacute; IA</p>
-    <a onclick="if(typeof gtag==='function')gtag('event','carrera_app_intent',{page:location.pathname})" href="/#app" class="cta">Empezar mi plan gratis</a>
-    <div class="store-badges">
-  <a onclick="if(typeof gtag==='function')gtag('event','carrera_app_click',{store:'appstore',page:location.pathname});if(/android/i.test(navigator.userAgent))this.href='https://play.google.com/store/apps/details?id=com.correrjuntos.app'" href="https://apps.apple.com/app/correr-juntos/id6758505910?ct=carrera-carrera-ibercaja-zaragoza" target="_blank" rel="noopener noreferrer">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    App Store
-  </a>
-  <a onclick="if(typeof gtag==='function')gtag('event','carrera_app_click',{store:'playstore',page:location.pathname})" href="https://play.google.com/store/apps/details?id=com.correrjuntos.app&referrer=utm_source%3Dcarreras%26utm_medium%3Dweb%26utm_campaign%3Dcarrera-ibercaja-zaragoza" target="_blank" rel="noopener noreferrer">
-    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg>
-    Google Play
-  </a>
-</div>
-  </section>
+    <div class="app-cta-box">
+    <img class="app-cta-icon" src="/icons/icon-512.png" alt="CorrerJuntos" width="62" height="62" loading="lazy">
+    <div class="app-cta-eyebrow">CorrerJuntos &middot; App gratis</div>
+    <h2>Entrena para esta carrera con CorrerJuntos</h2>
+    <p>Crea tu plan personalizado adaptado a tu ritmo, encuentra corredores y quedadas cerca de ti, y entrena con dos entrenadores IA que te acompa&ntilde;an dentro de la app:</p>
+    <div class="app-coaches">
+      <div class="app-coach"><img src="/public/coach-jose.jpg" alt="Coach José, entrenador IA de CorrerJuntos" loading="lazy" width="50" height="50"><div><span class="ac-name">Coach Jos&eacute;</span><span class="ac-role">Tu entrenador IA</span></div></div>
+      <div class="app-coach ana"><img src="/public/coach-ana.jpg" alt="Ana, nutricionista IA de CorrerJuntos" loading="lazy" width="50" height="50"><div><span class="ac-name">Ana</span><span class="ac-role">Nutrici&oacute;n IA</span></div></div>
+    </div>
+    <div class="app-badges">
+      <a href="https://apps.apple.com/app/correr-juntos/id6758505910" class="store-badge" target="_blank" rel="noopener" aria-label="Descargar en App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><span class="sb-text"><span class="sb-small">Desc&aacute;rgala en</span><span class="sb-big">App Store</span></span></a>
+      <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" class="store-badge" target="_blank" rel="noopener" aria-label="Descargar en Google Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg><span class="sb-text"><span class="sb-small">Disponible en</span><span class="sb-big">Google Play</span></span></a>
+    </div>
+  </div>
 
   <section class="newsletter-box">
     <div class="nl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
@@ -515,5 +565,9 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
 })();
 </script>
 <script src="/blog/enhance.js" defer></script>
+<a href="/#app" class="sticky-inscribe" onclick="if(typeof gtag==='function')gtag('event','carrera_app_intent',{page:location.pathname,cta:'sticky'})" aria-label="Prepara Carrera Popular Ibercaja Zaragoza con CorrerJuntos">
+  <span class="si-name"><b>Carrera Popular Ibercaja Zaragoza</b> &middot; prep&aacute;rala</span>
+  <span class="si-btn">Ver el plan &rarr;</span>
+</a>
 </body>
 </html>

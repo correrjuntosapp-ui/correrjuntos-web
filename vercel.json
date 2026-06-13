@@ -73,6 +73,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/lamparas-frontales-running",
+      "destination": "/blog/mejores-frontales-running",
+      "permanent": true
+    },
+    {
       "source": "/blog/entrenamiento-de-fuerza-para-corredores",
       "destination": "/blog/entrenamiento-fuerza-corredores",
       "permanent": true

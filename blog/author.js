@@ -94,8 +94,9 @@
   /* ── Find author ──────────────────────────────────────── */
   var meta = document.querySelector('meta[name="author"]');
   if (!meta) return;
-  /* Skip if static author-box already exists */
-  if (document.querySelector('.author-box')) return;
+  /* Skip if a static author box OR an inline byline already exists
+     (artículos premium nuevos traen su propia .byline arriba → evita duplicar) */
+  if (document.querySelector('.author-box, .byline')) return;
 
   var rawAuthor = meta.getAttribute('content');
   var key = normalize(rawAuthor);

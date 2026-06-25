@@ -202,6 +202,19 @@ body{padding-bottom:66px}
 .sticky-inscribe .si-name b{color:#fb923c}
 .sticky-inscribe .si-btn{background:#f97316;color:#15110d;padding:9px 20px;border-radius:999px;font-weight:800;font-size:.9rem;white-space:nowrap}
 @media(max-width:560px){.sticky-inscribe{justify-content:space-between;gap:10px}.sticky-inscribe .si-name{font-size:.82rem}}
+.race-countdown{margin:24px 0 8px;padding:18px 20px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fcd9b6;border-radius:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px;text-align:center}
+.rc-head{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#c2410c;font-weight:800;width:100%;margin-bottom:-4px}
+.rc-grid{display:flex;gap:14px}
+.rc-unit{min-width:58px;background:#fff;border:1px solid #fcd9b6;border-radius:12px;padding:8px 10px}
+.rc-num{display:block;font-size:1.55rem;font-weight:900;color:#ea580c;line-height:1;font-variant-numeric:tabular-nums}
+.rc-cap{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:#8b7355;font-weight:700;margin-top:4px}
+.rc-cta{color:#c2410c;font-weight:800;font-size:.9rem;text-decoration:none;border-bottom:2px solid rgba(249,115,22,.4)}
+.rc-cta:hover{color:#ea580c}
+.rc-done{font-size:1.1rem;font-weight:800;color:#ea580c}
+html.dark .race-countdown{background:linear-gradient(135deg,rgba(249,115,22,.10),rgba(249,115,22,.04));border-color:rgba(249,115,22,.25)}
+html.dark .rc-unit{background:rgba(255,255,255,.05);border-color:rgba(249,115,22,.25)}
+html.dark .rc-cap{color:#94a3b8}
+@media(max-width:560px){.race-countdown{gap:12px}.rc-grid{gap:8px}.rc-unit{min-width:50px}}
 </style>
 </head>
 <body>
@@ -262,6 +275,16 @@ body{padding-bottom:66px}
     <div class="info-card"><div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="info-label">Salida y meta</div><div class="info-value">Figueroa Alcorta y Dorrego</div></div>
     <div class="info-card"><div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="info-label">Organiza</div><div class="info-value">Asociaci&oacute;n &Ntilde;and&uacute;</div></div>
     <div class="info-card"><div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="info-label">Ciudad</div><div class="info-value">Buenos Aires</div></div>
+  </div>
+
+  <div class="race-countdown" data-race-date="2026-09-20T07:00:00-03:00">
+    <div class="rc-head">Cuenta atrás para la carrera</div>
+    <div class="rc-grid">
+      <div class="rc-unit"><span class="rc-num" data-cd-d>--</span><span class="rc-cap">días</span></div>
+      <div class="rc-unit"><span class="rc-num" data-cd-h>--</span><span class="rc-cap">horas</span></div>
+      <div class="rc-unit"><span class="rc-num" data-cd-m>--</span><span class="rc-cap">min</span></div>
+    </div>
+    <a href="/planes/maraton" class="rc-cta">Cada semana cuenta · empieza tu plan &rarr;</a>
   </div>
 
   <section>
@@ -535,5 +558,20 @@ body{padding-bottom:66px}
   <span class="si-name"><b>Marat&oacute;n Buenos Aires</b> &middot; 20 sept</span>
   <span class="si-btn">Inscr&iacute;bete &rarr;</span>
 </a>
+<script>
+(function(){
+  var el=document.querySelector(".race-countdown"); if(!el)return;
+  var t=new Date(el.getAttribute("data-race-date")).getTime();
+  function pad(n){return n<10?"0"+n:""+n;}
+  function tick(){
+    var diff=t-Date.now();
+    if(diff<=0){ var g=el.querySelector(".rc-grid"); if(g)g.outerHTML="<div class=\"rc-done\">¡Hoy es el día! 🎉</div>"; var c=el.querySelector(".rc-cta"); if(c)c.style.display="none"; return; }
+    var d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000);
+    var ed=el.querySelector("[data-cd-d]"),eh=el.querySelector("[data-cd-h]"),em=el.querySelector("[data-cd-m]");
+    if(ed)ed.textContent=d; if(eh)eh.textContent=pad(h); if(em)em.textContent=pad(m);
+  }
+  tick(); setInterval(tick,30000);
+})();
+</script>
 </body>
 </html>

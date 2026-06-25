@@ -19,6 +19,8 @@
           "/recursos/*",
           "/invite/*",
           "/auth/*",
+          "/premium",
+          "/premium/*",
           "NOT /api/*",
           "NOT /js/*",
           "NOT /css/*",

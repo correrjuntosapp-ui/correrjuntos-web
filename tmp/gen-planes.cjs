@@ -58,6 +58,8 @@ function howToJsonLd(fases) {
 function page(c) {
   const u = `https://www.correrjuntos.com/planes/${c.slug}`;
   const heroUrl = `https://www.correrjuntos.com/public/planes/${c.slug}-hero.jpg`;
+  const enMap = { '0-5k': '0-5k', '5k': '5k', '10k': '10k', 'maraton': 'marathon', 'trail': 'trail', 'media-maraton': 'half-marathon' };
+  const enUrl = `https://www.correrjuntos.com/planes/en/${enMap[c.slug] || c.slug}`;
   const offer = c.free
     ? `"isAccessibleForFree": true`
     : `"isAccessibleForFree": false`;
@@ -88,6 +90,7 @@ function page(c) {
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="${u}">
 <link rel="alternate" hreflang="es" href="${u}">
+<link rel="alternate" hreflang="en" href="${enUrl}">
 <link rel="alternate" hreflang="x-default" href="${u}">
 <meta property="og:title" content="${c.ogTitle}">
 <meta property="og:description" content="${c.ogDesc}">

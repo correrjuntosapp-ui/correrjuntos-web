@@ -315,6 +315,18 @@ html.dark .race-byline>div>div:first-child{color:#e2e8f0!important}
 html.dark .race-byline>div>div:last-child{color:#94a3b8!important}
 html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
 @media(max-width:560px){.race-byline{flex-wrap:wrap}.rb-guide{width:100%;justify-content:center;margin-top:4px}}
+.plan-cta-card{background:linear-gradient(135deg,#fffaf4,#fef0e3);border:1px solid #fcd9b6;border-radius:18px;padding:24px;margin:36px 0;display:flex;gap:20px;align-items:center;box-shadow:0 6px 26px rgba(249,115,22,.09)}
+.plan-phone{flex:0 0 auto;width:142px;border-radius:26px;overflow:hidden;border:5px solid #15110d;box-shadow:0 16px 38px rgba(0,0,0,.28);line-height:0;background:#15110d}
+.plan-phone img{width:100%;height:auto;display:block}
+.plan-cta-body{flex:1;min-width:0}
+.plan-eyebrow{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#ea580c;font-weight:800;margin-bottom:8px}
+.plan-cta-card h3{font-size:1.15rem;font-weight:800;color:#1f1b16;margin:0 0 9px}
+.plan-stats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.plan-stats span{background:#fff;border:1px solid #fcd9b6;color:#c2410c;font-size:.72rem;font-weight:700;padding:3px 11px;border-radius:999px}
+.plan-cta-card p{color:#4a3728;font-size:.9rem;margin:0 0 14px;max-width:none;line-height:1.55}
+.plan-cta-card .cta-btn{display:inline-flex;align-items:center;gap:7px;background:#f97316;color:#fff;padding:10px 22px;border-radius:10px;font-weight:700;font-size:.9rem;text-decoration:none;box-shadow:0 4px 14px rgba(249,115,22,.3)}
+.plan-cta-card .cta-btn:hover{background:#ea6c10}
+@media(max-width:560px){.plan-cta-card{flex-direction:column;align-items:flex-start;gap:14px}}
 </style>
 </head>
 <body>
@@ -842,6 +854,17 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
       </div>
     </div>
   </aside>
+
+  <div class="plan-cta-card">
+    <div class="plan-phone"><img src="/public/screenshot-feed.png" alt="Plan de entrenamiento en la app CorrerJuntos" loading="lazy" width="1290" height="2796"></div>
+    <div class="plan-cta-body">
+      <div class="plan-eyebrow">Plan 5K y 10K &middot; Coach Jos&eacute; &middot; para el circuito</div>
+      <h3>Llega entrenado a cada prueba del circuito Onupolis</h3>
+      <div class="plan-stats"><span>5K y 10K</span><span>Plan guiado</span><span>Coach Jos&eacute; IA</span><span>Prueba 14 d&iacute;as gratis</span></div>
+      <p>El circuito tiene pruebas de <strong>5K y 10K durante todo el a&ntilde;o</strong>. En vez de improvisar carrera a carrera, sigue un plan que adapta series, rodajes y ritmos a tu nivel y te lleva a la l&iacute;nea de salida entrenado. Coach Jos&eacute; te gu&iacute;a entreno a entreno, y de paso conoces a otros corredores de Huelva que tambi&eacute;n hacen el circuito.</p>
+      <a href="/planes/10k" class="cta-btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="10 15 15 12 10 9 10 15"/></svg> Empezar mi plan</a>
+    </div>
+  </div>
 
   <section class="faq-section">
     <h2>Preguntas frecuentes</h2>

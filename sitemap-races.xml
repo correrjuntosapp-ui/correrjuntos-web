@@ -433,6 +433,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.correrjuntos.com/carreras/maraton-buenos-aires</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/carreras/maraton-vina-del-mar</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.correrjuntos.com/carreras/maraton-monterrey</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>

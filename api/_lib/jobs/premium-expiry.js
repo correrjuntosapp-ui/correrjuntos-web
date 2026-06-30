@@ -140,8 +140,8 @@ function pushFor(stage, expired) {
   return { title: 'Tu Premium se apagó', body: 'Tu plan y tu progreso siguen ahí. Reactívalo en 1 minuto.' };
 }
 
-const SENDER = { email: 'contacto@correrjuntos.com', name: 'Abraham · CorrerJuntos' };
-const REPLY_TO = { email: 'contacto@correrjuntos.com', name: 'Abraham' };
+const SENDER = { email: 'hola@correrjuntos.com', name: 'Abraham · CorrerJuntos' };
+const REPLY_TO = { email: 'hola@correrjuntos.com', name: 'Abraham' };
 
 async function sendBrevoBatch(apiKey, stage, expired, versions) {
   const tpl = emailFor(stage, expired);

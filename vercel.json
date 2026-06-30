@@ -543,12 +543,7 @@
     },
     {
       "source": "/races/san-silvestre-vallecana",
-      "destination": "/carreras/san-silvestre-vallecana",
-      "permanent": true
-    },
-    {
-      "source": "/blog/san-silvestre-vallecana-guia",
-      "destination": "/carreras/san-silvestre-vallecana",
+      "destination": "/blog/san-silvestre-vallecana-guia",
       "permanent": true
     },
     {
@@ -614,6 +609,11 @@
     {
       "source": "/carreras/media-maraton-valencia",
       "destination": "/blog/media-maraton-valencia-2026",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/san-silvestre-vallecana",
+      "destination": "/blog/san-silvestre-vallecana-guia",
       "permanent": true
     }
   ],

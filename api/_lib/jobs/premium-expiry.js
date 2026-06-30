@@ -72,7 +72,7 @@ function emailFor(stage, expired) {
           + para('Lo que vuelve a quedar limitado ese día:')
           + list([
               `${sc('Coach José y Ana')} vuelven al límite gratis (5 mensajes al día)`,
-              `Los ${sc('planes Premium')} (5K, 10K, media, maratón, trail) se bloquean`,
+              `Los ${sc('planes Premium')} (10K, media maratón, maratón, trail) se bloquean`,
               `Tu progreso ${sc('no se pierde')} — queda guardado por si vuelves`,
             ])
           + callout('Quédatelo', `Premium anual: <strong style="color:${TEXT};">29,99&euro;/a&ntilde;o</strong> — menos de 2,50&euro; al mes. O 4,99&euro; mes a mes. Se activa en un minuto desde la app, sin códigos.`)

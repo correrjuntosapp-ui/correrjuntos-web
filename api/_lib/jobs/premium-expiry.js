@@ -222,6 +222,7 @@ export default async function runPremiumExpiry(req, res, env) {
   const eligible = (cohort || []).filter((p) =>
     p.email &&
     !p.email.toLowerCase().endsWith('@partners.correrjuntos.app') &&
+    !p.email.toLowerCase().endsWith('@correrjuntos.com') &&
     p.es_seed !== true &&
     p.notif_email !== false
   ).map((p) => {
@@ -235,12 +236,12 @@ export default async function runPremiumExpiry(req, res, env) {
     return res.status(200).json({ ok: true, job: 'premium-expiry', dry, processed: 0, emails_sent: 0, push_sent: 0, note: 'no_users_in_window' });
   }
 
-  // Dedup: qué se envió ya
-  const ids = eligible.map((p) => p.id);
+  // Dedup: qué se envió ya. ⚠️ NO usar .in(ids) con cientos de UUIDs → la URL
+  // se pasa del límite y la lectura falla en silencio (sentSet vacío → reenvía
+  // a diario). La tabla es pequeña (≤ cohorte×3×2): leemos todo y filtramos en JS.
   const { data: logs } = await supabase
     .from('premium_expiry_log')
-    .select('user_id, stage, channel')
-    .in('user_id', ids);
+    .select('user_id, stage, channel');
   const sentSet = new Set((logs || []).map((l) => `${l.user_id}|${l.stage}|${l.channel}`));
 
   // Pendientes de email, priorizados por urgencia, capados por presupuesto

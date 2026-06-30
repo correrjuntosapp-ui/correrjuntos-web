@@ -25,7 +25,7 @@ ${taglineHtml}
 <tr><td style="padding:30px 44px 0 44px;"><h1 style="margin:0;font-family:${FONT_BODY};font-size:44px;line-height:0.96;letter-spacing:-0.035em;font-weight:200;color:${TEXT};">${h1Pre} <strong style="font-weight:700;color:${ORANGE};font-style:normal;">${h1Strong}</strong>${h1Post}</h1></td></tr>
 <tr><td style="padding:28px 44px 0 44px;">${body}</td></tr>
 ${ctaHtml}
-<tr><td style="padding:30px 44px 34px 44px;"><div style="border-top:1px solid ${BORDER_12};padding-top:26px;"><div style="font-family:${FONT_BODY};font-size:26px;font-weight:800;letter-spacing:-0.03em;color:${TEXT};line-height:1;">Correr<em style="font-style:normal;color:${ORANGE};">Juntos</em></div><div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:hola@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">hola@correrjuntos.com</a></div></div></td></tr>
+<tr><td style="padding:30px 44px 34px 44px;"><div style="border-top:1px solid ${BORDER_12};padding-top:26px;"><div style="font-family:${FONT_BODY};font-size:26px;font-weight:800;letter-spacing:-0.03em;color:${TEXT};line-height:1;">Correr<em style="font-style:normal;color:${ORANGE};">Juntos</em></div><div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:abraham.marquez@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">abraham.marquez@correrjuntos.com</a></div></div></td></tr>
 </table>
 <div style="font-family:${FONT_MONO};font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:${TEXT_28};margin-top:26px;font-weight:500;">Meridian Motion &middot; <a href="https://www.correrjuntos.com" style="color:${TEXT_42};text-decoration:none;">correrjuntos.com</a></div>
 </td></tr></table></body></html>`;
@@ -98,9 +98,9 @@ export default async function runRecoveryFinde(_req, res, env) {
   if (!BREVO_API_KEY) {
     return res.status(500).json({ error: 'missing_brevo_key' });
   }
-  const SENDER_EMAIL = 'contacto@correrjuntos.com';
+  const SENDER_EMAIL = 'abraham.marquez@correrjuntos.com';
   const SENDER_NAME  = 'Abraham · CorrerJuntos';
-  const REPLY_TO     = 'contacto@correrjuntos.com';
+  const REPLY_TO     = 'abraham.marquez@correrjuntos.com';
 
   const results = [];
   for (const r of RECIPIENTS) {

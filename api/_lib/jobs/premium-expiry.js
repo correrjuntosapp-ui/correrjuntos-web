@@ -52,7 +52,7 @@ function shell({ eyebrow, h1Pre, h1Strong, h1Post, preheader, body, ctaLabel, ct
 <tr><td style="padding:30px 44px 0 44px;"><h1 style="margin:0;font-family:${FONT_BODY};font-size:42px;line-height:1.0;letter-spacing:-0.035em;font-weight:200;color:${TEXT};">${h1Pre} <strong style="font-weight:700;color:${ORANGE};font-style:normal;">${h1Strong}</strong>${h1Post || '.'}</h1></td></tr>
 <tr><td style="padding:28px 44px 0 44px;">${body}</td></tr>
 <tr><td style="padding:36px 44px 0 44px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="${ORANGE}" style="border-radius:10px;"><a href="${APP_URL}?ref=${ctaRef}" target="_blank" style="display:inline-block;padding:16px 32px;font-family:${FONT_BODY};font-size:15px;font-weight:600;color:${BG};text-decoration:none;border-radius:10px;letter-spacing:0.01em;">${ctaLabel}</a></td></tr></table></td></tr>
-<tr><td style="padding:30px 44px 34px 44px;"><div style="border-top:1px solid ${BORDER_12};padding-top:26px;"><div style="font-family:${FONT_BODY};font-size:26px;font-weight:800;letter-spacing:-0.03em;color:${TEXT};line-height:1;">Correr<em style="font-style:normal;color:${ORANGE};">Juntos</em></div><div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:hola@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">hola@correrjuntos.com</a></div></div></td></tr>
+<tr><td style="padding:30px 44px 34px 44px;"><div style="border-top:1px solid ${BORDER_12};padding-top:26px;"><div style="font-family:${FONT_BODY};font-size:26px;font-weight:800;letter-spacing:-0.03em;color:${TEXT};line-height:1;">Correr<em style="font-style:normal;color:${ORANGE};">Juntos</em></div><div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:abraham.marquez@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">abraham.marquez@correrjuntos.com</a></div></div></td></tr>
 </table>
 <div style="font-family:${FONT_MONO};font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:${TEXT_28};margin-top:26px;font-weight:500;">Meridian Motion &middot; <a href="https://www.correrjuntos.com" style="color:${TEXT_42};text-decoration:none;">correrjuntos.com</a></div>
 </td></tr></table></body></html>`;
@@ -140,8 +140,8 @@ function pushFor(stage, expired) {
   return { title: 'Tu Premium se apagó', body: 'Tu plan y tu progreso siguen ahí. Reactívalo en 1 minuto.' };
 }
 
-const SENDER = { email: 'hola@correrjuntos.com', name: 'Abraham · CorrerJuntos' };
-const REPLY_TO = { email: 'hola@correrjuntos.com', name: 'Abraham' };
+const SENDER = { email: 'abraham.marquez@correrjuntos.com', name: 'Abraham · CorrerJuntos' };
+const REPLY_TO = { email: 'abraham.marquez@correrjuntos.com', name: 'Abraham' };
 
 async function sendBrevoBatch(apiKey, stage, expired, versions) {
   const tpl = emailFor(stage, expired);

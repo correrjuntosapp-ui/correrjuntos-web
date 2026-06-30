@@ -13,7 +13,7 @@ const SEND_DAYS = [1, 3, 7, 11, 14];
 export default async function runLifecycleTrial(_req, res, env) {
   const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
   const BREVO_API_KEY = env.BREVO_API_KEY;
-  const SENDER_EMAIL = env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com';
+  const SENDER_EMAIL = env.BREVO_SENDER_EMAIL || 'abraham.marquez@correrjuntos.com';
   const SENDER_NAME = env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos';
 
   let processed = 0;

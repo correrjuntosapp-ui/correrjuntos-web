@@ -82,7 +82,7 @@ export default async function runWeeklyNewsletter(req, res, env) {
 
   const subject = pick.title;
   const htmlContent = buildEmailHtml(pick);
-  const sender = { email: env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com', name: env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos' };
+  const sender = { email: env.BREVO_SENDER_EMAIL || 'abraham.marquez@correrjuntos.com', name: env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos' };
 
   // 1) Crear campaña (draft)
   const created = await brevo('/emailCampaigns', env, 'POST', {

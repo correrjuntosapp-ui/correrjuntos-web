@@ -76,7 +76,7 @@ export default async function runPlanDrip(req, res, env) {
         },
         body: JSON.stringify({
           sender: {
-            email: env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com',
+            email: env.BREVO_SENDER_EMAIL || 'abraham.marquez@correrjuntos.com',
             name: env.BREVO_SENDER_NAME || 'Abraham · CorrerJuntos',
           },
           to: [{ email: sub.email, name: sub.nombre || sub.email }],
@@ -219,7 +219,7 @@ function htmlFor(lang, idx, sub) {
         <li>30 minutos de tu semana</li>
         <li>La app instalada (recordatorios + Coach IA)</li>
       </ul>
-      <p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};">Si la app no te convence, escríbenos a <a href="mailto:hola@correrjuntos.com" style="color:${ORANGE};">hola@correrjuntos.com</a> y vemos.</p>
+      <p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};">Si la app no te convence, escríbenos a <a href="mailto:abraham.marquez@correrjuntos.com" style="color:${ORANGE};">abraham.marquez@correrjuntos.com</a> y vemos.</p>
     `;
     if (isEn) {
       body = `
@@ -231,7 +231,7 @@ function htmlFor(lang, idx, sub) {
           <li>30 min of your week</li>
           <li>The app installed (reminders + Coach AI)</li>
         </ul>
-        <p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};">If the app isn't your thing, email us at <a href="mailto:hola@correrjuntos.com" style="color:${ORANGE};">hola@correrjuntos.com</a> and let's chat.</p>
+        <p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};">If the app isn't your thing, email us at <a href="mailto:abraham.marquez@correrjuntos.com" style="color:${ORANGE};">abraham.marquez@correrjuntos.com</a> and let's chat.</p>
       `;
     }
     ctaLabel = isEn ? 'Install the app →' : 'Instalar la app →';
@@ -290,7 +290,7 @@ function htmlFor(lang, idx, sub) {
     <tr><td style="padding:30px 44px 34px 44px;">
       <div style="border-top:1px solid ${BORDER_12};padding-top:26px;">
         <div style="font-family:${FONT_BODY};font-size:26px;font-weight:800;letter-spacing:-0.03em;color:${TEXT};line-height:1;">Correr<em style="font-style:normal;color:${ORANGE};">Juntos</em></div>
-        <div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:hola@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">hola@correrjuntos.com</a></div>
+        <div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:abraham.marquez@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">abraham.marquez@correrjuntos.com</a></div>
       </div>
     </td></tr>
   </table>

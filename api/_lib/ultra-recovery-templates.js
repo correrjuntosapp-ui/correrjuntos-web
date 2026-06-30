@@ -83,7 +83,7 @@ function shell({ eyebrow, tagline, h1Pre, h1Strong, h1Post = '.', body, ctaUrl, 
     <tr><td style="padding:30px 44px 34px 44px;">
       <div style="border-top:1px solid ${BORDER_12};padding-top:26px;">
         <div style="font-family:${FONT_BODY};font-size:26px;font-weight:800;letter-spacing:-0.03em;color:${TEXT};line-height:1;">Correr<em style="font-style:normal;color:${ORANGE};">Juntos</em></div>
-        <div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:hola@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">hola@correrjuntos.com</a></div>
+        <div style="margin-top:8px;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.08em;color:${ORANGE};"><a href="mailto:abraham.marquez@correrjuntos.com" style="color:${ORANGE};text-decoration:none;">abraham.marquez@correrjuntos.com</a></div>
       </div>
     </td></tr>
   </table>

@@ -5,61 +5,109 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(self)" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://connect.facebook.net https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: http:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com https://connect.facebook.net https://www.clarity.ms https://nominatim.openstreetmap.org https://api.mapbox.com https://api.open-meteo.com; frame-src 'self' https://accounts.google.com https://www.facebook.com; worker-src 'self' blob:; manifest-src 'self'" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self)"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://connect.facebook.net https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: http:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com https://connect.facebook.net https://www.clarity.ms https://nominatim.openstreetmap.org https://api.mapbox.com https://api.open-meteo.com; frame-src 'self' https://accounts.google.com https://www.facebook.com; worker-src 'self' blob:; manifest-src 'self'"
+        }
       ]
     },
     {
       "source": "/icons/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/css/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/js/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
       ]
     },
     {
       "source": "/data/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
       ]
     },
     {
       "source": "/manifest.json",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     },
     {
       "source": "/.well-known/(.*)",
       "headers": [
-        { "key": "Content-Type", "value": "application/json" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/invite/:code([A-Za-z0-9]+)", "destination": "/invite" },
-    { "source": "/quedada/:id([0-9a-fA-F-]+)", "destination": "/api/quedada?id=:id" }
+    {
+      "source": "/invite/:code([A-Za-z0-9]+)",
+      "destination": "/invite"
+    },
+    {
+      "source": "/quedada/:id([0-9a-fA-F-]+)",
+      "destination": "/api/quedada?id=:id"
+    }
   ],
   "redirects": [
     {
@@ -122,86 +170,366 @@
       "destination": "/terms",
       "permanent": true
     },
-
-    { "source": "/blog/mejores-zapatillas-trail-running-old", "destination": "/blog/mejores-zapatillas-trail-running", "permanent": true },
-    { "source": "/blog/en/best-bcaas-runners", "destination": "/blog/en/best-supplements-runners", "permanent": true },
-    { "source": "/blog/en/running-groups-zaragoza", "destination": "/cities/zaragoza", "permanent": true },
-    { "source": "/blog/en/running-at-night-tips", "destination": "/blog/en/running-at-night-safety-tips", "permanent": true },
-    { "source": "/blog/en/how-to-join-a-running-group", "destination": "/blog/en/how-to-join-running-group", "permanent": true },
-    { "source": "/blog/en/couch-to-5k", "destination": "/blog/en/couch-to-5k-plan", "permanent": true },
-    { "source": "/blog/en/best-running-routes-seville", "destination": "/blog/en/best-running-routes-sevilla", "permanent": true },
-    { "source": "/blog/en/couch-to-5k-guide", "destination": "/blog/en/couch-to-5k-plan", "permanent": true },
-    { "source": "/blog/en/technical-running-clothing", "destination": "/blog/en/running-technical-clothing", "permanent": true },
-    { "source": "/blog/en/beginner-running-mistakes", "destination": "/blog/en/beginner-running-mistakes-nobody-tells", "permanent": true },
-    { "source": "/blog/en/knee-pain-running", "destination": "/blog/en/knee-pain-while-running", "permanent": true },
-    { "source": "/blog/en/prepare-first-5k-race", "destination": "/blog/en/how-to-prepare-first-5k-race", "permanent": true },
-    { "source": "/blog/en/start-running-beginners-guide", "destination": "/blog/en/how-to-start-running-beginners-guide", "permanent": true },
-    { "source": "/blog/en/nutrition-tips-marathon", "destination": "/blog/en/marathon-carb-loading", "permanent": true },
-    { "source": "/blog/en/best-running-gels", "destination": "/blog/en/best-energy-gels-running", "permanent": true },
-    { "source": "/blog/en/best-gps-watch-running", "destination": "/blog/en/best-gps-running-watches", "permanent": true },
-    { "source": "/blog/en/best-running-shoes-road", "destination": "/blog/en/best-road-running-shoes", "permanent": true },
-    { "source": "/blog/en/marathon-nutrition-guide", "destination": "/blog/en/race-day-nutrition", "permanent": true },
-    { "source": "/blog/en/hydration-running-complete-guide", "destination": "/blog/en/running-hydration-complete-guide", "permanent": true },
-    { "source": "/blog/en/join-a-running-group", "destination": "/blog/en/how-to-join-running-group", "permanent": true },
-    { "source": "/blog/en/bone-conduction-vs-in-ear-headphones-running", "destination": "/blog/en/bone-conduction-vs-in-ear-running", "permanent": true },
-    { "source": "/blog/en/winter-running-guide", "destination": "/blog/en/running-in-winter", "permanent": true },
-    { "source": "/blog/en/running-with-extra-weight", "destination": "/blog/en/running-overweight-guide", "permanent": true },
-    { "source": "/blog/en/best-apps-group-running", "destination": "/blog/en/best-apps-running-groups", "permanent": true },
-    { "source": "/blog/en/runner-nutrition-guide", "destination": "/blog/en/nutrition-for-runners", "permanent": true },
-    { "source": "/blog/en/runner-nutrition", "destination": "/blog/en/nutrition-for-runners", "permanent": true },
-    { "source": "/blog/en/benefits-of-running-in-a-group", "destination": "/blog/en/benefits-of-group-running", "permanent": true },
-    { "source": "/blog/en/stretches-before-after-running", "destination": "/blog/en/stretching-before-after-running", "permanent": true },
-    { "source": "/blog/en/running-alone-vs-with-others", "destination": "/blog/en/running-alone-vs-group", "permanent": true },
-    { "source": "/blog/en/beginner-running-guide", "destination": "/blog/en/how-to-start-running-beginners-guide", "permanent": true },
-    { "source": "/blog/en/best-energy-gels-marathon", "destination": "/blog/en/what-energy-gel-marathon", "permanent": true },
-    { "source": "/blog/en/benefits-running-groups", "destination": "/blog/en/benefits-of-group-running", "permanent": true },
-    { "source": "/blog/en/best-omega-3-runners", "destination": "/blog/en/best-omega-3-running", "permanent": true },
-    { "source": "/blog/en/common-mistakes-runners", "destination": "/blog/en/beginner-running-mistakes-nobody-tells", "permanent": true },
-    { "source": "/blog/en/trail-running-mandatory-gear", "destination": "/blog/en/best-trail-running-shoes", "permanent": true },
-    { "source": "/races/trail-terres-ebre", "destination": "/carreras", "permanent": true },
-
-    { "source": "/blog/grupos-running-barcelona", "destination": "/cities/barcelona", "permanent": true },
-    { "source": "/blog/grupos-correr-granada", "destination": "/cities/granada", "permanent": true },
-    { "source": "/blog/descanso-y-recuperacion-running", "destination": "/blog/nutricion-recuperacion-post-entreno", "permanent": true },
-    { "source": "/blog/estiramientos-despues-de-correr", "destination": "/blog/estiramientos-antes-despues-correr", "permanent": true },
-    { "source": "/blog/mejores-zapatillas-running", "destination": "/equipamiento/zapatillas-running", "permanent": true },
-    { "source": "/blog/hidratacion-running", "destination": "/blog/hidratacion-running-guia-completa", "permanent": true },
-    { "source": "/blog/ritmo-para-principiantes", "destination": "/blog/ritmo-para-principiantes-running", "permanent": true },
-    { "source": "/blog/zapatillas-trail-running", "destination": "/blog/mejores-zapatillas-trail-running", "permanent": true },
-    { "source": "/blog/mejores-zapatillas-trail", "destination": "/blog/mejores-zapatillas-trail-running", "permanent": true },
-    { "source": "/blog/nutricion-maraton-guia-completa", "destination": "/blog/carga-hidratos-maraton", "permanent": true },
-    { "source": "/blog/mejores-geles-energia-running", "destination": "/blog/mejores-geles-energeticos-running", "permanent": true },
-    { "source": "/blog/como-empezar-trail-running", "destination": "/blog/empezar-trail-running", "permanent": true },
-    { "source": "/blog/nutricion-antes-de-correr", "destination": "/blog/que-comer-antes-de-correr", "permanent": true },
-    { "source": "/blog/empezar-a-correr-desde-cero", "destination": "/blog/running/como-empezar-a-correr-desde-cero", "permanent": true },
-
-    { "source": "/blog/zapatillas", "destination": "/blog?cat=zapatillas", "permanent": true },
-    { "source": "/blog/atletas-hibridos", "destination": "/blog?cat=atleta-hibrido", "permanent": true },
-    { "source": "/blog/categoria/entrenamiento", "destination": "/blog?cat=entrenamiento", "permanent": true },
-    { "source": "/blog/running/mejores-zapatillas-empezar-correr-2026", "destination": "/blog/zapatillas/mejores-zapatillas-empezar-correr-2026", "permanent": true },
-    { "source": "/blog/en/running/best-running-shoes-to-start-running-2026", "destination": "/blog/en/running-shoes/best-running-shoes-to-start-running-2026", "permanent": true },
-
-    { "source": "/equipamiento/en/trail-running-shoes", "destination": "/blog/en/best-trail-running-shoes", "permanent": true },
-    { "source": "/equipamiento/en/running-shoes", "destination": "/blog/en/best-road-running-shoes", "permanent": true },
-    { "source": "/equipamiento/en", "destination": "/equipamiento", "permanent": true },
-
-    { "source": "/recursos/en", "destination": "/recursos/en/couch-to-5k-plan", "permanent": true },
-    { "source": "/recursos", "destination": "/recursos/plan-0-5k", "permanent": true },
-    { "source": "/cities/en", "destination": "/cities", "permanent": true },
-
-    { "source": "/legal/aviso-legal.html", "destination": "/terms", "permanent": true },
-    { "source": "/privacidad", "destination": "/legal/privacidad", "permanent": true },
-    { "source": "/blog/nutrición-dia-de-carrera.html", "destination": "/blog/nutricion-dia-de-carrera", "permanent": true },
-    { "source": "/10", "destination": "/", "permanent": true },
-    { "source": "/mês", "destination": "/", "permanent": true },
-    { "source": "/precios", "destination": "/#pricing", "permanent": true },
-    { "source": "/pricing", "destination": "/#pricing", "permanent": true },
-
-    { "source": "/tk", "destination": "/?utm_source=tiktok&utm_medium=bio&utm_campaign=organic_es", "permanent": false },
-    { "source": "/ig", "destination": "/?utm_source=instagram&utm_medium=bio&utm_campaign=organic_es", "permanent": false },
-    { "source": "/yt", "destination": "/?utm_source=youtube&utm_medium=bio&utm_campaign=organic_es", "permanent": false },
-    { "source": "/r/:reel", "destination": "/?utm_source=:reel&utm_medium=reel&utm_campaign=organic_es", "permanent": false },
-
+    {
+      "source": "/blog/mejores-zapatillas-trail-running-old",
+      "destination": "/blog/mejores-zapatillas-trail-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-bcaas-runners",
+      "destination": "/blog/en/best-supplements-runners",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-groups-zaragoza",
+      "destination": "/cities/zaragoza",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-at-night-tips",
+      "destination": "/blog/en/running-at-night-safety-tips",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/how-to-join-a-running-group",
+      "destination": "/blog/en/how-to-join-running-group",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/couch-to-5k",
+      "destination": "/blog/en/couch-to-5k-plan",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-running-routes-seville",
+      "destination": "/blog/en/best-running-routes-sevilla",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/couch-to-5k-guide",
+      "destination": "/blog/en/couch-to-5k-plan",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/technical-running-clothing",
+      "destination": "/blog/en/running-technical-clothing",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/beginner-running-mistakes",
+      "destination": "/blog/en/beginner-running-mistakes-nobody-tells",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/knee-pain-running",
+      "destination": "/blog/en/knee-pain-while-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/prepare-first-5k-race",
+      "destination": "/blog/en/how-to-prepare-first-5k-race",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/start-running-beginners-guide",
+      "destination": "/blog/en/how-to-start-running-beginners-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/nutrition-tips-marathon",
+      "destination": "/blog/en/marathon-carb-loading",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-running-gels",
+      "destination": "/blog/en/best-energy-gels-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-gps-watch-running",
+      "destination": "/blog/en/best-gps-running-watches",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-running-shoes-road",
+      "destination": "/blog/en/best-road-running-shoes",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/marathon-nutrition-guide",
+      "destination": "/blog/en/race-day-nutrition",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/hydration-running-complete-guide",
+      "destination": "/blog/en/running-hydration-complete-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/join-a-running-group",
+      "destination": "/blog/en/how-to-join-running-group",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/bone-conduction-vs-in-ear-headphones-running",
+      "destination": "/blog/en/bone-conduction-vs-in-ear-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/winter-running-guide",
+      "destination": "/blog/en/running-in-winter",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-with-extra-weight",
+      "destination": "/blog/en/running-overweight-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-apps-group-running",
+      "destination": "/blog/en/best-apps-running-groups",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/runner-nutrition-guide",
+      "destination": "/blog/en/nutrition-for-runners",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/runner-nutrition",
+      "destination": "/blog/en/nutrition-for-runners",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/benefits-of-running-in-a-group",
+      "destination": "/blog/en/benefits-of-group-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/stretches-before-after-running",
+      "destination": "/blog/en/stretching-before-after-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-alone-vs-with-others",
+      "destination": "/blog/en/running-alone-vs-group",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/beginner-running-guide",
+      "destination": "/blog/en/how-to-start-running-beginners-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-energy-gels-marathon",
+      "destination": "/blog/en/what-energy-gel-marathon",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/benefits-running-groups",
+      "destination": "/blog/en/benefits-of-group-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-omega-3-runners",
+      "destination": "/blog/en/best-omega-3-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/common-mistakes-runners",
+      "destination": "/blog/en/beginner-running-mistakes-nobody-tells",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/trail-running-mandatory-gear",
+      "destination": "/blog/en/best-trail-running-shoes",
+      "permanent": true
+    },
+    {
+      "source": "/races/trail-terres-ebre",
+      "destination": "/carreras",
+      "permanent": true
+    },
+    {
+      "source": "/blog/grupos-running-barcelona",
+      "destination": "/cities/barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/blog/grupos-correr-granada",
+      "destination": "/cities/granada",
+      "permanent": true
+    },
+    {
+      "source": "/blog/descanso-y-recuperacion-running",
+      "destination": "/blog/nutricion-recuperacion-post-entreno",
+      "permanent": true
+    },
+    {
+      "source": "/blog/estiramientos-despues-de-correr",
+      "destination": "/blog/estiramientos-antes-despues-correr",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mejores-zapatillas-running",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hidratacion-running",
+      "destination": "/blog/hidratacion-running-guia-completa",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ritmo-para-principiantes",
+      "destination": "/blog/ritmo-para-principiantes-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/zapatillas-trail-running",
+      "destination": "/blog/mejores-zapatillas-trail-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mejores-zapatillas-trail",
+      "destination": "/blog/mejores-zapatillas-trail-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutricion-maraton-guia-completa",
+      "destination": "/blog/carga-hidratos-maraton",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mejores-geles-energia-running",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-empezar-trail-running",
+      "destination": "/blog/empezar-trail-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutricion-antes-de-correr",
+      "destination": "/blog/que-comer-antes-de-correr",
+      "permanent": true
+    },
+    {
+      "source": "/blog/empezar-a-correr-desde-cero",
+      "destination": "/blog/running/como-empezar-a-correr-desde-cero",
+      "permanent": true
+    },
+    {
+      "source": "/blog/zapatillas",
+      "destination": "/blog?cat=zapatillas",
+      "permanent": true
+    },
+    {
+      "source": "/blog/atletas-hibridos",
+      "destination": "/blog?cat=atleta-hibrido",
+      "permanent": true
+    },
+    {
+      "source": "/blog/categoria/entrenamiento",
+      "destination": "/blog?cat=entrenamiento",
+      "permanent": true
+    },
+    {
+      "source": "/blog/running/mejores-zapatillas-empezar-correr-2026",
+      "destination": "/blog/zapatillas/mejores-zapatillas-empezar-correr-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running/best-running-shoes-to-start-running-2026",
+      "destination": "/blog/en/running-shoes/best-running-shoes-to-start-running-2026",
+      "permanent": true
+    },
+    {
+      "source": "/equipamiento/en/trail-running-shoes",
+      "destination": "/blog/en/best-trail-running-shoes",
+      "permanent": true
+    },
+    {
+      "source": "/equipamiento/en/running-shoes",
+      "destination": "/blog/en/best-road-running-shoes",
+      "permanent": true
+    },
+    {
+      "source": "/equipamiento/en",
+      "destination": "/equipamiento",
+      "permanent": true
+    },
+    {
+      "source": "/recursos/en",
+      "destination": "/recursos/en/couch-to-5k-plan",
+      "permanent": true
+    },
+    {
+      "source": "/recursos",
+      "destination": "/recursos/plan-0-5k",
+      "permanent": true
+    },
+    {
+      "source": "/cities/en",
+      "destination": "/cities",
+      "permanent": true
+    },
+    {
+      "source": "/legal/aviso-legal.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/privacidad",
+      "destination": "/legal/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutrición-dia-de-carrera.html",
+      "destination": "/blog/nutricion-dia-de-carrera",
+      "permanent": true
+    },
+    {
+      "source": "/10",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/mês",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/precios",
+      "destination": "/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/tk",
+      "destination": "/?utm_source=tiktok&utm_medium=bio&utm_campaign=organic_es",
+      "permanent": false
+    },
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=instagram&utm_medium=bio&utm_campaign=organic_es",
+      "permanent": false
+    },
+    {
+      "source": "/yt",
+      "destination": "/?utm_source=youtube&utm_medium=bio&utm_campaign=organic_es",
+      "permanent": false
+    },
+    {
+      "source": "/r/:reel",
+      "destination": "/?utm_source=:reel&utm_medium=reel&utm_campaign=organic_es",
+      "permanent": false
+    },
     {
       "source": "/:path(.*)",
       "has": [
@@ -211,6 +539,81 @@
         }
       ],
       "destination": "https://www.correrjuntos.com/:path",
+      "permanent": true
+    },
+    {
+      "source": "/races/san-silvestre-vallecana",
+      "destination": "/carreras/san-silvestre-vallecana",
+      "permanent": true
+    },
+    {
+      "source": "/blog/san-silvestre-vallecana-guia",
+      "destination": "/carreras/san-silvestre-vallecana",
+      "permanent": true
+    },
+    {
+      "source": "/races/behobia-san-sebastian",
+      "destination": "/carreras/behobia-san-sebastian",
+      "permanent": true
+    },
+    {
+      "source": "/races/ccc-ultra-trail-mont-blanc",
+      "destination": "/carreras/ccc-ultra-trail-mont-blanc",
+      "permanent": true
+    },
+    {
+      "source": "/races/transvulcania",
+      "destination": "/carreras/transvulcania",
+      "permanent": true
+    },
+    {
+      "source": "/races/ultra-pirineu",
+      "destination": "/carreras/ultra-pirineu",
+      "permanent": true
+    },
+    {
+      "source": "/races/zegama-aizkorri",
+      "destination": "/carreras/zegama-aizkorri",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/maraton-madrid",
+      "destination": "/blog/maraton-madrid-guia",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/maraton-valencia",
+      "destination": "/blog/maraton-valencia-guia",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/maraton-sevilla",
+      "destination": "/blog/maraton-sevilla-guia",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/maraton-barcelona",
+      "destination": "/blog/maraton-barcelona-guia",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/media-maraton-barcelona",
+      "destination": "/blog/media-maraton-barcelona-2026",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/media-maraton-madrid",
+      "destination": "/blog/media-maraton-madrid-2026",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/media-maraton-sevilla",
+      "destination": "/blog/media-maraton-sevilla-2026",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/media-maraton-valencia",
+      "destination": "/blog/media-maraton-valencia-2026",
       "permanent": true
     }
   ],

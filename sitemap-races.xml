@@ -49,19 +49,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/carreras/maraton-valencia</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/races/valencia-marathon</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/carreras/maraton-barcelona</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -73,20 +61,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/carreras/maraton-sevilla</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/races/seville-marathon</loc>
     <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/carreras/maraton-madrid</loc>
-    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -103,32 +79,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/carreras/media-maraton-valencia</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/races/valencia-half-marathon</loc>
     <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/carreras/media-maraton-madrid</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/carreras/media-maraton-barcelona</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/carreras/media-maraton-sevilla</loc>
-    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -205,12 +157,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/races/ccc-ultra-trail-mont-blanc</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/carreras/trail-costa-quebrada</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -247,12 +193,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/races/san-silvestre-vallecana</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/carreras/10k-divina-pastora-valencia</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -273,12 +213,6 @@
   <url>
     <loc>https://www.correrjuntos.com/carreras/behobia-san-sebastian</loc>
     <lastmod>2026-06-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/races/behobia-san-sebastian</loc>
-    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -355,31 +289,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/races/zegama-aizkorri</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/carreras/transvulcania</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/races/transvulcania</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/carreras/ultra-pirineu</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/races/ultra-pirineu</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

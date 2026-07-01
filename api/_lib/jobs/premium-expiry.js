@@ -91,6 +91,7 @@ function emailFor(stage, expired) {
         body:
             lead(`El ${sc('sábado')} se acaba tu mes de Premium de regalo. Dos días.`)
           + para(`Si José te ha estado guiando o tienes un plan en marcha: al caducar, el chat vuelve a 5 mensajes/día y los planes Premium se bloquean. Tu progreso ${sc('queda guardado')}.`)
+          + para(`Y la app no para de mejorar: ahora ${sc('tus carreras de Strava entran solas')} y suman en tu progreso. Premium mantiene a José y Ana sin límite para exprimirlas.`)
           + callout('Antes de que se apague', `Anual <strong style="color:${TEXT};">29,99&euro;</strong> (&asymp;2,50&euro;/mes) o mensual 4,99&euro;. Un toque desde la app y sigues sin cortes.`)
           + paraLast('Y si decides no seguir, gracias igualmente por probarlo — me sirve hasta el «no».'),
         ctaLabel: 'Seguir con Premium &rarr;', ctaRef: 'premium-expiry-d2',
@@ -107,7 +108,8 @@ function emailFor(stage, expired) {
         preheader: 'Hasta esta noche puedes mantenerlo sin cortes.',
         body:
             lead(`Hoy es el último día de tu mes de Premium de regalo. Esta noche ${sc('José y Ana vuelven al modo gratis')} y los planes Premium se bloquean.`)
-          + para(`Todo tu progreso queda guardado. Pero si quieres seguir sin cortes — mismo plan, mismo José — es un toque:`)
+          + para(`Este mes la app ha mejorado: ${sc('tus carreras de Strava entran solas')} y cuentan en tu progreso. Todo eso queda guardado.`)
+          + para(`Si quieres seguir sin cortes — mismo plan, mismo José, mismos ${sc('planes Premium')} — es un toque:`)
           + callout('Hoy decide', `Anual <strong style="color:${TEXT};">29,99&euro;/a&ntilde;o</strong> (&asymp;2,50&euro;/mes) o mensual 4,99&euro;.`)
           + paraLast('Gracias por haberlo probado este mes. Sea cual sea tu decisión, nos vemos corriendo.'),
         ctaLabel: 'Mantener Premium &rarr;', ctaRef: 'premium-expiry-d0',

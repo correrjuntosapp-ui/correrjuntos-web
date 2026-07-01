@@ -108,7 +108,7 @@ function emailFor(stage, expired) {
         preheader: 'Hasta esta noche puedes mantenerlo sin cortes.',
         body:
             lead(`Hoy es el último día de tu mes de Premium de regalo. Esta noche ${sc('José y Ana vuelven al modo gratis')} y los planes Premium se bloquean.`)
-          + para(`Este mes la app ha mejorado: ${sc('tus carreras de Strava entran solas')} y cuentan en tu progreso. Todo eso queda guardado.`)
+          + para(`Este mes la app ha mejorado: ${sc('tus carreras de Strava entran solas')} y ahora ${sc('José y Ana te comentan cada entreno')} nada más cargarlo. Con Premium sigues hablando con ellos sin límite.`)
           + para(`Si quieres seguir sin cortes — mismo plan, mismo José, mismos ${sc('planes Premium')} — es un toque:`)
           + callout('Hoy decide', `Anual <strong style="color:${TEXT};">29,99&euro;/a&ntilde;o</strong> (&asymp;2,50&euro;/mes) o mensual 4,99&euro;.`)
           + paraLast('Gracias por haberlo probado este mes. Sea cual sea tu decisión, nos vemos corriendo.'),

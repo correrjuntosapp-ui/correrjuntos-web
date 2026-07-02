@@ -294,11 +294,17 @@ export default async function runPremiumExpiry(req, res, env) {
         const r = await sendBrevoBatch(BREVO_API_KEY, stage, expired, versions);
         const ok = r.ok;
         if (!ok && errors.length < 5) errors.push(`brevo ${r.status}: ${(await r.text()).slice(0, 120)}`);
-        // log por persona (status del batch)
-        await supabase.from('premium_expiry_log').insert(
-          slice.map((p) => ({ user_id: p.id, stage, channel: 'email', status: r.status, error: ok ? null : 'batch_failed' }))
-        );
-        if (ok) emailsSent += slice.length;
+        // [2 jul 2026 fix] Solo marcar 'enviado' si Brevo devolvió OK. Antes se
+        // logueaba el lote entero aunque fallara → esos usuarios quedaban
+        // marcados como contactados y NUNCA se reintentaba (revenue del cliff
+        // perdido ante un 429/500 transitorio). Ahora un fallo NO se registra
+        // → el siguiente cron lo reintenta.
+        if (ok) {
+          await supabase.from('premium_expiry_log').insert(
+            slice.map((p) => ({ user_id: p.id, stage, channel: 'email', status: r.status, error: null }))
+          );
+          emailsSent += slice.length;
+        }
       } catch (e) {
         if (errors.length < 5) errors.push((e?.message || '').slice(0, 120));
       }

@@ -15,14 +15,6 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_ES">
-<!-- App Links Protocol — Deep linking from social apps -->
-<meta property="al:ios:app_store_id" content="6758505910">
-<meta property="al:ios:app_name" content="Correr Juntos">
-<meta property="al:ios:url" content="https://www.correrjuntos.com/events/new-york">
-<meta property="al:android:package" content="com.correrjuntos.app">
-<meta property="al:android:app_name" content="Correr Juntos">
-<meta property="al:android:url" content="https://www.correrjuntos.com/events/new-york">
-<meta property="al:web:url" content="https://www.correrjuntos.com/events/new-york">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@CorrerJuntos">
 <meta name="twitter:title" content="Eventos de Running en Nueva York">
@@ -114,46 +106,6 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
       ]
     },
     {
-      "@type": "Event",
-      "@id": "https://www.correrjuntos.com/events/new-york#main-event",
-      "name": "TCS New York City Marathon",
-      "description": "The world's largest marathon through all five boroughs of New York City.",
-      "startDate": "2026-11-01T08:00:00",
-      "endDate": "2026-11-01T18:00:00",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "image": [
-        "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1200&h=600&q=80"
-      ],
-      "location": {
-        "@type": "Place",
-        "name": "Fort Wadsworth, Staten Island, New York",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "New York",
-          "addressCountry": "US"
-        }
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://www.nyrr.org/tcsnycmarathon",
-        "price": "255",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2025-10-01"
-      },
-      "organizer": {
-        "@type": "Organization",
-        "name": "New York Road Runners",
-        "url": "https://www.nyrr.org/tcsnycmarathon"
-      },
-      "url": "https://www.correrjuntos.com/events/new-york",
-      "performer": {
-        "@type": "PerformingGroup",
-        "name": "Open Marathon Runners"
-      }
-    },
-    {
       "@type": "BreadcrumbList",
       "@id": "https://www.correrjuntos.com/events/new-york#breadcrumbs",
       "itemListElement": [
@@ -178,8 +130,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
         {
           "@type": "ListItem",
           "position": 4,
-          "name": "Eventos",
-          "item": "https://www.correrjuntos.com/events/new-york"
+          "name": "Eventos"
         }
       ]
     },
@@ -218,24 +169,27 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 </script>
 </head>
 <body>
-<header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
-<nav style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px">
-  <a href="/" style="text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em"><span style="color:#3d3229">CORRER</span><span style="color:#f97316">JUNTOS</span></a>
-  <div style="display:flex;gap:24px;align-items:center;font-size:.9rem;font-weight:600">
-    <a href="/planes" style="color:#3d3229;text-decoration:none">Planes</a>
-    <a href="/blog" style="color:#3d3229;text-decoration:none">Blog</a>
-    <a href="/carreras" style="color:#3d3229;text-decoration:none">Carreras</a>
-    <a href="/#pricing" style="color:#3d3229;text-decoration:none">Precios</a>
-    <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" style="background:#f97316;color:#fff;padding:8px 20px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none">Descargar App</a>
+<div class="nav-wrapper">
+<nav class="nav">
+  <a href="/">CORRER<b>JUNTOS</b></a>
+  <div class="nav-links">
+    <a href="/matching/">Matching</a>
+    <a href="/cities/">Ciudades</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#app">App</a>
+  </div>
+  <div class="nav-auth" style="display:flex;gap:8px;align-items:center">
+    <a href="/" style="color:#94a3b8;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;text-decoration:none">Entrar</a>
+    <a href="/" style="background:#f97316;color:#fff;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none">Únete</a>
   </div>
 </nav>
-</header>
+</div>
 
 <div class="container">
   <div class="breadcrumb">
     <a href="/">Inicio</a>
     <span>/</span>
-    <a href="/cities">Ciudades</a>
+    <a href="/cities/">Ciudades</a>
     <span>/</span>
     <a href="/cities/new-york">New York</a>
     <span>/</span>
@@ -318,8 +272,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 
   <div class="cta-box">
     <h2>¿Quieres correr en New York?</h2>
-    <p>Tu plan personalizado, Coach José IA y GPS preciso. App gratis en iOS y Android.</p>
-    <a href="/#app" class="cta">Empezar mi plan gratis</a>
+    <p>Encuentra compañeros de running en New York con CorrerJuntos. Gratis.</p>
+    <a href="/#app" class="cta">Unirme Gratis</a>
     <div class="cta-badges">
       <a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#fff" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83"/><path fill="#fff" d="M15.3 2c.06 1.18-.43 2.35-1.14 3.2-.72.86-1.89 1.52-3.04 1.43-.07-1.15.46-2.34 1.15-3.13C13 2.63 14.22 2.04 15.3 2"/></svg>
@@ -342,33 +296,32 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
       <a href="https://instagram.com/correrjuntosapp/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px" aria-label="Instagram"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
       <a href="https://tiktok.com/@correrjuntosapp" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px" aria-label="TikTok"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
       <a href="https://twitter.com/CorrerJuntos" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px" aria-label="X"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://es.pinterest.com/correrjuntos/" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.06);border-radius:8px" aria-label="Pinterest"><svg style="width:18px;height:18px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-4.37 23.17c-.1-.94-.2-2.38.04-3.41l1.4-5.96s-.36-.72-.36-1.78c0-1.66.97-2.9 2.17-2.9 1.02 0 1.52.77 1.52 1.7 0 1.03-.66 2.58-1 4.01-.28 1.2.6 2.18 1.79 2.18 2.14 0 3.79-2.26 3.79-5.52 0-2.89-2.08-4.9-5.04-4.9-3.43 0-5.45 2.58-5.45 5.24 0 1.04.4 2.15.9 2.75a.36.36 0 01.08.35l-.33 1.36c-.05.22-.18.27-.4.16-1.5-.7-2.43-2.9-2.43-4.67 0-3.8 2.76-7.3 7.96-7.3 4.17 0 7.42 2.98 7.42 6.95 0 4.15-2.62 7.49-6.25 7.49-1.22 0-2.37-.63-2.76-1.38l-.75 2.86c-.27 1.05-1.01 2.36-1.5 3.16A12 12 0 1012 0z"/></svg></a>
     </div>
   </div>
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Explora</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/cities" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
-      <a href="/places" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
-      <a href="/events" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
-      <a href="/blog" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
+      <a href="/cities/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Ciudades</a>
+      <a href="/places/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Lugares</a>
+      <a href="/events/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Eventos</a>
+      <a href="/blog/" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Blog</a>
       <a href="/#app" style="color:#94a3b8;text-decoration:none;font-size:.85rem">App</a>
     </div>
   </div>
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Empresa</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/sobre-nosotros" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Sobre Nosotros</a>
-      <a href="/inversores" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Inversores</a>
-      <a href="mailto:abraham.marquez@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Contacto</a>
+      <a href="/sobre-nosotros.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Sobre Nosotros</a>
+      <a href="/inversores.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Inversores</a>
+      <a href="mailto:hola@correrjuntos.com" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Contacto</a>
     </div>
   </div>
   <div>
     <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:16px">Legal</div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="/privacy" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Privacidad</a>
-      <a href="/terms" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Términos de Uso</a>
-      <a href="/legal/cookies" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Cookies</a>
+      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Privacidad</a>
+      <a href="/terms.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Términos de Uso</a>
+      <a href="/legal/cookies.html" style="color:#94a3b8;text-decoration:none;font-size:.85rem">Política de Cookies</a>
     </div>
   </div>
 </div>
@@ -377,6 +330,5 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 </div>
 </footer>
 <script src="/events/event-links.js" defer></script>
-<script src="/blog/cro.js" defer></script>
 </body>
 </html>

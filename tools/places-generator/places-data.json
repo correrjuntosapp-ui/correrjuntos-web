@@ -10,18 +10,36 @@
     "heroImage": "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Guía completa para correr en el Parque del Retiro, Madrid. Circuitos de 4-6 km, superficie, desnivel y consejos para runners.",
     "shortDescription": "El pulmón verde de Madrid con 125 hectáreas de circuitos para correr entre jardines históricos y el icónico Estanque Grande.",
-    "description": "<p>El Parque del Retiro es el lugar más emblemático para correr en Madrid. Con 125 hectáreas de jardines, caminos de tierra y sendas asfaltadas, ofrece múltiples circuitos que van desde los 2 km hasta los 6 km sin repetir trazado. El circuito más popular rodea el Estanque Grande y continúa por la Rosaleda, el Parterre y el Paseo de las Estatuas.</p>\n<p>Los caminos están bien mantenidos y señalizados, con una mezcla de asfalto liso y grava compactada ideal para todo tipo de zapatillas. El desnivel es mínimo, lo que lo convierte en un lugar perfecto para series de velocidad y entrenamientos de tempo. Los fines de semana acoge el parkrun Retiro, una carrera gratuita de 5 km cada sábado a las 9:00.</p>\n<p>El Retiro es también punto de encuentro de los principales grupos de running de Madrid. Clubs como Adidas Runners Madrid, Nike Run Club y decenas de grupos locales organizan entrenamientos regulares entre sus caminos. La zona del Ángel Caído y la Fuente de los Galápagos son los puntos de encuentro más habituales.</p>\n<p>En verano conviene correr antes de las 8:00 o después de las 20:00 para evitar el calor. Las zonas más sombreadas se encuentran en el Paseo de Coches y junto al Palacio de Cristal. En invierno, las mañanas frías y soleadas de Madrid hacen del Retiro un paraíso runner.</p>",
+    "description": "<p>El Parque del Retiro es el lugar más emblemático para correr en Madrid. Con 125 hectáreas de jardines, caminos de tierra y sendas asfaltadas, ofrece múltiples circuitos que van desde los 2 km hasta los 6 km sin repetir trazado. El circuito más popular rodea el Estanque Grande y continúa por la Rosaleda, el Parterre y el Paseo de las Estatuas.</p>\n<p>Los caminos están bien mantenidos y señalizados, con una mezcla de asfalto liso y grava compactada ideal para todo tipo de zapatillas. El desnivel es mínimo, lo que lo convierte en un lugar perfecto para series de velocidad y entrenamientos de tempo. Los fines de semana, CorrerJuntos organiza quedadas gratuitas de 5 km en la zona del Ángel Caído.</p>\n<p>El Retiro es también punto de encuentro de los principales grupos de running de Madrid. Clubs como Adidas Runners Madrid, Nike Run Club y decenas de grupos locales organizan entrenamientos regulares entre sus caminos. La zona del Ángel Caído y la Fuente de los Galápagos son los puntos de encuentro más habituales.</p>\n<p>En verano conviene correr antes de las 8:00 o después de las 20:00 para evitar el calor. Las zonas más sombreadas se encuentran en el Paseo de Coches y junto al Palacio de Cristal. En invierno, las mañanas frías y soleadas de Madrid hacen del Retiro un paraíso runner.</p>",
     "distance": "Circuitos de 2-6 km",
     "surface": "Asfalto y grava compactada",
     "elevation": "Llano, desnivel mínimo",
     "bestTime": "Antes de las 8:00 en verano, cualquier hora en primavera/otoño",
-    "facilities": ["Fuentes de agua potable", "Aseos públicos", "Cafeterías y kioscos", "Zonas de estiramientos", "Bancos para descanso"],
+    "facilities": [
+      "Fuentes de agua potable",
+      "Aseos públicos",
+      "Cafeterías y kioscos",
+      "Zonas de estiramientos",
+      "Bancos para descanso"
+    ],
     "howToGetThere": "Metro: Retiro (Línea 2), Ibiza (Línea 9), Príncipe de Vergara (Líneas 2 y 9). Autobuses: 1, 2, 9, 15, 19, 20, 28, 51, 52, 74. BiciMAD: estaciones en todas las entradas principales.",
     "faq": [
-      {"q": "¿Cuánto mide el circuito principal del Retiro?", "a": "El circuito más popular que rodea el Estanque Grande tiene aproximadamente 4 km. Puedes ampliarlo a 6 km incluyendo la Rosaleda y el Parterre."},
-      {"q": "¿Hay parkrun en el Retiro?", "a": "Sí, cada sábado a las 9:00 se celebra parkrun Retiro, una carrera gratuita de 5 km abierta a todos los niveles. El punto de encuentro es junto a la estatua del Ángel Caído."},
-      {"q": "¿Es seguro correr en el Retiro de noche?", "a": "El Retiro cierra al anochecer (varía según la época del año). En horario de apertura es completamente seguro y está vigilado por la Policía Municipal."},
-      {"q": "¿Hay fuentes de agua en el Retiro?", "a": "Sí, hay múltiples fuentes de agua potable distribuidas por todo el parque. Las más accesibles están junto al Estanque, en la Rosaleda y cerca del Ángel Caído."}
+      {
+        "q": "¿Cuánto mide el circuito principal del Retiro?",
+        "a": "El circuito más popular que rodea el Estanque Grande tiene aproximadamente 4 km. Puedes ampliarlo a 6 km incluyendo la Rosaleda y el Parterre."
+      },
+      {
+        "q": "¿Hay parkrun en el Retiro?",
+        "a": "No, parkrun no opera actualmente en España. La alternativa gratuita: las quedadas gratuitas de CorrerJuntos — cualquier corredor puede crear una desde la app; un punto de encuentro clásico del parque es la estatua del Ángel Caído."
+      },
+      {
+        "q": "¿Es seguro correr en el Retiro de noche?",
+        "a": "El Retiro cierra al anochecer (varía según la época del año). En horario de apertura es completamente seguro y está vigilado por la Policía Municipal."
+      },
+      {
+        "q": "¿Hay fuentes de agua en el Retiro?",
+        "a": "Sí, hay múltiples fuentes de agua potable distribuidas por todo el parque. Las más accesibles están junto al Estanque, en la Rosaleda y cerca del Ángel Caído."
+      }
     ]
   },
   "casa-de-campo": {
@@ -35,17 +53,31 @@
     "heroImage": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Guía para correr en Casa de Campo, Madrid. 1.700 hectáreas de senderos de trail, circuitos y rutas para runners de todos los niveles.",
     "shortDescription": "El bosque urbano más grande de Europa con 1.700 hectáreas de senderos de trail, subidas técnicas y rutas infinitas para corredores.",
-    "description": "<p>Casa de Campo es el parque más grande de Madrid con 1.722 hectáreas de bosque mediterráneo, senderos de tierra y caminos forestales. Es el lugar preferido para los amantes del trail running urbano, con recorridos que van desde los 5 km hasta tiradas largas de más de 20 km sin salir del parque.</p>\n<p>El terreno es variado: caminos anchos de tierra compactada, senderos técnicos entre encinas y pinos, y algunas zonas de asfalto junto al Lago. El desnivel es moderado, con colinas que ofrecen un entrenamiento más exigente que el Retiro. La zona de la Cuesta de las Perdices y los senderos hacia el Cerro Garabitas son especialmente populares entre corredores avanzados.</p>\n<p>Cada sábado se celebra parkrun Casa de Campo, una carrera gratuita de 5 km con un recorrido más técnico y con algo de desnivel. El punto de encuentro es junto al Lago. También es sede habitual de carreras de trail y cross durante todo el año.</p>",
+    "description": "<p>Casa de Campo es el parque más grande de Madrid con 1.722 hectáreas de bosque mediterráneo, senderos de tierra y caminos forestales. Es el lugar preferido para los amantes del trail running urbano, con recorridos que van desde los 5 km hasta tiradas largas de más de 20 km sin salir del parque.</p>\n<p>El terreno es variado: caminos anchos de tierra compactada, senderos técnicos entre encinas y pinos, y algunas zonas de asfalto junto al Lago. El desnivel es moderado, con colinas que ofrecen un entrenamiento más exigente que el Retiro. La zona de la Cuesta de las Perdices y los senderos hacia el Cerro Garabitas son especialmente populares entre corredores avanzados.</p>\n<p>Es sede habitual de carreras de trail y cross durante todo el año, además de quedadas gratuitas organizadas por grupos locales junto al Lago.</p>",
     "distance": "Rutas de 5-25 km",
     "surface": "Tierra, senderos técnicos, algo de asfalto",
     "elevation": "Moderado (50-100 m desnivel acumulado)",
     "bestTime": "Mañanas tempranas; buena sombra en verano",
-    "facilities": ["Fuentes de agua", "Aparcamiento gratuito", "Kioscos y chiringuitos", "Zona del Lago con servicios"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aparcamiento gratuito",
+      "Kioscos y chiringuitos",
+      "Zona del Lago con servicios"
+    ],
     "howToGetThere": "Metro: Casa de Campo (Línea 10), Lago (Línea 10), Batán (Línea 10). Teleférico desde Paseo del Pintor Rosales. BiciMAD: estaciones en entrada principal.",
     "faq": [
-      {"q": "¿Casa de Campo es buena para trail running?", "a": "Sí, es el mejor lugar para trail running urbano en Madrid. Tiene senderos técnicos, subidas y bajadas, y terreno variado perfecto para entrenar trail sin salir de la ciudad."},
-      {"q": "¿Hay parkrun en Casa de Campo?", "a": "Sí, cada sábado a las 9:00 se celebra parkrun Casa de Campo junto al Lago. El recorrido incluye algo de desnivel y senderos de tierra."},
-      {"q": "¿Es seguro correr en Casa de Campo?", "a": "En las zonas principales (Lago, Teleférico, senderos señalizados) es seguro durante el día. Se recomienda evitar zonas aisladas al anochecer."}
+      {
+        "q": "¿Casa de Campo es buena para trail running?",
+        "a": "Sí, es el mejor lugar para trail running urbano en Madrid. Tiene senderos técnicos, subidas y bajadas, y terreno variado perfecto para entrenar trail sin salir de la ciudad."
+      },
+      {
+        "q": "¿Hay parkrun en Casa de Campo?",
+        "a": "No, parkrun no opera actualmente en España. En la zona del Lago sí hay quedadas gratuitas organizadas por grupos de running locales."
+      },
+      {
+        "q": "¿Es seguro correr en Casa de Campo?",
+        "a": "En las zonas principales (Lago, Teleférico, senderos señalizados) es seguro durante el día. Se recomienda evitar zonas aisladas al anochecer."
+      }
     ]
   },
   "madrid-rio": {
@@ -64,12 +96,26 @@
     "surface": "Asfalto liso y hormigón",
     "elevation": "Completamente llano",
     "bestTime": "Atardecer para vistas; nocturno en verano (bien iluminado)",
-    "facilities": ["Fuentes de agua cada 500 m", "Zonas de calistenia", "Aseos públicos", "Cafeterías en Matadero"],
+    "facilities": [
+      "Fuentes de agua cada 500 m",
+      "Zonas de calistenia",
+      "Aseos públicos",
+      "Cafeterías en Matadero"
+    ],
     "howToGetThere": "Metro: Príncipe Pío (Líneas 6, 10, R), Pirámides (Línea 5), Marqués de Vadillo (Línea 5), Legazpi (Líneas 3, 6). Múltiples accesos a lo largo del río.",
     "faq": [
-      {"q": "¿Cuánto mide Madrid Río?", "a": "El recorrido completo tiene 10 km de ida. Puedes hacer ida y vuelta para completar 20 km sin repetir tramo gracias al recorrido circular en las zonas del Puente del Rey."},
-      {"q": "¿Se puede correr de noche en Madrid Río?", "a": "Sí, todo el recorrido está bien iluminado y es seguro para correr de noche. Es uno de los pocos lugares de Madrid donde puedes entrenar en oscuridad con total seguridad."},
-      {"q": "¿Hay fuentes de agua?", "a": "Sí, hay fuentes de agua potable cada 500 metros aproximadamente a lo largo de todo el recorrido."}
+      {
+        "q": "¿Cuánto mide Madrid Río?",
+        "a": "El recorrido completo tiene 10 km de ida. Puedes hacer ida y vuelta para completar 20 km sin repetir tramo gracias al recorrido circular en las zonas del Puente del Rey."
+      },
+      {
+        "q": "¿Se puede correr de noche en Madrid Río?",
+        "a": "Sí, todo el recorrido está bien iluminado y es seguro para correr de noche. Es uno de los pocos lugares de Madrid donde puedes entrenar en oscuridad con total seguridad."
+      },
+      {
+        "q": "¿Hay fuentes de agua?",
+        "a": "Sí, hay fuentes de agua potable cada 500 metros aproximadamente a lo largo de todo el recorrido."
+      }
     ]
   },
   "parque-juan-carlos": {
@@ -78,7 +124,7 @@
     "city": "madrid",
     "cityName": "Madrid",
     "country": "ES",
-    "lat": 40.4650,
+    "lat": 40.465,
     "lng": -3.6105,
     "heroImage": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Correr en el Parque Juan Carlos I, Madrid. Circuitos amplios, lagos y terreno llano ideal para principiantes y tiradas largas.",
@@ -88,11 +134,22 @@
     "surface": "Asfalto y tierra compactada",
     "elevation": "Completamente llano",
     "bestTime": "Cualquier hora; poco masificado entre semana",
-    "facilities": ["Fuentes de agua", "Aparcamiento gratuito", "Zonas de ejercicio", "Aseos públicos"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aparcamiento gratuito",
+      "Zonas de ejercicio",
+      "Aseos públicos"
+    ],
     "howToGetThere": "Metro: Campo de las Naciones (Línea 8), Feria de Madrid (Línea 8). Autobús: 122, 73. Amplio aparcamiento gratuito.",
     "faq": [
-      {"q": "¿Es bueno el Parque Juan Carlos I para principiantes?", "a": "Sí, es ideal para principiantes por su terreno completamente llano, caminos amplios y poca masificación. El circuito de 5 km es perfecto para primeras carreras."},
-      {"q": "¿Cómo llegar al Parque Juan Carlos I?", "a": "Metro Campo de las Naciones (Línea 8) o Feria de Madrid. También tiene aparcamiento gratuito amplio."}
+      {
+        "q": "¿Es bueno el Parque Juan Carlos I para principiantes?",
+        "a": "Sí, es ideal para principiantes por su terreno completamente llano, caminos amplios y poca masificación. El circuito de 5 km es perfecto para primeras carreras."
+      },
+      {
+        "q": "¿Cómo llegar al Parque Juan Carlos I?",
+        "a": "Metro Campo de las Naciones (Línea 8) o Feria de Madrid. También tiene aparcamiento gratuito amplio."
+      }
     ]
   },
   "parque-del-oeste": {
@@ -111,11 +168,21 @@
     "surface": "Tierra y gravilla",
     "elevation": "Moderado (30-50 m desnivel)",
     "bestTime": "Mañanas; buena sombra en verano",
-    "facilities": ["Fuentes de agua", "Rosaleda con zonas de descanso", "Cafetería junto al Templo de Debod"],
+    "facilities": [
+      "Fuentes de agua",
+      "Rosaleda con zonas de descanso",
+      "Cafetería junto al Templo de Debod"
+    ],
     "howToGetThere": "Metro: Moncloa (Líneas 3, 6), Argüelles (Líneas 3, 4, 6). Autobús: C, 46, 74, 133. Teleférico hacia Casa de Campo.",
     "faq": [
-      {"q": "¿Se puede conectar el Parque del Oeste con otros parques?", "a": "Sí, puedes bajar hasta Madrid Río por Pintor Rosales o subir hacia la Dehesa de la Villa, creando rutas de hasta 15 km sin pisar asfalto urbano."},
-      {"q": "¿Tiene desnivel el Parque del Oeste?", "a": "Sí, más que el Retiro. Las subidas son suaves pero constantes, ideal para trabajar fuerza en cuesta."}
+      {
+        "q": "¿Se puede conectar el Parque del Oeste con otros parques?",
+        "a": "Sí, puedes bajar hasta Madrid Río por Pintor Rosales o subir hacia la Dehesa de la Villa, creando rutas de hasta 15 km sin pisar asfalto urbano."
+      },
+      {
+        "q": "¿Tiene desnivel el Parque del Oeste?",
+        "a": "Sí, más que el Retiro. Las subidas son suaves pero constantes, ideal para trabajar fuerza en cuesta."
+      }
     ]
   },
   "montjuic": {
@@ -134,12 +201,26 @@
     "surface": "Asfalto, senderos de tierra, escaleras",
     "elevation": "Alto (180 m desnivel acumulado)",
     "bestTime": "Mañanas tempranas; atardecer para vistas al mar",
-    "facilities": ["Fuentes de agua", "Jardines Olímpicos", "Cafeterías en zona Olímpica", "Mirador del Castillo"],
+    "facilities": [
+      "Fuentes de agua",
+      "Jardines Olímpicos",
+      "Cafeterías en zona Olímpica",
+      "Mirador del Castillo"
+    ],
     "howToGetThere": "Metro: Espanya (Líneas 1, 3), Paral·lel (Líneas 2, 3) + funicular. Autobús: 150 (sube hasta el Castillo). A pie desde Poble Sec.",
     "faq": [
-      {"q": "¿Es difícil correr en Montjuïc?", "a": "Montjuïc tiene subidas exigentes con 180 m de desnivel. Es ideal para corredores intermedios y avanzados, aunque hay caminos suaves en la base para principiantes."},
-      {"q": "¿Cuál es la mejor ruta en Montjuïc?", "a": "La ruta clásica sube desde Plaza España al Castillo por la Avenida Olímpica (7 km). Para trail, los senderos por los Jardines de Mossèn Costa son más técnicos."},
-      {"q": "¿Hay carreras en Montjuïc?", "a": "Sí, Montjuïc acoge varias competiciones al año, incluyendo carreras de trail, cross y pruebas en escaleras."}
+      {
+        "q": "¿Es difícil correr en Montjuïc?",
+        "a": "Montjuïc tiene subidas exigentes con 180 m de desnivel. Es ideal para corredores intermedios y avanzados, aunque hay caminos suaves en la base para principiantes."
+      },
+      {
+        "q": "¿Cuál es la mejor ruta en Montjuïc?",
+        "a": "La ruta clásica sube desde Plaza España al Castillo por la Avenida Olímpica (7 km). Para trail, los senderos por los Jardines de Mossèn Costa son más técnicos."
+      },
+      {
+        "q": "¿Hay carreras en Montjuïc?",
+        "a": "Sí, Montjuïc acoge varias competiciones al año, incluyendo carreras de trail, cross y pruebas en escaleras."
+      }
     ]
   },
   "parque-del-turia": {
@@ -149,7 +230,7 @@
     "cityName": "Valencia",
     "country": "ES",
     "lat": 39.4789,
-    "lng": -0.3660,
+    "lng": -0.366,
     "heroImage": "https://images.unsplash.com/photo-1599207876610-d1f1c9f2e45e?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Correr en el Jardín del Turia, Valencia. 9 km de parque lineal en el antiguo cauce del río. Ruta llana, sombreada y sin cruces.",
     "shortDescription": "9 km de parque lineal en el antiguo cauce del río Turia, completamente llano, sombreado y sin cruces de tráfico.",
@@ -158,12 +239,26 @@
     "surface": "Tierra compactada y asfalto",
     "elevation": "Completamente llano",
     "bestTime": "Mañanas en verano; cualquier hora resto del año",
-    "facilities": ["Fuentes de agua frecuentes", "Zonas de calistenia", "Campos deportivos", "Cafeterías junto a la Ciudad de las Artes"],
+    "facilities": [
+      "Fuentes de agua frecuentes",
+      "Zonas de calistenia",
+      "Campos deportivos",
+      "Cafeterías junto a la Ciudad de las Artes"
+    ],
     "howToGetThere": "Metro: Alameda, Àngel Guimerà, Túria. Múltiples accesos desde cualquier puente histórico. ValenBici: estaciones en todos los accesos.",
     "faq": [
-      {"q": "¿Cuánto mide el Jardín del Turia?", "a": "El recorrido completo son 9 km de ida. Puedes hacer ida y vuelta para 18 km. Es el parque lineal urbano más largo de España."},
-      {"q": "¿Es bueno para entrenar maratón?", "a": "Sí, es perfecto para entrenamientos de maratón por su superficie llana, sin cruces y con fuentes de agua frecuentes. Muchos runners preparan aquí el Maratón de Valencia."},
-      {"q": "¿Tiene sombra el Jardín del Turia?", "a": "Sí, gran parte del recorrido está arbolado. Los puentes históricos también proporcionan sombra. Aun así, en verano se recomienda correr temprano."}
+      {
+        "q": "¿Cuánto mide el Jardín del Turia?",
+        "a": "El recorrido completo son 9 km de ida. Puedes hacer ida y vuelta para 18 km. Es el parque lineal urbano más largo de España."
+      },
+      {
+        "q": "¿Es bueno para entrenar maratón?",
+        "a": "Sí, es perfecto para entrenamientos de maratón por su superficie llana, sin cruces y con fuentes de agua frecuentes. Muchos runners preparan aquí el Maratón de Valencia."
+      },
+      {
+        "q": "¿Tiene sombra el Jardín del Turia?",
+        "a": "Sí, gran parte del recorrido está arbolado. Los puentes históricos también proporcionan sombra. Aun así, en verano se recomienda correr temprano."
+      }
     ]
   },
   "parque-del-alamillo": {
@@ -182,11 +277,22 @@
     "surface": "Albero (tierra compactada)",
     "elevation": "Completamente llano",
     "bestTime": "Mañanas tempranas en verano (antes de las 8:00)",
-    "facilities": ["Fuentes de agua", "Zonas de ejercicio", "Aparcamiento", "Kiosco-bar"],
+    "facilities": [
+      "Fuentes de agua",
+      "Zonas de ejercicio",
+      "Aparcamiento",
+      "Kiosco-bar"
+    ],
     "howToGetThere": "Autobús: C1, C2 hasta la Isla de la Cartuja. En bici por el carril bici del Guadalquivir. Coche: aparcamiento gratuito en la entrada principal.",
     "faq": [
-      {"q": "¿Es el mejor lugar para correr en Sevilla en verano?", "a": "Sí, la sombra del pinar hace del Alamillo el lugar más fresco para correr en Sevilla durante el verano. Aun así, se recomienda ir muy temprano."},
-      {"q": "¿Qué superficie tiene el Parque del Alamillo?", "a": "Los caminos son de albero, una tierra compactada típica de Sevilla. Es suave para las articulaciones y tiene buena tracción."}
+      {
+        "q": "¿Es el mejor lugar para correr en Sevilla en verano?",
+        "a": "Sí, la sombra del pinar hace del Alamillo el lugar más fresco para correr en Sevilla durante el verano. Aun así, se recomienda ir muy temprano."
+      },
+      {
+        "q": "¿Qué superficie tiene el Parque del Alamillo?",
+        "a": "Los caminos son de albero, una tierra compactada típica de Sevilla. Es suave para las articulaciones y tiene buena tracción."
+      }
     ]
   },
   "serra-de-collserola": {
@@ -205,12 +311,25 @@
     "surface": "Senderos técnicos, pista forestal, roca",
     "elevation": "Alto (200-600 m desnivel según ruta)",
     "bestTime": "Mañanas; otoño y primavera son las mejores estaciones",
-    "facilities": ["Fuentes naturales (verificar)", "Aparcamientos en accesos", "Centro de información del Parc Natural"],
+    "facilities": [
+      "Fuentes naturales (verificar)",
+      "Aparcamientos en accesos",
+      "Centro de información del Parc Natural"
+    ],
     "howToGetThere": "FGC: Baixador de Vallvidrera, Les Planes. Autobús: 111 desde Plaza Catalunya. Múltiples accesos desde barrios de Sarrià, Vallvidrera y Sant Cugat.",
     "faq": [
-      {"q": "¿Es Collserola buena para trail running?", "a": "Collserola es probablemente el mejor lugar de España para trail running urbano. Tiene senderos de todos los niveles técnicos y desniveles que van desde lo suave hasta lo muy exigente."},
-      {"q": "¿Necesito zapatillas de trail para Collserola?", "a": "Sí, se recomienda zapatillas de trail con buena suela. Los senderos pueden ser técnicos con piedras, raíces y zonas de roca."},
-      {"q": "¿Hay fuentes de agua en Collserola?", "a": "Hay algunas fuentes naturales, pero no es fiable contar con ellas. Se recomienda llevar agua suficiente, especialmente en rutas largas y en verano."}
+      {
+        "q": "¿Es Collserola buena para trail running?",
+        "a": "Collserola es probablemente el mejor lugar de España para trail running urbano. Tiene senderos de todos los niveles técnicos y desniveles que van desde lo suave hasta lo muy exigente."
+      },
+      {
+        "q": "¿Necesito zapatillas de trail para Collserola?",
+        "a": "Sí, se recomienda zapatillas de trail con buena suela. Los senderos pueden ser técnicos con piedras, raíces y zonas de roca."
+      },
+      {
+        "q": "¿Hay fuentes de agua en Collserola?",
+        "a": "Hay algunas fuentes naturales, pero no es fiable contar con ellas. Se recomienda llevar agua suficiente, especialmente en rutas largas y en verano."
+      }
     ]
   },
   "parque-de-maria-luisa": {
@@ -229,11 +348,22 @@
     "surface": "Albero y caminos de tierra",
     "elevation": "Completamente llano",
     "bestTime": "Mañanas tempranas; buena sombra todo el día",
-    "facilities": ["Fuentes de agua", "Aseos públicos", "Cafetería junto a la Plaza de España", "Bancos para estiramientos"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos públicos",
+      "Cafetería junto a la Plaza de España",
+      "Bancos para estiramientos"
+    ],
     "howToGetThere": "Metro: Prado de San Sebastián (Línea 1). Tranvía: parada Plaza de España. Autobús: 34, 30, C1. Sevici: múltiples estaciones.",
     "faq": [
-      {"q": "¿Se puede correr hasta el Guadalquivir desde María Luisa?", "a": "Sí, bajando desde el parque hacia la Torre del Oro puedes enlazar con la ribera del Guadalquivir y ampliar la ruta a 8-10 km."},
-      {"q": "¿Cuál es la mejor época para correr en Sevilla?", "a": "Otoño (octubre-noviembre) y primavera (marzo-abril) son las mejores épocas. En verano (junio-septiembre) las temperaturas superan los 35-40 grados."}
+      {
+        "q": "¿Se puede correr hasta el Guadalquivir desde María Luisa?",
+        "a": "Sí, bajando desde el parque hacia la Torre del Oro puedes enlazar con la ribera del Guadalquivir y ampliar la ruta a 8-10 km."
+      },
+      {
+        "q": "¿Cuál es la mejor época para correr en Sevilla?",
+        "a": "Otoño (octubre-noviembre) y primavera (marzo-abril) son las mejores épocas. En verano (junio-septiembre) las temperaturas superan los 35-40 grados."
+      }
     ]
   },
   "parc-de-la-ciutadella": {
@@ -252,11 +382,22 @@
     "surface": "Tierra compactada y asfalto",
     "elevation": "Completamente llano",
     "bestTime": "Mañanas tempranas; atardecer para conectar con playa",
-    "facilities": ["Fuentes de agua", "Lago con vistas", "Aseos públicos", "Cafeterías en el Born"],
+    "facilities": [
+      "Fuentes de agua",
+      "Lago con vistas",
+      "Aseos públicos",
+      "Cafeterías en el Born"
+    ],
     "howToGetThere": "Metro: Arc de Triomf (Línea 1), Ciutadella/Vila Olímpica (Línea 4). A pie desde el Born o la Barceloneta.",
     "faq": [
-      {"q": "¿Se puede conectar Ciutadella con el paseo marítimo?", "a": "Sí, bajando hacia la Barceloneta puedes enlazar con el paseo marítimo hasta el Fòrum (8 km ida). Es una de las rutas más populares de Barcelona."},
-      {"q": "¿Es bueno para principiantes?", "a": "Sí, el circuito de 2 km es perfecto para empezar a correr. Es llano, protegido del tráfico y tiene fuentes de agua."}
+      {
+        "q": "¿Se puede conectar Ciutadella con el paseo marítimo?",
+        "a": "Sí, bajando hacia la Barceloneta puedes enlazar con el paseo marítimo hasta el Fòrum (8 km ida). Es una de las rutas más populares de Barcelona."
+      },
+      {
+        "q": "¿Es bueno para principiantes?",
+        "a": "Sí, el circuito de 2 km es perfecto para empezar a correr. Es llano, protegido del tráfico y tiene fuentes de agua."
+      }
     ]
   },
   "central-park": {
@@ -275,13 +416,30 @@
     "surface": "Asfalto bien mantenido",
     "elevation": "Moderado (60 m desnivel acumulado con colinas)",
     "bestTime": "Amanecer o atardecer; fines de semana (sin coches)",
-    "facilities": ["Fuentes de agua frecuentes", "Aseos públicos", "Carriles marcados para runners", "Baggage check en carreras NYRR"],
+    "facilities": [
+      "Fuentes de agua frecuentes",
+      "Aseos públicos",
+      "Carriles marcados para runners",
+      "Baggage check en carreras NYRR"
+    ],
     "howToGetThere": "Subway: múltiples estaciones rodean el parque. 59th St-Columbus Circle (A,B,C,D,1), 72nd St (B,C), 86th St (B,C), 110th St (B,C). Acceso por cualquier calle entre 59th y 110th.",
     "faq": [
-      {"q": "¿Cuánto mide el loop de Central Park?", "a": "El loop completo mide 9,7 km (6 millas). El Reservoir loop interior tiene 2,5 km (1,58 millas) y es perfecto para un rodaje corto."},
-      {"q": "¿Es seguro correr en Central Park de noche?", "a": "Central Park es generalmente seguro durante el día y las primeras horas de la noche, especialmente en el loop principal que está bien iluminado. Se recomienda precaución en zonas aisladas después de las 22:00."},
-      {"q": "¿Necesito pagar para correr en Central Park?", "a": "No, correr en Central Park es completamente gratuito. Las carreras organizadas por NYRR sí tienen inscripción con cuota."},
-      {"q": "¿Hay grupos de running en Central Park?", "a": "Sí, decenas de clubs corren en Central Park diariamente. NYRR, November Project, Nike Run Club y Adidas Runners organizan entrenamientos abiertos."}
+      {
+        "q": "¿Cuánto mide el loop de Central Park?",
+        "a": "El loop completo mide 9,7 km (6 millas). El Reservoir loop interior tiene 2,5 km (1,58 millas) y es perfecto para un rodaje corto."
+      },
+      {
+        "q": "¿Es seguro correr en Central Park de noche?",
+        "a": "Central Park es generalmente seguro durante el día y las primeras horas de la noche, especialmente en el loop principal que está bien iluminado. Se recomienda precaución en zonas aisladas después de las 22:00."
+      },
+      {
+        "q": "¿Necesito pagar para correr en Central Park?",
+        "a": "No, correr en Central Park es completamente gratuito. Las carreras organizadas por NYRR sí tienen inscripción con cuota."
+      },
+      {
+        "q": "¿Hay grupos de running en Central Park?",
+        "a": "Sí, decenas de clubs corren en Central Park diariamente. NYRR, November Project, Nike Run Club y Adidas Runners organizan entrenamientos abiertos."
+      }
     ]
   },
   "hyde-park": {
@@ -300,12 +458,26 @@
     "surface": "Gravilla compactada y asfalto",
     "elevation": "Prácticamente llano",
     "bestTime": "Mañanas; sábados para parkrun",
-    "facilities": ["Fuentes de agua", "Aseos públicos", "Cafeterías (The Serpentine Bar & Kitchen)", "Vestuarios del Serpentine Swimming Club"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos públicos",
+      "Cafeterías (The Serpentine Bar & Kitchen)",
+      "Vestuarios del Serpentine Swimming Club"
+    ],
     "howToGetThere": "Tube: Hyde Park Corner (Piccadilly), Marble Arch (Central), Lancaster Gate (Central), Knightsbridge (Piccadilly). Bus: múltiples líneas por Park Lane y Bayswater Road.",
     "faq": [
-      {"q": "¿Hay parkrun en Hyde Park?", "a": "Sí, Hyde Park parkrun es el parkrun más antiguo del mundo, fundado en 2004. Se celebra cada sábado a las 9:00 junto al Serpentine."},
-      {"q": "¿Se puede conectar con otros parques?", "a": "Sí, Hyde Park conecta con Kensington Gardens (oeste), Green Park y St James's Park (este), formando un corredor verde de 12+ km."},
-      {"q": "¿Es apto para principiantes?", "a": "Sí, el terreno es prácticamente llano con superficies suaves. El Serpentine loop de 4 km es perfecto para empezar."}
+      {
+        "q": "¿Hay parkrun en Hyde Park?",
+        "a": "Sí, Hyde Park parkrun es el parkrun más antiguo del mundo, fundado en 2004. Se celebra cada sábado a las 9:00 junto al Serpentine."
+      },
+      {
+        "q": "¿Se puede conectar con otros parques?",
+        "a": "Sí, Hyde Park conecta con Kensington Gardens (oeste), Green Park y St James's Park (este), formando un corredor verde de 12+ km."
+      },
+      {
+        "q": "¿Es apto para principiantes?",
+        "a": "Sí, el terreno es prácticamente llano con superficies suaves. El Serpentine loop de 4 km es perfecto para empezar."
+      }
     ]
   },
   "golden-gate-park": {
@@ -319,16 +491,27 @@
     "heroImage": "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Correr en Golden Gate Park, San Francisco. 5 km de largo con senderos, lagos y clima fresco perfecto para runners.",
     "shortDescription": "5 km de parque urbano desde el Pacífico hasta Haight-Ashbury, con senderos boscosos, lagos y el clima fresco de San Francisco.",
-    "description": "<p>Golden Gate Park se extiende 5 km desde el océano Pacífico hasta el barrio de Haight-Ashbury, con más de 400 hectáreas de bosques de eucalipto, lagos, jardines y senderos. Es más grande que Central Park y ofrece un ambiente más natural y tranquilo.</p>\n<p>La ruta principal por JFK Drive y MLK Jr. Drive suma unos 8 km de asfalto liso, cerrado al tráfico los fines de semana. Los senderos secundarios entre árboles ofrecen opciones de trail suave. El clima de San Francisco, con niebla matutina y temperaturas frescas, es ideal para correr durante todo el año.</p>\n<p>El parque alberga el San Francisco parkrun cada sábado y es lugar de entrenamientos de numerosos clubs locales. La zona de Ocean Beach, en el extremo oeste, permite combinar running en parque con carreras por la arena.</p>",
+    "description": "<p>Golden Gate Park se extiende 5 km desde el océano Pacífico hasta el barrio de Haight-Ashbury, con más de 400 hectáreas de bosques de eucalipto, lagos, jardines y senderos. Es más grande que Central Park y ofrece un ambiente más natural y tranquilo.</p>\n<p>La ruta principal por JFK Drive y MLK Jr. Drive suma unos 8 km de asfalto liso, cerrado al tráfico los fines de semana. Los senderos secundarios entre árboles ofrecen opciones de trail suave. El clima de San Francisco, con niebla matutina y temperaturas frescas, es ideal para correr durante todo el año.</p>\n<p>El parque es lugar de entrenamientos de numerosos clubs locales, y muy cerca operan dos parkruns oficiales de San Francisco: Crissy Field parkrun y Sunset Dunes parkrun (junto al extremo oeste del parque). La zona de Ocean Beach, en el extremo oeste, permite combinar running en parque con carreras por la arena.</p>",
     "distance": "Ruta principal de 8 km; senderos adicionales",
     "surface": "Asfalto, senderos de tierra, gravilla",
     "elevation": "Suave (20-40 m desnivel ondulante)",
     "bestTime": "Cualquier hora; fines de semana sin coches en JFK Drive",
-    "facilities": ["Fuentes de agua", "Aseos públicos", "De Young Museum café", "Beach Chalet en Ocean Beach"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos públicos",
+      "De Young Museum café",
+      "Beach Chalet en Ocean Beach"
+    ],
     "howToGetThere": "Muni: N-Judah (borde sur), 5-Fulton (borde norte), 44-O'Shaughnessy. BART: hasta estaciones centrales + bus. Estacionamiento limitado los fines de semana.",
     "faq": [
-      {"q": "¿Se cierra al tráfico Golden Gate Park?", "a": "Sí, JFK Drive está permanentemente cerrada al tráfico desde 2022, convirtiéndose en un corredor exclusivo para peatones y ciclistas."},
-      {"q": "¿Cómo es el clima para correr?", "a": "San Francisco tiene un clima fresco todo el año (12-18°C). La niebla matutina es común pero se disipa antes del mediodía. Es ideal para correr sin calor extremo."}
+      {
+        "q": "¿Se cierra al tráfico Golden Gate Park?",
+        "a": "Sí, JFK Drive está permanentemente cerrada al tráfico desde 2022, convirtiéndose en un corredor exclusivo para peatones y ciclistas."
+      },
+      {
+        "q": "¿Cómo es el clima para correr?",
+        "a": "San Francisco tiene un clima fresco todo el año (12-18°C). La niebla matutina es común pero se disipa antes del mediodía. Es ideal para correr sin calor extremo."
+      }
     ]
   },
   "regents-park": {
@@ -347,11 +530,22 @@
     "surface": "Asfalto suave",
     "elevation": "Completamente llano (Primrose Hill para desnivel)",
     "bestTime": "Mañanas tempranas para menos peatones",
-    "facilities": ["Fuentes de agua", "Aseos públicos", "The Hub café", "Rosaleda (Inner Circle)"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos públicos",
+      "The Hub café",
+      "Rosaleda (Inner Circle)"
+    ],
     "howToGetThere": "Tube: Regent's Park (Bakerloo), Baker Street (Metropolitan, Circle, Hammersmith), Camden Town (Northern). Bus: 274, 82, C2.",
     "faq": [
-      {"q": "¿Por qué Regent's Park es popular para series?", "a": "El Outer Circle mide exactamente 4,3 km, es completamente llano y tiene poco tráfico peatonal temprano en la mañana. Es perfecto para medir tiempos y hacer entrenamientos de velocidad."},
-      {"q": "¿Se puede subir a Primrose Hill?", "a": "Sí, desde la esquina norte del parque puedes subir a Primrose Hill (una colina de 78 m) con vistas espectaculares del skyline de Londres."}
+      {
+        "q": "¿Por qué Regent's Park es popular para series?",
+        "a": "El Outer Circle mide exactamente 4,3 km, es completamente llano y tiene poco tráfico peatonal temprano en la mañana. Es perfecto para medir tiempos y hacer entrenamientos de velocidad."
+      },
+      {
+        "q": "¿Se puede subir a Primrose Hill?",
+        "a": "Sí, desde la esquina norte del parque puedes subir a Primrose Hill (una colina de 78 m) con vistas espectaculares del skyline de Londres."
+      }
     ]
   },
   "vondelpark": {
@@ -360,7 +554,7 @@
     "city": "amsterdam",
     "cityName": "Amsterdam",
     "country": "NL",
-    "lat": 52.3580,
+    "lat": 52.358,
     "lng": 4.8686,
     "heroImage": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Correr en Vondelpark, Ámsterdam. Circuito de 3,3 km entre canales y jardines en el corazón de la ciudad holandesa.",
@@ -370,11 +564,22 @@
     "surface": "Asfalto y grava fina",
     "elevation": "Completamente llano",
     "bestTime": "Cualquier hora; abierto 24h con iluminación nocturna",
-    "facilities": ["Fuentes de agua", "Aseos públicos", "Vondeltuin café", "Openluchttheater"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos públicos",
+      "Vondeltuin café",
+      "Openluchttheater"
+    ],
     "howToGetThere": "Tram: líneas 1, 2, 5, 12 (parada Leidseplein o Museumplein). Metro: Vijzelgracht o De Pijp + paseo. A pie desde Leidseplein (2 min).",
     "faq": [
-      {"q": "¿Vondelpark es seguro para correr de noche?", "a": "Sí, Vondelpark está abierto 24 horas y tiene buena iluminación. Es seguro correr por la noche en los caminos principales."},
-      {"q": "¿Hay que compartir con ciclistas?", "a": "Sí, como en toda Ámsterdam, los ciclistas usan los caminos del parque. Mantente en tu carril y presta atención."}
+      {
+        "q": "¿Vondelpark es seguro para correr de noche?",
+        "a": "Sí, Vondelpark está abierto 24 horas y tiene buena iluminación. Es seguro correr por la noche en los caminos principales."
+      },
+      {
+        "q": "¿Hay que compartir con ciclistas?",
+        "a": "Sí, como en toda Ámsterdam, los ciclistas usan los caminos del parque. Mantente en tu carril y presta atención."
+      }
     ]
   },
   "bois-de-boulogne": {
@@ -393,11 +598,22 @@
     "surface": "Asfalto, tierra forestal, gravilla",
     "elevation": "Suave (10-30 m ondulaciones)",
     "bestTime": "Mañanas y fines de semana (menos tráfico)",
-    "facilities": ["Fuentes de agua en zonas principales", "Cafeterías junto a los lagos", "Aseos públicos", "Hipódromo de Longchamp"],
+    "facilities": [
+      "Fuentes de agua en zonas principales",
+      "Cafeterías junto a los lagos",
+      "Aseos públicos",
+      "Hipódromo de Longchamp"
+    ],
     "howToGetThere": "Métro: Porte Dauphine (Línea 2), Porte d'Auteuil (Línea 10), Les Sablons (Línea 1). RER: Avenue Foch. Bus: PC1 por el perímetro.",
     "faq": [
-      {"q": "¿Cuál es el mejor circuito del Bois de Boulogne?", "a": "El circuito de Longchamp (3,8 km) es el más popular para entrenamientos cronometrados. Para rutas largas, el circuito de los lagos suma unos 10 km."},
-      {"q": "¿Es seguro correr en el Bois de Boulogne?", "a": "Es seguro durante el día y en las rutas principales. Se recomienda evitar zonas aisladas al anochecer y correr acompañado en los senderos forestales menos transitados."}
+      {
+        "q": "¿Cuál es el mejor circuito del Bois de Boulogne?",
+        "a": "El circuito de Longchamp (3,8 km) es el más popular para entrenamientos cronometrados. Para rutas largas, el circuito de los lagos suma unos 10 km."
+      },
+      {
+        "q": "¿Es seguro correr en el Bois de Boulogne?",
+        "a": "Es seguro durante el día y en las rutas principales. Se recomienda evitar zonas aisladas al anochecer y correr acompañado en los senderos forestales menos transitados."
+      }
     ]
   },
   "tiergarten": {
@@ -416,11 +632,22 @@
     "surface": "Gravilla compactada y senderos de tierra",
     "elevation": "Completamente llano",
     "bestTime": "Cualquier hora; bien iluminado para entrenar de noche",
-    "facilities": ["Biergärten (jardines de cerveza)", "Aseos públicos", "Café am Neuen See", "Zonas de descanso junto a lagos"],
+    "facilities": [
+      "Biergärten (jardines de cerveza)",
+      "Aseos públicos",
+      "Café am Neuen See",
+      "Zonas de descanso junto a lagos"
+    ],
     "howToGetThere": "S-Bahn/U-Bahn: Tiergarten (S5, S7), Brandenburger Tor (S1, S2, U55), Zoologischer Garten (U2, U9, S5, S7). Bus: 100, 200 por la Strasse des 17. Juni.",
     "faq": [
-      {"q": "¿El Tiergarten es parte del recorrido del Maratón de Berlín?", "a": "Sí, el Maratón de Berlín atraviesa el Tiergarten y la meta está junto a la Puerta de Brandeburgo. Es una de las maratones más rápidas del mundo por su perfil llano."},
-      {"q": "¿Se puede correr de noche en el Tiergarten?", "a": "Los caminos principales están iluminados y son seguros. Los senderos secundarios más pequeños tienen menos luz, se recomienda linterna frontal."}
+      {
+        "q": "¿El Tiergarten es parte del recorrido del Maratón de Berlín?",
+        "a": "Sí, el Maratón de Berlín atraviesa el Tiergarten y la meta está junto a la Puerta de Brandeburgo. Es una de las maratones más rápidas del mundo por su perfil llano."
+      },
+      {
+        "q": "¿Se puede correr de noche en el Tiergarten?",
+        "a": "Los caminos principales están iluminados y son seguros. Los senderos secundarios más pequeños tienen menos luz, se recomienda linterna frontal."
+      }
     ]
   },
   "botanisk-have": {
@@ -439,11 +666,21 @@
     "surface": "Asfalto liso",
     "elevation": "Completamente llano",
     "bestTime": "Primavera y verano (mayo-septiembre); largo atardecer nórdico",
-    "facilities": ["Cafeterías por toda la ruta", "Aseos públicos", "Bancos junto a los lagos"],
+    "facilities": [
+      "Cafeterías por toda la ruta",
+      "Aseos públicos",
+      "Bancos junto a los lagos"
+    ],
     "howToGetThere": "Metro: Nørreport (M1, M2). S-tog: Nørreport, Østerport. A pie desde el centro de Copenhague (5 min).",
     "faq": [
-      {"q": "¿Cuál es la mejor ruta para correr en Copenhague?", "a": "El circuito de los tres lagos centrales (Søerne) con 6,4 km es la ruta más popular. Puedes ampliarlo hasta Fælledparken o seguir por los canales."},
-      {"q": "¿Es seguro correr en Copenhague?", "a": "Copenhague es una de las ciudades más seguras del mundo. Puedes correr a cualquier hora con total tranquilidad."}
+      {
+        "q": "¿Cuál es la mejor ruta para correr en Copenhague?",
+        "a": "El circuito de los tres lagos centrales (Søerne) con 6,4 km es la ruta más popular. Puedes ampliarlo hasta Fælledparken o seguir por los canales."
+      },
+      {
+        "q": "¿Es seguro correr en Copenhague?",
+        "a": "Copenhague es una de las ciudades más seguras del mundo. Puedes correr a cualquier hora con total tranquilidad."
+      }
     ]
   },
   "villa-borghese": {
@@ -462,11 +699,22 @@
     "surface": "Gravilla, tierra, tramos de adoquín",
     "elevation": "Suave (30-40 m ondulaciones)",
     "bestTime": "Mañanas tempranas; evitar mediodía en verano",
-    "facilities": ["Fuentes nasoni (agua potable gratuita)", "Cafeterías", "Galería Borghese", "Aseos públicos"],
+    "facilities": [
+      "Fuentes nasoni (agua potable gratuita)",
+      "Cafeterías",
+      "Galería Borghese",
+      "Aseos públicos"
+    ],
     "howToGetThere": "Metro: Flaminio (Línea A), Spagna (Línea A). Autobús: 116, 490, 495. Tram: 2, 3, 19 (parada Bioparco).",
     "faq": [
-      {"q": "¿Qué son las fuentes nasoni?", "a": "Las nasoni son fuentes de agua potable gratuita repartidas por toda Roma. Villa Borghese tiene varias. Son perfectas para hidratarse durante la carrera."},
-      {"q": "¿Se puede bajar corriendo al Coliseo?", "a": "Sí, desde Villa Borghese puedes bajar por Via dei Fori Imperiali hasta el Coliseo (3 km). Es una ruta espectacular pero con adoquines, usa zapatillas con buena amortiguación."}
+      {
+        "q": "¿Qué son las fuentes nasoni?",
+        "a": "Las nasoni son fuentes de agua potable gratuita repartidas por toda Roma. Villa Borghese tiene varias. Son perfectas para hidratarse durante la carrera."
+      },
+      {
+        "q": "¿Se puede bajar corriendo al Coliseo?",
+        "a": "Sí, desde Villa Borghese puedes bajar por Via dei Fori Imperiali hasta el Coliseo (3 km). Es una ruta espectacular pero con adoquines, usa zapatillas con buena amortiguación."
+      }
     ]
   },
   "englischer-garten": {
@@ -485,11 +733,22 @@
     "surface": "Gravilla compactada, senderos de tierra",
     "elevation": "Prácticamente llano",
     "bestTime": "Primavera y otoño; invierno para running en nieve",
-    "facilities": ["Biergärten", "Fuentes de agua", "Chinesischer Turm (Torre China)", "Aseos públicos"],
+    "facilities": [
+      "Biergärten",
+      "Fuentes de agua",
+      "Chinesischer Turm (Torre China)",
+      "Aseos públicos"
+    ],
     "howToGetThere": "U-Bahn: Universität (U3, U6), Giselastrasse (U3, U6), Münchner Freiheit (U3, U6). Tram: 16, 17. S-Bahn: Isartor + paseo.",
     "faq": [
-      {"q": "¿Es más grande que Central Park?", "a": "Sí, el Englischer Garten tiene 375 hectáreas frente a las 341 de Central Park. Es uno de los parques urbanos más grandes del mundo."},
-      {"q": "¿Se puede correr en invierno en el Englischer Garten?", "a": "Sí, los caminos principales se mantienen accesibles. Los inviernos de Múnich son fríos (-5 a 5°C) pero correr entre nieve es una experiencia especial."}
+      {
+        "q": "¿Es más grande que Central Park?",
+        "a": "Sí, el Englischer Garten tiene 375 hectáreas frente a las 341 de Central Park. Es uno de los parques urbanos más grandes del mundo."
+      },
+      {
+        "q": "¿Se puede correr en invierno en el Englischer Garten?",
+        "a": "Sí, los caminos principales se mantienen accesibles. Los inviernos de Múnich son fríos (-5 a 5°C) pero correr entre nieve es una experiencia especial."
+      }
     ]
   },
   "phoenix-park": {
@@ -501,18 +760,29 @@
     "lat": 53.3558,
     "lng": -6.3298,
     "heroImage": "https://images.unsplash.com/photo-1564959130747-897a8b079f73?auto=format&fit=crop&w=1200&h=600&q=80",
-    "metaDescription": "Correr en Phoenix Park, Dublín. 707 hectáreas con ciervos salvajes, circuitos amplios y el parkrun más grande de Irlanda.",
-    "shortDescription": "707 hectáreas de praderas y bosque en Dublín, hogar de ciervos salvajes y del parkrun más concurrido de Irlanda.",
-    "description": "<p>Phoenix Park es uno de los parques urbanos cercados más grandes de Europa con 707 hectáreas de praderas abiertas, bosques de roble y una población de ciervos salvajes. Situado al oeste de Dublín, es el destino principal para runners irlandeses.</p>\n<p>La carretera principal (Chesterfield Avenue) atraviesa el parque durante 4 km en línea recta, con amplias aceras para corredores. El circuito perimetral tiene unos 11 km con terreno ondulante. Los senderos secundarios entre bosques ofrecen opciones de trail suave.</p>\n<p>Phoenix Park alberga uno de los parkruns más populares de Irlanda cada sábado, así como carreras regulares organizadas por los numerosos clubs de running de Dublín. El clima irlandés, fresco y húmedo, es excelente para entrenar durante todo el año.</p>",
+    "metaDescription": "Correr en Phoenix Park, Dublín. 707 hectáreas con ciervos salvajes y circuitos amplios en el parque cercado más grande de Europa.",
+    "shortDescription": "707 hectáreas de praderas y bosque en Dublín, hogar de ciervos salvajes y uno de los parques urbanos cercados más grandes de Europa.",
+    "description": "<p>Phoenix Park es uno de los parques urbanos cercados más grandes de Europa con 707 hectáreas de praderas abiertas, bosques de roble y una población de ciervos salvajes. Situado al oeste de Dublín, es el destino principal para runners irlandeses.</p>\n<p>La carretera principal (Chesterfield Avenue) atraviesa el parque durante 4 km en línea recta, con amplias aceras para corredores. El circuito perimetral tiene unos 11 km con terreno ondulante. Los senderos secundarios entre bosques ofrecen opciones de trail suave.</p>\n<p>Phoenix Park no tiene parkrun oficial propio, pero los parkruns de St Anne's Park y Marlay Park (entre los más concurridos de Irlanda) están a poca distancia. El parque también acoge carreras regulares organizadas por los numerosos clubs de running de Dublín. El clima irlandés, fresco y húmedo, es excelente para entrenar durante todo el año.</p>",
     "distance": "Chesterfield Ave: 4 km; circuito: 11 km",
     "surface": "Asfalto, césped, senderos forestales",
     "elevation": "Suave ondulante (30-50 m)",
     "bestTime": "Cualquier hora; clima fresco todo el año",
-    "facilities": ["Fuentes de agua", "Phoenix Café", "Aseos públicos", "Centro de visitantes"],
+    "facilities": [
+      "Fuentes de agua",
+      "Phoenix Café",
+      "Aseos públicos",
+      "Centro de visitantes"
+    ],
     "howToGetThere": "Bus: 25, 26, 37, 38, 39, 70 desde el centro. Luas (tranvía): Heuston + paseo (10 min). A pie desde Stoneybatter (15 min).",
     "faq": [
-      {"q": "¿Hay ciervos sueltos en Phoenix Park?", "a": "Sí, una manada de varios cientos de ciervos vive en libertad dentro del parque. Son inofensivos pero mantén la distancia, especialmente durante la época de celo (otoño)."},
-      {"q": "¿Hay parkrun en Phoenix Park?", "a": "Sí, Phoenix Park parkrun es uno de los más populares de Irlanda, con cientos de participantes cada sábado a las 9:30."}
+      {
+        "q": "¿Hay ciervos sueltos en Phoenix Park?",
+        "a": "Sí, una manada de varios cientos de ciervos vive en libertad dentro del parque. Son inofensivos pero mantén la distancia, especialmente durante la época de celo (otoño)."
+      },
+      {
+        "q": "¿Hay parkrun en Phoenix Park?",
+        "a": "No hay un parkrun oficial dentro de Phoenix Park. Los parkruns más cercanos y populares de Dublín son St Anne's Park y Marlay Park, ambos con cientos de participantes cada sábado."
+      }
     ]
   },
   "griffith-park": {
@@ -522,7 +792,7 @@
     "cityName": "Los Angeles",
     "country": "US",
     "lat": 34.1365,
-    "lng": -118.2940,
+    "lng": -118.294,
     "heroImage": "https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Trail running en Griffith Park, Los Ángeles. 1.700 hectáreas de senderos con vistas al Hollywood Sign y el skyline de LA.",
     "shortDescription": "1.700 hectáreas de senderos de trail con vistas al Hollywood Sign, el Observatorio Griffith y el skyline de Los Ángeles.",
@@ -531,11 +801,22 @@
     "surface": "Tierra, senderos técnicos, algo de asfalto",
     "elevation": "Alto (200-400 m desnivel según ruta)",
     "bestTime": "Mañanas tempranas; evitar tardes de verano",
-    "facilities": ["Fuentes de agua en trailheads", "Observatorio Griffith", "Aparcamiento", "Aseos en zonas principales"],
+    "facilities": [
+      "Fuentes de agua en trailheads",
+      "Observatorio Griffith",
+      "Aparcamiento",
+      "Aseos en zonas principales"
+    ],
     "howToGetThere": "Metro: Vermont/Sunset (Red Line) + DASH shuttle. Bus: LADOT DASH Observatory. Coche: aparcamiento en múltiples trailheads. Uber/Lyft hasta la entrada principal.",
     "faq": [
-      {"q": "¿Se puede ver el Hollywood Sign corriendo?", "a": "Sí, varias rutas ofrecen vistas cercanas del Hollywood Sign. La más popular es el sendero hasta el Mount Hollywood Summit (5 km desde el aparcamiento del Observatorio)."},
-      {"q": "¿Necesito zapatillas de trail?", "a": "Se recomienda para los senderos más técnicos. Los caminos de fuego (fire roads) amplios se pueden correr con zapatillas de asfalto, pero los single tracks requieren suela con agarre."}
+      {
+        "q": "¿Se puede ver el Hollywood Sign corriendo?",
+        "a": "Sí, varias rutas ofrecen vistas cercanas del Hollywood Sign. La más popular es el sendero hasta el Mount Hollywood Summit (5 km desde el aparcamiento del Observatorio)."
+      },
+      {
+        "q": "¿Necesito zapatillas de trail?",
+        "a": "Se recomienda para los senderos más técnicos. Los caminos de fuego (fire roads) amplios se pueden correr con zapatillas de asfalto, pero los single tracks requieren suela con agarre."
+      }
     ]
   },
   "stanley-park": {
@@ -554,11 +835,22 @@
     "surface": "Asfalto (Seawall), senderos de tierra (interior)",
     "elevation": "Llano (Seawall); moderado en senderos interiores",
     "bestTime": "Verano (junio-septiembre) para clima seco; amanecer para fotos",
-    "facilities": ["Fuentes de agua frecuentes", "Aseos públicos", "Prospect Point café", "Alquiler de bicicletas"],
+    "facilities": [
+      "Fuentes de agua frecuentes",
+      "Aseos públicos",
+      "Prospect Point café",
+      "Alquiler de bicicletas"
+    ],
     "howToGetThere": "Bus: 19 (Stanley Park Loop). A pie o en bici desde downtown Vancouver (10 min). Aparcamiento dentro del parque (de pago).",
     "faq": [
-      {"q": "¿Se puede recorrer todo el Seawall corriendo?", "a": "Sí, el Seawall de Stanley Park tiene 9 km. Es una ruta circular que empieza y termina en Coal Harbour. Si incluyes False Creek, puedes llegar a 22 km."},
-      {"q": "¿Llueve mucho en Vancouver para correr?", "a": "Vancouver recibe mucha lluvia de octubre a abril, pero las temperaturas son templadas. Los runners locales corren con lluvia habitualmente. De mayo a septiembre el clima es ideal."}
+      {
+        "q": "¿Se puede recorrer todo el Seawall corriendo?",
+        "a": "Sí, el Seawall de Stanley Park tiene 9 km. Es una ruta circular que empieza y termina en Coal Harbour. Si incluyes False Creek, puedes llegar a 22 km."
+      },
+      {
+        "q": "¿Llueve mucho en Vancouver para correr?",
+        "a": "Vancouver recibe mucha lluvia de octubre a abril, pero las temperaturas son templadas. Los runners locales corren con lluvia habitualmente. De mayo a septiembre el clima es ideal."
+      }
     ]
   },
   "ibirapuera": {
@@ -577,11 +869,23 @@
     "surface": "Asfalto señalizado con marcas kilométricas",
     "elevation": "Prácticamente llano",
     "bestTime": "Mañanas tempranas (5:00-8:00); noches hasta las 22:00",
-    "facilities": ["Fuentes de agua", "Aseos y vestuarios", "Cafeterías", "Museos (MAM, MAC)", "Marcas kilométricas cada 100 m"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos y vestuarios",
+      "Cafeterías",
+      "Museos (MAM, MAC)",
+      "Marcas kilométricas cada 100 m"
+    ],
     "howToGetThere": "Metro: AACD-Servidor (Línea 5-Lilás) + paseo. Bus: múltiples líneas por Av. Pedro Álvares Cabral. Uber/taxi desde el centro (15-30 min según tráfico).",
     "faq": [
-      {"q": "¿Cuánto miden los circuitos de Ibirapuera?", "a": "El circuito interno tiene 3,8 km y el externo 5,4 km. Ambos están señalizados con marcas cada 100 metros para control de distancia."},
-      {"q": "¿Hay grupos de entrenamiento en Ibirapuera?", "a": "Sí, decenas de assessorias deportivas ofrecen entrenamientos guiados en el parque. Es la mayor concentración de grupos de running de Sudamérica."}
+      {
+        "q": "¿Cuánto miden los circuitos de Ibirapuera?",
+        "a": "El circuito interno tiene 3,8 km y el externo 5,4 km. Ambos están señalizados con marcas cada 100 metros para control de distancia."
+      },
+      {
+        "q": "¿Hay grupos de entrenamiento en Ibirapuera?",
+        "a": "Sí, decenas de assessorias deportivas ofrecen entrenamientos guiados en el parque. Es la mayor concentración de grupos de running de Sudamérica."
+      }
     ]
   },
   "chapultepec": {
@@ -600,11 +904,23 @@
     "surface": "Asfalto, senderos de tierra, gravilla",
     "elevation": "Suave en circuitos; colina del Castillo (50 m)",
     "bestTime": "Mañanas (6:00-9:00); domingos en Reforma",
-    "facilities": ["Fuentes de agua", "Museos (Antropología, Arte Moderno)", "Cafeterías", "Aseos públicos", "Lago con botes"],
+    "facilities": [
+      "Fuentes de agua",
+      "Museos (Antropología, Arte Moderno)",
+      "Cafeterías",
+      "Aseos públicos",
+      "Lago con botes"
+    ],
     "howToGetThere": "Metro: Chapultepec (Línea 1), Auditorio (Línea 7). Metrobús: Antropología (Línea 7). A pie desde Polanco o Condesa.",
     "faq": [
-      {"q": "¿Afecta la altitud para correr en Chapultepec?", "a": "Sí, a 2.240 m se nota la altitud, especialmente si no estás aclimatado. Los primeros días reduce ritmo e intensidad. La ventaja es que el entrenamiento en altura mejora el rendimiento al competir a nivel del mar."},
-      {"q": "¿Se cierra Reforma los domingos?", "a": "Sí, cada domingo de 6:00 a 14:00 Paseo de la Reforma se cierra al tráfico. Miles de personas salen a correr, caminar y andar en bici en los 15 km del circuito."}
+      {
+        "q": "¿Afecta la altitud para correr en Chapultepec?",
+        "a": "Sí, a 2.240 m se nota la altitud, especialmente si no estás aclimatado. Los primeros días reduce ritmo e intensidad. La ventaja es que el entrenamiento en altura mejora el rendimiento al competir a nivel del mar."
+      },
+      {
+        "q": "¿Se cierra Reforma los domingos?",
+        "a": "Sí, cada domingo de 6:00 a 14:00 Paseo de la Reforma se cierra al tráfico. Miles de personas salen a correr, caminar y andar en bici en los 15 km del circuito."
+      }
     ]
   },
   "parque-carolina": {
@@ -623,11 +939,22 @@
     "surface": "Asfalto y tierra compactada",
     "elevation": "Llano (a 2.800 m de altitud)",
     "bestTime": "Mañanas (6:00-9:00); clima agradable todo el año",
-    "facilities": ["Pista atlética", "Canchas deportivas", "Aseos", "Cafeterías cercanas"],
+    "facilities": [
+      "Pista atlética",
+      "Canchas deportivas",
+      "Aseos",
+      "Cafeterías cercanas"
+    ],
     "howToGetThere": "Trolebús: parada La Carolina. Ecovía: paradas cercanas en Av. 6 de Diciembre. Metro de Quito: estación La Carolina (Línea 1).",
     "faq": [
-      {"q": "¿Cómo afecta la altitud de Quito al running?", "a": "A 2.800 m la altitud se nota significativamente. Reduce tu ritmo un 10-15% los primeros días. Hidrátate más y escucha a tu cuerpo. La aclimatación tarda 5-7 días."},
-      {"q": "¿Cuál es la temperatura para correr en Quito?", "a": "Quito tiene un clima primaveral constante: 15-22°C todo el año. No hay estaciones marcadas. Es uno de los climas más agradables del mundo para correr."}
+      {
+        "q": "¿Cómo afecta la altitud de Quito al running?",
+        "a": "A 2.800 m la altitud se nota significativamente. Reduce tu ritmo un 10-15% los primeros días. Hidrátate más y escucha a tu cuerpo. La aclimatación tarda 5-7 días."
+      },
+      {
+        "q": "¿Cuál es la temperatura para correr en Quito?",
+        "a": "Quito tiene un clima primaveral constante: 15-22°C todo el año. No hay estaciones marcadas. Es uno de los climas más agradables del mundo para correr."
+      }
     ]
   },
   "parque-del-este": {
@@ -637,7 +964,7 @@
     "cityName": "Buenos Aires",
     "country": "AR",
     "lat": -34.5693,
-    "lng": -58.4150,
+    "lng": -58.415,
     "heroImage": "https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1200&h=600&q=80",
     "metaDescription": "Correr en los Bosques de Palermo (Parque 3 de Febrero), Buenos Aires. 370 hectáreas con lagos, rosedal y la cultura runner porteña.",
     "shortDescription": "370 hectáreas en Palermo con lagos, el Rosedal y la vibrante cultura runner de Buenos Aires para correr a cualquier hora.",
@@ -646,11 +973,22 @@
     "surface": "Asfalto y adoquines bien mantenidos",
     "elevation": "Completamente llano",
     "bestTime": "Mañanas y atardeceres; otoño (marzo-mayo) y primavera (septiembre-noviembre)",
-    "facilities": ["Fuentes de agua", "Aseos públicos", "Cafeterías en el Rosedal", "Lagos con botes"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos públicos",
+      "Cafeterías en el Rosedal",
+      "Lagos con botes"
+    ],
     "howToGetThere": "Subte: Palermo (Línea D), Plaza Italia (Línea D). Colectivos: 10, 34, 37, 93, 108, 130. Ecobici: múltiples estaciones.",
     "faq": [
-      {"q": "¿Cuál es el mejor circuito en Palermo?", "a": "El circuito de los lagos de Palermo (3,5 km) es el más popular. El Rosedal (2 km) es más tranquilo y bonito. Puedes combinar ambos para un recorrido de 8 km."},
-      {"q": "¿Hay running teams en Buenos Aires?", "a": "Sí, Buenos Aires tiene decenas de running teams que entrenan gratuitamente en Palermo. Nike Run Club, Adidas Runners y equipos locales organizan sesiones semanales."}
+      {
+        "q": "¿Cuál es el mejor circuito en Palermo?",
+        "a": "El circuito de los lagos de Palermo (3,5 km) es el más popular. El Rosedal (2 km) es más tranquilo y bonito. Puedes combinar ambos para un recorrido de 8 km."
+      },
+      {
+        "q": "¿Hay running teams en Buenos Aires?",
+        "a": "Sí, Buenos Aires tiene decenas de running teams que entrenan gratuitamente en Palermo. Nike Run Club, Adidas Runners y equipos locales organizan sesiones semanales."
+      }
     ]
   },
   "kings-park": {
@@ -669,11 +1007,23 @@
     "surface": "Asfalto, senderos de bushland, gravilla",
     "elevation": "Moderado (colina sobre el río Swan, 30-50 m)",
     "bestTime": "Mañanas en verano; cualquier hora en otoño/invierno",
-    "facilities": ["Fuentes de agua", "Fraser's café", "Aseos públicos", "DNA Tower lookout", "Jardín botánico"],
+    "facilities": [
+      "Fuentes de agua",
+      "Fraser's café",
+      "Aseos públicos",
+      "DNA Tower lookout",
+      "Jardín botánico"
+    ],
     "howToGetThere": "Bus: Green CAT (gratuito) desde el centro de Perth. A pie desde Perth CBD (15 min subida). Aparcamiento dentro del parque.",
     "faq": [
-      {"q": "¿Es bueno Kings Park para trail running?", "a": "Sí, la zona de bushland tiene senderos naturales con vegetación australiana nativa. No son técnicamente difíciles pero ofrecen una experiencia de running en naturaleza única."},
-      {"q": "¿Cuándo es mejor correr en Perth?", "a": "De abril a octubre (otoño a primavera). Los veranos son muy calurosos (35-40°C), así que en verano se recomienda correr antes del amanecer o después del atardecer."}
+      {
+        "q": "¿Es bueno Kings Park para trail running?",
+        "a": "Sí, la zona de bushland tiene senderos naturales con vegetación australiana nativa. No son técnicamente difíciles pero ofrecen una experiencia de running en naturaleza única."
+      },
+      {
+        "q": "¿Cuándo es mejor correr en Perth?",
+        "a": "De abril a octubre (otoño a primavera). Los veranos son muy calurosos (35-40°C), así que en verano se recomienda correr antes del amanecer o después del atardecer."
+      }
     ]
   },
   "gardens-by-the-bay": {
@@ -692,12 +1042,26 @@
     "surface": "Asfalto y hormigón bien mantenido",
     "elevation": "Completamente llano",
     "bestTime": "Amanecer (5:30-7:00) o anochecer (18:30+) por el calor tropical",
-    "facilities": ["Fuentes de agua", "Aseos públicos", "Satay by the Bay (restaurante)", "Marina Barrage mirador"],
+    "facilities": [
+      "Fuentes de agua",
+      "Aseos públicos",
+      "Satay by the Bay (restaurante)",
+      "Marina Barrage mirador"
+    ],
     "howToGetThere": "MRT: Bayfront (Circle/Downtown Line), Gardens by the Bay (Thomson-East Coast Line). Bus: 400, 402. A pie desde Marina Bay Sands (5 min).",
     "faq": [
-      {"q": "¿Se puede correr gratis en Gardens by the Bay?", "a": "Sí, las zonas exteriores (incluyendo Supertree Grove) son gratuitas y abiertas 24 horas. Solo las cúpulas (Cloud Forest, Flower Dome) requieren entrada."},
-      {"q": "¿Cómo es correr con calor tropical?", "a": "Singapur tiene 28-32°C todo el año con alta humedad. Hidrátate constantemente, usa ropa técnica transpirable y evita las horas centrales del día. Los runners locales entrenan al amanecer o anochecer."},
-      {"q": "¿Cuál es la mejor ruta desde Gardens by the Bay?", "a": "El loop de Marina Bay (8 km) que pasa por Gardens, Marina Barrage, East Coast Park connector y vuelve por el Merlion es la ruta más popular entre runners."}
+      {
+        "q": "¿Se puede correr gratis en Gardens by the Bay?",
+        "a": "Sí, las zonas exteriores (incluyendo Supertree Grove) son gratuitas y abiertas 24 horas. Solo las cúpulas (Cloud Forest, Flower Dome) requieren entrada."
+      },
+      {
+        "q": "¿Cómo es correr con calor tropical?",
+        "a": "Singapur tiene 28-32°C todo el año con alta humedad. Hidrátate constantemente, usa ropa técnica transpirable y evita las horas centrales del día. Los runners locales entrenan al amanecer o anochecer."
+      },
+      {
+        "q": "¿Cuál es la mejor ruta desde Gardens by the Bay?",
+        "a": "El loop de Marina Bay (8 km) que pasa por Gardens, Marina Barrage, East Coast Park connector y vuelve por el Merlion es la ruta más popular entre runners."
+      }
     ]
   }
 }

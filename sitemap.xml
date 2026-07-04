@@ -2,30 +2,38 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://www.correrjuntos.com/sitemap-blog-es.xml</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://www.correrjuntos.com/sitemap-blog-en.xml</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://www.correrjuntos.com/sitemap-cities.xml</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://www.correrjuntos.com/sitemap-places.xml</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://www.correrjuntos.com/sitemap-events.xml</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://www.correrjuntos.com/sitemap-equipamiento.xml</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://www.correrjuntos.com/sitemap-pages.xml</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-04</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.correrjuntos.com/sitemap-races.xml</loc>
+    <lastmod>2026-07-04</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.correrjuntos.com/sitemap-plans.xml</loc>
+    <lastmod>2026-07-04</lastmod>
   </sitemap>
 </sitemapindex>

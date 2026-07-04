@@ -13,6 +13,11 @@ Disallow: /correr-juntos-app/
 Disallow: /*.cjs
 Disallow: /*.sql
 Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # ═══ AI Search Bots — ALLOW for AI search visibility ═══
 

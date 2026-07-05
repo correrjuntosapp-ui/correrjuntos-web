@@ -218,33 +218,28 @@ a{color:inherit;text-decoration:none}
 .nav-toggle svg{width:24px;height:24px;stroke:var(--text);stroke-width:2}
 
 /* HERO */
-.hero{background:var(--dark-bg);color:#fff;padding:100px 0 0;position:relative}
+.hero{background:var(--dark-bg);color:#fff;padding:72px 0 0;position:relative}
 .hero::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;opacity:.08;pointer-events:none}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.1);border:1.5px solid rgba(249,115,22,.3);color:var(--orange);padding:7px 18px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:28px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.1);border:1.5px solid rgba(249,115,22,.3);color:var(--orange);padding:7px 18px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:18px}
 .hero h1{font-size:clamp(36px,5vw,56px);font-weight:900;line-height:1.08;letter-spacing:-2.5px;margin-bottom:20px}
-.hero-sub{font-size:18px;color:#94a3b8;line-height:1.7;margin-bottom:32px;max-width:480px}
-.hero-stores{display:flex;gap:12px;margin-bottom:28px}
+.hero-sub{font-size:18px;color:#94a3b8;line-height:1.7;margin-bottom:24px;max-width:480px}
+.hero-stores{display:flex;gap:12px;margin-bottom:20px}
 .store-badge{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.2);padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;transition:border-color .2s,transform .15s}
 .store-badge:hover{border-color:rgba(255,255,255,.5);transform:translateY(-1px)}
 .store-badge svg{width:20px;height:20px;fill:#fff}
 .hero-social{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,.5)}
 .hero-avatars{display:flex}
-.hero-avatars span{width:32px;height:32px;border-radius:50%;border:2px solid var(--dark-bg);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;margin-left:-8px}
-.hero-avatars span:first-child{margin-left:0}
-.hero-avatars span:nth-child(1){background:#f97316}
-.hero-avatars span:nth-child(2){background:#3b82f6}
-.hero-avatars span:nth-child(3){background:#10b981}
-.hero-avatars span:nth-child(4){background:#8b5cf6}
-.hero-avatars span:nth-child(5){background:#ec4899}
-.hero-cta-link{display:inline-flex;align-items:center;gap:6px;color:var(--orange);font-weight:600;font-size:15px;margin-top:20px;transition:gap .2s}
+.hero-avatars img{width:32px;height:32px;border-radius:50%;border:2px solid var(--dark-bg);background:#fff;object-fit:contain;margin-left:-8px}
+.hero-avatars img:first-child{margin-left:0}
+.hero-cta-link{display:inline-flex;align-items:center;gap:6px;color:var(--orange);font-weight:600;font-size:15px;margin-top:12px;transition:gap .2s}
 .hero-cta-link:hover{gap:10px}
 .hero-cta-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#f97316,#ea580c);color:#fff;padding:16px 36px;border-radius:12px;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 8px 24px rgba(249,115,22,.35);transition:all .2s;margin-bottom:18px;letter-spacing:.01em}
 .hero-cta-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(249,115,22,.45);color:#fff}
 .hero-cta-secondary{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:10px;display:block}
 
 /* Hero Phones */
-.hero-phones{display:flex;align-items:center;justify-content:center;position:relative;padding:20px 0;max-width:100%}
+.hero-phones{display:flex;align-items:center;justify-content:center;position:relative;padding:8px 0 0;max-width:100%}
 .hero-phone{background:#000;border-radius:44px;padding:8px;box-shadow:0 24px 80px rgba(0,0,0,.5);position:relative;flex-shrink:0}
 .hero-phone img{border-radius:36px;width:100%;height:100%;object-fit:cover;display:block}
 .hero-phone--center{width:260px;height:520px;z-index:3}
@@ -594,7 +589,10 @@ Google Play
 </div>
 <div class="hero-social">
 <div class="hero-avatars">
-<span>M</span><span>C</span><span>L</span><span>A</span><span>J</span>
+<img src="/public/quedadas/beer-runners-malaga/logo.png" alt="Beer Runners Málaga" width="32" height="32">
+<img src="/public/quedadas/sevilla-running-club/logo.png" alt="Sevilla Running Club" width="32" height="32">
+<img src="/public/quedadas/soul-runclub-huelva/logo.png" alt="Soul Run Club Huelva" width="32" height="32">
+<img src="/public/quedadas/correr-sin-limites-torre-del-mar/logo.png" alt="Correr Sin Límites Torre del Mar" width="32" height="32">
 </div>
 +870 runners &middot; clubs reales: Beer Runners M&aacute;laga, Sevilla Running Club&hellip;
 </div>

@@ -27,6 +27,7 @@ import runFounderBlast from '../_lib/jobs/founder-blast.js';
 import runActivationPush from '../_lib/jobs/activation-push.js';
 import runPremiumExpiry from '../_lib/jobs/premium-expiry.js';
 import runWorkoutEvePush from '../_lib/jobs/workout-eve-push.js';
+import runHealthCheck from '../_lib/jobs/health-check.js';
 
 const env = {
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
@@ -49,6 +50,7 @@ const JOBS = {
   'activation-push': runActivationPush,
   'premium-expiry': runPremiumExpiry,
   'workout-eve-push': runWorkoutEvePush,
+  'health-check': runHealthCheck,
 };
 
 export default async function handler(req, res) {

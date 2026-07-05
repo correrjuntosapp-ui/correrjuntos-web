@@ -653,6 +653,10 @@
     {
       "path": "/api/cron/run?job=workout-eve-push",
       "schedule": "0 18 * * *"
+    },
+    {
+      "path": "/api/cron/run?job=health-check",
+      "schedule": "45 8 * * *"
     }
   ]
 }

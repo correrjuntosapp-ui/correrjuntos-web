@@ -34,6 +34,7 @@
 // ============================================================
 
 import { createClient } from '@supabase/supabase-js';
+import { waitUntil } from '@vercel/functions';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const STRAVA_API = 'https://www.strava.com/api/v3';
@@ -334,15 +335,22 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'method_not_allowed' });
 
   const event = req.body || {};
-  // 200 inmediato (Strava exige respuesta <2s); seguimos procesando después.
-  res.status(200).json({ received: true });
-
-  try {
-    if (event.object_type !== 'activity') return; // athlete deauth etc. → ignorar (v1)
-    if (event.aspect_type !== 'create' && event.aspect_type !== 'update') return;
-    const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
-    await processActivityEvent(supabase, event.owner_id, event.object_id);
-  } catch (e) {
-    console.error('[strava-webhook] processing error:', e?.message || e);
-  }
+  // 200 inmediato (Strava exige respuesta <2s). El procesado va en
+  // waitUntil: Vercel CONGELA la lambda en cuanto respondes, así que un
+  // "seguir después del res.json()" a secas nunca llega a ejecutarse
+  // (verificado en el primer despliegue de este endpoint — el evento
+  // llegaba pero no insertaba nada). waitUntil mantiene viva la
+  // invocación hasta que la promesa resuelva.
+  const work = (async () => {
+    try {
+      if (event.object_type !== 'activity') return; // athlete deauth etc. → ignorar (v1)
+      if (event.aspect_type !== 'create' && event.aspect_type !== 'update') return;
+      const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+      await processActivityEvent(supabase, event.owner_id, event.object_id);
+    } catch (e) {
+      console.error('[strava-webhook] processing error:', e?.message || e);
+    }
+  })();
+  waitUntil(work);
+  return res.status(200).json({ received: true });
 }

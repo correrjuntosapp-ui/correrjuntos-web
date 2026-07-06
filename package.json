@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
+    "@vercel/functions": "^3.7.5",
     "docx": "^9.6.1",
     "puppeteer-core": "^24.40.0"
   },

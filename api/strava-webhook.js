@@ -69,20 +69,72 @@ function fmtDuration(totalSec) {
   return `${m} min`;
 }
 
+// Parciales por km (splits) desde el detalle de la actividad Strava
+// (splits_metric SOLO viene en el GET /activities/{id} detallado, no en
+// el listado /athlete/activities — por eso esto vive únicamente aquí y
+// no en el import client-side de useStrava.ts). Shape espejo del que ya
+// genera el tracker propio (km, time, seconds) + 2 campos extra que
+// RunDetailScreen ya sabía leer (elevation_gain) o que añadimos ahora
+// (hr_avg) para el desglose "Parciales" estilo Strava.
+function buildSplitsFromStrava(a) {
+  const raw = Array.isArray(a.splits_metric) ? a.splits_metric : null;
+  if (!raw || raw.length === 0) return null;
+  const splits = raw
+    .map((sm) => {
+      const movingForPace = sm.moving_time || sm.elapsed_time || 0;
+      const secondsPerKm = sm.distance > 0 && movingForPace > 0
+        ? Math.round(movingForPace / (sm.distance / 1000))
+        : null;
+      return {
+        km: sm.split != null ? sm.split : null,
+        time: paceFromDistanceTime(sm.distance || 0, movingForPace) || '--:--',
+        seconds: secondsPerKm,
+        elevation_gain: sm.elevation_difference != null ? Math.round(sm.elevation_difference * 10) / 10 : null,
+        hr_avg: sm.average_heartrate ? Math.round(sm.average_heartrate) : null,
+      };
+    })
+    .filter((s) => s.km != null);
+  return splits.length > 0 ? splits : null;
+}
+
 // Espejo de mapStravaActivityToRun (useStrava.ts) — mantener en sync.
+// (splits SOLO se rellenan aquí — ver comentario de buildSplitsFromStrava).
 function mapActivityToRun(a, userId) {
   const distanciaKm = a.distance ? Math.round((a.distance / 1000) * 1000) / 1000 : 0;
   const duracionSegundos = Math.round(a.moving_time || a.elapsed_time || 0);
+  const elapsedSegundos = a.elapsed_time != null ? Math.round(a.elapsed_time) : null;
   const deporte = mapDeporte(a);
-  const startLocalRaw = a.start_date_local || a.start_date;
-  const startDate = startLocalRaw ? new Date(startLocalRaw) : new Date();
-  const valid = !isNaN(startDate.getTime());
-  const fecha = valid ? startDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
-  const horaInicio = valid ? startDate.toISOString() : new Date().toISOString();
+
+  // Strava expone 2 campos de fecha con una trampa muy conocida de su API:
+  //  - start_date: instante UTC real (Z correcto).
+  //  - start_date_local: la hora de RELOJ DE PARED en el sitio de la
+  //    actividad, pero serializada TAMBIÉN con sufijo "Z" como si fuera
+  //    UTC — no lo es. Antes usábamos start_date_local para construir
+  //    hora_inicio: al mostrarlo luego convertido a la zona horaria LOCAL
+  //    del dispositivo (RunDetailScreen), el offset se aplicaba DOS
+  //    VECES y la hora mostrada quedaba desplazada (una carrera de las
+  //    18:52 se veía a las 20:52). Fix: start_date (UTC real) para el
+  //    instante que se guarda — así el resto de la app lo trata igual
+  //    que las runs del tracker propio (que siempre guardan un instante
+  //    UTC real). start_date_local solo se usa para la fecha de
+  //    calendario (evita que una carrera que cruza medianoche local
+  //    caiga en el día UTC equivocado).
+  const localRaw = a.start_date_local || a.start_date;
+  const utcRaw = a.start_date || a.start_date_local;
+  const localDateForCalendar = localRaw ? new Date(localRaw) : new Date();
+  const trueStartDate = utcRaw ? new Date(utcRaw) : new Date();
+  const valid = !isNaN(localDateForCalendar.getTime()) && !isNaN(trueStartDate.getTime());
+  const fecha = valid ? localDateForCalendar.toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
+  const horaInicio = valid ? trueStartDate.toISOString() : new Date().toISOString();
+  // Fin real de reloj = inicio + tiempo TOTAL transcurrido (incl. pausas),
+  // no solo el tiempo en movimiento — si no, una run con paradas largas
+  // muestra una hora de fin anterior a la real.
+  const totalElapsedForEnd = elapsedSegundos || duracionSegundos;
   const horaFin = valid
-    ? new Date(startDate.getTime() + duracionSegundos * 1000).toISOString()
+    ? new Date(trueStartDate.getTime() + totalElapsedForEnd * 1000).toISOString()
     : new Date().toISOString();
   const ritmo = deporte === 'walking' ? null : paceFromDistanceTime(a.distance || 0, duracionSegundos);
+  const splits = deporte === 'walking' ? null : buildSplitsFromStrava(a);
 
   return {
     user_id: userId,
@@ -90,7 +142,9 @@ function mapActivityToRun(a, userId) {
     deporte,
     distancia_km: distanciaKm,
     duracion_segundos: duracionSegundos,
+    elapsed_segundos: elapsedSegundos,
     ritmo_promedio: ritmo,
+    splits,
     calorias: a.calories ? Math.round(a.calories) : null,
     elevacion_ganada: a.total_elevation_gain != null ? Math.round(a.total_elevation_gain * 10) / 10 : null,
     velocidad_max: a.max_speed ? Math.round(a.max_speed * 3.6 * 10) / 10 : null,

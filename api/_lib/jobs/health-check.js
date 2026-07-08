@@ -179,9 +179,11 @@ export default async function runHealthCheck(req, res, env) {
     alerts.push(`0 runs de Strava en 48h (con ${strava7w} en la semana). ¿Webhook Strava caído? Revisar api/strava-webhook y la suscripción 360173.`);
   }
 
-  // Email solo si hay rojo (o test=1)
+  // Email solo si hay rojo (o test=1). Con &dry=1 NUNCA envía email —
+  // para smoke tests manuales sin llenar el buzón del founder.
+  const dryRun = qp('dry') === '1';
   let emailed = false;
-  if (alerts.length > 0 || forceEmail) {
+  if (!dryRun && (alerts.length > 0 || forceEmail)) {
     const fecha = yday.start.slice(0, 10);
     const rows = Object.entries(metrics)
       .map(([k, v]) => `<tr><td style="padding:6px 14px 6px 0;color:#94a3b8;font-size:14px;">${k.replace(/_/g, ' ')}</td><td style="padding:6px 0;color:#f6f1e8;font-size:14px;font-weight:600;">${v ?? '—'}</td></tr>`)

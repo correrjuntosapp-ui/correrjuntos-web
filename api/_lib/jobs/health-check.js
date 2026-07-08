@@ -130,6 +130,12 @@ export default async function runHealthCheck(req, res, env) {
   };
   const paywall7 = await count7('paywall_opened');
   const guard7 = await count7('purchase_pkg_guard');
+  // [8 jul pm] Split eligible/no_trial: distingue "los usuarios aún no
+  // tienen la OTA del fix" (todo no_trial) de "ven el trial y no lo
+  // empiezan" (eligible alto y 0 trials = problema de CONVERSIÓN, no
+  // técnico). Son investigaciones distintas.
+  const elig7 = await count7('paywall_view_eligible_trial');
+  const noTrial7 = await count7('paywall_view_no_trial');
   const { count: trials7 } = await sb
     .from('trial_starts')
     .select('*', { count: 'exact', head: true })
@@ -140,10 +146,18 @@ export default async function runHealthCheck(req, res, env) {
     .eq('event_name', 'purchase_failed').gte('event_ts', d7);
   const pfReal = (pfRows || []).filter((r) => !/cancel/i.test(r.params?.error || '')).length;
   metrics.paywall_7d = paywall7;
+  metrics.paywall_con_trial_7d = elig7;
+  metrics.paywall_sin_trial_7d = noTrial7;
   metrics.trials_7d = trials7 ?? 0;
   metrics.compras_fallidas_reales_7d = pfReal;
   if (paywall7 >= 15 && (trials7 ?? 0) === 0) {
-    alerts.push(`Embudo trial posiblemente ROTO: ${paywall7} aperturas de paywall en 7 días y 0 trials iniciados. Revisar elegibilidad RevenueCat / ofertas de tienda / trial_starts.`);
+    if (elig7 >= 10) {
+      alerts.push(`CONVERSIÓN del trial rota: ${elig7} vistas de paywall CON trial visible en 7 días y 0 trials empezados. Ya no es técnico — revisar copy/fricción del paywall.`);
+    } else if (elig7 === 0 && noTrial7 >= 10) {
+      alerts.push(`Elegibilidad del trial sospechosa: ${noTrial7} vistas de paywall en 7 días y NINGUNA con trial visible. Si la OTA del fix ya debería estar aplicada (48h+), revisar checkTrialEligibility / RevenueCat.`);
+    } else {
+      alerts.push(`Embudo trial posiblemente ROTO: ${paywall7} aperturas de paywall en 7 días y 0 trials iniciados (con trial visible: ${elig7}). Revisar elegibilidad RevenueCat / ofertas de tienda / trial_starts.`);
+    }
   }
   if (pfReal >= 3) {
     alerts.push(`Compras fallando: ${pfReal} purchase_failed reales (sin cancelaciones) en 7 días. Mirar params.error en analytics_events y Sentry.`);

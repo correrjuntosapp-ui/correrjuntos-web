@@ -116,6 +116,55 @@ export default async function runHealthCheck(req, res, env) {
     alerts.push(`La web no responde: ${(e?.message || '').slice(0, 120)}`);
   }
 
+  // 6. Embudo de revenue (ventana 7d) — caza fallos silenciosos de
+  //    monetización. [8 jul 2026: el bug del enum de trial eligibility
+  //    vivió 30+ días con 0 trials sin que nada crashease. Este check lo
+  //    habría cantado en 3 días.]
+  const d7 = new Date(Date.now() - 7 * 864e5).toISOString();
+  const count7 = async (name) => {
+    const { count } = await sb
+      .from('analytics_events')
+      .select('*', { count: 'exact', head: true })
+      .eq('event_name', name).gte('event_ts', d7);
+    return count ?? 0;
+  };
+  const paywall7 = await count7('paywall_opened');
+  const guard7 = await count7('purchase_pkg_guard');
+  const { count: trials7 } = await sb
+    .from('trial_starts')
+    .select('*', { count: 'exact', head: true })
+    .gte('started_at', d7);
+  // purchase_failed sin contar cancelaciones del usuario (esas son normales)
+  const { data: pfRows } = await sb
+    .from('analytics_events').select('params')
+    .eq('event_name', 'purchase_failed').gte('event_ts', d7);
+  const pfReal = (pfRows || []).filter((r) => !/cancel/i.test(r.params?.error || '')).length;
+  metrics.paywall_7d = paywall7;
+  metrics.trials_7d = trials7 ?? 0;
+  metrics.compras_fallidas_reales_7d = pfReal;
+  if (paywall7 >= 15 && (trials7 ?? 0) === 0) {
+    alerts.push(`Embudo trial posiblemente ROTO: ${paywall7} aperturas de paywall en 7 días y 0 trials iniciados. Revisar elegibilidad RevenueCat / ofertas de tienda / trial_starts.`);
+  }
+  if (pfReal >= 3) {
+    alerts.push(`Compras fallando: ${pfReal} purchase_failed reales (sin cancelaciones) en 7 días. Mirar params.error en analytics_events y Sentry.`);
+  }
+  if (guard7 >= 1) {
+    alerts.push(`El guard de compra saltó ${guard7} vez/veces en 7 días (purchase_pkg_guard). Mirar params.rescued y qué pantalla genera paquetes sin presentedOfferingContext.`);
+  }
+
+  // 7. Webhook Strava — si normalmente entran runs y llevan 48h a cero
+  const d2 = new Date(Date.now() - 2 * 864e5).toISOString();
+  const { count: strava48 } = await sb
+    .from('runs').select('*', { count: 'exact', head: true })
+    .eq('source', 'strava').gte('created_at', d2);
+  const { count: strava7w } = await sb
+    .from('runs').select('*', { count: 'exact', head: true })
+    .eq('source', 'strava').gte('created_at', d7);
+  metrics.runs_strava_48h = strava48 ?? 0;
+  if ((strava48 ?? 0) === 0 && (strava7w ?? 0) >= 5) {
+    alerts.push(`0 runs de Strava en 48h (con ${strava7w} en la semana). ¿Webhook Strava caído? Revisar api/strava-webhook y la suscripción 360173.`);
+  }
+
   // Email solo si hay rojo (o test=1)
   let emailed = false;
   if (alerts.length > 0 || forceEmail) {

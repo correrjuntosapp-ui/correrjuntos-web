@@ -9,6 +9,13 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 // 1. Go to Project → Integrations → Webhooks
 // 2. URL: https://waihiwdbtcbdazmaxdor.supabase.co/functions/v1/revenucat-webhook
 // 3. Authorization header: Bearer <REVENUCAT_WEBHOOK_SECRET>
+//
+// [8 jul 2026] FIX crítico: el select de profiles pedía la columna `lang`,
+// que NO existe → la query fallaba entera → la fila de trial_starts nunca
+// se creaba (el fix del 22 jun nunca llegó a funcionar). Detectado con el
+// primer trial real de la historia (test del founder). lang ahora es 'es'
+// por defecto (el cliente iap.ts, que sí conoce el idioma, actúa de
+// belt-and-suspenders idempotente).
 // ============================================================
 
 const corsHeaders = {
@@ -128,8 +135,48 @@ Deno.serve(async (req) => {
 
       console.log(`Premium GRANTED for ${userId} (${periodType}) until ${expiresDate}`)
 
+      // [22 jun 2026] FIX pipeline lifecycle: crear la fila trial_starts AQUÍ
+      // (server-side) en cuanto empieza el trial. El webhook es la fuente
+      // fiable (recibe todos los eventos). Idempotente: ignora 23505 (índice
+      // UNIQUE user_id WHERE status='trial_active') por si el cliente también
+      // la insertó.
+      // [8 jul 2026] profiles NO tiene columna `lang` — el select antiguo con
+      // `lang` hacía fallar la query entera y este bloque nunca insertaba.
+      if (isTrial && event.type === 'INITIAL_PURCHASE') {
+        try {
+          const { data: prof, error: profErr } = await supabase
+            .from('profiles')
+            .select('email, nombre')
+            .eq('id', userId)
+            .single()
+          if (profErr) console.warn(`trial_starts profile lookup failed for ${userId}:`, profErr.message)
+          const productId: string = event.product_id || event.product_identifier || ''
+          const planType =
+            productId.toLowerCase().includes('yearly') || productId.toLowerCase().includes('annual')
+              ? 'yearly'
+              : 'monthly'
+          if (prof?.email) {
+            const { error: tsErr } = await supabase.from('trial_starts').insert({
+              user_id: userId,
+              email: prof.email,
+              nombre: prof.nombre || null,
+              lang: 'es',
+              plan_type: planType,
+              status: 'trial_active',
+              reference: productId,
+            })
+            if (tsErr && (tsErr as { code?: string }).code !== '23505') {
+              console.warn(`trial_starts create failed for ${userId}:`, tsErr.message)
+            } else {
+              console.log(`trial_starts CREATED (server) for ${userId} · ${planType}`)
+            }
+          }
+        } catch (e) {
+          console.warn(`trial_starts create exception:`, e)
+        }
+      }
+
       // [11 may 2026] Close trial_starts lifecycle row when trial converts to paid.
-      // INITIAL_PURCHASE with TRIAL is recorded by iap.ts client-side.
       // The first RENEWAL after that with period_type=NORMAL = Apple/Google
       // charged the first paid period → trial successfully converted.
       // PRODUCT_CHANGE (upgrade) also counts as conversion.

@@ -58,7 +58,7 @@ const walk = (dir) =>
     return e.isDirectory() ? walk(p) : p.endsWith('.html') ? [p] : [];
   });
 
-const files = walk('blog');
+const files = [...walk('blog'), ...walk('carreras')];
 let crownSwapped = 0, slotsFilled = 0;
 
 for (const fp of files) {

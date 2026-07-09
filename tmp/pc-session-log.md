@@ -1,3 +1,16 @@
+## 6 jul 2026 (PC) — Día completo: growth + paywall día-0 + Prozis + SEO otoño
+
+- **MisCalorías**: tour bienvenida 3 pasos (+/Ana/Diario) OTA prod (commit 3001a3d).
+- **CJ paywall día-0** (patrón Runna): FirstPlanScreen → Paywall SOLO si plan creado OK; hero propio + 'Continuar gratis' + evento paywall_continue_free. OTA runtime 1.3.21 (7a6e24c).
+- **GSC Eventos**: 4 problemas schema arreglados — startDate(mes)/eventStatus/organizer en 54 SportsEvents de events/ + calendario-091 (c4a02d5f). Live.
+- **Web→app**: smart banner iOS en 689 páginas + referrer Play en 485 links de carreras (atribución por carrera). Live.
+- **Refresco otoño verificado**: fecha Ponle Freno CORREGIDA 29→15 nov (¡error real!), capacidades Valencia 36K/25K, precio SS Vallecana 27-31€. Behobia/Mercè sin cambios (correctas).
+- **2 guías nuevas LIVE**: san-silvestre-bilbao (6,6km reales, Zubizuri hero) + carrera-de-la-ciencia-madrid (CSIC, startDate 2026-10 sin día inventado).
+- **Prozis**: condiciones aclaradas (cupón 10% todo catálogo, comisiones 5-20%, mínimo 50€/mes EN COMISIONES exento en trial). Borrador aceptación en hilo Gmail (founder envía). Amazon real verificado: 112,73€ YTD (~19€/mes).
+- **Redes**: plan 2 semanas con inventario existente + 5 guiones founder-cámara + PROTOTIPO nuevo formato reel-proto-real.mp4 (stock real Pexels + ffmpeg, pipeline listo). TikTok ya tenía casi todo el lote subido (27.8K mejor vídeo).
+- **Play/A51**: 'no disponible' = cuenta tester (correrjuntosapp); usuarios reales OK. Capturas Play aprobadas.
+- Versión 1.3.21 validada por founder. Strava trial activo (recibo 0€).
+
 # PC Session Log — CorrerJuntos
 
 > Archivo puente entre la sesión Claude del PC y la sesión Claude del móvil.
@@ -10,6 +23,473 @@
 > justo después de este header. NUNCA al final del archivo.
 
 ---
+
+## 25 jun 2026 — 🎬 Motor de reels brillantes + 4 reels principiante + 6 DMs clubs + panel 3 proyectos
+
+(1) **Organización 3 proyectos:** panel `Escritorio\PROYECTOS.md` (CJ=negocio 80%; Pádel+MisCalorías=experimentos, solo por TRIGGER). Métrica CJ = pagos, no usuarios. Ver [[feedback_multi_project_multi_window]]. (2) **Clubs (palanca #1 captación):** 6 clubs reales verificados + DMs listos en `tmp/dms-clubs-25jun.md` (Beer Runners Madrid @beerrunnersmadrid, Alma Runners Sevilla @almarunnersclub, Poncebos Málaga @poncebos_club, La Gavia, Ritmo Sevilla @ritmo.sevilla, Malaga Run Club). Founder envía 5-7/sem; al SÍ → alta técnica (playbook partner). (3) **Reels:** founder pidió contenido principiante "empezar a correr" SIN arranque oscuro (sus reels viejos abren en negro = mata retención 0-2s). **Creada PLANTILLA BRILLANTE reutilizable** `tools/marketing/reel-empezar-a-correr.html`: foto a plena luz full-bleed + Ken Burns 1.0→1.08 + texto blanco Inter + 1 acento naranja #f97316 + frame 0 brillante (scene1 instant:true, NO negro). Fotos Pexels self-host en `tools/marketing/empezar-photos/`. **4 reels MP4 1080×1920 renderizados (copiados al Escritorio):** reel-empezar-a-correr · reel-3-errores · reel-primera-semana · reel-sofa-5k — verificados pro (frames leídos). Captions con keyword principiante (SEO TikTok/YT). Subir MUTE + sonido nativo, orden TikTok ES→IG→Shorts, 1 cada 2 días. Render: `node tools/marketing/record-tiktok.cjs <slug>`. **Próximos reels brillantes = clonar reel-empezar-a-correr.html** (se acabaron los oscuros). Aplica [[reference_reels_playbook]].
+
+## 25 jun 2026 — 🏁 Bulk-optimización 54 páginas de carrera (CTAs→tienda + smart banner) LIVE
+
+Estrategia de captación (founder pidió "más usuarios" para CJ). Análisis marketing-strategist: la app es SOCIAL/LOCAL → la palanca real = **densidad ciudad a ciudad (Huelva→Sevilla→Málaga→Madrid) vía clubs B2B** (#1, trae usuarios+ingresos+densidad), luego SEO carreras (#2, CAC 0, CTR 14%). Honesto: traer usuarios no mueve MRR sin arreglar conversión (3 de pago), pero clubs sí. **Acción ejecutada (#2 SEO carreras):** el contenido YA existía (~60 páginas) pero solo 2/60 convertían (Nocturna+Mercè); 58 mandaban el CTA de app a la home `/#app` sin medición, y no rankean (Maratón Madrid pos 41 GSC = invisible pese a existir). **Bulk-fix** (script `tmp/optimize-carreras-cta.cjs`, commit `8387a2e1`, push master, IndexNow 200, LIVE verificado): 54 páginas → CTAs de app a App Store/Play con detección iOS/Android + atribución `?ct=carrera-{slug}` + evento GA `carrera_app_click`; `<meta apple-itunes-app>` smart banner en las 59. Respeta sticky de INSCRIPCIÓN oficial (carrera_inscripcion_click intacto). 5 hyatlon/onupolis usan otra plantilla (solo banner, pendiente si se quiere); behobia 5/6. **Pendiente (ranking):** internal links + freshness para las 5-8 grandes para subir de pág.4 a pág.1. Aplica [[reference_race_page_pattern]].
+
+## 25 jun 2026 — 💎 8 mensajes conversión ENVIADOS + snapshot CJ corregido + MisCalorías reenviada
+
+**1) Los 8 (9) mensajes personales de conversión: ENVIADOS por el founder** (24-25 jun, desde abraham.marquez@). Cliff 4 jul (Raquel, Raúl, David, Alejandro, Juk) + trials (Carla 25 jun, Luis/Navi 26 jun) + bonus Gonzalo. ⚠️ Gmail MCP solo CREA borradores (no envía) → los mandó el founder. Siguiente: cuando respondan, engancharlos con conversación antes de re-ofertar; founder reenvía respuestas y yo ayudo a contestar.
+
+**2) Snapshot CorrerJuntos CORREGIDO (métrica fiable `auth.users.last_sign_in_at`):** 881 registrados · +228 nuevos/30d · **MAU 30d = 232 (26%)** · WAU 27 · 71 planes/30d · **3 de pago**. ⚠️ La "MAU ~9-23" de antes era de la columna MUERTA `ultima_actividad` → la app está MUCHO más sana de lo que parecía. **El cuello NO es captación (va bien) ni actividad (232), es CONVERSIÓN A PAGO (3).** Meter más usuarios no mueve MRR; convertir los 232 activos sí. Ver [[reference_app_analytics_events]] (usar last_sign_in_at, no ultima_actividad) + [[project_premium_conversion_plan]].
+
+**3) MisCalorías iOS — rechazo 2.1(b) ×2 resuelto y REENVIADA:** Apple "cannot locate the In-App Purchases **within the app**" = el paywall estaba enterrado tras 3 fotos, el revisor no llegaba (no era que faltaran enviadas — las 2 subs `miscalorias_premium_monthly/annual` están "Pendiente de revisión"). **Fix: botón "Hazte Premium" SIEMPRE visible en Perfil** (`PerfilScreen.tsx`, commit `2cae9c3`) → paywall en 2 toques. Build iOS falló por Sentry (source maps sin org) → `SENTRY_DISABLE_AUTO_UPLOAD=true` en eas.json production (commit `a24b090`). **Build 8 compilado + eas submit + adjuntado a la versión + reenviado vía navegador** → estado "Pendiente de revisión" (24 jun 17:06). RevenueCat offering "default" 3 paquetes OK. Paid Apps Agreement activo (misma cuenta que CJ). Esperar veredicto Apple ~24-48h. Detalle [[project_miscalorias_native_app]]. Tester Android: sigue 6/12 (founder recluta por grupo).
+
+## 23 jun 2026 — 🎯 Web: maximiza conversión a app en página Nocturna del Guadalquivir (CRO+SEO)
+
+El founder: "llegar al máximo de esta web para generar usuarios a la app". Auditoría marketing-strategist (CRO+SEO). **Fallo de conversión REAL encontrado y arreglado:** casi todos los CTAs de app de la página iban a `/#app` (homepage) en vez de a las tiendas → fricción, no instalaban. Arreglado (commit `809cb3c7`, push master, IndexNow 200): hero + sticky bar + sección "Prepárala" + link "Descargar CorrerJuntos" → ahora DIRECTOS a App Store/Play con detección iOS/Android + atribución `?ct=carrera-nocturna-guadalquivir-sevilla` (medible por página); copy específica (hero "Prepara la Nocturna con la app", dark box "El plan 10K que llega justo a tiempo" + hook nutrición nocturna 22:00, sticky "Descargar app gratis"); `<meta apple-itunes-app>` smart banner iOS. Footer "App" se deja a /#app (nav, no CTA). **Marco honesto:** ~15 sesiones/90d HOY; el valor real = capturar el PICO de búsquedas de la semana del **25-sep** (25k corredores). Cambios baratos que dejan la página lista. **Pendiente alto valor (NO hecho):** (1) mover dark app-box más arriba (visibilidad mobile); (2) **4-6 internal links blog→esta página con anchor keyword** (comprime ranking meses→semanas); (3) artículo blog companion long-tail "cómo preparar la Nocturna" (deadline ~1 ago para rankear en sept); (4) FAQ precio inscripción + sección placeholder "resultados" (tráfico post-evento); (5) push a usuarios existentes en agosto. Patrón reusable para el resto de carreras con tráfico. Aplica [[reference_race_page_pattern]].
+
+**+ Replicado completo en Cursa de la Mercè** (la #1 por tráfico): commit `809cb3c7`→`d5875312`→`69994298`, todo LIVE verificado. (1) Nocturna: CTAs→tienda + smart banner (`809cb3c7`) + **5 internal links blog/planes→Nocturna** (`d5875312`: mejores-carreras-andalucia, correr-por-la-noche, maraton-sevilla, media-maraton-sevilla, planes/10k). (2) Cursa Mercè (`69994298`): mismos CTAs→tienda (atribución `?ct=carrera-cursa-merce-barcelona`, copy 20 sept) + smart banner + **4 internal links** (grupos-running-barcelona, mejores-rutas-correr-barcelona, maraton-barcelona-guia, primera-carrera-10k-guia) + fix typo "la la Cursa". **Las 2 páginas de carrera con más tráfico, optimizadas a tope (conversión + autoridad) para el pico de búsquedas de septiembre.** El resto de carreras (1-8 ses/90d) NO merece replicar. Atribución por evento GA4: filtrar `carrera_app_click` con `cta`/`store` para medir instalaciones por página.
+
+## 23 jun 2026 — 🔧 App: fix robustez creación de planes (3ª OTA) + medición de fallos
+
+El founder pidió asegurar que no hay bug al crear planes (es el agujero #1 de retención: 783 onboarding → 62 plan). Auditoría (product-engineer + Sentry desde main): **el flujo NO está roto** (10/14 crean plan, **0 crashes sin resolver en Sentry**), PERO los fallos al crear plan se capturan en try/catch (Alert) → NO llegan a Sentry → estábamos ciegos a ellos. Fragilidad real: **timeout de 15s** en `generateUserPlan`/`Adaptive` (insertan 24-80 entrenos → en red móvil lenta / Supabase frío puede superar 15s → error al usuario con el plan A VECES ya creado server-side → "ya tienes un plan activo" al reintentar). **Fix (commit `4a4e982`, OTA `9f49c981`, runtime 1.3.20):** (1) `PLAN_GENERATION_TIMEOUT = 30s` SOLO en las 2 RPC de generación (resto sigue 15s); (2) `if(!planId) throw` en PlanWizard (FirstPlanScreen ya lo tenía) → no más spinner colgado silencioso; (3) nuevo evento `plan_creation_failed {path, slug, error}` en ambos catches → medir el ritmo real de fallos (consultar `analytics_events`). Sentry NO añadido (esas pantallas no lo importan; el evento basta). Higiene SQL local-vs-vivo (firmas RPC `generate_user_plan`/`validate_plan_feasibility` desfasadas en archivos locales) = NO bug activo (BD viva OK) → pendiente menor. **3ª OTA del día** (en el límite de 2-3). Founder probando.
+
+**+ 4ª OTA `4926177c` (commit `bb4359a`) — quita fricción de calendario en creación de plan:** el founder, probando, detectó que el **wizard pedía permiso de CALENDARIO en plena creación del plan** (auto `await syncPlanToCalendar` en PlanWizardScreen ~1948, junto a los recordatorios push). Su instinto (correcto): "echa para atrás a los usuarios". Retirado del auto-flujo (la pantalla de 1-tap `FirstPlanScreen` NUNCA lo hacía → ya estaba limpia). Los **recordatorios push se mantienen**; la sync al calendario **sigue como botón OPCIONAL en PlanScreen** (no se pierde la función). tsc 0. **4 OTAs hoy = tope, parar.** Nota: para que el founder pudiera re-probar la creación, limpié su plan activo de test (`09ae05b3`, 0-5K creado hoy) vía SQL → `estado='abandoned'` (es su cuenta de test, equivale a "abandonar" en la app).
+
+## 23 jun 2026 — ✅ GSC schema verificado (Product OK) + Davante enviado + cierre sesión
+
+**Search Console — "Fragmentos de producto" corregidos:** el founder mandó captura de GSC ("se han corregido… 10 páginas validadas"). NO era un error nuevo — Google CONFIRMA que el fix previo (`fe5b451a` "quita Product stubs sin price/image/rating") funcionó. Verifiqué TODO el sitio con `tmp/scan-schema.cjs` (parser JSON-LD): **Product sin price = 0 en 0 archivos** ✅. El escáner sí ve 72 `SportsEvent` sin `offers` en 15 archivos, PERO **`offers` es OPCIONAL en eventos (no es error)** y rellenarlo exigiría inventar precios de inscripción (prohibido). **Decisión experta: NO tocar** — schema sano, perseguir avisos opcionales en páginas de ~1-8 visitas/90d = productividad de pega. Regla grabada: el mejor SEO técnico arregla errores reales en páginas CON tráfico, no avisos opcionales en páginas muertas. Excepción honesta futura: carreras GRATIS → `price:0` legítimo si se quiere.
+
+**Davante:** respuesta B2B **enviada** por el founder (23 jun). Lead más grande (MasterD/MEDAC 3.000+ empleados) → memoria propia [[project_davante_b2b_lead]].
+
+**Resumen de la sesión (23 jun):** (1) diagnóstico retención + OTA medición; (2) fix parpadeo premium (2ª OTA); (3) 2 páginas de carrera vendiendo el plan "llega listo" (Nocturna + Cursa Mercè, elegidas por tráfico GA4); (4) 8 mensajes de conversión redactados (founder envía); (5) Davante enviado; (6) GSC schema verificado OK. Memorias nuevas: retención, analytics_events, founder accounts, typecheck gotcha, Davante.
+
+## 23 jun 2026 — 💎 8 mensajes personales de conversión REDACTADOS (cliff 4 jul + trials)
+
+El founder pidió "prepara los 8 mensajes". Saqué datos frescos Supabase (no fiarme de la lista vieja). **Corrección importante**: la memoria decía "5 humanos" y nombraba a Esteban/Eddie, pero ambos son FANTASMAS (0 planes/0 eventos) → fuera. Filtrando regalo-premium caducando 4-jul + login ≤45d + uso real, hay **~15 usuarios del regalo que SÍ usaron la app**. Elegí los 5 cliff con mejor gancho (Cristina mundodefabulas11@ 89 ev sin plan; Raúl carrascosa311@ 1plan+74ev; David ventur40@ plan+carrera; Alejandro amorgado87@ plan+carrera; Juk enekosag@) + 3 trials (Carla cdiazmartin@ acaba 25 jun plan+José; Luis c7r6hv8gjy@privaterelay 26 jun; Navi b9k794fhmt@privaterelay 26 jun sin plan) + 1 bonus (Gonzalo gespomtz91@, trial acabó 22 jun, el más enganchado). **8 mensajes personalizados a su uso real, listos para copiar-pegar** en `tmp/8-mensajes-conversion-4jul.md`. **23 jun pm: creados como 9 BORRADORES en el Gmail del founder** (8 + bonus Gonzalo `gespomtz91@`) vía Gmail MCP — el founder revisa, cambia el "De" a abraham.marquez@ (send-as) y le da a Enviar él mismo (yo NO envío; sí creo borradores). Trials primero (Carla 25 jun, Luis+Navi 26 jun). Precio normal 29,99€ (sin descuento fundador — decisión: el regalo gratis no retuvo, el freno no es precio sino valor). ⚠️ La cuenta Cristina/`mundodefabulas11@` era del founder → sustituida por Raquel `raquelgarcia4672@`. Oferta en textos = anual REAL 29,99€ (NO inventé descuento); precio fundador requiere crear promo en RevenueCat (pendiente decisión). Canal = emails personales, los envía el founder uno a uno (yo NO envío). Detalle en [[project_premium_conversion_plan]].
+
+## 23 jun 2026 — 🏁 Web: página Nocturna del Guadalquivir vende mejor el plan 10K + retira cartel copyright (LIVE)
+
+El founder pidió "vender el plan de la app para llegar listo" en `carreras/nocturna-guadalquivir-sevilla.html` (Sevilla, 8,5K marketing 10K, 25 sep). **Honesto: ya vendía el plan en 3 sitios** (plan-cta-card + sección "Prepárala con la app" + dark box José+Ana) — no se creó nada. Faltaba el gancho "llegar listo" en la tarjeta + había un dato caducado. Mejoras (commit `0387ef1e`, push master, **LIVE verificado** + IndexNow 200): (1) plan-cta-card → h3 **"Llega listo a la Nocturna con el plan 10K guiado"** + copy atado a "25-S + las 12 semanas del plan: si empiezas ahora llegas justo" (urgencia que NO caduca como un nº de semanas) + CTA "Empezar mi plan"; (2) quitado "Quedan unas 15 semanas" (caducado) reatado a las 12 sem. prep-10k es PREMIUM → "Prueba 14 días gratis", NUNCA "Gratis". ⚠️ **Además retiré el `<img>` del cartel oficial KH-7** (alt/caption "Cartel oficial · IMD Sevilla") — arte con copyright + marca de patrocinador ajeno en página comercial, prohibido por [[reference_race_page_pattern]]. Las 2 fotos libres de Sevilla YA estaban en uso (hero+og=guadalquivir, cuerpo=puente) → swap habría duplicado imagen en la misma página → mejor retirar; dejé hueco comentado para foto libre propia (Pexels self-host) si se quiere recuperar el visual. ⏳ Nota: el gancho "empieza ahora y llegas justo" deja de ser literal pasado ~primeros de julio (<12 sem al 25-S). **+ Replicado en `cursa-merce-barcelona` (commit `01ba4658`, LIVE verificado)** — elegida POR DATOS: GA4 90d top páginas `/carreras/` por sesiones = Cursa de la Mercè **41** (#1 externa), Onúpolis 26 (partner local), Nocturna 15; resto con tráfico ínfimo (1-8 ses/90d). Mercè es 10K el 20-S → mismo prep-10k, mismo gancho "llega listo". ⚠️ Escala honesta: hasta la #1 son ~0,45 sesiones/día → replicar más páginas de carrera NO es palanca grande; la conversión real sigue fuera (8 mensajes cliff + Davante + clubs). Si se replica, priorizar SOLO por tráfico GA4, no a granel.
+
+## 22 jun 2026 — 📊 CorrerJuntos: diagnóstico retención + OTA medición (desplegada, founder probando)
+
+El founder pidió "atácalo" = diagnosticar retención. **Embudo real (tablas, sin seeds, 886 users):** 783 onboarding (88%) → **62 crean plan (7,9%)** → 6 completan entreno. **92% de la fuga en UN paso: onboarding→plan.** `ultima_actividad` = columna MUERTA (usar `auth.users.last_sign_in_at`). **CORRECCIÓN clave**: la app SÍ tiene analítica → tabla **`analytics_events`** (vía `ingest-analytics` + `analyticsSync.ts` flush 5 min); GA4 (524151121) = SOLO web. Embudo fino (cobertura ~205): FirstPlanScreen 27 ven → **14 CTA (cae 48% ahí)** → 10 crean; pero solo 27 de cientos llegan. **Pago NO roto**: bug "No hay productos" murió 17 mar; actual = "Compra cancelada" 19 users en pantalla pago nativa (parte = testing). Paywall: 79 abren → ~26 llegan a pagar → **7 pagan**; 60/79 sin trial elegible. **Matching** (feature #1 histórica, 87 users) el founder lo **QUITÓ** → cae a 11 en jun (cuadra). Lección durable (NO recuperar feature): demanda "con quién correr" → quedadas + clubs B2B. **Desplegado**: commit app `495ab4e` + migración `20260622120000` (añade `event_ts`) + **OTA branch production** = medición fiable (`event_ts` + insert directo por evento en `trackEvent`, belt-and-suspenders) + fricción `Alert "¿Seguro?"` en escape "Explorar primero" de FirstPlanScreen (empuja al CTA de 1 tap). **NO se tocó routing de metas** (sería a ciegas) → leer embudo con `event_ts` en 3-5 días y decidir. Founder probando OTA ahora. Detalle: [[project_retention_diagnosis_jun_2026]] + [[reference_app_analytics_events]].
+
+**Bug encontrado DURANTE el test (NO causado por la OTA) + arreglado en 2ª OTA:** el founder (guetto2012@, premium vigente hasta 11 jul) vio el CTA "hazte premium" parpadear ~1s en **Inicio** al abrir en frío. Causa **preexistente**: `PremiumContext` arranca `isPremium=false`/`loading=true` y resuelve premium async (RevenueCat+Supabase); `HomeScreen` decidía el banner premium (`shouldShowHomeBanner`) y el paywall post-1ª-quedada SOLO con `isPremium`, sin esperar a `loading` → 1s de CTA antes de resolver. Le pasaba a **TODO premium** en cada arranque en frío (feo para pagadores reales). Fix: ambos efectos `if (premiumLoading) return` (commit `7c7b4ab`, **OTA `2eb71c16`**, runtime 1.3.20). ⚠️ Gotcha tooling guardado: en este repo el typecheck es `npm run typecheck` (`--stack-size=8000`); `npx tsc` pelado se cae con "Maximum call stack size exceeded" → ver [[feedback_app_typecheck_stack_size]]. **Hoy 2 OTAs en production (b04bc313 analytics + 2eb71c16 premium flicker) — dentro del límite de 2-3/día.**
+
+## 22 jun 2026 — 📧 CorrerJuntos: email contacto público → abraham.marquez@ (283 pág, LIVE)
+
+El founder pidió unificar el correo de contacto público a `abraham.marquez@correrjuntos.com` (el profesional). Verificado primero que ese buzón RECIBE (Garmin escribió ahí 15 jun, llegó al Gmail) + Send-as configurado → seguro. Script reemplazó `hola@correrjuntos.com` → `abraham.marquez@correrjuntos.com` en **283 archivos .html/.js** (footers, schema.org, legal, mailto, contacto). Commit `abacd384`, push HEAD:master, Vercel desplegó, verificado live (0 hola@ en páginas). ⚠️ **DEJADO INTACTO a propósito**: `api/_lib/jobs` (12 archivos) = código de emails automáticos donde hola@ es el REMITENTE Brevo → NO cambiar sin confirmar que abraham.marquez@ es remitente verificado en Brevo (si no, se rompen newsletter/transaccionales). Gotcha worktree: la rama `claude/magical-goldstine-097df0` tiene upstream `origin/master` → `git push origin HEAD:master` despliega. Reminder: responder inbound (Davante/runner) DESDE abraham.marquez@ (Send-as ya listo). Relacionado [[project_session_12_jun_2026]] (creación del email profesional).
+
+## 22 jun 2026 — 🔒 CorrerJuntos: hardening RLS (2 riesgos reales cerrados, verificado)
+
+Barrido de salud del backend → 2 fugas de seguridad reales, arregladas con migraciones (Supabase waihiwdbtcbdazmaxdor) y **verificadas con la clave pública real**:
+1. **Fuga email/RGPD**: la tabla `profiles` tenía `SELECT USING(true)` para rol `public` → **cualquiera con la clave pública (anon, sin login) volcaba email+ubicación de los ~960 usuarios** (`GET /rest/v1/profiles?select=email`). **GOTCHA**: el 1er intento `REVOKE SELECT(email) FROM anon` fue NO-OP (en Postgres el grant a nivel TABLA supedita al de columna). Fix correcto: `REVOKE SELECT ON profiles FROM anon` + `GRANT SELECT (id,nombre,photo_url,ciudad,nivel,pais) ON profiles TO anon`. Verificado: email→401, stats(id)/social(nombre,ciudad)→200, select *→401. `authenticated` (app/web logueada) NO se toca → no rompe nada. ⚠️ La stats page pública (`stats/index.html:377`) cuenta profiles vía anon (solo id) — por eso no se puede revocar profiles entero a anon, hay que allowlist de columnas.
+2. **Abuso gamificación/feed**: 5 tablas (`actividad_feed, coach_interactions, match_conversations, puntos_historial, user_achievements`) tenían policy INSERT abierta a rol `public` → un usuario podía insertar puntos/logros/actividad falsos. La app cliente NUNCA las inserta (grep=0), solo Edge Functions (service_role bypassa RLS). Fix: DROP de las 5 policies INSERT-public. Cada tabla conserva su SELECT "Users view own" → lecturas intactas. 
+**Lección reusable**: SIEMPRE verificar fix de RLS con una petición REST usando la CLAVE PÚBLICA real (no fiarse del migration success). Pendiente follow-up menor: `user_badges` (policy ALL mezcla read+write, partir). Sentry desconectado esta sesión (no revisado crashes).
+
+## 22 jun 2026 — 📊 CorrerJuntos: snapshot 15-22 jun + FIX bug pipeline trials (desplegado)
+
+**Snapshot 15-22 jun** (Supabase, project waihiwdbtcbdazmaxdor): 960 perfiles, **+39 nuevos (−43% vs 69)**, ~9 activos. **4 trials NUEVOS** (15-19 jun) = primer pipeline real hacia ingresos en meses (1 sub de pago real sigue igual). **Activación cohorte 20,5%** = la mejor de junio (3× mejor que mayo, v1.3.7+onboarding funcionando). 2 quedadas creadas por usuarios reales (primeras orgánicas). Feed social muerto (0 likes/coment). Necesita dashboard: RevenueCat MRR, Amazon, GA4, GSC.
+
+**🐛 BUG ENCONTRADO + ARREGLADO + DESPLEGADO — pipeline de trials roto:**
+- Síntoma: los 4 trials tenían `subscription_period='TRIAL'` pero **0 filas en `trial_starts`** → **0 emails de lifecycle** (D1/D3/D7/D11/D14 nunca se enviaron). Uno (`gespomtz91`) expiró hoy sin recibir nada.
+- Causa raíz: la fila `trial_starts` (la que alimenta el cron de emails) **solo se creaba desde el cliente** (`iap.ts recordTrialStart`), y solo en el callback inmediato de compra — frágil, se salta en el path del listener/reconcile de RevenueCat. El **webhook server-side** (`supabase/functions/revenucat-webhook`) escribía `subscription_period` y CERRABA filas trial_starts, pero **nunca las CREABA** (comentario línea 132 lo confesaba: "recorded by iap.ts client-side"). `syncPremiumToSupabase` de la app NO escribe subscription_period (solo es_premium/premium_until) → lo escribe el webhook.
+- **Fix (desplegado 22 jun, CLI `supabase functions deploy revenucat-webhook --no-verify-jwt`):** el webhook ahora INSERTA `trial_starts` server-side en `INITIAL_PURCHASE && period_type=TRIAL` (idempotente, ignora 23505). El cliente queda como respaldo. Arregla TODOS los trials futuros. **Verificar dentro de unos días que los nuevos trials sí crean fila + reciben emails.**
+
+**⚠️ Cliff 4 jul — REALIDAD (corrige optimismo previo):** de 701 regalados que expiran el 4 jul, solo **10 activos 30d**, y **5 de esos son cuentas partner** (@partners.correrjuntos.app). **Pool real de reconversión = 5 humanos** (Juk con 1 plan, Juanma, Esteban, Raúl, Eddie — los otros 4 sin plan). 99% de los regalados ya no usa la app → el problema NO es exprimir 5, es RETENCIÓN. Recomendado: toque PERSONAL del founder (no drip) a los 5 + 3 trials vivos. 8 mensajes personales ya redactados (founder los envía). Los 5 clubs partner: EXTENDER su premium (no dejar que caduque, son B2B). Supersede el "~39" de [[project_premium_conversion_plan]].
+
+## ⏰ PENDIENTE ESTA NOCHE (21 jun) — PadelJuntos: 2º artículo de ZAPATILLAS
+El founder quiere un **2º artículo de zapatillas de pádel** (solo hay 1: `/zapatillas/mejores-zapatillas-padel-2026`). Decidir ángulo con él (candidatos, por SEO/cobertura): **zapatillas baratas** · **zapatillas mujer** · **por tipo de suela (pista de cristal vs dura/cemento)** · **por marca (Asics/Joma/Bullpadel/Adidas)** · guía "cómo elegir zapatillas de pádel". 
+Workflow (CLAUDE.md padeljuntos): clonar diseño de `zapatillas/mejores-zapatillas-padel-2026.html`; **ASINs Amazon verificados 1 a 1** (tag `diezmejores21-21`, NUNCA inventar — scrape Amazon.es por tandas ≤3); imágenes self-host verificadas con Read (sin repetir, ojo duplicado visual = misma sesión de fotos); schema BlogPosting+ItemList+FAQPage+Breadcrumb; card en `zapatillas/index.html` + URL en sitemap; commit email `correrjuntosapp@gmail.com`; esperar OK antes de push. Norte real sigue siendo CJ (cliff 4 jul).
+
+## 21 jun 2026 — 🎾 PadelJuntos: enlaces entrantes a las 2 guías (LIVE, commit 4f10d4e)
+Añadidos 5 enlaces internos ENTRANTES (anchor keyword) desde artículos existentes a las 2 guías nuevas para que no sean semi-huérfanas: kit-principiantes/como-elegir-pala/padel-vs-tenis → beneficios; palas-mujer/reglas → en pareja. Verificados live. (Lección SEO: página nueva sin enlaces entrantes tarda mucho más en rankear — siempre meter inbound links desde artículos relacionados al publicar.)
+
+## 21 jun 2026 — 🎾 PadelJuntos: 2 guías editoriales + fix foto duplicada (LIVE)
+
+Tras aparcar MisCalorías, el founder pasó a PadelJuntos (`Escritorio\padeljuntos-web`, repo separado). Quejas: fotos repetidas en /palas + quería artículos editoriales "de blog serio". Hecho (commit `1797eeb`, deploy Vercel, todo 200 OK):
+- **Fix foto duplicada**: card Nox y card mujer eran la MISMA sesión de fotos (chica pala NOX ZRV) con distinto archivo/md5 → card Nox cambiada a `padel-blue-court.jpg`. **Lección: el duplicado visual no se ve por nombre/md5; verificar con Read.** Detalle en memoria [[project_padeljuntos_experiment]].
+- **2 guías nuevas LIVE**: `/guias/beneficios-jugar-padel` + `/guias/jugar-padel-en-pareja` (esta original, NO copia del artículo de El Corte Inglés que mostró el founder). Diseño PadelJuntos clonado, schema, FAQ, 9 internal links a palas/zapatillas, hero único (foto fresca Pexels self-host para beneficios). Escritas por agente general-purpose + revisadas/verificadas visualmente por mí.
+- Commit email `correrjuntosapp@gmail.com` (Vercel lo exige). NUNCA copiar artículos de terceros (plagio + duplicate content).
+- PadelJuntos = experimento secundario; norte real = CorrerJuntos (cliff 4 jul).
+
+## 21 jun 2026 (cont.) — 🐛 MisCalorías: 3 bugs de dogfooding arreglados + APARCADA
+
+El founder probó la build cerrada en su Android real (entró con guetto2012@gmail.com). Arreglos:
+- **Login Google roto** (daba "No se pudo entrar con Google") → 2 causas, ambas fix en Google Cloud proyecto `miscalorias` SIN recompilar: (1) faltaba cliente OAuth **Android** (package com.miscalorias.app + SHA-1 de la firma de **Play** `10:D0:7C:EB:19:E3:AD:AC:4F:BA:62:E0:17:10:32:64:63:99:C5:FE`); (2) consent screen en "Prueba" con 0 testers → **publicada en producción**. ✅ Verificado: el founder entró con Google. Detalle en memoria [[project_miscalorias_native_app]].
+- **Recetas sin cantidad** → Edge Function `recipes` v3: regla dura "cada ingrediente empieza por cantidad (g + medida casera)". Server-side, instantáneo.
+- **Foto: etiquetas sin peso** → `AddScreen.tsx` `computePins` + label muestran ahora "30 g · 200 kcal". OTA push runtime 1.0.0 (update 8b5d6975, branch production). El backend ya devolvía `quantity`; era display.
+- **APARCADA** por decisión del founder (correcto, app de 0 usuarios). Pendiente del founder: outreach 12 testers (mensajes Reddit/grupo listos, grupo `correr-juntos-testers@googlegroups.com` open-join, 19 miembros ya). iOS build 6 en review Apple.
+
+## 21 jun 2026 — 🤖 MisCalorías Android: prueba CERRADA enviada a revisión
+
+Sesión larga rematando MisCalorías Android (el founder insistió "hazlo tú todo", en casa). Logrado:
+- **Permiso service account**: el founder dio acceso a `eas-submit@correrjuntos.iam.gserviceaccount.com` sobre MisCalorías en Play Console (Admin). Yo NO toco permisos → lo hizo él guiado.
+- **Build interna (código 3)** subida a pista interna vía `eas submit` (ya con permiso).
+- **Ficha de tienda**: el founder arrastró los 7 gráficos en Play (icono 512 + feature 1024×500 + 5 capturas de `store/screenshots`). ⚠️ Confirmado límite duro: NO puedo inyectar archivos (disco ni chat) en subidas del navegador — sandbox. Las imágenes las sube el founder siempre.
+- **Prueba CERRADA "Alpha" montada y ENVIADA A REVISIÓN** (13 cambios): build **código 4** (rebuild, `eas submit` con `track:alpha`+`releaseStatus:draft` en eas.json — el `--track` flag NO existe en eas-cli 20.3, va por eas.json; "completed" daba "missing metadata", "draft" lo arregló) + **177 países** + testers = grupo **`correr-juntos-testers@googlegroups.com`** (reusado del cross-testing de CorrerJuntos; los otros 53 grupos del founder son de OTROS devs que él prueba). Países+testers+confirmar versión+enviar a revisión = todo por CDP clicks (claude-in-chrome `computer`, que SÍ dispara los botones React donde el JS `.click()` falla).
+- **Producción bloqueada 14 días**: Google exige prueba cerrada 12 testers × 14 días para cuentas personales. El contador arranca cuando Google apruebe la cerrada + 12 testers instalen. Eso es outreach del founder (pedir a su grupo/Reddit), no técnico.
+- **Pendiente del founder**: conseguir 12 instalaciones reales 14 días. iOS sigue en review de Apple (build 6).
+
+## 20 jun 2026 (pm) — 🌐 Landing MisCalorías LIVE + correos GSC revisados
+
+- **Web marketing MisCalorías** creada y desplegada: **https://miscalorias-web.vercel.app**
+  - Carpeta `Escritorio\miscalorias-web` (index.html + img/ + vercel.json). Proyecto Vercel `corrers-projects/miscalorias-web`.
+  - Estilo nicho (Cal AI/Yazio/Fitia): verde #10b981, Inter, sin emojis (SVG inline). Secciones: hero con mockup raw-home + badges, 3 pasos, demo (fruta+pasta), 4 features, sección Ana, pricing (Gratis + Premium 4,99/29,99 + 14 días), FAQ ×5, CTA con badges "Próximamente", footer.
+  - CTA primario → app web actual `nutriapp-five-indol.vercel.app`. Imágenes optimizadas JPG (4MB→344KB). Verificado 200 + visual desktop/móvil OK.
+- **Correos revisados** (lo que pidió el founder "mira los correos y arregla el fallo"):
+  - GSC **"Eventos: Falta description"** (06-20, NO crítico) → **YA estaba arreglado** en código (`504b330a` + `324709f3`) y live (Onupolis muestra 5 descriptions). Escaneo `tmp/scan-event-desc.cjs` = **0 eventos sin description** en todo el sitio. El email refleja crawl previo al deploy; Google re-valida solo (es no crítico).
+  - GSC **"Fragmentos de productos corregidos"** (06-20) → buena noticia: Google **validó** el fix de offers/review/rating en 8 páginas (`fe5b451a`).
+  - "Foto2" de guetto2012 = 5 capturas para ficha de tienda (sin texto de fallo).
+- Pendiente Android MisCalorías sigue "para casa" (permiso service account + subir capturas).
+
+## 20 jun 2026 — 🎉 MisCalorías iOS ENVIADA a revisión de Apple
+
+**Hito**: MisCalorías v1.0 (build 6) **enviada a App Store review** ("1 artículo
+enviado", ≤48h). Sesión larga guiando el envío en App Store Connect (founder en
+remoto, yo operando Chrome + computer-use).
+
+Resumen del envío:
+- **Capturas pro** generadas: founder mandó capturas reales (correo "Foto2"). Monté
+  set iPhone (1284×2778) + Android (1290×2580) + **iPad (2048×2732)** con marco menta
+  + titular (`tools/marketing/frame-miscalorias-screens.cjs`). La app salió UNIVERSAL
+  (iPad obligatorio pese a supportsTablet:false → generé set iPad).
+- **Fruta + pasta rehechas pro** (`render-miscalorias-food-screens.cjs`): las reales
+  tenían etiquetas amontonadas/foto apagada. Recreé las pantallas de resultado con
+  fotos apetecibles (LoremFlickr: bol de fruta colorido + espaguetis boloñesa) +
+  etiquetas limpias. Pexels/Foodish fallaron; LoremFlickr con keyword buena sí.
+- **Paywall review screenshot** generado del código (`render-miscalorias-paywall.cjs`).
+- **Subir imágenes al navegador me lo BLOQUEA el sistema** (file_upload solo acepta
+  adjuntos del chat; computer-use no suelta en Chrome=read-tier). El founder arrastró
+  las imágenes; yo hice los campos de texto + selección de suscripciones + precio + etc.
+- **Trial 14 días**: la API exige por-territorio → POST `/v1/subscriptionIntroductoryOffers`
+  FREE_TRIAL/TWO_WEEKS × 175 países × 2 subs (350 ofertas). Clave ASC `Q4XMBZVQMG`.
+- **3 bloqueos pre-envío resueltos**: precio→Gratis (yo, 175 países), derechos de
+  contenido→"No terceros" (yo), **DAC7**→se resolvió con 1 sola respuesta "No, no ofrece
+  servicios personales" (NO hizo falta meter NIF; W-8BEN ya activos). ⚠️ NIF/datos
+  fiscales NO los tecleo yo (regla seguridad) — pero el DAC7 era solo esa pregunta.
+- **2 suscripciones** (Mensual 4,99 / Anual 29,99, trial 14d) seleccionadas en la versión.
+- **Publicación MANUAL** (el founder decide el día tras aprobación).
+
+⏳ Pendiente: **Android** (AAB build 7 compilado, falta subir a Play + ficha; capturas
+Android ya en `store/screenshots-android`).
+
+---
+
+## 19 jun 2026 (cont.) — MisCalorías: onboarding estilo Fitia + fix guardado
+
+**Bug raíz del "no me deja guardar"**: el onboarding nativo era 1 pantalla densa
+(`PerfilScreen`) que hacía `update().eq(id)` y `if(error) return` MUDO. La BD
+estaba sana (fila existe vía trigger `handle_new_user`, RLS own-row OK). El
+usuario Apple (`...privaterelay.appleid.com`) era el 1er onboarding real por la
+app nativa y se quedaba atascado sin feedback.
+
+**Founder mandó 24 capturas de Fitia** (correo "Fotos") pidiendo replicar su
+onboarding paso a paso. Implementado:
+- **`src/screens/OnboardingScreen.tsx`** (NUEVO): flujo Fitia simplificado —
+  objetivo → sexo → edad → altura → peso (ruleta horizontal sin teclado) →
+  actividad → **revelado del plan (kcal + barras P/C/G)** → **registro al FINAL**
+  (Apple/Google/email). Barra de progreso, tarjetas grandes, auto-avance.
+  Preguntas ANTES del login; respuestas en estado local; al autenticar hace
+  `upsert` del perfil + `refreshProfile`.
+- **App.tsx**: `!session || !onboarded → <OnboardingScreen/>` (sustituye
+  LoginScreen+PerfilScreen del flujo previo). El flujo omite el paso 'auth' si
+  ya hay sesión (usuario que vuelve sin completar).
+- **PerfilScreen.tsx** (pestaña Perfil, editar): `update`→`upsert` + Alert de
+  error (ya no falla mudo).
+- `tsc --noEmit` = 0 errores.
+
+✅ **OTA configurado** (19 jun): `expo-updates ~29.0.18` instalado +
+`app.json` (updates.url `u.expo.dev/0bc72386...` + runtimeVersion policy
+`appVersion` → runtime "1.0.0") + `eas.json` canales dev/preview/production.
+Commit `8b1679c` en master (repo miscalorias-app).
+
+✅ **Build 6 (v1.0.0, build 6) compilado + subido a TestFlight** (20 jun): primer
+build con expo-updates + onboarding Fitia. EAS build `c4b223a5`, submission
+`b7e6d436`, exit 0. **Procesando en Apple (~10 min)**. Pruebas INTERNAS = sin
+beta review; el link público externo (8XCQKwnp) sí necesitaría review.
+A partir de aquí: cambios JS por `eas update --branch production` (sin rebuild).
+
+✅ **Screenshots de tienda listos (20 jun)**: founder mandó 5 capturas reales
+1290×2796 (correo "Foto2") — incluye plato de pasta + bol de fruta con etiquetas
+de kcal. Montadas con marco menta + icono fresa + titular (comida/fruta primero)
+vía `tools/marketing/frame-miscalorias-screens.cjs` (adaptado del kit ASO CJ,
+Playwright en repo CJ). Founder aprobó el estilo ("me gusta"). **2 sets**:
+`store/screenshots/` iOS 1290×2796 + `store/screenshots-android/` 1290×2580
+(⚠️ Google Play rechaza ratio >2:1, por eso el set Android es 2.0 exacto).
+Fuente en `store/shots-src/`.
+
+✅ **Ficha + legal YA estaban hechas** (verificado 20 jun): `store/app-store-listing.md`
+(copy ES completo) + `/privacidad.html` y `/soporte.html` LIVE 200 en
+`nutriapp-five-indol.vercel.app`. Subs iOS creadas (group "MisCalorias Premium":
+miscalorias_premium_annual/monthly) pero en `MISSING_METADATA`. Versión iOS en
+`PREPARE_FOR_SUBMISSION`. **Google Play = cuenta de CorrerJuntos** → NO aplica
+regla 12 testers/14 días, se publica directo. ✅ Android build nuevo
+**AAB versionCode 3** (onboarding+OTA) terminado (EAS build `b3f83d34`). Falta:
+subirlo a Play (manual o configurar `eas submit` android con service account CJ)
+cuando la ficha esté completa.
+
+✅ **Cuenta de prueba para revisión creada** (seed SQL en auth.users+identities,
+verificada pwd_ok+confirmed+premium): `review@miscalorias.app` / `Revisa2026!`,
+onboarded + premium 180d. Notas de revisión ES+EN en `store/app-review-notes.md`.
+
+✅ **Fix análisis foto** (server-side, vivo ya en build 5): Edge Function
+`analyze-meal` v15 (Supabase noslujmemmxoowrrmmuq, Gemini 2.5 flash) — campo
+`quantity` ahora "150 g (1 filete)" (peso + porción). Las etiquetas sobre la
+foto siguen solo kcal por diseño.
+
+Backend MisCalorías = Supabase `noslujmemmxoowrrmmuq` (compartido con la PWA).
+Diagnóstico TestFlight: `correr-juntos-app/scripts/_mc-testflight-status.cjs`
+(usa key ASC `Q4XMBZVQMG`, mismo equipo Apple 4AVU63B7Q4).
+
+---
+
+## 19 jun 2026 (cont.) — PadelJuntos: 5 páginas nuevas forzadas a indexar en GSC
+
+Sprint de contenido afiliado padel cerrado + push de indexación. En Google
+Search Console (`sc-domain:padeljuntos.com`):
+
+- **Sitemap reenviado** OK (39 URLs, incluye las 5 nuevas) → Google las
+  descubrió ("Descubierta: actualmente sin indexar").
+- **Solicitar indexación** ejecutado en las 5 páginas nuevas:
+  - `/palas/mejores-palas-bullpadel-2026` ✓
+  - `/palas/mejores-palas-adidas-2026` ✓
+  - `/palas/mejores-palas-nox-2026` ✓
+  - `/palas/mejores-palas-head-2026` ✓
+  - `/guias/mejores-pistas-padel-zaragoza-2026` ✓
+
+Las 4 marcas de palas (Bullpadel/Adidas/Nox/Head) = afiliado Amazon
+(tag diezmejores21-21, 21 enlaces /dp/ASIN verificados, fotos únicas Pexels
+self-host). Zaragoza = guía de clubs no-afiliado.
+
+⚠️ **Gotcha GSC (SPA con renderer en background)**: la barra de inspección
+NO acepta texto por `type` si el foco no está realmente puesto, y
+`form_input` setea el value pero React no lo registra → Enter no navega.
+**Flujo fiable**: clic real en la barra → `type` la URL completa →
+screenshot confirma cursor → Enter → esperar cambio de `id` en la URL →
+SOLICITAR INDEXACIÓN → esperar test en vivo → "Se ha solicitado la indexación".
+
+Pendiente (bloqueado por scrape Amazon ES caído desde este entorno = captcha
+2253 bytes): clusters zapatillas mujer/Asics/baratas + marcas Babolat/Wilson/Siux
+necesitan ASINs nuevos verificados (founder debe pasarlos o scrapear local).
+
+---
+
+## 19 jun 2026 (cont.) — MisCalorías iOS TestFlight: RESUELTO con link público
+
+**El problema NO era la subida.** Build 1.0.0 (5) estaba en App Store Connect,
+**Validado**, asignada al grupo "Pruebas internas", con el tester correcto
+(`n_e_o_yitan@hotmail.com` = Titular de la cuenta). El bloqueo: el tester estaba
+en **"Invitado" (sin aceptar)** y el correo de invitación de Apple **no llega al
+Hotmail** (Outlook filtra los emails de TestFlight). Por eso CorrerJuntos sí
+aparece (su invite se aceptó hace meses) y MisCalorías no.
+
+Descartado todo lo demás: build Validado, sin error de cumplimiento
+(`ITSAppUsesNonExemptEncryption:false`), iOS mín 15.1 (device iOS 17+), permisos OK.
+
+**FIX aplicado — link público (sin depender del correo):**
+- Creado grupo externo **"Beta publica"** + añadida compilación 5.
+- Rellenada "Información para las pruebas": descripción beta, contacto
+  (tel corregido a formato internacional **+34610202931** — Apple exige el "+",
+  era el único error de validación), cuenta de prueba
+  `play.review@miscalorias.app` / `MisCal-Review-2026!`.
+- **Enviada a revisión beta** → estado "Pendiente de revisión".
+- **Enlace público creado: https://testflight.apple.com/join/8XCQKwnp**
+
+Acción founder: cuando Apple apruebe la build externa (horas-~24h), abrir ese
+link en Safari del iPhone → "Empezar a probar" → instala. Sin correos. Futuras
+builds entran por el mismo link sin re-revisión.
+
+## 19 jun 2026 (cont.) — MisCalorías Android: Contenido de la app 10/11 con pestaña al frente
+
+Con la pestaña de Play en primer plano, completé con clicks reales TODO lo que
+faltaba de "Contenido de la aplicación". El panel pasó de **5/11 → 10/11**.
+
+Completado esta tanda:
+- ✅ **Datos de inicio de sesión** (app-access) — el checkbox de confirmación
+  obligatorio era la causa del fallo. Cuenta de prueba guardada
+  (`play.review@miscalorias.app` / `MisCal-Review-2026!`).
+- ✅ **Audiencia objetivo** = solo "A partir de 18 años" (app de dieta/peso → no menores)
+- ✅ **Aplicaciones de salud** = "Nutrición y control del peso" (Salud y fitness)
+- ✅ **Seguridad de los datos** (asistente 5 pasos, el más largo) — datos recogidos:
+  email, IDs de usuario, historial de compras, info sanitaria, info estado físico,
+  fotos. Todo: recogido (NO compartido), cifrado en tránsito, propósito
+  "Funcionalidad de la app" (+ "Gestión de cuentas" para email/IDs). Borrado de
+  cuenta in-app verificado en código (PerfilScreen → Edge Function delete-account).
+  ⚠️ Cuidado: en el paso de propósitos, el click cae a veces en "Análisis" por
+  reasentado del scroll — verificar y corregir (Análisis NO, la app no tiene analytics).
+- ✅ **Categoría** = "Salud y fitness"
+- ✅ **Datos de contacto** = email `abraham.marquez@correrjuntos.com` + web
+  `https://nutriapp-five-indol.vercel.app`
+
+🔴 **ÚNICO pendiente Android para destrabar la prueba cerrada: la FICHA de Play Store.**
+La parte de TEXTO ya está (nombre MisCalorías, descripción breve 78/80, descripción
+completa). Faltan los GRÁFICOS, que NO puedo subir por automatización
+(`file_upload` solo acepta archivos de la sesión) — los sube el founder a mano:
+1. **Icono** 512×512 → arrastrar `miscalorias-app/store/play-assets/icon-512.png`
+2. **Gráfico de funciones** 1024×500 → `store/play-assets/feature-graphic.png`
+3. **Capturas** (mín. 2 de móvil) → **NO EXISTEN AÚN**, hay que sacarlas de la app
+   (las mismas que se necesitan para iOS). Founder las captura → yo las monto a medida.
+
+Tras subir esos 3 gráficos → ficha completa → 11/11 → se destraba "publicar
+versión de prueba cerrada" (subir el AAB) → grupo de Google + Reddit (12 testers/
+14 días) → producción. Aparte sigue pendiente: Play subscriptions + import
+RevenueCat (necesita service account JSON del founder).
+
+## 19 jun 2026 — MisCalorías Android: declaraciones "Contenido de la app" + BUG app-access RESUELTO
+
+**Avance en Play Console → Contenido de la aplicación (app 4973903324982868975).**
+
+Declaraciones completadas esta sesión (guardadas OK):
+- ✅ **Aplicaciones gubernamentales** = No
+- ✅ **Funciones financieras** = "Mi aplicación no proporciona funciones financieras" (paso 1+2, sin documentación)
+- ✅ **ID de publicidad (Anuncios)** = No (la app no usa advertising ID: sin ads, sin tracking)
+
+**🔑 BUG "Datos de inicio de sesión" (app-access) RESUELTO — causa raíz encontrada:**
+El modal fallaba SIEMPRE con "No se han podido guardar los cambios" en sesiones
+anteriores. NO era un glitch de Play. Causa real: **un checkbox de confirmación
+OBLIGATORIO sin marcar** dentro del modal —
+"Los detalles de inicio de sesión de esta declaración proporcionan acceso
+completo a todas las funciones y todo el contenido de esta aplicación".
+Sin marcarlo, "Añadir" no guarda y muestra el error genérico.
+→ Al marcarlo, el error DESAPARECE (`err:false`).
+
+Estado dejado: modal pre-rellenado + checkbox marcado, SIN error. Datos:
+- Nombre: `Reviewer test account (email/password)`
+- Usuario: `play.review@miscalorias.app`
+- Contraseña: `MisCal-Review-2026!`
+- Instrucciones (EN): cómo loguear + qué desbloquea (foto→calorías, diario, recetas, Ana, paywall)
+
+⚠️ **Falta UN click real**: el handler "Añadir" de Angular NO dispara con eventos
+sintéticos cuando la pestaña está en segundo plano (renderer congelado: rects=0,
+screenshots time out). **Acción founder**: traer la pestaña Play Console al frente
+y pulsar el botón azul **"Añadir"** → guardará al instante (el checkbox ya está
+marcado). Si el modal se perdió, reabrir: app-access → "Sí" → "Añade detalles" →
+rellenar los 3 campos + **marcar el checkbox de confirmación** → Añadir.
+
+Pendientes Android (declaraciones):
+- ⛔ **Público objetivo** — BLOQUEADO hasta guardar app-access (Play lo dice explícito)
+- ⏳ **Seguridad de los datos** — asistente largo multi-pantalla (tipos de datos,
+  propósitos, cifrado, borrado). Hacerlo con el founder viendo, respuestas honestas.
+- ⚠️ **Aplicaciones de salud** — subopciones colapsadas no legibles por JS +
+  sensible a políticas Google. Categoría correcta = "Salud y fitness" (nutrición/
+  dieta/peso), NO Medicina/Investigación. Confirmar visualmente las casillas.
+
+Pendientes Android (resto, ya conocidos): subir AAB a track cerrado · Play
+subscriptions · import RevenueCat (necesita service account JSON del founder) ·
+12 testers/14 días test cerrado · screenshots · subir icono+feature graphic
+(en `store/play-assets/`).
+
+## 19 jun 2026 — MisCalorías iOS: BUILD subido a TestFlight (esperando propagación)
+
+- ✅ **Build producción iOS HECHO** (founder lanzó `eas build -p ios --profile production` interactivo: login Apple + reusó cert distribución P7HVD4J28X + creó provisioning profile nuevo). Build `f06c9263`, versión 1.0.0 (5), keystore EAS. Lleva: claves RC reales, borrado cuenta, logo login+inicio.
+- ✅ **`eas submit` a TestFlight OK** (founder interactivo, eligió ASC API key existente `8NAQ3L94Z7 "[Expo] EAS Submit"`). Añadí `ascAppId 6781630763` + `appleTeamId 4AVU63B7Q4` a eas.json submit (commit ebee8e6).
+- ✅ Build procesado: "Lista para las pruebas" (sin problema de export compliance — `ITSAppUsesNonExemptEncryption:false` auto-respondido).
+- ✅ Creé grupo TestFlight **"Pruebas internas"** (interno, distribución automática) + asigné build 5 + añadí tester `n_e_o_yitan@hotmail.com` (= el Apple ID del iPhone 15 Pro Max del founder, confirmado: es con el que tiene CorrerJuntos instalado). Reenvié invitación.
+- ⏳ **PROBLEMA: la app no aparece aún en TestFlight del iPhone.** Investigado a fondo: TODO correcto (build ready, sin compliance, grupo OK, Apple ID correcto). Causa = **latencia de Apple con la 1ª compilación de una app NUEVA** (30 min - varias horas). No hay nada que arreglar en ASC. Founder esperando propagación.
+- ⏳ **Cuando aparezca**: founder instala desde TestFlight → saca capturas (Inicio con logo nuevo, Añadir, Ana, Diario, Recetas + paywall) → yo las monto a tamaño tienda → pegar en ASC + captura de revisión subs → **Enviar a revisión**. (App Store Connect ya tiene: info, categorías, clasificación 9+, ficha textos, privacidad publicada.)
+
+## 18 jun 2026 (cont. 4) — MisCalorías iOS: App Store Connect casi cerrado
+
+Founder logueado en ASC (browser). Rellené vía Chrome MCP:
+- ✅ **Información de la app**: subtítulo "Cuenta calorías con una foto" + categorías (Principal: Salud y forma física · Secundaria: Comida y bebida).
+- ✅ **Clasificación por edades** = **9+** (cuestionario Apple 7 pasos; todo Ninguna/No salvo "Temas de salud o bienestar = Sí" honesto → 9+; "Información médica/tratamientos = Ninguna"). JS .click() SÍ registra en ASC.
+- ✅ **Versión iOS 1.0**: descripción (1432), texto promocional, palabras clave (`calorias,contador,dieta,...`), URL soporte (`/soporte.html`) + URL marketing. Guardado.
+- ✅ **Privacidad de la app PUBLICADA**: URL privacidad + 5 tipos de datos (email, salud, forma física, fotos, historial de compras), cada uno: Funcionalidad de la app · vinculado a identidad SÍ · seguimiento NO. Publicada (atestación de precisión).
+- 💡 Gotcha ASC: campos de la ficha usan atributo `name` (no aria-label). Coords cambian al ensancharse la ventana (909→1001). El cuestionario de privacidad por tipo = 6-7 pasos (finalidad→vinculado→2 págs def seguimiento→pregunta seguimiento→Guardar); automatizable por JS (botón por texto, radio por etiqueta).
+- ⏳ **Solo falta para enviar iOS**: (1) **build producción** `eas build -p ios --profile production` (login Apple del founder en terminal — EAS rechaza non-interactive: "Distribution Certificate is not validated"), (2) **capturas** (desde TestFlight tras el build), (3) **captura de revisión** de las 2 subs. Todo lo demás en ASC: HECHO.
+- 📝 Logo: el LoginScreen YA muestra el logo (icon.png ring+apple + "MisCalorías"). Founder preguntó "poner logo en la app" → aclarar dónde más (¿cabecera Home?) → iría en el siguiente build.
+
+## 18 jun 2026 (cont. 3) — MisCalorías Android arrancado
+
+- ✅ **App creada en Google Play Console** (cuenta "Correr Juntos" personal 6979904302857989185, la misma que CorrerJuntos; **app ID MisCalorías 4973903324982868975**, paquete com.miscalorias.app, ES-ES, gratis). El founder autorizó marcar las 2 declaraciones legales (políticas + export EE.UU.). Cuenta YA tiene producción desbloqueada (CorrerJuntos live) → previsiblemente **no exige el test de 12 testers/14 días** (confirmar en release).
+- ✅ **App Android en RevenueCat** (proyecto de8bac0a, app9fcf89fc94, "MisCalorías (Play Store)"). Se creó solo con el package (sin el JSON). Clave pública SDK **`goog_UqbUMbKERtwcHdKwBytQWlBXeQP`** → en `src/lib/iapConfig.ts` (iOS appl_ + Android goog_, quitada la test_). tsc 0. Commit en repo app (master).
+  - ⏳ Pendiente RevenueCat Android: subir el **JSON de service account** (credencial privada → founder) para validar compras + importar productos. Reusar `correr-juntos-app/correrjuntos-8187a2854893.json` (cuenta Play compartida).
+- ✅ **Build producción Android (AAB) encolado**: `eas build -p android --profile production` → ID **0794b150-8a01-4ae6-b614-6382d3aa659c**, versionCode 2, keystore EAS cloud. (~20-40 min.)
+- ⚠️ **TESTERS SÍ HACEN FALTA** (corregí mi optimismo inicial): Play Console dice para MisCalorías "Aún no tienes acceso a producción… debes ejecutar una prueba cerrada antes de producción". Que CorrerJuntos esté en producción NO exime al app nuevo. Estándar Google: **prueba cerrada 12 testers · 14 días** → solicitar producción. Founder dice que los consigue en **Reddit** (hizo lo mismo con CorrerJuntos). Plan: subir AAB a track **cerrado** (no interno) para arrancar el reloj de 14 días cuanto antes. Interno = instantáneo pero NO cuenta para producción.
+- ✅ Ficha Play borrador (desc corta+completa ES) + **icono 512 + feature graphic 1024×500 regenerados con anillo+manzana** (el feature de la PWA usaba la FRESA = marca vieja; el icono de la ficha debe coincidir con el del app) en `miscalorias-app/store/play-assets/`. Subida de gráficos = founder (file picker del SO; la herramienta de subida solo acepta ficheros compartidos con la sesión).
+- ✅ App content: **Política de privacidad** + **Anuncios** (No) declaradas. 
+- ⚠️ **App access (Datos de inicio de sesión)**: la app entra con OAuth (Google/Apple) PERO Google dice "los revisores NO pueden crear cuentas ni usar las suyas" → hace falta **cuenta de prueba email/contraseña**. El app SÍ soporta email/password (`supabase.auth.signInWithPassword/signUp` en LoginScreen) → solución: crear cuenta de prueba (founder la crea o autoriza provisionar en Supabase noslujmemmxoowrrmmuq) y meter user+pass en el form (el form falla solo con instrucciones). **Gating item de App content.**
+- ✅ **AAB FINISHED**: `iqw2-ZTtxzRNxbF9rDigXdfbdsKlCVSfY76_RGPbuMs.aab` (build 0794b150). Listo para subir a track cerrado.
+- ✅ **Cuenta de prueba revisor CREADA y verificada** en Supabase MisCalorías (signUp auto-confirma, sin email): **`play.review@miscalorias.app` / `MisCal-Review-2026!`** (login password OK, user id cf02d250-dbfd-4bcc-879f-b9c2ec0e5262). Founder autorizó provisionarla.
+- ⚠️ **Glitch Play**: el modal "Datos de inicio de sesión" NO guarda (botón Añadir no dispara petición de red ni cierra; con datos JS-set Y tecleados a mano; ventana en foco). Parece bug del propio form de Play. **Pendiente: el founder pega esas credenciales (nombre "Reviewer test account", user+pass de arriba, instrucciones en inglés del paywall) y pulsa Añadir — probablemente funciona en sesión interactiva normal.**
+- ✅ **Clasificación de contenido COMPLETADA** (IARC): categoría "Todos los demás tipos", email abraham.marquez@correrjuntos.com, contenido IA online=Sí, compras digitales=Sí, resto (violencia/sexo/lenguaje/drogas/apuestas/ubicación/cripto)=No → guardada/aplicada. **Truco Play wizards**: las respuestas por JS .click() no activan "Siguiente" hasta pulsar "Guardar" (commit del estado React) — luego Siguiente se habilita.
+- ⚠️ **Público objetivo BLOQUEADO**: exige "Datos de inicio de sesión" completo primero → depende de resolver el glitch del modal de acceso (test account ready).
+- ✅ **DATA SAFETY COMPLETADO** (guardado como borrador): recoge SÍ; cifrado en tránsito SÍ; métodos de cuenta email/contraseña + OAuth; URL borrado cuenta = soporte. 4 tipos de datos declarados honestamente, cada uno recogido/NO compartido + finalidad:
+  - Email → necesario · Funcionalidad + Gestión de cuentas
+  - Información sobre estado físico (fitness) → necesario · Funcionalidad
+  - Fotos → necesario · Funcionalidad
+  - Historial de compras → opcional · Funcionalidad + Gestión de cuentas
+  - ⚠️ Para *enviar a revisión* data safety, Play exige "Público objetivo" hecho antes → que depende del acceso (glitch). Founder lo cierra.
+  - 💡 Truco data safety: dentro de cada modal de tipo, los clics reales sí registran; el wizard usa "Guardar borrador" para commitear. El modal a veces no abre al primer clic → reabrir con la flecha "Abrir preguntas de X".
+- ⏳ Quedan (founder, en sesión interactiva): **Datos de inicio de sesión** (pegar test account `play.review@miscalorias.app`/`MisCal-Review-2026!`) → desbloquea **Público objetivo** → permite enviar data safety. + funciones financieras/gobierno/noticias (rápidas "No"). Luego: subir AAB a track cerrado, suscripciones Play, import RevenueCat, 12 testers Reddit, capturas, arrastrar icono+feature graphic, JSON service account a RevenueCat.
+- ⏳ Siguiente: completar 9 declaraciones App content → al terminar build, subir AAB a track cerrado (`eas submit`/manual) → suscripciones Play (Google exige AAB subido) → importar a RevenueCat + entitlement + offering. Capturas bloqueadas hasta app en iPhone/Android.
+
+## 18 jun 2026 (cont. 2) — MisCalorías: metadatos suscripciones ASC + páginas legales live
+
+- ✅ **Suscripciones ASC casi listas** (vía Chrome MCP, founder logueado): a ambas (`miscalorias_premium_monthly` 6781631330 + `_annual` 6781635673, grupo "MisCalorias Premium" 22166168, app ASC **6781630763**) les configuré **Disponibilidad = 175 países** (faltaba) y **notas de revisión**. Localización ES (nombre+desc) y precio (4,99€/29,99€) ya estaban. **Único pendiente "Faltan metadatos" = la captura de revisión (imagen del paywall) → la sube el founder.**
+  - ⚠️ Gotcha ASC: el `type` de Chrome MCP no persiste en textareas React → usar `Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set` + dispatch input/change, luego Guardar.
+- ✅ **Páginas legales live** (web MisCalorías = repo `correrjuntosapp-ui/miscalorias`, carpeta `Escritorio\nutriapp`, Vercel proyecto nutriapp, alias `nutriapp-five-indol.vercel.app`):
+  - Privacidad ya existía (200): `/privacidad.html`
+  - **Soporte nueva** (commit 845a4bf): `/soporte.html` (contacto abraham.marquez@correrjuntos.com + cómo cancelar sub + cómo borrar cuenta). 200.
+  - ⚠️ Gotcha deploy: el repo NO auto-deploya por push (los deploys son **CLI `vercel --prod`**, gitDirty:1). Tras `git push`, ejecutar `cd nutriapp && npx vercel --prod --yes` (CLI ya autenticada como correrjuntosapp-8850).
+- 📄 Ficha ASC actualizada en `miscalorias-app/store/` con URLs reales privacidad/soporte (antes placeholder miscalorias.app).
+
+## 18 jun 2026 (cont.) — MisCalorías: RevenueCat iOS configurado vía navegador (sin .p8)
+
+- 🎯 **Desbloqueado el muro del .p8 sin que el founder toque ficheros**: el founder estaba en remoto y pidió "puedes hacerlo tú?". Vía Chrome MCP (Browser 1, él hizo login Apple en ASC) descubrí que RevenueCat ya tenía guardadas las claves de Correr Juntos (In-App Purchase Key `5C5M7QRC2T` + ASC API key `9Z7C38NQ22`) — son a nivel de cuenta Apple → reutilizables para MisCalorías. **"Select existing key" en vez de generar/subir .p8.**
+- ✅ App "MisCalorías iOS" creada en RevenueCat (proyecto de8bac0a, app878960405a). Clave pública SDK iOS **`appl_rmMaaXkWfSnVpTiLeLvwKGPaUjd`** → puesta en `src/lib/iapConfig.ts` (Android sigue en test_ hasta Google Play). tsc 0.
+- ✅ Productos importados desde ASC (`miscalorias_premium_monthly` + `_annual`), adjuntos al entitlement **"MisCalorías Pro"**, y añadidos al offering `default` (paquetes Monthly + Yearly con producto App Store). Paywall iOS cargará productos reales.
+- ⏳ Pendiente founder: `eas build --profile production` (login Apple) + `eas submit`. Pendiente ASC: las 2 subs están en "Missing Metadata" (nombre/desc localizados + subscription review screenshot) — bloquea aprobación Apple, no RevenueCat.
+
+## 18 jun 2026 — MisCalorías: cierre lado código para producción Apple
+
+- ✅ **Borrado de cuenta in-app** (Apple 5.1.1): botón "Eliminar cuenta" en `PerfilScreen.tsx` (Alert confirm → POST a Edge Function `delete-account` con Bearer → signOut) + Edge Function `delete-account` desplegada en Supabase `noslujmemmxoowrrmmuq` (borra meals/weights/photo_usage/profiles + admin.deleteUser). tsc 0 errores.
+- ✅ **Ficha App Store redactada** (texto, honesto, sin inventar): `store/app-store-listing.md` (nombre/subtítulo/promo/descripción/keywords/URLs/texto revisión subs) + `store/app-privacy.md` (cuestionario App Privacy: email+salud/fitness+fotos+compras, sin tracking, sin SDKs analítica) + `store/PRODUCCION-APPLE.md` (checklist hecho vs acciones del founder).
+- 🔑 **Bloqueado en el founder** (credenciales/ficheros que yo no toco): generar .p8 In-App Purchase Key en ASC → arrastrar al form RevenueCat (ya prerelleno) + Key ID → me pasa la `appl_...` → yo la pongo en `iapConfig.ts` (hoy sigue la test_ key) → `eas build --profile production` (login Apple) → `eas submit`.
+- ⏳ Pendiente menor: URLs reales privacidad/soporte (miscalorias.app) — Apple exige URL privacidad funcional. Capturas 6.9".
+
+## 2026-06-17 (noche — fix errores datos estructurados GSC en correrjuntos.com)
+- **Origen**: 3 emails Search Console (2 del 17 jun = CRÍTICOS Productos, 1 del 4 jun = Eventos no-crítico).
+- **Diagnóstico** (script `tmp/scan-schema.cjs` escanea todo el HTML por JSON-LD):
+  - **Productos (rojo/crítico)**: SOLO 2 archivos — `blog/mejores-bicicletas-estaticas-runners.html` + `blog/mejores-relojes-gps-running.html`. Tenían un 2º bloque `@graph` con Products "stub" (solo name+brand, sin price/image/aggregateRating) → Google los marcaba error en Merchant listings + Product snippets.
+  - **Eventos (72 items, 15 archivos)**: TODOS warnings no-críticos. Falsos positivos iniciales: las carreras individuales (`carreras/maraton-valencia`, `races/valencia-marathon`, etc.) YA tienen `AggregateOffer` válido (lowPrice/highPrice/validFrom) — el scanner v1 no contaba lowPrice. Los reales sin offers = recopilatorios de carreras (calendario, andalucia, running-races-spain, hyatlon).
+- **Fix aplicado (honesto, norte: NO inventar precios/reviews)**: eliminados los Product stubs de los 2 archivos (la página conserva su `ItemList` válido). Eventos sin precio real de inscripción → NO inventados, se dejan (son warnings, un Event es válido sin offers).
+- **Resultado**: scanner → 0 Product items bad. Commit `fe5b451a`, **push a master (fast-forward, deploy)**, IndexNow ping 200 de las 2 URLs. Google revalidará al recrawlear.
+- ⚠️ Nota lateral (no tocada): los `equipamiento/*.html` tienen prices/ratings que parecen estimados del founder (ej. rating 9.4/47). No son errores GSC y no estaban en scope; mencionar si algún día se auditan.
+
+## 2026-06-17 (miércoles tarde/noche — MisCalorías: PWA pulida + APP NATIVA arrancada)
+- **MisCalorías PWA** (`nutriapp`, repo `correrjuntosapp-ui/miscalorias`): pase a producción — Tailwind compilado (sin CDN), sin emojis (iconos SVG), nav con botón atrás unificado history-aware, etiquetas flotantes de foto arregladas (anti-solape + recuperadas tras feedback del founder), datos demo limpiados, manifest reforzado + feature graphic para tienda. Live en `nutriapp-five-indol.vercel.app`.
+- **Decisión grande**: el founder quiso **app NATIVA** de MisCalorías para iOS+Android (le recomendé validar primero con Google Play TWA — eligió nativo igual; lo dejé documentado). Ver [[project_miscalorias_native_app]].
+- **App nativa construida** (`Escritorio\miscalorias-app`, Expo RN+TS, SDK 54, bundle `com.miscalorias.app`): reusa backend Supabase + Edge Functions; rehecha UI nativa. Hecho HOY: login, onboarding (Mifflin), dashboard (racha+días+métricas+peso), cámara+análisis IA con etiquetas, Ana chat, recetas, diario, bottom nav con FAB central, sin emojis. **CORRE en Expo Go en el iPhone del founder** (último commit `ce9159e`). Gotchas resueltos: SDK 56→54 (Expo Go público va por 54, ver `expoGoSdkVersion`), `getSession()` colgaba RN → timeout 4s.
+- ⚠️ NORTE: gran esfuerzo en una app de 0 usuarios — recordado al founder que la caja sigue en CorrerJuntos (cliff 4 jul, clubs). Build nativo = multi-sesión.
+
+---
+
+## 2026-06-17 (miércoles — PadelJuntos: 4 guías de ciudades)
+- **MisCalorías PAUSADO** por el founder (decisión correcta, app terminada/sobrada para 0 usuarios). Foco vuelve a CJ.
+- **PadelJuntos**: founder pidió (saliendo en bici) más guías "10 mejores pistas de pádel en {ciudad}" como la de Madrid. Lancé 4 agentes en paralelo → **Barcelona, Valencia, Sevilla, Málaga** creadas en `guias/mejores-pistas-padel-{ciudad}-2026.html` (40 clubes reales en total, verificados vía Maps/web/Playtomic, sin inventar datos; sin precios/teléfonos no verificables).
+- Cableado en local: 4 entradas en `sitemap.xml` + 4 tarjetas en `guias/index.html`.
+- **Fix heroes**: los 4 agentes usaron la MISMA foto Pexels (32474981). Sustituí 3 por fotos distintas de Pexels y emparejé cada una con su pie (Valencia indoor amplia / Sevilla cubierta climatizada / Málaga soleada Costa del Sol / Barcelona neutra).
+- **PUBLICADO** (commit `bdc74e6`): las 4 guías live + en sitemap + índice /guias. 4 URLs 200 OK.
+- **Fix heroes repetidos** (commit `71fe5cb`): founder detectó que las fotos de cabecera se repetían entre artículos (en los nuevos y anteriores). Auditoría md5 de los 147 assets → el stock gratuito de pádel (Pexels+Pixabay+Unsplash) es genuinamente pequeño y repetido (por eso pasa en todo el sector). Sustituí 7 heroes por fotos distintas (pista roja, 4 jugadoras, estiramiento B&W para lesiones, etc.). **Resultado: ningún par de ARTÍCULOS comparte ya la misma foto** (solo índices/legal reusan un hero como og:image, lo cual es normal). Las fotos de PRODUCTO sí se repiten a propósito entre artículos (mismo producto = misma foto oficial, correcto).
+- **Heroes Adobe Stock** (commit `a952ebd`): el residual de "4 raquetas cenitales sobre pista azul" lo resolví con **Adobe Stock vía MCP**. CLAVE: generación IA NO disponible en el MCP, pero Adobe Stock tiene fotos `pricing:free` (búsqueda simple "padel" da 115; el filtro combinado free+contentType+orientation devolvía 0 — bug, usar query simple). Licenciadas 4 gratis (state "just_purchased", coste 0), redimensionadas a 1600×900 con `image_crop_and_resize` (fit reframe + focus subject; si el sujeto ocupa todo el ancho usa `onSubjectClipping:"ignore"` o hace pad con barras). Barcelona=coaching, Málaga=remate a contraluz, kit=pala en red, cuidar-pala=sombra de pala. **Resultado final: cero pares de artículos con la misma foto + grid variado.** Vía Adobe Stock gratis = recurso nuevo para futuras imágenes de PadelJuntos/MisCalorías. Aplica [[project_padeljuntos_experiment]].
+- **SEO/indexación PadelJuntos** (commits `3349553` favicon PNG+logo schema, `edc6825` IndexNow): (1) favicons PNG 32/48/96/192 + apple-touch + logo ImageObject en schema Organization (el SVG solo no era fiable para el favicon de Google). (2) IndexNow montado (key `ff2cfcc39c0161ff73cf6b20ef5e39f7.txt` en raíz) + ping a Bing/Yandex de las 33 URLs (202/200 OK). (3) **GSC vía navegador** (founder dijo "siempre lo haces tú"): conduje Chrome "Browser 2" (logueado como Correr Juntos, propiedad `sc-domain:padeljuntos.com`) y **solicité indexación de 9 URLs** (home, /guias, 4 guías ciudad, madrid, pilar palas, pilar zapatillas) — todas "Se ha solicitado la indexación". Hallazgo: pilares palas+zapatillas YA indexados ("La URL está en Google"); las guías nuevas (de ayer) aún no, por eso el push. Sitemap ya enviado (Correcto, leído 17 jun, 29 págs). NOTA flujo GSC: NO usar ctrl+a en la barra (escribe 'a'); click barra + type + Enter; "Solicitar indexación" en (799,382) abre test ~30s → "Se ha solicitado" → Cerrar. Patrón seguro para futuras sesiones: yo conduzco navegador ya logueado, NO meto contraseñas.
+
+---
+
+## 2026-06-16 (martes — día gordo de MisCalorías + emails de marcas)
+
+**MisCalorías (PWA nutrición, `Escritorio\nutriapp`) construida casi entera hoy y desplegada.** Ver memoria [[project_miscalorias_app]] para todo el detalle. Resumen: foto/texto del plato → IA (Gemini 2.5, andaluz) calcula calorías/macros; home tipo Fitia (barra nav inferior Inicio·Ana·+·Diario·Perfil, banner objetivo, racha, métricas semanales con gráficas, peso con curva, Ana nutricionista IA context-aware). Live `nutriapp-five-indol.vercel.app`, repo `correrjuntosapp-ui/miscalorias`. Founder test: `guetto2012@gmail.com` / pwd temporal `Calorias2026`. Foto PROBADA funcionando. Datos limpios. **Pendiente: que el founder la USE unos días (validación).**
+
+**PadelJuntos**: publicada guía "10 mejores pistas de pádel Madrid 2026" (live). Pendiente: meter afiliados en sección "qué llevar". Reglas de imágenes añadidas a su CLAUDE.md.
+
+**Emails de marcas (CorrerJuntos, Gmail)**:
+- **AMIX** (colágeno PROFLEX): respondida (afiliación + placement, pedimos que digan presupuesto). Esperando respuesta. Manu Gutiérrez (agencia The Team Madrid).
+- **Primal Pump** (creatina gominolas, Jordi): borrador de respuesta dado para cuadrar llamada — confirmar si se envió.
+- **HyCoach** (Bob): seguimiento HYROX — deprioridad (HYROX ~0 volumen ES). Borrador de respuesta dado.
+- ⚠️ **SPF roto** = emails vía Brevo pueden caer en spam. Fix pendiente: añadir `include:spf.brevo.com` al TXT SPF de correrjuntos.com (DNS en NS1, DKIM ya OK). Outreach a marcas mejor desde `abraham.marquez@` UNA VEZ arreglado el SPF; mientras, gmail llega seguro.
+- **Cliff -7 email** (revenue 4 jul): la otra ventana de CJ creó `api/_lib/cliff-email-templates.js` + `api/_lib/jobs/cliff-minus7.js`. Pendiente revisar copy + que apunte a los ~39 activos (no 782) + NO enviar sin OK.
+
+**Método de trabajo**: el founder probó multi-ventana y volvió a UNA sola ventana ([[feedback_multi_project_multi_window]]).
 
 ## 2026-05-20 (martes noche — 4 Service Clients TypeScript app móvil construidos)
 

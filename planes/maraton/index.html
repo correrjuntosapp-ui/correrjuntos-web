@@ -84,7 +84,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
         { "@type": "Question", "name": "¿Qué pasa si me lesiono durante la preparación?", "acceptedAnswer": { "@type": "Answer", "text": "Lo primero es no forzar: una molestia ignorada puede arruinar meses de trabajo. El plan es adaptativo y, dentro de la app, Coach José reajusta la carga si necesitas parar unos días. Ante un dolor que no cede, consulta con un fisioterapeuta." } },
         { "@type": "Question", "name": "¿Cuál debe ser mi tirada larga máxima?", "acceptedAnswer": { "@type": "Answer", "text": "En la mayoría de planes populares, la tirada larga máxima ronda los 32-35 km, 3-4 semanas antes del maratón. No es necesario llegar a 42 km en entrenamiento: el objetivo es acostumbrar al cuerpo a muchas horas en movimiento, no dejar las piernas vacías antes de tiempo." } },
         { "@type": "Question", "name": "¿Cómo gestiono la nutrición durante el maratón?", "acceptedAnswer": { "@type": "Answer", "text": "La clave es practicar la nutrición en las tiradas largas, no improvisar el día de la carrera. En general se toman 30-60 g de carbohidratos por hora (geles, bebida) y se empieza a comer pronto, antes de tener hambre. Ana, dentro de la app, te ayuda a montar tu plan de geles e hidratación." } },
-        { "@type": "Question", "name": "¿El plan es gratis?", "acceptedAnswer": { "@type": "Answer", "text": "La app es gratis e incluye GPS, comunidad, quedadas y el plan 0-5K sin coste. Este plan forma parte de CorrerJuntos Premium, que puedes probar 14 días gratis. Después, Premium cuesta 4,99€/mes o 29,99€/año, y cancelas cuando quieras." } },
+        { "@type": "Question", "name": "¿El plan es gratis?", "acceptedAnswer": { "@type": "Answer", "text": "La app es gratis e incluye GPS, comunidad, quedadas y el plan 0-5K sin coste. Este plan forma parte de CorrerJuntos Premium, que puedes probar 14 días gratis. Después, Premium cuesta 5,99€/mes o 29,99€/año, y cancelas cuando quieras." } },
         { "@type": "Question", "name": "¿Dónde accedo al plan de entrenamiento?", "acceptedAnswer": { "@type": "Answer", "text": "Dentro de la app CorrerJuntos. Descárgala gratis en App Store o Google Play, crea tu perfil, pon tu fecha de carrera y activa el plan de Maratón en la sección Planes de Entrenamiento." } }
       ]
     },
@@ -99,7 +99,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
       "inLanguage": "es-ES",
       "isAccessibleForFree": false,
       "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "Online", "instructor": { "@type": "Person", "name": "Coach José IA", "description": "Entrenador IA de running de CorrerJuntos" } },
-      "offers": { "@type": "Offer", "price": "4.99", "priceCurrency": "EUR", "category": "subscription", "availability": "https://schema.org/InStock", "description": "Incluido en CorrerJuntos Premium. Prueba 14 días gratis." }
+      "offers": { "@type": "Offer", "price": "9.99", "priceCurrency": "EUR", "category": "subscription", "availability": "https://schema.org/InStock", "description": "Incluido en CorrerJuntos Premium. Prueba 14 días gratis." }
     }
   ]
 }
@@ -189,7 +189,7 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .site-header{backgroun
         <span class="sb-text"><span class="sb-small">Disponible en</span><span class="sb-big">Google Play</span></span>
       </a>
     </div>
-    <p class="hero-note">La app es gratis. Este plan forma parte de Premium — 14 días de prueba, luego 4,99€/mes o 29,99€/año.</p>
+    <p class="hero-note">La app es gratis. Este plan forma parte de Premium — 14 días de prueba, luego 5,99€/mes o 29,99€/año.</p>
   </div>
 </header>
 
@@ -268,7 +268,7 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .site-header{backgroun
     <p>Descarga CorrerJuntos gratis, pon tu fecha de maratón y activa el plan de 42K. Coach José y Ana te acompañan en cada sesión y en la estrategia de carrera. Prueba Premium 14 días gratis.</p>
     <div class="app-coaches">
       <div class="app-coach"><img src="/public/coach-jose.jpg" alt="Coach José, entrenador IA de CorrerJuntos" loading="lazy" width="50" height="50"><div><span class="ac-name">Coach José</span><span class="ac-role">Tu entrenador IA</span></div></div>
-      <div class="app-coach ana"><img src="/public/coach-ana.jpg" alt="Ana, nutricionista IA de CorrerJuntos" loading="lazy" width="50" height="50"><div><span class="ac-name">Ana</span><span class="ac-role">Nutrición IA</span></div></div>
+      <div class="app-coach ana"><img src="/public/coach-ana.jpg" alt="Ana, asistente de nutrición deportiva con IA de CorrerJuntos" loading="lazy" width="50" height="50"><div><span class="ac-name">Ana</span><span class="ac-role">Nutrición IA</span></div></div>
     </div>
     <div class="app-badges">
       <a onclick="if(typeof gtag==='function')gtag('event','plan_app_click',{store:'appstore',plan:'maraton',page:location.pathname});if(/android/i.test(navigator.userAgent))this.href='https://play.google.com/store/apps/details?id=com.correrjuntos.app'" href="https://apps.apple.com/app/correr-juntos/id6758505910?ct=plan-maraton" target="_blank" rel="noopener noreferrer" class="store-btn">
@@ -288,7 +288,7 @@ html.dark body{background:#0b1220;color:#e2e8f0}html.dark .site-header{backgroun
     <details class="faq-item"><summary>¿Qué pasa si me lesiono durante la preparación?</summary><div class="faq-answer">Lo primero es no forzar: una molestia ignorada puede arruinar meses de trabajo. El plan es adaptativo y, dentro de la app, Coach José reajusta la carga si necesitas parar unos días. Ante un dolor que no cede, consulta con un fisioterapeuta.</div></details>
     <details class="faq-item"><summary>¿Cuál debe ser mi tirada larga máxima?</summary><div class="faq-answer">En la mayoría de planes populares, la tirada larga máxima ronda los 32-35 km, 3-4 semanas antes del maratón. No es necesario llegar a 42 km en entrenamiento: el objetivo es acostumbrar al cuerpo a muchas horas en movimiento, no dejar las piernas vacías antes de tiempo.</div></details>
     <details class="faq-item"><summary>¿Cómo gestiono la nutrición durante el maratón?</summary><div class="faq-answer">La clave es practicar la nutrición en las tiradas largas, no improvisar el día de la carrera. En general se toman 30-60 g de carbohidratos por hora (geles, bebida) y se empieza a comer pronto, antes de tener hambre. Ana, dentro de la app, te ayuda a montar tu plan de geles e hidratación.</div></details>
-    <details class="faq-item"><summary>¿El plan es gratis?</summary><div class="faq-answer">La app es gratis e incluye GPS, comunidad, quedadas y el plan 0-5K sin coste. Este plan forma parte de CorrerJuntos Premium, que puedes probar 14 días gratis. Después, Premium cuesta 4,99€/mes o 29,99€/año, y cancelas cuando quieras.</div></details>
+    <details class="faq-item"><summary>¿El plan es gratis?</summary><div class="faq-answer">La app es gratis e incluye GPS, comunidad, quedadas y el plan 0-5K sin coste. Este plan forma parte de CorrerJuntos Premium, que puedes probar 14 días gratis. Después, Premium cuesta 5,99€/mes o 29,99€/año, y cancelas cuando quieras.</div></details>
     <details class="faq-item"><summary>¿Dónde accedo al plan de entrenamiento?</summary><div class="faq-answer">Dentro de la app CorrerJuntos. Descárgala gratis en App Store o Google Play, crea tu perfil, pon tu fecha de carrera y activa el plan de Maratón en la sección Planes de Entrenamiento.</div></details>
   </section>
 

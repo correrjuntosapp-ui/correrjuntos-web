@@ -126,8 +126,8 @@ function subjectFor(lang, idx, sub) {
         : `¿Has empezado tu plan para ${carrera}?`;
     case 3: // Day 14
       return isEn
-        ? '14 days free if you activate today'
-        : 'Última: 14 días gratis si activas hoy';
+        ? 'Last call: activate your full plan today'
+        : 'Última: activa tu plan completo hoy';
     default:
       return null;
   }
@@ -239,25 +239,25 @@ function htmlFor(lang, idx, sub) {
     // Day 14
     eyebrow = isEn ? 'Plan · Day 14' : 'Plan · Día 14';
     h1Pre = isEn ? 'Last one. ' : 'Última. ';
-    h1Strong = isEn ? '14 days free.' : '14 días gratis.';
+    h1Strong = isEn ? 'Your full plan.' : 'Tu plan completo.';
     preheader = isEn
-      ? 'No card. No commitment. Activate today.'
-      : 'Sin tarjeta. Sin compromiso. Activa hoy.';
+      ? 'No commitment. Cancel anytime. Activate today.'
+      : 'Sin compromiso. Cancela cuando quieras. Activa hoy.';
     body = `
       <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};">Llevas <strong style="color:${TEXT};">14 días con el plan</strong> en tu inbox. No te he molestado más.</p>
       <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};">Si <strong style="color:${TEXT};">${carrera}</strong> es real y quieres llegar bien, esta es probablemente la última oportunidad de activar tu plan a tiempo.</p>
-      <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};"><strong style="color:${TEXT};">14 días gratis</strong> · sin tarjeta hasta el día 14 · cancela cuando quieras. Si no te convence, te olvidas y nada más.</p>
+      <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};">Cancela cuando quieras; si tu tienda ofrece un periodo de prueba, verás su duración y condiciones antes de confirmar. Si no te convence, te olvidas y nada más.</p>
       <p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};">A partir de aquí, no te escribiré más sobre este plan. Si quieres seguir, descarga la app. Si no, te dejo en paz. <strong style="color:${TEXT};">Tú decides.</strong></p>
     `;
     if (isEn) {
       body = `
         <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};">It's been <strong style="color:${TEXT};">14 days with the plan</strong> in your inbox. I haven't bothered you more.</p>
         <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};">If <strong style="color:${TEXT};">${carrera}</strong> is real and you want to arrive in shape, this is probably your last chance to activate in time.</p>
-        <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};"><strong style="color:${TEXT};">14 days free</strong> · no card until day 14 · cancel anytime. If you don't love it, just forget it and move on.</p>
+        <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:${TEXT_72};">Cancel anytime; if your app store offers a trial period, its length and terms are shown before you confirm. If you don't love it, just forget it and move on.</p>
         <p style="margin:0;font-size:15px;line-height:1.65;color:${TEXT_72};">From here, I won't write about this plan again. If you want to continue, download the app. If not, I'll leave you alone. <strong style="color:${TEXT};">You decide.</strong></p>
       `;
     }
-    ctaLabel = isEn ? 'Activate 14 days free →' : 'Activar 14 días gratis →';
+    ctaLabel = isEn ? 'Activate your plan →' : 'Activar mi plan →';
   }
 
   const ctaUrl = `https://www.correrjuntos.com/install?utm_source=plan_drip&utm_medium=email&utm_campaign=day_${DRIP_DELAYS_DAYS[idx]}&plan=${planSlug}`;

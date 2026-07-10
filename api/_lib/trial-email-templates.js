@@ -178,7 +178,7 @@ const day7Es = (name) => shell({
            `${strongCream('Ritmo medio')} y mejor 1 km`,
            `${strongCream('Próxima sesión')} del plan adaptada a tu progreso`,
          ])
-       + callout('Recordatorio', `Tu trial termina en 7 días. Después: 5,99 €/mes. Cancela cuando quieras.`),
+       + callout('Recordatorio', `Tu periodo de prueba sigue activo. Cuando termine: 5,99 €/mes (precio de la tienda española). Cancela cuando quieras.`),
   ctaUrl: 'https://www.correrjuntos.com/app',
   ctaLabel: 'Ver mi semana  →',
   lang: 'es',
@@ -197,7 +197,7 @@ const day7En = (name) => shell({
            `${strongCream('Average pace')} and fastest km`,
            `${strongCream('Next session')} in your plan, adapted to your progress`,
          ])
-       + callout('Reminder', `Your trial ends in 7 days. After that, the monthly Premium price shown in your app store applies (€5.99/mo in the EU). Cancel anytime.`),
+       + callout('Reminder', `Your trial is still active. When it ends, the monthly Premium price shown in your app store applies (€5.99/mo in the EU). Cancel anytime.`),
   ctaUrl: 'https://www.correrjuntos.com/app',
   ctaLabel: 'See my week  →',
   lang: 'en',
@@ -210,8 +210,8 @@ const day11Es = (name) => shell({
   h1Pre: 'Tu trial termina el',
   h1Strong: 'domingo',
   h1Post: '.',
-  preheader: 'En 3 días termina tu prueba gratuita.',
-  body: lead(`${name ? name + ', e' : 'E'}n 3 días termina tu prueba gratuita. Si decides seguir, tu plan continúa sin interrupción. Si no, vuelves al modo gratuito.`)
+  preheader: 'Tu prueba gratuita está a punto de terminar.',
+  body: lead(`${name ? name + ', e' : 'E'}tu prueba gratuita está a punto de terminar. Si decides seguir, tu plan continúa sin interrupción. Si no, vuelves al modo gratuito.`)
        + para(strongCream(`Lo que pierdes si no continúas:`))
        + list([
            `Plan personalizado para tu carrera (4-18 semanas)`,
@@ -232,8 +232,8 @@ const day11En = (name) => shell({
   h1Pre: 'Your trial ends',
   h1Strong: 'Sunday',
   h1Post: '.',
-  preheader: 'In 3 days your free trial ends.',
-  body: lead(`${name ? name + ', i' : 'I'}n 3 days your free trial ends. If you keep Premium, your plan continues uninterrupted.`)
+  preheader: 'Your free trial is about to end.',
+  body: lead(`${name ? name + ', i' : 'I'}your free trial is about to end. If you keep Premium, your plan continues uninterrupted.`)
        + para(strongCream(`What you lose if you don't continue:`))
        + list([
            `Personalized race plan (4-18 weeks)`,
@@ -285,14 +285,14 @@ const SUBJECTS = {
     1: '¿Qué tal tu primera salida?',
     3: 'Conecta Strava en 1 click',
     7: 'Tu primera semana en datos',
-    11: 'Tu trial termina el domingo',
+    11: 'Tu trial está a punto de terminar',
     14: 'Tu trial ha terminado — pero tu progreso no',
   },
   en: {
     1: 'How was your first run?',
     3: 'Connect Strava in 1 click',
     7: 'Your first week in data',
-    11: 'Your trial ends Sunday',
+    11: 'Your trial is about to end',
     14: "Trial ended — but your progress didn't",
   },
 };

@@ -334,10 +334,10 @@ const day10Es = (name) => shell({
            `${strongCream('Improvisar:')} como muchos hicieron antes de su última ultra. Funcionó, pero pagaste el precio en zonas que ya conoces.`,
            `${strongCream('Plan estructurado:')} 16-20 semanas adaptadas a tu fecha objetivo, ritmo real, días disponibles, y nivel actual.`,
          ])
-       + callout('CorrerJuntos Premium', `Plan adaptativo para tu próxima ultra · Coach IA que ajusta semana a semana · Tracking GPS · Comunidad runners cerca de ti · 14 días gratis, después 4,99€/mes.`)
+       + callout('CorrerJuntos Premium', `Plan adaptativo para tu próxima ultra · Coach IA que ajusta semana a semana · Tracking GPS · Comunidad runners cerca de ti · 5,99€/mes o 29,99€/año; si hay periodo de prueba disponible, tu tienda lo mostrará antes de confirmar.`)
        + paraLast(`Lo que has hecho estos 10 días no lo hace casi nadie. ${strongCream('Eso ya te diferencia.')}`),
   ctaUrl: 'https://www.correrjuntos.com/app',
-  ctaLabel: 'Empezar 14 días gratis  →',
+  ctaLabel: 'Probar CorrerJuntos Premium →',
   lang: 'es',
 });
 
@@ -523,7 +523,7 @@ const day10En = (name) => shell({
            `${strongCream('Improvise:')} like many did before their last ultra. Worked, but you paid the price.`,
            `${strongCream('Structured plan:')} 16-20 weeks adapted to your target date, real pace, available days.`,
          ])
-       + callout('CorrerJuntos Premium', `Adaptive plan for your next ultra · AI Coach · GPS tracking · Runners community · 14 days free, then $4.99/mo.`)
+       + callout('CorrerJuntos Premium', `Adaptive plan for your next ultra · AI Coach · GPS tracking · Runners community · €5.99/mo or €29.99/yr; if a trial is available, your app store will show it before you confirm.`)
        + paraLast(`What you did these 10 days, almost no one does. ${strongCream('That sets you apart.')}`),
   ctaUrl: 'https://www.correrjuntos.com/app',
   ctaLabel: 'Start 14-day free trial  →',

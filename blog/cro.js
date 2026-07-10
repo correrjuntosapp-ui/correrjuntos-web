@@ -265,7 +265,7 @@
       var premiumLink = showPremiumLink
         ? '<a href="' + contextDeepLink + '" class="cro-premium-link" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'cro_premium_click\',{location:\'mid\',slug:\'' + slug + '\'})">' +
             '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>' +
-            (isEN ? 'Or try <strong>Premium free for 7 days</strong> — personalized AI plans &rarr;' : 'O prueba <strong>Premium 7 d\u00edas gratis</strong> — planes con IA personalizados \u2192') +
+            (isEN ? 'Or unlock <strong>Premium</strong> — personalized AI plans &rarr;' : 'O desbloquea <strong>Premium</strong> — planes con IA personalizados \u2192') +
           '</a>'
         : '';
 

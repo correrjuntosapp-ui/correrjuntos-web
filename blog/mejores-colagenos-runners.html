@@ -330,7 +330,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 .dark-mode .cta-mid p{color:#cbd5e1!important}
 .dark-mode .share-article{background:rgba(255,255,255,.04)!important;border-color:rgba(255,255,255,.08)!important}
 .dark-mode .share-article>span{color:#94a3b8!important}
-@media(max-width:640px){.specs-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}.specs-table th,.specs-table td{white-space:nowrap}}
+@media(max-width:640px){.specs-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}.specs-table th,.specs-table td{white-space:nowrap}.amix-card{min-width:0}.amix-card .specs-grid{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;min-width:0;box-sizing:border-box;gap:6px}.amix-card .spec-item{width:100%;min-width:0;box-sizing:border-box;padding:8px 6px}.amix-card .spec-value{min-width:0;overflow-wrap:anywhere;word-break:normal}}
 </style>
 <script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 </head>
@@ -422,7 +422,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     </div>
 
     <!-- Product 2: AMIX ProFlex UC-II -->
-    <div class="shoe-card">
+    <div class="shoe-card amix-card">
       <div class="shoe-img"><img src="/blog/img/amix-proflex-uc2.webp" alt="Bote de AMIX ProFlex UC-II con 60 c&aacute;psulas de col&aacute;geno tipo II no desnaturalizado" loading="lazy" width="614" height="734"></div>
       <h3>2. AMIX ProFlex UC-II &mdash; Mejor opci&oacute;n con UC-II&reg; para cart&iacute;lago articular</h3>
       <div class="specs-grid">
@@ -785,5 +785,6 @@ async function submitNewsletter(e) {
 <script src="/blog/cro.js" defer></script>
 <script src="/blog/city-links.js" defer></script>
 <script src="/blog/newsletter.js" defer></script>
+<script src="/blog/share.js" defer></script>
 </body>
 </html>

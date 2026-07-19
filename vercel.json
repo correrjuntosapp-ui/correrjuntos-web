@@ -111,6 +111,26 @@
   ],
   "redirects": [
     {
+      "source": "/matching",
+      "destination": "/app",
+      "permanent": true
+    },
+    {
+      "source": "/matching/en",
+      "destination": "/app/en",
+      "permanent": true
+    },
+    {
+      "source": "/sobre-nosotros",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
       "source": "/legal/privacidad",
       "destination": "/privacy",
       "permanent": true
@@ -172,22 +192,17 @@
     },
     {
       "source": "/contacto",
-      "destination": "/sobre-nosotros#contacto",
+      "destination": "/about",
       "permanent": false
     },
     {
       "source": "/contact",
-      "destination": "/sobre-nosotros#contacto",
+      "destination": "/about",
       "permanent": false
     },
     {
       "source": "/anunciate",
       "destination": "/patrocinadores",
-      "permanent": true
-    },
-    {
-      "source": "/legal/terminos",
-      "destination": "/terms",
       "permanent": true
     },
     {
@@ -502,7 +517,7 @@
     },
     {
       "source": "/privacidad",
-      "destination": "/legal/privacidad",
+      "destination": "/privacy",
       "permanent": true
     },
     {

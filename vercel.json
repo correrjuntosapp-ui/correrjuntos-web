@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
@@ -649,6 +650,506 @@
     {
       "source": "/carreras/san-silvestre-vallecana",
       "destination": "/blog/san-silvestre-vallecana-guia",
+      "permanent": true
+    },
+    {
+      "source": "/blog/camisetas-tecnicas-running",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/carreras",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/categoria/carreras",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/categoria/salud",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/categoria/zapatillas",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-mejorar-resistencia-running",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/correr-10k-principiantes",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/correr-por-huelva-rutas",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/101-km-ronda-2026-complete-guide",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/author/abraham-marquez",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/benefits-running-in-group",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-apps-for-group-running",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-energy-gels",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-hydration-vests-running",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-omega-3-for-runners",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-on-running-shoes",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-running-apps-groups",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-running-shoes-women",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-trail-running-shoes-2026",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/carb-loading-marathon",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/category/health",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/category/races",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/category/running-shoes",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/empezar-a-correr-guia-principiantes",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/energy-gels-marathon",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/equipment",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/hoka-clifton-10-vs-asics-novablast-5",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/how-to-avoid-digestive-issues-running",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/how-to-increase-running-stamina",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/how-to-start-running-guide",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/hybrid-athletes",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/hydration-guide-for-runners",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/mejores-zapatillas-running-asfalto",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/nike-vomero-18-review",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/nutrition-recovery-post-workout",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/overtraining-running-symptoms",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/popular-races-2026-spain",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/post-race-stretching",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/que-comer-antes-de-correr",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/returning-to-running-after-a-break",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/runner-nutrition-what-to-eat",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-cross-training",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-during-menopause",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-injury-prevention",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-shoes",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/running-with-company-cadiz",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/strength-training-runners",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/stretching-after-running",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/trail-running-mountain-technique",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/trail-running-poles",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/training",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/triathlon-for-runners-beginners",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/vo2-max-running",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/vo2-max-running-how-to-improve",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/equipamiento",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/estiramientos-antes-después-correr",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/grupos-running-huelva",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/grupos-running-sevilla",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/herramientas",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutricion",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutrición-para-runners.html",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/plan-entrenamiento-5km",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ropa-técnica-running.html",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/running",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/sindrome-cintilla-iliotibial-running",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/trail",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/carreras/medio-maraton-monterrey",
+      "destination": "/carreras",
+      "permanent": true
+    },
+    {
+      "source": "/en",
+      "destination": "/app/en",
+      "permanent": true
+    },
+    {
+      "source": "/en/races",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/equipamiento/running-headphones",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/events/bilbao",
+      "destination": "/carreras",
+      "permanent": true
+    },
+    {
+      "source": "/events/san-sebastian",
+      "destination": "/carreras",
+      "permanent": true
+    },
+    {
+      "source": "/events/zaragoza",
+      "destination": "/carreras",
+      "permanent": true
+    },
+    {
+      "source": "/legal/en/privacy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/legal/en/terms",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/planes/en",
+      "destination": "/planes",
+      "permanent": true
+    },
+    {
+      "source": "/races/10k-salida-del-sol-malaga",
+      "destination": "/carreras/10k-salida-del-sol-malaga",
+      "permanent": true
+    },
+    {
+      "source": "/races/10k-valencia",
+      "destination": "/carreras/10k-valencia",
+      "permanent": true
+    },
+    {
+      "source": "/races/15k-nocturna-bilbao",
+      "destination": "/carreras/15k-nocturna-bilbao",
+      "permanent": true
+    },
+    {
+      "source": "/races/carrera-ibercaja-zaragoza",
+      "destination": "/carreras/carrera-ibercaja-zaragoza",
+      "permanent": true
+    },
+    {
+      "source": "/races/carrera-libertad-madrid",
+      "destination": "/carreras/carrera-libertad-madrid",
+      "permanent": true
+    },
+    {
+      "source": "/races/carrera-mujer-madrid",
+      "destination": "/carreras/carrera-mujer-madrid",
+      "permanent": true
+    },
+    {
+      "source": "/races/carrera-parques-madrid",
+      "destination": "/carreras/carrera-parques-madrid",
+      "permanent": true
+    },
+    {
+      "source": "/races/carrera-san-anton-madrid",
+      "destination": "/carreras/carrera-san-anton-madrid",
+      "permanent": true
+    },
+    {
+      "source": "/races/cursa-bombers-barcelona",
+      "destination": "/carreras/cursa-bombers-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/races/cursa-corte-ingles-barcelona",
+      "destination": "/carreras/cursa-corte-ingles-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/races/cursa-merce-barcelona",
+      "destination": "/carreras/cursa-merce-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/races/maraton-alpino-madrileno",
+      "destination": "/carreras/maraton-alpino-madrileno",
+      "permanent": true
+    },
+    {
+      "source": "/races/maraton-madrid",
+      "destination": "/blog/maraton-madrid-guia",
+      "permanent": true
+    },
+    {
+      "source": "/races/media-maraton-barcelona",
+      "destination": "/blog/media-maraton-barcelona-2026",
+      "permanent": true
+    },
+    {
+      "source": "/races/media-maraton-madrid",
+      "destination": "/blog/media-maraton-madrid-2026",
+      "permanent": true
+    },
+    {
+      "source": "/races/media-maraton-malaga",
+      "destination": "/carreras/media-maraton-malaga",
+      "permanent": true
+    },
+    {
+      "source": "/races/media-maraton-sevilla",
+      "destination": "/blog/media-maraton-sevilla-2026",
+      "permanent": true
+    },
+    {
+      "source": "/races/trail-aneto-posets",
+      "destination": "/carreras/trail-aneto-posets",
+      "permanent": true
+    },
+    {
+      "source": "/races/trail-costa-quebrada",
+      "destination": "/carreras/trail-costa-quebrada",
+      "permanent": true
+    },
+    {
+      "source": "/races/trail-sierra-guadarrama",
+      "destination": "/carreras/trail-sierra-guadarrama",
+      "permanent": true
+    },
+    {
+      "source": "/races/ultra-trail-costa-brava",
+      "destination": "/carreras/ultra-trail-costa-brava",
+      "permanent": true
+    },
+    {
+      "source": "/races/volta-a-peu-valencia",
+      "destination": "/carreras/volta-a-peu-valencia",
+      "permanent": true
+    },
+    {
+      "source": "/terminos",
+      "destination": "/",
       "permanent": true
     }
   ],

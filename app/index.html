@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="canonical" href="https://www.correrjuntos.com/app">
 <link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/app">
-<link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/app/en/">
+<link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/app/en">
 <link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/app">
 <meta property="og:title" content="Descargar CorrerJuntos — App Gratis para Runners">
 <meta property="og:description" content="Tu plan, tu coach IA, tu progreso. 7 planes desde 0-5K hasta maratón sub-3h. Gratis en iOS y Android.">
@@ -141,6 +141,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   ]
 }
 </script>
+
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+nav.nav a b,.hero h1 em,.nav-links a.active{color:#c2410c!important}
+.hero .badge{color:#c2410c!important}
+section.hero>p{color:#57534e!important}
+.stats-row .lbl{color:#57534e!important}
+.nav-links a.active{color:#fff!important;background:#c2410c!important}
+.hero .badge{color:#166534!important}
+.stat .num{color:#c2410c!important}
+.container>p,.footer p{color:#57534e!important}
+.compare .row .free{color:#57534e!important}
+.compare .row .premium{color:#c2410c!important}
+.footer p a{color:#c2410c!important;text-decoration:underline;text-underline-offset:2px}
+html{overflow-x:clip}
+@media(max-width:360px){.nav{flex-wrap:wrap;row-gap:6px;padding:12px 10px}.nav-links{flex-wrap:wrap;justify-content:flex-end}.container{padding-left:14px;padding-right:14px}}
+</style>
 </head>
 <body>
 
@@ -156,7 +177,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   </nav>
 </div>
 
-<div class="container">
+<div role="main" class="container">
   <!-- Breadcrumb -->
   <div class="breadcrumb">
     <a href="/">Inicio</a><span class="sep">›</span><span class="current">Descargar App</span>
@@ -263,7 +284,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 <!-- Footer -->
 <div class="footer">
-  <p style="margin-bottom:8px"><a href="/">CorrerJuntos</a> · <a href="/blog">Blog</a> · <a href="/matching">Matching</a> · <a href="/terms">Términos</a> · <a href="/privacy">Privacidad</a></p>
+  <p style="margin-bottom:8px"><a href="/">CorrerJuntos</a> · <a href="/blog">Blog</a> · <a href="/terms">Términos</a> · <a href="/privacy">Privacidad</a></p>
   <p>&copy; 2026 CorrerJuntos. Todos los derechos reservados.</p>
 </div>
 

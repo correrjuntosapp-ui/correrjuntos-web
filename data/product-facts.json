@@ -1,0 +1,76 @@
+{
+  "name": "CorrerJuntos",
+  "storeName": "Correr Juntos",
+  "stores": {
+    "ios": "https://apps.apple.com/app/correr-juntos/id6758505910",
+    "android": "https://play.google.com/store/apps/details?id=com.correrjuntos.app"
+  },
+  "bundleId": "com.correrjuntos.app",
+  "pricing": {
+    "monthly": "5,99 €",
+    "annual": "29,99 €",
+    "annualSavings": "58%",
+    "currency": "EUR",
+    "authority": "App Store / Google Play muestran el precio final antes de confirmar; puede variar por país y elegibilidad."
+  },
+  "trial": "Prueba gratuita solo para cuentas elegibles; la tienda la muestra antes de confirmar.",
+  "freePlans": [
+    "Empieza a Moverte",
+    "0→5K"
+  ],
+  "premiumPlans": [
+    "Prep 5K",
+    "Prep 10K",
+    "Prep Trail",
+    "Prep 21K",
+    "Prep 42K"
+  ],
+  "integrations": {
+    "available": [
+      "Strava"
+    ],
+    "upcoming": [
+      "Garmin",
+      "COROS",
+      "Apple Watch (WorkoutKit)"
+    ],
+    "retired": [
+      "Runner Matching"
+    ]
+  },
+  "metrics": {
+    "registeredRunners": "1100+",
+    "registeredRunnersExact": 1114,
+    "source_runners": "Supabase profiles (excl. cuentas partner), consulta 2026-07-19",
+    "citiesWithMeetups": 7,
+    "source_cities": "Supabase quedadas DISTINCT ciudad, 2026-07-19",
+    "meetups": 74,
+    "source_meetups": "Supabase quedadas count, 2026-07-19",
+    "partnerClubs": 6,
+    "source_clubs": "partner_quedada_recurrences DISTINCT partner activo, 2026-07-19",
+    "trainingPlans": 7,
+    "sessions": 322,
+    "source_plans": "plan_templates / plan_template_workouts, 2026-07-19",
+    "appStoreRating": {
+      "value": "5,0",
+      "reviews": 1,
+      "storefront": "App Store España",
+      "asOf": "2026-07-19"
+    },
+    "asOf": "2026-07-19"
+  },
+  "founder": "Abraham Márquez Rodríguez",
+  "founded": "2025-11",
+  "location": "Huelva, España",
+  "legal": {
+    "privacy": "/privacy",
+    "terms": "/terms",
+    "cookies": "/legal/cookies",
+    "deleteAccount": "/eliminar-cuenta"
+  },
+  "contact": "hola@correrjuntos.com",
+  "languages": [
+    "es",
+    "en"
+  ]
+}

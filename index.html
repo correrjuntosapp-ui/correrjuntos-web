@@ -15,6 +15,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#f97316">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220">
+<link rel="preload" as="image" href="/public/screenshot-feed-520.webp" fetchpriority="high">
 <link rel="canonical" href="https://www.correrjuntos.com/">
 <link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/">
 <link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/">
@@ -62,7 +63,7 @@
       "logo": {"@type": "ImageObject", "url": "https://www.correrjuntos.com/icons/icon-512.png"},
       "sameAs": ["https://www.instagram.com/correrjuntosapp/", "https://www.tiktok.com/@correrjuntosapp", "https://es.pinterest.com/correrjuntos/"],
       "contactPoint": {"@type": "ContactPoint", "email": "abraham.marquez@correrjuntos.com", "contactType": "customer support"},
-      "foundingDate": "2025"
+      "foundingDate": "2025-11"
     },
     {
       "@type": "SoftwareApplication",
@@ -70,9 +71,8 @@
       "operatingSystem": "iOS, Android",
       "applicationCategory": "HealthApplication",
       "description": "Quedadas reales con runners cerca de ti, plan adaptado a tu ritmo y Coach IA 24/7. La app social de running en espa&ntilde;ol. Gratis para empezar.",
-      "screenshot": "https://www.correrjuntos.com/public/screenshot-feed.webp",
+      "screenshot": "https://www.correrjuntos.com/public/screenshot-feed-520.webp",
       "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"},
-      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "12", "reviewCount": "12"},
       "url": "https://www.correrjuntos.com/",
       "downloadUrl": "https://apps.apple.com/app/correr-juntos/id6758505910"
     },
@@ -80,7 +80,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         {"@type": "Question", "name": "\u00bfEs gratis la app CorrerJuntos?", "acceptedAnswer": {"@type": "Answer", "text": "S\u00ed, la app es gratuita con dos planes de entrenamiento incluidos: Empieza a Moverte y 0 a 5K. El plan premium cuesta 5,99 euros al mes e incluye Coach Jos\u00e9 IA ilimitado, planes avanzados, audio coaching y gr\u00e1ficas de progreso."}},
-        {"@type": "Question", "name": "\u00bfEn qu\u00e9 ciudades hay quedadas de running?", "acceptedAnswer": {"@type": "Answer", "text": "La comunidad m\u00e1s densa est\u00e1 en Espa\u00f1a, con 4 clubs partner organizando quedadas recurrentes en Huelva (Soul Run Club), Sevilla (Sevilla Running Club), M\u00e1laga (Beer Runners) y Torre del Mar (Correr Sin L\u00edmites). Tambi\u00e9n hay quedadas creadas por usuarios en Madrid, Barcelona y Valencia. La app funciona globalmente, pero fuera de Espa\u00f1a la densidad es menor por ahora."}},
+        {"@type": "Question", "name": "\u00bfEn qu\u00eEspaña y Latinoamérica hay quedadas de running?", "acceptedAnswer": {"@type": "Answer", "text": "La comunidad m\u00e1s densa est\u00e1 en Espa\u00f1a, con 4 clubs partner organizando quedadas recurrentes en Huelva (Soul Run Club), Sevilla (Sevilla Running Club), M\u00e1laga (Beer Runners) y Torre del Mar (Correr Sin L\u00edmites). Tambi\u00e9n hay quedadas creadas por usuarios en Madrid, Barcelona y Valencia. La app funciona globalmente, pero fuera de Espa\u00f1a la densidad es menor por ahora."}},
         {"@type": "Question", "name": "\u00bfC\u00f3mo funciona Coach Jos\u00e9?", "acceptedAnswer": {"@type": "Answer", "text": "Coach Jos\u00e9 es tu entrenador personal con inteligencia artificial. Analiza cada carrera, te da feedback personalizado sobre ritmo, RPE y splits, y te habla durante la carrera con coaching de audio contextual."}},
         {"@type": "Question", "name": "\u00bfNecesito un reloj GPS para usar CorrerJuntos?", "acceptedAnswer": {"@type": "Answer", "text": "No, tu m\u00f3vil es suficiente para registrar tus carreras con GPS. La app es compatible con puls\u00f3metros Bluetooth LE para monitorizar tu frecuencia card\u00edaca. Adem\u00e1s tiene modo cinta para indoor y la grabaci\u00f3n sigue funcionando aunque cierres la app."}},
         {"@type": "Question", "name": "\u00bfPuedo correr solo o siempre tengo que ir en grupo?", "acceptedAnswer": {"@type": "Answer", "text": "Ambas opciones. Puedes registrar tus carreras en solitario con GPS y Coach Jos\u00e9, o unirte a quedadas con otros runners de tu ciudad."}},
@@ -164,11 +164,11 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://images.pexels.com">
 <link rel="dns-prefetch" href="https://apps.apple.com">
 <link rel="dns-prefetch" href="https://play.google.com">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="manifest" href="/manifest.json">
 <style>
 :root{--bg:#fef7ed;--card:#fffcf9;--white:#ffffff;--orange:#f97316;--orange-light:#fff7ed;--orange-dark:#ea580c;--text:#1a1a1a;--text-sec:#555;--text-light:#888;--border:#e5e5e5;--dark-bg:#0b1220;--cream:#fef7ed;--font:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--max-w:1140px;--radius:16px}
@@ -198,11 +198,11 @@ a{color:inherit;text-decoration:none}
 
 /* HERO */
 .hero{background:var(--dark-bg);color:#fff;padding:72px 0 0;position:relative}
-.hero::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;opacity:.08;pointer-events:none}
+.hero::before{content:'';position:absolute;inset:0;background:url('/public/home-hero-bg-640.webp') center/cover no-repeat;opacity:.08;pointer-events:none}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.1);border:1.5px solid rgba(249,115,22,.3);color:var(--orange);padding:7px 18px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:18px}
 .hero h1{font-size:clamp(36px,5vw,56px);font-weight:900;line-height:1.08;letter-spacing:-2.5px;margin-bottom:20px}
-.hero-sub{font-size:18px;color:#94a3b8;line-height:1.7;margin-bottom:24px;max-width:480px}
+.hero-sub{font-size:18px;color:#57534e;line-height:1.7;margin-bottom:24px;max-width:480px}
 .hero-stores{display:flex;gap:12px;margin-bottom:20px}
 .store-badge{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.2);padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;transition:border-color .2s,transform .15s}
 .store-badge:hover{border-color:rgba(255,255,255,.5);transform:translateY(-1px)}
@@ -389,7 +389,7 @@ a{color:inherit;text-decoration:none}
 .blog-card-cat{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
 .blog-card-title{font-size:16px;font-weight:700;line-height:1.4;margin-bottom:8px}
 .blog-card-excerpt{font-size:13px;color:var(--text-sec);line-height:1.5;margin-bottom:12px}
-.blog-card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b7280;padding-top:10px;border-top:1px solid #f3f4f6;margin-top:auto}
+.blog-card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:#57534e;padding-top:10px;border-top:1px solid #f3f4f6;margin-top:auto}
 .blog-card-meta svg{width:13px;height:13px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2}
 .blog-card-meta-sep{opacity:.4}
 .blog-card-body{display:flex;flex-direction:column;min-height:180px}
@@ -410,7 +410,7 @@ a{color:inherit;text-decoration:none}
 .faq-a p{padding:0 0 20px;font-size:15px;color:var(--text-sec);line-height:1.7}
 
 /* FINAL CTA */
-.final-cta{padding:96px 0;background:var(--dark-bg);color:#fff;text-align:center;position:relative}
+.final-cta{overflow:hidden;padding:96px 0;background:var(--dark-bg);color:#fff;text-align:center;position:relative}
 .final-cta::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;background:radial-gradient(circle,rgba(249,115,22,.12) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
 .final-cta h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;position:relative}
 .final-cta .section-sub{color:rgba(255,255,255,.5);font-size:17px;margin-bottom:36px;position:relative}
@@ -511,8 +511,17 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion: reduce) {
 .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
+/* perf: las secciones bajo el fold no se renderizan hasta acercarse al viewport */
+#quedadas,.features,.coaches,.compare,.demo,.planes,.pricing,.testimonials,.newsletter,.blog-preview,.faq,.final-cta{content-visibility:auto;contain-intrinsic-size:auto 900px}
 </style>
-<link rel="preload" href="/public/screenshot-feed.webp" as="image" type="image/webp">
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+.hero .container>span,.eyebrow,.badge-pill{color:#c2410c!important}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Ir al contenido principal</a>
@@ -568,24 +577,24 @@ Google Play
 </div>
 <div class="hero-social">
 <div class="hero-avatars">
-<img src="/public/quedadas/beer-runners-malaga/logo.png" alt="Beer Runners Málaga" width="32" height="32">
-<img src="/public/quedadas/sevilla-running-club/logo.png" alt="Sevilla Running Club" width="32" height="32">
-<img src="/public/quedadas/soul-runclub-huelva/logo.png" alt="Soul Run Club Huelva" width="32" height="32">
-<img src="/public/quedadas/correr-sin-limites-torre-del-mar/logo.png" alt="Correr Sin Límites Torre del Mar" width="32" height="32">
+<img src="/public/quedadas/beer-runners-malaga/logo-64.webp" alt="Beer Runners Málaga" width="32" height="32" fetchpriority="low" decoding="async">
+<img src="/public/quedadas/sevilla-running-club/logo-64.webp" alt="Sevilla Running Club" width="32" height="32" fetchpriority="low" decoding="async">
+<img src="/public/quedadas/soul-runclub-huelva/logo-64.webp" alt="Soul Run Club Huelva" width="32" height="32" fetchpriority="low" decoding="async">
+<img src="/public/quedadas/correr-sin-limites-torre-del-mar/logo-64.webp" alt="Correr Sin Límites Torre del Mar" width="32" height="32" fetchpriority="low" decoding="async">
 </div>
-+1.000 runners &middot; clubs reales: Beer Runners M&aacute;laga, Sevilla Running Club&hellip;
+1.100+ corredores registrados &middot; clubs reales: Beer Runners M&aacute;laga, Sevilla Running Club&hellip;
 </div>
 <a href="#demo" class="hero-cta-link">Ver c&oacute;mo funciona &rarr;</a>
 </div>
 <div class="hero-phones">
 <div class="hero-phone hero-phone--left">
-<img src="/public/screenshot-map.webp" alt="Mapa de quedadas de running en CorrerJuntos" width="220" height="440" loading="eager">
+<img src="/public/screenshot-map-520.webp" alt="Mapa de quedadas de running en CorrerJuntos" width="220" height="477" loading="lazy" fetchpriority="low">
 </div>
 <div class="hero-phone hero-phone--center">
-<img src="/public/screenshot-feed.webp" alt="Feed de actividad en CorrerJuntos" width="260" height="520" loading="eager" fetchpriority="high">
+<img src="/public/screenshot-feed-520.webp" alt="Feed de actividad en CorrerJuntos" width="260" height="563" loading="eager" fetchpriority="high">
 </div>
 <div class="hero-phone hero-phone--right">
-<img src="/public/screenshot-run.webp" alt="Plan de entrenamiento personalizado en CorrerJuntos" width="220" height="440" loading="eager">
+<img src="/public/screenshot-run-520.webp" alt="Plan de entrenamiento personalizado en CorrerJuntos" width="220" height="477" loading="lazy" fetchpriority="low">
 </div>
 </div>
 </div>
@@ -595,12 +604,12 @@ Google Play
 <!-- COMPATIBLE CON -->
 <div style="background:var(--white);padding:24px 0;border-bottom:1px solid rgba(0,0,0,.04)">
 <div class="container" style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;opacity:.65">
-  <span style="font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:1px">Compatible con</span>
-  <span style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#6b7280"><svg role="img" aria-label="Strava" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FC4C02" d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>Strava</span>
-  <span style="font-size:14px;font-weight:600;color:#6b7280">Bluetooth LE</span>
-  <span style="font-size:14px;font-weight:600;color:#6b7280">iOS</span>
-  <span style="font-size:14px;font-weight:600;color:#6b7280">Android</span>
-  <span style="font-size:14px;font-weight:600;color:#6b7280;opacity:.4">Garmin (pronto)</span>
+  <span style="font-size:12px;font-weight:600;color:#57534e;text-transform:uppercase;letter-spacing:1px">Compatible con</span>
+  <span style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#57534e"><svg role="img" aria-label="Strava" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FC4C02" d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>Strava</span>
+  <span style="font-size:14px;font-weight:600;color:#57534e">Bluetooth LE</span>
+  <span style="font-size:14px;font-weight:600;color:#57534e">iOS</span>
+  <span style="font-size:14px;font-weight:600;color:#57534e">Android</span>
+  <span style="font-size:14px;font-weight:600;color:#57534e;opacity:.4">Garmin (pronto)</span>
 </div>
 </div>
 
@@ -613,7 +622,7 @@ Google Play
 <div style="text-align:center;max-width:720px;margin:0 auto 56px">
 <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.30);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;color:#f97316;margin-bottom:24px;text-transform:uppercase;letter-spacing:1px">Quedadas reales</div>
 <h2 style="font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-.02em;margin-bottom:16px;line-height:1.1">Corre con gente que tiene tu mismo ritmo,<br>en tu ciudad, esta semana.</h2>
-<p style="font-size:18px;color:#94a3b8;line-height:1.7;margin-bottom:32px">No es un grupo de WhatsApp. No es un foro. Son <strong style="color:#fff">quedadas reales con clubs partner verificados</strong>: día, hora, punto de salida, ritmo y nivel. Te apuntas en un toque y apareces.</p>
+<p style="font-size:18px;color:#57534e;line-height:1.7;margin-bottom:32px">No es un grupo de WhatsApp. No es un foro. Son <strong style="color:#fff">quedadas reales con clubs partner verificados</strong>: día, hora, punto de salida, ritmo y nivel. Te apuntas en un toque y apareces.</p>
 </div>
 
 <!-- Clubs partner grid -->
@@ -625,7 +634,7 @@ Google Play
     <img src="/public/quedadas/soul-runclub-huelva/logo.png" alt="Soul Run Club Huelva" width="44" height="44" style="border-radius:22px;background:#fff;padding:3px" loading="lazy">
     <div>
       <div style="font-weight:800;font-size:14px;color:#fff">Soul Run Club</div>
-      <div style="font-size:12px;color:#94a3b8">Huelva &middot; Miércoles 18:30</div>
+      <div style="font-size:12px;color:#57534e">Huelva &middot; Miércoles 18:30</div>
     </div>
   </div>
 </a>
@@ -636,7 +645,7 @@ Google Play
     <img src="/public/quedadas/sevilla-running-club/logo.png" alt="Sevilla Running Club" width="44" height="44" style="border-radius:22px;background:#fff;padding:3px" loading="lazy">
     <div>
       <div style="font-weight:800;font-size:14px;color:#fff">Sevilla Running</div>
-      <div style="font-size:12px;color:#94a3b8">Sevilla &middot; Martes y Jueves 20:30</div>
+      <div style="font-size:12px;color:#57534e">Sevilla &middot; Martes y Jueves 20:30</div>
     </div>
   </div>
 </a>
@@ -647,7 +656,7 @@ Google Play
     <img src="/public/quedadas/beer-runners-malaga/logo.png" alt="Beer Runners Málaga" width="44" height="44" style="border-radius:22px;background:#fff;padding:3px" loading="lazy">
     <div>
       <div style="font-weight:800;font-size:14px;color:#fff">Beer Runners</div>
-      <div style="font-size:12px;color:#94a3b8">Málaga &middot; Martes 20:30</div>
+      <div style="font-size:12px;color:#57534e">Málaga &middot; Martes 20:30</div>
     </div>
   </div>
 </a>
@@ -658,7 +667,7 @@ Google Play
     <img src="/public/quedadas/correr-sin-limites-torre-del-mar/logo.png" alt="Correr Sin Límites Torre del Mar" width="44" height="44" style="border-radius:22px;background:#fff;padding:3px" loading="lazy">
     <div>
       <div style="font-weight:800;font-size:14px;color:#fff">Correr Sin Límites</div>
-      <div style="font-size:12px;color:#94a3b8">Torre del Mar &middot; Jueves 20:00</div>
+      <div style="font-size:12px;color:#57534e">Torre del Mar &middot; Jueves 20:00</div>
     </div>
   </div>
 </a>
@@ -668,7 +677,7 @@ Google Play
 <!-- CTA -->
 <div style="text-align:center;margin-top:48px">
 <a href="/abrir-app" style="display:inline-flex;align-items:center;gap:10px;background:#f97316;color:#fff;padding:16px 32px;border-radius:14px;text-decoration:none;font-weight:800;font-size:16px;letter-spacing:.2px;box-shadow:0 10px 30px rgba(249,115,22,.30);transition:transform .2s ease,box-shadow .2s ease" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 14px 36px rgba(249,115,22,.42)'" onmouseout="this.style.transform='';this.style.boxShadow='0 10px 30px rgba(249,115,22,.30)'">Ver quedadas cerca de ti →</a>
-<p style="margin-top:16px;font-size:13px;color:#64748b">4 clubs partner y quedadas en 8 ciudades</p>
+<p style="margin-top:16px;font-size:13px;color:#64748b">4 clubs partner y quedadas en España y Latinoamérica</p>
 </div>
 
 </div>
@@ -689,7 +698,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-feed.webp" alt="Inicio de CorrerJuntos con tu progreso semanal y pr&oacute;xima quedada" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-feed-520.webp" alt="Inicio de CorrerJuntos con tu progreso semanal y pr&oacute;xima quedada" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -702,7 +711,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-run.webp" alt="PlanesScreen con Coach Jos&eacute; - planes de entrenamiento personalizados" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-run-520.webp" alt="PlanesScreen con Coach Jos&eacute; - planes de entrenamiento personalizados" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -728,7 +737,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-map.webp" alt="Mapa de quedadas y carreras en la app" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-map-520.webp" alt="Mapa de quedadas y carreras en la app" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -870,7 +879,7 @@ Google Play
 <div class="demo-points reveal">
 <div class="demo-point">
 <div class="demo-point-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
-<div><h4>Contexto hist&oacute;rico</h4><p>Analiza tus &uacute;ltimas carreras para encontrar patrones, no solo n&uacute;meros sueltos.</p></div>
+<div><h4 role="heading" aria-level="2">Contexto hist&oacute;rico</h4><p>Analiza tus &uacute;ltimas carreras para encontrar patrones, no solo n&uacute;meros sueltos.</p></div>
 </div>
 <div class="demo-point">
 <div class="demo-point-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
@@ -956,7 +965,7 @@ Google Play
 <div class="pricing-popular">Popular</div>
 <h3>Premium</h3>
 <div class="pricing-amount">5,99&euro;<span>/mes</span></div>
-<div class="pricing-annual">29,99&euro;/a&ntilde;o (ahorra 50%) &middot; o compra un plan suelto para siempre</div>
+<div class="pricing-annual">29,99&euro;/a&ntilde;o (ahorra 58%) &middot; o compra un plan suelto para siempre</div>
 <ul class="pricing-list">
 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path class="check-icon" d="M20 6L9 17l-5-5"/></svg>Todos los planes (5K a 42K)</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path class="check-icon" d="M20 6L9 17l-5-5"/></svg>Coach Jos&eacute; y Ana ilimitado</li>
@@ -966,7 +975,7 @@ Google Play
 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path class="check-icon" d="M20 6L9 17l-5-5"/></svg>32 logros desbloqueables</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path class="check-icon" d="M20 6L9 17l-5-5"/></svg>GPS + quedadas + comunidad</li>
 </ul>
-<div style="text-align:center;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px">Empezar prueba gratis &mdash; 14 d&iacute;as</div>
+<div style="text-align:center;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px">Empezar ahora</div>
 <div style="display:flex;gap:10px;justify-content:center">
 <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#f97316;color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:600;text-decoration:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
 <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#f97316;color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:600;text-decoration:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 12l2.302-3.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/></svg>Google Play</a>
@@ -982,12 +991,12 @@ Google Play
 <div class="container">
 <blockquote class="reveal" style="max-width:640px;margin:0 auto 48px;text-align:center;border:0;padding:0">
 <p style="font-size:clamp(20px,3vw,28px);font-weight:600;line-height:1.4;letter-spacing:-.01em;margin-bottom:16px">&laquo;Se nota que est&aacute; hecha por alguien que corre.&raquo;</p>
-<footer style="font-size:14px;color:#6b7280">&mdash; Miguel, Dos Hermanas</footer>
+<footer style="font-size:14px;color:#57534e">&mdash; Miguel, Dos Hermanas</footer>
 </blockquote>
 <div class="trust-row reveal">
 <div class="trust-item">
-<div class="trust-num" data-target="4.8" data-decimals="1">4.8</div>
-<div class="trust-label">App Store <span style="opacity:.6;font-weight:400">&middot; 12 valoraciones</span></div>
+<div class="trust-num" data-target="1100">1.100</div>
+<div class="trust-label">corredores registrados <span style="opacity:.6;font-weight:400">&middot; jul 2026</span></div>
 </div>
 <div class="trust-item">
 <div class="trust-num" data-target="1000" data-suffix="+">1000+</div>
@@ -1010,7 +1019,7 @@ Google Play
 <div class="container">
 <span class="lm-badge reveal">&#128218; REGALO &middot; PDF 8 P&Aacute;GINAS</span>
 <h2 class="reveal">Descarga GRATIS el <span>Plan 10K</span></h2>
-<p class="section-sub reveal">Las <strong>primeras 2 semanas</strong> del plan de la app con +1.000 runners registrados. 8 sesiones estructuradas + tips del coach + gu&iacute;a de nutrici&oacute;n pre-10K.</p>
+<p class="section-sub reveal">Las <strong>primeras 2 semanas</strong> del plan de la app con 1.100+ corredores registrados. 8 sesiones estructuradas + tips del coach + gu&iacute;a de nutrici&oacute;n pre-10K.</p>
 <form class="newsletter-form reveal" id="newsletterForm" action="/api/brevo-subscribe" method="POST">
 <label for="newsletter-email" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0">Email</label>
 <input type="email" id="newsletter-email" name="email" placeholder="tu@email.com" required aria-label="Email">
@@ -1027,7 +1036,7 @@ Google Play
 <h2 class="reveal">Apoyo en tu camino runner</h2>
 <div class="blog-grid reveal-stagger">
 <a href="/blog/empezar-a-correr-guia-principiantes" class="blog-card">
-<img src="https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400&amp;h=250&amp;fit=crop" alt="Gu&iacute;a para empezar a correr" width="400" height="250" loading="lazy">
+<img src="/public/pexels/2803158-1280.webp" alt="Gu&iacute;a para empezar a correr" width="400" height="250" loading="lazy">
 <div class="blog-card-body">
 <div class="blog-card-cat">Principiantes</div>
 <div class="blog-card-title">Gu&iacute;a completa para empezar a correr desde cero en 2026</div>
@@ -1042,7 +1051,7 @@ Google Play
 </div>
 </a>
 <a href="/blog/vo2-max-running-como-mejorar" class="blog-card">
-<img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400&amp;h=250&amp;fit=crop" alt="C&oacute;mo mejorar el VO2max" width="400" height="250" loading="lazy">
+<img src="/public/pexels/2529148-1280.webp" alt="C&oacute;mo mejorar el VO2max" width="400" height="250" loading="lazy">
 <div class="blog-card-body">
 <div class="blog-card-cat">Entrenamiento</div>
 <div class="blog-card-title">VO2max en running: qu&eacute; es y c&oacute;mo mejorar tu capacidad aer&oacute;bica</div>
@@ -1057,7 +1066,7 @@ Google Play
 </div>
 </a>
 <a href="/blog/mejores-zapatillas-on-running" class="blog-card">
-<img src="https://images.pexels.com/photos/3771074/pexels-photo-3771074.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400&amp;h=250&amp;fit=crop" alt="Mejores zapatillas On Running" width="400" height="250" loading="lazy">
+<img src="/public/pexels/3771074-1280.webp" alt="Mejores zapatillas On Running" width="400" height="250" loading="lazy">
 <div class="blog-card-body">
 <div class="blog-card-cat">Zapatillas</div>
 <div class="blog-card-title">Las 8 mejores zapatillas On Running en 2026: an&aacute;lisis completo</div>
@@ -1072,7 +1081,7 @@ Google Play
 </div>
 </a>
 <a href="/blog/correr-durante-menopausia" class="blog-card">
-<img src="https://images.pexels.com/photos/1571939/pexels-photo-1571939.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400&amp;h=250&amp;fit=crop" alt="Correr durante la menopausia" width="400" height="250" loading="lazy">
+<img src="/public/pexels/1571939-1280.webp" alt="Correr durante la menopausia" width="400" height="250" loading="lazy">
 <div class="blog-card-body">
 <div class="blog-card-cat">Salud</div>
 <div class="blog-card-title">Correr durante la menopausia: gu&iacute;a para mujeres runners</div>
@@ -1168,7 +1177,7 @@ Descargar en Google Play
 </div>
 </div>
 <div>
-<h4>Producto</h4>
+<h4 role="heading" aria-level="2">Producto</h4>
 <ul>
 <li><a href="/planes">Planes de entrenamiento</a></li>
 <li><a href="/blog">Blog</a></li>

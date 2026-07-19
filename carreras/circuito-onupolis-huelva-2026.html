@@ -328,6 +328,17 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
 .plan-cta-card .cta-btn:hover{background:#ea6c10}
 @media(max-width:560px){.plan-cta-card{flex-direction:column;align-items:flex-start;gap:14px}}
 </style>
+
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+@media(max-width:640px){.site-header nav{flex-wrap:wrap;row-gap:6px}.site-header nav>div{display:flex;flex-wrap:wrap;justify-content:flex-end;min-width:0;row-gap:4px}}
+@media(max-width:640px){footer>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;row-gap:14px}}
+html{overflow-x:clip}
+</style>
 </head>
 <body>
 
@@ -996,7 +1007,7 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 CorrerJuntos &middot; Huelva, Andaluc&iacute;a &middot; <a href="/privacidad" style="color:#8b7355">Privacidad</a> &middot; <a href="/cookies" style="color:#8b7355">Cookies</a></p>
+    <p>&copy; 2026 CorrerJuntos &middot; Huelva, Andaluc&iacute;a &middot; <a href="/privacidad" style="color:#8b7355">Privacidad</a> &middot; <a href="/legal/cookies" style="color:#8b7355">Cookies</a></p>
   </div>
 </footer>
 
@@ -1136,7 +1147,7 @@ html.dark .rb-guide{background:rgba(249,115,22,.16);color:#fb923c}
 
 <!-- Cookie banner -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:#0b1220;color:#e2e8f0;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.85rem">
-  <span>Usamos cookies propias y de terceros para an&aacute;lisis. <a href="/cookies" style="color:#f97316">M&aacute;s info</a></span>
+  <span>Usamos cookies propias y de terceros para an&aacute;lisis. <a href="/legal/cookies" style="color:#f97316">M&aacute;s info</a></span>
   <div style="display:flex;gap:8px">
     <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cj_cookie_consent','declined')" style="padding:8px 16px;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#e2e8f0;cursor:pointer;font-size:.85rem">Rechazar</button>
     <button onclick="localStorage.setItem('cj_cookie_consent','accepted');loadGA4();document.getElementById('cookie-banner').style.display='none'" style="padding:8px 16px;border-radius:8px;background:#f97316;border:none;color:#fff;cursor:pointer;font-weight:700;font-size:.85rem">Aceptar</button>

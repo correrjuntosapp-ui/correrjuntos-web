@@ -13,7 +13,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.correrjuntos.com/planes">
 <link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/planes">
-<link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/plans/">
+<link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/plans">
 <link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/planes">
 <meta property="og:title" content="Planes de Entrenamiento Gratis con Coach IA | CorrerJuntos">
 <meta property="og:description" content="7 planes estructurados desde 0-5K hasta marat&oacute;n sub-3h. Coach Jos&eacute; IA + GPS + audio alertas km. 2 planes gratis, el resto con Premium.">
@@ -200,7 +200,7 @@ a{color:#f97316;text-decoration:none}
 .footer-social a:hover{color:#f97316;background:rgba(249,115,22,.1)}
 .footer-social svg{width:18px;height:18px;fill:currentColor}
 .footer-bottom{border-top:1px solid #efe6db;padding-top:24px;text-align:center}
-.footer-bottom p{color:#8b7355;font-size:.8rem}
+.footer-bottom p{color:#57534e;font-size:.8rem}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
@@ -455,6 +455,33 @@ html.dark .footer-bottom p{color:#64748b}
   ]
 }
 </script>
+
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+.ember,.hero-stats strong{color:#c2410c!important}
+.hero-marker,.hero-stats span{color:#57534e!important}
+.section-marker{color:#c2410c!important}
+.filter-btn{color:#44403c!important}
+.plan-card .tier-badge{color:#7c2d12!important;background:#fed7aa!important}
+.plan-stat .lbl{color:#57534e!important}
+.filter-btn{color:#3f3a34!important;border-color:#8a8178!important}
+.plan-card .level-badge{color:#57534e!important}
+.plan-card .cta-link{color:#c2410c!important;text-decoration:underline;text-underline-offset:2px}
+.filter-btn.active{background:#c2410c!important;color:#fff!important}
+.coach-tag{color:#c2410c!important}
+.coach-role,.coach-tagline{color:#57534e!important}
+.compare-pricing .price{color:#c2410c!important}
+.compare-pricing .price span{color:#57534e!important}
+.price-sub{color:#57534e!important}
+.footer-brand{color:#c2410c!important}
+.footer-desc{color:#57534e!important}
+.compare-section p,.compare-col p{color:#3d3229!important}
+html{overflow-x:clip}
+</style>
 </head>
 <body>
 
@@ -471,7 +498,7 @@ html.dark .footer-bottom p{color:#64748b}
   </nav>
 </header>
 
-<div class="container">
+<div role="main" class="container">
   <div class="breadcrumb">
     <a href="/">Inicio</a><span>/</span>Planes de Entrenamiento
   </div>
@@ -519,22 +546,22 @@ html.dark .footer-bottom p{color:#64748b}
     <div class="features-grid">
       <div class="feature">
         <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 11H1l8-8v8z"/><path d="M21 11V9a2 2 0 00-2-2h-3"/><path d="M9 21H1V11"/><path d="M9 13l8 8 4-4-8-8"/></svg></div>
-        <h3>Plan personalizado en 60s</h3>
+        <h3 role="heading" aria-level="2">Plan personalizado en 60s</h3>
         <p>Configura distancia, ritmo, d&iacute;as disponibles. Coach Jos&eacute; ajusta cada sesi&oacute;n a tu nivel.</p>
       </div>
       <div class="feature">
         <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
-        <h3>Coach Jos&eacute; analiza cada carrera</h3>
+        <h3 role="heading" aria-level="2">Coach Jos&eacute; analiza cada carrera</h3>
         <p>Despu&eacute;s de cada sesi&oacute;n, feedback personalizado. Ritmo, cadencia, FC, &aacute;reas de mejora.</p>
       </div>
       <div class="feature">
         <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
-        <h3>Audio alertas km en background</h3>
+        <h3 role="heading" aria-level="2">Audio alertas km en background</h3>
         <p>Cada km recibes el ritmo, distancia y tiempo por audio. Funciona aunque la app est&eacute; cerrada.</p>
       </div>
       <div class="feature">
         <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <h3>GPS preciso + Garmin/COROS sync</h3>
+        <h3 role="heading" aria-level="2">GPS preciso + Garmin/COROS sync</h3>
         <p>Tracking GPS en tiempo real. Sincronizaci&oacute;n autom&aacute;tica con relojes Garmin, COROS y Apple Watch.</p>
       </div>
     </div>

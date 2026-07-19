@@ -6,10 +6,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
 <meta charset="UTF-8">
-<link rel="preconnect" href="https://images.pexels.com" crossorigin>
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin>
-<link rel="preload" as="image" href="https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70" imagesrcset="https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=640&h=320&fit=crop&q=70 640w, https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70 1200w" imagesizes="(max-width: 640px) 100vw, 1200px" fetchpriority="high">
+<link rel="preload" as="image" href="/public/pexels/36370811-1200.webp" imagesrcset="/public/pexels/36370811-640.webp 640w, /public/pexels/36370811-1200.webp 1200w" imagesizes="(max-width: 640px) 100vw, 1200px" fetchpriority="high">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Abraham Márquez Rodríguez">
@@ -24,7 +23,7 @@
 <meta property="og:description" content="Calendario completo verificado de las mejores carreras de running en Andalucía 2026 por provincia y mes. Trail, asfalto, ultras y populares.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.correrjuntos.com/blog/mejores-carreras-running-andalucia-2026">
-<meta property="og:image" content="https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70">
+<meta property="og:image" content="/public/pexels/36370811-1200.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_ES">
@@ -32,7 +31,7 @@
 <meta name="twitter:site" content="@CorrerJuntos">
 <meta name="twitter:title" content="Mejores Carreras de Running en Andalucía 2026">
 <meta name="twitter:description" content="105 carreras verificadas de running en Andalucía 2026 por provincia y mes.">
-<meta name="twitter:image" content="https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70">
+<meta name="twitter:image" content="/public/pexels/36370811-1200.webp">
 <!-- App Links Protocol -->
 <meta property="al:ios:app_store_id" content="6758505910">
 <meta property="al:ios:app_name" content="Correr Juntos">
@@ -85,7 +84,7 @@
       "inLanguage": "es-ES",
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70"
+        "url": "/public/pexels/36370811-1200.webp"
       }
     },
     {
@@ -124,7 +123,7 @@
       "publisher": {
         "@id": "https://www.correrjuntos.com/#organization"
       },
-      "image": "https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70",
+      "image": "/public/pexels/36370811-1200.webp",
       "inLanguage": "es-ES",
       "articleSection": "Carreras populares",
       "wordCount": 7000,
@@ -455,6 +454,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </style>
 <script>(function(){if(localStorage.getItem('blog_theme')==='dark')document.documentElement.classList.add('dark-mode')})()</script>
 <meta name="apple-itunes-app" content="app-id=6758505910">
+<style id="cj-nav-wrap">@media(max-width:640px){.site-header nav{height:auto!important;min-height:56px;flex-wrap:wrap;row-gap:4px;padding-top:6px;padding-bottom:6px}.site-header nav>div{flex-wrap:wrap;row-gap:8px}}.site-header nav a[style*="color:#f97316"],.site-header nav span[style*="color:#f97316"]{color:#c2410c!important}.site-header nav a[style*="background:#f97316"]{background:#c2410c!important;color:#fff!important}.breadcrumb,.breadcrumb a{color:#57534e!important}.breadcrumb a{text-decoration:underline;text-underline-offset:2px}nav.toc li,.toc li{margin:8px 0;display:block}nav.toc a,.toc a{display:block;padding:6px 4px;min-height:24px;line-height:1.4}.content .tip strong,.tip strong{color:#9a3412!important}.plan-table th,.content th{color:#9a3412!important}.content h3{color:#c2410c}</style>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 <header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
@@ -473,7 +473,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <div class="container"><div class="breadcrumb"><a href="/">Inicio</a><span>/</span><a href="/blog">Blog</a><span>/</span>Mejores Carreras Running Andaluc&iacute;a 2026</div></div>
 
 <div class="hero">
-  <div class="hero-bg"><img src="https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70" srcset="https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=640&h=320&fit=crop&q=70 640w, https://images.pexels.com/photos/36370811/pexels-photo-36370811.jpeg?auto=compress&cs=tinysrgb&w=1200&h=500&fit=crop&q=70 1200w" sizes="(max-width: 640px) 100vw, 1200px" alt="Corredores en una carrera popular de running en Andaluc&iacute;a 2026" loading="eager" fetchpriority="high" width="1200" height="500"></div>
+  <div class="hero-bg"><img src="/public/pexels/36370811-1200.webp" srcset="/public/pexels/36370811-640.webp 640w, /public/pexels/36370811-1200.webp 1200w" sizes="(max-width: 640px) 100vw, 1200px" alt="Corredores en una carrera popular de running en Andaluc&iacute;a 2026" loading="eager" fetchpriority="high" width="1200" height="500"></div>
   <div class="hero-content">
     <h1>Mejores Carreras de Running en Andaluc&iacute;a 2026</h1>
     <p>El calendario m&aacute;s completo de mayo a diciembre: <strong>105 pruebas verificadas</strong> por provincia y mes. Trail, asfalto, ultras, nocturnas y populares de pueblo en las 8 provincias andaluzas.</p>
@@ -666,7 +666,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   </div>
 
   <h2 id="huelva">Carreras populares en Huelva 2026 &mdash; Circuito Onupolis</h2>
-  <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/29881471/pexels-photo-29881471.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Corredora junto al paseo mar&iacute;timo &mdash; Huelva ofrece marismas, playa y trail costero para correr en 2026" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">Las marismas onubenses y la costa de Punta Umbr&iacute;a son escenarios cl&aacute;sicos del calendario provincial</figcaption></figure>
+  <figure style="margin:24px 0;text-align:center"><img src="/public/pexels/29881471-800.webp" alt="Corredora junto al paseo mar&iacute;timo &mdash; Huelva ofrece marismas, playa y trail costero para correr en 2026" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">Las marismas onubenses y la costa de Punta Umbr&iacute;a son escenarios cl&aacute;sicos del calendario provincial</figcaption></figure>
   <p><strong>En Huelva hay 14 carreras verificadas entre mayo y diciembre de 2026</strong>, con foco en el Circuito Onupolis (Ayuntamiento de Huelva, 6 pruebas) y la cita reina del a&ntilde;o: el <strong>10K Huelva Puerta del Descubrimiento</strong> (sede del Cto. de Andaluc&iacute;a 10K en Ruta).</p>
   <p>Huelva tiene el circuito de carreras populares m&aacute;s organizado de Andaluc&iacute;a: <strong>Onupolis</strong>, gestionado por el Ayuntamiento, que agrupa 6 pruebas oficiales con un sistema de puntuaci&oacute;n para corredores fijos. Los patrocinadores incluyen Toyota, Coca-Cola y la Universidad de Huelva, lo que da idea del nivel de organizaci&oacute;n.</p>
 
@@ -696,7 +696,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <p>Si te mueves por Huelva o cercan&iacute;as y quieres encontrar gente con qui&eacute;n entrenar para estas pruebas, en <a href="/cities/huelva/" style="color:#f97316">la p&aacute;gina de Huelva</a> tienes los grupos activos de la ciudad.</p>
 
   <h2 id="sevilla">Carreras populares en Sevilla 2026</h2>
-  <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/4803916/pexels-photo-4803916.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Runner corriendo junto a un parque urbano en Sevilla" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">El Parque de Mar&iacute;a Luisa, las riberas del Guadalquivir y los pueblos de la Campi&ntilde;a sevillana concentran m&aacute;s de 15 pruebas en mayo-junio</figcaption></figure>
+  <figure style="margin:24px 0;text-align:center"><img src="/public/pexels/4803916-800.webp" alt="Runner corriendo junto a un parque urbano en Sevilla" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">El Parque de Mar&iacute;a Luisa, las riberas del Guadalquivir y los pueblos de la Campi&ntilde;a sevillana concentran m&aacute;s de 15 pruebas en mayo-junio</figcaption></figure>
   <p><strong>En Sevilla hay 15 carreras verificadas entre mayo y junio de 2026</strong>, repartidas entre la capital (Parque Mar&iacute;a Luisa, Alamillo, Triatl&oacute;n de Sevilla) y los pueblos del Aljarafe, los Alcores y la Campi&ntilde;a, con dominio absoluto de las nocturnas en mayo.</p>
   <p>Sevilla concentra <strong>15 pruebas verificadas</strong> entre la capital y los pueblos del Aljarafe, los Alcores y la Campi&ntilde;a. El gran reclamo cl&aacute;sico es la <a href="/blog/maraton-sevilla-guia" style="color:#f97316">Marat&oacute;n de Sevilla</a> (febrero, fuera del rango de esta gu&iacute;a) y la <a href="/blog/media-maraton-sevilla-2026" style="color:#f97316">Media Marat&oacute;n</a>, pero en mayo-junio hay much&iacute;simo movimiento popular:</p>
 
@@ -725,7 +725,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <p>&iquest;Buscas grupo para entrenar antes de la carrera? En <a href="/cities/sevilla/" style="color:#f97316">la p&aacute;gina de Sevilla</a> tienes todos los grupos de running activos en la ciudad.</p>
 
   <h2 id="malaga">Carreras populares en M&aacute;laga 2026 &mdash; Costa del Sol y Serran&iacute;a de Ronda</h2>
-  <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/1056497/pexels-photo-1056497.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Corredores junto al mar en la costa malague&ntilde;a, rutas de running por la Costa del Sol 2026" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">La Costa del Sol y la Serran&iacute;a de Ronda combinan asfalto rapido en la costa con trails serios en el interior</figcaption></figure>
+  <figure style="margin:24px 0;text-align:center"><img src="/public/pexels/1056497-800.webp" alt="Corredores junto al mar en la costa malague&ntilde;a, rutas de running por la Costa del Sol 2026" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">La Costa del Sol y la Serran&iacute;a de Ronda combinan asfalto rapido en la costa con trails serios en el interior</figcaption></figure>
   <p><strong>En M&aacute;laga hay 14 carreras verificadas entre mayo y junio de 2026</strong>, incluyendo la m&iacute;tica <strong>101 Km de La Legi&oacute;n</strong> en Ronda, la <strong>Media Marat&oacute;n V&eacute;lez-M&aacute;laga</strong> en la Costa del Sol y trails en la Serran&iacute;a de Ronda y Axarqu&iacute;a.</p>
   <p>M&aacute;laga combina <strong>asfalto urbano</strong> en la costa con <strong>trails serios</strong> en la Serran&iacute;a de Ronda y la Axarqu&iacute;a. Hay 14 pruebas verificadas para mayo-junio, incluyendo la m&iacute;tica 101 Km de La Legi&oacute;n.</p>
 
@@ -758,7 +758,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <div class="cta-mid" style="margin:32px 0;padding:20px 24px;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(249,115,22,.03));border:1px solid rgba(249,115,22,.15);border-radius:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><p style="color:#3d3229;font-weight:700;font-size:.95rem;margin:0 0 4px">&#128205; &iquest;No quieres ir solo a la carrera?</p><p style="color:#5c4d3d;font-size:.85rem;margin:0">CorrerJuntos te conecta con runners de tu nivel y zona. Quedadas reales en tu ciudad.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="https://apps.apple.com/us/app/correr-juntos/id6758505910" target="_blank" rel="noopener" class="cta" style="padding:10px 20px;font-size:.85rem;white-space:nowrap">App Store</a><a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener" class="cta" style="padding:10px 20px;font-size:.85rem;white-space:nowrap">Google Play</a></div></div>
 
   <h2 id="cadiz">Carreras populares en C&aacute;diz 2026 &mdash; Jerez, Sierra de Grazalema y litoral</h2>
-  <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/5928322/pexels-photo-5928322.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Mujer corriendo por la playa &mdash; el litoral gaditano y los vi&ntilde;edos de Jerez son escenario de pruebas como la Sherry Marat&oacute;n" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">La provincia con m&aacute;s diversidad de Andaluc&iacute;a: vi&ntilde;edos de Jerez, sierras de Grazalema y el litoral gaditano</figcaption></figure>
+  <figure style="margin:24px 0;text-align:center"><img src="/public/pexels/5928322-800.webp" alt="Mujer corriendo por la playa &mdash; el litoral gaditano y los vi&ntilde;edos de Jerez son escenario de pruebas como la Sherry Marat&oacute;n" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">La provincia con m&aacute;s diversidad de Andaluc&iacute;a: vi&ntilde;edos de Jerez, sierras de Grazalema y el litoral gaditano</figcaption></figure>
   <p><strong>En C&aacute;diz hay 15 carreras verificadas entre mayo y junio de 2026</strong>, con un perfil &uacute;nico en Andaluc&iacute;a: la <strong>Sherry Marat&oacute;n entre vi&ntilde;edos de Jerez</strong>, trails de la Sierra de Grazalema, la Media Marat&oacute;n El Puerto y populares costeras desde Conil hasta Algeciras.</p>
   <p>C&aacute;diz tiene <strong>15 pruebas verificadas</strong> y un perfil muy variado: trails serios en la sierra interior, asfalto en la costa y la jugada experiencia &uacute;nica de la Sherry Marat&oacute;n entre vi&ntilde;edos.</p>
 
@@ -788,7 +788,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <p>Para entrenar en Jerez, El Puerto, Algeciras o C&aacute;diz capital, consulta los grupos de running activos en <a href="/cities/cadiz/" style="color:#f97316">la p&aacute;gina de C&aacute;diz</a>.</p>
 
   <h2 id="granada">Carreras populares y trails en Granada 2026 &mdash; Sierra Nevada y Alpujarra</h2>
-  <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/2356045/pexels-photo-2356045.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Trail runner por sendero de monta&ntilde;a &mdash; la Alpujarra y Sierra Nevada concentran los trails verticales m&aacute;s exigentes" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">Granada es territorio trail puro: pueblos blancos de la Alpujarra, Sierra Nevada y la altitud que no encuentras en otras provincias</figcaption></figure>
+  <figure style="margin:24px 0;text-align:center"><img src="/public/pexels/2356045-800.webp" alt="Trail runner por sendero de monta&ntilde;a &mdash; la Alpujarra y Sierra Nevada concentran los trails verticales m&aacute;s exigentes" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">Granada es territorio trail puro: pueblos blancos de la Alpujarra, Sierra Nevada y la altitud que no encuentras en otras provincias</figcaption></figure>
   <p><strong>En Granada hay 15 carreras verificadas entre mayo y septiembre de 2026</strong>, con foco absoluto en <strong>trail de monta&ntilde;a</strong> &mdash; la Alpujarra (&Oacute;rgiva, Lanjar&oacute;n, P&oacute;rtugos), Sierra Nevada y la altitud de los pueblos blancos definen el calendario.</p>
   <p>Granada es <strong>territorio trail</strong> por excelencia. La altitud y los pueblos blancos de la Alpujarra dan recorridos que no encuentras en ning&uacute;n otro sitio de Andaluc&iacute;a. 15 pruebas verificadas:</p>
 
@@ -829,7 +829,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <p>Si vives en <a href="/cities/cordoba/" style="color:#f97316">C&oacute;rdoba</a> o cercan&iacute;as, el circuito provincial completo de la Diputaci&oacute;n es probablemente la ruta m&aacute;s eficiente para acumular dorsales. La inscripci&oacute;n suele ser barata o gratuita por estar subvencionada.</p>
 
   <h2 id="jaen">Carreras populares y trails en Ja&eacute;n 2026 &mdash; Sierra de Cazorla y Bosques del Sur</h2>
-  <figure style="margin:24px 0;text-align:center"><img src="https://images.pexels.com/photos/35206081/pexels-photo-35206081.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop&q=75" alt="Trail runner en bosque de monta&ntilde;a, escenario t&iacute;pico de la Sierra de Cazorla y Bosques del Sur en Ja&eacute;n" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">El Parque Natural de Cazorla, Segura y Las Villas &mdash; el espacio protegido m&aacute;s grande de Espa&ntilde;a &mdash; alberga la prueba reina del trail andaluz</figcaption></figure>
+  <figure style="margin:24px 0;text-align:center"><img src="/public/pexels/35206081-800.webp" alt="Trail runner en bosque de monta&ntilde;a, escenario t&iacute;pico de la Sierra de Cazorla y Bosques del Sur en Ja&eacute;n" width="800" height="400" loading="lazy" style="max-width:100%;border-radius:12px"><figcaption style="font-size:.85rem;color:#888;margin-top:8px">El Parque Natural de Cazorla, Segura y Las Villas &mdash; el espacio protegido m&aacute;s grande de Espa&ntilde;a &mdash; alberga la prueba reina del trail andaluz</figcaption></figure>
   <p><strong>En Ja&eacute;n hay 15 carreras verificadas entre mayo y julio de 2026</strong>, lideradas por el <strong>Ultra Trail Bosques del Sur</strong> en la Sierra de Cazorla, Segura y Las Villas (el espacio protegido m&aacute;s grande de Espa&ntilde;a).</p>
   <p>Ja&eacute;n se convierte en epicentro nacional del trail con la <strong><a href="https://www.google.com/search?q=Ultra%20Trail%20Bosques%20del%20Sur%202026%20inscripci%C3%B3n" target="_blank" rel="noopener nofollow" style="color:#f97316;text-decoration:none">Ultra Trail Bosques del Sur</a></strong> y otras pruebas de monta&ntilde;a en la Sierra de Cazorla, Segura y Las Villas (el espacio protegido m&aacute;s grande de Espa&ntilde;a). 15 pruebas verificadas en total:</p>
 

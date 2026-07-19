@@ -20,50 +20,32 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/about"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/app/</loc>
+    <loc>https://www.correrjuntos.com/app</loc>
     <lastmod>2026-04-25</lastmod>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/app/en/</loc>
+    <loc>https://www.correrjuntos.com/app/en</loc>
     <lastmod>2026-04-25</lastmod>
   </url>
-  <url>
-    <loc>https://www.correrjuntos.com/matching/</loc>
+<url>
+    <loc>https://www.correrjuntos.com/recursos/plan-0-5k</loc>
     <lastmod>2026-04-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/matching/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/matching/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/matching/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/recursos/plan-0-5k"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/recursos/en/couch-to-5k-plan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/recursos/plan-0-5k"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/matching/en/</loc>
+    <loc>https://www.correrjuntos.com/recursos/en/couch-to-5k-plan</loc>
     <lastmod>2026-04-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/matching/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/matching/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/matching/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/recursos/en/couch-to-5k-plan"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/recursos/plan-0-5k"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/recursos/plan-0-5k"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/recursos/plan-0-5k/</loc>
-    <lastmod>2026-04-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/recursos/en/couch-to-5k-plan/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/recursos/en/couch-to-5k-plan/</loc>
-    <lastmod>2026-04-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/recursos/en/couch-to-5k-plan/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/recursos/plan-0-5k/"/>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/calculadora/</loc>
+    <loc>https://www.correrjuntos.com/calculadora</loc>
     <lastmod>2026-04-25</lastmod>
   </url>
-  <url>
-    <loc>https://www.correrjuntos.com/sobre-nosotros</loc>
-    <lastmod>2026-04-25</lastmod>
-  </url>
-  <url>
+<url>
     <loc>https://www.correrjuntos.com/inversores</loc>
     <lastmod>2026-04-25</lastmod>
   </url>
@@ -87,5 +69,10 @@
   <url>
     <loc>https://www.correrjuntos.com/terms</loc>
     <lastmod>2026-03-06</lastmod>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/eliminar-cuenta</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

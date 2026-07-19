@@ -46,7 +46,9 @@
     '#toc-float::-webkit-scrollbar-track{background:transparent}',
     '#toc-float::-webkit-scrollbar-thumb{background:rgba(249,115,22,.3);border-radius:9px}',
     /* Mobile toggle — merged into header row */
-    '.toc-toggle{display:none;width:100%;padding:0;background:none;border:none;color:#f97316;font-weight:700;font-size:.85rem;cursor:pointer;text-align:left;transition:background .2s;position:absolute;inset:0;z-index:2}',
+    /* top/height en vez de inset:0 — con inset el boton tapaba TODOS los
+       enlaces del TOC expandido (no eran clicables: el clic colapsaba) */
+    '.toc-toggle{display:none;width:100%;padding:0;background:none;border:none;color:#c2410c;font-weight:700;font-size:.85rem;cursor:pointer;text-align:left;transition:background .2s;position:absolute;top:0;left:0;right:0;height:44px;z-index:2}',
     '.toc-header{position:relative;cursor:pointer}',
     '.toc-header-arrow{margin-left:8px;transition:transform .3s;color:#f97316;font-size:.75rem}',
     '.toc-toggle.open + * .toc-header-arrow,.toc.expanded .toc-header-arrow{transform:rotate(180deg)}',

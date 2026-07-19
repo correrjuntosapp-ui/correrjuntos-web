@@ -1,5 +1,5 @@
 /* Blog enhancements — lang toggle + FAQ accordion + scroll-to-top + newsletter slide-in */
-(function(){(function(){var st=document.createElement("style");st.id="cj-a11y-article";st.textContent="html{overflow-x:clip}.site-header nav a[style*=\"f97316\"],.site-header nav span[style*=\"f97316\"],.site-header nav a span{color:#c2410c!important}.breadcrumb,.breadcrumb a{color:#57534e!important}.breadcrumb a{text-decoration:underline;text-underline-offset:2px}nav.toc a,.toc a{display:inline-block;padding:5px 4px;min-height:24px;line-height:1.3}@media(max-width:640px){.content table,article table,table.plan-table,table.comparison-table{display:block;width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.site-header nav{height:auto!important;min-height:56px;flex-wrap:wrap;row-gap:4px}.site-header nav>div{flex-wrap:wrap;row-gap:8px}}";document.head.appendChild(st);})();
+(function(){(function(){var st=document.createElement("style");st.id="cj-a11y-article";st.textContent="html{overflow-x:clip}.site-header nav a[style*=\"f97316\"],.site-header nav span[style*=\"f97316\"],.site-header nav a span{color:#c2410c!important}.breadcrumb,.breadcrumb a{color:#57534e!important}.breadcrumb a{text-decoration:underline;text-underline-offset:2px}nav.toc li,.toc li{margin:8px 0!important;display:block}nav.toc a,.toc a{display:block;padding:6px 4px;min-height:24px;line-height:1.4}@media(max-width:640px){.content table,article table,table.plan-table,table.comparison-table{display:block;width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}}.site-header nav a[style*=\"color:#f97316\"],.site-header nav span[style*=\"color:#f97316\"]{color:#c2410c!important}.site-header nav a[style*=\"background:#f97316\"]{background:#c2410c!important;color:#fff!important}.content .tip strong,.tip strong{color:#9a3412!important}.plan-table th,.content th{color:#9a3412!important}.content li strong{color:#9a3412!important}.content h3{color:#c2410c}";document.head.appendChild(st);})();
   'use strict';
 
   /* ══════════════════════════════════════════════
@@ -34,7 +34,7 @@
     '.faq-a p{color:#475569}',
     '.faq-chevron{color:#94a3b8}',
     '#nl-slidein{background:rgba(255,255,255,.97);box-shadow:0 8px 32px rgba(0,0,0,.12)}',
-    '#nl-slidein h4{color:#1a1a2e}',
+    '#nl-slidein h4,#nl-slidein .nl-t{color:#1a1a2e}',
     '#nl-slidein p{color:#475569}',
     '#nl-slidein input{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.1);color:#1a1a2e}',
     '#sticky-cta{background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(248,249,250,.95));border-top-color:rgba(249,115,22,.2)}',
@@ -51,7 +51,7 @@
     '.dark-mode .faq-a p{color:#94a3b8}',
     '.dark-mode .faq-chevron{color:#64748b}',
     '.dark-mode #nl-slidein{background:rgba(11,18,32,.97);box-shadow:0 8px 32px rgba(0,0,0,.5)}',
-    '.dark-mode #nl-slidein h4{color:#fff}',
+    '.dark-mode #nl-slidein h4,#nl-slidein .nl-t{color:#fff}',
     '.dark-mode #nl-slidein p{color:#94a3b8}',
     '.dark-mode #nl-slidein input{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#fff}',
     '.dark-mode #sticky-cta{background:linear-gradient(135deg,rgba(11,18,32,.97),rgba(11,18,32,.95));border-top-color:rgba(249,115,22,.25)}',
@@ -341,7 +341,7 @@
       '#nl-slidein .nl-close:hover{color:#f97316}',
       '#nl-slidein .nl-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;margin-bottom:8px;overflow:hidden}',
       '#nl-slidein .nl-icon svg{width:100%;height:100%;display:block}',
-      '#nl-slidein h4{margin:0 0 4px;color:#fff;font-size:1rem;font-weight:800;line-height:1.3}',
+      '#nl-slidein h4,#nl-slidein .nl-t{margin:0 0 4px;color:#fff;font-size:1rem;font-weight:800;line-height:1.3}',
       '#nl-slidein p{margin:0 0 14px;color:rgba(255,255,255,.5);font-size:.8rem;line-height:1.5}',
       '#nl-slidein .nl-form{display:flex;gap:8px}',
       '#nl-slidein input{flex:1;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.07);color:#fff;font-size:.85rem;outline:none;transition:border-color .2s}',
@@ -368,7 +368,7 @@
             '<rect x="166" y="380" width="180" height="20" rx="10" fill="#f97316"/>' +
           '</svg>' +
         '</span>' +
-        '<h4>'+(isEN ? 'Train smarter every week' : 'Entrena mejor cada semana')+'</h4>' +
+        '<p class="nl-t" style="font-weight:800;font-size:1.02rem;margin:0 0 6px">'+(isEN ? 'Train smarter every week' : 'Entrena mejor cada semana')+'</p>' +
         '<p>'+(isEN ? 'Free tips on running, nutrition & gear. No spam, unsubscribe anytime.' : 'Consejos gratis de running, nutrici\u00f3n y equipamiento. Sin spam.')+'</p>' +
         '<div class="nl-form">' +
           '<input type="email" placeholder="'+(isEN ? 'your@email.com' : 'tu@email.com')+'" aria-label="Email">' +

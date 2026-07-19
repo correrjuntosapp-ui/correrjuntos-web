@@ -89,7 +89,7 @@
       '.cj-nl-sticky input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 12px;border-radius:8px;font-size:.85rem;outline:none;width:200px;font-family:inherit}',
       '.cj-nl-sticky input::placeholder{color:rgba(255,255,255,.5)}',
       '.cj-nl-sticky input:focus{background:rgba(255,255,255,.15);border-color:#fb923c}',
-      '.cj-nl-sticky button{background:#f97316;color:#fff;border:none;padding:7px 16px;border-radius:8px;font-weight:700;font-size:.85rem;cursor:pointer;transition:background .2s;font-family:inherit}',
+      '.cj-nl-sticky button{background:#c2410c;color:#fff;border:none;padding:7px 16px;border-radius:8px;font-weight:700;font-size:.85rem;cursor:pointer;transition:background .2s;font-family:inherit}',
       '.cj-nl-sticky button:hover{background:#ea580c}',
       '.cj-nl-sticky .cj-close{background:transparent;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:1.1rem;padding:4px 8px;line-height:1;margin-left:auto}',
       '.cj-nl-sticky .cj-close:hover{color:#fff}',
@@ -126,15 +126,15 @@
       '.cj-nl-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}',
       '.cj-nl-ic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#fb923c,#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(234,88,12,.3)}',
       '.cj-nl-ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2}',
-      '.cj-nl-eyebrow{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#ea580c;margin-bottom:3px}',
+      '.cj-nl-eyebrow{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#c2410c;margin-bottom:3px}',
       '.cj-nl-inline h4{margin:0;font-size:1.18rem;color:#1f1b16;font-weight:800;letter-spacing:-.02em;line-height:1.15}',
       '.cj-nl-inline p{margin:0 0 16px;font-size:.9rem;color:#5c4d3d;line-height:1.55}',
       '.cj-nl-inline form{display:flex;gap:9px;flex-wrap:wrap}',
       '.cj-nl-inline input{flex:1;min-width:200px;background:#fff;border:1.5px solid #e7dccd;padding:12px 16px;border-radius:11px;font-size:.92rem;outline:none;font-family:inherit;transition:border-color .2s}',
       '.cj-nl-inline input:focus{border-color:#f97316}',
-      '.cj-nl-inline button{background:#f97316;color:#fff;border:none;padding:12px 24px;border-radius:11px;font-weight:700;font-size:.9rem;cursor:pointer;transition:transform .15s,background .2s;font-family:inherit;white-space:nowrap;box-shadow:0 4px 14px rgba(249,115,22,.3)}',
+      '.cj-nl-inline button{background:#c2410c;color:#fff;border:none;padding:12px 24px;border-radius:11px;font-weight:700;font-size:.9rem;cursor:pointer;transition:transform .15s,background .2s;font-family:inherit;white-space:nowrap;box-shadow:0 4px 14px rgba(249,115,22,.3)}',
       '.cj-nl-inline button:hover{background:#ea6c10;transform:translateY(-1px)}',
-      '.cj-nl-inline .cj-note{display:flex;align-items:center;gap:6px;font-size:.76rem;color:#94886e;margin-top:12px}',
+      '.cj-nl-inline .cj-note{display:flex;align-items:center;gap:6px;font-size:.76rem;color:#57534e;margin-top:12px}',
       '.cj-nl-inline .cj-note svg{width:13px;height:13px;stroke:#22c55e;fill:none;stroke-width:2.5;flex:0 0 auto}',
       '.cj-nl-inline .cj-msg-ok{color:#059669;font-weight:600;font-size:.9rem;padding:8px 0}',
 
@@ -149,7 +149,7 @@
       '.cj-nl-end input{flex:1;min-width:200px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;padding:13px 16px;border-radius:12px;font-size:.95rem;outline:none;font-family:inherit;transition:border-color .2s}',
       '.cj-nl-end input::placeholder{color:rgba(254,247,232,.5)}',
       '.cj-nl-end input:focus{border-color:#fb923c}',
-      '.cj-nl-end button{background:#f97316;color:#fff;border:none;padding:13px 24px;border-radius:12px;font-weight:800;font-size:.95rem;cursor:pointer;transition:background .2s,transform .2s;font-family:inherit;white-space:nowrap}',
+      '.cj-nl-end button{background:#c2410c;color:#fff;border:none;padding:13px 24px;border-radius:12px;font-weight:800;font-size:.95rem;cursor:pointer;transition:background .2s,transform .2s;font-family:inherit;white-space:nowrap}',
       '.cj-nl-end button:hover{background:#ea580c;transform:translateY(-1px)}',
       '.cj-nl-end .cj-foot{font-size:.72rem;color:rgba(254,247,232,.45);margin-top:12px;position:relative}',
       '.cj-nl-end .cj-msg-ok{color:#4ade80;font-weight:600;padding:14px;position:relative}',
@@ -359,7 +359,7 @@
       '<div class="cj-nl-head">' +
         '<span class="cj-nl-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>' +
         '<div><div class="cj-nl-eyebrow">Newsletter · gratis</div>' +
-        '<h3 style="font-size:1rem;margin:0">Un artículo de running cada lunes</h3></div>' +
+        '<p class="cj-nl-t" style="font-size:1rem;margin:0;font-weight:800;color:#1f1b16;letter-spacing:-.02em;line-height:1.15">Un artículo de running cada lunes</p></div>' +
       '</div>' +
       '<p>Suscríbete y te llevas el <strong>Plan 0→5K gratis</strong>. Un email a la semana con consejos de entrenamiento. Sin spam, baja en 1 clic.</p>' +
       '<form>' +

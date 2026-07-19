@@ -6,7 +6,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <!-- LCP image preload · hero featured Ronda · CWV optimization 22 may 2026 -->
-<link rel="preload" as="image" href="/public/blog-images/ronda/puente-nuevo-ronda.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/public/blog-images/ronda/puente-nuevo-ronda-880.webp" fetchpriority="high">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog de Running | CorrerJuntos - Tips, Rutas y Guías para Corredores</title>
 <meta name="description" content="Blog de running con guías para principiantes, rutas para correr, estiramientos, planes de entrenamiento y consejos para mejorar tu running. Todo gratis.">
@@ -141,10 +141,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 /* Filter bar STICKY scroll · revisión 22 may post-audit · founder spec */
 .filter-bar-wrap{padding:14px 0 10px;position:sticky;top:64px;z-index:20;background:rgba(254,247,237,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:0 -24px;padding-left:24px;padding-right:24px;border-bottom:1px solid rgba(0,0,0,.04)}
 @media(max-width:1024px){.filter-bar-wrap{margin:0 -20px;padding-left:20px;padding-right:20px}}
+/* perf: primer render limitado a 24 tarjetas; el JS de paginacion ("Cargar mas")
+   toma el relevo añadiendo .js-pager. Los enlaces de las 251 permanecen en el
+   HTML inicial y siguen siendo rastreables e indexables. */
+body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
+/* nav del header envuelve en movil (lang-toggle quedaba fuera del viewport);
+   estatico aqui para no generar layout shift post-carga */
+@media(max-width:640px){.site-header nav{height:auto!important;min-height:56px;flex-wrap:wrap;row-gap:4px;padding-top:6px;padding-bottom:6px}.site-header nav>div{flex-wrap:wrap;row-gap:8px}}
 .filter-section-head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
 .filter-section-label{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
 .filter-section-rule{flex:1;height:1px;background:#e8ddd1}
-.filter-section-count{font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#b5a797;white-space:nowrap}
+.filter-section-count{font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#57534e;white-space:nowrap}
 .dark-mode .filter-section-label{color:#f1eadf}
 .dark-mode .filter-section-rule{background:rgba(255,255,255,.14)}
 .dark-mode .filter-section-count{color:#94a3b8}
@@ -162,7 +169,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 
 /* Tool button: same visual weight as Todos but ghost (outline) — it's a tool, not a filter */
 .filter-tool{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:transparent;border:1.5px solid #e8ddd1;border-radius:6px;color:#3d3229;font-size:.79rem;font-weight:600;cursor:pointer;letter-spacing:.015em;transition:all .18s ease;text-decoration:none;white-space:nowrap}
-.filter-tool .tool-arrow{color:#b5a797;font-size:.85rem;line-height:1;transition:transform .18s ease,color .18s ease}
+.filter-tool .tool-arrow{color:#57534e;font-size:.85rem;line-height:1;transition:transform .18s ease,color .18s ease}
 .filter-tool:hover{border-color:#f97316;color:#f97316;background:#fff8f4}
 .filter-tool:hover .tool-arrow{color:#f97316;transform:translateX(2px)}
 .dark-mode .filter-tool{border-color:rgba(255,255,255,.16);color:#f1eadf;background:transparent}
@@ -212,7 +219,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 .section-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding:0 2px}
 .section-label{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#3d3229;white-space:nowrap}
 .section-rule{flex:1;height:1px;background:#e8ddd1}
-.section-meta{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#b5a797;white-space:nowrap}
+.section-meta{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#57534e;white-space:nowrap}
 .dark-mode .section-label{color:#f1eadf}
 .dark-mode .section-rule{background:rgba(255,255,255,.14)}
 .dark-mode .section-meta{color:#94a3b8}
@@ -512,10 +519,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 <style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
 .nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
 .site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
-.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}.site-header nav a[style*="background:#f97316"]{background:#c2410c!important;color:#fff!important}.site-header nav a[style*="color:#f97316"]{color:#c2410c!important}.lang-toggle a{color:#57534e!important}.filter-section-head,.filter-section-label{color:#57534e!important}.lang-toggle a.active-lang{color:#9a3412!important}
 .breadcrumb,.breadcrumb a{color:#57534e!important}
 .breadcrumb a{text-decoration:underline;text-underline-offset:2px}
 </style>
+<style id="cj-nav-wrap">@media(max-width:640px){.site-header nav{height:auto!important;min-height:56px;flex-wrap:wrap;row-gap:4px;padding-top:6px;padding-bottom:6px}.site-header nav>div{flex-wrap:wrap;row-gap:8px}}.site-header nav a[style*="color:#f97316"],.site-header nav span[style*="color:#f97316"]{color:#c2410c!important}.site-header nav a[style*="background:#f97316"]{background:#c2410c!important;color:#fff!important}.breadcrumb,.breadcrumb a{color:#57534e!important}.breadcrumb a{text-decoration:underline;text-underline-offset:2px}nav.toc li,.toc li{margin:8px 0;display:block}nav.toc a,.toc a{display:block;padding:6px 4px;min-height:24px;line-height:1.4}.content .tip strong,.tip strong{color:#9a3412!important}.plan-table th,.content th{color:#9a3412!important}.content h3{color:#c2410c}</style>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 <header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
@@ -537,7 +545,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
 <div class="hero-featured" style="position:relative;overflow:hidden;background:#0b1220;min-height:540px">
   <!-- Background image full-bleed -->
   <picture style="position:absolute;inset:0;z-index:0">
-    <img src="/public/blog-images/ronda/puente-nuevo-ronda.jpg" alt="Corredores en ruta de montaña al amanecer" style="width:100%;height:100%;object-fit:cover;opacity:.42" fetchpriority="high" loading="eager" width="1600" height="900">
+    <img src="/public/blog-images/ronda/puente-nuevo-ronda-880.webp" alt="Corredores en ruta de montaña al amanecer" style="width:100%;height:100%;object-fit:cover;opacity:.42" fetchpriority="high" loading="eager" width="1600" height="900">
   </picture>
   <!-- Gradient overlay legibilidad -->
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.55) 0%,rgba(11,18,32,.85) 60%,rgba(254,247,237,1) 100%),radial-gradient(ellipse 70% 50% at 30% 40%,rgba(249,115,22,.16),transparent 60%);z-index:1"></div>
@@ -654,7 +662,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         </div>
         <div class="most-read-info">
           <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
-          <h3>Guia Completa para Empezar a Correr desde Cero</h3>
+          <h3 aria-level="2">Guia Completa para Empezar a Correr desde Cero</h3>
           <span class="meta">Principiantes · 10 min</span>
         </div>
       </a>
@@ -665,7 +673,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         </div>
         <div class="most-read-info">
           <span class="mr-cat cat-badge-zapatillas">Zapatillas</span>
-          <h3>Las 10 Mejores Zapatillas Running para Asfalto 2026</h3>
+          <h3 aria-level="2">Las 10 Mejores Zapatillas Running para Asfalto 2026</h3>
           <span class="meta">Zapatillas · 14 min</span>
         </div>
       </a>
@@ -676,7 +684,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
         </div>
         <div class="most-read-info">
           <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
-          <h3>Los 10 Errores Mas Comunes de los Corredores</h3>
+          <h3 aria-level="2">Los 10 Errores Mas Comunes de los Corredores</h3>
           <span class="meta">Entrenamiento · 9 min</span>
         </div>
       </a>
@@ -719,7 +727,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
     <!-- Nuevo artículo (10 jun 2026) - Brand Adidas -->
     <a href="/blog/mejores-zapatillas-adidas-running" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/zapatillas-adidas/evo-sl.jpg" alt="Las 7 mejores zapatillas Adidas running 2026" loading="lazy" width="640" height="360"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h2>Las 7 Mejores Zapatillas Adidas Running 2026</h2><p>Evo SL 129&euro;, Boston 13, Ultraboost 5, Supernova Rise 2 y m&aacute;s. 49-138&euro; comparadas y para qu&eacute; corredor es cada una.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">10 jun 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (9 may 2026) - Ultra trail SEO timing -->
-    <a href="/blog/101-km-ronda-2026-guia-completa" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ronda/puente-nuevo-ronda.jpg" alt="Puente Nuevo de Ronda — escenario de los 101 km" loading="lazy" width="640" height="360"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Ultra Trail</span><h2>101 km de Ronda 2026 — Gu&iacute;a Completa</h2><p>Recorrido por secciones, time cuts, equipamiento obligatorio top 8, plan de entrenamiento 16 semanas y nutrici&oacute;n para terminar el ultra m&aacute;s m&iacute;tico de Espa&ntilde;a.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/101-km-ronda-2026-guia-completa" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ronda/puente-nuevo-ronda-880.webp" alt="Puente Nuevo de Ronda — escenario de los 101 km" loading="lazy" width="640" height="360"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Ultra Trail</span><h2>101 km de Ronda 2026 — Gu&iacute;a Completa</h2><p>Recorrido por secciones, time cuts, equipamiento obligatorio top 8, plan de entrenamiento 16 semanas y nutrici&oacute;n para terminar el ultra m&aacute;s m&iacute;tico de Espa&ntilde;a.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (9 may 2026) - Pillar SEO equipamiento -->
     <a href="/blog/guia-equipamiento-running-2026" class="article-card" data-category="equipamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="https://m.media-amazon.com/images/I/71aTpnUJu0L._AC_SX425_.jpg" alt="Equipamiento running 2026 zapatillas reloj" loading="lazy"></div><div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h2>Gu&iacute;a Completa Equipamiento Running 2026</h2><p>Pillar page con 79 an&aacute;lisis enlazados en 8 categor&iacute;as: zapatillas, relojes GPS, auriculares, hidrataci&oacute;n, ropa, trail, nutrici&oacute;n y recuperaci&oacute;n.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (9 may 2026) - Kit principiante 200€ -->
@@ -4074,7 +4082,8 @@ document.addEventListener('DOMContentLoaded', function() {
     showActiveLabel(initialCat);
   }
 
-  // Initial render
+  // Initial render — el JS releva a la paginacion CSS inicial (24 tarjetas)
+  document.body.classList.add('js-pager');
   filterCards();
 });
 

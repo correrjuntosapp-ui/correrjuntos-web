@@ -167,7 +167,8 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 <link rel="dns-prefetch" href="https://apps.apple.com">
 <link rel="dns-prefetch" href="https://play.google.com">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="manifest" href="/manifest.json">
 <style>
 :root{--bg:#fef7ed;--card:#fffcf9;--white:#ffffff;--orange:#f97316;--orange-light:#fff7ed;--orange-dark:#ea580c;--text:#1a1a1a;--text-sec:#555;--text-light:#888;--border:#e5e5e5;--dark-bg:#0b1220;--cream:#fef7ed;--font:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--max-w:1140px;--radius:16px}
@@ -510,9 +511,9 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion: reduce) {
 .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
+/* perf: las secciones bajo el fold no se renderizan hasta acercarse al viewport */
+#quedadas,.features,.coaches,.compare,.demo,.planes,.pricing,.testimonials,.newsletter,.blog-preview,.faq,.final-cta{content-visibility:auto;contain-intrinsic-size:auto 900px}
 </style>
-<link rel="preload" href="/public/screenshot-feed-520.webp" as="image" type="image/webp">
-
 <style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
 .nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
 .site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
@@ -576,10 +577,10 @@ Google Play
 </div>
 <div class="hero-social">
 <div class="hero-avatars">
-<img src="/public/quedadas/beer-runners-malaga/logo.png" alt="Beer Runners Málaga" width="32" height="32">
-<img src="/public/quedadas/sevilla-running-club/logo.png" alt="Sevilla Running Club" width="32" height="32">
-<img src="/public/quedadas/soul-runclub-huelva/logo.png" alt="Soul Run Club Huelva" width="32" height="32">
-<img src="/public/quedadas/correr-sin-limites-torre-del-mar/logo.png" alt="Correr Sin Límites Torre del Mar" width="32" height="32">
+<img src="/public/quedadas/beer-runners-malaga/logo-64.webp" alt="Beer Runners Málaga" width="32" height="32" fetchpriority="low" decoding="async">
+<img src="/public/quedadas/sevilla-running-club/logo-64.webp" alt="Sevilla Running Club" width="32" height="32" fetchpriority="low" decoding="async">
+<img src="/public/quedadas/soul-runclub-huelva/logo-64.webp" alt="Soul Run Club Huelva" width="32" height="32" fetchpriority="low" decoding="async">
+<img src="/public/quedadas/correr-sin-limites-torre-del-mar/logo-64.webp" alt="Correr Sin Límites Torre del Mar" width="32" height="32" fetchpriority="low" decoding="async">
 </div>
 1.100+ corredores registrados &middot; clubs reales: Beer Runners M&aacute;laga, Sevilla Running Club&hellip;
 </div>

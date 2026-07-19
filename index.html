@@ -15,6 +15,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#f97316">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220">
+<link rel="preload" as="image" href="/public/home-hero-bg.webp" fetchpriority="low">
 <link rel="canonical" href="https://www.correrjuntos.com/">
 <link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/">
 <link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/">
@@ -70,7 +71,7 @@
       "operatingSystem": "iOS, Android",
       "applicationCategory": "HealthApplication",
       "description": "Quedadas reales con runners cerca de ti, plan adaptado a tu ritmo y Coach IA 24/7. La app social de running en espa&ntilde;ol. Gratis para empezar.",
-      "screenshot": "https://www.correrjuntos.com/public/screenshot-feed.webp",
+      "screenshot": "https://www.correrjuntos.com/public/screenshot-feed-520.webp",
       "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"},
       "url": "https://www.correrjuntos.com/",
       "downloadUrl": "https://apps.apple.com/app/correr-juntos/id6758505910"
@@ -197,7 +198,7 @@ a{color:inherit;text-decoration:none}
 
 /* HERO */
 .hero{background:var(--dark-bg);color:#fff;padding:72px 0 0;position:relative}
-.hero::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;opacity:.08;pointer-events:none}
+.hero::before{content:'';position:absolute;inset:0;background:url('/public/home-hero-bg.webp') center/cover no-repeat;opacity:.08;pointer-events:none}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.1);border:1.5px solid rgba(249,115,22,.3);color:var(--orange);padding:7px 18px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:18px}
 .hero h1{font-size:clamp(36px,5vw,56px);font-weight:900;line-height:1.08;letter-spacing:-2.5px;margin-bottom:20px}
@@ -511,7 +512,16 @@ a{color:inherit;text-decoration:none}
 .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 </style>
-<link rel="preload" href="/public/screenshot-feed.webp" as="image" type="image/webp">
+<link rel="preload" href="/public/screenshot-feed-520.webp" as="image" type="image/webp">
+
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+.hero .container>span,.eyebrow,.badge-pill{color:#c2410c!important}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Ir al contenido principal</a>
@@ -578,13 +588,13 @@ Google Play
 </div>
 <div class="hero-phones">
 <div class="hero-phone hero-phone--left">
-<img src="/public/screenshot-map.webp" alt="Mapa de quedadas de running en CorrerJuntos" width="220" height="440" loading="eager">
+<img src="/public/screenshot-map-520.webp" alt="Mapa de quedadas de running en CorrerJuntos" width="220" height="477" loading="eager">
 </div>
 <div class="hero-phone hero-phone--center">
-<img src="/public/screenshot-feed.webp" alt="Feed de actividad en CorrerJuntos" width="260" height="520" loading="eager" fetchpriority="high">
+<img src="/public/screenshot-feed-520.webp" alt="Feed de actividad en CorrerJuntos" width="260" height="563" loading="eager" fetchpriority="high">
 </div>
 <div class="hero-phone hero-phone--right">
-<img src="/public/screenshot-run.webp" alt="Plan de entrenamiento personalizado en CorrerJuntos" width="220" height="440" loading="eager">
+<img src="/public/screenshot-run-520.webp" alt="Plan de entrenamiento personalizado en CorrerJuntos" width="220" height="477" loading="eager">
 </div>
 </div>
 </div>
@@ -688,7 +698,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-feed.webp" alt="Inicio de CorrerJuntos con tu progreso semanal y pr&oacute;xima quedada" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-feed-520.webp" alt="Inicio de CorrerJuntos con tu progreso semanal y pr&oacute;xima quedada" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -701,7 +711,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-run.webp" alt="PlanesScreen con Coach Jos&eacute; - planes de entrenamiento personalizados" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-run-520.webp" alt="PlanesScreen con Coach Jos&eacute; - planes de entrenamiento personalizados" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>
@@ -727,7 +737,7 @@ Google Play
 </div>
 <div class="feature-visual">
 <div class="feature-phone">
-<img src="/public/screenshot-map.webp" alt="Mapa de quedadas y carreras en la app" width="260" height="520" loading="lazy">
+<img src="/public/screenshot-map-520.webp" alt="Mapa de quedadas y carreras en la app" width="260" height="520" loading="lazy">
 </div>
 </div>
 </div>

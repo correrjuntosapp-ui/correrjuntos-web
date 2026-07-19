@@ -240,6 +240,14 @@ body{padding-bottom:66px}
 .sticky-inscribe .si-btn{background:#f97316;color:#15110d;padding:9px 20px;border-radius:999px;font-weight:800;font-size:.9rem;white-space:nowrap}
 @media(max-width:560px){.sticky-inscribe{justify-content:space-between;gap:10px}.sticky-inscribe .si-name{font-size:.82rem}}
 </style>
+
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+</style>
 </head>
 <body>
 <header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
@@ -488,8 +496,8 @@ body{padding-bottom:66px}
       <div class="app-coach ana"><img src="/public/coach-ana.jpg" alt="Ana, asistente de nutrici&oacute;n deportiva con IA de CorrerJuntos" loading="lazy" width="50" height="50"><div><span class="ac-name">Ana</span><span class="ac-role">Nutrici&oacute;n IA</span></div></div>
     </div>
     <div class="app-badges">
-      <a href="https://apps.apple.com/app/correr-juntos/id6758505910" class="store-badge" target="_blank" rel="noopener" aria-label="Descargar en App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><span class="sb-text"><span class="sb-small">Desc&aacute;rgala en</span><span class="sb-big">App Store</span></span></a>
-      <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app&referrer=utm_source%3Dcorrerjuntos-web%26utm_medium%3Dcarrera%26utm_campaign%3Dcursa-nassos-barcelona" class="store-badge" target="_blank" rel="noopener" aria-label="Descargar en Google Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg><span class="sb-text"><span class="sb-small">Disponible en</span><span class="sb-big">Google Play</span></span></a>
+      <a href="https://apps.apple.com/app/correr-juntos/id6758505910" class="store-badge" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><span class="sb-text"><span class="sb-small">Desc&aacute;rgala en</span><span class="sb-big">App Store</span></span></a>
+      <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app&referrer=utm_source%3Dcorrerjuntos-web%26utm_medium%3Dcarrera%26utm_campaign%3Dcursa-nassos-barcelona" class="store-badge" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.61 22.186a1.002 1.002 0 01-.61-.92V2.734c0-.388.223-.72.609-.92z"/><path fill="#FBBC04" d="M16.296 15.504L13.792 12l2.504-3.504 4.704 2.734c.859.5.859 1.04 0 1.54l-4.704 2.734z"/><path fill="#4285F4" d="M3.609 1.814L13.792 12l2.504-3.504L5.418.35c-.5-.29-1.14-.18-1.809.464l.001 1z"/><path fill="#EA4335" d="M13.792 12l-10.183 10.186c.669.644 1.309.754 1.809.464l10.878-6.146L13.792 12z"/></svg><span class="sb-text"><span class="sb-small">Disponible en</span><span class="sb-big">Google Play</span></span></a>
     </div>
   </div>
 
@@ -563,7 +571,7 @@ body{padding-bottom:66px}
 })();
 </script>
 <script src="/blog/enhance.js" defer></script>
-<a href="https://apps.apple.com/app/correr-juntos/id6758505910?ct=carrera-cursa-nassos-barcelona" class="sticky-inscribe" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function')gtag('event','carrera_app_click',{store:'appstore',page:location.pathname,cta:'sticky'});if(/android/i.test(navigator.userAgent))this.href='https://play.google.com/store/apps/details?id=com.correrjuntos.app&referrer=utm_source%3Dcorrerjuntos-web%26utm_medium%3Dcarrera%26utm_campaign%3Dcursa-nassos-barcelona'" aria-label="Prepara Cursa dels Nassos con CorrerJuntos">
+<a href="https://apps.apple.com/app/correr-juntos/id6758505910?ct=carrera-cursa-nassos-barcelona" class="sticky-inscribe" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function')gtag('event','carrera_app_click',{store:'appstore',page:location.pathname,cta:'sticky'});if(/android/i.test(navigator.userAgent))this.href='https://play.google.com/store/apps/details?id=com.correrjuntos.app&referrer=utm_source%3Dcorrerjuntos-web%26utm_medium%3Dcarrera%26utm_campaign%3Dcursa-nassos-barcelona'">
   <span class="si-name"><b>Cursa dels Nassos</b> &middot; prep&aacute;rala</span>
   <span class="si-btn">Ver el plan &rarr;</span>
 </a>

@@ -361,7 +361,7 @@
     slidein.innerHTML =
       '<button class="nl-close" aria-label="'+(isEN ? 'Close' : 'Cerrar')+'">&times;</button>' +
       '<div class="nl-inner">' +
-        '<span class="nl-icon" aria-label="CorrerJuntos">' +
+        '<span class="nl-icon" role="img" aria-label="CorrerJuntos">' +
           '<svg viewBox="0 0 512 512">' +
             '<rect width="512" height="512" rx="96" fill="#0f1729"/>' +
             '<text x="50%" y="51%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="208" fill="#fff" letter-spacing="-8">CJ</text>' +
@@ -755,7 +755,7 @@
     banner.innerHTML = [
       '<button class="cj-app-banner-close" aria-label="Cerrar">&times;</button>',
       '<div class="cj-app-banner-inner">',
-        '<span class="cj-app-banner-icon" aria-label="CorrerJuntos">' +
+        '<span class="cj-app-banner-icon" role="img" aria-label="CorrerJuntos">' +
           '<svg viewBox="0 0 512 512" width="56" height="56">' +
             '<rect width="512" height="512" rx="96" fill="#0f1729"/>' +
             '<text x="50%" y="51%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="208" fill="#fff" letter-spacing="-8">CJ</text>' +
@@ -1371,7 +1371,7 @@
      that have FAQ accordions or ranked product lists
      ══════════════════════════════════════════════ */
   (function(){
-    if(!isArticle) return;
+    if(typeof isArticle==='undefined'||!isArticle) return;
     try{
       /* ── Check existing schemas to avoid duplicates ── */
       var existingTypes = [];

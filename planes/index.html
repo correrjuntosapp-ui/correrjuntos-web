@@ -455,6 +455,20 @@ html.dark .footer-bottom p{color:#64748b}
   ]
 }
 </script>
+
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+.ember,.hero-stats strong{color:#c2410c!important}
+.hero-marker,.hero-stats span{color:#57534e!important}
+.section-marker{color:#c2410c!important}
+.filter-btn{color:#44403c!important}
+.plan-card .tier-badge{color:#7c2d12!important;background:#fed7aa!important}
+.plan-stat .lbl{color:#57534e!important}
+</style>
 </head>
 <body>
 
@@ -471,7 +485,7 @@ html.dark .footer-bottom p{color:#64748b}
   </nav>
 </header>
 
-<div class="container">
+<div role="main" class="container">
   <div class="breadcrumb">
     <a href="/">Inicio</a><span>/</span>Planes de Entrenamiento
   </div>

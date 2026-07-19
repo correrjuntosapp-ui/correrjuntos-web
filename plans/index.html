@@ -212,6 +212,14 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
   ]
 }
 </script>
+
+<style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
+.nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
+.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.breadcrumb,.breadcrumb a{color:#57534e!important}
+.breadcrumb a{text-decoration:underline;text-underline-offset:2px}
+</style>
 </head>
 <body>
 <div class="nav-wrapper">
@@ -224,7 +232,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 </nav>
 </div>
 
-<div class="container">
+<div role="main" class="container">
   <div class="breadcrumb">
     <a href="/">Home</a>
     <span>/</span>

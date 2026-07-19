@@ -27,9 +27,14 @@
         th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #334155; color: #CBD5E1; font-size: 14px; }
         th { color: #FF7F50; font-weight: 600; }
     </style>
+
+<style id="a11y-overrides">/* a11y: enlaces distinguibles (tema oscuro nativo ya cumple contraste) */
+a{text-decoration:underline;text-underline-offset:2px}
+.back{text-decoration:underline}
+</style>
 </head>
 <body>
-    <div class="container">
+    <div role="main" class="container">
         <div class="logo">CORRER<span>JUNTOS</span></div>
         <h1>Pol&iacute;tica de Cookies</h1>
         <p class="date">Última actualización: 19 de julio de 2026</p>
@@ -53,8 +58,26 @@
         <h2>4. Cookies de análisis</h2>
         <p>Utilizamos Google Analytics 4 (GA4) para entender cómo los usuarios interactúan con nuestra web. Estas cookies solo se activan si aceptas la política de cookies en el banner de consentimiento. Al aceptar cookies analíticas, se comparten datos de uso con Google (GA4) y Meta (Pixel) como terceros, conforme a nuestra Política de Privacidad.</p>
 
-        <h2>5. Cómo gestionar las cookies</h2>
-        <p>Puedes controlar y/o eliminar las cookies como desees. Puedes eliminar todas las cookies que ya están en tu dispositivo y configurar la mayoría de los navegadores para que no las acepten. Sin embargo, si lo haces, es posible que tengas que ajustar manualmente algunas preferencias cada vez que visites el sitio.</p>
+        <h2>5. Cómo gestionar o retirar tu consentimiento</h2>
+        <p>Puedes retirar tu consentimiento para las cookies analíticas y de marketing en cualquier momento con el botón siguiente. Al retirarlo, eliminaremos las cookies analíticas ya creadas en este dominio (<code>_ga</code>, <code>_ga_*</code>, <code>_fbp</code>) y no se volverán a cargar salvo que aceptes de nuevo.</p>
+        <p><button id="cj-revoke-consent" style="background:#c2410c;color:#fff;border:0;padding:10px 18px;border-radius:8px;font-weight:600;cursor:pointer">Retirar mi consentimiento</button> <span id="cj-revoke-msg" style="margin-left:10px;color:#16a34a;font-weight:600"></span></p>
+        <script>
+        document.getElementById('cj-revoke-consent').addEventListener('click',function(){
+          localStorage.removeItem('cj_cookie_consent');
+          var host=location.hostname.replace(/^www\./,'');
+          document.cookie.split(';').forEach(function(c){
+            var n=c.trim().split('=')[0];
+            if(/^_ga|^_fbp/.test(n)){
+              ['','; domain=.'+host,'; domain='+location.hostname].forEach(function(d){
+                document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d;
+              });
+            }
+          });
+          document.getElementById('cj-revoke-msg').textContent='Consentimiento retirado ✓';
+          setTimeout(function(){location.reload();},900);
+        });
+        </script>
+        <p>También puedes controlar y/o eliminar las cookies desde tu navegador: puedes borrar las que ya están en tu dispositivo y configurar la mayoría de los navegadores para que no las acepten. Si lo haces, es posible que tengas que ajustar manualmente algunas preferencias cada vez que visites el sitio.</p>
         <ul>
             <li><strong>Chrome:</strong> Configuración > Privacidad y seguridad > Cookies</li>
             <li><strong>Firefox:</strong> Opciones > Privacidad y seguridad > Cookies</li>

@@ -359,7 +359,7 @@
       '<div class="cj-nl-head">' +
         '<span class="cj-nl-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>' +
         '<div><div class="cj-nl-eyebrow">Newsletter · gratis</div>' +
-        '<h4>Un artículo de running cada lunes</h4></div>' +
+        '<h3 style="font-size:1rem;margin:0">Un artículo de running cada lunes</h3></div>' +
       '</div>' +
       '<p>Suscríbete y te llevas el <strong>Plan 0→5K gratis</strong>. Un email a la semana con consejos de entrenamiento. Sin spam, baja en 1 clic.</p>' +
       '<form>' +

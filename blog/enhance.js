@@ -1,5 +1,5 @@
 /* Blog enhancements — lang toggle + FAQ accordion + scroll-to-top + newsletter slide-in */
-(function(){
+(function(){(function(){var st=document.createElement("style");st.id="cj-a11y-article";st.textContent="html{overflow-x:clip}.site-header nav a[style*=\"f97316\"],.site-header nav span[style*=\"f97316\"],.site-header nav a span{color:#c2410c!important}.breadcrumb,.breadcrumb a{color:#57534e!important}.breadcrumb a{text-decoration:underline;text-underline-offset:2px}nav.toc a,.toc a{display:inline-block;padding:5px 4px;min-height:24px;line-height:1.3}@media(max-width:640px){.content table,article table,table.plan-table,table.comparison-table{display:block;width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.site-header nav{height:auto!important;min-height:56px;flex-wrap:wrap;row-gap:4px}.site-header nav>div{flex-wrap:wrap;row-gap:8px}}";document.head.appendChild(st);})();
   'use strict';
 
   /* ══════════════════════════════════════════════

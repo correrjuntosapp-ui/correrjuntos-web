@@ -1,4 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { ensureTrialRegistry } from './trial-registry.js'
 
 // ============================================================
 // REVENUCAT WEBHOOK — Edge Function
@@ -310,8 +311,16 @@ Deno.serve(async (req) => {
 
       console.log(`Premium GRANTED for ${userId} (${periodType}) until ${expiresDate}`)
 
+      // Red de seguridad: registrar el trial en trial_starts (server-side).
+      // Fallo del registro NUNCA queda 'applied' silencioso: el evento se
+      // marca reconciliation_required (el espejo Premium ya esta aplicado y
+      // no se revierte; el registro se recupera por barrido/reproceso).
+      const registry = await ensureTrialRegistry(supabase, event, eventId)
+
+
       // [11 may 2026] Close trial_starts lifecycle row when trial converts to paid.
-      // INITIAL_PURCHASE with TRIAL is recorded by iap.ts client-side.
+      // (La fila la crea ahora el bloque de arriba, server-side; iap.ts queda como
+      // belt-and-suspenders idempotente.)
       // The first RENEWAL after that with period_type=NORMAL = Apple/Google
       // charged the first paid period → trial successfully converted.
       // PRODUCT_CHANGE (upgrade) also counts as conversion.
@@ -353,7 +362,7 @@ Deno.serve(async (req) => {
         console.warn('subscriptions upsert skipped:', e)
       }
 
-      await markEvent(supabase, eventId, 'applied')
+      await markEvent(supabase, eventId, registry === 'failed' ? 'reconciliation_required' : 'applied')
 
     } else if (revokePremiumEvents.includes(event.type)) {
       // EXPIRATION — revoca el ESPEJO RevenueCat. Los grants manuales
@@ -617,7 +626,7 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error('RevenueCat webhook error:', error)
     return new Response(
-      JSON.stringify({ error: error.message || 'Internal error' }),
+      JSON.stringify({ error: (error as Error)?.message || 'Internal error' }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
     )
   }

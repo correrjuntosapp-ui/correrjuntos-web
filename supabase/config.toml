@@ -1,0 +1,6 @@
+project_id = "waihiwdbtcbdazmaxdor"
+
+# verify_jwt persistido: RevenueCat llama con Bearer REVENUCAT_WEBHOOK_SECRET
+# (auth propia fail-closed en el codigo), no con JWT de Supabase.
+[functions.revenucat-webhook]
+verify_jwt = false

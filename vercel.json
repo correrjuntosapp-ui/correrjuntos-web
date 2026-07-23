@@ -182,6 +182,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/autor/carlos-ruiz.html",
+      "destination": "/blog/autor/abraham-marquez",
+      "permanent": true
+    },
+    {
       "source": "/blog/autor/maria-lopez",
       "destination": "/blog/autor/abraham-marquez",
       "permanent": true

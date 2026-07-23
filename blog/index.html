@@ -588,8 +588,13 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 <div style="background:#fffcf9;border-bottom:1px solid #efe6db;padding:14px 24px">
   <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;font-size:.82rem;color:#5c4d3d;font-weight:500">
     <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin banners de publicidad</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span><a href="/legal/afiliados" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Enlaces de afiliación señalizados</a></span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span><a href="/legal/politica-editorial" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Elaborado y revisado por personas, con apoyo de IA</a></span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span><a href="/legal/afiliados" class="trust-pill-link">Enlaces de afiliación señalizados</a></span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span><a href="/legal/politica-editorial" class="trust-pill-link">Elaborado y revisado por personas, con apoyo de IA</a></span>
+    <style>
+      /* Área táctil >=44px sin alterar el diseño: padding compensado con margen negativo */
+      .trust-pill-link{color:inherit;text-decoration:underline;text-underline-offset:2px;display:inline-flex;align-items:center;min-height:44px;padding:11px 6px;margin:-11px -6px}
+      .trust-pill-link:focus-visible{outline:2px solid #c2410c;outline-offset:2px;border-radius:6px}
+    </style>
     <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Correcciones abiertas</span>
   </div>
 </div>

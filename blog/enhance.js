@@ -565,7 +565,7 @@
       '<strong>' + (isEN ? 'Affiliate disclosure:' : 'Nota de afiliados:') + '</strong> ' +
       (isEN
         ? 'Some links in this article are affiliate links. If you buy through them, we receive a small commission at no extra cost to you. This helps us keep CorrerJuntos free. We only recommend products we use or have personally tested.'
-        : 'Algunos enlaces de este artículo son enlaces de afiliado. Si compras a través de ellos, recibimos una pequeña comisión sin coste adicional para ti. Esto nos ayuda a mantener CorrerJuntos y seguir creando contenido útil. Solo recomendamos productos que usamos o hemos probado personalmente.'
+        : 'Algunos enlaces de este artículo son enlaces de afiliado. Si compras a través de ellos, recibimos una pequeña comisión sin coste adicional para ti. Esto nos ayuda a mantener CorrerJuntos y seguir creando contenido útil. Solo recomendamos productos que usamos o hemos analizado personalmente.'
       ) + '</p>';
 
     /* Insert before footer */

@@ -2,3 +2,12 @@ correr-juntos-app/
 .claude/
 *.md
 nul
+tmp/
+tools/
+docs/
+supabase/
+tests/
+*.cjs
+redes/
+seo-optimization-log.json
+Equipo de agentes/

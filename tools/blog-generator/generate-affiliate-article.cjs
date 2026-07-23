@@ -120,7 +120,7 @@ function generate(lang) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="${c.author || 'Carlos Ruiz'}">
+<meta name="author" content="${authorName}">
 <title>${c.title} | CorrerJuntos</title>
 <meta name="description" content="${c.metaDescription}">
 <meta name="robots" content="index, follow">
@@ -151,9 +151,11 @@ ${enSlug ? `<link rel="alternate" hreflang="en" href="${enUrl}">` : ''}
 `;
 
   // SCHEMA JSON-LD
-  const authorName = c.author || 'Carlos Ruiz';
-  const authorSlug = authorName === 'Carlos Ruiz' ? 'carlos-ruiz' : 'jose-marquez';
-  const authorTitle = authorName === 'Carlos Ruiz' ? 'Periodista Deportivo y Editor' : 'Running Coach y Periodista';
+  // Autoría: SOLO el responsable editorial real. Prohibido introducir personas
+  // o credenciales inventadas (ver docs/blog-editorial-integrity.md).
+  const authorName = 'Abraham Márquez Rodríguez';
+  const authorSlug = 'abraham-marquez';
+  const authorTitle = 'Fundador de CorrerJuntos';
   const authorUrl = `https://www.correrjuntos.com/blog/autor/${authorSlug}`;
 
   const schemaGraph = [
@@ -326,7 +328,7 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   <h1>${c.title}</h1>
   <p>${c.subtitle || c.metaDescription}</p>
   <div class="meta">
-    <span class="category">${c.category}</span> &middot; ${c.datePublished} &middot; ${isES ? (c.author || 'Carlos Ruiz') : (c.author || 'Carlos Ruiz')} &middot; ${c.readTime || '15'} ${L.readTime}
+    <span class="category">${c.category}</span> &middot; ${c.datePublished} &middot; ${authorName} &middot; ${c.readTime || '15'} ${L.readTime}
   </div>
   </div>
 </div>

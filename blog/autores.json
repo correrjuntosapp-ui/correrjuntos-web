@@ -1,0 +1,42 @@
+{
+  "_doc": "Fuente de verdad de autores y revisores del blog. Regla: solo personas REALES con datos verificables. José y Ana son asistentes IA del producto, no autores. Los campos vacíos significan 'dato no disponible' — nunca rellenar con placeholders inventados.",
+  "authors": [
+    {
+      "slug": "abraham-marquez",
+      "name": "Abraham Márquez Rodríguez",
+      "role": "Fundador de CorrerJuntos",
+      "photo": "/public/abraham.jpg",
+      "bio": "Corredor popular y fundador de CorrerJuntos, la app española para encontrar gente con la que correr. Escribe sobre entrenamiento, material y comunidad runner desde Huelva.",
+      "location": "Huelva, España",
+      "links": {
+        "instagram": "https://www.instagram.com/correrjuntosapp/",
+        "linkedin": "https://www.linkedin.com/in/abrahammarquezrodriguez/",
+        "strava": "https://www.strava.com/athletes/correrjuntos"
+      },
+      "credentials": []
+    }
+  ],
+  "reviewers": [],
+  "_reviewerSchema": {
+    "slug": "kebab-case",
+    "name": "Nombre real completo",
+    "title": "Titulación real y verificable (p. ej. 'Dietista-Nutricionista, colegiado AND-XXXXX')",
+    "organization": "Organización o colegio profesional",
+    "link": "URL profesional verificable",
+    "note": "Solo añadir revisores cuando exista una revisión REAL con fecha. El artículo revisado debe declarar reviewedAt y reviewer slug."
+  },
+  "_retired": [
+    {
+      "name": "Carlos Ruiz",
+      "reason": "Persona no real usada históricamente como byline. Retirado el 23 jul 2026; artículos reatribuidos a abraham-marquez. Redirect 301 /blog/autor/carlos-ruiz → /blog/autor/abraham-marquez ya activo en vercel.json."
+    },
+    {
+      "name": "Jose Marquez",
+      "reason": "Byline histórico. Redirect 301 a abraham-marquez activo. José es hoy el asistente IA de entrenamiento del producto, no un autor."
+    },
+    {
+      "name": "María López",
+      "reason": "Persona no real usada históricamente. Redirect 301 a abraham-marquez activo."
+    }
+  ]
+}

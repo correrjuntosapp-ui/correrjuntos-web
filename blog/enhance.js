@@ -1060,62 +1060,11 @@
   }
 
   /* ══════════════════════════════════════════════
-     14. PRODUCT + REVIEW SCHEMA (artículos zapatillas/productos)
-     Genera rich snippets con estrellas en Google
+     14. (retirado 23 jul 2026) Product+Review schema autogenerado.
+     Inyectaba AggregateRating con reviewCount derivado del hash del slug y
+     una Review reciclando la meta description — opiniones que no existen.
+     No se sustituye por ningún valor: sin datos reales no hay schema.
      ══════════════════════════════════════════════ */
-  if(!isBlogIndex){
-    var isProductSlug = /zapatilla|zapato|shoe|reloj|watch|auricular|headphone|chalk|chaleco|mochila|gafa|malla|calcet|gorra|lampar|fron|bastones|polo|crema|gel|colag|creatin|bcaa|protei|magnes|omega|vitamin|suplemento|foam|roller|pistol|cintur|bidon|soft-flask|garmin|coros|polar|shokz|hoka|asics|nike|salomon|brooks|saucony|new-balance|on-running|puma|mizuno/i.test(slug);
-    if(isProductSlug){
-      /* Extract rating from localStorage or use base average from page */
-      var storedStars = parseInt(localStorage.getItem('cj_rating_' + slug) || '0', 10);
-      var baseRatingCount = 180 + (slug.split('').reduce(function(a,c){return a+c.charCodeAt(0);},0) % 120);
-      var baseRatingVal  = (4.5 + ((baseRatingCount % 5) * 0.04)).toFixed(1);
-      var ratingVal = storedStars > 0 ? String(storedStars) : baseRatingVal;
-
-      /* Extract product name from title */
-      var docTitle = document.title.replace(/\|.*$/,'').trim();
-      var heroImg  = document.querySelector('.hero img, .hero-img, article img, .content img');
-      var heroImgUrl = heroImg ? heroImg.src : '';
-
-      /* Build JSON-LD */
-      var productSchema = {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": docTitle,
-        "image": heroImgUrl || 'https://www.correrjuntos.com/icons/icon-512.png',
-        "description": (document.querySelector('meta[name="description"]') || {}).content || docTitle,
-        "brand": {
-          "@type": "Brand",
-          "name": "CorrerJuntos"
-        },
-        "review": {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": ratingVal,
-            "bestRating": "5",
-            "worstRating": "1"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Abraham Márquez Rodríguez"
-          },
-          "reviewBody": (document.querySelector('meta[name="description"]') || {}).content || docTitle
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": ratingVal,
-          "reviewCount": String(baseRatingCount),
-          "bestRating": "5",
-          "worstRating": "1"
-        }
-      };
-      var schTag = document.createElement('script');
-      schTag.type = 'application/ld+json';
-      schTag.textContent = JSON.stringify(productSchema);
-      document.head.appendChild(schTag);
-    }
-  }
 
   /* ══════════════════════════════════════════════
      15. "ACTUALIZADO EN" BADGE EN HERO
@@ -1499,10 +1448,13 @@
     else content.insertBefore(d, content.firstChild);
   }
 
-  /* 2) Aviso educativo prudente en contenido sensible (sin revisión sanitaria actual) */
-  var SENSITIVE = /lesion|dolor|rodilla|fascitis|periostitis|tendinitis|esguince|embarazo|posparto|menopaus|menstruacion|ayuno|adelgazar|perder-peso|bajar-de-peso|suplement|creatina|cafeina|proteina|colageno|magnesio|omega-3|vitamina|bcaa|electrolito|hidratacion|hierro|anemia|salud|injury|pain|knee|pregnan|postpartum|menopause|fasting|weight-loss|supplement|caffeine|protein|collagen|hydration|health/;
+  /* 2) Aviso educativo prudente en contenido sensible (sin revisión sanitaria actual).
+     'pain' exige límite de segmento (evita 'spain'); los slugs de material
+     (chalecos/vests de hidratación) quedan excluidos: son equipamiento, no salud. */
+  var GEAR_EXCLUDE = /chaleco|vest/;
+  var SENSITIVE = /lesion|dolor|rodilla|fascitis|periostitis|tendinitis|esguince|embarazo|posparto|menopaus|menstruacion|ayuno|adelgazar|perder-peso|bajar-de-peso|suplement|creatina|cafeina|proteina|colageno|magnesio|omega-3|vitamina|bcaa|electrolito|hidratacion|hierro|anemia|salud|injury|(?:^|-)pain(?:-|$)|knee|pregnan|postpartum|menopause|fasting|weight-loss|supplement|caffeine|protein|collagen|hydration|health/;
   var slug = (location.pathname.split('/').pop() || '').toLowerCase();
-  if (SENSITIVE.test(slug) && !document.getElementById('cj-health-note')) {
+  if (!GEAR_EXCLUDE.test(slug) && SENSITIVE.test(slug) && !document.getElementById('cj-health-note')) {
     var n = document.createElement('div');
     n.id = 'cj-health-note';
     n.setAttribute('role', 'note');

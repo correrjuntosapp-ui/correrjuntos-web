@@ -14,6 +14,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/calculadora-ritmo-running"/>
   </url>
   <url>
+    <loc>https://www.correrjuntos.com/legal/politica-editorial</loc>
+    <lastmod>2026-07-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/legal/politica-editorial"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/legal/politica-editorial"/>
+  </url>
+  <url>
+    <loc>https://www.correrjuntos.com/legal/afiliados</loc>
+    <lastmod>2026-07-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/legal/afiliados"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/legal/afiliados"/>
+  </url>
+  <url>
     <loc>https://www.correrjuntos.com/about</loc>
     <lastmod>2026-05-15</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/about"/>

@@ -578,7 +578,7 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
     </a>
     <!-- Stats bar abajo -->
     <div style="display:flex;justify-content:space-between;align-items:center;gap:18px;font-size:.78rem;color:rgba(255,255,255,.55);font-family:'JetBrains Mono','SF Mono',monospace;letter-spacing:.04em;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;margin-top:8px">
-      <span style="display:flex;align-items:center;gap:8px">200+ artículos<span style="width:3px;height:3px;border-radius:50%;background:rgba(249,115,22,.6)"></span>4 autores españoles<span style="width:3px;height:3px;border-radius:50%;background:rgba(249,115,22,.6)"></span>Actualizado 12 jun 2026</span>
+      <span style="display:flex;align-items:center;gap:8px">300+ artículos en español<span style="width:3px;height:3px;border-radius:50%;background:rgba(249,115,22,.6)"></span>Actualizado jul 2026</span>
       <a href="/planes/0-5k" style="color:#f97316;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(249,115,22,.3);padding-bottom:2px">Empieza con plan gratis →</a>
     </div>
   </div>
@@ -587,11 +587,15 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 <!-- Trust pill · Why trust us · combate ad-bloated señal Core Update May 2026 -->
 <div style="background:#fffcf9;border-bottom:1px solid #efe6db;padding:14px 24px">
   <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;font-size:.82rem;color:#5c4d3d;font-weight:500">
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin ads</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin patrocinios</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin AI generado</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Probado por runners reales</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Autores verificables</span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Sin banners de publicidad</span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span><a href="/legal/afiliados" class="trust-pill-link">Enlaces de afiliación señalizados</a></span>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span><a href="/legal/politica-editorial" class="trust-pill-link">Elaborado y revisado por personas, con apoyo de IA</a></span>
+    <style>
+      /* Área táctil >=44px sin alterar el diseño: padding compensado con margen negativo */
+      .trust-pill-link{color:inherit;text-decoration:underline;text-underline-offset:2px;display:inline-flex;align-items:center;min-height:44px;padding:11px 6px;margin:-11px -6px}
+      .trust-pill-link:focus-visible{outline:2px solid #c2410c;outline-offset:2px;border-radius:6px}
+    </style>
+    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e"></span>Correcciones abiertas</span>
   </div>
 </div>
 
@@ -662,7 +666,7 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
         </div>
         <div class="most-read-info">
           <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
-          <h3 aria-level="2">Guia Completa para Empezar a Correr desde Cero</h3>
+          <h3>Guia Completa para Empezar a Correr desde Cero</h3>
           <span class="meta">Principiantes · 10 min</span>
         </div>
       </a>
@@ -673,7 +677,7 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
         </div>
         <div class="most-read-info">
           <span class="mr-cat cat-badge-zapatillas">Zapatillas</span>
-          <h3 aria-level="2">Las 10 Mejores Zapatillas Running para Asfalto 2026</h3>
+          <h3>Las 10 Mejores Zapatillas Running para Asfalto 2026</h3>
           <span class="meta">Zapatillas · 14 min</span>
         </div>
       </a>
@@ -684,7 +688,7 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
         </div>
         <div class="most-read-info">
           <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
-          <h3 aria-level="2">Los 10 Errores Mas Comunes de los Corredores</h3>
+          <h3>Los 10 Errores Mas Comunes de los Corredores</h3>
           <span class="meta">Entrenamiento · 9 min</span>
         </div>
       </a>
@@ -692,7 +696,7 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
   </div>
 
   <!-- Article counter -->
-  <div class="article-counter" id="articleCounter">Mostrando <span id="visibleCount">212</span> de 215 articulos</div>
+  <div class="article-counter" id="articleCounter">Mostrando <span id="visibleCount">…</span> de <span id="totalCount">…</span> articulos</div>
 
   <!-- Standalone CTA banner — centered, outside grid -->
   <aside class="blog-cta-banner" aria-label="Descarga CorrerJuntos">
@@ -3701,6 +3705,15 @@ document.addEventListener('DOMContentLoaded', function() {
   var searchClear = document.getElementById('searchClear');
   var visibleCountEl = document.getElementById('visibleCount');
   var activeFilter = 'todos';
+  // Única fuente de verdad de los contadores: las cards reales del grid.
+  (function(){
+    var total = grid.querySelectorAll('.article-card').length;
+    var totalEl = document.getElementById('totalCount');
+    if (totalEl) totalEl.textContent = total;
+    var filterCountEl = document.getElementById('filterCount');
+    if (filterCountEl) filterCountEl.textContent = total;
+    if (visibleCountEl) visibleCountEl.textContent = Math.min(total, 24);
+  })();
   var ARTICLES_PER_PAGE = 24;
   var currentPage = 1;
 

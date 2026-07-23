@@ -565,7 +565,7 @@
       '<strong>' + (isEN ? 'Affiliate disclosure:' : 'Nota de afiliados:') + '</strong> ' +
       (isEN
         ? 'Some links in this article are affiliate links. If you buy through them, we receive a small commission at no extra cost to you. This helps us keep CorrerJuntos free. We only recommend products we use or have personally tested.'
-        : 'Algunos enlaces de este artículo son enlaces de afiliado. Si compras a través de ellos, recibimos una pequeña comisión sin coste adicional para ti. Esto nos ayuda a mantener CorrerJuntos y seguir creando contenido útil. Solo recomendamos productos que usamos o hemos probado personalmente.'
+        : 'Algunos enlaces de este artículo son enlaces de afiliado. Si compras a través de ellos, recibimos una pequeña comisión sin coste adicional para ti. Esto nos ayuda a mantener CorrerJuntos y seguir creando contenido útil. Solo recomendamos productos que usamos o hemos analizado personalmente.'
       ) + '</p>';
 
     /* Insert before footer */
@@ -874,7 +874,9 @@
         learnItems += '<li>'+itemText+'</li>';
       }
       learnDiv.innerHTML = '<div class="learn-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" style="flex-shrink:0"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>'+(isEN?'What you\'ll learn':'Qu\u00e9 aprender\u00e1s en este art\u00edculo')+'</div><ul class="learn-list">'+learnItems+'</ul>';
-      articleContent.insertBefore(learnDiv, firstH2);
+      /* firstH2 puede no ser hijo directo de articleContent (wrappers intermedios):
+         insertar sobre su parentNode real; si no, un throw aquí mata el resto de módulos. */
+      if (firstH2.parentNode) firstH2.parentNode.insertBefore(learnDiv, firstH2);
     }
   }
 
@@ -884,9 +886,7 @@
   if(!isBlogIndex){
     var RATING_KEY = 'cj_rating_' + slug;
     var existingStars = parseInt(localStorage.getItem(RATING_KEY) || '0', 10);
-    /* Simulated base count — varies by slug hash so each article looks different */
-    var baseCount = 180 + (slug.split('').reduce(function(a,c){return a+c.charCodeAt(0);},0) % 120);
-    var baseAvg   = 4.5 + ((baseCount % 5) * 0.04);
+    /* Sin contadores simulados: no se muestran cifras de valoraciones que no existen. */
 
     var ratingCSS = document.createElement('style');
     ratingCSS.textContent = [
@@ -913,10 +913,8 @@
     for(var si=1;si<=5;si++){
       starsHtml += '<span class="rating-star'+(existingStars>=si?' active locked':'')+(existingStars>0?' locked':'')+'" data-star="'+si+'">&#9733;</span>';
     }
-    var avgDisplay = baseAvg.toFixed(1);
     ratingDiv.innerHTML =
       '<p class="rating-q">'+(isEN?'Rate this article':'Valora este art\u00edculo')+'</p>' +
-      '<p class="rating-summary"><strong>'+avgDisplay+'/5</strong> &nbsp;\u2014&nbsp; '+baseCount+' '+(isEN?'ratings':'valoraciones')+'</p>' +
       '<div class="rating-stars">'+starsHtml+'</div>' +
       '<p class="rating-thanks">'+(isEN?'\uD83C\uDF89 Thanks for your rating!':'\uD83C\uDF89 \u00a1Gracias por tu valoraci\u00f3n!')+'</p>';
 
@@ -954,8 +952,6 @@
             if(parseInt(s.dataset.star,10)<=vote) s.classList.add('active');
           });
           ratingDiv.querySelector('.rating-thanks').style.display = 'block';
-          var newAvg = ((parseFloat(avgDisplay)*baseCount + vote)/(baseCount+1)).toFixed(1);
-          ratingDiv.querySelector('.rating-summary').innerHTML = '<strong>'+newAvg+'/5</strong> &nbsp;\u2014&nbsp; '+(baseCount+1)+' '+(isEN?'ratings':'valoraciones');
           trackEvent('article_rating', {stars: vote, article_slug: slug});
         });
       });
@@ -1064,62 +1060,11 @@
   }
 
   /* ══════════════════════════════════════════════
-     14. PRODUCT + REVIEW SCHEMA (artículos zapatillas/productos)
-     Genera rich snippets con estrellas en Google
+     14. (retirado 23 jul 2026) Product+Review schema autogenerado.
+     Inyectaba AggregateRating con reviewCount derivado del hash del slug y
+     una Review reciclando la meta description — opiniones que no existen.
+     No se sustituye por ningún valor: sin datos reales no hay schema.
      ══════════════════════════════════════════════ */
-  if(!isBlogIndex){
-    var isProductSlug = /zapatilla|zapato|shoe|reloj|watch|auricular|headphone|chalk|chaleco|mochila|gafa|malla|calcet|gorra|lampar|fron|bastones|polo|crema|gel|colag|creatin|bcaa|protei|magnes|omega|vitamin|suplemento|foam|roller|pistol|cintur|bidon|soft-flask|garmin|coros|polar|shokz|hoka|asics|nike|salomon|brooks|saucony|new-balance|on-running|puma|mizuno/i.test(slug);
-    if(isProductSlug){
-      /* Extract rating from localStorage or use base average from page */
-      var storedStars = parseInt(localStorage.getItem('cj_rating_' + slug) || '0', 10);
-      var baseRatingCount = 180 + (slug.split('').reduce(function(a,c){return a+c.charCodeAt(0);},0) % 120);
-      var baseRatingVal  = (4.5 + ((baseRatingCount % 5) * 0.04)).toFixed(1);
-      var ratingVal = storedStars > 0 ? String(storedStars) : baseRatingVal;
-
-      /* Extract product name from title */
-      var docTitle = document.title.replace(/\|.*$/,'').trim();
-      var heroImg  = document.querySelector('.hero img, .hero-img, article img, .content img');
-      var heroImgUrl = heroImg ? heroImg.src : '';
-
-      /* Build JSON-LD */
-      var productSchema = {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": docTitle,
-        "image": heroImgUrl || 'https://www.correrjuntos.com/icons/icon-512.png',
-        "description": (document.querySelector('meta[name="description"]') || {}).content || docTitle,
-        "brand": {
-          "@type": "Brand",
-          "name": "CorrerJuntos"
-        },
-        "review": {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": ratingVal,
-            "bestRating": "5",
-            "worstRating": "1"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Abraham Márquez Rodríguez"
-          },
-          "reviewBody": (document.querySelector('meta[name="description"]') || {}).content || docTitle
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": ratingVal,
-          "reviewCount": String(baseRatingCount),
-          "bestRating": "5",
-          "worstRating": "1"
-        }
-      };
-      var schTag = document.createElement('script');
-      schTag.type = 'application/ld+json';
-      schTag.textContent = JSON.stringify(productSchema);
-      document.head.appendChild(schTag);
-    }
-  }
 
   /* ══════════════════════════════════════════════
      15. "ACTUALIZADO EN" BADGE EN HERO
@@ -1475,4 +1420,48 @@
     }catch(ex){}
   })();
 
+})();
+
+/* ══════════════════════════════════════════════
+   TRANSPARENCIA · disclosure de afiliados + aviso de contenido sensible
+   Módulo independiente e idempotente (23 jul 2026).
+   ══════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  if (location.pathname.indexOf('/blog') !== 0) return;
+  var isEN = location.pathname.indexOf('/blog/en/') === 0;
+  var content = document.querySelector('.content') || document.querySelector('article') || document.querySelector('main');
+  if (!content) return;
+
+  /* 1) Disclosure de afiliación — solo en artículos con enlaces afiliados reales */
+  var hasAffiliate = !!document.querySelector('a[href*="tag=diezmejores21-21"], a[href*="amzn.to/"]');
+  if (hasAffiliate && !document.getElementById('cj-affiliate-disclosure')) {
+    var d = document.createElement('div');
+    d.id = 'cj-affiliate-disclosure';
+    d.setAttribute('role', 'note');
+    d.style.cssText = 'margin:18px 0;padding:12px 16px;border:1px solid rgba(249,115,22,.25);border-left:4px solid #c2410c;border-radius:0 10px 10px 0;background:rgba(249,115,22,.05);font-size:.85rem;line-height:1.55';
+    d.innerHTML = isEN
+      ? 'This article contains affiliate links. If you buy through them, CorrerJuntos may earn a commission at no extra cost to you. This does not determine which products we include or how we rate them. <a href="/legal/afiliados" style="text-decoration:underline;text-underline-offset:2px">Learn more</a>.'
+      : 'Este artículo contiene enlaces de afiliación. Si compras a través de ellos, CorrerJuntos puede recibir una comisión sin coste adicional para ti. Esto no determina qué productos incluimos ni cómo los valoramos. <a href="/legal/afiliados" style="text-decoration:underline;text-underline-offset:2px">Más información</a>.';
+    var firstH2 = content.querySelector('h2');
+    if (firstH2 && firstH2.parentNode) firstH2.parentNode.insertBefore(d, firstH2);
+    else content.insertBefore(d, content.firstChild);
+  }
+
+  /* 2) Aviso educativo prudente en contenido sensible (sin revisión sanitaria actual).
+     'pain' exige límite de segmento (evita 'spain'); los slugs de material
+     (chalecos/vests de hidratación) quedan excluidos: son equipamiento, no salud. */
+  var GEAR_EXCLUDE = /chaleco|vest/;
+  var SENSITIVE = /lesion|dolor|rodilla|fascitis|periostitis|tendinitis|esguince|embarazo|posparto|menopaus|menstruacion|ayuno|adelgazar|perder-peso|bajar-de-peso|suplement|creatina|cafeina|proteina|colageno|magnesio|omega-3|vitamina|bcaa|electrolito|hidratacion|hierro|anemia|salud|injury|(?:^|-)pain(?:-|$)|knee|pregnan|postpartum|menopause|fasting|weight-loss|supplement|caffeine|protein|collagen|hydration|health/;
+  var slug = (location.pathname.split('/').pop() || '').toLowerCase();
+  if (!GEAR_EXCLUDE.test(slug) && SENSITIVE.test(slug) && !document.getElementById('cj-health-note')) {
+    var n = document.createElement('div');
+    n.id = 'cj-health-note';
+    n.setAttribute('role', 'note');
+    n.style.cssText = 'margin:18px 0;padding:12px 16px;border:1px solid rgba(100,116,139,.3);border-left:4px solid #64748b;border-radius:0 10px 10px 0;background:rgba(100,116,139,.06);font-size:.85rem;line-height:1.55';
+    n.textContent = isEN
+      ? 'This content is educational and does not replace advice from a doctor, physiotherapist or registered dietitian. If you have symptoms, an injury or a medical condition, consult a healthcare professional.'
+      : 'Este contenido es divulgativo y no sustituye el consejo de un médico, fisioterapeuta o dietista-nutricionista. Si tienes síntomas, una lesión o una condición médica, consulta con un profesional sanitario.';
+    content.insertBefore(n, content.firstChild);
+  }
 })();

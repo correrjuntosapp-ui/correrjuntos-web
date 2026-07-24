@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="520" viewBox="0 0 460 520" role="img" aria-label="Ilustracion de un shot concentrado de nitrato de remolacha">
+  <defs>
+    <linearGradient id="liq" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b32a58"/>
+      <stop offset="1" stop-color="#6f1030"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="beet2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c02a5a"/>
+      <stop offset="1" stop-color="#7c1338"/>
+    </linearGradient>
+  </defs>
+
+  <!-- soft shadow -->
+  <ellipse cx="230" cy="470" rx="150" ry="22" fill="#3d3229" opacity="0.08"/>
+
+  <!-- bottle -->
+  <g transform="translate(150,70)">
+    <!-- cap -->
+    <rect x="42" y="0" width="76" height="34" rx="8" fill="#2a0d1e"/>
+    <rect x="52" y="30" width="56" height="16" rx="4" fill="#3a1528"/>
+    <!-- body -->
+    <path d="M40,46 h80 a18,18 0 0 1 18,18 v230 a26,26 0 0 1 -26,26 h-64 a26,26 0 0 1 -26,-26 v-230 a18,18 0 0 1 18,-18 Z" fill="#f3ede4"/>
+    <!-- liquid fill -->
+    <clipPath id="cl"><path d="M40,46 h80 a18,18 0 0 1 18,18 v230 a26,26 0 0 1 -26,26 h-64 a26,26 0 0 1 -26,-26 v-230 a18,18 0 0 1 18,-18 Z"/></clipPath>
+    <g clip-path="url(#cl)">
+      <rect x="30" y="120" width="120" height="220" fill="url(#liq)"/>
+      <ellipse cx="90" cy="122" rx="62" ry="10" fill="#c53a66" opacity="0.7"/>
+    </g>
+    <!-- glass highlight -->
+    <path d="M40,46 h80 a18,18 0 0 1 18,18 v230 a26,26 0 0 1 -26,26 h-64 a26,26 0 0 1 -26,-26 v-230 a18,18 0 0 1 18,-18 Z" fill="url(#glass)"/>
+    <!-- label -->
+    <rect x="34" y="176" width="112" height="86" rx="8" fill="#fffdf9" opacity="0.95"/>
+    <text x="90" y="205" text-anchor="middle" font-family="-apple-system,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" fill="#7c1338">NITRATO</text>
+    <text x="90" y="224" text-anchor="middle" font-family="-apple-system,Segoe UI,Arial,sans-serif" font-size="11" font-weight="600" fill="#5c4d3d" letter-spacing="1">REMOLACHA</text>
+    <text x="90" y="248" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-style="italic" fill="#f97316">NO&#8323;&#8315;</text>
+  </g>
+
+  <!-- beetroot beside bottle -->
+  <g transform="translate(70,320)">
+    <path d="M0,86 C-50,86 -68,38 -50,7 C-37,-14 -13,-21 0,-7 C13,-21 37,-14 50,7 C68,38 50,86 0,86 Z" fill="url(#beet2)"/>
+    <path d="M0,86 C7,108 17,120 31,130" fill="none" stroke="#7c1338" stroke-width="3" stroke-linecap="round"/>
+    <g stroke="#2e7d32" stroke-width="5" stroke-linecap="round" fill="none">
+      <path d="M-10,-11 C-22,-50 -24,-74 -14,-100"/>
+      <path d="M2,-14 C4,-56 8,-86 22,-108"/>
+      <path d="M13,-11 C30,-46 42,-66 60,-78"/>
+    </g>
+    <g fill="#43a047">
+      <path d="M-14,-100 c-12,-4 -22,-1 -27,8 c12,4 22,1 27,-8 Z"/>
+      <path d="M22,-108 c-4,-12 -15,-19 -25,-18 c4,12 15,19 25,18 Z"/>
+      <path d="M60,-78 c6,-10 4,-22 -5,-29 c-6,10 -4,22 5,29 Z"/>
+    </g>
+  </g>
+</svg>

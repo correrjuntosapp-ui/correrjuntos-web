@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5a1030"/>
+      <stop offset="0.5" stop-color="#2a0d1e"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.28" r="0.6">
+      <stop offset="0" stop-color="#f97316" stop-opacity="0.42"/>
+      <stop offset="0.5" stop-color="#f97316" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c02a5a"/>
+      <stop offset="1" stop-color="#7c1338"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- faint motion / speed lines suggesting endurance -->
+  <g stroke="#ffffff" stroke-opacity="0.06" stroke-width="2" stroke-linecap="round">
+    <line x1="60" y1="150" x2="360" y2="150"/>
+    <line x1="40" y1="200" x2="300" y2="200"/>
+    <line x1="80" y1="250" x2="420" y2="250"/>
+    <line x1="30" y1="470" x2="330" y2="470"/>
+    <line x1="70" y1="520" x2="380" y2="520"/>
+  </g>
+
+  <!-- nitrate -> nitric oxide molecular motif (NO3- to NO) -->
+  <g opacity="0.9">
+    <g fill="none" stroke="#f9a03f" stroke-opacity="0.45" stroke-width="2.5">
+      <circle cx="850" cy="140" r="16"/>
+      <circle cx="905" cy="112" r="11"/>
+      <circle cx="905" cy="168" r="11"/>
+      <circle cx="795" cy="140" r="11"/>
+      <line x1="866" y1="130" x2="894" y2="118"/>
+      <line x1="866" y1="150" x2="894" y2="162"/>
+      <line x1="834" y1="140" x2="806" y2="140"/>
+    </g>
+    <text x="820" y="210" font-family="Georgia, serif" font-size="22" fill="#f9a03f" fill-opacity="0.5" font-style="italic">NO&#8323;&#8315; &#8594; NO</text>
+  </g>
+
+  <!-- stylized beetroots with leaves, bottom-right cluster -->
+  <g transform="translate(770,330)">
+    <!-- beet 1 -->
+    <g transform="translate(0,60)">
+      <path d="M0,120 C-70,120 -96,54 -70,10 C-52,-20 -18,-30 0,-10 C18,-30 52,-20 70,10 C96,54 70,120 0,120 Z" fill="url(#beet)"/>
+      <path d="M0,120 C10,150 24,168 44,182" fill="none" stroke="#7c1338" stroke-width="4" stroke-linecap="round"/>
+      <g stroke="#2e7d32" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.9">
+        <path d="M-14,-16 C-30,-70 -34,-104 -20,-140"/>
+        <path d="M2,-20 C2,-78 6,-120 26,-150"/>
+        <path d="M18,-16 C40,-64 58,-92 84,-108"/>
+      </g>
+      <g fill="#43a047" opacity="0.85">
+        <path d="M-20,-140 c-16,-6 -30,-2 -36,10 c16,6 30,2 36,-10 Z"/>
+        <path d="M26,-150 c-6,-16 -20,-26 -34,-24 c6,16 20,26 34,24 Z"/>
+        <path d="M84,-108 c8,-14 6,-30 -6,-40 c-8,14 -6,30 6,40 Z"/>
+      </g>
+    </g>
+    <!-- beet 2 smaller -->
+    <g transform="translate(150,110) scale(0.72)">
+      <path d="M0,120 C-70,120 -96,54 -70,10 C-52,-20 -18,-30 0,-10 C18,-30 52,-20 70,10 C96,54 70,120 0,120 Z" fill="url(#beet)" opacity="0.92"/>
+      <g stroke="#2e7d32" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.85">
+        <path d="M-10,-16 C-24,-64 -26,-96 -14,-128"/>
+        <path d="M6,-18 C10,-70 16,-104 34,-130"/>
+      </g>
+      <g fill="#43a047" opacity="0.8">
+        <path d="M-14,-128 c-16,-6 -30,-2 -36,10 c16,6 30,2 36,-10 Z"/>
+        <path d="M34,-130 c-4,-16 -18,-26 -32,-26 c4,16 18,26 32,26 Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

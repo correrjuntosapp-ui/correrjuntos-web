@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.correrjuntos.com/blog/en/</loc>
+    <loc>https://www.correrjuntos.com/blog/en</loc>
     <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/"/>
@@ -1100,13 +1100,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/grupos-running-valencia"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/blog/en/running-groups-zaragoza</loc>
-    <lastmod>2026-04-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-groups-zaragoza"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/grupos-running-zaragoza"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/grupos-running-zaragoza"/>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/blog/en/running-headlamps</loc>
     <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-headlamps"/>
@@ -1613,7 +1606,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/entrenamiento-por-zonas-running"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/blog/en/categoria/</loc>
+    <loc>https://www.correrjuntos.com/blog/en/categoria</loc>
     <lastmod>2026-04-25</lastmod>
   </url>
   <url>

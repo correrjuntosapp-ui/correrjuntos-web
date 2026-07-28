@@ -1171,6 +1171,271 @@
       "source": "/terminos",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/products/226ers-fish-oil-omega-3-120-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/amix-pro-fish-oil-omega-3-60-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/esn-omega-3-1200mg-epa-900mg-dha-300-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/hsn-ultra-omega-3-ifos-120-softgels",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/ndl-pro-health-omega-3-120-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/nordic-naturals-ultimate-omega-3-120-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/now-foods-ultra-omega-3-180-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/nutravita-omega-3-2000mg-240-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/enervit-isotonic-gel",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/gu-energy-gel",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/high5-energy-gel",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/crown-sport-isotonic-drink",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/high5-zero",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/isostar-hydrate-and-perform",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/maurten-drink-mix-160",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/nuun-sport",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/powerbar-5-electrolytes",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/sis-hydro-tablets",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/tailwind-nutrition",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/asics-gel-nimbus-26",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/brooks-ghost-16",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/hoka-bondi-8",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/hoka-clifton-9",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/nike-vomero-18",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/saucony-ride-17",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/camelbak-flash-belt",
+      "destination": "/blog/cinturones-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/flipbelt-classic",
+      "destination": "/blog/cinturones-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/naked-running-band",
+      "destination": "/blog/cinturones-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/nathan-zipster",
+      "destination": "/blog/cinturones-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/salomon-pulse-belt",
+      "destination": "/blog/cinturones-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-entrenar-10k",
+      "destination": "/blog/plan-entrenamiento-10k",
+      "permanent": true
+    },
+    {
+      "source": "/blog/correr-de-noche-seguridad",
+      "destination": "/blog/correr-por-la-noche-consejos",
+      "permanent": true
+    },
+    {
+      "source": "/blog/grupos-running-huelva-soul-runclub-huelva",
+      "destination": "/cities/huelva",
+      "permanent": true
+    },
+    {
+      "source": "/blog/grupos-running-malaga-beer-runners",
+      "destination": "/blog/grupos-running-malaga",
+      "permanent": true
+    },
+    {
+      "source": "/blog/grupos-running-sevilla-running-club",
+      "destination": "/cities/sevilla",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hoka-clifton-10-vs-bondi-8",
+      "destination": "/blog/hoka-clifton-10-vs-asics-novablast-5",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lesiones-running-prevencion",
+      "destination": "/blog/prevenir-lesiones-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mejor-reloj-running",
+      "destination": "/blog/mejores-relojes-gps-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mejores-zapatillas-running-pisada-neutra-2026",
+      "destination": "/blog/mejores-zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutricion-corredor-que-comer",
+      "destination": "/blog/nutricion-para-runners",
+      "permanent": true
+    },
+    {
+      "source": "/blog/plan-entrenamiento-5k-principiantes",
+      "destination": "/planes/0-5k",
+      "permanent": true
+    },
+    {
+      "source": "/blog/sobreentrenamiento-running",
+      "destination": "/blog/sobreentrenamiento-running-sintomas",
+      "permanent": true
+    },
+    {
+      "source": "/blog/empezar",
+      "destination": "/planes/0-5k",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/beginner-running-gear-200-euros",
+      "destination": "/blog/equipamiento-running-principiante-200-euros",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/complete-running-gear-guide-2026",
+      "destination": "/blog/guia-equipamiento-running-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/salt-electrolytes-running-heat",
+      "destination": "/blog/en/best-energy-gels-running",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/what-is-hyatlon-2026",
+      "destination": "/blog/que-es-hyatlon-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/best-air-fryers-2026",
+      "destination": "/blog/en",
+      "permanent": true
+    },
+    {
+      "source": "/cookies",
+      "destination": "/legal/cookies",
+      "permanent": true
+    },
+    {
+      "source": "/en/plans",
+      "destination": "/plans",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/legal/legal/privacidad",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/map",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "crons": [

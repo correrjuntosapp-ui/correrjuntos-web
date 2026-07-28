@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.correrjuntos.com/blog/</loc>
+    <loc>https://www.correrjuntos.com/blog</loc>
     <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/"/>
@@ -907,13 +907,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/grupos-de-running-guia-completa"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/blog/grupos-running-barcelona</loc>
-    <lastmod>2026-04-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/grupos-running-barcelona"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-groups-barcelona"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/grupos-running-barcelona"/>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/blog/grupos-running-bilbao</loc>
     <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/grupos-running-bilbao"/>
@@ -1344,13 +1337,6 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/mejores-zapatillas-placa-carbono"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/best-carbon-plate-running-shoes"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/mejores-zapatillas-placa-carbono"/>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/mejores-zapatillas-running</loc>
-    <lastmod>2026-04-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/mejores-zapatillas-running"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/best-running-shoes"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/mejores-zapatillas-running"/>
   </url>
   
   
@@ -1985,7 +1971,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/zona-2-running-quemar-grasa"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/blog/entrenamiento/</loc>
+    <loc>https://www.correrjuntos.com/blog/entrenamiento</loc>
     <lastmod>2026-04-25</lastmod>
   </url>
   <url>
@@ -2021,21 +2007,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running/how-to-start-running-from-scratch"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/running/como-empezar-a-correr-desde-cero"/>
   </url>
-  
-  <url>
-    <loc>https://www.correrjuntos.com/blog/zapatillas/</loc>
-    <lastmod>2026-04-22</lastmod>
-  </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/zapatillas/mejores-zapatillas-empezar-correr-2026</loc>
     <lastmod>2026-04-25</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/zapatillas/mejores-zapatillas-empezar-correr-2026"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-shoes/best-running-shoes-to-start-running-2026"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/zapatillas/mejores-zapatillas-empezar-correr-2026"/>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/atletas-hibridos/</loc>
-    <lastmod>2026-04-22</lastmod>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/atletas-hibridos/mejores-mochilas-crossfit-2026</loc>
@@ -2049,7 +2026,7 @@
     <lastmod>2026-04-25</lastmod>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/blog/categoria/</loc>
+    <loc>https://www.correrjuntos.com/blog/categoria</loc>
     <lastmod>2026-04-25</lastmod>
   </url>
   <url>

@@ -355,7 +355,20 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     <h3>Patata cocida con sal</h3>
     <p>El alimento estrella de los avituallamientos de ultra trail. Aporta carbohidrato junto con sodio, algo que ni los geles ni la fruta aportan en la misma medida, y es muy bien tolerada a ritmos lentos y esfuerzos muy largos. Solo tiene sentido en carreras con avituallamiento sólido, no es algo que puedas llevar tú mismo desde la salida de un maratón de asfalto.</p>
 
-<!-- PROZIS_SLOT: geles -->
+<!-- Prozis · código CORRERJUNTOS · afiliado -->
+    <div style="margin:36px 0 24px 0;padding:28px;background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);border:2px solid #f97316;border-radius:18px;box-shadow:0 12px 32px rgba(249,115,22,0.18)">
+      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <div style="font-family:'JetBrains Mono','SFMono-Regular',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ea580c;font-weight:700;margin-bottom:8px">
+            <span style="display:inline-block;width:8px;height:8px;background:#f97316;border-radius:999px;vertical-align:middle;margin-right:8px"></span>Prozis &middot; 10% de descuento con nuestro c&oacute;digo
+          </div>
+          <div style="font-size:1.85rem;font-weight:800;color:#0b1220;letter-spacing:.02em;font-family:'JetBrains Mono','SFMono-Regular',monospace;line-height:1">CORRERJUNTOS</div>
+          <div style="font-size:.92rem;color:#475569;margin-top:10px;line-height:1.5">Ahorra un 10% en productos elegibles de Prozis al pagar.</div>
+          <div style="font-size:.82rem;color:#64748b;margin-top:8px;line-height:1.45">Enlace afiliado: podemos recibir una comisi&oacute;n sin coste adicional para ti.</div>
+        </div>
+        <a href="https://prozis.com/1XBDL" target="_blank" rel="nofollow sponsored noopener" style="display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:16px 28px;border-radius:12px;font-weight:700;text-decoration:none;font-size:1rem;letter-spacing:.02em;box-shadow:0 10px 24px rgba(249,115,22,.35)">Comprar en Prozis &rarr;</a>
+      </div>
+    </div>
 
     <h2 id="tabla">Tabla comparativa: carbohidrato, pros y contras</h2>
 
@@ -417,7 +430,20 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     <h3>Cambiar de alimento el día de la carrera</h3>
     <p>El error más evitable de todos. Si vas a usar dátiles o membrillo en tu maratón, pruébalos primero en al menos 3-4 tiradas largas de entreno con el mismo timing que planeas usar en carrera. La marca, la cantidad y el momento deben estar validados antes de la línea de salida.</p>
 
-<!-- PROZIS_SLOT: geles -->
+<!-- Prozis · código CORRERJUNTOS · afiliado -->
+    <div style="margin:36px 0 24px 0;padding:28px;background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);border:2px solid #f97316;border-radius:18px;box-shadow:0 12px 32px rgba(249,115,22,0.18)">
+      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <div style="font-family:'JetBrains Mono','SFMono-Regular',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ea580c;font-weight:700;margin-bottom:8px">
+            <span style="display:inline-block;width:8px;height:8px;background:#f97316;border-radius:999px;vertical-align:middle;margin-right:8px"></span>Prozis &middot; 10% de descuento con nuestro c&oacute;digo
+          </div>
+          <div style="font-size:1.85rem;font-weight:800;color:#0b1220;letter-spacing:.02em;font-family:'JetBrains Mono','SFMono-Regular',monospace;line-height:1">CORRERJUNTOS</div>
+          <div style="font-size:.92rem;color:#475569;margin-top:10px;line-height:1.5">Ahorra un 10% en productos elegibles de Prozis al pagar.</div>
+          <div style="font-size:.82rem;color:#64748b;margin-top:8px;line-height:1.45">Enlace afiliado: podemos recibir una comisi&oacute;n sin coste adicional para ti.</div>
+        </div>
+        <a href="https://prozis.com/1XBDL" target="_blank" rel="nofollow sponsored noopener" style="display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:16px 28px;border-radius:12px;font-weight:700;text-decoration:none;font-size:1rem;letter-spacing:.02em;box-shadow:0 10px 24px rgba(249,115,22,.35)">Comprar en Prozis &rarr;</a>
+      </div>
+    </div>
 
     <h2 id="faq">Preguntas frecuentes</h2>
 
@@ -519,7 +545,6 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
     </div>
 
   </div>
-</div>
 
 <script>
 async function submitNL(e){e.preventDefault();var email=document.getElementById('nl-email').value.trim(),btn=document.getElementById('nl-btn');if(!email)return;btn.disabled=true;btn.textContent='...';document.getElementById('nl-ok').style.display='none';document.getElementById('nl-err').style.display='none';try{var r=await fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,lang:'es',source:'blog-article'})});if(r.ok||r.status===201){document.getElementById('nl-ok').style.display='block';e.target.style.display='none';}else if(r.status===409){document.getElementById('nl-ok').querySelector('p').textContent='Ya estas suscrito/a!';document.getElementById('nl-ok').style.display='block';e.target.style.display='none';}else throw new Error();}catch(err){document.getElementById('nl-err').style.display='block';}finally{btn.disabled=false;btn.textContent='Suscribirme';}}

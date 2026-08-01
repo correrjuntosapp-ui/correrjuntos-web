@@ -33,31 +33,126 @@ if (!DRY && !PROZIS_URL) {
   process.exit(1);
 }
 
-// Texto visible revisado (1 ago 2026):
-//  - sin "exclusivo" (Prozis no ha confirmado exclusividad del descuento)
-//  - sin "que usamos y probamos" (solo se han probado los geles, no toda la gama)
-//  - la transparencia de afiliado es VISIBLE dentro de la caja, no solo en el
-//    comentario HTML y el rel="sponsored" (que el lector no ve).
+// ══════════ DISEÑO EDITORIAL DE LA CAJA (1 ago 2026, v2) ══════════
+// Reemplaza la caja "bloque naranja" inicial por un acabado editorial:
+// dos columnas en escritorio, apilado y CTA a ancho completo en móvil,
+// módulo de código con botón "Copiar" y aviso de afiliado VISIBLE.
+//
+// Reglas que NO se pueden romper:
+//  - el título de la caja es un <p>, nunca h2/h3: no altera el esquema de
+//    encabezados del artículo ni su SEO;
+//  - los estilos van UNA vez por página (marcador PROZIS_OFFER_STYLES);
+//  - el script de copia va UNA vez por página (marcador PROZIS_COPY_SCRIPT)
+//    y usa delegación de eventos, así vale para 1 o 2 cajas sin IDs;
+//  - sin recursos externos ni logotipo oficial de Prozis.
+const OFFER_STYLES = `<!-- PROZIS_OFFER_STYLES -->
+<style>
+.prozis-offer{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 216px;gap:26px;align-items:center;margin:32px 0;padding:24px 26px 24px 30px;border:1px solid rgba(234,88,12,.24);border-radius:20px;background:radial-gradient(circle at 100% 0%,rgba(251,146,60,.14),transparent 38%),linear-gradient(135deg,#fff 0%,#fffaf4 100%);box-shadow:0 14px 38px rgba(124,45,18,.08),0 2px 6px rgba(17,24,39,.04);color:#111827;font-family:inherit}
+.prozis-offer::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:linear-gradient(180deg,#fb923c,#f65a0a)}
+.prozis-offer p{margin:0!important}
+.pz-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:8px!important;color:#c2410c;font-size:.72rem;font-weight:800;letter-spacing:.11em;line-height:1.3;text-transform:uppercase}
+.pz-kicker::before{content:"";width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#f65a0a;box-shadow:0 0 0 4px rgba(246,90,10,.11)}
+.pz-title{font-size:clamp(1.28rem,3.3vw,1.7rem);font-weight:800;line-height:1.14;letter-spacing:-.03em;color:#111827}
+.pz-desc{margin:7px 0 15px!important;max-width:46ch;color:#5f6877;font-size:.93rem;line-height:1.55}
+.pz-code{display:flex;align-items:stretch;width:min(100%,376px);border:1px solid rgba(234,88,12,.28);border-radius:14px;background:#fff}
+.pz-code-value{min-width:0;flex:1;padding:9px 14px}
+.pz-code-label{display:block;margin-bottom:1px;color:#8a4a23;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.pz-code-value code{padding:0;border:0;background:none;color:#111827;font:800 1.05rem/1.2 "SFMono-Regular",Consolas,"Liberation Mono",monospace;letter-spacing:.035em}
+.pz-copy-btn{min-width:96px;min-height:44px;margin:5px;padding:0 13px;border:0;border-radius:10px;background:#fff3e4;color:#c2410c;font:inherit;font-size:.8rem;font-weight:800;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.pz-copy-btn:hover{background:#ffe4c5}
+.pz-copy-btn:active{transform:translateY(1px)}
+.pz-copy-btn:focus-visible,.pz-cta:focus-visible{outline:3px solid rgba(59,130,246,.45);outline-offset:3px}
+.pz-live{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.pz-actions{display:grid;gap:9px;align-content:center}
+.pz-cta{display:inline-flex;min-height:50px;align-items:center;justify-content:center;padding:12px 18px;border-radius:13px;background:linear-gradient(135deg,#c2410c,#9a3412);box-shadow:0 10px 22px rgba(154,52,18,.25);color:#fff!important;font-size:.9rem;font-weight:800;line-height:1.3;text-align:center;text-decoration:none!important;white-space:nowrap;transition:box-shadow .18s ease,transform .18s ease}
+.pz-cta:hover{box-shadow:0 13px 26px rgba(246,90,10,.32);transform:translateY(-1px)}
+.pz-note{color:#5f6877;font-size:.75rem;line-height:1.45;text-align:center}
+@media(max-width:720px){.prozis-offer{grid-template-columns:1fr;gap:18px;padding:22px 18px 22px 22px;border-radius:18px}.pz-code{width:100%}.pz-cta{width:100%}.pz-desc{margin-bottom:14px!important}}
+@media(max-width:400px){.pz-code{display:grid}.pz-copy-btn{margin:0 5px 5px}}
+@media(prefers-reduced-motion:reduce){.pz-copy-btn,.pz-cta{transition:none}}
+</style>`;
+
+const COPY_SCRIPT = `<!-- PROZIS_COPY_SCRIPT -->
+<script>
+(function(){
+  if(window.__pzCopyBound)return;window.__pzCopyBound=true;
+  var RESET=1800;
+  function announce(box,msg){var l=box&&box.querySelector('.pz-live');if(l)l.textContent=msg;}
+  function legacyCopy(text){
+    var ta=document.createElement('textarea');
+    ta.value=text;ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta);ta.select();
+    var ok=false;try{ok=document.execCommand('copy');}catch(e){ok=false;}
+    document.body.removeChild(ta);return ok;
+  }
+  document.addEventListener('click',function(ev){
+    var btn=ev.target&&ev.target.closest?ev.target.closest('.pz-copy-btn'):null;
+    if(!btn)return;
+    var code=btn.getAttribute('data-pz-copy')||'';
+    var box=btn.closest('.prozis-offer');
+    function done(ok){
+      btn.textContent=ok?'Copiado \\u2713':code;
+      announce(box,ok?('C\\u00f3digo '+code+' copiado al portapapeles'):('Selecciona y copia el c\\u00f3digo '+code));
+      window.setTimeout(function(){btn.textContent='Copiar';announce(box,'');},RESET);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(code).then(function(){done(true);},function(){done(legacyCopy(code));});
+    }else{done(legacyCopy(code));}
+  });
+})();
+</script>`;
+
 const box = (lang) => {
   const es = lang !== 'en';
+  const t = es ? {
+    aria: `Ventaja para la comunidad: 10 % de descuento en Prozis con el c&oacute;digo ${PROZIS_CUPON}`,
+    kicker: 'Ventaja para la comunidad',
+    title: 'Consigue un 10 % de descuento en Prozis',
+    desc: 'Usa nuestro c&oacute;digo al finalizar tu compra en productos elegibles.',
+    label: 'C&oacute;digo de descuento',
+    copy: 'Copiar',
+    copyAria: `Copiar el c&oacute;digo ${PROZIS_CUPON}`,
+    cta: 'Comprar en Prozis &rarr;',
+    note: 'Enlace de afiliado. Podemos recibir una comisi&oacute;n sin coste adicional para ti.',
+  } : {
+    aria: `Community perk: 10% off at Prozis with the code ${PROZIS_CUPON}`,
+    kicker: 'Community perk',
+    title: 'Get 10% off at Prozis',
+    desc: 'Use our code at checkout on eligible products.',
+    label: 'Discount code',
+    copy: 'Copy',
+    copyAria: `Copy the code ${PROZIS_CUPON}`,
+    cta: 'Shop Prozis &rarr;',
+    note: 'Affiliate link. We may earn a commission at no extra cost to you.',
+  };
   return `<!-- Prozis · código ${PROZIS_CUPON} · afiliado -->
-    <div style="margin:36px 0 24px 0;padding:28px;background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);border:2px solid #f97316;border-radius:18px;box-shadow:0 12px 32px rgba(249,115,22,0.18)">
-      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
-        <div style="flex:1;min-width:240px">
-          <div style="font-family:'JetBrains Mono','SFMono-Regular',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ea580c;font-weight:700;margin-bottom:8px">
-            <span style="display:inline-block;width:8px;height:8px;background:#f97316;border-radius:999px;vertical-align:middle;margin-right:8px"></span>Prozis &middot; ${es ? '10% de descuento con nuestro c&oacute;digo' : '10% off with our code'}
-          </div>
-          <div style="font-size:1.85rem;font-weight:800;color:#0b1220;letter-spacing:.02em;font-family:'JetBrains Mono','SFMono-Regular',monospace;line-height:1">${PROZIS_CUPON}</div>
-          <div style="font-size:.92rem;color:#475569;margin-top:10px;line-height:1.5">${es
-            ? 'Ahorra un 10% en productos elegibles de Prozis al pagar.'
-            : 'Save 10% on eligible Prozis products at checkout.'}</div>
-          <div style="font-size:.82rem;color:#64748b;margin-top:8px;line-height:1.45">${es
-            ? 'Enlace afiliado: podemos recibir una comisi&oacute;n sin coste adicional para ti.'
-            : 'Affiliate link: we may earn a commission at no extra cost to you.'}</div>
+    <aside class="prozis-offer" aria-label="${t.aria}">
+      <div class="pz-main">
+        <p class="pz-kicker">${t.kicker}</p>
+        <p class="pz-title">${t.title}</p>
+        <p class="pz-desc">${t.desc}</p>
+        <div class="pz-code">
+          <span class="pz-code-value">
+            <span class="pz-code-label">${t.label}</span>
+            <code>${PROZIS_CUPON}</code>
+          </span>
+          <button class="pz-copy-btn" type="button" data-pz-copy="${PROZIS_CUPON}" aria-label="${t.copyAria}">${t.copy}</button>
         </div>
-        <a href="${PROZIS_URL}" target="_blank" rel="nofollow sponsored noopener" style="display:inline-block;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:16px 28px;border-radius:12px;font-weight:700;text-decoration:none;font-size:1rem;letter-spacing:.02em;box-shadow:0 10px 24px rgba(249,115,22,.35)">${es ? 'Comprar en Prozis' : 'Shop Prozis'} &rarr;</a>
+        <span class="pz-live" role="status" aria-live="polite"></span>
       </div>
-    </div>`;
+      <div class="pz-actions">
+        <a class="pz-cta" href="${PROZIS_URL}" target="_blank" rel="nofollow sponsored noopener">${t.cta}</a>
+        <p class="pz-note">${t.note}</p>
+      </div>
+    </aside>`;
+};
+
+/** Inserta CSS y script una sola vez por página. */
+const ensureAssets = (h) => {
+  if (!h.includes('<!-- PROZIS_OFFER_STYLES -->')) h = h.replace('</head>', OFFER_STYLES + '\n</head>');
+  if (!h.includes('<!-- PROZIS_COPY_SCRIPT -->')) h = h.replace(/<\/body>/, COPY_SCRIPT + '\n</body>');
+  return h;
 };
 
 // ══════════ EXTRACCIÓN DE LA CAJA CROWN (balanceada) ══════════
@@ -224,6 +319,8 @@ for (const fp of files) {
 
   if (!notes.length) continue;
   filesTouched++;
+  // CSS + script de copia, una sola vez por página.
+  if (boxesInFile > 0) h = ensureAssets(h);
 
   // C) VALIDACIÓN — se ejecuta SIEMPRE, también en dry-run: la transformación
   //    se aplica en memoria y se comprueba el HTML resultante (el dry-run

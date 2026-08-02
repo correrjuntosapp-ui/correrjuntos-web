@@ -20,6 +20,10 @@ const BASE = path.resolve(__dirname, '..');
 const DOMAIN = 'https://www.correrjuntos.com';
 const TODAY = new Date().toISOString().split('T')[0];
 
+// Optional: --outdir <dir> writes sitemaps elsewhere (dry-run validation without touching the repo)
+const outdirIdx = process.argv.indexOf('--outdir');
+const OUTDIR = outdirIdx !== -1 ? path.resolve(process.argv[outdirIdx + 1]) : BASE;
+
 // ── Helpers ──────────────────────────────────────────────
 
 function xmlHead(extra = '') {
@@ -84,11 +88,61 @@ function extractHreflang(filePath, lang) {
 }
 
 function writeSitemap(name, content) {
-  const file = path.join(BASE, name);
+  const file = path.join(OUTDIR, name);
   fs.writeFileSync(file, content, 'utf8');
   const urls = (content.match(/<url>/g) || []).length;
   console.log(`  ${name}: ${urls} URLs`);
   return urls;
+}
+
+// ── Exclusion rules (canonical + redirects) ─────────────
+// A URL only belongs in the sitemap if it is the canonical, reachable version:
+//  1. skip files whose <link rel="canonical"> points to a DIFFERENT URL
+//     (deliberate consolidations of duplicates must not re-enter the sitemap);
+//  2. skip URLs that are literal redirect sources in vercel.json
+//     (redirects take precedence over the filesystem on Vercel — those files are unreachable).
+// This makes the generator idempotent: manually pruned URLs stay excluded.
+
+let REDIRECT_SOURCES = null;
+function redirectSources() {
+  if (REDIRECT_SOURCES) return REDIRECT_SOURCES;
+  REDIRECT_SOURCES = new Set();
+  try {
+    const vercel = JSON.parse(fs.readFileSync(path.join(BASE, 'vercel.json'), 'utf8'));
+    for (const r of vercel.redirects || []) {
+      if (!r.source.includes(':') && !r.source.includes('(')) {
+        REDIRECT_SOURCES.add(r.source);
+        REDIRECT_SOURCES.add(r.source.replace(/\/$/, ''));
+      }
+    }
+  } catch { /* no vercel.json → no redirect exclusions */ }
+  return REDIRECT_SOURCES;
+}
+
+function extractCanonical(filePath) {
+  try {
+    const html = fs.readFileSync(filePath, 'utf8');
+    const m = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i);
+    return m ? m[1] : null;
+  } catch { return null; }
+}
+
+function isCanonicalUrl(filePath, expectedLoc) {
+  const canon = extractCanonical(filePath);
+  if (!canon) return true; // no canonical declared → include (do not silently drop)
+  return canon.replace(/\/$/, '') === expectedLoc.replace(/\/$/, '');
+}
+
+function isRedirectedUrl(loc) {
+  const p = loc.replace(DOMAIN, '').replace(/\/$/, '') || '/';
+  return redirectSources().has(p) || redirectSources().has(p + '/');
+}
+
+function shouldInclude(filePath, loc) {
+  if (isRedirectPage(filePath)) return false;
+  if (isRedirectedUrl(loc)) return false;
+  if (!isCanonicalUrl(filePath, loc)) return false;
+  return true;
 }
 
 // ── 1. Blog ES ──────────────────────────────────────────
@@ -97,13 +151,13 @@ function generateBlogES() {
   let xml = xmlHead(XHTML_NS);
   let count = 0;
 
-  // Blog index
+  // Blog index — no trailing slash (vercel.json trailingSlash:false 308-redirects "/blog/" → "/blog")
   const indexFile = path.join(BASE, 'blog', 'index.html');
   const indexMod = getLastmod(indexFile);
-  xml += urlEntryHreflang(`${DOMAIN}/blog/`, indexMod, [
-    { lang: 'es', href: `${DOMAIN}/blog/` },
-    { lang: 'en', href: `${DOMAIN}/blog/en/` },
-    { lang: 'x-default', href: `${DOMAIN}/blog/` },
+  xml += urlEntryHreflang(`${DOMAIN}/blog`, indexMod, [
+    { lang: 'es', href: `${DOMAIN}/blog` },
+    { lang: 'en', href: `${DOMAIN}/blog/en` },
+    { lang: 'x-default', href: `${DOMAIN}/blog` },
   ]);
   count++;
 
@@ -111,9 +165,10 @@ function generateBlogES() {
   const slugs = listHtmlFiles(path.join(BASE, 'blog'));
   for (const slug of slugs.sort()) {
     const file = path.join(BASE, 'blog', `${slug}.html`);
+    const loc = `${DOMAIN}/blog/${slug}`;
+    if (!shouldInclude(file, loc)) continue;
     const mod = getLastmod(file);
     const enUrl = extractHreflang(file, 'es');
-    const loc = `${DOMAIN}/blog/${slug}`;
     const alternates = [
       { lang: 'es', href: loc },
       { lang: 'x-default', href: loc },
@@ -129,18 +184,18 @@ function generateBlogES() {
     const dir = path.join(BASE, 'blog', sub);
     if (!fs.existsSync(dir)) continue;
 
-    // Index page of subdir
+    // Index page of subdir — no trailing slash (trailingSlash:false)
     const subIndex = path.join(dir, 'index.html');
-    if (fs.existsSync(subIndex)) {
-      xml += urlEntry(`${DOMAIN}/blog/${sub}/`, getLastmod(subIndex));
+    if (fs.existsSync(subIndex) && shouldInclude(subIndex, `${DOMAIN}/blog/${sub}`)) {
+      xml += urlEntry(`${DOMAIN}/blog/${sub}`, getLastmod(subIndex));
       count++;
     }
 
     // Articles in subdir (as html files)
     for (const slug of listHtmlFiles(dir).sort()) {
       const file = path.join(dir, `${slug}.html`);
-      if (isRedirectPage(file)) continue;
       const loc = `${DOMAIN}/blog/${sub}/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
       const mod = getLastmod(file);
       const enUrl = extractHreflang(file, 'es');
       const alternates = [
@@ -156,8 +211,8 @@ function generateBlogES() {
     // No trailing slash — matches canonical + vercel.json trailingSlash:false
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
-      if (isRedirectPage(file)) continue;
       const loc = `${DOMAIN}/blog/${sub}/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
       const mod = getLastmod(file);
       const enUrl = extractHreflang(file, 'es');
       const alternates = [
@@ -175,27 +230,33 @@ function generateBlogES() {
   if (fs.existsSync(autorDir)) {
     for (const slug of listHtmlFiles(autorDir).sort()) {
       const file = path.join(autorDir, `${slug}.html`);
-      xml += urlEntry(`${DOMAIN}/blog/autor/${slug}`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/autor/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
+      xml += urlEntry(loc, getLastmod(file));
       count++;
     }
   }
 
-  // Category pages
+  // Category pages — no trailing slash (trailingSlash:false)
   const catDir = path.join(BASE, 'blog', 'categoria');
   if (fs.existsSync(catDir)) {
     const catIndex = path.join(catDir, 'index.html');
-    if (fs.existsSync(catIndex)) {
-      xml += urlEntry(`${DOMAIN}/blog/categoria/`, getLastmod(catIndex));
+    if (fs.existsSync(catIndex) && shouldInclude(catIndex, `${DOMAIN}/blog/categoria`)) {
+      xml += urlEntry(`${DOMAIN}/blog/categoria`, getLastmod(catIndex));
       count++;
     }
     for (const slug of listHtmlFiles(catDir).sort()) {
       const file = path.join(catDir, `${slug}.html`);
-      xml += urlEntry(`${DOMAIN}/blog/categoria/${slug}`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/categoria/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
+      xml += urlEntry(loc, getLastmod(file));
       count++;
     }
     for (const slug of listHtmlDirs(catDir).sort()) {
       const file = path.join(catDir, slug, 'index.html');
-      xml += urlEntry(`${DOMAIN}/blog/categoria/${slug}`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/categoria/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
+      xml += urlEntry(loc, getLastmod(file));
       count++;
     }
   }
@@ -210,13 +271,13 @@ function generateBlogEN() {
   let xml = xmlHead(XHTML_NS);
   let count = 0;
 
-  // Blog EN index
+  // Blog EN index — no trailing slash (trailingSlash:false)
   const indexFile = path.join(BASE, 'blog', 'en', 'index.html');
   const indexMod = getLastmod(indexFile);
-  xml += urlEntryHreflang(`${DOMAIN}/blog/en/`, indexMod, [
-    { lang: 'en', href: `${DOMAIN}/blog/en/` },
-    { lang: 'es', href: `${DOMAIN}/blog/` },
-    { lang: 'x-default', href: `${DOMAIN}/blog/` },
+  xml += urlEntryHreflang(`${DOMAIN}/blog/en`, indexMod, [
+    { lang: 'en', href: `${DOMAIN}/blog/en` },
+    { lang: 'es', href: `${DOMAIN}/blog` },
+    { lang: 'x-default', href: `${DOMAIN}/blog` },
   ]);
   count++;
 
@@ -224,9 +285,10 @@ function generateBlogEN() {
   const slugs = listHtmlFiles(path.join(BASE, 'blog', 'en'));
   for (const slug of slugs.sort()) {
     const file = path.join(BASE, 'blog', 'en', `${slug}.html`);
+    const loc = `${DOMAIN}/blog/en/${slug}`;
+    if (!shouldInclude(file, loc)) continue;
     const mod = getLastmod(file);
     const esUrl = extractHreflang(file, 'en');
-    const loc = `${DOMAIN}/blog/en/${slug}`;
     const alternates = [
       { lang: 'en', href: loc },
     ];
@@ -245,14 +307,14 @@ function generateBlogEN() {
     if (!fs.existsSync(dir)) continue;
 
     const subIndex = path.join(dir, 'index.html');
-    if (fs.existsSync(subIndex)) {
-      xml += urlEntry(`${DOMAIN}/blog/en/${sub}/`, getLastmod(subIndex));
+    if (fs.existsSync(subIndex) && shouldInclude(subIndex, `${DOMAIN}/blog/en/${sub}`)) {
+      xml += urlEntry(`${DOMAIN}/blog/en/${sub}`, getLastmod(subIndex));
       count++;
     }
     for (const slug of listHtmlFiles(dir).sort()) {
       const file = path.join(dir, `${slug}.html`);
-      if (isRedirectPage(file)) continue;
       const loc = `${DOMAIN}/blog/en/${sub}/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
       const mod = getLastmod(file);
       const esUrl = extractHreflang(file, 'en');
       const alternates = [{ lang: 'en', href: loc }];
@@ -266,8 +328,8 @@ function generateBlogEN() {
     // No trailing slash — matches canonical + vercel.json trailingSlash:false
     for (const slug of listHtmlDirs(dir).sort()) {
       const file = path.join(dir, slug, 'index.html');
-      if (isRedirectPage(file)) continue;
       const loc = `${DOMAIN}/blog/en/${sub}/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
       const mod = getLastmod(file);
       const esUrl = extractHreflang(file, 'en');
       const alternates = [{ lang: 'en', href: loc }];
@@ -285,7 +347,9 @@ function generateBlogEN() {
   if (fs.existsSync(authorDir)) {
     for (const slug of listHtmlFiles(authorDir).sort()) {
       const file = path.join(authorDir, `${slug}.html`);
-      xml += urlEntry(`${DOMAIN}/blog/en/author/${slug}`, getLastmod(file));
+      const loc = `${DOMAIN}/blog/en/author/${slug}`;
+      if (!shouldInclude(file, loc)) continue;
+      xml += urlEntry(loc, getLastmod(file));
       count++;
     }
   }
@@ -503,7 +567,7 @@ function generatePages() {
 
 function getMaxLastmod(sitemapFile) {
   try {
-    const content = fs.readFileSync(path.join(BASE, sitemapFile), 'utf8');
+    const content = fs.readFileSync(path.join(OUTDIR, sitemapFile), 'utf8');
     const dates = [...content.matchAll(/<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/g)].map(m => m[1]);
     return dates.sort().pop() || TODAY;
   } catch { return TODAY; }
@@ -532,7 +596,7 @@ function generateIndex(counts) {
   }
 
   xml += `</sitemapindex>\n`;
-  fs.writeFileSync(path.join(BASE, 'sitemap-index.xml'), xml, 'utf8');
+  fs.writeFileSync(path.join(OUTDIR, 'sitemap-index.xml'), xml, 'utf8');
   console.log(`  sitemap-index.xml: ${sitemaps.length} sitemaps`);
 }
 
@@ -555,14 +619,18 @@ console.log(`\n── Summary ──`);
 console.log(`Total unique URLs: ${total}`);
 console.log(`Sitemaps generated: 8 (7 content + 1 index)`);
 
-// Remove old monolithic sitemap
-const oldSitemap = path.join(BASE, 'sitemap.xml');
-if (fs.existsSync(oldSitemap)) {
-  fs.renameSync(oldSitemap, path.join(BASE, 'sitemap.xml.bak'));
-  console.log(`\nOld sitemap.xml renamed to sitemap.xml.bak`);
-}
+if (OUTDIR === BASE) {
+  // Remove old monolithic sitemap (repo mode only)
+  const oldSitemap = path.join(BASE, 'sitemap.xml');
+  if (fs.existsSync(oldSitemap)) {
+    fs.renameSync(oldSitemap, path.join(BASE, 'sitemap.xml.bak'));
+    console.log(`\nOld sitemap.xml renamed to sitemap.xml.bak`);
+  }
 
-// Also keep sitemap.xml as alias pointing to index (for backwards compat)
-fs.copyFileSync(path.join(BASE, 'sitemap-index.xml'), path.join(BASE, 'sitemap.xml'));
-console.log(`sitemap.xml now points to sitemap-index.xml content`);
-console.log('\nDone! Update robots.txt to reference sitemap-index.xml only.');
+  // Also keep sitemap.xml as alias pointing to index (for backwards compat)
+  fs.copyFileSync(path.join(BASE, 'sitemap-index.xml'), path.join(BASE, 'sitemap.xml'));
+  console.log(`sitemap.xml now points to sitemap-index.xml content`);
+  console.log('\nDone! Update robots.txt to reference sitemap-index.xml only.');
+} else {
+  console.log(`\nDry-run: sitemaps written to ${OUTDIR} — repo untouched.`);
+}

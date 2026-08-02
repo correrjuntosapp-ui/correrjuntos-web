@@ -8,8 +8,9 @@
 //   /api/cron/run?job=lifecycle-trial   → daily 09:00 UTC
 //   /api/cron/run?job=recovery-ultra    → daily 09:05 UTC
 //
-// Auth: Vercel cron sends `x-vercel-cron` header, or pass ?token=
-// matching CRON_SECRET env var, or `Authorization: Bearer <secret>`.
+// Auth: SOLO secreto compartido via `Authorization: Bearer <CRON_SECRET>`.
+// Las cabeceras x-vercel-cron y User-Agent NO autorizan: son falsificables.
+// ?token= se mantiene por retrocompatibilidad pero está desaconsejado.
 //
 // [11 may 2026] Converted to ESM (package.json has "type":"module").
 // Top-level `require` was crashing with ReferenceError.
@@ -54,13 +55,23 @@ const JOBS = {
 };
 
 export default async function handler(req, res) {
-  const isVercelCron = req.headers['x-vercel-cron'] === '1' ||
-                       req.headers['user-agent']?.includes('vercel-cron');
-  const tokenMatch = (req.query?.token || '') === CRON_SECRET && CRON_SECRET.length > 0;
-  const authHeader = (req.headers['authorization'] || '').replace(/^Bearer\s+/i, '');
-  const headerMatch = authHeader === CRON_SECRET && CRON_SECRET.length > 0;
+  // Autenticación: SOLO secreto compartido.
+  //
+  // Antes se aceptaba `x-vercel-cron: 1` o un User-Agent que contuviera
+  // 'vercel-cron'. Ambas son cabeceras de petición que cualquiera puede
+  // falsificar con un curl, así que cualquier persona en internet podía
+  // disparar los jobs (incluido el envío real de la newsletter). Eliminado.
+  //
+  // Los cron de Vercel se configuran con la cabecera Authorization, así que
+  // siguen funcionando. Nunca se registra ni se devuelve el secreto.
+  const hasSecret = typeof CRON_SECRET === 'string' && CRON_SECRET.length > 0;
+  const bearer = (req.headers['authorization'] || '').replace(/^Bearer\s+/i, '');
+  const headerMatch = hasSecret && bearer.length === CRON_SECRET.length && bearer === CRON_SECRET;
+  // Retrocompatibilidad temporal: ?token=. Desaconsejado — queda registrado en
+  // logs de acceso y en el historial de URLs. Migrar a Authorization Bearer.
+  const tokenMatch = hasSecret && (req.query?.token || '') === CRON_SECRET;
 
-  if (!isVercelCron && !tokenMatch && !headerMatch) {
+  if (!headerMatch && !tokenMatch) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 

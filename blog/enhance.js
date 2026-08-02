@@ -1301,7 +1301,8 @@
 
         var histDiv = document.createElement('div');
         histDiv.className = 'reading-hist';
-        var histHtml = '<div class="reading-hist-head"><span class="label">'+(isEN?'Continue reading':'Continúa leyendo')+'</span><span class="rule"></span><span class="meta">'+histItems.length+(isEN?' saved':' guardados')+'</span></div><div class="reading-hist-list">';
+        /* Etiqueta honesta: es historial de lectura automático (localStorage), no artículos "guardados" por el usuario */
+        var histHtml = '<div class="reading-hist-head"><span class="label">'+(isEN?'Your recent reads':'Tus últimas lecturas')+'</span><span class="rule"></span><span class="meta">'+histItems.length+(isEN?(histItems.length===1?' article':' articles'):(histItems.length===1?' artículo':' artículos'))+'</span></div><div class="reading-hist-list">';
         histItems.forEach(function(h){
           histHtml += '<a href="'+h.url+'" class="reading-hist-item">'+h.title+'</a>';
         });

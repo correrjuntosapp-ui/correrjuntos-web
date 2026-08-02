@@ -16,19 +16,6 @@
 // Top-level `require` was crashing with ReferenceError.
 // ============================================================
 
-import runLifecycleTrial from '../_lib/jobs/lifecycle-trial.js';
-import runRecoveryUltra from '../_lib/jobs/recovery-ultra.js';
-import runTrialPush from '../_lib/jobs/trial-push.js';
-import runPartnerQuedadas from '../_lib/jobs/partner-quedadas.js';
-import runPlanDrip from '../_lib/jobs/plan-drip.js';
-import runRecoveryFinde from '../_lib/jobs/recovery-finde.js';
-import runUpdateBlast from '../_lib/jobs/update-blast.js';
-import runWeeklyNewsletter from '../_lib/jobs/weekly-newsletter.js';
-import runFounderBlast from '../_lib/jobs/founder-blast.js';
-import runActivationPush from '../_lib/jobs/activation-push.js';
-import runPremiumExpiry from '../_lib/jobs/premium-expiry.js';
-import runWorkoutEvePush from '../_lib/jobs/workout-eve-push.js';
-import runHealthCheck from '../_lib/jobs/health-check.js';
 
 const env = {
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
@@ -39,19 +26,19 @@ const env = {
 const CRON_SECRET = process.env.CRON_SECRET || '';
 
 const JOBS = {
-  'lifecycle-trial': runLifecycleTrial,
-  'recovery-ultra': runRecoveryUltra,
-  'trial-push': runTrialPush,
-  'partner-quedadas': runPartnerQuedadas,
-  'plan-drip': runPlanDrip,
-  'recovery-finde': runRecoveryFinde,
-  'update-blast': runUpdateBlast,
-  'weekly-newsletter': runWeeklyNewsletter,
-  'founder-blast': runFounderBlast,
-  'activation-push': runActivationPush,
-  'premium-expiry': runPremiumExpiry,
-  'workout-eve-push': runWorkoutEvePush,
-  'health-check': runHealthCheck,
+  'lifecycle-trial': () => import('../_lib/jobs/lifecycle-trial.js'),
+  'recovery-ultra': () => import('../_lib/jobs/recovery-ultra.js'),
+  'trial-push': () => import('../_lib/jobs/trial-push.js'),
+  'partner-quedadas': () => import('../_lib/jobs/partner-quedadas.js'),
+  'plan-drip': () => import('../_lib/jobs/plan-drip.js'),
+  'recovery-finde': () => import('../_lib/jobs/recovery-finde.js'),
+  'update-blast': () => import('../_lib/jobs/update-blast.js'),
+  'weekly-newsletter': () => import('../_lib/jobs/weekly-newsletter.js'),
+  'founder-blast': () => import('../_lib/jobs/founder-blast.js'),
+  'activation-push': () => import('../_lib/jobs/activation-push.js'),
+  'premium-expiry': () => import('../_lib/jobs/premium-expiry.js'),
+  'workout-eve-push': () => import('../_lib/jobs/workout-eve-push.js'),
+  'health-check': () => import('../_lib/jobs/health-check.js'),
 };
 
 export default async function handler(req, res) {
@@ -84,13 +71,27 @@ export default async function handler(req, res) {
   }
 
   const job = (req.query?.job || '').toString();
-  const jobFn = JOBS[job];
-  if (!jobFn) {
+  const loadJob = JOBS[job];
+  if (!loadJob) {
     return res.status(400).json({
       error: 'unknown_job',
       job,
       available: Object.keys(JOBS),
     });
+  }
+
+  // Carga perezosa: solo se importa el modulo del job solicitado, ya
+  // autenticado y validado. Asi un modulo roto afecta unicamente a ese job
+  // y no tumba el dispatcher entero (antes los 13 imports de cabecera hacian
+  // que un fallo de resolucion devolviera 500 en todas las peticiones).
+  let jobFn;
+  try {
+    const mod = await loadJob();
+    jobFn = mod?.default;
+    if (typeof jobFn !== 'function') throw new Error('no default export');
+  } catch (e) {
+    console.error('[cron/run] no se pudo cargar el job ' + job);
+    return res.status(500).json({ error: 'job_load_failed', job });
   }
 
   try {

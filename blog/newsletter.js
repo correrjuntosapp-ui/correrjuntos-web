@@ -59,6 +59,8 @@
 
   /* ── GA4 tracking ── */
   function track(event, params){
+    /* Consentimiento explícito: gtag existe antes de aceptar cookies (encola en dataLayer). */
+    try { if(localStorage.getItem('cj_cookie_consent') !== 'accepted') return; } catch(e){ return; }
     if(typeof gtag === 'function'){
       gtag('event', event, params || {});
     }

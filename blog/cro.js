@@ -25,7 +25,11 @@
      Informational articles: more app CTAs (app download is the goal) */
 
   /* ── Helpers ── */
-  function ga(name, params){ if(typeof gtag === 'function') gtag('event', name, params || {}); }
+  /* Consentimiento explícito: gtag existe antes de aceptar cookies (encola en dataLayer). */
+  function ga(name, params){
+    try { if(localStorage.getItem('cj_cookie_consent') !== 'accepted') return; } catch(e){ return; }
+    if(typeof gtag === 'function') gtag('event', name, params || {});
+  }
 
   var IOS_URL = 'https://apps.apple.com/us/app/correr-juntos/id6758505910';
   var ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';

@@ -4439,7 +4439,12 @@ async function submitNewsletter(e) {
   var relocateBar = function(){
     var bar = document.querySelector('body>.cj-nl-sticky');
     if (!bar) return false;
-    if (document.body.firstElementChild !== bar) document.body.insertBefore(bar, document.body.firstElementChild);
+    /* La barra va justo DESPUÉS del skip link: éste debe seguir siendo el primer
+       elemento tabulable de la página (si se inserta antes, el usuario de teclado
+       tendría que atravesar los 3 controles de la newsletter para alcanzarlo). */
+    var skip = document.querySelector('body>.skip-link');
+    var target = skip ? skip.nextElementSibling : document.body.firstElementChild;
+    if (bar !== target) document.body.insertBefore(bar, target);
     return true;
   };
   if (!relocateBar()) {
@@ -4473,6 +4478,20 @@ async function submitNewsletter(e) {
   /* 5) Gestión de foco del modal de salida: al abrir, el foco entra al modal;
      al cerrar, vuelve al elemento que lo tenía. (newsletter.js no lo gestiona.) */
   var lastFocused = null;
+  var restoreFocus = function(){
+    /* newsletter.js elimina el overlay ~250 ms después de quitar la clase "show", y esa
+       eliminación devuelve el foco al body. Por eso se espera a que el overlay haya
+       desaparecido del DOM antes de restaurar; si no, el foco se perdería igualmente. */
+    var el = lastFocused;
+    lastFocused = null;
+    if (!el) return;
+    var tries = 0;
+    var attempt = function(){
+      if (document.querySelector('.cj-nl-overlay') && ++tries < 20) { setTimeout(attempt, 60); return; }
+      if (document.contains(el)) { try { el.focus(); } catch(_) {} }
+    };
+    attempt();
+  };
   var onModalToggle = function(open){
     if (open) {
       lastFocused = document.activeElement;
@@ -4480,9 +4499,8 @@ async function submitNewsletter(e) {
       var modal = document.querySelector('.cj-nl-overlay.show .cj-nl-modal');
       if (modal && !modal.hasAttribute('tabindex')) modal.setAttribute('tabindex', '-1');
       (input || modal) && (input || modal).focus();
-    } else if (lastFocused && document.contains(lastFocused)) {
-      try { lastFocused.focus(); } catch(_) {}
-      lastFocused = null;
+    } else {
+      restoreFocus();
     }
   };
   new MutationObserver(function(){ onModalToggle(document.body.classList.contains('cj-nl-modal-open')); })

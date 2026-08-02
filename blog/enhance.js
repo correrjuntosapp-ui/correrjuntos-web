@@ -551,6 +551,13 @@
     var amazonLinks = document.querySelectorAll('a[href*="amzn.to"], a[href*="amazon.es"], a[href*="amazon.com"]');
     if(amazonLinks.length === 0) return;
 
+    /* Defer to the TRANSPARENCIA module (end of this file): it injects
+       #cj-affiliate-disclosure before the first H2 on pages with real affiliate
+       links (tag= or amzn.to). Without this guard both modules fire and the page
+       shows two disclosures. This block only remains for pages with plain
+       (untagged) Amazon links, which the TRANSPARENCIA module ignores. */
+    if(document.querySelector('a[href*="tag=diezmejores21-21"], a[href*="amzn.to/"]')) return;
+
     /* Check if disclosure already exists (manual HTML block) */
     var existing = document.querySelector('.affiliate-disclaimer');
     if(existing) return;

@@ -5,8 +5,8 @@
 <link rel="preconnect" href="https://m.media-amazon.com" crossorigin>
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-<!-- LCP image preload · hero featured Ronda · CWV optimization 22 may 2026 -->
-<link rel="preload" as="image" href="/public/blog-images/ronda/puente-nuevo-ronda-880.webp" fetchpriority="high">
+<!-- LCP image preload · hero featured equipamiento · CWV (actualizado ago 2026 con la portada editorial) -->
+<link rel="preload" as="image" href="/public/pexels/2526878-1280.webp" fetchpriority="high">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog de Running | CorrerJuntos - Tips, Rutas y Guías para Corredores</title>
 <meta name="description" content="Blog de running con guías para principiantes, rutas para correr, estiramientos, planes de entrenamiento y consejos para mejorar tu running. Todo gratis.">
@@ -524,6 +524,109 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 .breadcrumb a{text-decoration:underline;text-underline-offset:2px}
 </style>
 <style id="cj-nav-wrap">@media(max-width:640px){.site-header nav{height:auto!important;min-height:56px;flex-wrap:wrap;row-gap:4px;padding-top:6px;padding-bottom:6px}.site-header nav>div{flex-wrap:wrap;row-gap:8px}}.site-header nav a[style*="color:#f97316"],.site-header nav span[style*="color:#f97316"]{color:#c2410c!important}.site-header nav a[style*="background:#f97316"]{background:#c2410c!important;color:#fff!important}.breadcrumb,.breadcrumb a{color:#57534e!important}.breadcrumb a{text-decoration:underline;text-underline-offset:2px}nav.toc li,.toc li{margin:8px 0;display:block}nav.toc a,.toc a{display:block;padding:6px 4px;min-height:24px;line-height:1.4}.content .tip strong,.tip strong{color:#9a3412!important}.plan-table th,.content th{color:#9a3412!important}.content h3{color:#c2410c}</style>
+<style id="home-editorial-css">
+/* ═══ Portada editorial · ago 2026 · jerarquía revista (hero split + empieza por aquí + selección + objetivos) ═══ */
+.home-hero{position:relative;overflow:hidden;background:#0b1220}
+.home-hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:36px 24px 30px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:44px;align-items:center}
+.hh-copy h1{font-size:clamp(2rem,4.2vw,3rem);font-weight:900;line-height:1.06;letter-spacing:-.028em;color:#fff;margin:14px 0 14px}
+.hh-copy h1 .hh-accent{background:linear-gradient(135deg,#f97316,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hh-sub{font-size:1.02rem;color:#e2e8f0;line-height:1.55;max-width:480px;margin:0 0 22px}
+.hh-cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.hh-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:.92rem;font-weight:700;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;min-height:44px}
+.hh-cta-primary{background:#f97316;color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.hh-cta-primary:hover{background:#ea580c;transform:translateY(-1px)}
+.hh-cta-secondary{background:rgba(255,255,255,.07);color:#fff;border:1.5px solid rgba(255,255,255,.22)}
+.hh-cta-secondary:hover{border-color:rgba(249,115,22,.6);color:#f97316}
+.hh-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.hh-statline{display:flex;justify-content:space-between;align-items:center;gap:18px;font-size:.78rem;color:rgba(255,255,255,.55);font-family:'JetBrains Mono','SF Mono',monospace;letter-spacing:.04em;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-top:26px}
+.hh-featured{display:flex;flex-direction:column;background:#fffcf9;border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 24px 60px rgba(0,0,0,.35);transition:transform .25s ease,box-shadow .25s ease}
+.hh-featured:hover{transform:translateY(-4px);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.hh-featured:focus-visible{outline:3px solid #f97316;outline-offset:3px}
+.hh-featured-img{position:relative;aspect-ratio:16/9;overflow:hidden}
+.hh-featured-img img{width:100%;height:100%;object-fit:cover}
+.hh-featured-badge{position:absolute;top:14px;left:14px;background:#f97316;color:#fff;font-size:.68rem;font-weight:800;padding:5px 13px;border-radius:999px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.hh-featured-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:7px}
+.hh-featured-cat{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#c2410c}
+.hh-featured-body h2{font-size:1.18rem;font-weight:800;line-height:1.25;color:#3d3229;margin:0}
+.hh-featured-body p{font-size:.86rem;color:#5c4d3d;line-height:1.5;margin:0}
+.hh-featured-meta{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:.8rem;color:#57534e}
+.hh-featured-meta img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(249,115,22,.4)}
+/* — Empieza por aquí — */
+.start-here{margin:40px 0 8px}
+.sh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.sh-card{position:relative;display:flex;flex-direction:column;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.sh-card:hover{transform:translateY(-4px);border-color:rgba(249,115,22,.45);box-shadow:0 16px 40px rgba(61,50,41,.1)}
+.sh-card:focus-visible{outline:3px solid #c2410c;outline-offset:2px}
+.sh-img{aspect-ratio:16/9;overflow:hidden}
+.sh-img img{width:100%;height:100%;object-fit:cover}
+.sh-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.sh-body h3{font-size:1.02rem;font-weight:800;color:#3d3229;margin:0}
+.sh-body p{font-size:.85rem;color:#5c4d3d;line-height:1.5;margin:0}
+.sh-cta{margin-top:6px;font-size:.85rem;font-weight:700;color:#c2410c}
+/* — Selección editorial 1+4 — */
+.editorial-pick{margin:36px 0 8px}
+.ep-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:22px;align-items:stretch}
+.ep-main{display:flex;flex-direction:column;background:#fffcf9;border:1px solid #efe6db;border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.ep-main:hover{transform:translateY(-4px);border-color:rgba(249,115,22,.45);box-shadow:0 18px 44px rgba(61,50,41,.1)}
+.ep-main:focus-visible,.ep-mini:focus-visible{outline:3px solid #c2410c;outline-offset:2px}
+.ep-main-img{position:relative;aspect-ratio:16/9;overflow:hidden}
+.ep-main-img img{width:100%;height:100%;object-fit:cover}
+.ep-main-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ep-cat{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#c2410c}
+.ep-main-body h3{font-size:1.35rem;font-weight:800;line-height:1.25;color:#3d3229;margin:0}
+.ep-main-body p{font-size:.9rem;color:#5c4d3d;line-height:1.55;margin:0}
+.ep-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:10px;font-size:.8rem;color:#57534e}
+.ep-cta{font-weight:700;color:#c2410c;white-space:nowrap}
+.ep-minis{display:grid;grid-template-rows:repeat(4,1fr);gap:14px}
+.ep-mini{display:flex;gap:14px;align-items:center;background:#fffcf9;border:1px solid #efe6db;border-radius:14px;padding:12px 14px;text-decoration:none;color:inherit;transition:border-color .22s ease,box-shadow .22s ease}
+.ep-mini:hover{border-color:rgba(249,115,22,.5);box-shadow:0 10px 26px rgba(61,50,41,.08)}
+.ep-mini-thumb{width:76px;height:58px;border-radius:10px;overflow:hidden;flex-shrink:0}
+.ep-mini-thumb img{width:100%;height:100%;object-fit:cover}
+.ep-mini-info{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ep-mini-info h4{font-size:.9rem;font-weight:700;line-height:1.3;color:#3d3229;margin:0}
+.ep-mini-info .ep-cta{font-size:.76rem}
+/* — Explora por objetivo — */
+.objective-nav{margin:36px 0 4px}
+.on-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.on-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;background:#fffcf9;border:1.5px solid #e8ddd1;border-radius:12px;color:#3d3229;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;transition:border-color .2s ease,color .2s ease,background .2s ease;min-height:52px;font-family:inherit;text-align:left}
+.on-btn:hover{border-color:#f97316;color:#c2410c;background:#fff8f4}
+.on-btn:focus-visible{outline:3px solid #c2410c;outline-offset:2px}
+.on-btn .on-ico{flex-shrink:0;color:#c2410c;display:inline-flex}
+.on-btn .on-arrow{color:#c2410c;transition:transform .18s ease}
+.on-btn:hover .on-arrow{transform:translateX(3px)}
+.on-label{flex:1}
+/* — Archivo + limpieza visual — */
+.archive-section{margin-top:44px}
+.badge-new{display:none} /* "Nuevo" repetido en tarjetas antiguas: retirado (honestidad editorial) */
+.filter-section-count{display:none} /* cifra duplicada: el contador funcional ya informa */
+/* Portada: la barra de newsletter (newsletter.js) se integra en el flujo en vez de
+   superponerse al header. Solo aplica aquí — el JS de portada la recoloca al inicio
+   del body; en el resto de páginas newsletter.js mantiene su comportamiento fixed. */
+body>.cj-nl-sticky{position:relative!important;transform:none!important;z-index:99!important;transition:none!important}
+@media(max-width:640px){body>.cj-nl-sticky{padding:6px 10px!important;gap:8px!important}}
+/* Modal de salida abierto (newsletter.js): nunca dos formularios de newsletter a la vez.
+   Se ocultan la barra y el slide-in de enhance.js (z950, que flotaba SOBRE el overlay z200)
+   y se bloquea el scroll del fondo. Todo se restaura al cerrar el modal. */
+body.cj-nl-modal-open{overflow:hidden}
+body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility:hidden}
+@media(max-width:1024px){
+  .home-hero-inner{grid-template-columns:1fr;gap:26px;padding:30px 20px 26px}
+  .hh-sub{max-width:none}
+  .sh-grid{grid-template-columns:1fr;gap:16px}
+  .ep-grid{grid-template-columns:1fr}
+  .on-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .hh-cta-row{flex-direction:column}
+  .hh-cta{justify-content:center}
+  .on-grid{grid-template-columns:1fr}
+  .hh-statline{font-size:.72rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .hh-cta,.hh-featured,.sh-card,.ep-main,.ep-mini,.on-btn,.on-btn .on-arrow{transition:none}
+  .hh-featured:hover,.sh-card:hover,.ep-main:hover{transform:none}
+}
+</style>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 <header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
@@ -540,47 +643,45 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 </nav>
 </header>
 
-<!-- v1 Hero · refactored 22 may 2026 · featured article hero + trust pill
-     (vs hero genérico anterior con texto "Blog de Running" stat counters) -->
-<div class="hero-featured" style="position:relative;overflow:hidden;background:#0b1220;min-height:540px">
-  <!-- Background image full-bleed -->
-  <picture style="position:absolute;inset:0;z-index:0">
-    <img src="/public/blog-images/ronda/puente-nuevo-ronda-880.webp" alt="Corredores en ruta de montaña al amanecer" style="width:100%;height:100%;object-fit:cover;opacity:.42" fetchpriority="high" loading="eager" width="1600" height="900">
-  </picture>
-  <!-- Gradient overlay legibilidad -->
-  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.55) 0%,rgba(11,18,32,.85) 60%,rgba(254,247,237,1) 100%),radial-gradient(ellipse 70% 50% at 30% 40%,rgba(249,115,22,.16),transparent 60%);z-index:1"></div>
-  <!-- Content -->
-  <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:48px 24px 36px;display:grid;grid-template-columns:1fr;gap:32px">
-    <!-- Breadcrumb -->
-    <div class="breadcrumb" style="color:rgba(255,255,255,.55);font-size:.85rem">
-      <a href="/" style="color:rgba(255,255,255,.7);text-decoration:none">Inicio</a>
-      <span class="sep" style="color:rgba(255,255,255,.35);margin:0 8px">›</span>
-      <span class="current" style="color:#f97316;font-weight:600">Blog</span>
-    </div>
-    <!-- Featured article hero -->
-    <a href="/blog/guia-equipamiento-running-2026" style="display:grid;grid-template-columns:1fr;gap:14px;text-decoration:none;color:#fff;max-width:780px">
-      <span style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f97316">
-        <span style="display:inline-block;width:24px;height:1px;background:#f97316"></span>
-        Destacado · Guía esencial
-        <span style="display:inline-block;width:24px;height:1px;background:#f97316"></span>
-      </span>
-      <h1 style="font-size:2.6rem;font-weight:900;line-height:1.08;letter-spacing:-.025em;color:#fff;margin:0">Equipamiento de running 2026 — <span style="background:linear-gradient(135deg,#f97316,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">la guía completa</span></h1>
-      <p style="font-size:1.05rem;color:#e2e8f0;line-height:1.5;font-weight:400;margin:0;max-width:680px">Zapatillas, relojes GPS, ropa técnica y accesorios: qué comprar de verdad para empezar y mejorar, sin gastar de más. Probado por corredores reales.</p>
-      <div style="display:flex;align-items:center;gap:14px;margin-top:6px;flex-wrap:wrap">
-        <div style="display:inline-flex;align-items:center;gap:8px">
-          <img src="/public/abraham.jpg" alt="Abraham Márquez" style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(249,115,22,.45);object-fit:cover">
-          <span style="color:rgba(255,255,255,.85);font-size:.88rem;font-weight:600">Abraham Márquez</span>
-        </div>
-        <span style="color:rgba(255,255,255,.35);font-size:.7rem">●</span>
-        <span style="color:rgba(255,255,255,.7);font-size:.85rem;font-family:'JetBrains Mono',monospace;letter-spacing:.04em">Guía actualizada · 2026</span>
+<!-- v2 Hero · portada editorial ago 2026 · split copy + artículo destacado real
+     (sustituye al hero full-bleed de 540px; misma imagen LCP preloaded) -->
+<div class="home-hero">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 22% 35%,rgba(249,115,22,.14),transparent 60%);z-index:1" aria-hidden="true"></div>
+  <div class="home-hero-inner">
+    <div class="hh-copy">
+      <div class="breadcrumb" style="color:rgba(255,255,255,.55);font-size:.85rem;margin-bottom:2px">
+        <a href="/" style="color:rgba(255,255,255,.7);text-decoration:none">Inicio</a>
+        <span class="sep" style="color:rgba(255,255,255,.35);margin:0 8px">›</span>
+        <span class="current" style="color:#f97316;font-weight:600">Blog</span>
       </div>
-      <span style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:.92rem;color:#f97316;font-weight:700;border-bottom:1px solid rgba(249,115,22,.3);padding-bottom:4px;width:fit-content">Leer la guía <span style="display:inline-block;transition:transform .2s">→</span></span>
-    </a>
-    <!-- Stats bar abajo -->
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:18px;font-size:.78rem;color:rgba(255,255,255,.55);font-family:'JetBrains Mono','SF Mono',monospace;letter-spacing:.04em;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;margin-top:8px">
-      <span style="display:flex;align-items:center;gap:8px">300+ artículos en español<span style="width:3px;height:3px;border-radius:50%;background:rgba(249,115,22,.6)"></span>Actualizado jul 2026</span>
-      <a href="/planes/0-5k" style="color:#f97316;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(249,115,22,.3);padding-bottom:2px">Empieza con plan gratis →</a>
+      <h1>Corre mejor.<br>Encuentra tu grupo.<br><span class="hh-accent">Llega preparado.</span></h1>
+      <p class="hh-sub">Guías, planes, material y carreras para correr con más confianza. Escrito por corredores, en español.</p>
+      <div class="hh-cta-row">
+        <a href="#explora" class="hh-cta hh-cta-primary">Empieza por tu objetivo <span aria-hidden="true">→</span></a>
+        <a href="#seleccion" class="hh-cta hh-cta-secondary">Ver artículos destacados</a>
+      </div>
+      <div class="hh-statline">
+        <span style="display:flex;align-items:center;gap:8px">300+ artículos en español<span style="width:3px;height:3px;border-radius:50%;background:rgba(249,115,22,.6)" aria-hidden="true"></span>Actualizado jul 2026</span>
+        <a href="/planes/0-5k" style="color:#f97316;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(249,115,22,.3);padding-bottom:2px">Empieza con plan gratis →</a>
+      </div>
     </div>
+    <a href="/blog/guia-equipamiento-running-2026" class="hh-featured">
+      <div class="hh-featured-img">
+        <img src="/public/pexels/2526878-1280.webp" alt="Zapatillas de running en plena carrera popular" fetchpriority="high" loading="eager" width="1280" height="720">
+        <span class="hh-featured-badge">Guía destacada</span>
+      </div>
+      <div class="hh-featured-body">
+        <span class="hh-featured-cat">Equipamiento</span>
+        <h2>Equipamiento de running 2026 — la guía completa</h2>
+        <p>Zapatillas, relojes GPS, ropa técnica y accesorios: qué comprar de verdad para empezar y mejorar, sin gastar de más.</p>
+        <div class="hh-featured-meta">
+          <img src="/public/abraham.jpg" alt="" width="26" height="26">
+          <span>Abraham Márquez</span>
+          <span aria-hidden="true">·</span>
+          <span>Guía actualizada 2026</span>
+        </div>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -601,6 +702,166 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 
 <div role="main" class="container">
 
+  <!-- Empieza por aquí · 3 puertas de entrada por perfil (artículos reales) -->
+  <div class="start-here">
+    <div class="section-head">
+      <span class="section-label">Empieza por aquí</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="sh-grid">
+      <a href="/blog/empezar-a-correr-guia-principiantes" class="sh-card">
+        <div class="sh-img"><img src="/public/pexels/4719926-640.webp" alt="Corredora atándose las zapatillas antes de empezar" loading="lazy" width="640" height="360"></div>
+        <div class="sh-body">
+          <h3>Estoy empezando</h3>
+          <p>Todo lo que necesitas saber para dar tus primeros pasos sin lesionarte.</p>
+          <span class="sh-cta">Ver guía →</span>
+        </div>
+      </a>
+      <a href="/blog/vo2-max-running-como-mejorar" class="sh-card">
+        <div class="sh-img"><img src="/public/pexels/36541481-640.webp" alt="Corredor entrenando a ritmo controlado" loading="lazy" width="640" height="360"></div>
+        <div class="sh-body">
+          <h3>Quiero mejorar</h3>
+          <p>Entrenamientos, técnica y consejos para dar tu siguiente paso.</p>
+          <span class="sh-cta">Ver guía →</span>
+        </div>
+      </a>
+      <a href="/blog/grupos-de-running-guia-completa" class="sh-card">
+        <div class="sh-img"><img src="/public/pexels/8381747-640.webp" alt="Grupo de corredores entrenando juntos" loading="lazy" width="640" height="360"></div>
+        <div class="sh-body">
+          <h3>Quiero correr acompañado</h3>
+          <p>Encuentra tu grupo, comparte rutas y vive el running en comunidad.</p>
+          <span class="sh-cta">Encontrar grupo →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- La selección de CorrerJuntos · curación editorial 1+4 (sin métricas de lectura) -->
+  <div class="editorial-pick" id="seleccion">
+    <div class="section-head">
+      <span class="section-label">La selección de CorrerJuntos</span>
+      <span class="section-rule"></span>
+      <span class="section-meta">Curación editorial</span>
+    </div>
+    <div class="ep-grid">
+      <a href="/blog/correr-en-ayunas" class="ep-main">
+        <div class="ep-main-img"><img src="/public/blog/img/correr-ayunas-hero.webp" alt="Corredor entrenando en ayunas al amanecer" loading="lazy" width="1200" height="675"></div>
+        <div class="ep-main-body">
+          <span class="ep-cat">Salud</span>
+          <h3>Correr en ayunas: 8 beneficios y 5 riesgos reales</h3>
+          <p>Guía completa con evidencia científica: beneficios, riesgos, protocolo seguro paso a paso y cuándo no debes hacerlo.</p>
+          <div class="ep-meta">
+            <span>Abraham Márquez · 18 min</span>
+            <span class="ep-cta">Leer análisis →</span>
+          </div>
+        </div>
+      </a>
+      <div class="ep-minis">
+        <a href="/blog/mejores-zapatillas-nike-running" class="ep-mini">
+          <div class="ep-mini-thumb"><img src="/public/blog-images/zapatillas-nike/vaporfly-3.jpg" alt="Zapatillas Nike de running" loading="lazy" width="152" height="116"></div>
+          <div class="ep-mini-info"><span class="ep-cat">Zapatillas</span><h4>Las 8 mejores zapatillas Nike running 2026</h4><span class="ep-cta">Leer análisis →</span></div>
+        </a>
+        <a href="/blog/tirada-larga-running" class="ep-mini">
+          <div class="ep-mini-thumb"><img src="/public/pexels/35102677-640.webp" alt="Corredor en tirada larga" loading="lazy" width="152" height="116"></div>
+          <div class="ep-mini-info"><span class="ep-cat">Entrenamiento</span><h4>Tirada larga: la sesión más importante de tu plan</h4><span class="ep-cta">Ver guía →</span></div>
+        </a>
+        <a href="/blog/calendario-carreras-populares-2026" class="ep-mini">
+          <div class="ep-mini-thumb"><img src="/public/pexels/36370811-640.webp" alt="Corredores en una carrera popular" loading="lazy" width="152" height="116"></div>
+          <div class="ep-mini-info"><span class="ep-cat">Carreras</span><h4>Carreras populares 2026 en España: calendario completo</h4><span class="ep-cta">Preparar carrera →</span></div>
+        </a>
+        <a href="/blog/grupos-running-madrid" class="ep-mini">
+          <div class="ep-mini-thumb"><img src="/public/pexels/9510767-640.webp" alt="Grupo de running en Madrid" loading="lazy" width="152" height="116"></div>
+          <div class="ep-mini-info"><span class="ep-cat">Grupos</span><h4>Grupos de running en Madrid: los 15 mejores</h4><span class="ep-cta">Encontrar grupo →</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Explora por objetivo · delega en los filtros existentes del archivo -->
+  <div class="objective-nav" id="explora">
+    <div class="section-head">
+      <span class="section-label">Explora por objetivo</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="on-grid">
+      <button type="button" class="on-btn" data-objective="entrenamiento"><span class="on-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h3l3 6-4 9H9l-4-9 3-6h3"/><path d="M12 4v5"/></svg></span><span class="on-label">Entrenar</span><span class="on-arrow" aria-hidden="true">→</span></button>
+      <button type="button" class="on-btn" data-objective="equipamiento"><span class="on-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 14.5 16 10 4 20"/><path d="M4 20h16"/><path d="M4 20v-6l8-8 8 8"/></svg></span><span class="on-label">Equiparte</span><span class="on-arrow" aria-hidden="true">→</span></button>
+      <button type="button" class="on-btn" data-objective="carreras"><span class="on-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15V4h12l-2 4 2 4H6"/><path d="M4 22v-7"/></svg></span><span class="on-label">Preparar una carrera</span><span class="on-arrow" aria-hidden="true">→</span></button>
+      <a href="/matching" class="on-btn"><span class="on-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="on-label">Encontrar grupo</span><span class="on-arrow" aria-hidden="true">→</span></a>
+      <button type="button" class="on-btn" data-objective="rutas"><span class="on-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="on-label">Rutas</span><span class="on-arrow" aria-hidden="true">→</span></button>
+    </div>
+  </div>
+
+  <!-- Imprescindibles · curación editorial explícita (sin ranking de lecturas) -->
+  <div class="most-read">
+    <div class="section-head">
+      <span class="section-label">Imprescindibles para corredores</span>
+      <span class="section-rule"></span>
+      <span class="section-meta">Selección editorial</span>
+    </div>
+    <div class="most-read-grid">
+      <a href="/blog/empezar-a-correr-guia-principiantes" class="most-read-card">
+        <div class="mr-thumb">
+          <img src="/public/pexels/4719926-200.webp" alt="Empezar a correr" loading="lazy">
+        </div>
+        <div class="most-read-info">
+          <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
+          <h3>Guia Completa para Empezar a Correr desde Cero</h3>
+          <span class="meta">Principiantes · 10 min</span>
+        </div>
+      </a>
+      <a href="/blog/como-elegir-zapatillas-running" class="most-read-card">
+        <div class="mr-thumb">
+          <img src="/public/pexels/1556710-200.webp" alt="Zapatillas running" loading="lazy">
+        </div>
+        <div class="most-read-info">
+          <span class="mr-cat cat-badge-zapatillas">Zapatillas</span>
+          <h3>Cómo Elegir Zapatillas de Running</h3>
+          <span class="meta">Guía de compra · 9 min</span>
+        </div>
+      </a>
+      <a href="/blog/errores-comunes-corredores" class="most-read-card">
+        <div class="mr-thumb">
+          <img src="/public/blog-hero-card.webp" alt="Errores corredores" loading="lazy">
+        </div>
+        <div class="most-read-info">
+          <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
+          <h3>Los 10 Errores Mas Comunes de los Corredores</h3>
+          <span class="meta">Entrenamiento · 9 min</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Standalone CTA banner — centered, outside grid -->
+  <aside class="blog-cta-banner" aria-label="Descarga CorrerJuntos">
+    <div class="blog-cta-banner__icon" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="56" height="56">
+        <rect width="64" height="64" rx="14" fill="#0f1729"/>
+        <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="26" fill="#fff" letter-spacing="-1">CJ</text>
+        <rect x="22" y="48" width="20" height="3" rx="1.5" fill="#f97316"/>
+      </svg>
+    </div>
+    <div class="blog-cta-banner__text">
+      <strong>Empieza tu plan gratis</strong>
+      <span>Plan personalizado, coach IA y tracking GPS &mdash; gratis</span>
+    </div>
+    <div class="blog-cta-banner__badges">
+      <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function')gtag('event','blog_index_cta_click',{store:'appstore'})">
+        <svg viewBox="0 0 165 44" width="165" height="44" role="img" aria-labelledby="appstoreT"><title id="appstoreT">App Store</title><rect width="165" height="44" rx="7" fill="#000"/><path fill="#fff" transform="translate(0,2)" d="M30.7 19.9c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-.9-2.5-3.8zm-2.4-7c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.2 1.8-1 2.9 1-.1 2.1-.6 2.7-1.3z"/><text x="50" y="18" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="9" letter-spacing=".05em">Descargar en</text><text x="50" y="33" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="16" font-weight="600">App Store</text></svg>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function')gtag('event','blog_index_cta_click',{store:'playstore'})">
+        <svg viewBox="0 0 165 44" width="165" height="44" role="img" aria-labelledby="playT"><title id="playT">Google Play</title><rect width="165" height="44" rx="7" fill="#000"/><g transform="translate(0,2)"><path d="M17.5 11.5c-.4.4-.6 1-.6 1.7v13.6c0 .7.2 1.3.6 1.7l8.1-8.1v-.7l-8.1-8.2z" fill="#fff"/><path d="M28.4 22.7l-2.7-2.7 2.7-2.7 3.4 1.9c1 .5 1 1.5 0 2l-3.4 1.5z" fill="#fbbc04"/><path d="M28.4 22.7L25.7 20l-8.1 8.2c.3.4.9.5 1.5.1l9.3-5.6" fill="#ea4335"/><path d="M28.4 17.3l-9.3-5.3c-.6-.4-1.2-.3-1.5.1L25.7 20l2.7-2.7z" fill="#34a853"/></g><text x="50" y="18" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="9" letter-spacing=".05em">DISPONIBLE EN</text><text x="50" y="33" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="16" font-weight="600">Google Play</text></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Archivo completo · búsqueda + filtros + grid -->
+  <div class="section-head archive-section" id="archivo">
+    <span class="section-label">Todos los artículos</span>
+    <span class="section-rule"></span>
+  </div>
+
   <!-- Search Bar -->
   <div class="search-wrap">
     <span class="search-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
@@ -613,7 +874,7 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
   <div class="filter-section-head">
     <span class="filter-section-label">Navega por categoría</span>
     <span class="filter-section-rule"></span>
-    <span class="filter-section-count"><span id="filterCount">239</span> artículos</span>
+    <span class="filter-section-count"><span id="filterCount">…</span> artículos</span>
   </div>
   <div class="filter-primary">
     <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">Todos</button>
@@ -651,75 +912,9 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
   </div>
   </div>
 
-  <!-- Most Read — positioned prominently -->
-  <div class="most-read">
-    <div class="section-head">
-      <span class="section-label">Lo más leído</span>
-      <span class="section-rule"></span>
-      <span class="section-meta">Top 3 · esta semana</span>
-    </div>
-    <div class="most-read-grid">
-      <a href="/blog/empezar-a-correr-guia-principiantes" class="most-read-card">
-        <div class="rank-badge">#1</div>
-        <div class="mr-thumb">
-          <img src="/public/pexels/4719926-200.webp" alt="Empezar a correr" loading="lazy">
-        </div>
-        <div class="most-read-info">
-          <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
-          <h3>Guia Completa para Empezar a Correr desde Cero</h3>
-          <span class="meta">Principiantes · 10 min</span>
-        </div>
-      </a>
-      <a href="/blog/mejores-zapatillas-running-asfalto" class="most-read-card">
-        <div class="rank-badge">#2</div>
-        <div class="mr-thumb">
-          <img src="/public/pexels/1556710-200.webp" alt="Zapatillas running" loading="lazy">
-        </div>
-        <div class="most-read-info">
-          <span class="mr-cat cat-badge-zapatillas">Zapatillas</span>
-          <h3>Las 10 Mejores Zapatillas Running para Asfalto 2026</h3>
-          <span class="meta">Zapatillas · 14 min</span>
-        </div>
-      </a>
-      <a href="/blog/errores-comunes-corredores" class="most-read-card">
-        <div class="rank-badge">#3</div>
-        <div class="mr-thumb">
-          <img src="/public/blog-hero-card.webp" alt="Errores corredores" loading="lazy">
-        </div>
-        <div class="most-read-info">
-          <span class="mr-cat cat-badge-entrenamiento">Entrenamiento</span>
-          <h3>Los 10 Errores Mas Comunes de los Corredores</h3>
-          <span class="meta">Entrenamiento · 9 min</span>
-        </div>
-      </a>
-    </div>
-  </div>
+  <!-- Article counter · sin total visible (la única cifra de inventario es el "300+" del hero) -->
+  <div class="article-counter" id="articleCounter">Mostrando <span id="visibleCount">…</span> artículos<span id="totalCount" hidden>…</span></div>
 
-  <!-- Article counter -->
-  <div class="article-counter" id="articleCounter">Mostrando <span id="visibleCount">…</span> de <span id="totalCount">…</span> articulos</div>
-
-  <!-- Standalone CTA banner — centered, outside grid -->
-  <aside class="blog-cta-banner" aria-label="Descarga CorrerJuntos">
-    <div class="blog-cta-banner__icon" aria-hidden="true">
-      <svg viewBox="0 0 64 64" width="56" height="56">
-        <rect width="64" height="64" rx="14" fill="#0f1729"/>
-        <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="26" fill="#fff" letter-spacing="-1">CJ</text>
-        <rect x="22" y="48" width="20" height="3" rx="1.5" fill="#f97316"/>
-      </svg>
-    </div>
-    <div class="blog-cta-banner__text">
-      <strong>Empieza tu plan gratis</strong>
-      <span>Plan personalizado, coach IA y tracking GPS &mdash; gratis</span>
-    </div>
-    <div class="blog-cta-banner__badges">
-      <a href="https://apps.apple.com/app/correr-juntos/id6758505910" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function')gtag('event','blog_index_cta_click',{store:'appstore'})">
-        <svg viewBox="0 0 165 44" width="165" height="44" role="img" aria-labelledby="appstoreT"><title id="appstoreT">App Store</title><rect width="165" height="44" rx="7" fill="#000"/><path fill="#fff" transform="translate(0,2)" d="M30.7 19.9c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-.9-2.5-3.8zm-2.4-7c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.2 1.8-1 2.9 1-.1 2.1-.6 2.7-1.3z"/><text x="50" y="18" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="9" letter-spacing=".05em">Descargar en</text><text x="50" y="33" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="16" font-weight="600">App Store</text></svg>
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag==='function')gtag('event','blog_index_cta_click',{store:'playstore'})">
-        <svg viewBox="0 0 165 44" width="165" height="44" role="img" aria-labelledby="playT"><title id="playT">Google Play</title><rect width="165" height="44" rx="7" fill="#000"/><g transform="translate(0,2)"><path d="M17.5 11.5c-.4.4-.6 1-.6 1.7v13.6c0 .7.2 1.3.6 1.7l8.1-8.1v-.7l-8.1-8.2z" fill="#fff"/><path d="M28.4 22.7l-2.7-2.7 2.7-2.7 3.4 1.9c1 .5 1 1.5 0 2l-3.4 1.5z" fill="#fbbc04"/><path d="M28.4 22.7L25.7 20l-8.1 8.2c.3.4.9.5 1.5.1l9.3-5.6" fill="#ea4335"/><path d="M28.4 17.3l-9.3-5.3c-.6-.4-1.2-.3-1.5.1L25.7 20l2.7-2.7z" fill="#34a853"/></g><text x="50" y="18" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="9" letter-spacing=".05em">DISPONIBLE EN</text><text x="50" y="33" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Helvetica,sans-serif" font-size="16" font-weight="600">Google Play</text></svg>
-      </a>
-    </div>
-  </aside>
 
   <div class="articles" id="articlesGrid">
     <!-- Análisis Prozis Energy Gel (2 ago 2026) -->
@@ -4193,6 +4388,71 @@ async function submitNewsletter(e) {
 </script>
 
 <!-- Mobile Bottom Nav -->
+<script>
+/* Portada editorial · ago 2026
+   1) Botones "Explora por objetivo" delegan en los filtros existentes del archivo
+      (no duplican lógica: click programático sobre .filter-panel-btn).
+   2) CTAs contextuales en tarjetas del grid según data-category (sustituye "Leer →"). */
+(function(){
+  'use strict';
+  document.querySelectorAll('.on-btn[data-objective]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var cat = this.getAttribute('data-objective');
+      var target = document.querySelector('.filter-panel-btn[data-filter="' + cat + '"]');
+      if (target) target.click();
+      var archive = document.getElementById('archivo');
+      if (archive) { try { archive.scrollIntoView({behavior:'smooth', block:'start'}); } catch(_) { archive.scrollIntoView(); } }
+    });
+  });
+  var CTA_BY_CAT = {
+    zapatillas: 'Leer análisis →', equipamiento: 'Leer análisis →', tecnologia: 'Leer análisis →', suplementacion: 'Leer análisis →',
+    carreras: 'Preparar carrera →'
+  };
+  document.querySelectorAll('#articlesGrid .article-card').forEach(function(card){
+    var arrow = card.querySelector('.card-arrow');
+    if (!arrow) return;
+    arrow.textContent = CTA_BY_CAT[card.getAttribute('data-category')] || 'Ver guía →';
+  });
+  /* 3) Integrar la sticky bar de newsletter.js en el flujo de la portada:
+     newsletter.js la inyecta al final del body como fixed; aquí la movemos al
+     inicio (antes del header) y el CSS de portada la hace relative, de modo que
+     hace scroll con la página y nunca tapa el header. Form y cierre intactos. */
+  var relocateBar = function(){
+    var bar = document.querySelector('body>.cj-nl-sticky');
+    if (!bar) return false;
+    if (document.body.firstElementChild !== bar) document.body.insertBefore(bar, document.body.firstElementChild);
+    return true;
+  };
+  if (!relocateBar()) {
+    var tries = 0;
+    var iv = setInterval(function(){ if (relocateBar() || ++tries > 40) clearInterval(iv); }, 250);
+  }
+  /* 4) Exclusión mutua de newsletters + scroll lock del modal de salida.
+     newsletter.js abre/cierra el modal alternando la clase "show" en .cj-nl-overlay;
+     aquí solo se refleja ese estado en una clase del body (el CSS de portada hace el resto)
+     y se añade cierre con Escape (newsletter.js no lo maneja). */
+  var syncModalState = function(){
+    document.body.classList.toggle('cj-nl-modal-open', !!document.querySelector('.cj-nl-overlay.show'));
+  };
+  new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      Array.prototype.forEach.call(m.addedNodes || [], function(n){
+        if (n.nodeType === 1 && n.classList && n.classList.contains('cj-nl-overlay') && !n.__cjWatched) {
+          n.__cjWatched = true;
+          new MutationObserver(syncModalState).observe(n, { attributes: true, attributeFilter: ['class'] });
+        }
+      });
+    });
+    syncModalState();
+  }).observe(document.body, { childList: true });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+      var x = document.querySelector('.cj-nl-overlay.show .cj-modal-x');
+      if (x) x.click();
+    }
+  });
+})();
+</script>
 <nav class="mobile-bottom-nav">
   <div class="nav-items">
     <a href="/">

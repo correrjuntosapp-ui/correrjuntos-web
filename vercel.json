@@ -1,5 +1,15 @@
 {
   "outputDirectory": ".",
+
+  "functions": {
+
+    "api/cron/run.js": {
+
+      "includeFiles": "supabase/functions/revenucat-webhook/lifecycle-core.js"
+
+    }
+
+  },
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [

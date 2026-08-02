@@ -453,7 +453,10 @@
      ══════════════════════════════════════════════ */
   var slug = location.pathname.replace(/\/$/,'').split('/').pop() || 'index';
 
+  /* gtag() se define antes del consentimiento (encola en dataLayer), así que comprobarlo
+     no basta: se exige consentimiento explícito del banner de cookies. */
   function trackEvent(name, params){
+    try { if(localStorage.getItem('cj_cookie_consent') !== 'accepted') return; } catch(e){ return; }
     if(typeof gtag === 'function') gtag('event', name, params || {});
   }
 

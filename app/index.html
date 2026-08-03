@@ -162,8 +162,10 @@ section.hero>p{color:#57534e!important}
 html{overflow-x:clip}
 @media(max-width:360px){.nav{flex-wrap:wrap;row-gap:6px;padding:12px 10px}.nav-links{flex-wrap:wrap;justify-content:flex-end}.container{padding-left:14px;padding-right:14px}}
 </style>
+<style id="cj-skip-link-css">.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;background:#0b1220;color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-weight:700;text-decoration:none}.skip-link:focus{left:0}</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
 
 <!-- Nav -->
 <div class="nav-wrapper">
@@ -177,7 +179,7 @@ html{overflow-x:clip}
   </nav>
 </div>
 
-<div role="main" class="container">
+<div role="main" id="main" class="container">
   <!-- Breadcrumb -->
   <div class="breadcrumb">
     <a href="/">Inicio</a><span class="sep">›</span><span class="current">Descargar App</span>
@@ -233,8 +235,8 @@ html{overflow-x:clip}
     </div>
     <div class="feature">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <h3>GPS preciso + Garmin/COROS</h3>
-      <p>Tracking en tiempo real con sincronizaci&oacute;n autom&aacute;tica con Apple Watch, Garmin Connect y COROS.</p>
+      <h3>GPS preciso + importaci&oacute;n desde Strava</h3>
+      <p>Tracking en tiempo real desde el m&oacute;vil e importaci&oacute;n autom&aacute;tica de tus actividades de Strava. Sincronizaci&oacute;n con Garmin, COROS y Apple Watch: pr&oacute;ximamente.</p>
     </div>
     <div class="feature">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div>
@@ -250,7 +252,7 @@ html{overflow-x:clip}
 
   <!-- Free vs Premium -->
   <h2 style="text-align:center;margin-top:48px;color:#3d3229">Gratis para empezar, Premium para m&aacute;s</h2>
-  <p style="text-align:center;color:#8b7355;margin-bottom:24px">2 planes 100% gratis. El resto incluidos en Premium 5,99&euro;/mes con preview de la 1&ordf; semana.</p>
+  <p style="text-align:center;color:#8b7355;margin-bottom:24px">2 planes 100% gratis. El resto incluidos en Premium 4,99&euro;/mes con preview de la 1&ordf; semana.</p>
   <div class="compare">
     <div class="row head"><span></span><span class="free">Gratis</span><span class="premium">Premium</span></div>
     <div class="row"><span>Plan "Tu Primer Mes" (4 sem)</span><span class="free">&#10003;</span><span class="premium">&#10003;</span></div>
@@ -259,7 +261,8 @@ html{overflow-x:clip}
     <div class="row"><span>Coach Jos&eacute; IA</span><span class="free">&#10003;</span><span class="premium">&#10003;</span></div>
     <div class="row"><span>Coach Ana (nutrici&oacute;n)</span><span class="free">B&aacute;sico</span><span class="premium">&#10003;</span></div>
     <div class="row"><span>GPS + audio alertas km</span><span class="free">&#10003;</span><span class="premium">&#10003;</span></div>
-    <div class="row"><span>Sync Garmin/COROS/Apple Watch</span><span class="free">&#10003;</span><span class="premium">&#10003;</span></div>
+    <div class="row"><span>Importaci&oacute;n autom&aacute;tica desde Strava</span><span class="free">&#10003;</span><span class="premium">&#10003;</span></div>
+    <div class="row"><span>Sync Garmin/COROS/Apple Watch</span><span class="free">Pr&oacute;ximamente</span><span class="premium">Pr&oacute;ximamente</span></div>
     <div class="row"><span>Estad&iacute;sticas avanzadas + r&eacute;cords</span><span class="free">&mdash;</span><span class="premium">&#10003;</span></div>
     <div class="row"><span>Sin anuncios, sin paywalls</span><span class="free">&mdash;</span><span class="premium">&#10003;</span></div>
   </div>

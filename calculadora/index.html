@@ -127,6 +127,12 @@ nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-betw
 
 /* Mode Tabs */
 .mode-tabs{display:flex;gap:4px;background:rgba(255,255,255,.04);padding:4px;border-radius:14px;border:1px solid rgba(255,255,255,.08);margin:0 auto 32px;max-width:fit-content}
+/* A 375px las 3 pestañas en una fila desbordaban el viewport (383px). Se permite envolver
+   sin cambiar nada por encima de 640px. */
+@media(max-width:640px){
+  .mode-tabs{flex-wrap:wrap;justify-content:center;max-width:100%}
+  .mode-tab{padding:10px 14px;font-size:.82rem}
+}
 .mode-tab{padding:10px 20px;border-radius:12px;border:none;background:transparent;color:#94a3b8;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .25s;white-space:nowrap}
 .mode-tab:hover{color:#fff;background:rgba(255,255,255,.06)}
 .mode-tab.active{color:#fff;background:rgba(249,115,22,.9)}
@@ -238,8 +244,10 @@ nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-betw
 .mode-panel{display:none}
 .mode-panel.active{display:block}
 </style>
+<style id="cj-skip-link-css">.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;background:#0b1220;color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-weight:700;text-decoration:none}.skip-link:focus{left:0}</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
 
 <!-- Nav -->
 <div class="nav-wrapper">
@@ -252,6 +260,7 @@ nav{padding:16px 20px;display:flex;align-items:center;justify-content:space-betw
     <a href="/app" class="btn-register" style="text-decoration:none">Descargar App</a>
   </div>
 </nav>
+<div id="main" tabindex="-1"></div>
 </div>
 
 <!-- Breadcrumb -->

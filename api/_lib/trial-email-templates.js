@@ -178,7 +178,7 @@ const day7Es = (name) => shell({
            `${strongCream('Ritmo medio')} y mejor 1 km`,
            `${strongCream('Próxima sesión')} del plan adaptada a tu progreso`,
          ])
-       + callout('Recordatorio', `Tu periodo de prueba sigue activo. Cuando termine: 5,99 €/mes (precio de la tienda española). Cancela cuando quieras.`),
+       + callout('Recordatorio', `Tu periodo de prueba sigue activo. Cuando termine: 4,99 €/mes (precio de la tienda española). Cancela cuando quieras.`),
   ctaUrl: 'https://www.correrjuntos.com/app',
   ctaLabel: 'Ver mi semana  →',
   lang: 'es',
@@ -197,7 +197,7 @@ const day7En = (name) => shell({
            `${strongCream('Average pace')} and fastest km`,
            `${strongCream('Next session')} in your plan, adapted to your progress`,
          ])
-       + callout('Reminder', `Your trial is still active. When it ends, the monthly Premium price shown in your app store applies (€5.99/mo in the EU). Cancel anytime.`),
+       + callout('Reminder', `Your trial is still active. When it ends, the monthly Premium price shown in your app store applies (€4.99/mo in the EU). Cancel anytime.`),
   ctaUrl: 'https://www.correrjuntos.com/app',
   ctaLabel: 'See my week  →',
   lang: 'en',
@@ -219,7 +219,7 @@ const day11Es = (name) => shell({
            `Matching ilimitado con runners cercanos`,
            `Stats avanzados: VO2max, zonas FC, predicción de ritmo`,
          ])
-       + callout('Ahorra ≈58% con el plan anual', `29,99€/año (≈ 2,50€/mes) vs 5,99€/mes. Si vas a usarlo durante varios meses, el anual sale mucho más barato. El precio final se muestra siempre en tu tienda.`)
+       + callout('Ahorra ≈50% con el plan anual', `29,99€/año (≈ 2,50€/mes) vs 4,99€/mes. Si vas a usarlo durante varios meses, el anual sale mucho más barato. El precio final se muestra siempre en tu tienda.`)
        + paraLast(`Si quieres cancelar — adelante, sin presión. App Store/Google Play en 2 toques.`),
   ctaUrl: 'https://www.correrjuntos.com/app',
   ctaLabel: 'Gestionar suscripción  →',
@@ -241,7 +241,7 @@ const day11En = (name) => shell({
            `Unlimited matching with nearby runners`,
            `Advanced stats: VO2max, HR zones, pace predictions`,
          ])
-       + callout('Save ≈58% with the annual plan', `The annual plan costs the equivalent of about 5 months at the monthly price. Exact pricing is always shown in your app store (€29.99/year in the EU).`)
+       + callout('Save ≈50% with the annual plan', `The annual plan costs the equivalent of about 5 months at the monthly price. Exact pricing is always shown in your app store (€29.99/year in the EU).`)
        + paraLast(`Want to cancel — go ahead, no pressure. App Store/Google Play, 2 taps.`),
   ctaUrl: 'https://www.correrjuntos.com/app',
   ctaLabel: 'Manage subscription  →',

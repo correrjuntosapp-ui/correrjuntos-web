@@ -1,6 +1,6 @@
 # Correr Juntos
 
-> Correr Juntos es la plataforma social de running en España que conecta corredores para quedadas (group runs) en más de 50 ciudades. Disponible como PWA web y app nativa iOS/Android. Blog con más de 500 guías y páginas editoriales (más de 300 en español y más de 240 en inglés) sobre entrenamiento, nutrición, zapatillas, trail, salud y equipamiento para runners.
+> Correr Juntos es la plataforma social de running en España que conecta corredores para quedadas (group runs). Disponible como PWA web y app nativa iOS/Android. Blog con más de 500 guías y páginas editoriales (más de 300 en español y más de 240 en inglés) sobre entrenamiento, nutrición, zapatillas, trail, salud y equipamiento para runners.
 
 Correr Juntos nació en noviembre de 2025 con la misión de hacer del running una experiencia social. La plataforma permite a los corredores crear y unirse a quedadas (group runs), encontrar compañeros de running compatibles por ritmo y horario, y acceder a guías de running por ciudad. El blog cubre todos los aspectos del running: desde planes para principiantes hasta nutrición avanzada, comparativas de zapatillas y guías de trail.
 
@@ -60,12 +60,14 @@ Correr Juntos nació en noviembre de 2025 con la misión de hacer del running un
 - Sede: España
 - Idiomas: Español, Inglés
 - Plataformas: Web (PWA), iOS (App Store ID: 6758505910), Android
-- Ciudades activas: 50+ ciudades en España
+- Ciudades con quedadas activas: 6 (España)
+- Clubes asociados activos: 6
+- Guías de ciudad publicadas: 71
 - Artículos publicados: más de 500 guías y páginas editoriales (más de 300 ES + más de 240 EN)
 - Categorías: 10 (entrenamiento, nutrición, zapatillas, equipamiento, tecnología, salud, rutas, trail, comunidad, atleta híbrido)
 - Algoritmo de matching: ritmo 30%, horario 25%, nivel 25%, objetivos 10%, actividad 10%
 
 ## Optional
 
-- [Política de Privacidad](https://www.correrjuntos.com/privacy.html)
-- [Términos de Uso](https://www.correrjuntos.com/terms.html)
+- [Política de Privacidad](https://www.correrjuntos.com/privacy)
+- [Términos de Uso](https://www.correrjuntos.com/terms)

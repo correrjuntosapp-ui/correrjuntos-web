@@ -63,7 +63,7 @@
   var css = document.createElement('style');
   css.textContent = [
     /* Light mode (default — cream blog background) */
-    '.author-card{margin:48px 0 32px;padding:28px 24px;background:#fffcf9;border:1px solid #efe6db;border-radius:20px;display:flex;gap:20px;align-items:flex-start;box-shadow:0 2px 12px rgba(0,0,0,.04)}',
+    '.author-card{margin:48px 0 32px;padding:28px 24px;background:#fffcf9;border:1px solid #efe6db;border-radius:16px;display:flex;gap:20px;align-items:flex-start;box-shadow:0 2px 12px rgba(0,0,0,.04)}',
     '.author-avatar{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;color:#fff;flex-shrink:0;overflow:hidden;background-size:cover;background-position:center}',
     '.author-info{flex:1;min-width:0}',
     '.author-label{font-size:.7rem;font-weight:700;color:#57534e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #efe6db}',

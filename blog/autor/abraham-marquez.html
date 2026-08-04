@@ -116,8 +116,10 @@ footer a:hover{color:#f97316}
 </style>
 <meta name="apple-itunes-app" content="app-id=6758505910">
 <style id="cj-topnav-mobile-fix">@media(max-width:768px){#top-nav{height:auto;min-height:56px;flex-wrap:wrap;padding:8px 16px;row-gap:4px}#top-nav .top-nav-links{flex-wrap:wrap;gap:10px 14px;font-size:.8rem;justify-content:flex-end;min-width:0}}</style>
+<style id="cj-skip-link-css">.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;background:#0b1220;color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-weight:700;text-decoration:none}.skip-link:focus{left:0}</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
 <header class="site-header" style="position:sticky;top:0;z-index:100;background:rgba(254,247,237,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)">
 <nav id="top-nav" style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px">
   <a href="/" style="text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em"><span style="color:#3d3229">CORRER</span><span style="color:#f97316">JUNTOS</span></a>
@@ -131,7 +133,7 @@ footer a:hover{color:#f97316}
   <div class="nav-auth" style="display:none"></div>
 </nav>
 </header>
-<div class="container">
+<div class="container" id="main" role="main">
   <div class="profile-header">
     <img src="/public/abraham.jpg" alt="Abraham Márquez Rodríguez - Fundador de CorrerJuntos" class="avatar" width="120" height="120">
     <h1 class="profile-name">Abraham Márquez Rodríguez</h1>

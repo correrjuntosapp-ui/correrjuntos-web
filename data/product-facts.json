@@ -93,13 +93,13 @@
       "verifiedAt": "2026-08-02"
     },
     "meetups": {
-      "publicValue": null,
+      "publicValue": "80+ quedadas organizadas",
       "rawValue": 85,
       "rawValueFuture": 9,
-      "criterion": "Filas en quedadas (total histórico) y con fecha_hora >= now(). No se publica ninguna cifra de quedadas en la web hoy.",
+      "criterion": "Filas en quedadas (total histórico) y con fecha_hora >= now(). Se publica el suelo estable \"80+\" en /inversores y /patrocinadores. Prohibido publicar \"850+\": ningún criterio lo respalda.",
       "query": "SELECT COUNT(*) FROM quedadas; SELECT COUNT(*) FROM quedadas WHERE fecha_hora >= now()",
       "source": "Supabase, tabla quedadas",
-      "verifiedAt": "2026-08-02"
+      "verifiedAt": "2026-08-04"
     },
     "stravaIntegration": {
       "publicValue": "Importación automática desde Strava (activa)",

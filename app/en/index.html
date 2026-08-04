@@ -162,8 +162,10 @@ section.hero>p{color:#57534e!important}
 html{overflow-x:clip}
 @media(max-width:360px){.nav{flex-wrap:wrap;row-gap:6px;padding:12px 10px}.nav-links{flex-wrap:wrap;justify-content:flex-end}.container{padding-left:14px;padding-right:14px}}
 </style>
+<style id="cj-skip-link-css">.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;background:#0b1220;color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-weight:700;text-decoration:none}.skip-link:focus{left:0}</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- Nav -->
 <div class="nav-wrapper">
@@ -177,7 +179,7 @@ html{overflow-x:clip}
   </nav>
 </div>
 
-<div role="main" class="container">
+<div role="main" id="main" class="container">
   <!-- Breadcrumb -->
   <div class="breadcrumb">
     <a href="/">Home</a><span class="sep">›</span><span class="current">Download App</span>

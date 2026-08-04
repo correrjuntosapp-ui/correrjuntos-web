@@ -191,7 +191,7 @@ a{color:inherit;text-decoration:none}
 .nav-links a:not(.nav-cta):hover{background:rgba(249,115,22,.08);color:var(--orange)}
 .nav-links a{font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--text-sec);transition:color .2s,background .2s}
 .nav-links a:hover{color:var(--text)}
-.nav-cta{background:var(--orange);color:#fff!important;padding:10px 22px;border-radius:100px;font-size:14px;font-weight:700;transition:transform .15s,box-shadow .15s}
+.nav-cta{background:#c2410c;color:#fff!important;padding:10px 22px;border-radius:12px;font-size:14px;font-weight:700;transition:transform .15s,box-shadow .15s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.3)}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .nav-toggle svg{width:24px;height:24px;stroke:var(--text);stroke-width:2}
@@ -516,8 +516,8 @@ a{color:inherit;text-decoration:none}
 </style>
 <style id="a11y-overrides">/* a11y: contraste AA + enlaces distinguibles (auditoría jul 2026) */
 .nav-logo span,.site-header .logo b,.site-header nav a.logo b{color:#c2410c!important}
-.site-header .links a,.site-header nav .links a,.nav-links a{color:#374151!important}
-.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important}
+.site-header .links a,.site-header nav .links a,.nav-links a:not(.nav-cta){color:#374151!important}
+.site-header .links a.download,.links a.download{background:#c2410c!important;color:#fff!important;border-radius:12px!important}
 .breadcrumb,.breadcrumb a{color:#57534e!important}
 .breadcrumb a{text-decoration:underline;text-underline-offset:2px}
 .hero .container>span,.eyebrow,.badge-pill{color:#c2410c!important}

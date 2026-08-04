@@ -657,7 +657,9 @@
       '#sticky-cta .sb-sub{font-size:.5rem!important;font-weight:400!important;font-style:normal!important;opacity:.75}',
       '#sticky-cta .sb-store{font-size:.82rem!important;font-weight:700!important;font-style:normal!important}',
       '#sticky-cta .sticky-close{background:none;border:none;color:#999;font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0}',
-      '#sticky-cta .sticky-close:hover{color:#333}'
+      '#sticky-cta .sticky-close:hover{color:#333}',
+      'body:has(#sticky-cta.show) #scroll-top{bottom:72px}',
+      'body:has(#sticky-cta.show) .toc-fab{bottom:128px}'
     ].join('\n');
     document.head.appendChild(cssSticky);
 

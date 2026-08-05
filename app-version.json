@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "ios": {
+    "enabled": false,
+    "minVersion": "1.3.24",
+    "minBuild": 109,
+    "forceAfter": null,
+    "storeUrl": "https://apps.apple.com/app/id6758505910",
+    "messageEs": "Hay una versión nueva con mejoras importantes. Actualiza para seguir usando la app.",
+    "messageEn": "A new version with important improvements is available. Update to continue using the app."
+  },
+  "android": {
+    "enabled": false,
+    "minVersion": "1.3.24",
+    "minBuild": 109,
+    "forceAfter": null,
+    "storeUrl": "https://play.google.com/store/apps/details?id=com.correrjuntos.app",
+    "messageEs": "Hay una versión nueva con mejoras importantes. Actualiza para seguir usando la app.",
+    "messageEn": "A new version with important improvements is available. Update to continue using the app."
+  }
+}

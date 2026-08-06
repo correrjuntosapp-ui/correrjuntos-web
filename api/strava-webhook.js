@@ -43,13 +43,18 @@ const CALLBACK_URL = 'https://www.correrjuntos.com/api/strava-webhook';
 // No es un secreto: solo verifica el handshake GET de la suscripción.
 const VERIFY_TOKEN = 'cj-strava-webhook-v1';
 
-// Solo actividades A PIE — mismo criterio que useStrava.ts.
-const ALLOWED = new Set(['Run', 'TrailRun', 'Walk', 'Hike']);
+// A pie + BICI [fix 6 ago 2026]: el founder hizo 100 km en bici y el filtro
+// "solo a pie" los descartaba en silencio. La app soporta deporte 'bici'
+// desde el diseño original (color #0066FF). E-bikes fuera a propósito
+// (métricas asistidas inflarían stats).
+const ALLOWED = new Set(['Run', 'TrailRun', 'Walk', 'Hike', 'Ride', 'VirtualRide', 'GravelRide', 'MountainBikeRide']);
+const BIKE_TYPES = new Set(['Ride', 'VirtualRide', 'GravelRide', 'MountainBikeRide']);
 
 function mapDeporte(a) {
   const t = a.sport_type || a.type || '';
   if (t === 'TrailRun') return 'trail';
   if (t === 'Walk' || t === 'Hike') return 'walking';
+  if (BIKE_TYPES.has(t)) return 'bici';
   return 'running';
 }
 
@@ -133,12 +138,14 @@ function mapActivityToRun(a, userId) {
   const horaFin = valid
     ? new Date(trueStartDate.getTime() + totalElapsedForEnd * 1000).toISOString()
     : new Date().toISOString();
-  const ritmo = deporte === 'walking' ? null : paceFromDistanceTime(a.distance || 0, duracionSegundos);
-  const splits = deporte === 'walking' ? null : buildSplitsFromStrava(a);
+  // Bici: el ritmo min/km y los splits de carrera no tienen sentido → null.
+  const sinRitmo = deporte === 'walking' || deporte === 'bici';
+  const ritmo = sinRitmo ? null : paceFromDistanceTime(a.distance || 0, duracionSegundos);
+  const splits = sinRitmo ? null : buildSplitsFromStrava(a);
 
   return {
     user_id: userId,
-    titulo: a.name || (deporte === 'walking' ? 'Caminata Strava' : deporte === 'trail' ? 'Trail Strava' : 'Carrera Strava'),
+    titulo: a.name || (deporte === 'walking' ? 'Caminata Strava' : deporte === 'bici' ? 'Bici Strava' : deporte === 'trail' ? 'Trail Strava' : 'Carrera Strava'),
     deporte,
     distancia_km: distanciaKm,
     duracion_segundos: duracionSegundos,
@@ -174,12 +181,15 @@ function joseInAppContent(run) {
   const km = run.distancia_km > 0 ? run.distancia_km.toFixed(2) : null;
   const parts = [];
   if (km) parts.push(`${km} km`);
-  if (run.ritmo_promedio && run.deporte !== 'walking') parts.push(`a ${run.ritmo_promedio}`);
+  if (run.ritmo_promedio && run.deporte !== 'walking' && run.deporte !== 'bici') parts.push(`a ${run.ritmo_promedio}`);
   const dur = fmtDuration(run.duracion_segundos);
   if (dur) parts.push(dur);
   const resumen = parts.length ? parts.join(' · ') : 'entreno completado';
   if (run.deporte === 'walking') {
     return `¡Buena caminata! ${resumen}. Caminar también suma: activa la recuperación y construye base aeróbica. Si quieres, mañana te preparo algo suave de carrera.`;
+  }
+  if (run.deporte === 'bici') {
+    return `¡Buena ruta en bici! ${resumen}. El ciclismo construye base aeróbica sin impacto — piernas más frescas para tu próximo entreno de carrera. Si quieres, lo tengo en cuenta al planificar tu semana.`;
   }
   return `¡Entreno registrado! ${resumen}. Buen trabajo — he echado un vistazo a los números y los tienes en tu resumen. Si notaste algo raro (molestias, fatiga excesiva), cuéntamelo y lo miramos juntos.`;
 }
@@ -188,6 +198,9 @@ function anaInAppContent(run) {
   if (run.deporte === 'walking') {
     return 'Después de caminar, hidrátate bien y no te saltes la siguiente comida — algo de proteína y verdura te viene perfecto.';
   }
+  if (run.deporte === 'bici') {
+    return 'Tras una salida en bici larga toca reponer: hidratos + proteína en la próxima hora (arroz, pasta o un buen bocadillo con huevo o atún) y sales si has sudado mucho. Tu recuperación empieza ahora.';
+  }
   return 'Hora de reponer: en la próxima hora, hidratos + algo de proteína (por ejemplo, plátano con yogur, o arroz con huevo). Y agua en pequeños sorbos. Tu recuperación empieza ahora.';
 }
 
@@ -195,10 +208,13 @@ function josePushText(run) {
   const km = run.distancia_km > 0 ? run.distancia_km.toFixed(2) : null;
   const parts = [];
   if (km) parts.push(`${km} km`);
-  if (run.ritmo_promedio && run.deporte !== 'walking') parts.push(`a ${run.ritmo_promedio}`);
+  if (run.ritmo_promedio && run.deporte !== 'walking' && run.deporte !== 'bici') parts.push(`a ${run.ritmo_promedio}`);
   const dur = fmtDuration(run.duracion_segundos);
   if (dur) parts.push(dur);
   const resumen = parts.length ? parts.join(' · ') : 'Entreno completado';
+  if (run.deporte === 'bici') {
+    return { title: 'Coach José', body: `Ruta en bici registrada — ${resumen}. Toca para ver tu resumen.` };
+  }
   return { title: 'Coach José', body: `Entreno registrado — ${resumen}. Toca para ver tu resumen.` };
 }
 

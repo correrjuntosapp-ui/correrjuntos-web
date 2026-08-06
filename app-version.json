@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "ios": {
-    "enabled": false,
+    "enabled": true,
     "minVersion": "1.3.24",
     "minBuild": 109,
     "forceAfter": null,

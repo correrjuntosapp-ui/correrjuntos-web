@@ -54,22 +54,30 @@ export function canSendNow(now, pais) {
 }
 
 /**
- * Guarda anti-planes-zombi del push de víspera: solo usuarios ACTIVADOS.
- * activated = ≥1 entreno completado (señal demostrada en BD), o alta reciente
- * (≤8 días: a esos los cubre la ventana de activación y avisarles la víspera
- * de su PRIMER entreno es exactamente el objetivo del experimento).
- * FAIL-CLOSED: completedCount null/undefined → false (no inventar actividad).
+ * [F105-ajuste] POBLACIONES MUTUAMENTE EXCLUYENTES por semántica (partición
+ * sobre `completedCount`, la única señal explícita de activación demostrada):
+ *
+ *   ACTIVATION  = plan activo · alta ≤8d · completedCount == 0 · día 1/3/7
+ *   WORKOUT-EVE = plan activo · entreno mañana · completedCount ≥ 1
+ *
+ * La víspera exige ≥1 entreno COMPLETADO previo. NO se sustituye esa señal
+ * por "alta ≤8 días" (decisión del founder): un alta reciente sin completar
+ * pertenece SOLO a la población de activación.
+ *
+ * PRIORIDAD EXPLÍCITA ante deriva futura: ACTIVATION > EVE. No depende del
+ * orden de ejecución de los crons: (1) la partición por completedCount hace
+ * imposible la doble pertenencia; (2) como cinturón defensivo, ambos crons
+ * mantienen el dedup "máx 1 push de crons por usuario y día local", y la
+ * víspera cede SIEMPRE ante un envío de activación del mismo día
+ * (pushedByOtherCronToday), nunca al revés por accidente de horario.
+ *
+ * FAIL-CLOSED: completedCount null/undefined/NaN → false (no inventar
+ * actividad).
  */
-export const EVE_NEW_USER_WINDOW_DAYS = 8;
-
-export function isEveEligible({ completedCount, createdAt }, now = new Date()) {
+export function isEveEligible({ completedCount }) {
   if (completedCount === null || completedCount === undefined) return false;
   if (typeof completedCount !== 'number' || Number.isNaN(completedCount)) return false;
-  if (completedCount > 0) return true;
-  if (!createdAt) return false;
-  const ageMs = now - new Date(createdAt);
-  if (Number.isNaN(ageMs) || ageMs < 0) return false;
-  return ageMs / 86400000 <= EVE_NEW_USER_WINDOW_DAYS;
+  return completedCount >= 1;
 }
 
 /** ¿Dos instantes caen en el mismo día local (para dedup entre crons)? */

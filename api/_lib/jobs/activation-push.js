@@ -143,7 +143,9 @@ export default async function runActivationPush(_req, res, env) {
   const [{ data: doneWk }, { data: doneRuns }, { data: plans }, { data: logs }, { data: eveLogs }] = await Promise.all([
     supabase.from('user_workouts').select('user_id').eq('estado', 'completed').in('user_id', userIds),
     supabase.from('runs').select('user_id').in('user_id', userIds),
-    supabase.from('user_plans').select('user_id').in('user_id', userIds),
+    // [F105] Población de activación: PLAN ACTIVO obligatorio (excluyente con
+    // víspera vía completedCount; planes cancelados/completados fuera).
+    supabase.from('user_plans').select('user_id').eq('estado', 'active').in('user_id', userIds),
     supabase.from('activation_push_log').select('user_id, day_n').in('user_id', userIds),
     // [F104] dedup entre crons: máx 1 push de crons por usuario y día local.
     supabase.from('workout_eve_push_log').select('user_id, created_at').in('user_id', userIds),
@@ -184,10 +186,19 @@ export default async function runActivationPush(_req, res, env) {
     // Día correcto → usuario ELEGIBLE hoy.
     funnelEvents.push({ user_id: p.id, event_name: 'activation_push_eligible', params: { day_n: daysSince } });
 
-    // Already activated → skip (no nagging).
+    // Already activated → skip (no nagging). Partición con la víspera:
+    // completados ≥1 = población eve, JAMÁS activación (prioridad explícita).
     if (activeSet.has(p.id)) {
       skipped++;
       funnelEvents.push({ user_id: p.id, event_name: 'activation_push_skipped', params: { day_n: daysSince, reason: 'already_active' } });
+      continue;
+    }
+
+    // [F105] Sin plan ACTIVO no hay población de activación (el push lleva al
+    // primer entrenamiento del plan — sin plan no hay destino).
+    if (!hasPlanSet.has(p.id)) {
+      skipped++;
+      funnelEvents.push({ user_id: p.id, event_name: 'activation_push_skipped', params: { day_n: daysSince, reason: 'no_active_plan' } });
       continue;
     }
 
@@ -216,12 +227,16 @@ export default async function runActivationPush(_req, res, env) {
     // CorrerJuntos es ES-first → default español. EN templates quedan listos
     // por si añadimos detección de idioma más adelante.
     const lang = 'es';
-    const hasPlan = hasPlanSet.has(p.id);
-    const tmpl = TEMPLATES[lang][daysSince][hasPlan ? 'plan' : 'noplan'];
+    // [F105] La población exige plan activo → siempre variante 'plan'
+    // (las plantillas 'noplan' quedan como referencia histórica).
+    const tmpl = TEMPLATES[lang][daysSince].plan;
 
+    // [F105] Deep-link al primer entrenamiento: el runtime 1.3.24 actual
+    // enruta data.type='plan' → pantalla Plan (donde vive el primer entreno).
+    // source/day_n se conservan para analítica (activation_push_opened).
     const data = {
-      type: 'activation',
-      screen: hasPlan ? 'Plan' : 'Home',
+      type: 'plan',
+      screen: 'Plan',
       source: 'activation_push',
       day_n: daysSince,
     };

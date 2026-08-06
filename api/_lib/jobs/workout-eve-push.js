@@ -95,7 +95,7 @@ export default async function runWorkoutEvePush(req, res, env) {
   // 2. Solo planes ACTIVOS + perfiles alcanzables + dedup
   const [{ data: plans }, { data: profiles }, { data: logs }, doneRes, { data: activationLogs }] = await Promise.all([
     supabase.from('user_plans').select('user_id, estado').in('user_id', userIds).eq('estado', 'active'),
-    supabase.from('profiles').select('id, push_token, notifications_enabled, pais, created_at').in('id', userIds),
+    supabase.from('profiles').select('id, push_token, notifications_enabled, pais').in('id', userIds),
     supabase.from('workout_eve_push_log').select('user_id, workout_id').in('user_id', userIds),
     // [F104] señal de activación real (guarda anti-zombi, fail-closed)
     supabase.from('user_workouts').select('user_id').eq('estado', 'completed').in('user_id', userIds),
@@ -144,10 +144,10 @@ export default async function runWorkoutEvePush(req, res, env) {
     ) { skipped++; continue; }
     if (alreadySent.has(`${userId}:${w.id}`)) { skipped++; continue; }
 
-    // [F104] GUARDA ANTI-ZOMBI (fail-closed): solo usuarios activados
-    // (≥1 entreno completado demostrado) o altas ≤8 días (su primer entreno
-    // es justo el objetivo). Los 53 planes-zombi del informe 103 quedan fuera.
-    if (!isEveEligible({ completedCount: completedCountByUser.get(userId), createdAt: prof.created_at })) {
+    // [F105] POBLACIÓN VÍSPERA (excluyente con activación): SOLO usuarios con
+    // ≥1 entreno completado demostrado en BD (fail-closed). Sin sustitutos:
+    // el alta reciente sin completar pertenece a la población de activación.
+    if (!isEveEligible({ completedCount: completedCountByUser.get(userId) })) {
       skipped++;
       continue;
     }

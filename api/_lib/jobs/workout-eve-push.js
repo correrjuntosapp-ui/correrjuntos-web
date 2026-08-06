@@ -15,6 +15,9 @@
 // Modo test: ?dry=1 → calcula audiencia y NO envía nada.
 
 import { createClient } from '@supabase/supabase-js';
+// [F104] Guardas puras: anti-planes-zombi (fail-closed), quiet hours por país
+// y dedup entre crons (máx 1 push de crons por usuario y día local).
+import { canSendNow, isEveEligible, pushedByOtherCronToday } from '../push-guards.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const EXPO_PUSH_URL = 'https://exp.host/--/api/v2/push/send';
@@ -90,11 +93,34 @@ export default async function runWorkoutEvePush(req, res, env) {
   }
 
   // 2. Solo planes ACTIVOS + perfiles alcanzables + dedup
-  const [{ data: plans }, { data: profiles }, { data: logs }] = await Promise.all([
+  const [{ data: plans }, { data: profiles }, { data: logs }, doneRes, { data: activationLogs }] = await Promise.all([
     supabase.from('user_plans').select('user_id, estado').in('user_id', userIds).eq('estado', 'active'),
-    supabase.from('profiles').select('id, push_token, notifications_enabled').in('id', userIds),
+    supabase.from('profiles').select('id, push_token, notifications_enabled, pais, created_at').in('id', userIds),
     supabase.from('workout_eve_push_log').select('user_id, workout_id').in('user_id', userIds),
+    // [F104] señal de activación real (guarda anti-zombi, fail-closed)
+    supabase.from('user_workouts').select('user_id').eq('estado', 'completed').in('user_id', userIds),
+    // [F104] dedup entre crons: envíos de activación de HOY
+    supabase.from('activation_push_log').select('user_id, sent_at').in('user_id', userIds),
   ]);
+
+  // [F104] Conteo de completados por usuario. Si la query de la señal FALLÓ,
+  // el mapa queda con null → isEveEligible fail-closed (no se envía a nadie
+  // sin señal demostrada; nunca se inventa actividad).
+  const completedCountByUser = new Map();
+  if (doneRes.error) {
+    for (const uid of userIds) completedCountByUser.set(uid, null);
+  } else {
+    for (const uid of userIds) completedCountByUser.set(uid, 0);
+    for (const r of doneRes.data || []) {
+      completedCountByUser.set(r.user_id, (completedCountByUser.get(r.user_id) || 0) + 1);
+    }
+  }
+
+  const activationSentAts = {};
+  (activationLogs || []).forEach((l) => {
+    if (!activationSentAts[l.user_id]) activationSentAts[l.user_id] = [];
+    activationSentAts[l.user_id].push(l.sent_at);
+  });
 
   const activePlanSet = new Set((plans || []).map((p) => p.user_id));
   const profileById = new Map((profiles || []).map((p) => [p.id, p]));
@@ -117,6 +143,26 @@ export default async function runWorkoutEvePush(req, res, env) {
       prof.notifications_enabled === false
     ) { skipped++; continue; }
     if (alreadySent.has(`${userId}:${w.id}`)) { skipped++; continue; }
+
+    // [F104] GUARDA ANTI-ZOMBI (fail-closed): solo usuarios activados
+    // (≥1 entreno completado demostrado) o altas ≤8 días (su primer entreno
+    // es justo el objetivo). Los 53 planes-zombi del informe 103 quedan fuera.
+    if (!isEveEligible({ completedCount: completedCountByUser.get(userId), createdAt: prof.created_at })) {
+      skipped++;
+      continue;
+    }
+
+    // [F104] Dedup entre crons: si activación ya le escribió hoy, hoy no más.
+    if (pushedByOtherCronToday(activationSentAts[userId] || [], new Date())) {
+      skipped++;
+      continue;
+    }
+
+    // [F104] Quiet hours por país (fail-closed sin tz fiable).
+    if (!canSendNow(new Date(), prof.pais)) {
+      skipped++;
+      continue;
+    }
 
     const title = `Mañana: ${w.titulo || 'tu entreno'} 👟`;
     const body = buildBody(w.descripcion);

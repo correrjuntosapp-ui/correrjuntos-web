@@ -23,6 +23,9 @@
 // runs cheaply with processed/sent counts near 0 — by design, no-op safe.
 
 import { createClient } from '@supabase/supabase-js';
+// [F104] Guardas puras compartidas: quiet hours por país (fail-closed),
+// dedup entre crons e instrumentación del embudo.
+import { canSendNow, pushedByOtherCronToday, insertPushEvents } from '../push-guards.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const EXPO_PUSH_URL = 'https://exp.host/--/api/v2/push/send';
@@ -106,7 +109,7 @@ export default async function runActivationPush(_req, res, env) {
 
   const { data: candidates, error: candErr } = await supabase
     .from('profiles')
-    .select('id, push_token, created_at, notifications_enabled')
+    .select('id, push_token, created_at, notifications_enabled, pais')
     .gte('created_at', eightDaysAgo)
     .not('push_token', 'is', null);
 
@@ -137,11 +140,13 @@ export default async function runActivationPush(_req, res, env) {
   const userIds = reachable.map((p) => p.id);
 
   // Active = completed >=1 workout OR recorded >=1 run → don't nag them.
-  const [{ data: doneWk }, { data: doneRuns }, { data: plans }, { data: logs }] = await Promise.all([
+  const [{ data: doneWk }, { data: doneRuns }, { data: plans }, { data: logs }, { data: eveLogs }] = await Promise.all([
     supabase.from('user_workouts').select('user_id').eq('estado', 'completed').in('user_id', userIds),
     supabase.from('runs').select('user_id').in('user_id', userIds),
     supabase.from('user_plans').select('user_id').in('user_id', userIds),
     supabase.from('activation_push_log').select('user_id, day_n').in('user_id', userIds),
+    // [F104] dedup entre crons: máx 1 push de crons por usuario y día local.
+    supabase.from('workout_eve_push_log').select('user_id, created_at').in('user_id', userIds),
   ]);
 
   const activeSet = new Set();
@@ -157,19 +162,55 @@ export default async function runActivationPush(_req, res, env) {
     sentByUser[l.user_id].add(l.day_n);
   });
 
+  // [F104] Timestamps de envíos del OTRO cron (víspera) por usuario.
+  const eveSentAts = {};
+  (eveLogs || []).forEach((l) => {
+    if (!eveSentAts[l.user_id]) eveSentAts[l.user_id] = [];
+    eveSentAts[l.user_id].push(l.created_at);
+  });
+
   const now = Date.now();
+  const nowDate = new Date(now);
+  // [F104] Instrumentación del embudo (solo para usuarios en día 1/3/7 — los
+  // demás días serían ruido diario). Motivos de lista cerrada.
+  const funnelEvents = [];
 
   for (const p of reachable) {
     processed++;
 
-    // Already activated → skip (no nagging).
-    if (activeSet.has(p.id)) { skipped++; continue; }
-
     const daysSince = Math.floor((now - new Date(p.created_at).getTime()) / (24 * 60 * 60 * 1000));
     if (!SEND_DAYS.includes(daysSince)) { skipped++; continue; }
 
+    // Día correcto → usuario ELEGIBLE hoy.
+    funnelEvents.push({ user_id: p.id, event_name: 'activation_push_eligible', params: { day_n: daysSince } });
+
+    // Already activated → skip (no nagging).
+    if (activeSet.has(p.id)) {
+      skipped++;
+      funnelEvents.push({ user_id: p.id, event_name: 'activation_push_skipped', params: { day_n: daysSince, reason: 'already_active' } });
+      continue;
+    }
+
     // Already sent this day's push?
-    if (sentByUser[p.id]?.has(daysSince)) { skipped++; continue; }
+    if (sentByUser[p.id]?.has(daysSince)) {
+      skipped++;
+      funnelEvents.push({ user_id: p.id, event_name: 'activation_push_skipped', params: { day_n: daysSince, reason: 'already_sent_day' } });
+      continue;
+    }
+
+    // [F104] Dedup entre crons: si la víspera ya le escribió hoy, hoy no más.
+    if (pushedByOtherCronToday(eveSentAts[p.id] || [], nowDate)) {
+      skipped++;
+      funnelEvents.push({ user_id: p.id, event_name: 'activation_push_skipped', params: { day_n: daysSince, reason: 'other_cron_today' } });
+      continue;
+    }
+
+    // [F104] Quiet hours por país (fail-closed sin tz fiable).
+    if (!canSendNow(nowDate, p.pais)) {
+      skipped++;
+      funnelEvents.push({ user_id: p.id, event_name: 'activation_push_skipped', params: { day_n: daysSince, reason: 'quiet_hours' } });
+      continue;
+    }
 
     // profiles no tiene columna de idioma (la app lo guarda en cliente).
     // CorrerJuntos es ES-first → default español. EN templates quedan listos
@@ -187,17 +228,27 @@ export default async function runActivationPush(_req, res, env) {
 
     const result = await sendExpoPush(p.push_token, tmpl.title, tmpl.body, data);
 
-    await supabase.from('activation_push_log').insert({
+    // [F104] Idempotencia REAL: UNIQUE(user_id, day_n) en BD (migración
+    // 104_activation_push_log_unique) + upsert ignorando duplicados. La
+    // migración DEBE aplicarse antes de desplegar este archivo.
+    await supabase.from('activation_push_log').upsert({
       user_id: p.id,
       day_n: daysSince,
       push_status: result.status,
       push_receipt_id: result.receipt || null,
       error: result.ok ? null : (result.error || '').slice(0, 500),
-    });
+    }, { onConflict: 'user_id,day_n', ignoreDuplicates: true });
 
-    if (result.ok) sent++;
-    else errors.push({ user_id: p.id, day_n: daysSince, error: result.error });
+    if (result.ok) {
+      sent++;
+      funnelEvents.push({ user_id: p.id, event_name: 'activation_push_sent', params: { day_n: daysSince } });
+    } else {
+      errors.push({ user_id: p.id, day_n: daysSince, error: result.error });
+      funnelEvents.push({ user_id: p.id, event_name: 'activation_push_skipped', params: { day_n: daysSince, reason: 'send_failed' } });
+    }
   }
+
+  await insertPushEvents(supabase, funnelEvents);
 
   return res.status(200).json({
     ok: true,

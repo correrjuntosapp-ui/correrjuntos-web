@@ -10,7 +10,7 @@
     "messageEn": "A new version with important improvements is available. Update to continue using the app."
   },
   "android": {
-    "enabled": false,
+    "enabled": true,
     "minVersion": "1.3.24",
     "minBuild": 109,
     "forceAfter": null,

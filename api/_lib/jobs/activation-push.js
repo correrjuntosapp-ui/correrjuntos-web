@@ -26,6 +26,9 @@ import { createClient } from '@supabase/supabase-js';
 // [F104] Guardas puras compartidas: quiet hours por país (fail-closed),
 // dedup entre crons e instrumentación del embudo.
 import { canSendNow, pushedByOtherCronToday, insertPushEvents } from '../push-guards.js';
+// [F108] Rama EMAIL de activación (arranca en dry-run). No es un cron nuevo:
+// comparte esta misma pasada y el mismo candado de "1 activación por día".
+import { runActivationEmailBranch, localDateFor } from '../activation-email.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const EXPO_PUSH_URL = 'https://exp.host/--/api/v2/push/send';
@@ -256,6 +259,18 @@ export default async function runActivationPush(_req, res, env) {
 
     if (result.ok) {
       sent++;
+      // [F108] Reserva REAL compartida: deja constancia de que este usuario ya
+      // tiene su activación de hoy, para que la rama email no lo toque.
+      // Best-effort: si falla, el push ya salió y no debe revertirse.
+      try {
+        const ld = localDateFor(nowDate, p.pais);
+        if (ld) {
+          await supabase.from('activation_dispatch_log').insert({
+            user_id: p.id, local_date: ld, mode: 'real', channel: 'push',
+            day_n: daysSince, arm: 'not_assigned',
+          });
+        }
+      } catch { /* el candado del email lo relee igualmente antes de reservar */ }
       funnelEvents.push({ user_id: p.id, event_name: 'activation_push_sent', params: { day_n: daysSince } });
     } else {
       errors.push({ user_id: p.id, day_n: daysSince, error: result.error });
@@ -264,6 +279,26 @@ export default async function runActivationPush(_req, res, env) {
   }
 
   await insertPushEvents(supabase, funnelEvents);
+
+  // [F108] Rama EMAIL — se ejecuta DESPUÉS del push para que el candado real
+  // del push (mode='real') ya esté puesto y el email lo respete. Nunca puede
+  // tumbar la pasada de push: cualquier error queda encapsulado.
+  let emailBranch = { skipped: 'not_run' };
+  try {
+    const { data: cfg } = await supabase
+      .from('activation_email_config').select('*').eq('id', 1).maybeSingle();
+    emailBranch = await runActivationEmailBranch({
+      supabase,
+      now: nowDate,
+      config: cfg,
+      // En dry-run jamás se alcanzan: se dejan sin implementar a propósito
+      // para que un fallo de lógica reviente en vez de enviar por accidente.
+      sendEmail: async () => { throw new Error('F108: envio no autorizado'); },
+      brevoLookup: null,
+    });
+  } catch (e) {
+    emailBranch = { error: 'email_branch_failed' };
+  }
 
   return res.status(200).json({
     ok: true,
@@ -274,5 +309,6 @@ export default async function runActivationPush(_req, res, env) {
     skipped,
     errors_count: errors.length,
     errors: errors.slice(0, 10),
+    email_branch: emailBranch,
   });
 }

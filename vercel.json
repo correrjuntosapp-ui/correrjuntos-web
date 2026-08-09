@@ -820,11 +820,6 @@
       "permanent": true
     },
     {
-      "source": "/blog/en/hoka-clifton-10-vs-asics-novablast-5",
-      "destination": "/blog/en",
-      "permanent": true
-    },
-    {
       "source": "/blog/en/how-to-avoid-digestive-issues-running",
       "destination": "/blog/en",
       "permanent": true

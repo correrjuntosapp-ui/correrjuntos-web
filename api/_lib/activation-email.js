@@ -76,13 +76,17 @@ export const SUPPRESSION_REASONS = new Set([
  */
 export async function runActivationEmailBranch(deps) {
   const {
-    supabase, now, sendEmail, brevoLookup, config,
+    supabase, now, sendEmail, contactability, config,
     log = () => {},
   } = deps;
 
   const counters = {
-    candidatos: 0, treatment: 0, holdout: 0, simulados: 0, enviados: 0,
-    brevo_get: 0, brevo_send_calls: 0, errores: 0,
+    candidatos: 0, confirmed: 0, contactable: 0,
+    treatment: 0, holdout: 0, simulados: 0, enviados: 0,
+    brevo_get: 0, brevo_post: 0, brevo_send_calls: 0, errores: 0,
+    excluded_suppression: 0, excluded_unsubscribe: 0, excluded_bounce: 0,
+    excluded_complaint: 0, excluded_brevo_error: 0, excluded_identity: 0,
+    excluded_push: 0, excluded_trial: 0,
     excluidos: {},
   };
   const bump = (r) => { counters.excluidos[r] = (counters.excluidos[r] || 0) + 1; };
@@ -93,9 +97,10 @@ export async function runActivationEmailBranch(deps) {
   // 1 · Candidatos: SIN token de push, alta en ventana 20-28 h
   const from = new Date(now.getTime() - 29 * 3600000).toISOString();
   const to = new Date(now.getTime() - 19 * 3600000).toISOString();
+  // `email` se lee SOLO para consultar Brevo. Nunca se registra ni se persiste.
   const { data: cands, error: candErr } = await supabase
     .from('profiles')
-    .select('id, created_at, push_token, notifications_enabled, pais')
+    .select('id, created_at, push_token, notifications_enabled, pais, email')
     .gte('created_at', from).lte('created_at', to)
     .is('push_token', null);
   if (candErr) { counters.errores++; return counters; }   // fail closed
@@ -134,9 +139,42 @@ export async function runActivationEmailBranch(deps) {
     if (!canSendNow(now, p.pais)) { bump('quiet_hours'); continue; }
     if (!planSet.has(p.id)) { bump('no_active_plan'); continue; }
     if (doneSet.has(p.id) || runSet.has(p.id)) { bump('already_activated'); continue; }
-    if (trialSet.has(p.id)) { bump('trial_active'); continue; }
+    if (trialSet.has(p.id)) { counters.excluded_trial++; bump('trial_active'); continue; }
     if (outSet.has(p.id)) { bump('optout'); continue; }
     if (p.notifications_enabled === false) { bump('optout'); continue; }
+
+    // ── F108.1 · IDENTIDAD INEQUÍVOCA ────────────────────────────────────
+    // user_id sigue siendo la identidad canónica; el email solo se usa para
+    // preguntar a Brevo. Si una dirección apunta a más de un perfil, no se
+    // puede atribuir el estado de contacto sin ambigüedad → fail closed.
+    const email = typeof p.email === 'string' ? p.email.trim().toLowerCase() : '';
+    if (!email || email.indexOf('@') < 1) {
+      counters.excluded_identity++; bump('email_unresolvable'); continue;
+    }
+    const { data: sameEmail, error: idErr } = await supabase
+      .from('profiles').select('id').eq('email', email);
+    if (idErr || !Array.isArray(sameEmail) || sameEmail.length !== 1 || sameEmail[0].id !== p.id) {
+      counters.excluded_identity++; bump('email_unresolvable'); continue;
+    }
+    counters.confirmed++;
+
+    // ── F108.1 · CONTACTABILIDAD REAL, ANTES DE ASIGNAR BRAZO ────────────
+    // Sin esto, treatment y holdout se calcularían sobre gente que jamás
+    // podría recibir el correo, y el holdout dejaría de ser comparable.
+    if (!contactability || typeof contactability.check !== 'function') {
+      counters.excluded_brevo_error++; bump('brevo_lookup_failed'); continue;
+    }
+    counters.brevo_get++;
+    const estado = await contactability.check(email);
+    if (estado !== 'ok') {
+      if (estado === 'unsubscribed') { counters.excluded_unsubscribe++; bump('brevo_blocked'); }
+      else if (estado === 'hard_bounce') { counters.excluded_bounce++; bump('hard_bounce'); }
+      else if (estado === 'complaint') { counters.excluded_complaint++; bump('complaint'); }
+      else if (estado === 'brevo_blocked') { counters.excluded_suppression++; bump('brevo_blocked'); }
+      else { counters.excluded_brevo_error++; bump('brevo_lookup_failed'); }
+      continue;
+    }
+    counters.contactable++;
 
     arm === 'treatment' ? counters.treatment++ : counters.holdout++;
 
@@ -164,6 +202,7 @@ export async function runActivationEmailBranch(deps) {
     if (fresh && fresh.push_token) {
       await supabase.from('activation_dispatch_log').delete().eq('id', resv[0].id);
       await logRow(supabase, p.id, arm, dryRun, 'push_took_priority');
+      counters.excluded_push++;
       bump('push_took_priority');
       continue;
     }
@@ -179,15 +218,8 @@ export async function runActivationEmailBranch(deps) {
 
     // ── A partir de aquí solo se llega con dry_run=false (no autorizado en F108)
     if (sentThisRun >= (config.max_per_run ?? 6)) { bump('daily_limit'); continue; }
-    if (typeof brevoLookup === 'function') {
-      counters.brevo_get++;
-      const sup = await brevoLookup(p.id);
-      if (sup === null) { await logRow(supabase, p.id, arm, false, 'brevo_lookup_failed'); continue; }
-      if (sup === true) { await logRow(supabase, p.id, arm, false, 'brevo_blocked'); continue; }
-    } else {
-      await logRow(supabase, p.id, arm, false, 'brevo_lookup_failed');
-      continue;
-    }
+    // [F108.1] La contactabilidad YA se verificó antes de asignar brazo, con
+    // el adaptador read-only. Aquí no queda ninguna consulta pendiente.
     counters.brevo_send_calls++;
     const res = await sendEmail(p.id);
     sentThisRun++;

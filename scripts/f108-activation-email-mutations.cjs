@@ -11,6 +11,7 @@ const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 
 const SRC = 'api/_lib/activation-email.js';
+const SRC2 = 'api/_lib/brevo-contactability.js';
 const HARNESS = 'scripts/f108-activation-email-harness.cjs';
 const original = fs.readFileSync(SRC, 'utf8');
 const originalHash = crypto.createHash('sha256').update(original).digest('hex');
@@ -27,7 +28,7 @@ const MUTATIONS = [
   ['M4  token posterior a la selección igualmente reserva',
     'if (fresh && fresh.push_token) {', 'if (false) {'],
   ['M5  trial no excluido',
-    "if (trialSet.has(p.id)) { bump('trial_active'); continue; }", ''],
+    "if (trialSet.has(p.id)) { counters.excluded_trial++; bump('trial_active'); continue; }", ''],
   ['M6  plan cancelado entra',
     "if (!planSet.has(p.id)) { bump('no_active_plan'); continue; }", ''],
   ['M7  workout completado entra',
@@ -59,22 +60,63 @@ const MUTATIONS = [
     "if (!config || config.enabled !== true) { counters.kill_switch = true; return counters; }", ''],
 ];
 
-// Mutaciones que esta fase NO puede matar, declaradas explícitamente.
-const NO_APLICABLES = [
-  ['M8  suppression de Brevo ignorada', 'solo alcanzable con dry_run=false (envío real). No autorizado en F108.'],
-  ['M9  complaint ignorada', 'idem M8: la consulta a Brevo solo ocurre en la rama de envío real.'],
-  ['M11 fallo de Brevo permite continuar', 'idem M8: brevoLookup no se invoca en dry-run.'],
+// F108.1 · Las tres antes declaradas «no aplicables» YA son demostrables:
+// la contactabilidad se comprueba dentro del dry-run, antes de asignar brazo.
+const MUTATIONS_CONTACT = [
+  ['M8  suppression de Brevo ignorada', SRC,
+    "      else if (estado === 'brevo_blocked') { counters.excluded_suppression++; bump('brevo_blocked'); }",
+    "      else if (estado === 'brevo_blocked') { counters.contactable++; }"],
+  ['M9  complaint/unsubscribe ignoradas', SRC,
+    "      if (estado === 'unsubscribed') { counters.excluded_unsubscribe++; bump('brevo_blocked'); }",
+    "      if (estado === 'unsubscribed') { counters.contactable++; }"],
+  ['M11 continuar si Brevo falla', SRC,
+    "      else { counters.excluded_brevo_error++; bump('brevo_lookup_failed'); }\n      continue;",
+    "      else { counters.excluded_brevo_error++; }"],
+  ['M21 asignar brazo ANTES de comprobar contactabilidad', SRC,
+    "    counters.contactable++;\n\n    arm === 'treatment' ? counters.treatment++ : counters.holdout++;",
+    "    counters.contactable++;"],
+  ['M22 incluir suprimidos en el holdout', SRC,
+    "    const estado = await contactability.check(email);\n    if (estado !== 'ok') {",
+    "    const estado = await contactability.check(email);\n    if (false) {"],
+  ['M23 convertir 429 en contactable', SRC2,
+    "    if (r.status !== 200) return CONTACT_STATUS.ERROR;",
+    "    if (r.status === 429) return CONTACT_STATUS.OK;\n    if (r.status !== 200) return CONTACT_STATUS.ERROR;"],
+  ['M24 cambiar GET por POST', SRC2,
+    "const ALLOWED_METHOD = 'GET';", "const ALLOWED_METHOD = 'POST';"],
+  ['M25 aceptar respuesta malformada como contactable', SRC2,
+    "    if (!c || typeof c !== 'object') return CONTACT_STATUS.ERROR;   // malformada → fail closed",
+    "    if (!c || typeof c !== 'object') return CONTACT_STATUS.OK;"],
+  ['M26 exponer una función de envío en el adaptador', SRC2,
+    "  return { check, CONTACT_STATUS };",
+    "  return { check, CONTACT_STATUS, sendEmail: async () => ({ ok: true }) };"],
+  ['M27 imprimir el email o la respuesta de Brevo', SRC,
+    "    const estado = await contactability.check(email);",
+    "    const estado = await contactability.check(email); log('contacto ' + email);"],
+  ['M28 persistir el email en el log', SRC,
+    'suppressed_reason: safeReason,', "suppressed_reason: safeReason, experiment: email,"],
+  ['M29 reutilizar la respuesta de un usuario para otro', SRC,
+    "    const estado = await contactability.check(email);",
+    "    const estado = (globalThis.__cache = globalThis.__cache || await contactability.check(email));"],
 ];
+
+const original2 = fs.readFileSync(SRC2, 'utf8');
+const originalHash2 = crypto.createHash('sha256').update(original2).digest('hex');
+const BASE = { [SRC]: original, [SRC2]: original2 };
+const HASH = { [SRC]: originalHash, [SRC2]: originalHash2 };
 
 let MUERTAS = 0, SUPERVIVIENTES = 0, INVALIDAS = 0;
 const filas = [];
 
-for (const [nombre, ancla, reemplazo] of MUTATIONS) {
-  if (!original.includes(ancla)) {
-    INVALIDAS++; filas.push(['INVÁLIDA', nombre, 'ancla inexistente']);
+// Unifica: [nombre, fichero, ancla, reemplazo]
+const TODAS = MUTATIONS.map(([n, a, r]) => [n, SRC, a, r]).concat(MUTATIONS_CONTACT);
+
+for (const [nombre, fichero, ancla, reemplazo] of TODAS) {
+  const base = BASE[fichero];
+  if (!base.includes(ancla)) {
+    INVALIDAS++; filas.push(['INVÁLIDA', nombre, 'ancla inexistente en ' + fichero]);
     continue;
   }
-  fs.writeFileSync(SRC, original.replace(ancla, reemplazo));
+  fs.writeFileSync(fichero, base.replace(ancla, reemplazo));
   let salida = '', codigo = 0;
   try {
     salida = execFileSync('node', [HARNESS], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
@@ -82,9 +124,11 @@ for (const [nombre, ancla, reemplazo] of MUTATIONS) {
     codigo = e.status || 1;
     salida = String(e.stdout || '') + String(e.stderr || '');
   } finally {
-    fs.writeFileSync(SRC, original);
-    const h = crypto.createHash('sha256').update(fs.readFileSync(SRC, 'utf8')).digest('hex');
-    if (h !== originalHash) { console.error('FATAL: hash no restaurado tras', nombre); process.exit(2); }
+    fs.writeFileSync(fichero, base);
+    for (const f of [SRC, SRC2]) {
+      const h = crypto.createHash('sha256').update(fs.readFileSync(f, 'utf8')).digest('hex');
+      if (h !== HASH[f]) { console.error('FATAL: hash no restaurado en', f, 'tras', nombre); process.exit(2); }
+    }
   }
   const huboFallo = /FAIL \d+/.test(salida) && !/FAIL 0/.test(salida);
   const crash = codigo !== 0 && !/PASS \d+ · FAIL/.test(salida);
@@ -96,7 +140,7 @@ for (const [nombre, ancla, reemplazo] of MUTATIONS) {
 console.log('\n─── F108 · MATRIZ DE MUTACIONES ───');
 for (const f of filas) console.log(f[0].padEnd(10), f[1].padEnd(48), f[2] || '');
 console.log('\n─── No aplicables en esta fase (declaradas, no ocultadas) ───');
-for (const n of NO_APLICABLES) console.log('N/A       ', n[0].padEnd(48), n[1]);
-console.log(`\nMUERTAS ${MUERTAS} · SOBREVIVEN ${SUPERVIVIENTES} · INVÁLIDAS ${INVALIDAS} · N/A ${NO_APLICABLES.length}`);
-console.log('hash del fuente restaurado:', crypto.createHash('sha256').update(fs.readFileSync(SRC, 'utf8')).digest('hex') === originalHash ? 'SÍ' : 'NO');
+
+console.log(`\nMUERTAS ${MUERTAS} · SOBREVIVEN ${SUPERVIVIENTES} · INVÁLIDAS ${INVALIDAS} `);
+console.log('hash del fuente restaurado:', (crypto.createHash('sha256').update(fs.readFileSync(SRC,'utf8')).digest('hex')===originalHash && crypto.createHash('sha256').update(fs.readFileSync(SRC2,'utf8')).digest('hex')===originalHash2) ? 'SÍ (ambos ficheros)' : 'NO');
 process.exit(SUPERVIVIENTES === 0 && INVALIDAS === 0 ? 0 : 1);

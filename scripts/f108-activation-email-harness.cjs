@@ -85,7 +85,7 @@ const bornHoursAgo = (h) => new Date(NOW.getTime() - h * HOURS).toISOString();
 
 function baseSeed(over = {}) {
   return Object.assign({
-    profiles: [{ id: 'u1', created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES' }],
+    profiles: [{ id: 'u1', created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: 'u1@ejemplo.test' }],
     user_plans: [{ user_id: 'u1', estado: 'active' }],
     user_workouts: [], runs: [], trial_starts: [], optout: [], dispatch: [],
     config: { id: 1, enabled: true, dry_run: true, max_per_run: 6, max_candidates_day: 8 },
@@ -93,6 +93,9 @@ function baseSeed(over = {}) {
 }
 
 const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohibido en dry-run'); };
+// Adaptador de contactabilidad simulado: por defecto todo el mundo contactable.
+const okContact = { check: async () => 'ok' };
+const contactoQueDevuelve = (v) => ({ check: async () => v });
 
 (async () => {
   const mod = await import('../api/_lib/activation-email.js');
@@ -102,7 +105,7 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
     const db = makeDb(seed);
     return runActivationEmailBranch(Object.assign({
       supabase: db, now: NOW, config: seed.config,
-      sendEmail: THROWING_SENDER, brevoLookup: null,
+      sendEmail: THROWING_SENDER, contactability: okContact,
     }, extra)).then((c) => ({ c, db }));
   };
 
@@ -143,7 +146,7 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
   await check('B6 · segunda pasada no duplica la decisión', async () => {
     const seed = baseSeed();
     const db = makeDb(seed);
-    const deps = { supabase: db, now: NOW, config: seed.config, sendEmail: THROWING_SENDER, brevoLookup: null };
+    const deps = { supabase: db, now: NOW, config: seed.config, sendEmail: THROWING_SENDER, contactability: okContact };
     await runActivationEmailBranch(deps);
     const n1 = db._T.activation_dispatch_log.length + db._T.activation_email_log.length;
     await runActivationEmailBranch(deps);
@@ -179,7 +182,7 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
       }
       return api;
     };
-    const c = await runActivationEmailBranch({ supabase: db, now: NOW, config: seed.config, sendEmail: THROWING_SENDER, brevoLookup: null });
+    const c = await runActivationEmailBranch({ supabase: db, now: NOW, config: seed.config, sendEmail: THROWING_SENDER, contactability: okContact });
     assert.ok(c.excluidos['push_took_priority'] >= 1, JSON.stringify(c.excluidos));
     assert.strictEqual(db._T.activation_dispatch_log.length, 0, 'la reserva debió revertirse');
   });
@@ -192,7 +195,7 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
   });
 
   await check('G8 · exceso de candidatos apaga el sistema (fail closed)', async () => {
-    const profiles = Array.from({ length: 12 }, (_, i) => ({ id: 'u' + i, created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES' }));
+    const profiles = Array.from({ length: 12 }, (_, i) => ({ id: 'u' + i, created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: 'u' + i + '@ejemplo.test' }));
     const seed = baseSeed({ profiles, user_plans: profiles.map((p) => ({ user_id: p.id, estado: 'active' })) });
     const { c, db } = await run(seed);
     assert.strictEqual(c.abort_limite, 'max_candidates_day');
@@ -221,7 +224,7 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
 
   await check('G12 · el endpoint de envío es inalcanzable en dry-run', async () => {
     // El sender lanza si se invoca. 30 candidatos válidos, ninguna llamada.
-    const profiles = Array.from({ length: 6 }, (_, i) => ({ id: 'v' + i, created_at: bornHoursAgo(23), push_token: null, notifications_enabled: true, pais: 'ES' }));
+    const profiles = Array.from({ length: 6 }, (_, i) => ({ id: 'v' + i, created_at: bornHoursAgo(23), push_token: null, notifications_enabled: true, pais: 'ES', email: 'v' + i + '@ejemplo.test' }));
     const seed = baseSeed({ profiles, user_plans: profiles.map((p) => ({ user_id: p.id, estado: 'active' })) });
     const { c } = await run(seed);
     assert.strictEqual(c.brevo_send_calls, 0, 'hubo llamadas de envío');
@@ -234,7 +237,7 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
     for (let i = 0; i < 500 && !hid; i++) if (assignArm('h' + i) === 'holdout') hid = 'h' + i;
     assert.ok(hid, 'no se encontró id holdout');
     const seed = baseSeed({
-      profiles: [{ id: hid, created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES' }],
+      profiles: [{ id: hid, created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: hid + '@ejemplo.test' }],
       user_plans: [{ user_id: hid, estado: 'active' }],
     });
     const { c, db } = await run(seed);
@@ -258,7 +261,7 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
     // este usuario entraría y sería tratado como candidato de email.
     const seed = baseSeed({
       profiles: [
-        { id: 'conToken', created_at: bornHoursAgo(24), push_token: 'ExponentPushToken[zzz]', notifications_enabled: true, pais: 'ES' },
+        { id: 'conToken', created_at: bornHoursAgo(24), push_token: 'ExponentPushToken[zzz]', notifications_enabled: true, pais: 'ES', email: 'ct@ejemplo.test' },
       ],
       user_plans: [{ user_id: 'conToken', estado: 'active' }],
     });
@@ -283,6 +286,128 @@ const THROWING_SENDER = async () => { throw new Error('ENVIO INVOCADO — prohib
     assert.strictEqual(mod.resolveSingleUserId([{ id: 'a' }, { id: 'b' }]), null);
     assert.strictEqual(mod.resolveSingleUserId([]), null);
     assert.strictEqual(mod.resolveSingleUserId([{ id: 'a' }]), 'a');
+  });
+
+  // ── F108.1 · CONTACTABILIDAD REAL ─────────────────────────────────────────
+  const CT = await import('../api/_lib/brevo-contactability.js');
+
+  // El adaptador consulta el ESTADO, no envía. Cada caso comprueba que el
+  // usuario queda excluido ANTES de asignarle brazo.
+  const contactCase = (nombre, estado, contador) => check(nombre, async () => {
+    const { c, db } = await run(baseSeed(), { contactability: contactoQueDevuelve(estado) });
+    assert.strictEqual(c.contactable, 0, 'no debía contarse como contactable');
+    assert.strictEqual(c.treatment + c.holdout, 0, 'NO puede asignarse brazo a un no contactable');
+    assert.strictEqual(c[contador], 1, `esperado ${contador}=1, got ${c[contador]}`);
+    assert.strictEqual(db._T.activation_dispatch_log.length, 0, 'no debe reservar');
+  });
+
+  await check('C1 · contacto válido → contactable y asignable', async () => {
+    const { c } = await run(baseSeed(), { contactability: contactoQueDevuelve('ok') });
+    assert.strictEqual(c.confirmed, 1);
+    assert.strictEqual(c.contactable, 1);
+    assert.strictEqual(c.treatment + c.holdout, 1);
+    assert.strictEqual(c.brevo_get, 1);
+    assert.strictEqual(c.brevo_post, 0);
+  });
+  await contactCase('C2 · emailBlacklisted → excluido', 'brevo_blocked', 'excluded_suppression');
+  await contactCase('C3 · unsubscribe → excluido', 'unsubscribed', 'excluded_unsubscribe');
+  await contactCase('C4 · hard bounce → excluido', 'hard_bounce', 'excluded_bounce');
+  await contactCase('C5 · complaint → excluido', 'complaint', 'excluded_complaint');
+  await contactCase('C6 · error de Brevo → excluido (fail closed)', 'brevo_lookup_failed', 'excluded_brevo_error');
+
+  await check('C7 · contacto inexistente (404) → contactable', async () => {
+    const a = CT.createBrevoContactability({ apiKey: 'k', httpGet: async () => ({ status: 404, json: null }) });
+    assert.strictEqual(await a.check('x@y.test'), 'ok');
+  });
+
+  const httpCase = (nombre, resp) => check(nombre, async () => {
+    const a = CT.createBrevoContactability({ apiKey: 'k', httpGet: async () => resp });
+    assert.strictEqual(await a.check('x@y.test'), 'brevo_lookup_failed');
+  });
+  await httpCase('C8  · Brevo 401 → fail closed', { status: 401, json: {} });
+  await httpCase('C9  · Brevo 403 → fail closed', { status: 403, json: {} });
+  await httpCase('C10 · Brevo 429 → fail closed', { status: 429, json: {} });
+  await httpCase('C11 · Brevo 500 → fail closed', { status: 500, json: {} });
+  await httpCase('C12 · timeout (respuesta nula) → fail closed', null);
+  await httpCase('C13 · respuesta malformada → fail closed', { status: 200, json: 'no-es-objeto' });
+
+  await check('C14 · lectura de banderas de Brevo', async () => {
+    const mk = (json) => CT.createBrevoContactability({ apiKey: 'k', httpGet: async () => ({ status: 200, json }) });
+    assert.strictEqual(await mk({ emailBlacklisted: false }).check('a@b.test'), 'ok');
+    assert.strictEqual(await mk({ emailBlacklisted: true }).check('a@b.test'), 'brevo_blocked');
+    assert.strictEqual(await mk({ emailBlacklisted: true, unsubscribed: true }).check('a@b.test'), 'unsubscribed');
+    assert.strictEqual(await mk({ attributes: { HARD_BOUNCE: true } }).check('a@b.test'), 'hard_bounce');
+    assert.strictEqual(await mk({ attributes: { COMPLAINT: true } }).check('a@b.test'), 'complaint');
+  });
+
+  await check('C15 · email ausente o inválido → identidad, sin llamar a Brevo', async () => {
+    let llamadas = 0;
+    const espia = { check: async () => { llamadas++; return 'ok'; } };
+    const seed = baseSeed({ profiles: [{ id: 'u1', created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: '' }] });
+    const { c } = await run(seed, { contactability: espia });
+    assert.strictEqual(c.excluded_identity, 1);
+    assert.strictEqual(llamadas, 0, 'no debe consultarse Brevo sin identidad');
+  });
+
+  await check('C16 · identidad ambigua (2 perfiles, mismo email) → fail closed', async () => {
+    const seed = baseSeed({
+      profiles: [
+        { id: 'u1', created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: 'dup@ejemplo.test' },
+        { id: 'u2', created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: 'dup@ejemplo.test' },
+      ],
+      user_plans: [{ user_id: 'u1', estado: 'active' }, { user_id: 'u2', estado: 'active' }],
+    });
+    const { c } = await run(seed);
+    assert.strictEqual(c.excluded_identity, 2);
+    assert.strictEqual(c.contactable, 0);
+  });
+
+  await check('C17 · el adaptador NO posee ni puede alcanzar una función de envío', async () => {
+    const a = CT.createBrevoContactability({ apiKey: 'k', httpGet: async () => ({ status: 404, json: null }) });
+    assert.strictEqual(typeof a.sendEmail, 'undefined');
+    assert.deepStrictEqual(Object.keys(a).sort(), ['CONTACT_STATUS', 'check']);
+    const src = require('node:fs').readFileSync('api/_lib/brevo-contactability.js', 'utf8');
+    assert.ok(!/smtp\/email/.test(src), 'el fuente menciona el endpoint de envío');
+    assert.ok(!/method:\s*['"]POST['"]/.test(src), 'el fuente contiene un POST');
+    assert.ok(!/from '\.\/.*send/.test(src), 'importa un helper de envío');
+    // El verbo debe ser GET de forma literal en el fuente: si alguien cambia
+    // la constante, la comprobación interna dejaría de tener valor.
+    assert.ok(/const ALLOWED_METHOD = 'GET';/.test(src), 'el verbo permitido ya no es GET');
+  });
+
+  await check('C20 · el adaptador jamás filtra el email por el canal de log', async () => {
+    const visto = [];
+    const seed = baseSeed();
+    const { c } = await run(seed, { log: (m) => visto.push(String(m)) });
+    assert.strictEqual(c.contactable, 1);
+    const blob = visto.join(' | ');
+    assert.ok(!/@/.test(blob), 'se ha registrado algo con @ (posible email): ' + blob.slice(0, 80));
+  });
+
+  await check('C18 · holdout se calcula SOLO sobre contactables', async () => {
+    // 1 contactable + 1 suprimido: el suprimido no puede entrar en ningún brazo.
+    const seed = baseSeed({
+      profiles: [
+        { id: 'ok1', created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: 'ok1@ejemplo.test' },
+        { id: 'sup1', created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: 'sup1@ejemplo.test' },
+      ],
+      user_plans: [{ user_id: 'ok1', estado: 'active' }, { user_id: 'sup1', estado: 'active' }],
+    });
+    const contact = { check: async (em) => (em.startsWith('sup') ? 'brevo_blocked' : 'ok') };
+    const { c } = await run(seed, { contactability: contact });
+    assert.strictEqual(c.confirmed, 2);
+    assert.strictEqual(c.contactable, 1);
+    assert.strictEqual(c.treatment + c.holdout, 1, 'solo el contactable recibe brazo');
+    assert.strictEqual(c.excluded_suppression, 1);
+  });
+
+  await check('C19 · fallo global de Brevo: nadie asignado, sin backlog', async () => {
+    const profiles = Array.from({ length: 5 }, (_, i) => ({ id: 'g' + i, created_at: bornHoursAgo(24), push_token: null, notifications_enabled: true, pais: 'ES', email: 'g' + i + '@ejemplo.test' }));
+    const seed = baseSeed({ profiles, user_plans: profiles.map((p) => ({ user_id: p.id, estado: 'active' })) });
+    const { c, db } = await run(seed, { contactability: contactoQueDevuelve('brevo_lookup_failed') });
+    assert.strictEqual(c.treatment + c.holdout, 0);
+    assert.strictEqual(c.excluded_brevo_error, 5);
+    assert.strictEqual(db._T.activation_dispatch_log.length, 0, 'no debe crear backlog');
   });
 
   // ── Resultado ─────────────────────────────────────────────────────────────

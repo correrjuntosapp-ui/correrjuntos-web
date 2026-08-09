@@ -29,6 +29,7 @@ import { canSendNow, pushedByOtherCronToday, insertPushEvents } from '../push-gu
 // [F108] Rama EMAIL de activación (arranca en dry-run). No es un cron nuevo:
 // comparte esta misma pasada y el mismo candado de "1 activación por día".
 import { runActivationEmailBranch, localDateFor } from '../activation-email.js';
+import { createBrevoContactability } from '../brevo-contactability.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const EXPO_PUSH_URL = 'https://exp.host/--/api/v2/push/send';
@@ -294,7 +295,9 @@ export default async function runActivationPush(_req, res, env) {
       // En dry-run jamás se alcanzan: se dejan sin implementar a propósito
       // para que un fallo de lógica reviente en vez de enviar por accidente.
       sendEmail: async () => { throw new Error('F108: envio no autorizado'); },
-      brevoLookup: null,
+      // [F108.1] Adaptador READ-ONLY: mide contactabilidad real dentro del
+      // dry-run. No contiene ni puede alcanzar una función de envío.
+      contactability: createBrevoContactability({ apiKey: env.BREVO_API_KEY }),
     });
   } catch (e) {
     emailBranch = { error: 'email_branch_failed' };

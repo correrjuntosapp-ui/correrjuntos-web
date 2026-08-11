@@ -100,7 +100,8 @@ export async function runActivationEmailBranch(deps) {
   // `email` se lee SOLO para consultar Brevo. Nunca se registra ni se persiste.
   const { data: cands, error: candErr } = await supabase
     .from('profiles')
-    .select('id, created_at, push_token, notifications_enabled, pais, email')
+    // [F108.2] `notifications_enabled` ni siquiera se lee: es permiso de push.
+    .select('id, created_at, push_token, pais, email')
     .gte('created_at', from).lte('created_at', to)
     .is('push_token', null);
   if (candErr) { counters.errores++; return counters; }   // fail closed
@@ -141,7 +142,14 @@ export async function runActivationEmailBranch(deps) {
     if (doneSet.has(p.id) || runSet.has(p.id)) { bump('already_activated'); continue; }
     if (trialSet.has(p.id)) { counters.excluded_trial++; bump('trial_active'); continue; }
     if (outSet.has(p.id)) { bump('optout'); continue; }
-    if (p.notifications_enabled === false) { bump('optout'); continue; }
+    // [F108.2] NO se consulta `notifications_enabled`: es el permiso de PUSH,
+    // no una preferencia de correo. Se pone a true SOLO al conceder el permiso
+    // y guardar token (63 de 63 usuarios con token; 0 sin token lo tienen a
+    // true). Como esta población se define por "sin token", filtrarla por esa
+    // bandera excluía al 100% por construcción y la rama email no alcanzaba a
+    // nadie. La oposición al email vive en activation_email_optout (arriba) y
+    // en las supresiones de Brevo (baja/bloqueo/rebote/queja, más abajo).
+    // El campo queda INTACTO en BD y su uso en push no se toca.
 
     // ── F108.1 · IDENTIDAD INEQUÍVOCA ────────────────────────────────────
     // user_id sigue siendo la identidad canónica; el email solo se usa para

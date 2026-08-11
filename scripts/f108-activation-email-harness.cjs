@@ -410,6 +410,59 @@ const contactoQueDevuelve = (v) => ({ check: async () => v });
     assert.strictEqual(db._T.activation_dispatch_log.length, 0, 'no debe crear backlog');
   });
 
+  // ── F108.2 · notifications_enabled es PERMISO DE PUSH, no baja de email ───
+  const perfilEmail = (over) => Object.assign({
+    id: 'u1', created_at: bornHoursAgo(24), push_token: null,
+    notifications_enabled: false, pais: 'ES', email: 'u1@ejemplo.test',
+  }, over);
+
+  await check('N1 · notifications_enabled=false NO excluye del email', async () => {
+    const { c } = await run(baseSeed({ profiles: [perfilEmail({ notifications_enabled: false })] }));
+    assert.strictEqual(c.confirmed, 1, 'debía llegar a la comprobación de identidad');
+    assert.strictEqual(c.contactable, 1, 'debía consultarse su contactabilidad');
+    assert.strictEqual(c.treatment + c.holdout, 1, 'debía recibir brazo');
+    assert.ok(!c.excluidos['optout'], 'no puede excluirse como optout: ' + JSON.stringify(c.excluidos));
+  });
+
+  await check('N2 · notifications_enabled=true da EXACTAMENTE el mismo resultado', async () => {
+    const a = await run(baseSeed({ profiles: [perfilEmail({ notifications_enabled: false })] }));
+    const b = await run(baseSeed({ profiles: [perfilEmail({ notifications_enabled: true })] }));
+    assert.strictEqual(a.c.confirmed, b.c.confirmed);
+    assert.strictEqual(a.c.contactable, b.c.contactable);
+    assert.strictEqual(a.c.treatment, b.c.treatment);
+    assert.strictEqual(a.c.holdout, b.c.holdout);
+    assert.strictEqual(b.c.contactable, 1, 'el campo debe ser irrelevante para el email');
+  });
+
+  await check('N3 · activation_email_optout SÍ excluye (es la oposición específica)', async () => {
+    const { c } = await run(baseSeed({
+      profiles: [perfilEmail({ notifications_enabled: true })],
+      optout: [{ user_id: 'u1' }],
+    }));
+    assert.strictEqual(c.excluidos['optout'], 1);
+    assert.strictEqual(c.contactable, 0);
+    assert.strictEqual(c.treatment + c.holdout, 0);
+  });
+
+  await check('N4 · supresiones de Brevo excluyen con el campo a true', async () => {
+    for (const [estado, contador] of [['brevo_blocked', 'excluded_suppression'], ['unsubscribed', 'excluded_unsubscribe'],
+      ['hard_bounce', 'excluded_bounce'], ['complaint', 'excluded_complaint']]) {
+      const { c } = await run(baseSeed({ profiles: [perfilEmail({ notifications_enabled: true })] }),
+        { contactability: contactoQueDevuelve(estado) });
+      assert.strictEqual(c[contador], 1, estado + ' no excluyó');
+      assert.strictEqual(c.treatment + c.holdout, 0, estado + ' asignó brazo');
+    }
+  });
+
+  await check('N5 · con push_token queda fuera del email sea cual sea el campo', async () => {
+    for (const v of [true, false]) {
+      const { c } = await run(baseSeed({
+        profiles: [perfilEmail({ push_token: 'ExponentPushToken[abc]', notifications_enabled: v })],
+      }));
+      assert.strictEqual(c.candidatos, 0, 'con token no puede ser candidato (notif=' + v + ')');
+    }
+  });
+
   // ── Resultado ─────────────────────────────────────────────────────────────
   console.log('\n─── F108 · HARNESS rama email ───');
   for (const r of results) console.log(r[0].padEnd(5), r[1], r[2] ? '→ ' + r[2] : '');

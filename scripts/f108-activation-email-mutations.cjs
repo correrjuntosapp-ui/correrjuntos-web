@@ -94,6 +94,11 @@ const MUTATIONS_CONTACT = [
     "    const estado = await contactability.check(email); log('contacto ' + email);"],
   ['M28 persistir el email en el log', SRC,
     'suppressed_reason: safeReason,', "suppressed_reason: safeReason, experiment: email,"],
+  // F108.2 · Reintroduce la falsa exclusión que dejaba la rama email vacía.
+  // Debe morir por N1/N2: notifications_enabled es permiso de PUSH.
+  ['M30 reintroducir el filtro notifications_enabled en email', SRC,
+    "    if (outSet.has(p.id)) { bump('optout'); continue; }",
+    "    if (outSet.has(p.id)) { bump('optout'); continue; }\n    if (p.notifications_enabled === false) { bump('optout'); continue; }"],
   ['M29 reutilizar la respuesta de un usuario para otro', SRC,
     "    const estado = await contactability.check(email);",
     "    const estado = (globalThis.__cache = globalThis.__cache || await contactability.check(email));"],

@@ -22,6 +22,9 @@ const env = {
   BREVO_API_KEY: process.env.BREVO_API_KEY,
   BREVO_SENDER_EMAIL: process.env.BREVO_SENDER_EMAIL,
   BREVO_SENDER_NAME: process.env.BREVO_SENDER_NAME,
+  // Interruptor de la newsletter automatica. Fail-closed: si no llega, los jobs
+  // lo interpretan como apagado. Sin esta linea nunca llegaria a los handlers.
+  WEEKLY_NEWSLETTER_AUTOMATION_ENABLED: process.env.WEEKLY_NEWSLETTER_AUTOMATION_ENABLED,
 };
 const CRON_SECRET = process.env.CRON_SECRET || '';
 
@@ -34,6 +37,8 @@ const JOBS = {
   'recovery-finde': () => import('../_lib/jobs/recovery-finde.js'),
   'update-blast': () => import('../_lib/jobs/update-blast.js'),
   'weekly-newsletter': () => import('../_lib/jobs/weekly-newsletter.js'),
+  'weekly-newsletter-prepare': () => import('../_lib/jobs/weekly-newsletter-prepare.js'),
+  'weekly-newsletter-preflight': () => import('../_lib/jobs/weekly-newsletter-preflight.js'),
   'founder-blast': () => import('../_lib/jobs/founder-blast.js'),
   'activation-push': () => import('../_lib/jobs/activation-push.js'),
   'premium-expiry': () => import('../_lib/jobs/premium-expiry.js'),
@@ -97,7 +102,12 @@ export default async function handler(req, res) {
   try {
     return await jobFn(req, res, env);
   } catch (e) {
-    console.error(`[cron/run] ${job} failed:`, e?.message || e);
-    return res.status(500).json({ error: 'job_threw', job, message: (e?.message || '').slice(0, 500) });
+    // El detalle se queda en los logs de Vercel. En la respuesta no viaja nada
+    // del error: un mensaje puede llevar URLs con credenciales, rutas internas
+    // o fragmentos de la consulta que lo provoco.
+    // Ni en la respuesta ni en el log va el mensaje del error: puede llevar
+    // URLs con credenciales, rutas internas o fragmentos de la consulta.
+    console.error('[cron/run] job_threw', job);
+    return res.status(500).json({ error: 'job_threw', job });
   }
 }

@@ -1,0 +1,564 @@
+{
+  "version": 1,
+  "updated": "2026-08-11",
+  "note": "Lista blanca editorial de la newsletter automatica. NO es el catalogo del blog (eso es data/articles.json): aqui solo entran articulos revisados a mano y autorizados para un envio sin supervision humana. Un articulo nuevo NUNCA entra solo. La autorizacion es esta lista, nunca una heuristica sobre el HTML.",
+  "rules": {
+    "eligible": "enabled=true AND affiliate=false AND promotional=false AND draft=false AND language='es'",
+    "missingFieldsMeanIneligible": true,
+    "defaultCooldownWeeks": 12,
+    "noConsecutiveCategory": true,
+    "seasonMonthsIsPreferenceNotPermission": true,
+    "scheduledWeeks": "Reserva explicita para una semana (YYYY-MM-DD). Se impone a estacionalidad, categoria y cooldown, NUNCA a enabled/affiliate/promotional/draft. Maximo una reserva por semana: dos = error fail-closed.",
+    "minimumCatalogSize": "16 articulos limpios: con cooldown de 12 ediciones garantiza candidato todas las semanas."
+  },
+  "articles": [
+    {
+      "slug": "como-crear-habito-de-correr",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "motivacion",
+      "seasonMonths": [
+        1,
+        8,
+        9
+      ],
+      "priority": 120,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Vuelve a correr sin quemarte en la primera semana",
+        "El hábito no se recupera en una semana"
+      ],
+      "preheader": "Una rutina sencilla para recuperar la constancia sin intentar volver de golpe al punto donde lo dejaste.",
+      "trainingLibraryKeys": [
+        "vuelta-rutina-suave",
+        "base-conversacional"
+      ],
+      "tipLibraryKeys": [
+        "constancia-sobre-intensidad",
+        "empezar-por-debajo"
+      ],
+      "toolKeys": [
+        "planes",
+        "calculadora"
+      ],
+      "scheduledWeeks": [
+        "2026-08-17"
+      ]
+    },
+    {
+      "slug": "como-respirar-al-correr",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "tecnica",
+      "seasonMonths": [],
+      "priority": 90,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Si te falta el aire al correr, no es (solo) tu forma física",
+        "Respirar al correr: lo que casi nadie te explica"
+      ],
+      "preheader": "Un patrón de respiración estable cambia cómo se siente el mismo ritmo.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "rodaje-control-respiracion"
+      ],
+      "tipLibraryKeys": [
+        "test-conversacion",
+        "constancia-sobre-intensidad"
+      ],
+      "toolKeys": [
+        "calculadora",
+        "quedadas"
+      ]
+    },
+    {
+      "slug": "cadencia-running-ideal",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "tecnica",
+      "seasonMonths": [],
+      "priority": 85,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "La cadencia ideal no son 180 pasos para todo el mundo",
+        "Cadencia: el ajuste más barato de tu técnica"
+      ],
+      "preheader": "Qué dice la evidencia sobre los pasos por minuto y cómo ajustarlos sin obsesionarse.",
+      "trainingLibraryKeys": [
+        "progresivos-cortos",
+        "rodaje-control-respiracion"
+      ],
+      "tipLibraryKeys": [
+        "cambios-graduales",
+        "test-conversacion"
+      ],
+      "toolKeys": [
+        "calculadora",
+        "planes"
+      ]
+    },
+    {
+      "slug": "como-calentar-antes-de-correr",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "prevencion",
+      "seasonMonths": [
+        10,
+        11,
+        12,
+        1,
+        2
+      ],
+      "priority": 80,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Diez minutos antes de correr que te ahorran semanas parado",
+        "Calentar bien: la rutina que sí se sostiene"
+      ],
+      "preheader": "Una rutina corta y realista, de las que se hacen incluso con prisa.",
+      "trainingLibraryKeys": [
+        "vuelta-rutina-suave",
+        "progresivos-cortos"
+      ],
+      "tipLibraryKeys": [
+        "empezar-por-debajo",
+        "cambios-graduales"
+      ],
+      "toolKeys": [
+        "planes",
+        "quedadas"
+      ]
+    },
+    {
+      "slug": "calambres-al-correr",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "prevencion",
+      "seasonMonths": [
+        6,
+        7,
+        8
+      ],
+      "priority": 75,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Calambres al correr: qué los provoca de verdad",
+        "Si te dan calambres corriendo, empieza por aquí"
+      ],
+      "preheader": "Causas reales, qué hacer en el momento y cómo reducir que vuelvan.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "vuelta-rutina-suave"
+      ],
+      "tipLibraryKeys": [
+        "empezar-por-debajo",
+        "escuchar-senales"
+      ],
+      "toolKeys": [
+        "calculadora",
+        "planes"
+      ]
+    },
+    {
+      "slug": "como-aumentar-resistencia-corriendo",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "entrenamiento",
+      "seasonMonths": [
+        9,
+        10,
+        1,
+        2
+      ],
+      "priority": 95,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Aguantar más corriendo: por dónde se empieza de verdad",
+        "Resistencia: se construye despacio o no se construye"
+      ],
+      "preheader": "Las claves que sostienen el progreso cuando el entusiasmo baja.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "rodaje-largo-progresivo"
+      ],
+      "tipLibraryKeys": [
+        "constancia-sobre-intensidad",
+        "regla-incremento"
+      ],
+      "toolKeys": [
+        "planes",
+        "calculadora"
+      ]
+    },
+    {
+      "slug": "cross-training-running",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "entrenamiento",
+      "seasonMonths": [
+        11,
+        12,
+        1
+      ],
+      "priority": 70,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Ocho deportes que te hacen mejor corredor",
+        "Cross-training: correr menos para correr mejor"
+      ],
+      "preheader": "Cuándo compensa cambiar una sesión de carrera por otra cosa.",
+      "trainingLibraryKeys": [
+        "vuelta-rutina-suave",
+        "base-conversacional"
+      ],
+      "tipLibraryKeys": [
+        "cambios-graduales",
+        "escuchar-senales"
+      ],
+      "toolKeys": [
+        "planes",
+        "quedadas"
+      ]
+    },
+    {
+      "slug": "cuantas-veces-semana-correr",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "planificacion",
+      "seasonMonths": [
+        1,
+        9
+      ],
+      "priority": 88,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "¿Cuántos días a la semana deberías correr?",
+        "Tres días bien puestos ganan a cinco improvisados"
+      ],
+      "preheader": "La frecuencia que encaja con tu vida es la que vas a sostener.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "vuelta-rutina-suave"
+      ],
+      "tipLibraryKeys": [
+        "regla-incremento",
+        "constancia-sobre-intensidad"
+      ],
+      "toolKeys": [
+        "planes",
+        "calculadora"
+      ]
+    },
+    {
+      "slug": "como-preparar-primera-carrera-5k",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "planificacion",
+      "seasonMonths": [
+        2,
+        3,
+        9,
+        10
+      ],
+      "priority": 92,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Tu primer 5K en seis semanas, sin dramatismos",
+        "Preparar un 5K cuando nunca has competido"
+      ],
+      "preheader": "Un plan de seis semanas y qué esperar el día de la carrera.",
+      "trainingLibraryKeys": [
+        "progresivos-cortos",
+        "rodaje-largo-progresivo"
+      ],
+      "tipLibraryKeys": [
+        "regla-incremento",
+        "test-conversacion"
+      ],
+      "toolKeys": [
+        "planes",
+        "carreras-tool"
+      ]
+    },
+    {
+      "slug": "beneficios-correr-en-grupo",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "comunidad",
+      "seasonMonths": [
+        9,
+        10,
+        4,
+        5
+      ],
+      "priority": 100,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Por qué cuesta menos correr acompañado",
+        "Correr en grupo: lo que cambia cuando no vas solo"
+      ],
+      "preheader": "Doce razones respaldadas por evidencia para no entrenar siempre en solitario.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "vuelta-rutina-suave"
+      ],
+      "tipLibraryKeys": [
+        "test-conversacion",
+        "constancia-sobre-intensidad"
+      ],
+      "toolKeys": [
+        "quedadas",
+        "planes"
+      ]
+    },
+    {
+      "slug": "correr-antes-o-despues-de-comer",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "nutricion",
+      "seasonMonths": [],
+      "priority": 78,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "¿Correr en ayunas o después de comer?",
+        "Comer y correr: cuánto hay que esperar"
+      ],
+      "preheader": "Qué dice la evidencia y cómo encajarlo en tu horario real.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "rodaje-control-respiracion"
+      ],
+      "tipLibraryKeys": [
+        "escuchar-senales",
+        "cambios-graduales"
+      ],
+      "toolKeys": [
+        "calculadora",
+        "planes"
+      ]
+    },
+    {
+      "slug": "correr-en-verano-calor",
+      "enabled": false,
+      "affiliate": true,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "prevencion",
+      "seasonMonths": [
+        6,
+        7,
+        8
+      ],
+      "priority": 0,
+      "cooldownWeeks": 12,
+      "exclusionReason": "Contiene 18 enlaces con el tag de afiliado diezmejores21-21 y 9 productos /dp/ASIN de Amazon. Verificado el 5 ago 2026. NO debe marcarse affiliate:false bajo ninguna circunstancia: el sistema autonomo no puede enviar contenido monetizado.",
+      "subjectTemplates": [],
+      "preheader": "",
+      "trainingLibraryKeys": [],
+      "tipLibraryKeys": [],
+      "toolKeys": []
+    },
+    {
+      "slug": "ejercicios-gimnasio-para-running",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "fuerza",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2
+      ],
+      "priority": 82,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Doce ejercicios de gimnasio que sí te hacen correr mejor",
+        "Fuerza para correr: por dónde empezar"
+      ],
+      "preheader": "Qué trabajar fuera de la carrera y con qué frecuencia, sin convertirlo en otro entrenamiento más.",
+      "trainingLibraryKeys": [
+        "vuelta-rutina-suave",
+        "base-conversacional"
+      ],
+      "tipLibraryKeys": [
+        "cambios-graduales",
+        "regla-incremento"
+      ],
+      "toolKeys": [
+        "planes",
+        "calculadora"
+      ]
+    },
+    {
+      "slug": "correr-en-montana-tecnica",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "montana",
+      "seasonMonths": [
+        4,
+        5,
+        9,
+        10
+      ],
+      "priority": 74,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Subir y bajar en trail: la técnica que ahorra piernas",
+        "Trail: bajar bien se entrena"
+      ],
+      "preheader": "Cómo cambiar la zancada en subida y en bajada sin dejarte los cuádriceps en el intento.",
+      "trainingLibraryKeys": [
+        "rodaje-largo-progresivo",
+        "base-conversacional"
+      ],
+      "tipLibraryKeys": [
+        "escuchar-senales",
+        "cambios-graduales"
+      ],
+      "toolKeys": [
+        "carreras-tool",
+        "planes"
+      ]
+    },
+    {
+      "slug": "como-mantener-motivacion-para-correr",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "motivacion",
+      "seasonMonths": [
+        1,
+        2,
+        11
+      ],
+      "priority": 86,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Quince formas de no dejarlo en febrero",
+        "Cuando se acaba la motivación, queda el sistema"
+      ],
+      "preheader": "Estrategias concretas para los días en que no apetece salir, que son la mayoría.",
+      "trainingLibraryKeys": [
+        "vuelta-rutina-suave",
+        "base-conversacional"
+      ],
+      "tipLibraryKeys": [
+        "constancia-sobre-intensidad",
+        "empezar-por-debajo"
+      ],
+      "toolKeys": [
+        "quedadas",
+        "planes"
+      ]
+    },
+    {
+      "slug": "como-organizar-quedadas-running",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "comunidad",
+      "seasonMonths": [
+        3,
+        4,
+        9,
+        10
+      ],
+      "priority": 76,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Cómo montar una quedada de running que repita",
+        "Organizar una quedada: guía paso a paso"
+      ],
+      "preheader": "Punto de encuentro, ritmo y expectativas: lo que hace que la gente vuelva la semana siguiente.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "progresivos-cortos"
+      ],
+      "tipLibraryKeys": [
+        "test-conversacion",
+        "constancia-sobre-intensidad"
+      ],
+      "toolKeys": [
+        "quedadas",
+        "carreras-tool"
+      ]
+    },
+    {
+      "slug": "como-evitar-problemas-digestivos-correr",
+      "enabled": true,
+      "affiliate": false,
+      "promotional": false,
+      "draft": false,
+      "language": "es",
+      "category": "nutricion",
+      "seasonMonths": [
+        5,
+        6,
+        9
+      ],
+      "priority": 72,
+      "cooldownWeeks": 12,
+      "subjectTemplates": [
+        "Problemas digestivos al correr: qué cambiar primero",
+        "Si el estómago te corta la tirada, empieza por aquí"
+      ],
+      "preheader": "Qué comer, cuánto antes y qué probar en entrenamiento y nunca el día de la carrera.",
+      "trainingLibraryKeys": [
+        "base-conversacional",
+        "rodaje-largo-progresivo"
+      ],
+      "tipLibraryKeys": [
+        "cambios-graduales",
+        "escuchar-senales"
+      ],
+      "toolKeys": [
+        "calculadora",
+        "planes"
+      ]
+    }
+  ]
+}

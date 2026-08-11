@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "updated": "2026-08-11",
+  "note": "Bloques editoriales aprobados para la newsletter automatica. Identificadores estables: el selector rota por id y evita repetir en semanas recientes. Sin Prozis, Amazon, cupones, publicidad ni enlaces afiliados. Sin afirmaciones medicas ni diagnosticos: no se afirma que nada prevenga lesiones ni que una molestia concreta sea normal. los entrenamientos son conservadores y todos llevan una nota de prudencia. Ninguna frase se atribuye al Coach Jose; la voz es 'equipo CorrerJuntos'.",
+  "trainings": [
+    {
+      "id": "vuelta-rutina-suave",
+      "title": "Entrenamiento de la semana",
+      "items": [
+        "10 minutos caminando a buen paso para entrar en calor",
+        "20 minutos alternando 3 minutos de carrera suave y 1 minuto caminando",
+        "5 minutos caminando para terminar"
+      ],
+      "meta": "Sesión de reentrada. Si vienes de varias semanas parado, repítela dos o tres veces antes de subir el volumen."
+    },
+    {
+      "id": "base-conversacional",
+      "title": "Entrenamiento de la semana",
+      "items": [
+        "10 minutos muy suaves",
+        "25 minutos a ritmo conversacional: deberías poder hablar sin quedarte sin aire",
+        "5 minutos suaves para terminar"
+      ],
+      "meta": "El ritmo lo marca la conversación, no el reloj. Si no puedes hablar, vas demasiado rápido."
+    },
+    {
+      "id": "rodaje-control-respiracion",
+      "title": "Entrenamiento de la semana",
+      "items": [
+        "10 minutos suaves prestando atención a una respiración regular",
+        "20 minutos cómodos manteniendo el mismo patrón de respiración",
+        "5 minutos caminando"
+      ],
+      "meta": "El objetivo es la regularidad, no el ritmo. Si la respiración se descontrola, baja la velocidad."
+    },
+    {
+      "id": "progresivos-cortos",
+      "title": "Entrenamiento de la semana",
+      "items": [
+        "10 minutos muy suaves",
+        "20 minutos a ritmo conversacional",
+        "6 progresivos de 20 segundos, recuperando 60 segundos caminando o trotando",
+        "5 minutos suaves para terminar"
+      ],
+      "meta": "Los progresivos son aceleraciones controladas, no sprints. Si el calor es intenso o aparecen malas sensaciones, reduce o detén la sesión."
+    },
+    {
+      "id": "rodaje-largo-progresivo",
+      "title": "Entrenamiento de la semana",
+      "items": [
+        "10 minutos muy suaves",
+        "30 minutos cómodos, subiendo ligeramente el ritmo en los últimos 10",
+        "5 minutos caminando"
+      ],
+      "meta": "Solo si ya sostienes 30 minutos seguidos con comodidad. Si no, quédate en el rodaje suave otra semana."
+    }
+  ],
+  "tips": [
+    {
+      "id": "constancia-sobre-intensidad",
+      "title": "Consejo del equipo CorrerJuntos",
+      "text": "Tres semanas seguidas de sesiones modestas valen más que una semana brillante seguida de un parón. Lo que buscas no es la mejor sesión posible, sino la que vas a poder repetir el jueves."
+    },
+    {
+      "id": "empezar-por-debajo",
+      "title": "Consejo del equipo CorrerJuntos",
+      "text": "Cuando vuelvas de un parón, empieza por debajo de donde crees que estás. Quedarte con ganas la primera semana te deja margen para la segunda y la tercera, que es cuando de verdad se decide si la vuelta se sostiene."
+    },
+    {
+      "id": "test-conversacion",
+      "title": "Consejo del equipo CorrerJuntos",
+      "text": "El control más útil no cuesta nada: intenta decir una frase entera mientras corres. Si te sale entrecortada, estás por encima del ritmo que tocaba ese día."
+    },
+    {
+      "id": "cambios-graduales",
+      "title": "Consejo del equipo CorrerJuntos",
+      "text": "Cambia una cosa cada vez. Si tocas a la vez ritmo, distancia y técnica, no sabrás qué te ha funcionado ni qué te ha molestado."
+    },
+    {
+      "id": "regla-incremento",
+      "title": "Consejo del equipo CorrerJuntos",
+      "text": "Sube el volumen semanal poco a poco y deja una semana más suave cada tres o cuatro. El descanso no interrumpe el progreso: es parte de él."
+    },
+    {
+      "id": "escuchar-senales",
+      "title": "Consejo del equipo CorrerJuntos",
+      "text": "Ante cualquier molestia, baja el ritmo o para: no merece la pena terminar la sesión a cualquier precio. Si se repite, cambia tu forma de correr o no remite con el descanso, consúltalo con un profesional sanitario en vez de buscar la respuesta en internet."
+    }
+  ],
+  "races": [
+    {
+      "id": "carreras-buscador",
+      "title": "Carrera recomendada",
+      "text": "Busca una prueba que encaje con tu calendario y tu punto de forma.",
+      "url": "https://www.correrjuntos.com/carreras",
+      "link_text": "Encuentra tu próxima carrera"
+    },
+    {
+      "id": "carreras-objetivo",
+      "title": "Ponle fecha",
+      "text": "Tener una carrera en el calendario ordena las semanas mejor que cualquier propósito.",
+      "url": "https://www.correrjuntos.com/carreras",
+      "link_text": "Ver carreras por fecha y ciudad"
+    }
+  ],
+  "tools": [
+    {
+      "id": "calculadora",
+      "title": "Herramienta de la semana",
+      "text": "Calcula tus ritmos objetivo y ajústalos a las condiciones del día.",
+      "url": "https://www.correrjuntos.com/calculadora",
+      "link_text": "Calculadora de ritmos"
+    },
+    {
+      "id": "planes",
+      "title": "Herramienta de la semana",
+      "text": "Planes estructurados por objetivo, del primer 5K al maratón.",
+      "url": "https://www.correrjuntos.com/planes",
+      "link_text": "Ver los planes de entrenamiento"
+    },
+    {
+      "id": "quedadas",
+      "title": "Herramienta de la semana",
+      "text": "Quedadas abiertas cerca de ti para no entrenar siempre en solitario.",
+      "url": "https://www.correrjuntos.com/quedadas",
+      "link_text": "Buscar quedadas"
+    },
+    {
+      "id": "carreras-tool",
+      "title": "Herramienta de la semana",
+      "text": "El calendario de carreras, filtrable por distancia y provincia.",
+      "url": "https://www.correrjuntos.com/carreras",
+      "link_text": "Abrir el calendario"
+    }
+  ]
+}

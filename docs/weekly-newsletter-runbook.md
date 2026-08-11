@@ -1,7 +1,10 @@
 # CorrerJuntos Semanal — runbook
 
-Newsletter de los lunes. **La preparación se automatiza; el envío nunca.**
-Un correo solo sale si una persona lo aprueba pasando el pick a `status='ready'`.
+Newsletter de los lunes, **automática de principio a fin**.
+
+Viernes prepara → domingo verifica → lunes envía. **Nadie tiene que aprobar nada cada semana**: la prueba del viernes llega al correo del responsable para que pueda mirarla, pero no hay que contestar. Si nadie dice nada, la edición sale. La intervención humana solo hace falta para **frenar** una semana concreta o para apagar el sistema entero.
+
+Esta es la única operación vigente. Si encuentras instrucciones que digan que hay que pasar el pick a `ready` a mano, están obsoletas.
 
 ---
 
@@ -11,59 +14,42 @@ Un correo solo sale si una persona lo aprueba pasando el pick a `status='ready'`
 |---|---|
 | Contenido de la semana | fila en `public.weekly_newsletter` |
 | Plantilla | `api/_lib/jobs/weekly-newsletter.js` |
-| Disparo | cron `/api/cron/run?job=weekly-newsletter`, lunes 08:00 UTC |
+| Lista blanca editorial | `data/newsletter-catalog.json` |
+| Bloques aprobados | `data/newsletter-block-library.json` |
+| Disparos | cron `/api/cron/run?job=…` (ver tabla de horarios más abajo) |
 | Destino | Brevo **lista 3** (suscriptores del blog). Nunca la tabla `profiles` |
 | Remitente | `BREVO_SENDER_EMAIL` en Vercel → `hola@correrjuntos.com` |
+| Interruptor | `WEEKLY_NEWSLETTER_AUTOMATION_ENABLED` en Vercel |
 
-El cron solo envía si encuentra un pick con **las tres condiciones**: `status='ready'`, `week_of` = lunes actual y `sent_at IS NULL`. Si falta cualquiera, no envía nada y responde `no_ready_pick_this_week`.
+El cron del lunes solo envía si encuentra un pick con **las tres condiciones**: `status='ready'`, `week_of` = lunes actual y `sent_at IS NULL`. Si falta cualquiera, no envía nada y lo dice en `outcome`.
 
 ⚠️ `abraham.marquez@correrjuntos.com` **no está activo en Brevo**. Si alguien cambia el remitente a esa dirección, la campaña ni se crea.
 
 ---
 
-## Semana tipo
+## Semana tipo (no requiere a nadie)
 
-**Miércoles — proponer.** Tres candidatos: un artículo con tracción en Search Console, uno estacional y uno de fondo. Se elige uno.
+**Viernes — `weekly-newsletter-prepare`.** Elige un artículo de la lista blanca, monta los cuatro bloques, comprueba que el artículo y todos los enlaces responden 200, renderiza el correo, crea el pick, manda la prueba a `guetto2012@gmail.com` y **lo deja en `ready` él solo**.
 
-**Viernes — preparar.** Crear la fila en `weekly_newsletter` con `status='draft'` y enviar la prueba:
+**La prueba es informativa.** Llega para que puedas mirarla, no para que respondas. Si no contestas, el lunes sale igual. Si algo no te gusta, tienes hasta el lunes a las 10:00 para pausarla (más abajo).
 
-```
-/api/cron/run?job=weekly-newsletter&test=EMAIL
-Authorization: Bearer <CRON_SECRET>
-```
+**Domingo — `weekly-newsletter-preflight`.** Comprueba que hay exactamente un `ready` para el lunes y que el artículo sigue vivo. Si falta el pick, lo prepara. Si el viernes se quedó a medias en un `draft` automático, lo reanuda **una** vez. Si no puede dejarlo listo, manda un aviso. **Nunca envía a la lista.**
 
-El modo test manda solo a esa dirección. **No** toca la lista, ni `status`, ni `sent_at`, ni `recipients`, ni `brevo_campaign_id`.
+**Lunes 10:00 Madrid — `weekly-newsletter`.** Envía con la máquina `ready → sending → sent`.
 
-**Domingo — aprobar.** Una persona lee el correo recibido. Si está bien:
+**Martes — métricas.** Aperturas, clics y bajas en Brevo.
 
-```sql
-update public.weekly_newsletter set status = 'ready'
-where week_of = 'YYYY-MM-DD' and status = 'draft';
-```
+### Si una semana no sale
 
-**Lunes 10:00 Europe/Madrid (08:00 UTC) — envío.** Automático. El job marca la fila como `sent`.
-
-**Martes — métricas.** Aperturas, clics, bajas y rebotes en el panel de Brevo. `recipients` queda en la fila.
-
-### Si el domingo no hay contenido aprobado
-
-No se hace nada. El pick se queda en `draft`, el cron no envía y esa semana no hay newsletter. **Nunca** se aprueba a última hora sin haber leído la prueba: es preferible saltarse una semana que mandar algo con un enlace roto a 171 personas.
+No pasa nada: no hay newsletter esa semana. El sistema nunca improvisa contenido ni fuerza un envío. Los avisos del domingo dicen qué falló.
 
 ---
 
 ## Regla de oro: un solo canal
 
-⛔ **Jamás programar desde el panel de Brevo y dejar además un pick en `ready`.** Son dos caminos independientes y el resultado es un envío duplicado. El histórico ya tiene un caso: el 3 de agosto se programó a mano y la fila se quedó en `draft` porque el job nunca intervino.
+⛔ **Jamás programar la misma campaña desde el panel de Brevo.** El cron del lunes es la única vía de envío. Programar a mano en paralelo produce un envío duplicado, y ya pasó una vez: el 3 de agosto se programó desde el panel y la fila se quedó en `draft` porque el job nunca intervino.
 
-Si se programa a mano, la fila hay que sincronizarla después:
-
-```sql
-update public.weekly_newsletter
-set status='sent', brevo_campaign_id=<id>, recipients=<n>, sent_at='<fecha Brevo>'
-where week_of='YYYY-MM-DD';
-```
-
-**Un `status='draft'` no demuestra que no se enviara.** Demuestra que *el job* no lo envió. La fuente de verdad de los envíos es Brevo.
+**Brevo sigue siendo la fuente de verdad de lo que se ha enviado.** Un `status` en la tabla dice lo que hizo *el job*, no lo que llegó a los buzones. Ante cualquier duda sobre si un correo salió, se mira Brevo.
 
 ---
 
@@ -125,6 +111,94 @@ Con `blocks` válidos el eyebrow es **«CorrerJuntos Semanal»**; con `blocks` n
 
 ---
 
+## Automatización (desde 2026-08-17)
+
+La newsletter ya no necesita que nadie la apruebe cada semana. Tres tareas encadenadas:
+
+| Cron UTC | Job | Hora local verano (CEST) | Hora local invierno (CET) |
+|---|---|---|---|
+| `0 7 * * 5` | `weekly-newsletter-prepare` | viernes **09:00** | viernes **08:00** |
+| `0 8 * * 0` | `weekly-newsletter-preflight` | domingo **10:00** | domingo **09:00** |
+| `0 8 * * 1` + `0 9 * * 1` | `weekly-newsletter` | lunes **10:00** (actúa el de las 08:00) | lunes **10:00** (actúa el de las 09:00) |
+
+⚠️ **Prepare y preflight se desplazan una hora con el cambio de estación**, y no pasa nada: no tienen hora crítica. El único que mantiene las 10:00 todo el año es el envío, y por eso lleva dos disparos.
+
+**Los dos disparos del lunes son intencionados.** Ambos cron se ejecutan siempre; la guarda `isSendWindowMadrid` deja pasar solo al que cae en la **hora local 10** (10:00–10:59). En verano es el de las 08:00 UTC, en invierno el de las 09:00. El otro responde `outside_send_window` sin tocar Brevo ni la base de datos.
+
+**Por qué la hora entera y no quince minutos:** en el plan Hobby de Vercel los cron pueden ejecutarse con retraso dentro de su hora. Una ventana de 15 minutos perdería esos envíos. Está diseñado para el caso peor, y no he podido verificar que el proyecto sea Pro. Si un disparo se retrasase más allá de las 10:59 locales, esa semana no saldría — el aviso del domingo no lo cubre, se detectaría el martes al mirar métricas.
+
+Aunque ambos disparos entrasen en ventana, la toma atómica del pick (`update … where status='ready'`) impide el segundo envío.
+
+### Qué puede elegir el sistema
+
+Solo lo que esté en **`data/newsletter-catalog.json`**, la lista blanca. Un artículo es elegible únicamente si declara `enabled:true`, `affiliate:false`, `promotional:false`, `draft:false` y `language:"es"`. **Un campo que falte hace el artículo inelegible**: nunca se asume que algo es seguro.
+
+⛔ **Un artículo nuevo del blog no entra solo.** Hay que revisarlo a mano y añadirlo. Y jamás se marca `affiliate:false` un artículo con enlaces monetizados: `correr-en-verano-calor` está en el catálogo con `affiliate:true, enabled:false` y su motivo, precisamente para que quede constancia de por qué no puede salir.
+
+Los bloques salen de `data/newsletter-block-library.json`, rotan por identificador y no se repiten en semanas seguidas. Nada se atribuye al Coach José.
+
+### Cómo cancelar o pausar una semana
+
+```sql
+-- Saltarse la edición de una semana concreta:
+update public.weekly_newsletter set status = 'cancelled'
+where week_of = 'YYYY-MM-DD';
+
+-- Aparcarla sin descartarla del todo:
+update public.weekly_newsletter set status = 'paused'
+where week_of = 'YYYY-MM-DD';
+```
+
+**Ningún job sobrescribe `paused` ni `cancelled`.** `prepare` ve que ya hay fila y no toca nada; `preflight` lo reporta como decisión humana y no alerta; el lunes responde `skipped_paused`. Para reactivarla, se vuelve a poner en `ready`.
+
+Si la edición aún no existe (antes del viernes), basta con crear la fila directamente en `cancelled`: `prepare` la respetará.
+
+### Recuperar un `draft` automático a medias
+
+Si el viernes se interrumpió después de crear la fila (Brevo no aceptó la prueba, falló la promoción, se cortó el proceso), el pick se queda en `draft` con `auto_prepared = true`. **No hay que tocarlo a mano.**
+
+Lo reanuda solo el preflight del domingo, y también puede lanzarse cuando quieras:
+
+```bash
+curl -H "Authorization: Bearer <CRON_SECRET>" "https://www.correrjuntos.com/api/cron/run?job=weekly-newsletter-prepare"
+```
+
+La reanudación **no crea una segunda fila ni una segunda campaña de test**: el `test_campaign_id` se guarda —y se confirma— antes de usarse, así que un reintento reutiliza el mismo. El único efecto secundario posible es que **tú recibas dos correos de prueba**. Es deliberado: se prefiere duplicar una prueba interna antes que arriesgar un envío duplicado a la lista, que sigue protegido por la máquina de estados del lunes.
+
+⚠️ Un `draft` con `auto_prepared = false` es un borrador escrito por una persona. Ningún job lo toca: solo se avisa. Si querías que saliera, pásalo a `ready`; si no, a `cancelled`.
+
+### Ensayo en seco (`dry_run`)
+
+Recorre todo el camino de decisión y validación sin escribir nada, sin crear campañas y sin enviar. **Funciona incluso con la automatización apagada**, que es justo como se usa tras un despliegue para comprobar que los JSON se empaquetaron, que los enlaces responden y que el artículo elegido es el esperado:
+
+```bash
+curl -H "Authorization: Bearer <CRON_SECRET>" "https://www.correrjuntos.com/api/cron/run?job=weekly-newsletter-prepare&dry_run=1"
+```
+
+Devuelve un resumen: artículo, categoría, si venía reservado, asunto, preheader, ids de bloques, enlaces comprobados y tamaño del HTML. Cero escrituras, cero llamadas a Brevo.
+
+### Apagar toda la automatización
+
+Variable de entorno en Vercel, sin tocar código ni borrar cron:
+
+```
+WEEKLY_NEWSLETTER_AUTOMATION_ENABLED=false   # o simplemente borrarla
+```
+
+Con eso los tres jobs terminan sin hacer nada. **Es fail-closed**: solo se activa con `true`, `1`, `on` o `yes`. Ausente, vacía o cualquier otro valor = apagada. El `dry_run` sigue funcionando.
+
+### Cómo saber qué pasó un lunes
+
+El campo `outcome` de la respuesta distingue: `sent`, `skipped_no_pick`, `skipped_paused`, `outside_send_window`, `automation_disabled`. En la fila quedan `auto_prepared`, `prepared_at`, `ready_at`, `selected_article`, `category`, `test_campaign_id`, `block_ids` y `last_error`.
+
+⚠️ `test_campaign_id` y `brevo_campaign_id` son columnas distintas a propósito: la primera guarda la campaña de prueba del viernes, la segunda solo la campaña real del lunes. Una prueba nunca puede confundirse con un envío.
+
+### Cuando el catálogo se queda corto
+
+`prepare` devuelve `low_catalog: true` cuando quedan menos de cuatro artículos sin usar. Es el momento de ampliar la lista blanca. Hoy hay **16 artículos** aprobados en nueve categorías: con cooldown de 12 ediciones eso garantiza candidato todas las semanas, pero el margen es de cuatro. Cuanto más crezca el catálogo, más holgada será la rotación y menos se repetirán los temas.
+
+---
+
 ## Máquina de estados: por qué no se puede enviar dos veces
 
 `draft → ready → sending → sent`
@@ -178,32 +252,28 @@ where week_of='YYYY-MM-DD';
 
 ---
 
-## Riesgo histórico: la ventana entre Brevo y Supabase (resuelto)
+## Cómo ampliar el catálogo
 
-En `runWeeklyNewsletter` la secuencia en modo live es:
+**No hay nada que hacer cada semana.** El sistema elige, prepara y envía solo. La única tarea recurrente es que el catálogo no se agote.
 
-```js
-const sendNow = await brevo(`/emailCampaigns/${campaignId}/sendNow`, ...);
-if (!sendNow.ok) return 500;
-await supabase.from('weekly_newsletter')
-  .update({ status: 'sent', sent_at: ..., brevo_campaign_id: campaignId })
-  .eq('id', pick.id);           // ← sin comprobar error
-```
+Para añadir un artículo a la lista blanca:
 
-**Si Brevo envía y la actualización de Supabase falla**, la fila se queda en `ready` con `sent_at` NULL. Una segunda ejecución del cron ese mismo lunes la volvería a seleccionar y **enviaría por segunda vez**. El `update` además no comprueba su propio error, así que el fallo sería silencioso.
+1. **Leerlo.** Que sea editorial: no una review, ni una comparativa comercial, ni contenido patrocinado.
+2. **Confirmar que está limpio.** Cero enlaces de Amazon o Prozis, cero tags de afiliado (`diezmejores21-21`, `amzn.to`), cero cupones y cero promociones. Si tiene aunque sea uno, **se registra `affiliate: true, enabled: false` con su motivo** — nunca se marca como limpio.
+3. **Comprobar los metadatos.** `<title>`, `meta name="description"` y `og:image` presentes, y que la imagen exista de verdad.
+4. **Añadirlo a `data/newsletter-catalog.json`** con todos los campos: `enabled`, `affiliate`, `promotional`, `draft`, `language`, `category`, `seasonMonths`, `priority`, `cooldownWeeks`. Un campo que falte lo deja inelegible.
+5. **Darle contenido propio:** dos `subjectTemplates`, un `preheader`, y las claves de bloques compatibles (`trainingLibraryKeys`, `tipLibraryKeys`, `toolKeys`).
+6. **Ejecutar las pruebas**: `node tests/unit/newsletter-automation.test.cjs`. La prueba de rotación de 20 semanas confirma que el catálogo sigue dando de sí.
 
-Hoy el riesgo es bajo porque el cron corre una vez al día, pero existe.
-
-**Resuelto** con la máquina de estados descrita arriba: el pick pasa por `sending` antes del envío, ambos `update` comprueban su error y un pick en `sending` jamás se reenvía automáticamente.
+Para reservar un artículo en una semana concreta, `scheduledWeeks: ["YYYY-MM-DD"]`. Una reserva por semana como máximo, y se impone a estacionalidad, categoría y cooldown — **nunca** a las banderas de seguridad.
 
 ---
 
-## Qué hay que dar cada semana
+## Las únicas intervenciones humanas
 
-Solo contenido. El código no se toca:
+No existe aprobación semanal. Solo estas cuatro:
 
-1. Artículo destacado (slug + imagen).
-2. Asunto, preheader, H1 e intro.
-3. Los cuatro bloques.
-4. `utm_campaign` de la semana.
-5. La aprobación humana del domingo.
+1. **Ampliar el catálogo** cuando `low_catalog` avise (arriba).
+2. **Pausar o cancelar** una semana concreta.
+3. **Resolver un `sending` ambiguo**, que siempre requiere una persona y nunca se desatasca solo.
+4. **Mirar métricas y avisos**: las alertas del domingo y los números del martes.

@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
+let SEL;
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const SRC = path.join(ROOT, 'api/_lib/jobs/weekly-newsletter.js');
@@ -12,9 +13,11 @@ const SRC = path.join(ROOT, 'api/_lib/jobs/weekly-newsletter.js');
 // Carga el módulo ESM como función, inyectando createClient y fetch simulados.
 function loadJob(createClient, fetchImpl) {
   let src = fs.readFileSync(SRC, 'utf8').replace(/\r\n/g, '\n')
-    .replace(/^import .*$/gm, '')
+    .replace(/^import .*$/gm, '').replace(/^export {[^}]*};$/gm, '')
     .replace('export default async function runWeeklyNewsletter', 'async function runWeeklyNewsletter');
-  return new Function('createClient', 'fetch', src + '\nreturn runWeeklyNewsletter;')(createClient, fetchImpl);
+  // Las funciones de fecha vienen del módulo de selección, ya probado aparte.
+  return new Function('createClient', 'fetch', 'mondayOfWeekMadrid', 'isSendWindowMadrid',
+    src + '\nreturn runWeeklyNewsletter;')(createClient, fetchImpl, SEL.mondayOfWeekMadrid, SEL.isSendWindowMadrid);
 }
 
 // --- dobles -----------------------------------------------------------------
@@ -79,13 +82,16 @@ function makeFetch(routes) {
 }
 
 const makeRes = () => ({ code: 0, body: null, status(c) { this.code = c; return this; }, json(b) { this.body = b; return this; } });
-const ENV = { SUPABASE_SERVICE_KEY: 'x', BREVO_API_KEY: 'x', BREVO_SENDER_EMAIL: 'hola@correrjuntos.com' };
+// Fail-closed: el envío automático exige un sí explícito en el entorno.
+const ENV = { SUPABASE_SERVICE_KEY: 'x', BREVO_API_KEY: 'x', BREVO_SENDER_EMAIL: 'hola@correrjuntos.com', WEEKLY_NEWSLETTER_AUTOMATION_ENABLED: 'true' };
 const BASE = { id: 42, week_of: '2026-08-10', title: 'T', subject: 'S', url: 'https://www.correrjuntos.com/blog/x', excerpt: 'E' };
 const READY = { ...BASE, status: 'ready' };
 const CREATE_OK = { match: '/emailCampaigns', method: 'POST', body: { id: 777 } };
 
 const sendNowCalls = (f) => f.calls.filter(c => c.url.includes('/sendNow'));
-const run = (sb, f, query = {}) => loadJob(() => sb, f)({ query }, makeRes(), ENV);
+// Lunes 17 ago 2026, 10:00 Madrid: dentro de la ventana de envio.
+const IN_WINDOW = new Date('2026-08-17T08:00:00Z');
+const run = (sb, f, query = {}) => loadJob(() => sb, f)({ query }, makeRes(), ENV, { now: IN_WINDOW });
 
 // --- pruebas ----------------------------------------------------------------
 
@@ -287,9 +293,58 @@ test('concurrencia: la perdedora no escribe el estado final', async () => {
   assert.strictEqual(row.brevo_campaign_id, 777, 'la fila conserva la campaña de la ganadora');
 });
 
+test('doble disparo: el que cae fuera de la ventana no envía nada', async () => {
+  const sb = makeSupabase({ pick: READY });
+  const f = makeFetch([CREATE_OK]);
+  // 09:00 UTC en agosto son las 11:00 en Madrid: fuera de ventana.
+  const res = await loadJob(() => sb, f)({ query: {} }, makeRes(), ENV, { now: new Date('2026-08-17T09:00:00Z') });
+  assert.strictEqual(res.body.outcome, 'outside_send_window');
+  assert.strictEqual(res.body.sent, 0);
+  assert.strictEqual(f.calls.length, 0, 'no toca Brevo');
+  assert.strictEqual(sb.updates.length, 0, 'no escribe en la BD');
+});
+
+test('en invierno el disparo válido es el de las 09:00 UTC', async () => {
+  const sb = makeSupabase({ pick: READY });
+  const f = makeFetch([CREATE_OK]);
+  const res = await loadJob(() => sb, f)({ query: {} }, makeRes(), ENV, { now: new Date('2026-12-14T09:00:00Z') });
+  assert.strictEqual(res.body.sent, 1, '10:00 Madrid en CET');
+  assert.strictEqual(sendNowCalls(f).length, 1);
+});
+
+test('el interruptor global detiene el envío del lunes', async () => {
+  const sb = makeSupabase({ pick: READY });
+  const f = makeFetch([CREATE_OK]);
+  const res = await loadJob(() => sb, f)({ query: {} }, makeRes(),
+    { ...ENV, WEEKLY_NEWSLETTER_AUTOMATION_ENABLED: undefined }, { now: IN_WINDOW });
+  assert.strictEqual(res.body.outcome, 'automation_disabled');
+  assert.strictEqual(f.calls.length, 0);
+});
+
+test('una edición pausada se informa como tal y no se envía', async () => {
+  // Sin pick seleccionable, pero con una fila paused esa semana.
+  const sb = makeSupabase({ pick: { ...BASE, status: 'paused' } });
+  sb.from = () => ({
+    select: () => { const o = {}; for (const m of ['select', 'order', 'limit', 'eq', 'is', 'in']) o[m] = () => o;
+      o.then = (r) => Promise.resolve({ data: [{ status: 'paused' }], error: null }).then(r); return o; },
+    update: () => { throw new Error('no debe escribir'); },
+  });
+  let calls = 0;
+  const orig = sb.from;
+  sb.from = () => (calls++ === 0
+    ? (() => { const o = {}; for (const m of ['select', 'order', 'limit', 'eq', 'is', 'in']) o[m] = () => o;
+        o.then = (r) => Promise.resolve({ data: [], error: null }).then(r); return { select: () => o }; })()
+    : orig());
+  const f = makeFetch([CREATE_OK]);
+  const res = await loadJob(() => sb, f)({ query: {} }, makeRes(), ENV, { now: IN_WINDOW });
+  assert.strictEqual(res.body.outcome, 'skipped_paused');
+  assert.strictEqual(f.calls.length, 0, 'no se crea campaña');
+});
+
 // --- runner -----------------------------------------------------------------
 
 (async () => {
+  SEL = await import('file:///' + path.join(ROOT, 'api/_lib/newsletter-selection.js').replace(/\\/g, '/'));
   let bad = 0;
   for (const [name, fn] of tests) {
     try { await fn(); console.log('  OK     ' + name); }

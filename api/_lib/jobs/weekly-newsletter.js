@@ -31,6 +31,7 @@
 // ============================================================
 
 import { createClient } from '@supabase/supabase-js';
+import { mondayOfWeekMadrid, isSendWindowMadrid } from '../newsletter-selection.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const BREVO = 'https://api.brevo.com/v3';
@@ -291,30 +292,61 @@ async function recoverSendingPick(supabase, pick, res, env) {
   });
 }
 
-export default async function runWeeklyNewsletter(req, res, env) {
+// Reutilizados por weekly-newsletter-prepare y -preflight. Export aditivo:
+// no cambia el comportamiento de este job ni la firma del handler.
+export { buildEmailHtml, brevo };
+
+export default async function runWeeklyNewsletter(req, res, env, deps = {}) {
   const supabase = createClient(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
   const testEmail = (req.query?.test || '').trim();
   const isTest = testEmail.length > 3 && testEmail.includes('@');
   const listId = parseInt(process.env.BREVO_LIST_ID || '3', 10);
+  const now = deps.now || new Date();
 
-  // Lunes (UTC) de la semana en curso. En live sólo se envía el pick de ESTA
-  // semana: evita que un 'ready' olvidado de una semana anterior salga solo.
-  const mondayOfThisWeek = (() => {
-    const d = new Date();
-    d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
-    return d.toISOString().slice(0, 10);
-  })();
+  // Interruptor global: apaga la automatizacion sin tocar codigo ni borrar cron.
+  // Fail-closed: solo un si explicito activa el envio automatico. Ausente,
+  // vacio o cualquier valor desconocido = apagado.
+  const autoFlag = (env.WEEKLY_NEWSLETTER_AUTOMATION_ENABLED != null ? String(env.WEEKLY_NEWSLETTER_AUTOMATION_ENABLED) : '').trim().toLowerCase();
+  const autoOn = autoFlag === 'true' || autoFlag === '1' || autoFlag === 'on' || autoFlag === 'yes';
+  if (!isTest && !autoOn) {
+    return res.status(200).json({ ok: true, sent: 0, outcome: 'automation_disabled' });
+  }
+
+  // Ventana de envio: lunes 10:00-10:15 en Europe/Madrid. Hay dos disparos cron
+  // (08:00 y 09:00 UTC) porque el desfase cambia entre CET y CEST; solo el que
+  // cae dentro de la ventana local continua. El otro sale por aqui.
+  if (!isTest && !isSendWindowMadrid(now)) {
+    return res.status(200).json({ ok: true, sent: 0, outcome: 'outside_send_window' });
+  }
+
+  // Lunes de la semana en curso en calendario de Madrid. En live solo se envia
+  // el pick de ESTA semana: un 'ready' olvidado de otra semana nunca sale solo.
+  const mondayOfThisWeek = mondayOfWeekMadrid(now);
 
   // Pick: en test, el último pendiente (cualquier status). En live, el de ESTA
   // semana en 'ready' (envío normal) o en 'sending' (recuperación fail-closed).
   let q = supabase.from('weekly_newsletter').select('*').is('sent_at', null).order('week_of', { ascending: false }).limit(1);
   if (!isTest) q = q.in('status', ['ready', 'sending']).eq('week_of', mondayOfThisWeek);
   const { data: rows, error } = await q;
-  if (error) return res.status(500).json({ error: 'query_failed', msg: error.message });
+  // Sin mensaje de Supabase: puede llevar nombres de columnas o fragmentos SQL.
+  if (error) return res.status(500).json({ error: 'query_failed' });
 
-  const pick = rows && rows[0];
+  let pick = rows && rows[0];
+  if (!pick && !isTest) {
+    // Distinguir "no hay nada" de "alguien lo paro a proposito".
+    const { data: held } = await supabase.from('weekly_newsletter')
+      .select('status').eq('week_of', mondayOfThisWeek)
+      .in('status', ['paused', 'cancelled']).limit(1);
+    if (held && held.length) {
+      return res.status(200).json({ ok: true, sent: 0, outcome: 'skipped_paused', status: held[0].status, week_of: mondayOfThisWeek });
+    }
+  }
   if (!pick) {
-    return res.status(200).json({ ok: true, sent: 0, reason: isTest ? 'no_pick_pending' : 'no_ready_pick_this_week' });
+    return res.status(200).json({
+      ok: true, sent: 0,
+      outcome: isTest ? 'no_pick_pending' : 'skipped_no_pick',
+      reason: isTest ? 'no_pick_pending' : 'no_ready_pick_this_week',
+    });
   }
 
   // Un pick en 'sending' nunca vuelve a enviarse: solo se consulta y se sincroniza.
@@ -339,7 +371,7 @@ export default async function runWeeklyNewsletter(req, res, env) {
     inlineImageActivation: false,
   });
   if (!created.ok || !created.json?.id) {
-    return res.status(500).json({ error: 'campaign_create_failed', status: created.status, detail: created.json });
+    return res.status(500).json({ error: 'campaign_create_failed', http_status: created.status });
   }
   const campaignId = created.json.id;
 
@@ -349,7 +381,7 @@ export default async function runWeeklyNewsletter(req, res, env) {
     return res.status(test.ok ? 200 : 500).json({
       ok: test.ok, mode: 'test', test_to: testEmail, campaign_id: campaignId,
       pick: { week_of: pick.week_of, status: pick.status, title: pick.title },
-      detail: test.ok ? undefined : test.json,
+      http_status: test.ok ? undefined : test.status,
     });
   }
 

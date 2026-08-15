@@ -167,12 +167,17 @@ function fmtPace(secPerKm: number): string {
 async function handlePostRunAnalysis(payload: any, userId: string, supabase: any) {
   const { runData, planWorkout, insights, vo2max, lang = 'es' } = payload;
 
-  const { data: recentRuns } = await supabase
+  // [F118] CONTRATO REAL de `runs`: distancia_km / duracion_segundos (ES).
+  // El select anterior pedía distance_km/duration_sec (inexistentes) → error
+  // silencioso → recentRuns vacío SIEMPRE. Ahora se comprueba `error` y, si
+  // falla, se declara el hueco en vez de fingir historial vacío.
+  const { data: recentRuns, error: recentRunsErr } = await supabase
     .from('runs')
-    .select('distance_km, duration_sec, rpe, created_at')
+    .select('distancia_km, duracion_segundos, rpe, created_at')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(5);
+  if (recentRunsErr) console.error('[ai-coach] post_run recent runs query failed:', recentRunsErr.code || 'err');
 
   const context: any = {
     run: {
@@ -205,10 +210,12 @@ async function handlePostRunAnalysis(payload: any, userId: string, supabase: any
 
   if (recentRuns?.length) {
     context.recent = recentRuns.slice(1, 4).map((r: any) => ({
-      km: r.distance_km?.toFixed(1),
-      pace: r.duration_sec && r.distance_km ? fmtPace(r.duration_sec / r.distance_km) : null,
+      km: r.distancia_km != null ? Number(r.distancia_km).toFixed(1) : null,
+      pace: r.duracion_segundos && r.distancia_km ? fmtPace(r.duracion_segundos / r.distancia_km) : null,
       rpe: r.rpe,
     }));
+  } else if (recentRunsErr) {
+    context.data_gaps = ['recent_runs_unavailable']; // fail closed: hueco declarado, no historial vacío fingido
   }
 
   const userMessage = lang === 'en'
@@ -268,36 +275,77 @@ async function handleChat(payload: any, userId: string, supabase: any) {
     .order('created_at', { ascending: false })
     .limit(8);
 
-  const { data: recentRuns } = await supabase
+  // [F118] CONTRATOS REALES verificados contra el esquema:
+  //  - runs: distancia_km / duracion_segundos (NO distance_km/duration_sec)
+  //  - user_plans.estado: 'active' | 'paused' | 'abandoned' (valores EN, no ES)
+  //  - user_workouts.estado: 'pending' | 'completed' | 'skipped'
+  // Cada consulta comprueba `error`: un fallo se declara como hueco
+  // (data_gaps) — José nunca recibe un [] fingido como "sin datos".
+  const dataGaps: string[] = [];
+
+  const { data: recentRuns, error: recentRunsErr } = await supabase
     .from('runs')
-    .select('distance_km, duration_sec, rpe, vo2max_estimate, created_at')
+    .select('deporte, distancia_km, duracion_segundos, rpe, vo2max_estimate, created_at')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(5);
+  if (recentRunsErr) { console.error('[ai-coach] chat runs query failed:', recentRunsErr.code || 'err'); dataGaps.push('recent_runs_unavailable'); }
 
-  const { data: activePlan } = await supabase
+  const { data: planRows, error: planErr } = await supabase
     .from('user_plans')
-    .select('goal_key, semana_actual, progreso_pct, ritmo_base, estado')
+    .select('objetivo, semana_actual, progreso_pct, ritmo_base, estado, race_nombre, fecha_carrera')
     .eq('user_id', userId)
-    .eq('estado', 'activo')
-    .single();
+    .in('estado', ['active', 'paused'])
+    .order('updated_at', { ascending: false })
+    .limit(1);
+  if (planErr) { console.error('[ai-coach] chat plan query failed:', planErr.code || 'err'); dataGaps.push('plan_unavailable'); }
+  const activePlan = Array.isArray(planRows) && planRows.length > 0 ? planRows[0] : null;
+
+  // Próxima sesión programada del plan (si existe)
+  let nextWorkout: any = null;
+  if (activePlan) {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const { data: nw, error: nwErr } = await supabase
+      .from('user_workouts')
+      .select('tipo, titulo, fecha, distancia_target_km')
+      .eq('user_id', userId)
+      .eq('estado', 'pending')
+      .gte('fecha', todayStr)
+      .order('fecha', { ascending: true })
+      .limit(1);
+    if (nwErr) { console.error('[ai-coach] chat next workout query failed:', nwErr.code || 'err'); dataGaps.push('next_workout_unavailable'); }
+    else if (Array.isArray(nw) && nw.length > 0) nextWorkout = nw[0];
+  }
 
   const context: any = {
-    profile: { level: profile.nivel, vo2max: profile.vo2max_latest },
-    recent_runs: recentRuns?.slice(0, 5).map((r: any) => ({
-      km: r.distance_km?.toFixed(1),
-      pace: r.duration_sec && r.distance_km ? fmtPace(r.duration_sec / r.distance_km) : null,
+    profile: { level: profile?.nivel ?? null, vo2max: profile?.vo2max_latest ?? null },
+    recent_runs: (recentRuns || []).slice(0, 5).map((r: any) => ({
+      sport: r.deporte,
+      km: r.distancia_km != null ? Number(r.distancia_km).toFixed(1) : null,
+      pace: r.duracion_segundos && r.distancia_km ? fmtPace(r.duracion_segundos / r.distancia_km) : null,
       rpe: r.rpe,
       days_ago: Math.round((Date.now() - new Date(r.created_at).getTime()) / 86400000),
     })),
   };
+  if (dataGaps.length) context.data_gaps = dataGaps;
 
   if (activePlan) {
     context.plan = {
-      goal: activePlan.goal_key,
+      goal: activePlan.objetivo,
       week: activePlan.semana_actual,
       progress_pct: activePlan.progreso_pct,
       base_pace: activePlan.ritmo_base ? fmtPace(activePlan.ritmo_base * 60) : null,
+    };
+    if (activePlan.race_nombre && activePlan.fecha_carrera) {
+      context.target_race = { name: activePlan.race_nombre, date: activePlan.fecha_carrera };
+    }
+  }
+  if (nextWorkout) {
+    context.next_workout = {
+      type: nextWorkout.tipo,
+      title: nextWorkout.titulo,
+      date: nextWorkout.fecha,
+      target_km: nextWorkout.distancia_target_km,
     };
   }
 

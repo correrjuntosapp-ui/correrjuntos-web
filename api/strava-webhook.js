@@ -35,6 +35,9 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { waitUntil } from '@vercel/functions';
+// [F118] José post-entreno con análisis determinista (motor + idempotencia).
+// Ana queda EXACTAMENTE como estaba (orden explícita del encargo).
+import { handleJosePostWorkout } from './_lib/post-workout-orchestrator.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const STRAVA_API = 'https://www.strava.com/api/v3';
@@ -176,23 +179,10 @@ function mapActivityToRun(a, userId) {
   };
 }
 
-// ── Copy de José/Ana (ES — la base es español-first; TODO i18n) ──
-function joseInAppContent(run) {
-  const km = run.distancia_km > 0 ? run.distancia_km.toFixed(2) : null;
-  const parts = [];
-  if (km) parts.push(`${km} km`);
-  if (run.ritmo_promedio && run.deporte !== 'walking' && run.deporte !== 'bici') parts.push(`a ${run.ritmo_promedio}`);
-  const dur = fmtDuration(run.duracion_segundos);
-  if (dur) parts.push(dur);
-  const resumen = parts.length ? parts.join(' · ') : 'entreno completado';
-  if (run.deporte === 'walking') {
-    return `¡Buena caminata! ${resumen}. Caminar también suma: activa la recuperación y construye base aeróbica. Si quieres, mañana te preparo algo suave de carrera.`;
-  }
-  if (run.deporte === 'bici') {
-    return `¡Buena ruta en bici! ${resumen}. El ciclismo construye base aeróbica sin impacto — piernas más frescas para tu próximo entreno de carrera. Si quieres, lo tengo en cuenta al planificar tu semana.`;
-  }
-  return `¡Entreno registrado! ${resumen}. Buen trabajo — he echado un vistazo a los números y los tienes en tu resumen. Si notaste algo raro (molestias, fatiga excesiva), cuéntamelo y lo miramos juntos.`;
-}
+// [F118] joseInAppContent ELIMINADO: la plantilla fija prometía un análisis
+// que nunca se ejecutaba. Sustituida por el motor determinista
+// (api/_lib/post-workout-analysis.js) vía orquestador.
+// Ana (anaInAppContent) se conserva sin cambios por orden del encargo.
 
 function anaInAppContent(run) {
   if (run.deporte === 'walking') {
@@ -302,22 +292,18 @@ async function processActivityEvent(sb, ownerId, activityId) {
   if (insErr) { console.log('[strava-webhook] insert skip/err:', insErr.message); return; }
   console.log('[strava-webhook] run importada', inserted.id, row.distancia_km + 'km', 'user', conn.user_id);
 
-  // 6. Mensajes in-app de José y Ana — dedup diario CONTRA LA PROPIA TABLA
-  //    (cubre también los que insertó el cliente hoy por otra run)
+  // 6. Mensajes in-app de José y Ana.
+  // [F118.1] José: ENTRADA ÚNICA del orquestador. El canario decide:
+  //  - fuera de allowlist / config inválida → camino LEGACY exacto de
+  //    producción (plantilla + su cap diario histórico);
+  //  - dentro + dry_run → analiza y mide, cero inserciones;
+  //  - dentro + real → motor determinista SIN cap diario (dos sesiones
+  //    reales el mismo día = dos análisis; dedup = run_ref por actividad).
+  const runRow = { ...row, id: inserted.id };
+  const joseResult = await handleJosePostWorkout(sb, runRow, { nowIso: new Date().toISOString(), lang: 'es' });
+  const joseSpoke = joseResult.outcome === 'created' || joseResult.outcome === 'legacy_sent';
+  console.log('[strava-webhook] jose post-workout:', joseResult.path, joseResult.outcome);
   const todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
-  const { count: joseToday } = await sb
-    .from('coach_chat_messages')
-    .select('id', { count: 'exact', head: true })
-    .eq('user_id', conn.user_id)
-    .eq('is_proactive', true)
-    .gte('created_at', todayStart.toISOString());
-  let joseSpoke = false;
-  if (!joseToday || joseToday === 0) {
-    const { error } = await sb.from('coach_chat_messages').insert({
-      user_id: conn.user_id, role: 'assistant', content: joseInAppContent(row), is_proactive: true,
-    });
-    joseSpoke = !error;
-  }
   const { count: anaToday } = await sb
     .from('maria_chat_messages')
     .select('id', { count: 'exact', head: true })

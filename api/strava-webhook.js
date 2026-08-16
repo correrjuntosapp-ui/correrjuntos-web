@@ -38,6 +38,8 @@ import { waitUntil } from '@vercel/functions';
 // [F118] José post-entreno con análisis determinista (motor + idempotencia).
 // Ana queda EXACTAMENTE como estaba (orden explícita del encargo).
 import { handleJosePostWorkout } from './_lib/post-workout-orchestrator.js';
+// [F134] Vinculación Strava → sesión del plan (informe 133). Nace apagada.
+import { vincularActividadConPlan } from './_lib/strava-plan-linker.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const STRAVA_API = 'https://www.strava.com/api/v3';
@@ -291,6 +293,17 @@ async function processActivityEvent(sb, ownerId, activityId) {
   const { data: inserted, error: insErr } = await sb.from('runs').insert(row).select('id').single();
   if (insErr) { console.log('[strava-webhook] insert skip/err:', insErr.message); return; }
   console.log('[strava-webhook] run importada', inserted.id, row.distancia_km + 'km', 'user', conn.user_id);
+
+  // 5.5 [F134] Vincular la actividad con la sesión del plan del mismo día.
+  //     Va ANTES de José a propósito: si la sesión queda completada, el
+  //     análisis post-entreno puede saber que pertenecía al plan.
+  //     Nace APAGADO (env STRAVA_PLAN_LINKING); nunca lanza, y un fallo aquí
+  //     no altera el camino legacy de José ni de Ana. No emite ningún
+  //     mensaje ni notificación propia.
+  const vinculo = await vincularActividadConPlan(sb, { ...row, id: inserted.id });
+  if (vinculo.modo !== 'off') {
+    console.log('[strava-webhook] f134 vinculacion:', vinculo.modo, vinculo.resultado);
+  }
 
   // 6. Mensajes in-app de José y Ana.
   // [F118.1] José: ENTRADA ÚNICA del orquestador. El canario decide:

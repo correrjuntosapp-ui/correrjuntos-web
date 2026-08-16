@@ -1463,6 +1463,26 @@
       "source": "/blog/como-organizar-quedadas-running",
       "destination": "/blog/quedadas-running-como-organizar",
       "permanent": true
+    },
+    {
+      "source": "/blog/en/running-meetups-barcelona",
+      "destination": "/blog/en/running-groups-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/find-people-to-run-with",
+      "destination": "/blog/en/find-running-partners",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/find-running-partners-near-you",
+      "destination": "/blog/en/find-running-partners",
+      "permanent": true
+    },
+    {
+      "source": "/blog/encontrar-companeros-running-cerca",
+      "destination": "/blog/encontrar-gente-para-correr",
+      "permanent": true
     }
   ],
   "crons": [

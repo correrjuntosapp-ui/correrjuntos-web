@@ -571,23 +571,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/duatlon-principiantes-guia"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/blog/en/find-people-to-run-with</loc>
-    <lastmod>2026-07-19</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/find-people-to-run-with"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/encontrar-gente-para-correr"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/encontrar-gente-para-correr"/>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/blog/en/find-running-partners</loc>
     <lastmod>2026-07-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/find-running-partners"/>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/find-running-partners-near-you</loc>
-    <lastmod>2026-07-19</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/find-running-partners-near-you"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/encontrar-companeros-running-cerca"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/encontrar-companeros-running-cerca"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/encontrar-gente-para-correr"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/en/first-running-meetup</loc>
@@ -1110,9 +1097,9 @@
   <url>
     <loc>https://www.correrjuntos.com/blog/en/running-groups-barcelona</loc>
     <lastmod>2026-07-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/quedadas-correr-barcelona"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-groups-barcelona"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/grupos-running-barcelona"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/grupos-running-barcelona"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/quedadas-correr-barcelona"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/en/running-groups-bilbao</loc>
@@ -1209,13 +1196,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-is-social-fitness-trend"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/correr-es-social-tendencia"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/correr-es-social-tendencia"/>
-  </url>
-  <url>
-    <loc>https://www.correrjuntos.com/blog/en/running-meetups-barcelona</loc>
-    <lastmod>2026-07-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-meetups-barcelona"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/quedadas-correr-barcelona"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/quedadas-correr-barcelona"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/en/running-motivation-tips</loc>

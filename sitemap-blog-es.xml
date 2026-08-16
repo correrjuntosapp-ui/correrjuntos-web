@@ -690,18 +690,11 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/empezar-trail-running"/>
   </url>
   <url>
-    <loc>https://www.correrjuntos.com/blog/encontrar-companeros-running-cerca</loc>
-    <lastmod>2026-07-19</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/encontrar-companeros-running-cerca"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/find-running-partners-near-you"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/encontrar-companeros-running-cerca"/>
-  </url>
-  <url>
     <loc>https://www.correrjuntos.com/blog/encontrar-gente-para-correr</loc>
     <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/encontrar-gente-para-correr"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/find-people-to-run-with"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/encontrar-gente-para-correr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/find-running-partners"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/entrenamiento-cruzado-running</loc>
@@ -1743,8 +1736,8 @@
     <loc>https://www.correrjuntos.com/blog/quedadas-correr-barcelona</loc>
     <lastmod>2026-07-23</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/quedadas-correr-barcelona"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-meetups-barcelona"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/quedadas-correr-barcelona"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.correrjuntos.com/blog/en/running-groups-barcelona"/>
   </url>
   <url>
     <loc>https://www.correrjuntos.com/blog/quedadas-running-como-organizar</loc>

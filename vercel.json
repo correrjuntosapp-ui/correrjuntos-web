@@ -1448,6 +1448,21 @@
       "source": "/map",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/blog/encontrar-runners-malaga",
+      "destination": "/blog/grupos-running-malaga",
+      "permanent": true
+    },
+    {
+      "source": "/blog/en/find-runners-malaga",
+      "destination": "/blog/en/running-groups-malaga",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-organizar-quedadas-running",
+      "destination": "/blog/quedadas-running-como-organizar",
+      "permanent": true
     }
   ],
   "crons": [

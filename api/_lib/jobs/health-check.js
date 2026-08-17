@@ -128,6 +128,22 @@ export default async function runHealthCheck(req, res, env) {
       .eq('event_name', name).gte('event_ts', d7);
     return count ?? 0;
   };
+  // [F116 · 14 ago 2026] Lectura HONESTA del embudo de trial:
+  //  1) NUNCA concluir "ya no es técnico" solo con vistas y 0 trials.
+  //  2) Mientras la ventana 7d pise fechas anteriores a los fixes del P0
+  //     de onboarding (iOS 2026-08-13T13:32Z · Android 2026-08-14T05:34Z),
+  //     las vistas de paywall están CONTAMINADAS (usuarios en bucle de
+  //     onboarding viendo el upsell repetido) → banner y cero conclusiones
+  //     sobre copy. Relectura limpia: informe 116 (21 ago).
+  //  3) Embudo por PASOS y por USUARIO ÚNICO / SESIÓN, no solo vistas.
+  const ANDROID_P0_FIX_MS = Date.parse('2026-08-14T05:34:37Z');
+  const ventanaContaminada = (Date.now() - 7 * 864e5) < ANDROID_P0_FIX_MS;
+  const distinct7 = async (name, col) => {
+    const { data } = await sb
+      .from('analytics_events').select(col)
+      .eq('event_name', name).gte('event_ts', d7).limit(10000);
+    return new Set((data || []).map((r) => r[col]).filter(Boolean)).size;
+  };
   const paywall7 = await count7('paywall_opened');
   const guard7 = await count7('purchase_pkg_guard');
   // [8 jul pm] Split eligible/no_trial: distingue "los usuarios aún no
@@ -145,14 +161,36 @@ export default async function runHealthCheck(req, res, env) {
     .from('analytics_events').select('params')
     .eq('event_name', 'purchase_failed').gte('event_ts', d7);
   const pfReal = (pfRows || []).filter((r) => !/cancel/i.test(r.params?.error || '')).length;
+  // Desglose por usuario/sesión + pasos del embudo (instrumentados en
+  // analytics_events; "1ª vista por usuario" = usuarios únicos con vista).
+  const eligUsers7 = await distinct7('paywall_view_eligible_trial', 'user_id');
+  const eligSes7 = await distinct7('paywall_view_eligible_trial', 'session_id');
+  const cta7 = await count7('purchase_cta_clicked');
+  const started7 = await count7('purchase_started');
+  const cancelled7 = await count7('purchase_cancelled');
+  const success7 = await count7('purchase_success');
   metrics.paywall_7d = paywall7;
   metrics.paywall_con_trial_7d = elig7;
   metrics.paywall_sin_trial_7d = noTrial7;
+  metrics.paywall_usuarios_unicos_elegibles_7d = eligUsers7;
+  metrics.paywall_sesiones_elegibles_7d = eligSes7;
+  metrics.cta_taps_7d = cta7;
+  metrics.purchase_started_7d = started7;
+  metrics.purchase_cancelled_7d = cancelled7;
+  metrics.purchase_success_7d = success7;
   metrics.trials_7d = trials7 ?? 0;
+  // "Entitlement activado" exacto vive en RevenueCat; aquí un proxy
+  // declarado: trials + purchase_success.
+  metrics.entitlement_proxy_7d = (trials7 ?? 0) + success7;
   metrics.compras_fallidas_reales_7d = pfReal;
+  metrics.ventana_paywall = ventanaContaminada
+    ? 'CONTAMINADA por P0 onboarding hasta 2026-08-21T05:34Z'
+    : 'limpia (post-fix P0)';
   if (paywall7 >= 15 && (trials7 ?? 0) === 0) {
-    if (elig7 >= 10) {
-      alerts.push(`CONVERSIÓN del trial rota: ${elig7} vistas de paywall CON trial visible en 7 días y 0 trials empezados. Ya no es técnico — revisar copy/fricción del paywall.`);
+    if (ventanaContaminada) {
+      alerts.push(`Trial en 0 con ${elig7} vistas elegibles (${eligUsers7} usuarios únicos) en 7d — ⚠️ DATOS CONTAMINADOS POR P0 ONBOARDING — NO CONCLUIR SOBRE COPY. Hasta los fixes (iOS 13-ago 13:32Z · Android 14-ago 05:34Z) los usuarios en bucle de onboarding veían el paywall repetido. Relectura limpia: informe 116 (21 ago).`);
+    } else if (elig7 >= 10) {
+      alerts.push(`Trial en 0 con ${eligUsers7} usuarios únicos elegibles (${elig7} vistas, ${eligSes7} sesiones) en 7d. Embudo: CTA ${cta7} → purchase_started ${started7} → cancelados ${cancelled7} → trials ${trials7 ?? 0}. NO concluir causa (técnica / fricción pre-CTA / post-CTA / oferta / muestra) sin ver dónde se corta el embudo — clasificación A-G del informe 116.`);
     } else if (elig7 === 0 && noTrial7 >= 10) {
       alerts.push(`Elegibilidad del trial sospechosa: ${noTrial7} vistas de paywall en 7 días y NINGUNA con trial visible. Si la OTA del fix ya debería estar aplicada (48h+), revisar checkTrialEligibility / RevenueCat.`);
     } else {

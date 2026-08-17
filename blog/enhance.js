@@ -477,7 +477,26 @@
     if(link.href && link.href.indexOf('amazon') !== -1){
       var card = link.closest('.shoe-card');
       var prodName = card ? (card.querySelector('h3') || {}).textContent || '' : '';
-      trackEvent('affiliate_click', {product_name: prodName.substring(0,60), article_slug: slug});
+      trackEvent('affiliate_click', {merchant: 'amazon', product_name: prodName.substring(0,60), article_slug: slug});
+      return;
+    }
+
+    /* Afiliado Prozis: distingue la caja de cupón de una tarjeta de producto */
+    if(link.href && link.href.indexOf('prozis.com') !== -1){
+      var enCaja = !!link.closest('.prozis-offer');
+      var pzCard = link.closest('.shoe-card, .product-card');
+      /* Sin tarjeta (enlaces dentro del texto) el nombre sale del slug del
+         producto, que es lo único que distingue una ficha de otra. */
+      var pzSlugName = (link.href.split('/prozis/')[1] || '').split('?')[0];
+      var pzName = enCaja
+        ? 'caja cupon'
+        : (pzCard ? ((pzCard.querySelector('h3, .product-name') || {}).textContent || pzSlugName) : pzSlugName);
+      trackEvent('affiliate_click', {
+        merchant: 'prozis',
+        link_type: enCaja ? 'caja' : 'producto',
+        product_name: pzName.substring(0,60),
+        article_slug: slug
+      });
       return;
     }
 
@@ -490,6 +509,15 @@
 
     /* Related article clicks */
     if(link.closest('.related-section')) trackEvent('related_click', {target_slug: link.href.split('/').pop(), article_slug: slug});
+  });
+
+  /* 6b-bis. Copia del código de descuento de la caja Prozis.
+     Listener aparte: el botón es <button>, no <a>, y el handler de arriba
+     descarta lo que no sea enlace. No interfiere con el copiado inline. */
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.pz-copy-btn');
+    if(!btn) return;
+    trackEvent('prozis_code_copy', {code: btn.getAttribute('data-pz-copy') || '', article_slug: slug});
   });
 
   /* 6c. Newsletter submit tracking + prevent duplicate slide-in */
@@ -617,10 +645,35 @@
         var prodTitle = card ? (card.querySelector('h3') || {}).textContent || '' : '';
         var btnText = link.textContent.trim().substring(0,40);
         trackEvent('affiliate_click_enhanced', {
+          merchant: 'amazon',
           product_name: prodTitle.substring(0,60),
           button_text: btnText,
           position: pos,
           total_links: allAffLinks.length,
+          article_slug: slug
+        });
+      }
+
+      /* Prozis en bloque propio: si se añadiera a los selectores de Amazon,
+         position y total_links de Amazon cambiarían y romperían la serie
+         histórica. Aquí se cuenta solo contra los enlaces de Prozis. */
+      if(link.href.indexOf('prozis.com') !== -1){
+        var pzLinks = document.querySelectorAll('a[href*="prozis.com"]');
+        var pzPos = -1;
+        for(var k=0;k<pzLinks.length;k++){ if(pzLinks[k]===link){ pzPos=k+1; break; } }
+        var pzEnCaja = !!link.closest('.prozis-offer');
+        var pzBox = link.closest('.shoe-card, .product-card');
+        var pzSlugTitle = (link.href.split('/prozis/')[1] || '').split('?')[0];
+        var pzTitle = pzEnCaja
+          ? 'caja cupon'
+          : (pzBox ? ((pzBox.querySelector('h3, .product-name') || {}).textContent || pzSlugTitle) : pzSlugTitle);
+        trackEvent('affiliate_click_enhanced', {
+          merchant: 'prozis',
+          link_type: pzEnCaja ? 'caja' : 'producto',
+          product_name: pzTitle.substring(0,60),
+          button_text: link.textContent.trim().substring(0,40),
+          position: pzPos,
+          total_links: pzLinks.length,
           article_slug: slug
         });
       }

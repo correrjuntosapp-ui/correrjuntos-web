@@ -322,6 +322,9 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 .cat-badge-nutricion{color:#22c55e;background:rgba(34,197,94,.12)}
 .cat-badge-rutas{color:#a855f7;background:rgba(168,85,247,.12)}
 .cat-badge-equipamiento{color:#06b6d4;background:rgba(6,182,212,.12)}
+.badge-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.collab-badge{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px;color:#92400e;background:#fef3c7}
+.dark-mode .collab-badge{color:#fbbf24;background:rgba(251,191,36,.14)}
 .cat-badge-tecnologia{color:#eab308;background:rgba(234,179,8,.12)}
 .cat-badge-salud{color:#e11d48;background:rgba(225,29,72,.12)}
 .cat-badge-trail{color:#84cc16;background:rgba(132,204,22,.12)}
@@ -943,6 +946,20 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
 
   <div class="articles" id="articlesGrid">
+    <!-- Review Sizen 6+ NEW PANTS (20 ago 2026) -->
+    <a href="/blog/sizen-6-plus-opiniones" class="article-card" data-category="equipamiento" data-pin="1" style="animation-delay:.04s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/blog-images/sizen-6-plus/sizen-6-plus-pants-hero-wide.webp" alt="PANTS Sizen 6+ NEW durante una sesión de presoterapia en casa" loading="lazy" width="1731" height="909" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="badge-row"><span class="category cat-badge-equipamiento">Equipamiento</span><span class="collab-badge">Colaboraci&oacute;n</span></span>
+        <h3>Sizen 6+ NEW: opini&oacute;n tras probar sus PANTS</h3>
+        <p>Presoterapia en casa. Seis sesiones reales: bater&iacute;a, comodidad, ruido, app y para qui&eacute;n merece la pena.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta"><span class="meta">20 ago 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div>
+      </div>
+    </a>
     <!-- Análisis Prozis Energy Gel (2 ago 2026) -->
     <a href="/blog/review-prozis-energy-gel-cafeina" class="article-card" data-category="nutricion" style="animation-delay:.04s">
       <div class="card-img">
@@ -4163,6 +4180,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var featured = allCards.filter(function(c) { return c.classList.contains('featured'); });
   var regular = allCards.filter(function(c) { return !c.classList.contains('featured'); });
   regular.sort(function(a, b) {
+    // Cards con data-pin van primero (novedad destacada), sin alterar el resto del orden
+    var ap = a.dataset.pin ? 0 : 1;
+    var bp = b.dataset.pin ? 0 : 1;
+    if (ap !== bp) return ap - bp;
     var ai = catOrder.indexOf(a.dataset.category);
     var bi = catOrder.indexOf(b.dataset.category);
     if (ai === -1) ai = 99;
@@ -4242,7 +4263,7 @@ document.addEventListener('DOMContentLoaded', function() {
         visible++;
         if (visible <= maxShow) {
           // Insert category separator when category changes (only in "todos" view)
-          if (activeFilter === 'todos' && !query && cat !== lastCat && !card.classList.contains('featured')) {
+          if (activeFilter === 'todos' && !query && cat !== lastCat && !card.classList.contains('featured') && !card.dataset.pin) {
             lastCat = cat;
             var sep = document.createElement('div');
             sep.className = 'category-separator';

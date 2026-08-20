@@ -57,29 +57,45 @@ const AFFILIATE_CATEGORIES = [
   'Suplementación', 'Atleta Híbrido',
 ];
 
-// Editorial collaborations (paid partnerships with the brand behind the product).
-// These articles are surfaced with a "Colaboración" badge in the app and MUST NOT
-// receive automatic Amazon injections: the article already carries its own
-// affiliate CTAs (partner code + UTM), and mixing another affiliate on top would
-// confuse the reader and violate the partnership terms.
-const COLLABORATIONS = {
-  'sizen-6-plus-opiniones': { partner: 'Sizen', brand: 'Sizen', campaign: 'sizen_6_plus_pilot' },
-  'prozis-supreme-whey-opiniones': { partner: 'Prozis', brand: 'Prozis', campaign: 'prozis_supreme_whey' },
+// Partner articles (paid partnerships surfaced in the app with a badge and
+// pinned at the top of the list). Two flavours:
+//   - "collaboration": product WAS CEDED for review. Badge: "Colaboración".
+//   - "affiliate":     product BOUGHT by CJ; article has affiliate code+link
+//                      and CJ earns a commission. Badge: "Afiliado".
+// Both variants MUST keep affiliate:false so ArticleReaderScreen does NOT
+// inject unrelated Amazon products on top of the partner's own CTAs.
+const PARTNER_ARTICLES = {
+  'sizen-6-plus-opiniones': {
+    partner: 'Sizen', brand: 'Sizen', campaign: 'sizen_6_plus_pilot',
+    relationship: 'collaboration', collaboration: true,
+  },
+  'prozis-supreme-whey-opiniones': {
+    partner: 'Prozis', brand: 'Prozis',
+    relationship: 'affiliate', collaboration: false,
+  },
 };
 
 // Map to clean article objects
 function mapArticles(arr) {
   return arr.map(a => {
-    const collab = COLLABORATIONS[a.s];
+    const partner = PARTNER_ARTICLES[a.s];
     const base = {
       slug: a.s,
       title: a.t,
       category: a.c,
       image: a.i,
     };
-    if (collab) {
-      // Force affiliate:false so ArticleReaderScreen does NOT inject Amazon products.
-      return { ...base, affiliate: false, collaboration: true, partner: collab.partner, brand: collab.brand, campaign: collab.campaign };
+    if (partner) {
+      const extra = {
+        affiliate: false, // never inject Amazon on top of a partner article
+        collaboration: partner.collaboration,
+        relationship: partner.relationship,
+        featuredPartner: true,
+        partner: partner.partner,
+        brand: partner.brand,
+      };
+      if (partner.campaign) extra.campaign = partner.campaign;
+      return { ...base, ...extra };
     }
     return AFFILIATE_CATEGORIES.includes(a.c)
       ? { ...base, affiliate: true }

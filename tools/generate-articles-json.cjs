@@ -57,15 +57,34 @@ const AFFILIATE_CATEGORIES = [
   'Suplementación', 'Atleta Híbrido',
 ];
 
+// Editorial collaborations (paid partnerships with the brand behind the product).
+// These articles are surfaced with a "Colaboración" badge in the app and MUST NOT
+// receive automatic Amazon injections: the article already carries its own
+// affiliate CTAs (partner code + UTM), and mixing another affiliate on top would
+// confuse the reader and violate the partnership terms.
+const COLLABORATIONS = {
+  'sizen-6-plus-opiniones': { partner: 'Sizen', brand: 'Sizen', campaign: 'sizen_6_plus_pilot' },
+  'prozis-supreme-whey-opiniones': { partner: 'Prozis', brand: 'Prozis', campaign: 'prozis_supreme_whey' },
+};
+
 // Map to clean article objects
 function mapArticles(arr) {
-  return arr.map(a => ({
-    slug: a.s,
-    title: a.t,
-    category: a.c,
-    image: a.i,
-    ...(AFFILIATE_CATEGORIES.includes(a.c) ? { affiliate: true } : {}),
-  }));
+  return arr.map(a => {
+    const collab = COLLABORATIONS[a.s];
+    const base = {
+      slug: a.s,
+      title: a.t,
+      category: a.c,
+      image: a.i,
+    };
+    if (collab) {
+      // Force affiliate:false so ArticleReaderScreen does NOT inject Amazon products.
+      return { ...base, affiliate: false, collaboration: true, partner: collab.partner, brand: collab.brand, campaign: collab.campaign };
+    }
+    return AFFILIATE_CATEGORIES.includes(a.c)
+      ? { ...base, affiliate: true }
+      : base;
+  });
 }
 
 const esArticles = mapArticles(dbES);

@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>CorrerJuntos — Blog de Running</title>
+  <title>CorrerJuntos — Blog de Running y Ciclismo</title>
   <link>https://www.correrjuntos.com/blog/</link>
-  <description>Consejos de entrenamiento, nutricion, zapatillas y equipamiento para runners. Coach Jose IA te guia.</description>
+  <description>Guías de running y ciclismo: entrenamiento, comunidad, seguridad y equipamiento con fuentes verificables.</description>
   <language>es</language>
-  <lastBuildDate>Sun, 12 Apr 2026 05:17:57 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 20 Aug 2026 15:00:00 GMT</lastBuildDate>
   <atom:link href="https://www.correrjuntos.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>Ciclismo para Principiantes: Guía desde Cero</title>
+    <link>https://www.correrjuntos.com/blog/ciclismo/ciclismo-para-principiantes</link>
+    <guid>https://www.correrjuntos.com/blog/ciclismo/ciclismo-para-principiantes</guid>
+    <pubDate>Thu, 20 Aug 2026 15:00:00 GMT</pubDate>
+    <description>Qué bicicleta sirve, cómo elegir una ruta sencilla, técnica básica y un plan práctico de cuatro semanas para empezar a pedalear.</description>
+  </item>
+  <item>
+    <title>Qué Llevar en tu Primera Salida en Bici</title>
+    <link>https://www.correrjuntos.com/blog/ciclismo/equipamiento-primera-salida-bicicleta</link>
+    <guid>https://www.correrjuntos.com/blog/ciclismo/equipamiento-primera-salida-bicicleta</guid>
+    <pubDate>Thu, 20 Aug 2026 14:55:00 GMT</pubDate>
+    <description>Lo obligatorio, lo esencial y lo que puede esperar: una checklist honesta para ir preparado sin comprar de más.</description>
+  </item>
+  <item>
+    <title>Mejores Luces para Bicicleta 2026 según tu Uso</title>
+    <link>https://www.correrjuntos.com/blog/ciclismo/mejores-luces-bicicleta</link>
+    <guid>https://www.correrjuntos.com/blog/ciclismo/mejores-luces-bicicleta</guid>
+    <pubDate>Thu, 20 Aug 2026 14:50:00 GMT</pubDate>
+    <description>Cinco luces comparadas con especificaciones oficiales para visibilidad diurna, carretera oscura y radar trasero.</description>
+  </item>
+  <item>
+    <title>Cómo Encontrar una Grupeta de Ciclismo de tu Nivel</title>
+    <link>https://www.correrjuntos.com/blog/ciclismo/como-encontrar-grupeta-ciclismo</link>
+    <guid>https://www.correrjuntos.com/blog/ciclismo/como-encontrar-grupeta-ciclismo</guid>
+    <pubDate>Thu, 20 Aug 2026 14:45:00 GMT</pubDate>
+    <description>Dónde buscar, qué preguntar y cómo detectar una grupeta que realmente no deje atrás a principiantes.</description>
+  </item>
   <item>
     <title>Agujetas Despu&amp;eacute;s de Correr: C&amp;oacute;mo Aliviarlas R&amp;aacute;pido</title>
     <link>https://www.correrjuntos.com/blog/agujetas-despues-de-correr</link>

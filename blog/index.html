@@ -898,6 +898,27 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpiar búsqueda"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
 
+  <!-- Sport navigation — topics remain in the category filter below -->
+  <section aria-labelledby="sport-nav-title" style="margin:28px 0 34px">
+    <div class="section-head" style="margin-bottom:14px">
+      <h2 class="section-label" id="sport-nav-title">Explora por deporte</h2>
+      <span class="section-rule"></span>
+      <span class="section-meta">Elige tu punto de entrada</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px">
+      <a href="/blog" style="display:flex;align-items:center;gap:16px;padding:18px;border:1px solid #efe6db;border-radius:16px;background:#fffcf9;text-decoration:none;color:#1f2937">
+        <span aria-hidden="true" style="width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(249,115,22,.12);font-size:1.45rem">🏃</span>
+        <span><strong style="display:block;font-size:1.02rem">Running</strong><small style="color:#6b7280">Entrenamiento, zapatillas, salud y carreras</small></span>
+        <span aria-hidden="true" style="margin-left:auto;color:#f97316;font-weight:800">→</span>
+      </a>
+      <a href="/blog/ciclismo" style="display:flex;align-items:center;gap:16px;padding:18px;border:1px solid rgba(37,99,235,.25);border-radius:16px;background:linear-gradient(135deg,#f7fbff,#eef6ff);text-decoration:none;color:#1f2937">
+        <span aria-hidden="true" style="width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(37,99,235,.12);font-size:1.45rem">🚴</span>
+        <span><strong style="display:block;font-size:1.02rem;color:#1d4ed8">Ciclismo · Nuevo</strong><small style="color:#5b6780">Empezar, equipamiento, seguridad y grupetas</small></span>
+        <span aria-hidden="true" style="margin-left:auto;color:#2563eb;font-weight:800">→</span>
+      </a>
+    </div>
+  </section>
+
   <!-- Category Filter — Editorial Navigation -->
   <div class="filter-bar-wrap" id="filterBarWrap">
   <div class="filter-section-head">
@@ -946,6 +967,11 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
 
   <div class="articles" id="articlesGrid">
+    <!-- Nueva sección Ciclismo (20 ago 2026) -->
+    <a href="/blog/ciclismo/ciclismo-para-principiantes" class="article-card" data-category="entrenamiento" style="animation-delay:.02s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/ciclismo-principiantes-hero.webp" alt="Ciclista principiante ajustándose el casco antes de salir" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Ciclismo</span><h3>Ciclismo para Principiantes: Guía desde Cero</h3><p>Qué bici sirve, cómo elegir una ruta sencilla, técnica básica y un plan práctico de cuatro semanas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 12 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/equipamiento-primera-salida-bicicleta" class="article-card" data-category="equipamiento" style="animation-delay:.03s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/equipamiento-primera-salida-hero.webp" alt="Equipamiento esencial para una salida en bicicleta" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Qué Llevar en tu Primera Salida en Bici</h3><p>Obligatorio, esencial y opcional: una checklist honesta para ir preparado sin comprar por comprar.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 13 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/mejores-luces-bicicleta" class="article-card" data-category="tecnologia" style="animation-delay:.04s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/mejores-luces-bicicleta-hero.webp" alt="Bicicleta con luz delantera blanca y trasera roja al anochecer" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-tecnologia">Ciclismo</span><h3>Mejores Luces para Bicicleta 2026</h3><p>Cinco opciones según el uso, con especificaciones oficiales y sin puntuaciones o pruebas inventadas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 15 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/como-encontrar-grupeta-ciclismo" class="article-card" data-category="rutas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/encontrar-grupeta-hero.webp" alt="Grupo de ciclistas recibiendo a una nueva compañera" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-rutas">Ciclismo</span><h3>Cómo Encontrar una Grupeta de tu Nivel</h3><p>Dónde buscar, qué preguntar y cómo detectar un grupo que realmente no deje atrás a principiantes.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 11 min</span><span class="card-arrow">Leer →</span></div></div></a>
     <!-- Review Sizen 6+ NEW PANTS (20 ago 2026) -->
     <a href="/blog/sizen-6-plus-opiniones" class="article-card" data-category="equipamiento" data-pin="1" style="animation-delay:.04s">
       <div class="card-img">

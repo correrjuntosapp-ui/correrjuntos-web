@@ -2154,6 +2154,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/ciclismo"/>
   </url>
   <url>
+    <loc>https://www.correrjuntos.com/blog/politica-editorial</loc>
+    <lastmod>2026-08-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/politica-editorial"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.correrjuntos.com/blog/politica-editorial"/>
+  </url>
+  <url>
     <loc>https://www.correrjuntos.com/blog/ciclismo/rutas</loc>
     <lastmod>2026-08-21</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.correrjuntos.com/blog/ciclismo/rutas"/>

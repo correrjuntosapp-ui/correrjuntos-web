@@ -27,11 +27,14 @@
     var link=event.target.closest('a[data-track]');
     if(!link)return;
     var name=link.dataset.track;
+    var isImage=!!link.querySelector('img')||link.classList.contains('buy-photo');
+    var label=(link.textContent||'').trim().replace(/\s+/g,' ')||link.getAttribute('aria-label')||(link.querySelector('img')&&link.querySelector('img').alt)||'';
     var params={
       destination:link.dataset.destination||'unknown',
       placement:placementOf(link),
+      link_type:isImage?'image':'text',
       link_url:link.href||'',
-      link_text:(link.textContent||'').trim().replace(/\s+/g,' ').slice(0,80)
+      link_text:label.slice(0,80)
     };
     if(name==='affiliate_click'||name==='affiliate_link_click'){
       name='affiliate_link_click';

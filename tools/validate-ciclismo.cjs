@@ -133,8 +133,62 @@ function fetchUrl(url) {
     for (const m of h.matchAll(/(?:src|href)="\/public\/([^"]+\.(?:webp|jpg|png|svg))"/g)) {
       if (!fs.existsSync(path.join(ROOT, 'public', m[1]))) err(`${u}: asset inexistente /public/${m[1]}`);
     }
+    // Imágenes: alt no vacío + width/height explícitos (CLS)
+    for (const m of h.matchAll(/<img [^>]+>/g)) {
+      if (!/alt="[^"]+"/.test(m[0])) err(`${u}: <img> sin alt útil: ${m[0].slice(0, 70)}`);
+      if (!/width=/.test(m[0]) || !/height=/.test(m[0])) err(`${u}: <img> sin width/height: ${m[0].slice(0, 70)}`);
+    }
+    // E-E-A-T: BlogPosting debe llevar author con url y sameAs
+    if (/"@type":"BlogPosting"/.test(h)) {
+      if (!/"author":\{"@type":"Person","name":"[^"]+","url":"https:\/\/www\.correrjuntos\.com\/blog\/autor\//.test(h)) err(`${u}: BlogPosting sin author.url canónico`);
+      // sameAs es opcional: solo se admite si la página de autor enlaza el mismo perfil (verificabilidad on-site)
+      const sameAsM = h.match(/"sameAs":\["([^"]+)"/);
+      if (sameAsM) {
+        const authorPage = fs.readFileSync(path.join(ROOT, 'blog', 'autor', 'abraham-marquez.html'), 'utf8');
+        if (!authorPage.includes(sameAsM[1])) err(`${u}: sameAs (${sameAsM[1]}) no está enlazado en la página de autor — asociación no verificable`);
+      }
+      // dateModified no anterior a datePublished y sin fechas futuras
+      const dp = (h.match(/"datePublished":"([0-9-]+)"/) || [])[1];
+      const dm = (h.match(/"dateModified":"([0-9-]+)"/) || [])[1];
+      if (dp && dm && dm < dp) err(`${u}: dateModified (${dm}) anterior a datePublished (${dp})`);
+    }
+    // Afirmaciones de prueba sin evidencia estructurada
+    const claim = h.match(/(hemos probado|probado por CorrerJuntos|lo probamos|tras probarlo|en nuestras pruebas)/i);
+    if (claim && !h.includes('data-tested="true"')) err(`${u}: afirmación de prueba propia («${claim[1]}») sin bloque de evidencia estructurada (data-tested)`);
+    // Ratings/reseñas ficticios prohibidos
+    if (/AggregateRating|"reviewRating"/.test(h)) err(`${u}: contiene AggregateRating/reviewRating — prohibido sin reseñas reales`);
+    // Artículos con afiliación deben enlazar la política editorial
+    if (h.includes('affiliate-note') && !h.includes('/blog/politica-editorial')) err(`${u}: artículo comercial sin enlace a la política editorial`);
+    // CTAs identificables (tracking presente)
+    if (u !== '/blog/ciclismo' && !/data-track="cycling_app_(click|interest)"/.test(h)) warn(`${u}: sin CTA de app identificable`);
   }
   ok('On-page revisado en ' + files.length + ' páginas');
+
+  // 4b. Política editorial: existe y es coherente
+  console.log('\n[4b] Política editorial');
+  const polFile = path.join(ROOT, 'blog', 'politica-editorial.html');
+  if (!fs.existsSync(polFile)) err('Falta blog/politica-editorial.html');
+  else {
+    const ph = fs.readFileSync(polFile, 'utf8');
+    if (!/<link rel="canonical" href="https:\/\/www\.correrjuntos\.com\/blog\/politica-editorial"/.test(ph)) err('politica-editorial: canonical incorrecto');
+    if ((ph.match(/<h1[\s>]/g) || []).length !== 1) err('politica-editorial: H1 no único');
+    ok('Política editorial presente y bien formada');
+  }
+
+  // 4c. Hub de rutas: sin quedar vacío y sin fichas de ruta incompletas
+  console.log('\n[4c] Rutas');
+  const rutasDir = path.join(DIR, 'rutas');
+  const rutasHub = fs.readFileSync(path.join(rutasDir, 'index.html'), 'utf8');
+  if (!/href="\/blog\/ciclismo\/[a-z-]+"/.test(rutasHub)) err('Hub de rutas sin enlaces a contenido (hub vacío)');
+  const routePages = walk(rutasDir).filter((f) => !f.endsWith(path.join('rutas', 'index.html')));
+  const ROUTE_REQUIRED = ['Distancia', 'Desnivel', 'Superficie', 'Escapatorias', 'verificación', 'revisión'];
+  for (const rp of routePages) {
+    const rh = fs.readFileSync(rp, 'utf8');
+    const missing = ROUTE_REQUIRED.filter((k) => !new RegExp(k, 'i').test(rh));
+    if (missing.length) err(`Ficha de ruta incompleta ${urlOf(rp)}: faltan ${missing.join(', ')}`);
+    if (/"GeoCoordinates"/.test(rh) && !/"latitude":\s*-?\d/.test(rh)) err(`${urlOf(rp)}: GeoCoordinates sin coordenadas reales`);
+  }
+  ok(routePages.length + ' fichas de ruta publicadas (todas completas o ninguna publicada)');
 
   // 5. Enlaces internos fuera del cluster → deben existir como archivo
   console.log('\n[5] Enlaces internos al resto del blog');

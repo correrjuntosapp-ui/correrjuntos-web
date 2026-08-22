@@ -231,3 +231,15 @@ test('22b · huérfano c8aef6b4 (backfill en día 2): sin ráfaga día 1, próxi
 });
 
 console.log(`\n${n} tests OK`);
+
+// ── Sincronía de copias [22 ago 2026] ────────────────────────
+// api/_lib/lifecycle-core.js es una copia byte a byte de
+// supabase/functions/revenucat-webhook/lifecycle-core.js (el import cruzado
+// no entraba en el bundle de la lambda del cron). Si alguien edita una sola,
+// este test revienta.
+import { readFileSync } from 'node:fs';
+test('99 · api/_lib/lifecycle-core.js es identico al de supabase/functions', () => {
+  const a = readFileSync(new URL('../../supabase/functions/revenucat-webhook/lifecycle-core.js', import.meta.url), 'utf8');
+  const b = readFileSync(new URL('../../api/_lib/lifecycle-core.js', import.meta.url), 'utf8');
+  assert.equal(a, b);
+});

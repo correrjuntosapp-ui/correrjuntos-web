@@ -15,7 +15,12 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { getEmailForDay } from '../trial-email-templates.js';
-import { selectMilestone } from '../../../supabase/functions/revenucat-webhook/lifecycle-core.js';
+// [22 ago 2026] Copia LOCAL de lifecycle-core: el import cruzado a
+// supabase/functions/ no entraba en el bundle de la lambda (dynamic import
+// del dispatcher → Vercel no trazaba el arbol externo) y el job devolvia
+// 500 'no se pudo cargar' desde el deploy del 20 jul. La igualdad de ambas
+// copias la garantiza un test byte a byte en lifecycle-core.test.mjs.
+import { selectMilestone } from '../lifecycle-core.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 
@@ -145,6 +150,10 @@ export default async function runLifecycleTrial(_req, res, env) {
     }));
   }
 
+  // [22 ago 2026] Resumen SIEMPRE visible en logs de Vercel: sin esto, una
+  // ejecucion natural que solo salta hitos (processed>0, sent=0) es
+  // indistinguible de una que no corrio.
+  console.log(JSON.stringify({ scope: 'lifecycle-trial', summary: true, processed, sent, skipped_by: skippedBy }));
   return res.status(200).json({
     ok: true,
     job: 'lifecycle-trial',

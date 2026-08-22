@@ -95,7 +95,7 @@ export default async function handler(req, res) {
     jobFn = mod?.default;
     if (typeof jobFn !== 'function') throw new Error('no default export');
   } catch (e) {
-    console.error('[cron/run] no se pudo cargar el job ' + job);
+    console.error('[cron/run] no se pudo cargar el job ' + job + ': ' + (e?.message || e));
     return res.status(500).json({ error: 'job_load_failed', job });
   }
 

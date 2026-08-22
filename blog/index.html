@@ -479,6 +479,56 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 .dark-mode .filter-btn-todos{background:#f97316;border-color:#f97316;color:#fff}
 .dark-mode .filter-btn-todos:hover,.dark-mode .filter-btn-todos.active{background:#c2410c;border-color:#c2410c;color:#fff}
 .dark-mode .article-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
+/* Selector de deporte — entrada editorial a los dos verticales */
+.sport-select{margin:34px 0 10px}
+.sport-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.sport-card{display:flex;align-items:stretch;min-height:160px;border:1px solid #efe6db;border-radius:16px;background:#fffcf9;overflow:hidden;text-decoration:none;color:inherit}
+.sport-card-img{flex:0 0 38%;position:relative;overflow:hidden;background:#e7e0d6}
+.sport-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.sport-card-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:18px 22px;min-width:0}
+.sport-card-body strong{font-size:1.18rem;font-weight:800;letter-spacing:-.015em;color:#1f2937}
+.sport-card-body small{color:#6b7280;font-size:.87rem;line-height:1.45}
+.sport-card-cta{margin-top:5px;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.84rem}
+.sport-card-cta .arr{display:inline-block}
+.sport-card--run .sport-card-cta{color:#c2410c}
+.sport-card--bike .sport-card-cta{color:#0b4a99}
+.sport-card-title-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.sport-card-badge{background:#0b63ce;color:#fff;font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:2px 9px;border-radius:999px;line-height:1.6}
+/* Tratamiento fotográfico común: acerca contraste y saturación de la pareja */
+.sport-card--run .sport-card-img img{filter:saturate(.94)}
+.sport-card--bike .sport-card-img img{filter:contrast(1.05) saturate(1.08)}
+.sport-card:focus-visible{outline:3px solid #c2410c;outline-offset:3px}
+.sport-card--bike:focus-visible{outline-color:#0b63ce}
+@media(prefers-reduced-motion:no-preference){
+  .sport-card{transition:transform .2s,border-color .2s,box-shadow .2s}
+  .sport-card-img img{transition:transform .35s}
+  .sport-card-cta .arr{transition:transform .2s}
+  .sport-card:hover{transform:translateY(-2px)}
+  .sport-card:hover .sport-card-img img{transform:scale(1.04)}
+  .sport-card:hover .sport-card-cta .arr{transform:translateX(3px)}
+}
+.sport-card--run:hover{border-color:rgba(249,115,22,.5);box-shadow:0 6px 22px rgba(249,115,22,.1)}
+.sport-card--bike:hover{border-color:rgba(11,99,206,.5);box-shadow:0 6px 22px rgba(11,99,206,.1)}
+.dark-mode .sport-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+.dark-mode .sport-card-body strong{color:#f1eadf}
+.dark-mode .sport-card-body small{color:#a8a29e}
+.dark-mode .sport-card--run .sport-card-cta{color:#fb923c}
+.dark-mode .sport-card--bike .sport-card-cta{color:#7db4f5}
+@media(max-width:700px){
+  .sport-select{margin:26px 0 4px}
+  .sport-select .section-meta{display:none}
+  .sport-grid{grid-template-columns:1fr;gap:12px}
+  .sport-card{min-height:118px}
+  .sport-card-img{flex-basis:34%}
+  .sport-card-body{padding:12px 14px;gap:3px}
+  .sport-card-body strong{font-size:1.02rem}
+  .sport-card-body small{font-size:.78rem;line-height:1.35}
+  .sport-card-cta{font-size:.78rem;margin-top:2px}
+  .sport-card-badge{font-size:.53rem;padding:2px 8px}
+}
+@media(max-width:400px){
+  .sport-card-img{flex-basis:30%}
+}
 .dark-mode .article-card:hover{box-shadow:0 20px 48px rgba(0,0,0,.3)}
 .dark-mode .card-img::after{background:linear-gradient(transparent,rgba(11,18,32,.6))}
 .dark-mode .card-body h3{color:#fff}
@@ -730,6 +780,33 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
 <div role="main" id="main" class="container">
 
+  <!-- Selector de deporte · entrada editorial a los dos verticales -->
+  <section class="sport-select" aria-labelledby="sport-select-label">
+    <div class="section-head">
+      <h2 class="section-label" id="sport-select-label">Elige tu deporte</h2>
+      <span class="section-rule"></span>
+      <span class="section-meta">Dos formas de moverte · una comunidad</span>
+    </div>
+    <div class="sport-grid">
+      <a class="sport-card sport-card--run" href="#archivo">
+        <span class="sport-card-img"><img src="/public/blog-images/sport-selector/running.webp" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
+        <span class="sport-card-body">
+          <span class="sport-card-title-row"><strong>Running</strong></span>
+          <small>Entrenamiento, zapatillas, salud y carreras</small>
+          <span class="sport-card-cta">Explorar running <span class="arr" aria-hidden="true">→</span></span>
+        </span>
+      </a>
+      <a class="sport-card sport-card--bike" href="/blog/ciclismo">
+        <span class="sport-card-img"><img src="/public/blog-images/sport-selector/ciclismo.webp" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
+        <span class="sport-card-body">
+          <span class="sport-card-title-row"><strong>Ciclismo</strong><span class="sport-card-badge">Nuevo</span></span>
+          <small>Primeras salidas, equipamiento, seguridad, rutas y grupetas</small>
+          <span class="sport-card-cta">Explorar ciclismo <span class="arr" aria-hidden="true">→</span></span>
+        </span>
+      </a>
+    </div>
+  </section>
+
   <!-- Empieza por aquí · 3 puertas de entrada por perfil (artículos reales) -->
   <div class="start-here">
     <div class="section-head">
@@ -897,27 +974,6 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <input type="search" id="searchInput" placeholder="Buscar artículos..." autocomplete="off">
     <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpiar búsqueda"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
-
-  <!-- Sport navigation — topics remain in the category filter below -->
-  <section aria-labelledby="sport-nav-title" style="margin:28px 0 34px">
-    <div class="section-head" style="margin-bottom:14px">
-      <h2 class="section-label" id="sport-nav-title">Explora por deporte</h2>
-      <span class="section-rule"></span>
-      <span class="section-meta">Elige tu punto de entrada</span>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px">
-      <a href="/blog" style="display:flex;align-items:center;gap:16px;padding:18px;border:1px solid #efe6db;border-radius:16px;background:#fffcf9;text-decoration:none;color:#1f2937">
-        <span aria-hidden="true" style="width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(249,115,22,.12);font-size:1.45rem">🏃</span>
-        <span><strong style="display:block;font-size:1.02rem">Running</strong><small style="color:#6b7280">Entrenamiento, zapatillas, salud y carreras</small></span>
-        <span aria-hidden="true" style="margin-left:auto;color:#f97316;font-weight:800">→</span>
-      </a>
-      <a href="/blog/ciclismo" style="display:flex;align-items:center;gap:16px;padding:18px;border:1px solid rgba(37,99,235,.25);border-radius:16px;background:linear-gradient(135deg,#f7fbff,#eef6ff);text-decoration:none;color:#1f2937">
-        <span aria-hidden="true" style="width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(37,99,235,.12);font-size:1.45rem">🚴</span>
-        <span><strong style="display:block;font-size:1.02rem;color:#1d4ed8">Ciclismo · Nuevo</strong><small style="color:#5b6780">Empezar, equipamiento, seguridad y grupetas</small></span>
-        <span aria-hidden="true" style="margin-left:auto;color:#2563eb;font-weight:800">→</span>
-      </a>
-    </div>
-  </section>
 
   <!-- Category Filter — Editorial Navigation -->
   <div class="filter-bar-wrap" id="filterBarWrap">

@@ -180,10 +180,28 @@ test('19b · nunca un hito anterior a otro ya enviado', () => {
   assert.equal(r.skip, 'newer_milestone_sent');
 });
 
-test('20 · status distinto de trial_active → nunca envía (cancelado/convertido/expirado)', () => {
-  for (const s of ['cancelled', 'paid', 'expired']) {
+test('20 · paid/expired → nunca envía; cancelled depende de expires_at [19 ago 2026]', () => {
+  // Convertido o vencido: fuera siempre.
+  for (const s of ['paid', 'expired']) {
     assert.equal(selectMilestone(base({ status: s, nowMs: T0 + 3 * DAY })).skip, 'status_changed');
   }
+  // 'cancelled' en RevenueCat = auto-renovación apagada con la prueba AÚN
+  // viva. Con expires_at futuro el hito debido SÍ se envía (es el segmento
+  // que los emails de día 7/11 deben recuperar).
+  assert.equal(
+    selectMilestone(base({ status: 'cancelled', nowMs: T0 + 3 * DAY, expiresAt: iso(T0 + 14 * DAY) })).day,
+    3,
+  );
+  // Sin expires_at no se puede saber si la prueba sigue viva → no arriesgar.
+  assert.equal(
+    selectMilestone(base({ status: 'cancelled', nowMs: T0 + 3 * DAY })).skip,
+    'cancelled_no_expiry',
+  );
+  // Con expires_at ya pasado, manda la ventana de expiración.
+  assert.equal(
+    selectMilestone(base({ status: 'cancelled', nowMs: T0 + 15 * DAY, expiresAt: iso(T0 + 14 * DAY) })).skip,
+    'expired_window',
+  );
 });
 
 // ── FASE 4 · backfill sin ráfagas ────────────────────────────

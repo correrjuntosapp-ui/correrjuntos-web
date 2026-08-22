@@ -86,11 +86,16 @@ await test('i4 · evento antiguo tras paid → fila intacta', async () => {
   const r = await ensureTrialRegistry(db, ev({ event_timestamp_ms: T0 + DAY }), 'e1');
   assert.equal(r, 'noop'); assert.equal(db.rows[0].status, 'paid');
 });
-await test('i5 · cancelación al minuto: fila terminal, cron no envía', async () => {
+await test('i5 · cancelación al minuto [19 ago 2026]: sin expires_at no envía; con la prueba viva SÍ', async () => {
   const db = fakeDb();
   await ensureTrialRegistry(db, ev(), 'e1');
   db.rows[0].status = 'cancelled'; db.rows[0].completed_at = iso(T0 + 60e3);
-  assert.equal(selectMilestone({ status: 'cancelled', startedAt: iso(T0), rowCreatedAt: iso(T0), sentDays: [], lastSentAt: null, nowMs: T0 + DAY }).skip, 'status_changed');
+  // Sin expires_at no se puede demostrar que la prueba siga viva → skip.
+  assert.equal(selectMilestone({ status: 'cancelled', startedAt: iso(T0), rowCreatedAt: iso(T0), sentDays: [], lastSentAt: null, nowMs: T0 + DAY }).skip, 'cancelled_no_expiry');
+  // CANCELLATION de RevenueCat = auto-renovación apagada con el trial aún
+  // corriendo: con expires_at futuro, el hito del día 1 SÍ se envía (es el
+  // segmento a recuperar con los emails de día 7/11).
+  assert.equal(selectMilestone({ status: 'cancelled', startedAt: iso(T0), rowCreatedAt: iso(T0), sentDays: [], lastSentAt: null, nowMs: T0 + DAY, expiresAt: iso(T0 + 14 * DAY) }).day, 1);
 });
 await test('i6 · expiración antes del cron → status_changed, 0 emails', () => {
   assert.equal(selectMilestone({ status: 'expired', startedAt: iso(T0), rowCreatedAt: iso(T0), sentDays: [1], lastSentAt: null, nowMs: T0 + 3 * DAY }).skip, 'status_changed');

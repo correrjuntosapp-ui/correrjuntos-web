@@ -123,11 +123,21 @@ export function decideTrialRegistry(event, existingRow) {
 //  · nunca hitos que ya eran pasado cuando la FILA se creó (backfill
 //    tardío no dispara ráfagas históricas);
 //  · separación mínima MIN_SEPARATION_MS respecto al último envío;
-//  · solo status trial_active.
+//  · status trial_active, o cancelled con el trial AÚN VIVO (expires_at
+//    en el futuro). [19 ago 2026] En RevenueCat CANCELLATION = el usuario
+//    apagó la auto-renovación, pero la prueba sigue corriendo hasta
+//    expires_at — es justo el segmento que los emails de día 7/11 deben
+//    recuperar. Desde que el webhook releva al cliente (28 jul), casi
+//    todos los trials pasan a 'cancelled' en días y el mailer los
+//    excluía: 0 emails enviados desde el 23 jul. 'paid' y 'expired'
+//    siguen excluidos.
 // Devuelve { day } o { skip: reason }.
 // ─────────────────────────────────────────────────────────────
 export function selectMilestone({ status, startedAt, rowCreatedAt, sentDays, lastSentAt, nowMs, expiresAt }) {
-  if (status !== 'trial_active') return { skip: 'status_changed' };
+  if (status !== 'trial_active' && status !== 'cancelled') return { skip: 'status_changed' };
+  // Un 'cancelled' sin expires_at no permite saber si la prueba sigue viva:
+  // no arriesgar un email post-trial.
+  if (status === 'cancelled' && !expiresAt) return { skip: 'cancelled_no_expiry' };
   // Trial ya vencido por fecha real de tienda (aunque el EXPIRATION aun no
   // haya llegado): jamas enviar (p.ej. dia 14 tras expires_at).
   if (expiresAt) {

@@ -35,7 +35,10 @@ export default async function runLifecycleTrial(_req, res, env) {
   const { data: trials, error: trialsErr } = await supabase
     .from('trial_starts')
     .select('id, user_id, email, nombre, lang, started_at, created_at, expires_at, plan_type, status')
-    .eq('status', 'trial_active')
+    // [19 ago 2026] 'cancelled' = auto-renovación apagada con la prueba aún
+    // viva (semántica RevenueCat). selectMilestone descarta los vencidos
+    // (expired_window) y los cancelled sin expires_at.
+    .in('status', ['trial_active', 'cancelled'])
     .gte('started_at', sixteenDaysAgo);
 
   if (trialsErr) {

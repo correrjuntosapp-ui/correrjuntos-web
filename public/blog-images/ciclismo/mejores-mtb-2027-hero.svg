@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title">
+  <title id="title">Ilustración editorial: sendero de montaña entre pinos con silueta de bicicleta de montaña</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a1c2a"/>
+      <stop offset=".55" stop-color="#1c3a52"/>
+      <stop offset="1" stop-color="#3e6a5c"/>
+    </linearGradient>
+    <linearGradient id="peaks" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5c728e"/>
+      <stop offset="1" stop-color="#22314a"/>
+    </linearGradient>
+    <linearGradient id="forest" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#254935"/>
+      <stop offset="1" stop-color="#0a1a12"/>
+    </linearGradient>
+    <linearGradient id="trail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7a5230"/>
+      <stop offset="1" stop-color="#2c1808"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="240" cy="180" r="4" fill="#e5edf7" opacity=".7"/>
+  <circle cx="380" cy="140" r="3" fill="#e5edf7" opacity=".55"/>
+  <circle cx="820" cy="160" r="3" fill="#e5edf7" opacity=".6"/>
+  <circle cx="1240" cy="200" r="4" fill="#e5edf7" opacity=".55"/>
+  <path d="M0 520 L120 420 L260 470 L420 340 L560 430 L700 360 L860 450 L1000 380 L1160 470 L1320 400 L1460 460 L1600 420 L1600 900 L0 900 Z" fill="url(#peaks)"/>
+  <path d="M180 470 L200 445 L220 470 L210 470 L210 480 L190 480 L190 470 Z" fill="#e5edf7" opacity=".55"/>
+  <path d="M420 340 L440 300 L465 340 L448 340 L448 355 L432 355 L432 340 Z" fill="#e5edf7" opacity=".7"/>
+  <path d="M700 360 L720 320 L745 360 L728 360 L728 375 L712 375 L712 360 Z" fill="#e5edf7" opacity=".7"/>
+  <path d="M1000 380 L1020 340 L1045 380 L1028 380 L1028 395 L1012 395 L1012 380 Z" fill="#e5edf7" opacity=".6"/>
+  <g fill="url(#forest)">
+    <path d="M40 900 L40 640 L20 640 L60 580 L100 640 L80 640 L80 900 Z"/>
+    <path d="M140 900 L140 660 L118 660 L160 600 L200 660 L180 660 L180 900 Z"/>
+    <path d="M260 900 L260 650 L238 650 L280 590 L322 650 L300 650 L300 900 Z"/>
+    <path d="M420 900 L420 670 L398 670 L440 610 L482 670 L460 670 L460 900 Z"/>
+    <path d="M580 900 L580 660 L558 660 L600 600 L642 660 L620 660 L620 900 Z"/>
+    <path d="M1240 900 L1240 650 L1218 650 L1260 590 L1302 650 L1280 650 L1280 900 Z"/>
+    <path d="M1360 900 L1360 665 L1338 665 L1380 605 L1422 665 L1400 665 L1400 900 Z"/>
+    <path d="M1480 900 L1480 650 L1458 650 L1500 590 L1542 650 L1520 650 L1520 900 Z"/>
+  </g>
+  <path d="M700 900 Q820 720 940 720 T1160 780 L1220 900 Z" fill="url(#trail)"/>
+  <path d="M730 900 Q820 780 920 780" stroke="#a6754b" stroke-width="4" fill="none" opacity=".6"/>
+  <g transform="translate(880 700)" opacity=".95">
+    <circle cx="68" cy="140" r="62" fill="none" stroke="#0b1220" stroke-width="7"/>
+    <circle cx="252" cy="140" r="62" fill="none" stroke="#0b1220" stroke-width="7"/>
+    <path d="M68 140 L155 65 L252 140 L182 140 L68 140 Z M182 140 L182 60 L138 60" stroke="#0b1220" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M155 65 L182 22 L215 22" stroke="#3e6a5c" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M138 60 Q108 25 100 -8" stroke="#0b1220" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M215 22 Q240 14 260 22" stroke="#0b1220" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="248" cy="4" rx="20" ry="12" fill="#0b1220"/>
+    <path d="M252 140 L252 100" stroke="#0b1220" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M68 140 L48 100" stroke="#0b1220" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

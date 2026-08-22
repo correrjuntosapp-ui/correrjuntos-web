@@ -44,10 +44,18 @@
     send(name,params);
   });
 
+  // ---- Barra de app móvil: aparece al empezar a leer, no tapa el hero ----
+  var mobileBar=document.querySelector('.mobile-app-bar');
+  function updateMobileBar(){
+    if(!mobileBar)return;
+    mobileBar.classList.toggle('is-visible',window.scrollY>420);
+  }
+
   // ---- Profundidad de lectura ----
   var sent={},ticking=false;
   function measure(){
     ticking=false;
+    updateMobileBar();
     var doc=document.documentElement;
     var max=Math.max(doc.scrollHeight-window.innerHeight,1);
     var depth=Math.round((window.scrollY/max)*100);
@@ -65,6 +73,7 @@
     (window.requestAnimationFrame||function(cb){setTimeout(cb,16);})(measure);
   }
   window.addEventListener('scroll',onScroll,{passive:true});
+  updateMobileBar();
 
   // ---- Impresiones (CTAs y comparativas) — una vez por elemento ----
   if('IntersectionObserver' in window){

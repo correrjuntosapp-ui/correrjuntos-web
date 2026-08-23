@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title">
+  <title id="title">Ilustración editorial: ciclocomputador GPS sobre manillar con ruta trazada al amanecer</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1626"/>
+      <stop offset=".55" stop-color="#27415f"/>
+      <stop offset="1" stop-color="#c97b3f"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a4654"/>
+      <stop offset="1" stop-color="#141a22"/>
+    </linearGradient>
+    <linearGradient id="dev" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2836"/>
+      <stop offset="1" stop-color="#0c121b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1180" cy="240" r="90" fill="#f2b56b" opacity=".85"/>
+  <path d="M0 560 L340 470 L620 545 L980 460 L1290 540 L1600 470 V900 H0 Z" fill="#22344a" opacity=".8"/>
+  <path d="M0 640 L1600 590 V900 H0 Z" fill="url(#road)"/>
+  <path d="M180 900 C 420 780, 700 830, 900 720 S 1350 640, 1520 660" fill="none" stroke="#e8edf4" stroke-width="7" stroke-dasharray="26 20" opacity=".55"/>
+  <g transform="translate(560,300)">
+    <rect x="0" y="0" width="480" height="330" rx="42" fill="url(#dev)" stroke="#466080" stroke-width="6"/>
+    <rect x="34" y="34" width="412" height="262" rx="18" fill="#0f1b2b"/>
+    <path d="M70 250 C 150 190, 200 240, 265 160 S 380 90, 415 110" fill="none" stroke="#f0955a" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="415" cy="110" r="14" fill="#f0955a"/>
+    <circle cx="70" cy="250" r="10" fill="#8fb3dd"/>
+    <rect x="60" y="60" width="120" height="26" rx="7" fill="#20344e"/>
+    <rect x="300" y="60" width="86" height="26" rx="7" fill="#20344e"/>
+    <rect x="200" y="352" width="80" height="36" rx="10" fill="#1a2636"/>
+    <rect x="120" y="384" width="240" height="22" rx="11" fill="#131c29"/>
+  </g>
+</svg>

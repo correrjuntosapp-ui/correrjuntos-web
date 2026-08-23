@@ -11,6 +11,16 @@
     window.gtag('event',name,p);
   };
   var asinFrom=function(url){var m=/amazon\.[a-z.]+\/dp\/([A-Z0-9]{10})/.exec(url||'');return m?m[1]:'';};
+  var networkFrom=function(url){
+    if(/(^|\.)amazon\.[a-z.]+\//.test((url||'').replace(/^https?:\/\//,'')))return 'amazon';
+    if(/(^|\.)prozis\.com\//.test((url||'').replace(/^https?:\/\//,'')))return 'prozis';
+    return 'other';
+  };
+  var productFrom=function(url,network){
+    if(network==='amazon')return asinFrom(url);
+    if(network==='prozis'){var m=/prozis\.com\/[a-z]{2}\/[a-z]{2}\/[^/]+\/([a-z0-9-]+)/.exec(url||'');return m?m[1]:'';}
+    return '';
+  };
   var placementOf=function(el){
     var sec=el.closest('[id]');
     if(el.closest('.mobile-app-bar'))return 'mobile-sticky';
@@ -38,8 +48,9 @@
     };
     if(name==='affiliate_click'||name==='affiliate_link_click'){
       name='affiliate_link_click';
-      params.product=link.dataset.product||asinFrom(link.href);
-      params.affiliate_network='amazon';
+      var net=networkFrom(link.href);
+      params.product=link.dataset.product||productFrom(link.href,net);
+      params.affiliate_network=net;
     }
     send(name,params);
   });

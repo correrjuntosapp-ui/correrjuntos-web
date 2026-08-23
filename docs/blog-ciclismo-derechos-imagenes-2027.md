@@ -2,7 +2,7 @@
 
 > Expediente de las 30 fotografías de producto usadas en `/blog/ciclismo/mejores-bicicletas-{carretera,gravel,mtb}-2027`.
 > Estado a 23 de agosto de 2026. **Ninguna imagen se declara autorizada sin evidencia**; a fecha de este documento
-> ninguna cuenta con permiso expreso documentado → **las 30 están en estado PENDIENTE** y la publicación queda
+> ninguna cuenta con permiso expreso documentado → **las 30 están en estado PENDIENTE**. El 23-08-2026 el editor eligió la VERSIÓN B: las comparativas se publican SIN estas fotografías (placeholder editorial con enlace a la galería oficial) y los archivos se retiraron del árbol (recuperables desde el commit cc5494b5 cuando lleguen los permisos). La reposición por marca queda
 > supeditada a la decisión del editor (ver §4).
 
 ## 1. Naturaleza de las imágenes
@@ -71,7 +71,7 @@ Origen = ficha oficial enlazada en la propia tarjeta (URL exacta en el HTML del 
 30. `mtb-mondraker-foxy-carbon-r.webp` · mondraker.com · Mondraker · ídem · PENDIENTE
 
 **Cascos del kit** (5, self-hosted `/public/blog-images/ciclismo/productos/`)
-B08HK3XFZF (MET Rivale) · B0BXQPJV4Z (KASK Mojito³) · B0776V571C (Giro Fixture, usado ×2) · B0BF5GKGKM (ABUS Macator) · B0BSHFR746 (Lazer Tonic) — imágenes de producto de Amazon.es enlazadas con el tag de Afiliados; mismo criterio que el resto de artículos afiliados del blog (playbook self-host).
+B08HK3XFZF (MET Rivale) · B0BXQPJV4Z (KASK Mojito³) · B0776V571C (Giro Fixture, usado ×2) · B0BF5GKGKM (ABUS Macator) · B0BSHFR746 (Lazer Tonic) — descargas directas del CDN de Amazon SIN método autorizado del programa (ni SiteStripe ni PA-API/Creators). El 23-08-2026 se RETIRARON de las tres comparativas (versión B); los archivos permanecen en el repo porque las guías de cascos y luces ya publicadas los usan — regularizar todo el lote vía PA-API/Creators conforme a https://afiliados.amazon.es/help/operating/policies/ .
 
 ## 4. Vías propuestas para regularizar (sin publicar hasta decisión del editor)
 

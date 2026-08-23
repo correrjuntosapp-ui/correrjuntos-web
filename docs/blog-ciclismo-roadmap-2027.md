@@ -36,7 +36,7 @@
 
 Antes de crear cada uno: comprobar canibalización contra el inventario (columna del §1).
 
-1. **Mejores ciclocomputadores GPS** — sin solape (no existe nada de electrónica ciclista). Padre: equipamiento. Nota: NO canibaliza `mejores-relojes-gps-running` (dispositivo distinto); enlazarse mutuamente.
+1. ✅ **Mejores ciclocomputadores GPS** — PUBLICADO en local 23 ago 2026 (`blog/ciclismo/mejores-ciclocomputadores-gps.html`, slug evergreen, año solo en title/H1). 10 modelos con roles: Edge 850 (mejor absoluto), BOLT 3 (calidad-precio), Karoo (navegación), DURA (autonomía), Edge 550 (entrenamiento), Edge 1050 (pantalla), 1040 Solar (ultradistancia), ACE (alternativa premium), Explore 2 (cicloturismo), BSC300T (económico). ROAM 3 excluido por solape de rol (documentado en "Fuentes y método"). Enlace cruzado con `mejores-relojes-gps-running` hecho en ambos sentidos.
 2. **Mejores bombas y miniinfladores** — sin solape; enlaza a pinchazos (técnica).
 3. **Kit antipinchazos y tubeless (comercial)** — ⚠ riesgo medio con `como-evitar-pinchazos-bicicleta`: este nuevo lista PRODUCTOS, el existente explica TÉCNICA; cada uno enlaza al otro en su primer tercio.
 4. **Mejores gafas para ciclismo** — ⚠ revisar solape con `mejores-gafas-sol-running` y `equipamiento/las-10-mejores-gafas-deportivas`: ángulo diferencial obligatorio (lente fotocromática, ventilación en bici, compatibilidad casco). Si no se puede diferenciar honestamente, ampliar el existente en su lugar.
@@ -46,9 +46,9 @@ Antes de crear cada uno: comprobar canibalización contra el inventario (columna
 
 Regla: cada pieza debe tener escenarios ciclistas reales (avituallamiento en marcha, bolsillos del maillot, comer sobre la bici, paradas). Prohibido duplicar cambiando "runner" por "ciclista".
 
-1. Nutrición para rutas largas: qué comer en salidas de 2, 4 y 6 horas (pilar del área).
+1. ✅ Nutrición para rutas largas: qué comer en salidas de 2, 4 y 6 horas (pilar del área) — PUBLICADO en local 23 ago 2026 (`blog/ciclismo/nutricion-salidas-largas-bicicleta.html`). Marco de hidratos: hasta ~60 g/h (2-3 h), hasta ~90 g/h glucosa+fructosa en prolongado entrenado, >90 g/h solo estrategia avanzada. 4 fuentes PubMed citadas. Prozis: solo Energy Gel 50 g y 100% Real Hydration, verificados en ficha viva.
 2. Qué comer antes, durante y después de montar en bici.
-3. Geles, barritas y comida real para ciclismo (puede enlazar a `alternativas-geles-energeticos-comida-real` como referencia general).
+3. Geles, barritas y comida real para ciclismo — **deslinde anti-canibalización respecto al pilar (§1)**: el pilar responde a "¿cuánto y cuándo como según la duración de MI salida?" (intención de planificación, organizado por horas); este artículo responderá a "¿QUÉ producto o alimento concreto elijo y en qué se diferencian?" (intención de compra/elección, organizado por tipo de producto: geles vs barritas vs comida real, criterios de composición, precio por ración, tolerancia). No repetirá las horquillas g/h del pilar: enlazará a él como referencia de cantidades y se centrará en la elección entre formatos. Puede enlazar a `alternativas-geles-energeticos-comida-real` como referencia general. NO escribir hasta tener datos de rendimiento del pilar.
 4. Hidratación y electrolitos en bicicleta (padre transversal: `sales-electrolitos-correr-calor`).
 5. Cafeína en salidas largas.
 6. Recuperación después de una salida larga.
@@ -71,3 +71,19 @@ Regla: cada pieza debe tener escenarios ciclistas reales (avituallamiento en mar
 - Bicicletas completas → ficha oficial o tienda autorizada (no forzar Amazon).
 - Amazon solo `/dp/ASIN/?tag=diezmejores21-21` verificado visualmente, con `rel="nofollow sponsored noopener"`.
 - Sin AggregateRating, Review ficticio, estrellas ni "hemos probado" salvo evidencia estructurada.
+
+## 7. Medición Fase 2 — KPIs 30/60/90 días
+
+Publicados (pendiente de deploy) el 23 ago 2026: `mejores-ciclocomputadores-gps` y `nutricion-salidas-largas-bicicleta`.
+
+**Baseline**: PENDIENTE. No hay datos previos de estas URLs (son nuevas) y no se ha extraído baseline GSC del cluster ciclismo en esta sesión — no inventar cifras. Al hacer el primer pull de GSC tras el deploy, anotar aquí: impresiones/clics del filtro `blog/ciclismo` y de las 2 URLs nuevas, con fecha.
+
+| Hito | Qué mirar | Señal de éxito | Señal de alarma |
+|---|---|---|---|
+| 30 días | GSC: impresiones de las 2 URLs; GA4 (consent-gated): `affiliate_link_click` con `affiliate_network` = amazon/prozis | URLs indexadas + primeras impresiones | 0 impresiones → revisar indexación/sitemap |
+| 60 días | GSC: queries que activan cada URL; CTR; clics afiliados por red | Queries de marca de producto ("edge 850", "bolt 3") apareciendo | Solo queries genéricas sin clics |
+| 90 días | Posición media; conversiones Amazon (informe Associates) atribuibles al periodo; decisión sobre artículo geles/barritas (§4.3) | Clics afiliados sostenidos → luz verde a §4.3 | Sin tracción → ajustar antes de escribir más nutrición |
+
+Eventos GA4 disponibles para este seguimiento (solo con consentimiento, sin PII): `affiliate_link_click` (product, placement, affiliate_network — ahora distingue amazon/prozis/other por hostname), `cycling_bike_link`, `cycling_app_click`, scroll depth.
+
+**Newsletter ciclismo**: en rutas `/blog/ciclismo*`, `newsletter.js` ya NO promete el Plan 0→5K (running): promesa genérica honesta. El lead magnet propio de ciclismo está especificado en `docs/ciclismo-lead-magnet-checklist-spec.md` y no se anunciará hasta que exista el PDF real. Limitación conocida: el email de bienvenida de Brevo sigue siendo el genérico; revisar su copy antes de empujar tráfico fuerte a la suscripción desde ciclismo.

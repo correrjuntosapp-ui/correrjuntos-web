@@ -10,7 +10,7 @@
 |---|---|---|---|---|---|---|---|---|
 | mejores-bicicletas-carretera-2027 | comercial: "mejores bicicletas carretera 2027/2026" | Bicicletas | BOFU | Tráfico → afiliación accesorios (cascos) + app | Bajo (única comparativa carretera) | **Alta** — refrescar precios/gamas cada trimestre | hub ciclismo | hub, gravel, mtb, principiantes, cascos, talla |
 | mejores-bicicletas-gravel-2027 | comercial: "mejores gravel 2027" | Bicicletas | BOFU | Ídem | Bajo | **Alta** — ídem | hub ciclismo | hub, carretera, mtb, pinchazos/tubeless, equipamiento-primera-salida |
-| mejores-mtb-2027 | comercial: "mejores mtb 2027" | Bicicletas | BOFU | Ídem | Bajo | **Alta** — ídem (⚠ Scott retiró ficha del Spark 950; revisar sustitución de modelo en el próximo refresh) | hub ciclismo | hub, carretera, gravel, pinchazos, luces |
+| mejores-mtb-2027 | comercial: "mejores mtb 2027" | Bicicletas | BOFU | Ídem | Bajo | **Alta** — ídem (Spark 950 sustituida el 23-08 por Spark RC Comp con manual de plataforma 2027) | hub ciclismo | hub, carretera, gravel, pinchazos, luces |
 | ciclismo-para-principiantes | informacional: "empezar ciclismo" | Entrenamiento y comunidad | TOFU | App CTA | Bajo | Alta (pilar de entrada) | hub | comparativas (¿qué bici?), equipamiento, grupeta |
 | equipamiento-primera-salida-bicicleta | informacional/comercial mixta | Equipamiento | MOFU | Afiliación Amazon accesorios | Medio con futuros artículos de accesorios (ver Fase 2: cada accesorio nuevo debe ENLAZAR aquí, no repetir su contenido) | Alta | hub | cascos, luces, pinchazos, comparativas |
 | mejores-cascos-ciclismo | comercial: "mejores cascos ciclismo" | Equipamiento | BOFU | Afiliación Amazon | Bajo — los bloques "kit" de las comparativas enlazan aquí y solo listan 2 cascos | Alta | equipamiento-primera-salida | comparativas, luces |
@@ -27,7 +27,7 @@
 
 - ✅ Comparativa carretera (10 modelos verificados, estado 2026/2027 visible).
 - ✅ Comparativa gravel (ídem, precio Checkpoint corregido a 3.499 €).
-- ✅ Comparativa MTB (ídem, Spark 950 marcado "catálogo anterior", enlace a gama viva).
+- ✅ Comparativa MTB (ídem; el 23-08 la Spark 950 retirada por Scott se sustituyó por la Spark RC Comp, con manual de plataforma 2027 adjunto a su ficha).
 - ✅ Hub reorganizado en 4 áreas con navegación por anclas HTML.
 - ✅ Enlazado interno bidireccional comparativas ↔ guías.
 - ✅ QA visual y técnico (ver informe de entrega).

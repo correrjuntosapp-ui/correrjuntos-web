@@ -220,7 +220,7 @@
     bar.setAttribute('aria-label', 'Suscribirse a la newsletter');
     bar.innerHTML =
       (IS_CYCLING
-        ? '<span>📩 <strong>Consejos de ciclismo</strong>, equipamiento y comunidad en tu email</span>'
+        ? '<span>📩 <strong>La newsletter de CorrerJuntos</strong>: entrenamiento, equipamiento y comunidad</span>'
         : '<span>📩 <strong>Plan 0→5K gratis</strong> + 1 artículo cada lunes en tu email</span>') +
       '<form>' +
         '<input type="email" required placeholder="tu@email.com" aria-label="Email">' +
@@ -267,11 +267,11 @@
         '<button class="cj-modal-x" aria-label="Cerrar">×</button>' +
         '<div class="cj-modal-eyebrow">Antes de irte</div>' +
         (IS_CYCLING
-          ? '<h3>Ciclismo en tu email, <em>cada lunes</em></h3>' +
-            '<p>Consejos de ciclismo, equipamiento y comunidad en tu email. Sin spam.</p>' +
+          ? '<h3>La newsletter de <em>CorrerJuntos</em></h3>' +
+            '<p>Entrenamiento, equipamiento y comunidad en tu email. Sin spam.</p>' +
             '<ul class="cj-benefits">' +
-              '<li>Guías de equipamiento y rutas</li>' +
-              '<li>1 artículo nuevo cada lunes</li>' +
+              '<li>Un email a la semana como máximo</li>' +
+              '<li>Contenido de entrenamiento y equipamiento</li>' +
               '<li>Cancela en 1 click cuando quieras</li>' +
             '</ul>'
           : '<h3>¿Tu plan <em>0→5K</em> en 8 semanas?</h3>' +
@@ -376,10 +376,10 @@
       '<div class="cj-nl-head">' +
         '<span class="cj-nl-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>' +
         '<div><div class="cj-nl-eyebrow">Newsletter · gratis</div>' +
-        '<p class="cj-nl-t" style="font-size:1rem;margin:0;font-weight:800;color:#1f1b16;letter-spacing:-.02em;line-height:1.15">' + (IS_CYCLING ? 'Un artículo nuevo cada lunes' : 'Un artículo de running cada lunes') + '</p></div>' +
+        '<p class="cj-nl-t" style="font-size:1rem;margin:0;font-weight:800;color:#1f1b16;letter-spacing:-.02em;line-height:1.15">' + (IS_CYCLING ? 'La newsletter de CorrerJuntos' : 'Un artículo de running cada lunes') + '</p></div>' +
       '</div>' +
       (IS_CYCLING
-        ? '<p>Consejos de ciclismo, equipamiento y comunidad en tu email. Un email a la semana, sin spam, baja en 1 clic.</p>'
+        ? '<p>Entrenamiento, equipamiento y comunidad en tu email. Un email a la semana como máximo, sin spam, baja en 1 clic.</p>'
         : '<p>Suscríbete y te llevas el <strong>Plan 0→5K gratis</strong>. Un email a la semana con consejos de entrenamiento. Sin spam, baja en 1 clic.</p>') +
       '<form>' +
         '<input type="email" required placeholder="tu@email.com" aria-label="Email">' +
@@ -416,9 +416,11 @@
     box.className = 'cj-nl-end';
     box.innerHTML =
       '<div class="cj-eyebrow">Newsletter</div>' +
-      '<h3>¿Te sirvió este artículo?<br>Recibe <em>1 nuevo cada lunes</em></h3>' +
       (IS_CYCLING
-        ? '<p>Consejos de ciclismo, equipamiento y comunidad en tu email, cada semana. Sin spam, sin compromiso.</p>'
+        ? '<h3>¿Te sirvió este artículo?<br>Prueba la <em>newsletter</em></h3>'
+        : '<h3>¿Te sirvió este artículo?<br>Recibe <em>1 nuevo cada lunes</em></h3>') +
+      (IS_CYCLING
+        ? '<p>Entrenamiento, equipamiento y comunidad en tu email, como máximo una vez por semana. Sin spam, sin compromiso.</p>'
         : '<p>Plan 0→5K gratis al suscribirte + 1 artículo de coach cada semana. Sin spam, sin compromiso.</p>') +
       '<form>' +
         '<input type="email" required placeholder="tu@email.com" aria-label="Email">' +

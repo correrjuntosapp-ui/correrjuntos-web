@@ -5,7 +5,7 @@
 
 ## 1. Por qué este lead magnet
 
-- La newsletter en rutas `/blog/ciclismo*` ya no ofrece el Plan 0→5K (running) — desde el cambio de `newsletter.js` del 23 ago 2026 promete solo «Consejos de ciclismo, equipamiento y comunidad en tu email». Un lead magnet propio subiría la conversión de ese copy genérico.
+- La newsletter en rutas `/blog/ciclismo*` ya no ofrece el Plan 0→5K (running) — desde los cambios de `newsletter.js` del 23 ago 2026 usa un copy neutral y honesto («La newsletter de CorrerJuntos: entrenamiento, equipamiento y comunidad», «un email a la semana como máximo»), sin prometer contenido ciclista segmentado que Brevo aún no entrega. Un lead magnet propio subiría la conversión de ese copy genérico.
 - El contenido ya existe editorialmente: `blog/ciclismo/equipamiento-primera-salida-bicicleta` es la fuente de verdad. El PDF es una destilación, no contenido nuevo que mantener.
 - Perfil capturado: principiante de ciclismo = el mismo perfil al que la app aporta más (registrar salidas, encontrar grupeta).
 

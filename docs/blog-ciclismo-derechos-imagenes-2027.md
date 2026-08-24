@@ -121,3 +121,54 @@ las tres tarjetas de categoría del hub `/blog/ciclismo`.
   derivados WebP optimizados y sin metadatos.
 - Esta incorporación **no altera** el estado PENDIENTE de las 30 fotografías de producto de las §1-§5 ni reintroduce
   ninguna de ellas.
+
+---
+
+## 7. Capturas reales de la aplicación CorrerJuntos — 24 de agosto de 2026
+
+Tercer ámbito, distinto de §1-§5 (fotografías de producto) y de §6 (fotografías ambientales
+licenciadas). Aquí no hay licencia de terceros que negociar: son **capturas de pantalla de la propia
+aplicación**, entregadas por el propietario del proyecto, usadas con fin editorial y promocional
+dentro del blog de CorrerJuntos.
+
+> **Declaración expresa:** son capturas reales de la app en uso. **No** son fotografías de producto,
+> **no** son imágenes generadas por IA y **no** se ha reconstruido ni retocado la interfaz. La única
+> intervención ha sido recortar (nunca añadir ni redibujar).
+
+| Derivado publicado | Archivo fuente entregado | Uso | Incorporación | Dimensiones origen → final | Transformaciones |
+|---|---|---|---|---|---|
+| `public/blog-images/ciclismo/app-ciclismo-hub-captura.webp` | `codex-clipboard-44e78d07-5293-499d-9e03-5713abf21ab4.png`, entregado por el propietario del proyecto | Bloque principal de promoción de la app en `blog/ciclismo/index.html` (editorial/promocional) | 24-08-2026 | 277×609 → **276×604**, 80,6 KB | Recorte de artefactos del pantallazo: banda blanca de 5 px superior y línea gris de 1 px izquierda. WebP **lossless**, metadatos EXIF/ICC eliminados. **Sin reescalado**: se publica a resolución nativa y se limita por CSS a 240 px. |
+| `public/blog-images/ciclismo/app-ciclismo-actividad-captura.webp` | `codex-clipboard-a6669b73-80c2-45c6-9e6c-11f02258a099.png`, entregado por el propietario del proyecto | Previsto para el bloque superior de promoción de las tres comparativas de bicicletas. **Aún no referenciado en HTML** (ver nota de bloqueo) | 24-08-2026 | 277×604 → **277×518**, 76,3 KB | **Recorte por privacidad**: se elimina la franja inferior (86 px) que contenía la tarjeta del entrenador. WebP **lossless**, metadatos eliminados. **Sin reescalado**. |
+
+### Privacidad y terceros
+
+- **Tarjeta del entrenador excluida.** En la captura de detalle de actividad se ha recortado por
+  completo la tarjeta inferior del entrenador José: no queda visible su nombre, su fotografía, su
+  mensaje ni ninguna parte del borde de la tarjeta. Verificación numérica: la tarjeta comenzaba en la
+  fila y=523 del original y el derivado termina en y=518, con la última fila con contenido en y=515,
+  es decir **7 filas de margen de fondo limpio** por encima del borde eliminado.
+- **Apple Maps conserva su atribución visible.** En ambas capturas se mantienen íntegros el logotipo
+  «Mapas» de Apple y el enlace «Aviso legal» que acompañan al mapa. No se han recortado, tapado ni
+  desplazado, y ningún borde redondeado los alcanza.
+- **Strava** aparece únicamente como etiqueta de la integración real dentro de la captura. No se
+  presenta como patrocinio ni se ha añadido su logotipo fuera de la captura.
+- **Prozis** aparece dentro de la captura del inicio como una tarjeta de contenido propia de la app,
+  ya rotulada por la propia aplicación como «Enlace de afiliado». Tampoco se ha añadido nada fuera.
+- No se han añadido logotipos de Apple, Strava ni Prozis fuera de lo que ya contienen las capturas.
+- Los textos alternativos describen la pantalla sin incluir nombres de personas ni ubicaciones
+  concretas, pese a que ambas aparezcan dentro de la imagen.
+- Los PNG originales permanecen **fuera del repositorio**, en la carpeta temporal desde la que se
+  entregaron. En `public/` solo se publican los derivados WebP sin metadatos.
+
+### Nota de bloqueo sobre la captura de detalle de actividad
+
+El derivado está generado y con el recorte de privacidad aplicado, pero **no se ha insertado todavía
+en las tres comparativas**. Motivo: la propia captura muestra la actividad etiquetada como
+**«Carrera»** bajo la fecha, aunque se trate de una salida en bicicleta (101,79 km a 34,0 km/h,
+titulada «Morning Ride» e importada desde Strava, y que en la pantalla de inicio sí aparece con el
+icono de bicicleta). Publicarla en artículos de bicicletas con un texto alternativo que la describe
+como actividad ciclista crearía justo el desajuste entre interfaz y contenido que este trabajo
+pretende eliminar. Queda pendiente de decisión del propietario: o bien una captura del detalle de una
+actividad cuyo deporte figure como «Bici», o bien autorización expresa para publicar esta tal cual.
+El HTML y la CSS necesarios ya están preparados (`figure.app-shot` y la regla
+`.app-promo-inline.has-shot`).

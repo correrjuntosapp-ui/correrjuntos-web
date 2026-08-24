@@ -122,3 +122,8 @@
 /* Preparado para el mismo patrón en el promo superior de las comparativas:
    dos columnas solo en escritorio; en móvil hereda el apilado de una columna. */
 @media(min-width:861px){.app-promo-inline.has-shot .app-promo-shell{grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr)}}
+
+/* La captura de detalle solo tiene 10-11 px de margen uniforme en sus esquinas
+   inferiores, así que aquí el radio baja a 8 px para que el marco no llegue a
+   recortar contenido de la pantalla. El hub conserva su radio de 16 px. */
+.app-promo-inline.has-shot .app-shot img{border-radius:8px}

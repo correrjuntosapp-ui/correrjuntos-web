@@ -138,7 +138,7 @@ dentro del blog de CorrerJuntos.
 | Derivado publicado | Archivo fuente entregado | Uso | Incorporación | Dimensiones origen → final | Transformaciones |
 |---|---|---|---|---|---|
 | `public/blog-images/ciclismo/app-ciclismo-hub-captura.webp` | `codex-clipboard-44e78d07-5293-499d-9e03-5713abf21ab4.png`, entregado por el propietario del proyecto | Bloque principal de promoción de la app en `blog/ciclismo/index.html` (editorial/promocional) | 24-08-2026 | 277×609 → **276×604**, 80,6 KB | Recorte de artefactos del pantallazo: banda blanca de 5 px superior y línea gris de 1 px izquierda. WebP **lossless**, metadatos EXIF/ICC eliminados. **Sin reescalado**: se publica a resolución nativa y se limita por CSS a 240 px. |
-| `public/blog-images/ciclismo/app-ciclismo-actividad-captura.webp` | `codex-clipboard-a6669b73-80c2-45c6-9e6c-11f02258a099.png`, entregado por el propietario del proyecto | Previsto para el bloque superior de promoción de las tres comparativas de bicicletas. **Aún no referenciado en HTML** (ver nota de bloqueo) | 24-08-2026 | 277×604 → **277×518**, 76,3 KB | **Recorte por privacidad**: se elimina la franja inferior (86 px) que contenía la tarjeta del entrenador. WebP **lossless**, metadatos eliminados. **Sin reescalado**. |
+| `public/blog-images/ciclismo/app-ciclismo-actividad-bici.webp` | Captura entregada por el propietario del proyecto (corregida por él a partir de `codex-clipboard-a6669b73-80c2-45c6-9e6c-11f02258a099.png`) | Bloque superior de promoción de las tres comparativas de bicicletas (editorial/promocional) | 24-08-2026 | 277×518, **77,5 KB** | **Recorte por privacidad**: eliminada la franja inferior con la tarjeta del entrenador. **Corrección puntual del indicador de deporte** (ver abajo). WebP **lossless** (VP8L), sin EXIF/ICC. **Sin reescalado.** |
 
 ### Privacidad y terceros
 
@@ -160,15 +160,34 @@ dentro del blog de CorrerJuntos.
 - Los PNG originales permanecen **fuera del repositorio**, en la carpeta temporal desde la que se
   entregaron. En `public/` solo se publican los derivados WebP sin metadatos.
 
-### Nota de bloqueo sobre la captura de detalle de actividad
+### Corrección del indicador de deporte en la captura de detalle
 
-El derivado está generado y con el recorte de privacidad aplicado, pero **no se ha insertado todavía
-en las tres comparativas**. Motivo: la propia captura muestra la actividad etiquetada como
-**«Carrera»** bajo la fecha, aunque se trate de una salida en bicicleta (101,79 km a 34,0 km/h,
-titulada «Morning Ride» e importada desde Strava, y que en la pantalla de inicio sí aparece con el
-icono de bicicleta). Publicarla en artículos de bicicletas con un texto alternativo que la describe
-como actividad ciclista crearía justo el desajuste entre interfaz y contenido que este trabajo
-pretende eliminar. Queda pendiente de decisión del propietario: o bien una captura del detalle de una
-actividad cuyo deporte figure como «Bici», o bien autorización expresa para publicar esta tal cual.
-El HTML y la CSS necesarios ya están preparados (`figure.app-shot` y la regla
-`.app-promo-inline.has-shot`).
+La primera versión de esta captura mostraba la actividad etiquetada como **«Carrera»** con icono de
+corredor, pese a tratarse de una salida en bicicleta (101,79 km a 34,0 km/h, titulada «Morning Ride»
+e importada desde Strava, y que en la pantalla de inicio sí figura con icono de bicicleta). Por eso no
+llegó a publicarse.
+
+El propietario del proyecto entregó una versión corregida en la que **se sustituyó únicamente ese
+indicador**: icono de corredor + «Carrera» → icono de bicicleta + «Bici».
+
+- **Alcance real de la modificación, verificado píxel a píxel** contra la versión anterior: los únicos
+  cambios perceptibles se concentran en la línea del indicador, en el rectángulo **x72-109, y62-71**
+  (el propietario lo declaró como y64-71; la comparación detecta dos filas más, todas dentro de la
+  misma línea). Fuera de esa zona solo hay diferencias de valor ±1 en 129.838 píxeles, propias de
+  volver a codificar el archivo, invisibles a simple vista.
+- **El resto de la captura permanece sin cambios**: distancia, tiempo, desnivel, frecuencia cardiaca,
+  calorías, mapa, pestañas, cadencia y tiempos se conservan tal cual estaban.
+- **Apple Maps conserva su atribución**: el logotipo «Mapas» y el enlace «Aviso legal» siguen visibles
+  e íntegros. En el contexto de las comparativas el radio del marco se reduce a 8 px precisamente
+  porque las esquinas inferiores de esta captura solo tienen 10-11 px de margen uniforme, de modo que
+  el marco no recorta nada de la pantalla.
+- **La tarjeta del entrenador sigue excluida** por el mismo recorte descrito arriba.
+
+Por tanto, **esta imagen no debe describirse como una captura completamente inalterada**: es una
+captura real de la aplicación con una corrección puntual y acotada del indicador de deporte, hecha
+para que coincida con la naturaleza real de la actividad. Tampoco es una imagen generada: no se ha
+reconstruido la interfaz ni se ha usado IA generativa.
+
+**Activo retirado:** la versión anterior, `app-ciclismo-actividad-captura.webp`, se eliminó del
+repositorio con `git rm` para que la clasificación incorrecta «Carrera» no quedara accesible
+públicamente tras un despliegue, aunque no estuviera enlazada.

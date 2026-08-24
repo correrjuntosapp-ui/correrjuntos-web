@@ -97,3 +97,61 @@ de esas métricas se puede afirmar.
 - **Lighthouse por debajo de objetivo, preexistente y ajeno a estos cambios**: `/blog/` rendimiento 69
   (fichero no tocado en esta rama), `/blog/entrenamiento` accesibilidad 80 (contraste y falta de
   landmark `main`), `/blog/proteinas-para-runners` SEO 92 (textos de enlace poco descriptivos).
+
+---
+
+## 6. Segunda tanda — retirada de fotografía de Amazon (24 ago 2026)
+
+### Contexto: trabajo concurrente
+
+Al retomar, `HEAD` era `4eeff76f` y no `b696dd20`: otra sesión había añadido dos commits a las 14:29.
+Es un avance limpio (mi commit sigue siendo ancestro, nada se reescribió). Sus cambios:
+
+- `c3e9a14c` sustituyó enlaces externos rotos en 587 ficheros. La cifra asusta porque `sameAs` está
+  repetido en todo el sitio: 577 usos de `strava.com/athletes/…` y 479 de `x.com/correrjuntosapp`.
+- `4eeff76f` sustituyó fotos genéricas de producto por un placeholder editorial en 5 ficheros y creó
+  `/public/producto-pendiente-autorizacion-{300,600,800}.webp`.
+
+**Revalidé sus sustituciones una a una** con GET, User-Agent de Chrome y siguiendo redirecciones.
+Todas responden 200 salvo una: `stansnotubes.com` **no resuelve** (HTTP 000, fallo de DNS), mientras
+`continental-tires.com`, `schwalbe.com` y `notubes.com` sí lo hacen desde el mismo entorno. La marca
+opera hoy en `stans.com`. Corregido a `stans.com/pages/how-to-and-tech-videos` (200).
+
+### Retirada completa de fotografía de Amazon
+
+| Concepto | Antes | Después |
+|---|---:|---:|
+| `<img>` servidas desde el CDN de Amazon | 673 en 103 páginas | **0** |
+| Páginas con Amazon en og:image / twitter:image / JSON-LD | 32 | **0** |
+| `<img>` de contenido sin width/height | 566 en 87 páginas | **46 en 8** |
+| Referencias locales de imagen inexistentes | — | **0** |
+
+En las 26 páginas cuya única imagen era de Amazon se usa un activo editorial neutro del sitio para los
+metadatos sociales; **no se presenta como fotografía del producto**. Las 46 dimensiones que faltan
+corresponden a imágenes externas o ausentes que no se pueden medir: no se inventan tamaños.
+
+### Estados finales de las imágenes de producto
+
+- `PLACEHOLDER_SIN_FOTO`: 673 usos, con el nombre real del producto en el `alt`.
+- `BLOQUEADA_CON_MOTIVO`: toda fotografía de Amazon, por ausencia de SiteStripe y de PA-API.
+- Los 30 placeholders de bicicletas siguen intactos.
+
+### Integridad comercial
+
+Token a token sobre los 164 HTML modificados: 1.624 URLs de Amazon, 1.540 ASIN, 1.624 tag, 1.368 rel,
+25 data-track, 25 data-destination, 657 precios y 8 buy-card, **todos idénticos**.
+
+### Lo que sigue pendiente
+
+- **Los 11 heroes incorrectos y los 11 débiles no se han sustituido.** Requieren descargar fotografía
+  ambiental con licencia, documentar autor/URL/licencia/fecha y generar tres derivados por artículo.
+  No lo he hecho, así que no lo declaro hecho.
+- Las 46 dimensiones no medibles.
+- Los 844 fragmentos SiteStripe siguen siendo el único desbloqueo para volver a mostrar fotografía de
+  producto.
+
+### Nota de higiene
+
+Los cambios de dimensiones quedaron dentro del commit `d69d2e0c` en lugar de en un commit propio, por
+un `git add -A` mío. Tocan los mismos ficheros que la retirada de imágenes y separarlos exigiría
+reescribir historia, que está prohibido en este encargo.

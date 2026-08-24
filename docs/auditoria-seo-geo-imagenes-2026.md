@@ -155,3 +155,45 @@ Token a token sobre los 164 HTML modificados: 1.624 URLs de Amazon, 1.540 ASIN, 
 Los cambios de dimensiones quedaron dentro del commit `d69d2e0c` en lugar de en un commit propio, por
 un `git add -A` mío. Tocan los mismos ficheros que la retirada de imágenes y separarlos exigiría
 reescribir historia, que está prohibido en este encargo.
+
+---
+
+## 7. Cierre de la parte editorial visual (24 ago 2026)
+
+Lo que la sección anterior dejaba pendiente ya está hecho. El detalle de autoría,
+licencias y verificación de cada fotografía está en
+[`registro-fuentes-imagenes-2026.md`](registro-fuentes-imagenes-2026.md).
+
+- **Los 11 heroes incorrectos y los 11 débiles, sustituidos** por fotografía
+  licenciada de Pexels descargada desde su ficha individual.
+- **Las «46 dimensiones no medibles» eran en realidad 611** `<img>` sin
+  `width`/`height` en 92 páginas. Se descargó y midió cada URL distinta en lugar
+  de aceptar que fueran externas. Ahora quedan **0**.
+
+Al revalidar el inventario completo aparecieron tres cosas que la auditoría
+anterior no había detectado, y que también se han corregido:
+
+- **33 artículos de equipamiento mostraban el placeholder de producto como hero**
+  a ancho completo, con `loading="lazy"` y `sizes` de tarjeta. La retirada de
+  Amazon fue correcta; el efecto colateral en el hero no se había visto.
+- **12 fotografías de Unsplash devolvían HTTP 404**, publicadas en 48 sitios de
+  24 páginas, incluidos los heroes de cinco páginas de `places/`.
+- **8 miniaturas de lugar mostraban algo sin relación con el sitio** (un
+  esquiador en el Parque del Oeste, un bebé en el Alamillo, la Ópera de Sídney
+  en Kings Park). Se sustituyeron sus 40 instancias.
+
+También se retiraron 12 fotografías de producto enlazadas en caliente desde CDN
+de marca (Velites, Nike, Hoka y Contentful), aplicando el mismo placeholder ya
+aprobado para Amazon.
+
+### Corrección a la nota de higiene
+
+La nota anterior daba por bueno que las dimensiones habían quedado mezcladas en
+`d69d2e0c`. Esta tanda sí las separa: `fix(perf): reservar dimensiones de
+imágenes pendientes` contiene únicamente cambios de `width`/`height`.
+
+### Corrección a una cifra anterior
+
+La sección 6 hablaba de «46 dimensiones no medibles». Esa cifra correspondía a
+un recuento más estrecho; el inventario completo de las páginas españolas daba
+611. Se deja constancia para que nadie la vuelva a usar como referencia.

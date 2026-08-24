@@ -86,3 +86,108 @@ B08HK3XFZF (MET Rivale) · B0BXQPJV4Z (KASK Mojito³) · B0776V571C (Giro Fixtur
 - **C. Publicar con las 7 fotos de marcas con press room** (descargadas de allí aceptando condiciones) y placeholder neutro para el resto hasta respuesta.
 
 No se ha sustituido ninguna fotografía por imágenes generadas ni se declara autorización inexistente.
+
+---
+
+## 6. Fotografías ambientales licenciadas (heroes y tarjetas de categoría) — 24 de agosto de 2026
+
+Ámbito distinto al de las §1-§5. Estas cuatro fotografías **no son imágenes de producto**: son fotografías
+ambientales de ciclismo licenciadas, usadas únicamente en los *heroes* editoriales de las tres comparativas y en
+las tres tarjetas de categoría del hub `/blog/ciclismo`.
+
+> **Declaración expresa:** ninguna de estas cuatro fotografías representa a ninguno de los modelos seleccionados
+> en las comparativas, ni a ninguna marca concreta. Son imágenes de contexto (carretera de montaña, pista de
+> grava, alta montaña). Las fotografías oficiales de cada bicicleta siguen enlazadas en la ficha del fabricante y
+> las 30 tarjetas de producto conservan su placeholder editorial sin fotografía.
+
+| Original | Derivado(s) publicado(s) | Autor | URL de la foto | Licencia | Descarga | Uso exacto | Transformación aplicada |
+|---|---|---|---|---|---|---|---|
+| `01-hero-carretera-pexels-33442063.jpg` (2400×1600) | `mejores-bicicletas-carretera-2027-hero.webp` (1600×900, 283,3 KB) · `-hero-800.webp` (800×450, 82,4 KB) | Thet Tun Aung | https://www.pexels.com/photo/cyclist-on-curving-mountain-road-in-england-33442063/ | Pexels License — https://www.pexels.com/license/ | 24-08-2026 | Hero de `mejores-bicicletas-carretera-2027` | Recorte 16:9 (2400×1350 desde y=190), reescalado Lanczos3 a 1600×900 y 800×450, WebP q80, metadatos EXIF/ICC eliminados. Sin volteo. |
+| `02-card-carretera-unsplash-nwDtwquRJJ0.jpg` (5673×3782) | `mejores-bicicletas-carretera-2027-card.webp` (960×540, 73,6 KB) | Hassan Anayi | https://unsplash.com/photos/cyclist-on-a-winding-road-in-the-mountains-nwDtwquRJJ0 | Unsplash License — https://unsplash.com/license | 24-08-2026 | Tarjeta «Carretera» del hub | Recorte 16:9 (4200×2363 desde x=0, y=1419), reescalado Lanczos3 a 960×540, WebP q80, metadatos eliminados. Sin volteo. |
+| `03-hero-card-gravel-pexels-5281686.jpg` (2400×1600) | `mejores-bicicletas-gravel-2027-hero.webp` (1600×900, 241,8 KB) · `-hero-800.webp` (800×450, 63,6 KB) · `mejores-bicicletas-gravel-2027-card.webp` (960×540, 93,1 KB) | Brent Olson | https://www.pexels.com/photo/a-biker-riding-on-a-dirt-road-5281686/ | Pexels License — https://www.pexels.com/license/ | 24-08-2026 | Hero de `mejores-bicicletas-gravel-2027` + tarjeta «Gravel» del hub | Hero: recorte 16:9 (2400×1350 desde y=125) → 1600×900 y 800×450. Card: recorte independiente más cerrado (1900×1069 desde x=418, y=356) → 960×540. Lanczos3, WebP q80-82, metadatos eliminados. Sin volteo. |
+| `04-hero-card-mtb-unsplash-9qsK2QHidmg.jpg` (2649×3762, **vertical**) | `mejores-mtb-2027-hero.webp` (1600×900, 205,9 KB) · `-hero-800.webp` (800×450, 38,0 KB) · `mejores-mtb-2027-card.webp` (960×540, 60,3 KB) | Dmitrii Vaccinium | https://unsplash.com/photos/9qsK2QHidmg | Unsplash License — https://unsplash.com/license | 24-08-2026 | Hero de `mejores-mtb-2027` + tarjeta «MTB» del hub | Hero: recorte 16:9 desde original vertical (2649×1490 desde y=1100) conservando ciclista, cortado rocoso y cordillera, **+ volteo horizontal (espejo)** para situar al ciclista a la derecha y dejar legible el texto del hero a la izquierda → 1600×900 y 800×450. Card: recorte más cerrado (2200×1238 desde x=220, y=1230) **con el mismo volteo horizontal** por coherencia visual con el hero → 960×540. Lanczos3, WebP q80-82, metadatos eliminados. |
+
+### Notas de cumplimiento
+
+- Ambas licencias (Pexels y Unsplash) permiten el uso comercial **sin atribución obligatoria**; aun así se acredita
+  autor y plataforma bajo cada hero y se conserva este registro completo.
+- **No se declara ni se insinúa** que Pexels, Unsplash o los autores recomienden, patrocinen o verifiquen la
+  selección de bicicletas del artículo.
+- El **volteo horizontal** de la fotografía de MTB queda registrado arriba: es una transformación de encuadre, no
+  una alteración del contenido (no se han añadido, borrado ni sustituido elementos de la escena). Se comprobó que
+  la imagen no contiene texto ni logotipos legibles que el espejo pudiera falsear.
+- Los **originales JPG se conservan fuera del árbol público**, en
+  `docs/assets/ciclismo-stock-2027/seleccion-final/` del repositorio principal; en `public/` solo se publican los
+  derivados WebP optimizados y sin metadatos.
+- Esta incorporación **no altera** el estado PENDIENTE de las 30 fotografías de producto de las §1-§5 ni reintroduce
+  ninguna de ellas.
+
+---
+
+## 7. Capturas reales de la aplicación CorrerJuntos — 24 de agosto de 2026
+
+Tercer ámbito, distinto de §1-§5 (fotografías de producto) y de §6 (fotografías ambientales
+licenciadas). Aquí no hay licencia de terceros que negociar: son **capturas de pantalla de la propia
+aplicación**, entregadas por el propietario del proyecto, usadas con fin editorial y promocional
+dentro del blog de CorrerJuntos.
+
+> **Declaración expresa:** son capturas reales de la app en uso. **No** son fotografías de producto,
+> **no** son imágenes generadas por IA y **no** se ha reconstruido ni retocado la interfaz. La única
+> intervención ha sido recortar (nunca añadir ni redibujar).
+
+| Derivado publicado | Archivo fuente entregado | Uso | Incorporación | Dimensiones origen → final | Transformaciones |
+|---|---|---|---|---|---|
+| `public/blog-images/ciclismo/app-ciclismo-hub-captura.webp` | `codex-clipboard-44e78d07-5293-499d-9e03-5713abf21ab4.png`, entregado por el propietario del proyecto | Bloque principal de promoción de la app en `blog/ciclismo/index.html` (editorial/promocional) | 24-08-2026 | 277×609 → **276×604**, 80,6 KB | Recorte de artefactos del pantallazo: banda blanca de 5 px superior y línea gris de 1 px izquierda. WebP **lossless**, metadatos EXIF/ICC eliminados. **Sin reescalado**: se publica a resolución nativa y se limita por CSS a 240 px. |
+| `public/blog-images/ciclismo/app-ciclismo-actividad-bici.webp` | Captura entregada por el propietario del proyecto (corregida por él a partir de `codex-clipboard-a6669b73-80c2-45c6-9e6c-11f02258a099.png`) | Bloque superior de promoción de las tres comparativas de bicicletas (editorial/promocional) | 24-08-2026 | 277×518, **77,5 KB** | **Recorte por privacidad**: eliminada la franja inferior con la tarjeta del entrenador. **Corrección puntual del indicador de deporte** (ver abajo). WebP **lossless** (VP8L), sin EXIF/ICC. **Sin reescalado.** |
+
+### Privacidad y terceros
+
+- **Tarjeta del entrenador excluida.** En la captura de detalle de actividad se ha recortado por
+  completo la tarjeta inferior del entrenador José: no queda visible su nombre, su fotografía, su
+  mensaje ni ninguna parte del borde de la tarjeta. Verificación numérica: la tarjeta comenzaba en la
+  fila y=523 del original y el derivado termina en y=518, con la última fila con contenido en y=515,
+  es decir **7 filas de margen de fondo limpio** por encima del borde eliminado.
+- **Apple Maps conserva su atribución visible.** En ambas capturas se mantienen íntegros el logotipo
+  «Mapas» de Apple y el enlace «Aviso legal» que acompañan al mapa. No se han recortado, tapado ni
+  desplazado, y ningún borde redondeado los alcanza.
+- **Strava** aparece únicamente como etiqueta de la integración real dentro de la captura. No se
+  presenta como patrocinio ni se ha añadido su logotipo fuera de la captura.
+- **Prozis** aparece dentro de la captura del inicio como una tarjeta de contenido propia de la app,
+  ya rotulada por la propia aplicación como «Enlace de afiliado». Tampoco se ha añadido nada fuera.
+- No se han añadido logotipos de Apple, Strava ni Prozis fuera de lo que ya contienen las capturas.
+- Los textos alternativos describen la pantalla sin incluir nombres de personas ni ubicaciones
+  concretas, pese a que ambas aparezcan dentro de la imagen.
+- Los PNG originales permanecen **fuera del repositorio**, en la carpeta temporal desde la que se
+  entregaron. En `public/` solo se publican los derivados WebP sin metadatos.
+
+### Corrección del indicador de deporte en la captura de detalle
+
+La primera versión de esta captura mostraba la actividad etiquetada como **«Carrera»** con icono de
+corredor, pese a tratarse de una salida en bicicleta (101,79 km a 34,0 km/h, titulada «Morning Ride»
+e importada desde Strava, y que en la pantalla de inicio sí figura con icono de bicicleta). Por eso no
+llegó a publicarse.
+
+El propietario del proyecto entregó una versión corregida en la que **se sustituyó únicamente ese
+indicador**: icono de corredor + «Carrera» → icono de bicicleta + «Bici».
+
+- **Alcance real de la modificación, verificado píxel a píxel** contra la versión anterior: los únicos
+  cambios perceptibles se concentran en la línea del indicador, en el rectángulo **x72-109, y62-71**
+  (el propietario lo declaró como y64-71; la comparación detecta dos filas más, todas dentro de la
+  misma línea). Fuera de esa zona solo hay diferencias de valor ±1 en 129.838 píxeles, propias de
+  volver a codificar el archivo, invisibles a simple vista.
+- **El resto de la captura permanece sin cambios**: distancia, tiempo, desnivel, frecuencia cardiaca,
+  calorías, mapa, pestañas, cadencia y tiempos se conservan tal cual estaban.
+- **Apple Maps conserva su atribución**: el logotipo «Mapas» y el enlace «Aviso legal» siguen visibles
+  e íntegros. En el contexto de las comparativas el radio del marco se reduce a 8 px precisamente
+  porque las esquinas inferiores de esta captura solo tienen 10-11 px de margen uniforme, de modo que
+  el marco no recorta nada de la pantalla.
+- **La tarjeta del entrenador sigue excluida** por el mismo recorte descrito arriba.
+
+Por tanto, **esta imagen no debe describirse como una captura completamente inalterada**: es una
+captura real de la aplicación con una corrección puntual y acotada del indicador de deporte, hecha
+para que coincida con la naturaleza real de la actividad. Tampoco es una imagen generada: no se ha
+reconstruido la interfaz ni se ha usado IA generativa.
+
+**Activo retirado:** la versión anterior, `app-ciclismo-actividad-captura.webp`, se eliminó del
+repositorio con `git rm` para que la clasificación incorrecta «Carrera» no quedara accesible
+públicamente tras un despliegue, aunque no estuviera enlazada.

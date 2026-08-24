@@ -86,3 +86,38 @@ B08HK3XFZF (MET Rivale) · B0BXQPJV4Z (KASK Mojito³) · B0776V571C (Giro Fixtur
 - **C. Publicar con las 7 fotos de marcas con press room** (descargadas de allí aceptando condiciones) y placeholder neutro para el resto hasta respuesta.
 
 No se ha sustituido ninguna fotografía por imágenes generadas ni se declara autorización inexistente.
+
+---
+
+## 6. Fotografías ambientales licenciadas (heroes y tarjetas de categoría) — 24 de agosto de 2026
+
+Ámbito distinto al de las §1-§5. Estas cuatro fotografías **no son imágenes de producto**: son fotografías
+ambientales de ciclismo licenciadas, usadas únicamente en los *heroes* editoriales de las tres comparativas y en
+las tres tarjetas de categoría del hub `/blog/ciclismo`.
+
+> **Declaración expresa:** ninguna de estas cuatro fotografías representa a ninguno de los modelos seleccionados
+> en las comparativas, ni a ninguna marca concreta. Son imágenes de contexto (carretera de montaña, pista de
+> grava, alta montaña). Las fotografías oficiales de cada bicicleta siguen enlazadas en la ficha del fabricante y
+> las 30 tarjetas de producto conservan su placeholder editorial sin fotografía.
+
+| Original | Derivado(s) publicado(s) | Autor | URL de la foto | Licencia | Descarga | Uso exacto | Transformación aplicada |
+|---|---|---|---|---|---|---|---|
+| `01-hero-carretera-pexels-33442063.jpg` (2400×1600) | `mejores-bicicletas-carretera-2027-hero.webp` (1600×900, 283,3 KB) · `-hero-800.webp` (800×450, 82,4 KB) | Thet Tun Aung | https://www.pexels.com/photo/cyclist-on-curving-mountain-road-in-england-33442063/ | Pexels License — https://www.pexels.com/license/ | 24-08-2026 | Hero de `mejores-bicicletas-carretera-2027` | Recorte 16:9 (2400×1350 desde y=190), reescalado Lanczos3 a 1600×900 y 800×450, WebP q80, metadatos EXIF/ICC eliminados. Sin volteo. |
+| `02-card-carretera-unsplash-nwDtwquRJJ0.jpg` (5673×3782) | `mejores-bicicletas-carretera-2027-card.webp` (960×540, 73,6 KB) | Hassan Anayi | https://unsplash.com/photos/cyclist-on-a-winding-road-in-the-mountains-nwDtwquRJJ0 | Unsplash License — https://unsplash.com/license | 24-08-2026 | Tarjeta «Carretera» del hub | Recorte 16:9 (4200×2363 desde x=0, y=1419), reescalado Lanczos3 a 960×540, WebP q80, metadatos eliminados. Sin volteo. |
+| `03-hero-card-gravel-pexels-5281686.jpg` (2400×1600) | `mejores-bicicletas-gravel-2027-hero.webp` (1600×900, 241,8 KB) · `-hero-800.webp` (800×450, 63,6 KB) · `mejores-bicicletas-gravel-2027-card.webp` (960×540, 93,1 KB) | Brent Olson | https://www.pexels.com/photo/a-biker-riding-on-a-dirt-road-5281686/ | Pexels License — https://www.pexels.com/license/ | 24-08-2026 | Hero de `mejores-bicicletas-gravel-2027` + tarjeta «Gravel» del hub | Hero: recorte 16:9 (2400×1350 desde y=125) → 1600×900 y 800×450. Card: recorte independiente más cerrado (1900×1069 desde x=418, y=356) → 960×540. Lanczos3, WebP q80-82, metadatos eliminados. Sin volteo. |
+| `04-hero-card-mtb-unsplash-9qsK2QHidmg.jpg` (2649×3762, **vertical**) | `mejores-mtb-2027-hero.webp` (1600×900, 205,9 KB) · `-hero-800.webp` (800×450, 38,0 KB) · `mejores-mtb-2027-card.webp` (960×540, 60,3 KB) | Dmitrii Vaccinium | https://unsplash.com/photos/9qsK2QHidmg | Unsplash License — https://unsplash.com/license | 24-08-2026 | Hero de `mejores-mtb-2027` + tarjeta «MTB» del hub | Hero: recorte 16:9 desde original vertical (2649×1490 desde y=1100) conservando ciclista, cortado rocoso y cordillera, **+ volteo horizontal (espejo)** para situar al ciclista a la derecha y dejar legible el texto del hero a la izquierda → 1600×900 y 800×450. Card: recorte más cerrado (2200×1238 desde x=220, y=1230) **con el mismo volteo horizontal** por coherencia visual con el hero → 960×540. Lanczos3, WebP q80-82, metadatos eliminados. |
+
+### Notas de cumplimiento
+
+- Ambas licencias (Pexels y Unsplash) permiten el uso comercial **sin atribución obligatoria**; aun así se acredita
+  autor y plataforma bajo cada hero y se conserva este registro completo.
+- **No se declara ni se insinúa** que Pexels, Unsplash o los autores recomienden, patrocinen o verifiquen la
+  selección de bicicletas del artículo.
+- El **volteo horizontal** de la fotografía de MTB queda registrado arriba: es una transformación de encuadre, no
+  una alteración del contenido (no se han añadido, borrado ni sustituido elementos de la escena). Se comprobó que
+  la imagen no contiene texto ni logotipos legibles que el espejo pudiera falsear.
+- Los **originales JPG se conservan fuera del árbol público**, en
+  `docs/assets/ciclismo-stock-2027/seleccion-final/` del repositorio principal; en `public/` solo se publican los
+  derivados WebP optimizados y sin metadatos.
+- Esta incorporación **no altera** el estado PENDIENTE de las 30 fotografías de producto de las §1-§5 ni reintroduce
+  ninguna de ellas.

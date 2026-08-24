@@ -102,3 +102,12 @@
 .bike-photo-pending .bpp-note{font-size:.78rem;color:#64748b}
 .bike-photo-pending .bpp-cta{font-size:.82rem;font-weight:700;color:#c2410c;text-decoration:underline;text-underline-offset:3px}
 .bike-photo-pending svg{opacity:.5}
+
+/* Heroes fotográficos 2027: en pantallas estrechas el recorte de object-fit:cover
+   es horizontal, así que desplazamos el encuadre para que el ciclista no quede
+   fuera de cuadro. En escritorio el recorte es vertical y estas reglas no afectan. */
+@media(max-width:860px){
+  body[data-article="mejores-bicicletas-carretera-2027"] .hero-media img{object-position:64% center}
+  body[data-article="mejores-bicicletas-gravel-2027"] .hero-media img{object-position:58% center}
+  body[data-article="mejores-mtb-2027"] .hero-media img{object-position:60% center}
+}

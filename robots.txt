@@ -20,49 +20,237 @@ Disallow: /*.bak$
 Disallow: /tmp_
 
 # ═══ AI Search Bots — ALLOW for AI search visibility ═══
+#
+# Nota: un robot que encuentra su propio grupo IGNORA por completo el grupo *.
+# Por eso cada grupo repite los Disallow tecnicos; sin ellos, /api/, /supabase/,
+# /stats/ y demas quedaban abiertos para estos crawlers.
+# robots.txt no es un mecanismo de seguridad: lo sensible debe protegerse aparte.
+# Google-Extended solo controla el uso para entrenar/fundamentar Gemini; NO
+# controla la inclusion en Google Search. GPTBot (entrenamiento) y OAI-SearchBot
+# (busqueda de ChatGPT) tienen finalidades distintas.
 
 # OpenAI (ChatGPT Search, GPT responses)
 User-agent: GPTBot
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # Anthropic (Claude)
 User-agent: ClaudeBot
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 User-agent: Claude-User
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # Perplexity
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # Google AI (Gemini)
 User-agent: Google-Extended
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # Apple (Siri, Apple Intelligence)
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # Meta AI
 User-agent: Meta-ExternalAgent
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # Cohere
 User-agent: cohere-ai
 Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # ByteDance / TikTok (aggressive crawler, block)
 User-agent: Bytespider
@@ -71,17 +259,81 @@ Disallow: /
 # Microsoft Copilot / Bing Chat
 User-agent: bingbot
 Crawl-delay: 5
+Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # ═══ SEO Crawlers — Rate limit ═══
 
 User-agent: AhrefsBot
 Crawl-delay: 10
+Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 User-agent: SemrushBot
 Crawl-delay: 10
+Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 User-agent: MJ12bot
 Crawl-delay: 30
+Allow: /
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /node_modules/
+Disallow: /screenshots/
+Disallow: /social-content/
+Disallow: /stats/
+Disallow: /correr-juntos-app/
+Disallow: /*.cjs
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /mockup-
+Disallow: /preview-
+Disallow: /home-
+Disallow: /*.bak$
+Disallow: /tmp_
 
 # Sitemaps (sitemap-index.xml references all child sitemaps)
 Sitemap: https://www.correrjuntos.com/sitemap-index.xml

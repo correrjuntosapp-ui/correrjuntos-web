@@ -191,3 +191,79 @@ reconstruido la interfaz ni se ha usado IA generativa.
 **Activo retirado:** la versión anterior, `app-ciclismo-actividad-captura.webp`, se eliminó del
 repositorio con `git rm` para que la clasificación incorrecta «Carrera» no quedara accesible
 públicamente tras un despliegue, aunque no estuviera enlazada.
+
+## Adenda 25 ago 2026 — hub v2 y artículo de geles
+
+**Fotografías editoriales (Pexels, licencia libre, consultadas 25-08-2026):**
+
+- `ciclismo-hub-hero-v2.webp` — alexandre saraiva carniato · [aficion-hobby-ocio-ciclismo-5970278](https://www.pexels.com/es-es/foto/aficion-hobby-ocio-ciclismo-5970278/) · https://www.pexels.com/license/ · original 5905×3937 · sha256 2e74555a82026dc4. Sustituye a la imagen generada por IA del hero del hub (el descargo deja de ser necesario).
+- `mejores-geles-ciclismo-{hero,card}.webp` — Kezia Rhesa Arman · [hombre-hierba-cesped-bebiendo-6433941](https://www.pexels.com/es-es/foto/hombre-hierba-cesped-bebiendo-6433941/) · https://www.pexels.com/license/ · original 4288×2848 · sha256 8e55c60ffee50b19. Sustituye a la imagen generada por IA del hero del hub (el descargo deja de ser necesario).
+
+**Fotografías de producto (8 geles, `/productos/{ASIN}.jpg`):** descargadas de la ficha oficial de cada producto en Amazon.es (hiRes) y verificadas visualmente una a una — mismo estado PENDIENTE que el resto del lote: sin SiteStripe ni PA-API, mantenidas por decisión del editor a la espera de credenciales (caso A2POUPWGXYY3L2). ASINs: B07Q367KCP, B01CNEO6FA, B0BVFTFQ8X, B005K8IGPS, B07MF1NCZ1, B0FJ2JMF1K, B00GSR6WZG, B07TSL226P.
+
+**Artículo magnesios ciclismo (25 ago):** hero `mejores-magnesios-ciclismo-{hero,card}.webp` — Nop Viwat · [manos-sujetando-medicina-vitaminas-9385899](https://www.pexels.com/es-es/foto/manos-sujetando-medicina-vitaminas-9385899/) · https://www.pexels.com/license/ · original 6720×4480 · sha256 a412f09fe163dbeb. Fotos de producto (8): fichas oficiales Amazon hiRes verificadas visualmente, mismo estado PENDIENTE del lote. ASINs: B01BCCP44G, B0BNNFY728, B012T97SDQ, B09BVX2XS7, B0BVRJ19CT, B07NS14648, B07H9F4X1P, B0CP8958DL. ⚠️ Hallazgo: el ASIN B0CCVVMBBG usado en el artículo de magnesios de running como «Ana María Lajusticia Magnesio+B6» resuelve en realidad a «Triptófano Plus con Ashwagandha» (producto distinto); en el artículo ciclista se sustituyó por B07H9F4X1P (Magnesio Total 5, verificado). El artículo de running queda pendiente de esa corrección.
+
+## Adenda 25 ago 2026 — artículo «Mejores electrolitos para ciclismo»
+
+### Hero con licencia verificada (Pexels)
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | sha256 (16) |
+|---|---|---|---|---|---|
+| `electrolitos-ciclismo-hero.webp` + `-card.webp` | [Foto 31312266](https://www.pexels.com/es-es/foto/ciclista-hidratandose-en-carretera-de-montana-31312266/) | Tiago Espindola de Oliveira | [Pexels License](https://www.pexels.com/license/) | 8192×5464, 3,2 MB, subida 24 mar 2025 | `ea56ddc2d6d0de50` |
+
+Ficha consultada el 25 ago 2026 vía navegador (JSON-LD ImageObject de la propia página). Descarga del CDN oficial `images.pexels.com`, HTTP 200.
+
+### Fotos de producto (8 ASIN, self-hosted en `/public/blog-images/ciclismo/productos/`)
+
+Mismo estado que los lotes de geles y magnesios: imagen `hiRes` de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visualmente una a una (hoja `ELECTROLITOS-F.jpg` + `CHK-DEXTRO.jpg`), pendiente de la autorización PA-API/Creators (caso Amazon A2POUPWGXYY3L2). ASIN: B08B2YCG96 (226ERS Hydrazero), B07W7XN3Y1 (SiS Hydro), B088L6YYJ4 (Dextro Energy Zero), B00TCHF5T8 (PowerBar 5E), B06XHLMP1Q (Crown Isodrink), B07677YMQT (Maurten 320), B017M6C4I0 (Tailwind), B001O1G3C8 (Isostar Powertabs).
+
+### Hallazgos de verificación (pendientes de corregir en el artículo runner)
+
+Durante la selección se detectaron en `blog/mejores-bebidas-hidratacion-running.html` dos ASIN muertos: **B00JZ463AS** (High5 Zero, «Documento no encontrado») y **B019GU4J56** (Nuun, ficha caída). Además **B007WQVXMY** resultó ser High5 *Energy Drink* (con carbohidratos), no Zero. Ninguno se ha usado en el artículo de ciclismo; la corrección del artículo runner queda anotada como tarea aparte.
+
+## Adenda 25 ago 2026 (2) — artículos «Proteínas para ciclistas» y «Dolor de espalda y postura»
+
+### Heroes con licencia verificada (Pexels)
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | sha256 (16) |
+|---|---|---|---|---|---|
+| `proteinas-ciclismo-hero.webp` + `-card.webp` | [Foto 4378327](https://www.pexels.com/es-es/foto/hombre-bebiendo-cara-enfrentarse-4378327/) | Kaboompics (perfil `@karola-g`; el campo creator de la ficha muestra su web kaboompics.com) | [Pexels License](https://www.pexels.com/license/) | 6720×4480, 7,2 MB, subida 11 may 2020 | `8cc5937a39114e5d` |
+| `postura-bicicleta-dolor-hero.webp` + `-card.webp` | [Foto 32614271](https://www.pexels.com/es-es/foto/ciclista-montando-en-carretera-escenica-con-follaje-vibrante-32614271/) | Жанна Алимкулова | [Pexels License](https://www.pexels.com/license/) | 6000×4000, 3,2 MB, subida 18 jun 2025 | `406454d6a4dc82fb` |
+
+Fichas consultadas el 25 ago 2026 vía navegador (JSON-LD ImageObject). Descargas del CDN oficial, HTTP 200.
+
+### Fotos de producto (8 ASIN nuevos, self-hosted en `/public/blog-images/ciclismo/productos/`)
+
+Mismo estado que los lotes anteriores: imagen `hiRes` de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visualmente (hoja `PROTEINAS.jpg`, 9/9 correctas; se usan 8 y se descarta BSN Syntha-6 por criterio editorial). ASIN: B000QSNYGI (ON Gold Standard), B00EZTKZDE (Myprotein Impact), B09N3HJGPK (Dymatize ISO 100), B07BHP7DGX (HSN Evolate 2.0), B004U4WUFU (ESN Designer), B0BKSXHCWS (Scitec Professional), B00HF630Z4 (Bulk Pure Whey), B0CQRNC7WN (Bulk Vegana). Pendiente PA-API/Creators (caso A2POUPWGXYY3L2).
+
+El artículo de postura no contiene enlaces patrocinados ni fotos de producto.
+
+### Prozis
+
+Bloque patrocinador del artículo de proteínas: «100% Real Whey Protein 1000 g» — URL `/es/es/prozis/100-real-whey-protein-1000-g` verificada en vivo el 25 ago 2026 (HTTP 200, título de ficha «100% Real Whey Protein 1000 g - Desarrollo Muscular | Prozis», comprobado vía navegador porque prozis.com devuelve 403 a curl).
+
+## Adenda 25 ago 2026 (3) — auditoría editorial del clúster y sustitución del hero de electrolitos
+
+### Hero de electrolitos sustituido (seguridad vial)
+
+La foto anterior (Pexels 31312266, Tiago Espindola de Oliveira) mostraba a un ciclista **pedaleando sin casco**; se retira del artículo y del hub por criterio editorial de seguridad. Sustituida por:
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | sha256 (16) |
+|---|---|---|---|---|---|
+| `electrolitos-ciclismo-hero.webp` + `-card.webp` (v2) | [Foto 5735739](https://www.pexels.com/es-es/foto/carretera-hombre-agua-verano-5735739/) | RUN 4 FFWPU | [Pexels License](https://www.pexels.com/license/) | 6000×4000, 7,4 MB | ver `fichas-ele3.json` |
+
+Ciclista con casco bebiendo del bidón en marcha. Ficha consultada el 25 ago 2026 vía navegador; descarga del CDN oficial, HTTP 200. El original 31312266 queda descartado para heroes ciclistas (sin casco en marcha).
+
+### Hub
+
+`ciclismo-hub-hero-v2.webp` recomprimido (122→92 KB) y nueva variante responsive `ciclismo-hub-hero-v2-828.webp` (40 KB) para `srcset` — misma foto Pexels 5970278 ya registrada, sin cambio de licencia.
+
+### Auditoría editorial 25 ago 2026 (9 páginas del clúster)
+
+- **Geles**: extirpado un bloque legacy de 37 KB del artículo runner incrustado por error (secciones de maratón, fotos de corredores `/public/pexels/5687423-800.webp` y `4083911-800.webp`, FAQ duplicada, doble newsletter, footer y scripts runner, bloques Prozis repetidos). Copia del bloque eliminado en `C:/tmp/geles-legacy-eliminado.html`.
+- **Términos runner visibles restantes (excepciones documentadas)**: geles («carrera a pie», «corredores» — frase fisiológica + único enlace comparativo a la versión running); espalda («corredor… zancada» — frase fisiológica; «corredores» — único enlace running de la página, a la rutina de core, justificado en el texto). Resto de páginas: cero.
+- **Fuentes verificadas en vivo** (PubMed vía navegador, curl bloqueado): Jeukendrup 2014 (24791914), ISSN cafeína 2021 (33388079), consenso hiponatremia 2015 (26102445), ISSN proteína 2017 (JISSN), Cochrane magnesio 2020 (32956536), y 4 revisiones sistemáticas de biomecánica ciclista (41705012, 39285616, 35440291, 29872355).
+- **Fuente Shimano** del artículo de pedales (SPD vs SPD-SL) retirada del sitio de Shimano (redirige a portada; sin snapshot en Wayback): sustituida por el portal oficial de manuales técnicos `si.shimano.com` con nota explicativa.
+- **Lighthouse móvil (local, 25 ago)**: 9/9 páginas con Accessibility 100, Best Practices 100, SEO 100, CLS 0; Performance 99–100 (hub 99 tras srcset). Sin validador HTML en el proyecto: chequeo estructural propio (equilibrio de etiquetas) limpio en las 9.
+- **Integridad comercial**: 32/32 fichas Amazon con producto–foto–ASIN–CTA–alt correspondientes e idénticas al inventario inicial; 2 tarjetas Prozis del pilar intactas; único cambio en enlaces Prozis: eliminación del bloque duplicado legacy de geles (4→2 enlaces).
+- **Pendiente sin cambios**: migración de fotos de producto a Creators API cuando lleguen credenciales (caso Amazon A2POUPWGXYY3L2).

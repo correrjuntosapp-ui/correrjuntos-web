@@ -127,3 +127,13 @@
    inferiores, así que aquí el radio baja a 8 px para que el marco no llegue a
    recortar contenido de la pantalla. El hub conserva su radio de 16 px. */
 .app-promo-inline.has-shot .app-shot img{border-radius:8px}
+
+/* Chips estilo running, en tono bici (hub) */
+.chip-row-head{display:flex;align-items:center;gap:14px;max-width:1080px;margin:24px auto 0;padding:0 22px}
+.chip-row-label{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue-dark);white-space:nowrap}
+.chip-row-rule{flex:1;height:1px;background:#dbe7f7}
+.chip-nav--solid{margin-top:12px}
+.chip-nav--solid a{min-height:0;padding:8px 18px;border-radius:6px;border:1.5px solid #bfdcff;background:#fff;color:var(--blue-dark);font-size:.79rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 1px 4px rgba(11,99,206,.08);transition:all .18s ease}
+.chip-nav--solid a:hover{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(11,99,206,.30)}
+.chip-nav--solid a.chip-solid{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(11,99,206,.28)}
+.chip-nav--solid a.chip-solid:hover{background:var(--blue-dark);border-color:var(--blue-dark)}

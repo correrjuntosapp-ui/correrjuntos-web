@@ -298,3 +298,9 @@ Imagen hiRes de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visu
 
 - Creatina: posicionamiento ISSN 2017 (PMID 28615996).
 - Omega-3: revisión sistemática 2024 de RCTs en adultos sanos que entrenan (PMID 38999792, «sin evidencia concluyente» sobre rendimiento) + hoja NIH ODS de omega-3 en español (200).
+
+## Adenda 25 ago 2026 (5) — «Potenciómetros» + review Real Hydration
+
+- **Hero potenciómetros**: Pexels 17239244 (Tuvalum, ciclista con casco subiendo puerto, 4933×3289, Pexels License, ficha vía navegador, registro en `fichas-pot.json`).
+- **8 fotos de producto** verificadas visualmente (hoja `POTENCIOMETROS.jpg`, 12 candidatos, 8 elegidos): B0BQC4PBPH (Assioma Duo), B072JYW6ZX (Assioma Uno), B0DZCHJG9M (Assioma PRO MX-1), B0F5BRJVHB (Wahoo POWR Duo), B0FBGDR81B (Magene P715), B0F48HKZDK (Magene PES spider+bielas), B0CRVVXJY3 (XCADEY XPOWER-S G2), B0GY847VYY (CooSpo biela bilateral 165 mm — sin nombre de modelo en ficha; no se inventa). Descartados: Sigeyi AXO (foto de montaje, no packshot), Assioma PRO RS-1 y Wahoo POWRLINK/POWR unilaterales (redundancia de marca).
+- **Hero review Real Hydration**: compuesto desde la imagen oficial de la ficha de Prozis (uso autorizado por la marca, 5 ago), etiquetado como imagen oficial en el pie. Datos nutricionales de la ficha web (sabor Tropical, lote I2603766) — **la ficha ahora SÍ publica la tabla completa**, cambio registrado también en la memoria del deal.

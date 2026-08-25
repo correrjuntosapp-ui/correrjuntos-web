@@ -304,3 +304,32 @@ Imagen hiRes de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visu
 - **Hero potenciómetros**: Pexels 17239244 (Tuvalum, ciclista con casco subiendo puerto, 4933×3289, Pexels License, ficha vía navegador, registro en `fichas-pot.json`).
 - **8 fotos de producto** verificadas visualmente (hoja `POTENCIOMETROS.jpg`, 12 candidatos, 8 elegidos): B0BQC4PBPH (Assioma Duo), B072JYW6ZX (Assioma Uno), B0DZCHJG9M (Assioma PRO MX-1), B0F5BRJVHB (Wahoo POWR Duo), B0FBGDR81B (Magene P715), B0F48HKZDK (Magene PES spider+bielas), B0CRVVXJY3 (XCADEY XPOWER-S G2), B0GY847VYY (CooSpo biela bilateral 165 mm — sin nombre de modelo en ficha; no se inventa). Descartados: Sigeyi AXO (foto de montaje, no packshot), Assioma PRO RS-1 y Wahoo POWRLINK/POWR unilaterales (redundancia de marca).
 - **Hero review Real Hydration**: compuesto desde la imagen oficial de la ficha de Prozis (uso autorizado por la marca, 5 ago), etiquetado como imagen oficial en el pie. Datos nutricionales de la ficha web (sabor Tropical, lote I2603766) — **la ficha ahora SÍ publica la tabla completa**, cambio registrado también en la memoria del deal.
+
+## Adenda 25 ago 2026 (6) — auditoría de las cuatro piezas de la rama creatina-omega
+
+### Correcciones científicas aplicadas (fuentes verificadas en vivo)
+
+- **Creatina** (`mejores-creatinas-ciclismo`): incorporadas PMID 38892701 (revisión sistemática de ayudas ergogénicas en ciclismo, 2024: 2 estudios de creatina aislada, sin efectos significativos; posible efecto de cafeína+creatina) y PMID 42280321 (scoping review resistencia/mixtos, 2026: mejoras no uniformes en sprints repetidos, recuperación equívoca, aumentos pequeños y variables de masa). Retiradas promesas de mejora, el «1–2 kg» como inevitable y la carga como necesaria.
+- **Omega-3** (`mejores-omega-3-ciclismo`): auditoría de etiquetado de los 8 (zooms `ZOOM-*.jpg` del scratchpad): Nordic 1.280 mg omega-3 TOTALES/2 perlas (corregido: antes se presentaba como EPA+DHA), HSN 600 mg/perla (350+250; corregido de ≈750), NOW 750 confirmado, Solgar ES sin cifra frontal (dosis 2 caps; retirado el ≈940 no verificable), 226ERS ratio **DHA:EPA 5:1** (corregido; antes invertido), Nutravita 1.100 confirmado, ESN 1.200+900 verificado en esn.com, WeightWorld 300 exacto (180+120). Rango real declarado 300–2.100 mg/dosis; añadido el techo FDA/NIH (3 g/día EPA+DHA, hasta 2 g de suplementos, frase localizada en la hoja ES del NIH) y la dosis de ESN contextualizada.
+- **Real Hydration** (`prozis-real-hydration-opiniones`): retirada la afirmación de mercado, sodio como referencia contextual individualizable, «bebida de electrolitos sin carbohidratos energéticos», vitaminas B en neutro, FAQ correr/ciclismo con matices; ficha oficial reverificada (12,99 €, en stock, lote I2603766, sabores).
+- **Potenciómetros** (`mejores-potenciometros-ciclismo`): reconstruido — ver commit.
+
+### Potenciómetros — cambios de selección documentados
+
+| Cambio | Producto | Motivo | Fuente de especificaciones | Imagen |
+|---|---|---|---|---|
+| RETIRADO | CooSpo biela bilateral (B0GY847VYY) | Producto de marketplace sin ficha oficial del modelo exacto (el S10 oficial de CooSpo es un spider para Easton Cinch, otro producto) | coospo.com verificado | Foto local B0GY847VYY.jpg queda sin uso, se conserva |
+| RETIRADO | XCADEY XPOWER-S G2 (B0CRVVXJY3) | Documentación oficial del fabricante no contrastable en nuestra verificación | — | Foto local B0CRVVXJY3.jpg queda sin uso, se conserva |
+| AÑADIDO | Favero Assioma PRO RS-1 (B0FGJ3S6L9) | Cubre el estándar SPD-SL; ASIN y foto verificados (hoja POTENCIOMETROS.jpg) | cycling.favero.com/es/assioma-pro-rs (±1 %, 160 h) | hiRes de /dp/ self-hosted (transitoria pre-Creators API) |
+| AÑADIDO (editorial, sin afiliado, SIN foto) | Garmin Rally 110/210 | Representatividad de mercado; no localizado en Amazon ES (búsqueda 25 ago) | Manual oficial ES (PDF, ago 2026): versiones y batería recargable; el resto remitido a la documentación oficial | Tarjeta editorial sin fotografía (sin permiso de uso) |
+| AÑADIDO (editorial, sin afiliado, SIN foto) | 4iiii PRECISION 3+ PRO | Biela de referencia del mercado | 4iiii.com/precision-3-plus-pro (±1 %, 550 h CR2032, Find My, 3 años) | Tarjeta editorial sin fotografía (sin permiso de uso) |
+| RENOMBRADO | Wahoo «SPEEDPLAY POWR Duo» → **SPEEDPLAY POWER Dual** (nombre oficial) | Correspondencia de ASIN B0F5BRJVHB confirmada por specs coincidentes (75 h) en dp y ficha oficial | es-eu.wahoofitness.com (±1 % declarado, 75 h, 113 kg, 2 años) | Sin cambio |
+| DISTINGUIDO | Magene PES P505 vs P515 | El listado de Amazon agrupa variantes; la tarjeta es del P505 y remite al P515 como producto distinto | es.magene.com: P505 Base (±1,5 %, 110BCD) y P515 (±1 %, 380 h) | Sin cambio |
+
+### QA registrado (25 ago)
+
+- `git diff --check` limpio · `html-validate` 0 errores en las 4 (config con reglas de estilo global desactivadas) · JSON-LD 0 inválidos · 1 H1 y canonical propio por página · FAQ visible = FAQPage (regenerado desde lo visible) · ItemList = orden visible.
+- Responsive 390/768/1440: 0 desbordes, 0 imágenes rotas, 0 sin alt, 0 errores de consola (12 vistas).
+- Fichas comerciales 23/23 con producto↔ASIN↔foto↔tag↔rel correctos.
+- Afiliación antes/después: RH, creatina y omega IDÉNTICOS token a token; potenciómetros con los 3 cambios deliberados de la tabla (2 retiradas + 1 alta) y el resto idéntico.
+- Lighthouse móvil: creatina/omega/potenciómetros **100/100/100/100, CLS 0**; Real Hydration **91/100/100/100, CLS 0** — el Perf 91 es límite de la plantilla legacy del blog (scripts globales de CRO/newsletter compartidos con las demás reviews); aplicadas igualmente mejoras (preload+srcset 828w del hero, landmark main, overrides de contraste WCAG para componentes inyectados).

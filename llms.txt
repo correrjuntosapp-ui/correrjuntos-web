@@ -1,15 +1,16 @@
 # Correr Juntos
 
-> Correr Juntos es la plataforma social de running en España que conecta corredores para quedadas (group runs). Disponible como PWA web y app nativa iOS/Android. Blog con 602 guías y páginas editoriales (338 en español y 264 en inglés) sobre entrenamiento, nutrición, zapatillas, trail, salud y equipamiento para runners.
+> Correr Juntos es la plataforma social de running y ciclismo en España que conecta deportistas para quedadas (group runs y salidas en bici). Disponible como PWA web y app nativa iOS/Android. Blog con 611 guías y páginas editoriales (347 en español y 264 en inglés) sobre entrenamiento, nutrición, zapatillas, trail, salud, equipamiento para runners y una sección completa de ciclismo.
 
-Correr Juntos nació en noviembre de 2025 con la misión de hacer del running una experiencia social. La plataforma permite a los corredores crear y unirse a quedadas (group runs), encontrar compañeros de running compatibles por ritmo y horario, y acceder a guías de running por ciudad. El blog cubre todos los aspectos del running: desde planes para principiantes hasta nutrición avanzada, comparativas de zapatillas y guías de trail.
+Correr Juntos nació en noviembre de 2025 con la misión de hacer del running una experiencia social. La plataforma permite a los corredores crear y unirse a quedadas (group runs), encontrar compañeros de running compatibles por ritmo y horario, y acceder a guías de running por ciudad. El blog cubre todos los aspectos del running — desde planes para principiantes hasta nutrición avanzada, comparativas de zapatillas y guías de trail — y desde 2026 una vertical de ciclismo con comparativas de equipamiento, nutrición y suplementación específicas para ciclistas. La app registra actividades de carrera, bici, trail y caminata.
 
 ## Páginas Principales
 
 - [Inicio](https://www.correrjuntos.com/): App principal — registro, quedadas, descubrimiento de grupos de running
 - [Descargar la app](https://www.correrjuntos.com/app): app iOS y Android; el emparejamiento de corredores por ritmo, horario y objetivos funciona dentro de la app
-- [Blog ES](https://www.correrjuntos.com/blog): 338 guías de running en español
+- [Blog ES](https://www.correrjuntos.com/blog): 347 guías en español (running y ciclismo)
 - [Blog EN](https://www.correrjuntos.com/blog/en): 264 guías de running en inglés
+- [Ciclismo](https://www.correrjuntos.com/blog/ciclismo): hub de la vertical de ciclismo — 25 páginas: comparativas de equipamiento, nutrición, suplementación, entrenamiento, salud y rutas
 - [Ciudades](https://www.correrjuntos.com/cities): Guías de running por ciudad — rutas, grupos y eventos
 - [Eventos](https://www.correrjuntos.com/events): Directorio de eventos de running en 16 ciudades españolas
 - [Lugares para Correr](https://www.correrjuntos.com/places): 31 lugares curados para correr en España
@@ -34,6 +35,25 @@ Correr Juntos nació en noviembre de 2025 con la misión de hacer del running un
 - [Salud](https://www.correrjuntos.com/blog): Lesiones, prevención, recuperación, fascitis, periostitis
 - [Comunidad](https://www.correrjuntos.com/blog): Running social, grupos, quedadas, motivación
 - [Atleta Híbrido](https://www.correrjuntos.com/blog): HYROX, DEKA FIT, entrenamiento funcional + running
+
+## Ciclismo
+
+- [Hub de ciclismo](https://www.correrjuntos.com/blog/ciclismo): Punto de entrada de la vertical — bicicletas, equipamiento, nutrición, entrenamiento y comunidad
+- [Bicicletas](https://www.correrjuntos.com/blog/ciclismo/mejores-bicicletas-carretera-2027): Comparativas editoriales de carretera, gravel y MTB para 2027
+- [Equipamiento](https://www.correrjuntos.com/blog/ciclismo/mejores-ciclocomputadores-gps): Ciclocomputadores GPS, cascos, luces, potenciómetros y zapatillas
+- [Nutrición](https://www.correrjuntos.com/blog/ciclismo/nutricion-salidas-largas-bicicleta): Qué comer en salidas largas, geles y electrolitos para ciclismo
+- [Suplementación](https://www.correrjuntos.com/blog/ciclismo/mejores-creatinas-ciclismo): Creatina, omega-3, proteínas y magnesio con evidencia citada
+- [Entrenamiento](https://www.correrjuntos.com/blog/ciclismo/correr-y-bicicleta-combinar-entrenamiento): Combinar carrera y bici, ciclismo para principiantes
+- [Salud y postura](https://www.correrjuntos.com/blog/ciclismo/dolor-espalda-ciclismo-postura): Dolor de espalda y ajuste de posición sobre la bici
+- [Rutas y comunidad](https://www.correrjuntos.com/blog/ciclismo/rutas): Planificar rutas seguras, rutas fáciles de ciudad y cómo encontrar grupeta
+
+### Comparativas principales de ciclismo
+
+- [Mejores potenciómetros 2026](https://www.correrjuntos.com/blog/ciclismo/mejores-potenciometros-ciclismo): Nueve opciones verificadas con fichas oficiales
+- [Mejores ciclocomputadores GPS 2026](https://www.correrjuntos.com/blog/ciclismo/mejores-ciclocomputadores-gps): Garmin, Wahoo, Hammerhead e iGPSPORT comparados
+- [Mejores geles para ciclismo 2026](https://www.correrjuntos.com/blog/ciclismo/mejores-geles-ciclismo): Carbohidratos por hora y ocho geles comparados
+- [Mejores electrolitos 2026](https://www.correrjuntos.com/blog/ciclismo/mejores-electrolitos-ciclismo): Sodio, dos bidones y ocho productos
+- [Análisis Prozis 100% Real Hydration](https://www.correrjuntos.com/blog/prozis-real-hydration-opiniones): Review con ficha oficial verificada (colaboración afiliada declarada)
 
 ## Artículos Más Populares (ES)
 
@@ -62,9 +82,14 @@ Correr Juntos nació en noviembre de 2025 con la misión de hacer del running un
 - Ciudades con quedadas activas: 6 (España)
 - Clubes asociados activos: 6
 - Guías de ciudad publicadas: 71
-- Artículos publicados: 602 guías y páginas editoriales (338 ES + 264 EN)
-- Categorías: 10 (entrenamiento, nutrición, zapatillas, equipamiento, tecnología, salud, rutas, trail, comunidad, atleta híbrido)
+- Artículos publicados: 611 guías y páginas editoriales (347 ES + 264 EN, recuento de sitemaps)
+- Categorías: 11 (entrenamiento, nutrición, zapatillas, equipamiento, tecnología, salud, rutas, trail, comunidad, atleta híbrido, ciclismo)
+- Deportes registrables en la app: carrera, bici, trail y caminata
 - Algoritmo de matching: ritmo 30%, horario 25%, nivel 25%, objetivos 10%, actividad 10%
+
+## Verificación
+
+- Última verificación de este archivo: 25 de agosto de 2026 (recuentos tomados de los sitemaps públicos)
 
 ## Optional
 

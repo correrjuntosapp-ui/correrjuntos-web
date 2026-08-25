@@ -344,3 +344,11 @@ Imagen hiRes de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visu
 - Afiliación antes/después: RH, creatina y omega IDÉNTICOS token a token; potenciómetros con los 3 cambios deliberados de la tabla (2 retiradas + 1 alta) y el resto idéntico.
 - Lighthouse móvil: creatina/omega/potenciómetros **100/100/100/100, CLS 0**; Real Hydration **89–91/100/100/100, CLS 0** (varianza de laboratorio entre pasadas) — el Perf <95 es límite de la plantilla legacy del blog (scripts globales de CRO/newsletter compartidos con las demás reviews) y queda registrado como deuda técnica independiente, no como bloqueo de publicación; aplicadas igualmente mejoras (preload+srcset 828w del hero, landmark main, overrides de contraste WCAG para componentes inyectados).
 - CLS de Real Hydration: `enhance.js` inyectaba el aviso de salud (`cj-health-note`) al inicio de `.content` en slugs sensibles, desplazando el contenido (CLS 0,044 reproducible). Fix sin tocar scripts globales: el aviso se **pre-renderiza estáticamente en el HTML** con el mismo `id`, texto y estilos; el guard `!document.getElementById('cj-health-note')` del script detecta el nodo y no inyecta nada. Verificado: 1 solo aviso en DOM, CLS 0.
+
+## Adenda 25 ago 2026 (7) — auditoría integral de la vertical
+
+- **Ninguna fotografía existente retirada** y ninguna descarga nueva del CDN de Amazon.
+- **Alta**: `public/blog-images/prozis-ranking/prozis-energy-gel-50g-400.webp` y `prozis-100-real-hydration-15-sticks-400.webp` — derivados a 400 px de los activos oficiales de ficha de Prozis ya presentes en el repo y **autorizados por la marca** dentro de la colaboración (registro del 5 ago). Uso: tarjetas Prozis del pilar de nutrición ciclista. No proceden de Amazon.
+- Inventario máquina-legible de las 121 tarjetas de la vertical: `docs/inventario-imagenes-producto-ciclismo.json` (producto, ASIN, imagen, origen, estado de autorización, destino de migración, fecha de revisión 2026-08-25).
+- Script de migración a Creators API preparado en `tools/migrate-amazon-images-creators-api.cjs`: **bloqueado externamente** (caso A2POUPWGXYY3L2); sin secretos y sin llamadas simuladas.
+- Las 30 bicicletas continúan con placeholder hasta permiso de marca; las tarjetas Garmin/4iiii de potenciómetros siguen como referencias editoriales sin fotografía.

@@ -137,3 +137,21 @@
 .chip-nav--solid a:hover{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(11,99,206,.30)}
 .chip-nav--solid a.chip-solid{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(11,99,206,.28)}
 .chip-nav--solid a.chip-solid:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+
+/* Newsletter ciclista (auditoria 25 ago 2026) */
+.nl-cycling{margin:44px 0 8px;padding:34px 28px;border-radius:20px;background:linear-gradient(135deg,#0b63ce,#083c82);color:#fff}
+.nl-cycling .nl-kicker{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#bfdcff;margin-bottom:8px}
+.nl-cycling h2{color:#fff;font-size:1.45rem;margin:0 0 8px;border:0;padding:0}
+.nl-cycling h2::before{display:none}
+.nl-cycling .nl-copy{color:rgba(255,255,255,.88);font-size:.95rem;max-width:52ch;margin:0 0 18px}
+.nl-cycling .nl-label{display:block;font-size:.8rem;font-weight:700;color:#dbeafe;margin-bottom:6px}
+.nl-cycling .nl-row{display:flex;gap:10px;flex-wrap:wrap}
+.nl-cycling .nl-input{flex:1 1 220px;min-width:0;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.35);background:#fff;color:#13233f;font-size:.95rem}
+.nl-cycling .nl-input:focus{outline:3px solid #ffd166;outline-offset:2px}
+.nl-cycling .nl-btn{padding:12px 24px;border-radius:10px;border:0;background:#ffd166;color:#3a2c00;font-weight:800;font-size:.95rem;cursor:pointer}
+.nl-cycling .nl-btn:hover{background:#ffdd85}
+.nl-cycling .nl-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.nl-cycling .nl-btn:disabled{opacity:.6;cursor:default}
+.nl-cycling .nl-msg{min-height:1.2em;font-size:.88rem;color:#fff;margin:10px 0 0;font-weight:600}
+.nl-cycling .nl-privacy{font-size:.75rem;color:rgba(255,255,255,.72);margin:8px 0 0}
+.nl-cycling .nl-privacy a{color:#dbeafe;text-decoration:underline}

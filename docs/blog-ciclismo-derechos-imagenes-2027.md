@@ -326,6 +326,16 @@ Imagen hiRes de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visu
 | RENOMBRADO | Wahoo «SPEEDPLAY POWR Duo» → **SPEEDPLAY POWER Dual** (nombre oficial) | Correspondencia de ASIN B0F5BRJVHB confirmada por specs coincidentes (75 h) en dp y ficha oficial | es-eu.wahoofitness.com (±1 % declarado, 75 h, 113 kg, 2 años) | Sin cambio |
 | DISTINGUIDO | Magene PES P505 vs P515 | El listado de Amazon agrupa variantes; la tarjeta es del P505 y remite al P515 como producto distinto | es.magene.com: P505 Base (±1,5 %, 110BCD) y P515 (±1 %, 380 h) | Sin cambio |
 
+### Estado de la fotografía nueva `B0FGJ3S6L9.jpg` (Favero Assioma PRO RS-1)
+
+- Es una **incorporación nueva al árbol público de esta rama**: `public/blog-images/ciclismo/productos/B0FGJ3S6L9.jpg`. Ninguna entrega debe afirmar que «no se añadió ninguna fotografía nueva»: esta sí lo es.
+- Corresponde al ASIN **B0FGJ3S6L9** y al **Favero Assioma PRO RS-1**; correspondencia foto↔producto verificada visualmente (hoja `POTENCIOMETROS.jpg`).
+- Procede de la imagen `hiRes` de la página `/dp/` recuperada durante la investigación previa de esta comparativa.
+- **No está regularizada** todavía mediante Amazon Creators API/SiteStripe y **no se declara autorizada**.
+- Se mantiene bajo la **decisión transitoria ya aceptada por el propietario** (imágenes reales de producto self-hosted mientras se resuelve el alta en Creators API, caso A2POUPWGXYY3L2).
+- **Debe migrarse** a la URL o mecanismo autorizado cuando Amazon habilite las credenciales, junto con el resto de imágenes de producto del blog.
+- Uso en la página: únicamente en la tarjeta comercial del producto (con `loading="lazy"`, dimensiones explícitas y `alt` descriptivo). No se usa como hero, `og:image`, `twitter:image` ni imagen de ningún schema.
+
 ### QA registrado (25 ago)
 
 - `git diff --check` limpio · `html-validate` 0 errores en las 4 (config con reglas de estilo global desactivadas) · JSON-LD 0 inválidos · 1 H1 y canonical propio por página · FAQ visible = FAQPage (regenerado desde lo visible) · ItemList = orden visible.

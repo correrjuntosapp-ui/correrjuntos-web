@@ -232,3 +232,53 @@ Registrada con el recuento exacto, para abordarla por separado:
    `blog/entrenamiento/`. Ambos anteriores a este trabajo y ajenos a las imágenes.
 6. **Contraste del hero de `cities/index`**: el subtítulo se lee mal sobre el
    degradado claro. Es anterior y no lo provoca ningún cambio de esta tanda.
+
+---
+
+## Adenda — 25 de agosto de 2026: reversión temporal de las fotografías de producto
+
+Las tablas anteriores describen el estado del 24 de agosto. El 25 de agosto el
+editor decidió **restaurar las fotografías de producto** mientras se resuelve el
+acceso a la vía autorizada, asumiendo que vuelven a cargarse desde el CDN de
+Amazon sin método del programa, igual que antes de la retirada.
+
+### Estado de la solicitud de credenciales
+
+- Amazon ha trasladado la generación de credenciales de PA-API a la **API de
+  Creators** (`afiliados.amazon.es/creatorsapi`). En esa página, la sección
+  «Aplicaciones» devuelve «Se ha producido un error. Inténtalo de nuevo» y no
+  muestra el botón de crear aplicación. El error viene renderizado desde el
+  servidor de Amazon; no depende de nada del lado del editor.
+- En la página clásica de PA-API ya no existe el botón de solicitud; solo el
+  aviso que redirige a la API de Creators.
+- Se envió una incidencia al soporte de Afiliados el 25 de agosto describiendo
+  el error, con los datos de la cuenta.
+- El texto de Associates Central menciona un requisito de **10 ventas válidas
+  en los últimos 30 días**. Es lo que muestra su página; **no está confirmado
+  por soporte** ni se ha verificado su aplicación exacta. La cuenta registra 92
+  productos pedidos en los últimos 30 días según el panel de informes.
+- La concesión de acceso **no es automática**: según la propia FAQ de Amazon,
+  la elegibilidad se revisa en un plazo de hasta 48 horas tras crear una
+  credencial, y puede denegarse («AssociateNotEligible»).
+
+### Qué se restauró y qué no
+
+- 775 fotografías en 122 páginas, cada una emparejada con su tarjeta por el
+  nombre exacto del producto (nunca por posición) y con su URL verificada
+  (HTTP 200 y píxeles medidos; 535/535 válidas).
+- Los 31 ficheros locales de las guías de ciclismo volvieron del historial.
+  Siguen siendo «descargas directas del CDN de Amazon SIN método autorizado
+  del programa», como ya recogía su expediente: la reversión no cambia esa
+  calificación, solo la decisión de mostrarlos.
+- Siguen en placeholder: 1 asociación dudosa (Garmin Forerunner 965 en la guía
+  del maratón de Valencia, marcada por la auditoría) y 12 tarjetas que nunca
+  tuvieron fotografía en ninguna versión.
+- No volvió Amazon a heroes, `og:image`, `twitter:image` ni JSON-LD: 0
+  referencias, verificado tras la reversión.
+
+### Plan al recibir las credenciales
+
+Con las claves de la API de Creators/PA-API se sustituirán las ~535 URLs del
+CDN por las URLs oficiales que devuelva la API para los 393 ASIN de las
+tarjetas restauradas, en una sola pasada. La lista de tarjetas y ASIN queda
+registrada en el plan de restauración de esta tanda.

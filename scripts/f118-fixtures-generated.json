@@ -1,0 +1,1424 @@
+{
+ "now_iso": "2026-08-15T10:00:00Z",
+ "engine_hash": "eb59584b33789ab9b6d0890f04eadaac58b3c3e5974db3ce46a37d9dd37dc92e",
+ "cases": [
+  {
+   "name": "A1_primera_actividad",
+   "input": {
+    "current": {
+     "id": "c1",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1800,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 1,
+     "week_km": 5,
+     "history_count": 0
+    },
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": null,
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": []
+   },
+   "message_es": "Hecho. Has completado 5 km a 6:00/km. Descansa bien esta noche: ahí se asienta la mejora."
+  },
+  {
+   "name": "A2_mas_rapido",
+   "input": {
+    "current": {
+     "id": "c2",
+     "sport": "running",
+     "distance_km": 6,
+     "duration_sec": 1980,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 6,
+     "duration_sec": 1980,
+     "pace_sec_km": 330,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 22,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "faster",
+     "pace_delta_pct": 8,
+     "vs_count": 4
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "best_pace_of_recent",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Hecho. Has completado 6 km a 5:30/km, un 8% más rápido que tu media de las últimas 4 salidas. Tu mejor ritmo reciente en esta distancia. Descansa bien esta noche: ahí se asienta la mejora."
+  },
+  {
+   "name": "A3_mas_lento",
+   "input": {
+    "current": {
+     "id": "c3",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 2000,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 2000,
+     "pace_sec_km": 400,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 21,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "slower",
+     "pace_delta_pct": 11,
+     "vs_count": 4
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Bien ahí. Has completado 5 km a 6:40/km, un 11% más tranquilo que tu media reciente — los días suaves también construyen. Llevas 4 salidas y 21 km en los últimos 7 días. Sigue apareciendo — la constancia es lo que te hace mejorar."
+  },
+  {
+   "name": "A4_estable",
+   "input": {
+    "current": {
+     "id": "c4",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1810,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1810,
+     "pace_sec_km": 362,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 21,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 1,
+     "vs_count": 4
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Bien ahí. Has completado 5 km a 6:02/km, clavado en tu ritmo habitual. Llevas 4 salidas y 21 km en los últimos 7 días. Sigue apareciendo — la constancia es lo que te hace mejorar."
+  },
+  {
+   "name": "A5_distancia_cero",
+   "input": {
+    "current": {
+     "id": "c5",
+     "sport": "running",
+     "distance_km": 0,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": false,
+    "facts": null,
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": null,
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "zero_distance"
+    ]
+   },
+   "message_es": null
+  },
+  {
+   "name": "A6_duracion_cero",
+   "input": {
+    "current": {
+     "id": "c6",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 0,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": false,
+    "facts": null,
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": null,
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "zero_duration"
+    ]
+   },
+   "message_es": null
+  },
+  {
+   "name": "A7_muy_corta",
+   "input": {
+    "current": {
+     "id": "c7",
+     "sport": "running",
+     "distance_km": 1.5,
+     "duration_sec": 420,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": false,
+    "facts": null,
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": null,
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "too_short"
+    ]
+   },
+   "message_es": null
+  },
+  {
+   "name": "A8_unidades_ms",
+   "input": {
+    "current": {
+     "id": "c8",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800000,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": false,
+    "facts": null,
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": null,
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "suspect_units"
+    ]
+   },
+   "message_es": null
+  },
+  {
+   "name": "A9_ritmo_invalido",
+   "input": {
+    "current": {
+     "id": "c9",
+     "sport": "running",
+     "distance_km": 10,
+     "duration_sec": 650,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": false,
+    "facts": null,
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": null,
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "invalid_pace"
+    ]
+   },
+   "message_es": null
+  },
+  {
+   "name": "A10_historial_cruzado",
+   "input": {
+    "current": {
+     "id": "c10",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "hb",
+      "sport": "bici",
+      "distance_km": 40,
+      "duration_sec": 5400,
+      "start_iso": "2026-08-12T09:00:00Z"
+     },
+     {
+      "id": "hw",
+      "sport": "walking",
+      "distance_km": 4,
+      "duration_sec": 3000,
+      "start_iso": "2026-08-10T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1800,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 2,
+     "week_km": 11,
+     "history_count": 1
+    },
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": null,
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "cross_sport_filtered"
+    ]
+   },
+   "message_es": "Hecho. Has completado 5 km a 6:00/km. 2 salidas y 11 km en los últimos 7 días. Descansa bien esta noche: ahí se asienta la mejora."
+  },
+  {
+   "name": "A11_futuras_filtradas",
+   "input": {
+    "current": {
+     "id": "c11",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "hf",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2100,
+      "start_iso": "2026-08-16T09:00:00Z"
+     },
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1800,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 3,
+     "week_km": 16,
+     "history_count": 2
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 1,
+     "vs_count": 2
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 3
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "medium",
+    "reason_codes": [
+     "future_or_same_filtered"
+    ]
+   },
+   "message_es": "Buen entreno. Has completado 5 km a 6:00/km, clavado en tu ritmo habitual. Llevas 3 salidas y 16 km en los últimos 7 días. Si mañana sales, que sea suave."
+  },
+  {
+   "name": "A12_duplicado_en_historial",
+   "input": {
+    "current": {
+     "id": "c12",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1800,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 3,
+     "week_km": 16,
+     "history_count": 2
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 1,
+     "vs_count": 2
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 3
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "medium",
+    "reason_codes": [
+     "duplicate_in_history_filtered"
+    ]
+   },
+   "message_es": "Bien ahí. Has completado 5 km a 6:00/km, clavado en tu ritmo habitual. Llevas 3 salidas y 16 km en los últimos 7 días. Sigue apareciendo — la constancia es lo que te hace mejorar."
+  },
+  {
+   "name": "A13_desordenado",
+   "input": {
+    "current": {
+     "id": "c13",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     },
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1800,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 21,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 0,
+     "vs_count": 4
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": [
+     "history_reordered"
+    ]
+   },
+   "message_es": "Hecho. Has completado 5 km a 6:00/km, clavado en tu ritmo habitual. Llevas 4 salidas y 21 km en los últimos 7 días. Descansa bien esta noche: ahí se asienta la mejora."
+  },
+  {
+   "name": "A14_bici",
+   "input": {
+    "current": {
+     "id": "c14",
+     "sport": "bici",
+     "distance_km": 40,
+     "duration_sec": 5142,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "hb1",
+      "sport": "bici",
+      "distance_km": 35,
+      "duration_sec": 4500,
+      "start_iso": "2026-08-12T09:00:00Z"
+     },
+     {
+      "id": "hb2",
+      "sport": "bici",
+      "distance_km": 30,
+      "duration_sec": 3857,
+      "start_iso": "2026-08-10T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "bici",
+     "km": 40,
+     "duration_sec": 5142,
+     "pace_sec_km": null,
+     "speed_kmh": 28,
+     "week_sessions": 3,
+     "week_km": 105,
+     "history_count": 2
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 0,
+     "vs_count": 2
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 3
+    },
+    "next_action": {
+     "type": "recovery",
+     "detail": null
+    },
+    "confidence": "medium",
+    "reason_codes": []
+   },
+   "message_es": "Buena salida en bici. 40 km de bici en 1h 26m, clavada en tu ritmo habitual. Llevas 3 salidas y 105 km en los últimos 7 días. Ahora toca recuperar de verdad: hidrata, come algo en la próxima hora y mañana muy suave."
+  },
+  {
+   "name": "A15_trail",
+   "input": {
+    "current": {
+     "id": "c15",
+     "sport": "trail",
+     "distance_km": 12,
+     "duration_sec": 5400,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "ht1",
+      "sport": "trail",
+      "distance_km": 10,
+      "duration_sec": 4200,
+      "start_iso": "2026-08-12T09:00:00Z"
+     },
+     {
+      "id": "ht2",
+      "sport": "trail",
+      "distance_km": 9,
+      "duration_sec": 3900,
+      "start_iso": "2026-08-08T09:00:00Z"
+     },
+     {
+      "id": "ht3",
+      "sport": "trail",
+      "distance_km": 8,
+      "duration_sec": 3500,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "trail",
+     "km": 12,
+     "duration_sec": 5400,
+     "pace_sec_km": 450,
+     "speed_kmh": null,
+     "week_sessions": 3,
+     "week_km": 31,
+     "history_count": 3
+    },
+    "comparison": {
+     "status": "slower",
+     "pace_delta_pct": 5,
+     "vs_count": 3
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "longest_of_recent",
+     "vs_count": 3
+    },
+    "next_action": {
+     "type": "recovery",
+     "detail": null
+    },
+    "confidence": "medium",
+    "reason_codes": []
+   },
+   "message_es": "Buen golpe de kilómetros. Has completado 12 km a 7:30/km, un 5% más tranquilo que tu media reciente — los días suaves también construyen. Es tu salida más larga de las últimas 3. La recuperación también es entreno: hidrata, repón pronto y mañana día fácil."
+  },
+  {
+   "name": "A16_caminata",
+   "input": {
+    "current": {
+     "id": "c16",
+     "sport": "walking",
+     "distance_km": 4,
+     "duration_sec": 2700,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "hw1",
+      "sport": "walking",
+      "distance_km": 3,
+      "duration_sec": 2100,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "hw2",
+      "sport": "walking",
+      "distance_km": 5,
+      "duration_sec": 3600,
+      "start_iso": "2026-08-11T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "walking",
+     "km": 4,
+     "duration_sec": 2700,
+     "pace_sec_km": null,
+     "speed_kmh": null,
+     "week_sessions": 3,
+     "week_km": 12,
+     "history_count": 2
+    },
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 3
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "walking_no_pace_comparison"
+    ]
+   },
+   "message_es": "Buena caminata. Has hecho 4 km en 45 min. Llevas 3 salidas y 12 km en los últimos 7 días. Descansa bien esta noche: ahí se asienta la mejora."
+  },
+  {
+   "name": "A17_plan_siguiente",
+   "input": {
+    "current": {
+     "id": "c17",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "plan": {
+     "goal_key": "10k",
+     "week": 3
+    },
+    "next_workout": {
+     "tipo": "tempo",
+     "fecha": "2026-08-16",
+     "distancia_target_km": 6
+    },
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1800,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 21,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 0,
+     "vs_count": 4
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "plan_next",
+     "detail": {
+      "tipo": "tempo",
+      "fecha": "2026-08-16"
+     }
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Buen entreno. Has completado 5 km a 6:00/km, clavado en tu ritmo habitual. Llevas 4 salidas y 21 km en los últimos 7 días. Próxima sesión del plan: tempo mañana."
+  },
+  {
+   "name": "A18_alineado",
+   "input": {
+    "current": {
+     "id": "c18",
+     "sport": "running",
+     "distance_km": 6.1,
+     "duration_sec": 2196,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "plan": {
+     "goal_key": "10k",
+     "week": 3
+    },
+    "today_workout": {
+     "tipo": "easy_run",
+     "distancia_target_km": 6
+    },
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 6.1,
+     "duration_sec": 2196,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 22.1,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 0,
+     "vs_count": 4
+    },
+    "plan_context": "aligned",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Buen entreno. Has completado 6.1 km a 6:00/km, clavado en tu ritmo habitual. Llevas 4 salidas y 22.1 km en los últimos 7 días. Si mañana sales, que sea suave."
+  },
+  {
+   "name": "A19_distinto",
+   "input": {
+    "current": {
+     "id": "c19",
+     "sport": "running",
+     "distance_km": 3,
+     "duration_sec": 1080,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "plan": {
+     "goal_key": "10k",
+     "week": 3
+    },
+    "today_workout": {
+     "tipo": "long_run",
+     "distancia_target_km": 10
+    },
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 3,
+     "duration_sec": 1080,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 19,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 0,
+     "vs_count": 4
+    },
+    "plan_context": "different",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Bien ahí. Has completado 3 km a 6:00/km, clavado en tu ritmo habitual. Llevas 4 salidas y 19 km en los últimos 7 días. Sigue apareciendo — la constancia es lo que te hace mejorar."
+  },
+  {
+   "name": "A20_larga_recovery",
+   "input": {
+    "current": {
+     "id": "c20",
+     "sport": "running",
+     "distance_km": 18,
+     "duration_sec": 6840,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 18,
+     "duration_sec": 6840,
+     "pace_sec_km": 380,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 34,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "slower",
+     "pace_delta_pct": 6,
+     "vs_count": 4
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "longest_of_recent",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "recovery",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Ojo al dato. Has completado 18 km a 6:20/km, un 6% más tranquilo que tu media reciente — los días suaves también construyen. Es tu salida más larga de las últimas 4. La recuperación también es entreno: hidrata, repón pronto y mañana día fácil."
+  },
+  {
+   "name": "A21_sin_distancia",
+   "input": {
+    "current": {
+     "id": "c21",
+     "sport": "running",
+     "distance_km": null,
+     "duration_sec": 2400,
+     "start_iso": "2026-08-15T09:00:00Z"
+    },
+    "history": [
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     },
+     {
+      "id": "h4",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-05T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": null,
+     "duration_sec": 2400,
+     "pace_sec_km": null,
+     "speed_kmh": null,
+     "week_sessions": 4,
+     "week_km": 16,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "insufficient_history",
+     "pace_delta_pct": null,
+     "vs_count": 0
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 4
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "low",
+    "reason_codes": [
+     "missing_distance"
+    ]
+   },
+   "message_es": "Hecho. Has sumado 40 min de carrera. Llevas 4 salidas y 16 km en los últimos 7 días. Descansa bien esta noche: ahí se asienta la mejora."
+  },
+  {
+   "name": "A22_doble_sesion_mismo_dia",
+   "input": {
+    "current": {
+     "id": "c22",
+     "sport": "running",
+     "distance_km": 5,
+     "duration_sec": 1800,
+     "start_iso": "2026-08-15T18:00:00Z"
+    },
+    "history": [
+     {
+      "id": "c22a",
+      "sport": "running",
+      "distance_km": 8,
+      "duration_sec": 2880,
+      "start_iso": "2026-08-15T08:00:00Z"
+     },
+     {
+      "id": "h1",
+      "sport": "running",
+      "distance_km": 6,
+      "duration_sec": 2160,
+      "start_iso": "2026-08-13T09:00:00Z"
+     },
+     {
+      "id": "h2",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1750,
+      "start_iso": "2026-08-11T09:00:00Z"
+     },
+     {
+      "id": "h3",
+      "sport": "running",
+      "distance_km": 5,
+      "duration_sec": 1850,
+      "start_iso": "2026-08-09T09:00:00Z"
+     }
+    ],
+    "now_iso": "2026-08-15T10:00:00Z"
+   },
+   "analysis": {
+    "ok": true,
+    "facts": {
+     "sport": "running",
+     "km": 5,
+     "duration_sec": 1800,
+     "pace_sec_km": 360,
+     "speed_kmh": null,
+     "week_sessions": 5,
+     "week_km": 29,
+     "history_count": 4
+    },
+    "comparison": {
+     "status": "stable",
+     "pace_delta_pct": 0,
+     "vs_count": 4
+    },
+    "plan_context": "unknown",
+    "achievement": {
+     "type": "week_volume",
+     "vs_count": 5
+    },
+    "next_action": {
+     "type": "neutral",
+     "detail": null
+    },
+    "confidence": "high",
+    "reason_codes": []
+   },
+   "message_es": "Bien ahí. Has completado 5 km a 6:00/km, clavado en tu ritmo habitual. Llevas 5 salidas y 29 km en los últimos 7 días. Sigue apareciendo — la constancia es lo que te hace mejorar."
+  }
+ ]
+}

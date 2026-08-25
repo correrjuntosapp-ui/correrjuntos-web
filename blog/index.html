@@ -2,8 +2,6 @@
 <html lang="es-ES">
 <head>
 <meta charset="UTF-8">
-<link rel="preconnect" href="https://m.media-amazon.com" crossorigin>
-<link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <!-- LCP image preload · hero featured equipamiento · CWV (responsive srcset ago 2026) -->
 <link rel="preload" as="image" href="/public/pexels/2526878-1280.webp" imagesrcset="/public/pexels/2526878-400.webp 400w, /public/pexels/2526878-640.webp 640w, /public/pexels/2526878-800.webp 800w, /public/pexels/2526878-1200.webp 1200w, /public/pexels/2526878-1280.webp 1280w" imagesizes="(max-width: 1024px) 100vw, 42vw" fetchpriority="high">
@@ -479,6 +477,56 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 .dark-mode .filter-btn-todos{background:#f97316;border-color:#f97316;color:#fff}
 .dark-mode .filter-btn-todos:hover,.dark-mode .filter-btn-todos.active{background:#c2410c;border-color:#c2410c;color:#fff}
 .dark-mode .article-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
+/* Selector de deporte — entrada editorial a los dos verticales */
+.sport-select{margin:34px 0 10px}
+.sport-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.sport-card{display:flex;align-items:stretch;min-height:160px;border:1px solid #efe6db;border-radius:16px;background:#fffcf9;overflow:hidden;text-decoration:none;color:inherit}
+.sport-card-img{flex:0 0 38%;position:relative;overflow:hidden;background:#e7e0d6}
+.sport-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.sport-card-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:18px 22px;min-width:0}
+.sport-card-body strong{font-size:1.18rem;font-weight:800;letter-spacing:-.015em;color:#1f2937}
+.sport-card-body small{color:#6b7280;font-size:.87rem;line-height:1.45}
+.sport-card-cta{margin-top:5px;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.84rem}
+.sport-card-cta .arr{display:inline-block}
+.sport-card--run .sport-card-cta{color:#c2410c}
+.sport-card--bike .sport-card-cta{color:#0b4a99}
+.sport-card-title-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.sport-card-badge{background:#0b63ce;color:#fff;font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:2px 9px;border-radius:999px;line-height:1.6}
+/* Tratamiento fotográfico común: acerca contraste y saturación de la pareja */
+.sport-card--run .sport-card-img img{filter:saturate(.94)}
+.sport-card--bike .sport-card-img img{filter:contrast(1.05) saturate(1.08)}
+.sport-card:focus-visible{outline:3px solid #c2410c;outline-offset:3px}
+.sport-card--bike:focus-visible{outline-color:#0b63ce}
+@media(prefers-reduced-motion:no-preference){
+  .sport-card{transition:transform .2s,border-color .2s,box-shadow .2s}
+  .sport-card-img img{transition:transform .35s}
+  .sport-card-cta .arr{transition:transform .2s}
+  .sport-card:hover{transform:translateY(-2px)}
+  .sport-card:hover .sport-card-img img{transform:scale(1.04)}
+  .sport-card:hover .sport-card-cta .arr{transform:translateX(3px)}
+}
+.sport-card--run:hover{border-color:rgba(249,115,22,.5);box-shadow:0 6px 22px rgba(249,115,22,.1)}
+.sport-card--bike:hover{border-color:rgba(11,99,206,.5);box-shadow:0 6px 22px rgba(11,99,206,.1)}
+.dark-mode .sport-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+.dark-mode .sport-card-body strong{color:#f1eadf}
+.dark-mode .sport-card-body small{color:#a8a29e}
+.dark-mode .sport-card--run .sport-card-cta{color:#fb923c}
+.dark-mode .sport-card--bike .sport-card-cta{color:#7db4f5}
+@media(max-width:700px){
+  .sport-select{margin:26px 0 4px}
+  .sport-select .section-meta{display:none}
+  .sport-grid{grid-template-columns:1fr;gap:12px}
+  .sport-card{min-height:118px}
+  .sport-card-img{flex-basis:34%}
+  .sport-card-body{padding:12px 14px;gap:3px}
+  .sport-card-body strong{font-size:1.02rem}
+  .sport-card-body small{font-size:.78rem;line-height:1.35}
+  .sport-card-cta{font-size:.78rem;margin-top:2px}
+  .sport-card-badge{font-size:.53rem;padding:2px 8px}
+}
+@media(max-width:400px){
+  .sport-card-img{flex-basis:30%}
+}
 .dark-mode .article-card:hover{box-shadow:0 20px 48px rgba(0,0,0,.3)}
 .dark-mode .card-img::after{background:linear-gradient(transparent,rgba(11,18,32,.6))}
 .dark-mode .card-body h3{color:#fff}
@@ -654,6 +702,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 <style id="cj-design-tokens">@font-face{font-family:'Inter-fallback';src:local('Segoe UI'),local('Arial');size-adjust:107%;ascent-override:90.2%;descent-override:22.48%;line-gap-override:0%}/* Tokens PR3a (documentados; radios aún sin aplicar a componentes)
    --cj-radius-card:16px  --cj-radius-btn:12px  --cj-radius-pill:999px */
 :root{--cj-orange-brand:#f97316;--cj-orange-ink:#c2410c;--cj-surface-cream:#fef7ed;--cj-surface-dark:#0b1220;--cj-font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}</style>
+<link rel="preconnect" href="https://m.media-amazon.com" crossorigin>
 </head>
 <body><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1466415711868158&ev=PageView&noscript=1"/></noscript>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -730,6 +779,33 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
 <div role="main" id="main" class="container">
 
+  <!-- Selector de deporte · entrada editorial a los dos verticales -->
+  <section class="sport-select" aria-labelledby="sport-select-label">
+    <div class="section-head">
+      <h2 class="section-label" id="sport-select-label">Elige tu deporte</h2>
+      <span class="section-rule"></span>
+      <span class="section-meta">Dos formas de moverte · una comunidad</span>
+    </div>
+    <div class="sport-grid">
+      <a class="sport-card sport-card--run" href="#archivo">
+        <span class="sport-card-img"><img src="/public/blog-images/sport-selector/running.webp" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
+        <span class="sport-card-body">
+          <span class="sport-card-title-row"><strong>Running</strong></span>
+          <small>Entrenamiento, zapatillas, salud y carreras</small>
+          <span class="sport-card-cta">Explorar running <span class="arr" aria-hidden="true">→</span></span>
+        </span>
+      </a>
+      <a class="sport-card sport-card--bike" href="/blog/ciclismo">
+        <span class="sport-card-img"><img src="/public/blog-images/sport-selector/ciclismo.webp" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
+        <span class="sport-card-body">
+          <span class="sport-card-title-row"><strong>Ciclismo</strong><span class="sport-card-badge">Nuevo</span></span>
+          <small>Primeras salidas, equipamiento, seguridad, rutas y grupetas</small>
+          <span class="sport-card-cta">Explorar ciclismo <span class="arr" aria-hidden="true">→</span></span>
+        </span>
+      </a>
+    </div>
+  </section>
+
   <!-- Empieza por aquí · 3 puertas de entrada por perfil (artículos reales) -->
   <div class="start-here">
     <div class="section-head">
@@ -790,15 +866,15 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
           <div class="ep-mini-info"><span class="ep-cat">Zapatillas</span><h4>Las 8 mejores zapatillas Nike running 2026</h4><span class="ep-cta">Leer análisis →</span></div>
         </a>
         <a href="/blog/tirada-larga-running" class="ep-mini">
-          <div class="ep-mini-thumb"><img src="/public/pexels/35102677-640.webp" alt="Corredor en tirada larga" loading="lazy" width="152" height="116" decoding="async"></div>
+          <div class="ep-mini-thumb"><img src="/public/pexels/35102677-640.webp" alt="Corredor en tirada larga" loading="lazy" width="152" height="86" decoding="async"></div>
           <div class="ep-mini-info"><span class="ep-cat">Entrenamiento</span><h4>Tirada larga: la sesión más importante de tu plan</h4><span class="ep-cta">Ver guía →</span></div>
         </a>
         <a href="/blog/calendario-carreras-populares-2026" class="ep-mini">
-          <div class="ep-mini-thumb"><img src="/public/pexels/36370811-640.webp" alt="Corredores en una carrera popular" loading="lazy" width="152" height="116" decoding="async"></div>
+          <div class="ep-mini-thumb"><img src="/public/pexels/36370811-640.webp" alt="Corredores en una carrera popular" loading="lazy" width="152" height="86" decoding="async"></div>
           <div class="ep-mini-info"><span class="ep-cat">Carreras</span><h4>Carreras populares 2026 en España: calendario completo</h4><span class="ep-cta">Preparar carrera →</span></div>
         </a>
         <a href="/blog/grupos-running-madrid" class="ep-mini">
-          <div class="ep-mini-thumb"><img src="/public/pexels/9510767-640.webp" alt="Grupo de running en Madrid" loading="lazy" width="152" height="116" decoding="async"></div>
+          <div class="ep-mini-thumb"><img src="/public/pexels/9510767-640.webp" alt="Grupo de running en Madrid" loading="lazy" width="152" height="86" decoding="async"></div>
           <div class="ep-mini-info"><span class="ep-cat">Grupos</span><h4>Grupos de running en Madrid: los 15 mejores</h4><span class="ep-cta">Encontrar grupo →</span></div>
         </a>
       </div>
@@ -946,6 +1022,23 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
 
   <div class="articles" id="articlesGrid">
+    <!-- Nueva sección Ciclismo (20 ago 2026) -->
+    <!-- Comparativas 2027 (22 ago 2026) -->
+    <a href="/blog/ciclismo/mejores-ciclocomputadores-gps" class="article-card" data-category="equipamiento" style="animation-delay:.006s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/mejores-ciclocomputadores-gps-hero.svg" alt="Ilustración editorial de un ciclocomputador GPS sobre el manillar" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Los 10 Mejores Ciclocomputadores GPS de 2026</h3><p>Garmin, Wahoo, Hammerhead e iGPSPORT comparados con precios oficiales verificados y un rol claro por perfil.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">23 ago 2026 · 16 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/nutricion-salidas-largas-bicicleta" class="article-card" data-category="nutricion" style="animation-delay:.008s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/nutricion-salidas-largas-bicicleta-hero.svg" alt="Ilustración editorial de un avituallamiento de ciclismo con bidón y gel" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-nutricion">Ciclismo</span><h3>Qué Comer en Salidas en Bici de 2, 4 y 6 Horas</h3><p>Hidratos por hora según duración, hidratación y sodio, comida real frente a geles y cómo entrenar el estómago. Con fuentes.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">23 ago 2026 · 15 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/mejores-bicicletas-carretera-2027" class="article-card" data-category="equipamiento" style="animation-delay:.01s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/mejores-bicicletas-carretera-2027-hero.svg" alt="Ilustración editorial de bicicleta de carretera al amanecer en un puerto" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Las 10 Mejores Bicicletas de Carretera para 2027</h3><p>De 999 € a 5.599 €: aluminio, endurance, race y aero con montajes y precios de fichas oficiales actuales.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">22 ago 2026 · 18 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/mejores-bicicletas-gravel-2027" class="article-card" data-category="equipamiento" style="animation-delay:.015s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/mejores-bicicletas-gravel-2027-hero.svg" alt="Ilustración editorial de bicicleta gravel en pista de tierra al atardecer" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Las 10 Mejores Bicicletas Gravel para 2027</h3><p>Fast gravel, aventura y bikepacking con referencias actuales, uso recomendado y fuentes oficiales.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">22 ago 2026 · 17 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/mejores-mtb-2027" class="article-card" data-category="equipamiento" style="animation-delay:.018s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/mejores-mtb-2027-hero.svg" alt="Ilustración editorial de bicicleta de montaña en sendero forestal" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Las 10 Mejores MTB para 2027</h3><p>Hardtail, XC de doble suspensión y trail con referencias exactas, montajes y precios contrastados.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">22 ago 2026 · 18 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/ciclismo-para-principiantes" class="article-card" data-category="entrenamiento" style="animation-delay:.02s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/ciclismo-principiantes-hero.webp" alt="Ciclista principiante ajustándose el casco antes de salir" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Ciclismo</span><h3>Ciclismo para Principiantes: Guía desde Cero</h3><p>Qué bici sirve, cómo elegir una ruta sencilla, técnica básica y un plan práctico de cuatro semanas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 12 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/equipamiento-primera-salida-bicicleta" class="article-card" data-category="equipamiento" style="animation-delay:.03s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/equipamiento-primera-salida-hero.webp" alt="Equipamiento esencial para una salida en bicicleta" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Qué Llevar en tu Primera Salida en Bici</h3><p>Obligatorio, esencial y opcional: una checklist honesta para ir preparado sin comprar por comprar.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 13 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/mejores-luces-bicicleta" class="article-card" data-category="tecnologia" style="animation-delay:.04s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/mejores-luces-bicicleta-hero.webp" alt="Bicicleta con luz delantera blanca y trasera roja al anochecer" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-tecnologia">Ciclismo</span><h3>Mejores Luces para Bicicleta 2026</h3><p>Cinco opciones según el uso, con especificaciones oficiales y sin puntuaciones o pruebas inventadas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 15 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/como-encontrar-grupeta-ciclismo" class="article-card" data-category="rutas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/encontrar-grupeta-hero.webp" alt="Grupo de ciclistas recibiendo a una nueva compañera" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-rutas">Ciclismo</span><h3>Cómo Encontrar una Grupeta de tu Nivel</h3><p>Dónde buscar, qué preguntar y cómo detectar un grupo que realmente no deje atrás a principiantes.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 11 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/como-evitar-pinchazos-bicicleta" class="article-card" data-category="entrenamiento" style="animation-delay:.06s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/como-evitar-pinchazos-bicicleta-hero-v2.webp" alt="Ciclista reparando una rueda en una carretera tranquila" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Ciclismo</span><h3>Cómo Evitar Pinchazos en Bicicleta</h3><p>Prevención, presión correcta, cámara o tubeless, reparación paso a paso y el kit mínimo que sí cabe bajo el sillín.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 13 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/mejores-cascos-ciclismo" class="article-card" data-category="equipamiento" style="animation-delay:.07s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/mejores-cascos-ciclismo-hero-v2.webp" alt="Ciclista ajustándose el casco antes de salir" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Mejores Cascos de Ciclismo Homologados</h3><p>EN 1078, MIPS, talla, ventilación y cinco categorías reales para elegir sin marketing y sin ranking cerrado.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 14 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/rutas-faciles-bici-empezar-ciudad" class="article-card" data-category="rutas" style="animation-delay:.08s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/rutas-faciles-bici-empezar-ciudad-hero-v2.webp" alt="Ciclista consultando un mapa junto a una vía verde" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-rutas">Ciclismo</span><h3>Rutas Fáciles en Bici para Principiantes</h3><p>Cómo elegir distancia, desnivel y firme, planificar el retorno y compartir el plan antes de arrancar.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 12 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/ciclismo-invierno-ropa-seguridad" class="article-card" data-category="equipamiento" style="animation-delay:.09s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/ciclismo-invierno-ropa-seguridad-hero-v2.webp" alt="Ciclista con ropa por capas y luces en una salida de invierno" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Ciclismo en Invierno: Ropa y Visibilidad</h3><p>Sistema de capas, cortavientos, manos, pies y cabeza, adaptación de rutas y visibilidad reforzada.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 13 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/zapatillas-ciclismo-automaticas-vs-planas" class="article-card" data-category="equipamiento" style="animation-delay:.10s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/zapatillas-ciclismo-automaticas-vs-planas-hero-v2.webp" alt="Ciclista preparando zapatillas y pedales para una salida" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Ciclismo</span><h3>Zapatillas Automáticas vs Planas</h3><p>SPD, SPD-SL, Look Keo, curva de aprendizaje y perfiles a los que no recomendamos calas todavía.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 11 min</span><span class="card-arrow">Leer →</span></div></div></a>
+    <a href="/blog/ciclismo/correr-y-bicicleta-combinar-entrenamiento" class="article-card" data-category="entrenamiento" style="animation-delay:.11s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ciclismo/correr-y-bicicleta-combinar-entrenamiento-hero-v2.webp" alt="Deportista preparando una sesión de carrera y bicicleta" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Ciclismo</span><h3>Correr y Bicicleta: Cómo Combinarlas</h3><p>Distribución semanal por perfil, recuperación activa y señales para reducir carga cuando combinas ambos deportes.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">20 ago 2026 · 13 min</span><span class="card-arrow">Leer →</span></div></div></a>
     <!-- Review Sizen 6+ NEW PANTS (20 ago 2026) -->
     <a href="/blog/sizen-6-plus-opiniones" class="article-card" data-category="equipamiento" data-pin="1" style="animation-delay:.04s">
       <div class="card-img">
@@ -961,13 +1054,39 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
       </div>
     </a>
     <!-- Análisis Prozis Energy Gel (2 ago 2026) -->
-    <a href="/blog/review-prozis-energy-gel-cafeina" class="article-card" data-category="nutricion" style="animation-delay:.04s">
+    <a href="/blog/creatina-prozis-opiniones" class="article-card" data-category="suplementacion" style="animation-delay:.02s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/blog-images/prozis-ranking/creatina-prozis-hero.webp" alt="Bote de Prozis Monohidrato de Creatina 300 g junto al agitador de la marca" loading="lazy" width="1600" height="900" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Creatina Prozis 300 g: an&aacute;lisis, dosis y evidencia</h3>
+        <p>Etiqueta fotografiada, coste por dosis de 3 y 5 g, evidencia cient&iacute;fica verificada y para qui&eacute;n compensa de verdad.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta"><span class="meta">22 ago 2026 &middot; 17 min</span><span class="card-arrow">Leer &rarr;</span></div>
+      </div>
+    </a>
+    <a href="/blog/prozis-supreme-whey-opiniones" class="article-card" data-category="suplementacion" style="animation-delay:.03s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/blog-images/prozis-supreme-whey/card-supreme-whey.webp" alt="Supreme Whey Protein Cookies y Cream de Prozis junto al agitador" loading="lazy" width="640" height="458" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Supreme Whey de Prozis: an&aacute;lisis y opini&oacute;n tras probarla</h3>
+        <p>Composici&oacute;n del envase, coste por 25 g de prote&iacute;na y cata real del sabor Cookies &amp; Cream.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta"><span class="meta">17 ago 2026 &middot; 9 min</span><span class="card-arrow">Leer &rarr;</span></div>
+      </div>
+    </a>
+    <a href="/blog/review-prozis-energy-gel-cafeina" class="article-card" data-category="suplementacion" style="animation-delay:.04s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="/public/blog-images/prozis-geles/prozis-energy-gel-comparativa-cola-pina-colada.webp" alt="Los dos geles Prozis Energy Gel analizados, sabor Cola con cafeína y Piña Colada" loading="lazy" width="1600" height="900" decoding="async">
       </div>
       <div class="card-body">
-        <span class="category cat-badge-nutricion">Nutrici&oacute;n</span>
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
         <h3>Prozis Energy Gel con y sin cafe&iacute;na: an&aacute;lisis y comparativa</h3>
         <p>Composici&oacute;n, cafe&iacute;na, hidratos y precio de las dos versiones, con los datos transcritos de sus etiquetas.</p>
         <span class="author">Por Abraham Márquez Rodríguez</span>
@@ -989,9 +1108,9 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Nuevo artículo (9 may 2026) - Ultra trail SEO timing -->
     <a href="/blog/101-km-ronda-2026-guia-completa" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/ronda/puente-nuevo-ronda-880.webp" alt="Puente Nuevo de Ronda — escenario de los 101 km" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Ultra Trail</span><h3>101 km de Ronda 2026 — Gu&iacute;a Completa</h3><p>Recorrido por secciones, time cuts, equipamiento obligatorio top 8, plan de entrenamiento 16 semanas y nutrici&oacute;n para terminar el ultra m&aacute;s m&iacute;tico de Espa&ntilde;a.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (9 may 2026) - Pillar SEO equipamiento -->
-    <a href="/blog/guia-equipamiento-running-2026" class="article-card" data-category="equipamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img width="425" height="529" src="https://m.media-amazon.com/images/I/71aTpnUJu0L._AC_SX425_.jpg" alt="Equipamiento running 2026 zapatillas reloj" loading="lazy" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Gu&iacute;a Completa Equipamiento Running 2026</h3><p>Pillar page con 79 an&aacute;lisis enlazados en 8 categor&iacute;as: zapatillas, relojes GPS, auriculares, hidrataci&oacute;n, ropa, trail, nutrici&oacute;n y recuperaci&oacute;n.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/guia-equipamiento-running-2026" class="article-card" data-category="equipamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/6740820-640.webp" alt="Vista cenital de equipamiento de entrenamiento ordenado sobre el suelo: zapatillas, botella, comba y bandas el&aacute;sticas" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Gu&iacute;a Completa Equipamiento Running 2026</h3><p>Pillar page con 79 an&aacute;lisis enlazados en 8 categor&iacute;as: zapatillas, relojes GPS, auriculares, hidrataci&oacute;n, ropa, trail, nutrici&oacute;n y recuperaci&oacute;n.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (9 may 2026) - Kit principiante 200€ -->
-    <a href="/blog/equipamiento-running-principiante-200-euros" class="article-card" data-category="equipamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img width="395" height="163" src="https://m.media-amazon.com/images/I/716qPLEo4gL._AC_SX395_.jpg" alt="Kit running principiante 200 euros zapatillas Nike Pegasus" loading="lazy" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Kit Running Principiante 200&euro; — Todo Incluido 2026</h3><p>Lista cerrada por 200&euro; exactos: zapatillas Nike Pegasus 41, ropa t&eacute;cnica adidas, auriculares Shokz, cinturón, frontal y bot&eacute;lla. Empieza a correr sin gastar de m&aacute;s.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/equipamiento-running-principiante-200-euros" class="article-card" data-category="equipamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/6740823-640.webp" alt="Vista cenital de equipamiento b&aacute;sico de entrenamiento: zapatillas, reloj, botella, comba y bandas el&aacute;sticas" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Kit Running Principiante 200&euro; — Todo Incluido 2026</h3><p>Lista cerrada por 200&euro; exactos: zapatillas Nike Pegasus 41, ropa t&eacute;cnica adidas, auriculares Shokz, cinturón, frontal y bot&eacute;lla. Empieza a correr sin gastar de m&aacute;s.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">9 may 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (25 abr 2026 madrugada) - Day 19 -->
     <a href="/blog/ritmo-umbral-running" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/7188065-640.webp" alt="Atleta corriendo a ritmo umbral en pista" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Ritmo Umbral: La Sesi&oacute;n M&aacute;s Eficiente para Mejorar</h3><p>Qu&eacute; es, c&oacute;mo calcularlo (4 m&eacute;todos), tabla por nivel, plan inline 4 semanas y los 5 errores que arruinan tu tempo run.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">25 abr 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (25 abr 2026 noche) - Day 18 -->
@@ -1001,26 +1120,26 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Nuevo artículo (21 abr 2026 tarde) -->
     <a href="/blog/correr-postparto-vuelta-al-running" class="article-card" data-category="salud" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/11043224-640.webp" alt="Madre corredora postparto con carrito" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Volver a Correr Después del Parto: Plan Seguro de 8 Semanas</h3><p>Cu&aacute;ndo empezar, test de diastasis en casa, plan progresivo semana a semana, equipamiento esencial (faja, sujetador lactancia) y se&ntilde;ales de alarma.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">21 abr 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (21 abr 2026) -->
-    <a href="/blog/sujetador-deportivo-running" class="article-card" data-category="equipamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img width="342" height="445" src="https://m.media-amazon.com/images/I/71Wc4R74dyL._AC_SX342_.jpg" alt="Sujetador deportivo running mujer alto impacto" loading="lazy" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Los 10 Mejores Sujetadores Deportivos para Running 2026</h3><p>Comparativa con Shock Absorber, Triumph, Under Armour, Reebok, Amazon Essentials y m&aacute;s. Gu&iacute;a de tallas, niveles de impacto y c&oacute;mo elegir seg&uacute;n pecho.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">21 abr 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/sujetador-deportivo-running" class="article-card" data-category="equipamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/3927391-640.webp" alt="Vista cenital de ropa y material deportivo sobre una superficie clara, con un top t&eacute;cnico en el centro" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Los 10 Mejores Sujetadores Deportivos para Running 2026</h3><p>Comparativa con Shock Absorber, Triumph, Under Armour, Reebok, Amazon Essentials y m&aacute;s. Gu&iacute;a de tallas, niveles de impacto y c&oacute;mo elegir seg&uacute;n pecho.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">21 abr 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (29 mar 2026) -->
     <a href="/blog/correr-en-ayunas" class="article-card" data-category="salud" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog/img/correr-ayunas-hero.webp" alt="Correr en ayunas beneficios y riesgos" loading="lazy" width="1024" height="1536" decoding="async"></div><div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Correr en Ayunas: 8 Beneficios y 5 Riesgos Reales</h3><p>Gu&iacute;a completa con evidencia cient&iacute;fica: beneficios, riesgos, protocolo seguro y cu&aacute;ndo NO hacerlo.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">29 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (28 mar 2026) -->
-    <a href="/blog/asics-novablast-5-opinion" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img width="395" height="194" src="https://m.media-amazon.com/images/I/61HWeGPwB1L._AC_SX395_.jpg" alt="ASICS Novablast 5 opini&oacute;n review" loading="lazy" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>ASICS Novablast 5 Opini&oacute;n 2026: An&aacute;lisis Completo</h3><p>Review tras 400 km: mediasuela FF BLAST MAX, comparativa vs Clifton 10 y Pegasus 41. Puntuaci&oacute;n 8.7/10.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">28 mar 2026 &middot; 20 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/asics-novablast-5-opinion" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/5310910-640.webp" alt="Zapatilla de running pisando un charco y levantando salpicaduras de agua" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>ASICS Novablast 5 Opini&oacute;n 2026: An&aacute;lisis Completo</h3><p>Review tras 400 km: mediasuela FF BLAST MAX, comparativa vs Clifton 10 y Pegasus 41. Puntuaci&oacute;n 8.7/10.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">28 mar 2026 &middot; 20 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (27 mar 2026) -->
     <a href="/blog/sobreentrenamiento-running-sintomas" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/12698213-640.webp" alt="Sobreentrenamiento running s&iacute;ntomas y recuperaci&oacute;n" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Sobreentrenamiento Running: 12 S&iacute;ntomas + Recuperaci&oacute;n</h3><p>Los 12 s&iacute;ntomas del sobreentrenamiento, diagn&oacute;stico con HRV y FC reposo, y plan de recuperaci&oacute;n completo.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">27 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (26 mar 2026) -->
     <a href="/blog/calendario-carreras-populares-2026" class="article-card" data-category="carreras" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/36370811-640.webp" alt="Calendario carreras populares 2026 Espa&ntilde;a" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category" style="color:#ef4444;background:rgba(239,68,68,.12)">Carreras</span><h3>Carreras Populares 2026 Espa&ntilde;a: Calendario Completo</h3><p>+30 carreras reales: maratones, medias, 10K y trail. Fechas, ciudades, distancias e inscripciones.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">26 mar 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (25 mar 2026) -->
-    <a href="/blog/nike-vomero-18-review" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/2526878-640.webp" alt="Nike Vomero 18 Review" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>Nike Vomero 18 Review 2026: An&aacute;lisis Completo</h3><p>Amortiguaci&oacute;n ZoomX de doble densidad, 281 g de comodidad y 700-900 km de durabilidad. An&aacute;lisis tras 300 km.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">25 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/nike-vomero-18-review" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4436289-640.webp" alt="Zapatillas de running blancas sobre un camino cubierto de hojas secas" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>Nike Vomero 18 Review 2026: An&aacute;lisis Completo</h3><p>Amortiguaci&oacute;n ZoomX de doble densidad, 281 g de comodidad y 700-900 km de durabilidad. An&aacute;lisis tras 300 km.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">25 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (25 mar 2026) -->
     <a href="/blog/triatlon-para-runners-principiantes" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/33944102-640.webp" alt="Triatl&oacute;n para runners principiantes" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Triatl&oacute;n para Runners: Gu&iacute;a Principiantes 2026</h3><p>Plan de 12 semanas, equipamiento esencial y c&oacute;mo pasar del running al triatl&oacute;n sin morir en el intento.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">25 mar 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevo artículo (24 mar 2026) -->
-    <a href="/blog/hoka-clifton-10-vs-asics-novablast-5" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img width="776" height="395" src="https://m.media-amazon.com/images/I/51K+RjCTPsL._AC_SY395_.jpg" alt="Hoka Clifton 10 vs Asics Novablast 5" loading="lazy" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>Hoka Clifton 10 vs Asics Novablast 5: Comparativa 2026</h3><p>Comparativa detallada: amortiguaci&oacute;n, peso, drop, durabilidad y para qui&eacute;n es cada una.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">24 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/hoka-clifton-10-vs-asics-novablast-5" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/33974329-640.webp" alt="Corredor a contraluz sobre terreno rocoso, en blanco y negro" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>Hoka Clifton 10 vs Asics Novablast 5: Comparativa 2026</h3><p>Comparativa detallada: amortiguaci&oacute;n, peso, drop, durabilidad y para qui&eacute;n es cada una.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">24 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevos artículos (23 mar 2026) -->
     <a href="/blog/correr-durante-menopausia" class="article-card" data-category="salud" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/6293247-640.webp" alt="Correr durante la menopausia" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Correr en la Menopausia: Beneficios y Gu&iacute;a Completa</h3><p>7 beneficios, plan de 6 semanas y consejos m&eacute;dicos para correr durante la menopausia.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">23 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <a href="/blog/vo2-max-running-como-mejorar" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/36541481-640.webp" alt="VO2 Max en running" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>VO2 Max en Running: Qu&eacute; Es y C&oacute;mo Mejorarlo</h3><p>Tabla de valores por edad, 5 entrenamientos espec&iacute;ficos y plan de 6 semanas para subir tu VO2 Max.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">23 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevos artículos (21 mar 2026) -->
-    <a href="/blog/mejores-zapatillas-on-running" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img width="395" height="193" src="https://m.media-amazon.com/images/I/516R+eMQNjL._AC_SX395_.jpg" alt="Mejores zapatillas On Running 2026" loading="lazy" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>Las 10 Mejores Zapatillas On Running 2026</h3><p>An&aacute;lisis completo: Cloudsurfer, Cloudmonster, Cloudboom Echo 3 y m&aacute;s. Con precios y enlaces Amazon.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">21 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/mejores-zapatillas-on-running" class="article-card" data-category="zapatillas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/5928324-640.webp" alt="Piernas y zapatillas de una corredora avanzando por un tramo rocoso junto al mar" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>Las 10 Mejores Zapatillas On Running 2026</h3><p>An&aacute;lisis completo: Cloudsurfer, Cloudmonster, Cloudboom Echo 3 y m&aacute;s. Con precios y enlaces Amazon.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">21 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <a href="/blog/empezar-a-correr-despues-de-los-60" class="article-card" data-category="salud" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/5067708-640.webp" alt="Empezar a correr con 60 años" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Empezar a Correr Despu&eacute;s de los 60: Gu&iacute;a Completa</h3><p>Plan de 8 semanas para empezar desde cero, errores comunes y c&oacute;mo encontrar compa&ntilde;eros de tu edad.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">21 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <!-- Nuevos artículos (16 mar 2026) -->
     <a href="/blog/plan-running-perder-peso" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/32000854-640.webp" alt="Plan running perder peso" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Plan de Running para Perder Peso: Gu&iacute;a Completa</h3><p>Programa de 12 semanas combinando running y nutrici&oacute;n para quemar grasa de forma saludable.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
@@ -1032,12 +1151,12 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/como-mantener-motivacion-para-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/6250939-640.webp" alt="Motivación correr" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>C&oacute;mo Mantener la Motivaci&oacute;n para Correr</h3><p>15 estrategias probadas para no abandonar el running.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <a href="/blog/como-crear-habito-de-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4944978-640.webp" alt="Hábito de correr" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>C&oacute;mo Crear el H&aacute;bito de Correr en 30 D&iacute;as</h3><p>Ciencia de h&aacute;bitos aplicada al running: plan de 4 semanas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
     <a href="/blog/correr-mejora-salud-mental" class="article-card" data-category="salud" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/32062397-640.webp" alt="Salud mental running" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Por Qu&eacute; Correr Mejora tu Salud Mental</h3><p>La ciencia de las endorfinas y serotonina contra ansiedad y depresi&oacute;n.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
-    <a href="/blog/encontrar-companeros-running-cerca" class="article-card" data-category="rutas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/2530130-640.webp" alt="Encontrar compañeros running" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h3>C&oacute;mo Encontrar Compa&ntilde;eros de Running Cerca de Ti</h3><p>Apps, grupos locales y redes sociales para encontrar runners.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
-    <a href="/blog/como-organizar-quedadas-running" class="article-card" data-category="rutas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/3629-640.webp" alt="Organizar quedadas running" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h3>C&oacute;mo Organizar Quedadas de Running</h3><p>Gu&iacute;a paso a paso para crear quedadas exitosas en tu ciudad.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/encontrar-gente-para-correr" class="article-card" data-category="rutas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/2530130-640.webp" alt="Encontrar compañeros running" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h3>C&oacute;mo Encontrar Compa&ntilde;eros de Running Cerca de Ti</h3><p>Apps, grupos locales y redes sociales para encontrar runners.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
+    <a href="/blog/quedadas-running-como-organizar" class="article-card" data-category="rutas" style="animation-delay:.05s"><div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/3629-640.webp" alt="Organizar quedadas running" loading="lazy" width="640" height="360" decoding="async"></div><div class="card-body"><span class="category cat-badge-rutas">Rutas</span><h3>C&oacute;mo Organizar Quedadas de Running</h3><p>Gu&iacute;a paso a paso para crear quedadas exitosas en tu ciudad.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">16 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div></a>
 
     <!-- Training Plans Articles (15 mar 2026) -->
     <a href="/blog/plan-maraton-sub-4-horas" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="640" height="360" src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?q=80&w=640&h=360&fit=crop" alt="Plan maratón sub 4 horas" loading="lazy" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/421160-640.webp" alt="Piernas de un corredor avanzando por una carretera al atardecer" loading="lazy" decoding="async" width="640" height="360"></div>
       <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Plan Marat&oacute;n Sub 4 Horas en 16 Semanas</h3><p>Plan completo para bajar de las 4 horas en marat&oacute;n. Ritmos, fases, estrategia de carrera y equipamiento para corredores populares.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">29 mar 2026 &middot; 13 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/plan-maraton-sub-3-30" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
@@ -1077,7 +1196,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
     <!-- Mentalidad Runner Cluster (15 mar 2026) -->
     <a href="/blog/psicologia-del-corredor" class="article-card" data-category="salud" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/3771074-640.webp" alt="Psicología del corredor" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/36122097-640.webp" alt="Corredor de espaldas avanzando en solitario por una carretera vac&iacute;a bajo un cielo gris" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Psicolog&iacute;a del Corredor: Motivaci&oacute;n y Muro Mental</h3><p>Motivaci&oacute;n intr&iacute;nseca, disciplina, superar el muro y t&eacute;cnicas de visualizaci&oacute;n.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">15 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/ansiedad-pre-carrera" class="article-card" data-category="salud" style="animation-delay:.05s">
@@ -1095,7 +1214,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
       <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h3>Qu&eacute; es el Hyatl&oacute;n: gu&iacute;a completa 2026</h3><p>La nueva disciplina h&iacute;brida de la FETRI: formato H6/H8, las 8 estaciones, diferencias con Hyrox y el calendario del Circuito Mundial en Espa&ntilde;a.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">14 jun 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/hyrox-principiantes-guia" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/10313672-640.webp" alt="HYROX principiantes" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/blog-images/hyrox-principiantes/sled-push-hyrox.webp" alt="Atleta empujando un trineo cargado, una de las ocho estaciones de una carrera HYROX" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-atleta-hibrido">Atleta H&iacute;brido</span><h3>HYROX para Principiantes: Gu&iacute;a Completa 2026</h3><p>Formato, estaciones, entrenamiento y tiempos. Todo para preparar tu primera HYROX.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/deka-fit-vs-deka-strong" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
@@ -1115,7 +1234,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
       <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Las 10 Mejores Calleras para CrossFit en 2026</h3><p>Gu&iacute;a biling&uuml;e con 10 calleras reales para CrossFit, pros y contras, y enlaces Amazon para atletas h&iacute;bridos.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/atletas-hibridos/mejores-mochilas-crossfit-2026" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/61gMPhI91rL._AC_SL1200_.jpg" alt="Mochilas CrossFit 2026" loading="lazy" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/5383801-640.webp" alt="Vista cenital de una mochila deportiva abierta mientras se guarda material de entrenamiento" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Las 10 mejores mochilas para CrossFit en 2026</h3><p>Comparativa con 10 mochilas resistentes y vers&aacute;tiles para CrossFit, entrenamiento h&iacute;brido y gym training.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">10 mar 2026 &middot; 10 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/zapatillas-deka-strong-atlas" class="article-card" data-category="atleta-hibrido" style="animation-delay:.05s">
@@ -1149,23 +1268,23 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
     <!-- Amazon Affiliate Articles (6 mar 2026) -->
     <a href="/blog/gafas-running" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="1486" height="669" src="https://m.media-amazon.com/images/I/51LIFGbyoxL._AC_SL1500_.jpg" alt="Gafas de sol running" loading="lazy" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/13204435-640.webp" alt="Imagen ambiental: gafas de sol deportivas apoyadas sobre una piedra al aire libre" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Las 8 Mejores Gafas de Sol para Running 2026</h3><p>Oakley, Julbo, Nike y m&aacute;s. Protecci&oacute;n UV, ligereza y agarre para correr sin molestias.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/mejores-pulsometros-running-2026" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="1131" height="1169" src="https://m.media-amazon.com/images/I/61DZ9mOKb2L._AC_SL1500_.jpg" alt="Mejores puls&oacute;metros running 2026" loading="lazy" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/8638035-640.webp" alt="Imagen ambiental: deportista en posici&oacute;n de salida con una pulsera de actividad en la mu&ntilde;eca" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h3>10 Mejores Puls&oacute;metros para Running 2026</h3><p>Garmin HRM-200, COOSPO H6, COROS Arm y m&aacute;s. Cintas pectorales y brazaletes para entrenar por zonas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">29 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/mejores-relojes-gps-running" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="425" height="529" src="https://m.media-amazon.com/images/I/71aTpnUJu0L._AC_SX425_.jpg" alt="Relojes GPS running" loading="lazy" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4428985-640.webp" alt="Imagen ambiental: corredora consultando su reloj deportivo con el m&oacute;vil en la mano; no corresponde a ning&uacute;n modelo analizado" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h3>Los 10 Mejores Relojes GPS para Running 2026</h3><p>Garmin, COROS, Apple Watch y Polar comparados. GPS, cardio y m&eacute;tricas avanzadas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 15 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/mejores-garmin-running" class="article-card" data-category="tecnologia" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="425" height="505" src="https://m.media-amazon.com/images/I/71ggA0GZLgL._AC_SX425_.jpg" alt="Mejores Garmin running" loading="lazy" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4428993-640.webp" alt="Imagen ambiental: corredora consultando su reloj con el m&oacute;vil en la mano; no corresponde a ning&uacute;n modelo analizado" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h3>Los 8 Mejores Relojes Garmin para Running 2026</h3><p>Forerunner 965, 265, 165, Fenix 7 Pro y m&aacute;s. Cu&aacute;l elegir seg&uacute;n nivel y presupuesto.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/mochilas-trail-running" class="article-card" data-category="trail" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="425" height="474" src="https://m.media-amazon.com/images/I/81+6ITtBijL._AC_SX425_.jpg" alt="Mochilas trail running" loading="lazy" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/35388298-640.webp" alt="Corredor con mochila de hidrataci&oacute;n avanzando por una carretera de monta&ntilde;a" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-trail">Trail</span><h3>Las 8 Mejores Mochilas de Trail Running 2026</h3><p>Salomon, CamelBak, Deuter y m&aacute;s. Comparativa de capacidad, ajuste e hidrataci&oacute;n.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">6 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/bidones-running" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
@@ -1179,7 +1298,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
 
     <!-- Long-Tail Beginner Articles (2 mar 2026) -->
     <a href="/blog/ropa-correr-segun-temperatura" class="article-card" data-category="equipamiento" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4498362-640.webp" alt="Ropa para correr seg&uacute;n temperatura" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/6455621-640.webp" alt="Dos corredores con capas t&eacute;cnicas de abrigo trotando por un camino nevado en invierno" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-equipamiento">Equipamiento</span><h3>Ropa para Correr Seg&uacute;n la Temperatura: Gu&iacute;a Visual</h3><p>Qu&eacute; ponerte para correr en cada temperatura. Capas, tejidos y accesorios desde -5&deg;C hasta 35&deg;C.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">2 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/entrenamiento/plan-maraton-16-semanas-sub4h" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
@@ -1187,7 +1306,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
       <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Plan Marat&oacute;n 16 Semanas (Sub 4h y Terminar Fuerte)</h3><p>Plan semanal con tabla, ritmos, tiradas largas, nutrici&oacute;n y estrategia para correr una marat&oacute;n por debajo de 4 horas.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">11 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/entrenamiento/correr-durante-menstruacion-guia-completa-runners" class="article-card" data-category="salud" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4719926-640.webp" alt="Correr durante la menstruaci&oacute;n" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/17979529-640.webp" alt="Corredora entrenando a ritmo suave por un camino junto a un maizal" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Correr durante la Menstruaci&oacute;n: Gu&iacute;a Completa para Runners</h3><p>C&oacute;mo adaptar el running al ciclo menstrual, beneficios del ejercicio y productos recomendados para entrenar c&oacute;moda.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">11 mar 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/mejores-superficies-para-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
@@ -1284,7 +1403,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     </a>
 
     <a href="/blog/correrjuntos-vs-strava-grupos" class="article-card" data-category="tecnologia" style="animation-delay:.049s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4679246-640.webp" alt="CorrerJuntos vs Strava grupos" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/17979436-640.webp" alt="Grupo de tres corredores entrenando juntos por un camino de tierra en el campo" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span><h3>CorrerJuntos vs Strava: &iquest;Cu&aacute;l es Mejor para Grupos de Running?</h3><p>Comparativa honesta entre CorrerJuntos y Strava para grupos de running: funciones sociales, tracking y comunidad.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">14 mar 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
@@ -1368,158 +1487,6 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
         </div>
       </div>
     </a>
-
-    <!-- Crown Sport Nutrition -->
-    <a href="/blog/crown-sport-nutrition-opiniones-guia" class="article-card" data-category="suplementacion" style="animation-delay:.048s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="/public/blog-images/crown/crown-hero-brand.jpg" alt="Crown Sport Nutrition opiniones y gu&iacute;a" loading="lazy" width="1600" height="1067" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Crown Sport Nutrition 2026: Opiniones y Gu&iacute;a de Productos</h3>
-        <p>An&aacute;lisis honesto de 10 productos analizados: geles, bebidas, recuperadores y cafe&iacute;na.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">28 may 2026 &middot; 8 min</span>
-          <span class="card-arrow">Leer &rarr;</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Geles Energéticos -->
-    <a href="/blog/mejores-geles-energeticos-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="/blog/img/geles-energeticos-running.webp" alt="Geles energéticos running" loading="lazy" width="466" height="706" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Los 10 Mejores Geles Energ&eacute;ticos para Running 2026</h3>
-        <p>Maurten, SiS, GU Energy, PowerBar y m&aacute;s. Comparativa por calor&iacute;as, carbohidratos y precio. Con links a Amazon.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">28 feb 2026 &middot; 18 min</span>
-          <span class="card-arrow">Leer &rarr;</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Bebidas Hidratación -->
-    <a href="/blog/mejores-bebidas-hidratacion-running" class="article-card" data-category="suplementacion" style="animation-delay:.052s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="/blog/img/bebidas-hidratacion-running.webp" alt="Bebidas hidratación running" loading="lazy" width="1104" height="408" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Las 10 Mejores Bebidas de Hidrataci&oacute;n para Running 2026</h3>
-        <p>Maurten, SiS, Nuun, Tailwind y m&aacute;s. Electrolitos, isot&oacute;nicas y pastillas efervescentes. Con links a Amazon.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">28 feb 2026 &middot; 18 min</span>
-          <span class="card-arrow">Leer &rarr;</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Creatinas Running -->
-    <a href="/blog/mejores-creatinas-running" class="article-card" data-category="suplementacion" style="animation-delay:.053s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="/public/pexels/33921585-640.webp" alt="Creatinas para running" loading="lazy" width="640" height="360" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Las 10 Mejores Creatinas para Running 2026</h3>
-        <p>Optimum Nutrition, Myprotein, HSN Creapure y m&aacute;s. Comparativa por pureza, formato y precio por dosis. Con links a Amazon.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">28 feb 2026 &middot; 18 min</span>
-          <span class="card-arrow">Leer &rarr;</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Quemadores de Grasa -->
-    <a href="/blog/mejores-quemadores-grasa-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="/public/blog-images/quemadores-grasa/amix-burn-dry-90.webp" alt="AMIX Burn &amp; Dry, uno de los quemadores de grasa analizados para corredores" loading="lazy" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Mejores Quemadores de Grasa para Corredores 2026</h3><p>8 termog&eacute;nicos analizados: ingredientes con evidencia real, cafe&iacute;na, riesgos y c&oacute;mo elegir. Con AMIX Burn &amp; Dry.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">25 jul 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-    <!-- Nitratos de Remolacha -->
-    <a href="/blog/mejores-nitratos-remolacha-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="/public/blog-images/nitratos-remolacha/beet-it-sport-nitrate-3000.webp" alt="Beet It Sport Nitrate 3000, uno de los nitratos de remolacha analizados para running y ciclismo" loading="lazy" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 10 Mejores Nitratos de Remolacha para Running y Ciclismo 2026</h3><p>Beet It, Amix, 226ERS y m&aacute;s. Shots, polvos, c&aacute;psulas y zumos comparados por nitrato declarado.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">24 jul 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-    <!-- Colágeno Runners -->
-    <a href="/blog/mejores-colagenos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/713PkEvjiUL._AC_SL1500_.jpg" alt="Mejores colágenos para runners" loading="lazy" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores Col&aacute;genos para Runners 2026</h3><p>Colnatur, Vital Proteins, Ana Mar&iacute;a Lajusticia y m&aacute;s. Hidrolizado, marino y con magnesio comparados.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-    <!-- BCAAs Runners -->
-    <a href="/blog/mejores-bcaas-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/81sNxindnTS._AC_SX425_.jpg" alt="Mejores BCAAs para runners" loading="lazy" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores BCAAs para Runners 2026</h3><p>Scivation Xtend, HSN, Optimum Nutrition y m&aacute;s. Ratio 2:1:1 vs 4:1:1 para corredores.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-
-    <!-- Magnesio Runners -->
-    <a href="/blog/mejores-magnesios-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/61vNhmdroGL._AC_SL1500_.jpg" alt="Mejores magnesios para runners" loading="lazy" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores Magnesios para Runners 2026</h3><p>HSN, NOW Foods, Solgar, Ana Mar&iacute;a Lajusticia y m&aacute;s. Bisglicinato, citrato y L-treonato comparados.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-    <!-- Multivitamínicos Runners -->
-    <a href="/blog/mejores-multivitaminicos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/518SC6nn97L._AC_SX425_.jpg" alt="Mejores multivitamínicos para runners" loading="lazy" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores Multivitam&iacute;nicos para Runners 2026</h3><p>Optimum Nutrition, HSN, Solgar, Centrum y m&aacute;s. Vitaminas D3, hierro, B12, zinc para corredores.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-    <!-- Entrenamiento Fuerza Corredores -->
-    <a href="/blog/entrenamiento-fuerza-corredores" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4164766-640.webp" alt="Entrenamiento de fuerza para corredores" loading="lazy" width="640" height="360" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Entrenamiento de Fuerza para Corredores: Gu&iacute;a Completa</h3><p>Ejercicios clave, rutina semanal, series y repeticiones. C&oacute;mo combinar fuerza y carrera sin sobreentrenarte.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-    <!-- Calambres al Correr -->
-    <a href="/blog/calambres-al-correr" class="article-card" data-category="salud" style="animation-delay:.05s">
-      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/3771055-640.webp" alt="Calambres al correr causas" loading="lazy" width="640" height="360" decoding="async"></div>
-      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Calambres al Correr: Causas, Prevenci&oacute;n y Soluciones</h3><p>&iquest;Te dan calambres? Descubre las causas reales, c&oacute;mo prevenirlos y qu&eacute; hacer cuando aparecen.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
-    </a>
-
-    <!-- Omega 3 Runners -->
-    <a href="/blog/mejores-omega-3-runners" class="article-card" data-category="suplementacion" style="animation-delay:.054s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="/public/pexels/3683074-640.webp" alt="Omega 3 para runners" loading="lazy" width="640" height="360" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Los 10 Mejores Omega 3 para Runners 2026</h3>
-        <p>Nordic Naturals, NOW Foods, HSN IFOS, Solgar y m&aacute;s. Comparativa por EPA, DHA y precio mensual. Con links a Amazon.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">28 feb 2026 &middot; 18 min</span>
-          <span class="card-arrow">Leer &rarr;</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Recuperadores Running -->
-    <a href="/blog/mejores-recuperadores-running" class="article-card" data-category="suplementacion" style="animation-delay:.0545s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img src="/blog/img/recuperadores-running.webp" alt="Recuperadores para running" loading="lazy" width="587" height="391" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Los 10 Mejores Recuperadores para Running 2026</h3>
-        <p>226ERS, Victory, Crown, Optimum Nutrition y m&aacute;s. Prote&iacute;nas, recovery drinks y f&oacute;rmulas post-entreno. Con links a Amazon.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">28 feb 2026 &middot; 18 min</span>
-          <span class="card-arrow">Leer &rarr;</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Proteínas Running -->
     <a href="/blog/mejores-proteinas-running" class="article-card" data-category="suplementacion" style="animation-delay:.0548s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
@@ -1536,6 +1503,234 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
         </div>
       </div>
     </a>
+    <a href="/blog/mejores-geles-energeticos-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/blog/img/geles-energeticos-running.webp" alt="Geles energéticos running" loading="lazy" width="466" height="706" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Los 10 Mejores Geles Energ&eacute;ticos para Running 2026</h3>
+        <p>Maurten, SiS, GU Energy, PowerBar y m&aacute;s. Comparativa por calor&iacute;as, carbohidratos y precio. Con links a Amazon.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-bebidas-hidratacion-running" class="article-card" data-category="suplementacion" style="animation-delay:.052s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/blog/img/bebidas-hidratacion-running.webp" alt="Bebidas hidratación running" loading="lazy" width="1104" height="408" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Las 10 Mejores Bebidas de Hidrataci&oacute;n para Running 2026</h3>
+        <p>Maurten, SiS, Nuun, Tailwind y m&aacute;s. Electrolitos, isot&oacute;nicas y pastillas efervescentes. Con links a Amazon.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-creatinas-running" class="article-card" data-category="suplementacion" style="animation-delay:.053s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/pexels/33921585-640.webp" alt="Creatinas para running" loading="lazy" width="640" height="360" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Las 10 Mejores Creatinas para Running 2026</h3>
+        <p>Optimum Nutrition, Myprotein, HSN Creapure y m&aacute;s. Comparativa por pureza, formato y precio por dosis. Con links a Amazon.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-colagenos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/13111768-640.webp" alt="Cucharada de suplemento en polvo disolvi&eacute;ndose en un vaso de agua" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores Col&aacute;genos para Runners 2026</h3><p>Colnatur, Vital Proteins, Ana Mar&iacute;a Lajusticia y m&aacute;s. Hidrolizado, marino y con magnesio comparados.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-bcaas-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/81sNxindnTS._AC_SX425_.jpg" alt="Mejores BCAAs para runners" loading="lazy" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores BCAAs para Runners 2026</h3><p>Scivation Xtend, HSN, Optimum Nutrition y m&aacute;s. Ratio 2:1:1 vs 4:1:1 para corredores.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-multivitaminicos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/518SC6nn97L._AC_SX425_.jpg" alt="Mejores multivitamínicos para runners" loading="lazy" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores Multivitam&iacute;nicos para Runners 2026</h3><p>Optimum Nutrition, HSN, Solgar, Centrum y m&aacute;s. Vitaminas D3, hierro, B12, zinc para corredores.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-omega-3-runners" class="article-card" data-category="suplementacion" style="animation-delay:.054s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/blog-images/omega-3-runners/nordic-naturals-ultimate-omega.webp" alt="Nordic Naturals Ultimate Omega, uno de los suplementos de omega 3 analizados para runners" loading="lazy" width="640" height="458" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Los 10 Mejores Omega 3 para Runners 2026</h3>
+        <p>Nordic Naturals, NOW Foods, HSN IFOS, Solgar y m&aacute;s. Comparativa por EPA, DHA y precio mensual. Con links a Amazon.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-recuperadores-running" class="article-card" data-category="suplementacion" style="animation-delay:.0545s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/blog-images/recuperadores-running/226ers-recovery-drink.webp" alt="226ERS Recovery Drink, el recuperador mejor valorado del analisis para runners" loading="lazy" width="640" height="458" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Los 10 Mejores Recuperadores para Running 2026</h3>
+        <p>226ERS, Victory, Crown, Optimum Nutrition y m&aacute;s. Prote&iacute;nas, recovery drinks y f&oacute;rmulas post-entreno. Con links a Amazon.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">28 feb 2026 &middot; 18 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/crown-sport-nutrition-opiniones-guia" class="article-card" data-category="suplementacion" style="animation-delay:.048s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/blog-images/crown/crown-hero-brand.jpg" alt="Crown Sport Nutrition opiniones y gu&iacute;a" loading="lazy" width="1600" height="1067" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Crown Sport Nutrition 2026: Opiniones y Gu&iacute;a de Productos</h3>
+        <p>An&aacute;lisis honesto de 10 productos analizados: geles, bebidas, recuperadores y cafe&iacute;na.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">28 may 2026 &middot; 8 min</span>
+          <span class="card-arrow">Leer &rarr;</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-quemadores-grasa-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="/public/blog-images/quemadores-grasa/amix-burn-dry-90.webp" alt="AMIX Burn &amp; Dry, uno de los quemadores de grasa analizados para corredores" loading="lazy" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Mejores Quemadores de Grasa para Corredores 2026</h3><p>8 termog&eacute;nicos analizados: ingredientes con evidencia real, cafe&iacute;na, riesgos y c&oacute;mo elegir. Con AMIX Burn &amp; Dry.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">25 jul 2026 &middot; 18 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-nitratos-remolacha-running" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="/public/blog-images/nitratos-remolacha/beet-it-sport-nitrate-3000.webp" alt="Beet It Sport Nitrate 3000, uno de los nitratos de remolacha analizados para running y ciclismo" loading="lazy" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 10 Mejores Nitratos de Remolacha para Running y Ciclismo 2026</h3><p>Beet It, Amix, 226ERS y m&aacute;s. Shots, polvos, c&aacute;psulas y zumos comparados por nitrato declarado.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">24 jul 2026 &middot; 16 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/mejores-magnesios-runners" class="article-card" data-category="suplementacion" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img width="300" height="300" src="https://m.media-amazon.com/images/I/61vNhmdroGL._AC_SL1500_.jpg" alt="Mejores magnesios para runners" loading="lazy" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span><h3>Los 8 Mejores Magnesios para Runners 2026</h3><p>HSN, NOW Foods, Solgar, Ana Mar&iacute;a Lajusticia y m&aacute;s. Bisglicinato, citrato y L-treonato comparados.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <a href="/blog/que-gel-energetico-usar-maraton" class="article-card" data-category="suplementacion" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/pexels/4720497-640.webp" alt="Imagen ambiental: deportista sosteniendo una bebida energ&eacute;tica durante una pausa del entrenamiento" loading="lazy" width="640" height="360" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Qué Gel Energético Usar en un Maratón</h3>
+        <p>Tipos de geles, plan de nutrición por kilómetro, cómo entrenar el estómago y los 5 mejores.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/cafeina-running-rendimiento" class="article-card" data-category="suplementacion" style="animation-delay:.09s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/pexels/3683056-1200.webp" alt="Cafeína y Running: Cómo Usarla para Mejorar tu Rendimiento" loading="lazy" width="1200" height="500" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Cafeína y Running: Cómo Mejorar tu Rendimiento</h3>
+        <p>Dosis óptima (3-6 mg/kg), timing exacto, protocolo día de carrera y genética CYP1A2.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">22 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/mejores-suplementos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.6s">
+      <div class="card-img">
+        <img src="/public/blog-images/suplementos-runners/hsn-creatina-monohidrato.webp" alt="Creatina monohidrato HSN, uno de los suplementos analizados para runners" loading="lazy" onerror="this.style.display='none'" width="640" height="458" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Mejores Suplementos para Runners: Lo que Necesitas</h3>
+        <p>Geles, isotónicas, recuperadores y vitaminas. Que funciona de verdad y que no merece la pena.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">19 feb 2026 · 11 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+    <a href="/blog/creatina-para-runners" class="article-card" data-category="suplementacion" style="animation-delay:.62s">
+      <div class="card-img">
+        <span class="badge-new">Nuevo</span>
+        <img src="/public/pexels/33921585-1200.webp" alt="Creatina para Corredores: 7 Beneficios Respaldados por la Ciencia" loading="lazy" width="1200" height="500" decoding="async">
+      </div>
+      <div class="card-body">
+        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
+        <h3>Creatina para Corredores: 7 Beneficios con Ciencia</h3>
+        <p>No es solo para culturistas. Descubre los 7 beneficios de la creatina para runners avalados por estudios cientificos.</p>
+        <span class="author">Por Abraham Márquez Rodríguez</span>
+        <div class="card-meta">
+          <span class="meta">25 feb 2026 · 14 min</span>
+          <span class="card-arrow">Leer →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Crown Sport Nutrition -->
+    
+
+    <!-- Geles Energéticos -->
+    
+
+    <!-- Bebidas Hidratación -->
+    
+
+    <!-- Creatinas Running -->
+    
+
+    <!-- Quemadores de Grasa -->
+    
+    <!-- Nitratos de Remolacha -->
+    
+    <!-- Colágeno Runners -->
+    
+    <!-- BCAAs Runners -->
+    
+
+    <!-- Magnesio Runners -->
+    
+    <!-- Multivitamínicos Runners -->
+    
+    <!-- Entrenamiento Fuerza Corredores -->
+    <a href="/blog/entrenamiento-fuerza-corredores" class="article-card" data-category="entrenamiento" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/4164766-640.webp" alt="Entrenamiento de fuerza para corredores" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-entrenamiento">Entrenamiento</span><h3>Entrenamiento de Fuerza para Corredores: Gu&iacute;a Completa</h3><p>Ejercicios clave, rutina semanal, series y repeticiones. C&oacute;mo combinar fuerza y carrera sin sobreentrenarte.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 14 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+    <!-- Calambres al Correr -->
+    <a href="/blog/calambres-al-correr" class="article-card" data-category="salud" style="animation-delay:.05s">
+      <div class="card-img"><span class="badge-new">Nuevo</span><img src="/public/pexels/3771055-640.webp" alt="Calambres al correr causas" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-body"><span class="category cat-badge-salud">Salud</span><h3>Calambres al Correr: Causas, Prevenci&oacute;n y Soluciones</h3><p>&iquest;Te dan calambres? Descubre las causas reales, c&oacute;mo prevenirlos y qu&eacute; hacer cuando aparecen.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">8 mar 2026 &middot; 11 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
+    </a>
+
+    <!-- Omega 3 Runners -->
+    
+
+    <!-- Recuperadores Running -->
+    
+
+    <!-- Proteínas Running -->
+    
 
     <!-- Encontrar Gente para Correr -->
     <a href="/blog/encontrar-gente-para-correr" class="article-card" data-category="rutas" style="animation-delay:.055s">
@@ -1859,7 +2054,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/como-respirar-al-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.07s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=640&h=360&q=80" alt="Corredora respirando correctamente al correr" loading="lazy" decoding="async">
+        <img src="/public/pexels/16978514-1200.webp" alt="C&oacute;mo Respirar al Correr: Gu&iacute;a Completa de T&eacute;cnica Respirato" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
@@ -1913,7 +2108,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/que-comer-antes-de-correr" class="article-card" data-category="nutricion" style="animation-delay:.077s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=640&h=360&q=80" alt="Alimentaci&oacute;n antes de correr pl&aacute;tano avena" loading="lazy" decoding="async">
+        <img src="/public/pexels/1640777-1200.webp" alt="Qu&eacute; Comer Antes de Correr: Gu&iacute;a por Distancia y Horario" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-nutricion">Nutrici&oacute;n</span>
@@ -1931,7 +2126,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/como-calentar-antes-de-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.078s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=640&h=360&q=80" alt="Calentamiento din&aacute;mico antes de correr" loading="lazy" decoding="async">
+        <img src="/public/pexels/7869580-1200.webp" alt="C&oacute;mo Calentar Antes de Correr: Rutina Completa Paso a Paso" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
@@ -2003,7 +2198,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/mejores-zapatillas-running-baratas" class="article-card" data-category="zapatillas" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="1500" height="640" src="https://m.media-amazon.com/images/I/71DUSHzxNGL._AC_SL1500_.jpg" alt="Zapatillas running baratas" loading="lazy" decoding="async">
+        <img src="/public/pexels/4853871-640.webp" alt="Manos at&aacute;ndose los cordones de una zapatilla de running antes de entrenar" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-zapatillas">Zapatillas</span>
@@ -2039,7 +2234,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/mejor-reloj-gps-running-calidad-precio" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="1121" height="1500" src="https://m.media-amazon.com/images/I/81OX6InPf2L._AC_SL1500_.jpg" alt="Reloj GPS running calidad precio" loading="lazy" decoding="async">
+        <img src="/public/pexels/18662969-640.webp" alt="Imagen ambiental: pulsera de actividad con pantalla encendida sobre una superficie oscura; no corresponde a ning&uacute;n modelo analizado" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2054,28 +2249,13 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     </a>
 
     <!-- Gel Energético Maratón -->
-    <a href="/blog/que-gel-energetico-usar-maraton" class="article-card" data-category="suplementacion" style="animation-delay:.09s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=640&h=360&q=80" alt="Geles energéticos maratón" loading="lazy" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Qué Gel Energético Usar en un Maratón</h3>
-        <p>Tipos de geles, plan de nutrición por kilómetro, cómo entrenar el estómago y los 5 mejores.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">22 feb 2026 · 14 min</span>
-          <span class="card-arrow">Leer →</span>
-        </div>
-      </div>
-    </a>
+    
 
     <!-- Auriculares Conducción Ósea vs In-Ear -->
     <a href="/blog/auriculares-conduccion-osea-vs-in-ear-running" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=640&h=360&q=80" alt="Auriculares conducción ósea vs in-ear" loading="lazy" decoding="async">
+        <img src="/public/pexels/5588320-640.webp" alt="Primer plano de una deportista con auriculares in-ear colocados en ambos o&iacute;dos al aire libre" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
@@ -2111,7 +2291,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/garmin-forerunner-55-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="917" height="1125" src="https://m.media-amazon.com/images/I/61zIe+LogJL._AC_SL1500_.jpg" alt="Garmin Forerunner 55 review" loading="lazy" decoding="async">
+        <img src="/public/pexels/4426519-640.webp" alt="Imagen ambiental: corredora consultando su reloj deportivo en un parque; no corresponde al modelo analizado" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2129,7 +2309,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/coros-pace-3-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1557438159-51eec7a6c9e8?auto=format&fit=crop&w=640&h=360&q=80" alt="COROS PACE 3 review" loading="lazy" decoding="async">
+        <img src="/public/pexels/5037319-1200.webp" alt="COROS PACE 3: Review Completa - El Mejor Reloj GPS Calidad-Precio" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2147,7 +2327,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/apple-watch-running-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1551816230-ef5deaed4a26?auto=format&fit=crop&w=640&h=360&q=80" alt="Apple Watch para running" loading="lazy" decoding="async">
+        <img src="/public/pexels/437037-1200.webp" alt="Apple Watch para Running: ¿Merece la Pena para Corredores?" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2165,7 +2345,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/polar-pacer-pro-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="1427" height="1500" src="https://m.media-amazon.com/images/I/71ZHVSNV+LL._AC_SL1500_.jpg" alt="Polar Pacer Pro review" loading="lazy" decoding="async">
+        <img src="/public/pexels/4429141-640.webp" alt="Imagen ambiental: deportista en posici&oacute;n de salida con una pulsera de actividad; no corresponde al modelo analizado" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2183,7 +2363,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/garmin-venu-3-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="1200" height="1500" src="https://m.media-amazon.com/images/I/61HV8pMBeHL._AC_SL1500_.jpg" alt="Garmin Venu 3 review" loading="lazy" decoding="async">
+        <img src="/public/pexels/14541044-640.webp" alt="Imagen ambiental: reloj deportivo redondo en la mu&ntilde;eca de una persona apoyada en una barandilla; no corresponde al modelo analizado" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2309,7 +2489,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/san-silvestre-vallecana-guia" class="article-card" data-category="carreras" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img src="/public/pexels/2928057-640.webp" alt="San Silvestre Vallecana 2026" loading="lazy" width="640" height="360" decoding="async">
+        <img src="/public/pexels/37547759-640.webp" alt="Imagen ambiental: pelot&oacute;n de corredores populares avanzando por una calle de ciudad en una carrera multitudinaria" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-carreras">Carreras</span>
@@ -2327,7 +2507,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/carga-hidratos-maraton" class="article-card" data-category="nutricion" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1556909114-44e3e70034e2?auto=format&fit=crop&w=640&h=360&q=80" alt="Carga de hidratos de carbono para maratón" loading="lazy" decoding="async">
+        <img src="/public/blog-images/carga-hidratos-maraton/hero.jpg" alt="Carga de Hidratos antes de un Maratón: Protocolo Completo" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-nutricion">Nutrición</span>
@@ -2363,7 +2543,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/ayuno-intermitente-running" class="article-card" data-category="nutricion" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1495214783159-3503fd1b572d?auto=format&fit=crop&w=640&h=360&q=80" alt="Ayuno intermitente y running" loading="lazy" decoding="async">
+        <img src="/public/pexels/179912-640.webp" alt="Desayuno con t&eacute; y un bol de cereales junto a un reloj de pulsera sobre una mesa de madera" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-nutricion">Nutrición</span>
@@ -2381,7 +2561,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/proteinas-para-runners" class="article-card" data-category="nutricion" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=640&h=360&q=80" alt="Proteínas para runners" loading="lazy" decoding="async">
+        <img src="/public/pexels/4378331-640.webp" alt="Persona sosteniendo un vaso mezclador con un batido de prote&iacute;nas tras el entrenamiento" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-nutricion">Nutrición</span>
@@ -2396,28 +2576,13 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     </a>
 
     <!-- Cafeína y Running -->
-    <a href="/blog/cafeina-running-rendimiento" class="article-card" data-category="suplementacion" style="animation-delay:.09s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img width="640" height="427" src="https://images.unsplash.com/photo-1720650647051-d884d2c48572?w=640&q=80" alt="Cafeína y rendimiento en running" loading="lazy" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Cafeína y Running: Cómo Mejorar tu Rendimiento</h3>
-        <p>Dosis óptima (3-6 mg/kg), timing exacto, protocolo día de carrera y genética CYP1A2.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">22 feb 2026 · 14 min</span>
-          <span class="card-arrow">Leer →</span>
-        </div>
-      </div>
-    </a>
+    
 
     <!-- Alimentos Antiinflamatorios Runners -->
     <a href="/blog/alimentos-antiinflamatorios-runners" class="article-card" data-category="nutricion" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=640&h=360&q=80" alt="Alimentos antiinflamatorios para runners" loading="lazy" decoding="async">
+        <img src="/public/pexels/5966143-640.webp" alt="Bodeg&oacute;n de alimentos antiinflamatorios: fresas, grosellas, frambuesas, pomelo, tomate, pimiento, higo y granada" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-nutricion">Nutrición</span>
@@ -2453,7 +2618,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/jbl-reflect-flow-pro-review" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=640&h=360&q=80" alt="JBL Reflect Flow Pro review running" loading="lazy" decoding="async">
+        <img src="/public/pexels/7623730-640.webp" alt="Imagen ambiental: corredora con un auricular inal&aacute;mbrico en el o&iacute;do; no corresponde al modelo analizado" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
@@ -2471,7 +2636,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/mejores-auriculares-baratos-running" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=640&h=360&q=80" alt="Mejores auriculares baratos running" loading="lazy" decoding="async">
+        <img src="/public/pexels/3799470-640.webp" alt="Corredor con auriculares de cable corriendo por un paseo urbano a primera hora" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
@@ -2489,7 +2654,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/auriculares-running-natacion" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=640&h=360&q=80" alt="Auriculares running natación waterproof" loading="lazy" decoding="async">
+        <img src="/public/pexels/8380433-1200.webp" alt="Los Mejores Auriculares para Running y Natacion 2026" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
@@ -2507,7 +2672,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/chalecos-hidratacion-running" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="425" height="443" src="https://m.media-amazon.com/images/I/81OvaMmLAhL._AC_SX425_.jpg" alt="Chalecos hidratación running" loading="lazy" decoding="async">
+        <img src="/public/pexels/35599353-640.webp" alt="Corredor con chaleco de hidrataci&oacute;n avanzando por un camino de monte con el valle al fondo" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-equipamiento">Equipamiento</span>
@@ -2545,7 +2710,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/lamparas-frontales-running" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=640&h=360&q=80" alt="Lámparas frontales running nocturno" loading="lazy" decoding="async">
+        <img src="/public/pexels/29300647-1200.webp" alt="Las 7 Mejores Lámparas Frontales para Running 2026" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-equipamiento">Equipamiento</span>
@@ -2563,7 +2728,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/mallas-running" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=640&h=360&q=80" alt="Mallas running hombre y mujer" loading="lazy" decoding="async">
+        <img src="/public/pexels/8454900-1200.webp" alt="Las 10 Mejores Mallas para Running 2026 (Hombre y Mujer)" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-equipamiento">Equipamiento</span>
@@ -2599,7 +2764,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/gorras-running" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="1155" height="1124" src="https://m.media-amazon.com/images/I/718eUXzUknL._AC_SL1500_.jpg" alt="Gorras running protección solar" loading="lazy" decoding="async">
+        <img src="/public/pexels/37882663-640.webp" alt="Corredor con gorra t&eacute;cnica blanca avanzando por un sendero seco" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-equipamiento">Equipamiento</span>
@@ -2617,7 +2782,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/calcetines-running" class="article-card" data-category="equipamiento" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&w=640&h=360&q=80" alt="Calcetines running prevención ampollas" loading="lazy" decoding="async">
+        <img src="/public/pexels/36429551-1200.webp" alt="Los 8 Mejores Calcetines para Running en 2026" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-equipamiento">Equipamiento</span>
@@ -2653,7 +2818,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/diferencias-trail-vs-asfalto" class="article-card" data-category="trail" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=640&h=360&q=80" alt="Trail running vs asfalto diferencias" loading="lazy" decoding="async">
+        <img src="/public/pexels/35206081-1200.webp" alt="Trail Running vs Asfalto: Diferencias, Ventajas y Que Elegir" loading="lazy" width="1200" height="675" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-trail">Trail</span>
@@ -2671,7 +2836,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/material-trail-running" class="article-card" data-category="trail" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?auto=format&fit=crop&w=640&h=360&q=80" alt="Material equipamiento trail running" loading="lazy" decoding="async">
+        <img src="/public/pexels/2330502-1200.webp" alt="Material Imprescindible para Trail Running: Gu&iacute;a de Equipamiento 2026" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-trail">Trail</span>
@@ -2689,7 +2854,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/carreras-trail-principiantes" class="article-card" data-category="trail" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=640&h=360&q=80" alt="Carreras trail running España principiantes" loading="lazy" decoding="async">
+        <img src="/public/pexels/33874842-1200.webp" alt="Las 10 Mejores Carreras de Trail para Principiantes en España 2026" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-trail">Trail</span>
@@ -2707,7 +2872,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/strava-vs-garmin-connect" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=640&h=360&q=80" alt="Strava vs Garmin Connect comparativa" loading="lazy" decoding="async">
+        <img src="/public/pexels/3999644-1200.webp" alt="Strava vs Garmin Connect: Comparativa Completa para Runners 2026" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2743,7 +2908,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/variabilidad-cardiaca-running" class="article-card" data-category="tecnologia" style="animation-delay:.09s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=640&h=360&q=80" alt="Variabilidad cardíaca HRV runners" loading="lazy" decoding="async">
+        <img src="/public/pexels/437037-1200.webp" alt="Variabilidad de la Frecuencia Cardíaca (HRV) para Runners: Guía Completa" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2815,7 +2980,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/mejores-auriculares-running" class="article-card" data-category="tecnologia" style="animation-delay:.15s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=640&h=360&q=80" alt="Auriculares deportivos" loading="lazy" decoding="async">
+        <img src="/public/pexels/7243180-640.webp" alt="Corredora con un auricular inal&aacute;mbrico en la oreja trotando por un parque de ciudad" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnolog&iacute;a</span>
@@ -2868,7 +3033,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Reloj GPS -->
     <a href="/blog/como-elegir-reloj-gps-running" class="article-card" data-category="tecnologia" style="animation-delay:.3s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=640&h=360&q=80" alt="Reloj GPS running" loading="lazy" decoding="async">
+        <img src="/public/pexels/4679246-1200.webp" alt="Como Elegir un Reloj GPS para Running: Guía Completa 2026" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2885,7 +3050,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Apps Running -->
     <a href="/blog/mejores-apps-running" class="article-card" data-category="tecnologia" style="animation-delay:.35s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=640&h=360&q=80" alt="Apps running smartphone" loading="lazy" decoding="async">
+        <img src="/public/pexels/4426517-1200.webp" alt="Las 10 Mejores Apps para <a href=" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2919,7 +3084,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Estiramientos Post-Carrera -->
     <a href="/blog/estiramientos-post-carrera" class="article-card" data-category="salud" style="animation-delay:.45s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=640&h=360&q=80" alt="Estiramientos post carrera" loading="lazy" decoding="async">
+        <img src="/public/pexels/5037294-640.webp" alt="Corredor estirando el isquiotibial con el pie apoyado en unas gradas de madera despu&eacute;s de correr" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-salud">Salud</span>
@@ -2936,7 +3101,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Garmin vs COROS -->
     <a href="/blog/garmin-forerunner-265-vs-coros-pace-3" class="article-card" data-category="tecnologia" style="animation-delay:.5s">
       <div class="card-img">
-        <img width="929" height="1257" src="https://m.media-amazon.com/images/I/61KBRtAjahL._AC_SL1500_.jpg" alt="Relojes GPS comparativa" loading="lazy" decoding="async">
+        <img src="/public/pexels/8454947-640.webp" alt="Imagen ambiental: deportista consultando su reloj sentada en una pista de atletismo; no corresponde a ning&uacute;n modelo analizado" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-tecnologia">Tecnología</span>
@@ -2968,39 +3133,10 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     </a>
 
     <!-- Suplementos -->
-    <a href="/blog/mejores-suplementos-runners" class="article-card" data-category="suplementacion" style="animation-delay:.6s">
-      <div class="card-img">
-        <img src="/public/pexels/3683056-640.webp" alt="Suplementos deportivos running" loading="lazy" onerror="this.style.display='none'" width="640" height="360" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Mejores Suplementos para Runners: Lo que Necesitas</h3>
-        <p>Geles, isotónicas, recuperadores y vitaminas. Que funciona de verdad y que no merece la pena.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">19 feb 2026 · 11 min</span>
-          <span class="card-arrow">Leer →</span>
-        </div>
-      </div>
-    </a>
+    
 
     <!-- Creatina para Runners — Beneficios -->
-    <a href="/blog/creatina-para-runners" class="article-card" data-category="suplementacion" style="animation-delay:.62s">
-      <div class="card-img">
-        <span class="badge-new">Nuevo</span>
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?auto=format&fit=crop&w=640&h=360&q=80" alt="Creatina para corredores beneficios ciencia" loading="lazy" decoding="async">
-      </div>
-      <div class="card-body">
-        <span class="category cat-badge-suplementacion">Suplementaci&oacute;n</span>
-        <h3>Creatina para Corredores: 7 Beneficios con Ciencia</h3>
-        <p>No es solo para culturistas. Descubre los 7 beneficios de la creatina para runners avalados por estudios cientificos.</p>
-        <span class="author">Por Abraham Márquez Rodríguez</span>
-        <div class="card-meta">
-          <span class="meta">25 feb 2026 · 14 min</span>
-          <span class="card-arrow">Leer →</span>
-        </div>
-      </div>
-    </a>
+    
 
     <!-- Mejores Creatinas Running -->
 
@@ -3041,7 +3177,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Zapatillas Principiantes -->
     <a href="/blog/zapatillas/mejores-zapatillas-empezar-correr-2026" class="article-card" data-category="zapatillas" style="animation-delay:.75s">
       <div class="card-img" style="background:#f0f0f0">
-        <img width="300" height="300" referrerpolicy="no-referrer" src="https://m.media-amazon.com/images/I/716qPLEo4gL._AC_SX395_.jpg" alt="Nike Pegasus 41 zapatillas para empezar a correr" loading="lazy" style="object-fit:contain;padding:12px" decoding="async">
+        <img src="/public/pexels/17979513-640.webp" alt="Corredor principiante entrenando a ritmo suave por un camino rural" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-zapatillas">Zapatillas</span>
@@ -3075,7 +3211,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Rutas Madrid -->
     <a href="/blog/mejores-rutas-correr-madrid" class="article-card" data-category="rutas" style="animation-delay:.85s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=640&h=360&q=80" alt="Retiro Madrid" loading="lazy" decoding="async">
+        <img src="/public/lugares/retiro-480.webp" alt="Paseo arbolado del Parque del Retiro, en Madrid" loading="lazy" decoding="async" width="480" height="320" srcset="/public/lugares/retiro-300.webp 300w, /public/lugares/retiro-480.webp 480w" sizes="(max-width:640px) 45vw, 240px">
       </div>
       <div class="card-body">
         <span class="category cat-badge-rutas">Rutas</span>
@@ -3109,7 +3245,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Estiramientos -->
     <a href="/blog/estiramientos-antes-despues-correr" class="article-card" data-category="entrenamiento" style="animation-delay:.95s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1594882645126-14020914d58d?auto=format&fit=crop&w=640&h=360&q=80" alt="Estiramientos running" loading="lazy" decoding="async">
+        <img src="/public/pexels/7880125-640.webp" alt="Corredora estirando el cu&aacute;driceps de pie sobre un camino de parque antes de salir a correr" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
@@ -3126,7 +3262,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Primera 5K -->
     <a href="/blog/como-preparar-primera-carrera-5k" class="article-card" data-category="entrenamiento" style="animation-delay:1s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=640&h=360&q=80" alt="Carrera 5K" loading="lazy" decoding="async">
+        <img src="/public/pexels/3601094-1200.webp" alt="Cómo Preparar tu Primera Carrera de 5K" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-entrenamiento">Entrenamiento</span>
@@ -3143,7 +3279,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Rutas Barcelona -->
     <a href="/blog/mejores-rutas-correr-barcelona" class="article-card" data-category="rutas" style="animation-delay:1.05s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=640&h=360&q=80" alt="Barcelona Montjuic" loading="lazy" decoding="async">
+        <img src="/public/lugares/montjuic-480.webp" alt="Camino de Montjuïc con el Palau Nacional al fondo, en Barcelona" loading="lazy" decoding="async" width="480" height="320" srcset="/public/lugares/montjuic-300.webp 300w, /public/lugares/montjuic-480.webp 480w" sizes="(max-width:640px) 45vw, 240px">
       </div>
       <div class="card-body">
         <span class="category cat-badge-rutas">Rutas</span>
@@ -3160,7 +3296,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Rutas Valencia -->
     <a href="/blog/mejores-rutas-correr-valencia" class="article-card" data-category="rutas" style="animation-delay:1.1s">
       <div class="card-img">
-        <img width="640" height="1137" src="https://images.unsplash.com/photo-1577990432593-6bf35f43beed?w=640&q=80" alt="Valencia Ciudad de las Artes y las Ciencias" loading="lazy" decoding="async">
+        <img src="/public/pexels/4652250-1200.webp" alt="Las Mejores Rutas para Correr en Valencia" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-rutas">Rutas</span>
@@ -3177,7 +3313,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Nutricion para Runners -->
     <a href="/blog/nutricion-para-runners" class="article-card" data-category="nutricion" style="animation-delay:1.15s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=640&h=360&q=80" alt="Nutricion runners smoothie" loading="lazy" onerror="this.style.display='none'" decoding="async">
+        <img src="/public/pexels/1640777-1200.webp" alt="Qué Comer Antes y Después de Correr" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-nutricion">Nutrición</span>
@@ -3246,7 +3382,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Fascitis Plantar -->
     <a href="/blog/fascitis-plantar-corredores" class="article-card" data-category="salud" style="animation-delay:1.33s">
       <div class="card-img">
-        <img src="/public/pexels/5997153-640.webp" alt="Fascitis plantar corredores" loading="lazy" width="640" height="360" decoding="async">
+        <img src="/public/pexels/19695966-640.webp" alt="Manos presionando el tal&oacute;n y la planta del pie de una persona durante un masaje terap&eacute;utico" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-salud">Salud</span>
@@ -3263,7 +3399,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Rodilla del Corredor -->
     <a href="/blog/rodilla-del-corredor" class="article-card" data-category="salud" style="animation-delay:1.36s">
       <div class="card-img">
-        <img width="640" height="890" src="https://images.unsplash.com/photo-1715531785980-ce9b3bf1c38d?w=640&q=80" alt="Rodilla del corredor anatomía" loading="lazy" decoding="async">
+        <img src="/public/pexels/7298631-640.webp" alt="Primer plano de un deportista sujet&aacute;ndose la rodilla con ambas manos al aire libre" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-salud">Salud</span>
@@ -3297,7 +3433,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <!-- Tendinitis de Aquiles -->
     <a href="/blog/tendinitis-aquiles-running" class="article-card" data-category="salud" style="animation-delay:1.42s">
       <div class="card-img">
-        <img width="640" height="360" src="https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=640&h=360&q=80" alt="Tendinitis aquiles running" loading="lazy" decoding="async">
+        <img src="/public/pexels/4056832-1200.webp" alt="Tendinitis de Aquiles en Runners: Causas, Tratamiento y Prevenci&oacute;n" loading="lazy" width="1200" height="500" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-salud">Salud</span>
@@ -3477,7 +3613,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/zapatillas-running-pisada-neutra" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="575" height="333" src="https://m.media-amazon.com/images/I/71U8Orfz4tL._AC_SX575_.jpg" alt="Zapatillas Running para Pisada Neutra" loading="lazy" decoding="async">
+        <img src="/public/pexels/4429058-640.webp" alt="Vista cenital de unas zapatillas de running blancas apoyadas sobre el asfalto" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-zapatillas">Zapatillas</span>
@@ -3495,7 +3631,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/drop-zapatillas-running" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img src="/public/pexels/8456072-640.webp" alt="Drop en Zapatillas de Running" loading="lazy" width="640" height="360" decoding="async">
+        <img src="/public/pexels/28381500-640.webp" alt="Perfil de una zapatilla deportiva donde se aprecia el grosor de la mediasuela" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-zapatillas">Zapatillas</span>
@@ -3549,7 +3685,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/zapatillas-running-supinadores" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img width="1500" height="746" src="https://m.media-amazon.com/images/I/712RAgdWszL._AC_SL1500_.jpg" alt="Zapatillas Running para Supinadores" loading="lazy" decoding="async">
+        <img src="/public/pexels/15418246-640.webp" alt="Piernas y zapatillas de dos corredores vistas desde atr&aacute;s sobre asfalto" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-zapatillas">Zapatillas</span>
@@ -3564,11 +3700,11 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     </a>
 
     <a href="/blog/asics-gel-nimbus-26-vs-nike-pegasus-41" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
-      <div class="card-img"><img width="892" height="515" src="https://m.media-amazon.com/images/I/51eXW2PN1WL._AC_SL1500_.jpg" alt="ASICS Gel-Nimbus 26 vs Nike Pegasus 41" loading="lazy" decoding="async"></div>
+      <div class="card-img"><img src="/public/pexels/36429592-640.webp" alt="Piernas de un corredor en movimiento sobre el pavimento de un paseo urbano" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>ASICS Gel-Nimbus 26 vs Nike Pegasus 41</h3><p>La premium de ASICS contra la vers&aacute;til de Nike. Amortiguaci&oacute;n, peso, precio y cu&aacute;l elegir.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">22 feb 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
     <a href="/blog/nike-pegasus-41-vs-brooks-ghost-16" class="article-card" data-category="zapatillas" style="animation-delay:.05s">
-      <div class="card-img"><img src="/public/pexels/1040427-640.webp" alt="Nike Pegasus 41 vs Brooks Ghost 16" loading="lazy" width="640" height="360" decoding="async"></div>
+      <div class="card-img"><img src="/public/pexels/35388240-640.webp" alt="Corredor entrenando por una carretera al pie de una ladera" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-zapatillas">Zapatillas</span><h3>Nike Pegasus 41 vs Brooks Ghost 16</h3><p>Las dos zapatillas m&aacute;s vers&aacute;tiles del mercado cara a cara. Cu&aacute;l es mejor para ti.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">22 feb 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
@@ -3576,7 +3712,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/entrenamiento-trail-running-plan" class="article-card" data-category="trail" style="animation-delay:.05s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img src="/public/pexels/2356045-640.webp" alt="Plan de Entrenamiento Trail Running" loading="lazy" width="640" height="360" decoding="async">
+        <img src="/public/pexels/38620363-640.webp" alt="Corredora de trail avanzando con bastones por un sendero de bosque durante un entrenamiento en monta&ntilde;a" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-trail">Trail</span>
@@ -3594,7 +3730,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/nutricion-trail-running" class="article-card" data-category="trail" style="animation-delay:.05s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img src="/public/pexels/1578750-640.webp" alt="Nutrición para Trail Running" loading="lazy" width="640" height="360" decoding="async">
+        <img src="/public/pexels/7244513-640.webp" alt="Corredor bebiendo agua de una botella en un alto del camino, con un valle de monta&ntilde;a al fondo" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-trail">Trail</span>
@@ -3666,7 +3802,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     <a href="/blog/navegacion-gps-trail-running" class="article-card" data-category="trail" style="animation-delay:.05s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
-        <img src="/public/pexels/3617500-640.webp" alt="Navegación GPS para Trail Running" loading="lazy" width="640" height="360" decoding="async">
+        <img src="/public/pexels/4426518-640.webp" alt="Corredora consultando el m&oacute;vil y el reloj GPS en un sendero de monta&ntilde;a arbolado" loading="lazy" width="640" height="360" decoding="async">
       </div>
       <div class="card-body">
         <span class="category cat-badge-trail">Trail</span>
@@ -3699,7 +3835,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     </a>
 
     <a href="/blog/salomon-speedcross-6-vs-hoka-speedgoat-6" class="article-card" data-category="trail" style="animation-delay:.05s">
-      <div class="card-img"><img width="808" height="395" src="https://m.media-amazon.com/images/I/61LJnN8HqyL._AC_SY395_.jpg" alt="Salomon Speedcross 6 vs Hoka Speedgoat 6" loading="lazy" decoding="async"></div>
+      <div class="card-img"><img src="/public/pexels/35206081-640.webp" alt="Piernas y zapatillas de trail cubiertas de barro sobre un tramo de grava" loading="lazy" width="640" height="360" decoding="async"></div>
       <div class="card-body"><span class="category cat-badge-trail">Trail</span><h3>Salomon Speedcross 6 vs Hoka Speedgoat 6</h3><p>Las dos mejores zapatillas trail 2026 cara a cara. Agarre, amortiguaci&oacute;n, terreno y veredicto.</p><span class="author">Por Abraham Márquez Rodríguez</span><div class="card-meta"><span class="meta">22 feb 2026 &middot; 12 min</span><span class="card-arrow">Leer &rarr;</span></div></div>
     </a>
 
@@ -3740,7 +3876,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
     </a>
 
     <!-- SEO Local Cluster: Malaga -->
-    <a href="/blog/encontrar-runners-malaga" class="article-card" data-category="rutas" style="animation-delay:.05s">
+    <a href="/blog/grupos-running-malaga" class="article-card" data-category="rutas" style="animation-delay:.05s">
       <div class="card-img">
         <span class="badge-new">Nuevo</span>
         <img src="/public/pexels/4388164-640.webp" alt="Encontrar runners en Málaga" loading="lazy" width="640" height="360" decoding="async">

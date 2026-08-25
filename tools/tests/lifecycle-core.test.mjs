@@ -180,10 +180,28 @@ test('19b · nunca un hito anterior a otro ya enviado', () => {
   assert.equal(r.skip, 'newer_milestone_sent');
 });
 
-test('20 · status distinto de trial_active → nunca envía (cancelado/convertido/expirado)', () => {
-  for (const s of ['cancelled', 'paid', 'expired']) {
+test('20 · paid/expired → nunca envía; cancelled depende de expires_at [19 ago 2026]', () => {
+  // Convertido o vencido: fuera siempre.
+  for (const s of ['paid', 'expired']) {
     assert.equal(selectMilestone(base({ status: s, nowMs: T0 + 3 * DAY })).skip, 'status_changed');
   }
+  // 'cancelled' en RevenueCat = auto-renovación apagada con la prueba AÚN
+  // viva. Con expires_at futuro el hito debido SÍ se envía (es el segmento
+  // que los emails de día 7/11 deben recuperar).
+  assert.equal(
+    selectMilestone(base({ status: 'cancelled', nowMs: T0 + 3 * DAY, expiresAt: iso(T0 + 14 * DAY) })).day,
+    3,
+  );
+  // Sin expires_at no se puede saber si la prueba sigue viva → no arriesgar.
+  assert.equal(
+    selectMilestone(base({ status: 'cancelled', nowMs: T0 + 3 * DAY })).skip,
+    'cancelled_no_expiry',
+  );
+  // Con expires_at ya pasado, manda la ventana de expiración.
+  assert.equal(
+    selectMilestone(base({ status: 'cancelled', nowMs: T0 + 15 * DAY, expiresAt: iso(T0 + 14 * DAY) })).skip,
+    'expired_window',
+  );
 });
 
 // ── FASE 4 · backfill sin ráfagas ────────────────────────────
@@ -213,3 +231,15 @@ test('22b · huérfano c8aef6b4 (backfill en día 2): sin ráfaga día 1, próxi
 });
 
 console.log(`\n${n} tests OK`);
+
+// ── Sincronía de copias [22 ago 2026] ────────────────────────
+// api/_lib/lifecycle-core.js es una copia byte a byte de
+// supabase/functions/revenucat-webhook/lifecycle-core.js (el import cruzado
+// no entraba en el bundle de la lambda del cron). Si alguien edita una sola,
+// este test revienta.
+import { readFileSync } from 'node:fs';
+test('99 · api/_lib/lifecycle-core.js es identico al de supabase/functions', () => {
+  const a = readFileSync(new URL('../../supabase/functions/revenucat-webhook/lifecycle-core.js', import.meta.url), 'utf8');
+  const b = readFileSync(new URL('../../api/_lib/lifecycle-core.js', import.meta.url), 'utf8');
+  assert.equal(a, b);
+});

@@ -55,6 +55,7 @@
 {s:'correr-para-adelgazar',t:'Correr para Adelgazar: Gu\u00eda Cient\u00edfica',c:'Entrenamiento',i:'https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'correr-solo-vs-acompanado',t:'Correr Solo vs Acompa\u00f1ado: Ventajas y Ciencia',c:'Entrenamiento',i:'https://images.pexels.com/photos/6293192/pexels-photo-6293192.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'creatina-para-runners',t:'Creatina para Corredores: 7 Beneficios',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/33921585/pexels-photo-33921585.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'creatina-prozis-opiniones',t:'Creatina Prozis 300 g: an\u00e1lisis, dosis y evidencia',c:'Suplementaci\u00f3n',i:'https://www.correrjuntos.com/public/blog-images/prozis-ranking/creatina-prozis-hero.webp'},
 {s:'cuantas-veces-semana-correr',t:'\u00bfCu\u00e1ntas Veces a la Semana Correr?',c:'Entrenamiento',i:'https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'cuanto-duran-zapatillas-running',t:'\u00bfCu\u00e1nto Duran las Zapatillas de Running?',c:'Zapatillas',i:'https://images.pexels.com/photos/31381389/pexels-photo-31381389.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'de-cero-a-5k',t:'De 0 a 5K: Plan de 8 Semanas',c:'Entrenamiento',i:'https://images.pexels.com/photos/3764554/pexels-photo-3764554.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

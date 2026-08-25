@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title">
+  <title id="title">Ilustración editorial: carretera de montaña al amanecer con silueta de ciclista de carretera</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1938"/>
+      <stop offset=".55" stop-color="#213a68"/>
+      <stop offset="1" stop-color="#f9744a"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2434"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+    <linearGradient id="mountain1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a4b74"/>
+      <stop offset="1" stop-color="#1c2648"/>
+    </linearGradient>
+    <linearGradient id="mountain2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a6f9b"/>
+      <stop offset="1" stop-color="#2a3862"/>
+    </linearGradient>
+    <radialGradient id="sun" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffd7a8"/>
+      <stop offset=".55" stop-color="#f9744a" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#f9744a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1150" cy="560" r="220" fill="url(#sun)"/>
+  <circle cx="1150" cy="560" r="80" fill="#ffb680" opacity=".85"/>
+  <path d="M0 640 L200 560 L360 610 L520 500 L660 580 L820 520 L1000 600 L1180 540 L1360 610 L1600 570 L1600 900 L0 900 Z" fill="url(#mountain2)" opacity=".75"/>
+  <path d="M0 720 L180 650 L320 700 L500 610 L660 690 L820 640 L980 700 L1160 640 L1340 710 L1600 660 L1600 900 L0 900 Z" fill="url(#mountain1)"/>
+  <path d="M0 900 L0 780 Q400 720 800 800 T1600 780 L1600 900 Z" fill="url(#road)"/>
+  <path d="M240 840 Q640 790 1040 830 T1600 810" stroke="#f2e6d1" stroke-width="4" fill="none" stroke-dasharray="18 22" opacity=".7"/>
+  <g transform="translate(620 700)" opacity=".95">
+    <circle cx="60" cy="120" r="46" fill="none" stroke="#0b1220" stroke-width="5"/>
+    <circle cx="220" cy="120" r="46" fill="none" stroke="#0b1220" stroke-width="5"/>
+    <path d="M60 120 L140 60 L220 120 L155 120 L60 120 Z M155 120 L155 55 L120 55" stroke="#0b1220" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M140 60 L155 30 L175 30" stroke="#f9744a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M120 55 Q95 30 88 5" stroke="#0b1220" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M175 30 Q192 22 208 30" stroke="#0b1220" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="200" cy="10" rx="14" ry="10" fill="#0b1220"/>
+  </g>
+</svg>

@@ -191,3 +191,12 @@ reconstruido la interfaz ni se ha usado IA generativa.
 **Activo retirado:** la versión anterior, `app-ciclismo-actividad-captura.webp`, se eliminó del
 repositorio con `git rm` para que la clasificación incorrecta «Carrera» no quedara accesible
 públicamente tras un despliegue, aunque no estuviera enlazada.
+
+## Adenda 25 ago 2026 — hub v2 y artículo de geles
+
+**Fotografías editoriales (Pexels, licencia libre, consultadas 25-08-2026):**
+
+- `ciclismo-hub-hero-v2.webp` — alexandre saraiva carniato · [aficion-hobby-ocio-ciclismo-5970278](https://www.pexels.com/es-es/foto/aficion-hobby-ocio-ciclismo-5970278/) · https://www.pexels.com/license/ · original 5905×3937 · sha256 2e74555a82026dc4. Sustituye a la imagen generada por IA del hero del hub (el descargo deja de ser necesario).
+- `mejores-geles-ciclismo-{hero,card}.webp` — Kezia Rhesa Arman · [hombre-hierba-cesped-bebiendo-6433941](https://www.pexels.com/es-es/foto/hombre-hierba-cesped-bebiendo-6433941/) · https://www.pexels.com/license/ · original 4288×2848 · sha256 8e55c60ffee50b19. Sustituye a la imagen generada por IA del hero del hub (el descargo deja de ser necesario).
+
+**Fotografías de producto (8 geles, `/productos/{ASIN}.jpg`):** descargadas de la ficha oficial de cada producto en Amazon.es (hiRes) y verificadas visualmente una a una — mismo estado PENDIENTE que el resto del lote: sin SiteStripe ni PA-API, mantenidas por decisión del editor a la espera de credenciales (caso A2POUPWGXYY3L2). ASINs: B07Q367KCP, B01CNEO6FA, B0BVFTFQ8X, B005K8IGPS, B07MF1NCZ1, B0FJ2JMF1K, B00GSR6WZG, B07TSL226P.

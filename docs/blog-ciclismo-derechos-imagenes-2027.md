@@ -267,3 +267,80 @@ Ciclista con casco bebiendo del bidón en marcha. Ficha consultada el 25 ago 202
 - **Lighthouse móvil (local, 25 ago)**: 9/9 páginas con Accessibility 100, Best Practices 100, SEO 100, CLS 0; Performance 99–100 (hub 99 tras srcset). Sin validador HTML en el proyecto: chequeo estructural propio (equilibrio de etiquetas) limpio en las 9.
 - **Integridad comercial**: 32/32 fichas Amazon con producto–foto–ASIN–CTA–alt correspondientes e idénticas al inventario inicial; 2 tarjetas Prozis del pilar intactas; único cambio en enlaces Prozis: eliminación del bloque duplicado legacy de geles (4→2 enlaces).
 - **Pendiente sin cambios**: migración de fotos de producto a Creators API cuando lleguen credenciales (caso Amazon A2POUPWGXYY3L2).
+
+## Adenda 25 ago 2026 (4) — artículos «Creatina» y «Omega-3 para ciclistas»
+
+### Heroes con licencia verificada (Pexels)
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | Detalle |
+|---|---|---|---|---|---|
+| `creatina-ciclismo-hero.webp` + `-card.webp` | [Foto 8353229](https://www.pexels.com/es-es/foto/8353229/) | Andryely Pedroso | [Pexels License](https://www.pexels.com/license/) | 2736×1824 | Cazo vertiendo polvo, sin marcas visibles |
+| `omega-3-ciclismo-hero.webp` + `-card.webp` | [Foto 13534590](https://www.pexels.com/es-es/foto/13534590/) | Odin Mcraig | [Pexels License](https://www.pexels.com/license/) | 5472×3648 | Cápsulas blandas, sin marcas |
+
+Fichas consultadas el 25 ago 2026 vía navegador (JSON-LD ImageObject, registro completo en `fichas-co.json` del scratchpad); descargas del CDN oficial, HTTP 200.
+
+### Fotos de producto (16 ASIN nuevos, self-hosted)
+
+Imagen hiRes de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visualmente (hojas `CREATINAS.jpg` 8/8 y `OMEGA.jpg` 8/8). Pendiente PA-API/Creators (caso A2POUPWGXYY3L2).
+- Creatina: B00T7L20AQ (ON), B00CHJ3DW4 (Myprotein), B07TVSKW21 (HSN Creapure), B01N7N0G4P (Crown Creapure), B00SP2ZKW8 (Bulk), B0B2L641TC (Dymatize), B0B53LFFVQ (foodspring), B07W8W8D76 (BioTechUSA).
+- Omega-3: B0C7KT42M7 (Nordic), B01BDEVYGK (HSN IFOS), B0043MRS88 (NOW), B08CZPZLZK (226ERS), B0GDQY4JGP (ESN), B000NI6WHY (Solgar), B01K28121U (Nutravita), B09VTBBM6L (WeightWorld).
+
+### Hallazgo en artículo runner
+
+**B0013OXD38** (NOW Creatine 1 kg) devuelve «Documento no encontrado» en Amazon ES — ASIN muerto en `blog/mejores-creatinas-running.html` (posición 9). No se ha usado en ciclismo (sustituido por BioTechUSA B07W8W8D76, verificado); la corrección del artículo runner queda como tarea aparte.
+
+### Prozis (bloques patrocinador, verificados en vivo 25 ago vía navegador)
+
+- Creatina: «Monohidrato de Creatina 300 g» — `/es/es/prozis/monohidrato-de-creatina-300-g` (200, «Desarrollo Muscular | Prozis»).
+- Omega-3: «Omega 3 1000 120 softgels» — `/es/es/prozis/omega-3-1000-120-softgels` (200, «Salud del Atleta | Prozis»).
+
+### Fuentes científicas de los dos artículos (verificadas en vivo)
+
+- Creatina: posicionamiento ISSN 2017 (PMID 28615996).
+- Omega-3: revisión sistemática 2024 de RCTs en adultos sanos que entrenan (PMID 38999792, «sin evidencia concluyente» sobre rendimiento) + hoja NIH ODS de omega-3 en español (200).
+
+## Adenda 25 ago 2026 (5) — «Potenciómetros» + review Real Hydration
+
+- **Hero potenciómetros**: Pexels 17239244 (Tuvalum, ciclista con casco subiendo puerto, 4933×3289, Pexels License, ficha vía navegador, registro en `fichas-pot.json`).
+- **8 fotos de producto** verificadas visualmente (hoja `POTENCIOMETROS.jpg`, 12 candidatos, 8 elegidos): B0BQC4PBPH (Assioma Duo), B072JYW6ZX (Assioma Uno), B0DZCHJG9M (Assioma PRO MX-1), B0F5BRJVHB (Wahoo POWR Duo), B0FBGDR81B (Magene P715), B0F48HKZDK (Magene PES spider+bielas), B0CRVVXJY3 (XCADEY XPOWER-S G2), B0GY847VYY (CooSpo biela bilateral 165 mm — sin nombre de modelo en ficha; no se inventa). Descartados: Sigeyi AXO (foto de montaje, no packshot), Assioma PRO RS-1 y Wahoo POWRLINK/POWR unilaterales (redundancia de marca).
+- **Hero review Real Hydration**: compuesto desde la imagen oficial de la ficha de Prozis (uso autorizado por la marca, 5 ago), etiquetado como imagen oficial en el pie. Datos nutricionales de la ficha web (sabor Tropical, lote I2603766) — **la ficha ahora SÍ publica la tabla completa**, cambio registrado también en la memoria del deal.
+
+## Adenda 25 ago 2026 (6) — auditoría de las cuatro piezas de la rama creatina-omega
+
+### Correcciones científicas aplicadas (fuentes verificadas en vivo)
+
+- **Creatina** (`mejores-creatinas-ciclismo`): incorporadas PMID 38892701 (revisión sistemática de ayudas ergogénicas en ciclismo, 2024: 2 estudios de creatina aislada, sin efectos significativos; posible efecto de cafeína+creatina) y PMID 42280321 (scoping review resistencia/mixtos, 2026: mejoras no uniformes en sprints repetidos, recuperación equívoca, aumentos pequeños y variables de masa). Retiradas promesas de mejora, el «1–2 kg» como inevitable y la carga como necesaria.
+- **Omega-3** (`mejores-omega-3-ciclismo`): auditoría de etiquetado de los 8 (zooms `ZOOM-*.jpg` del scratchpad): Nordic 1.280 mg omega-3 TOTALES/2 perlas (corregido: antes se presentaba como EPA+DHA), HSN 600 mg/perla (350+250; corregido de ≈750), NOW 750 confirmado, Solgar ES sin cifra frontal (dosis 2 caps; retirado el ≈940 no verificable), 226ERS ratio **DHA:EPA 5:1** (corregido; antes invertido), Nutravita 1.100 confirmado, ESN 1.200+900 verificado en esn.com, WeightWorld 300 exacto (180+120). Rango real declarado 300–2.100 mg/dosis; añadido el techo FDA/NIH (3 g/día EPA+DHA, hasta 2 g de suplementos, frase localizada en la hoja ES del NIH) y la dosis de ESN contextualizada.
+- **Real Hydration** (`prozis-real-hydration-opiniones`): retirada la afirmación de mercado, sodio como referencia contextual individualizable, «bebida de electrolitos sin carbohidratos energéticos», vitaminas B en neutro, FAQ correr/ciclismo con matices; ficha oficial reverificada (12,99 €, en stock, lote I2603766, sabores).
+- **Potenciómetros** (`mejores-potenciometros-ciclismo`): reconstruido — ver commit.
+
+### Potenciómetros — cambios de selección documentados
+
+| Cambio | Producto | Motivo | Fuente de especificaciones | Imagen |
+|---|---|---|---|---|
+| RETIRADO | CooSpo biela bilateral (B0GY847VYY) | Producto de marketplace sin ficha oficial del modelo exacto (el S10 oficial de CooSpo es un spider para Easton Cinch, otro producto) | coospo.com verificado | Foto local B0GY847VYY.jpg queda sin uso, se conserva |
+| RETIRADO | XCADEY XPOWER-S G2 (B0CRVVXJY3) | Documentación oficial del fabricante no contrastable en nuestra verificación | — | Foto local B0CRVVXJY3.jpg queda sin uso, se conserva |
+| AÑADIDO | Favero Assioma PRO RS-1 (B0FGJ3S6L9) | Cubre el estándar SPD-SL; ASIN y foto verificados (hoja POTENCIOMETROS.jpg) | cycling.favero.com/es/assioma-pro-rs (±1 %, 160 h) | hiRes de /dp/ self-hosted (transitoria pre-Creators API) |
+| AÑADIDO (editorial, sin afiliado, SIN foto) | Garmin Rally 110/210 | Representatividad de mercado; no localizado en Amazon ES (búsqueda 25 ago) | Manual oficial ES (PDF, ago 2026): versiones y batería recargable; el resto remitido a la documentación oficial | Tarjeta editorial sin fotografía (sin permiso de uso) |
+| AÑADIDO (editorial, sin afiliado, SIN foto) | 4iiii PRECISION 3+ PRO | Biela de referencia del mercado | 4iiii.com/precision-3-plus-pro (±1 %, 550 h CR2032, Find My, 3 años) | Tarjeta editorial sin fotografía (sin permiso de uso) |
+| RENOMBRADO | Wahoo «SPEEDPLAY POWR Duo» → **SPEEDPLAY POWER Dual** (nombre oficial) | Correspondencia de ASIN B0F5BRJVHB confirmada por specs coincidentes (75 h) en dp y ficha oficial | es-eu.wahoofitness.com (±1 % declarado, 75 h, 113 kg, 2 años) | Sin cambio |
+| DISTINGUIDO | Magene PES P505 vs P515 | El listado de Amazon agrupa variantes; la tarjeta es del P505 y remite al P515 como producto distinto | es.magene.com: P505 Base (±1,5 %, 110BCD) y P515 (±1 %, 380 h) | Sin cambio |
+
+### Estado de la fotografía nueva `B0FGJ3S6L9.jpg` (Favero Assioma PRO RS-1)
+
+- Es una **incorporación nueva al árbol público de esta rama**: `public/blog-images/ciclismo/productos/B0FGJ3S6L9.jpg`. Ninguna entrega debe afirmar que «no se añadió ninguna fotografía nueva»: esta sí lo es.
+- Corresponde al ASIN **B0FGJ3S6L9** y al **Favero Assioma PRO RS-1**; correspondencia foto↔producto verificada visualmente (hoja `POTENCIOMETROS.jpg`).
+- Procede de la imagen `hiRes` de la página `/dp/` recuperada durante la investigación previa de esta comparativa.
+- **No está regularizada** todavía mediante Amazon Creators API/SiteStripe y **no se declara autorizada**.
+- Se mantiene bajo la **decisión transitoria ya aceptada por el propietario** (imágenes reales de producto self-hosted mientras se resuelve el alta en Creators API, caso A2POUPWGXYY3L2).
+- **Debe migrarse** a la URL o mecanismo autorizado cuando Amazon habilite las credenciales, junto con el resto de imágenes de producto del blog.
+- Uso en la página: únicamente en la tarjeta comercial del producto (con `loading="lazy"`, dimensiones explícitas y `alt` descriptivo). No se usa como hero, `og:image`, `twitter:image` ni imagen de ningún schema.
+
+### QA registrado (25 ago)
+
+- `git diff --check` limpio · `html-validate` 0 errores en las 4 (config con reglas de estilo global desactivadas) · JSON-LD 0 inválidos · 1 H1 y canonical propio por página · FAQ visible = FAQPage (regenerado desde lo visible) · ItemList = orden visible.
+- Responsive 390/768/1440: 0 desbordes, 0 imágenes rotas, 0 sin alt, 0 errores de consola (12 vistas).
+- Fichas comerciales 23/23 con producto↔ASIN↔foto↔tag↔rel correctos.
+- Afiliación antes/después: RH, creatina y omega IDÉNTICOS token a token; potenciómetros con los 3 cambios deliberados de la tabla (2 retiradas + 1 alta) y el resto idéntico.
+- Lighthouse móvil: creatina/omega/potenciómetros **100/100/100/100, CLS 0**; Real Hydration **89–91/100/100/100, CLS 0** (varianza de laboratorio entre pasadas) — el Perf <95 es límite de la plantilla legacy del blog (scripts globales de CRO/newsletter compartidos con las demás reviews) y queda registrado como deuda técnica independiente, no como bloqueo de publicación; aplicadas igualmente mejoras (preload+srcset 828w del hero, landmark main, overrides de contraste WCAG para componentes inyectados).
+- CLS de Real Hydration: `enhance.js` inyectaba el aviso de salud (`cj-health-note`) al inicio de `.content` en slugs sensibles, desplazando el contenido (CLS 0,044 reproducible). Fix sin tocar scripts globales: el aviso se **pre-renderiza estáticamente en el HTML** con el mismo `id`, texto y estilos; el guard `!document.getElementById('cj-health-note')` del script detecta el nodo y no inyecta nada. Verificado: 1 solo aviso en DOM, CLS 0.

@@ -220,3 +220,24 @@ Mismo estado que los lotes de geles y magnesios: imagen `hiRes` de la ficha ofic
 ### Hallazgos de verificación (pendientes de corregir en el artículo runner)
 
 Durante la selección se detectaron en `blog/mejores-bebidas-hidratacion-running.html` dos ASIN muertos: **B00JZ463AS** (High5 Zero, «Documento no encontrado») y **B019GU4J56** (Nuun, ficha caída). Además **B007WQVXMY** resultó ser High5 *Energy Drink* (con carbohidratos), no Zero. Ninguno se ha usado en el artículo de ciclismo; la corrección del artículo runner queda anotada como tarea aparte.
+
+## Adenda 25 ago 2026 (2) — artículos «Proteínas para ciclistas» y «Dolor de espalda y postura»
+
+### Heroes con licencia verificada (Pexels)
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | sha256 (16) |
+|---|---|---|---|---|---|
+| `proteinas-ciclismo-hero.webp` + `-card.webp` | [Foto 4378327](https://www.pexels.com/es-es/foto/hombre-bebiendo-cara-enfrentarse-4378327/) | Kaboompics (perfil `@karola-g`; el campo creator de la ficha muestra su web kaboompics.com) | [Pexels License](https://www.pexels.com/license/) | 6720×4480, 7,2 MB, subida 11 may 2020 | `8cc5937a39114e5d` |
+| `postura-bicicleta-dolor-hero.webp` + `-card.webp` | [Foto 32614271](https://www.pexels.com/es-es/foto/ciclista-montando-en-carretera-escenica-con-follaje-vibrante-32614271/) | Жанна Алимкулова | [Pexels License](https://www.pexels.com/license/) | 6000×4000, 3,2 MB, subida 18 jun 2025 | `406454d6a4dc82fb` |
+
+Fichas consultadas el 25 ago 2026 vía navegador (JSON-LD ImageObject). Descargas del CDN oficial, HTTP 200.
+
+### Fotos de producto (8 ASIN nuevos, self-hosted en `/public/blog-images/ciclismo/productos/`)
+
+Mismo estado que los lotes anteriores: imagen `hiRes` de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visualmente (hoja `PROTEINAS.jpg`, 9/9 correctas; se usan 8 y se descarta BSN Syntha-6 por criterio editorial). ASIN: B000QSNYGI (ON Gold Standard), B00EZTKZDE (Myprotein Impact), B09N3HJGPK (Dymatize ISO 100), B07BHP7DGX (HSN Evolate 2.0), B004U4WUFU (ESN Designer), B0BKSXHCWS (Scitec Professional), B00HF630Z4 (Bulk Pure Whey), B0CQRNC7WN (Bulk Vegana). Pendiente PA-API/Creators (caso A2POUPWGXYY3L2).
+
+El artículo de postura no contiene enlaces patrocinados ni fotos de producto.
+
+### Prozis
+
+Bloque patrocinador del artículo de proteínas: «100% Real Whey Protein 1000 g» — URL `/es/es/prozis/100-real-whey-protein-1000-g` verificada en vivo el 25 ago 2026 (HTTP 200, título de ficha «100% Real Whey Protein 1000 g - Desarrollo Muscular | Prozis», comprobado vía navegador porque prozis.com devuelve 403 a curl).

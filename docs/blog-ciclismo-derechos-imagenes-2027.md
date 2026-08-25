@@ -267,3 +267,34 @@ Ciclista con casco bebiendo del bidón en marcha. Ficha consultada el 25 ago 202
 - **Lighthouse móvil (local, 25 ago)**: 9/9 páginas con Accessibility 100, Best Practices 100, SEO 100, CLS 0; Performance 99–100 (hub 99 tras srcset). Sin validador HTML en el proyecto: chequeo estructural propio (equilibrio de etiquetas) limpio en las 9.
 - **Integridad comercial**: 32/32 fichas Amazon con producto–foto–ASIN–CTA–alt correspondientes e idénticas al inventario inicial; 2 tarjetas Prozis del pilar intactas; único cambio en enlaces Prozis: eliminación del bloque duplicado legacy de geles (4→2 enlaces).
 - **Pendiente sin cambios**: migración de fotos de producto a Creators API cuando lleguen credenciales (caso Amazon A2POUPWGXYY3L2).
+
+## Adenda 25 ago 2026 (4) — artículos «Creatina» y «Omega-3 para ciclistas»
+
+### Heroes con licencia verificada (Pexels)
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | Detalle |
+|---|---|---|---|---|---|
+| `creatina-ciclismo-hero.webp` + `-card.webp` | [Foto 8353229](https://www.pexels.com/es-es/foto/8353229/) | Andryely Pedroso | [Pexels License](https://www.pexels.com/license/) | 2736×1824 | Cazo vertiendo polvo, sin marcas visibles |
+| `omega-3-ciclismo-hero.webp` + `-card.webp` | [Foto 13534590](https://www.pexels.com/es-es/foto/13534590/) | Odin Mcraig | [Pexels License](https://www.pexels.com/license/) | 5472×3648 | Cápsulas blandas, sin marcas |
+
+Fichas consultadas el 25 ago 2026 vía navegador (JSON-LD ImageObject, registro completo en `fichas-co.json` del scratchpad); descargas del CDN oficial, HTTP 200.
+
+### Fotos de producto (16 ASIN nuevos, self-hosted)
+
+Imagen hiRes de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visualmente (hojas `CREATINAS.jpg` 8/8 y `OMEGA.jpg` 8/8). Pendiente PA-API/Creators (caso A2POUPWGXYY3L2).
+- Creatina: B00T7L20AQ (ON), B00CHJ3DW4 (Myprotein), B07TVSKW21 (HSN Creapure), B01N7N0G4P (Crown Creapure), B00SP2ZKW8 (Bulk), B0B2L641TC (Dymatize), B0B53LFFVQ (foodspring), B07W8W8D76 (BioTechUSA).
+- Omega-3: B0C7KT42M7 (Nordic), B01BDEVYGK (HSN IFOS), B0043MRS88 (NOW), B08CZPZLZK (226ERS), B0GDQY4JGP (ESN), B000NI6WHY (Solgar), B01K28121U (Nutravita), B09VTBBM6L (WeightWorld).
+
+### Hallazgo en artículo runner
+
+**B0013OXD38** (NOW Creatine 1 kg) devuelve «Documento no encontrado» en Amazon ES — ASIN muerto en `blog/mejores-creatinas-running.html` (posición 9). No se ha usado en ciclismo (sustituido por BioTechUSA B07W8W8D76, verificado); la corrección del artículo runner queda como tarea aparte.
+
+### Prozis (bloques patrocinador, verificados en vivo 25 ago vía navegador)
+
+- Creatina: «Monohidrato de Creatina 300 g» — `/es/es/prozis/monohidrato-de-creatina-300-g` (200, «Desarrollo Muscular | Prozis»).
+- Omega-3: «Omega 3 1000 120 softgels» — `/es/es/prozis/omega-3-1000-120-softgels` (200, «Salud del Atleta | Prozis»).
+
+### Fuentes científicas de los dos artículos (verificadas en vivo)
+
+- Creatina: posicionamiento ISSN 2017 (PMID 28615996).
+- Omega-3: revisión sistemática 2024 de RCTs en adultos sanos que entrenan (PMID 38999792, «sin evidencia concluyente» sobre rendimiento) + hoja NIH ODS de omega-3 en español (200).

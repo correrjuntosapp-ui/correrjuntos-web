@@ -202,3 +202,21 @@ públicamente tras un despliegue, aunque no estuviera enlazada.
 **Fotografías de producto (8 geles, `/productos/{ASIN}.jpg`):** descargadas de la ficha oficial de cada producto en Amazon.es (hiRes) y verificadas visualmente una a una — mismo estado PENDIENTE que el resto del lote: sin SiteStripe ni PA-API, mantenidas por decisión del editor a la espera de credenciales (caso A2POUPWGXYY3L2). ASINs: B07Q367KCP, B01CNEO6FA, B0BVFTFQ8X, B005K8IGPS, B07MF1NCZ1, B0FJ2JMF1K, B00GSR6WZG, B07TSL226P.
 
 **Artículo magnesios ciclismo (25 ago):** hero `mejores-magnesios-ciclismo-{hero,card}.webp` — Nop Viwat · [manos-sujetando-medicina-vitaminas-9385899](https://www.pexels.com/es-es/foto/manos-sujetando-medicina-vitaminas-9385899/) · https://www.pexels.com/license/ · original 6720×4480 · sha256 a412f09fe163dbeb. Fotos de producto (8): fichas oficiales Amazon hiRes verificadas visualmente, mismo estado PENDIENTE del lote. ASINs: B01BCCP44G, B0BNNFY728, B012T97SDQ, B09BVX2XS7, B0BVRJ19CT, B07NS14648, B07H9F4X1P, B0CP8958DL. ⚠️ Hallazgo: el ASIN B0CCVVMBBG usado en el artículo de magnesios de running como «Ana María Lajusticia Magnesio+B6» resuelve en realidad a «Triptófano Plus con Ashwagandha» (producto distinto); en el artículo ciclista se sustituyó por B07H9F4X1P (Magnesio Total 5, verificado). El artículo de running queda pendiente de esa corrección.
+
+## Adenda 25 ago 2026 — artículo «Mejores electrolitos para ciclismo»
+
+### Hero con licencia verificada (Pexels)
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | sha256 (16) |
+|---|---|---|---|---|---|
+| `electrolitos-ciclismo-hero.webp` + `-card.webp` | [Foto 31312266](https://www.pexels.com/es-es/foto/ciclista-hidratandose-en-carretera-de-montana-31312266/) | Tiago Espindola de Oliveira | [Pexels License](https://www.pexels.com/license/) | 8192×5464, 3,2 MB, subida 24 mar 2025 | `ea56ddc2d6d0de50` |
+
+Ficha consultada el 25 ago 2026 vía navegador (JSON-LD ImageObject de la propia página). Descarga del CDN oficial `images.pexels.com`, HTTP 200.
+
+### Fotos de producto (8 ASIN, self-hosted en `/public/blog-images/ciclismo/productos/`)
+
+Mismo estado que los lotes de geles y magnesios: imagen `hiRes` de la ficha oficial `/dp/{ASIN}` de Amazon España, verificada visualmente una a una (hoja `ELECTROLITOS-F.jpg` + `CHK-DEXTRO.jpg`), pendiente de la autorización PA-API/Creators (caso Amazon A2POUPWGXYY3L2). ASIN: B08B2YCG96 (226ERS Hydrazero), B07W7XN3Y1 (SiS Hydro), B088L6YYJ4 (Dextro Energy Zero), B00TCHF5T8 (PowerBar 5E), B06XHLMP1Q (Crown Isodrink), B07677YMQT (Maurten 320), B017M6C4I0 (Tailwind), B001O1G3C8 (Isostar Powertabs).
+
+### Hallazgos de verificación (pendientes de corregir en el artículo runner)
+
+Durante la selección se detectaron en `blog/mejores-bebidas-hidratacion-running.html` dos ASIN muertos: **B00JZ463AS** (High5 Zero, «Documento no encontrado») y **B019GU4J56** (Nuun, ficha caída). Además **B007WQVXMY** resultó ser High5 *Energy Drink* (con carbohidratos), no Zero. Ninguno se ha usado en el artículo de ciclismo; la corrección del artículo runner queda anotada como tarea aparte.

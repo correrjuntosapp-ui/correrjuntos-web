@@ -282,3 +282,15 @@ Con las claves de la API de Creators/PA-API se sustituirán las ~535 URLs del
 CDN por las URLs oficiales que devuelva la API para los 393 ASIN de las
 tarjetas restauradas, en una sola pasada. La lista de tarjetas y ASIN queda
 registrada en el plan de restauración de esta tanda.
+
+### Actualización — respuesta de Amazon (25 ago, 8:05)
+
+El soporte de Afiliados (agente: Vesi, caso `A2POUPWGXYY3L2`) respondió a la
+incidencia en menos de una hora. Causa identificada por Amazon: la cuenta
+`diezmejores21-21` **aún no ha pasado la revisión de cumplimiento del Acuerdo
+Operativo**, y esa es la razón más probable de que no se puedan crear
+credenciales en la API de Creators. El propio agente ha escalado el caso al
+equipo interno y contactará con una actualización.
+
+Estado: **a la espera del correo de seguimiento de Amazon** en
+guetto2012@gmail.com. No hay acción pendiente por parte del editor.

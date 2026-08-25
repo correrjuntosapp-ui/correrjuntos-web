@@ -241,3 +241,29 @@ El artículo de postura no contiene enlaces patrocinados ni fotos de producto.
 ### Prozis
 
 Bloque patrocinador del artículo de proteínas: «100% Real Whey Protein 1000 g» — URL `/es/es/prozis/100-real-whey-protein-1000-g` verificada en vivo el 25 ago 2026 (HTTP 200, título de ficha «100% Real Whey Protein 1000 g - Desarrollo Muscular | Prozis», comprobado vía navegador porque prozis.com devuelve 403 a curl).
+
+## Adenda 25 ago 2026 (3) — auditoría editorial del clúster y sustitución del hero de electrolitos
+
+### Hero de electrolitos sustituido (seguridad vial)
+
+La foto anterior (Pexels 31312266, Tiago Espindola de Oliveira) mostraba a un ciclista **pedaleando sin casco**; se retira del artículo y del hub por criterio editorial de seguridad. Sustituida por:
+
+| Archivo | Ficha Pexels | Autor | Licencia | Original | sha256 (16) |
+|---|---|---|---|---|---|
+| `electrolitos-ciclismo-hero.webp` + `-card.webp` (v2) | [Foto 5735739](https://www.pexels.com/es-es/foto/carretera-hombre-agua-verano-5735739/) | RUN 4 FFWPU | [Pexels License](https://www.pexels.com/license/) | 6000×4000, 7,4 MB | ver `fichas-ele3.json` |
+
+Ciclista con casco bebiendo del bidón en marcha. Ficha consultada el 25 ago 2026 vía navegador; descarga del CDN oficial, HTTP 200. El original 31312266 queda descartado para heroes ciclistas (sin casco en marcha).
+
+### Hub
+
+`ciclismo-hub-hero-v2.webp` recomprimido (122→92 KB) y nueva variante responsive `ciclismo-hub-hero-v2-828.webp` (40 KB) para `srcset` — misma foto Pexels 5970278 ya registrada, sin cambio de licencia.
+
+### Auditoría editorial 25 ago 2026 (9 páginas del clúster)
+
+- **Geles**: extirpado un bloque legacy de 37 KB del artículo runner incrustado por error (secciones de maratón, fotos de corredores `/public/pexels/5687423-800.webp` y `4083911-800.webp`, FAQ duplicada, doble newsletter, footer y scripts runner, bloques Prozis repetidos). Copia del bloque eliminado en `C:/tmp/geles-legacy-eliminado.html`.
+- **Términos runner visibles restantes (excepciones documentadas)**: geles («carrera a pie», «corredores» — frase fisiológica + único enlace comparativo a la versión running); espalda («corredor… zancada» — frase fisiológica; «corredores» — único enlace running de la página, a la rutina de core, justificado en el texto). Resto de páginas: cero.
+- **Fuentes verificadas en vivo** (PubMed vía navegador, curl bloqueado): Jeukendrup 2014 (24791914), ISSN cafeína 2021 (33388079), consenso hiponatremia 2015 (26102445), ISSN proteína 2017 (JISSN), Cochrane magnesio 2020 (32956536), y 4 revisiones sistemáticas de biomecánica ciclista (41705012, 39285616, 35440291, 29872355).
+- **Fuente Shimano** del artículo de pedales (SPD vs SPD-SL) retirada del sitio de Shimano (redirige a portada; sin snapshot en Wayback): sustituida por el portal oficial de manuales técnicos `si.shimano.com` con nota explicativa.
+- **Lighthouse móvil (local, 25 ago)**: 9/9 páginas con Accessibility 100, Best Practices 100, SEO 100, CLS 0; Performance 99–100 (hub 99 tras srcset). Sin validador HTML en el proyecto: chequeo estructural propio (equilibrio de etiquetas) limpio en las 9.
+- **Integridad comercial**: 32/32 fichas Amazon con producto–foto–ASIN–CTA–alt correspondientes e idénticas al inventario inicial; 2 tarjetas Prozis del pilar intactas; único cambio en enlaces Prozis: eliminación del bloque duplicado legacy de geles (4→2 enlaces).
+- **Pendiente sin cambios**: migración de fotos de producto a Creators API cuando lleguen credenciales (caso Amazon A2POUPWGXYY3L2).

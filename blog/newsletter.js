@@ -213,6 +213,16 @@
   function buildSticky(){
     if(isSubscribed()) return;
     if(isDismissed(STORAGE.STICKY_HIDE_UNTIL)) return;
+    /* Prioridad móvil: Smart App Banner nativo > CTA de app propio > newsletter.
+       En viewport móvil la barra de newsletter no compite con una promoción de
+       app en el primer viewport: si iOS Safari puede mostrar el banner nativo
+       (flag publicado por enhance.js, que carga antes), o enhance.js ya creó su
+       barra de tiendas (#sticky-cta — ausente si el usuario la descartó, estado
+       en localStorage cj_sticky_dismissed), esta sticky se omite. Desktop intacto. */
+    if(window.innerWidth < 768){
+      if(window.__cjNativeAppBanner) return;
+      if(document.getElementById('sticky-cta')) return;
+    }
 
     var bar = document.createElement('div');
     bar.className = 'cj-nl-sticky';

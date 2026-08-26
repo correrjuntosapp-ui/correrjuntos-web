@@ -12,6 +12,7 @@
   "scripts": {
     "lint": "npx eslint js/modules/*.js js/app.js js/premium-features.js js/pwa.js",
     "test": "npx playwright test",
+    "test:unit": "node --test tests/unit/newsletter-automation.test.cjs tests/unit/weekly-newsletter.test.cjs tests/unit/weekly-newsletter-sending.test.cjs",
     "test:ui": "npx playwright test --ui",
     "build": "node tools/build-minify.cjs",
     "images:scan": "node tools/image-audit/scan-images.cjs",

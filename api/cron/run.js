@@ -95,7 +95,10 @@ export default async function handler(req, res) {
     jobFn = mod?.default;
     if (typeof jobFn !== 'function') throw new Error('no default export');
   } catch (e) {
-    console.error('[cron/run] no se pudo cargar el job ' + job + ': ' + (e?.message || e));
+    // Solo el CODIGO del error (enum de Node), nunca el mensaje: un mensaje
+    // de import puede llevar rutas internas. El codigo basta para distinguir
+    // ERR_MODULE_NOT_FOUND (el caso del 20 jul) de un fallo de sintaxis.
+    console.error('[cron/run] job_load_failed', job, e?.code || e?.name || 'unknown');
     return res.status(500).json({ error: 'job_load_failed', job });
   }
 

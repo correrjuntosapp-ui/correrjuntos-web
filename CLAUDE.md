@@ -503,6 +503,35 @@ Si el founder pregunta "¿qué piensas?", Claude responde HONESTO incluso si dis
 
 ---
 
+## 🚲 PROPUESTA en mente — Rama ciclismo en la app (memorizado 26 ago 2026)
+
+**Estado: PROPUESTA, NO aprobada para construir.** Idea del founder: en un futuro,
+crear planes de entrenamiento de ciclismo y poder hacer quedadas de ciclismo en el
+mapa de la app. Palabras del founder al memorizarla: *"es una propuesta que tengo en
+mente, pero tenemos que enfocarla bien... tenemos que verlo todo con tiempo"*.
+
+**Prerequisitos ANTES de ejecutar nada** (orden del founder):
+1. **Revisar cómo va la app de correr** (salud del producto running actual).
+2. **Terminar de añadir los clubs/grupos que nos están hablando** (outreach B2B en curso).
+3. **Sobre todo: montar/diseñar la pantalla principal de la app, cómo sería** —
+   mockup de la home antes de meter una segunda vertical.
+
+**Groundwork técnico ya investigado** (26 ago 2026, datos reales Supabase):
+- La tabla `quedadas` NO tiene columna `deporte` — habría que añadirla
+  (default `'correr'`, migration no destructiva) + filtro de deporte en
+  MapScreen/cards. Todo implementable vía OTA (sin build nativo nuevo).
+- Demanda bici actual (`runs.deporte`, últimos 60d): running 1829 actividades /
+  52 users · walking 341/26 · **bici 41/12** · trail 6/3. Bici ≈ 2% de actividades.
+- Orden recomendado si algún día se activa: **primero quedadas de ciclismo**
+  (barato, OTA-only, sinergia con outreach a grupetas), **después planes de
+  entrenamiento** solo si hay demanda.
+
+**Umbral de activación para planes de ciclismo** (no construirlos antes):
+bici ≥10% de las actividades, O 40+ users con actividad bici en 60d, O 3+
+grupetas partner pidiéndolo. Hoy (2%/12 users/0 grupetas) NO se cumple ninguno.
+
+---
+
 ## Reglas Inamovibles
 
 - **NUNCA** modificar archivos existentes que funcionen sin permiso explícito

@@ -16,6 +16,64 @@
 
 ---
 
+## 📌 POR DÓNDE VAMOS — cierre sesión 26 ago 2026 (leer al volver)
+
+**Resumen para retomar**: hoy se cerró el blog (día completo, todo mergeado y
+desplegado en Vercel) y se dejó decidida la dirección de producto de la app.
+
+### ✅ Hecho hoy (todo en master, PRs #95–#108)
+
+**Blog (cerrado por hoy):**
+1. **Portada `/blog` = SOLO running.** El ciclismo vive en `/blog/ciclismo`
+   (hub propio), accesible por tab superior "Ciclismo · Nuevo" + teaser. Sin
+   "Todos" global que mezcle deportes. Misma lógica ES/EN.
+2. **Banners móvil arreglados**: nunca 2 promos de app a la vez. Prioridad
+   Smart App Banner nativo iOS > CTA custom > newsletter; máx 1 superficie
+   fija (`window.__cjNativeAppBanner` en enhance.js + gate en newsletter.js).
+3. **Portada v3 rediseño mobile-first** (hero claro con destacada overlay,
+   objetivos arriba, best-rail imprescindibles, teaser ciclismo, chips móvil).
+   ⏳ Pendiente portarla a `/blog/en/`.
+4. **Hub ciclismo Fase 1**: secciones Tecnología y Suplementación añadidas,
+   chip-nav por anclas, fotos de cards corregidas (GPS→Edge 850, creatina→
+   Prozis por orden explícita del founder, nutrición→dátiles).
+5. **Pipeline de fotos de producto por GitHub Actions** (el sandbox no tiene
+   salida a Amazon): workflow `fetch-product-images.yml` + fetcher hardened
+   `tools/fetch-product-images.cjs` + batches en `tools/product-image-batches/`.
+   Primer batch ciclocomputadores: **9/9 ASINs descargados y verificados
+   visualmente** en `public/blog-images/ciclismo/productos/`. Edge 850 aplicado
+   a card + hero + og:image del artículo (norma 3b cumplida en ese artículo).
+6. **Normas memorizadas**: §3b foto producto Nº1 en card+entrada+og (backlog
+   ~39 rankings ES pendientes) y §3c roadmap paridad ciclismo (anti-thin ≥3-4).
+
+**App (decisión estratégica, sin código):**
+7. **Visión multideporte memorizada** (sección 🏗️): running + fuerza + ciclismo
+   en UNA plataforma con el deporte como dimensión. **Orden decidido: FUERZA
+   antes que ciclismo** (fases 1-2 fuerza, 3-4 ciclismo, con gates). Ver sección
+   completa más abajo.
+
+### ⏭️ Siguiente paso al retomar
+
+- **Sesión de app → Fase 0**: mockup de la **pantalla principal "Hoy"**,
+  diseñada multideporte-ready (con la fuerza ya dentro del diseño aunque solo
+  running esté vivo). Antes/en paralelo: revisar salud de la app running y
+  cerrar onboarding de los clubs en conversación.
+- **Blog (cuando toque, no urgente)**: siguientes batches de fotos Nº1 vía el
+  workflow de Actions (+verificación visual SIEMPRE antes de aplicar); portar
+  portada v3 a EN + migrar ~50 hotlinks del índice EN; Fase 2 editorial
+  ciclismo (rellenar Rutas/Nutrición/Salud/Carreras hasta ≥4); refresh "empezar
+  a correr desde cero" a primeros de septiembre.
+
+### ⚠️ Restricciones vigentes de la sesión
+
+- NO IndexNow ni regeneración de sitemaps sin pedirlo explícitamente.
+- CI `build-and-test` sale `cancelled` en TODOS los pushes a master desde ~18
+  ago: incidencia histórica (suite E2E obsoleta de 40 tests vs timeout 15 min),
+  NO es culpa de ningún cambio nuevo. Lint+Build sí pasan.
+- Quedan worktrees `/home/user/cj-*` en el sandbox del agente (sin efecto en
+  el repo; las ramas ya están mergeadas).
+
+---
+
 ## 📡 Canales institucionales (15 may 2026)
 
 - **LinkedIn Company Page**: https://www.linkedin.com/company/correrjuntos/

@@ -21,7 +21,11 @@ const path = require('path');
 const UAS = [
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+  'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1',
+  'Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0',
 ];
+// La pagina desktop y la movil (/gp/aw/d/) responden a bloqueos distintos.
+const ENDPOINTS = ['https://www.amazon.es/dp/', 'https://www.amazon.es/gp/aw/d/'];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function fetchText(url, ua) {
@@ -58,17 +62,20 @@ function extractImageUrl(html) {
     const out = path.join(dest, asin + '.jpg');
     if (fs.existsSync(out)) { summary.push({ asin, status: 'ya-existia' }); continue; }
     let ok = false, reason = '';
-    for (let attempt = 0; attempt < UAS.length && !ok; attempt++) {
-      const ua = UAS[attempt];
+    for (let attempt = 0; attempt < 6 && !ok; attempt++) {
+      const ua = UAS[attempt % UAS.length];
+      const endpoint = ENDPOINTS[attempt % ENDPOINTS.length];
       try {
-        const page = await fetchText('https://www.amazon.es/dp/' + asin, ua);
-        if (page.status !== 200 || page.body.length < 100000) {
+        const page = await fetchText(endpoint + asin, ua);
+        // La pagina movil legitima es mas corta: umbral menor para /gp/aw/d/
+        const minLen = endpoint.includes('/gp/aw/') ? 40000 : 100000;
+        if (page.status !== 200 || page.body.length < minLen) {
           reason = 'pagina bloqueada/corta (' + page.status + ', ' + page.body.length + 'B)';
-          await sleep(30000); // playbook: esperar y rotar UA
+          await sleep(20000 + attempt * 8000); // backoff creciente entre intentos
           continue;
         }
         const imgUrl = extractImageUrl(page.body);
-        if (!imgUrl) { reason = 'sin hiRes/large en la pagina'; break; }
+        if (!imgUrl) { reason = 'sin hiRes/large en la pagina'; await sleep(15000); continue; }
         const buf = await fetchImage(imgUrl, ua);
         if (!buf || buf.length < 10240) {
           reason = 'imagen invalida (' + (buf ? buf.length : 0) + 'B <10KB)';

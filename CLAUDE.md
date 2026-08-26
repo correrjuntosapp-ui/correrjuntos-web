@@ -538,6 +538,37 @@ Cuando crees o actualices CUALQUIER artículo del blog, debe incluir:
 - [ ] `loading="lazy"` excepto hero image (que va con `fetchpriority="high"`)
 - [ ] Width + height explícitos para evitar CLS
 
+### 3b. ⚠️ NORMA — Foto del producto Nº1 en card y entrada (memorizado 26 ago 2026)
+
+Regla del founder, aplica a TODO artículo de ranking/afiliado ("los 10 mejores X",
+"mejores X 2026"...) de CUALQUIER vertical (running, ciclismo, suplementación...):
+
+1. **La foto del producto Nº1 del ranking** es la imagen de:
+   - la **card** del artículo en el índice del blog (ES, EN y `blog/page/N`), y
+   - la **entrada/hero** del propio artículo (+ su `og:image`).
+   Ejemplos: ciclocomputadores → foto del Garmin Edge 850 (Nº1); proteínas →
+   foto de la proteína Nº1; creatina → ídem. SIEMPRE.
+2. **Ninguna card puede quedar sin foto de artículo**: ni hotlinks a CDNs de
+   terceros (rotan/bloquean → card vacía), ni ilustraciones SVG planas como
+   única imagen, ni og:image en SVG (WhatsApp/FB no lo renderizan → preview
+   sin imagen). Foto self-hosted verificada visualmente, siempre.
+3. **Ninguna foto repetida entre cards** del índice (tampoco dos tomas casi
+   idénticas de la misma sesión de stock).
+4. La foto del producto se obtiene con el playbook de la sección 12 (hiRes de
+   la ficha Amazon, verificación visual, self-host en el dir de la vertical,
+   p. ej. `public/blog-images/ciclismo/productos/{ASIN}.jpg`).
+5. Si al publicar aún no hay foto del producto Nº1 (p. ej. entorno sin salida
+   a Amazon), usar foto local temática como PROVISIONAL y dejar el artículo
+   apuntado en el backlog de "fotos producto Nº1 pendientes" — no es estado
+   final aceptable.
+
+Estado al memorizar (26 ago 2026): ~40 rankings del índice ES siguen con foto
+genérica/hero en la card en vez del producto Nº1 (los 9 ASINs de
+ciclocomputadores sin descargar en `productos/`; proteínas, creatinas, relojes
+GPS, auriculares, zapatillas, luces/cascos ciclismo, bicis 2027...). El índice
+EN arrastra además ~50 imágenes hotlinkeadas (Amazon/Unsplash) por migrar a
+self-hosted.
+
 ### 4. Iconos (CRÍTICO — pro look)
 - [ ] **NUNCA** emojis decorativos (👟⌚🎧💧👕🏔️🥤🧘🎯🆕📋✅❌)
 - [ ] Solo SVG inline estilo Lucide en badges naranja brand

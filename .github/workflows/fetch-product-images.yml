@@ -1,0 +1,44 @@
+name: Fetch product images
+
+# Descarga las fotos hiRes de productos Amazon de un batch (playbook CLAUDE.md
+# seccion 12) y las commitea a una rama para revision visual antes de usarlas.
+# Se lanza a mano porque el entorno de agentes no tiene salida a Amazon.
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'Ruta del batch JSON dentro del repo'
+        required: true
+        default: 'tools/product-image-batches/batch-ciclocomputadores.json'
+      branch:
+        description: 'Rama donde commitear las imagenes descargadas'
+        required: true
+        default: 'fotos-productos/batch'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Descargar imagenes del batch
+        run: node tools/fetch-product-images.cjs "${{ github.event.inputs.batch }}"
+      - name: Commit a la rama de revision
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B "${{ github.event.inputs.branch }}"
+          git add public/blog-images
+          if git diff --cached --quiet; then
+            echo "Sin imagenes nuevas que commitear"
+          else
+            git commit -m "chore(imagenes): fotos de producto del batch ${{ github.event.inputs.batch }} (pendientes de verificacion visual)"
+            git push -f origin "${{ github.event.inputs.branch }}"
+          fi

@@ -503,32 +503,59 @@ Si el founder pregunta "¿qué piensas?", Claude responde HONESTO incluso si dis
 
 ---
 
-## 🚲 PROPUESTA en mente — Rama ciclismo en la app (memorizado 26 ago 2026)
+## 🏗️ VISIÓN APP MULTIDEPORTE — running + fuerza + ciclismo (memorizado 26 ago 2026)
 
-**Estado: PROPUESTA, NO aprobada para construir.** Idea del founder: en un futuro,
-crear planes de entrenamiento de ciclismo y poder hacer quedadas de ciclismo en el
-mapa de la app. Palabras del founder al memorizarla: *"es una propuesta que tengo en
-mente, pero tenemos que enfocarla bien... tenemos que verlo todo con tiempo"*.
+**Visión del founder** (26 ago 2026): que CorrerJuntos llegue a ser una app de
+**running (entrenamientos + quedadas), ciclismo (entrenamientos + quedadas) y
+entrenamiento de fuerza / atleta híbrido**. Estado: visión de destino aceptada
+como norte de producto — **la ejecución va por fases, nada se construye de golpe**.
 
-**Prerequisitos ANTES de ejecutar nada** (orden del founder):
-1. **Revisar cómo va la app de correr** (salud del producto running actual).
-2. **Terminar de añadir los clubs/grupos que nos están hablando** (outreach B2B en curso).
-3. **Sobre todo: montar/diseñar la pantalla principal de la app, cómo sería** —
-   mockup de la home antes de meter una segunda vertical.
+### Principio arquitectónico (recomendación experta aceptada)
 
-**Groundwork técnico ya investigado** (26 ago 2026, datos reales Supabase):
-- La tabla `quedadas` NO tiene columna `deporte` — habría que añadirla
-  (default `'correr'`, migration no destructiva) + filtro de deporte en
-  MapScreen/cards. Todo implementable vía OTA (sin build nativo nuevo).
-- Demanda bici actual (`runs.deporte`, últimos 60d): running 1829 actividades /
-  52 users · walking 341/26 · **bici 41/12** · trail 6/3. Bici ≈ 2% de actividades.
-- Orden recomendado si algún día se activa: **primero quedadas de ciclismo**
-  (barato, OTA-only, sinergia con outreach a grupetas), **después planes de
-  entrenamiento** solo si hay demanda.
+**Una sola plataforma donde el deporte es una DIMENSIÓN de los datos, no tres
+apps paralelas.** Nunca duplicar pantallas/motores por deporte:
+- `quedadas` → columna `deporte` (default `'correr'`, migration no destructiva)
+  + filtro en MapScreen/cards. OTA-only, sin build nativo.
+- Motor de planes (sessions + steps) → ya es casi agnóstico al deporte. La única
+  extensión real la pide la fuerza: steps tipo ejercicio con **sets / reps /
+  descanso / carga** además de los steps por duración/ritmo actuales.
+- Home = "**Hoy**": un feed unificado que mezcla lo que toque hoy (rodaje, sesión
+  de fuerza, salida en bici, quedada cercana) — NO tabs por deporte.
+- Coach Jose único para todo (contexto multideporte en el prompt), no un coach
+  por vertical.
 
-**Umbral de activación para planes de ciclismo** (no construirlos antes):
-bici ≥10% de las actividades, O 40+ users con actividad bici en 60d, O 3+
-grupetas partner pidiéndolo. Hoy (2%/12 users/0 grupetas) NO se cumple ninguno.
+### Orden de ejecución (decidido 26 ago 2026)
+
+**FUERZA ANTES QUE CICLISMO.** Razones memorizadas: la fuerza es para los ~690
+users que YA existen (runners), ataca la métrica rota (conversión 0.7% — planes
+de fuerza premium-only = razón visible de pago), monta la ola "atleta híbrido"
+casi vacía en español (posible **wedge/identidad**: "la app del atleta híbrido
+en español"), reutiliza el motor de planes y es OTA-able. El ciclismo hoy es
+~2% de la actividad (41 actividades / 12 users en 60d).
+
+| Fase | Qué | Gate para arrancar |
+|---|---|---|
+| 0 | Prerequisitos: revisar salud app running · cerrar onboarding clubs en conversación · **diseñar la pantalla principal** (multideporte-ready, con la fuerza YA dentro del diseño) | — (es lo primero) |
+| 1 | **Fuerza v1**: planes "fuerza para corredores" (2-3 planes, premium-only), extensión del motor sets/reps/descanso, librería de ejercicios text-first + imágenes | Fase 0 hecha |
+| 2 | **Fuerza v2**: planes atleta híbrido (correr+fuerza combinados) | Tracción v1 (uso + conversión) |
+| 3 | **Quedadas de ciclismo**: columna `deporte` + filtro mapa (color bici #0066FF) | Outreach a grupetas lo justifique |
+| 4 | **Planes de ciclismo** | Umbral: bici ≥10% de actividades, O 40+ users bici/60d, O 3+ grupetas partner (hoy: 2% / 12 / 0 — ninguno se cumple) |
+
+### Advertencias honestas (no olvidar)
+
+1. **El coste grande de la fuerza NO es código, es contenido**: librería de
+   ejercicios con técnica correcta. v1 text-first + imágenes propias/licenciadas;
+   NO grabar vídeos ni comprar packs de animaciones hasta validar uso.
+2. Cada vertical multiplica contenido, QA y soporte para un solo founder con
+   ~57€/mes de revenue. Por eso los gates: no se abre una fase sin cerrar la anterior.
+3. La marca "CorrerJuntos" no se toca ahora. Framing v1: "fuerza para correr
+   mejor" (coherente con la marca); "atleta híbrido" es el framing v2 si la
+   fuerza tracciona.
+4. Sinergia blog: cluster "fuerza para corredores / atleta híbrido" (search
+   volume alto, competencia baja en ES, afiliados naturales: mancuernas,
+   kettlebells, bandas) — alimenta el mismo funnel.
+5. Sigue vigente el NORTE: los clubs son el camino a 1.000€/mes. Producto
+   multideporte no salta por delante del outreach B2B.
 
 ---
 

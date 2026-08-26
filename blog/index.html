@@ -166,6 +166,12 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 .filter-btn-todos:hover{background:#ea580c;border-color:#ea580c;box-shadow:0 4px 14px rgba(249,115,22,.38);transform:translateY(-1px)}
 .filter-btn-todos.active{background:#c2410c;border-color:#c2410c;box-shadow:0 4px 14px rgba(194,65,12,.38)}
 
+/* Sport filter buttons (Correr / Bici) — ghost hasta activo, mismo peso visual que Todos */
+.filter-sport-btn{display:inline-flex;align-items:center;padding:7px 18px;background:transparent;border:1.5px solid #e8ddd1;border-radius:6px;color:#3d3229;font-size:.79rem;font-weight:700;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .18s ease}
+.filter-sport-btn:hover{border-color:#f97316;color:#f97316;background:#fff8f4}
+.filter-sport-btn.active{background:#f97316;border-color:#f97316;color:#fff;box-shadow:0 2px 8px rgba(249,115,22,.28)}
+.filter-sport-btn.active:hover{background:#ea580c;border-color:#ea580c;color:#fff}
+
 /* Tool button: same visual weight as Todos but ghost (outline) — it's a tool, not a filter */
 .filter-tool{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:transparent;border:1.5px solid #e8ddd1;border-radius:6px;color:#3d3229;font-size:.79rem;font-weight:600;cursor:pointer;letter-spacing:.015em;transition:all .18s ease;text-decoration:none;white-space:nowrap}
 .filter-tool .tool-arrow{color:#57534e;font-size:.85rem;line-height:1;transition:transform .18s ease,color .18s ease}
@@ -476,6 +482,9 @@ body:not(.js-pager) #articlesGrid .article-card:nth-child(n+25){display:none}
 /* dark-mode filter chips keep light pastel palette — the buttons are the colorful anchor of the navigation */
 .dark-mode .filter-btn-todos{background:#f97316;border-color:#f97316;color:#fff}
 .dark-mode .filter-btn-todos:hover,.dark-mode .filter-btn-todos.active{background:#c2410c;border-color:#c2410c;color:#fff}
+.dark-mode .filter-sport-btn{border-color:rgba(255,255,255,.16);color:#f1eadf;background:transparent}
+.dark-mode .filter-sport-btn:hover{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.08)}
+.dark-mode .filter-sport-btn.active,.dark-mode .filter-sport-btn.active:hover{background:#f97316;border-color:#f97316;color:#fff}
 .dark-mode .article-card{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
 /* Selector de deporte — entrada editorial a los dos verticales */
 .sport-select{margin:34px 0 10px}
@@ -983,6 +992,8 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
   </div>
   <div class="filter-primary">
     <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">Todos</button>
+    <button class="filter-sport-btn active" id="filterSportCorrer" data-sport="correr">Correr</button>
+    <button class="filter-sport-btn" id="filterSportBici" data-sport="bici">Bici</button>
     <a href="/calculadora" class="filter-tool fp-calculadora"><span class="cat-name">Calculadora de Ritmos</span><span class="tool-arrow" aria-hidden="true">→</span></a>
   </div>
   <button class="filter-dropdown-trigger" id="filterDropdownTrigger">Categorías <span class="arrow">▾</span></button>
@@ -4108,6 +4119,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var searchClear = document.getElementById('searchClear');
   var visibleCountEl = document.getElementById('visibleCount');
   var activeFilter = 'todos';
+  // El deporte es un MODO, no un filtro acumulable: siempre hay exactamente uno
+  // activo ('correr' por defecto al entrar). "Todos" solo resetea la categoría
+  // DENTRO del deporte activo — nunca mezcla running con ciclismo.
+  var activeSport = 'correr';
   // Única fuente de verdad de los contadores: las cards reales del grid.
   (function(){
     var total = grid.querySelectorAll('.article-card').length;
@@ -4189,6 +4204,33 @@ document.addEventListener('DOMContentLoaded', function() {
   var filterActiveLabel = document.getElementById('filterActiveLabel');
   var panelBtns = filterPanel ? filterPanel.querySelectorAll('.filter-panel-btn') : [];
 
+  // === Filtro por deporte (Todos / Correr / Bici) ===
+  // Un artículo es "bici" si vive en la vertical /blog/ciclismo/; el resto es "correr".
+  var sportBtns = Array.prototype.slice.call(document.querySelectorAll('.filter-sport-btn'));
+  allCards.forEach(function(card) {
+    if (card.dataset.sport) return;
+    var linkEl = card.querySelector('a[href]');
+    var href = card.getAttribute('href') || (linkEl ? linkEl.getAttribute('href') : '') || '';
+    card.dataset.sport = (href.indexOf('/blog/ciclismo/') === 0 || href.indexOf('/blog/en/cycling/') === 0) ? 'bici' : 'correr';
+  });
+  // Si algún deporte no tiene artículos aún, el segmentador no aporta nada: se oculta entero.
+  (function() {
+    var counts = { correr: 0, bici: 0 };
+    allCards.forEach(function(c) { counts[c.dataset.sport] = (counts[c.dataset.sport] || 0) + 1; });
+    if (!counts.correr || !counts.bici) sportBtns.forEach(function(b) { b.style.display = 'none'; });
+  })();
+  sportBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (activeSport === this.getAttribute('data-sport')) return;
+      activeSport = this.getAttribute('data-sport');
+      currentPage = 1;
+      sportBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      filterCards();
+      scrollToTopOfResults();
+    });
+  });
+
   // Color map for active label
   var catColors = {entrenamiento:'#3b82f6',nutricion:'#22c55e',equipamiento:'#06b6d4',tecnologia:'#eab308',zapatillas:'#f97316',salud:'#e11d48',rutas:'#a855f7',trail:'#84cc16',suplementacion:'#d946ef','atleta-hibrido':'#ef4444'};
   var catLabels = {entrenamiento:'Entrenamiento',nutricion:'Nutrición',equipamiento:'Equipamiento',tecnologia:'Tecnología',zapatillas:'Zapatillas',salud:'Salud',rutas:'Rutas',trail:'Trail',suplementacion:'Suplementación','atleta-hibrido':'Atleta Híbrido'};
@@ -4208,7 +4250,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Todos button
+  // Todos button — resetea SOLO la categoría; el deporte activo se mantiene
   if (filterTodos) filterTodos.addEventListener('click', function() {
     activeFilter = 'todos';
     currentPage = 1;
@@ -4380,9 +4422,10 @@ document.addEventListener('DOMContentLoaded', function() {
     allCards.forEach(function(card) {
       var cat = card.dataset.category;
       var text = card.textContent.toLowerCase();
+      var matchSport = card.dataset.sport === activeSport;
       var matchCat = activeFilter === 'todos' || cat === activeFilter;
       var matchSearch = !query || text.includes(query);
-      if (matchCat && matchSearch) {
+      if (matchSport && matchCat && matchSearch) {
         catCounts[cat] = (catCounts[cat] || 0) + 1;
       }
     });
@@ -4390,11 +4433,12 @@ document.addEventListener('DOMContentLoaded', function() {
     allCards.forEach(function(card) {
       var cat = card.dataset.category;
       var text = card.textContent.toLowerCase();
+      var matchSport = card.dataset.sport === activeSport;
       var matchCat = activeFilter === 'todos' || cat === activeFilter;
       var matchSearch = !query || text.includes(query);
       // Hide duplicates that already appear in "Lo más leído" section (only in "todos" unfiltered view)
       var isDup = card.dataset.featuredDup && activeFilter === 'todos' && !query;
-      var show = matchCat && matchSearch && !isDup;
+      var show = matchSport && matchCat && matchSearch && !isDup;
       if (show) {
         visible++;
         if (visible <= maxShow) {
@@ -4423,8 +4467,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Update counter
+    // Update counters — respetan deporte + categoría + búsqueda activos
     if (visibleCountEl) visibleCountEl.textContent = shown;
+    var filterCountEl = document.getElementById('filterCount');
+    if (filterCountEl) filterCountEl.textContent = visible;
 
     // Show/hide load more
     if (loadMoreWrap) {

@@ -538,6 +538,40 @@ Cuando crees o actualices CUALQUIER artículo del blog, debe incluir:
 - [ ] `loading="lazy"` excepto hero image (que va con `fetchpriority="high"`)
 - [ ] Width + height explícitos para evitar CLS
 
+### 3c. 🗺️ ROADMAP — Paridad de la vertical Ciclismo con Running (memorizado 26 ago 2026)
+
+**Objetivo del founder**: que `/blog/ciclismo` llegue a parecerse a la portada de
+running — con sus categorías (entrenamiento, nutrición, equipamiento, tecnología,
+zapatillas, salud, rutas, suplementación, carreras) — **poco a poco, no de golpe**.
+
+**Regla anti-thin-content**: una categoría NO se muestra en el hub hasta tener
+**≥3-4 artículos**. Nunca crear páginas/secciones de categoría casi vacías.
+
+**Estado al memorizar (23 artículos)**:
+| Categoría | Nº | Estado |
+|---|---|---|
+| Equipamiento | 7 | ✅ lista (primera salida, invierno, cascos, 3 bicis 2027, zapatillas auto vs planas) |
+| Suplementación | 6 | ✅ lista (creatina, electrolitos, geles, magnesio, omega-3, proteínas) |
+| Tecnología | 3 | ✅ justa (GPS, potenciómetros, luces) |
+| Entrenamiento | 3 | ✅ justa (principiantes, correr+bici, pinchazos) |
+| Rutas | 2 | ⏳ faltan ≥2 (hub rutas + rutas fáciles ciudad) |
+| Nutrición | 1 | ⏳ faltan ≥2 (salidas largas) |
+| Salud | 1 | ⏳ faltan ≥2 (dolor espalda/postura) |
+| Comunidad/Grupetas | 1 | ⏳ (encontrar grupeta) |
+| Zapatillas | 1 | ⏳ (hoy dentro de equipamiento) |
+| Carreras | 0 | ⏳ marchas cicloturistas con tirón SEO: Quebrantahuesos, etc. |
+
+**Fases**:
+1. **Navegación por categorías en el hub** con las 4 que ya tienen masa
+   (Equipamiento, Suplementación, Tecnología, Entrenamiento) — como
+   filtros/secciones del propio hub, sin páginas nuevas.
+2. **Calendario editorial** para rellenar las flacas hasta ≥4: Rutas, Nutrición,
+   Salud, Carreras (cicloturistas). Cada artículo nuevo sigue la norma 3b
+   (foto producto Nº1) y los playbooks existentes.
+3. **Paridad de portada**: cuando el hub ronde 50-60 artículos, replicar la
+   estructura de la portada v3 de running (destacada overlay, objetivos,
+   selección, imprescindibles, buscador).
+
 ### 3b. ⚠️ NORMA — Foto del producto Nº1 en card y entrada (memorizado 26 ago 2026)
 
 Regla del founder, aplica a TODO artículo de ranking/afiliado ("los 10 mejores X",

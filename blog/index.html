@@ -992,7 +992,7 @@ body.cj-nl-modal-open #nl-slidein,body.cj-nl-modal-open .cj-nl-sticky{visibility
   </div>
   <div class="filter-primary">
     <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">Todos</button>
-    <button class="filter-sport-btn" id="filterSportCorrer" data-sport="correr">Correr</button>
+    <button class="filter-sport-btn active" id="filterSportCorrer" data-sport="correr">Correr</button>
     <button class="filter-sport-btn" id="filterSportBici" data-sport="bici">Bici</button>
     <a href="/calculadora" class="filter-tool fp-calculadora"><span class="cat-name">Calculadora de Ritmos</span><span class="tool-arrow" aria-hidden="true">→</span></a>
   </div>
@@ -4119,7 +4119,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var searchClear = document.getElementById('searchClear');
   var visibleCountEl = document.getElementById('visibleCount');
   var activeFilter = 'todos';
-  var activeSport = 'todos';
+  // El deporte es un MODO, no un filtro acumulable: siempre hay exactamente uno
+  // activo ('correr' por defecto al entrar). "Todos" solo resetea la categoría
+  // DENTRO del deporte activo — nunca mezcla running con ciclismo.
+  var activeSport = 'correr';
   // Única fuente de verdad de los contadores: las cards reales del grid.
   (function(){
     var total = grid.querySelectorAll('.article-card').length;
@@ -4218,11 +4221,11 @@ document.addEventListener('DOMContentLoaded', function() {
   })();
   sportBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
+      if (activeSport === this.getAttribute('data-sport')) return;
       activeSport = this.getAttribute('data-sport');
       currentPage = 1;
       sportBtns.forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
-      if (filterTodos) filterTodos.classList.remove('active');
       filterCards();
       scrollToTopOfResults();
     });
@@ -4247,11 +4250,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Todos button — resetea deporte y categoría
+  // Todos button — resetea SOLO la categoría; el deporte activo se mantiene
   if (filterTodos) filterTodos.addEventListener('click', function() {
     activeFilter = 'todos';
-    activeSport = 'todos';
-    sportBtns.forEach(function(b) { b.classList.remove('active'); });
     currentPage = 1;
     buttons.forEach(function(b) { b.classList.remove('active'); });
     var todosBtn = filterBar.querySelector('[data-filter="todos"]');
@@ -4421,7 +4422,7 @@ document.addEventListener('DOMContentLoaded', function() {
     allCards.forEach(function(card) {
       var cat = card.dataset.category;
       var text = card.textContent.toLowerCase();
-      var matchSport = activeSport === 'todos' || card.dataset.sport === activeSport;
+      var matchSport = card.dataset.sport === activeSport;
       var matchCat = activeFilter === 'todos' || cat === activeFilter;
       var matchSearch = !query || text.includes(query);
       if (matchSport && matchCat && matchSearch) {
@@ -4432,7 +4433,7 @@ document.addEventListener('DOMContentLoaded', function() {
     allCards.forEach(function(card) {
       var cat = card.dataset.category;
       var text = card.textContent.toLowerCase();
-      var matchSport = activeSport === 'todos' || card.dataset.sport === activeSport;
+      var matchSport = card.dataset.sport === activeSport;
       var matchCat = activeFilter === 'todos' || cat === activeFilter;
       var matchSearch = !query || text.includes(query);
       // Hide duplicates that already appear in "Lo más leído" section (only in "todos" unfiltered view)

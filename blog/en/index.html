@@ -543,7 +543,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
   </div>
   <div class="filter-primary">
     <button class="filter-btn-todos active" id="filterTodos" data-filter="todos">All</button>
-    <button class="filter-sport-btn" id="filterSportCorrer" data-sport="correr">Running</button>
+    <button class="filter-sport-btn active" id="filterSportCorrer" data-sport="correr">Running</button>
     <button class="filter-sport-btn" id="filterSportBici" data-sport="bici">Cycling</button>
     <a href="/calculadora" class="filter-tool fp-calculadora"><span class="cat-name">Pace Calculator</span><span class="tool-arrow" aria-hidden="true">→</span></a>
   </div>
@@ -3696,7 +3696,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var searchClear = document.getElementById('searchClear');
   var visibleCountEl = document.getElementById('visibleCount');
   var activeFilter = 'todos';
-  var activeSport = 'todos';
+  // Sport is a MODE, not a stackable filter: exactly one is always active
+  // ('correr' i.e. running by default). "All" only resets the category WITHIN
+  // the active sport — it never mixes running with cycling.
+  var activeSport = 'correr';
   var ARTICLES_PER_PAGE = 24;
   var currentPage = 1;
 
@@ -3774,11 +3777,11 @@ document.addEventListener('DOMContentLoaded', function() {
   })();
   sportBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
+      if (activeSport === this.getAttribute('data-sport')) return;
       activeSport = this.getAttribute('data-sport');
       currentPage = 1;
       sportBtns.forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
-      if (filterTodos) filterTodos.classList.remove('active');
       filterCards();
       grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -3803,11 +3806,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Todos button — resets sport and category
+  // Todos button — resets the category ONLY; the active sport is kept
   if (filterTodos) filterTodos.addEventListener('click', function() {
     activeFilter = 'todos';
-    activeSport = 'todos';
-    sportBtns.forEach(function(b) { b.classList.remove('active'); });
     currentPage = 1;
     buttons.forEach(function(b) { b.classList.remove('active'); });
     var todosBtn = filterBar.querySelector('[data-filter="todos"]');
@@ -3946,7 +3947,7 @@ document.addEventListener('DOMContentLoaded', function() {
     allCards.forEach(function(card) {
       var cat = card.dataset.category;
       var text = card.textContent.toLowerCase();
-      var matchSport = activeSport === 'todos' || card.dataset.sport === activeSport;
+      var matchSport = card.dataset.sport === activeSport;
       var matchCat = activeFilter === 'todos' || cat === activeFilter;
       var matchSearch = !query || text.includes(query);
       if (matchSport && matchCat && matchSearch) {
@@ -3957,7 +3958,7 @@ document.addEventListener('DOMContentLoaded', function() {
     allCards.forEach(function(card) {
       var cat = card.dataset.category;
       var text = card.textContent.toLowerCase();
-      var matchSport = activeSport === 'todos' || card.dataset.sport === activeSport;
+      var matchSport = card.dataset.sport === activeSport;
       var matchCat = activeFilter === 'todos' || cat === activeFilter;
       var matchSearch = !query || text.includes(query);
       var isDup = card.dataset.featuredDup && activeFilter === 'todos' && !query;

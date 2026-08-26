@@ -330,7 +330,11 @@
      3. NEWSLETTER SLIDE-IN CTA (at 60% scroll)
      ══════════════════════════════════════════════ */
   var STORAGE_KEY = 'cj_newsletter_dismissed';
-  if(!localStorage.getItem(STORAGE_KEY)){
+  /* En móvil, si la página ya carga el sistema de newsletter (newsletter.js:
+     sticky + inline + end + exit-intent), este slide-in sería un formulario
+     duplicado y una segunda superficie fija — se omite. Desktop intacto. */
+  var nlSlideinDuplicated = window.innerWidth < 768 && !!document.querySelector('script[src*="/blog/newsletter.js"]');
+  if(!localStorage.getItem(STORAGE_KEY) && !nlSlideinDuplicated){
     var cssCta = document.createElement('style');
     cssCta.textContent = [
       '#nl-slidein{position:fixed;bottom:-340px;right:24px;width:360px;background:linear-gradient(160deg,#0f1f3d,#0a1628);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:0;z-index:950;transition:bottom .45s cubic-bezier(.22,.68,0,1.1);box-shadow:0 12px 48px rgba(0,0,0,.6);backdrop-filter:blur(16px);overflow:hidden}',
@@ -691,7 +695,20 @@
     stickyDismissed = null;
   }
 
-  if(!stickyDismissed && window.innerWidth < 768){
+  /* Prioridad de promociones: Smart App Banner nativo > CTA de app propio >
+     newsletter. iOS Safari muestra el banner nativo (meta apple-itunes-app,
+     presente en todo el blog y garantizada más abajo por este mismo script),
+     y Apple no expone API para saber si el usuario lo cerró — así que en iOS
+     Safari nunca doblamos con nuestra barra de tiendas. Chrome/Firefox/Edge
+     iOS y las webviews NO muestran el banner nativo → conservan el CTA propio.
+     El flag se publica en window para que newsletter.js no duplique la detección. */
+  var uaSticky = navigator.userAgent;
+  var isIOSDevice = /iPad|iPhone|iPod/.test(uaSticky) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isStandaloneApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  window.__cjNativeAppBanner = isIOSDevice && !isStandaloneApp && /Safari\//.test(uaSticky) &&
+    !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|DuckDuckGo|FBAN|FBAV|Instagram|Line\//.test(uaSticky);
+
+  if(!stickyDismissed && window.innerWidth < 768 && !window.__cjNativeAppBanner){
     var cssSticky = document.createElement('style');
     cssSticky.textContent = [
       '#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:890;background:linear-gradient(135deg,#f8f8f8,#efefef);border-top:1px solid #ddd;padding:10px 12px;display:flex;align-items:center;gap:8px;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.68,0,1)}',

@@ -36,3 +36,14 @@ jobs:
       # siguen en tests/e2e como referencia. NO reactivar sin reescribir.
       - name: Unit tests
         run: npm run test:unit
+
+      # Datos estructurados JSON-LD. Search Console reporto en agosto de 2026
+      # un itemReviewed invalido; la auditoria posterior encontro 85 defectos
+      # (referencias @id sin resolver, Article sin image/author/publisher,
+      # Offer sin precio, Review huerfano). Estas dos comprobaciones evitan que
+      # vuelvan sin que nos enteremos por correo.
+      - name: JSON-LD — autocomprobacion del verificador
+        run: npm run test:jsonld:selftest
+
+      - name: JSON-LD — auditoria del sitio
+        run: npm run test:jsonld

@@ -651,10 +651,12 @@ tiempo por sesión**.
 
 #### Calorías — política de honestidad
 
-1. **Primero** dato de dispositivo/pulsómetro si existe.
-2. **Después** estimación por peso + duración + intensidad.
-3. **Siempre** indicar **fuente y precisión** del número. Nunca mostrar un kcal
-   "a secas" como si fuera medido.
+1. **Solo** se muestran calorías activas procedentes de **Apple Health, Health
+   Connect, Garmin u otro dispositivo autorizado**.
+2. **Sin fuente válida: «Calorías no disponibles».**
+3. **NO se calculan calorías propias en v1** — ni por peso, ni por duración, ni por
+   intensidad, ni por MET. **No mostrar una estimación propia aunque se etiquete como
+   aproximada.** (Decisión del founder, 27 ago 2026 — corrige la política anterior.)
 
 #### Alcance del MVP
 

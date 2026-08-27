@@ -18,6 +18,21 @@
 {
   "@context": "https://schema.org",
   "@graph": [
+  {
+    "@type": "Organization",
+    "@id": "https://www.correrjuntos.com/#organization",
+    "name": "CorrerJuntos",
+    "url": "https://www.correrjuntos.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.correrjuntos.com/icons/icon-512.png"
+    },
+    "sameAs": [
+      "https://www.instagram.com/correrjuntosapp/",
+      "https://x.com/CorrerJuntos",
+      "https://www.tiktok.com/@correrjuntosapp"
+    ]
+  },
     {
       "@type": "CollectionPage",
       "@id": "https://www.correrjuntos.com/blog/en/page/3/#webpage",
@@ -52,6 +67,23 @@
           "item": "https://www.correrjuntos.com/blog/en/page/3"
         }
       ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.correrjuntos.com/#website",
+      "url": "https://www.correrjuntos.com/",
+      "name": "CorrerJuntos",
+      "publisher": {
+        "@id": "https://www.correrjuntos.com/#organization"
+      },
+      "inLanguage": "en"
     }
   ]
 }

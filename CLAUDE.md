@@ -615,6 +615,76 @@ en español"), reutiliza el motor de planes y es OTA-able. El ciclismo hoy es
 5. Sigue vigente el NORTE: los clubs son el camino a 1.000€/mes. Producto
    multideporte no salta por delante del outreach B2B.
 
+### 📐 ESPECIFICACIÓN ACORDADA — Módulo Fuerza (memorizado 27 ago 2026)
+
+**Estado: DISEÑAR AHORA, NO PUBLICAR TODAVÍA.** El módulo se diseña y se
+implementa detrás de una **feature flag**, pero no se libera mientras estemos
+midiendo **F141 y D+1**. Razón: no contaminar el embudo actual. La prioridad #1
+sigue siendo que **más usuarios empiecen su primer entrenamiento** — la fuerza
+es una palanca de retención y de pago, no un sustituto de arreglar la activación.
+
+#### Posicionamiento
+
+- **Fuerza para corredores y atletas híbridos**, NO otra app genérica de gimnasio.
+  Todo lo que no sirva a ese perfil se queda fuera del MVP.
+
+#### Integración en la app (sin sexta pestaña)
+
+- Se integra en **Inicio**, **Planes** y **Actividades**.
+- **NO se añade una sexta pestaña** en la navegación inicial.
+
+#### Compatibilidad con el plan de carrera (regla dura)
+
+- Las sesiones de fuerza deben ser **compatibles con el plan de running activo**:
+  nunca piernas intensas antes de series o de una tirada larga.
+- Esta lógica de colisión es parte del núcleo, no un extra.
+
+#### Registro (nivel profesional, referencia Hevy)
+
+Ejercicios · series · repeticiones · peso · **RPE** · descansos · historial ·
+**récords personales**.
+
+#### Programación
+
+Programas generados según: **objetivo · material disponible · experiencia ·
+tiempo por sesión**.
+
+#### Calorías — política de honestidad
+
+1. **Primero** dato de dispositivo/pulsómetro si existe.
+2. **Después** estimación por peso + duración + intensidad.
+3. **Siempre** indicar **fuente y precisión** del número. Nunca mostrar un kcal
+   "a secas" como si fuera medido.
+
+#### Alcance del MVP
+
+- **40–60 ejercicios** (no más).
+- Sustituciones de ejercicio.
+- Temporizador de descanso.
+- Autoguardado.
+- **Funcionamiento sin conexión** (offline-first en el registro de sesión).
+
+#### Monetización
+
+| Tier | Qué incluye |
+|---|---|
+| **Gratis** | Registro manual + rutinas básicas |
+| **Pro** | Planificación integrada con el plan de carrera · adaptación progresiva · estadísticas completas |
+
+#### Referencias de producto
+
+| App | Qué copiamos |
+|---|---|
+| **Runna** | Integración running ↔ fuerza |
+| **Hevy** | Registro / logging de la sesión |
+| **Fitbod** | Adaptación progresiva |
+| **TrainingPeaks** | Estructura del plan |
+
+#### Gate de publicación
+
+No se libera la flag hasta que **F141 y D+1** estén medidos y la activación
+(primer entrenamiento) esté resuelta.
+
 ---
 
 ## Reglas Inamovibles

@@ -17,6 +17,7 @@
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const ROOT = process.cwd();
 const SKIP_DIRS = new Set(['node_modules', '.git', 'tmp', 'correr-juntos-app', 'tools', 'coverage', 'dist', 'playwright-report', 'test-results']);
@@ -348,6 +349,12 @@ function audit() {
 
 /* ------------------------------------------------------------------ */
 
+// Solo actua como CLI cuando se ejecuta directamente. Al importarlo (por
+// ejemplo para verificar HTML servido en produccion) exporta analyzeHtml sin
+// auditar el repositorio.
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (!isMain) { /* importado como modulo */ } else {
+
 const argv = process.argv.slice(2);
 if (argv.includes('--selftest')) process.exit(selftest() ? 0 : 1);
 
@@ -367,3 +374,5 @@ if (argv.includes('--json')) {
   }
 }
 process.exit(r.findings.length === 0 ? 0 : 1);
+
+}

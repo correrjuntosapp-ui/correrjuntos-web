@@ -40,6 +40,13 @@ import { waitUntil } from '@vercel/functions';
 import { handleJosePostWorkout } from './_lib/post-workout-orchestrator.js';
 // [F134] Vinculación Strava → sesión del plan (informe 133). Nace apagada.
 import { vincularActividadConPlan } from './_lib/strava-plan-linker.js';
+// [F146.6A] Logs estructurados sin identificadores personales. Ver el modulo:
+// nada de hashes —un hash determinista de un user_id sigue siendo un
+// identificador estable—, solo una allowlist de campos y un trace_id
+// aleatorio por invocacion.
+import { logEvent, logError, newTraceId, errorKind, errorCode } from './_lib/strava-log.js';
+
+const LOG = '[strava-webhook]';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const STRAVA_API = 'https://www.strava.com/api/v3';
@@ -210,7 +217,7 @@ function josePushText(run) {
   return { title: 'Coach José', body: `Entreno registrado — ${resumen}. Toca para ver tu resumen.` };
 }
 
-async function refreshTokenIfNeeded(sb, conn) {
+async function refreshTokenIfNeeded(sb, conn, traceId) {
   const nowSec = Math.floor(Date.now() / 1000);
   if (conn.expires_at - nowSec > 300) return conn; // >5 min de margen
   const resp = await fetch('https://www.strava.com/oauth/token', {
@@ -224,7 +231,7 @@ async function refreshTokenIfNeeded(sb, conn) {
     }),
   });
   if (!resp.ok) {
-    console.error('[strava-webhook] token refresh failed', resp.status);
+    logError(LOG, { stage: 'token_refresh', outcome: 'failed', status: resp.status, trace_id: traceId });
     return null;
   }
   const data = await resp.json();
@@ -238,7 +245,7 @@ async function refreshTokenIfNeeded(sb, conn) {
   return { ...conn, access_token: data.access_token };
 }
 
-async function sendExpoPush(token, title, body, data) {
+async function sendExpoPush(token, title, body, data, traceId) {
   try {
     const res = await fetch(EXPO_PUSH_URL, {
       method: 'POST',
@@ -248,19 +255,20 @@ async function sendExpoPush(token, title, body, data) {
     const json = await res.json().catch(() => ({}));
     return json?.data?.status === 'ok';
   } catch (e) {
-    console.error('[strava-webhook] expo push failed:', e?.message);
+    // El mensaje de Expo puede incluir el push token: solo la clase del error.
+    logError(LOG, { stage: 'expo_push', outcome: 'failed', error_kind: errorKind(e), trace_id: traceId });
     return false;
   }
 }
 
-async function processActivityEvent(sb, ownerId, activityId) {
+async function processActivityEvent(sb, ownerId, activityId, traceId) {
   // 1. Conexión del atleta
   const { data: conn } = await sb
     .from('strava_connections')
     .select('user_id, access_token, refresh_token, expires_at')
     .eq('strava_athlete_id', ownerId)
     .single();
-  if (!conn) { console.log('[strava-webhook] atleta sin conexión:', ownerId); return; }
+  if (!conn) { logEvent(LOG, { stage: 'connection', outcome: 'not_found', trace_id: traceId }); return; }
 
   // 2. Dedup temprano (barato) — si ya está, nada que hacer
   const { data: existing } = await sb
@@ -270,20 +278,20 @@ async function processActivityEvent(sb, ownerId, activityId) {
     .eq('source', 'strava')
     .eq('strava_activity_id', activityId)
     .limit(1);
-  if (existing && existing.length > 0) { console.log('[strava-webhook] ya importada:', activityId); return; }
+  if (existing && existing.length > 0) { logEvent(LOG, { stage: 'dedup', outcome: 'already_imported', trace_id: traceId }); return; }
 
   // 3. Token fresco + fetch de la actividad REAL (los eventos son pistas)
-  const fresh = await refreshTokenIfNeeded(sb, conn);
+  const fresh = await refreshTokenIfNeeded(sb, conn, traceId);
   if (!fresh) return;
   const actRes = await fetch(`${STRAVA_API}/activities/${activityId}`, {
     headers: { Authorization: `Bearer ${fresh.access_token}` },
   });
-  if (!actRes.ok) { console.log('[strava-webhook] activity fetch', actRes.status, activityId); return; }
+  if (!actRes.ok) { logEvent(LOG, { stage: 'activity_fetch', outcome: 'failed', status: actRes.status, trace_id: traceId }); return; }
   const activity = await actRes.json();
 
   // 4. Solo a pie
   if (!(ALLOWED.has(activity.sport_type || '') || ALLOWED.has(activity.type || ''))) {
-    console.log('[strava-webhook] tipo no importable:', activity.sport_type || activity.type);
+    logEvent(LOG, { stage: 'sport_filter', outcome: 'not_importable', sport: activity.sport_type || activity.type, trace_id: traceId });
     return;
   }
 
@@ -291,8 +299,10 @@ async function processActivityEvent(sb, ownerId, activityId) {
   //    concurrentes con el import client-side)
   const row = mapActivityToRun(activity, conn.user_id);
   const { data: inserted, error: insErr } = await sb.from('runs').insert(row).select('id').single();
-  if (insErr) { console.log('[strava-webhook] insert skip/err:', insErr.message); return; }
-  console.log('[strava-webhook] run importada', inserted.id, row.distancia_km + 'km', 'user', conn.user_id);
+  // El mensaje de Postgres incluye valores de columna (el detalle de una
+  // clave duplicada trae el strava_activity_id): solo el codigo controlado.
+  if (insErr) { logEvent(LOG, { stage: 'run_insert', outcome: 'skipped', error_code: errorCode(insErr), error_kind: errorKind(insErr), trace_id: traceId }); return; }
+  logEvent(LOG, { stage: 'run_insert', outcome: 'imported', sport: row.deporte, trace_id: traceId });
 
   // 5.5 [F134] Vincular la actividad con la sesión del plan del mismo día.
   //     Va ANTES de José a propósito: si la sesión queda completada, el
@@ -302,7 +312,7 @@ async function processActivityEvent(sb, ownerId, activityId) {
   //     mensaje ni notificación propia.
   const vinculo = await vincularActividadConPlan(sb, { ...row, id: inserted.id });
   if (vinculo.modo !== 'off') {
-    console.log('[strava-webhook] f134 vinculacion:', vinculo.modo, vinculo.resultado);
+    logEvent(LOG, { stage: 'f134_linking', mode: vinculo.modo, outcome: vinculo.resultado, reason: vinculo.motivo, trace_id: traceId });
   }
 
   // 6. Mensajes in-app de José y Ana.
@@ -315,7 +325,7 @@ async function processActivityEvent(sb, ownerId, activityId) {
   const runRow = { ...row, id: inserted.id };
   const joseResult = await handleJosePostWorkout(sb, runRow, { nowIso: new Date().toISOString(), lang: 'es' });
   const joseSpoke = joseResult.outcome === 'created' || joseResult.outcome === 'legacy_sent';
-  console.log('[strava-webhook] jose post-workout:', joseResult.path, joseResult.outcome);
+  logEvent(LOG, { stage: 'jose_post_workout', mode: joseResult.path, outcome: joseResult.outcome, trace_id: traceId });
   const todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
   const { count: anaToday } = await sb
     .from('maria_chat_messages')
@@ -341,10 +351,10 @@ async function processActivityEvent(sb, ownerId, activityId) {
       const { title, body } = josePushText(row);
       const ok = await sendExpoPush(prof.push_token, title, body, {
         type: 'post_workout_jose', runId: inserted.id,
-      });
-      console.log('[strava-webhook] push José:', ok ? 'enviada' : 'falló');
+      }, traceId);
+      logEvent(LOG, { stage: 'jose_push', outcome: ok ? 'sent' : 'failed', trace_id: traceId });
     } else {
-      console.log('[strava-webhook] user sin push_token');
+      logEvent(LOG, { stage: 'jose_push', outcome: 'no_token', trace_id: traceId });
     }
   }
 }
@@ -410,14 +420,19 @@ export default async function handler(req, res) {
   // (verificado en el primer despliegue de este endpoint — el evento
   // llegaba pero no insertaba nada). waitUntil mantiene viva la
   // invocación hasta que la promesa resuelva.
+  // Aleatorio por invocacion: permite seguir las lineas de ESTE webhook sin
+  // derivar de ningun dato del usuario y sin persistirse en ningun sitio.
+  const traceId = newTraceId();
   const work = (async () => {
     try {
       if (event.object_type !== 'activity') return; // athlete deauth etc. → ignorar (v1)
       if (event.aspect_type !== 'create' && event.aspect_type !== 'update') return;
       const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
-      await processActivityEvent(supabase, event.owner_id, event.object_id);
+      await processActivityEvent(supabase, event.owner_id, event.object_id, traceId);
     } catch (e) {
-      console.error('[strava-webhook] processing error:', e?.message || e);
+      // Ni mensaje ni stack ni payload: cualquiera de los tres puede
+      // arrastrar identificadores o el cuerpo entero del evento.
+      logError(LOG, { stage: 'processing', outcome: 'exception', error_kind: errorKind(e), error_code: errorCode(e), trace_id: traceId });
     }
   })();
   waitUntil(work);

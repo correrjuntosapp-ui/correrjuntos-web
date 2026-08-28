@@ -31,6 +31,8 @@ import {
   MATCHER_VERSION, REASON, buildAuditRow, recordEvaluation,
   importLagMinutes, describeComparison, reasonFromMatch,
 } from './strava-linking-audit.js';
+// [F146.6A] `e.message` puede arrastrar identificadores; solo la clase.
+import { logError, errorKind, errorCode } from './strava-log.js';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 /** Durante el canario, como mucho DOS cuentas internas. */
@@ -279,7 +281,11 @@ export async function vincularActividadConPlan(sb, run, opciones = {}) {
     };
   } catch (e) {
     // Fail closed y silencioso hacia arriba: el flujo legacy continúa.
-    console.warn('[f134] vinculacion no aplicada:', e?.message || 'error');
+    logError('[f134]', {
+      stage: 'linking', outcome: 'not_applied',
+      error_kind: errorKind(e), error_code: errorCode(e),
+      trace_id: opciones.traceId,
+    });
     try { await anotar('error', REASON.EXCEPTION, { errorStage: 'exception' }); } catch { /* nunca lanza */ }
     return fuera('excepcion');
   }

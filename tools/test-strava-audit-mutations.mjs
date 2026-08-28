@@ -31,8 +31,12 @@ const TEST = 'tests/unit/strava-linking-audit.test.mjs';
 const ROLLBACK = 'supabase/migrations/20260828120000_f146_4_strava_linking_audit_rollback.sql';
 const FIX_ACL = 'supabase/migrations/20260828140000_f146_5a_fix_strava_audit_acl.sql';
 const PGTEST = 'tools/test-strava-audit-postgres.mjs';
+const LOG = 'api/_lib/strava-log.js';
+const WEBHOOK = 'api/strava-webhook.js';
+const PRIVTEST = 'tests/unit/strava-log-privacy.test.mjs';
 
-const FILES = [LINKER, AUDIT, MATCHER, MIGRATION, ROLLBACK, FIX_ACL, TEST, PGTEST];
+const FILES = [LINKER, AUDIT, MATCHER, MIGRATION, ROLLBACK, FIX_ACL, TEST, PGTEST,
+  LOG, WEBHOOK, PRIVTEST];
 
 /**
  * Cada mutante rompe UNA propiedad concreta del contrato. `expect:'die'`
@@ -178,6 +182,33 @@ const MUTANTS = [
     expect: 'die',
   },
   {
+    id: 'M13',
+    nombre: 'Restaurar el log con runs.id y profiles.id en el webhook',
+    rompe: 'Privacidad: identificadores personales persistentes en los logs de Vercel',
+    file: WEBHOOK,
+    from: "  logEvent(LOG, { stage: 'run_insert', outcome: 'imported', sport: row.deporte, trace_id: traceId });",
+    to: "  console.log('[strava-webhook] run importada', inserted.id, 'user', conn.user_id);",
+    suite: 'privacy',
+    expect: 'die',
+  },
+  {
+    id: 'M14',
+    nombre: 'Sustituir identificadores por un hash determinista del user_id',
+    rompe: 'Un hash estable sigue siendo un identificador: agrupa y sigue a la misma persona',
+    file: WEBHOOK,
+    from: "  logEvent(LOG, { stage: 'run_insert', outcome: 'imported', sport: row.deporte, trace_id: traceId });",
+    to: "  logEvent(LOG, { stage: 'run_insert', outcome: 'imported', sport: row.deporte,\n"
+      + "    reason: createHash('sha256').update(String(conn.user_id)).digest('hex').slice(0, 12),\n"
+      + "    trace_id: traceId });",
+    extra: {
+      file: WEBHOOK,
+      from: "import { createClient } from '@supabase/supabase-js';",
+      to: "import { createClient } from '@supabase/supabase-js';\nimport { createHash } from 'node:crypto';",
+    },
+    suite: 'privacy',
+    expect: 'die',
+  },
+  {
     id: 'CN',
     nombre: 'CONTROL NEGATIVO · reformular un comentario',
     rompe: 'Nada. Si esto mata, la suite mide prosa en vez de comportamiento',
@@ -222,8 +253,8 @@ function aplicar(dir, { file, from, to }) {
  *              vigilar la prosa en vez del efecto.
  */
 function correrSuite(dir, suite = 'unit') {
-  const cmd = suite === 'postgres'
-    ? [join(dir, PGTEST)]
+  const cmd = suite === 'postgres' ? [join(dir, PGTEST)]
+    : suite === 'privacy' ? ['--test', join(dir, PRIVTEST)]
     : ['--test', join(dir, TEST)];
   const r = spawnSync(process.execPath, cmd, { encoding: 'utf8', timeout: 300000 });
   return { verde: r.status === 0, salida: `${r.stdout || ''}${r.stderr || ''}` };

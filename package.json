@@ -23,7 +23,10 @@
     "images:ci": "node tools/image-audit/ci-check.cjs",
     "audit:amazon": "node tools/audit-amazon-images.cjs",
     "audit:amazon:json": "node tools/audit-amazon-images.cjs --json",
-    "audit:amazon:quiet": "node tools/audit-amazon-images.cjs --quiet"
+    "audit:amazon:quiet": "node tools/audit-amazon-images.cjs --quiet",
+    "test:strava-audit": "node --test tests/unit/strava-linking-audit.test.mjs",
+    "test:strava-audit:mutations": "node tools/test-strava-audit-mutations.mjs",
+    "test:strava-audit:equivalence": "node tools/test-strava-linker-equivalence.mjs"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

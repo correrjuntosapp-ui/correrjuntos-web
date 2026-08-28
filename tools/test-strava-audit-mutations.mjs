@@ -136,6 +136,15 @@ const MUTANTS = [
     expect: 'die',
   },
   {
+    id: 'M9',
+    nombre: 'Reintroducir el REVOKE ALL ON ALL SEQUENCES IN SCHEMA public',
+    rompe: 'Alcance: retiraria USAGE a 18 tablas ajenas y rompería sus INSERT',
+    file: MIGRATION,
+    from: '\nCOMMIT;',
+    to: '\nREVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM anon, authenticated;\nCOMMIT;',
+    expect: 'die',
+  },
+  {
     id: 'CN',
     nombre: 'CONTROL NEGATIVO · reformular un comentario',
     rompe: 'Nada. Si esto mata, la suite mide prosa en vez de comportamiento',

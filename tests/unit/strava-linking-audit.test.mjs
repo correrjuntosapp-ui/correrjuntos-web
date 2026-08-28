@@ -447,6 +447,71 @@ test('no se crea ninguna politica RLS ni se expone RPC al cliente', () => {
   assert.ok(!/SECURITY DEFINER/i.test(MIGRATION_SQL), 'esta migracion no crea funciones');
 });
 
+// ── F146.4A · la migracion no puede tocar objetos ajenos ──
+// Contexto: la primera version terminaba con
+//   REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM anon, authenticated;
+// que alcanzaba a las 20 secuencias del esquema. En produccion habria
+// retirado el USAGE del que dependen 18 tablas con `serial` donde la app
+// inserta desde el cliente (run_points, maria_chat_messages, el modulo de
+// Fuerza, workout_feedback...). Cada INSERT habria fallado con
+// "permission denied for sequence".
+
+/**
+ * Devuelve las violaciones de alcance de un SQL ya libre de comentarios.
+ *
+ * Son DOS reglas complementarias, y hacen falta las dos: la sentencia
+ * culpable nombra el esquema a secas (`IN SCHEMA public`), no un objeto
+ * cualificado, asi que la regla de objetos ajenos por si sola NO la ve. La
+ * autocomprobacion de mas abajo es justamente lo que destapo ese hueco.
+ */
+function violacionesDeAlcance(sql) {
+  const v = [];
+  // Codigos estables, no el regex serializado: una asercion que compare
+  // contra `${patron}` compara contra "/ALL\\s+SEQUENCES/i", donde \s es un
+  // backslash literal y no un espacio. Eso ya me costo un falso rojo.
+  const GLOBALES = [
+    ['ALL SEQUENCES', /ALL\s+SEQUENCES/i],
+    ['ALL TABLES', /ALL\s+TABLES/i],
+    ['ALL FUNCTIONS', /ALL\s+FUNCTIONS/i],
+    ['IN SCHEMA', /IN\s+SCHEMA/i],
+  ];
+  for (const [codigo, patron] of GLOBALES) {
+    if (patron.test(sql)) v.push(`alcance_global:${codigo}`);
+  }
+  const objetos = [...new Set((sql.match(/public\.[a-z_]+/gi) || []).map((o) => o.toLowerCase()))];
+  for (const o of objetos) {
+    if (o !== 'public.strava_linking_audit') v.push(`objeto_ajeno:${o}`);
+  }
+  return v;
+}
+
+test('la migracion no tiene violaciones de alcance', () => {
+  // Se evalua sobre SENTENCIAS, no sobre prosa: el fichero explica en un
+  // comentario por que NO se hace esto, y un grep crudo daria falso positivo.
+  assert.deepEqual(violacionesDeAlcance(MIGRATION_SQL), []);
+});
+
+test('el rollback no tiene violaciones de alcance', () => {
+  assert.deepEqual(violacionesDeAlcance(ROLLBACK_SQL), []);
+});
+
+test('autocomprobacion: el caso defectuoso EXACTO se detecta', () => {
+  // Control del propio control. Sin esto, una asercion mal escrita pasaria en
+  // verde sin proteger nada.
+  const defectuoso = MIGRATION_SQL.replace('COMMIT;',
+    'REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM anon, authenticated;\nCOMMIT;');
+  const v = violacionesDeAlcance(defectuoso);
+  assert.ok(v.length > 0, 'el guard no detecta la sentencia que rompio la ronda anterior');
+  assert.ok(v.includes('alcance_global:ALL SEQUENCES'),
+    `detectado, pero por el motivo equivocado: ${v.join(' · ')}`);
+});
+
+test('autocomprobacion: tambien se detecta un objeto ajeno cualificado', () => {
+  const defectuoso = MIGRATION_SQL.replace('COMMIT;',
+    'REVOKE ALL ON public.run_points FROM anon;\nCOMMIT;');
+  assert.ok(violacionesDeAlcance(defectuoso).includes('objeto_ajeno:public.run_points'));
+});
+
 test('solo los tres indices autorizados', () => {
   const idx = MIGRATION_SQL.match(/CREATE INDEX[^;]+;/g) || [];
   assert.equal(idx.length, 3);

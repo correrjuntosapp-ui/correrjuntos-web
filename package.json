@@ -26,7 +26,8 @@
     "audit:amazon:quiet": "node tools/audit-amazon-images.cjs --quiet",
     "test:strava-audit": "node --test tests/unit/strava-linking-audit.test.mjs",
     "test:strava-audit:mutations": "node tools/test-strava-audit-mutations.mjs",
-    "test:strava-audit:equivalence": "node tools/test-strava-linker-equivalence.mjs"
+    "test:strava-audit:equivalence": "node tools/test-strava-linker-equivalence.mjs",
+    "test:strava-audit:postgres": "node tools/test-strava-audit-postgres.mjs"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

@@ -142,9 +142,27 @@ REVOKE ALL ON public.strava_linking_audit FROM authenticated;
 -- Append-only: ni UPDATE ni DELETE ni TRUNCATE, tampoco para service_role.
 GRANT INSERT, SELECT ON public.strava_linking_audit TO service_role;
 
--- La secuencia de la identidad no necesita grant explicito con
--- GENERATED ALWAYS AS IDENTITY, pero se cierra igualmente por si acaso.
-REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM anon, authenticated;
+-- SOBRE LA SECUENCIA DE IDENTIDAD — no hace falta ningun grant, y NO se debe
+-- anadir ninguna sentencia global.
+--
+-- `id` es GENERATED ALWAYS AS IDENTITY: su secuencia es un objeto interno,
+-- propiedad de la columna, y Postgres la avanza sin comprobar privilegios
+-- sobre ella. Basta con el INSERT sobre la tabla. Es distinto de `serial`,
+-- donde el DEFAULT nextval() lo ejecuta el cliente y por eso SI necesita
+-- USAGE sobre la secuencia.
+--
+-- [F146.4A] Aqui vivia `REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM
+-- anon, authenticated;`, escrito como cinturon y tirantes. Alcanzaba a las
+-- 20 secuencias del esquema, no solo a la de esta tabla, y habria retirado
+-- el USAGE del que dependen 18 tablas con `serial` donde la app inserta
+-- desde el cliente (run_points, maria_chat_messages, el modulo de Fuerza al
+-- completo, workout_feedback, analytics_events...). Cada INSERT habria
+-- fallado con "permission denied for sequence". Se retira por completo.
+--
+-- REGLA: esta migracion no toca ningun objeto que no sea
+-- public.strava_linking_audit. Nada de ALL SEQUENCES, ALL TABLES ni
+-- IN SCHEMA public. `tests/unit/strava-linking-audit.test.mjs` lo verifica y
+-- el mutante M9 lo demuestra.
 
 COMMIT;
 

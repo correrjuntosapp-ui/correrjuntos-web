@@ -29,8 +29,10 @@ const MATCHER = 'api/_lib/strava-plan-matcher.js';
 const MIGRATION = 'supabase/migrations/20260828120000_f146_4_strava_linking_audit.sql';
 const TEST = 'tests/unit/strava-linking-audit.test.mjs';
 const ROLLBACK = 'supabase/migrations/20260828120000_f146_4_strava_linking_audit_rollback.sql';
+const FIX_ACL = 'supabase/migrations/20260828140000_f146_5a_fix_strava_audit_acl.sql';
+const PGTEST = 'tools/test-strava-audit-postgres.mjs';
 
-const FILES = [LINKER, AUDIT, MATCHER, MIGRATION, ROLLBACK, TEST];
+const FILES = [LINKER, AUDIT, MATCHER, MIGRATION, ROLLBACK, FIX_ACL, TEST, PGTEST];
 
 /**
  * Cada mutante rompe UNA propiedad concreta del contrato. `expect:'die'`
@@ -145,6 +147,37 @@ const MUTANTS = [
     expect: 'die',
   },
   {
+    id: 'M10',
+    nombre: 'Eliminar la revocacion inicial a service_role (F146.5A)',
+    rompe: 'Append-only: service_role conservaria UPDATE/DELETE/TRUNCATE por default privileges',
+    file: FIX_ACL,
+    from: 'REVOKE ALL PRIVILEGES ON TABLE public.strava_linking_audit FROM service_role;',
+    to: '-- (mutante M10) revocacion inicial eliminada',
+    // Muere por COMPORTAMIENTO, no por texto: sin la revocacion, los default
+    // privileges de Supabase dejan a service_role con ALL sobre la tabla.
+    suite: 'postgres',
+    expect: 'die',
+  },
+  {
+    id: 'M11',
+    nombre: 'Eliminar la revocacion sobre la secuencia de identidad (F146.5A)',
+    rompe: 'anon, authenticated y service_role conservarian rwU sobre la secuencia',
+    file: FIX_ACL,
+    from: "    'REVOKE ALL PRIVILEGES ON SEQUENCE %s FROM PUBLIC, anon, authenticated, service_role',\n    v_seq);",
+    to: "    'SELECT 1 FROM %s',\n    v_seq);",
+    suite: 'postgres',
+    expect: 'die',
+  },
+  {
+    id: 'M12',
+    nombre: 'Colar un ALL SEQUENCES IN SCHEMA public en la correctiva',
+    rompe: 'Alcance: la correctiva solo puede tocar objetos de F146.4',
+    file: FIX_ACL,
+    from: '\nCOMMIT;',
+    to: '\nREVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM anon, authenticated;\nCOMMIT;',
+    expect: 'die',
+  },
+  {
     id: 'CN',
     nombre: 'CONTROL NEGATIVO · reformular un comentario',
     rompe: 'Nada. Si esto mata, la suite mide prosa en vez de comportamiento',
@@ -178,14 +211,28 @@ function aplicar(dir, { file, from, to }) {
   return { ok: true };
 }
 
-function correrSuite(dir) {
-  const r = spawnSync(process.execPath, ['--test', join(dir, TEST)],
-    { encoding: 'utf8', timeout: 120000 });
+/**
+ * Ejecuta la suite que corresponda al mutante.
+ *
+ * 'unit'     → contrato estatico y comportamiento del orquestador (rapido).
+ * 'postgres' → aplica las migraciones sobre un cluster real. Hace falta para
+ *              los mutantes de permisos: quitar un REVOKE no cambia ninguna
+ *              cadena que un test de texto pudiera vigilar, solo cambia el
+ *              ACL resultante. Matarlos con una asercion de texto seria
+ *              vigilar la prosa en vez del efecto.
+ */
+function correrSuite(dir, suite = 'unit') {
+  const cmd = suite === 'postgres'
+    ? [join(dir, PGTEST)]
+    : ['--test', join(dir, TEST)];
+  const r = spawnSync(process.execPath, cmd, { encoding: 'utf8', timeout: 300000 });
   return { verde: r.status === 0, salida: `${r.stdout || ''}${r.stderr || ''}` };
 }
 
 function fallosDe(salida) {
-  return [...salida.matchAll(/^not ok \d+ - (.+)$/gm)].map((m) => m[1]);
+  const unit = [...salida.matchAll(/^not ok \d+ - (.+)$/gm)].map((m) => m[1]);
+  const pg = [...salida.matchAll(/^ {2}✗ (.+?)(?:  |$)/gm)].map((m) => m[1].trim());
+  return unit.concat(pg);
 }
 
 // ── Linea base ────────────────────────────────────────────
@@ -213,7 +260,7 @@ for (const m of MUTANTS) {
       rotos += 1;
       continue;
     }
-    const { verde, salida } = correrSuite(dir);
+    const { verde, salida } = correrSuite(dir, m.suite);
     const murio = !verde;
     const correcto = m.expect === 'die' ? murio : !murio;
 

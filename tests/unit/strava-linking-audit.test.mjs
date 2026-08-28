@@ -35,6 +35,8 @@ const MIGRATION = readFileSync(
   join(ROOT, 'supabase/migrations/20260828120000_f146_4_strava_linking_audit.sql'), 'utf8');
 const ROLLBACK = readFileSync(
   join(ROOT, 'supabase/migrations/20260828120000_f146_4_strava_linking_audit_rollback.sql'), 'utf8');
+const FIX_ACL = readFileSync(
+  join(ROOT, 'supabase/migrations/20260828140000_f146_5a_fix_strava_audit_acl.sql'), 'utf8');
 
 /**
  * Sentencias reales, sin comentarios. Sin esto las aserciones estaticas leen
@@ -47,6 +49,7 @@ const sinComentarios = (sql) => sql.split('\n')
   .join('\n');
 const MIGRATION_SQL = sinComentarios(MIGRATION);
 const ROLLBACK_SQL = sinComentarios(ROLLBACK);
+const FIX_ACL_SQL = sinComentarios(FIX_ACL);
 
 const U = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
 const RUN = U(1), USER = U(2), PLAN = U(3), WORKOUT = U(4), OTHER_USER = U(9);
@@ -457,6 +460,17 @@ test('no se crea ninguna politica RLS ni se expone RPC al cliente', () => {
 // "permission denied for sequence".
 
 /**
+ * Objetos que F146.4 creo y que sus migraciones pueden tocar: la tabla y la
+ * secuencia de identidad de su columna `id`. La secuencia es tan propia como
+ * la tabla — la crea el mismo CREATE TABLE — y F146.5A necesita revocar
+ * privilegios sobre ella.
+ */
+const OBJETOS_PROPIOS = Object.freeze([
+  'public.strava_linking_audit',
+  'public.strava_linking_audit_id_seq',
+]);
+
+/**
  * Devuelve las violaciones de alcance de un SQL ya libre de comentarios.
  *
  * Son DOS reglas complementarias, y hacen falta las dos: la sentencia
@@ -480,7 +494,7 @@ function violacionesDeAlcance(sql) {
   }
   const objetos = [...new Set((sql.match(/public\.[a-z_]+/gi) || []).map((o) => o.toLowerCase()))];
   for (const o of objetos) {
-    if (o !== 'public.strava_linking_audit') v.push(`objeto_ajeno:${o}`);
+    if (!OBJETOS_PROPIOS.includes(o)) v.push(`objeto_ajeno:${o}`);
   }
   return v;
 }
@@ -493,6 +507,22 @@ test('la migracion no tiene violaciones de alcance', () => {
 
 test('el rollback no tiene violaciones de alcance', () => {
   assert.deepEqual(violacionesDeAlcance(ROLLBACK_SQL), []);
+});
+
+test('la migracion correctiva F146.5A no tiene violaciones de alcance', () => {
+  assert.deepEqual(violacionesDeAlcance(FIX_ACL_SQL), []);
+});
+
+test('F146.5A resuelve la secuencia y aborta si no es la esperada', () => {
+  // No escribe el nombre de la secuencia a mano: lo resuelve y comprueba.
+  assert.match(FIX_ACL_SQL, /pg_get_serial_sequence\('public\.strava_linking_audit',\s*'id'\)/);
+  assert.equal((FIX_ACL_SQL.match(/RAISE EXCEPTION/g) || []).length, 2,
+    'debe abortar tanto si no resuelve como si resuelve a otro objeto');
+});
+
+test('F146.5A no modifica los default privileges globales', () => {
+  assert.ok(!/ALTER\s+DEFAULT\s+PRIVILEGES/i.test(FIX_ACL_SQL),
+    'corregirlos afecta a todo el esquema y queda fuera de alcance');
 });
 
 test('autocomprobacion: el caso defectuoso EXACTO se detecta', () => {
@@ -510,6 +540,14 @@ test('autocomprobacion: tambien se detecta un objeto ajeno cualificado', () => {
   const defectuoso = MIGRATION_SQL.replace('COMMIT;',
     'REVOKE ALL ON public.run_points FROM anon;\nCOMMIT;');
   assert.ok(violacionesDeAlcance(defectuoso).includes('objeto_ajeno:public.run_points'));
+});
+
+test('autocomprobacion: la secuencia de identidad NO cuenta como objeto ajeno', () => {
+  // Es propia de F146.4 y F146.5A tiene que revocar sobre ella. Si el guard
+  // la marcase, obligaria a relajarlo justo donde debe ser estricto.
+  const conSecuencia = MIGRATION_SQL.replace('COMMIT;',
+    'REVOKE ALL ON SEQUENCE public.strava_linking_audit_id_seq FROM anon;\nCOMMIT;');
+  assert.deepEqual(violacionesDeAlcance(conSecuencia), []);
 });
 
 test('solo los tres indices autorizados', () => {

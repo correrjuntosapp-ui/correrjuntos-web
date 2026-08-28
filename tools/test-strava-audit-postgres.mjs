@@ -21,6 +21,14 @@
 //
 //   node tools/test-strava-audit-postgres.mjs
 //
+// [F146.5A] Y POR QUE CASI NO SIRVE. La primera version creaba los tres roles
+// pero NO replicaba los ALTER DEFAULT PRIVILEGES de Supabase, que un cluster
+// virgen no trae. Con ellos, toda tabla nueva de `public` nace con ALL para
+// anon, authenticated y service_role, y toda secuencia con rwU. Por eso la
+// prueba daba verde mientras en produccion service_role conservaba
+// UPDATE/DELETE/TRUNCATE sobre la tabla de auditoria. Ahora se replican antes
+// de crear nada, y se aplican las DOS migraciones en orden.
+//
 // Requiere binarios de PostgreSQL en el sistema. Si no los encuentra, SALTA
 // la prueba con codigo 0 y lo dice: no finge un PASS.
 // ============================================================
@@ -33,6 +41,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const MIGRATION = join(ROOT, 'supabase/migrations/20260828120000_f146_4_strava_linking_audit.sql');
 const ROLLBACK = join(ROOT, 'supabase/migrations/20260828120000_f146_4_strava_linking_audit_rollback.sql');
+const FIX_ACL = join(ROOT, 'supabase/migrations/20260828140000_f146_5a_fix_strava_audit_acl.sql');
 
 // ── Localizar binarios ────────────────────────────────────
 function findBin() {
@@ -110,6 +119,16 @@ try {
     GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
   `);
 
+  // ── Privilegios por defecto de Supabase ─────────────────
+  // Esto es lo que hace que la prueba se parezca a produccion. Sin ello, la
+  // tabla nueva nace limpia y el defecto de F146.4 resulta invisible.
+  psql(`
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public
+      GRANT ALL ON TABLES TO anon, authenticated, service_role;
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public
+      GRANT ALL ON SEQUENCES TO anon, authenticated, service_role;
+  `);
+
   // ── Objeto de control: una tabla ajena con `serial`, ────
   //    igual que las 18 que hay en produccion.
   psql(`
@@ -134,8 +153,31 @@ try {
   writeFileSync(f, migracion);
   chmodSync(f, 0o644);
   r = sh(`${BIN}/psql -h ${SOCK} -U postgres -d postgres -v ON_ERROR_STOP=1 -f ${f}`);
-  ok('la migracion aplica sin errores', r.status === 0, r.status !== 0 ? r.stderr.trim() : '');
+  ok('la migracion F146.4 aplica sin errores', r.status === 0, r.status !== 0 ? r.stderr.trim() : '');
   if (r.status !== 0) throw new Error('la migracion no aplica; el resto no tiene sentido');
+
+  // ── El defecto de F146.4 se reproduce ───────────────────
+  // Si esto dejara de cumplirse, la prueba habria dejado de parecerse a
+  // produccion y su verde no significaria nada.
+  const srUpdateAntes = psql(
+    `SELECT has_table_privilege('service_role','public.strava_linking_audit','UPDATE');`);
+  ok('se REPRODUCE el defecto: service_role nace con UPDATE',
+    srUpdateAntes === 't', `UPDATE=${srUpdateAntes} (si es 'f', la prueba ya no imita a produccion)`);
+  const seqAntes = psql(
+    `SELECT bool_or(has_sequence_privilege(r,'public.strava_linking_audit_id_seq',p))
+       FROM (VALUES ('anon'),('authenticated')) x(r),
+            (VALUES ('USAGE'),('SELECT'),('UPDATE')) y(p);`);
+  ok('se REPRODUCE el defecto: la secuencia nace accesible a los clientes',
+    seqAntes === 't', `accesible=${seqAntes}`);
+
+  // ── APLICAR LA MIGRACION CORRECTIVA F146.5A ─────────────
+  const fFix = join(DIR, 'fix-acl.sql');
+  writeFileSync(fFix, readFileSync(FIX_ACL, 'utf8'));
+  chmodSync(fFix, 0o644);
+  r = sh(`${BIN}/psql -h ${SOCK} -U postgres -d postgres -v ON_ERROR_STOP=1 -f ${fFix}`);
+  ok('la migracion correctiva F146.5A aplica sin errores', r.status === 0,
+    r.status !== 0 ? r.stderr.trim() : '');
+  if (r.status !== 0) throw new Error('la correctiva no aplica');
 
   // ── 1 · El objeto ajeno NO ha cambiado ──────────────────
   const aclDespues = psql(
@@ -203,12 +245,17 @@ try {
     WHERE s.relkind='S' AND t.relname='strava_linking_audit';`);
   ok('la tabla tiene una secuencia de identidad interna', seqIdentidad.length > 0, seqIdentidad);
   if (seqIdentidad) {
-    for (const rol of ['anon', 'authenticated']) {
+    for (const rol of ['anon', 'authenticated', 'service_role']) {
       const priv = psql(`SELECT has_sequence_privilege('${rol}','public.${seqIdentidad}','USAGE')
                          OR has_sequence_privilege('${rol}','public.${seqIdentidad}','SELECT')
                          OR has_sequence_privilege('${rol}','public.${seqIdentidad}','UPDATE');`);
-      ok(`${rol} no recibe privilegios sobre la secuencia de identidad`, priv === 'f', `priv=${priv}`);
+      ok(`${rol} no tiene privilegios sobre la secuencia de identidad`, priv === 'f', `priv=${priv}`);
     }
+    // La secuencia se resuelve como lo hace la migracion, no por su nombre.
+    const resuelta = psql(
+      `SELECT pg_get_serial_sequence('public.strava_linking_audit','id');`);
+    ok('pg_get_serial_sequence resuelve la secuencia esperada',
+      resuelta === 'public.strava_linking_audit_id_seq', resuelta);
   }
 
   // ── 5 · RLS, FORCE RLS y ausencia de politicas ──────────
@@ -219,12 +266,30 @@ try {
                     WHERE schemaname='public' AND tablename='strava_linking_audit';`);
   ok('cero politicas RLS', pol === '0', `politicas=${pol}`);
 
-  // ── 6 · Append-only: ni UPDATE ni DELETE para nadie ─────
-  for (const priv of ['UPDATE', 'DELETE', 'TRUNCATE']) {
+  // ── 6 · Append-only y contrato exacto de service_role ───
+  // MAINTAIN solo existe desde PostgreSQL 17; en 16 la funcion lanza. Se
+  // comprueba solo donde aplica, en vez de fingir que se ha verificado.
+  const mayor = Number(psql('SHOW server_version_num;')) >= 170000;
+  const PROHIBIDOS = ['UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES', 'TRIGGER']
+    .concat(mayor ? ['MAINTAIN'] : []);
+  for (const priv of PROHIBIDOS) {
     const tiene = psql(`SELECT has_table_privilege('service_role',
                           'public.strava_linking_audit','${priv}');`);
     ok(`service_role NO tiene ${priv}`, tiene === 'f', `${priv}=${tiene}`);
   }
+  if (!mayor) {
+    console.log('    (MAINTAIN no se comprueba: solo existe desde PostgreSQL 17;'
+      + ` este cluster es ${psql('SHOW server_version;')})`);
+  }
+  // El ACL literal, que es la forma mas dificil de enganar.
+  const aclTabla = psql(`SELECT array_to_string(relacl,' ') FROM pg_class
+                         WHERE oid='public.strava_linking_audit'::regclass;`);
+  ok('el ACL de la tabla concede a service_role exactamente "ar"',
+    /service_role=ar\//.test(aclTabla), aclTabla);
+  const aclSeq = psql(`SELECT array_to_string(relacl,' ') FROM pg_class
+                       WHERE oid='public.strava_linking_audit_id_seq'::regclass;`);
+  ok('el ACL de la secuencia no nombra a PUBLIC, anon, authenticated ni service_role',
+    !/(^|\s)=|anon=|authenticated=|service_role=/.test(aclSeq), aclSeq);
 
   // ── 7 · Idempotencia: el UNIQUE de evaluation_key ───────
   const eDup = psql(`SET ROLE service_role;

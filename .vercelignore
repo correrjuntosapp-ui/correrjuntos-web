@@ -11,3 +11,12 @@ tests/
 redes/
 seo-optimization-log.json
 Equipo de agentes/
+
+# Artefactos de test y material interno. outputDirectory es "." (sin build), asi
+# que todo lo que no se excluya aqui se publica: /test-results/.last-run.json
+# devolvia 200 en produccion. Verificado que ninguno lo referencia el sitio.
+test-results/
+playwright-report/
+screenshots/
+scripts/
+.github/

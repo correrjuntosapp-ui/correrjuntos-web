@@ -144,6 +144,31 @@
   ],
   "redirects": [
     {
+      "source": "/blog/estiramientos-antes-despu%C3%A9s-correr",
+      "destination": "/blog/estiramientos-antes-despues-correr",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutrici%C3%B3n-dia-de-carrera",
+      "destination": "/blog/nutricion-dia-de-carrera",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutrici%C3%B3n-para-runners",
+      "destination": "/blog/nutricion-para-runners",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ropa-t%C3%A9cnica-running",
+      "destination": "/blog/ropa-tecnica-running",
+      "permanent": true
+    },
+    {
+      "source": "/legal/aviso-legal",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
       "source": "/matching",
       "destination": "/app",
       "permanent": true
@@ -549,18 +574,8 @@
       "permanent": true
     },
     {
-      "source": "/legal/aviso-legal.html",
-      "destination": "/terms",
-      "permanent": true
-    },
-    {
       "source": "/privacidad",
       "destination": "/privacy",
-      "permanent": true
-    },
-    {
-      "source": "/blog/nutrición-dia-de-carrera.html",
-      "destination": "/blog/nutricion-dia-de-carrera",
       "permanent": true
     },
     {
@@ -965,11 +980,6 @@
       "permanent": true
     },
     {
-      "source": "/blog/estiramientos-antes-después-correr",
-      "destination": "/blog",
-      "permanent": true
-    },
-    {
       "source": "/blog/grupos-running-huelva",
       "destination": "/blog",
       "permanent": true
@@ -990,17 +1000,7 @@
       "permanent": true
     },
     {
-      "source": "/blog/nutrición-para-runners.html",
-      "destination": "/blog",
-      "permanent": true
-    },
-    {
       "source": "/blog/plan-entrenamiento-5km",
-      "destination": "/blog",
-      "permanent": true
-    },
-    {
-      "source": "/blog/ropa-técnica-running.html",
       "destination": "/blog",
       "permanent": true
     },

@@ -30,14 +30,24 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SELFTEST = process.argv.includes('--selftest');
 
-/* Captura <a … class="article-card"> y <a … class="article-card featured">. */
-const CARD_RE = /<a\b[^>]*class="article-card(?:\s+featured)?"[^>]*>/g;
+/* Fotos que hoy comparten varias tarjetas y aún no se han sustituido.
+   Vive en un archivo aparte para que se vea crecer o encoger en el diff.
+   Solo puede encoger: si una entrada deja de estar repetida, hay que borrarla. */
+const BASELINE_PATH = path.join(ROOT, 'tools', 'blog-cards-photo-baseline.json');
+const BASELINE = fs.existsSync(BASELINE_PATH)
+  ? JSON.parse(fs.readFileSync(BASELINE_PATH, 'utf8'))
+  : {};
+
+/* Captura la tarjeta completa: <a … class="article-card">…</a>, incluida la
+   variante "article-card featured". Hace falta el interior para leer la foto. */
+const CARD_RE = /<a\b([^>]*class="article-card(?:\s+featured)?"[^>]*)>([\s\S]*?)<\/a>/g;
 
 export function tarjetasDe(html) {
   return [...html.matchAll(CARD_RE)].map((m) => ({
-    href: (m[0].match(/href="([^"]+)"/) || [])[1] || null,
-    cat: (m[0].match(/data-category="([^"]+)"/) || [])[1] || null,
-    featured: /featured/.test(m[0]),
+    href: (m[1].match(/href="([^"]+)"/) || [])[1] || null,
+    cat: (m[1].match(/data-category="([^"]+)"/) || [])[1] || null,
+    featured: /featured/.test(m[1]),
+    img: (m[2].match(/<img[^>]*\bsrc="([^"]*)"/) || [])[1] || null,
   }));
 }
 
@@ -48,6 +58,30 @@ export function duplicados(cards) {
     cuenta.set(c.href, (cuenta.get(c.href) || 0) + 1);
   }
   return [...cuenta.entries()].filter(([, n]) => n > 1);
+}
+
+/* Identidad de la foto, ignorando el sufijo de tamaño y los parámetros: dos
+   tarjetas con -640 y -1200 de la misma foto se ven idénticas en el listado. */
+export function idFoto(src) {
+  if (!src) return null;
+  const s = src.split('?')[0];
+  const pexels = s.match(/\/(\d{5,})-\d+\.(?:webp|jpe?g|png)$/i);
+  if (pexels) return 'pexels:' + pexels[1];
+  const unsplash = s.match(/photo-([a-z0-9]+)/i);
+  if (unsplash) return 'unsplash:' + unsplash[1];
+  return 'local:' + s.replace(/-(\d{3,4})(\.(?:webp|jpe?g|png|avif))$/i, '$2');
+}
+
+export function fotosCompartidas(cards) {
+  const m = new Map();
+  for (const c of cards) {
+    const id = idFoto(c.img);
+    if (!id || !c.href) continue;
+    if (!m.has(id)) m.set(id, []);
+    m.get(id).push(c.href);
+  }
+  return [...m.entries()].filter(([, v]) => v.length > 1)
+    .map(([id, v]) => [id, v.sort()]);
 }
 
 export function mapaDeclarado(html, nombre) {
@@ -108,6 +142,24 @@ function auditar() {
       }
     }
 
+    /* Fotos compartidas entre tarjetas del mismo índice. Hay una lista de
+       pendientes conocidos (el blog EN); solo puede encoger, nunca crecer. */
+    const pendientes = BASELINE[base] || {};
+    const actuales = new Map(fotosCompartidas(tarjetasDe(indiceHtml)));
+    for (const [id, hrefs] of actuales) {
+      const previo = pendientes[id];
+      if (!previo) {
+        fallos.push(`${base}/index.html: ${hrefs.length} tarjetas comparten la misma foto (${id}): ${hrefs.join(', ')}`);
+      } else if (hrefs.length > previo.length) {
+        fallos.push(`${base}/index.html: la foto ${id} ya la compartían ${previo.length} tarjetas y ahora son ${hrefs.length}`);
+      }
+    }
+    for (const id of Object.keys(pendientes)) {
+      if (!actuales.has(id)) {
+        fallos.push(`${base}/index.html: ${id} ya no está repetida — quítala de tools/blog-cards-photo-baseline.json`);
+      }
+    }
+
     // Las categorías solo se declaran en el índice; las páginas estáticas no las usan.
     const cats = new Set(tarjetasDe(indiceHtml).map((c) => c.cat).filter(Boolean));
     for (const cat of [...cats].sort()) {
@@ -162,6 +214,24 @@ if (SELFTEST) {
         const s = mapaDeclarado(h, 'catNames');
         return s.size === 2 && !s.has('Salud');
       },
+    },
+    {
+      nombre: 'detecta la misma foto en dos tamaños distintos',
+      html: '<a href="/blog/a" class="article-card"><img src="/public/pexels/1640777-640.webp"></a>' +
+            '<a href="/blog/b" class="article-card"><img src="/public/pexels/1640777-1200.webp"></a>',
+      esperado: (h) => fotosCompartidas(tarjetasDe(h)).length === 1,
+    },
+    {
+      nombre: 'no marca fotos distintas',
+      html: '<a href="/blog/a" class="article-card"><img src="/public/pexels/111-640.webp"></a>' +
+            '<a href="/blog/b" class="article-card"><img src="/public/pexels/222-640.webp"></a>',
+      esperado: (h) => fotosCompartidas(tarjetasDe(h)).length === 0,
+    },
+    {
+      nombre: 'reconoce fotos de Unsplash por su identificador',
+      html: '<a href="/blog/a" class="article-card"><img src="https://images.unsplash.com/photo-1544367567-abc?w=640"></a>' +
+            '<a href="/blog/b" class="article-card"><img src="https://images.unsplash.com/photo-1544367567-abc?w=1200"></a>',
+      esperado: (h) => fotosCompartidas(tarjetasDe(h)).length === 1,
     },
   ];
   let mal = 0;

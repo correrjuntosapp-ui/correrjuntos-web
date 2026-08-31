@@ -84,6 +84,40 @@ export function fotosCompartidas(cards) {
     .map(([id, v]) => [id, v.sort()]);
 }
 
+/* Pexels numera las fotos por orden de subida, asi que un mismo reportaje
+   ocupa identificadores casi consecutivos. Dos tarjetas con IDs muy proximos
+   suelen ensenar la misma escena con otro encuadre — que es como el founder
+   detecto que "guia de equipamiento" y "kit principiante" parecian la misma
+   tarjeta: 6740820 y 6740823, el mismo bodegon fotografiado dos veces. */
+export const MISMO_REPORTAJE = 12;
+
+export function mismoReportaje(cards, margen = MISMO_REPORTAJE) {
+  const conId = cards
+    .map((c) => ({ href: c.href, n: Number((idFoto(c.img) || '').replace('pexels:', '')) }))
+    .filter((c) => c.href && Number.isFinite(c.n) && c.n > 0)
+    .sort((a, b) => a.n - b.n);
+
+  const grupos = [];
+  let actual = [];
+  for (const c of conId) {
+    if (actual.length && c.n - actual[actual.length - 1].n > margen) {
+      if (actual.length > 1) grupos.push(actual);
+      actual = [];
+    }
+    actual.push(c);
+  }
+  if (actual.length > 1) grupos.push(actual);
+
+  // Varias tarjetas con el MISMO id ya las cubre fotosCompartidas(); aqui
+  // solo interesan los grupos donde hay al menos dos ids distintos.
+  return grupos
+    .filter((g) => new Set(g.map((c) => c.n)).size > 1)
+    .map((g) => ({
+      ids: [...new Set(g.map((c) => c.n))].sort((a, b) => a - b),
+      hrefs: [...new Set(g.map((c) => c.href))].sort(),
+    }));
+}
+
 export function mapaDeclarado(html, nombre) {
   const m = html.match(new RegExp('var\\s+' + nombre + '\\s*=\\s*([^;]+);'));
   if (!m) return null;
@@ -144,7 +178,7 @@ function auditar() {
 
     /* Fotos compartidas entre tarjetas del mismo índice. Hay una lista de
        pendientes conocidos (el blog EN); solo puede encoger, nunca crecer. */
-    const pendientes = BASELINE[base] || {};
+    const pendientes = (BASELINE.fotoIdentica || {})[base] || {};
     const actuales = new Map(fotosCompartidas(tarjetasDe(indiceHtml)));
     for (const [id, hrefs] of actuales) {
       const previo = pendientes[id];
@@ -160,6 +194,22 @@ function auditar() {
       }
     }
 
+    /* Tarjetas con fotos del mismo reportaje (ids de Pexels casi consecutivos). */
+    const reportajesPendientes = (BASELINE.mismoReportaje || {})[base] || {};
+    const gruposActuales = new Map(
+      mismoReportaje(tarjetasDe(indiceHtml)).map((g) => [g.ids.join('-'), g]),
+    );
+    for (const [clave, g] of gruposActuales) {
+      if (!reportajesPendientes[clave]) {
+        fallos.push(`${base}/index.html: ${g.hrefs.length} tarjetas usan fotos del mismo reportaje (Pexels ${g.ids.join(', ')}): ${g.hrefs.join(', ')}`);
+      }
+    }
+    for (const clave of Object.keys(reportajesPendientes)) {
+      if (!gruposActuales.has(clave)) {
+        fallos.push(`${base}/index.html: el grupo ${clave} ya no existe — quítalo de tools/blog-cards-photo-baseline.json`);
+      }
+    }
+
     // Las categorías solo se declaran en el índice; las páginas estáticas no las usan.
     const cats = new Set(tarjetasDe(indiceHtml).map((c) => c.cat).filter(Boolean));
     for (const cat of [...cats].sort()) {
@@ -172,8 +222,13 @@ function auditar() {
   return { fallos, totalTarjetas };
 }
 
+/* Este archivo también se importa como módulo (por ejemplo para regenerar la
+   lista de pendientes). Solo audita cuando se ejecuta directamente. */
+const EJECUTADO_DIRECTAMENTE =
+  process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
 /* ── Autocomprobación: el verificador debe detectar defectos inyectados ── */
-if (SELFTEST) {
+if (EJECUTADO_DIRECTAMENTE && SELFTEST) {
   const casos = [
     {
       nombre: 'detecta una tarjeta duplicada',
@@ -244,12 +299,15 @@ if (SELFTEST) {
   process.exit(mal ? 1 : 0);
 }
 
-const { fallos, totalTarjetas } = auditar();
-if (fallos.length) {
-  console.error(`\nTarjetas del blog: ${fallos.length} problema(s) en ${totalTarjetas} tarjetas.\n`);
-  fallos.forEach((f) => console.error('  ✗ ' + f));
-  console.error('\nSi has añadido o editado tarjetas en blog/index.html o blog/en/index.html,');
-  console.error('recuerda regenerar la paginación:  node tools/blog-paginate.cjs --apply\n');
-  process.exit(1);
+/* Importado como módulo solo se exponen las funciones; auditar es cosa del CLI. */
+if (EJECUTADO_DIRECTAMENTE) {
+  const { fallos, totalTarjetas } = auditar();
+  if (fallos.length) {
+    console.error(`\nTarjetas del blog: ${fallos.length} problema(s) en ${totalTarjetas} tarjetas.\n`);
+    fallos.forEach((f) => console.error('  ✗ ' + f));
+    console.error('\nSi has añadido o editado tarjetas en blog/index.html o blog/en/index.html,');
+    console.error('recuerda regenerar la paginación:  node tools/blog-paginate.cjs --apply\n');
+    process.exit(1);
+  }
+  console.log(`Tarjetas del blog: ${totalTarjetas} revisadas, sin duplicados, sin categorías huérfanas y sin destinos rotos.`);
 }
-console.log(`Tarjetas del blog: ${totalTarjetas} revisadas, sin duplicados, sin categorías huérfanas y sin destinos rotos.`);

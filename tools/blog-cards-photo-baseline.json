@@ -1,62 +1,125 @@
 {
-  "blog/en": {
-    "pexels:2803158": [
-      "/blog/en/interval-fartlek-training",
-      "/blog/en/zone-2-running-burn-fat"
-    ],
-    "pexels:29269622": [
-      "/blog/en/best-energy-snacks-for-runners",
-      "/blog/en/best-foods-for-runners"
-    ],
-    "pexels:3764554": [
-      "/blog/en/couch-to-5k-plan",
-      "/blog/en/start-running-after-40"
-    ],
-    "pexels:3771071": [
-      "/blog/en/benefits-of-running",
-      "/blog/en/sore-muscles-after-running"
-    ],
-    "pexels:2526878": [
-      "/blog/en/how-to-build-running-endurance",
-      "/blog/en/social-running-revolution-2026",
-      "/blog/en/valencia-marathon-guide"
-    ],
-    "pexels:6551282": [
-      "/blog/en/running-overweight-guide",
-      "/blog/en/start-running-when-embarrassed"
-    ],
-    "pexels:5038820": [
-      "/blog/en/beginner-running-mistakes-nobody-tells",
-      "/blog/en/common-running-mistakes"
-    ],
-    "pexels:1040427": [
-      "/blog/en/how-to-get-back-into-running",
-      "/blog/en/nike-pegasus-41-vs-brooks-ghost-16"
-    ],
-    "pexels:3764011": [
-      "/blog/en/correrjuntos-vs-meetup-groups",
-      "/blog/en/running-to-lose-weight"
-    ],
-    "pexels:3756042": [
-      "/blog/en/how-many-days-week-run",
-      "/blog/en/how-to-start-running-beginners-guide"
-    ],
-    "unsplash:1544367567": [
-      "/blog/en/how-to-warm-up-before-running",
-      "/blog/en/plantar-fasciitis-runners",
-      "/blog/en/post-run-stretches"
-    ],
-    "pexels:4065509": [
-      "/blog/en/best-running-shoes-overweight",
-      "/blog/en/running-shoes-overpronators"
-    ],
-    "pexels:373984": [
-      "/blog/en/basic-running-pack-beginners",
-      "/blog/en/running-in-winter"
-    ],
-    "pexels:1571939": [
-      "/blog/en/benefits-of-group-running",
-      "/blog/en/running-groups-complete-guide"
-    ]
+  "fotoIdentica": {
+    "blog/en": {
+      "pexels:2803158": [
+        "/blog/en/interval-fartlek-training",
+        "/blog/en/zone-2-running-burn-fat"
+      ],
+      "pexels:29269622": [
+        "/blog/en/best-energy-snacks-for-runners",
+        "/blog/en/best-foods-for-runners"
+      ],
+      "pexels:3764554": [
+        "/blog/en/couch-to-5k-plan",
+        "/blog/en/start-running-after-40"
+      ],
+      "pexels:3771071": [
+        "/blog/en/benefits-of-running",
+        "/blog/en/sore-muscles-after-running"
+      ],
+      "pexels:2526878": [
+        "/blog/en/how-to-build-running-endurance",
+        "/blog/en/social-running-revolution-2026",
+        "/blog/en/valencia-marathon-guide"
+      ],
+      "pexels:6551282": [
+        "/blog/en/running-overweight-guide",
+        "/blog/en/start-running-when-embarrassed"
+      ],
+      "pexels:5038820": [
+        "/blog/en/beginner-running-mistakes-nobody-tells",
+        "/blog/en/common-running-mistakes"
+      ],
+      "pexels:1040427": [
+        "/blog/en/how-to-get-back-into-running",
+        "/blog/en/nike-pegasus-41-vs-brooks-ghost-16"
+      ],
+      "pexels:3764011": [
+        "/blog/en/correrjuntos-vs-meetup-groups",
+        "/blog/en/running-to-lose-weight"
+      ],
+      "pexels:3756042": [
+        "/blog/en/how-many-days-week-run",
+        "/blog/en/how-to-start-running-beginners-guide"
+      ],
+      "unsplash:1544367567": [
+        "/blog/en/how-to-warm-up-before-running",
+        "/blog/en/plantar-fasciitis-runners",
+        "/blog/en/post-run-stretches"
+      ],
+      "pexels:4065509": [
+        "/blog/en/best-running-shoes-overweight",
+        "/blog/en/running-shoes-overpronators"
+      ],
+      "pexels:373984": [
+        "/blog/en/basic-running-pack-beginners",
+        "/blog/en/running-in-winter"
+      ],
+      "pexels:1571939": [
+        "/blog/en/benefits-of-group-running",
+        "/blog/en/running-groups-complete-guide"
+      ]
+    }
+  },
+  "mismoReportaje": {
+    "blog": {
+      "3764011-3764014": [
+        "/blog/correr-para-adelgazar",
+        "/blog/seguridad-trail-running"
+      ],
+      "4164761-4164766": [
+        "/blog/ejercicios-fuerza-piernas-corredores",
+        "/blog/entrenamiento-fuerza-corredores"
+      ],
+      "4379287-4379289": [
+        "/blog/correr-y-gimnasio-mismo-dia",
+        "/blog/smartwatch-vs-reloj-gps-running"
+      ],
+      "4426517-4426518-4426519": [
+        "/blog/garmin-forerunner-55-review",
+        "/blog/mejores-apps-running",
+        "/blog/navegacion-gps-trail-running"
+      ],
+      "4436289-4436297": [
+        "/blog/mejor-hora-para-correr",
+        "/blog/nike-vomero-18-review"
+      ],
+      "5037293-5037294": [
+        "/blog/calcetines-running",
+        "/blog/estiramientos-post-carrera"
+      ],
+      "8381736-8381747-8381748": [
+        "/blog/conocer-gente-haciendo-deporte",
+        "/blog/grupos-de-running-guia-completa",
+        "/blog/grupos-running-valencia"
+      ],
+      "35599350-35599353": [
+        "/blog/chalecos-hidratacion-running",
+        "/blog/mejores-zapatillas-trail-running"
+      ]
+    },
+    "blog/en": {
+      "1640774-1640777": [
+        "/blog/en/running-before-or-after-eating",
+        "/blog/en/trail-running-nutrition"
+      ],
+      "3771071-3771074": [
+        "/blog/en/benefits-of-running",
+        "/blog/en/runner-psychology",
+        "/blog/en/sore-muscles-after-running"
+      ],
+      "4164761-4164766": [
+        "/blog/en/best-resistance-bands-for-runners",
+        "/blog/en/leg-strength-exercises-runners"
+      ],
+      "4379287-4379289": [
+        "/blog/en/running-and-gym-same-day",
+        "/blog/en/smartwatch-vs-gps-watch-running"
+      ],
+      "32798742-32798743": [
+        "/blog/en/start-trail-running",
+        "/blog/en/trail-running-training-plan"
+      ]
+    }
   }
 }

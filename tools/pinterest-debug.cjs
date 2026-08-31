@@ -25,7 +25,7 @@ const waitForEnter = (msg) => new Promise(resolve => {
 
   // Prueba 1: URL widget de pin
   console.log('\n📸 Probando URL de widget pin...');
-  const testUrl = 'https://www.pinterest.es/pin/create/button/?url=https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes&media=https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress%26cs=tinysrgb%26w=800&description=Empezar+a+Correr+Guia+Principiantes';
+  const testUrl = 'https://www.pinterest.es/pin/create/button/?url=https://www.correrjuntos.com/blog/empezar-a-correr-guia-principiantes&media=https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress%26cs=tinysrgb%26w=1000%26h=1500%26fit=crop&description=Empezar+a+Correr+Guia+Principiantes';
   await page.goto(testUrl);
   await page.waitForLoadState('networkidle');
   await new Promise(r => setTimeout(r, 3000));

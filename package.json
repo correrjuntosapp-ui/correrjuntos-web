@@ -16,6 +16,8 @@
     "test:redirects": "node tools/test-legacy-redirects.mjs",
     "test:jsonld": "node tools/test-jsonld-structured-data.mjs",
     "test:jsonld:selftest": "node tools/test-jsonld-structured-data.mjs --selftest",
+    "test:blog-cards": "node tools/test-blog-cards.mjs",
+    "test:blog-cards:selftest": "node tools/test-blog-cards.mjs --selftest",
     "test:ui": "npx playwright test --ui",
     "build": "node tools/build-minify.cjs",
     "images:scan": "node tools/image-audit/scan-images.cjs",

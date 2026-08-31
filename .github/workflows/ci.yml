@@ -47,3 +47,15 @@ jobs:
 
       - name: JSON-LD — auditoria del sitio
         run: npm run test:jsonld
+
+      # Tarjetas del blog. En agosto de 2026 el indice acumulo tarjetas
+      # duplicadas (el mismo articulo dos veces, con titulos y fechas de
+      # ediciones antiguas) y tres categorias reales faltaban en catOrder y
+      # catNames, lo que partia esas categorias en dos bloques con cabeceras
+      # repetidas. El founder lo vio navegando el blog por categoria. Estas
+      # dos comprobaciones evitan que vuelva.
+      - name: Tarjetas del blog — autocomprobacion del verificador
+        run: npm run test:blog-cards:selftest
+
+      - name: Tarjetas del blog — sin duplicados ni categorias huerfanas
+        run: npm run test:blog-cards

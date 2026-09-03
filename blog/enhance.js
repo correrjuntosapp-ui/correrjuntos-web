@@ -344,7 +344,11 @@
      sticky + inline + end + exit-intent), este slide-in sería un formulario
      duplicado y una segunda superficie fija — se omite. Desktop intacto. */
   var nlSlideinDuplicated = window.innerWidth < 768 && !!document.querySelector('script[src*="/blog/newsletter.js"]');
-  if(!localStorage.getItem(STORAGE_KEY) && !nlSlideinDuplicated){
+  /* No mostrar si: ya descartado, ya suscrito (clave de newsletter.js), o articulo en modo quiet */
+  var nlQuiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
+  var nlSubscribed = false;
+  try{ nlSubscribed = localStorage.getItem('cj_nl_subscribed') === '1'; }catch(e){}
+  if(!localStorage.getItem(STORAGE_KEY) && !nlSlideinDuplicated && !nlQuiet && !nlSubscribed){
     var cssCta = document.createElement('style');
     cssCta.textContent = [
       '#nl-slidein{position:fixed;bottom:-340px;right:24px;width:360px;background:linear-gradient(160deg,#0f1f3d,#0a1628);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:0;z-index:950;transition:bottom .45s cubic-bezier(.22,.68,0,1.1);box-shadow:0 12px 48px rgba(0,0,0,.6);backdrop-filter:blur(16px);overflow:hidden}',
@@ -394,27 +398,42 @@
 
     var shown = false;
     var dismissed = false;
+    /* Exclusion mutua compartida: max UNA captura flotante de email por sesion */
+    function canShowSlidein(){
+      try{ if(localStorage.getItem('cj_nl_subscribed') === '1') return false; }catch(e){}
+      try{ if(sessionStorage.getItem('cj_email_ui_shown')) return false; }catch(e){}
+      if(document.querySelector('.cj-nl-overlay.show') || document.querySelector('.exit-overlay.open')) return false;
+      return true;
+    }
+    function showSlidein(){
+      /* Resuelto (se muestre o no): limpiar timer y listener de scroll */
+      clearTimeout(nlTimer);
+      window.removeEventListener('scroll', onScrollSlidein);
+      if(!canShowSlidein()){ dismissed = true; return; }
+      shown = true;
+      try{ sessionStorage.setItem('cj_email_ui_shown','1'); }catch(e){}
+      slidein.classList.add('show');
+    }
     // 60-second fallback timer
     var nlTimer = setTimeout(function(){
       if(!dismissed && !shown){
-        shown = true;
-        slidein.classList.add('show');
+        showSlidein();
       }
     }, 60000);
-    window.addEventListener('scroll', function(){
+    function onScrollSlidein(){
       if(dismissed) return;
       var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
       if(pct > 0.85 && !shown){
-        shown = true;
-        slidein.classList.add('show');
-        clearTimeout(nlTimer);
+        showSlidein();
       }
-    }, {passive:true});
+    }
+    window.addEventListener('scroll', onScrollSlidein, {passive:true});
 
     slidein.querySelector('.nl-close').addEventListener('click', function(){
       slidein.classList.remove('show');
       dismissed = true;
       clearTimeout(nlTimer);
+      window.removeEventListener('scroll', onScrollSlidein);
       localStorage.setItem(STORAGE_KEY, '1');
     });
 
@@ -1249,7 +1268,10 @@
   /* ══════════════════════════════════════════════
      17. EXIT INTENT POPUP
      ══════════════════════════════════════════════ */
-  if(!isBlogIndex && !localStorage.getItem('cj_exit_dismissed')){
+  var exitQuiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
+  var exitSubscribed = false;
+  try{ exitSubscribed = localStorage.getItem('cj_nl_subscribed') === '1'; }catch(e){}
+  if(!isBlogIndex && !localStorage.getItem('cj_exit_dismissed') && !exitQuiet && !exitSubscribed){
     var exitShown = false;
     var exitCSS = document.createElement('style');
     exitCSS.textContent = [
@@ -1306,6 +1328,10 @@
 
     exitOverlay.querySelector('.exit-close').addEventListener('click', function(){ closeExit(true); });
     exitOverlay.querySelector('.exit-skip').addEventListener('click', function(){ closeExit(true); });
+    /* Escape cierra tambien este modal mientras este abierto */
+    document.addEventListener('keydown', function(e){
+      if((e.key === 'Escape' || e.keyCode === 27) && exitOverlay.classList.contains('open')) closeExit(true);
+    });
 
     exitOverlay.querySelector('button:not(.exit-close):not(.exit-skip)').addEventListener('click', function(){
       var email = exitOverlay.querySelector('input').value.trim();
@@ -1317,21 +1343,34 @@
       trackEvent('exit_intent_subscribe', {article_slug: slug});
     });
 
+    /* Exclusion mutua compartida: max UNA captura flotante de email por sesion */
+    function canShowExitOverlay(){
+      try{ if(localStorage.getItem('cj_nl_subscribed') === '1') return false; }catch(e){}
+      try{ if(sessionStorage.getItem('cj_email_ui_shown')) return false; }catch(e){}
+      if(document.querySelector('.cj-nl-overlay.show') || document.querySelector('#nl-slidein.show')) return false;
+      return true;
+    }
+    function resolveExitOverlay(){
+      /* Resuelto (se muestre o no): retirar ambos listeners */
+      document.removeEventListener('mouseleave', onExitMouseLeave);
+      window.removeEventListener('scroll', onExitScroll);
+      exitShown = true;
+      if(!canShowExitOverlay()) return;
+      try{ sessionStorage.setItem('cj_email_ui_shown','1'); }catch(e){}
+      setTimeout(function(){ exitOverlay.classList.add('open'); }, 200);
+      trackEvent('exit_intent_shown', {article_slug: slug});
+    }
     /* Trigger: mouse leaves viewport top (desktop) or 90% scroll (mobile) */
-    document.addEventListener('mouseleave', function(e){
-      if(!exitShown && e.clientY <= 0){
-        exitShown = true;
-        setTimeout(function(){ exitOverlay.classList.add('open'); }, 200);
-        trackEvent('exit_intent_shown', {article_slug: slug});
-      }
-    });
+    function onExitMouseLeave(e){ if(!exitShown && e.clientY <= 0) resolveExitOverlay(); }
+    document.addEventListener('mouseleave', onExitMouseLeave);
     /* Mobile: 90% scroll */
-    window.addEventListener('scroll', function(){
+    function onExitScroll(){
       if(!exitShown){
         var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        if(pct > 0.9){ exitShown = true; exitOverlay.classList.add('open'); }
+        if(pct > 0.9) resolveExitOverlay();
       }
-    }, {passive:true});
+    }
+    window.addEventListener('scroll', onExitScroll, {passive:true});
   }
 
   /* ══════════════════════════════════════════════

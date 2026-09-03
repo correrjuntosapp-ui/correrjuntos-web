@@ -272,19 +272,20 @@
     overlay.className = 'cj-nl-overlay';
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'cj-nl-exit-title');
     overlay.innerHTML =
       '<div class="cj-nl-modal">' +
         '<button class="cj-modal-x" aria-label="Cerrar">×</button>' +
         '<div class="cj-modal-eyebrow">Antes de irte</div>' +
         (IS_CYCLING
-          ? '<h3>La newsletter de <em>CorrerJuntos</em></h3>' +
+          ? '<h3 id="cj-nl-exit-title">La newsletter de <em>CorrerJuntos</em></h3>' +
             '<p>Entrenamiento, equipamiento y comunidad en tu email. Sin spam.</p>' +
             '<ul class="cj-benefits">' +
               '<li>Un email a la semana como máximo</li>' +
               '<li>Contenido de entrenamiento y equipamiento</li>' +
               '<li>Cancela en 1 click cuando quieras</li>' +
             '</ul>'
-          : '<h3>¿Tu plan <em>0→5K</em> en 8 semanas?</h3>' +
+          : '<h3 id="cj-nl-exit-title">¿Tu plan <em>0→5K</em> en 8 semanas?</h3>' +
             '<p>Te mando el plan completo en PDF + 1 artículo de coach cada lunes. Sin spam.</p>' +
             '<ul class="cj-benefits">' +
               '<li>Plan completo de 8 semanas en PDF</li>' +
@@ -304,10 +305,37 @@
     markShownThisSession(STORAGE.EXIT_SESSION);
     track('newsletter_view', { source: 'exit_intent' });
 
+    var prevFocus = document.activeElement;
     function close(){
       overlay.classList.remove('show');
+      document.removeEventListener('keydown', onKey);
       setTimeout(function(){ overlay.remove(); }, 250);
+      if(prevFocus && prevFocus.focus){ try{ prevFocus.focus(); }catch(e){} }
     }
+    // Accesibilidad: Escape cierra (mismo dismiss de 30 dias) y Tab/Shift+Tab quedan dentro del modal
+    function onKey(e){
+      if(e.key === 'Escape' || e.keyCode === 27){
+        dismissFor(STORAGE.EXIT_HIDE_UNTIL, 30);
+        track('newsletter_dismiss', { source: 'exit_intent' });
+        close();
+        return;
+      }
+      if(e.key === 'Tab' || e.keyCode === 9){
+        var focusables = overlay.querySelectorAll('button, input, [href], [tabindex]:not([tabindex="-1"])');
+        if(!focusables.length) return;
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        var inside = overlay.contains(document.activeElement);
+        if(!inside){ e.preventDefault(); first.focus(); return; }
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    }
+    document.addEventListener('keydown', onKey);
+    setTimeout(function(){
+      var inp = overlay.querySelector('input[type=email]');
+      if(inp){ try{ inp.focus(); }catch(e){} }
+    }, 300);
     overlay.querySelector('.cj-modal-x').addEventListener('click', function(){
       dismissFor(STORAGE.EXIT_HIDE_UNTIL, 30);
       track('newsletter_dismiss', { source: 'exit_intent' });
@@ -350,22 +378,35 @@
   function armExitIntent(){
     if(isSubscribed() || isDismissed(STORAGE.EXIT_HIDE_UNTIL)) return;
     var fired = false;
-    function fire(){ if(fired) return; fired = true; buildExitIntent(); }
+    function fire(){
+      if(fired) return;
+      fired = true;
+      // Limpieza: una vez decidido (se muestre o no), los listeners del exit-intent sobran
+      document.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('scroll', onScrollExit);
+      // Recheck en el momento del disparo: pudo suscribirse via barra/inline en esta misma sesion
+      if(isSubscribed()) return;
+      // Exclusion mutua: solo UNA captura flotante de email por sesion (compartida con enhance.js)
+      try{ if(sessionStorage.getItem('cj_email_ui_shown')) return; }catch(e){}
+      if(document.querySelector('#nl-slidein.show') || document.querySelector('.exit-overlay.open')) return;
+      try{ sessionStorage.setItem('cj_email_ui_shown','1'); }catch(e){}
+      buildExitIntent();
+    }
 
     // Desktop: mouse leaves viewport via top
-    document.addEventListener('mouseleave', function(e){
-      if(e.clientY < 10) fire();
-    }, { once: false });
+    function onMouseLeave(e){ if(e.clientY < 10) fire(); }
+    document.addEventListener('mouseleave', onMouseLeave);
 
     // Mobile: 75% scroll depth
     var lastScroll = 0;
-    window.addEventListener('scroll', function(){
+    function onScrollExit(){
       if(fired) return;
       var st = window.pageYOffset || document.documentElement.scrollTop;
       var dh = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
       if(dh > 0 && (st / dh) > 0.75 && st > lastScroll) fire();
       lastScroll = st;
-    }, { passive: true });
+    }
+    window.addEventListener('scroll', onScrollExit, { passive: true });
   }
 
   /* ===================================================================
@@ -462,10 +503,12 @@
     if(!isBlog) return;
 
     injectStyles();
-    buildSticky();
+    // Modo silencioso (articulos de marca/partner): solo inline + end, sin capas flotantes
+    var quiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
+    if(!quiet){ buildSticky(); }
     buildInline();
     buildEnd();
-    armExitIntent();
+    if(!quiet){ armExitIntent(); }
   }
 
   if(document.readyState === 'loading'){

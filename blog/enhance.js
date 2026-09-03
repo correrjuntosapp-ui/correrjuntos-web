@@ -370,7 +370,8 @@
       '#nl-slidein .nl-ok{text-align:center;color:#22c55e;font-weight:700;font-size:.9rem;padding:8px 0}',
       '#nl-slidein .nl-trust{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.3)}',
       '#nl-slidein .nl-trust::before{content:"🔒";font-size:.8rem}',
-      '@media(max-width:640px){#nl-slidein{right:10px;left:10px;width:auto}}'
+      '@media(max-width:640px){#nl-slidein{right:10px;left:10px;width:auto}}',
+      '@media(prefers-reduced-motion:reduce){#nl-slidein{transition:none!important}}'
     ].join('\n');
     document.head.appendChild(cssCta);
 
@@ -401,8 +402,9 @@
     /* Exclusion mutua compartida: max UNA captura flotante de email por sesion */
     function canShowSlidein(){
       try{ if(localStorage.getItem('cj_nl_subscribed') === '1') return false; }catch(e){}
+      try{ if(sessionStorage.getItem('cj_promos_muted') === '1') return false; }catch(e){}
       try{ if(sessionStorage.getItem('cj_email_ui_shown')) return false; }catch(e){}
-      if(document.querySelector('.cj-nl-overlay.show') || document.querySelector('.exit-overlay.open')) return false;
+      if(document.querySelector('.cj-nl-overlay.show')) return false;
       return true;
     }
     function showSlidein(){
@@ -412,6 +414,8 @@
       if(!canShowSlidein()){ dismissed = true; return; }
       shown = true;
       try{ sessionStorage.setItem('cj_email_ui_shown','1'); }catch(e){}
+      /* XOR barra/flotante: mientras hay tarjeta, la barra desaparece el resto de la visita */
+      var barX = document.querySelector('.cj-nl-sticky'); if(barX) barX.remove();
       slidein.classList.add('show');
     }
     // 60-second fallback timer
@@ -435,6 +439,7 @@
       clearTimeout(nlTimer);
       window.removeEventListener('scroll', onScrollSlidein);
       localStorage.setItem(STORAGE_KEY, '1');
+      try{ sessionStorage.setItem('cj_promos_muted','1'); }catch(e){}
     });
 
     slidein.querySelector('.nl-btn').addEventListener('click', function(){
@@ -1266,112 +1271,11 @@
   }
 
   /* ══════════════════════════════════════════════
-     17. EXIT INTENT POPUP
+     17. EXIT INTENT POPUP — ELIMINADO (3 sep 2026)
+     Era un duplicado del exit-popup accesible de newsletter.js.
+     Lo util se porto alli: textos EN + lang dinamico en el POST.
+     Su antigua clave de localStorage queda obsoleta (solo la usaba esta seccion).
      ══════════════════════════════════════════════ */
-  var exitQuiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
-  var exitSubscribed = false;
-  try{ exitSubscribed = localStorage.getItem('cj_nl_subscribed') === '1'; }catch(e){}
-  if(!isBlogIndex && !localStorage.getItem('cj_exit_dismissed') && !exitQuiet && !exitSubscribed){
-    var exitShown = false;
-    var exitCSS = document.createElement('style');
-    exitCSS.textContent = [
-      '.exit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1100;display:none;align-items:center;justify-content:center;padding:16px}',
-      '.exit-overlay.open{display:flex}',
-      '.exit-modal{background:#fff;border-radius:24px;max-width:420px;width:100%;padding:32px 28px;text-align:center;position:relative;animation:exitPop .35s cubic-bezier(.22,.68,0,1.2)}',
-      '@keyframes exitPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}',
-      '.exit-modal .exit-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.3rem;color:#94a3b8;cursor:pointer;line-height:1}',
-      '.exit-modal .exit-close:hover{color:#f97316}',
-      '.exit-icon{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:14px;margin:0 auto 10px;overflow:hidden}',
-      '.exit-icon svg{width:100%;height:100%;display:block}',
-      '.exit-icon-emoji{font-size:2.5rem;width:auto;height:auto;border-radius:0;background:none;display:block}',
-      '.exit-modal h3{font-size:1.2rem;font-weight:800;color:#1a1a2e;margin:0 0 8px;line-height:1.3}',
-      '.exit-modal p{font-size:.88rem;color:#64748b;line-height:1.6;margin:0 0 20px}',
-      '.exit-form{display:flex;gap:8px;margin-bottom:10px}',
-      '.exit-form input{flex:1;padding:11px 14px;border-radius:12px;border:1.5px solid #e2e8f0;font-size:.85rem;outline:none;transition:border-color .2s}',
-      '.exit-form input:focus{border-color:#f97316}',
-      '.exit-form button{padding:11px 18px;border-radius:12px;border:none;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap;transition:transform .2s}',
-      '.exit-form button:hover{transform:scale(1.03)}',
-      '.exit-skip{font-size:.75rem;color:#94a3b8;cursor:pointer;text-decoration:underline;background:none;border:none;margin:0 auto;display:block}',
-      '.exit-skip:hover{color:#f97316}',
-      '.dark-mode .exit-modal{background:#0f1a2e}',
-      '.dark-mode .exit-modal h3{color:#fef3c7}',
-      '.dark-mode .exit-form input{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#fff}'
-    ].join('\n');
-    document.head.appendChild(exitCSS);
-
-    var exitOverlay = document.createElement('div');
-    exitOverlay.className = 'exit-overlay';
-    exitOverlay.innerHTML =
-      '<div class="exit-modal">' +
-        '<button class="exit-close">&times;</button>' +
-        '<span class="exit-icon" aria-label="CorrerJuntos">' +
-          '<svg viewBox="0 0 512 512">' +
-            '<rect width="512" height="512" rx="96" fill="#0f1729"/>' +
-            '<text x="50%" y="51%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="208" fill="#fff" letter-spacing="-8">CJ</text>' +
-            '<rect x="166" y="380" width="180" height="20" rx="10" fill="#f97316"/>' +
-          '</svg>' +
-        '</span>' +
-        '<h3>'+(isEN?'Wait! Get our free running guide':'¡Espera! Llévate nuestra guía gratis')+'</h3>' +
-        '<p>'+(isEN?'Join 2,400+ runners who get weekly tips on training, shoes & nutrition.':'Únete a 2.400+ runners que reciben cada semana consejos de entrenamiento, zapatillas y nutrición.')+'</p>' +
-        '<div class="exit-form">' +
-          '<input type="email" placeholder="'+(isEN?'your@email.com':'tu@email.com')+'" aria-label="Email">' +
-          '<button>'+(isEN?'Get guide':'Quiero')+'</button>' +
-        '</div>' +
-        '<button class="exit-skip">'+(isEN?'No thanks, I\'ll pass':'No gracias, paso')+'</button>' +
-      '</div>';
-    document.body.appendChild(exitOverlay);
-
-    function closeExit(permanent){
-      exitOverlay.classList.remove('open');
-      if(permanent) localStorage.setItem('cj_exit_dismissed','1');
-    }
-
-    exitOverlay.querySelector('.exit-close').addEventListener('click', function(){ closeExit(true); });
-    exitOverlay.querySelector('.exit-skip').addEventListener('click', function(){ closeExit(true); });
-    /* Escape cierra tambien este modal mientras este abierto */
-    document.addEventListener('keydown', function(e){
-      if((e.key === 'Escape' || e.keyCode === 27) && exitOverlay.classList.contains('open')) closeExit(true);
-    });
-
-    exitOverlay.querySelector('button:not(.exit-close):not(.exit-skip)').addEventListener('click', function(){
-      var email = exitOverlay.querySelector('input').value.trim();
-      if(!email || email.indexOf('@')<1) return;
-      fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,lang:isEN?'en':'es',source:'exit-intent-'+slug})})
-        .catch(function(){});
-      exitOverlay.querySelector('.exit-modal').innerHTML = '<span class="exit-icon-emoji">\uD83C\uDF89</span><h3 style="color:#16a34a">'+(isEN?'You\'re in!':'¡Ya estás dentro!')+'</h3><p>'+(isEN?'Check your inbox for a welcome email.':'Revisa tu email, te hemos enviado la bienvenida.')+'</p>';
-      setTimeout(function(){ closeExit(true); }, 2500);
-      trackEvent('exit_intent_subscribe', {article_slug: slug});
-    });
-
-    /* Exclusion mutua compartida: max UNA captura flotante de email por sesion */
-    function canShowExitOverlay(){
-      try{ if(localStorage.getItem('cj_nl_subscribed') === '1') return false; }catch(e){}
-      try{ if(sessionStorage.getItem('cj_email_ui_shown')) return false; }catch(e){}
-      if(document.querySelector('.cj-nl-overlay.show') || document.querySelector('#nl-slidein.show')) return false;
-      return true;
-    }
-    function resolveExitOverlay(){
-      /* Resuelto (se muestre o no): retirar ambos listeners */
-      document.removeEventListener('mouseleave', onExitMouseLeave);
-      window.removeEventListener('scroll', onExitScroll);
-      exitShown = true;
-      if(!canShowExitOverlay()) return;
-      try{ sessionStorage.setItem('cj_email_ui_shown','1'); }catch(e){}
-      setTimeout(function(){ exitOverlay.classList.add('open'); }, 200);
-      trackEvent('exit_intent_shown', {article_slug: slug});
-    }
-    /* Trigger: mouse leaves viewport top (desktop) or 90% scroll (mobile) */
-    function onExitMouseLeave(e){ if(!exitShown && e.clientY <= 0) resolveExitOverlay(); }
-    document.addEventListener('mouseleave', onExitMouseLeave);
-    /* Mobile: 90% scroll */
-    function onExitScroll(){
-      if(!exitShown){
-        var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        if(pct > 0.9) resolveExitOverlay();
-      }
-    }
-    window.addEventListener('scroll', onExitScroll, {passive:true});
-  }
 
   /* ══════════════════════════════════════════════
      18. READING HISTORY (localStorage)

@@ -30,6 +30,11 @@
    * En rutas /blog/ciclismo* no ofrecemos el Plan 0→5K (running): promesa
    * honesta y genérica de la newsletter, sin lead magnet inexistente. */
   var IS_CYCLING = location.pathname.indexOf('/blog/ciclismo') === 0;
+  /* EN (portado del popup de salida eliminado de enhance.js): popup y POST localizados */
+  var IS_EN = location.pathname.indexOf('/blog/en/') === 0;
+  /* Cerrar CUALQUIER promo de newsletter silencia todas las flotantes el resto de la sesion */
+  function promosMuted(){ try{ return sessionStorage.getItem('cj_promos_muted') === '1'; }catch(e){ return false; } }
+  function mutePromos(){ try{ sessionStorage.setItem('cj_promos_muted','1'); }catch(e){} }
 
   /* ── State ── */
   var STORAGE = {
@@ -76,7 +81,7 @@
     return fetch('/api/brevo-subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, lang: 'es', source: source || 'blog-newsletter' })
+      body: JSON.stringify({ email: email, lang: IS_EN ? 'en' : 'es', source: source || 'blog-newsletter' })
     });
   }
 
@@ -102,6 +107,7 @@
       '.cj-nl-sticky .cj-close:hover{color:#fff}',
       '.cj-nl-sticky .cj-msg-ok{color:#4ade80;font-weight:600;font-size:.85rem}',
       '@media(max-width:640px){.cj-nl-sticky{font-size:.78rem;padding:8px 12px}.cj-nl-sticky input{width:140px;font-size:.78rem;padding:6px 10px}.cj-nl-sticky button{font-size:.78rem;padding:6px 12px}}',
+      '@media(prefers-reduced-motion:reduce){.cj-nl-sticky,.cj-nl-overlay,.cj-nl-modal,.cj-nl-modal button[type=submit]{transition:none!important}.cj-nl-overlay.show .cj-nl-modal{transform:none}}',
 
       /* Exit-intent popup */
       '.cj-nl-overlay{position:fixed;inset:0;background:rgba(11,18,32,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .25s;pointer-events:none}',
@@ -213,6 +219,9 @@
   function buildSticky(){
     if(isSubscribed()) return;
     if(isDismissed(STORAGE.STICKY_HIDE_UNTIL)) return;
+    if(promosMuted()) return;
+    /* XOR barra/flotante: si en esta visita ya salio una ventana flotante, la barra no vuelve */
+    try{ if(sessionStorage.getItem('cj_email_ui_shown')) return; }catch(e){}
     /* Prioridad móvil: Smart App Banner nativo > CTA de app propio > newsletter.
        En viewport móvil la barra de newsletter no compite con una promoción de
        app en el primer viewport: si iOS Safari puede mostrar el banner nativo
@@ -254,6 +263,7 @@
 
     bar.querySelector('.cj-close').addEventListener('click', function(){
       dismissFor(STORAGE.STICKY_HIDE_UNTIL, 7);
+      mutePromos();
       track('newsletter_dismiss', { source: 'sticky' });
       bar.classList.remove('show');
       setTimeout(function(){ bar.remove(); }, 400);
@@ -276,8 +286,16 @@
     overlay.innerHTML =
       '<div class="cj-nl-modal">' +
         '<button class="cj-modal-x" aria-label="Cerrar">×</button>' +
-        '<div class="cj-modal-eyebrow">Antes de irte</div>' +
-        (IS_CYCLING
+        '<div class="cj-modal-eyebrow">' + (IS_EN ? 'Before you go' : 'Antes de irte') + '</div>' +
+        (IS_EN
+          ? '<h3 id="cj-nl-exit-title">The <em>CorrerJuntos</em> newsletter</h3>' +
+            '<p>Training, gear and community in your inbox. No spam.</p>' +
+            '<ul class="cj-benefits">' +
+              '<li>One email per week at most</li>' +
+              '<li>Training and gear content</li>' +
+              '<li>Unsubscribe in 1 click anytime</li>' +
+            '</ul>'
+          : IS_CYCLING
           ? '<h3 id="cj-nl-exit-title">La newsletter de <em>CorrerJuntos</em></h3>' +
             '<p>Entrenamiento, equipamiento y comunidad en tu email. Sin spam.</p>' +
             '<ul class="cj-benefits">' +
@@ -294,13 +312,15 @@
             '</ul>') +
         '<form>' +
           '<input type="email" required placeholder="tu@email.com" aria-label="Email">' +
-          '<button type="submit">' + (IS_CYCLING ? 'Quiero la newsletter' : 'Quiero el plan gratis') + '</button>' +
-          '<button type="button" class="cj-modal-skip">No me interesa</button>' +
+          '<button type="submit">' + (IS_EN ? 'I want in' : IS_CYCLING ? 'Quiero la newsletter' : 'Quiero el plan gratis') + '</button>' +
+          '<button type="button" class="cj-modal-skip">' + (IS_EN ? 'Not interested' : 'No me interesa') + '</button>' +
         '</form>' +
-        '<div class="cj-modal-foot">Gratis · sin spam · baja en 1 clic</div>' +
+        '<div class="cj-modal-foot">' + (IS_EN ? 'Free · no spam · 1-click unsubscribe' : 'Gratis · sin spam · baja en 1 clic') + '</div>' +
       '</div>';
 
     document.body.appendChild(overlay);
+    /* XOR: mientras hay ventana flotante, la barra desaparece el resto de la visita */
+    var bar0 = document.querySelector('.cj-nl-sticky'); if(bar0) bar0.remove();
     requestAnimationFrame(function(){ overlay.classList.add('show'); });
     markShownThisSession(STORAGE.EXIT_SESSION);
     track('newsletter_view', { source: 'exit_intent' });
@@ -316,6 +336,7 @@
     function onKey(e){
       if(e.key === 'Escape' || e.keyCode === 27){
         dismissFor(STORAGE.EXIT_HIDE_UNTIL, 30);
+      mutePromos();
         track('newsletter_dismiss', { source: 'exit_intent' });
         close();
         return;
@@ -338,17 +359,20 @@
     }, 300);
     overlay.querySelector('.cj-modal-x').addEventListener('click', function(){
       dismissFor(STORAGE.EXIT_HIDE_UNTIL, 30);
+      mutePromos();
       track('newsletter_dismiss', { source: 'exit_intent' });
       close();
     });
     overlay.querySelector('.cj-modal-skip').addEventListener('click', function(){
       dismissFor(STORAGE.EXIT_HIDE_UNTIL, 30);
+      mutePromos();
       track('newsletter_dismiss', { source: 'exit_intent' });
       close();
     });
     overlay.addEventListener('click', function(e){
       if(e.target === overlay){
         dismissFor(STORAGE.EXIT_HIDE_UNTIL, 30);
+      mutePromos();
         track('newsletter_dismiss', { source: 'exit_intent' });
         close();
       }
@@ -386,9 +410,10 @@
       window.removeEventListener('scroll', onScrollExit);
       // Recheck en el momento del disparo: pudo suscribirse via barra/inline en esta misma sesion
       if(isSubscribed()) return;
+      if(promosMuted()) return;
       // Exclusion mutua: solo UNA captura flotante de email por sesion (compartida con enhance.js)
       try{ if(sessionStorage.getItem('cj_email_ui_shown')) return; }catch(e){}
-      if(document.querySelector('#nl-slidein.show') || document.querySelector('.exit-overlay.open')) return;
+      if(document.querySelector('#nl-slidein.show')) return;
       try{ sessionStorage.setItem('cj_email_ui_shown','1'); }catch(e){}
       buildExitIntent();
     }
@@ -456,15 +481,36 @@
    * =================================================================== */
   function buildEnd(){
     if(isSubscribed()) return;
+    /* Guarda por ID: nunca duplicado, aunque related.js inyecte su seccion tarde */
+    if(document.getElementById('cj-nl-end')) return;
 
-    var related = document.querySelector('.related');
-    if(!related) return;
-
-    // Skip if already a similar block exists nearby
-    if(related.previousElementSibling && related.previousElementSibling.classList && related.previousElementSibling.classList.contains('cj-nl-end')) return;
+    /* Anclaje estable (regla editorial 3 sep):
+       1) .related (estatica en el HTML) o .related-section (inyectada por related.js)
+       2) h2 de secciones manuales ES/EN, por id estructural — no por texto visible
+       3) ultimo bloque manual .related-links
+       4) ultimo recurso: antes del bloque de autor; si no, al final de .content */
+    var anchor = document.querySelector('.related, .related-section') ||
+      document.querySelector('h2#sigue-leyendo, h2#relacionados, h2#related, h2#keep-reading, h2#related-articles');
+    if(!anchor){
+      var rls = document.querySelectorAll('.related-links');
+      if(rls.length) anchor = rls[rls.length - 1];
+    }
+    if(!anchor) anchor = document.querySelector('.author-card');
+    var alFinal = false;
+    if(!anchor){
+      /* Reintento LIMITADO: related.js/author.js pueden inyectar tarde. Se detiene
+         al insertar (guarda por ID arriba) o al agotarse (~10s); una suscripcion
+         tambien lo corta en el primer return. */
+      buildEnd._tries = (buildEnd._tries || 0) + 1;
+      if(buildEnd._tries <= 20){ setTimeout(buildEnd, 500); return; }
+      anchor = document.querySelector('.content') || document.querySelector('article');
+      if(!anchor) return;
+      alFinal = true;
+    }
 
     var box = document.createElement('div');
     box.className = 'cj-nl-end';
+    box.id = 'cj-nl-end';
     box.innerHTML =
       '<div class="cj-eyebrow">Newsletter</div>' +
       (IS_CYCLING
@@ -479,7 +525,8 @@
       '</form>' +
       '<div class="cj-foot">Gratis para siempre · baja en 1 clic</div>';
 
-    related.parentNode.insertBefore(box, related);
+    if(alFinal) anchor.appendChild(box);
+    else anchor.parentNode.insertBefore(box, anchor);
     track('newsletter_view', { source: 'end_article' });
 
     var form = box.querySelector('form');
@@ -505,10 +552,12 @@
     injectStyles();
     // Modo silencioso (articulos de marca/partner): solo inline + end, sin capas flotantes
     var quiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
-    if(!quiet){ buildSticky(); }
+    // Movil: SOLO promo fija de app (enhance.js) + formularios integrados — cero popups/barras de email
+    var movil = window.innerWidth < 768;
+    if(!quiet && !movil){ buildSticky(); }
     buildInline();
     buildEnd();
-    if(!quiet){ armExitIntent(); }
+    if(!quiet && !movil){ armExitIntent(); }
   }
 
   if(document.readyState === 'loading'){

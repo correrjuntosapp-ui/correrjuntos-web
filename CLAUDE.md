@@ -16,6 +16,64 @@
 
 ---
 
+## 📌 POR DÓNDE VAMOS — cierre sesión 26 ago 2026 (leer al volver)
+
+**Resumen para retomar**: hoy se cerró el blog (día completo, todo mergeado y
+desplegado en Vercel) y se dejó decidida la dirección de producto de la app.
+
+### ✅ Hecho hoy (todo en master, PRs #95–#108)
+
+**Blog (cerrado por hoy):**
+1. **Portada `/blog` = SOLO running.** El ciclismo vive en `/blog/ciclismo`
+   (hub propio), accesible por tab superior "Ciclismo · Nuevo" + teaser. Sin
+   "Todos" global que mezcle deportes. Misma lógica ES/EN.
+2. **Banners móvil arreglados**: nunca 2 promos de app a la vez. Prioridad
+   Smart App Banner nativo iOS > CTA custom > newsletter; máx 1 superficie
+   fija (`window.__cjNativeAppBanner` en enhance.js + gate en newsletter.js).
+3. **Portada v3 rediseño mobile-first** (hero claro con destacada overlay,
+   objetivos arriba, best-rail imprescindibles, teaser ciclismo, chips móvil).
+   ⏳ Pendiente portarla a `/blog/en/`.
+4. **Hub ciclismo Fase 1**: secciones Tecnología y Suplementación añadidas,
+   chip-nav por anclas, fotos de cards corregidas (GPS→Edge 850, creatina→
+   Prozis por orden explícita del founder, nutrición→dátiles).
+5. **Pipeline de fotos de producto por GitHub Actions** (el sandbox no tiene
+   salida a Amazon): workflow `fetch-product-images.yml` + fetcher hardened
+   `tools/fetch-product-images.cjs` + batches en `tools/product-image-batches/`.
+   Primer batch ciclocomputadores: **9/9 ASINs descargados y verificados
+   visualmente** en `public/blog-images/ciclismo/productos/`. Edge 850 aplicado
+   a card + hero + og:image del artículo (norma 3b cumplida en ese artículo).
+6. **Normas memorizadas**: §3b foto producto Nº1 en card+entrada+og (backlog
+   ~39 rankings ES pendientes) y §3c roadmap paridad ciclismo (anti-thin ≥3-4).
+
+**App (decisión estratégica, sin código):**
+7. **Visión multideporte memorizada** (sección 🏗️): running + fuerza + ciclismo
+   en UNA plataforma con el deporte como dimensión. **Orden decidido: FUERZA
+   antes que ciclismo** (fases 1-2 fuerza, 3-4 ciclismo, con gates). Ver sección
+   completa más abajo.
+
+### ⏭️ Siguiente paso al retomar
+
+- **Sesión de app → Fase 0**: mockup de la **pantalla principal "Hoy"**,
+  diseñada multideporte-ready (con la fuerza ya dentro del diseño aunque solo
+  running esté vivo). Antes/en paralelo: revisar salud de la app running y
+  cerrar onboarding de los clubs en conversación.
+- **Blog (cuando toque, no urgente)**: siguientes batches de fotos Nº1 vía el
+  workflow de Actions (+verificación visual SIEMPRE antes de aplicar); portar
+  portada v3 a EN + migrar ~50 hotlinks del índice EN; Fase 2 editorial
+  ciclismo (rellenar Rutas/Nutrición/Salud/Carreras hasta ≥4); refresh "empezar
+  a correr desde cero" a primeros de septiembre.
+
+### ⚠️ Restricciones vigentes de la sesión
+
+- NO IndexNow ni regeneración de sitemaps sin pedirlo explícitamente.
+- CI `build-and-test` sale `cancelled` en TODOS los pushes a master desde ~18
+  ago: incidencia histórica (suite E2E obsoleta de 40 tests vs timeout 15 min),
+  NO es culpa de ningún cambio nuevo. Lint+Build sí pasan.
+- Quedan worktrees `/home/user/cj-*` en el sandbox del agente (sin efecto en
+  el repo; las ramas ya están mergeadas).
+
+---
+
 ## 📡 Canales institucionales (15 may 2026)
 
 - **LinkedIn Company Page**: https://www.linkedin.com/company/correrjuntos/
@@ -503,6 +561,62 @@ Si el founder pregunta "¿qué piensas?", Claude responde HONESTO incluso si dis
 
 ---
 
+## 🏗️ VISIÓN APP MULTIDEPORTE — running + fuerza + ciclismo (memorizado 26 ago 2026)
+
+**Visión del founder** (26 ago 2026): que CorrerJuntos llegue a ser una app de
+**running (entrenamientos + quedadas), ciclismo (entrenamientos + quedadas) y
+entrenamiento de fuerza / atleta híbrido**. Estado: visión de destino aceptada
+como norte de producto — **la ejecución va por fases, nada se construye de golpe**.
+
+### Principio arquitectónico (recomendación experta aceptada)
+
+**Una sola plataforma donde el deporte es una DIMENSIÓN de los datos, no tres
+apps paralelas.** Nunca duplicar pantallas/motores por deporte:
+- `quedadas` → columna `deporte` (default `'correr'`, migration no destructiva)
+  + filtro en MapScreen/cards. OTA-only, sin build nativo.
+- Motor de planes (sessions + steps) → ya es casi agnóstico al deporte. La única
+  extensión real la pide la fuerza: steps tipo ejercicio con **sets / reps /
+  descanso / carga** además de los steps por duración/ritmo actuales.
+- Home = "**Hoy**": un feed unificado que mezcla lo que toque hoy (rodaje, sesión
+  de fuerza, salida en bici, quedada cercana) — NO tabs por deporte.
+- Coach Jose único para todo (contexto multideporte en el prompt), no un coach
+  por vertical.
+
+### Orden de ejecución (decidido 26 ago 2026)
+
+**FUERZA ANTES QUE CICLISMO.** Razones memorizadas: la fuerza es para los ~690
+users que YA existen (runners), ataca la métrica rota (conversión 0.7% — planes
+de fuerza premium-only = razón visible de pago), monta la ola "atleta híbrido"
+casi vacía en español (posible **wedge/identidad**: "la app del atleta híbrido
+en español"), reutiliza el motor de planes y es OTA-able. El ciclismo hoy es
+~2% de la actividad (41 actividades / 12 users en 60d).
+
+| Fase | Qué | Gate para arrancar |
+|---|---|---|
+| 0 | Prerequisitos: revisar salud app running · cerrar onboarding clubs en conversación · **diseñar la pantalla principal** (multideporte-ready, con la fuerza YA dentro del diseño) | — (es lo primero) |
+| 1 | **Fuerza v1**: planes "fuerza para corredores" (2-3 planes, premium-only), extensión del motor sets/reps/descanso, librería de ejercicios text-first + imágenes | Fase 0 hecha |
+| 2 | **Fuerza v2**: planes atleta híbrido (correr+fuerza combinados) | Tracción v1 (uso + conversión) |
+| 3 | **Quedadas de ciclismo**: columna `deporte` + filtro mapa (color bici #0066FF) | Outreach a grupetas lo justifique |
+| 4 | **Planes de ciclismo** | Umbral: bici ≥10% de actividades, O 40+ users bici/60d, O 3+ grupetas partner (hoy: 2% / 12 / 0 — ninguno se cumple) |
+
+### Advertencias honestas (no olvidar)
+
+1. **El coste grande de la fuerza NO es código, es contenido**: librería de
+   ejercicios con técnica correcta. v1 text-first + imágenes propias/licenciadas;
+   NO grabar vídeos ni comprar packs de animaciones hasta validar uso.
+2. Cada vertical multiplica contenido, QA y soporte para un solo founder con
+   ~57€/mes de revenue. Por eso los gates: no se abre una fase sin cerrar la anterior.
+3. La marca "CorrerJuntos" no se toca ahora. Framing v1: "fuerza para correr
+   mejor" (coherente con la marca); "atleta híbrido" es el framing v2 si la
+   fuerza tracciona.
+4. Sinergia blog: cluster "fuerza para corredores / atleta híbrido" (search
+   volume alto, competencia baja en ES, afiliados naturales: mancuernas,
+   kettlebells, bandas) — alimenta el mismo funnel.
+5. Sigue vigente el NORTE: los clubs son el camino a 1.000€/mes. Producto
+   multideporte no salta por delante del outreach B2B.
+
+---
+
 ## Reglas Inamovibles
 
 - **NUNCA** modificar archivos existentes que funcionen sin permiso explícito
@@ -537,6 +651,71 @@ Cuando crees o actualices CUALQUIER artículo del blog, debe incluir:
 - [ ] Imagen wrapped en `<a>` afiliado para que la imagen también convierta
 - [ ] `loading="lazy"` excepto hero image (que va con `fetchpriority="high"`)
 - [ ] Width + height explícitos para evitar CLS
+
+### 3c. 🗺️ ROADMAP — Paridad de la vertical Ciclismo con Running (memorizado 26 ago 2026)
+
+**Objetivo del founder**: que `/blog/ciclismo` llegue a parecerse a la portada de
+running — con sus categorías (entrenamiento, nutrición, equipamiento, tecnología,
+zapatillas, salud, rutas, suplementación, carreras) — **poco a poco, no de golpe**.
+
+**Regla anti-thin-content**: una categoría NO se muestra en el hub hasta tener
+**≥3-4 artículos**. Nunca crear páginas/secciones de categoría casi vacías.
+
+**Estado al memorizar (23 artículos)**:
+| Categoría | Nº | Estado |
+|---|---|---|
+| Equipamiento | 7 | ✅ lista (primera salida, invierno, cascos, 3 bicis 2027, zapatillas auto vs planas) |
+| Suplementación | 6 | ✅ lista (creatina, electrolitos, geles, magnesio, omega-3, proteínas) |
+| Tecnología | 3 | ✅ justa (GPS, potenciómetros, luces) |
+| Entrenamiento | 3 | ✅ justa (principiantes, correr+bici, pinchazos) |
+| Rutas | 2 | ⏳ faltan ≥2 (hub rutas + rutas fáciles ciudad) |
+| Nutrición | 1 | ⏳ faltan ≥2 (salidas largas) |
+| Salud | 1 | ⏳ faltan ≥2 (dolor espalda/postura) |
+| Comunidad/Grupetas | 1 | ⏳ (encontrar grupeta) |
+| Zapatillas | 1 | ⏳ (hoy dentro de equipamiento) |
+| Carreras | 0 | ⏳ marchas cicloturistas con tirón SEO: Quebrantahuesos, etc. |
+
+**Fases**:
+1. **Navegación por categorías en el hub** con las 4 que ya tienen masa
+   (Equipamiento, Suplementación, Tecnología, Entrenamiento) — como
+   filtros/secciones del propio hub, sin páginas nuevas.
+2. **Calendario editorial** para rellenar las flacas hasta ≥4: Rutas, Nutrición,
+   Salud, Carreras (cicloturistas). Cada artículo nuevo sigue la norma 3b
+   (foto producto Nº1) y los playbooks existentes.
+3. **Paridad de portada**: cuando el hub ronde 50-60 artículos, replicar la
+   estructura de la portada v3 de running (destacada overlay, objetivos,
+   selección, imprescindibles, buscador).
+
+### 3b. ⚠️ NORMA — Foto del producto Nº1 en card y entrada (memorizado 26 ago 2026)
+
+Regla del founder, aplica a TODO artículo de ranking/afiliado ("los 10 mejores X",
+"mejores X 2026"...) de CUALQUIER vertical (running, ciclismo, suplementación...):
+
+1. **La foto del producto Nº1 del ranking** es la imagen de:
+   - la **card** del artículo en el índice del blog (ES, EN y `blog/page/N`), y
+   - la **entrada/hero** del propio artículo (+ su `og:image`).
+   Ejemplos: ciclocomputadores → foto del Garmin Edge 850 (Nº1); proteínas →
+   foto de la proteína Nº1; creatina → ídem. SIEMPRE.
+2. **Ninguna card puede quedar sin foto de artículo**: ni hotlinks a CDNs de
+   terceros (rotan/bloquean → card vacía), ni ilustraciones SVG planas como
+   única imagen, ni og:image en SVG (WhatsApp/FB no lo renderizan → preview
+   sin imagen). Foto self-hosted verificada visualmente, siempre.
+3. **Ninguna foto repetida entre cards** del índice (tampoco dos tomas casi
+   idénticas de la misma sesión de stock).
+4. La foto del producto se obtiene con el playbook de la sección 12 (hiRes de
+   la ficha Amazon, verificación visual, self-host en el dir de la vertical,
+   p. ej. `public/blog-images/ciclismo/productos/{ASIN}.jpg`).
+5. Si al publicar aún no hay foto del producto Nº1 (p. ej. entorno sin salida
+   a Amazon), usar foto local temática como PROVISIONAL y dejar el artículo
+   apuntado en el backlog de "fotos producto Nº1 pendientes" — no es estado
+   final aceptable.
+
+Estado al memorizar (26 ago 2026): ~40 rankings del índice ES siguen con foto
+genérica/hero en la card en vez del producto Nº1 (los 9 ASINs de
+ciclocomputadores sin descargar en `productos/`; proteínas, creatinas, relojes
+GPS, auriculares, zapatillas, luces/cascos ciclismo, bicis 2027...). El índice
+EN arrastra además ~50 imágenes hotlinkeadas (Amazon/Unsplash) por migrar a
+self-hosted.
 
 ### 4. Iconos (CRÍTICO — pro look)
 - [ ] **NUNCA** emojis decorativos (👟⌚🎧💧👕🏔️🥤🧘🎯🆕📋✅❌)

@@ -95,6 +95,33 @@ function buildPage({ cfg, pageNum, totalPages, cards }) {
         isPartOf: { '@id': 'https://www.correrjuntos.com/#website' },
         inLanguage: isEN ? 'en' : 'es-ES'
       },
+      // WebSite y Organization deben ir definidos aqui: la CollectionPage los
+      // referencia por @id y, sin su nodo, Google se encuentra un isPartOf que no
+      // resuelve. Search Console lo reporto en agosto de 2026 sobre las 22 paginas
+      // que genera este script.
+      {
+        '@type': 'WebSite',
+        '@id': 'https://www.correrjuntos.com/#website',
+        url: 'https://www.correrjuntos.com/',
+        name: 'CorrerJuntos',
+        publisher: { '@id': 'https://www.correrjuntos.com/#organization' },
+        inLanguage: isEN ? 'en' : 'es'
+      },
+      {
+        '@type': 'Organization',
+        '@id': 'https://www.correrjuntos.com/#organization',
+        name: 'CorrerJuntos',
+        url: 'https://www.correrjuntos.com/',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://www.correrjuntos.com/icons/icon-512.png'
+        },
+        sameAs: [
+          'https://www.instagram.com/correrjuntosapp/',
+          'https://x.com/CorrerJuntos',
+          'https://www.tiktok.com/@correrjuntosapp'
+        ]
+      },
       {
         '@type': 'BreadcrumbList',
         '@id': canonical + '#breadcrumbs',

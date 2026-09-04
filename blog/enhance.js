@@ -292,6 +292,7 @@
       '.share-btn--wa{color:#25d366;border-color:rgba(37,211,102,.2)}.share-btn--wa:hover{background:rgba(37,211,102,.06)}',
       '.share-btn--tw{color:#1da1f2;border-color:rgba(29,161,242,.2)}.share-btn--tw:hover{background:rgba(29,161,242,.06)}',
       '.share-btn--fb{color:#1877f2;border-color:rgba(24,119,242,.2)}.share-btn--fb:hover{background:rgba(24,119,242,.06)}',
+      '.share-btn--pin{color:#e60023;border-color:rgba(230,0,35,.2)}.share-btn--pin:hover{background:rgba(230,0,35,.06)}',
       '.share-btn--copy{color:#f97316;border-color:rgba(249,115,22,.2)}.share-btn--copy:hover{background:rgba(249,115,22,.06)}',
       '.dark-mode .share-bar{border-top-color:rgba(255,255,255,.06)}',
       '.dark-mode .share-bar-label{color:#94a3b8}',
@@ -302,6 +303,12 @@
     var url = encodeURIComponent(window.location.href);
     var title = encodeURIComponent(document.title);
     var shareLabel = isEN ? 'Share' : 'Compartir';
+
+    var ogImgEl = document.querySelector('meta[property="og:image"]');
+    var ogDescEl = document.querySelector('meta[property="og:description"]');
+    var pinMedia = encodeURIComponent(ogImgEl ? ogImgEl.content : '');
+    var pinDesc = encodeURIComponent((ogDescEl && ogDescEl.content) || document.title);
+    var pinLabel = isEN ? 'Save to Pinterest' : 'Guardar en Pinterest';
 
     var bar = document.createElement('div');
     bar.className = 'share-bar';
@@ -316,6 +323,9 @@
       '<a class="share-btn share-btn--fb" href="https://www.facebook.com/sharer/sharer.php?u=' + url + '" target="_blank" rel="noopener noreferrer nofollow">' +
         '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>' +
         'Facebook</a>' +
+      '<a class="share-btn share-btn--pin" href="https://www.pinterest.com/pin/create/button/?url=' + url + '&media=' + pinMedia + '&description=' + pinDesc + '" target="_blank" rel="noopener noreferrer nofollow" aria-label="' + pinLabel + '">' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>' +
+        'Pinterest</a>' +
       '<button class="share-btn share-btn--copy" onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.innerHTML=\'<svg width=14 height=14 viewBox=&quot;0 0 24 24&quot; fill=none stroke=currentColor stroke-width=2><path stroke-linecap=round stroke-linejoin=round d=&quot;M5 13l4 4L19 7&quot;/></svg> ' + (isEN?'Copied':'Copiado') + '\'}.bind(this))">' +
         '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>' +
         (isEN ? 'Copy link' : 'Copiar enlace') + '</button>';
@@ -330,7 +340,15 @@
      3. NEWSLETTER SLIDE-IN CTA (at 60% scroll)
      ══════════════════════════════════════════════ */
   var STORAGE_KEY = 'cj_newsletter_dismissed';
-  if(!localStorage.getItem(STORAGE_KEY)){
+  /* En móvil, si la página ya carga el sistema de newsletter (newsletter.js:
+     sticky + inline + end + exit-intent), este slide-in sería un formulario
+     duplicado y una segunda superficie fija — se omite. Desktop intacto. */
+  var nlSlideinDuplicated = window.innerWidth < 768 && !!document.querySelector('script[src*="/blog/newsletter.js"]');
+  /* No mostrar si: ya descartado, ya suscrito (clave de newsletter.js), o articulo en modo quiet */
+  var nlQuiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
+  var nlSubscribed = false;
+  try{ nlSubscribed = localStorage.getItem('cj_nl_subscribed') === '1'; }catch(e){}
+  if(!localStorage.getItem(STORAGE_KEY) && !nlSlideinDuplicated && !nlQuiet && !nlSubscribed){
     var cssCta = document.createElement('style');
     cssCta.textContent = [
       '#nl-slidein{position:fixed;bottom:-340px;right:24px;width:360px;background:linear-gradient(160deg,#0f1f3d,#0a1628);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:0;z-index:950;transition:bottom .45s cubic-bezier(.22,.68,0,1.1);box-shadow:0 12px 48px rgba(0,0,0,.6);backdrop-filter:blur(16px);overflow:hidden}',
@@ -352,7 +370,8 @@
       '#nl-slidein .nl-ok{text-align:center;color:#22c55e;font-weight:700;font-size:.9rem;padding:8px 0}',
       '#nl-slidein .nl-trust{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.3)}',
       '#nl-slidein .nl-trust::before{content:"🔒";font-size:.8rem}',
-      '@media(max-width:640px){#nl-slidein{right:10px;left:10px;width:auto}}'
+      '@media(max-width:640px){#nl-slidein{right:10px;left:10px;width:auto}}',
+      '@media(prefers-reduced-motion:reduce){#nl-slidein{transition:none!important}}'
     ].join('\n');
     document.head.appendChild(cssCta);
 
@@ -380,28 +399,47 @@
 
     var shown = false;
     var dismissed = false;
+    /* Exclusion mutua compartida: max UNA captura flotante de email por sesion */
+    function canShowSlidein(){
+      try{ if(localStorage.getItem('cj_nl_subscribed') === '1') return false; }catch(e){}
+      try{ if(sessionStorage.getItem('cj_promos_muted') === '1') return false; }catch(e){}
+      try{ if(sessionStorage.getItem('cj_email_ui_shown')) return false; }catch(e){}
+      if(document.querySelector('.cj-nl-overlay.show')) return false;
+      return true;
+    }
+    function showSlidein(){
+      /* Resuelto (se muestre o no): limpiar timer y listener de scroll */
+      clearTimeout(nlTimer);
+      window.removeEventListener('scroll', onScrollSlidein);
+      if(!canShowSlidein()){ dismissed = true; return; }
+      shown = true;
+      try{ sessionStorage.setItem('cj_email_ui_shown','1'); }catch(e){}
+      /* XOR barra/flotante: mientras hay tarjeta, la barra desaparece el resto de la visita */
+      var barX = document.querySelector('.cj-nl-sticky'); if(barX) barX.remove();
+      slidein.classList.add('show');
+    }
     // 60-second fallback timer
     var nlTimer = setTimeout(function(){
       if(!dismissed && !shown){
-        shown = true;
-        slidein.classList.add('show');
+        showSlidein();
       }
     }, 60000);
-    window.addEventListener('scroll', function(){
+    function onScrollSlidein(){
       if(dismissed) return;
       var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
       if(pct > 0.85 && !shown){
-        shown = true;
-        slidein.classList.add('show');
-        clearTimeout(nlTimer);
+        showSlidein();
       }
-    }, {passive:true});
+    }
+    window.addEventListener('scroll', onScrollSlidein, {passive:true});
 
     slidein.querySelector('.nl-close').addEventListener('click', function(){
       slidein.classList.remove('show');
       dismissed = true;
       clearTimeout(nlTimer);
+      window.removeEventListener('scroll', onScrollSlidein);
       localStorage.setItem(STORAGE_KEY, '1');
+      try{ sessionStorage.setItem('cj_promos_muted','1'); }catch(e){}
     });
 
     slidein.querySelector('.nl-btn').addEventListener('click', function(){
@@ -691,7 +729,20 @@
     stickyDismissed = null;
   }
 
-  if(!stickyDismissed && window.innerWidth < 768){
+  /* Prioridad de promociones: Smart App Banner nativo > CTA de app propio >
+     newsletter. iOS Safari muestra el banner nativo (meta apple-itunes-app,
+     presente en todo el blog y garantizada más abajo por este mismo script),
+     y Apple no expone API para saber si el usuario lo cerró — así que en iOS
+     Safari nunca doblamos con nuestra barra de tiendas. Chrome/Firefox/Edge
+     iOS y las webviews NO muestran el banner nativo → conservan el CTA propio.
+     El flag se publica en window para que newsletter.js no duplique la detección. */
+  var uaSticky = navigator.userAgent;
+  var isIOSDevice = /iPad|iPhone|iPod/.test(uaSticky) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isStandaloneApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  window.__cjNativeAppBanner = isIOSDevice && !isStandaloneApp && /Safari\//.test(uaSticky) &&
+    !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|DuckDuckGo|FBAN|FBAV|Instagram|Line\//.test(uaSticky);
+
+  if(!stickyDismissed && window.innerWidth < 768 && !window.__cjNativeAppBanner){
     var cssSticky = document.createElement('style');
     cssSticky.textContent = [
       '#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:890;background:linear-gradient(135deg,#f8f8f8,#efefef);border-top:1px solid #ddd;padding:10px 12px;display:flex;align-items:center;gap:8px;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.68,0,1)}',
@@ -1220,92 +1271,11 @@
   }
 
   /* ══════════════════════════════════════════════
-     17. EXIT INTENT POPUP
+     17. EXIT INTENT POPUP — ELIMINADO (3 sep 2026)
+     Era un duplicado del exit-popup accesible de newsletter.js.
+     Lo util se porto alli: textos EN + lang dinamico en el POST.
+     Su antigua clave de localStorage queda obsoleta (solo la usaba esta seccion).
      ══════════════════════════════════════════════ */
-  if(!isBlogIndex && !localStorage.getItem('cj_exit_dismissed')){
-    var exitShown = false;
-    var exitCSS = document.createElement('style');
-    exitCSS.textContent = [
-      '.exit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1100;display:none;align-items:center;justify-content:center;padding:16px}',
-      '.exit-overlay.open{display:flex}',
-      '.exit-modal{background:#fff;border-radius:24px;max-width:420px;width:100%;padding:32px 28px;text-align:center;position:relative;animation:exitPop .35s cubic-bezier(.22,.68,0,1.2)}',
-      '@keyframes exitPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}',
-      '.exit-modal .exit-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.3rem;color:#94a3b8;cursor:pointer;line-height:1}',
-      '.exit-modal .exit-close:hover{color:#f97316}',
-      '.exit-icon{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:14px;margin:0 auto 10px;overflow:hidden}',
-      '.exit-icon svg{width:100%;height:100%;display:block}',
-      '.exit-icon-emoji{font-size:2.5rem;width:auto;height:auto;border-radius:0;background:none;display:block}',
-      '.exit-modal h3{font-size:1.2rem;font-weight:800;color:#1a1a2e;margin:0 0 8px;line-height:1.3}',
-      '.exit-modal p{font-size:.88rem;color:#64748b;line-height:1.6;margin:0 0 20px}',
-      '.exit-form{display:flex;gap:8px;margin-bottom:10px}',
-      '.exit-form input{flex:1;padding:11px 14px;border-radius:12px;border:1.5px solid #e2e8f0;font-size:.85rem;outline:none;transition:border-color .2s}',
-      '.exit-form input:focus{border-color:#f97316}',
-      '.exit-form button{padding:11px 18px;border-radius:12px;border:none;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap;transition:transform .2s}',
-      '.exit-form button:hover{transform:scale(1.03)}',
-      '.exit-skip{font-size:.75rem;color:#94a3b8;cursor:pointer;text-decoration:underline;background:none;border:none;margin:0 auto;display:block}',
-      '.exit-skip:hover{color:#f97316}',
-      '.dark-mode .exit-modal{background:#0f1a2e}',
-      '.dark-mode .exit-modal h3{color:#fef3c7}',
-      '.dark-mode .exit-form input{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#fff}'
-    ].join('\n');
-    document.head.appendChild(exitCSS);
-
-    var exitOverlay = document.createElement('div');
-    exitOverlay.className = 'exit-overlay';
-    exitOverlay.innerHTML =
-      '<div class="exit-modal">' +
-        '<button class="exit-close">&times;</button>' +
-        '<span class="exit-icon" aria-label="CorrerJuntos">' +
-          '<svg viewBox="0 0 512 512">' +
-            '<rect width="512" height="512" rx="96" fill="#0f1729"/>' +
-            '<text x="50%" y="51%" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif" font-weight="900" font-size="208" fill="#fff" letter-spacing="-8">CJ</text>' +
-            '<rect x="166" y="380" width="180" height="20" rx="10" fill="#f97316"/>' +
-          '</svg>' +
-        '</span>' +
-        '<h3>'+(isEN?'Wait! Get our free running guide':'¡Espera! Llévate nuestra guía gratis')+'</h3>' +
-        '<p>'+(isEN?'Join 2,400+ runners who get weekly tips on training, shoes & nutrition.':'Únete a 2.400+ runners que reciben cada semana consejos de entrenamiento, zapatillas y nutrición.')+'</p>' +
-        '<div class="exit-form">' +
-          '<input type="email" placeholder="'+(isEN?'your@email.com':'tu@email.com')+'" aria-label="Email">' +
-          '<button>'+(isEN?'Get guide':'Quiero')+'</button>' +
-        '</div>' +
-        '<button class="exit-skip">'+(isEN?'No thanks, I\'ll pass':'No gracias, paso')+'</button>' +
-      '</div>';
-    document.body.appendChild(exitOverlay);
-
-    function closeExit(permanent){
-      exitOverlay.classList.remove('open');
-      if(permanent) localStorage.setItem('cj_exit_dismissed','1');
-    }
-
-    exitOverlay.querySelector('.exit-close').addEventListener('click', function(){ closeExit(true); });
-    exitOverlay.querySelector('.exit-skip').addEventListener('click', function(){ closeExit(true); });
-
-    exitOverlay.querySelector('button:not(.exit-close):not(.exit-skip)').addEventListener('click', function(){
-      var email = exitOverlay.querySelector('input').value.trim();
-      if(!email || email.indexOf('@')<1) return;
-      fetch('/api/brevo-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,lang:isEN?'en':'es',source:'exit-intent-'+slug})})
-        .catch(function(){});
-      exitOverlay.querySelector('.exit-modal').innerHTML = '<span class="exit-icon-emoji">\uD83C\uDF89</span><h3 style="color:#16a34a">'+(isEN?'You\'re in!':'¡Ya estás dentro!')+'</h3><p>'+(isEN?'Check your inbox for a welcome email.':'Revisa tu email, te hemos enviado la bienvenida.')+'</p>';
-      setTimeout(function(){ closeExit(true); }, 2500);
-      trackEvent('exit_intent_subscribe', {article_slug: slug});
-    });
-
-    /* Trigger: mouse leaves viewport top (desktop) or 90% scroll (mobile) */
-    document.addEventListener('mouseleave', function(e){
-      if(!exitShown && e.clientY <= 0){
-        exitShown = true;
-        setTimeout(function(){ exitOverlay.classList.add('open'); }, 200);
-        trackEvent('exit_intent_shown', {article_slug: slug});
-      }
-    });
-    /* Mobile: 90% scroll */
-    window.addEventListener('scroll', function(){
-      if(!exitShown){
-        var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        if(pct > 0.9){ exitShown = true; exitOverlay.classList.add('open'); }
-      }
-    }, {passive:true});
-  }
 
   /* ══════════════════════════════════════════════
      18. READING HISTORY (localStorage)

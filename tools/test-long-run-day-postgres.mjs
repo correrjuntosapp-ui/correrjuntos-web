@@ -101,8 +101,13 @@ function ok(nombre, cond, detalle) {
   else { fallos += 1; console.log('  FAIL ' + nombre + (detalle ? '\n       ' + detalle : '')); }
 }
 
-// Reproduce el bloque de guarda de las RPC reales (lineas 66-79 de
-// generate_user_plan_v3) byte a byte. Devuelve el dia elegido para observarlo.
+// Reproduce el bloque de guarda de las RPC reales. Devuelve el dia elegido.
+//
+// LIMITE CONOCIDO: este stub construye v_chrono con `ORDER BY d` (numerico),
+// mientras las RPC reales lo ordenan por proximidad a p_fecha_inicio. Por eso
+// esta prueba NO detecta si el default depende del dia de alta: eso lo cubre
+// tools/test-long-run-day-weekday-postgres.mjs, que barre los 7 dias con el
+// ORDER BY autentico. Aqui solo se verifica la MECANICA de la migracion.
 function fnStub(nombre, mensajeRequired, tieneLongRun) {
   return [
     'CREATE OR REPLACE FUNCTION public.' + nombre + '(p_dias_disponibles jsonb, p_long_run_day integer)',

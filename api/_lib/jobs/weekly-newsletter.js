@@ -294,6 +294,23 @@ async function recoverSendingPick(supabase, pick, res, env) {
 
 // Reutilizados por weekly-newsletter-prepare y -preflight. Export aditivo:
 // no cambia el comportamiento de este job ni la firma del handler.
+/**
+ * Valida test_week_of. Exige formato estricto YYYY-MM-DD, fecha real y LUNES:
+ * las ediciones se identifican por el lunes de su semana, asi que cualquier
+ * otro dia seria una fila que no puede existir.
+ * Devuelve { week } o { error }.
+ */
+function parseTestWeekOf(raw) {
+  const v = String(raw == null ? '' : raw).trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return { error: 'invalid_test_week_of_format' };
+  const d = new Date(v + 'T00:00:00Z');
+  if (Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== v) {
+    return { error: 'invalid_test_week_of_date' };
+  }
+  if (d.getUTCDay() !== 1) return { error: 'test_week_of_not_monday' };
+  return { week: v };
+}
+
 export { buildEmailHtml, brevo };
 
 export default async function runWeeklyNewsletter(req, res, env, deps = {}) {
@@ -323,13 +340,56 @@ export default async function runWeeklyNewsletter(req, res, env, deps = {}) {
   // el pick de ESTA semana: un 'ready' olvidado de otra semana nunca sale solo.
   const mondayOfThisWeek = mondayOfWeekMadrid(now);
 
-  // Pick: en test, el último pendiente (cualquier status). En live, el de ESTA
-  // semana en 'ready' (envío normal) o en 'sending' (recuperación fail-closed).
-  let q = supabase.from('weekly_newsletter').select('*').is('sent_at', null).order('week_of', { ascending: false }).limit(1);
-  if (!isTest) q = q.in('status', ['ready', 'sending']).eq('week_of', mondayOfThisWeek);
+  // test_week_of: solo tiene sentido acompanando a ?test=. En live se ignora
+  // por completo — ni se lee — para que no pueda alterar el envio real.
+  const rawTestWeek = (req.query?.test_week_of || '').toString().trim();
+  let testWeekOf = null;
+  if (rawTestWeek) {
+    if (!isTest) {
+      return res.status(400).json({ error: 'test_week_of_requires_test' });
+    }
+    const parsed = parseTestWeekOf(rawTestWeek);
+    if (parsed.error) return res.status(400).json({ error: parsed.error });
+    testWeekOf = parsed.week;
+  }
+
+  // Seleccion del pick.
+  //   - test + test_week_of : esa semana exacta, en 'draft' y sin enviar.
+  //                           SIN order/limit: si hay ambiguedad hay que verla.
+  //   - test sin week_of    : solo vale si queda UN candidato; si hay varios se
+  //                           exige la semana en vez de adivinar (elegir "el mas
+  //                           reciente" mandaba la prueba equivocada).
+  //   - live                : el de ESTA semana en 'ready' o 'sending'.
+  let q;
+  if (isTest && testWeekOf) {
+    q = supabase.from('weekly_newsletter').select('*')
+      .eq('week_of', testWeekOf).eq('status', 'draft').is('sent_at', null);
+  } else if (isTest) {
+    // Tambien aqui: solo borradores. Una edicion en ready/sending/paused/
+    // cancelled/sent no es material de prueba.
+    q = supabase.from('weekly_newsletter').select('*').is('sent_at', null)
+      .eq('status', 'draft').order('week_of', { ascending: false });
+  } else {
+    q = supabase.from('weekly_newsletter').select('*').is('sent_at', null)
+      .in('status', ['ready', 'sending']).eq('week_of', mondayOfThisWeek)
+      .order('week_of', { ascending: false }).limit(1);
+  }
   const { data: rows, error } = await q;
   // Sin mensaje de Supabase: puede llevar nombres de columnas o fragmentos SQL.
   if (error) return res.status(500).json({ error: 'query_failed' });
+
+  if (isTest && testWeekOf) {
+    // Fail-closed ante ambiguedad: nunca se elige "uno de ellos".
+    if (rows && rows.length > 1) {
+      return res.status(409).json({ error: 'test_pick_ambiguous', week_of: testWeekOf, count: rows.length });
+    }
+    if (!rows || rows.length === 0) {
+      return res.status(404).json({ error: 'test_pick_not_found', week_of: testWeekOf });
+    }
+  } else if (isTest && rows && rows.length > 1) {
+    // Varios pendientes y nadie ha dicho cual: se pide la semana.
+    return res.status(400).json({ error: 'test_week_required', pending: rows.length });
+  }
 
   let pick = rows && rows[0];
   if (!pick && !isTest) {
@@ -355,6 +415,23 @@ export default async function runWeeklyNewsletter(req, res, env, deps = {}) {
     return recoverSendingPick(supabase, pick, res, env);
   }
 
+  // Un pick que ya tiene campana de prueba NO genera otra. Se decide ANTES de
+  // construir el correo y de llamar a Brevo.
+  if (isTest && pick.test_campaign_id) {
+    if (pick.test_sent_at) {
+      return res.status(409).json({
+        error: 'test_already_sent', week_of: pick.week_of,
+        test_campaign_id: pick.test_campaign_id,
+      });
+    }
+    // Campana creada pero sin constancia de envio: no sabemos si llego. No se
+    // reenvia solo — solo se devuelve el id para revisarlo a mano en Brevo.
+    return res.status(409).json({
+      error: 'test_delivery_unconfirmed', week_of: pick.week_of,
+      test_campaign_id: pick.test_campaign_id,
+    });
+  }
+
   // Asunto opcional e independiente del H1. Si es null usa el título.
   const subject = pick.subject || pick.title;
   const htmlContent = buildEmailHtml(pick);
@@ -375,13 +452,64 @@ export default async function runWeeklyNewsletter(req, res, env, deps = {}) {
   }
   const campaignId = created.json.id;
 
-  // 2a) TEST: enviar solo al email indicado, no marcar enviado
+  // 2a) TEST: solo al email indicado. NO toca status, sent_at,
+  //     brevo_campaign_id, recipients ni sending_at.
   if (isTest) {
+    // Toma atomica: el UPDATE exige que la fila siga sin campana de prueba. Dos
+    // ejecuciones simultaneas sobre el mismo pick -> una sola prueba enviada.
+    const { data: claimed, error: claimErr } = await supabase
+      .from('weekly_newsletter')
+      .update({ test_campaign_id: campaignId })
+      .eq('id', pick.id)
+      .eq('week_of', pick.week_of)
+      .eq('status', 'draft')
+      .is('test_campaign_id', null)
+      .is('sent_at', null)
+      .select('id');
+    if (claimErr) {
+      return res.status(500).json({ error: 'test_campaign_claim_failed', week_of: pick.week_of });
+    }
+    if (!Array.isArray(claimed) || claimed.length !== 1) {
+      // Ya tenia prueba (o la gano otra ejecucion). La campana recien creada
+      // queda como borrador huerfano en Brevo; no se borra automaticamente.
+      return res.status(409).json({
+        error: 'test_campaign_already_exists', week_of: pick.week_of,
+        orphan_test_campaign_id: campaignId,
+      });
+    }
+
     const test = await brevo(`/emailCampaigns/${campaignId}/sendTest`, env, 'POST', { emailTo: [testEmail] });
-    return res.status(test.ok ? 200 : 500).json({
-      ok: test.ok, mode: 'test', test_to: testEmail, campaign_id: campaignId,
+    if (!test.ok) {
+      // test_campaign_id queda guardado y test_sent_at sigue NULL: la proxima
+      // llamada devolvera test_delivery_unconfirmed en vez de crear otra.
+      return res.status(500).json({
+        ok: false, mode: 'test', error: 'test_send_failed',
+        week_of: pick.week_of, campaign_id: campaignId, http_status: test.status,
+      });
+    }
+
+    // Brevo acepto el envio: SOLO ahora se deja constancia. El UPDATE exige que
+    // la fila siga siendo exactamente la que probamos.
+    const { data: sellada, error: sellErr } = await supabase
+      .from('weekly_newsletter')
+      .update({ test_sent_at: new Date(now).toISOString() })
+      .eq('id', pick.id)
+      .eq('week_of', pick.week_of)
+      .eq('status', 'draft')
+      .eq('test_campaign_id', campaignId)
+      .is('sent_at', null)
+      .select('id');
+    if (sellErr || !Array.isArray(sellada) || sellada.length !== 1) {
+      // La prueba SI salio, pero no consta. No se afirma exito ni se reenvia.
+      return res.status(500).json({
+        ok: false, mode: 'test', error: 'test_sent_state_persist_failed',
+        week_of: pick.week_of, campaign_id: campaignId,
+      });
+    }
+
+    return res.status(200).json({
+      ok: true, mode: 'test', test_to: testEmail, campaign_id: campaignId,
       pick: { week_of: pick.week_of, status: pick.status, title: pick.title },
-      http_status: test.ok ? undefined : test.status,
     });
   }
 

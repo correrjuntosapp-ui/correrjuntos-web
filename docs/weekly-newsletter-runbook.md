@@ -177,6 +177,45 @@ curl -H "Authorization: Bearer <CRON_SECRET>" "https://www.correrjuntos.com/api/
 
 Devuelve un resumen: artículo, categoría, si venía reservado, asunto, preheader, ids de bloques, enlaces comprobados y tamaño del HTML. Cero escrituras, cero llamadas a Brevo.
 
+### Mandar una prueba de una edición concreta
+
+El modo test exige decir **qué semana** quieres probar. Solo admite borradores:
+
+```bash
+curl -H "Authorization: Bearer <CRON_SECRET>" "https://www.correrjuntos.com/api/cron/run?job=weekly-newsletter&test=guetto2012@gmail.com&test_week_of=2026-09-14"
+```
+
+`test_week_of` debe ser un **lunes** en formato `YYYY-MM-DD`. Si no lo es, o la fecha no existe, responde **400** sin tocar Brevo. Si esa semana no tiene un pick en `draft` sin enviar, responde **404**. Si hubiera más de una fila para esa semana, se detiene con **409** en vez de elegir una.
+
+Sin `test_week_of`, solo funciona cuando queda **un único borrador** pendiente; con varios responde `test_week_required`. Antes elegía «el más reciente» en silencio, y eso mandaba la prueba equivocada.
+
+**Cada pick admite una sola campaña de prueba.** Para volver a probar una edición retocada, hay que limpiarla primero:
+
+```sql
+update public.weekly_newsletter
+set test_campaign_id = null, test_sent_at = null
+where week_of = 'YYYY-MM-DD' and status = 'draft';
+```
+
+⚠️ Antes de hacerlo, **borra en Brevo la campaña de prueba anterior** o quedará un borrador huérfano.
+
+### Qué hacer con `test_delivery_unconfirmed`
+
+Significa que el pick tiene `test_campaign_id` pero `test_sent_at` está a NULL: la campaña se creó y no consta que la prueba llegara a salir. **El sistema no reenvía solo** — no puede distinguir «no se envió» de «se envió y no se registró», y reenviar a ciegas duplicaría el correo.
+
+La respuesta te da el `test_campaign_id`. Con él:
+
+1. Abre esa campaña en Brevo y mira si registra un envío de prueba.
+2. **Si sí salió**: sella la fecha a mano y no toques nada más.
+   ```sql
+   update public.weekly_newsletter set test_sent_at = now()
+   where week_of = 'YYYY-MM-DD' and test_campaign_id = <id> and test_sent_at is null;
+   ```
+3. **Si no salió**: reenvía la prueba desde el panel sobre esa misma campaña (*Vista previa y prueba → Enviar email de prueba*) y luego sella la fecha igual que en el punto 2. No crees otra campaña.
+4. **Si la campaña está inservible**: bórrala en Brevo, limpia `test_campaign_id` y `test_sent_at` con el SQL de arriba, y vuelve a lanzar el modo test.
+
+El mismo procedimiento sirve para `test_sent_state_persist_failed`, con una diferencia: ahí **la prueba sí salió** y lo único que falló fue registrarlo, así que ve directo al punto 2.
+
 ### Apagar toda la automatización
 
 Variable de entorno en Vercel, sin tocar código ni borrar cron:

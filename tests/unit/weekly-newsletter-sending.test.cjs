@@ -225,8 +225,15 @@ test('modo test: no toca el estado ni llama a sendNow', async () => {
   const f = makeFetch([CREATE_OK, { match: '/sendTest', method: 'POST', body: {} }]);
   const res = await run(sb, f, { test: 'guetto2012@gmail.com' });
   assert.strictEqual(sendNowCalls(f).length, 0);
-  assert.strictEqual(sb.updates.length, 0, 'el test no escribe en la BD');
   assert.strictEqual(res.body.mode, 'test');
+  // Desde la toma atómica del id de prueba, el modo test SÍ escribe — pero solo
+  // test_campaign_id y test_sent_at. Los campos de envío siguen intocables.
+  for (const u of sb.updates) {
+    for (const k of ['status', 'sent_at', 'brevo_campaign_id', 'recipients', 'sending_at']) {
+      assert.ok(!(k in u), 'el modo test escribió ' + k);
+    }
+  }
+  assert.ok(sb.updates.every(u => 'test_campaign_id' in u || 'test_sent_at' in u), 'solo escribe campos de prueba');
 });
 
 test('ninguna ruta de recuperación llama a sendNow', async () => {

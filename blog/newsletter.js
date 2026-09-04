@@ -26,6 +26,24 @@
   if(window.__cjNewsletterLoaded) return;
   window.__cjNewsletterLoaded = true;
 
+  /* Configuracion opcional por pagina:
+   * define window.CJ_NEWSLETTER_CONFIG ANTES de cargar este script para
+   * desactivar componentes concretos, p. ej.:
+   *   window.CJ_NEWSLETTER_CONFIG = { sticky:false, inline:false, exitIntent:false, end:true };
+   * Si no se define, o si una clave se omite, el componente queda ACTIVO:
+   * el comportamiento del resto de articulos no cambia. */
+  var CFG = (function(){
+    var c = (window.CJ_NEWSLETTER_CONFIG && typeof window.CJ_NEWSLETTER_CONFIG === 'object')
+      ? window.CJ_NEWSLETTER_CONFIG : {};
+    return {
+      sticky:     c.sticky     !== false,
+      inline:     c.inline     !== false,
+      exitIntent: c.exitIntent !== false,
+      end:        c.end        !== false
+    };
+  })();
+
+
   /* ── Copy por vertical ──
    * En rutas /blog/ciclismo* no ofrecemos el Plan 0→5K (running): promesa
    * honesta y genérica de la newsletter, sin lead magnet inexistente. */
@@ -452,10 +470,10 @@
     if(!isBlog) return;
 
     injectStyles();
-    buildSticky();
-    buildInline();
-    buildEnd();
-    armExitIntent();
+    if(CFG.sticky)     buildSticky();
+    if(CFG.inline)     buildInline();
+    if(CFG.end)        buildEnd();
+    if(CFG.exitIntent) armExitIntent();
   }
 
   if(document.readyState === 'loading'){

@@ -23,6 +23,7 @@
 {s:'cafeina-running-rendimiento',t:'Cafe\u00edna y Running: Mejora tu Rendimiento',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'correr-en-ayunas',t:'Correr en Ayunas: 8 Beneficios y 5 Riesgos',c:'Salud',i:'https://images.pexels.com/photos/3771055/pexels-photo-3771055.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'calambres-al-correr',t:'Calambres al Correr: Causas y Soluciones',c:'Salud',i:'https://images.pexels.com/photos/3771055/pexels-photo-3771055.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
+{s:'pacific-and-co-calcetines-running-opinion',t:'Calcetines Pacific & Co. HYPER PRO 1.0: nuestra opinion',c:'Equipamiento',i:'/blog/img/pacific-and-co/hyper-pro-1-0-portada.webp'},
 {s:'calcetines-running',t:'Los 8 Mejores Calcetines para Running',c:'Equipamiento',i:'https://images.pexels.com/photos/8454900/pexels-photo-8454900.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'carga-hidratos-maraton',t:'Carga de Hidratos antes de un Marat\u00f3n',c:'Nutrici\u00f3n',i:'https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},
 {s:'cursa-de-la-merce-2026',t:'Cursa de la Merc\u00e8 2026 Barcelona: Fecha, Recorrido e Inscripci\u00f3n',c:'Carreras',i:'https://images.pexels.com/photos/2567025/pexels-photo-2567025.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop&q=60'},

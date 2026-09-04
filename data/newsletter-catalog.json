@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-11",
+  "updated": "2026-09-04",
   "note": "Lista blanca editorial de la newsletter automatica. NO es el catalogo del blog (eso es data/articles.json): aqui solo entran articulos revisados a mano y autorizados para un envio sin supervision humana. Un articulo nuevo NUNCA entra solo. La autorizacion es esta lista, nunca una heuristica sobre el HTML.",
   "rules": {
     "eligible": "enabled=true AND affiliate=false AND promotional=false AND draft=false AND language='es'",
@@ -73,8 +73,7 @@
         "constancia-sobre-intensidad"
       ],
       "toolKeys": [
-        "calculadora",
-        "quedadas"
+        "calculadora"
       ]
     },
     {
@@ -137,8 +136,7 @@
         "cambios-graduales"
       ],
       "toolKeys": [
-        "planes",
-        "quedadas"
+        "planes"
       ]
     },
     {
@@ -237,8 +235,7 @@
         "escuchar-senales"
       ],
       "toolKeys": [
-        "planes",
-        "quedadas"
+        "planes"
       ]
     },
     {
@@ -337,7 +334,6 @@
         "constancia-sobre-intensidad"
       ],
       "toolKeys": [
-        "quedadas",
         "planes"
       ]
     },
@@ -489,12 +485,11 @@
         "empezar-por-debajo"
       ],
       "toolKeys": [
-        "quedadas",
         "planes"
       ]
     },
     {
-      "slug": "como-organizar-quedadas-running",
+      "slug": "quedadas-running-como-organizar",
       "enabled": true,
       "affiliate": false,
       "promotional": false,
@@ -523,7 +518,6 @@
         "constancia-sobre-intensidad"
       ],
       "toolKeys": [
-        "quedadas",
         "carreras-tool"
       ]
     },

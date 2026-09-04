@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated": "2026-08-11",
-  "note": "Bloques editoriales aprobados para la newsletter automatica. Identificadores estables: el selector rota por id y evita repetir en semanas recientes. Sin Prozis, Amazon, cupones, publicidad ni enlaces afiliados. Sin afirmaciones medicas ni diagnosticos: no se afirma que nada prevenga lesiones ni que una molestia concreta sea normal. los entrenamientos son conservadores y todos llevan una nota de prudencia. Ninguna frase se atribuye al Coach Jose; la voz es 'equipo CorrerJuntos'.",
+  "updated": "2026-09-04",
+  "note": "Bloques editoriales aprobados para la newsletter automatica. Identificadores estables: el selector rota por id y evita repetir en semanas recientes. Sin Prozis, Amazon, cupones, publicidad ni enlaces afiliados. Sin afirmaciones medicas ni diagnosticos: no se afirma que nada prevenga lesiones ni que una molestia concreta sea normal. los entrenamientos son conservadores y todos llevan una nota de prudencia. Ninguna frase se atribuye al Coach Jose; la voz es 'equipo CorrerJuntos'. Toda URL de esta biblioteca DEBE apuntar a una pagina que exista: lo comprueba la prueba de regresion de tests/unit/newsletter-automation.test.cjs contra el repo.",
   "trainings": [
     {
       "id": "vuelta-rutina-suave",
@@ -117,13 +117,6 @@
       "text": "Planes estructurados por objetivo, del primer 5K al maratón.",
       "url": "https://www.correrjuntos.com/planes",
       "link_text": "Ver los planes de entrenamiento"
-    },
-    {
-      "id": "quedadas",
-      "title": "Herramienta de la semana",
-      "text": "Quedadas abiertas cerca de ti para no entrenar siempre en solitario.",
-      "url": "https://www.correrjuntos.com/quedadas",
-      "link_text": "Buscar quedadas"
     },
     {
       "id": "carreras-tool",

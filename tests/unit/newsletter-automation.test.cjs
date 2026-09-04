@@ -76,6 +76,9 @@ const makeBrevo = ({ createOk = true, testOk = true, campaignId = 900 } = {}) =>
   return b;
 };
 
+// prepare avisa por /smtp/email cuando falla: separar avisos de campanas.
+const campanas = (bv) => bv.calls.filter(c => c !== '/smtp/email');
+const avisos = (bv) => bv.calls.filter(c => c === '/smtp/email');
 const makeRes = () => ({ code: 0, body: null, status(c) { this.code = c; return this; }, json(b) { this.body = b; return this; } });
 // La automatizacion es fail-closed: hay que encenderla explicitamente.
 const ENV = { SUPABASE_SERVICE_KEY: 'x', BREVO_API_KEY: 'x', BREVO_SENDER_EMAIL: 'hola@correrjuntos.com', WEEKLY_NEWSLETTER_AUTOMATION_ENABLED: 'true' };
@@ -261,7 +264,7 @@ test('prepare: articulo 404 aborta antes de crear nada', async () => {
   const r = await runPrep({ supabase: sb, fetch: makeFetch({ default: { ok: false, status: 404 } }), brevo: bv });
   assert.strictEqual(r.body.error, 'article_unreachable');
   assert.strictEqual(sb.calls.inserts.length, 0, 'no crea pick');
-  assert.strictEqual(bv.calls.length, 0, 'no toca Brevo');
+  assert.strictEqual(campanas(bv).length, 0, 'no crea campanas');
 });
 
 test('prepare: metadatos incompletos abortan', async () => {
@@ -277,7 +280,7 @@ test('prepare: un enlace de bloque roto aborta antes del pick', async () => {
   const r = await runPrep({ supabase: sb, fetch: f, brevo: bv });
   assert.strictEqual(r.body.error, 'block_link_broken');
   assert.strictEqual(sb.calls.inserts.length, 0);
-  assert.strictEqual(bv.calls.length, 0);
+  assert.strictEqual(campanas(bv).length, 0);
 });
 
 test('prepare: idempotente, si ya hay fila esa semana no crea otra', async () => {
@@ -287,7 +290,7 @@ test('prepare: idempotente, si ya hay fila esa semana no crea otra', async () =>
   assert.strictEqual(r.body.prepared, 0);
   assert.strictEqual(r.body.reason, 'week_already_prepared');
   assert.strictEqual(sb.calls.inserts.length, 0);
-  assert.strictEqual(bv.calls.length, 0);
+  assert.strictEqual(campanas(bv).length, 0);
 });
 
 test('prepare: respeta paused y cancelled, no los pisa', async () => {
@@ -324,7 +327,7 @@ test('prepare: el interruptor global lo detiene todo', async () => {
   const r = await runPrep({ supabase: sb, fetch: makeFetch(), brevo: bv }, { ...ENV, WEEKLY_NEWSLETTER_AUTOMATION_ENABLED: 'false' });
   assert.strictEqual(r.body.reason, 'automation_disabled');
   assert.strictEqual(sb.calls.inserts.length, 0);
-  assert.strictEqual(bv.calls.length, 0);
+  assert.strictEqual(campanas(bv).length, 0);
 });
 
 test('prepare: nunca reutiliza la fila del 10 de agosto', async () => {
@@ -395,7 +398,7 @@ test('preflight: nunca llama a sendNow bajo ningun camino', () => {
 });
 
 test('las alertas van saneadas, sin claves ni rutas', () => {
-  const src = fs.readFileSync(path.join(ROOT, 'api/_lib/jobs/weekly-newsletter-preflight.js'), 'utf8');
+  const src = fs.readFileSync(path.join(ROOT, 'api/_lib/jobs/weekly-newsletter-prepare.js'), 'utf8');
   assert.ok(src.includes("replace(/[^a-z0-9_\\-. ]/gi, '')"), 'el detalle se sanea');
   assert.ok(!/API_KEY|SERVICE_KEY|CRON_SECRET/.test(src.replace(/SUPABASE_SERVICE_KEY/g, '')), 'sin secretos en el texto');
 });
@@ -481,7 +484,7 @@ test('con la automatización apagada, prepare no escribe ni llama a Brevo', asyn
   const r = await runPrep({ supabase: sb, fetch: makeFetch(), brevo: bv }, { ...ENV, WEEKLY_NEWSLETTER_AUTOMATION_ENABLED: undefined });
   assert.strictEqual(r.body.reason, 'automation_disabled');
   assert.strictEqual(sb.calls.inserts.length + sb.calls.updates.length, 0);
-  assert.strictEqual(bv.calls.length, 0);
+  assert.strictEqual(campanas(bv).length, 0);
 });
 
 // ---- histórico y rotación ----
@@ -510,7 +513,8 @@ test('si el histórico falla, no se selecciona a ciegas', async () => {
   const r = await runPrep({ supabase: sb, fetch: makeFetch(), brevo: bv });
   assert.strictEqual(r.body.error, 'history_query_failed');
   assert.strictEqual(sb.calls.inserts.length, 0, 'no crea nada');
-  assert.strictEqual(bv.calls.length, 0);
+  assert.strictEqual(campanas(bv).length, 0, 'no crea campanas');
+  assert.strictEqual(avisos(bv).length, 1, 'pero avisa del fallo');
 });
 
 // ---- reserva de semana ----
@@ -788,7 +792,7 @@ for (const [nombre, rota] of [
     const bv = makeBrevo();
     const r = await runPrep({ supabase: sb, brevo: bv, fetch: makeFetch({ [rota]: { ok: false, status: 404 } }) });
     assert.strictEqual(r.body.error, 'block_link_broken', nombre);
-    assert.strictEqual(bv.calls.length, 0, nombre + ': cero llamadas a Brevo');
+    assert.strictEqual(campanas(bv).length, 0, nombre + ': cero campanas');
     assert.ok(!sb.calls.updates.some(u => u.status === 'ready'), nombre + ': no promociona');
     assert.ok(sb.calls.updates.some(u => u.last_error === 'block_link_broken'), nombre + ': deja código');
   });
@@ -867,8 +871,8 @@ test('DEFECTO 5: el runbook no contradice la operación automática', () => {
 });
 
 test('DEFECTO 6: las fechas están al día', () => {
-  assert.strictEqual(CATALOG.updated, '2026-08-11');
-  assert.strictEqual(LIBRARY.updated, '2026-08-11');
+  assert.strictEqual(CATALOG.updated, '2026-09-04');
+  assert.strictEqual(LIBRARY.updated, '2026-09-04');
   const sql = fs.readFileSync(path.join(ROOT, 'supabase/migrations/20260805_weekly_newsletter_automation.sql'), 'utf8');
   assert.ok(sql.includes('2026-08-11'), 'la migración lleva la fecha real');
 });
@@ -939,6 +943,53 @@ test('FASE0: un ready sano pasa el preflight sin tocar nada', async () => {
   assert.strictEqual(bv.calls.length, 0);
 });
 
+
+// ---- regresion: enlaces que existen de verdad ----
+
+test('REGRESION 2026-09-04: toda URL de la biblioteca apunta a una pagina real', () => {
+  // Las demas pruebas simulan fetch, asi que un enlace roto pasaba inadvertido.
+  // /quedadas nunca existio: el bloque se eligio por primera vez el 31 de agosto
+  // y tumbo dos ediciones en silencio. Esto lo cruza con el repo.
+  const rutas = [...LIBRARY.races, ...LIBRARY.tools].map(b => ({ id: b.id, url: b.url }));
+  for (const { id, url } of rutas) {
+    const p = new URL(url).pathname.split('/').filter(Boolean).join('/');
+    const existe = fs.existsSync(path.join(ROOT, p, 'index.html')) || fs.existsSync(path.join(ROOT, p + '.html'));
+    assert.ok(existe, 'el bloque ' + id + ' apunta a /' + p + ', que no existe en el repo');
+  }
+});
+
+test('REGRESION 2026-09-04: cada articulo de la lista blanca existe como fichero', () => {
+  for (const a of SEL.eligibleArticles(CATALOG)) {
+    assert.ok(fs.existsSync(path.join(ROOT, 'blog', a.slug + '.html')), 'falta blog/' + a.slug + '.html');
+  }
+});
+
+test('REGRESION 2026-09-04: todo articulo conserva al menos una herramienta valida', () => {
+  const ids = new Set(LIBRARY.tools.map(t => t.id));
+  for (const a of SEL.eligibleArticles(CATALOG)) {
+    const validas = (a.toolKeys || []).filter(k => ids.has(k));
+    assert.ok(validas.length >= 1, a.slug + ' se queda sin herramienta valida');
+  }
+});
+
+test('REGRESION 2026-09-04: prepare avisa cuando no puede preparar la edicion', async () => {
+  // El viernes fallaba en silencio: solo alertaba el preflight del domingo.
+  const sb = makeSupabase(); const bv = makeBrevo();
+  const r = await runPrep({ supabase: sb, brevo: bv, fetch: makeFetch({ 'https://www.correrjuntos.com/carreras': { ok: false, status: 404 } }) });
+  assert.strictEqual(r.body.error, 'block_link_broken');
+  assert.ok(bv.calls.includes('/smtp/email'), 'prepare tiene que avisar el mismo viernes');
+  assert.strictEqual(sb.calls.inserts.length, 0);
+});
+
+test('REGRESION 2026-09-04: el dry-run no manda avisos', async () => {
+  const sb = makeSupabase(); const bv = makeBrevo();
+  const res = makeRes();
+  await PREP.default({ query: { dry_run: '1' } }, res, ENV,
+    { supabase: sb, data: DATA, weekOf: LIBRE, now: new Date('2026-09-04T07:00:00Z'), brevo: bv,
+      fetch: makeFetch({ 'https://www.correrjuntos.com/carreras': { ok: false, status: 404 } }) });
+  assert.strictEqual(res.body.error, 'block_link_broken');
+  assert.ok(!bv.calls.includes('/smtp/email'), 'un ensayo en seco no despierta a nadie');
+});
 // --- runner -----------------------------------------------------------------
 
 (async () => {

@@ -128,6 +128,32 @@ export async function validateEdition(pick, fetchImpl = fetch) {
   return null;
 }
 
+const ALERT_EMAIL = 'guetto2012@gmail.com';
+
+/**
+ * Aviso operativo. Texto plano y saneado: sin claves, rutas internas ni datos
+ * personales mas alla del destinatario, que es el propio responsable.
+ *
+ * Vive aqui, y no en el preflight, porque prepare tambien tiene que avisar: un
+ * viernes que falla en silencio se convierte en un lunes sin newsletter y nadie
+ * se entera hasta que alguien mira la tabla. Paso exactamente eso los dias
+ * 2026-08-31 y 2026-09-07 con el bloque /quedadas roto.
+ */
+export async function sendAlert(env, weekOf, state, detail, brevoImpl = brevo) {
+  const sender = { email: env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com', name: env.BREVO_SENDER_NAME || 'CorrerJuntos' };
+  const safe = String(detail || '').replace(/[^a-z0-9_\-. ]/gi, '').slice(0, 120);
+  return brevoImpl('/smtp/email', env, 'POST', {
+    sender,
+    to: [{ email: ALERT_EMAIL }],
+    subject: `[CorrerJuntos] Newsletter ${weekOf}: revision necesaria`,
+    textContent:
+      `No se ha podido dejar lista la edicion del ${weekOf}.\n\n` +
+      `Estado: ${state}\nDetalle: ${safe || 'sin detalle'}\n\n` +
+      `El lunes no saldra nada salvo que exista un pick en 'ready' para esa semana.\n` +
+      `Revisa la tabla weekly_newsletter y el runbook.`,
+  });
+}
+
 const done = (res, code, body) => res.status(code).json(body);
 const fail = (res, code, error, weekOf, extra = {}) =>
   done(res, code, { ok: false, prepared: 0, week_of: weekOf, error, alert: true, ...extra });
@@ -141,6 +167,13 @@ export default async function runPrepare(req, res, env, deps = {}) {
   const supabase = deps.supabase || clientFactory(SUPABASE_URL, env.SUPABASE_SERVICE_KEY);
   const brevoImpl = deps.brevo || brevo;
   const dryRun = String(req.query?.dry_run || '') === '1';
+
+  // Aborta avisando. El aviso es telemetria: si Brevo falla, no cambia la
+  // respuesta ni deja el pick en otro estado.
+  const bail = async (code, error, weekOf, extra = {}) => {
+    if (!dryRun) { try { await sendAlert(env, weekOf, 'prepare_failed', error, brevoImpl); } catch (e) { /* la respuesta ya lleva el codigo */ } }
+    return fail(res, code, error, weekOf, extra);
+  };
 
   // El dry-run es de solo lectura, asi que puede correr con todo apagado.
   if (!dryRun && !automationEnabled(env)) {
@@ -189,29 +222,29 @@ export default async function runPrepare(req, res, env, deps = {}) {
     .lt('week_of', weekOf).order('week_of', { ascending: false }).limit(HISTORY_LIMIT);
   // Sin historico fiable NO se elige: hacerlo como si estuviera vacio repetiria
   // articulos y bloques recien enviados.
-  if (hErr) return fail(res, 500, PREPARE_ERRORS.HISTORY_FAILED, weekOf);
+  if (hErr) return bail(500, PREPARE_ERRORS.HISTORY_FAILED, weekOf);
   const history = hist || [];
 
   // --- 3) Articulo: SOLO de la lista blanca ---------------------------------
   const sel = selectArticle({ catalog: data.catalog, weekOf, history, historyLimit: HISTORY_LIMIT });
-  if (sel.error) return fail(res, 200, sel.error, weekOf);
+  if (sel.error) return bail(200, sel.error, weekOf);
 
   // --- 4) El articulo existe y trae metadatos utiles ------------------------
   const url = `https://www.correrjuntos.com/blog/${sel.article.slug}`;
   const meta = await fetchArticleMeta(url, fetchImpl);
-  if (meta.error) return fail(res, 200, meta.error, weekOf, { slug: sel.article.slug, http_status: meta.http_status });
+  if (meta.error) return bail(200, meta.error, weekOf, { slug: sel.article.slug, http_status: meta.http_status });
 
   // --- 5) Bloques deterministas, sin repetir los recientes ------------------
   const recentIds = history.flatMap(h => (Array.isArray(h.block_ids) ? h.block_ids : []));
   const blk = selectBlocks({ library: data.library, article: sel.article, weekOf, recentBlockIds: recentIds });
-  if (blk.error) return fail(res, 200, blk.error, weekOf);
+  if (blk.error) return bail(200, blk.error, weekOf);
 
   const edition = buildEdition({ article: sel.article, blocks: blk.blocks, weekOf, articleMeta: meta, reserved: !!sel.reserved });
 
   // --- 6) Todos los enlaces del correo, comprobados -------------------------
   const blockUrls = blk.blocks.items.map(i => i.url).filter(Boolean);
   const broken = await checkLinks([url, edition.image_url, ...blockUrls], fetchImpl);
-  if (broken) return fail(res, 200, PREPARE_ERRORS.LINK_BROKEN, weekOf);
+  if (broken) return bail(200, PREPARE_ERRORS.LINK_BROKEN, weekOf);
 
   // --- 7) El correo tiene que renderizar antes de crear nada ----------------
   let html;
@@ -219,7 +252,7 @@ export default async function runPrepare(req, res, env, deps = {}) {
     html = buildEmailHtml(edition);
     if (!html || html.length < 500) throw new Error('short');
   } catch (e) {
-    return fail(res, 200, PREPARE_ERRORS.RENDER_FAILED, weekOf);
+    return bail(200, PREPARE_ERRORS.RENDER_FAILED, weekOf);
   }
 
   const lowCatalog = sel.remainingAfter < LOW_CATALOG_THRESHOLD;
@@ -246,7 +279,7 @@ export default async function runPrepare(req, res, env, deps = {}) {
     .select('id, week_of, status');
   if (insErr || !inserted || inserted.length !== 1) {
     // Puede ser el indice unico de week_of: otra ejecucion gano la carrera.
-    return fail(res, 500, PREPARE_ERRORS.PICK_INSERT_FAILED, weekOf);
+    return bail(500, PREPARE_ERRORS.PICK_INSERT_FAILED, weekOf);
   }
 
   return finishWithTest({

@@ -11,10 +11,9 @@
 import { createClient } from '@supabase/supabase-js';
 import { brevo } from './weekly-newsletter.js';
 import { nextMondayMadrid } from '../newsletter-selection.js';
-import runPrepare, { automationEnabled, validateEdition } from './weekly-newsletter-prepare.js';
+import runPrepare, { automationEnabled, validateEdition, sendAlert } from './weekly-newsletter-prepare.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
-const ALERT_EMAIL = 'guetto2012@gmail.com';
 
 export const PREFLIGHT_STATES = {
   DISABLED: 'automation_disabled',
@@ -28,23 +27,6 @@ export const PREFLIGHT_STATES = {
   NOT_READY: 'pick_not_ready',
   PREPARE_FAILED: 'prepare_failed',
 };
-
-// Aviso operativo. Texto plano y saneado: sin claves, rutas internas ni datos
-// personales mas alla del destinatario, que es el propio responsable.
-export async function sendAlert(env, weekOf, state, detail, brevoImpl = brevo) {
-  const sender = { email: env.BREVO_SENDER_EMAIL || 'hola@correrjuntos.com', name: env.BREVO_SENDER_NAME || 'CorrerJuntos' };
-  const safe = String(detail || '').replace(/[^a-z0-9_\-. ]/gi, '').slice(0, 120);
-  return brevoImpl('/smtp/email', env, 'POST', {
-    sender,
-    to: [{ email: ALERT_EMAIL }],
-    subject: `[CorrerJuntos] Newsletter ${weekOf}: revision necesaria`,
-    textContent:
-      `La comprobacion del domingo no ha podido dejar lista la edicion del ${weekOf}.\n\n` +
-      `Estado: ${state}\nDetalle: ${safe || 'sin detalle'}\n\n` +
-      `El lunes no saldra nada salvo que exista un pick en 'ready' para esa semana.\n` +
-      `Revisa la tabla weekly_newsletter y el runbook antes de las 10:00.`,
-  });
-}
 
 const done = (res, code, body) => res.status(code).json(body);
 

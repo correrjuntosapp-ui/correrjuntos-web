@@ -3,8 +3,8 @@
 //
 // El salto de client-side a server-side para el import de actividades:
 // el usuario termina de correr → su reloj sube a Strava → Strava nos
-// manda el evento aquí → importamos la actividad a `runs` EN SERVIDOR
-// → mensajes in-app de José/Ana + PUSH REMOTA (Expo) a su móvil.
+// manda el evento aquí → importamos resistencia a `runs` y fuerza a
+// `strength_workout_runs` → la cola F174 programa a José y Ana.
 // Todo sin que el usuario abra la app.
 //
 // El import client-side (useStrava.importActivities) SIGUE existiendo
@@ -27,17 +27,12 @@
 // devuelve 404 y se ignora. El VERIFY_TOKEN de abajo no es un secreto
 // (solo se usa en el handshake de validación de la suscripción).
 //
-// Ana +30min server-side NO es viable en Vercel Hobby (crons solo
-// diarios) — su mensaje in-app se inserta al momento (timing correcto:
-// el webhook llega minutos después de acabar el entreno). El push de
-// Ana sigue siendo client-side para runs del tracker propio.
+// El webhook NO genera mensajes ni pushes: esa responsabilidad vive en la
+// cola persistente F174, procesada por Supabase Cron aun con la app cerrada.
 // ============================================================
 
 import { createClient } from '@supabase/supabase-js';
 import { waitUntil } from '@vercel/functions';
-// [F118] José post-entreno con análisis determinista (motor + idempotencia).
-// Ana queda EXACTAMENTE como estaba (orden explícita del encargo).
-import { handleJosePostWorkout } from './_lib/post-workout-orchestrator.js';
 // [F134] Vinculación Strava → sesión del plan (informe 133). Nace apagada.
 import { vincularActividadConPlan } from './_lib/strava-plan-linker.js';
 // [F146.6A] Logs estructurados sin identificadores personales. Ver el modulo:
@@ -45,30 +40,15 @@ import { vincularActividadConPlan } from './_lib/strava-plan-linker.js';
 // identificador estable—, solo una allowlist de campos y un trace_id
 // aleatorio por invocacion.
 import { logEvent, logError, newTraceId, errorKind, errorCode } from './_lib/strava-log.js';
+import { classifyStravaActivity, mapDeporte, sportType } from './_lib/strava-activity-types.js';
 
 const LOG = '[strava-webhook]';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const STRAVA_API = 'https://www.strava.com/api/v3';
-const EXPO_PUSH_URL = 'https://exp.host/--/api/v2/push/send';
 const CALLBACK_URL = 'https://www.correrjuntos.com/api/strava-webhook';
 // No es un secreto: solo verifica el handshake GET de la suscripción.
 const VERIFY_TOKEN = 'cj-strava-webhook-v1';
-
-// A pie + BICI [fix 6 ago 2026]: el founder hizo 100 km en bici y el filtro
-// "solo a pie" los descartaba en silencio. La app soporta deporte 'bici'
-// desde el diseño original (color #0066FF). E-bikes fuera a propósito
-// (métricas asistidas inflarían stats).
-const ALLOWED = new Set(['Run', 'TrailRun', 'Walk', 'Hike', 'Ride', 'VirtualRide', 'GravelRide', 'MountainBikeRide']);
-const BIKE_TYPES = new Set(['Ride', 'VirtualRide', 'GravelRide', 'MountainBikeRide']);
-
-function mapDeporte(a) {
-  const t = a.sport_type || a.type || '';
-  if (t === 'TrailRun') return 'trail';
-  if (t === 'Walk' || t === 'Hike') return 'walking';
-  if (BIKE_TYPES.has(t)) return 'bici';
-  return 'running';
-}
 
 function paceFromDistanceTime(meters, seconds) {
   if (!meters || meters <= 0 || !seconds || seconds <= 0) return null;
@@ -76,14 +56,6 @@ function paceFromDistanceTime(meters, seconds) {
   const min = Math.floor(secPerKm / 60);
   const sec = Math.round(secPerKm % 60);
   return `${min}:${String(sec).padStart(2, '0')}`;
-}
-
-function fmtDuration(totalSec) {
-  if (!totalSec) return null;
-  const h = Math.floor(totalSec / 3600);
-  const m = Math.floor((totalSec % 3600) / 60);
-  if (h > 0) return `${h}h ${String(m).padStart(2, '0')}m`;
-  return `${m} min`;
 }
 
 // Parciales por km (splits) desde el detalle de la actividad Strava
@@ -182,39 +154,43 @@ function mapActivityToRun(a, userId) {
     es_indoor: !!a.trainer,
     source: 'strava',
     strava_activity_id: a.id,
-    // Server-side ya deja los mensajes de José/Ana insertados → el cliente
-    // no debe re-disparar sobre esta fila.
+    strava_sport_type: sportType(a),
+    coach_pipeline_version: 2,
+    // Las builds antiguas no deben disparar además su ruta client-side.
     coaches_notified: true,
   };
 }
 
-// [F118] joseInAppContent ELIMINADO: la plantilla fija prometía un análisis
-// que nunca se ejecutaba. Sustituida por el motor determinista
-// (api/_lib/post-workout-analysis.js) vía orquestador.
-// Ana (anaInAppContent) se conserva sin cambios por orden del encargo.
-
-function anaInAppContent(run) {
-  if (run.deporte === 'walking') {
-    return 'Después de caminar, hidrátate bien y no te saltes la siguiente comida — algo de proteína y verdura te viene perfecto.';
-  }
-  if (run.deporte === 'bici') {
-    return 'Tras una salida en bici larga toca reponer: hidratos + proteína en la próxima hora (arroz, pasta o un buen bocadillo con huevo o atún) y sales si has sudado mucho. Tu recuperación empieza ahora.';
-  }
-  return 'Hora de reponer: en la próxima hora, hidratos + algo de proteína (por ejemplo, plátano con yogur, o arroz con huevo). Y agua en pequeños sorbos. Tu recuperación empieza ahora.';
-}
-
-function josePushText(run) {
-  const km = run.distancia_km > 0 ? run.distancia_km.toFixed(2) : null;
-  const parts = [];
-  if (km) parts.push(`${km} km`);
-  if (run.ritmo_promedio && run.deporte !== 'walking' && run.deporte !== 'bici') parts.push(`a ${run.ritmo_promedio}`);
-  const dur = fmtDuration(run.duracion_segundos);
-  if (dur) parts.push(dur);
-  const resumen = parts.length ? parts.join(' · ') : 'Entreno completado';
-  if (run.deporte === 'bici') {
-    return { title: 'Coach José', body: `Ruta en bici registrada — ${resumen}. Toca para ver tu resumen.` };
-  }
-  return { title: 'Coach José', body: `Entreno registrado — ${resumen}. Toca para ver tu resumen.` };
+function mapActivityToStrength(a, userId) {
+  const localRaw = a.start_date_local || a.start_date;
+  const utcRaw = a.start_date || a.start_date_local;
+  const localDate = localRaw ? new Date(localRaw) : new Date();
+  const start = utcRaw ? new Date(utcRaw) : new Date();
+  const valid = !Number.isNaN(localDate.getTime()) && !Number.isNaN(start.getTime());
+  const safeStart = valid ? start : new Date();
+  const moving = Math.min(86400, Math.max(0, Math.round(a.moving_time || a.elapsed_time || 0)));
+  const elapsed = Math.min(86400, Math.max(moving, Math.round(a.elapsed_time || moving)));
+  const externalTitle = String(a.name || '').trim().slice(0, 160) || 'Fuerza Strava';
+  return {
+    user_id: userId,
+    client_run_ref: `strava:${a.id}`,
+    source: 'imported',
+    planned_session_id: null,
+    scheduled_date: valid ? localDate.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10),
+    status: 'completed',
+    started_at: safeStart.toISOString(),
+    completed_at: new Date(safeStart.getTime() + elapsed * 1000).toISOString(),
+    active_duration_seconds: moving,
+    total_duration_seconds: elapsed,
+    calories_kcal: null,
+    calories_source: null,
+    calories_confidence: null,
+    external_provider: 'strava',
+    external_activity_id: String(a.id),
+    external_title: externalTitle,
+    external_sport_type: sportType(a),
+    coach_pipeline_version: 2,
+  };
 }
 
 async function refreshTokenIfNeeded(sb, conn, traceId) {
@@ -245,22 +221,6 @@ async function refreshTokenIfNeeded(sb, conn, traceId) {
   return { ...conn, access_token: data.access_token };
 }
 
-async function sendExpoPush(token, title, body, data, traceId) {
-  try {
-    const res = await fetch(EXPO_PUSH_URL, {
-      method: 'POST',
-      headers: { accept: 'application/json', 'content-type': 'application/json' },
-      body: JSON.stringify({ to: token, title, body, sound: 'default', priority: 'high', badge: 1, data }),
-    });
-    const json = await res.json().catch(() => ({}));
-    return json?.data?.status === 'ok';
-  } catch (e) {
-    // El mensaje de Expo puede incluir el push token: solo la clase del error.
-    logError(LOG, { stage: 'expo_push', outcome: 'failed', error_kind: errorKind(e), trace_id: traceId });
-    return false;
-  }
-}
-
 async function processActivityEvent(sb, ownerId, activityId, traceId) {
   // 1. Conexión del atleta
   const { data: conn } = await sb
@@ -270,15 +230,18 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
     .single();
   if (!conn) { logEvent(LOG, { stage: 'connection', outcome: 'not_found', trace_id: traceId }); return; }
 
-  // 2. Dedup temprano (barato) — si ya está, nada que hacer
-  const { data: existing } = await sb
-    .from('runs')
-    .select('id')
-    .eq('user_id', conn.user_id)
-    .eq('source', 'strava')
-    .eq('strava_activity_id', activityId)
-    .limit(1);
-  if (existing && existing.length > 0) { logEvent(LOG, { stage: 'dedup', outcome: 'already_imported', trace_id: traceId }); return; }
+  // 2. Dedup temprano en las dos tablas. Un update de Strava no puede crear
+  // otra actividad aunque el tipo sea fuerza y no viva en `runs`.
+  const [{ data: existingRun }, { data: existingStrength }] = await Promise.all([
+    sb.from('runs').select('id').eq('user_id', conn.user_id)
+      .eq('source', 'strava').eq('strava_activity_id', activityId).limit(1),
+    sb.from('strength_workout_runs').select('id').eq('user_id', conn.user_id)
+      .eq('external_provider', 'strava').eq('external_activity_id', String(activityId)).limit(1),
+  ]);
+  if ((existingRun?.length ?? 0) > 0 || (existingStrength?.length ?? 0) > 0) {
+    logEvent(LOG, { stage: 'dedup', outcome: 'already_imported', trace_id: traceId });
+    return;
+  }
 
   // 3. Token fresco + fetch de la actividad REAL (los eventos son pistas)
   const fresh = await refreshTokenIfNeeded(sb, conn, traceId);
@@ -289,14 +252,27 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   if (!actRes.ok) { logEvent(LOG, { stage: 'activity_fetch', outcome: 'failed', status: actRes.status, trace_id: traceId }); return; }
   const activity = await actRes.json();
 
-  // 4. Solo a pie
-  if (!(ALLOWED.has(activity.sport_type || '') || ALLOWED.has(activity.type || ''))) {
-    logEvent(LOG, { stage: 'sport_filter', outcome: 'not_importable', sport: activity.sport_type || activity.type, trace_id: traceId });
+  // 4. Clasificación cerrada y compartida con sus pruebas: resistencia o
+  // fuerza. No se mete una sesión de gimnasio en la tabla de GPS.
+  const activityKind = classifyStravaActivity(activity);
+  if (!activityKind) {
+    logEvent(LOG, { stage: 'sport_filter', outcome: 'not_importable', sport: sportType(activity), trace_id: traceId });
     return;
   }
 
-  // 5. Insert (dedup fino: el índice único parcial protege contra carreras
-  //    concurrentes con el import client-side)
+  if (activityKind === 'strength') {
+    const strengthRow = mapActivityToStrength(activity, conn.user_id);
+    const { error: strengthError } = await sb.from('strength_workout_runs').insert(strengthRow);
+    if (strengthError) {
+      logEvent(LOG, { stage: 'strength_insert', outcome: 'skipped', error_code: errorCode(strengthError), error_kind: errorKind(strengthError), trace_id: traceId });
+      return;
+    }
+    logEvent(LOG, { stage: 'strength_insert', outcome: 'imported', sport: sportType(activity), trace_id: traceId });
+    return; // el trigger F174 ya dejó José + Ana en la cola
+  }
+
+  // 5. Resistencia: el índice único parcial protege la carrera concurrente
+  // con el catch-up del cliente.
   const row = mapActivityToRun(activity, conn.user_id);
   const { data: inserted, error: insErr } = await sb.from('runs').insert(row).select('id').single();
   // El mensaje de Postgres incluye valores de columna (el detalle de una
@@ -305,8 +281,6 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   logEvent(LOG, { stage: 'run_insert', outcome: 'imported', sport: row.deporte, trace_id: traceId });
 
   // 5.5 [F134] Vincular la actividad con la sesión del plan del mismo día.
-  //     Va ANTES de José a propósito: si la sesión queda completada, el
-  //     análisis post-entreno puede saber que pertenecía al plan.
   //     Nace APAGADO (env STRAVA_PLAN_LINKING); nunca lanza, y un fallo aquí
   //     no altera el camino legacy de José ni de Ana. No emite ningún
   //     mensaje ni notificación propia.
@@ -314,49 +288,8 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   if (vinculo.modo !== 'off') {
     logEvent(LOG, { stage: 'f134_linking', mode: vinculo.modo, outcome: vinculo.resultado, reason: vinculo.motivo, trace_id: traceId });
   }
-
-  // 6. Mensajes in-app de José y Ana.
-  // [F118.1] José: ENTRADA ÚNICA del orquestador. El canario decide:
-  //  - fuera de allowlist / config inválida → camino LEGACY exacto de
-  //    producción (plantilla + su cap diario histórico);
-  //  - dentro + dry_run → analiza y mide, cero inserciones;
-  //  - dentro + real → motor determinista SIN cap diario (dos sesiones
-  //    reales el mismo día = dos análisis; dedup = run_ref por actividad).
-  const runRow = { ...row, id: inserted.id };
-  const joseResult = await handleJosePostWorkout(sb, runRow, { nowIso: new Date().toISOString(), lang: 'es' });
-  const joseSpoke = joseResult.outcome === 'created' || joseResult.outcome === 'legacy_sent';
-  logEvent(LOG, { stage: 'jose_post_workout', mode: joseResult.path, outcome: joseResult.outcome, trace_id: traceId });
-  const todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
-  const { count: anaToday } = await sb
-    .from('maria_chat_messages')
-    .select('id', { count: 'exact', head: true })
-    .eq('user_id', conn.user_id)
-    .eq('is_proactive', true)
-    .gte('created_at', todayStart.toISOString());
-  if (!anaToday || anaToday === 0) {
-    await sb.from('maria_chat_messages').insert({
-      user_id: conn.user_id, role: 'assistant', content: anaInAppContent(row), is_proactive: true,
-    });
-  }
-
-  // 7. Push remota de José (solo si José "habló" hoy por primera vez —
-  //    mismo criterio 1/día que el resto del sistema)
-  if (joseSpoke) {
-    const { data: prof } = await sb
-      .from('profiles')
-      .select('push_token')
-      .eq('id', conn.user_id)
-      .single();
-    if (prof?.push_token) {
-      const { title, body } = josePushText(row);
-      const ok = await sendExpoPush(prof.push_token, title, body, {
-        type: 'post_workout_jose', runId: inserted.id,
-      }, traceId);
-      logEvent(LOG, { stage: 'jose_push', outcome: ok ? 'sent' : 'failed', trace_id: traceId });
-    } else {
-      logEvent(LOG, { stage: 'jose_push', outcome: 'no_token', trace_id: traceId });
-    }
-  }
+  // José y Ana no se generan aquí. El trigger F174 ya creó dos trabajos
+  // idempotentes: José elegible ahora y Ana diez minutos después.
 }
 
 // ── Setup de la suscripción (idempotente) ─────────────────────

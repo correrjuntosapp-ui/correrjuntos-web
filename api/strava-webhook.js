@@ -33,14 +33,17 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { waitUntil } from '@vercel/functions';
-// [F134] Vinculación Strava → sesión del plan (informe 133). Nace apagada.
-import { vincularActividadConPlan } from './_lib/strava-plan-linker.js';
 // [F146.6A] Logs estructurados sin identificadores personales. Ver el modulo:
 // nada de hashes —un hash determinista de un user_id sigue siendo un
 // identificador estable—, solo una allowlist de campos y un trace_id
 // aleatorio por invocacion.
 import { logEvent, logError, newTraceId, errorKind, errorCode } from './_lib/strava-log.js';
 import { classifyStravaActivity, mapDeporte, sportType } from './_lib/strava-activity-types.js';
+import { isSafeActivityCreateEvent, reserveStravaDetailSlot } from './_lib/strava-webhook-guard.js';
+import {
+  finalizeStravaEnduranceImport,
+  finalizeStravaStrengthImport,
+} from './_lib/strava-import-finalizer.js';
 
 const LOG = '[strava-webhook]';
 
@@ -126,6 +129,11 @@ function mapActivityToRun(a, userId) {
   const sinRitmo = deporte === 'walking' || deporte === 'bici';
   const ritmo = sinRitmo ? null : paceFromDistanceTime(a.distance || 0, duracionSegundos);
   const splits = sinRitmo ? null : buildSplitsFromStrava(a);
+  const averageCadence = a.average_cadence && a.average_cadence > 0
+    // En deportes a pie la API entrega ciclos (un ciclo = dos pasos).
+    // Solo la bici conserva las rpm tal como llegan.
+    ? Math.round(deporte !== 'bici' ? a.average_cadence * 2 : a.average_cadence)
+    : null;
 
   return {
     user_id: userId,
@@ -139,8 +147,15 @@ function mapActivityToRun(a, userId) {
     calorias: a.calories ? Math.round(a.calories) : null,
     elevacion_ganada: a.total_elevation_gain != null ? Math.round(a.total_elevation_gain * 10) / 10 : null,
     velocidad_max: a.max_speed ? Math.round(a.max_speed * 3.6 * 10) / 10 : null,
-    // Strava reporta cadencia de una pierna en running — se dobla (ver cliente).
-    cadencia_media: a.average_cadence ? Math.round(a.average_cadence * 2) : null,
+    // Strava reporta ciclos/min en las modalidades a pie: un ciclo equivale
+    // a dos pasos. La bici conserva las rpm tal como llegan.
+    cadencia_media: averageCadence,
+    // Strava también estima vatios. Solo son una señal medida cuando declara
+    // explícitamente que proceden de potenciómetro.
+    potencia_media: a.device_watts === true && a.average_watts > 0
+      ? Math.round(a.average_watts) : null,
+    potencia_max: a.device_watts === true && a.max_watts > 0
+      ? Math.round(a.max_watts) : null,
     polyline_encoded: (a.map && a.map.summary_polyline) || null,
     lat_inicio: a.start_latlng ? a.start_latlng[0] : null,
     lng_inicio: a.start_latlng ? a.start_latlng[1] : null,
@@ -155,7 +170,8 @@ function mapActivityToRun(a, userId) {
     source: 'strava',
     strava_activity_id: a.id,
     strava_sport_type: sportType(a),
-    coach_pipeline_version: 2,
+    // Se activa después de que strava-plan-linker haya terminado.
+    coach_pipeline_version: 1,
     // Las builds antiguas no deben disparar además su ruta client-side.
     coaches_notified: true,
   };
@@ -189,7 +205,9 @@ function mapActivityToStrength(a, userId) {
     external_activity_id: String(a.id),
     external_title: externalTitle,
     external_sport_type: sportType(a),
-    coach_pipeline_version: 2,
+    // Nace dormida. La RPC transaccional registra el no-match honesto y solo
+    // después pasa a v2 para que el trigger despierte a José/Ana.
+    coach_pipeline_version: 1,
   };
 }
 
@@ -233,17 +251,36 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   // 2. Dedup temprano en las dos tablas. Un update de Strava no puede crear
   // otra actividad aunque el tipo sea fuerza y no viva en `runs`.
   const [{ data: existingRun }, { data: existingStrength }] = await Promise.all([
-    sb.from('runs').select('id').eq('user_id', conn.user_id)
+    sb.from('runs').select('id, coach_pipeline_version').eq('user_id', conn.user_id)
       .eq('source', 'strava').eq('strava_activity_id', activityId).limit(1),
-    sb.from('strength_workout_runs').select('id').eq('user_id', conn.user_id)
+    sb.from('strength_workout_runs').select('id, coach_pipeline_version').eq('user_id', conn.user_id)
       .eq('external_provider', 'strava').eq('external_activity_id', String(activityId)).limit(1),
   ]);
   if ((existingRun?.length ?? 0) > 0 || (existingStrength?.length ?? 0) > 0) {
+    // Si una invocación anterior cayó entre INSERT(v1) y finalización, el
+    // reintento repara el estado sin volver a pedir el detalle a Strava.
+    const pendingStrength = existingStrength?.find((row) => Number(row.coach_pipeline_version) === 1);
+    if (pendingStrength) {
+      await finalizeStravaStrengthImport(sb, { runId: pendingStrength.id, userId: conn.user_id });
+    }
+    const pendingRun = existingRun?.find((row) => Number(row.coach_pipeline_version) === 1);
+    if (pendingRun) {
+      await finalizeStravaEnduranceImport(sb, { runId: pendingRun.id, userId: conn.user_id });
+    }
     logEvent(LOG, { stage: 'dedup', outcome: 'already_imported', trace_id: traceId });
     return;
   }
 
-  // 3. Token fresco + fetch de la actividad REAL (los eventos son pistas)
+  // 3. Límite durable compartido con el catch-up móvil. Strava no firma el
+  // POST, así que una pista válida nunca puede provocar llamadas ilimitadas
+  // de detalle/refresco. La conexión ya probó que el owner existe y el dedup
+  // evita gastar cuota en reintentos legítimos.
+  if (!await reserveStravaDetailSlot(sb, conn.user_id)) {
+    logEvent(LOG, { stage: 'activity_throttle', outcome: 'skipped', trace_id: traceId });
+    return;
+  }
+
+  // 4. Token fresco + fetch de la actividad REAL (los eventos son pistas)
   const fresh = await refreshTokenIfNeeded(sb, conn, traceId);
   if (!fresh) return;
   const actRes = await fetch(`${STRAVA_API}/activities/${activityId}`, {
@@ -252,7 +289,16 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   if (!actRes.ok) { logEvent(LOG, { stage: 'activity_fetch', outcome: 'failed', status: actRes.status, trace_id: traceId }); return; }
   const activity = await actRes.json();
 
-  // 4. Clasificación cerrada y compartida con sus pruebas: resistencia o
+  // El evento solo es una pista. El detalle autenticado debe repetir tanto el
+  // ID de actividad como el atleta del evento antes de clasificar o persistir.
+  // Un proxy/respuesta cruzada jamás se puede adjudicar a otra cuenta.
+  if (String(activity?.id ?? '') !== String(activityId)
+      || String(activity?.athlete?.id ?? '') !== String(ownerId)) {
+    logEvent(LOG, { stage: 'activity_identity', outcome: 'mismatch', trace_id: traceId });
+    return;
+  }
+
+  // 5. Clasificación cerrada y compartida con sus pruebas: resistencia o
   // fuerza. No se mete una sesión de gimnasio en la tabla de GPS.
   const activityKind = classifyStravaActivity(activity);
   if (!activityKind) {
@@ -262,34 +308,66 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
 
   if (activityKind === 'strength') {
     const strengthRow = mapActivityToStrength(activity, conn.user_id);
-    const { error: strengthError } = await sb.from('strength_workout_runs').insert(strengthRow);
+    const { data: insertedStrength, error: strengthError } = await sb
+      .from('strength_workout_runs').insert(strengthRow)
+      .select('id').single();
     if (strengthError) {
+      // Carrera concurrente webhook/catch-up: la fila ganadora también debe
+      // pasar por el finalizador; nunca se deja dormida por un 23505.
+      if (String(strengthError.code) === '23505') {
+        const { data: raced } = await sb.from('strength_workout_runs')
+          .select('id, coach_pipeline_version').eq('user_id', conn.user_id)
+          .eq('external_provider', 'strava')
+          .eq('external_activity_id', String(activityId)).maybeSingle();
+        if (raced && Number(raced.coach_pipeline_version) === 1) {
+          await finalizeStravaStrengthImport(sb, { runId: raced.id, userId: conn.user_id });
+        }
+      }
       logEvent(LOG, { stage: 'strength_insert', outcome: 'skipped', error_code: errorCode(strengthError), error_kind: errorKind(strengthError), trace_id: traceId });
       return;
     }
+    const coachReady = insertedStrength
+      ? await finalizeStravaStrengthImport(sb, { runId: insertedStrength.id, userId: conn.user_id })
+      : false;
+    if (!coachReady) {
+      logEvent(LOG, { stage: 'coach_activation', outcome: 'failed', trace_id: traceId });
+      return;
+    }
     logEvent(LOG, { stage: 'strength_insert', outcome: 'imported', sport: sportType(activity), trace_id: traceId });
-    return; // el trigger F174 ya dejó José + Ana en la cola
+    return;
   }
 
-  // 5. Resistencia: el índice único parcial protege la carrera concurrente
+  // 6. Resistencia: el índice único parcial protege la carrera concurrente
   // con el catch-up del cliente.
   const row = mapActivityToRun(activity, conn.user_id);
   const { data: inserted, error: insErr } = await sb.from('runs').insert(row).select('id').single();
   // El mensaje de Postgres incluye valores de columna (el detalle de una
   // clave duplicada trae el strava_activity_id): solo el codigo controlado.
-  if (insErr) { logEvent(LOG, { stage: 'run_insert', outcome: 'skipped', error_code: errorCode(insErr), error_kind: errorKind(insErr), trace_id: traceId }); return; }
-  logEvent(LOG, { stage: 'run_insert', outcome: 'imported', sport: row.deporte, trace_id: traceId });
-
-  // 5.5 [F134] Vincular la actividad con la sesión del plan del mismo día.
-  //     Nace APAGADO (env STRAVA_PLAN_LINKING); nunca lanza, y un fallo aquí
-  //     no altera el camino legacy de José ni de Ana. No emite ningún
-  //     mensaje ni notificación propia.
-  const vinculo = await vincularActividadConPlan(sb, { ...row, id: inserted.id });
-  if (vinculo.modo !== 'off') {
-    logEvent(LOG, { stage: 'f134_linking', mode: vinculo.modo, outcome: vinculo.resultado, reason: vinculo.motivo, trace_id: traceId });
+  if (insErr) {
+    // Carrera concurrente webhook/catch-up: recupera la fila ganadora y
+    // ejecuta el mismo finalizador canónico antes de salir.
+    if (String(insErr.code) === '23505') {
+      const { data: raced } = await sb.from('runs')
+        .select('id, coach_pipeline_version').eq('user_id', conn.user_id)
+        .eq('source', 'strava').eq('strava_activity_id', activityId).maybeSingle();
+      if (raced && Number(raced.coach_pipeline_version) === 1) {
+        await finalizeStravaEnduranceImport(sb, { runId: raced.id, userId: conn.user_id });
+      }
+    }
+    logEvent(LOG, { stage: 'run_insert', outcome: 'skipped', error_code: errorCode(insErr), error_kind: errorKind(insErr), trace_id: traceId });
+    return;
   }
-  // José y Ana no se generan aquí. El trigger F174 ya creó dos trabajos
-  // idempotentes: José elegible ahora y Ana diez minutos después.
+  // La RPC bloquea la fila, intenta el vínculo de plan y solo después pasa a
+  // v2. Un fallo conserva v1 para que el próximo webhook/catch-up lo repare.
+  const coachReady = await finalizeStravaEnduranceImport(sb, {
+    runId: inserted.id,
+    userId: conn.user_id,
+  });
+  if (!coachReady) {
+    logEvent(LOG, { stage: 'coach_activation', outcome: 'failed', trace_id: traceId });
+    return;
+  }
+  logEvent(LOG, { stage: 'run_insert', outcome: 'imported', sport: row.deporte, trace_id: traceId });
 }
 
 // ── Setup de la suscripción (idempotente) ─────────────────────
@@ -358,8 +436,9 @@ export default async function handler(req, res) {
   const traceId = newTraceId();
   const work = (async () => {
     try {
-      if (event.object_type !== 'activity') return; // athlete deauth etc. → ignorar (v1)
-      if (event.aspect_type !== 'create' && event.aspect_type !== 'update') return;
+      // Este endpoint importa solo creaciones con IDs enteros exactos.
+      // Ediciones/borrados requieren un contrato de historial propio.
+      if (!isSafeActivityCreateEvent(event)) return;
       const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
       await processActivityEvent(supabase, event.owner_id, event.object_id, traceId);
     } catch (e) {

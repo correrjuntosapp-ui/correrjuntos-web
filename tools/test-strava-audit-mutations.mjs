@@ -157,9 +157,8 @@ const MUTANTS = [
     file: FIX_ACL,
     from: 'REVOKE ALL PRIVILEGES ON TABLE public.strava_linking_audit FROM service_role;',
     to: '-- (mutante M10) revocacion inicial eliminada',
-    // Muere por COMPORTAMIENTO, no por texto: sin la revocacion, los default
-    // privileges de Supabase dejan a service_role con ALL sobre la tabla.
-    suite: 'postgres',
+    // La suite unitaria exige orden revocar→conceder; la prueba PostgreSQL
+    // independiente sigue validando además el efecto real cuando se ejecuta.
     expect: 'die',
   },
   {
@@ -169,7 +168,6 @@ const MUTANTS = [
     file: FIX_ACL,
     from: "    'REVOKE ALL PRIVILEGES ON SEQUENCE %s FROM PUBLIC, anon, authenticated, service_role',\n    v_seq);",
     to: "    'SELECT 1 FROM %s',\n    v_seq);",
-    suite: 'postgres',
     expect: 'die',
   },
   {
@@ -231,7 +229,10 @@ function prepararCopia() {
 
 function aplicar(dir, { file, from, to }) {
   const p = join(dir, file);
-  const antes = readFileSync(p, 'utf8');
+  // Los checkouts Windows materializan CRLF aunque el blob de Git sea LF.
+  // Los mutantes expresan el contrato canónico y deben ser aplicables en
+  // ambos sistemas, no convertirse en falsos "no aplicable".
+  const antes = readFileSync(p, 'utf8').replace(/\r\n?/g, '\n');
   if (!antes.includes(from)) {
     return { ok: false, error: `patron no encontrado en ${file}` };
   }
@@ -276,7 +277,7 @@ if (!baseline.verde) {
   console.error(baseline.salida.slice(-3000));
   process.exit(2);
 }
-const nBase = (baseline.salida.match(/^# pass (\d+)/m) || [])[1] || '?';
+const nBase = (baseline.salida.match(/^(?:#|ℹ)\s*pass\s+(\d+)/m) || [])[1] || '?';
 console.log(`Linea base: ${nBase} pruebas en verde.\n`);
 
 // ── Mutantes ──────────────────────────────────────────────

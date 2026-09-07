@@ -44,7 +44,8 @@ const FIX_ACL = readFileSync(
  * append-only porque la palabra "grants" aparecia en un comentario sobre por
  * que NO se concede DELETE.
  */
-const sinComentarios = (sql) => sql.split('\n')
+const normalizarLf = (text) => text.replace(/\r\n?/g, '\n');
+const sinComentarios = (sql) => normalizarLf(sql).split('\n')
   .map((l) => l.replace(/--.*$/, ''))
   .join('\n');
 const MIGRATION_SQL = sinComentarios(MIGRATION);
@@ -525,6 +526,18 @@ test('F146.5A no modifica los default privileges globales', () => {
     'corregirlos afecta a todo el esquema y queda fuera de alcance');
 });
 
+test('F146.5A revoca los privilegios heredados antes de conceder append-only', () => {
+  assert.match(FIX_ACL_SQL,
+    /REVOKE ALL PRIVILEGES ON TABLE public\.strava_linking_audit FROM service_role;/);
+  assert.match(FIX_ACL_SQL,
+    /REVOKE ALL PRIVILEGES ON SEQUENCE %s FROM PUBLIC, anon, authenticated, service_role/);
+  assert.ok(
+    FIX_ACL_SQL.indexOf('REVOKE ALL PRIVILEGES ON TABLE public.strava_linking_audit FROM service_role;')
+      < FIX_ACL_SQL.indexOf('GRANT INSERT, SELECT ON TABLE public.strava_linking_audit TO service_role;'),
+    'la revocación debe preceder a la concesión mínima',
+  );
+});
+
 test('autocomprobacion: el caso defectuoso EXACTO se detecta', () => {
   // Control del propio control. Sin esto, una asercion mal escrita pasaria en
   // verde sin proteger nada.
@@ -602,7 +615,10 @@ test('los bordes del margen no se mueven', () => {
 // ══════════════════════════════════════════════════════════
 test('contract-guard: el matcher no ha cambiado sin bumpear MATCHER_VERSION', () => {
   const sha = createHash('sha256')
-    .update(readFileSync(join(ROOT, 'api/_lib/strava-plan-matcher.js')))
+    // Git conserva LF, pero un checkout de Windows puede materializar CRLF.
+    // El contrato protege el contenido, no la política local de finales de
+    // línea: se normaliza antes de comparar con el hash del blob canónico.
+    .update(normalizarLf(readFileSync(join(ROOT, 'api/_lib/strava-plan-matcher.js'), 'utf8')))
     .digest('hex').slice(0, 16);
   assert.equal(sha, MATCHER_SHA256_PREFIX,
     `El matcher cambio. Si es deliberado, sube MATCHER_VERSION (hoy ${MATCHER_VERSION}) ` +

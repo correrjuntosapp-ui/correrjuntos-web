@@ -1,4 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { AI_DATA_PROVENANCE_VERSION, firstPartyRunFacts, aiConversationHistory, declaresRestrictedActivityData } from './_provenance.ts';
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const ANTHROPIC_API_KEY = Deno.env.get('ANTHROPIC_API_KEY')!;
@@ -122,7 +123,7 @@ If you have runner data (avg pace, active plan, recent runs, RPE, VO2max): USE i
 ALWAYS respond in English.`;
 
 function getSystemPrompt(lang: string) {
-  return lang === 'en' ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_ES;
+  return (lang === 'en' ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_ES) + '\nF183 SAFETY CONTRACT (takes priority over illustrative examples): You are a virtual training assistant, not a licensed clinician. Use only supplied eligible facts; unknown is unknown. Never predict race times from absent/uncertain VO2max, diagnose injury/overtraining, assert technique from logs, or prescribe supplements. Refer nutrition questions to Ana. Do not claim a plan has changed. Motivate without guilt. Explain one evidenced success and a practical next step; ask about sensations when missing. Examples are tone only, never evidence about this user.';
 }
 
 // Modelo: Claude Sonnet 4.5 para conversacion premium (mejor que Haiku para coach)
@@ -165,388 +166,164 @@ function fmtPace(secPerKm: number): string {
 }
 
 async function handlePostRunAnalysis(payload: any, userId: string, supabase: any) {
-  const { runData, planWorkout, insights, vo2max, lang = 'es' } = payload;
-
-  // [F118] CONTRATO REAL de `runs`: distancia_km / duracion_segundos (ES).
-  // El select anterior pedía distance_km/duration_sec (inexistentes) → error
-  // silencioso → recentRuns vacío SIEMPRE. Ahora se comprueba `error` y, si
-  // falla, se declara el hueco en vez de fingir historial vacío.
-  const { data: recentRuns, error: recentRunsErr } = await supabase
-    .from('runs')
-    .select('distancia_km, duracion_segundos, rpe, created_at')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false })
-    .limit(5);
-  if (recentRunsErr) console.error('[ai-coach] post_run recent runs query failed:', recentRunsErr.code || 'err');
-
-  const context: any = {
-    run: {
-      km: runData.distanceKm?.toFixed(2),
-      duration_min: runData.durationSec ? (runData.durationSec / 60).toFixed(1) : null,
-      pace: runData.paceAvg ? fmtPace(runData.paceAvg) : null,
-      rpe: runData.rpe,
-      splits: runData.splits?.slice(0, 5)?.map((s: any) => fmtPace(s.seconds || s)),
-    },
+  const lang = payload?.lang === 'en' ? 'en' : 'es';
+  // Client metrics/insights can be copied or relabelled Strava data. Resolve
+  // the saved activity by authenticated owner before constructing any context.
+  if (typeof payload?.runId !== 'string' || !payload.runId.trim()) {
+    throw new Error('CANONICAL_RUN_REQUIRED');
+  }
+  const { data: run, error } = await supabase.from('runs')
+    .select('id,source,strava_activity_id,deporte,distancia_km,duracion_segundos,rpe,created_at')
+    .eq('id', payload.runId).eq('user_id', userId).maybeSingle();
+  if (error) throw new Error('RUN_CONTEXT_UNAVAILABLE');
+  const facts = firstPartyRunFacts(run);
+  if (!facts) throw new Error('ACTIVITY_PROVENANCE_NOT_ELIGIBLE');
+  const { data: rows, error: recentError } = await supabase.from('runs')
+    .select('id,source,strava_activity_id,deporte,distancia_km,duracion_segundos,rpe,created_at')
+    .eq('user_id', userId).eq('source', 'app').is('strava_activity_id', null)
+    .order('created_at', { ascending: false }).limit(10);
+  const recent = (rows ?? []).map((row: any) => firstPartyRunFacts(row))
+    .filter((row: any) => row && row.id !== facts.id && row.sport === facts.sport).slice(0, 4);
+  const context = {
+    provenance: AI_DATA_PROVENANCE_VERSION, run: facts, recent,
+    data_gaps: ['technique_not_observed', 'plan_target_lineage_unverified',
+      ...(recentError ? ['recent_runs_unavailable'] : [])],
   };
-
-  if (planWorkout) {
-    context.plan_target = {
-      type: planWorkout.tipo,
-      km: planWorkout.distancia_target_km,
-      pace_target: planWorkout.ritmo_target ? fmtPace(planWorkout.ritmo_target * 60) : null,
-      title: planWorkout.titulo,
-    };
-  }
-
-  if (insights) {
-    context.insights = {
-      pace_consistency_cv: insights.paceCv,
-      negative_split: insights.negativeSplit,
-      plan_adherence_pct: insights.planAdherencePct,
-    };
-  }
-
-  if (vo2max) context.vo2max = vo2max;
-
-  if (recentRuns?.length) {
-    context.recent = recentRuns.slice(1, 4).map((r: any) => ({
-      km: r.distancia_km != null ? Number(r.distancia_km).toFixed(1) : null,
-      pace: r.duracion_segundos && r.distancia_km ? fmtPace(r.duracion_segundos / r.distancia_km) : null,
-      rpe: r.rpe,
-    }));
-  } else if (recentRunsErr) {
-    context.data_gaps = ['recent_runs_unavailable']; // fail closed: hueco declarado, no historial vacío fingido
-  }
-
   const userMessage = lang === 'en'
-    ? `Analyze this run and give personalized feedback:\n${JSON.stringify(context)}`
-    : `Analiza esta carrera y da feedback personalizado:\n${JSON.stringify(context)}`;
-
-  const result = await callClaude(getSystemPrompt(lang), userMessage, 250, MODEL_BATCH);
-
+    ? `Explain this independently recorded session: one evidenced success, one limitation and one practical next step. Ask about sensations when missing. Never infer technique, injury or fitness from absent data.\n${JSON.stringify(context)}`
+    : `Explica esta sesión registrada de forma independiente: un acierto sustentado, una limitación y un siguiente paso práctico. Pregunta por sensaciones si faltan. No deduzcas técnica, lesión ni estado de forma sin datos.\n${JSON.stringify(context)}`;
+  const result = await callClaude(getSystemPrompt(lang), userMessage, 350, MODEL_BATCH);
   await supabase.from('coach_interactions').insert({
-    user_id: userId,
-    interaction_type: 'post_run',
-    run_id: payload.runId || null,
-    input_context: context,
-    response_text: result.text,
-    response_lang: lang,
-    tokens_input: result.inputTokens,
-    tokens_output: result.outputTokens,
+    user_id: userId, interaction_type: 'post_run', run_id: payload.runId,
+    input_context: context, response_text: result.text, response_lang: lang,
+    tokens_input: result.inputTokens, tokens_output: result.outputTokens,
   });
-
   return result.text;
 }
 
 async function handleChat(payload: any, userId: string, supabase: any) {
-  const { message, lang = 'es' } = payload;
-
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('es_premium, nivel, vo2max_latest')
-    .eq('id', userId)
-    .single();
-
-  // Freemium: premium = ilimitado. No-premium = FREE_DAILY_LIMIT msgs/día (UTC).
+  const lang = payload?.lang === 'en' ? 'en' : 'es';
+  const message = payload?.message;
+  if (typeof message !== 'string' || !message.trim() || message.length > 8000) throw new Error('INVALID_MESSAGE');
+  if (declaresRestrictedActivityData(message)) return lang === 'en'
+    ? 'I cannot analyze or send Strava data to AI. You can view imported activities in Activities; I can help with general training questions or independently recorded sessions.'
+    : 'No puedo analizar ni enviar datos de Strava a una IA. Puedes consultar las importaciones en Actividades; sí puedo ayudarte con dudas generales o sesiones registradas de forma independiente.';
+  const { data: profile, error: profileError } = await supabase.from('profiles')
+    .select('es_premium,nivel').eq('id', userId).single();
+  if (profileError) throw new Error('PROFILE_UNAVAILABLE');
   if (!profile?.es_premium) {
-    const startOfDay = new Date();
-    startOfDay.setUTCHours(0, 0, 0, 0);
-    const { count } = await supabase
-      .from('coach_chat_messages')
-      .select('id', { count: 'exact', head: true })
-      .eq('user_id', userId)
-      .eq('role', 'user')
-      .gte('created_at', startOfDay.toISOString());
-    if ((count ?? 0) >= FREE_DAILY_LIMIT) {
-      throw new Error('DAILY_LIMIT_REACHED');
-    }
+    const startOfDay = new Date(); startOfDay.setUTCHours(0, 0, 0, 0);
+    const { count, error: quotaError } = await supabase.from('coach_chat_messages')
+      .select('id', { count: 'exact', head: true }).eq('user_id', userId)
+      .eq('role', 'user').gte('created_at', startOfDay.toISOString());
+    if (quotaError) throw new Error('QUOTA_UNAVAILABLE');
+    if ((count ?? 0) >= FREE_DAILY_LIMIT) throw new Error('DAILY_LIMIT_REACHED');
   }
-
-  await supabase.from('coach_chat_messages').insert({
-    user_id: userId,
-    role: 'user',
-    content: message,
-  });
-
-  const { data: chatHistory } = await supabase
-    .from('coach_chat_messages')
-    .select('role, content')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false })
-    .limit(8);
-
-  // [F118] CONTRATOS REALES verificados contra el esquema:
-  //  - runs: distancia_km / duracion_segundos (NO distance_km/duration_sec)
-  //  - user_plans.estado: 'active' | 'paused' | 'abandoned' (valores EN, no ES)
-  //  - user_workouts.estado: 'pending' | 'completed' | 'skipped'
-  // Cada consulta comprueba `error`: un fallo se declara como hueco
-  // (data_gaps) — José nunca recibe un [] fingido como "sin datos".
-  const dataGaps: string[] = [];
-
-  const { data: recentRuns, error: recentRunsErr } = await supabase
-    .from('runs')
-    .select('deporte, distancia_km, duracion_segundos, rpe, vo2max_estimate, created_at')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false })
-    .limit(5);
-  if (recentRunsErr) { console.error('[ai-coach] chat runs query failed:', recentRunsErr.code || 'err'); dataGaps.push('recent_runs_unavailable'); }
-
-  const { data: planRows, error: planErr } = await supabase
-    .from('user_plans')
-    .select('objetivo, semana_actual, progreso_pct, ritmo_base, estado, race_nombre, fecha_carrera')
-    .eq('user_id', userId)
-    .in('estado', ['active', 'paused'])
-    .order('updated_at', { ascending: false })
-    .limit(1);
-  if (planErr) { console.error('[ai-coach] chat plan query failed:', planErr.code || 'err'); dataGaps.push('plan_unavailable'); }
-  const activePlan = Array.isArray(planRows) && planRows.length > 0 ? planRows[0] : null;
-
-  // Próxima sesión programada del plan (si existe)
-  let nextWorkout: any = null;
-  if (activePlan) {
-    const todayStr = new Date().toISOString().split('T')[0];
-    const { data: nw, error: nwErr } = await supabase
-      .from('user_workouts')
-      .select('tipo, titulo, fecha, distancia_target_km')
-      .eq('user_id', userId)
-      .eq('estado', 'pending')
-      .gte('fecha', todayStr)
-      .order('fecha', { ascending: true })
-      .limit(1);
-    if (nwErr) { console.error('[ai-coach] chat next workout query failed:', nwErr.code || 'err'); dataGaps.push('next_workout_unavailable'); }
-    else if (Array.isArray(nw) && nw.length > 0) nextWorkout = nw[0];
-  }
-
-  const context: any = {
-    profile: { level: profile?.nivel ?? null, vo2max: profile?.vo2max_latest ?? null },
-    recent_runs: (recentRuns || []).slice(0, 5).map((r: any) => ({
-      sport: r.deporte,
-      km: r.distancia_km != null ? Number(r.distancia_km).toFixed(1) : null,
-      pace: r.duracion_segundos && r.distancia_km ? fmtPace(r.duracion_segundos / r.distancia_km) : null,
-      rpe: r.rpe,
-      days_ago: Math.round((Date.now() - new Date(r.created_at).getTime()) / 86400000),
-    })),
+  await supabase.from('coach_chat_messages').insert({ user_id: userId, role: 'user', content: message });
+  const { data: rows, error: runsError } = await supabase.from('runs')
+    .select('id,source,strava_activity_id,deporte,distancia_km,duracion_segundos,rpe,created_at')
+    .eq('user_id', userId).eq('source', 'app').is('strava_activity_id', null)
+    .order('created_at', { ascending: false }).limit(5);
+  const { data: plans, error: planError } = await supabase.from('user_plans')
+    .select('objetivo,estado,race_nombre,fecha_carrera')
+    .eq('user_id', userId).in('estado', ['active', 'paused'])
+    .order('updated_at', { ascending: false }).limit(1);
+  const plan = plans?.[0];
+  const context = {
+    provenance: AI_DATA_PROVENANCE_VERSION,
+    profile: { level: profile?.nivel ?? null },
+    recent_runs: (rows ?? []).map((row: any) => firstPartyRunFacts(row)).filter(Boolean),
+    goal: plan ? { objective: plan.objetivo, race_name: plan.race_nombre, race_date: plan.fecha_carrera } : null,
+    data_gaps: ['chat_history_lineage_unverified', 'fitness_aggregates_lineage_unverified',
+      ...(runsError ? ['recent_runs_unavailable'] : []), ...(planError ? ['plan_unavailable'] : [])],
   };
-  if (dataGaps.length) context.data_gaps = dataGaps;
-
-  if (activePlan) {
-    context.plan = {
-      goal: activePlan.objetivo,
-      week: activePlan.semana_actual,
-      progress_pct: activePlan.progreso_pct,
-      base_pace: activePlan.ritmo_base ? fmtPace(activePlan.ritmo_base * 60) : null,
-    };
-    if (activePlan.race_nombre && activePlan.fecha_carrera) {
-      context.target_race = { name: activePlan.race_nombre, date: activePlan.fecha_carrera };
-    }
-  }
-  if (nextWorkout) {
-    context.next_workout = {
-      type: nextWorkout.tipo,
-      title: nextWorkout.titulo,
-      date: nextWorkout.fecha,
-      target_km: nextWorkout.distancia_target_km,
-    };
-  }
-
-  const messages = (chatHistory || []).reverse().map((m: any) => ({
-    role: m.role,
-    content: m.content,
-  }));
-
-  const contextStr = JSON.stringify(context);
-  const userMsg = lang === 'en'
-    ? `Runner context: ${contextStr}\n\nQuestion: ${message}`
-    : `Contexto del corredor: ${contextStr}\n\nPregunta: ${message}`;
-
-  if (messages.length > 0 && messages[messages.length - 1].role === 'user') {
-    messages[messages.length - 1].content = userMsg;
-  } else {
-    messages.push({ role: 'user', content: userMsg });
-  }
-
+  // Never reload legacy proactives/replies: their ancestors are unverified.
+  // History remains stored/displayed; new conversation lineage needs its own schema.
+  const messages: { role: 'user' | 'assistant'; content: string }[] = aiConversationHistory(null);
+  messages.push({ role: 'user', content:
+    `${lang === 'en' ? 'Independent runner context' : 'Contexto independiente del corredor'}: ${JSON.stringify(context)}\n\n${message}` });
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: {
-      'x-api-key': ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: MODEL_CHAT,
-      // [10 mayo 2026] Bajado de 600 a 350. Combinado con prompt v2 esto
-      // fuerza brevedad — el modelo no lo agota porque el prompt pide 2-5
-      // frases, pero deja margen si pregunta abierta tipo "hazme un plan".
-      max_tokens: 350,
-      system: getSystemPrompt(lang),
-      messages,
-    }),
+    headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+    body: JSON.stringify({ model: MODEL_CHAT, max_tokens: 450, system: getSystemPrompt(lang), messages }),
   });
-
   if (!res.ok) throw new Error(`Anthropic error ${res.status}`);
   const data = await res.json();
   const responseText = data.content?.[0]?.text || '';
-
-  await supabase.from('coach_chat_messages').insert({
-    user_id: userId,
-    role: 'assistant',
-    content: responseText,
-  });
-
+  await supabase.from('coach_chat_messages').insert({ user_id: userId, role: 'assistant', content: responseText });
   await supabase.from('coach_interactions').insert({
-    user_id: userId,
-    interaction_type: 'chat',
-    input_context: context,
-    response_text: responseText,
-    response_lang: lang,
-    tokens_input: data.usage?.input_tokens || 0,
-    tokens_output: data.usage?.output_tokens || 0,
+    user_id: userId, interaction_type: 'chat', input_context: context, response_text: responseText,
+    response_lang: lang, tokens_input: data.usage?.input_tokens || 0, tokens_output: data.usage?.output_tokens || 0,
   });
-
   return responseText;
 }
 
 async function handleWeeklySummary(payload: any, userId: string, supabase: any) {
-  const { lang = 'es' } = payload;
-
+  const lang = payload?.lang === 'en' ? 'en' : 'es';
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString();
-  const { data: weekRuns } = await supabase
-    .from('runs')
-    .select('distance_km, duration_sec, rpe, vo2max_estimate, sport, created_at')
-    .eq('user_id', userId)
-    .gte('created_at', weekAgo)
-    .order('created_at', { ascending: true });
-
-  if (!weekRuns?.length) {
-    return lang === 'en'
-      ? 'No runs recorded this week. Even a short 15-minute jog counts. Try to get out there tomorrow!'
-      : 'No has registrado carreras esta semana. Incluso un trote corto de 15 minutos cuenta. Intenta salir manana!';
+  const { data: rows, error } = await supabase.from('runs')
+    .select('id,source,strava_activity_id,deporte,distancia_km,duracion_segundos,rpe,created_at')
+    .eq('user_id', userId).eq('source', 'app').is('strava_activity_id', null)
+    .gte('created_at', weekAgo).order('created_at', { ascending: true });
+  if (error) throw new Error('WEEK_CONTEXT_UNAVAILABLE');
+  const facts = (rows ?? []).map((row: any) => firstPartyRunFacts(row)).filter(Boolean);
+  if (!facts.length) return lang === 'en'
+    ? 'No independently recorded sessions are available for this analysis. Imported activities remain in Activities.'
+    : 'No hay sesiones registradas de forma independiente disponibles para este análisis. Tus actividades importadas siguen en Actividades.';
+  const sports: Record<string, { sessions: number; observed_km: number | null; observed_minutes: number | null; missing_distance: number; missing_duration: number; effort: number[] }> = {};
+  for (const run of facts) {
+    const key = String(run.sport ?? 'unknown');
+    const group = sports[key] ?? { sessions: 0, observed_km: null, observed_minutes: null, missing_distance: 0, missing_duration: 0, effort: [] };
+    group.sessions += 1;
+    if (typeof run.distance_km === 'number') group.observed_km = (group.observed_km ?? 0) + run.distance_km;
+    else group.missing_distance += 1;
+    if (typeof run.duration_seconds === 'number') group.observed_minutes = (group.observed_minutes ?? 0) + run.duration_seconds / 60;
+    else group.missing_duration += 1;
+    if (typeof run.rpe === 'number') group.effort.push(run.rpe);
+    sports[key] = group;
   }
-
-  const { data: activePlan } = await supabase
-    .from('user_plans')
-    .select('goal_key, semana_actual, progreso_pct, ritmo_base')
-    .eq('user_id', userId)
-    .eq('estado', 'activo')
-    .single();
-
-  const { data: weekWorkouts } = await supabase
-    .from('user_workouts')
-    .select('estado, tipo')
-    .eq('user_id', userId)
-    .gte('fecha', weekAgo.split('T')[0]);
-
-  const totalKm = weekRuns.reduce((s: number, r: any) => s + (r.distance_km || 0), 0);
-  const avgPace = weekRuns.reduce((s: number, r: any) => s + (r.duration_sec || 0), 0) / (totalKm || 1);
-  const avgRpe = weekRuns.reduce((s: number, r: any) => s + (r.rpe || 0), 0) / weekRuns.length;
-
-  const context = {
-    week: {
-      runs: weekRuns.length,
-      total_km: totalKm.toFixed(1),
-      avg_pace: fmtPace(avgPace),
-      avg_rpe: avgRpe.toFixed(1),
-    },
-    plan: activePlan ? {
-      goal: activePlan.goal_key,
-      week: activePlan.semana_actual,
-      progress: activePlan.progreso_pct,
-    } : null,
-    workouts: weekWorkouts ? {
-      completed: weekWorkouts.filter((w: any) => w.estado === 'completado').length,
-      skipped: weekWorkouts.filter((w: any) => w.estado === 'omitido').length,
-      pending: weekWorkouts.filter((w: any) => w.estado === 'pendiente').length,
-    } : null,
-  };
-
-  const userMessage = lang === 'en'
-    ? `Give a weekly training summary and recommendations for next week:\n${JSON.stringify(context)}`
-    : `Da un resumen semanal de entrenamiento y recomendaciones para la proxima semana:\n${JSON.stringify(context)}`;
-
-  const result = await callClaude(getSystemPrompt(lang), userMessage, 350, MODEL_BATCH);
-
+  const context = { provenance: AI_DATA_PROVENANCE_VERSION, window: 'last_7_days', sports };
+  const result = await callClaude(getSystemPrompt(lang),
+    `${lang === 'en' ? 'Summarize only the included sessions, separately by sport; this may be an incomplete week.' : 'Resume solo las sesiones incluidas y separa cada deporte; puede ser una semana incompleta.'}\n${JSON.stringify(context)}`,
+    350, MODEL_BATCH);
   const weekStart = new Date();
-  weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+  weekStart.setUTCDate(weekStart.getUTCDate() - weekStart.getUTCDay());
   const weekStartStr = weekStart.toISOString().split('T')[0];
-
   await supabase.from('coach_weekly_summaries').upsert({
-    user_id: userId,
-    week_start: weekStartStr,
-    summary_text: result.text,
-    summary_data: context,
-    lang,
+    user_id: userId, week_start: weekStartStr, summary_text: result.text, summary_data: context, lang,
   }, { onConflict: 'user_id,week_start' });
-
   await supabase.from('coach_interactions').insert({
-    user_id: userId,
-    interaction_type: 'weekly_summary',
-    input_context: context,
-    response_text: result.text,
-    response_lang: lang,
-    tokens_input: result.inputTokens,
+    user_id: userId, interaction_type: 'weekly_summary', input_context: context,
+    response_text: result.text, response_lang: lang, tokens_input: result.inputTokens,
     tokens_output: result.outputTokens,
   });
-
   return result.text;
 }
 
 async function handleSmartCheck(payload: any, userId: string, supabase: any) {
-  const { lang = 'es' } = payload;
-
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('es_premium')
-    .eq('id', userId)
-    .single();
-
+  const lang = payload?.lang === 'en' ? 'en' : 'es';
+  const { data: profile } = await supabase.from('profiles').select('es_premium')
+    .eq('id', userId).single();
   if (!profile?.es_premium) return null;
-
-  const { data: recentRuns } = await supabase
-    .from('runs')
-    .select('rpe, distance_km, duration_sec, created_at')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false })
-    .limit(5);
-
-  if (!recentRuns?.length || recentRuns.length < 3) return null;
-
-  const lastThreeRpe = recentRuns.slice(0, 3).map((r: any) => r.rpe).filter(Boolean);
-  const avgRpe = lastThreeRpe.length ? lastThreeRpe.reduce((a: number, b: number) => a + b, 0) / lastThreeRpe.length : 0;
-
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split('T')[0];
-  const { data: missedWorkouts } = await supabase
-    .from('user_workouts')
-    .select('id')
-    .eq('user_id', userId)
-    .eq('estado', 'pendiente')
-    .lt('fecha', weekAgo);
-
-  const alerts: any[] = [];
-
-  if (avgRpe > 7) {
-    const title = lang === 'en' ? 'Overtraining risk detected' : 'Riesgo de sobreentrenamiento detectado';
-    const context = { avg_rpe: avgRpe.toFixed(1), last_3_rpe: lastThreeRpe };
-    const userMsg = lang === 'en'
-      ? `The runner's last 3 RPE scores average ${avgRpe.toFixed(1)}/10. Give a brief warning about overtraining risk and suggest recovery.`
-      : `Los ultimos 3 RPE del corredor promedian ${avgRpe.toFixed(1)}/10. Da un aviso breve sobre riesgo de sobreentrenamiento y sugiere recuperacion.`;
-
-    const result = await callClaude(getSystemPrompt(lang), userMsg, 180, MODEL_BATCH);
-    alerts.push({ alert_type: 'overtraining_risk', title, message: result.text, data: context });
-  }
-
-  if (missedWorkouts && missedWorkouts.length >= 2) {
-    const title = lang === 'en' ? `${missedWorkouts.length} missed workouts` : `${missedWorkouts.length} entrenamientos sin completar`;
-    const message = lang === 'en'
-      ? `You have ${missedWorkouts.length} pending workouts from previous weeks. Consider reorganizing your plan or adjusting your training days.`
-      : `Tienes ${missedWorkouts.length} entrenamientos pendientes de semanas anteriores. Considera reorganizar tu plan o ajustar tus dias de entrenamiento.`;
-    alerts.push({ alert_type: 'missed_workouts', title, message, data: { count: missedWorkouts.length } });
-  }
-
-  for (const alert of alerts) {
-    await supabase.from('coach_alerts').insert({ user_id: userId, ...alert });
-  }
-
-  return alerts;
+  const { data: rows, error } = await supabase.from('runs')
+    .select('id,source,strava_activity_id,deporte,distancia_km,duracion_segundos,rpe,created_at')
+    .eq('user_id', userId).eq('source', 'app').is('strava_activity_id', null)
+    .order('created_at', { ascending: false }).limit(5);
+  if (error) throw new Error('EFFORT_CONTEXT_UNAVAILABLE');
+  const eligible = (rows ?? []).map((row: any) => firstPartyRunFacts(row)).filter(Boolean);
+  const efforts = eligible.slice(0, 3).map((row: any) => row.rpe).filter((v: any) => typeof v === 'number');
+  if (efforts.length < 3) return [];
+  const average = efforts.reduce((a: number, b: number) => a + b, 0) / efforts.length;
+  if (average <= 7) return [];
+  const context = { provenance: AI_DATA_PROVENANCE_VERSION, observed_rpe: efforts, avg_rpe: average };
+  const result = await callClaude(getSystemPrompt(lang),
+    `${lang === 'en' ? 'The recorded effort is high. Ask about recovery and suggest a cautious next step; do not diagnose overtraining or injury.' : 'El esfuerzo registrado es alto. Pregunta por recuperación y sugiere un siguiente paso prudente; no diagnostiques sobreentrenamiento ni lesión.'}\n${JSON.stringify(context)}`,
+    180, MODEL_BATCH);
+  const alert = { alert_type: 'overtraining_risk',
+    title: lang === 'en' ? 'How are you recovering?' : '¿Cómo te estás recuperando?',
+    message: result.text, data: context };
+  await supabase.from('coach_alerts').insert({ user_id: userId, ...alert });
+  return [alert];
 }
 
 Deno.serve(async (req: Request) => {

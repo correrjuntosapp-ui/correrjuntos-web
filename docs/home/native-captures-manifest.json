@@ -1,0 +1,144 @@
+{
+  "capturedAt": "2026-09-08",
+  "platform": "Android",
+  "appVersion": "1.3.25",
+  "versionCode": 110,
+  "binarySource": "Google Play Developer API generatedApks, versionCode 110, unprotectedGeneratedSplitApks variant 3 supplied by Google for installation outside Play",
+  "certificateSha256": "50fb82fe217b364153c897933632a57c6c0d19533002863440189cd8f048ceb9",
+  "environment": "Isolated Android emulator CJ_Public_Demo_1325, API 36.1, 1080x2400, Spanish",
+  "ota": {
+    "channel": "production",
+    "runtime": "1.3.25",
+    "downloadedUpdateId": "01a01fed-e67d-7ca0-8225-6a098c18d4c8",
+    "group": "c7ef1ad1-2a5c-4524-9252-615f71829811",
+    "evidence": "DownloadComplete on first launch; app restarted before login and captures; CheckCompleteUnavailable after final restart, no update pending"
+  },
+  "account": {
+    "name": "Demo web",
+    "premium": false,
+    "syntheticActivityHistory": false
+  },
+  "transformations": "PNG masters unchanged. WebP derivatives use proportional downscaling only: no crop, retouch, synthetic screens or fabricated activities.",
+  "limitations": [
+    "Not an iOS visual certification",
+    "No physical GPS, background location or payment test",
+    "Google Play account not connected in emulator; billing prices unavailable there"
+  ],
+  "captures": [
+    {
+      "name": "01-inicio",
+      "description": "Inicio con la cuenta Demo web, sin actividades registradas",
+      "width": 1080,
+      "height": 2400,
+      "masterSha256": "8483285b9f76214d2710e9444d1ddce94e469f75705b4e82a16c6653af02d199",
+      "variants": [
+        {
+          "file": "public/home/app/native-01-inicio-480.webp",
+          "width": 480,
+          "height": 1067,
+          "sha256": "3a6cc2580d2d0ce7bbe297bcdead0f72a2b43d1065d1487d6a2bfb2c2e358540",
+          "bytes": 39398
+        },
+        {
+          "file": "public/home/app/native-01-inicio-720.webp",
+          "width": 720,
+          "height": 1600,
+          "sha256": "71da8324de8e7768fd2858de5374abb61245fbe66ac7aff97210cf0a4006f96f",
+          "bytes": 65152
+        }
+      ]
+    },
+    {
+      "name": "02-plan",
+      "description": "Plan gratuito 0→5K: semana 1 de 8, cero sesiones completadas",
+      "width": 1080,
+      "height": 2400,
+      "masterSha256": "f3ac074e54cd3739117559612eaa79af97e7599c7a5268d58928cc4df331735b",
+      "variants": [
+        {
+          "file": "public/home/app/native-02-plan-480.webp",
+          "width": 480,
+          "height": 1067,
+          "sha256": "277b13a0ba92ace690222ba7aa32a4f56b3110976eaa7d602db303d72c3047fa",
+          "bytes": 33386
+        },
+        {
+          "file": "public/home/app/native-02-plan-720.webp",
+          "width": 720,
+          "height": 1600,
+          "sha256": "ebfcc4978b63aed291faa3b1e8d6e2e65419ced10d68a17bfd5b80f4387d65b3",
+          "bytes": 54914
+        }
+      ]
+    },
+    {
+      "name": "03-sesion",
+      "description": "Detalle de la sesión Caminar/Correr 6x1min, sin iniciarla",
+      "width": 1080,
+      "height": 2400,
+      "masterSha256": "53fb7b742c09578c5cd33f538d694bcc39f96666b9a168da76c8736831218504",
+      "variants": [
+        {
+          "file": "public/home/app/native-03-sesion-480.webp",
+          "width": 480,
+          "height": 1067,
+          "sha256": "c294e07f2d9021360558af69bb12e9bce8b5fb5949bb7c1c660f58ba5538038d",
+          "bytes": 31356
+        },
+        {
+          "file": "public/home/app/native-03-sesion-720.webp",
+          "width": 720,
+          "height": 1600,
+          "sha256": "9ff51f24a833a69454f17ddd9f06e2a2603c713b65ac7fa75a47497e10705234",
+          "bytes": 53282
+        }
+      ]
+    },
+    {
+      "name": "04-carreras",
+      "description": "Mapa y listado de carreras publicado, sin límite de distancia",
+      "width": 1080,
+      "height": 2400,
+      "masterSha256": "6809329cd903a480587048e91e46512963c9828ddf37a90a4f6b832fd62284a1",
+      "variants": [
+        {
+          "file": "public/home/app/native-04-carreras-480.webp",
+          "width": 480,
+          "height": 1067,
+          "sha256": "e50da8b01226a5399b4e4a3404d0aee2310d2da2b991c31805423ae9e5cd272f",
+          "bytes": 48392
+        },
+        {
+          "file": "public/home/app/native-04-carreras-720.webp",
+          "width": 720,
+          "height": 1600,
+          "sha256": "237d4ece048cbcf2029d5ed002ed71039951fc26a1dbe0acbc3b55c3721bbc69",
+          "bytes": 83090
+        }
+      ]
+    },
+    {
+      "name": "05-ana",
+      "description": "Ana identificada como IA: estado inicial, cinco mensajes disponibles, sin enviar consultas",
+      "width": 1080,
+      "height": 2400,
+      "masterSha256": "f3897f18f07f3bfa4cb2c32422ea8d38d710b57a849d47a13e44eb4442dd91a4",
+      "variants": [
+        {
+          "file": "public/home/app/native-05-ana-480.webp",
+          "width": 480,
+          "height": 1067,
+          "sha256": "7eeb7928d880143e4b5a4e31d3f69b50f26b63da9205a0aa0507c5a9de63f393",
+          "bytes": 26540
+        },
+        {
+          "file": "public/home/app/native-05-ana-720.webp",
+          "width": 720,
+          "height": 1600,
+          "sha256": "8da50cf57e1cc4f5c960e7b22d6e875093a240a21edcb723ff55fc973c0151db",
+          "bytes": 43318
+        }
+      ]
+    }
+  ]
+}

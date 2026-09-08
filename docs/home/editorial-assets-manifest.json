@@ -1,0 +1,139 @@
+{
+  "preparedAt": "2026-09-08",
+  "note": "Derivatives copied byte-identically from the approved V10. Existing repository editorial sources; no new licence is asserted. The unapproved group photograph is excluded.",
+  "assets": [
+    {
+      "file": "public/home/editorial/cycling-480.webp",
+      "source": "public/blog-images/ciclismo/ciclismo-hub-hero-v2-828.webp",
+      "sourceSha256": "9f6827f9554bb7fa552a9611d730e9729fd7ba8b40ee4af447c065c76dd553b9",
+      "sha256": "f456cfc28ede326f267ff7773a96b161be1d5dd85093a3e5a910073d5a6f44a6",
+      "bytes": 24872
+    },
+    {
+      "file": "public/home/editorial/lectura-5k-640.webp",
+      "source": "public/pexels/32145212-1200.webp",
+      "sourceSha256": "1f8fc76c54c714efbd6ce29f8c9f5cc1ae6b40d2d2782b8c1aa601990700bb4e",
+      "sha256": "86eca17e419e89629154f55b2b8e1f8daa5c3bafea63a67998a2589ccb7d5fce",
+      "bytes": 17882
+    },
+    {
+      "file": "public/home/editorial/lectura-5k-960.webp",
+      "source": "public/pexels/32145212-1200.webp",
+      "sourceSha256": "1f8fc76c54c714efbd6ce29f8c9f5cc1ae6b40d2d2782b8c1aa601990700bb4e",
+      "sha256": "01c528552f7aaf2add692c6c34c86e340fdddc7472a8ac47d8b442c5d6622ad0",
+      "bytes": 24790
+    },
+    {
+      "file": "public/home/editorial/lectura-carretera-640.webp",
+      "source": "public/blog-images/ciclismo/mejores-bicicletas-carretera-2027-hero.webp",
+      "sourceSha256": "0f403cb6311a5383d99521657efd253e9195ac8a32964e2cb021f0a622f5a464",
+      "sha256": "bc7586c2afff67f676a0277604c22ff9407621672cf78dc22c51b72f616c0087",
+      "bytes": 91230
+    },
+    {
+      "file": "public/home/editorial/lectura-carretera-960.webp",
+      "source": "public/blog-images/ciclismo/mejores-bicicletas-carretera-2027-hero.webp",
+      "sourceSha256": "0f403cb6311a5383d99521657efd253e9195ac8a32964e2cb021f0a622f5a464",
+      "sha256": "fedccb194ff327d7c3bb1ea2991d1269c7d3c6d52f2822e82eaa1875068bca30",
+      "bytes": 191762
+    },
+    {
+      "file": "public/home/editorial/lectura-desayunos-320.webp",
+      "source": "public/pexels/1099680-1200.webp",
+      "sourceSha256": "c81072e6e2c3921c9c42745c90c2339a1eddf89140bc0bfb630fa3f5ea2ccf1e",
+      "sha256": "10395c1af36a18cec029336758b0df9fae1efd02b6cc3eaa560e921963c3f17b",
+      "bytes": 13860
+    },
+    {
+      "file": "public/home/editorial/lectura-desayunos-640.webp",
+      "source": "public/pexels/1099680-1200.webp",
+      "sourceSha256": "c81072e6e2c3921c9c42745c90c2339a1eddf89140bc0bfb630fa3f5ea2ccf1e",
+      "sha256": "eda2e2d3ea7d5bb38d210257a83803aac32d0e9c83d5a9967802768492b589a6",
+      "bytes": 56092
+    },
+    {
+      "file": "public/home/editorial/lectura-desayunos-960.webp",
+      "source": "public/pexels/1099680-1200.webp",
+      "sourceSha256": "c81072e6e2c3921c9c42745c90c2339a1eddf89140bc0bfb630fa3f5ea2ccf1e",
+      "sha256": "65b05bcec0a17f147e97a885829a2df1406463e9e1c80155461af1b5cb65a7fc",
+      "bytes": 92474
+    },
+    {
+      "file": "public/home/editorial/lectura-gravel-320.webp",
+      "source": "public/blog-images/ciclismo/mejores-bicicletas-gravel-2027-hero.webp",
+      "sourceSha256": "a0f78a6762173d42097c162de694e60814a3e3a88e93c0f48f437762d7fbf7d2",
+      "sha256": "c6af06d8330327d4a1c319e8f1b18e0d4d2fc14724aa4393152cf30234330c97",
+      "bytes": 12270
+    },
+    {
+      "file": "public/home/editorial/lectura-gravel-640.webp",
+      "source": "public/blog-images/ciclismo/mejores-bicicletas-gravel-2027-hero.webp",
+      "sourceSha256": "a0f78a6762173d42097c162de694e60814a3e3a88e93c0f48f437762d7fbf7d2",
+      "sha256": "95e672a25d65f5d807bbffe344fd79cac081c8cb3777ccdc95c3aaf28da7a36e",
+      "bytes": 75922
+    },
+    {
+      "file": "public/home/editorial/lectura-gravel-960.webp",
+      "source": "public/blog-images/ciclismo/mejores-bicicletas-gravel-2027-hero.webp",
+      "sourceSha256": "a0f78a6762173d42097c162de694e60814a3e3a88e93c0f48f437762d7fbf7d2",
+      "sha256": "c56cfb69f66ea54e9df2575428b2411aa7093c38b8f58c6ad200d07e5071a569",
+      "bytes": 158016
+    },
+    {
+      "file": "public/home/editorial/lectura-mtb-320.webp",
+      "source": "public/blog-images/ciclismo/mejores-mtb-2027-hero.webp",
+      "sourceSha256": "22c065df0d0d7cf2ec0c3cdc7ffeafbc107ac700df6907e21e1b555c726e421d",
+      "sha256": "fe5931161e5f01b516baa5245f56f00edd06421b5d486db1693fb904661e07b0",
+      "bytes": 9260
+    },
+    {
+      "file": "public/home/editorial/lectura-mtb-640.webp",
+      "source": "public/blog-images/ciclismo/mejores-mtb-2027-hero.webp",
+      "sourceSha256": "22c065df0d0d7cf2ec0c3cdc7ffeafbc107ac700df6907e21e1b555c726e421d",
+      "sha256": "f62459b4997dd5b0e75ac5f529bbe94690e2c688b0b91ab08a2c5174182c68c6",
+      "bytes": 56700
+    },
+    {
+      "file": "public/home/editorial/lectura-mtb-960.webp",
+      "source": "public/blog-images/ciclismo/mejores-mtb-2027-hero.webp",
+      "sourceSha256": "22c065df0d0d7cf2ec0c3cdc7ffeafbc107ac700df6907e21e1b555c726e421d",
+      "sha256": "3b28e80c5361d51737674c2c61beae0de82640c4b47c3210574151170848ec92",
+      "bytes": 125610
+    },
+    {
+      "file": "public/home/editorial/lectura-zapatillas-320.webp",
+      "source": "public/pexels/4065509-1200.webp",
+      "sourceSha256": "c36352e28f9db0890e4a947ca8f22567bb5840f146b8fc704642786bc8fca4ca",
+      "sha256": "fd5107df62df672e42bccd2cc37afe2df4287528797edefa3ed11dc7a2f1886b",
+      "bytes": 5726
+    },
+    {
+      "file": "public/home/editorial/lectura-zapatillas-640.webp",
+      "source": "public/pexels/4065509-1200.webp",
+      "sourceSha256": "c36352e28f9db0890e4a947ca8f22567bb5840f146b8fc704642786bc8fca4ca",
+      "sha256": "79257d1f98ae0ecffa90dcf83b055854bf515f54ad20553975aa5a2896829ea2",
+      "bytes": 28024
+    },
+    {
+      "file": "public/home/editorial/lectura-zapatillas-960.webp",
+      "source": "public/pexels/4065509-1200.webp",
+      "sourceSha256": "c36352e28f9db0890e4a947ca8f22567bb5840f146b8fc704642786bc8fca4ca",
+      "sha256": "b7cbbfce28e9da273be386bf3b832b8419bcc36ee878cf092a1292c95185cb20",
+      "bytes": 39896
+    },
+    {
+      "file": "public/home/editorial/running-480.webp",
+      "source": "public/blog-images/empezar-correr/hero.jpg",
+      "sourceSha256": "f4c2dbe278386ef4b3e152ecebee69b4ecf6b7221c0b0941cc4e6b985fe73895",
+      "sha256": "b648d55848845b30287052638f57b703a9cb98c2357bc4038a930d56908c0855",
+      "bytes": 9030
+    },
+    {
+      "file": "public/home/editorial/running-960.webp",
+      "source": "public/blog-images/empezar-correr/hero.jpg",
+      "sourceSha256": "f4c2dbe278386ef4b3e152ecebee69b4ecf6b7221c0b0941cc4e6b985fe73895",
+      "sha256": "eaf48732d291aa55c202bc45218e68061c80842d85ed414ae21bcf726c4129aa",
+      "bytes": 19456
+    }
+  ]
+}

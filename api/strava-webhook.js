@@ -43,6 +43,8 @@ import { isSafeActivityCreateEvent, reserveStravaDetailSlot } from './_lib/strav
 import {
   finalizeStravaEnduranceImport,
   finalizeStravaStrengthImport,
+  verifyStravaEnduranceImport,
+  canonicalEnduranceFromRow,
 } from './_lib/strava-import-finalizer.js';
 
 const LOG = '[strava-webhook]';
@@ -251,19 +253,27 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   // 2. Dedup temprano en las dos tablas. Un update de Strava no puede crear
   // otra actividad aunque el tipo sea fuerza y no viva en `runs`.
   const [{ data: existingRun }, { data: existingStrength }] = await Promise.all([
-    sb.from('runs').select('id, coach_pipeline_version').eq('user_id', conn.user_id)
+    sb.from('runs').select('id, coach_pipeline_version, strava_server_verified').eq('user_id', conn.user_id)
       .eq('source', 'strava').eq('strava_activity_id', activityId).limit(1),
     sb.from('strength_workout_runs').select('id, coach_pipeline_version').eq('user_id', conn.user_id)
       .eq('external_provider', 'strava').eq('external_activity_id', String(activityId)).limit(1),
   ]);
-  if ((existingRun?.length ?? 0) > 0 || (existingStrength?.length ?? 0) > 0) {
-    // Si una invocación anterior cayó entre INSERT(v1) y finalización, el
-    // reintento repara el estado sin volver a pedir el detalle a Strava.
+  // Una fila `runs` SIN verificación de servidor (catch-up de un cliente
+  // antiguo, o un servidor que cayó antes de verificar) no es una importación:
+  // hay que releer la actividad real en Strava, contrastar identidad y persistir
+  // las métricas canónicas antes de finalizar nada. Ni pipeline=2 ni la propia
+  // fila son prueba de verificación.
+  const unverifiedRun = existingRun?.find((row) => row.strava_server_verified !== true) ?? null;
+  const hasVerifiedRun = (existingRun?.length ?? 0) > 0 && !unverifiedRun;
+  if ((existingStrength?.length ?? 0) > 0 || hasVerifiedRun) {
+    // Si una invocación anterior cayó entre finalización y respuesta, el
+    // reintento repara el estado sin volver a pedir el detalle a Strava: solo
+    // para filas que el servidor YA verificó (resistencia) o creó él mismo (fuerza).
     const pendingStrength = existingStrength?.find((row) => Number(row.coach_pipeline_version) === 1);
     if (pendingStrength) {
       await finalizeStravaStrengthImport(sb, { runId: pendingStrength.id, userId: conn.user_id });
     }
-    const pendingRun = existingRun?.find((row) => Number(row.coach_pipeline_version) === 1);
+    const pendingRun = existingRun?.find((row) => Number(row.coach_pipeline_version) === 1 && row.strava_server_verified === true);
     if (pendingRun) {
       await finalizeStravaEnduranceImport(sb, { runId: pendingRun.id, userId: conn.user_id });
     }
@@ -307,6 +317,12 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   }
 
   if (activityKind === 'strength') {
+    if (unverifiedRun) {
+      // La fila antigua dice resistencia y Strava dice fuerza: no se verifica
+      // ni se importa; la fila del cliente queda sin acreditar.
+      logEvent(LOG, { stage: 'activity_verification', outcome: 'sport_mismatch', trace_id: traceId });
+      return;
+    }
     const strengthRow = mapActivityToStrength(activity, conn.user_id);
     const { data: insertedStrength, error: strengthError } = await sb
       .from('strength_workout_runs').insert(strengthRow)
@@ -340,6 +356,19 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
   // 6. Resistencia: el índice único parcial protege la carrera concurrente
   // con el catch-up del cliente.
   const row = mapActivityToRun(activity, conn.user_id);
+  const canonical = canonicalEnduranceFromRow(row, activity?.athlete?.id);
+  if (unverifiedRun) {
+    // Verificación de servidor con la actividad REAL (identidad, modalidad y
+    // métricas canónicas persistidas por la RPC) y solo después finalización.
+    const verified = await verifyStravaEnduranceImport(sb, { runId: unverifiedRun.id, userId: conn.user_id, activity: canonical });
+    if (!verified) {
+      logEvent(LOG, { stage: 'activity_verification', outcome: 'failed', trace_id: traceId });
+      return;
+    }
+    const repaired = await finalizeStravaEnduranceImport(sb, { runId: unverifiedRun.id, userId: conn.user_id });
+    logEvent(LOG, { stage: 'run_insert', outcome: repaired ? 'verified_existing' : 'coach_activation_failed', sport: row.deporte, trace_id: traceId });
+    return;
+  }
   const { data: inserted, error: insErr } = await sb.from('runs').insert(row).select('id').single();
   // El mensaje de Postgres incluye valores de columna (el detalle de una
   // clave duplicada trae el strava_activity_id): solo el codigo controlado.
@@ -348,17 +377,29 @@ async function processActivityEvent(sb, ownerId, activityId, traceId) {
     // ejecuta el mismo finalizador canónico antes de salir.
     if (String(insErr.code) === '23505') {
       const { data: raced } = await sb.from('runs')
-        .select('id, coach_pipeline_version').eq('user_id', conn.user_id)
+        .select('id, coach_pipeline_version, strava_server_verified').eq('user_id', conn.user_id)
         .eq('source', 'strava').eq('strava_activity_id', activityId).maybeSingle();
-      if (raced && Number(raced.coach_pipeline_version) === 1) {
+      // La fila ganadora (catch-up del cliente) NO se acepta tal cual: sus
+      // métricas se sustituyen por las canónicas de Strava en la verificación.
+      const racedVerified = raced && raced.strava_server_verified === true
+        ? true
+        : raced ? await verifyStravaEnduranceImport(sb, { runId: raced.id, userId: conn.user_id, activity: canonical }) : false;
+      if (raced && racedVerified && Number(raced.coach_pipeline_version) === 1) {
         await finalizeStravaEnduranceImport(sb, { runId: raced.id, userId: conn.user_id });
       }
+      if (raced && !racedVerified) logEvent(LOG, { stage: 'activity_verification', outcome: 'failed', trace_id: traceId });
     }
     logEvent(LOG, { stage: 'run_insert', outcome: 'skipped', error_code: errorCode(insErr), error_kind: errorKind(insErr), trace_id: traceId });
     return;
   }
-  // La RPC bloquea la fila, intenta el vínculo de plan y solo después pasa a
-  // v2. Un fallo conserva v1 para que el próximo webhook/catch-up lo repare.
+  // La fila nace sin sello: la verificación persiste las métricas canónicas y
+  // sella; la RPC de finalización bloquea la fila, intenta el vínculo de plan y
+  // solo después pasa a v2. Un fallo conserva v1 para el próximo intento.
+  const insertedVerified = await verifyStravaEnduranceImport(sb, { runId: inserted.id, userId: conn.user_id, activity: canonical });
+  if (!insertedVerified) {
+    logEvent(LOG, { stage: 'activity_verification', outcome: 'failed', trace_id: traceId });
+    return;
+  }
   const coachReady = await finalizeStravaEnduranceImport(sb, {
     runId: inserted.id,
     userId: conn.user_id,
@@ -405,6 +446,8 @@ async function handleSetup(res) {
     result: created,
   });
 }
+
+export { processActivityEvent };
 
 export default async function handler(req, res) {
   // ── GET: validación de Strava o setup ──

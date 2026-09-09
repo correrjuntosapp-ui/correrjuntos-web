@@ -28,9 +28,11 @@ const checks = [
     (importFinalizer.match(/attempt < 3;/g) || []).length === 1
       && importFinalizer.includes("if (!error && data?.ok === true) return true;")
       && importFinalizer.includes('return false;')],
-  ['los finalizadores reciben dueño y actividad exactos',
-    (importFinalizer.match(/p_user_id: userId/g) || []).length === 2
-      && (importFinalizer.match(/p_run_id: runId/g) || []).length === 2],
+  ['los finalizadores y la verificación reciben dueño y actividad exactos',
+    (importFinalizer.match(/p_user_id: userId/g) || []).length === 3
+      && (importFinalizer.match(/p_run_id: runId/g) || []).length === 3
+      && importFinalizer.includes("'f182_verify_strava_endurance_import'")
+      && importFinalizer.includes('p_activity: activity')],
   ['fuerza finaliza sin inventar sesión de plan',
     importFinalizer.includes('p_planned_session_id: null')],
   ['fuerza activa coaches solo después del finalizador', (() => {

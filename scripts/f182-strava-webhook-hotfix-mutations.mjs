@@ -74,7 +74,7 @@ const mutants = [
   ['fuerza nueva no espera su finalización', 'await finalizeStravaStrengthImport(sb, { runId: insertedStrength.id, userId: conn.user_id })', 'true'],
   ['dedup deja una fuerza v1 dormida', 'await finalizeStravaStrengthImport(sb, { runId: pendingStrength.id, userId: conn.user_id })', 'true'],
   ['23505 deja una fuerza v1 dormida', 'await finalizeStravaStrengthImport(sb, { runId: raced.id, userId: conn.user_id })', 'true'],
-  ['resistencia nueva no espera su finalización', 'await finalizeStravaEnduranceImport(sb, {', 'await noFinalizeStravaEnduranceImport(sb, {', 1, webhookRel, 3],
+  ['resistencia nueva no espera su finalización', 'await finalizeStravaEnduranceImport(sb, {', 'await noFinalizeStravaEnduranceImport(sb, {', 1, webhookRel, 4],
   ['dedup deja una resistencia v1 dormida', 'await finalizeStravaEnduranceImport(sb, { runId: pendingRun.id, userId: conn.user_id })', 'true'],
   ['23505 deja una resistencia v1 dormida', 'await finalizeStravaEnduranceImport(sb, { runId: raced.id, userId: conn.user_id })', 'true'],
 ];

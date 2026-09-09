@@ -34,9 +34,10 @@
 // ============================================================
 
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, rmSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { tmpdir } from 'node:os';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const MIGRATION = join(ROOT, 'supabase/migrations/20260828120000_f146_4_strava_linking_audit.sql');
@@ -45,30 +46,49 @@ const FIX_ACL = join(ROOT, 'supabase/migrations/20260828140000_f146_5a_fix_strav
 
 // ── Localizar binarios ────────────────────────────────────
 function findBin() {
-  const cands = ['/usr/lib/postgresql/16/bin', '/usr/lib/postgresql/15/bin',
-    '/usr/lib/postgresql/14/bin', '/usr/local/pgsql/bin', '/usr/bin'];
+  const cands = [];
+  if (process.env.PGBIN) cands.push(process.env.PGBIN);
+  if (process.env.USERPROFILE) cands.push(join(process.env.USERPROFILE, 'scoop/apps/postgresql/current/bin'));
+  for (const version of ['18', '17', '16', '15', '14']) {
+    cands.push(`C:/Program Files/PostgreSQL/${version}/bin`);
+  }
+  cands.push('/usr/lib/postgresql/18/bin', '/usr/lib/postgresql/17/bin',
+    '/usr/lib/postgresql/16/bin', '/usr/lib/postgresql/15/bin',
+    '/usr/lib/postgresql/14/bin', '/usr/local/pgsql/bin', '/usr/bin');
+  const ext = process.platform === 'win32' ? '.exe' : '';
   for (const d of cands) {
-    if (existsSync(join(d, 'initdb')) && existsSync(join(d, 'pg_ctl'))) return d;
+    if (existsSync(join(d, `initdb${ext}`)) && existsSync(join(d, `pg_ctl${ext}`))) return d;
   }
   return null;
 }
 const BIN = findBin();
 if (!BIN) {
-  console.log('F146.4A · prueba PostgreSQL: SALTADA');
-  console.log('  No hay binarios de PostgreSQL (initdb/pg_ctl) en este entorno.');
-  console.log('  Las pruebas estaticas de tests/unit/strava-linking-audit.test.mjs SI cubren');
-  console.log('  el contrato del texto; lo que no se verifica aqui es el efecto real.');
-  process.exit(0);
+  console.error('F146.4A · prueba PostgreSQL: NO EJECUTADA');
+  console.error('  Faltan initdb/pg_ctl/psql; este control no puede fingir un PASS.');
+  process.exit(2);
 }
 
-const DIR = '/tmp/f1464-pgtest';
+const EXT = process.platform === 'win32' ? '.exe' : '';
+const exe = (name) => join(BIN, `${name}${EXT}`);
+const DIR = mkdtempSync(join(tmpdir(), 'f1464-pgtest-'));
 const DATA = join(DIR, 'data');
-const SOCK = join(DIR, 'sock');
-const asPostgres = process.getuid && process.getuid() === 0;
+const PORT = 55000 + (process.pid % 9000);
+const HOST_ARGS = ['-h', '127.0.0.1', '-p', String(PORT)];
+const asPostgres = process.platform !== 'win32' && process.getuid && process.getuid() === 0;
 
-function sh(cmd) {
-  const full = asPostgres ? ['su', 'postgres', '-c', cmd] : ['sh', '-c', cmd];
-  return spawnSync(full[0], full.slice(1), { encoding: 'utf8' });
+const posixQuote = (value) => `'${String(value).replace(/'/g, `'"'"'`)}'`;
+function pg(name, args) {
+  if (asPostgres) {
+    const command = [exe(name), ...args].map(posixQuote).join(' ');
+    return spawnSync('su', ['postgres', '-c', command], { encoding: 'utf8' });
+  }
+  // En Windows `pg_ctl start` lanza un `cmd.exe` que mantiene abiertos los
+  // pipes heredados mientras vive el servidor. Con stdio capturado,
+  // spawnSync esperaría para siempre aunque pg_ctl ya hubiese terminado.
+  const startsServer = process.platform === 'win32' && name === 'pg_ctl' && args.includes('start');
+  return spawnSync(exe(name), args, startsServer
+    ? { encoding: 'utf8', stdio: 'ignore', windowsHide: true }
+    : { encoding: 'utf8', windowsHide: true });
 }
 /** Ejecuta SQL y devuelve stdout crudo. Lanza con el error de psql si falla. */
 function psql(sql, { role = 'postgres', db = 'postgres', expectFail = false } = {}) {
@@ -77,7 +97,8 @@ function psql(sql, { role = 'postgres', db = 'postgres', expectFail = false } = 
   chmodSync(f, 0o644);
   // -q suprime las etiquetas de comando (SET, RESET, INSERT 0 1); sin ella
   // el valor devuelto llega mezclado con ellas y la asercion compara basura.
-  const r = sh(`${BIN}/psql -q -h ${SOCK} -U ${role} -d ${db} -v ON_ERROR_STOP=1 -tAF'|' -f ${f}`);
+  const r = pg('psql', ['-q', ...HOST_ARGS, '-U', role, '-d', db,
+    '-v', 'ON_ERROR_STOP=1', '-tA', '-F', '|', '-f', f]);
   rmSync(f, { force: true });
   if (expectFail) {
     if (r.status === 0) throw new Error(`SE ESPERABA UN FALLO y no lo hubo:\n${sql}`);
@@ -97,15 +118,18 @@ console.log('F146.4A · migracion sobre PostgreSQL real\n');
 
 try {
   // ── Cluster desechable ──────────────────────────────────
-  rmSync(DIR, { recursive: true, force: true });
   mkdirSync(DATA, { recursive: true });
-  mkdirSync(SOCK, { recursive: true });
   if (asPostgres) execFileSync('chown', ['-R', 'postgres:postgres', DIR]);
 
-  let r = sh(`${BIN}/initdb -D ${DATA} -A trust --no-locale -E UTF8`);
+  let r = pg('initdb', ['-D', DATA, '-U', 'postgres', '-A', 'trust', '--no-locale', '-E', 'UTF8']);
   if (r.status !== 0) throw new Error(`initdb fallo: ${r.stderr}`);
-  r = sh(`${BIN}/pg_ctl -D ${DATA} -o "-k ${SOCK} -c listen_addresses=''" -l ${DIR}/log.txt start -w -t 30`);
-  if (r.status !== 0) throw new Error(`arranque fallo: ${readFileSync(join(DIR, 'log.txt'), 'utf8')}`);
+  r = pg('pg_ctl', ['-D', DATA, '-o', `-p ${PORT} -c listen_addresses=127.0.0.1`,
+    '-l', join(DIR, 'log.txt'), 'start', '-w', '-t', '30']);
+  if (r.status !== 0) {
+    const logPath = join(DIR, 'log.txt');
+    const detail = existsSync(logPath) ? readFileSync(logPath, 'utf8') : (r.stderr || r.stdout || 'sin detalle');
+    throw new Error(`arranque fallo: ${detail}`);
+  }
   const version = psql('SELECT version();').split(' ')[1];
   console.log(`  cluster efimero PostgreSQL ${version}\n`);
 
@@ -152,7 +176,7 @@ try {
   const f = join(DIR, 'migracion.sql');
   writeFileSync(f, migracion);
   chmodSync(f, 0o644);
-  r = sh(`${BIN}/psql -h ${SOCK} -U postgres -d postgres -v ON_ERROR_STOP=1 -f ${f}`);
+  r = pg('psql', [...HOST_ARGS, '-U', 'postgres', '-d', 'postgres', '-v', 'ON_ERROR_STOP=1', '-f', f]);
   ok('la migracion F146.4 aplica sin errores', r.status === 0, r.status !== 0 ? r.stderr.trim() : '');
   if (r.status !== 0) throw new Error('la migracion no aplica; el resto no tiene sentido');
 
@@ -174,7 +198,7 @@ try {
   const fFix = join(DIR, 'fix-acl.sql');
   writeFileSync(fFix, readFileSync(FIX_ACL, 'utf8'));
   chmodSync(fFix, 0o644);
-  r = sh(`${BIN}/psql -h ${SOCK} -U postgres -d postgres -v ON_ERROR_STOP=1 -f ${fFix}`);
+  r = pg('psql', [...HOST_ARGS, '-U', 'postgres', '-d', 'postgres', '-v', 'ON_ERROR_STOP=1', '-f', fFix]);
   ok('la migracion correctiva F146.5A aplica sin errores', r.status === 0,
     r.status !== 0 ? r.stderr.trim() : '');
   if (r.status !== 0) throw new Error('la correctiva no aplica');
@@ -321,7 +345,7 @@ try {
   const rb = join(DIR, 'rollback.sql');
   writeFileSync(rb, readFileSync(ROLLBACK, 'utf8'));
   chmodSync(rb, 0o644);
-  r = sh(`${BIN}/psql -h ${SOCK} -U postgres -d postgres -v ON_ERROR_STOP=1 -f ${rb}`);
+  r = pg('psql', [...HOST_ARGS, '-U', 'postgres', '-d', 'postgres', '-v', 'ON_ERROR_STOP=1', '-f', rb]);
   ok('el rollback aplica sin errores', r.status === 0, r.status !== 0 ? r.stderr.trim() : '');
   const trasRollback = psql('SELECT count(*) FROM public.strava_linking_audit;');
   ok('el rollback CONSERVA las filas ya registradas', trasRollback === '1', `filas=${trasRollback}`);
@@ -337,7 +361,7 @@ try {
   fallos += 1;
   console.log(`\n  ERROR: ${e.message}`);
 } finally {
-  sh(`${BIN}/pg_ctl -D ${DATA} stop -m immediate`);
+  pg('pg_ctl', ['-D', DATA, 'stop', '-m', 'immediate']);
   rmSync(DIR, { recursive: true, force: true });
 }
 

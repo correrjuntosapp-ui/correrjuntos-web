@@ -84,6 +84,8 @@ const MUTANTS = [
     (f) => mutate(f, "    titulo: text(row?.titulo, 160),\n  };", "    titulo: text(row?.titulo, 160),\n    kudos_count: 3,\n  };", libRel)],
   ['indoor se pierde (es_indoor siempre false)',
     (f) => mutate(f, "    es_indoor: row?.es_indoor === true,\n    polyline_encoded", "    es_indoor: false,\n    polyline_encoded", libRel)],
+  ['redondeo «4:60» reintroducido en paceFromDistanceTime del webhook',
+    (f) => mutate(f, "  const total = Math.round(seconds / (meters / 1000));\n  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;", "  const secPerKm = seconds / (meters / 1000);\n  return `${Math.floor(secPerKm / 60)}:${String(Math.round(secPerKm % 60)).padStart(2, '0')}`;")],
   ['la cuota de detalle no se respeta',
     (f) => mutate(f, "  if (!await reserveStravaDetailSlot(sb, conn.user_id)) {", "  if (false) {")],
 ];

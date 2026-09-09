@@ -55,12 +55,12 @@ const CALLBACK_URL = 'https://www.correrjuntos.com/api/strava-webhook';
 // No es un secreto: solo verifica el handshake GET de la suscripción.
 const VERIFY_TOKEN = 'cj-strava-webhook-v1';
 
+// Se redondean PRIMERO los segundos totales por km y después minutos y módulo 60:
+// 1001 m / 300 s → «5:00», nunca «4:60» (el validador SQL lo rechazaría).
 function paceFromDistanceTime(meters, seconds) {
-  if (!meters || meters <= 0 || !seconds || seconds <= 0) return null;
-  const secPerKm = seconds / (meters / 1000);
-  const min = Math.floor(secPerKm / 60);
-  const sec = Math.round(secPerKm % 60);
-  return `${min}:${String(sec).padStart(2, '0')}`;
+  if (!Number.isFinite(meters) || meters <= 0 || !Number.isFinite(seconds) || seconds <= 0) return null;
+  const total = Math.round(seconds / (meters / 1000));
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
 }
 
 // Parciales por km (splits) desde el detalle de la actividad Strava

@@ -174,6 +174,25 @@ await check('bici: sin ritmo min/km ni parciales (null), ruta canónica', async 
   const a = state.rpc.find((c) => c.name === 'f182_verify_strava_endurance_import').args.p_activity;
   assert.equal(a.deporte, 'bici'); assert.equal(a.ritmo_promedio, null); assert.equal(a.ritmo_mejor, null); assert.equal(a.splits, null); assert.equal(a.polyline_encoded, 'RUTA_Y');
 });
+await check('redondeo de ritmos: 1001 m / 300 s → «5:00» (nunca «4:60») en parciales y ritmo medio; fronteras; fraccionarios; sin distancia → sin ritmo', async () => {
+  const splits = [
+    { split: 1, distance: 1001, moving_time: 300, elapsed_time: 300, elevation_difference: 0, average_heartrate: 140 },
+    { split: 2, distance: 1000, moving_time: 299.5, elapsed_time: 300 },
+    { split: 3, distance: 1000, moving_time: 299.4, elapsed_time: 300 },
+    { split: 4, distance: 1000, moving_time: 359.6, elapsed_time: 360 },
+    { split: 5, distance: 512.3, moving_time: 150, elapsed_time: 150 },
+    { split: 6, distance: 0, moving_time: 30, elapsed_time: 30 },
+  ];
+  const state = baseState({ tables: { ...baseState().tables, runs: [unverifiedRow()] } });
+  await run(state, okFetch({ distance: 12510, moving_time: 3748, elapsed_time: 3800, splits_metric: splits }));
+  const a = state.rpc.find((c) => c.name === 'f182_verify_strava_endurance_import').args.p_activity;
+  assert.equal(a.ritmo_promedio, '5:00');
+  assert.deepEqual(a.splits.map((sp) => sp.time), ['5:00', '5:00', '4:59', '6:00', '4:53', '--:--']);
+  assert.deepEqual(a.splits.map((sp) => sp.seconds), [300, 300, 299, 360, 293, null]);
+  assert.equal(a.ritmo_mejor, '4:53');
+  for (const t of [a.ritmo_promedio, a.ritmo_mejor, ...a.splits.map((sp) => sp.time).filter((t) => t !== '--:--')]) assert.match(t, /^[0-9]{1,3}:[0-5][0-9]$/, 'forma que exige el validador SQL: ' + t);
+  assert.equal(state.tables.runs[0].coach_pipeline_version, 2);
+});
 await check('actividad inexistente (404): sin verificación, sin finalización, fila sin tocar', async () => {
   const state = baseState({ tables: { ...baseState().tables, runs: [unverifiedRow()] } });
   await run(state, async () => ({ ok: false, status: 404, json: async () => ({}) }));

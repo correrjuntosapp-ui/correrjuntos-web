@@ -74,7 +74,7 @@ html{overflow-x:clip}
 <body>
     <div role="main" class="container">
         <h1>Política de Privacidad</h1>
-        <p class="date">Última actualización: 7 de septiembre de 2026</p>
+        <p class="date">Última actualización: 11 de septiembre de 2026</p>
 
         <p>En <strong>CorrerJuntos</strong> nos tomamos muy en serio la privacidad de nuestros usuarios. Esta política describe qué información recopilamos, cómo la usamos y cómo la protegemos, tanto en la aplicación móvil como en el sitio web correrjuntos.com. Esta es la única política de privacidad vigente de CorrerJuntos.</p>
 
@@ -88,10 +88,13 @@ html{overflow-x:clip}
             <li><strong>Datos de ubicación:</strong> tu ubicación para mostrar quedadas cercanas, permitirte crear puntos de encuentro y registrar tus actividades con GPS (ver apartado 3 sobre el uso en segundo plano).</li>
             <li><strong>Datos de actividad deportiva:</strong> si grabas actividades con la app, registramos la ruta GPS, distancia, duración, ritmo, cadencia, frecuencia cardíaca (solo si tu dispositivo la proporciona y decides conectarlo) y esfuerzo percibido (RPE) que indiques.</li>
             <li><strong>Contenido que publicas:</strong> quedadas que creas o a las que te unes, actividades compartidas, fotos, comentarios y reacciones (kudos). Este contenido es visible para otros usuarios según lo publiques.</li>
+            <li><strong>Mensajes con otras personas:</strong> los mensajes directos y los comentarios que escribes a otros usuarios se almacenan asociados a tu cuenta para entregarlos y mostrarlos a sus destinatarios.</li>
             <li><strong>Mensajes y seguimiento de José y Ana:</strong> los mensajes que envías voluntariamente a los asistentes se almacenan asociados a tu cuenta y pueden procesarse mediante un proveedor de modelos de IA (ver apartado 6) para generar la respuesta. El seguimiento postentreno es una función separada y opcional: si lo activas, CorrerJuntos genera dentro de sus propios sistemas un resumen de José a partir de los datos medidos de la actividad y, diez minutos después, una orientación general de recuperación de Ana. Ningún dato de ese seguimiento postentreno se envía a un proveedor externo de IA. Estos datos no se usan para publicidad.</li>
-            <li><strong>Datos de salud importados:</strong> sesiones de carrera leídas desde Apple Salud o Health Connect si conectas tu reloj (ver apartado 7).</li>
+            <li><strong>Perfil de nutrición (opcional):</strong> si decides rellenarlo para Ana, guardamos peso, altura, año de nacimiento, sexo, alergias, restricciones alimentarias y los avisos médicos que declares. Son datos de salud: solo se tratan con tu consentimiento explícito, únicamente para adaptar las orientaciones de nutrición, y puedes borrarlos o dejarlos vacíos en cualquier momento.</li>
+            <li><strong>Zonas de molestia:</strong> si las indicas al configurar tu semana de fuerza (rodilla, espalda, hombro u otra), se usan solo para adaptar los ejercicios.</li>
             <li><strong>Datos de pago:</strong> si te suscribes a Premium o compras un plan individual, el pago se procesa íntegramente a través de Apple App Store (iOS) o Google Play Store (Android). Usamos RevenueCat para gestionar el estado de las suscripciones. <strong>No almacenamos ni tenemos acceso a datos de tarjetas de crédito.</strong></li>
-            <li><strong>Datos técnicos:</strong> token de notificaciones push (si las activas), informes de errores y datos de uso agregados para mejorar la app.</li>
+            <li><strong>Datos técnicos:</strong> token de notificaciones push (si las activas) e informes de errores técnicos (sin tu nombre ni tu correo).</li>
+            <li><strong>Uso de la app:</strong> registramos qué pantallas y funciones usas (por ejemplo, abrir el plan o terminar un entrenamiento), asociado a tu cuenta, para entender qué funciona y mejorar el producto. No se usa para publicidad ni se cede a terceros.</li>
         </ul>
 
         <h2>3. Ubicación en segundo plano</h2>
@@ -114,7 +117,7 @@ html{overflow-x:clip}
         <h2>5. Base legal</h2>
         <ul>
             <li><strong>Ejecución del contrato:</strong> necesitamos tus datos para prestarte el servicio (cuenta, quedadas, actividades, planes).</li>
-            <li><strong>Consentimiento:</strong> ubicación, datos de salud importados, notificaciones push, seguimiento postentreno y analítica web con cookies. Puedes retirarlo en cualquier momento; el seguimiento postentreno se desactiva desde los ajustes de notificaciones de la app.</li>
+            <li><strong>Consentimiento:</strong> ubicación, perfil de nutrición y zonas de molestia, notificaciones push, seguimiento postentreno y analítica web con cookies. Puedes retirarlo en cualquier momento; el seguimiento postentreno se desactiva desde los ajustes de notificaciones de la app.</li>
             <li><strong>Interés legítimo:</strong> seguridad, prevención de fraude y mejora del servicio.</li>
             <li><strong>Obligación legal:</strong> conservación de registros vinculados a compras cuando la ley lo exige.</li>
         </ul>
@@ -134,7 +137,14 @@ html{overflow-x:clip}
             <li><strong>Strava:</strong> sincronización de actividades si conectas tu cuenta de Strava (solo con tu autorización).</li>
             <li><strong>Anthropic:</strong> proveedor del modelo de IA utilizado para responder a los mensajes que envías voluntariamente a José y Ana. La información se trata únicamente para generar la respuesta solicitada. El seguimiento postentreno automático no utiliza este proveedor.</li>
             <li><strong>Sentry:</strong> informes de errores técnicos de la app.</li>
-            <li><strong>Expo:</strong> entrega de notificaciones push.</li>
+            <li><strong>Expo, Google (Firebase Cloud Messaging) y Apple (APNs):</strong> entrega de notificaciones push.</li>
+            <li><strong>Google y Apple (inicio de sesión):</strong> si eliges entrar con tu cuenta de Google o de Apple, esos proveedores nos comunican tu identificador y tu correo.</li>
+            <li><strong>Google Maps (solo Android):</strong> el mapa de quedadas usa el SDK de Google, que según Google recoge identificadores del dispositivo, datos de fallos y rendimiento y las interacciones con el mapa.</li>
+        </ul>
+        <p>Además, para algunas funciones la app envía datos directamente a servicios de terceros, que los tratan según sus propias políticas:</p>
+        <ul>
+            <li><strong>OpenStreetMap (Nominatim), Open-Meteo, MET Norway y sunrise-sunset.org:</strong> reciben coordenadas (tu posición o la de una quedada) para obtener la ciudad, el tiempo y las horas de luz.</li>
+            <li><strong>ui-avatars.com:</strong> recibe el nombre de perfil para generar un avatar con las iniciales cuando no hay foto.</li>
             <li><strong>Google Analytics 4 y Meta Pixel:</strong> analítica del sitio web, solo si aceptas las cookies en el banner de consentimiento (nunca en la app).</li>
         </ul>
         <p><strong>No vendemos ni compartimos tu información personal con terceros</strong> para fines publicitarios.</p>
@@ -145,16 +155,9 @@ html{overflow-x:clip}
         <p><strong>Conservación:</strong> conservamos tus datos mientras mantengas tu cuenta activa. Tras eliminar la cuenta (desde la propia app o por email), los datos se eliminan de las bases de datos activas. Algunas copias residuales pueden permanecer temporalmente en copias de seguridad cifradas durante el periodo de retención aplicado por nuestros proveedores de infraestructura, hasta su sobrescritura o eliminación programada. Estas copias no se utilizan para prestar el servicio y solo se restaurarían cuando fuera necesario por motivos de seguridad o recuperación ante incidentes.</p>
         <p>De forma separada, conservamos únicamente los justificantes de compra, la facturación y los registros necesarios para el cumplimiento de obligaciones legales durante los plazos que establece la ley, además de registros técnicos anonimizados.</p>
 
-        <h2>8. Datos de salud (Health Connect y Apple Salud)</h2>
-        <p>Si decides conectar tu reloj deportivo, CorrerJuntos lee — con tu consentimiento explícito y solo en modo lectura — tus <strong>sesiones de carrera</strong> (fecha, duración y distancia) desde <strong>Health Connect</strong> (Android) o <strong>Apple Salud</strong> (iOS). Esto permite que las carreras grabadas con relojes de terceros (Garmin, COROS, Xiaomi, Amazfit, Huawei, etc.) aparezcan en la app y cuenten para tu plan de entrenamiento.</p>
-        <ul>
-            <li><strong>No leemos</strong> frecuencia cardíaca, sueño, nutrición ni ningún otro dato de salud.</li>
-            <li><strong>No escribimos</strong> datos en Health Connect ni en Apple Salud.</li>
-            <li>Las carreras importadas se almacenan asociadas a tu cuenta (Supabase, servidores en la UE) y se usan exclusivamente para mostrarte tu propio historial y progreso.</li>
-            <li><strong>Nunca</strong> se venden, comparten con terceros ni se usan con fines publicitarios.</li>
-            <li>Puedes desconectar la sincronización en cualquier momento desde Ajustes → Apps conectadas, y eliminar tu cuenta borra todos los datos importados.</li>
-        </ul>
-
+        <h2>8. Relojes y plataformas de salud</h2>
+        <p>Actualmente CorrerJuntos <strong>no lee ni escribe</strong> datos de Apple Salud ni de Health Connect. Las actividades grabadas con relojes de terceros solo llegan a la app a través de Strava, si conectas tu cuenta y lo autorizas (apartado 6). En iPhone puedes enviar un entrenamiento planificado a tu Apple Watch; esa función solo envía el plan y no recoge ningún dato de salud.</p>
+        <p>Si en el futuro añadimos la lectura de Apple Salud o Health Connect, actualizaremos esta política antes de activarla y te pediremos consentimiento explícito dentro de la app.</p>
         <h2>9. Tus derechos</h2>
         <p>De acuerdo con el RGPD, tienes derecho a:</p>
         <ul>
@@ -174,7 +177,7 @@ html{overflow-x:clip}
         <p>CorrerJuntos está dirigida <strong>exclusivamente a mayores de 16 años</strong>. No está permitido crear una cuenta si tienes menos de 16 años, y no recopilamos intencionadamente información de menores de esa edad. Si detectamos una cuenta de un menor de 16 años, la eliminaremos junto con sus datos.</p>
 
         <h2>12. Suscripciones y compras</h2>
-        <p>CorrerJuntos ofrece una suscripción <strong>Premium</strong> (4,99 EUR/mes) y una suscripción <strong>Premium Anual</strong> (29,99 EUR/año), ambas con renovación automática, además de compras individuales de planes de entrenamiento (precio mostrado en la tienda antes de comprar). Puedes gestionar y cancelar tu suscripción en cualquier momento desde los ajustes de tu cuenta de Apple App Store o Google Play Store. Para más detalles, consulta nuestros <a href="https://www.correrjuntos.com/terms">Términos de Uso</a>.</p>
+        <p>CorrerJuntos ofrece una suscripción <strong>Premium</strong> mensual o anual, con renovación automática, además de compras individuales de planes de entrenamiento. El precio y las condiciones aplicables se muestran en la App Store o en Google Play antes de confirmar la compra. Puedes gestionar y cancelar tu suscripción en cualquier momento desde los ajustes de tu cuenta de Apple App Store o Google Play Store. Para más detalles, consulta nuestros <a href="https://www.correrjuntos.com/terms">Términos de Uso</a>.</p>
 
         <h2>13. Cambios en esta política</h2>
         <p>Podemos actualizar esta política ocasionalmente. Te notificaremos de cambios significativos a través de la app o por email.</p>

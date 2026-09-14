@@ -40,14 +40,42 @@ const FIXED_REDIRECTS = [
 ];
 
 const INTENTIONAL_404S = [
+  '/blog/asics-',
   '/blog/correr-',
   '/blog/correr-y-',
+  '/blog/creatina-',
+  '/blog/dieta-',
   '/blog/en/best-',
   '/blog/grupos-',
+  '/blog/mejor-',
   '/blog/mejores-',
+  '/blog/plan-',
+  '/blog/review-prozis-',
   '/cj_verify',
   '/km',
+  '/km%3C/td%3E',
   '/m%C3%AAs',
+];
+
+// Identificadores JSON-LD /products/* que Google llegó a rastrear (GSC, sep 2026). El HTML ya no los emite;
+// las URL conocidas redirigen a su guía con la convención del 28 jul (geles, cinturones, zapatillas, omega-3).
+const PRODUCT_ID_REDIRECTS = [
+  ['/products/maurten-gel-100', '/blog/mejores-geles-energeticos-running'],
+  ['/products/sis-go-isotonic-gel', '/blog/mejores-geles-energeticos-running'],
+  ['/products/powerbar-powergel', '/blog/mejores-geles-energeticos-running'],
+  ['/products/clif-shot-energy-gel', '/blog/mejores-geles-energeticos-running'],
+  ['/products/victory-endurance-energy-up', '/blog/mejores-geles-energeticos-running'],
+  ['/products/isostar-energy-gel', '/blog/mejores-geles-energeticos-running'],
+  ['/products/crown-sport-hypergel-45', '/blog/mejores-geles-energeticos-running'],
+  ['/products/maurten-drink-mix-320', '/blog/mejores-geles-energeticos-running'],
+  ['/products/226ers-hydrazero', '/blog/mejores-geles-energeticos-running'],
+  ['/products/spibelt-large-pocket', '/blog/cinturones-running'],
+  ['/products/nike-pegasus-41', '/equipamiento/zapatillas-running'],
+  ['/products/new-balance-fresh-foam-x-1080v14', '/equipamiento/zapatillas-running'],
+  ['/products/adidas-ultraboost-light', '/equipamiento/zapatillas-running'],
+  ['/products/asics-gt-2000-12', '/equipamiento/zapatillas-running'],
+  ['/products/solgar-omega-3-triple-strength-100-caps', '/blog/mejores-omega-3-runners'],
+  ['/products/weightworld-omega-3-1000mg-400-caps', '/blog/mejores-omega-3-runners'],
 ];
 
 const BROKEN_LEGACY_SOURCES = [
@@ -85,6 +113,14 @@ function assertStaticContract(config) {
       false,
       `Sigue presente la regla inoperante ${brokenSource}`,
     );
+  }
+
+  for (const [source, destination] of PRODUCT_ID_REDIRECTS) {
+    const redirect = config.redirects.find((candidate) => candidate.source === source);
+    assert.ok(redirect, `Falta el redirect del identificador ${source}`);
+    assert.equal(redirect.destination, destination, `Destino incorrecto para ${source}`);
+    assert.equal(redirect.permanent, true, `${source} debe ser permanente`);
+    assert.ok(fs.existsSync(path.join(ROOT, destination.slice(1) + '.html')), `No existe el destino local de ${source}`);
   }
 
   for (const junkPath of INTENTIONAL_404S) {
@@ -129,6 +165,12 @@ function assertHarnessCatchesRegressions(config) {
       name: 'redirect temporal accidental',
       apply(mutant) {
         mutant.redirects.find((redirect) => redirect.source === FIXED_REDIRECTS[4].source).permanent = false;
+      },
+    },
+    {
+      name: 'redirect de identificador de producto eliminado',
+      apply(mutant) {
+        mutant.redirects = mutant.redirects.filter((redirect) => redirect.source !== PRODUCT_ID_REDIRECTS[0][0]);
       },
     },
     {
@@ -179,14 +221,34 @@ async function assertRuntimeContract(baseUrl) {
     assert.ok(result.hops.length >= 2, `${entry.requestedPath} no ejecutó ningún redirect`);
   }
 
+  for (const [source, destination] of PRODUCT_ID_REDIRECTS) {
+    const result = await follow(baseUrl, source);
+    assert.equal(result.response.status, 200, `${source} no termina en 200`);
+    assert.equal(result.finalUrl.pathname, destination, `${source} termina en otra URL`);
+  }
+
   for (const junkPath of INTENTIONAL_404S) {
     const result = await follow(baseUrl, junkPath);
     assert.equal(result.response.status, 404, `${junkPath} debe permanecer como 404 legítimo`);
   }
 }
 
+function assertNoProductIdsInHtml() {
+  const offenders = [];
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith('.html') && fs.readFileSync(full, 'utf8').includes('correrjuntos.com/products/')) offenders.push(path.relative(ROOT, full));
+    }
+  };
+  walk(path.join(ROOT, 'blog'));
+  assert.deepEqual(offenders, [], `JSON-LD con identificadores /products/ que Google rastrea como 404: ${offenders.join(', ')}`);
+}
+
 const config = loadConfig();
 assertStaticContract(config);
+assertNoProductIdsInHtml();
 const detectedMutations = assertHarnessCatchesRegressions(config);
 
 const baseUrlArg = process.argv.find((arg) => arg.startsWith('--base-url='));
@@ -194,10 +256,10 @@ if (baseUrlArg) {
   const baseUrl = baseUrlArg.slice('--base-url='.length);
   await assertRuntimeContract(baseUrl);
   console.log(
-    `PASS redirects F148: 5 corregidos, 8 404 legítimos y ${detectedMutations}/${detectedMutations} mutaciones detectadas en ${baseUrl}`,
+    `PASS redirects F148: ${FIXED_REDIRECTS.length} corregidos, ${PRODUCT_ID_REDIRECTS.length} ids de producto, ${INTENTIONAL_404S.length} 404 legítimos y ${detectedMutations}/${detectedMutations} mutaciones detectadas en ${baseUrl}`,
   );
 } else {
   console.log(
-    `PASS redirects F148: contrato estático de 5 redirects, 8 404 legítimos y ${detectedMutations}/${detectedMutations} mutaciones detectadas`,
+    `PASS redirects F148: contrato estático de ${FIXED_REDIRECTS.length} redirects, ${PRODUCT_ID_REDIRECTS.length} ids de producto, ${INTENTIONAL_404S.length} 404 legítimos, HTML sin ids /products/ y ${detectedMutations}/${detectedMutations} mutaciones detectadas`,
   );
 }

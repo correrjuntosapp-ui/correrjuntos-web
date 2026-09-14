@@ -67,6 +67,21 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 
+  const job = (req.query?.job || '').toString();
+  // Pausa autorizada el 14 sep 2026: no enviar correos comerciales de prueba
+  // hasta revisar consentimiento y baja. No cargar el job ni consultar datos.
+  // La newsletter, los avisos push y el resto de trabajos siguen intactos.
+  if (job === 'lifecycle-trial') {
+    return res.status(200).json({
+      ok: true,
+      job,
+      paused: true,
+      reason: 'consent_and_unsubscribe_review',
+      processed: 0,
+      sent: 0,
+    });
+  }
+
   if (!env.SUPABASE_SERVICE_KEY || !env.BREVO_API_KEY) {
     return res.status(500).json({
       error: 'misconfigured',
@@ -75,7 +90,6 @@ export default async function handler(req, res) {
     });
   }
 
-  const job = (req.query?.job || '').toString();
   const loadJob = JOBS[job];
   if (!loadJob) {
     return res.status(400).json({

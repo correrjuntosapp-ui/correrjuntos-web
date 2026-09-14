@@ -11,3 +11,18 @@ tests/
 redes/
 seo-optimization-log.json
 Equipo de agentes/
+# Exact QA additions in codex/release-web-close-20260909 (not runtime assets).
+scripts/f174-strava-webhook-gate.mjs
+scripts/f182-strava-webhook-verification-gate.mjs
+scripts/f182-strava-webhook-verification-mutations.mjs
+scripts/f182-strava-webhook-hotfix-mutations.mjs
+scripts/f182-ai-privacy-gate.mjs
+scripts/f182-ai-privacy-mutations.mjs
+tests/unit/f182-strava-import-finalizer.test.mjs
+tests/unit/f182-strava-webhook-guard.test.mjs
+tests/unit/strava-activity-types.test.mjs
+tests/unit/strava-linking-audit.test.mjs
+tests/unit/strava-log-privacy.test.mjs
+tools/test-strava-audit-mutations.mjs
+tools/test-strava-audit-postgres.mjs
+tools/test-strava-linker-equivalence.mjs

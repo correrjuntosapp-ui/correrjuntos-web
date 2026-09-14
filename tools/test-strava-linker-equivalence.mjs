@@ -21,7 +21,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync, mkdirSync, cpSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE_SHA = process.argv[2] || '29b5ed12a2ac5433fc954858f5ed04d1348a32a8';
@@ -47,8 +47,11 @@ try {
   cpSync(join(ROOT, 'api/_lib/strava-linking-audit.js'), join(dir, 'api/_lib/strava-linking-audit.js'));
   writeFileSync(join(dir, 'package.json'), JSON.stringify({ type: 'module' }));
 
-  const { vincularActividadConPlan: VIEJO } = await import(join(dir, LINKER));
-  const { vincularActividadConPlan: NUEVO } = await import(join(ROOT, LINKER));
+  // Node en Windows interpreta `C:\\...` como un esquema URL. Convertir la
+  // ruta a file:// hace que la misma prueba sea portable y no cambie nada del
+  // contrato que compara.
+  const { vincularActividadConPlan: VIEJO } = await import(pathToFileURL(join(dir, LINKER)).href);
+  const { vincularActividadConPlan: NUEVO } = await import(pathToFileURL(join(ROOT, LINKER)).href);
 
   const U = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
   const RUN = U(1), USER = U(2), PLAN = U(3), WORKOUT = U(4), OTHER = U(9);

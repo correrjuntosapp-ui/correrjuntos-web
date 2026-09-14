@@ -264,7 +264,10 @@ test('no queda ningun console.* directo en el webhook ni en el orquestador', () 
 });
 
 test('el matcher y el modulo de auditoria siguen sin escribir logs', () => {
-  const sinComentarios = (s) => s.split('\n').map((l) => l.replace(/\/\/.*$/, '')).join('\n');
+  // Normaliza CRLF antes de retirar comentarios: en Windows, cada línea
+  // conserva el `\r` tras split('\n') y el ancla `$` no alcanza el comentario.
+  const sinComentarios = (s) => s.replace(/\r\n/g, '\n')
+    .split('\n').map((l) => l.replace(/\/\/.*$/, '')).join('\n');
   assert.equal((sinComentarios(MATCHER).match(/console\./g) || []).length, 0);
   assert.equal((sinComentarios(AUDIT).match(/console\./g) || []).length, 0);
 });

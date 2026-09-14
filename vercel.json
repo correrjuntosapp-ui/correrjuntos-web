@@ -1335,6 +1335,86 @@
       "permanent": true
     },
     {
+      "source": "/products/maurten-gel-100",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/sis-go-isotonic-gel",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/powerbar-powergel",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/clif-shot-energy-gel",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/victory-endurance-energy-up",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/isostar-energy-gel",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/crown-sport-hypergel-45",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/maurten-drink-mix-320",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/226ers-hydrazero",
+      "destination": "/blog/mejores-geles-energeticos-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/spibelt-large-pocket",
+      "destination": "/blog/cinturones-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/nike-pegasus-41",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/new-balance-fresh-foam-x-1080v14",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/adidas-ultraboost-light",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/asics-gt-2000-12",
+      "destination": "/equipamiento/zapatillas-running",
+      "permanent": true
+    },
+    {
+      "source": "/products/solgar-omega-3-triple-strength-100-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
+      "source": "/products/weightworld-omega-3-1000mg-400-caps",
+      "destination": "/blog/mejores-omega-3-runners",
+      "permanent": true
+    },
+    {
       "source": "/blog/como-entrenar-10k",
       "destination": "/blog/plan-entrenamiento-10k",
       "permanent": true

@@ -168,7 +168,7 @@ def process_page(filepath, list_name, currency='EUR'):
             description += '.'
         product = {
             "@type": "Product",
-            "@id": f"https://www.correrjuntos.com/products/{slug}",
+            # Sin "@id": /products/{slug} no existe y Google la rastreaba como 404 (GSC, sep 2026).
             "name": p['name'],
             "brand": {"@type": "Brand", "name": brand},
             "description": description,

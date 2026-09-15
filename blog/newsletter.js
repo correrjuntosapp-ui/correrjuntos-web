@@ -1,9 +1,9 @@
 /* ===================================================================
  * CorrerJuntos — Newsletter capture system v1
  *
- * Inyecta 4 puntos de contacto para captura de email en el blog:
- *   1. Sticky bar superior (40px, dismissible)
- *   2. Exit-intent popup (desktop on mouseleave, mobile on 75% scroll)
+ * Puntos de contacto para captura de email en el blog:
+ *   1. Sticky bar superior — DESACTIVADA por defecto desde el 15 sep 2026 (opt-in por pagina)
+ *   2. Exit-intent popup — DESACTIVADO por defecto desde el 15 sep 2026 (opt-in por pagina)
  *   3. Mid-article inline form (tras párrafo #3)
  *   4. End-of-article CTA (antes de related links)
  *
@@ -30,15 +30,16 @@
    * define window.CJ_NEWSLETTER_CONFIG ANTES de cargar este script para
    * desactivar componentes concretos, p. ej.:
    *   window.CJ_NEWSLETTER_CONFIG = { sticky:false, inline:false, exitIntent:false, end:true };
-   * Si no se define, o si una clave se omite, el componente queda ACTIVO:
-   * el comportamiento del resto de articulos no cambia. */
+   * Si no se define, o si una clave se omite: inline y end quedan ACTIVOS y las capas
+   * flotantes (sticky, exitIntent) quedan DESACTIVADAS. Desde el 15 sep 2026 solo se
+   * muestran si la pagina lo pide con `true` explicito: se retiraron por intrusivas. */
   var CFG = (function(){
     var c = (window.CJ_NEWSLETTER_CONFIG && typeof window.CJ_NEWSLETTER_CONFIG === 'object')
       ? window.CJ_NEWSLETTER_CONFIG : {};
     return {
-      sticky:     c.sticky     !== false,
+      sticky:     c.sticky     === true,
       inline:     c.inline     !== false,
-      exitIntent: c.exitIntent !== false,
+      exitIntent: c.exitIntent === true,
       end:        c.end        !== false
     };
   })();
@@ -572,8 +573,8 @@
     var quiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
     // Movil: SOLO promo fija de app (enhance.js) + formularios integrados — cero popups/barras de email
     var movil = window.innerWidth < 768;
-    // CFG permite ademas desactivar componentes por pagina (window.CJ_NEWSLETTER_CONFIG).
-    // Por defecto todo activo: sin config, el comportamiento es identico al de master.
+    // CFG permite activar o desactivar componentes por pagina (window.CJ_NEWSLETTER_CONFIG).
+    // Por defecto solo inline + end: las capas flotantes se retiraron el 15 sep 2026.
     if(CFG.sticky && !quiet && !movil){ buildSticky(); }
     if(CFG.inline){ buildInline(); }
     if(CFG.end){ buildEnd(); }

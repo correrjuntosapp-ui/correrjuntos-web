@@ -401,6 +401,8 @@ Tras validar el genérico ranking con tráfico real (esperar 30-45 días):
 
 ### 📩 Sistema Newsletter Capture en Blog (memorizado 13 may 2026)
 
+> ⚠️ **15 sep 2026**: las capas flotantes (sticky bar, exit-intent y el slide-in de `enhance.js`) están **DESACTIVADAS por defecto** porque echaban atrás a los lectores. Quedan solo el bloque inline y el final. Se reactivan por página con `window.CJ_NEWSLETTER_CONFIG = { sticky:true, exitIntent:true, slidein:true }` antes de cargar los scripts.
+
 **Hito**: 4 puntos de captura de email en TODO el blog. Reutiliza `/api/brevo-subscribe`. Sin librerías externas.
 
 #### Archivo único: `/blog/newsletter.js` (~16KB, vanilla JS)

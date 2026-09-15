@@ -344,11 +344,14 @@
      sticky + inline + end + exit-intent), este slide-in sería un formulario
      duplicado y una segunda superficie fija — se omite. Desktop intacto. */
   var nlSlideinDuplicated = window.innerWidth < 768 && !!document.querySelector('script[src*="/blog/newsletter.js"]');
+  /* Slide-in DESACTIVADO por defecto desde el 15 sep 2026 (captura flotante retirada por intrusiva).
+     Solo se muestra si la pagina lo pide: window.CJ_NEWSLETTER_CONFIG = { slidein:true }. */
+  var nlSlideinEnabled = !!(window.CJ_NEWSLETTER_CONFIG && window.CJ_NEWSLETTER_CONFIG.slidein === true);
   /* No mostrar si: ya descartado, ya suscrito (clave de newsletter.js), o articulo en modo quiet */
   var nlQuiet = !!document.querySelector('meta[name="cj-cro"][content="quiet"]');
   var nlSubscribed = false;
   try{ nlSubscribed = localStorage.getItem('cj_nl_subscribed') === '1'; }catch(e){}
-  if(!localStorage.getItem(STORAGE_KEY) && !nlSlideinDuplicated && !nlQuiet && !nlSubscribed){
+  if(nlSlideinEnabled && !localStorage.getItem(STORAGE_KEY) && !nlSlideinDuplicated && !nlQuiet && !nlSubscribed){
     var cssCta = document.createElement('style');
     cssCta.textContent = [
       '#nl-slidein{position:fixed;bottom:-340px;right:24px;width:360px;background:linear-gradient(160deg,#0f1f3d,#0a1628);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:0;z-index:950;transition:bottom .45s cubic-bezier(.22,.68,0,1.1);box-shadow:0 12px 48px rgba(0,0,0,.6);backdrop-filter:blur(16px);overflow:hidden}',

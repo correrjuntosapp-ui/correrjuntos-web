@@ -50,11 +50,11 @@
   document.documentElement.classList.add('js-ready');
 
   const screens = {
-    '01-inicio': { caption: '01 — Tu próximo paso', height: 1600, alt: 'Inicio de la app Android con la cuenta Demo: próxima sesión del plan, registro de entrenamiento, comunidad y asistentes IA' },
-    '02-plan': { caption: '02 — Tu plan gratuito, organizado', height: 1600, alt: 'Plan gratuito 0→5K en Android: semana 1 de 8, calendario y próximas sesiones; ninguna actividad completada en la cuenta demo' },
-    '03-sesion': { caption: '03 — Cada sesión, paso a paso', height: 1600, alt: 'Sesión Caminar/Correr 6x1min: calentamiento, seis bloques de un minuto corriendo y dos caminando, y vuelta a la calma' },
-    '04-carreras': { caption: '04 — Encuentra tu próxima carrera', height: 1600, alt: 'Mapa real de carreras en España en Android, listado con fechas y filtros de distancia; pestaña Carreras seleccionada' },
-    '05-ana': { caption: '05 — Resuelve dudas con Ana', height: 1600, alt: 'Ana identificada como IA: aviso educativo, cinco mensajes gratuitos disponibles y preguntas sugeridas; cuenta demo sin conversaciones' }
+    '01-inicio': { caption: '01 — Tu próximo paso', height: 1560, alt: 'Inicio de Android 1.3.30: día de descanso del plan, semana en curso, Salir a correr y próxima sesión de fuerza; cuenta de pruebas' },
+    '02-plan': { caption: '02 — Tu plan gratuito, organizado', height: 1560, alt: 'Mi semana en Android 1.3.30: plan Empezar a correr (0→5K), semana 1 de 8, calendario y próxima sesión Caminar/Correr 5x2min; cuenta de pruebas' },
+    '03-sesion': { caption: '03 — Cada sesión, paso a paso', height: 1560, alt: 'Sesión Caminar/Correr 5x2min de la semana 2: 23 minutos, calentamiento, cinco bloques de dos minutos corriendo y minuto y medio caminando, y enfriamiento' },
+    '04-fuerza': { caption: '04 — Fuerza para tu semana', height: 1560, alt: 'Fuerza en Android 1.3.30: próxima sesión Glúteos y estabilidad, semana de fuerza y explorador de sesiones con filtros; cuenta de pruebas' },
+    '05-carreras': { caption: '05 — Encuentra tu próxima carrera', height: 1560, alt: 'Mapa y listado de carreras en España en Android 1.3.30, con fechas y distancias; pestaña Carreras seleccionada' }
   };
   const screenButtons = Array.from(document.querySelectorAll('[data-screen]'));
   const preview = document.getElementById('app-screen');
@@ -85,7 +85,7 @@
       const selected = button.dataset.screen;
       const screen = screens[selected];
       if (!screen) return;
-      const src = '/public/home/app/native-' + selected + '-720.webp';
+      const src = '/public/home/app/v13/native-' + selected + '-720.webp';
       preview.src = src;
       preview.height = screen.height;
       preview.alt = screen.alt;
@@ -105,6 +105,17 @@
     };
     for (const button of screenButtons) {
       button.addEventListener('click', () => selectScreen(screenButtons.indexOf(button)));
+    }
+    for (const link of document.querySelectorAll('[data-tour-screen]')) {
+      link.addEventListener('click', event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        const button = screenButtons.find(candidate => candidate.dataset.screen === link.dataset.tourScreen);
+        if (!button) return;
+        event.preventDefault();
+        button.click();
+        full.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        full.focus({ preventScroll: true });
+      });
     }
     if (dialog && typeof dialog.showModal === 'function' && dialogImage && dialogTitle && dialogPosition && expand && captionTitle) {
       const openDialog = (event) => {
@@ -174,7 +185,7 @@
         body: JSON.stringify({ email, lang: 'es', source: 'lead-magnet-10k-home', lead_magnet: 'plan-10k-preview' })
       });
       if (!response.ok && response.status !== 409) throw new Error('Subscription failed');
-      if (localStorage.getItem('cj_cookie_consent') === 'accepted') {
+      if (response.status !== 409 && localStorage.getItem('cj_cookie_consent') === 'accepted') {
         if (typeof window.gtag === 'function') window.gtag('event', 'lead_magnet_signup', { lead_magnet: 'plan-10k-preview', location: 'homepage', duplicate: response.status === 409 });
         if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'Plan 10K Preview' });
       }

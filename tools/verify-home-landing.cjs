@@ -48,6 +48,7 @@ async function prepareContext(browser, width, consent) {
         if (link.hostname === 'apps.apple.com') assert.equal(link.searchParams.get('ct'), 'v10');
         else assert.equal(new URLSearchParams(link.searchParams.get('referrer')).get('utm_campaign'), 'v10');
       });
+      assert.equal(await page.evaluate(() => localStorage.getItem('cj_utm')), null);
       await page.getByRole('button', { name: 'Rechazar', exact: true }).click();
       await page.reload({ waitUntil: 'networkidle' });
       assert.equal(await page.locator('#cookieBanner').isVisible(), false);
@@ -68,12 +69,23 @@ async function prepareContext(browser, width, consent) {
       if (width < 700) assert.ok(chips[0].visible && chips[1].visible);
       assert.ok(chips.every(chip => chip.height >= 44));
       const positions = [];
+      const nativeManifest = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../docs/home/native-captures-v13.json'), 'utf8'));
+      const observedScreens = [];
       await page.locator('#expand-screen').click();
       for (let screen = 0; screen < 6; screen++) {
         const position = await page.locator('#dialog-position').innerText();
         assert.equal(position, ((screen % 5) + 1) + ' / 5');
         positions.push(position);
         assert.equal(await page.locator('#dialog-screen').evaluate(image => image.src), await page.locator('#app-screen').evaluate(image => image.src));
+        const expected = nativeManifest.captures[screen % 5].variants.find(variant => variant.width === 720);
+        const screenshot = await page.locator('#dialog-screen').evaluate(async image => {
+          await image.decode();
+          return { path: new URL(image.src).pathname, width: image.naturalWidth, height: image.naturalHeight, alt: image.alt };
+        });
+        assert.equal(screenshot.path, '/' + expected.file);
+        assert.equal(screenshot.width, expected.width);
+        assert.equal(screenshot.height, expected.height);
+        observedScreens.push(screenshot);
         await page.keyboard.press('ArrowRight');
       }
       const dialogButtons = page.locator('.screen-dialog button');
@@ -113,6 +125,29 @@ async function prepareContext(browser, width, consent) {
       });
       const broken = await page.evaluate(() => [...document.images].filter(img => img.getBoundingClientRect().width && (!img.complete || !img.naturalWidth)).map(img => img.src));
       assert.deepEqual(broken, []);
+      assert.equal(await page.locator('.proof-clubs, .club-links, .community-map-link').count(), 0);
+      const strengthCard = page.locator('#fuerza');
+      assert.equal(await strengthCard.isVisible(), true);
+      assert.match(await strengthCard.innerText(), /NUEVO EN LA 1.3.30/);
+      assert.match(await strengthCard.innerText(), /sesión de muestra gratuita/);
+      const trainingImages = await page.locator('.training-photo img').evaluateAll(images => images.map(image => ({
+        source: image.currentSrc,
+        loaded: image.complete && image.naturalWidth > 0,
+        width: image.naturalWidth,
+        renderedWidth: image.getBoundingClientRect().width,
+        alt: image.alt
+      })));
+      assert.equal(trainingImages.length, 2);
+      assert.ok(trainingImages.every(image => image.loaded && image.width >= image.renderedWidth * (width < 700 ? 2 : 1) && image.alt.includes('generada con IA')));
+      const strengthLink = strengthCard.getByRole('link', { name: 'Qué incluye cada opción' });
+      await strengthLink.focus();
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Shift+Tab');
+      assert.equal(await strengthLink.evaluate(element => element === document.activeElement && element.matches(':focus-visible') && getComputedStyle(element).outlineStyle === 'solid'), true);
+      await page.locator('.product-strip a[href="#fuerza"]').click();
+      assert.ok(await page.evaluate(() => scrollY > 0));
+      await page.getByRole('link', { name: 'CorrerJuntos, inicio', exact: true }).click();
+      assert.ok(await page.evaluate(() => scrollY <= 2));
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 0);
       assert.deepEqual(errors, []);
       assert.deepEqual(external, []);
@@ -120,6 +155,9 @@ async function prepareContext(browser, width, consent) {
         fs.mkdirSync(output, { recursive: true });
         await page.evaluate(() => scrollTo(0, 0));
         await page.screenshot({ path: path.join(output, 'home-' + width + '.png'), fullPage: true });
+        await page.screenshot({ path: path.join(output, 'hero-' + width + '.png') });
+        await page.locator('#entrenamiento').screenshot({ path: path.join(output, 'training-' + width + '.png') });
+        await page.locator('#blog').screenshot({ path: path.join(output, 'blog-' + width + '.png') });
       }
       await Promise.all([
         page.waitForRequest(request => request.url().includes('gtag/js?id=')),
@@ -127,12 +165,18 @@ async function prepareContext(browser, width, consent) {
         page.evaluate(() => window.acceptCookies())
       ]);
       assert.equal(analytics.length, 2);
+      const attributed = await page.locator('a[href*="apps.apple.com"], a[href*="play.google.com"]').evaluateAll(anchors => anchors.map(anchor => anchor.href));
+      attributed.forEach(href => {
+        const link = new URL(href);
+        if (link.hostname === 'apps.apple.com') assert.equal(link.searchParams.get('ct'), 'v10');
+        else assert.equal(new URLSearchParams(link.searchParams.get('referrer')).get('utm_campaign'), 'v10');
+      });
       await page.evaluate(() => window.acceptCookies());
       assert.equal(analytics.length, 2);
       await page.reload({ waitUntil: 'networkidle' });
       assert.equal(analytics.length, 4);
       assert.equal(await page.locator('#cookieBanner').isVisible(), false);
-      report.viewports.push({ width, status: 200, externalBeforeConsent: 0, chips, positions, faqMatches, errors, broken, storeLinks: storeLinks.length, trackerInitializations: 2 });
+      report.viewports.push({ width, status: 200, externalBeforeConsent: 0, chips, positions, observedScreens, faqMatches, errors, broken, trainingImages, strengthFocus: true, storeLinks: storeLinks.length, trackerInitializations: 2 });
       await context.close();
     }
     for (const status of [201, 409, 500]) {
@@ -166,6 +210,8 @@ async function prepareContext(browser, width, consent) {
     assert.equal(await fallback.locator('#reading-running').isVisible(), true);
     assert.equal(await fallback.locator('#reading-cycling').isVisible(), true);
     assert.equal(await fallback.locator('.fallback-nav').isVisible(), true);
+    assert.equal(await fallback.locator('#fuerza').isVisible(), true);
+    assert.equal(await fallback.locator('.product-strip a[href="#fuerza"]').getAttribute('href'), '#fuerza');
     report.noJavaScriptFallback = true;
     await noScript.close();
     console.log(JSON.stringify(report, null, 2));

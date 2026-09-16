@@ -18,7 +18,7 @@
     "premium": false,
     "syntheticActivityHistory": false
   },
-  "transformations": "PNG masters unchanged. WebP derivatives use proportional downscaling only: no crop, retouch, synthetic screens or fabricated activities.",
+  "transformations": "PNG masters unchanged. WebP derivatives of captures 01-05 use proportional downscaling only: no crop, retouch, synthetic screens or fabricated activities. Capture 06 is a documented vertical crop of its master (see its crop field) followed by proportional downscaling; nothing inside the kept area was altered.",
   "limitations": [
     "Not an iOS visual certification",
     "No physical GPS, background location or payment test",
@@ -137,6 +137,42 @@
           "height": 1600,
           "sha256": "8da50cf57e1cc4f5c960e7b22d6e875093a240a21edcb723ff55fc973c0151db",
           "bytes": 43318
+        }
+      ]
+    },
+    {
+      "name": "06-clubs-mapa",
+      "capturedAt": "2026-09-09",
+      "description": "Pestaña Quedadas, segmento Clubs, radio «Sin límite» y mapa ampliado: seis clubs como marcadores, sin nombres de clubs ni tarjetas visibles",
+      "width": 1080,
+      "height": 2400,
+      "masterSha256": "6aba907817dee1083bbf45ec593f42556cf6a98cc27458e139e847b7f5e94ba7",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1080,
+        "height": 2052,
+        "sha256": "35406adf4af3c5f42383f0728918f8ebf93d3241f4b75e54c184aa03a000adb3",
+        "reason": "Vertical crop from the top edge to just above the first club card in the list, so no club name is shown; the map, the Google Maps attribution, the count «6 clubs» and the segment control are kept intact. No retouching or compositing."
+      },
+      "context": {
+        "location": "Location simulated in Huelva through the emulator (app location permission granted); no physical GPS.",
+        "ota": "Same runtime and update as captures 01-05: CheckCompleteUnavailable / NoUpdatesAvailable on the 2026-09-09 launch."
+      },
+      "variants": [
+        {
+          "file": "public/home/app/native-06-clubs-mapa-480.webp",
+          "width": 480,
+          "height": 912,
+          "sha256": "2ed32e558b16462a7791a6cc9be4095d5d6c38b7b1be907637bb1e59fed98d71",
+          "bytes": 26330
+        },
+        {
+          "file": "public/home/app/native-06-clubs-mapa-720.webp",
+          "width": 720,
+          "height": 1368,
+          "sha256": "ac28814ddedbb24cc25745632000505fa6d6ff7c188a87e92bc03fab88da1cab",
+          "bytes": 44306
         }
       ]
     }

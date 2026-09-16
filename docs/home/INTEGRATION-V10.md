@@ -1,5 +1,7 @@
 # Home V10 — candidata integrada
 
+Actualización 11 septiembre: este documento describe la integración original. El estado local vigente es V13; consultar CIERRE-CAPTURAS-V13.md y CIERRE-COMERCIAL-V12.md. V11 retiró la promoción de clubes y el mapa; V12 reemplaza el bloque UTM heredado y corrige /abrir-app; V13 sustituye las capturas por Android 1.3.29 (123), de prepublicación. El manifiesto vigente es native-captures-v13.json. Las afirmaciones históricas de bloques inline idénticos, capturas 1.3.25 y puente sin cambios ya no describen el diff actual. No hay publicación autorizada.
+
 Base: f58cd39d266b9a18927ecadf7c3c1538e08a99bb. Rama: codex/home-v10-integration.
 La V10 original permanece intacta en su preview local.
 
@@ -8,7 +10,7 @@ La V10 original permanece intacta en su preview local.
 - Sustitución de la portada por el diseño V10 aprobado.
 - CSS y JavaScript propios en css/home.css y js/home.js, con huella de contenido en la URL.
 - Assets utilizados exclusivamente en public/home; fuente Inter local y licencia OFL en public/fonts.
-- Cinco capturas reales Android 1.3.25 (110), OTA documentada, sin recomprimir sus derivados.
+- Seis capturas reales Android 1.3.25 (110), OTA documentada: cinco en la galería y una en comunidad, con doce derivados verificados por SHA-256.
 - Metadatos de app/PWA, Pinterest y perfiles sociales preservados.
 - Canonical y hreflang siguen apuntando a producción; enlaces HTML internos son relativos a la raíz.
 - JSON-LD de la V10 conserva FAQ y ItemList sincronizados con el contenido.
@@ -32,9 +34,10 @@ El PR es de revisión, no autorización de merge. No hay cambios en master, prod
 ## Fotografía de comunidad
 
 No se incluye ni se referencia la foto de grupo pendiente de consentimiento en la nueva portada.
-En el mismo espacio queda un bloque neutro identificado como pendiente de autorización, manteniendo el pie y enlace del club.
+En su lugar, el bloque de comunidad muestra una captura real de la app (Android 1.3.25, cuenta demo): pestaña Quedadas › Clubs con radio «Sin límite», seis clubs como marcadores y sin nombres de clubs. Es un recorte vertical documentado del máster (captura 06-clubs-mapa en native-captures-manifest.json) para no mostrar la tarjeta del primer club; sin retoque ni composición. El pie no nombra a ningún club y enlaza a la sección de descarga.
 No se han contactado terceros ni se ha supuesto permiso por una publicación previa.
-Antes de fusionar, el usuario debe aprobar ese estado o aportar el permiso para incorporar la foto y sus derivados verificados.
+El mapa se puede ampliar mediante un enlace a su derivada de 720 px, también sin JavaScript. El enlace avisa de que abre otra pestaña; no se cambia la imagen ni la galería de cinco pantallas.
+Si más adelante se aporta el permiso de una fotografía de club, puede sustituir a la captura con sus derivados verificados.
 
 Las fotos ambientales de ciclismo conservan su aviso explícito. Renovar las 30 fotografías de producto de los artículos es un trabajo separado.
 

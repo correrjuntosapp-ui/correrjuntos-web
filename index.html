@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CorrerJuntos: empieza a correr con un plan gratis, GPS y quedadas</title>
-  <meta name="description" content="Empieza a correr con el plan 0→5K gratis (8 semanas), registra tus carreras con GPS y encuentra quedadas y clubes cerca de ti. App de running para iOS y Android.">
+  <title>CorrerJuntos: planes de running, fuerza y seguimiento</title>
+  <meta name="description" content="Planes de running, GPS y apoyo de IA. Fuerza para casa o gimnasio, ya en la versión 1.3.30. Empieza con dos planes de iniciación gratis.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#fef7ed">
   <link rel="canonical" href="https://www.correrjuntos.com/">
@@ -14,14 +14,14 @@
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="CorrerJuntos">
   <meta property="og:url" content="https://www.correrjuntos.com/">
-  <meta property="og:title" content="CorrerJuntos: empieza a correr con un plan gratis, GPS y quedadas">
-  <meta property="og:description" content="Empieza a correr con el plan 0→5K gratis (8 semanas), registra tus carreras con GPS y encuentra quedadas y clubes cerca de ti. App de running para iOS y Android.">
+  <meta property="og:title" content="CorrerJuntos: planes de running, fuerza y seguimiento">
+  <meta property="og:description" content="Planes de running, GPS y apoyo de IA. Fuerza para casa o gimnasio, ya en la versión 1.3.30. Empieza con dos planes de iniciación gratis.">
   <meta property="og:image" content="https://www.correrjuntos.com/public/og-home.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CorrerJuntos: empieza a correr con un plan gratis, GPS y quedadas">
-  <meta name="twitter:description" content="Empieza a correr con el plan 0→5K gratis (8 semanas), registra tus carreras con GPS y encuentra quedadas y clubes cerca de ti. App de running para iOS y Android.">
+  <meta name="twitter:title" content="CorrerJuntos: planes de running, fuerza y seguimiento">
+  <meta name="twitter:description" content="Planes de running, GPS y apoyo de IA. Fuerza para casa o gimnasio, ya en la versión 1.3.30. Empieza con dos planes de iniciación gratis.">
   <meta name="twitter:image" content="https://www.correrjuntos.com/public/og-home.jpg">
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
   <meta name="apple-itunes-app" content="app-id=6758505910">
@@ -47,186 +47,133 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadGA4();}
 function loadMetaPixel(){if(window.fbqLoaded)return;window.fbqLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1466415711868158');fbq('track','PageView');}
 if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
 </script>
-<script>
-/* UTM capture — persist source attribution across sessions and into App Store links */
-(function(){
-  try{
-    var qs=new URLSearchParams(window.location.search);
-    var src=qs.get('utm_source');
-    if(src){
-      var utm={
-        source:src,
-        medium:qs.get('utm_medium')||'',
-        campaign:qs.get('utm_campaign')||'',
-        content:qs.get('utm_content')||'',
-        term:qs.get('utm_term')||'',
-        t:Date.now(),
-        landing:window.location.pathname
-      };
-      localStorage.setItem('cj_utm',JSON.stringify(utm));
-      /* Send to GA4 as event (in addition to native UTM auto-capture) */
-      if(typeof gtag==='function'){
-        gtag('event','utm_landing',{utm_source:utm.source,utm_medium:utm.medium,utm_campaign:utm.campaign,landing:utm.landing});
-      }
-    }
-    /* Append stored UTM to App Store / Google Play links after DOM ready */
-    function appendUtmToStoreLinks(){
-      var stored=localStorage.getItem('cj_utm');
-      if(!stored)return;
-      var u;try{u=JSON.parse(stored);}catch(e){return;}
-      var maxAge=30*24*60*60*1000;/* 30 days */
-      if(!u.t||Date.now()-u.t>maxAge)return;
-      var links=document.querySelectorAll('a[href*="apps.apple.com"], a[href*="play.google.com"]');
-      links.forEach(function(a){
-        try{
-          var url=new URL(a.href);
-          /* Google Play uses &referrer= for install attribution */
-          if(url.hostname.indexOf('play.google.com')>-1){
-            var ref='utm_source='+encodeURIComponent(u.source)+'&utm_medium='+encodeURIComponent(u.medium||'')+'&utm_campaign='+encodeURIComponent(u.campaign||'');
-            url.searchParams.set('referrer',ref);
-          }else{
-            /* App Store uses pt/ct/mt params */
-            url.searchParams.set('ct',u.campaign||u.source);
-          }
-          a.href=url.toString();
-        }catch(e){}
-      });
-    }
-    if(document.readyState==='loading'){
-      document.addEventListener('DOMContentLoaded',appendUtmToStoreLinks);
-    }else{
-      appendUtmToStoreLinks();
-    }
-  }catch(e){}
-})();
-</script>
+
   <link rel="preload" as="font" type="font/woff2" href="/public/fonts/inter-latin-wght-normal.woff2" crossorigin>
-  <link rel="preload" as="image" href="/public/home/app/native-03-sesion-480.webp" imagesrcset="/public/home/app/native-03-sesion-480.webp 480w, /public/home/app/native-03-sesion-720.webp 720w" imagesizes="(max-width: 700px) 210px, 258px" fetchpriority="high">
-  <link rel="stylesheet" href="/css/home.css?v=7d0cb9700151">
+  <link rel="preload" as="image" href="/public/home/app/v13/native-02-plan-480.webp" imagesrcset="/public/home/app/v13/native-02-plan-480.webp 480w, /public/home/app/v13/native-02-plan-720.webp 720w" imagesizes="(max-width: 700px) 210px, 258px" fetchpriority="high">
+  <link rel="stylesheet" href="/css/home.css?v=c096d22b0d68">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@graph":[
       {"@type":"Organization","@id":"https://www.correrjuntos.com/#organization","name":"CorrerJuntos","url":"https://www.correrjuntos.com/","logo":"https://www.correrjuntos.com/icons/icon-512.png","foundingDate":"2025-11","founder":{"@type":"Person","name":"Abraham Márquez Rodríguez"},"address":{"@type":"PostalAddress","addressLocality":"Huelva","addressCountry":"ES"},"email":"hola@correrjuntos.com","sameAs":["https://www.instagram.com/correrjuntosapp/","https://www.tiktok.com/@correrjuntosapp","https://www.linkedin.com/company/correrjuntos/","https://www.crunchbase.com/organization/correrjuntos","https://es.pinterest.com/correrjuntos/"]},
       {"@type":"WebSite","@id":"https://www.correrjuntos.com/#website","url":"https://www.correrjuntos.com/","name":"CorrerJuntos","inLanguage":"es","publisher":{"@id":"https://www.correrjuntos.com/#organization"}},
-      {"@type":"WebPage","@id":"https://www.correrjuntos.com/#webpage","url":"https://www.correrjuntos.com/","name":"CorrerJuntos: empieza a correr con un plan gratis, GPS y quedadas","description":"Empieza a correr con el plan 0→5K gratis (8 semanas), registra tus carreras con GPS y encuentra quedadas y clubes cerca de ti. App de running para iOS y Android.","inLanguage":"es","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#app"}},
-      {"@type":"SoftwareApplication","@id":"https://www.correrjuntos.com/#app","name":"CorrerJuntos","applicationCategory":"HealthApplication","operatingSystem":"iOS, Android","softwareVersion":"1.3.25","url":"https://www.correrjuntos.com/","inLanguage":["es","en"],"description":"App para registrar carreras con GPS, seguir planes de running y encontrar quedadas. Incluye los planes gratuitos Empieza a Moverte y 0→5K.","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"installUrl":["https://apps.apple.com/app/correr-juntos/id6758505910","https://play.google.com/store/apps/details?id=com.correrjuntos.app"],"offers":[{"@type":"Offer","name":"Descarga y dos planes de iniciación","price":"0","priceCurrency":"EUR"},{"@type":"Offer","name":"Premium mensual en España","price":"4.99","priceCurrency":"EUR","description":"Suscripción mensual. La tienda muestra el precio final según país y cuenta antes de confirmar."},{"@type":"Offer","name":"Premium anual en España","price":"29.99","priceCurrency":"EUR","description":"Suscripción anual. La tienda muestra el precio final según país y cuenta antes de confirmar."}]},
+      {"@type":"WebPage","@id":"https://www.correrjuntos.com/#webpage","url":"https://www.correrjuntos.com/","name":"CorrerJuntos: planes de running, fuerza y seguimiento","description":"Planes de running, GPS y apoyo de IA. Fuerza para casa o gimnasio, ya en la versión 1.3.30. Empieza con dos planes de iniciación gratis.","inLanguage":"es","isPartOf":{"@id":"https://www.correrjuntos.com/#website"},"about":{"@id":"https://www.correrjuntos.com/#app"}},
+      {"@type":"SoftwareApplication","@id":"https://www.correrjuntos.com/#app","name":"CorrerJuntos","applicationCategory":"HealthApplication","operatingSystem":"iOS, Android","url":"https://www.correrjuntos.com/","inLanguage":["es","en"],"description":"Planes de running, registro GPS, seguimiento y quedadas. Incluye Empieza a Moverte y 0→5K gratis. La versión 1.3.30 añade fuerza para casa o gimnasio.","publisher":{"@id":"https://www.correrjuntos.com/#organization"},"installUrl":["https://apps.apple.com/app/correr-juntos/id6758505910","https://play.google.com/store/apps/details?id=com.correrjuntos.app"],"offers":[{"@type":"Offer","name":"Descarga y dos planes de iniciación","price":"0","priceCurrency":"EUR"},{"@type":"Offer","name":"Premium mensual en España","price":"4.99","priceCurrency":"EUR","description":"Suscripción mensual. La tienda muestra el precio final según país y cuenta antes de confirmar."},{"@type":"Offer","name":"Premium anual en España","price":"29.99","priceCurrency":"EUR","description":"Suscripción anual. La tienda muestra el precio final según país y cuenta antes de confirmar."}]},
       {"@type":"ItemList","@id":"https://www.correrjuntos.com/#guias","name":"Selección editorial de guías de running y ciclismo","itemListElement":[{"@type":"ListItem","position":1,"name":"¿Cuánto se tarda en correr 5 km?","url":"https://www.correrjuntos.com/blog/cuanto-tardo-en-correr-5km"},{"@type":"ListItem","position":2,"name":"Zapatillas de running para más de 80 kg","url":"https://www.correrjuntos.com/blog/mejores-zapatillas-running-sobrepeso"},{"@type":"ListItem","position":3,"name":"Qué desayunar antes de correr","url":"https://www.correrjuntos.com/blog/desayunos-antes-de-correr"},{"@type":"ListItem","position":4,"name":"10 bicicletas de carretera para 2027, comparadas","url":"https://www.correrjuntos.com/blog/ciclismo/mejores-bicicletas-carretera-2027"},{"@type":"ListItem","position":5,"name":"10 bicicletas gravel para 2027, comparadas","url":"https://www.correrjuntos.com/blog/ciclismo/mejores-bicicletas-gravel-2027"},{"@type":"ListItem","position":6,"name":"10 MTB para 2027: XC, trail y rígidas","url":"https://www.correrjuntos.com/blog/ciclismo/mejores-mtb-2027"}]},
       {"@type":"FAQPage","@id":"https://www.correrjuntos.com/#preguntas","mainEntity":[
-        {"@type":"Question","name":"¿Qué es CorrerJuntos?","acceptedAnswer":{"@type":"Answer","text":"CorrerJuntos es una app de running para iOS y Android con planes de entrenamiento, registro GPS y quedadas. Su blog ofrece guías de running y una sección independiente de ciclismo. El proyecto fue fundado por Abraham Márquez Rodríguez en Huelva, en noviembre de 2025."}},
-        {"@type":"Question","name":"¿Qué puedo usar gratis?","acceptedAnswer":{"@type":"Answer","text":"La descarga incluye los planes Empieza a Moverte (6 semanas) y 0→5K (8 semanas), el registro de carreras con GPS en exterior o por tiempo en cinta, y el acceso a quedadas y clubes. También puedes escribir a José y Ana, los asistentes de IA, hasta 5 mensajes al día con cada uno."}},
-        {"@type":"Question","name":"¿Cuánto cuesta Premium y cómo se cancela?","acceptedAnswer":{"@type":"Answer","text":"Premium añade los planes Prep 5K, Prep 10K, Prep Trail, Prep 21K y Prep 42K y quita el límite diario de mensajes con José y Ana. El precio de referencia en España es 4,99 € al mes o 29,99 € al año; la tienda muestra el importe final antes de confirmar. La suscripción se gestiona y se cancela desde App Store o Google Play, sin permanencia."}},
+        {"@type":"Question","name":"¿Qué es CorrerJuntos?","acceptedAnswer":{"@type":"Answer","text":"CorrerJuntos reúne planes de running, registro GPS, seguimiento y asistentes de IA en iOS y Android. La versión 1.3.30 añade entrenamiento de fuerza para casa o gimnasio. También puedes encontrar quedadas y consultar guías de running y ciclismo en el blog."}},
+        {"@type":"Question","name":"¿Qué puedo usar gratis?","acceptedAnswer":{"@type":"Answer","text":"La descarga incluye los planes Empieza a Moverte (6 semanas) y 0→5K (8 semanas), registro con GPS en exterior o por tiempo en cinta y acceso a quedadas. José y Ana permiten hasta 5 mensajes al día con cada uno. Desde la 1.3.30 puedes configurar Fuerza, ver la semana propuesta y completar una sesión de muestra sin Premium."}},
+        {"@type":"Question","name":"¿Cuánto cuesta Premium y cómo se cancela?","acceptedAnswer":{"@type":"Answer","text":"Premium añade los planes Prep 5K, Prep 10K, Prep Trail, Prep 21K y Prep 42K y quita el límite diario de mensajes con José y Ana. La 1.3.30 incorpora la continuidad de fuerza, historial, progresión y sustituciones. El precio de referencia en España es 4,99 € al mes o 29,99 € al año; confirma el importe final en tu tienda. La suscripción se gestiona y cancela desde App Store o Google Play."}},
         {"@type":"Question","name":"¿Necesito un reloj para registrar una carrera?","acceptedAnswer":{"@type":"Answer","text":"No. En exterior registras la carrera con el GPS del móvil; en cinta, el registro es por tiempo. La importación de actividades desde Strava está disponible. La sincronización directa con Garmin, COROS y Apple Watch figura como próxima en la información actual del producto."}},
         {"@type":"Question","name":"¿José y Ana son personas?","acceptedAnswer":{"@type":"Answer","text":"No. José y Ana son asistentes de inteligencia artificial. José responde sobre entrenamiento y Ana ofrece orientación general sobre alimentación deportiva. No diagnostican lesiones ni sustituyen a un profesional sanitario."}},
-        {"@type":"Question","name":"¿Puedo correr solo o tengo que ir en grupo?","acceptedAnswer":{"@type":"Answer","text":"Como prefieras. Puedes seguir tu plan y registrar tus carreras en solitario, o apuntarte a quedadas de tu zona. Cada quedada indica hora, nivel y punto de salida."}},
+        {"@type":"Question","name":"¿Cómo encaja Fuerza con mi plan de running?","acceptedAnswer":{"@type":"Answer","text":"En Fuerza eliges tu objetivo, experiencia, días disponibles y material. Puedes preparar una semana de fuerza independiente o coordinarla con tu plan de carrera. Configurar y completar la sesión de muestra es gratis; la continuidad, el historial y la progresión requieren Premium. La compra individual de un plan de running no incluye Fuerza."}},
         {"@type":"Question","name":"¿Dónde encuentro artículos de ciclismo o en inglés?","acceptedAnswer":{"@type":"Answer","text":"El blog de running está en /blog y el de ciclismo en /blog/ciclismo. Los artículos en inglés tienen su propio índice en /blog/en. Cada sección conserva sus categorías y enlaces."}}
       ]}
     ]
   }
   </script>
-  <script src="/js/home.js?v=bfd5f79d13d6" defer></script>
+  <script src="/js/home-funnel.js?v=b4d9be6cedeb" defer></script>
+  <script src="/js/home.js?v=7bc380862192" defer></script>
 </head>
-<body>
+<body class="home-launch">
+<div class="release-preview" id="inicio" role="note">Nueva versión 1.3.30 <span>· Fuerza ya disponible en App Store y Google Play.</span></div>
 <a class="skip" href="#contenido">Ir al contenido</a>
-<header class="header" id="inicio">
+<header class="header">
   <div class="shell nav">
     <a href="#inicio" class="logo" aria-label="CorrerJuntos, inicio">CORRER<span>JUNTOS</span></a>
-    <nav class="nav-desktop" aria-label="Navegación principal"><a href="#app">La app</a><a href="#planes">Planes</a><a href="#comunidad">Comunidad</a><a href="#blog">El blog</a></nav>
+    <nav class="nav-desktop" aria-label="Navegación principal"><a href="#app">La app</a><a href="#planes">Planes</a><a href="#fuerza">Fuerza</a><a href="/blog">El blog</a></nav>
     <div class="nav-actions"><a class="button small nav-download" href="/abrir-app"><span class="nav-download-long">Descargar gratis</span><span class="nav-download-short">Descargar</span></a><button class="menu-button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
   </div>
-  <nav class="mobile-menu shell" id="mobile-menu" aria-label="Navegación móvil" hidden><a href="#app">Conoce la app</a><a href="#planes">Planes y precios</a><a href="#comunidad">Corre en comunidad</a><a href="#blog">Running y ciclismo en el blog</a><a href="#descargar">Descargar gratis</a></nav>
+  <nav class="mobile-menu shell" id="mobile-menu" aria-label="Navegación móvil" hidden><a href="#app">Conoce la app</a><a href="#planes">Planes y precios</a><a href="#fuerza">Entrenamiento de fuerza</a><a href="/blog">El blog</a><a href="#descargar">Descargar gratis</a></nav>
 </header>
-<noscript><nav class="fallback-nav shell" aria-label="Navegación sin JavaScript"><a href="#app">La app</a><a href="#planes">Planes</a><a href="#comunidad">Comunidad</a><a href="#blog">El blog</a><a href="#descargar">Descargar</a></nav></noscript>
+<noscript><nav class="fallback-nav shell" aria-label="Navegación sin JavaScript"><a href="#app">La app</a><a href="#planes">Planes</a><a href="#fuerza">Fuerza</a><a href="/blog">El blog</a><a href="#descargar">Descargar</a></nav></noscript>
 <main id="contenido"><span id="main" class="anchor-alias" aria-hidden="true"></span>
   <section class="hero" aria-labelledby="hero-title">
     <div class="shell hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> APP DE RUNNING · iOS Y ANDROID</p>
-        <h1 id="hero-title">Tu plan 0→5K de 8 semanas, gratis. <br><span>Y gente con la que correr.</span></h1>
-        <p class="intro">Camina y corre a tu ritmo, tres días por semana. Sigue tu plan, registra tus salidas con el móvil y encuentra quedadas cerca de ti.</p>
-        <ul class="hero-list" aria-label="Incluido gratis">
-          <li>Empieza a Moverte (6 semanas) y 0→5K (8 semanas), completos y gratis</li>
-          <li>GPS en exterior; registro por tiempo en cinta</li>
-          <li>Quedadas y clubes de tu zona</li>
+        <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> RUNNING + FUERZA · TU PRÓXIMO PASO</p>
+        <h1 id="hero-title">Corre con un plan. <br><span>Entrena tu fuerza.</span></h1>
+        <p class="intro">De tus primeros 5K a tu próxima carrera. Running, fuerza y seguimiento en una app, con José y Ana como apoyo de IA.</p>
+        <ul class="hero-list" aria-label="Para empezar">
+          <li>Dos planes completos para empezar, sin suscripción</li>
+          <li>Sesiones de running organizadas y registro con GPS</li>
+          <li>Fuerza en casa o en el gimnasio, nueva en la 1.3.30</li>
         </ul>
         <div class="actions">
           <a class="button" href="/abrir-app">Empieza gratis <span aria-hidden="true">→</span></a>
-          <a class="text-link" href="#app">Ver cómo funciona <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#entrenamiento">Descubre la app <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <figure class="hero-art">
         <div class="track-lines" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="phone phone-secondary"><img src="/public/home/app/native-02-plan-480.webp" width="480" height="1067" alt="App Android 1.3.25: semana 1 de 8 del plan gratuito 0→5K, con sus próximas sesiones de caminar y correr" decoding="async"></div>
-        <div class="phone phone-primary"><img src="/public/home/app/native-03-sesion-480.webp" srcset="/public/home/app/native-03-sesion-480.webp 480w, /public/home/app/native-03-sesion-720.webp 720w" sizes="(max-width: 700px) 210px, 258px" width="480" height="1067" alt="Sesión real del plan 0→5K en Android: calentamiento, seis bloques de un minuto corriendo y dos caminando, y vuelta a la calma" fetchpriority="high"></div>
+        <div class="phone phone-secondary"><img src="/public/home/app/v13/native-04-fuerza-480.webp" width="480" height="1040" alt="Fuerza en Android 1.3.30: próxima sesión Glúteos y estabilidad, semana de fuerza y explorador de sesiones con filtros; cuenta de pruebas" decoding="async"></div>
+        <div class="phone phone-primary"><img src="/public/home/app/v13/native-02-plan-480.webp" srcset="/public/home/app/v13/native-02-plan-480.webp 480w, /public/home/app/v13/native-02-plan-720.webp 720w" sizes="(max-width: 700px) 210px, 258px" width="480" height="1040" alt="Mi semana en Android 1.3.30: plan Empezar a correr (0→5K), semana 1 de 8, calendario y próxima sesión Caminar/Correr 5x2min; cuenta de pruebas" fetchpriority="high"></div>
         <div class="art-tag"><span class="tag-icon" aria-hidden="true">✓</span><span>Dos planes completos <br><strong>gratis.</strong></span></div>
-        <figcaption>Capturas reales · Android 1.3.25 · Cuenta demo</figcaption>
+        <figcaption>Capturas actuales · Android 1.3.30 (127) · Disponible en App Store y Google Play</figcaption>
       </figure>
       <div class="hero-stores-block">
         <div class="store-links hero-stores">
           <a href="https://apps.apple.com/app/correr-juntos/id6758505910" aria-label="Descargar Correr Juntos en App Store"><svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true"><path fill="currentColor" d="M16.4 4.5c1-1.2 1.7-2.8 1.5-4.5-1.5.1-3.3 1-4.4 2.2-1 1.1-1.8 2.7-1.5 4.3 1.7.2 3.3-.8 4.4-2zm4.7 10.4c0-3.4 2.8-5 2.9-5.1-1.6-2.4-4.1-2.7-5-2.8-2.1-.2-4.2 1.2-5.2 1.2-1.1 0-2.7-1.2-4.5-1.1-2.3 0-4.4 1.3-5.6 3.3-2.4 4.1-.6 10.3 1.7 13.6 1.1 1.6 2.4 3.4 4.2 3.3 1.7-.1 2.4-1.1 4.5-1.1 2 0 2.6 1.1 4.4 1 1.8 0 2.9-1.6 4-3.2 1.3-1.9 1.8-3.7 1.8-3.8-.1 0-3.2-1.3-3.2-5.3z"/></svg><span><small>Descargar en</small><strong>App Store</strong></span></a>
           <a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" aria-label="Descargar Correr Juntos en Google Play"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path fill="currentColor" d="M2 1v26l15-13L2 1zm17 11L7 3l15 8-3 1zm0 4L7 25l15-8-3-1zm1-2 4-2c2 1 2 3 0 4l-4-2z"/></svg><span><small>Disponible en</small><strong>Google Play</strong></span></a>
         </div>
-        <p class="hero-note">Dos planes gratis, sin suscripción. Premium es opcional y se cancela desde la tienda.</p>
+        <p class="hero-note">Dos planes gratis, sin suscripción. Premium es opcional y se cancela desde la tienda. Más de 1.500 cuentas registradas.</p>
       </div>
     </div>
-    <div class="shell proof" aria-label="Datos de la comunidad">
-      <div class="proof-clubs">
-        <div class="proof-logos" aria-hidden="true"><img src="/public/quedadas/soul-runclub-huelva/logo-64.webp" width="32" height="32" alt="" loading="lazy"><img src="/public/quedadas/sevilla-running-club/logo-64.webp" width="32" height="32" alt="" loading="lazy"><img src="/public/quedadas/beer-runners-malaga/logo-64.webp" width="32" height="32" alt="" loading="lazy"><img src="/public/quedadas/correr-sin-limites-torre-del-mar/logo-64.webp" width="32" height="32" alt="" loading="lazy"></div>
-        <p><strong>6 clubes asociados</strong> organizan quedadas en la app: Soul Run Club Huelva, Sevilla Running Club, Beer Runners Málaga y Barcelona, Correr Sin Límites Torre del Mar y SocialRun Aguadulce.</p>
+    <nav class="shell product-strip" aria-label="Tu entrenamiento en CorrerJuntos">
+      <a href="#running"><span>01 / PLANIFICA</span><strong>Un objetivo, un plan</strong><b aria-hidden="true">→</b></a>
+      <a href="#fuerza"><span>02 / COMBINA</span><strong>Running + fuerza</strong><b aria-hidden="true">→</b></a>
+      <a href="#app"><span>03 / REGISTRA</span><strong>Cada sesión cuenta</strong><b aria-hidden="true">→</b></a>
+      <a href="#blog"><span>04 / APRENDE</span><strong>Ideas para tu próxima salida</strong><b aria-hidden="true">→</b></a>
+    </nav>
+  </section>
+  <section class="preparation section" id="entrenamiento" aria-labelledby="training-title">
+    <div class="shell">
+      <div class="section-top"><div><p class="eyebrow">DOS FORMAS DE ENTRENAR. UN MISMO OBJETIVO.</p><h2 id="training-title">No es hacer más. <br>Es saber qué toca.</h2></div><p class="section-aside">Tu próxima sesión a mano, el tiempo que tienes y un plan para seguir. Dentro y fuera de las zapatillas.</p></div>
+      <div class="preparation-grid">
+        <article class="training-card" id="running">
+          <div class="training-photo"><img src="/public/home/editorial/preparation-running.jpg" width="1448" height="1086" loading="lazy" decoding="async" alt="Ilustración editorial generada con IA: corredor en un parque, utilizada también en la app"><span class="training-label">RUNNING</span></div>
+          <div class="training-copy"><p class="eyebrow">DE LA PRIMERA SALIDA A TU PRÓXIMA META</p><h3>Un plan para salir <br>con las cosas claras.</h3><p>Empieza caminando y corriendo, o prepara tu siguiente distancia. Consulta la sesión y registra cómo ha ido.</p><ul><li>Empieza a Moverte y 0→5K completos y gratis</li><li>Planes Premium de 5K, 10K, trail, 21K y 42K</li><li>Sesiones por bloques y seguimiento de tus carreras</li></ul><a class="text-link" href="/planes">Encuentra tu plan de running <span aria-hidden="true">→</span></a></div>
+        </article>
+        <article class="training-card strength-card" id="fuerza">
+          <div class="training-photo"><img src="/public/home/editorial/preparation-strength.jpg" width="1448" height="1086" loading="lazy" decoding="async" alt="Ilustración editorial generada con IA: mujer con una mancuerna, utilizada también en la app"><span class="training-label">FUERZA</span><span class="release-pill">NUEVO EN LA 1.3.30</span></div>
+          <div class="training-copy"><p class="eyebrow">EN CASA O EN EL GIMNASIO</p><h3>Tu fuerza también <br>tiene un plan.</h3><p>Elige objetivo, nivel, días y material. Prepara una semana de fuerza independiente o coordinada con tu plan de carrera.</p><ul><li>Vista de la semana y una sesión de muestra gratuita</li><li>Registro de series, repeticiones, carga y descansos</li><li>Premium: continuidad, historial y progresión</li></ul><a class="text-link" href="#planes">Qué incluye cada opción <span aria-hidden="true">→</span></a></div>
+        </article>
       </div>
-      <dl class="proof-stats">
-        <div><dt>Cuentas registradas</dt><dd>1.100+</dd></div>
-        <div><dt>Quedadas organizadas</dt><dd>80+</dd></div>
-        <div><dt>Ciudades con actividad</dt><dd>6</dd></div>
-        <div><dt>Integración activa</dt><dd>Strava</dd></div>
-      </dl>
+      <p class="visual-note">Imágenes editoriales creadas con IA, las mismas que utiliza la app. No son testimonios ni instrucciones de técnica.</p>
+      <div class="benefit-grid" id="comunidad"><span id="quedadas" class="anchor-alias" aria-hidden="true"></span>
+        <article><span class="benefit-number" aria-hidden="true">01</span><h3>Sal con tu móvil</h3><p>Registra ruta, distancia y ritmo con GPS. En cinta, registra por tiempo. Importa tus actividades desde Strava.</p></article>
+        <article><span class="benefit-number" aria-hidden="true">02</span><h3>Ve tu recorrido</h3><p>Consulta las actividades que has guardado y tus estadísticas. Tu historial, más allá de una única sesión.</p></article>
+        <article><span class="benefit-number" aria-hidden="true">03</span><h3>Resuelve tus dudas</h3><p>José para entrenamiento y Ana para orientación alimentaria. Asistentes de IA, no profesionales sanitarios.</p></article>
+        <article><span class="benefit-number" aria-hidden="true">04</span><h3>A tu aire. O en compañía.</h3><p>Sigue tu plan por tu cuenta o encuentra una quedada. Hora, nivel y punto de salida antes de apuntarte.</p></article>
+      </div>
     </div>
   </section>
-  <div class="quick-links shell" aria-label="Elige tu siguiente paso">
-    <a href="/recursos/plan-0-5k"><span>QUIERO EMPEZAR</span><strong>De caminar a correr 5K</strong><b aria-hidden="true">→</b></a>
-    <a href="/planes"><span>YA SALGO A CORRER</span><strong>Encuentra tu siguiente plan</strong><b aria-hidden="true">→</b></a>
-    <a href="/carreras"><span>BUSCO UN OBJETIVO</span><strong>Explora carreras populares</strong><b aria-hidden="true">→</b></a>
-    <a href="#blog"><span>QUIERO LEER</span><strong>Guías de running y de ciclismo</strong><b aria-hidden="true">→</b></a>
-  </div>
 
   <section class="app-section section" id="app" aria-labelledby="app-title"><span id="demo" class="anchor-alias" aria-hidden="true"></span><span id="features" class="anchor-alias" aria-hidden="true"></span><div class="shell app-grid">
-    <div class="app-head"><p class="eyebrow">LA APP, PANTALLA A PANTALLA</p><h2 id="app-title">Tu próxima salida, <br>más fácil.</h2><p>Explora el plan, el mapa y las sesiones guiadas. Toca una pantalla para ampliarla.</p></div>
-    <figure class="app-stage" id="screen-preview"><div class="stage-label"><span class="live-dot" aria-hidden="true"></span> CAPTURA REAL · ANDROID 1.3.25</div><a href="/public/home/app/native-01-inicio-720.webp" id="full-screen" target="_blank" rel="noopener" aria-label="Abrir imagen a tamaño completo: 01 — Tu próximo paso"><img id="app-screen" src="/public/home/app/native-01-inicio-720.webp" width="720" height="1600" alt="Inicio de la app Android con la cuenta Demo: próxima sesión del plan, registro de entrenamiento, comunidad y asistentes IA" loading="lazy"></a><figcaption id="screen-caption" aria-live="polite"><strong>01 — Tu próximo paso</strong><span>Tu siguiente sesión, descanso y accesos a la comunidad.</span></figcaption></figure>
+    <div class="app-head"><p class="eyebrow">LA APP, PANTALLA A PANTALLA</p><h2 id="app-title">Tu próxima salida, <br>más fácil.</h2><p>Explora running, fuerza, tu plan y el mapa de carreras. Toca una pantalla para ampliarla.</p><nav class="demo-journey" aria-label="Recorrido guiado del plan gratuito"><a href="/public/home/app/v13/native-02-plan-720.webp" data-tour-screen="02-plan"><span>01</span><strong>Elige tu plan</strong></a><a href="/public/home/app/v13/native-03-sesion-720.webp" data-tour-screen="03-sesion"><span>02</span><strong>Mira una sesión</strong></a><a href="/public/home/app/v13/native-01-inicio-720.webp" data-tour-screen="01-inicio"><span>03</span><strong>Tu siguiente paso</strong></a></nav></div>
+    <figure class="app-stage" id="screen-preview"><div class="stage-label"><span class="live-dot" aria-hidden="true"></span> CAPTURA ACTUAL · ANDROID 1.3.30</div><a href="/public/home/app/v13/native-01-inicio-720.webp" id="full-screen" target="_blank" rel="noopener" aria-label="Abrir imagen a tamaño completo: 01 — Tu próximo paso"><img id="app-screen" src="/public/home/app/v13/native-01-inicio-720.webp" width="720" height="1560" alt="Inicio de Android 1.3.30: día de descanso del plan, semana en curso, Salir a correr y próxima sesión de fuerza; cuenta de pruebas" loading="lazy"></a><figcaption id="screen-caption" aria-live="polite"><strong>01 — Tu próximo paso</strong><span>Tu día de hoy, la semana del plan y tu próxima sesión de fuerza.</span></figcaption></figure>
     <div class="screen-choices" role="group" aria-label="Pantallas de la app">
-      <button type="button" data-screen="01-inicio" aria-pressed="true" aria-controls="screen-preview"><span class="choice-index">01</span><span><strong>Tu próximo paso</strong><small>Tu siguiente sesión, descanso y accesos a la comunidad.</small></span><b aria-hidden="true">→</b></button>
+      <button type="button" data-screen="01-inicio" aria-pressed="true" aria-controls="screen-preview"><span class="choice-index">01</span><span><strong>Tu próximo paso</strong><small>Tu día de hoy, la semana del plan y tu próxima sesión de fuerza.</small></span><b aria-hidden="true">→</b></button>
       <button type="button" data-screen="02-plan" aria-pressed="false" aria-controls="screen-preview"><span class="choice-index">02</span><span><strong>Tu plan gratuito, organizado</strong><small>Ocho semanas de 0→5K y tus sesiones en el calendario.</small></span><b aria-hidden="true">→</b></button>
       <button type="button" data-screen="03-sesion" aria-pressed="false" aria-controls="screen-preview"><span class="choice-index">03</span><span><strong>Cada sesión, paso a paso</strong><small>Calentamiento, bloques de caminar y correr, y vuelta a la calma.</small></span><b aria-hidden="true">→</b></button>
-      <button type="button" data-screen="04-carreras" aria-pressed="false" aria-controls="screen-preview"><span class="choice-index">04</span><span><strong>Encuentra tu próxima carrera</strong><small>Explora el mapa y filtra por distancia. También tienes clubes y quedadas.</small></span><b aria-hidden="true">→</b></button>
-      <button type="button" data-screen="05-ana" aria-pressed="false" aria-controls="screen-preview"><span class="choice-index">05</span><span><strong>Resuelve dudas con Ana</strong><small>Asistente de nutrición con IA, identificada como tal y con límites claros.</small></span><b aria-hidden="true">→</b></button>
+      <button type="button" data-screen="04-fuerza" aria-pressed="false" aria-controls="screen-preview"><span class="choice-index">04</span><span><strong>Fuerza para tu semana</strong><small>Tu próxima sesión, la semana de fuerza y el explorador por tiempo, zona y material.</small></span><b aria-hidden="true">→</b></button>
+      <button type="button" data-screen="05-carreras" aria-pressed="false" aria-controls="screen-preview"><span class="choice-index">05</span><span><strong>Encuentra tu próxima carrera</strong><small>Mapa y calendario de carreras, con fechas y distancias.</small></span><b aria-hidden="true">→</b></button>
     </div>
     <div class="screen-tools" hidden><button type="button" class="screen-arrow" data-gallery-step="-1" aria-label="Pantalla anterior">←</button><span id="screen-position" aria-live="polite">1 / 5</span><button type="button" id="expand-screen">Ampliar pantalla <span aria-hidden="true">↗</span></button><button type="button" class="screen-arrow" data-gallery-step="1" aria-label="Pantalla siguiente">→</button></div>
-    <p class="capture-note">Capturas del 8 de septiembre de 2026: versión pública Android 1.3.25 (110), ejecutada en un emulador con una cuenta demo gratuita. Pantallas reales, sin retoques ni actividades inventadas. La apariencia puede variar en iOS.</p>
+    <p class="capture-note">Capturadas el 16 de septiembre de 2026 en Android 1.3.30 (127), la versión publicada en App Store y Google Play, instalada en el emulador. Cuenta QA con datos de prueba y Premium activo. Pantallas completas, sin retoques. La apariencia puede variar en iOS.</p>
   </div></section>
 
-  <section class="plans-section section" id="planes" aria-labelledby="plans-title"><span id="compare" class="anchor-alias" aria-hidden="true"></span><span id="pricing" class="anchor-alias" aria-hidden="true"></span><div class="shell"><div class="section-top"><div><p class="eyebrow">GRATIS PARA EMPEZAR. PREMIUM SI QUIERES MÁS.</p><h2 id="plans-title">Empieza gratis. <br>Elige hasta dónde.</h2></div><p class="section-aside">Dos planes completos para dar el primer paso. Premium añade los planes de preparación de 5K a maratón.</p></div>
-    <div class="pricing-grid"><article class="price-card"><span class="plan-label">PARA EMPEZAR</span><h3>Gratis</h3><div class="price">0 €</div><p>Lo esencial para ponerte en marcha.</p><ul><li>Empieza a Moverte (6 semanas)</li><li>Plan 0→5K completo (8 semanas)</li><li>GPS en exterior; registro por tiempo en cinta</li><li>Quedadas y clubes de tu zona</li><li>José y Ana (IA): 5 mensajes al día con cada uno</li></ul><a class="button outline" href="/abrir-app">Descargar gratis <span aria-hidden="true">→</span></a></article>
-      <article class="price-card premium"><span class="plan-label">PARA TU SIGUIENTE OBJETIVO</span><h3>Premium</h3><div class="price">4,99 € <small>/mes</small></div><p class="price-alt">o 29,99 € al año</p><ul><li>Prep 5K y Prep 10K</li><li>Prep Trail</li><li>Prep 21K y Prep 42K</li><li>José y Ana (IA) sin límite diario</li><li>Se cancela desde App Store o Google Play</li></ul><a class="button" href="/planes">Ver todos los planes <span aria-hidden="true">→</span></a></article>
+  <section class="plans-section section" id="planes" aria-labelledby="plans-title"><span id="compare" class="anchor-alias" aria-hidden="true"></span><span id="pricing" class="anchor-alias" aria-hidden="true"></span><div class="shell"><div class="section-top"><div><p class="eyebrow">GRATIS PARA EMPEZAR. PREMIUM SI QUIERES MÁS.</p><h2 id="plans-title">Empieza gratis. <br>Elige hasta dónde.</h2></div><p class="section-aside">Empieza con running gratis y una muestra de fuerza; Premium reúne los planes de carrera y la continuidad de fuerza.</p></div>
+    <div class="pricing-grid"><article class="price-card"><span class="plan-label">PARA EMPEZAR</span><h3>Gratis</h3><div class="price">0 €</div><p>Lo esencial para ponerte en marcha.</p><ul><li>Empieza a Moverte (6 semanas)</li><li>Plan 0→5K completo (8 semanas)</li><li>GPS en exterior; registro por tiempo en cinta</li><li>Acceso a quedadas</li><li>Una sesión de fuerza de muestra</li><li>José y Ana (IA): 5 mensajes al día con cada uno</li></ul><a class="button outline" href="/abrir-app">Descargar gratis <span aria-hidden="true">→</span></a></article>
+      <article class="price-card premium"><span class="plan-label">PARA TU SIGUIENTE OBJETIVO</span><h3>Premium</h3><div class="price">4,99 € <small>/mes</small></div><p class="price-alt">o 29,99 € al año</p><ul><li>Planes de 5K, 10K, trail, 21K y 42K</li><li>Planificación de fuerza continua</li><li>Fuerza: historial, progresión y sustituciones</li><li>José y Ana (IA) sin límite diario</li><li>Se cancela desde App Store o Google Play</li></ul><a class="button" href="/planes">Ver todos los planes <span aria-hidden="true">→</span></a></article>
       <aside class="coach-note"><div class="coach-portraits"><img src="/public/coach-jose.webp" width="80" height="80" alt="Avatar de José, entrenador con IA" loading="lazy"><img src="/public/coach-ana.webp" width="80" height="80" alt="Avatar de Ana, asistente de nutrición con IA" loading="lazy"></div><p class="eyebrow">ASISTENTES DE IA</p><h3>José, entrenador con IA. Ana, asistente de nutrición con IA.</h3><p>No son personas: son asistentes de inteligencia artificial dentro de la app. José responde sobre tu entrenamiento y Ana sobre alimentación deportiva.</p><p class="small-print">No diagnostican lesiones ni sustituyen a un profesional sanitario.</p><a class="text-link" href="/planes#coaches">Cómo funcionan los coaches IA <span aria-hidden="true">→</span></a></aside></div>
-    <p class="price-note">Precios de referencia en España según las fichas de App Store y Google Play, consultadas el 8 de septiembre de 2026. La tienda muestra el importe final según tu país y cuenta antes de confirmar. La prueba gratuita solo se ofrece a cuentas elegibles.</p>
+    <p class="price-note">Precios de referencia en España según las fichas de App Store y Google Play, consultadas el 8 de septiembre de 2026. La tienda muestra el importe final según tu país y cuenta antes de confirmar. La prueba gratuita solo se ofrece a cuentas elegibles. Una compra individual de un plan de running no incluye Fuerza.</p>
   </div></section>
 
-  <section class="community section" id="comunidad" aria-labelledby="community-title"><span id="quedadas" class="anchor-alias" aria-hidden="true"></span><div class="shell community-grid">
-    <figure class="community-photo community-photo-real"><div class="community-photo-pending" role="img" aria-label="Espacio reservado para una fotografía del club, pendiente de autorización"><span class="photo-kicker">CORRER EN COMPAÑÍA</span><strong>Correr Sin Límites</strong><span>Torre del Mar · Málaga</span><p>Fotografía del club pendiente de autorización.</p></div><figcaption><span class="photo-kicker">UN CLUB DE NUESTRA COMUNIDAD</span><strong>Correr Sin Límites</strong><span>Torre del Mar · Málaga</span><a href="/blog/grupos-running-torre-del-mar-correr-sin-limites">Conoce al grupo <b aria-hidden="true">→</b></a></figcaption></figure>
-    <div><p class="eyebrow">EL PLAN TAMBIÉN ES QUEDAR</p><h2 id="community-title">Hay kilómetros <br>que saben mejor <br><span>en compañía.</span></h2><p>Cada quedada indica hora, nivel y punto de salida. Muchas las organizan clubes asociados; ya se han organizado más de 80 quedadas, y hay actividad en seis ciudades.</p>
-      <ul class="club-links" aria-label="Clubes asociados">
-        <li><a href="/about">Huelva <span>Soul Run Club · horario en Sobre nosotros <b aria-hidden="true">→</b></span></a></li>
-        <li><a href="/about">Sevilla <span>Sevilla Running Club · horario en Sobre nosotros <b aria-hidden="true">→</b></span></a></li>
-        <li><a href="/about">Málaga <span>Beer Runners Málaga · horario en Sobre nosotros <b aria-hidden="true">→</b></span></a></li>
-        <li><a href="/blog/grupos-running-torre-del-mar-correr-sin-limites">Torre del Mar <span>Correr Sin Límites · artículo del club <b aria-hidden="true">→</b></span></a></li>
-        <li><a href="/blog/grupos-running-aguadulce-socialrun">Aguadulce <span>SocialRun Aguadulce · artículo del club <b aria-hidden="true">→</b></span></a></li>
-        <li><span class="club-plain">Barcelona <span>Beer Runners Barcelona · quedadas en la app</span></span></li>
-      </ul>
-      <p class="small-print">La disponibilidad de grupos depende de tu zona. Consulta las quedadas actuales en la app.</p></div>
-  </div></section>
 
   <section class="journal section" id="blog" aria-labelledby="blog-title">
     <div class="shell">
-      <div class="section-top"><div><p class="eyebrow">EL BLOG · 300+ ARTÍCULOS EN ESPAÑOL</p><h2 id="blog-title">Guías de running y de ciclismo, <br>cada una en su sitio.</h2></div><div class="section-aside"><p>Entrenamiento, material y respuestas para salir con más confianza. Elige tu deporte.</p><a class="text-link" href="/blog/en" lang="en" hreflang="en">Read the blog in English <span aria-hidden="true">→</span></a></div></div>
+      <div class="section-top"><div><p class="eyebrow">EL BLOG · 600+ GUÍAS EN ESPAÑOL E INGLÉS</p><h2 id="blog-title">Guías de running y de ciclismo, <br>cada una en su sitio.</h2></div><div class="section-aside"><p>Entrenamiento, material y respuestas para salir con más confianza. Elige tu deporte.</p><a class="text-link" href="/blog/en" lang="en" hreflang="en">Read the blog in English <span aria-hidden="true">→</span></a></div></div>
       <div class="sport-hubs">
         <a class="sport-hub running-hub" href="/blog"><img src="/public/home/editorial/running-960.webp" srcset="/public/home/editorial/running-480.webp 480w, /public/home/editorial/running-960.webp 960w, /public/blog-images/empezar-correr/hero.jpg 1600w" sizes="(max-width: 359px) calc(100vw - 32px), (max-width: 700px) calc((100vw - 54px) / 2), (max-width: 1264px) calc((100vw - 88px) / 2), 588px" alt="Corredor entrenando al aire libre" width="1600" height="800" loading="lazy"><div class="hub-overlay"><span class="hub-category">RUNNING</span><h3>A tu ritmo.</h3><p>Planes, zapatillas y carreras.</p><span class="hub-link">Explorar running <b aria-hidden="true">→</b></span></div></a>
         <a class="sport-hub cycling-hub" href="/blog/ciclismo"><img src="/public/blog-images/ciclismo/ciclismo-hub-hero-v2-828.webp" srcset="/public/home/editorial/cycling-480.webp 480w, /public/blog-images/ciclismo/ciclismo-hub-hero-v2-828.webp 828w" sizes="(max-width: 359px) calc(100vw - 32px), (max-width: 700px) calc((100vw - 54px) / 2), (max-width: 1264px) calc((100vw - 88px) / 2), 588px" alt="Ciclistas compartiendo una salida por carretera, imagen editorial del blog de ciclismo" width="828" height="466" loading="lazy"><div class="hub-overlay"><span class="hub-category">CICLISMO</span><h3>Más lejos.</h3><p>Bicicletas, rutas y equipamiento.</p><span class="hub-link">Explorar ciclismo <b aria-hidden="true">→</b></span></div></a>
@@ -247,22 +194,22 @@ if(localStorage.getItem('cj_cookie_consent')==='accepted'){loadMetaPixel();}
   </section>
 
   <section class="faq-section section" id="preguntas" aria-labelledby="faq-title"><div class="shell faq-grid"><div><p class="eyebrow">ANTES DE DAR EL PASO</p><h2 id="faq-title">Las cosas claras.</h2><p>Estas son las preguntas que merece la pena resolver antes de descargar.</p><a class="text-link" href="mailto:hola@correrjuntos.com">Habla con nosotros <span aria-hidden="true">→</span></a></div><div class="faq-list">
-    <details><summary>¿Qué es CorrerJuntos?<span aria-hidden="true">+</span></summary><p>CorrerJuntos es una app de running para iOS y Android con planes de entrenamiento, registro GPS y quedadas. Su blog ofrece guías de running y una sección independiente de ciclismo. El proyecto fue fundado por Abraham Márquez Rodríguez en Huelva, en noviembre de 2025.</p></details>
-    <details><summary>¿Qué puedo usar gratis?<span aria-hidden="true">+</span></summary><p>La descarga incluye los planes Empieza a Moverte (6 semanas) y 0→5K (8 semanas), el registro de carreras con GPS en exterior o por tiempo en cinta, y el acceso a quedadas y clubes. También puedes escribir a José y Ana, los asistentes de IA, hasta 5 mensajes al día con cada uno.</p></details>
-    <details><summary>¿Cuánto cuesta Premium y cómo se cancela?<span aria-hidden="true">+</span></summary><p>Premium añade los planes Prep 5K, Prep 10K, Prep Trail, Prep 21K y Prep 42K y quita el límite diario de mensajes con José y Ana. El precio de referencia en España es 4,99 € al mes o 29,99 € al año; la tienda muestra el importe final antes de confirmar. La suscripción se gestiona y se cancela desde App Store o Google Play, sin permanencia.</p></details>
+    <details><summary>¿Qué es CorrerJuntos?<span aria-hidden="true">+</span></summary><p>CorrerJuntos reúne planes de running, registro GPS, seguimiento y asistentes de IA en iOS y Android. La versión 1.3.30 añade entrenamiento de fuerza para casa o gimnasio. También puedes encontrar quedadas y consultar guías de running y ciclismo en el blog.</p></details>
+    <details><summary>¿Qué puedo usar gratis?<span aria-hidden="true">+</span></summary><p>La descarga incluye los planes Empieza a Moverte (6 semanas) y 0→5K (8 semanas), registro con GPS en exterior o por tiempo en cinta y acceso a quedadas. José y Ana permiten hasta 5 mensajes al día con cada uno. Desde la 1.3.30 puedes configurar Fuerza, ver la semana propuesta y completar una sesión de muestra sin Premium.</p></details>
+    <details><summary>¿Cuánto cuesta Premium y cómo se cancela?<span aria-hidden="true">+</span></summary><p>Premium añade los planes Prep 5K, Prep 10K, Prep Trail, Prep 21K y Prep 42K y quita el límite diario de mensajes con José y Ana. La 1.3.30 incorpora la continuidad de fuerza, historial, progresión y sustituciones. El precio de referencia en España es 4,99 € al mes o 29,99 € al año; confirma el importe final en tu tienda. La suscripción se gestiona y cancela desde App Store o Google Play.</p></details>
     <details><summary>¿Necesito un reloj para registrar una carrera?<span aria-hidden="true">+</span></summary><p>No. En exterior registras la carrera con el GPS del móvil; en cinta, el registro es por tiempo. La importación de actividades desde Strava está disponible. La sincronización directa con Garmin, COROS y Apple Watch figura como próxima en la información actual del producto.</p></details>
     <details><summary>¿José y Ana son personas?<span aria-hidden="true">+</span></summary><p>No. José y Ana son asistentes de inteligencia artificial. José responde sobre entrenamiento y Ana ofrece orientación general sobre alimentación deportiva. No diagnostican lesiones ni sustituyen a un profesional sanitario.</p></details>
-    <details><summary>¿Puedo correr solo o tengo que ir en grupo?<span aria-hidden="true">+</span></summary><p>Como prefieras. Puedes seguir tu plan y registrar tus carreras en solitario, o apuntarte a quedadas de tu zona. Cada quedada indica hora, nivel y punto de salida.</p></details>
+    <details><summary>¿Cómo encaja Fuerza con mi plan de running?<span aria-hidden="true">+</span></summary><p>En Fuerza eliges tu objetivo, experiencia, días disponibles y material. Puedes preparar una semana de fuerza independiente o coordinarla con tu plan de carrera. Configurar y completar la sesión de muestra es gratis; la continuidad, el historial y la progresión requieren Premium. La compra individual de un plan de running no incluye Fuerza.</p></details>
     <details><summary>¿Dónde encuentro artículos de ciclismo o en inglés?<span aria-hidden="true">+</span></summary><p>El blog de running está en <a href="/blog">/blog</a> y el de ciclismo en <a href="/blog/ciclismo">/blog/ciclismo</a>. Los artículos en inglés tienen su propio índice en <a href="/blog/en">/blog/en</a>. Cada sección conserva sus categorías y enlaces.</p></details>
   </div></div></section>
 
   <section class="download section" id="descargar" aria-labelledby="download-title"><div class="shell download-grid"><div><p class="eyebrow">NOS VEMOS EN LA SALIDA</p><h2 id="download-title">El primer paso <br><span>lo das tú.</span></h2><p>Empieza a Moverte y 0→5K están incluidos gratis. Premium es opcional y se cancela desde la tienda.</p><div class="store-links"><a href="https://apps.apple.com/app/correr-juntos/id6758505910" aria-label="Descargar Correr Juntos en App Store"><svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true"><path fill="currentColor" d="M16.4 4.5c1-1.2 1.7-2.8 1.5-4.5-1.5.1-3.3 1-4.4 2.2-1 1.1-1.8 2.7-1.5 4.3 1.7.2 3.3-.8 4.4-2zm4.7 10.4c0-3.4 2.8-5 2.9-5.1-1.6-2.4-4.1-2.7-5-2.8-2.1-.2-4.2 1.2-5.2 1.2-1.1 0-2.7-1.2-4.5-1.1-2.3 0-4.4 1.3-5.6 3.3-2.4 4.1-.6 10.3 1.7 13.6 1.1 1.6 2.4 3.4 4.2 3.3 1.7-.1 2.4-1.1 4.5-1.1 2 0 2.6 1.1 4.4 1 1.8 0 2.9-1.6 4-3.2 1.3-1.9 1.8-3.7 1.8-3.8-.1 0-3.2-1.3-3.2-5.3z"/></svg><span><small>Descargar en</small><strong>App Store</strong></span></a><a href="https://play.google.com/store/apps/details?id=com.correrjuntos.app" aria-label="Descargar Correr Juntos en Google Play"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path fill="currentColor" d="M2 1v26l15-13L2 1zm17 11L7 3l15 8-3 1zm0 4L7 25l15-8-3-1zm1-2 4-2c2 1 2 3 0 4l-4-2z"/></svg><span><small>Disponible en</small><strong>Google Play</strong></span></a></div></div><aside class="resource-box"><span class="plan-label">¿PREFIERES EMPEZAR LEYENDO?</span><h3>Tu primer 5K, <br>paso a paso.</h3><p>Consulta el plan gratuito de ocho semanas y descubre cómo combinar caminar y correr.</p><a class="button outline" href="/recursos/plan-0-5k">Ver el plan gratuito <span aria-hidden="true">→</span></a></aside></div></section>
 </main>
-<footer class="footer"><div class="shell footer-grid"><div><a class="logo" href="#inicio">CORRER<span>JUNTOS</span></a><p>Un proyecto de Abraham Márquez Rodríguez. <br>Desde Huelva, para compartir el camino.</p><a href="/about">Conoce nuestra historia <span aria-hidden="true">→</span></a></div><nav aria-label="Recursos"><h2>Para tu próxima salida</h2><a href="/blog">Blog de running</a><a href="/blog/ciclismo">Blog de ciclismo</a><a href="/blog/en" lang="en" hreflang="en">English blog</a><a href="/carreras">Calendario de carreras</a></nav><nav aria-label="Información legal"><h2>Con confianza</h2><a href="/blog/politica-editorial">Política editorial</a><a href="/privacy">Privacidad</a><a href="/terms">Condiciones</a><a href="/eliminar-cuenta">Eliminar mi cuenta</a><a href="mailto:hola@correrjuntos.com">Contacto</a></nav></div><section class="shell home-newsletter" id="lead-magnet" aria-labelledby="newsletter-title"><div><h2 id="newsletter-title">Llévate el Plan 10K en PDF</h2><p>Las primeras dos semanas del plan, por email tras confirmar tu suscripción. Cancela cuando quieras.</p><a href="/privacy">Cómo tratamos tu email</a></div><div><form id="newsletterForm" action="/api/brevo-subscribe" method="POST"><label for="newsletter-email">Tu email</label><div class="newsletter-fields"><input type="email" id="newsletter-email" name="email" placeholder="tu@email.com" autocomplete="email" required><button class="button" type="submit">Quiero mi plan →</button></div></form><p id="newsletterMsg" role="status" aria-live="polite" hidden></p><noscript><p>Activa JavaScript para enviar este formulario.</p></noscript></div></section><div class="shell footer-bottom"><span>© 2026 CorrerJuntos</span><span>Capturas reales de Android 1.3.25 con cuenta demo</span><a href="#inicio">Volver arriba ↑</a></div></footer>
+<footer class="footer"><div class="shell footer-grid"><div><a class="logo" href="#inicio">CORRER<span>JUNTOS</span></a><p>Un proyecto de Abraham Márquez Rodríguez. <br>Desde Huelva, para compartir el camino.</p><a href="/about">Conoce nuestra historia <span aria-hidden="true">→</span></a></div><nav aria-label="Recursos"><h2>Para tu próxima salida</h2><a href="/blog">Blog de running</a><a href="/blog/ciclismo">Blog de ciclismo</a><a href="/blog/en" lang="en" hreflang="en">English blog</a><a href="/carreras">Calendario de carreras</a></nav><nav aria-label="Información legal"><h2>Con confianza</h2><a href="/blog/politica-editorial">Política editorial</a><a href="/privacy">Privacidad</a><a href="/terms">Condiciones</a><a href="/eliminar-cuenta">Eliminar mi cuenta</a><a href="mailto:hola@correrjuntos.com">Contacto</a></nav></div><section class="shell home-newsletter" id="lead-magnet" aria-labelledby="newsletter-title"><div><h2 id="newsletter-title">Llévate el Plan 10K en PDF</h2><p>Las primeras dos semanas del plan, por email tras confirmar tu suscripción. Cancela cuando quieras.</p><a href="/privacy">Cómo tratamos tu email</a></div><div><form id="newsletterForm" action="/api/brevo-subscribe" method="POST"><label for="newsletter-email">Tu email</label><div class="newsletter-fields"><input type="email" id="newsletter-email" name="email" placeholder="tu@email.com" autocomplete="email" required><button class="button" type="submit">Quiero mi plan →</button></div></form><p id="newsletterMsg" role="status" aria-live="polite" hidden></p><noscript><p>Activa JavaScript para enviar este formulario.</p></noscript></div></section><div class="shell footer-bottom"><span>© 2026 CorrerJuntos</span><span>Android 1.3.30 (127) · Capturas de la versión publicada</span><a href="#inicio">Volver arriba ↑</a></div></footer>
 <dialog class="screen-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-note">
   <div class="dialog-bar"><h2 id="dialog-title">01 — Tu próximo paso</h2><button type="button" id="close-screen" aria-label="Cerrar pantalla ampliada" autofocus>×</button></div>
-  <p id="dialog-note">Captura real de la app Android 1.3.25 con una cuenta demo. No es una demostración interactiva.</p>
-  <div class="dialog-image"><img id="dialog-screen" src="/public/home/app/native-01-inicio-720.webp" alt="Inicio de la app Android con la cuenta Demo: próxima sesión del plan, registro de entrenamiento, comunidad y asistentes IA" width="720" height="1600" loading="lazy"></div>
+  <p id="dialog-note">Captura real de Android 1.3.30 (127), la versión publicada en las tiendas, con cuenta QA. No es una demostración interactiva.</p>
+  <div class="dialog-image"><img id="dialog-screen" src="/public/home/app/v13/native-01-inicio-720.webp" alt="Inicio de Android 1.3.30: día de descanso del plan, semana en curso, Salir a correr y próxima sesión de fuerza; cuenta de pruebas" width="720" height="1560" loading="lazy"></div>
   <div class="dialog-navigation"><button type="button" data-dialog-step="-1" aria-label="Pantalla anterior">←</button><span id="dialog-position" aria-live="polite">1 / 5</span><button type="button" data-dialog-step="1" aria-label="Pantalla siguiente">→</button></div>
 </dialog>
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Preferencias de cookies">
@@ -281,10 +228,12 @@ function acceptCookies(){
 localStorage.setItem('cj_cookie_consent','accepted');
 document.getElementById('cookieBanner').classList.remove('show');
 loadGA4();loadMetaPixel();
+if(window.CJHomeFunnel)window.CJHomeFunnel.refresh();
 }
 function rejectCookies(){
 localStorage.setItem('cj_cookie_consent','rejected');
 document.getElementById('cookieBanner').classList.remove('show');
+if(window.CJHomeFunnel)window.CJHomeFunnel.refresh();
 }
 </script>
 </body>

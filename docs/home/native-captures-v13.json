@@ -1,0 +1,150 @@
+{
+  "capturedAt": "2026-09-16",
+  "platform": "Android",
+  "appVersion": "1.3.30",
+  "versionCode": 127,
+  "status": "store-release",
+  "environment": "Android emulator CJ_Claude_QA_126 (emulator-5554), 1080x2340, Spanish UI",
+  "installedApkSha256": "603afbf4f9d98a7ab7db75e47ec1b936a0eaca3ba72161f36bb66fad7a3950a3",
+  "installedApkSource": "Universal APK built with bundletool from the store AAB of build 127 (sha256 2f4fe10a66a932ea…, EAS production profile, commit 38b883f1), re-signed with the local debug key for emulator installation; same code as the App Store and Google Play 1.3.30 (127) release.",
+  "installedLastUpdateTime": "2026-09-16 04:35:30",
+  "sourceCommit": "38b883f1",
+  "appliedOta": null,
+  "otaCheck": "expo-updates reported NoUpdatesAvailable at first launch on 2026-09-16 04:35 UTC (channel production, runtime 1.3.30).",
+  "account": {
+    "label": "QA F176C",
+    "existingTestData": true,
+    "modifiedRemoteProfile": false,
+    "premium": true
+  },
+  "transformations": "Full-screen PNG masters preserved unchanged. Proportional downscaling and WebP encoding only; no crop, retouch, replacement text or synthesized app UI.",
+  "limitations": [
+    "Installed version and APK hash verified by ADB. The binary is the store AAB of build 127 converted to a universal APK and re-signed with a debug key so it installs on the emulator; signature differs from Google Play, code does not.",
+    "Existing QA account with Premium and previous strength history; test data are not customer testimonials.",
+    "Home screen shows a rest day for this account on 16 September 2026; the plan screen shows the next session on the same day. Captured as displayed, without altering data or dates.",
+    "Strength hub captured from Register activity → Fuerza; no session started, no purchase, no GPS background, no iOS certification.",
+    "Old 1.3.25 and 1.3.29 captures and their manifests remain archived, but are not referenced by the current homepage or download bridge."
+  ],
+  "captures": [
+    {
+      "name": "01-inicio",
+      "description": "Inicio: día de descanso del plan, semana en curso, acceso a Salir a correr y próxima sesión de fuerza",
+      "masterFile": "C:\\tmp\\home-v13-captures-20260916\\home-es.png",
+      "masterSha256": "dd4540c15e7797867c5f9a65d13900d28fcc886709f4aeeeede19366c9e1fa86",
+      "width": 1080,
+      "height": 2340,
+      "variants": [
+        {
+          "file": "public/home/app/v13/native-01-inicio-480.webp",
+          "width": 480,
+          "height": 1040,
+          "bytes": 37328,
+          "sha256": "7a74f998bc6a447d5bbcd863290252424a2cdb8686e4e51cd9a74542f0b3aaf5"
+        },
+        {
+          "file": "public/home/app/v13/native-01-inicio-720.webp",
+          "width": 720,
+          "height": 1560,
+          "bytes": 61064,
+          "sha256": "c9b7fe576dae5e5c5dde508cb0820976e2159b1569f891c7c25b8f01f778d37c"
+        }
+      ]
+    },
+    {
+      "name": "02-plan",
+      "description": "Mi semana: plan Empezar a correr (0→5K), semana 1 de 8, calendario y próxima sesión Caminar/Correr 5x2min",
+      "masterFile": "C:\\tmp\\home-v13-captures-20260916\\plan-es.png",
+      "masterSha256": "01c22843f18f728f30d12cbb0fcb4a5ad9b2c6308137d4ab28ea5862578d9829",
+      "width": 1080,
+      "height": 2340,
+      "variants": [
+        {
+          "file": "public/home/app/v13/native-02-plan-480.webp",
+          "width": 480,
+          "height": 1040,
+          "bytes": 73596,
+          "sha256": "0f16a97d7f897c6d62623e679ad04a0e0edeb3a777eda7eceb5569ff03493b86"
+        },
+        {
+          "file": "public/home/app/v13/native-02-plan-720.webp",
+          "width": 720,
+          "height": 1560,
+          "bytes": 124180,
+          "sha256": "481a30d7489b67cbfa508930fb90016506c4234b7ef0950ac3971a61e8780ce0"
+        }
+      ]
+    },
+    {
+      "name": "03-sesion",
+      "description": "Sesión Caminar/Correr 5x2min: 23 minutos, 3 fases, calentamiento, 5 repeticiones y enfriamiento",
+      "masterFile": "C:\\tmp\\home-v13-captures-20260916\\sesion-es.png",
+      "masterSha256": "99ae2c0a0567544925879d351de2f0fd43a6ca6e692fe2ce08c416cb5727f8b4",
+      "width": 1080,
+      "height": 2340,
+      "variants": [
+        {
+          "file": "public/home/app/v13/native-03-sesion-480.webp",
+          "width": 480,
+          "height": 1040,
+          "bytes": 30622,
+          "sha256": "0f031ae7ad17fddf4b17cd1388ff1af316f3dc4813fcc05905d81192a7846b23"
+        },
+        {
+          "file": "public/home/app/v13/native-03-sesion-720.webp",
+          "width": 720,
+          "height": 1560,
+          "bytes": 52336,
+          "sha256": "e1ab83e9f87168558b7a42c115e4f3c3bb8b23e3cab384b2dd73a351dd4a0404"
+        }
+      ]
+    },
+    {
+      "name": "04-fuerza",
+      "description": "Fuerza: próxima sesión Glúteos y estabilidad, semana de fuerza y explorador de sesiones con filtros",
+      "masterFile": "C:\\tmp\\home-v13-captures-20260916\\fuerza-catalogo-es.png",
+      "masterSha256": "d2761d96169a9526a77c4519e1646a008acda56f1a9c1279e087d036e4eb0da8",
+      "width": 1080,
+      "height": 2340,
+      "variants": [
+        {
+          "file": "public/home/app/v13/native-04-fuerza-480.webp",
+          "width": 480,
+          "height": 1040,
+          "bytes": 45032,
+          "sha256": "72f992846284cb3b910c586c8e677a6988be5a8f3547a9c696ad90e4fde5dfdd"
+        },
+        {
+          "file": "public/home/app/v13/native-04-fuerza-720.webp",
+          "width": 720,
+          "height": 1560,
+          "bytes": 72292,
+          "sha256": "818e8baef5b407f107671dd47f2215937b6fc993888d0093f43c60c17a974be4"
+        }
+      ]
+    },
+    {
+      "name": "05-carreras",
+      "description": "Carreras: mapa de España con 40 carreras y listado con fechas y distancias, pestaña Carreras activa",
+      "masterFile": "C:\\tmp\\home-v13-captures-20260916\\carreras-es.png",
+      "masterSha256": "f70a63521c3716bd335683bd859d331c049aaf1c9495f14f671a41546277af8b",
+      "width": 1080,
+      "height": 2340,
+      "variants": [
+        {
+          "file": "public/home/app/v13/native-05-carreras-480.webp",
+          "width": 480,
+          "height": 1040,
+          "bytes": 46276,
+          "sha256": "9bdffe68396bcbae881df484b7b197284f6f10825a954ae75897d8bcb43e74ab"
+        },
+        {
+          "file": "public/home/app/v13/native-05-carreras-720.webp",
+          "width": 720,
+          "height": 1560,
+          "bytes": 79398,
+          "sha256": "9fe863c8ed02e5556cab94c2a092e3fdd0b03e015cbfe8c876f05b16740a86a5"
+        }
+      ]
+    }
+  ]
+}

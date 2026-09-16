@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-11",
+  "status": "local-preview-not-approved-for-release",
+  "nativeCandidate": {
+    "commit": "a61ccf60346bc277a14b11d693fc3202c3e427af",
+    "version": "1.3.29",
+    "build": 123,
+    "publicAvailabilityVerified": false
+  },
+  "editorialImages": [
+    {
+      "file": "public/home/editorial/preparation-running.jpg",
+      "source": "assets/home/preparation-running.jpg in the native candidate",
+      "sha256": "85a2939df43970171eb14396de3f13423d65d96ae5bfd1847ead26763e4333a6"
+    },
+    {
+      "file": "public/home/editorial/preparation-strength.jpg",
+      "source": "assets/home/preparation-strength.jpg in the native candidate",
+      "sha256": "792f08738104db99d6c6103c69812680df793685d6d3a60fd754e8b15a2854a2"
+    }
+  ],
+  "editorialProvenance": "Native assets/home/preparation-photos-provenance.json: generated with built-in image_gen on 2026-09-10 for decorative navigation, not technique instruction. Original files copied unchanged; no real athlete or testimonial claim.",
+  "screenCaptureVersion": "Android 1.3.25 (110), existing verified demo captures preserved unchanged",
+  "removedFromPage": "Associated-club names, logos, counts, map and promotional list. Source files retained for provenance.",
+  "releaseGates": [
+    "Verify public availability and platform eligibility of the actual release before publishing Fuerza claims.",
+    "Replace the old demo gallery with reviewed captures of the released binary; do not relabel 1.3.25 images.",
+    "Reconfirm store prices, entitlements and IA quotas against the release.",
+    "Explicit publication approval; no merge or deploy authorized in this round."
+  ]
+}

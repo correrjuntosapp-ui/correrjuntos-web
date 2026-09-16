@@ -2,17 +2,18 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0b1220">
 <meta name="robots" content="noindex,nofollow">
 <title>Abrir CorrerJuntos</title>
 <meta name="apple-itunes-app" content="app-id=6758505910">
 <link rel="icon" type="image/png" href="/icons/icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="/public/fonts/inter-latin-wght-normal.woff2" crossorigin>
+  <script src="/js/home-funnel.js?v=b4d9be6cedeb" defer></script>
+<script src="/js/open-app.js?v=77ac444ad9d8" defer></script>
 <style>
+@font-face{font-family:'Inter';font-style:normal;font-display:swap;font-weight:100 900;src:url('/public/fonts/inter-latin-wght-normal.woff2') format('woff2')}
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   background:#0b1220;
@@ -21,6 +22,7 @@ body{
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
   padding:24px;
@@ -58,7 +60,7 @@ body{
   }
   .phone-frame{
     width:280px;
-    aspect-ratio:9/19;
+    aspect-ratio:480/1040;
     border-radius:36px;
     overflow:hidden;
     border:8px solid #0b1220;
@@ -78,7 +80,7 @@ body{
   }
   .phone-frame img{
     width:100%;height:100%;
-    object-fit:cover;
+    object-fit:contain;
     display:block;
   }
   .features-mini{
@@ -89,18 +91,17 @@ body{
     max-width:280px;
   }
   .feat-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
+    position:relative;
+    padding-left:16px;
+    font-size:13px;
     color:rgba(246,241,232,0.72);
   }
   .feat-row::before{
     content:"";
     display:inline-block;
+    position:absolute;
+    left:0;
+    top:7px;
     width:6px;height:6px;
     background:#f97316;
     border-radius:999px;
@@ -119,19 +120,17 @@ body{
 }
 .marker{
   margin-top:14px;
-  font-family:'JetBrains Mono',SFMono-Regular,Consolas,Menlo,monospace;
-  font-size:11px;
-  letter-spacing:0.22em;
+  font-size:12px;
+  letter-spacing:0.08em;
   text-transform:uppercase;
-  color:rgba(246,241,232,0.42);
+  color:rgba(246,241,232,0.72);
   font-weight:500;
 }
 .marker .ember{color:#f97316}
 .eyebrow{
   margin-top:32px;
-  font-family:'JetBrains Mono',SFMono-Regular,Consolas,Menlo,monospace;
-  font-size:11px;
-  letter-spacing:0.22em;
+  font-size:12px;
+  letter-spacing:0.08em;
   text-transform:uppercase;
   color:#f97316;
   font-weight:600;
@@ -170,7 +169,7 @@ p{
   padding:16px 32px;
   background:linear-gradient(180deg,#f97316,#ea580c);
   color:#0b1220;
-  border-radius:10px;
+  border-radius:12px;
   font-weight:700;
   font-size:15px;
   text-decoration:none;
@@ -183,11 +182,10 @@ p{
   background:rgba(246,241,232,0.12);
 }
 .label{
-  font-family:'JetBrains Mono',SFMono-Regular,Consolas,Menlo,monospace;
-  font-size:10px;
-  letter-spacing:0.22em;
+  font-size:12px;
+  letter-spacing:0.08em;
   text-transform:uppercase;
-  color:rgba(246,241,232,0.42);
+  color:rgba(246,241,232,0.72);
   font-weight:500;
 }
 .stores{
@@ -203,7 +201,7 @@ p{
   padding:10px 18px;
   background:rgba(246,241,232,0.04);
   border:1px solid rgba(246,241,232,0.12);
-  border-radius:10px;
+  border-radius:12px;
   text-decoration:none;
   color:#f6f1e8;
   flex:1 1 200px;
@@ -217,11 +215,10 @@ p{
 .store svg{flex-shrink:0}
 .store .meta{display:flex;flex-direction:column;line-height:1.1}
 .store .small{
-  font-family:'JetBrains Mono',monospace;
-  font-size:9px;
-  letter-spacing:0.18em;
+  font-size:12px;
+  letter-spacing:0.03em;
   text-transform:uppercase;
-  color:rgba(246,241,232,0.42);
+  color:rgba(246,241,232,0.72);
 }
 .store .big{
   font-size:13px;
@@ -239,7 +236,9 @@ p{
 .lockup em{color:#f97316;font-style:normal}
 .contact{
   margin-top:8px;
-  font-family:'JetBrains Mono',monospace;
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
   font-size:12px;
   color:#f97316;
   text-decoration:none;
@@ -247,11 +246,10 @@ p{
 .foot{
   margin-top:28px;
   text-align:center;
-  font-family:'JetBrains Mono',monospace;
-  font-size:9px;
-  letter-spacing:0.28em;
+  font-size:12px;
+  letter-spacing:0.08em;
   text-transform:uppercase;
-  color:rgba(246,241,232,0.32);
+  color:rgba(246,241,232,0.72);
 }
 @media(max-width:480px){
   .frame{padding:28px 24px}
@@ -282,13 +280,14 @@ body.is-desktop .stores-primary .store .small{color:rgba(246,241,232,0.6)}
 
 /* Tertiary "ya la tengo" link on desktop — discreet */
 .have-it{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
   margin-top:18px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:11px;
-  letter-spacing:0.12em;
+  font-size:12px;
+  letter-spacing:0.03em;
   text-transform:uppercase;
-  color:rgba(246,241,232,0.42);
+  color:rgba(246,241,232,0.72);
   text-decoration:none;
   border-bottom:1px solid rgba(246,241,232,0.12);
   padding-bottom:2px;
@@ -298,6 +297,7 @@ body.is-desktop .stores-primary .store .small{color:rgba(246,241,232,0.6)}
   color:#f97316;
   border-color:rgba(249,115,22,0.5);
 }
+a:focus-visible{outline:3px solid #fef7ed;outline-offset:4px}
 </style>
 </head>
 <body>
@@ -337,7 +337,7 @@ body.is-desktop .stores-primary .store .small{color:rgba(246,241,232,0.6)}
     <div class="eyebrow">Descarga la app</div>
     <h1>Ll&eacute;vate<br><span class="ember">CorrerJuntos</span> contigo.</h1>
     <div class="rule"></div>
-    <p>App gratis para iPhone y Android. Plan personalizado en 60 segundos con Coach Jos&eacute; IA. Sin tarjeta, sin compromiso.</p>
+    <p>Descarga gratis para iPhone y Android. Incluye Empieza a Moverte y 0→5K completos. Premium es opcional: consulta sus condiciones en la tienda.</p>
 
     <div class="stores stores-primary">
       <a class="store" href="https://apps.apple.com/app/id6758505910">
@@ -361,70 +361,21 @@ body.is-desktop .stores-primary .store .small{color:rgba(246,241,232,0.6)}
 
 <aside class="aside">
   <div class="phone-frame">
-    <img src="/public/screenshot-run.webp" alt="Pantalla de carrera en CorrerJuntos" loading="eager">
+    <img src="/public/home/app/v13/native-03-sesion-480.webp" width="480" height="1040" alt="Sesión Caminar/Correr 5x2min, de 23 minutos, en Android 1.3.30 (127), la versión publicada, con cuenta QA" loading="eager">
   </div>
   <div class="features-mini">
     <div class="feat-row"><strong>7 planes</strong> &middot; 0-5K a marat&oacute;n</div>
     <div class="feat-row"><strong>Coach Jos&eacute; IA</strong> &middot; an&aacute;lisis post-carrera</div>
     <div class="feat-row"><strong>GPS + audio km</strong> &middot; en background</div>
-    <div class="feat-row"><strong>100&percnt; gratis</strong> &middot; sin tarjeta</div>
+    <div class="feat-row"><strong>Dos planes gratis</strong> &middot; Premium opcional</div>
   </div>
 </aside>
 
 </div>
 
-<div class="foot">Meridian Motion &middot; correrjuntos.com</div>
+<div class="foot">CorrerJuntos &middot; correrjuntos.com</div>
 
-<script>
-(function(){
-  var ua = navigator.userAgent || '';
-  var isIOS = /iPhone|iPad|iPod/i.test(ua);
-  var isAndroid = /Android/i.test(ua);
-  var isMobile = isIOS || isAndroid;
 
-  // Mark device on body for CSS variant toggling
-  document.body.classList.add(isMobile ? 'is-mobile' : 'is-desktop');
-
-  // Desktop ends here — no custom scheme, no auto-trigger.
-  if (!isMobile) return;
-
-  var APP_STORE = 'https://apps.apple.com/app/id6758505910';
-  var PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.correrjuntos.app';
-  var SCHEME = 'correrjuntos://';
-
-  var fired = false;
-  var hidden = false;
-  document.addEventListener('visibilitychange', function(){
-    if (document.visibilityState === 'hidden') hidden = true;
-  });
-
-  // Try the custom scheme on load. If app is installed it takes over and the
-  // page becomes hidden; if not, we fall back to the store.
-  function tryOpen(){
-    if (fired) return;
-    fired = true;
-    var t0 = Date.now();
-    window.location.href = SCHEME;
-    setTimeout(function(){
-      if (hidden) return;            // app opened
-      if (Date.now() - t0 > 2200) return;
-      window.location.href = isIOS ? APP_STORE : PLAY_STORE;
-    }, 1700);
-  }
-
-  // Some browsers block scheme triggers without user gesture. Run on first
-  // tap as well.
-  document.addEventListener('click', function(e){
-    var t = e.target.closest && e.target.closest('#openBtn');
-    if (!t) return;
-    e.preventDefault();
-    tryOpen();
-  });
-
-  // Try once on load (Apple Mail in-app webview allows it).
-  setTimeout(tryOpen, 250);
-})();
-</script>
 
 </body>
 </html>

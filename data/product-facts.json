@@ -43,13 +43,13 @@
   "metrics": {
     "_doc": "Cada métrica lleva: publicValue (lo que puede escribirse en la web), rawValue (lo obtenido), criterion (qué cuenta exactamente), query (consulta ejecutada), source y verifiedAt. No publicar ninguna cifra que no esté aquí. Ciudades y clubes son métricas SEPARADAS: no mezclarlas en una misma frase como si fueran lo mismo.",
     "registeredRunners": {
-      "publicValue": "1.100+ cuentas registradas",
-      "rawValue": 1218,
-      "rawValueExcludingInternal": 1088,
-      "criterion": "Filas en profiles. rawValue = todas. rawValueExcludingInternal = excluyendo cuentas internas del equipo, de pruebas y perfiles técnicos de clubes partner. Se publica \"1.100+\" por ser el suelo que ambos criterios sostienen de forma estable.",
-      "query": "SELECT COUNT(*) FROM profiles;  y  SELECT COUNT(*) FROM profiles WHERE email NO coincide con los patrones de cuentas internas (dominio corporativo, cuentas de prueba del equipo y perfiles técnicos de clubes partner). Los patrones concretos no se listan aquí para no incluir datos personales.",
+      "publicValue": "1.500+ cuentas registradas",
+      "rawValue": 1590,
+      "rawValueExcludingInternal": 1508,
+      "criterion": "Filas en profiles sin es_seed. rawValue = 1.590 (sin cuentas semilla). rawValueExcludingInternal = 1.508, excluyendo además cuentas del equipo, de pruebas, bots de revisión de tiendas y perfiles técnicos de clubes partner. Se publica \"1.500+\" por ser el suelo que ambos criterios sostienen.",
+      "query": "SELECT COUNT(*) FROM profiles WHERE COALESCE(es_seed,false)=false; y el mismo recuento excluyendo cuentas internas (dominios corporativos, alias de prueba, bots de revisión y perfiles técnicos @partners.correrjuntos.app). Los patrones no se listan aquí para no incluir datos personales.",
       "source": "Supabase (proyecto waihiwdbtcbdazmaxdor), tabla profiles",
-      "verifiedAt": "2026-08-02"
+      "verifiedAt": "2026-09-15"
     },
     "citiesWithActivity": {
       "publicValue": "6 ciudades con actividad",
@@ -57,7 +57,7 @@
       "criterion": "Ciudades DISTINTAS con quedadas registradas. Coincide con el número de ciudades que tienen club partner activo. NO es el número de guías de ciudad publicadas. Prohibido publicar \"8 ciudades\" o \"50+ ciudades\": ningún criterio los respalda.",
       "query": "SELECT COUNT(DISTINCT ciudad) FROM quedadas WHERE ciudad IS NOT NULL AND ciudad <> ''; y COUNT(DISTINCT ciudad) FROM partner_quedada_recurrences WHERE active = true",
       "source": "Supabase, tablas quedadas y partner_quedada_recurrences",
-      "verifiedAt": "2026-08-02"
+      "verifiedAt": "2026-09-15"
     },
     "partnerClubs": {
       "publicValue": "6 clubes asociados activos",
@@ -73,7 +73,8 @@
       ],
       "query": "SELECT COUNT(DISTINCT partner_profile_id) FROM partner_quedada_recurrences WHERE active = true",
       "source": "Supabase, tabla partner_quedada_recurrences unida a profiles",
-      "verifiedAt": "2026-08-02"
+      "verifiedAt": "2026-09-15",
+      "note": "Recuento de clubes distintos con recurrencia activa reverificado el 15 sep 2026 (6). La lista de nombres es la del 2 ago y no se reverificó nombre a nombre."
     },
     "cityGuidesPublished": {
       "publicValue": "71 guías de ciudad publicadas",
@@ -84,33 +85,33 @@
       "verifiedAt": "2026-08-02"
     },
     "blogArticles": {
-      "publicValue": "300+ artículos en español (500+ guías ES+EN)",
-      "rawValueEs": 312,
-      "rawValueEn": 243,
-      "criterion": "URLs en sitemap-blog-es.xml y sitemap-blog-en.xml.",
-      "query": "curl .../sitemap-blog-es.xml | grep -c \"<loc>\"; idem -en",
-      "source": "sitemaps en producción",
-      "verifiedAt": "2026-08-02"
+      "publicValue": "600+ guías en español e inglés (340+ en español)",
+      "rawValueEs": 349,
+      "rawValueEn": 264,
+      "criterion": "URLs en sitemap-blog-es.xml y sitemap-blog-en.xml del repositorio (rama de la home). Los HTML del árbol son 352 ES (329 running + 23 ciclismo) y 268 EN; se publica el suelo por sitemap.",
+      "query": "grep -c \"<loc>\" sitemap-blog-es.xml; idem sitemap-blog-en.xml",
+      "source": "sitemaps del repositorio",
+      "verifiedAt": "2026-09-15"
     },
     "meetups": {
-      "publicValue": "80+ quedadas organizadas",
-      "rawValue": 85,
-      "rawValueFuture": 9,
+      "publicValue": "120+ quedadas organizadas",
+      "rawValue": 132,
+      "rawValueFuture": 8,
       "criterion": "Filas en quedadas (total histórico) y con fecha_hora >= now(). Se publica el suelo estable \"80+\" en /inversores y /patrocinadores. Prohibido publicar \"850+\": ningún criterio lo respalda.",
       "query": "SELECT COUNT(*) FROM quedadas; SELECT COUNT(*) FROM quedadas WHERE fecha_hora >= now()",
       "source": "Supabase, tabla quedadas",
-      "verifiedAt": "2026-08-04"
+      "verifiedAt": "2026-09-15"
     },
     "stravaIntegration": {
       "publicValue": "Importación automática desde Strava (activa)",
-      "connections": 46,
-      "importedRuns": 1467,
-      "usersWithImports": 39,
-      "lastImport": "2026-08-03",
-      "criterion": "Integración considerada ACTIVA por evidencia triple: endpoints vivos en producción (/api/strava-webhook responde 403 a token inválido, /api/strava-auth responde 405 a GET), 46 filas en strava_connections y 1.467 filas en runs con strava_activity_id no nulo (1.425 en los últimos 30 días), la última de hoy.",
+      "connections": 50,
+      "importedRuns": 2693,
+      "usersWithImports": 45,
+      "lastImport": "2026-09-15",
+      "criterion": "Integración considerada ACTIVA: 50 filas en strava_connections y 2.693 filas en runs con strava_activity_id no nulo de 45 usuarios, la última del 15 sep 2026. Endpoints no reverificados en esta sesión.",
       "query": "SELECT COUNT(*), COUNT(DISTINCT user_id), MAX(created_at) FROM runs WHERE strava_activity_id IS NOT NULL; SELECT COUNT(*) FROM strava_connections",
       "source": "Supabase (runs, strava_connections) + endpoints de producción",
-      "verifiedAt": "2026-08-03"
+      "verifiedAt": "2026-09-15"
     },
     "trainingPlans": {
       "publicValue": "7 planes",
@@ -119,8 +120,8 @@
       "criterion": "plan_templates y plan_template_workouts.",
       "query": "SELECT COUNT(*) FROM plan_templates; SELECT COUNT(*) FROM plan_template_workouts",
       "source": "Supabase",
-      "verifiedAt": "2026-07-19",
-      "note": "NO reverificado en esta sesión: conserva la fecha anterior."
+      "verifiedAt": "2026-09-15",
+      "note": "plan_templates = 7 reverificado el 15 sep 2026; el recuento de sesiones (322) es del 19 jul."
     },
     "appStoreRating": {
       "publicValue": null,
@@ -132,6 +133,24 @@
       "verifiedAt": "2026-07-19",
       "note": "NO reverificado en esta sesión. Con 1 sola reseña, no publicar como argumento comercial.",
       "query": "Lectura manual de la ficha pública de App Store ES (no automatizable sin API de ASC)."
+    },
+    "activitiesRecorded": {
+      "publicValue": null,
+      "rawValue": 2810,
+      "rawValueLast30Days": 972,
+      "criterion": "Filas en runs (todas las fuentes, incluida Strava). Sin valor público todavía: definir antes de usarlo en la web.",
+      "query": "SELECT COUNT(*) FROM runs; y con created_at >= now() - interval '30 days'",
+      "source": "Supabase, tabla runs",
+      "verifiedAt": "2026-09-15"
+    },
+    "plansCreated": {
+      "publicValue": null,
+      "rawValue": 738,
+      "rawValueLast30Days": 323,
+      "criterion": "Filas en user_plans. Sin valor público todavía.",
+      "query": "SELECT COUNT(*) FROM user_plans; y con created_at >= now() - interval '30 days'",
+      "source": "Supabase, tabla user_plans",
+      "verifiedAt": "2026-09-15"
     }
   },
   "founder": "Abraham Márquez Rodríguez",

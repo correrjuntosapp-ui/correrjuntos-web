@@ -7,13 +7,23 @@
   },
   "bundleId": "com.correrjuntos.app",
   "pricing": {
-    "monthly": "4,99 €",
-    "annual": "29,99 €",
-    "annualSavings": "50%",
+    "monthly": "5,99 €",
+    "annual": "desde 29,99 €",
+    "annualAppStore": "29,99 €",
+    "annualGooglePlay": "35,99 €",
+    "annualSavings": null,
     "currency": "EUR",
     "authority": "App Store / Google Play muestran el precio final antes de confirmar; puede variar por país y elegibilidad.",
-    "source_pricing": "Fichas oficiales de App Store ES y Google Play ES, ambas con el texto 'Premium 4,99€/mes (29,99€/año)'. Verificado 2026-08-02.",
-    "savingsCalc": "29,99 € frente a 12 × 4,99 € = 59,88 € → 49,9 % (se comunica como 50 %)."
+    "source_pricing": "Mensual: 5,99 € en App Store ES (ficha pública, «Correr Juntos Premium») y 5,99 EUR en Google Play ES (API androidpublisher, plan base premium-monthly). Anual: 29,99 € en App Store ES («Correr Juntos Pro Anual») y 35,99 EUR en Google Play ES (plan base premium-yearly). Verificado 2026-09-18.",
+    "savingsCalc": "No se publica porcentaje de ahorro: el anual difiere por tienda (29,99 € / 35,99 €) y el mensual es 5,99 €.",
+    "singlePlansAppStore": {
+      "5K": "3,99 €",
+      "10K": "5,99 €",
+      "Trail": "5,99 €",
+      "21K": "7,99 €",
+      "42K": "9,99 €",
+      "source": "Ficha pública de App Store ES, 2026-09-18. Los productos sueltos de Google Play no se pudieron leer (API antigua, 403)."
+    }
   },
   "trial": "Prueba gratuita solo para cuentas elegibles; la tienda la muestra antes de confirmar.",
   "freePlans": [

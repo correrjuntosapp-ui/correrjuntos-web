@@ -1,0 +1,73 @@
+{
+  "createdAt": "2026-09-20T07:19:22.007Z",
+  "generation": "Herramienta image_gen integrada; cabeceras sintéticas conceptuales, no fotos documentales ni pruebas técnicas",
+  "prompts": {
+    "marchas": {
+      "generate": "Use case: photorealistic-natural. Asset type: wide landscape 16:9 editorial header photograph for a Spanish road-cycling guide about choosing a gran fondo. A believable natural photograph, NOT illustration, CGI, painting, vector or cartoon. Three adult amateur road cyclists seen from behind at modest distance, each wearing a correctly fitted helmet, cycling safely on the right side of a quiet winding Spanish mountain road, spacious green and rocky foothills and soft hazy morning sky. Moderate mountains, ordinary achievable cycling rather than extreme adventure. No identifiable famous place, no event signage, no race bibs, no brands, no written text, no recognizable faces; this is a conceptual editorial scene and must not simulate documentary coverage of a named event. Mechanically credible road bikes, normal human proportions. Wider environment shot with subjects in upper/right half, bottom third visually quiet for white HTML title overlay. Natural restrained olive greens, grey tarmac, one muted orange jersey, subtle photographic grain, real sunlight, detail without HDR oversaturation. Magazine-quality landscape photograph, no borders or layouts, no embedded typography.",
+      "finalEdit": "Edit this synthetic cycling editorial photograph. Preserve the mountain landscape, quiet Spanish road, natural photography, lighting and wide 16:9 framing. Correct the cycling safety and road layout: replace the three riders side by side with exactly TWO helmeted adult cyclists riding SINGLE FILE, one behind the other, with normal following separation, clearly within the RIGHT-HAND lane. The dashed white centre line must lie to the LEFT of BOTH cyclists (as seen looking forward in their direction of travel) and the right solid road edge must lie to their right. Both riders on the right side of the road, not straddling the centre line. Photorealistic believable bicycles and anatomy. One muted orange jersey, one dark olive jersey. No text, brands, race bibs or recognizable place. Keep lower half uncluttered for article overlay. Do not change it into an illustration."
+    },
+    "cadena": {
+      "generate": "Use case: photorealistic-natural. Asset type: wide landscape 16:9 editorial hero photograph for a guide to cleaning and lubricating a bicycle chain. Highly realistic natural workshop still-life, NOT illustration, painting, CGI or cartoon. Close-up right-hand drivetrain side of one ordinary modern road bicycle held motionless in a repair stand: rear cassette, rear derailleur, taut upper chain and mechanically correct lower chain routing through two jockey wheels visible and believable, all aligned. Clean chain with natural metal texture rather than polished jewelry, subtle honest signs of normal use. A folded clean grey cloth, small brush and closed unbranded precision-dropper chain-lubricant bottle on wooden workbench behind, out of focus. No hands, no demonstration in progress, no spinning mechanism, no oil dripping onto brake surfaces, no text, no labels, no logos, no people. Shallow but not excessive depth of field, soft side window light, restrained charcoal and warm beige palette with small orange stand detail. Composition concentrated upper/right portion, lower third dark uncluttered area suitable for white HTML title overlay. Professional documentary-style visual, but conceptual synthetic editorial image rather than evidence of testing; no diagram, no composite panels."
+    }
+  },
+  "variants": [
+    {
+      "article": "mejores-marchas-cicloturistas-espana",
+      "master": "C:/Users/guett/.codex/generated_images/019f50af-76fd-78b0-9f21-74076ede64b3/exec-26e099bb-1849-40c0-863b-2462563e5a3a.png",
+      "masterSha256": "397312642e33be1cc9f9a9eb954d8c772a1c3bfbc9c01499928743bfbd3185f7",
+      "caption": "Imagen editorial generada con IA para CorrerJuntos. No corresponde a ninguna de las marchas ni documenta una ruta real.",
+      "variants": [
+        {
+          "path": "/public/blog-images/ciclismo/borradores-sep2026/marchas-480.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 26936,
+          "sha256": "6277980cc4af06481f1de09733b595530bba2667cf119c90fa6e44349adaed72"
+        },
+        {
+          "path": "/public/blog-images/ciclismo/borradores-sep2026/marchas-828.webp",
+          "width": 828,
+          "height": 466,
+          "bytes": 73988,
+          "sha256": "7223a7aed77cab66ed272b9953fb160efc7d6f4c408b1f466307cb8061f06545"
+        },
+        {
+          "path": "/public/blog-images/ciclismo/borradores-sep2026/marchas-1600.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 196668,
+          "sha256": "daaf8baf635492b81634dff9b3b7e8a9d9b47fa8c589842cc2c9e78d636c7087"
+        }
+      ]
+    },
+    {
+      "article": "como-limpiar-lubricar-cadena-bicicleta",
+      "master": "C:/Users/guett/.codex/generated_images/019f50af-76fd-78b0-9f21-74076ede64b3/exec-fb598ea2-7050-4c99-95c4-77c17cd6924a.png",
+      "masterSha256": "120251aa14205c1f687080c0180f3ede924460c6eee48c3be3dbcbc15f2ea21f",
+      "caption": "Imagen editorial generada con IA para CorrerJuntos. Es una cabecera conceptual, no una prueba de producto ni una demostración técnica.",
+      "variants": [
+        {
+          "path": "/public/blog-images/ciclismo/borradores-sep2026/cadena-480.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 17438,
+          "sha256": "dda2c0a08b16eb1911e35751199c0994b69b377e4218459ab3457ad6543ccdc8"
+        },
+        {
+          "path": "/public/blog-images/ciclismo/borradores-sep2026/cadena-828.webp",
+          "width": 828,
+          "height": 466,
+          "bytes": 36602,
+          "sha256": "5c7412715661fe9d08a78097b8b0acef1e902ce81398e6ccffa57bc5168dcf1a"
+        },
+        {
+          "path": "/public/blog-images/ciclismo/borradores-sep2026/cadena-1600.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 84584,
+          "sha256": "002e9532f96243acaa32438f5c16f838ad7577edca7a43a1db8a027885e4d767"
+        }
+      ]
+    }
+  ]
+}

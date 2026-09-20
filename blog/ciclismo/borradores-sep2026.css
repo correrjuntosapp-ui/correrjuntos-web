@@ -1,0 +1,19 @@
+.draft-review-note{max-width:1080px;margin:24px auto;padding:16px 22px;border:1px solid #b8d5ed;border-left:4px solid var(--blue);border-radius:10px;background:#f0f7ff;color:var(--ink);display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;font-size:.85rem}
+.draft-review-note strong{font-size:.9rem}.draft-review-note span{flex-basis:100%}.draft-review-note a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+.cycling-editorial-draft .draft-side-index{max-height:62vh;overflow-y:auto;overscroll-behavior:contain}
+.cycling-editorial-draft .hero-copy{max-width:780px}.cycling-editorial-draft .hero h1{font-size:clamp(2.25rem,4.4vw,3.35rem)}
+.cycling-editorial-draft .article a{overflow-wrap:anywhere}.cycling-editorial-draft .table-wrap:focus-visible,.cycling-editorial-draft .toc strong:focus-visible,.cycling-editorial-draft summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.cycling-editorial-draft .table-wrap table{min-width:640px}.cycling-editorial-draft .faq summary{min-height:44px}
+.cycling-editorial-draft .article .event-official-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:12px 16px;border:1px solid var(--blue);border-radius:8px;background:#eef5ff;color:#123b69;font-weight:700;line-height:1.45;text-decoration:none;overflow-wrap:normal}
+.cycling-editorial-draft .article .event-official-link:hover{background:#dfeeff;text-decoration:underline}.cycling-editorial-draft .event-official-link:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.cycling-editorial-draft .marchas-region-nav ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));list-style:none;padding:0;gap:12px}
+.cycling-editorial-draft .marchas-region-nav li{margin:0;padding:14px 16px;border:1px solid var(--line,#d7e2ed);border-radius:8px;background:var(--card,#fff)}
+.cycling-editorial-draft .marchas-region-nav strong{display:block}.cycling-editorial-draft .marchas-region-nav a{display:inline-flex;align-items:center;min-height:44px}
+.cycling-editorial-draft .marchas-confirmed-dates{padding:16px 20px 16px 40px;border-left:4px solid var(--blue);background:#f0f7ff;color:#123b69;border-radius:4px}
+.cycling-editorial-draft .marchas-data-table table{min-width:700px;table-layout:fixed}.cycling-editorial-draft .marchas-data-table caption{text-align:left;padding:12px 16px;font-weight:700;color:var(--ink);background:#edf4fb}
+.cycling-editorial-draft .marchas-data-table tbody th{background:transparent;color:inherit;white-space:normal;text-align:left;vertical-align:top;padding:14px 16px;font-size:inherit;letter-spacing:normal;text-transform:none;border-bottom:1px solid var(--line,#d7e2ed)}
+.cycling-editorial-draft .marchas-data-table td{vertical-align:top}
+@media(max-width:560px){.cycling-editorial-draft .marchas-region-nav ul{grid-template-columns:1fr}.cycling-editorial-draft .marchas-region-nav li{padding:10px 14px}}
+@media(max-width:860px){.draft-review-note{margin:20px 14px}.cycling-editorial-draft .draft-side-index{max-height:none}.cycling-editorial-draft .sidebar .draft-side-index{display:none}}
+@media(max-width:560px){.cycling-editorial-draft .hero-copy{padding:36px 22px}.cycling-editorial-draft .hero h1{font-size:2.05rem;line-height:1.12}.cycling-editorial-draft .hero-dek{font-size:1rem}.cycling-editorial-draft .byline{font-size:.78rem}.cycling-editorial-draft .hero-overlay{background:linear-gradient(0deg,rgba(4,15,30,.92),rgba(4,15,30,.12))}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

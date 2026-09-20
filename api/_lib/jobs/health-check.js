@@ -20,17 +20,14 @@
 // Cron: daily 08:45 UTC (antes de la tanda de crons de las 09:00).
 
 import { createClient } from '@supabase/supabase-js';
+import { collectCommercialMetrics, isInternal } from '../health-commercial.js';
 
 const SUPABASE_URL = 'https://waihiwdbtcbdazmaxdor.supabase.co';
 const ALERT_TO = { email: 'correrjuntosapp@gmail.com', name: 'Abraham' };
 const SENDER = { email: 'abraham.marquez@correrjuntos.com', name: 'CorrerJuntos · Latido' };
 
-// Cuentas internas — nunca cuentan como actividad real
-const INTERNAL = ['guetto2012', 'mundodefabulas11', 'review@', 'cloudtestlab', '@partners.correrjuntos.app', '@correrjuntos.com'];
-const isInternal = (email) => INTERNAL.some((p) => (email || '').toLowerCase().includes(p));
-
-function dayRangeUTC(daysAgo) {
-  const end = new Date();
+function dayRangeUTC(daysAgo, now) {
+  const end = new Date(now);
   end.setUTCHours(0, 0, 0, 0);
   end.setUTCDate(end.getUTCDate() - (daysAgo - 1));
   const start = new Date(end);
@@ -55,9 +52,9 @@ export default async function runHealthCheck(req, res, env) {
     try { return new URL(req.url, 'http://x').searchParams.get(k); } catch { return null; }
   };
   const forceEmail = qp('test') === '1';
-
-  const yday = dayRangeUTC(1);
-  const week = { start: dayRangeUTC(8).start, end: yday.start }; // 7 días previos a ayer
+  const now = new Date();
+  const yday = dayRangeUTC(1, now);
+  const week = { start: dayRangeUTC(8, now).start, end: yday.start }; // 7 días previos a ayer
 
   const alerts = [];
   const metrics = {};
@@ -91,12 +88,7 @@ export default async function runHealthCheck(req, res, env) {
   metrics.planes_creados_ayer = plans.n;
   const joins = await countRange(sb, 'participantes', 'created_at', yday.start, yday.end);
   metrics.apuntes_quedadas_ayer = joins.n;
-  const { data: purch } = await sb
-    .from('analytics_events').select('event_name')
-    .ilike('event_name', 'purchase%')
-    .gte('event_ts', yday.start).lt('event_ts', yday.end);
-  metrics.compras_ok_ayer = (purch || []).filter((e) => !/fail|cancel/i.test(e.event_name)).length;
-  metrics.compras_fallidas_ayer = (purch || []).filter((e) => /fail|cancel/i.test(e.event_name)).length;
+  // Purchases are classified with the same QA exclusions as the 7d funnel.
 
   // 4. Quedadas futuras — si 0, el cron rotate_partner_quedadas está roto
   const { count: futureQ, error: qErr } = await sb
@@ -116,93 +108,12 @@ export default async function runHealthCheck(req, res, env) {
     alerts.push(`La web no responde: ${(e?.message || '').slice(0, 120)}`);
   }
 
-  // 6. Embudo de revenue (ventana 7d) — caza fallos silenciosos de
-  //    monetización. [8 jul 2026: el bug del enum de trial eligibility
-  //    vivió 30+ días con 0 trials sin que nada crashease. Este check lo
-  //    habría cantado en 3 días.]
-  const d7 = new Date(Date.now() - 7 * 864e5).toISOString();
-  const count7 = async (name) => {
-    const { count } = await sb
-      .from('analytics_events')
-      .select('*', { count: 'exact', head: true })
-      .eq('event_name', name).gte('event_ts', d7);
-    return count ?? 0;
-  };
-  // [F116 · 14 ago 2026] Lectura HONESTA del embudo de trial:
-  //  1) NUNCA concluir "ya no es técnico" solo con vistas y 0 trials.
-  //  2) Mientras la ventana 7d pise fechas anteriores a los fixes del P0
-  //     de onboarding (iOS 2026-08-13T13:32Z · Android 2026-08-14T05:34Z),
-  //     las vistas de paywall están CONTAMINADAS (usuarios en bucle de
-  //     onboarding viendo el upsell repetido) → banner y cero conclusiones
-  //     sobre copy. Relectura limpia: informe 116 (21 ago).
-  //  3) Embudo por PASOS y por USUARIO ÚNICO / SESIÓN, no solo vistas.
-  const ANDROID_P0_FIX_MS = Date.parse('2026-08-14T05:34:37Z');
-  const ventanaContaminada = (Date.now() - 7 * 864e5) < ANDROID_P0_FIX_MS;
-  const distinct7 = async (name, col) => {
-    const { data } = await sb
-      .from('analytics_events').select(col)
-      .eq('event_name', name).gte('event_ts', d7).limit(10000);
-    return new Set((data || []).map((r) => r[col]).filter(Boolean)).size;
-  };
-  const paywall7 = await count7('paywall_opened');
-  const guard7 = await count7('purchase_pkg_guard');
-  // [8 jul pm] Split eligible/no_trial: distingue "los usuarios aún no
-  // tienen la OTA del fix" (todo no_trial) de "ven el trial y no lo
-  // empiezan" (eligible alto y 0 trials = problema de CONVERSIÓN, no
-  // técnico). Son investigaciones distintas.
-  const elig7 = await count7('paywall_view_eligible_trial');
-  const noTrial7 = await count7('paywall_view_no_trial');
-  const { count: trials7 } = await sb
-    .from('trial_starts')
-    .select('*', { count: 'exact', head: true })
-    .gte('started_at', d7);
-  // purchase_failed sin contar cancelaciones del usuario (esas son normales)
-  const { data: pfRows } = await sb
-    .from('analytics_events').select('params')
-    .eq('event_name', 'purchase_failed').gte('event_ts', d7);
-  const pfReal = (pfRows || []).filter((r) => !/cancel/i.test(r.params?.error || '')).length;
-  // Desglose por usuario/sesión + pasos del embudo (instrumentados en
-  // analytics_events; "1ª vista por usuario" = usuarios únicos con vista).
-  const eligUsers7 = await distinct7('paywall_view_eligible_trial', 'user_id');
-  const eligSes7 = await distinct7('paywall_view_eligible_trial', 'session_id');
-  const cta7 = await count7('purchase_cta_clicked');
-  const started7 = await count7('purchase_started');
-  const cancelled7 = await count7('purchase_cancelled');
-  const success7 = await count7('purchase_success');
-  metrics.paywall_7d = paywall7;
-  metrics.paywall_con_trial_7d = elig7;
-  metrics.paywall_sin_trial_7d = noTrial7;
-  metrics.paywall_usuarios_unicos_elegibles_7d = eligUsers7;
-  metrics.paywall_sesiones_elegibles_7d = eligSes7;
-  metrics.cta_taps_7d = cta7;
-  metrics.purchase_started_7d = started7;
-  metrics.purchase_cancelled_7d = cancelled7;
-  metrics.purchase_success_7d = success7;
-  metrics.trials_7d = trials7 ?? 0;
-  // "Entitlement activado" exacto vive en RevenueCat; aquí un proxy
-  // declarado: trials + purchase_success.
-  metrics.entitlement_proxy_7d = (trials7 ?? 0) + success7;
-  metrics.compras_fallidas_reales_7d = pfReal;
-  metrics.ventana_paywall = ventanaContaminada
-    ? 'CONTAMINADA por P0 onboarding hasta 2026-08-21T05:34Z'
-    : 'limpia (post-fix P0)';
-  if (paywall7 >= 15 && (trials7 ?? 0) === 0) {
-    if (ventanaContaminada) {
-      alerts.push(`Trial en 0 con ${elig7} vistas elegibles (${eligUsers7} usuarios únicos) en 7d — ⚠️ DATOS CONTAMINADOS POR P0 ONBOARDING — NO CONCLUIR SOBRE COPY. Hasta los fixes (iOS 13-ago 13:32Z · Android 14-ago 05:34Z) los usuarios en bucle de onboarding veían el paywall repetido. Relectura limpia: informe 116 (21 ago).`);
-    } else if (elig7 >= 10) {
-      alerts.push(`Trial en 0 con ${eligUsers7} usuarios únicos elegibles (${elig7} vistas, ${eligSes7} sesiones) en 7d. Embudo: CTA ${cta7} → purchase_started ${started7} → cancelados ${cancelled7} → trials ${trials7 ?? 0}. NO concluir causa (técnica / fricción pre-CTA / post-CTA / oferta / muestra) sin ver dónde se corta el embudo — clasificación A-G del informe 116.`);
-    } else if (elig7 === 0 && noTrial7 >= 10) {
-      alerts.push(`Elegibilidad del trial sospechosa: ${noTrial7} vistas de paywall en 7 días y NINGUNA con trial visible. Si la OTA del fix ya debería estar aplicada (48h+), revisar checkTrialEligibility / RevenueCat.`);
-    } else {
-      alerts.push(`Embudo trial posiblemente ROTO: ${paywall7} aperturas de paywall en 7 días y 0 trials iniciados (con trial visible: ${elig7}). Revisar elegibilidad RevenueCat / ofertas de tienda / trial_starts.`);
-    }
-  }
-  if (pfReal >= 3) {
-    alerts.push(`Compras fallando: ${pfReal} purchase_failed reales (sin cancelaciones) en 7 días. Mirar params.error en analytics_events y Sentry.`);
-  }
-  if (guard7 >= 1) {
-    alerts.push(`El guard de compra saltó ${guard7} vez/veces en 7 días (purchase_pkg_guard). Mirar params.rescued y qué pantalla genera paquetes sin presentedOfferingContext.`);
-  }
+  // 6. Commercial telemetry: exclude known QA in every step, count exact
+  // success events, and keep cancellation/restoration separate from failure.
+  const d7 = new Date(now.getTime() - 7 * 864e5).toISOString();
+  const commercial = await collectCommercialMetrics(sb, { now, yday });
+  Object.assign(metrics, commercial.metrics);
+  alerts.push(...commercial.alerts);
 
   // 7. Webhook Strava — si normalmente entran runs y llevan 48h a cero
   const d2 = new Date(Date.now() - 2 * 864e5).toISOString();
@@ -224,7 +135,7 @@ export default async function runHealthCheck(req, res, env) {
   if (!dryRun && (alerts.length > 0 || forceEmail)) {
     const fecha = yday.start.slice(0, 10);
     const rows = Object.entries(metrics)
-      .map(([k, v]) => `<tr><td style="padding:6px 14px 6px 0;color:#94a3b8;font-size:14px;">${k.replace(/_/g, ' ')}</td><td style="padding:6px 0;color:#f6f1e8;font-size:14px;font-weight:600;">${v ?? '—'}</td></tr>`)
+      .map(([k, v]) => `<tr><td style="padding:6px 14px 6px 0;color:#94a3b8;font-size:14px;">${k === 'compras_ok_ayer' ? 'compras completadas ayer (eventos)' : k.replace(/_/g, ' ')}</td><td style="padding:6px 0;color:#f6f1e8;font-size:14px;font-weight:600;">${v ?? 'No disponible'}</td></tr>`)
       .join('');
     const alertList = alerts.length
       ? alerts.map((a) => `<li style="margin-bottom:8px;color:#fca5a5;font-size:15px;line-height:1.5;">${a}</li>`).join('')
@@ -235,7 +146,7 @@ export default async function runHealthCheck(req, res, env) {
 <h1 style="margin:0 0 24px;font-size:32px;font-weight:200;color:#f6f1e8;letter-spacing:-0.03em;">${alerts.length} señal${alerts.length === 1 ? '' : 'es'} en <strong style="font-weight:700;color:${alerts.length ? '#ef4444' : '#22c55e'};">${alerts.length ? 'rojo' : 'verde'}</strong></h1>
 <ul style="margin:0 0 28px;padding-left:18px;">${alertList}</ul>
 <div style="border-top:1px solid rgba(246,241,232,0.12);padding-top:20px;">
-<div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(246,241,232,0.42);font-family:monospace;margin-bottom:12px;">Señales vitales de ayer</div>
+<div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(246,241,232,0.42);font-family:monospace;margin-bottom:12px;">Señales de ayer (UTC) y embudo de los últimos 7 días</div>
 <table style="border-collapse:collapse;">${rows}</table>
 </div>
 <div style="margin-top:28px;font-size:26px;font-weight:800;letter-spacing:-0.03em;color:#f6f1e8;">Correr<em style="font-style:normal;color:#f97316;">Juntos</em></div>
